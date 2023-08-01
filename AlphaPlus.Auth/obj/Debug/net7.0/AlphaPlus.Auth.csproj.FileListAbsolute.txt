@@ -1,5 +1,0 @@
-D:\Git\alphaplus\AlphaPlus.Auth\obj\Debug\net7.0\AlphaPlus.Auth.csproj.AssemblyReference.cache
-D:\Git\alphaplus\AlphaPlus.Auth\obj\Debug\net7.0\AlphaPlus.Auth.GeneratedMSBuildEditorConfig.editorconfig
-D:\Git\alphaplus\AlphaPlus.Auth\obj\Debug\net7.0\AlphaPlus.Auth.AssemblyInfoInputs.cache
-D:\Git\alphaplus\AlphaPlus.Auth\obj\Debug\net7.0\AlphaPlus.Auth.AssemblyInfo.cs
-D:\Git\alphaplus\AlphaPlus.Auth\obj\Debug\net7.0\AlphaPlus.Auth.csproj.CoreCompileInputs.cache
