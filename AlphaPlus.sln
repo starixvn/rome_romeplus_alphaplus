@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Configurations", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.SecurityCode", "AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj", "{7D350EC1-C87C-40D5-9068-FF90F0AEE5AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Razorbill.Security", "Fanex.Razorbill.Security\Fanex.Razorbill.Security.csproj", "{BCB28720-AFE1-42DB-8C44-F759BBD7D31A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{7D350EC1-C87C-40D5-9068-FF90F0AEE5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D350EC1-C87C-40D5-9068-FF90F0AEE5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D350EC1-C87C-40D5-9068-FF90F0AEE5AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB28720-AFE1-42DB-8C44-F759BBD7D31A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB28720-AFE1-42DB-8C44-F759BBD7D31A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB28720-AFE1-42DB-8C44-F759BBD7D31A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB28720-AFE1-42DB-8C44-F759BBD7D31A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Fanex.Razorbill.Security</PackageId>
+    <Version>3.0.3-beta1</Version>
+    <Authors>Rome</Authors>
+    <Company>Starix Soft</Company>
+    <Product>Alpha Plus</Product>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Common" Version="1.1.1" />
+    <PackageReference Include="Fanex.CustomerSetting" Version="1.2.0.1" />
+    <PackageReference Include="Fanex.Data" Version="0.5.404.59" />
+    <PackageReference Include="Microsoft.AspNet.Web.Optimization" Version="1.1.3" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
+  </ItemGroup>
+</Project>
