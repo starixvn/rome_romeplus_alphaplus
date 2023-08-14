@@ -1,8 +1,8 @@
 using System;
 using System.Globalization;
-using System.Text.Json;
 using AlphaPlus.User.Models.Enumerations;
 using AlphaPlus.User.Models.Helpers;
+using Newtonsoft.Json;
 
 namespace AlphaPlus.User.Models
 {
@@ -96,6 +96,7 @@ namespace AlphaPlus.User.Models
             get => GetProperty<string>(CAPTCHACODE);
             set => SetProperty(CAPTCHACODE, value);
         }
+
         public bool IsBelongTo9Currency
         {
             get => GetProperty(ISBELONGTO9CURRENCY, false);
@@ -426,12 +427,12 @@ namespace AlphaPlus.User.Models
         public T GetProperty<T>(string propertyName, T defaultValue = default)
         {
             var value = _httpContextHelper.GetSession(propertyName);
-            return value == null ? defaultValue : JsonSerializer.Deserialize<T>(value);
+            return value == null ? defaultValue : JsonConvert.DeserializeObject<T>(value);
         }
 
         public void SetProperty(string propertyName, object value)
         {
-            _httpContextHelper.SetSession(propertyName, JsonSerializer.Serialize(value));
+            _httpContextHelper.SetSession(propertyName, JsonConvert.SerializeObject(value));
         }
     }
 }

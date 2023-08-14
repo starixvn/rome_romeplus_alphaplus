@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Web", "AlphaPlus.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Configurations", "AlphaPlus.Configurations\AlphaPlus.Configurations.csproj", "{B8FD2191-84EB-418E-A7A8-F1AD1DCE9F7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.SecurityCode", "AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj", "{7D350EC1-C87C-40D5-9068-FF90F0AEE5AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{B8FD2191-84EB-418E-A7A8-F1AD1DCE9F7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8FD2191-84EB-418E-A7A8-F1AD1DCE9F7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8FD2191-84EB-418E-A7A8-F1AD1DCE9F7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D350EC1-C87C-40D5-9068-FF90F0AEE5AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D350EC1-C87C-40D5-9068-FF90F0AEE5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D350EC1-C87C-40D5-9068-FF90F0AEE5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D350EC1-C87C-40D5-9068-FF90F0AEE5AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
