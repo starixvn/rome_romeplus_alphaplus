@@ -94,7 +94,5 @@ namespace AlphaPlus.Configurations
                 ? default(DateTime?)
                 : DateTime.ParseExact(forceLoginNicknameDate4SubAccountValue, "dd/MM/yyyy", null);
         }
-
-        public static bool IsOfferDarkMode => ConfigurationManager.GetValue<string>("IsOfferDarkMode") == "1";
     }
 }

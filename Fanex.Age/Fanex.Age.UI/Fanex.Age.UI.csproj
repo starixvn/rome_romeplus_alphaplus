@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
+    <ProjectReference Include="..\..\AlphaPlus.Web\AlphaPlus.Web.csproj" />
+    <ProjectReference Include="..\..\Sunplus.Agent\Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj" />
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Fanex.Age.UI</PackageId>
+    <Version>3.1.0-beta1</Version>
+    <Authors>Rome</Authors>
+    <Company>Starix Soft</Company>
+    <Product>Alpha Plus</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TplCore" Version="1.0.4854.17254" />
+  </ItemGroup>
+</Project>

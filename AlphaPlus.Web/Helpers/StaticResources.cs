@@ -215,7 +215,7 @@ namespace AlphaPlus.Web.Helpers
         {
             userSession = userSession ?? GetCurrentUserSession();
 
-            return Configurations.AppSettings.IsOfferDarkMode ? userSession.DarkModeName : string.Empty;
+            return userSession.DarkModeName;
         }
 
         private static IUserSession GetCurrentUserSession() => UserSession.Current;

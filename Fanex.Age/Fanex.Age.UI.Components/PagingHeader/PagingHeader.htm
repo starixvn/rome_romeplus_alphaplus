@@ -1,0 +1,18 @@
+﻿<table id="tblHeader">
+    <tr>
+        <td class="bgleft">
+            <!--selected-->
+            {static:LocalResources.UIComponentsLang.select} : <a href="#" id="chkAll" onclick="{function_all}">{static:LocalResources.UIComponentsLang.all}</a> | <a href="#" id="chkNone" onclick="{function_none}">{static:LocalResources.UIComponentsLang.none}</a>
+            <!--/selected-->
+            <!--button-->
+            <div id="bttTransfer" class="btnSubmit" onclick="ShowFrmTransferMulti(this,'divTransferMulti');">{ButtonText}</div>
+            <!--/button-->
+        </td>
+        <td class="bgcenter">
+            {pagingControl}
+        </td>
+        <td class="bgright">
+            {selPageSize}
+        </td>
+    </tr>
+</table>

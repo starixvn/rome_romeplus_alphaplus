@@ -3,7 +3,7 @@
     <TargetFramework>net461</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Fanex.Razorbill.Security</PackageId>
-    <Version>3.0.3-beta1</Version>
+    <Version>3.1.0-beta1</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>
