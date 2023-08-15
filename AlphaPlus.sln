@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sunplus.Agent", "Sunplus.Ag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Agent.Utilities", "Sunplus.Agent\Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj", "{0F2556A0-2BB1-4A0E-9E52-2E1D75E19AAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Age.UI.Components.Transfer", "Fanex.Age\Fanex.Age.UI.Components.Transfer\Fanex.Age.UI.Components.Transfer.csproj", "{6BE811C5-2AFA-47D0-B7E3-78616A05F774}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunplus.Agent.Model.Transfer", "Sunplus.Agent\Sunplus.Agent.Model.Transfer\Sunplus.Agent.Model.Transfer.csproj", "{FCED0E77-36D5-4E23-8779-CB370D63D9F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,10 +68,20 @@ Global
 		{0F2556A0-2BB1-4A0E-9E52-2E1D75E19AAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F2556A0-2BB1-4A0E-9E52-2E1D75E19AAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F2556A0-2BB1-4A0E-9E52-2E1D75E19AAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE811C5-2AFA-47D0-B7E3-78616A05F774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE811C5-2AFA-47D0-B7E3-78616A05F774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE811C5-2AFA-47D0-B7E3-78616A05F774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE811C5-2AFA-47D0-B7E3-78616A05F774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCED0E77-36D5-4E23-8779-CB370D63D9F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCED0E77-36D5-4E23-8779-CB370D63D9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCED0E77-36D5-4E23-8779-CB370D63D9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCED0E77-36D5-4E23-8779-CB370D63D9F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{07230D30-0497-41BA-B4F5-72D556218BFC} = {D6569A66-759D-4F9B-AF97-B4CCBA23EE42}
 		{4020B932-84BC-4368-9684-795FD17B12D9} = {D6569A66-759D-4F9B-AF97-B4CCBA23EE42}
 		{0F2556A0-2BB1-4A0E-9E52-2E1D75E19AAC} = {6C03144D-17E5-41C5-914A-D3E494734A38}
+		{6BE811C5-2AFA-47D0-B7E3-78616A05F774} = {D6569A66-759D-4F9B-AF97-B4CCBA23EE42}
+		{FCED0E77-36D5-4E23-8779-CB370D63D9F4} = {6C03144D-17E5-41C5-914A-D3E494734A38}
 	EndGlobalSection
 EndGlobal

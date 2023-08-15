@@ -1,11 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
-namespace AlphaPlus.User.Models.Enumerations
+﻿namespace AlphaPlus.Web.Models
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
+    /// <summary>
+    /// <see cref="https://github.com/HeadspringLabs/Tarantino/blob/master/src/Tarantino.Core/Commons/Model/Enumerations/Enumeration.cs"/>
+    /// </summary>
     [Serializable]
     public abstract class Enumeration : IComparable
     {
@@ -32,6 +35,14 @@ namespace AlphaPlus.User.Models.Enumerations
             get { return _value; }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design",
+            "CA1062:Validate arguments of public methods",
+            MessageId = "1",
+            Justification = "Reviewed"),
+        System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design",
+            "CA1062:Validate arguments of public methods",
+            MessageId = "0",
+            Justification = "Reviewed")]
         public static byte AbsoluteDifference(Enumeration firstValue, Enumeration secondValue)
         {
             var absoluteDifference = (byte)Math.Abs(firstValue.Value - secondValue.Value);
@@ -167,7 +178,7 @@ namespace AlphaPlus.User.Models.Enumerations
         {
             if (obj == null)
             {
-                throw new ArgumentNullException(nameof(obj));
+                throw new ArgumentNullException("obj");
             }
 
             return Value.CompareTo(((Enumeration)obj).Value);
@@ -177,12 +188,12 @@ namespace AlphaPlus.User.Models.Enumerations
         {
             if (ReferenceEquals(left, null))
             {
-                throw new ArgumentNullException(nameof(left));
+                throw new ArgumentNullException("left");
             }
 
             if (ReferenceEquals(right, null))
             {
-                throw new ArgumentNullException(nameof(right));
+                throw new ArgumentNullException("right");
             }
         }
 

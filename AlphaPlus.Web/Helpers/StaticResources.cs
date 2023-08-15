@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Configuration;
 using AlphaPlus.User.Models;
-using AlphaPlus.User.Models.Enumerations;
+using AlphaPlus.Web.Models;
 
 namespace AlphaPlus.Web.Helpers
 {

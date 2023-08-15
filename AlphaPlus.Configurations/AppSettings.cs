@@ -73,8 +73,6 @@ namespace AlphaPlus.Configurations
 
         public static bool IsSiteLabel789y => SiteLabel.Equals("789y");
 
-        public static bool ShowOldCustomerList => ConfigurationManager.GetValue<string>("ShowOldCustomerList") == "1";
-
         private static void GetForceLoginNicknameConfiguration()
         {
             var forceLoginNicknameDateValue = ConfigurationManager.GetValue<string>("ForceLoginNicknameDate");

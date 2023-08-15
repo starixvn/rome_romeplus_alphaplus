@@ -65,7 +65,11 @@ namespace AlphaPlus.User.Models
 
         bool IsAdminCanViewVNIP { get; set; }
 
-        UserLevel UserLevel { get; }
+        bool IsAgent { get; }
+
+        bool IsMaster { get; }
+
+        bool IsSuper { get; }
 
         bool IsShowConsolidatedReport { get; set; }
 

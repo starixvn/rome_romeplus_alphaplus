@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using AlphaPlus.User.Models.Enumerations;
 using AlphaPlus.User.Models.Helpers;
 using Newtonsoft.Json;
 
@@ -241,7 +240,11 @@ namespace AlphaPlus.User.Models
             set => SetProperty(ISADMINCANVIEWVNIP, value);
         }
 
-        public UserLevel UserLevel => Enumeration.FromValue<UserLevel>(RoleId);
+        public bool IsAgent => RoleId == (int)UserTypes.Agent;
+
+        public bool IsMaster => RoleId == (int)UserTypes.Master;
+
+        public bool IsSuper => RoleId == (int)UserTypes.Super;
 
         public bool IsShowConsolidatedReport
         {
