@@ -8,13 +8,32 @@
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>
   </PropertyGroup>
-  <ItemGroup><!-- <Reference Include="System.Web" /> -->
-  
-    <ProjectReference Include="..\..\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
-  
+  <ItemGroup>
+    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
     <ProjectReference Include="..\..\Sunplus.Agent\Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj" />
-  
     <ProjectReference Include="..\..\Sunplus.Agent\Sunplus.Agent.Model.Transfer\Sunplus.Agent.Model.Transfer.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.vi-VN.resx">
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.th-TH.resx">
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.zh-TW.resx">
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.zh-CN.resx">
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="TplCore" Version="1.0.4854.17254" />

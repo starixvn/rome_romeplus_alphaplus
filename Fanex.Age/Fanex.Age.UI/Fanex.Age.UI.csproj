@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\..\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
-    <ProjectReference Include="..\..\AlphaPlus.Web\AlphaPlus.Web.csproj" />
+    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
+    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.Web\AlphaPlus.Web.csproj" />
     <ProjectReference Include="..\..\Sunplus.Agent\Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj" />
   </ItemGroup>
   <PropertyGroup>

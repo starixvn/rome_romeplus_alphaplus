@@ -17,6 +17,6 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
+    <ProjectReference Include="..\AlphaPlus\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
   </ItemGroup>
 </Project>

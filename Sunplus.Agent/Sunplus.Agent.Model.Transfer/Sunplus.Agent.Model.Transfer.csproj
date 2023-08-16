@@ -55,6 +55,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AlphaPlus.Web\AlphaPlus.Web.csproj" />
+    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.Web\AlphaPlus.Web.csproj" />
   </ItemGroup>
 </Project>

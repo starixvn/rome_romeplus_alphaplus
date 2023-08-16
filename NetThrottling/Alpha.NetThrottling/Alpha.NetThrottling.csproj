@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <DependsOnNETStandard>false</DependsOnNETStandard>
+    <TargetFramework>net461</TargetFramework>
+    <Description>Alpha Net Throttling</Description>
+    <Copyright>Starixsoft</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://gitlab.nexdev.net/rome/alpha/alpha.netthrottling</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Deterministic>true</Deterministic>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>alpha net throttling</PackageTags>
+    <Authors>Starixsoft</Authors>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>1.2.0-beta1</Version>
+    <AssemblyName>Alpha.NetThrottling</AssemblyName>
+    <PackageReleaseNotes>181596 - Split Site</PackageReleaseNotes>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Caching" Version="2.2.1" />
+    <PackageReference Include="Fanex.Caching.Redis" Version="2.2.1" />
+    <PackageReference Include="Fanex.Logging.Extensions.Web" Version="1.0.8" />
+    <PackageReference Include="MessagePack" Version="1.7.3.4" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Lang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.Web\AlphaPlus.Web.csproj" />
+  </ItemGroup>
+</Project>

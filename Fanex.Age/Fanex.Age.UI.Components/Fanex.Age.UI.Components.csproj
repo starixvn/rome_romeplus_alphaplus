@@ -14,4 +14,27 @@
   <ItemGroup>
     <Reference Include="System.Web" />
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.vi-VN.resx">
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.th-TH.resx">
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.zh-TW.resx">
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.zh-CN.resx">
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="LocalResources\UIComponentsLang.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UIComponentsLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
