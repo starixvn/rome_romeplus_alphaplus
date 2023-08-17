@@ -85,6 +85,11 @@ namespace AlphaPlus.Configurations
 
         public static bool DisabledCheckDuplicationLogin => ConfigurationManager.GetValue<string>("DisabledCheckDuplicationLogin") == "1";
 
+        public static bool IsEnabledProduct(int product)
+        {
+            return ConfigurationManager.GetValue<string>("EnableProduct-" + product) == "1";
+        }
+
         private static void GetForceLoginNicknameConfiguration()
         {
             var forceLoginNicknameDateValue = ConfigurationManager.GetValue<string>("ForceLoginNicknameDate");

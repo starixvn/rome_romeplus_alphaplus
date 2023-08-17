@@ -26,5 +26,11 @@ namespace AlphaPlus.Web.Helpers
 
             return ips;
         }
+
+        public static string GetClientIP()
+        {
+            string[] ips = GetClientIPs();
+            return ips[0].Trim();
+        }
     }
 }
