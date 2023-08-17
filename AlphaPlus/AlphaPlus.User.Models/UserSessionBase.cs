@@ -1,11 +1,13 @@
 using System;
 using System.Globalization;
+using System.Reflection;
+using AlphaPlus.Configurations;
 using AlphaPlus.User.Models.Helpers;
 using Newtonsoft.Json;
 
 namespace AlphaPlus.User.Models
 {
-    public class UserSessionBase : IUserSession
+    public class UserSessionBase : IUserSession, IDisposable
     {
         private const string DEFAULT_LANGUAGE = "en-US";
         private const string ISBELONGTO9CURRENCY = "ISBELONGTO9CURRENCY";
@@ -68,12 +70,25 @@ namespace AlphaPlus.User.Models
         private const string ISPROTECTEDMODESESSIONKEY = "ISPROTECTEDMODE";
         private const string AUTOFOLLOWBETISDUMMYAGENTSESSIONKEY = "AUTOFOLLOWBETISDUMMYAGENT";
         private const string ISINTERNALWEBVPN = "ISINTERNALWEBVPN";
+        private const string AGIPSESSIONKEY = "AGIP";
+        private const string SITEDBGROUPIDSESSIONKEY = "SITEDBGROUPID";
+        private const string ISHIDESPORTSBOOK2 = "ISHIDESPORTSBOOK2";
+        private const string DISABLESPORTSBOOK2 = "DISABLESPORTSBOOK2";
+        private const string ISDISABLEDESPORTS = "ISDISABLEDESPORTS";
 
         private readonly IHttpContextHelper _httpContextHelper;
 
         public UserSessionBase(IHttpContextHelper httpContextHelper)
         {
             _httpContextHelper = httpContextHelper;
+        }
+
+        public string NetSessionId => _httpContextHelper.SessionId;
+
+        public bool IsLimitedHostPermisionOnSubAccountFunction
+        {
+            get => GetProperty(ISLIMITHOSTPERMISSIONONSUBACCOUNTFUNCTION, false);
+            set => SetProperty(ISLIMITHOSTPERMISSIONONSUBACCOUNTFUNCTION, value);
         }
 
         public string Language
@@ -415,6 +430,36 @@ namespace AlphaPlus.User.Models
             set => SetProperty(AUTOFOLLOWBETISDUMMYAGENTSESSIONKEY, value);
         }
 
+        public string AGIP
+        {
+            get => GetProperty<string>(AGIPSESSIONKEY) ?? AppSettings.DBTXN_IP;
+            set => SetProperty(AGIPSESSIONKEY, value);
+        }
+
+        public int SiteDBGroupId
+        {
+            get => GetProperty<int>(SITEDBGROUPIDSESSIONKEY);
+            set => SetProperty(SITEDBGROUPIDSESSIONKEY, value);
+        }
+
+        public bool IsHideSportsbook2
+        {
+            get => GetProperty(ISHIDESPORTSBOOK2, true);
+            set => SetProperty(ISHIDESPORTSBOOK2, value);
+        }
+
+        public bool DisableSportsbook2
+        {
+            get => GetProperty(DISABLESPORTSBOOK2, true);
+            set => SetProperty(DISABLESPORTSBOOK2, value);
+        }
+
+        public bool IsDisabledESports
+        {
+            get => GetProperty(ISDISABLEDESPORTS, false);
+            set => SetProperty(ISDISABLEDESPORTS, value);
+        }
+
         public bool GetDisabledProduct(int productId) => GetProperty(DISABLEDPRODUCT + "_" + productId, true);
 
         public void SetDisabledProduct(int productId, bool value) => SetProperty(DISABLEDPRODUCT + "_" + productId, value);
@@ -436,6 +481,18 @@ namespace AlphaPlus.User.Models
         public void SetProperty(string propertyName, object value)
         {
             _httpContextHelper.SetSession(propertyName, JsonConvert.SerializeObject(value));
+        }
+
+        public void Dispose()
+        {
+            Type type = GetType();
+            PropertyInfo[] p = type.GetProperties(BindingFlags.Public | BindingFlags.SetProperty);
+
+            int c = p.Length;
+            for (int i = 0; i < c; i++)
+            {
+                this.SetProperty(p[i].Name.ToUpper(), null);
+            }
         }
     }
 }

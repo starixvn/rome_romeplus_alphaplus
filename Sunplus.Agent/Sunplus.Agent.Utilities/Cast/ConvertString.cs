@@ -20,6 +20,11 @@ namespace Sunplus.Agent.Utilities
             return AsString(value, string.Empty, CultureInfo.CurrentCulture);
         }
 
+        public static String AsString(object value, IFormatProvider provider)
+        {
+            return AsString(value, string.Empty, provider);
+        }
+
         /// <summary>
         /// Returns an object as a String.
         /// </summary>

@@ -1,19 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <DependsOnNETStandard>false</DependsOnNETStandard>
     <TargetFramework>net461</TargetFramework>
-    <Description>Sunplus.Agent.Model.Transfer</Description>
     <Copyright>Starixsoft</Copyright>
-    <PackageProjectUrl />
-    <RepositoryUrl>https://gitlab.nexdev.net/rome/alpha/Sunplus.Agent.Model.Transfer</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Deterministic>true</Deterministic>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>Sunplus.Agent.Model.Transfer</PackageTags>
     <Authors>Starixsoft</Authors>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Version>3.1.0-beta1</Version>
-    <AssemblyName>Sunplus.Agent.Model.Transfer</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Caching" Version="2.2.1" />

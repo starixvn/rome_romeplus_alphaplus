@@ -5,6 +5,10 @@ namespace AlphaPlus.User.Models
 {
     public interface IUserSession
     {
+        string NetSessionId { get; }
+
+        bool IsLimitedHostPermisionOnSubAccountFunction { get; set; }
+
         string Language { get; set; }
 
         string LangKey { get; set; }
@@ -140,6 +144,16 @@ namespace AlphaPlus.User.Models
         bool IsProtectedMode { get; set; }
 
         bool AutoFollowBetIsDummyAgent { get; set; }
+
+        string AGIP { get; set; }
+
+        int SiteDBGroupId { get; set; }
+
+        bool IsHideSportsbook2 { get; set; }
+
+        bool DisableSportsbook2 { get; set; }
+
+        bool IsDisabledESports { get; set; }
 
         T GetProperty<T>(string propertyName, T defaultValue = default);
 

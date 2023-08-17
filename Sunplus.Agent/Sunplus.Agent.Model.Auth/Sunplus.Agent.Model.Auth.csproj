@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Starixsoft</Authors>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>3.1.0-beta1</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Sunplus.Agent.Model.DataAccessLibrary" Version="3.0.0.2" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.Web\AlphaPlus.Web.csproj" />
+    <ProjectReference Include="..\Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj" />
+  </ItemGroup>
+</Project>

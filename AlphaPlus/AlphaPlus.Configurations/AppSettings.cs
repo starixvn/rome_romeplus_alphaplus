@@ -73,6 +73,18 @@ namespace AlphaPlus.Configurations
 
         public static bool IsSiteLabel789y => SiteLabel.Equals("789y");
 
+        public static byte SettingStatus => ConfigurationManager.GetValue<byte>("SettingStatus");
+
+        public static string DBTXN_IP => ConfigurationManager.GetValue<string>("DBTXN_IP");
+
+        public static string SubAccountPermission_LockAdminAccounts => ConfigurationManager.GetValue<string>("SubAccountPermission_LockAdminAccounts");
+
+        public static string ProductColumnNameMappings => ConfigurationManager.GetValue<string>("ProductColumnNameMappings");
+
+        public static string AllowedListSuperAccounts => ConfigurationManager.GetValue<string>("AllowedListSuperAccounts");
+
+        public static bool DisabledCheckDuplicationLogin => ConfigurationManager.GetValue<string>("DisabledCheckDuplicationLogin") == "1";
+
         private static void GetForceLoginNicknameConfiguration()
         {
             var forceLoginNicknameDateValue = ConfigurationManager.GetValue<string>("ForceLoginNicknameDate");

@@ -4,7 +4,7 @@
     <TargetFramework>net461</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>AlphaPlus.Web</PackageId>
-    <Version>1.0.0-beta2</Version>
+    <Version>1.0.0-beta3</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>
@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
-    <ProjectReference Include="..\AlphaPlus.Configurations\AlphaPlus.Configurations.csproj" />
   </ItemGroup>
 
   <ItemGroup>

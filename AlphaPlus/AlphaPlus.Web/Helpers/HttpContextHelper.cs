@@ -5,6 +5,8 @@ namespace AlphaPlus.Web.Helpers
 {
     public class HttpContextHelper : IHttpContextHelper
     {
+        public string SessionId => IsRequestInitialized() ? HttpContext.Current.Session.SessionID : string.Empty;
+
         public string GetSession(string key)
         {
             return IsRequestInitialized() ? HttpContext.Current.Session[key]?.ToString() : string.Empty;
