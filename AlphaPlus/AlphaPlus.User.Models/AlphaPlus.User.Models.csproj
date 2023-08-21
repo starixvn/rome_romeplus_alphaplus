@@ -4,14 +4,13 @@
     <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>AlphaPlus.User.Models</PackageId>
-    <Version>1.0.0-beta5</Version>
+    <Version>1.0.0-beta6</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fanex.Common" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 

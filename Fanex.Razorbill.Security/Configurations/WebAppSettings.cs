@@ -11,5 +11,13 @@
                 return ConfigurationManager.AppSettings["VirtualDirectory"];
             }
         }
+
+        public static string BelongingParams
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["BelongingParams"];
+            }
+        }
     }
 }

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Text.RegularExpressions;
 using AlphaPlus.Configurations;
-using Fanex.Common;
 
 namespace AlphaPlus.User.Models
 {
@@ -117,7 +116,14 @@ namespace AlphaPlus.User.Models
             session.IsShowBetChoiceLimit = (bool)values["isShowBetChoiceLimit"];
             session.AGIP = values["AGIP"].ToString();
             session.SiteDBGroupId = Convert.ToInt32(values["SiteDBGroupId"]);
-            session.IsMyanmarOdds = Converter.ToBool(values["ismyanmarodds"]);
+
+            bool isMyanmarOdds = false;
+            if (values["ismyanmarodds"] != null && values["ismyanmarodds"] != DBNull.Value)
+            {
+                _ = bool.TryParse(values["ismyanmarodds"].ToString(), out isMyanmarOdds);
+            }
+
+            session.IsMyanmarOdds = isMyanmarOdds;
 
             if (!string.IsNullOrWhiteSpace(AppSettings.SubAccountPermission_LockAdminAccounts)
                 && Regex.IsMatch(string.Format(",{0},", AppSettings.SubAccountPermission_LockAdminAccounts), string.Format(",{0},", session.AdminId), RegexOptions.IgnoreCase)
