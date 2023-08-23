@@ -121,7 +121,7 @@ namespace Fanex.Age.UI
 
         protected virtual void RenderOthersContent(HtmlTextWriter writer)
         {
-            writer.Write(AlphaPlus.Web.Helpers.GoogleAnalyticHepler.Render().ToHtmlString());
+            writer.Write(Alpha.Web.Helpers.GoogleAnalyticHepler.Render().ToHtmlString());
         }
 
         protected void WriteJavascriptObjects(HtmlTextWriter writer)

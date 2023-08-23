@@ -4,8 +4,8 @@ namespace AlphaPlus.User.Models.Helpers
     {
         string SessionId { get; }
 
-        string GetSession(string key);
+        object GetSession(string key);
 
-        void SetSession(string key, string value);
+        void SetSession(string key, object value);
     }
 }

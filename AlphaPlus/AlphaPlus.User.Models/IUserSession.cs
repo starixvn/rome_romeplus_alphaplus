@@ -1,13 +1,12 @@
 using System;
 using System.Globalization;
+using System.Runtime.Serialization;
 
 namespace AlphaPlus.User.Models
 {
     public interface IUserSession
     {
         string NetSessionId { get; }
-
-        bool IsLimitedHostPermisionOnSubAccountFunction { get; set; }
 
         string Language { get; set; }
 

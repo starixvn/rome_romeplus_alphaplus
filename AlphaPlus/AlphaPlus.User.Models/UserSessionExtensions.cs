@@ -129,11 +129,11 @@ namespace AlphaPlus.User.Models
                 && Regex.IsMatch(string.Format(",{0},", AppSettings.SubAccountPermission_LockAdminAccounts), string.Format(",{0},", session.AdminId), RegexOptions.IgnoreCase)
                 && session.IsInternal)
             {
-                session.IsLimitedHostPermisionOnSubAccountFunction = true;
+                session.IsLimitedHostPermissionOnSubAccountFunction = true;
             }
             else
             {
-                session.IsLimitedHostPermisionOnSubAccountFunction = false;
+                session.IsLimitedHostPermissionOnSubAccountFunction = false;
             }
         }
 

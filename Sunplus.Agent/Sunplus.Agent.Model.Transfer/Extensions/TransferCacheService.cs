@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Web.Configuration;
-using AlphaPlus.Configurations;
 using Fanex.Caching;
 using Fanex.Caching.Redis;
 using Fanex.Logging;
@@ -50,7 +49,7 @@ namespace Sunplus.Agent.Model.Transfer.Extensions
 
         private static ICacheService InitCacheService()
         {
-            var redisConfigurationOptions = WebConfigurationManager.AppSettings["RedisConfigurationOptions:Alpha.Transfer"];
+            var redisConfigurationOptions = WebConfigurationManager.AppSettings["RedisConfigurationOptions:AlphaPlus.Transfer"];
             var configurationOptions = ConfigurationOptions.Parse(redisConfigurationOptions);
             var redisCacheOptions = new RedisCacheOptions
             {

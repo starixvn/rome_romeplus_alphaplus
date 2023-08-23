@@ -6,7 +6,7 @@
     <PackageProjectUrl></PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Deterministic>true</Deterministic>
-    <Version>3.1.0-beta1</Version>
+    <Version>4.0.0-standard1</Version>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Fanex.PTEngine.Age</PackageTags>
     <Authors>Starixsoft</Authors>

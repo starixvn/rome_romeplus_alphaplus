@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <DependsOnNETStandard>false</DependsOnNETStandard>
+    <TargetFramework>net461</TargetFramework>
+    <Description>Alpha Plus Net Throttling</Description>
+    <Copyright>Starixsoft</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Starixsoft</Authors>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>2.0.0-standard1</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Caching" Version="2.2.1" />
+    <PackageReference Include="Fanex.Caching.Redis" Version="2.2.1" />
+    <PackageReference Include="Fanex.Logging.Extensions.Web" Version="1.0.8" />
+    <PackageReference Include="MessagePack" Version="1.7.3.4" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Lang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alpha.Web\Alpha.Web.csproj" />
+  </ItemGroup>
+</Project>

@@ -7,7 +7,7 @@
     <RepositoryUrl>https://gitlab.nexdev.net/rome/alpha/Sunplus.Agent.Utilities</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Deterministic>true</Deterministic>
-    <Version>4.0.0-beta2</Version>
+    <Version>4.0.0-beta3</Version>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Sunplus.Agent.Utilities</PackageTags>
     <Authors>Starixsoft</Authors>

@@ -1,0 +1,23 @@
+﻿namespace Alpha.Web
+{
+    using System.Reflection;
+    using System.Web;
+    using AlphaPlus.Configurations;
+
+    public static class ShareSession
+    {
+        public static void Init()
+        {
+            string applicationName = ConfigurationManager.GetValue<string>("ApplicationName");
+
+            applicationName = applicationName ?? "AlphaSite";
+
+            // Change the Application Name in runtime.
+            var runtimeInfo = typeof(HttpRuntime).GetField("_theRuntime", BindingFlags.Static | BindingFlags.NonPublic);
+            var theRuntime = (HttpRuntime)runtimeInfo.GetValue(null);
+            var appNameInfo = typeof(HttpRuntime).GetField("_appDomainAppId", BindingFlags.Instance | BindingFlags.NonPublic);
+
+            appNameInfo.SetValue(theRuntime, applicationName);
+        }
+    }
+}

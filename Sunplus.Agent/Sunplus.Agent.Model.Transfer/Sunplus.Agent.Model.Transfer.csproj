@@ -5,14 +5,14 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Starixsoft</Authors>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>3.1.0-beta1</Version>
+    <Version>4.0.0-standard2</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Caching" Version="2.2.1" />
     <PackageReference Include="Fanex.Caching.Redis" Version="2.2.1" />
     <PackageReference Include="Fanex.Data" Version="0.5.404.59" />
     <PackageReference Include="Fanex.Logging.Extensions.Web" Version="1.0.8" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     <PackageReference Include="Sunplus.Agent.Model.DataAccessLibrary" Version="3.0.0.2" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web" />
@@ -47,6 +47,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.Web\AlphaPlus.Web.csproj" />
+    <ProjectReference Include="..\..\Alpha\Alpha.Web\Alpha.Web.csproj" />
   </ItemGroup>
 </Project>

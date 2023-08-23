@@ -1,0 +1,86 @@
+﻿namespace Alpha.Web.Filters
+{
+    using System;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using AlphaPlus.User.Models;
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    public sealed class ProtectedModeFilter : AuthorizeAttribute
+    {
+        private bool isAuthorizedChecking;
+
+        public ProtectedModeFilter(bool isAuthorizedChecking = true)
+        {
+            this.isAuthorizedChecking = isAuthorizedChecking;
+        }
+
+        public override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            if (filterContext.RequestContext.HttpContext.Request.IsAuthenticated
+                   && !isAuthorizedChecking)
+            {
+                isAuthorizedChecking = true;
+            }
+
+
+            if (!isAuthorizedChecking)
+            {
+                return;
+            }
+
+            base.OnAuthorization(filterContext);
+
+            if (filterContext.Result is HttpUnauthorizedResult)
+            {
+                return;
+            }
+
+            if (UserSession.Current.IsProtectedMode)
+            {
+                var actionDescriptor = filterContext.ActionDescriptor;
+                var allowProtectionModeAttributeType = typeof(AllowProtectedModeAttribute);
+
+                if (!actionDescriptor.IsDefined(allowProtectionModeAttributeType, true)
+                    && !actionDescriptor.ControllerDescriptor.IsDefined(allowProtectionModeAttributeType, true))
+                {
+                    UnAuthorizedAction(filterContext);
+                }
+            }
+        }
+
+        private static void UnAuthorizedAction(AuthorizationContext filterContext)
+        {
+            var httpContext = filterContext.HttpContext;
+
+            if (httpContext.Request.IsAjaxRequest())
+            {
+                filterContext.Result = new HttpUnauthorizedResult();
+                filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
+
+                var response = httpContext.Response;
+                response.Clear();
+                response.TrySkipIisCustomErrors = true;
+                response.End();
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult(filterContext.RequestContext.HttpContext.Response.ApplyAppPathModifier(FormsAuthentication.LoginUrl));
+            }
+
+            TerminateSession(httpContext.Session);
+        }
+
+        private static void TerminateSession(HttpSessionStateBase session)
+        {
+            session.Clear();
+            session.Abandon();
+
+            if (!session.IsCookieless)
+            {
+                FormsAuthentication.SignOut();
+            }
+        }
+    }
+}

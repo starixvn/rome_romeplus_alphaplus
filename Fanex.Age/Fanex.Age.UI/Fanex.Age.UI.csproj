@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
-    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.Web\AlphaPlus.Web.csproj" />
     <ProjectReference Include="..\..\Sunplus.Agent\Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj" />
+    <ProjectReference Include="..\..\Alpha\Alpha.Web\Alpha.Web.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Fanex.Age.UI</PackageId>
-    <Version>3.1.0-beta1</Version>
+    <Version>4.0.0-standard1</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>

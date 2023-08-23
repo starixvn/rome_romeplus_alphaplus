@@ -3,10 +3,10 @@ using System.Globalization;
 using System.Reflection;
 using AlphaPlus.Configurations;
 using AlphaPlus.User.Models.Helpers;
-using Newtonsoft.Json;
 
 namespace AlphaPlus.User.Models
 {
+    [Serializable]
     public class UserSessionBase : IUserSession, IDisposable
     {
         private const string DEFAULT_LANGUAGE = "en-US";
@@ -94,7 +94,7 @@ namespace AlphaPlus.User.Models
         public string Language
         {
             get => GetProperty(LANGUAGE, DEFAULT_LANGUAGE);
-            set => SetProperty(Language, value);
+            set => SetProperty(LANGUAGE, value);
         }
 
         public string LangKey
@@ -276,7 +276,7 @@ namespace AlphaPlus.User.Models
         public string SecurityCode
         {
             get => GetProperty<string>(SECURITYCODE);
-            set => SetProperty(ISFORCEDSECURITYCODE, value);
+            set => SetProperty(SECURITYCODE, value);
         }
 
         public bool ShowSecurityCodePopup
@@ -388,6 +388,7 @@ namespace AlphaPlus.User.Models
             get => GetProperty<int>(IndirectCustIdSessionKey);
             set => SetProperty(IndirectCustIdSessionKey, value);
         }
+
         public int IndirectSubAccId
         {
             get => GetProperty<int>(IndirectSubAccIdSessionKey);
@@ -475,12 +476,12 @@ namespace AlphaPlus.User.Models
         public T GetProperty<T>(string propertyName, T defaultValue = default)
         {
             var value = _httpContextHelper.GetSession(propertyName);
-            return value == null ? defaultValue : JsonConvert.DeserializeObject<T>(value);
+            return value == null ? defaultValue : (T)value;
         }
 
         public void SetProperty(string propertyName, object value)
         {
-            _httpContextHelper.SetSession(propertyName, JsonConvert.SerializeObject(value));
+            _httpContextHelper.SetSession(propertyName, value);
         }
 
         public void Dispose()
@@ -491,7 +492,7 @@ namespace AlphaPlus.User.Models
             int c = p.Length;
             for (int i = 0; i < c; i++)
             {
-                this.SetProperty(p[i].Name.ToUpper(), null);
+                SetProperty(p[i].Name.ToUpper(), null);
             }
         }
     }
