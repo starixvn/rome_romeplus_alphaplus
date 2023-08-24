@@ -1,0 +1,20 @@
+﻿namespace AlphaPlus.Logging.LogEngines
+{
+    using AlphaPlus.Logging.Configurations;
+    using Fanex.Logging;
+    using Fanex.Logging.Sentry.RavenClient;
+
+    public class SentryLogEngine : LogEngineFactory
+    {
+        public ILogEngine Create(string ravenScriptPath = null)
+        {
+            var sentryOptions = new SentryEngineOptions
+            {
+                Dsn = new SharpRaven.Dsn(AppSettings.SentryBackendUrl),
+                FrontEndDsn = new SharpRaven.Dsn(AppSettings.SentryUrl)
+            };
+
+            return new SentryLogging(sentryOptions, string.IsNullOrWhiteSpace(ravenScriptPath) ? $"{AppSettings.AssetAppPath}/bundles/common/raven.min.js" : ravenScriptPath);
+        }
+    }
+}
