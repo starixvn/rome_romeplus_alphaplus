@@ -10,7 +10,7 @@
     {
         public AccountStatus GetAccountStatus(int customerId, int subAccountId)
         {
-            using (var db = new ObjectDb("Age_CustomerStatusSel"))
+            using (var db = ObjectDbFactory.CreateInstance("Age_CustomerStatusSel"))
             {
                 db.ExecuteNonQuery(new Hashtable
                 {
@@ -19,7 +19,7 @@
                     ["isactive"] = false,
                     ["locked"] = 0
                 });
-                var ouputParams = db.GetOuputParams();
+                var ouputParams = db.GetOutputParams();
 
                 return new AccountStatus(
                     Convert.ToBoolean(ouputParams["isactive"]),
@@ -29,7 +29,7 @@
 
         public bool IsActive(int customerId, int subAccountId)
         {
-            using (var objectDb = new ObjectDb("Age_CustomerStatusSel"))
+            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustomerStatusSel"))
             {
                 dynamic inputParams = new Hashtable
                 {
@@ -40,7 +40,7 @@
 
                 objectDb.ExecuteNonQuery(inputParams);
 
-                return Converter.ToBool(objectDb.GetOuputParams()["isactive"]);
+                return Converter.ToBool(objectDb.GetOutputParams()["isactive"]);
             }
         }
 
@@ -52,11 +52,11 @@
                 { "pageaccess", string.Empty }
             };
 
-            using (var objectDb = new ObjectDb("Age_CustSubPageAccessSel"))
+            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustSubPageAccessSel"))
             {
                 objectDb.ExecuteNonQuery(inputParams);
 
-                return Converter.ToString2(objectDb.GetOuputParams()["pageaccess"]);
+                return Converter.ToString2(objectDb.GetOutputParams()["pageaccess"]);
             }
         }
 
@@ -74,10 +74,10 @@
                 parameters.Add("custid", custId);
             }
 
-            using (var objectDb = new ObjectDb("Age_CustomerSelCheckBelonging_OLD"))
+            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustomerSelCheckBelonging_OLD"))
             {
                 objectDb.ExecuteNonQuery(parameters);
-                var outputs = objectDb.GetOuputParams();
+                var outputs = objectDb.GetOutputParams();
                 return (short)outputs["roleid"] > 0;
             }
         }
@@ -98,10 +98,10 @@
                 parameters.Add("custid", custId);
             }
 
-            using (var objectDb = new ObjectDb("Age_CustomerSelCheckBelonging"))
+            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustomerSelCheckBelonging"))
             {
                 objectDb.ExecuteNonQuery(parameters);
-                var outputs = objectDb.GetOuputParams();
+                var outputs = objectDb.GetOutputParams();
                 var roleId = Converter.To<byte>(outputs["roleid"]);
 
                 return new BelongingInfo
@@ -127,10 +127,10 @@
             parameters.Add("roleid", 0);
             parameters.Add("isactive", true);
 
-            using (var objectDb = new ObjectDb("Age_Rpt_CustomerConsolidatedGroup_CheckBelonging"))
+            using (var objectDb = ObjectDbFactory.CreateInstance("Age_Rpt_CustomerConsolidatedGroup_CheckBelonging"))
             {
                 objectDb.ExecuteNonQuery(parameters);
-                var outputs = objectDb.GetOuputParams();
+                var outputs = objectDb.GetOutputParams();
                 var roleId = Converter.To<byte>(outputs["roleid"]);
 
                 return new BelongingInfo
@@ -152,10 +152,10 @@
                 { "isactive", true }
             };
 
-            using (var objectDb = new ObjectDb("Age_CustomerSelCheckBelonging_MultiCust"))
+            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustomerSelCheckBelonging_MultiCust"))
             {
                 objectDb.ExecuteNonQuery(parameters);
-                var outputs = objectDb.GetOuputParams();
+                var outputs = objectDb.GetOutputParams();
                 var roleId = Converter.To<byte>(outputs["roleid"]);
 
                 return new BelongingInfo
@@ -168,7 +168,7 @@
 
         public KickoutInfo IsKickedOut(int onlineUserId)
         {
-            using (var objectDb = new ObjectDb("Age_ReCheckin"))
+            using (var objectDb = ObjectDbFactory.CreateInstance("Age_ReCheckin"))
             {
                 dynamic inputParams = new Hashtable
                 {
@@ -178,7 +178,7 @@
                 };
 
                 objectDb.ExecuteNonQuery(inputParams);
-                var outputParams = objectDb.GetOuputParams();
+                var outputParams = objectDb.GetOutputParams();
 
                 return new KickoutInfo(Converter.ToBool(outputParams["iskickedout"]), Convert.ToByte(outputParams["kickoutreason"]));
             }
