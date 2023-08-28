@@ -1,10 +1,10 @@
-namespace AlphaPlus.PartialUM.NetFramework.Helpers
+namespace Alpha.PartialUM.Helpers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using AlphaPlus.PartialUM.Helpers;
-    using AlphaPlus.PartialUM.NetFramework.Configurations;
+    using Alpha.PartialUM.Configurations;
 
     public class PartialUMSectionHelper : IPartialUMSectionHelper
     {

@@ -1,4 +1,4 @@
-namespace AlphaPlus.PartialUM.NetFramework.Configurations
+namespace Alpha.PartialUM.Configurations
 {
     using System.Configuration;
 

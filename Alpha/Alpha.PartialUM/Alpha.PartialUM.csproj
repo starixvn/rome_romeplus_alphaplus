@@ -1,12 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <ProjectReference Include="..\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
-    <ProjectReference Include="..\..\Alpha\Alpha.Web\Alpha.Web.csproj" />
-  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-beta1</Version>
+    <Version>2.0.0-standard1</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>
@@ -15,5 +11,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
     <Reference Include="System.Web" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
+    <ProjectReference Include="..\Alpha.Web\Alpha.Web.csproj" />
   </ItemGroup>
 </Project>

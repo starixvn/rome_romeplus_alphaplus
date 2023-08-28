@@ -1,4 +1,4 @@
-namespace AlphaPlus.PartialUM.NetFramework.Filters
+namespace Alpha.PartialUM.Filters
 {
     using System;
     using System.Net;
