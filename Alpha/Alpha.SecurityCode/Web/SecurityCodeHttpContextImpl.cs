@@ -1,7 +1,6 @@
 ﻿namespace Alpha.SecurityCode.Web
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using Alpha.SecurityCode.Configurations;
     using Services;
@@ -35,7 +34,6 @@
             return request.Url.PathAndQuery.Replace(request.ApplicationPath, string.Empty);
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "Reviewed")]
         public bool IsAjaxRequest()
         {
             var request = HttpContext.Current.Request;

@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Text.RegularExpressions;
 using System.Web;
+using AlphaPlus.User.Models;
 using Fanex.Products.Enums;
 using Fanex.Products.Utilities;
 
@@ -11,10 +12,6 @@ namespace Fanex.Products.Services
 {
     public abstract class BaseProduct : IProduct
     {
-        protected const string HideProduct = "_HIDEPRODUCT_";
-        protected const string DisabledProduct = "_DISABLEDPRODUCT_";
-        protected const string SyncedProduct = "_SYNCEDPRODUCT_";
-
         private bool _active;
 
         private string _customerSettingLink;
@@ -163,32 +160,32 @@ namespace Fanex.Products.Services
 
         protected bool GetHide()
         {
-            return SessionUtility.GetSession(HideProduct + Id, true);
+            return UserSession.Current.GetHideProduct(Id);
         }
 
         protected void SetHide(bool value)
         {
-            SessionUtility.SetSession(HideProduct + Id, value);
+            UserSession.Current.SetHideProduct(Id, value);
         }
 
         protected bool GetDisabled()
         {
-            return SessionUtility.GetSession(DisabledProduct + Id, true);
+            return UserSession.Current.GetDisabledProduct(Id);
         }
 
         protected void SetDisabled(bool value)
         {
-            SessionUtility.SetSession(DisabledProduct + Id, value);
+            UserSession.Current.SetDisabledProduct(Id, value);
         }
 
         protected virtual bool? GetSynced()
         {
-            return SessionUtility.GetSession(SyncedProduct + Id, new bool?());
+            return UserSession.Current.GetSyncedProduct(Id);
         }
 
-        protected void SetSynced(bool? value)
+        protected void SetSynced(bool value)
         {
-            SessionUtility.SetSession(SyncedProduct + Id, value);
+            UserSession.Current.SetSyncedProduct(Id, value);
         }
 
         #endregion
