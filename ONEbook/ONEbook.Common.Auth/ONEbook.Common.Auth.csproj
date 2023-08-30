@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AlphaPlus\AlphaPlus.Configurations\AlphaPlus.Configurations.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.0.0-standard1</Version>
+    <Authors>Rome</Authors>
+    <Company>Starix Soft</Company>
+    <Product>Alpha Plus</Product>
+  </PropertyGroup>
+
+</Project>
