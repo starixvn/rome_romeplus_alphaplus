@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Common" Version="1.1.0.1" />
-    <PackageReference Include="Fanex.CustomerSetting" Version="1.2.0.1" />
     <PackageReference Include="Fanex.CustomerSetting.Security" Version="2.0.0.6" />
     <PackageReference Include="Fanex.Data" Version="0.5.404.59" />
     <PackageReference Include="Microsoft.AspNet.Web.Optimization" Version="1.1.3" />
