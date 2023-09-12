@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <ProjectReference Include="..\AlphaPlus.User.Models\AlphaPlus.User.Models.csproj" />
+        <ProjectReference Include="..\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Fanex.Data" Version="4.2.2" />
+    </ItemGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.0-beta1</Version>
+        <Authors>Rome</Authors>
+        <Company>Starix Soft</Company>
+        <Product>Alpha Plus</Product>
+    </PropertyGroup>
+</Project>

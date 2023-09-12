@@ -1,17 +1,12 @@
-﻿namespace AlphaPlus.PartialUM.DataAccess
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using AlphaPlus.PartialUM.Models;
+using Fanex.Data;
+
+namespace AlphaPlus.PartialUM.DataAccess
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Data;
-    using AlphaPlus.PartialUM.Models;
-    using Fanex.Data;
-
-    public interface IPartialUMDataAccess
-    {
-        IEnumerable<UMInfo> GetUMInfoList(string siteName);
-    }
-
     public class PartialUMDataAccess : IPartialUMDataAccess
     {
         public IEnumerable<UMInfo> GetUMInfoList(string siteName)

@@ -9,7 +9,7 @@ namespace Fanex.Age.UI.Components
     using System.Linq;
     using Fanex.Age.UI.Components.DateRangeSelect;
     using Fanex.Age.UI.Components.LocalResources;
-    using TplCore.Element;
+    using TplNetCore.Element;
 
     public class DateRangeSelect_Control : IComponent
     {

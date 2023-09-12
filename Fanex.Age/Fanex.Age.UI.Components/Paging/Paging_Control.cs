@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Web;
-using TplCore.Element;
 
 /*
  * Created 20100330@Lee - Common paging control
@@ -14,8 +13,9 @@ using TplCore.Element;
 namespace Fanex.Age.UI.Components
 {
     using Paging;
+    using TplNetCore.Element;
 
-    public class Paging_Control : TplCore.Element.IComponent
+    public class Paging_Control : IComponent
     {
         #region Definition
 

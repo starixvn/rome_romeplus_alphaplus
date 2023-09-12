@@ -8,7 +8,7 @@
 
 using System.Text;
 using Fanex.Age.UI.Components.LocalResources;
-using TplCore.Element;
+using TplNetCore.Element;
 
 namespace Fanex.Age.UI.Components.ShowHideColumn
 {
@@ -29,7 +29,7 @@ namespace Fanex.Age.UI.Components.ShowHideColumn
         public string RenderCheckbox(string[] texts, string[] cols, string[] colspan = null, bool showLcs = false)
         {
             var columns = string.Empty;
-            
+
             tpl.checkbox.Clear();
 
             ContextMenuColumns_Control_checkbox_Block checkbox = new ContextMenuColumns_Control_checkbox_Block();

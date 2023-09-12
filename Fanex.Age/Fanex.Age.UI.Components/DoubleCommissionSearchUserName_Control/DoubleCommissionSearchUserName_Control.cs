@@ -4,7 +4,7 @@ namespace Fanex.Age.UI.Components.DoubleCommissionSearchUserName_Control
     using System.Collections.Generic;
     using AlphaPlus.User.Models;
     using LocalResources;
-    using TplCore.Element;
+    using TplNetCore.Element;
 
     public class DoubleCommissionSearchUserName : IComponent
     {

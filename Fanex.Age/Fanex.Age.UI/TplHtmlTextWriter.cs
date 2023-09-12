@@ -4,7 +4,7 @@ namespace Fanex.Age.UI
     using System.IO;
     using System.Text;
     using System.Web.UI;
-    using TplCore.Element;
+    using TplNetCore.Element;
 
     /// <summary>
     /// Filter:
