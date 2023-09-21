@@ -2,9 +2,11 @@ namespace Alpha.PartialUM.Filters
 {
     using System;
     using System.Net;
+    using System.Web;
     using System.Web.Mvc;
     using Alpha.Web.Helpers;
     using AlphaPlus.PartialUM.Exceptions;
+    using AlphaPlus.User.Models;
 
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = false)]
     public sealed class PartialUMExceptionFilter : FilterAttribute, IExceptionFilter
@@ -50,7 +52,7 @@ namespace Alpha.PartialUM.Filters
         {
             if (isRedirect)
             {
-                filterContext.Result = new RedirectResult(MicroSites.MainUrl($"~/PartialUM/Index?umfrom={exception.UMFrom}&umto={exception.UMTo}"));
+                filterContext.Result = new RedirectResult($"{MainPath}PartialUM/Index?umfrom={exception.UMFrom}&umto={exception.UMTo}");
             }
             else
             {
@@ -59,6 +61,25 @@ namespace Alpha.PartialUM.Filters
                     ViewName = "~/Views/Shared/PartialUM.cshtml",
                     ViewData = new ViewDataDictionary(exception)
                 };
+            }
+        }
+
+        private string MainPath
+        {
+            get
+            {
+                if (HttpContext.Current != null && HttpContext.Current.Session.IsCookieless)
+                {
+                    var currentSession = UserSession.Current;
+                    var mainSessionId = currentSession.GetProperty<string>("MainSessionID");
+
+                    if (!string.IsNullOrWhiteSpace(mainSessionId))
+                    {
+                        return $"{currentSession.GetProperty<string>("MainDomain")}/(S({mainSessionId}))/site-main/";
+                    }
+                }
+
+                return MicroSites.MainUrl();
             }
         }
     }

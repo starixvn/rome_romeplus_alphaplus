@@ -1,13 +1,14 @@
 ﻿namespace Alpha.Web.Helpers
 {
+    using Alpha.Web.Models;
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Text.RegularExpressions;
     using System.Web;
-    using Alpha.Web.Models;
 
     public interface BrowserHelper
     {
-        bool IsMobile(bool isOnlyTablet = false);
+        bool IsMobile(bool isOnlyTablet);
 
         BrowserViewModel CheckSupportedBrowsers();
 
@@ -20,10 +21,6 @@
         bool IsAndroidNativeBrowser(string userAgent);
     }
 
-    /// <summary>
-    /// http://stackoverflow.com/questions/13086856/mobile-device-detection-in-asp-net
-    /// </summary>
-    [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed.")]
     public class BrowserHelperImpl : BrowserHelper
     {
         private const string DeviceIdSessionKey = "ProcessAfterLogin_Handler.DeviceIdSessionKey";
@@ -138,8 +135,17 @@
 
         private string GetIP()
         {
-            var ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-            return ip.Equals("::1") ? "127.0.0.1" : (string.IsNullOrEmpty(ip) ? "127.0.0.1" : ip.Split(',')[0]);
+            var request = HttpContext.Current.Request;
+            var actualIP = request.Headers["X-Actual-IP"];
+
+            actualIP = string.IsNullOrWhiteSpace(actualIP) ?
+                request.ServerVariables["HTTP_X_FORWARDED_FOR"] : actualIP;
+
+            actualIP = string.IsNullOrWhiteSpace(actualIP) ?
+                request.ServerVariables["REMOTE_ADDR"] : actualIP;
+
+            return string.IsNullOrWhiteSpace(actualIP) || actualIP.Equals("localhost") || actualIP.Equals("::1") ?
+                "127.0.0.1" : actualIP.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
         }
 
         public bool IsAndroidNativeBrowser(string userAgent) => _androidNativeBrowserCheck.IsMatch(userAgent);
