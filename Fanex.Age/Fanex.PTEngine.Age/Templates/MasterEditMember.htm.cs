@@ -3,8 +3,8 @@
 using System;
 using System.Web;
 using System.Text;
-using TplCore;
-using TplCore.Element;
+using TplNetCore;
+using TplNetCore.Element;
 #pragma warning disable
 namespace Fanex.PTEngine.Age
 {
@@ -16,19 +16,19 @@ namespace Fanex.PTEngine.Age
 			protected static string s0 = "<!DOCTYPE html><html><head><title>";
 			public string Title = "{Title}";
 			protected static string s1 = "</title><link href='";
-			protected static string s2{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Core.css");}}
+			protected static string s2 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Core.css"); } }
 			protected static string s3 = "'rel=\"stylesheet\" type=\"text/css\" /><script src='";
-			protected static string s4{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Languages.en.js");}}
+			protected static string s4 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Languages.en.js"); } }
 			protected static string s5 = "'type=\"text/javascript\"></script><script src='";
-			protected static string s6{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Core.js");}}
+			protected static string s6 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Core.js"); } }
 			protected static string s7 = "'type=\"text/javascript\"></script><script src='";
-			protected static string s8{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BetType.js");}}
+			protected static string s8 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BetType.js"); } }
 			protected static string s9 = "'type=\"text/javascript\"></script><script src='";
-			protected static string s10{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BetTypeGroup.js");}}
+			protected static string s10 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BetTypeGroup.js"); } }
 			protected static string s11 = "'type=\"text/javascript\"></script><script src='";
-			protected static string s12{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BettingLimit.js");}}
+			protected static string s12 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BettingLimit.js"); } }
 			protected static string s13 = "'type=\"text/javascript\"></script><script src='";
-			protected static string s14{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.knockout-2.0.0.js");}}
+			protected static string s14 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.knockout-2.0.0.js"); } }
 			protected static string s15 = "'type=\"text/javascript\"></script><script src='";
 			public string dataSource = "{dataSource}";
 			protected static string s16 = "?targetCustId=";
@@ -44,40 +44,40 @@ namespace Fanex.PTEngine.Age
 			protected static string s21 = "</head><body><div id=\"header_main\">";
 			public string lbledit = "{lbledit}";
 			protected static string s22 = "</div><div class=\"minWidthCustomer\">";
-			protected static string s23{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
+			protected static string s23 { get { return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template(); } }
 			protected static string s24 = "<input type=\"hidden\" name=\"txtCustomerObject\" id=\"txtCustomerObject\" /><div class=\"pt7\"><div class=\"btnLeft\"><button data-bind='click: saveCustomer' accountpermisssion=\"[B]\" id=\"btnSubmit\" class=\"btnMain\">";
 			public string actionName = "{actionName}";
 			protected static string s25 = "</button></div></div><div class=\"maincontent_box\"><div class=\"alertwarning\">";
-			protected static string s26{get{return LocalResources.PTEngineLang.NoteSportsbookSetting;}}
+			protected static string s26 { get { return LocalResources.PTEngineLang.NoteSportsbookSetting; } }
 			protected static string s27 = "</div></div><div class=\"maincontent_box\">";
 			public MasterEditMember_RemoveWhenIsMBCAccount_Block RemoveWhenIsMBCAccount = new MasterEditMember_RemoveWhenIsMBCAccount_Block();
 			public MasterEditMember_RemoveWhenIsSpecialAccount_Block RemoveWhenIsSpecialAccount = new MasterEditMember_RemoveWhenIsSpecialAccount_Block();
 			protected static string s28 = "</div><div class=\"customerInfo\"><div class=\"headerTab\">";
-			protected static string s29{get{return LocalResources.PTEngineLang.generalInformation;}}
+			protected static string s29 { get { return LocalResources.PTEngineLang.generalInformation; } }
 			protected static string s30 = "</div><div class=\"clearBlock\"><div class=\"customerInfoViewBlock1\">";
-			protected static string s31{get{return LocalResources.PTEngineLang.firstname;}}
+			protected static string s31 { get { return LocalResources.PTEngineLang.firstname; } }
 			protected static string s32 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.firstName\"></span></div><div class=\"customerInfoViewBlock1\">";
-			protected static string s33{get{return LocalResources.PTEngineLang.lastname;}}
+			protected static string s33 { get { return LocalResources.PTEngineLang.lastname; } }
 			protected static string s34 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.lastName\"></span></div></div><div class=\"clearBlock\"><div class=\"customerInfoViewBlock1\">";
-			protected static string s35{get{return LocalResources.PTEngineLang.lblPhone;}}
+			protected static string s35 { get { return LocalResources.PTEngineLang.lblPhone; } }
 			protected static string s36 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.phone\"></span></div><div class=\"customerInfoViewBlock1\">";
-			protected static string s37{get{return LocalResources.PTEngineLang.lblMobilePhone;}}
+			protected static string s37 { get { return LocalResources.PTEngineLang.lblMobilePhone; } }
 			protected static string s38 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.mobilePhone\"></span></div></div><div class=\"clearBlock\"><div class=\"customerInfoViewBlock1\">";
-			protected static string s39{get{return LocalResources.PTEngineLang.givencredit;}}
+			protected static string s39 { get { return LocalResources.PTEngineLang.givencredit; } }
 			protected static string s40 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.credit\"></span></div><div class=\"customerInfoViewBlock1\">";
-			protected static string s41{get{return LocalResources.PTEngineLang.lblFax;}}
+			protected static string s41 { get { return LocalResources.PTEngineLang.lblFax; } }
 			protected static string s42 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.fax\"></span></div></div><div class=\"clearBlock\"><div class=\"customerInfoViewBlock1\">";
-			protected static string s43{get{return LocalResources.PTEngineLang.group;}}
+			protected static string s43 { get { return LocalResources.PTEngineLang.group; } }
 			protected static string s44 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.group\"></span></div><div class=\"customerInfoViewBlock1\"><label for=\"closed\">";
-			protected static string s45{get{return LocalResources.PTEngineLang.closed;}}
+			protected static string s45 { get { return LocalResources.PTEngineLang.closed; } }
 			protected static string s46 = "</label></div><div class=\"customerInfoViewBlock2\"><input name=\"closed\" id=\"closed\" type=\"checkbox\" data-bind=\"checked: customer.statusSetting.closed, enable: customer.statusSetting.uplineClosed ? false : true\" /></div></div></div>";
 			public MasterEditMember_CommissionBlock_Block CommissionBlock = new MasterEditMember_CommissionBlock_Block();
 			protected static string s47 = "<div class=\"clearBlock\"></div><br /><div class=\"headerBetSetting\">";
-			protected static string s48{get{return LocalResources.PTEngineLang.lblBetSetting;}}
+			protected static string s48 { get { return LocalResources.PTEngineLang.lblBetSetting; } }
 			protected static string s49 = "</div><div id=\"bettingLimitContainer\"></div><br /><div class=\"clearBlock\"></div><div class=\"headerPositionTaking\">";
-			protected static string s50{get{return LocalResources.PTEngineLang.positiontaking;}}
+			protected static string s50 { get { return LocalResources.PTEngineLang.positiontaking; } }
 			protected static string s51 = "<div style=\"float: right;\"><a class=\"infoIco\" href=\"../../../PositionTakingInformation/PositionTakingBetTypeReference\"target=\"_blank\" title=\"";
-			protected static string s52{get{return LocalResources.PTEngineLang.ClickToViewPTInfo;}}
+			protected static string s52 { get { return LocalResources.PTEngineLang.ClickToViewPTInfo; } }
 			protected static string s53 = "\"></a></div></div><div class=\"positionTaking\"><div id=\"ptGridContainer\"></div></div><div class=\"clearBlock\"></div><div class=\"pt7\"><div class=\"btnLeft\"><button data-bind='click: saveCustomer' accountpermisssion=\"[B]\" id=\"btnSubmitFooter\"class=\"btnMain\">";
 			protected string t0_actionName;
 			protected static string s54 = "</button></div></div></div><script language=\"javascript\" type=\"text/javascript\">var isShowMyanmarOdds = \"";
@@ -87,8 +87,8 @@ namespace Fanex.PTEngine.Age
 			protected static string s56 = "</body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(RenderChild)
+				if (!Visible) return;
+				if (RenderChild)
 				{
 					bd.Append(s0);
 					bd.Append(Title);
@@ -117,7 +117,7 @@ namespace Fanex.PTEngine.Age
 					bd.Append(s19);
 					bd.Append(formType);
 					bd.Append(s20);
-					if(null != CssBlock) CssBlock.ToString(ref bd);
+					if (null != CssBlock) CssBlock.ToString(ref bd);
 					bd.Append(s21);
 					bd.Append(lbledit);
 					bd.Append(s22);
@@ -127,8 +127,8 @@ namespace Fanex.PTEngine.Age
 					bd.Append(s25);
 					bd.Append(s26);
 					bd.Append(s27);
-					if(null != RemoveWhenIsMBCAccount) RemoveWhenIsMBCAccount.ToString(ref bd);
-					if(null != RemoveWhenIsSpecialAccount) RemoveWhenIsSpecialAccount.ToString(ref bd);
+					if (null != RemoveWhenIsMBCAccount) RemoveWhenIsMBCAccount.ToString(ref bd);
+					if (null != RemoveWhenIsSpecialAccount) RemoveWhenIsSpecialAccount.ToString(ref bd);
 					bd.Append(s28);
 					bd.Append(s29);
 					bd.Append(s30);
@@ -148,7 +148,7 @@ namespace Fanex.PTEngine.Age
 					bd.Append(s44);
 					bd.Append(s45);
 					bd.Append(s46);
-					if(null != CommissionBlock) CommissionBlock.ToString(ref bd);
+					if (null != CommissionBlock) CommissionBlock.ToString(ref bd);
 					bd.Append(s47);
 					bd.Append(s48);
 					bd.Append(s49);
@@ -160,10 +160,10 @@ namespace Fanex.PTEngine.Age
 					bd.Append(s54);
 					bd.Append(isShowMyanmarOdds);
 					bd.Append(s55);
-					if(null != ScriptBlock) ScriptBlock.ToString(ref bd);
+					if (null != ScriptBlock) ScriptBlock.ToString(ref bd);
 					bd.Append(s56);
 				}
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 			public string ToString()
 			{
@@ -174,71 +174,71 @@ namespace Fanex.PTEngine.Age
 
 		}
 
-		public class MasterEditMember_CssBlock_Block: Block
+		public class MasterEditMember_CssBlock_Block : Block
 		{
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 
-		public class MasterEditMember_RemoveWhenIsMBCAccount_Block: Block
+		public class MasterEditMember_RemoveWhenIsMBCAccount_Block : Block
 		{
 			protected static string s57 = "<div class=\"alertwarning\">";
-			protected static string s58{get{return LocalResources.PTEngineLang.SpecialMemberUnlimitedBetSettingWarningMessage;}}
+			protected static string s58 { get { return LocalResources.PTEngineLang.SpecialMemberUnlimitedBetSettingWarningMessage; } }
 			protected static string s59 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(RenderChild)
+				if (!Visible) return;
+				if (RenderChild)
 				{
 					bd.Append(s57);
 					bd.Append(s58);
 					bd.Append(s59);
 				}
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 
-		public class MasterEditMember_RemoveWhenIsSpecialAccount_Block: Block
+		public class MasterEditMember_RemoveWhenIsSpecialAccount_Block : Block
 		{
 			protected static string s60 = "<div class=\"alertwarning\">";
-			protected static string s61{get{return LocalResources.PTEngineLang.MemberUnlimitedBetSettingWarningMessage;}}
+			protected static string s61 { get { return LocalResources.PTEngineLang.MemberUnlimitedBetSettingWarningMessage; } }
 			protected static string s62 = "</div>";
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(RenderChild)
+				if (!Visible) return;
+				if (RenderChild)
 				{
 					bd.Append(s60);
 					bd.Append(s61);
 					bd.Append(s62);
 				}
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 
-		public class MasterEditMember_CommissionBlock_Block: Block
+		public class MasterEditMember_CommissionBlock_Block : Block
 		{
 			protected static string s63 = "<div class=\"commission\"><div class=\"headerTab\">";
-			protected static string s64{get{return LocalResources.PTEngineLang.commission;}}
+			protected static string s64 { get { return LocalResources.PTEngineLang.commission; } }
 			protected static string s65 = "</div><div class=\"clearBlock\"><div class=\"commissionBlock1 commissionHeader\"></div><div class=\"commissionBlock2 commissionHeader\">";
-			protected static string s66{get{return LocalResources.PTEngineLang.lblCommissionForAgent;}}
+			protected static string s66 { get { return LocalResources.PTEngineLang.lblCommissionForAgent; } }
 			protected static string s67 = "</div><div class=\"commissionBlock2 commissionHeader\">";
-			protected static string s68{get{return LocalResources.PTEngineLang.lblCommissionForMember;}}
+			protected static string s68 { get { return LocalResources.PTEngineLang.lblCommissionForMember; } }
 			protected static string s69 = "</div></div><div class=\"clearBlock\"><div class=\"commissionBlock1\">";
-			protected static string s70{get{return LocalResources.PTEngineLang.lblAsianHDC_OU_OE;}}
+			protected static string s70 { get { return LocalResources.PTEngineLang.lblAsianHDC_OU_OE; } }
 			protected static string s71 = "</div><div class=\"commissionBlock2\"><span data-bind=\"text: customer.commissionSetting.discount\"></span></div><div class=\"commissionBlock2\"><span data-bind=\"text: customer.commissionSetting.playerDiscount\"></span></div></div><div class=\"clearBlock\"><div class=\"commissionBlock1\">";
-			protected static string s72{get{return LocalResources.PTEngineLang.lbl1x2;}}
+			protected static string s72 { get { return LocalResources.PTEngineLang.lbl1x2; } }
 			protected static string s73 = "</div><div class=\"commissionBlock2\"><span data-bind=\"text: customer.commissionSetting.discount1x2\"></span></div><div class=\"commissionBlock2\"><span data-bind=\"text: customer.commissionSetting.playerDiscount1x2\"></span></div></div><div class=\"clearBlock\"><div class=\"commissionBlock1\">";
-			protected static string s74{get{return LocalResources.PTEngineLang.lblOtherTypes;}}
+			protected static string s74 { get { return LocalResources.PTEngineLang.lblOtherTypes; } }
 			protected static string s75 = "</div><div class=\"commissionBlock2\"><span data-bind=\"text: customer.commissionSetting.discountCS\"></span></div><div class=\"commissionBlock2\"><span data-bind=\"text: customer.commissionSetting.playerDiscountCs\"></span></div></div>";
 			public MasterEditMember_CommissionBlock_MyanmarOdds_Block MyanmarOdds = new MasterEditMember_CommissionBlock_MyanmarOdds_Block();
 			protected static string s76 = "<div class=\"clearBlock\"></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(RenderChild)
+				if (!Visible) return;
+				if (RenderChild)
 				{
 					bd.Append(s63);
 					bd.Append(s64);
@@ -253,36 +253,36 @@ namespace Fanex.PTEngine.Age
 					bd.Append(s73);
 					bd.Append(s74);
 					bd.Append(s75);
-					if(null != MyanmarOdds) MyanmarOdds.ToString(ref bd);
+					if (null != MyanmarOdds) MyanmarOdds.ToString(ref bd);
 					bd.Append(s76);
 				}
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 
-		public class MasterEditMember_CommissionBlock_MyanmarOdds_Block: Block
+		public class MasterEditMember_CommissionBlock_MyanmarOdds_Block : Block
 		{
 			protected static string s77 = "<div class=\"clearBlock\"><div class=\"commissionBlock1\">";
-			protected static string s78{get{return LocalResources.PTEngineLang.Symbol_OddsPercentage;}}
+			protected static string s78 { get { return LocalResources.PTEngineLang.Symbol_OddsPercentage; } }
 			protected static string s79 = "</div><div class=\"commissionBlock2\"><span data-bind=\"text: customer.commissionSetting.discountMyanmarOdds\"></span></div><div class=\"commissionBlock2\"><span data-bind=\"text: customer.commissionSetting.playerDiscountMyanmarOdds\"></span></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(RenderChild)
+				if (!Visible) return;
+				if (RenderChild)
 				{
 					bd.Append(s77);
 					bd.Append(s78);
 					bd.Append(s79);
 				}
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 
-		public class MasterEditMember_ScriptBlock_Block: Block
+		public class MasterEditMember_ScriptBlock_Block : Block
 		{
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 

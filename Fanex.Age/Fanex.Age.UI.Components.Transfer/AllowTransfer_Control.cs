@@ -6,7 +6,7 @@ namespace Fanex.Age.UI.Components
     using Fanex.Age.UI.Components.Transfer.LocalResources;
     using Sunplus.Agent.Model.Transfer;
     using Sunplus.Agent.Utilities;
-    using TplCore.Element;
+    using TplNetCore.Element;
 
     public class AllowTransfer_Control : IComponent
     {

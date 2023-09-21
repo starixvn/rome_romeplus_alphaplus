@@ -3,8 +3,8 @@
 using System;
 using System.Web;
 using System.Text;
-using TplCore;
-using TplCore.Element;
+using TplNetCore;
+using TplNetCore.Element;
 #pragma warning disable
 namespace Fanex.PTEngine.Age
 {
@@ -14,32 +14,32 @@ namespace Fanex.PTEngine.Age
 		public class TransferCondition_Template : Template
 		{
 			protected static string s0 = "<div data-bind=\"if: displayTransferCondition\"><div class=\"transferCondition\"><div class=\"headerTab\">";
-			protected static string s1{get{return LocalResources.PTEngineLang.accbalancetrancondition;}}
+			protected static string s1 { get { return LocalResources.PTEngineLang.accbalancetrancondition; } }
 			protected static string s2 = "</div><div>";
 			public string TransferConditions_Message = "{TransferConditions_Message}";
 			protected static string s3 = "<label for=\"rdDaily\"><input type=\"radio\" onclick=\"Fanex.Customer.SelectTransferTime();\" id=\"rdDaily\" name=\"transferCondition\"value=\"00000000\" checked />";
-			protected static string s4{get{return LocalResources.PTEngineLang.daily;}}
+			protected static string s4 { get { return LocalResources.PTEngineLang.daily; } }
 			protected static string s5 = "</label></div><div class=\"line\"></div><div id=\"alldays\"><label for=\"rdWeekly\"><input type=\"radio\" onclick=\"Fanex.Customer.SelectTransferTime();\" id=\"rdWeekly\"name=\"transferCondition\" value=\"00000001\" />";
-			protected static string s6{get{return LocalResources.PTEngineLang.weekly;}}
+			protected static string s6 { get { return LocalResources.PTEngineLang.weekly; } }
 			protected static string s7 = " &nbsp;&nbsp;</label><span><label for=\"chkMon\"><input name=\"chkMon\" id=\"chkMon\" type=\"checkbox\" onclick=\"return Fanex.Customer.ChooseDate();\"disabled />";
-			protected static string s8{get{return LocalResources.PTEngineLang.mon;}}
+			protected static string s8 { get { return LocalResources.PTEngineLang.mon; } }
 			protected static string s9 = "&nbsp;&nbsp;</label><label for=\"chkTue\"><input name=\"chkTue\" id=\"chkTue\" type=\"checkbox\" onclick=\"return Fanex.Customer.ChooseDate();\"disabled />";
-			protected static string s10{get{return LocalResources.PTEngineLang.tue;}}
+			protected static string s10 { get { return LocalResources.PTEngineLang.tue; } }
 			protected static string s11 = "&nbsp;&nbsp;</label><label for=\"chkWed\"><input name=\"chkWed\" id=\"chkWed\" type=\"checkbox\" onclick=\"return Fanex.Customer.ChooseDate();\"disabled />";
-			protected static string s12{get{return LocalResources.PTEngineLang.wed;}}
+			protected static string s12 { get { return LocalResources.PTEngineLang.wed; } }
 			protected static string s13 = "&nbsp;&nbsp;</label><label for=\"chkThurs\"><input name=\"chkThurs\" id=\"chkThurs\" type=\"checkbox\" onclick=\"return Fanex.Customer.ChooseDate();\"disabled />";
-			protected static string s14{get{return LocalResources.PTEngineLang.thurs;}}
+			protected static string s14 { get { return LocalResources.PTEngineLang.thurs; } }
 			protected static string s15 = "&nbsp;&nbsp;</label><label for=\"chkFri\"><input name=\"chkFri\" id=\"chkFri\" type=\"checkbox\" onclick=\"return Fanex.Customer.ChooseDate();\"disabled />";
-			protected static string s16{get{return LocalResources.PTEngineLang.fri;}}
+			protected static string s16 { get { return LocalResources.PTEngineLang.fri; } }
 			protected static string s17 = "&nbsp;&nbsp;</label><label for=\"chkSat\"><input name=\"chkSat\" id=\"chkSat\" type=\"checkbox\" onclick=\"return Fanex.Customer.ChooseDate();\"disabled />";
-			protected static string s18{get{return LocalResources.PTEngineLang.sat;}}
+			protected static string s18 { get { return LocalResources.PTEngineLang.sat; } }
 			protected static string s19 = "&nbsp;&nbsp;</label><label for=\"chkSun\"><input name=\"chkSun\" id=\"chkSun\" type=\"checkbox\" onclick=\"return Fanex.Customer.ChooseDate();\"disabled />";
-			protected static string s20{get{return LocalResources.PTEngineLang.sun;}}
+			protected static string s20 { get { return LocalResources.PTEngineLang.sun; } }
 			protected static string s21 = "</label></span></div></div></div>";
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(RenderChild)
+				if (!Visible) return;
+				if (RenderChild)
 				{
 					bd.Append(s0);
 					bd.Append(s1);
@@ -65,7 +65,7 @@ namespace Fanex.PTEngine.Age
 					bd.Append(s20);
 					bd.Append(s21);
 				}
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 			public string ToString()
 			{

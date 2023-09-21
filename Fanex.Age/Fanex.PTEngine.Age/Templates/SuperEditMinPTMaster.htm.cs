@@ -3,8 +3,8 @@
 using System;
 using System.Web;
 using System.Text;
-using TplCore;
-using TplCore.Element;
+using TplNetCore;
+using TplNetCore.Element;
 #pragma warning disable
 namespace Fanex.PTEngine.Age
 {
@@ -16,17 +16,17 @@ namespace Fanex.PTEngine.Age
 			protected static string s0 = "<!DOCTYPE html><html><head><title>";
 			public string Title = "{Title}";
 			protected static string s1 = "</title><link href='";
-			protected static string s2{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Core.css");}}
+			protected static string s2 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Core.css"); } }
 			protected static string s3 = "'rel=\"stylesheet\" type=\"text/css\" /><script src='";
-			protected static string s4{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Languages.en.js");}}
+			protected static string s4 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Languages.en.js"); } }
 			protected static string s5 = "'type=\"text/javascript\"></script><script src='";
-			protected static string s6{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Core.js");}}
+			protected static string s6 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.Core.js"); } }
 			protected static string s7 = "'type=\"text/javascript\"></script><script src='";
-			protected static string s8{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BetType.js");}}
+			protected static string s8 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BetType.js"); } }
 			protected static string s9 = "'type=\"text/javascript\"></script><script src='";
-			protected static string s10{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BetTypeGroup.js");}}
+			protected static string s10 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.BetTypeGroup.js"); } }
 			protected static string s11 = "'type=\"text/javascript\"></script><script src='";
-			protected static string s12{get{return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.knockout-2.0.0.js");}}
+			protected static string s12 { get { return HttpContext.Current.GetWebResourceUrl("Fanex.PTEngine.UI.knockout-2.0.0.js"); } }
 			protected static string s13 = "'type=\"text/javascript\"></script><script src='";
 			public string dataSource = "{dataSource}";
 			protected static string s14 = "?targetCustId=";
@@ -40,29 +40,29 @@ namespace Fanex.PTEngine.Age
 			protected static string s18 = "</head><body><div id=\"header_main\">";
 			public string lbledit = "{lbledit}";
 			protected static string s19 = "</div><div class=\"minWidthCustomer\">";
-			protected static string s20{get{return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template();}}
+			protected static string s20 { get { return new Fanex.Age.UI.Components.ErrorMsg.ErrorMsg_Template(); } }
 			protected static string s21 = "<input type=\"hidden\" name=\"txtCustomerObject\" id=\"txtCustomerObject\" /><div class=\"pt7\"><div class=\"btnLeft\"><button data-bind='click: saveCustomer' accountpermisssion=\"[B]\" id=\"btnSubmit\" class=\"btnMain\">";
 			public string actionName = "{actionName}";
 			protected static string s22 = "</button></div></div><div class=\"maincontent_box\"><div class=\"alertwarning\">";
-			protected static string s23{get{return LocalResources.PTEngineLang.NotePTSetting;}}
+			protected static string s23 { get { return LocalResources.PTEngineLang.NotePTSetting; } }
 			protected static string s24 = "</div></div><div class=\"customerInfo\"><div class=\"headerTab\">";
-			protected static string s25{get{return LocalResources.PTEngineLang.generalInformation;}}
+			protected static string s25 { get { return LocalResources.PTEngineLang.generalInformation; } }
 			protected static string s26 = "</div><div class=\"clearBlock\"><div class=\"customerInfoViewBlock1\">";
-			protected static string s27{get{return LocalResources.PTEngineLang.username;}}
+			protected static string s27 { get { return LocalResources.PTEngineLang.username; } }
 			protected static string s28 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.userName\"></span></div><div class=\"customerInfoViewBlock1\">";
-			protected static string s29{get{return LocalResources.PTEngineLang.firstname;}}
+			protected static string s29 { get { return LocalResources.PTEngineLang.firstname; } }
 			protected static string s30 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.firstName\"></span></div></div><div class=\"clearBlock\"><div class=\"customerInfoViewBlock1\">";
-			protected static string s31{get{return LocalResources.PTEngineLang.lastname;}}
+			protected static string s31 { get { return LocalResources.PTEngineLang.lastname; } }
 			protected static string s32 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.lastName\"></span></div><div class=\"customerInfoViewBlock1\">";
-			protected static string s33{get{return LocalResources.PTEngineLang.lblPhone;}}
+			protected static string s33 { get { return LocalResources.PTEngineLang.lblPhone; } }
 			protected static string s34 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.phone\"></span></div></div><div class=\"clearBlock\"><div class=\"customerInfoViewBlock1\">";
-			protected static string s35{get{return LocalResources.PTEngineLang.lblMobilePhone;}}
+			protected static string s35 { get { return LocalResources.PTEngineLang.lblMobilePhone; } }
 			protected static string s36 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.mobilePhone\"></span></div><div class=\"customerInfoViewBlock1\">";
-			protected static string s37{get{return LocalResources.PTEngineLang.lblFax;}}
+			protected static string s37 { get { return LocalResources.PTEngineLang.lblFax; } }
 			protected static string s38 = "</div><div class=\"customerInfoViewBlock2\"><span data-bind=\"text: customer.fax\"></span></div></div></div><div class=\"headerPositionTaking\">";
-			protected static string s39{get{return LocalResources.PTEngineLang.sbminpt;}}
+			protected static string s39 { get { return LocalResources.PTEngineLang.sbminpt; } }
 			protected static string s40 = "<div style=\"float:right;\"><a class=\"infoIco\"href=\"../../../PositionTakingInformation/PositionTakingBetTypeReference\" target=\"_blank\" title=\"";
-			protected static string s41{get{return LocalResources.PTEngineLang.ClickToViewPTInfo;}}
+			protected static string s41 { get { return LocalResources.PTEngineLang.ClickToViewPTInfo; } }
 			protected static string s42 = "\"></a></div></div><div class=\"positionTaking\"><div id=\"ptGridContainer\"></div></div><div class=\"clearBlock\"></div><div class=\"pt7\"><div class=\"btnLeft\"><button data-bind='click: saveCustomer' accountpermisssion=\"[B]\" id=\"btnSubmitFooter\" class=\"btnMain\">";
 			protected string t0_actionName;
 			protected static string s43 = "</button></div></div></div>";
@@ -70,8 +70,8 @@ namespace Fanex.PTEngine.Age
 			protected static string s44 = "</body></html>";
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(RenderChild)
+				if (!Visible) return;
+				if (RenderChild)
 				{
 					bd.Append(s0);
 					bd.Append(Title);
@@ -96,7 +96,7 @@ namespace Fanex.PTEngine.Age
 					bd.Append(s16);
 					bd.Append(formType);
 					bd.Append(s17);
-					if(null != CssBlock) CssBlock.ToString(ref bd);
+					if (null != CssBlock) CssBlock.ToString(ref bd);
 					bd.Append(s18);
 					bd.Append(lbledit);
 					bd.Append(s19);
@@ -126,10 +126,10 @@ namespace Fanex.PTEngine.Age
 					bd.Append(s42);
 					bd.Append(actionName);
 					bd.Append(s43);
-					if(null != ScriptBlock) ScriptBlock.ToString(ref bd);
+					if (null != ScriptBlock) ScriptBlock.ToString(ref bd);
 					bd.Append(s44);
 				}
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 			public string ToString()
 			{
@@ -140,19 +140,19 @@ namespace Fanex.PTEngine.Age
 
 		}
 
-		public class SuperEditMinPTMaster_CssBlock_Block: Block
+		public class SuperEditMinPTMaster_CssBlock_Block : Block
 		{
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 
-		public class SuperEditMinPTMaster_ScriptBlock_Block: Block
+		public class SuperEditMinPTMaster_ScriptBlock_Block : Block
 		{
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 

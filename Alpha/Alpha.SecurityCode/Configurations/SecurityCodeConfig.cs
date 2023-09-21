@@ -1,6 +1,7 @@
 ﻿namespace Alpha.SecurityCode.Configurations
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Runtime.Serialization;
 
     [DataContract]
@@ -12,11 +13,11 @@
         [DataMember(Name = "paths")]
         public IEnumerable<string> Paths { get; set; }
 
-        [DataMember(Name = "betListsPaths")]
-        public IEnumerable<string> BetListsPaths { get; set; }
+        [DataMember(Name = "betListsPaths", IsRequired = false)]
+        public IEnumerable<string> BetListsPaths { get; set; } = Enumerable.Empty<string>();
 
-        [DataMember(Name = "statementPaths")]
-        public IEnumerable<string> StatementPaths { get; set; }
+        [DataMember(Name = "statementPaths", IsRequired = false)]
+        public IEnumerable<string> StatementPaths { get; set; } = Enumerable.Empty<string>();
 
         [DataMember(Name = "sites", IsRequired = false)]
         public IEnumerable<string> Sites { get; set; }

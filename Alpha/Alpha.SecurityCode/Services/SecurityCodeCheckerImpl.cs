@@ -72,11 +72,13 @@
 
         private bool IsRequiredSecurityCodeInBetLists(string relativePath)
             => SecurityCodeSessionManager.SecurityCodeSession.IsEnabledSecurityCodeInBetLists
+            && AppSettings.SecurityCodeConfig.BetListsPaths != null
             && AppSettings.SecurityCodeConfig.BetListsPaths.Any(
                 url => relativePath.IndexOf(url, StringComparison.OrdinalIgnoreCase) >= 0);
 
         private bool IsRequiredSecurityCodeInStatement(string relativePath)
             => SecurityCodeSessionManager.SecurityCodeSession.IsEnabledSecurityCodeInStatement
+            && AppSettings.SecurityCodeConfig.BetListsPaths != null
             && AppSettings.SecurityCodeConfig.StatementPaths.Any(
                 url => relativePath.IndexOf(url, StringComparison.OrdinalIgnoreCase) >= 0);
 

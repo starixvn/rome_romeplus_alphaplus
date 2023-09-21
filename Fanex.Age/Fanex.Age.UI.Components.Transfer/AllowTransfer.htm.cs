@@ -3,8 +3,8 @@
 using System;
 using System.Web;
 using System.Text;
-using TplCore;
-using TplCore.Element;
+using TplNetCore;
+using TplNetCore.Element;
 #pragma warning disable
 namespace Fanex.Age.UI.Components
 {
@@ -16,8 +16,8 @@ namespace Fanex.Age.UI.Components
 			public AllowTransfer_Allow_transfer_Block Allow_transfer = new AllowTransfer_Allow_transfer_Block();
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(null != Allow_transfer) Allow_transfer.ToString(ref bd);
+				if (!Visible) return;
+				if (null != Allow_transfer) Allow_transfer.ToString(ref bd);
 				bd.Append(Value);
 			}
 			public string ToString()
@@ -29,7 +29,7 @@ namespace Fanex.Age.UI.Components
 
 		}
 
-		public class AllowTransfer_Allow_transfer_Block: Block
+		public class AllowTransfer_Allow_transfer_Block : Block
 		{
 			protected static string s0 = "<table id=\"tblMessage\"><tr><td><span class=\"warning\"><ul><li>";
 			public string allowtransfer = "{allowtransfer}";
@@ -38,34 +38,34 @@ namespace Fanex.Age.UI.Components
 			protected static string s2 = "</td></tr></table>";
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(RenderChild)
+				if (!Visible) return;
+				if (RenderChild)
 				{
 					bd.Append(s0);
 					bd.Append(allowtransfer);
 					bd.Append(s1);
-					if(null != Warning_transfer) Warning_transfer.ToString(ref bd);
+					if (null != Warning_transfer) Warning_transfer.ToString(ref bd);
 					bd.Append(s2);
 				}
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 
-		public class AllowTransfer_Allow_transfer_Warning_transfer_Block: Block
+		public class AllowTransfer_Allow_transfer_Warning_transfer_Block : Block
 		{
 			protected static string s3 = "<span class=\"warningtranfer\"><ul><li>";
 			public string warning_message = "{warning_message}";
 			protected static string s4 = "</li></ul></span>";
 			public override void ToString(ref StringBuilder bd)
 			{
-				if(!Visible) return;
-				if(RenderChild)
+				if (!Visible) return;
+				if (RenderChild)
 				{
 					bd.Append(s3);
 					bd.Append(warning_message);
 					bd.Append(s4);
 				}
-				if(IsAssigned){bd.Append(Value);}
+				if (IsAssigned) { bd.Append(Value); }
 			}
 		}
 
