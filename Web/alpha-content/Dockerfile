@@ -4,8 +4,12 @@ RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev l
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 
+ARG TRANSFORM_CONFIG
+RUN echo $TRANSFORM_CONFIG
+
 WORKDIR /opt/
 COPY package.json yarn.lock ./
+COPY ".env.$TRANSFORM_CONFIG" .env
 RUN yarn global add node-gyp
 RUN yarn config set network-timeout 600000 -g && yarn install
 ENV PATH /opt/node_modules/.bin:$PATH
