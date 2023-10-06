@@ -10,15 +10,15 @@ RUN echo $TRANSFORM_CONFIG
 WORKDIR /opt/
 COPY Web/alpha-content/package.json ./
 COPY Web/alpha-content/yarn.lock ./
-COPY "Web/alpha-content/.env.LOCAL" .env
+COPY "Web/alpha-content/.env.$TRANSFORM_CONFIG" .env
 RUN yarn global add node-gyp
 RUN yarn config set network-timeout 600000 -g && yarn install
 ENV PATH /opt/node_modules/.bin:$PATH
 
 WORKDIR /opt/app
 COPY Web/alpha-content .
-RUN chown -R node:node /opt
+RUN chown -R node:node /opt/app
 USER node
 RUN ["yarn", "build"]
-EXPOSE 1337
+EXPOSE 5000
 CMD ["yarn", "develop"]
