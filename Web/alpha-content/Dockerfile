@@ -8,8 +8,9 @@ ARG TRANSFORM_CONFIG
 RUN echo $TRANSFORM_CONFIG
 
 WORKDIR /opt/
-COPY package.json yarn.lock ./
-COPY ".env.$TRANSFORM_CONFIG" .env
+COPY Web/alpha-content/package.json ./
+COPY Web/alpha-content/yarn.lock ./
+COPY "Web/alpha-content/.env.$TRANSFORM_CONFIG" .env
 RUN yarn global add node-gyp
 RUN yarn config set network-timeout 600000 -g && yarn install
 ENV PATH /opt/node_modules/.bin:$PATH
