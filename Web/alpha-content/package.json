@@ -11,9 +11,10 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.14.3",
-    "@strapi/plugin-users-permissions": "4.14.3",
+    "@ckeditor/strapi-plugin-ckeditor": "^0.0.9",
     "@strapi/plugin-i18n": "4.14.3",
+    "@strapi/plugin-users-permissions": "4.14.3",
+    "@strapi/strapi": "4.14.3",
     "mysql": "2.18.1"
   },
   "author": {
