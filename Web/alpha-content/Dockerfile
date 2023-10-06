@@ -18,6 +18,7 @@ ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
 RUN chown -R node:node /opt/app
+RUN mkdir /otp/.cache && chmod -R 777 /otp/.cache
 USER node
 RUN ["yarn", "build"]
 EXPOSE 1337
