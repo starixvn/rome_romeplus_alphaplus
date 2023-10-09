@@ -14,7 +14,7 @@ COPY Web/alpha-content .
 RUN yarn build
 
 # Creating final production image
-FROM node:18-alpine
+FROM hub.nexdev.net/base/node:18.16-alpine
 RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
 WORKDIR /opt/
