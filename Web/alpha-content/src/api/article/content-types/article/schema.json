@@ -35,13 +35,14 @@
       "targetField": "title"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -62,11 +63,9 @@
       },
       "type": "customField",
       "options": {
-        "output": "HTML",
-        "preset": "rich"
+        "preset": "custom"
       },
-      "required": true,
-      "customField": "plugin::ckeditor.CKEditor"
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

@@ -708,6 +708,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
         };
       }>;
     image: Attribute.Media &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -719,12 +720,10 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::category.category'
     >;
     ckeditor_content: Attribute.RichText &
-      Attribute.Required &
       Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
+        'plugin::ckeditor5.CKEditor',
         {
-          output: 'HTML';
-          preset: 'rich';
+          preset: 'custom';
         }
       > &
       Attribute.SetPluginOptions<{
