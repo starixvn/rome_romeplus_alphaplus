@@ -444,6 +444,15 @@
     ckeditor5 "^36.0.1"
     lodash-es "^4.17.15"
 
+"@ckeditor/ckeditor5-find-and-replace@^40.0.0":
+  version "40.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-find-and-replace/-/ckeditor5-find-and-replace-40.0.0.tgz#56be9a3a78981e2af9e9870e3cd42ae722c59aa5"
+  integrity sha512-lq/RUGHUkiEP2jm/CebBVxLldmwh1jrW1QI79lqd6Zhkt31hsJcnmZIk7xD52GtNOrCqHZwuPRTV5QTgic54hA==
+  dependencies:
+    "@ckeditor/ckeditor5-ui" "40.0.0"
+    ckeditor5 "40.0.0"
+    lodash-es "4.17.21"
+
 "@ckeditor/ckeditor5-heading@^36.0.0":
   version "36.0.1"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-heading/-/ckeditor5-heading-36.0.1.tgz#2fc3b81e8f33789f3a5ccb640ab9cca2345bdf83"
@@ -3623,7 +3632,7 @@ ci-info@3.8.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-3.8.0.tgz#81408265a5380c929f0bc665d62256628ce9ef91"
   integrity sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==
 
-ckeditor5@>=35.4.0:
+ckeditor5@40.0.0, ckeditor5@>=35.4.0:
   version "40.0.0"
   resolved "https://registry.yarnpkg.com/ckeditor5/-/ckeditor5-40.0.0.tgz#0415efab6b11da48cc7d58229ce282e3587d2be8"
   integrity sha512-pyXptFXODCyICkIaiBfWl+vqNq87CwB4IodaacUDdp+7z7szK13/vMJMWyPCQyZob+lzpakqPpj29HR5Kzy4AQ==
