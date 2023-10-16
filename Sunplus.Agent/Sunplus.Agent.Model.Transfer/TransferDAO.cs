@@ -4,12 +4,17 @@ namespace Sunplus.Agent.Model.Transfer
     using System.Collections;
     using System.Data;
     using System.Diagnostics;
+    using AlphaPlus.User.Models;
+    using Fanex.Data;
     using Fanex.Logging.Extensions.Web;
     using Sunplus.Agent.Model.DL.Base;
     using Sunplus.Agent.Model.Transfer.AppResources;
+    using Sunplus.Agent.Model.Transfer.Extensions;
 
     public class TransferDAO : DAOBase
     {
+        private string key = UserSession.Current.SiteDBGroupId > 0 ? $"SiteDB{UserSession.Current.SiteDBGroupId}_" : string.Empty;
+
         public DataTable GetSuperInAutomateTransferAll(int custId)
         {
             var htb = new Hashtable
@@ -41,7 +46,11 @@ namespace Sunplus.Agent.Model.Transfer
             var outputs = new Hashtable();
             try
             {
-                outputs = ExecSpHashtable("Age_Transfer_Ins_Ag", parameters);
+                using (var db = new ObjectDb($"{key}Age_Transfer_Ins_Ag"))
+                {
+                    db.ExecuteNonQueryScaleoutDB(parameters, UserSession.Current.AGIP);
+                    outputs = db.GetOuputParams();
+                }
             }
             catch (FormatException ex)
             {
@@ -73,10 +82,15 @@ namespace Sunplus.Agent.Model.Transfer
                 { "custstatus", status }
             };
 
-            var outputs = ExecSpHashtable("Age_Transfer_Ins_MAg", parameters);
-            errMsg = outputs["errmsg"] as string;
+            using (var db = new ObjectDb($"{key}Age_Transfer_Ins_MAg"))
+            {
+                db.ExecuteNonQueryScaleoutDB(parameters, UserSession.Current.AGIP);
+                var outputs = db.GetOuputParams();
 
-            return (int)outputs["errcode"];
+                errMsg = outputs["errmsg"] as string;
+
+                return (int)outputs["errcode"];
+            }
         }
 
         public int Age_Transfer_Ins_SAg(string toCustIds, int creatorId, int subAccId, int superId, string ip, double amt, bool isFullTransfer, string status, string superIdStransferTotal, string language, out string errMsg)
@@ -97,10 +111,15 @@ namespace Sunplus.Agent.Model.Transfer
                 { "custstatus", status }
             };
 
-            var outputs = ExecSpHashtable("Age_Transfer_Ins_SAg", parameters);
-            errMsg = outputs["errmsg"] as string;
+            using (var db = new ObjectDb($"{key}Age_Transfer_Ins_SAg"))
+            {
+                db.ExecuteNonQueryScaleoutDB(parameters, UserSession.Current.AGIP);
+                var outputs = db.GetOuputParams();
 
-            return (int)outputs["errcode"];
+                errMsg = outputs["errmsg"] as string;
+
+                return (int)outputs["errcode"];
+            }
         }
 
         public int Age_Transfer_InsClearBalance_Ag(string toCustIds, int subAccId, int creatorId, int fromCustId, string ip, string status, string language, string superIdStransferTotal, bool isAllDayBalTransfer, out string errMsg)
@@ -118,10 +137,15 @@ namespace Sunplus.Agent.Model.Transfer
                 { "isalldaybaltransfer", isAllDayBalTransfer }
             };
 
-            var outputs = ExecSpHashtable("Age_Transfer_InsClearBalance_Ag", parameters);
-            errMsg = outputs["errmsg"] as string;
+            using (var db = new ObjectDb($"{key}Age_Transfer_InsClearBalance_Ag"))
+            {
+                db.ExecuteNonQueryScaleoutDB(parameters, UserSession.Current.AGIP);
+                var outputs = db.GetOuputParams();
 
-            return (int)outputs["errcode"];
+                errMsg = outputs["errmsg"] as string;
+
+                return (int)outputs["errcode"];
+            }
         }
 
         public DataTable Age_Transfer_SelList_Ag(
@@ -146,10 +170,13 @@ namespace Sunplus.Agent.Model.Transfer
                 { "custstatus", custStatus }
             };
 
-            var rs = ExecSp("Age_Transfer_SelList_Ag", htb);
-            totalPages = (int)rs.Outputs["totalpages"];
+            using (var db = new ObjectDb($"{key}Age_Transfer_SelList_Ag"))
+            {
+                var result = db.ExecuteDataSetScaleoutDB(htb, UserSession.Current.AGIP);
+                totalPages = (int)db.GetOuputParams()["totalpages"];
 
-            return rs.ResultSet.Tables[0];
+                return result.Tables[0];
+            }
         }
 
         public DataTable Age_Transfer_SelList_MAg(
@@ -239,9 +266,13 @@ namespace Sunplus.Agent.Model.Transfer
                 { "futurebetcredit", 0 }
             };
 
-            var rs = ExecSp("Age_Transfer_SelMemberInfo_Yesterday", htb);
+            using (var db = new ObjectDb($"{key}Age_Transfer_SelMemberInfo_Yesterday"))
+            {
+                db.ExecuteDataSetScaleoutDB(htb, UserSession.Current.AGIP);
+                var outputs = db.GetOuputParams();
 
-            return rs.Outputs;
+                return outputs;
+            }
         }
 
         // start Jeff add Check for existing transfer 081111
