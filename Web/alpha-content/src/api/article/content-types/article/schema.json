@@ -34,26 +34,11 @@
       "type": "uid",
       "targetField": "title"
     },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
-    },
-    "category": {
+    "categories": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::category.category",
-      "inversedBy": "articles"
+      "mappedBy": "article"
     },
     "ckeditor_content": {
       "pluginOptions": {
@@ -66,6 +51,12 @@
         "preset": "custom"
       },
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "markets": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::market.market",
+      "inversedBy": "articles"
     }
   }
 }

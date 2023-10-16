@@ -707,16 +707,9 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    image: Attribute.Media &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    category: Attribute.Relation<
+    categories: Attribute.Relation<
       'api::article.article',
-      'manyToOne',
+      'oneToMany',
       'api::category.category'
     >;
     ckeditor_content: Attribute.RichText &
@@ -731,6 +724,11 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    markets: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::market.market'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -761,6 +759,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'category';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -768,9 +767,24 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   attributes: {
     name: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::category.category', 'name'>;
-    articles: Attribute.Relation<
+    markets: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::market.market'
+    >;
+    categories: Attribute.Relation<
       'api::category.category',
       'oneToMany',
+      'api::category.category'
+    >;
+    category: Attribute.Relation<
+      'api::category.category',
+      'manyToOne',
+      'api::category.category'
+    >;
+    article: Attribute.Relation<
+      'api::category.category',
+      'manyToOne',
       'api::article.article'
     >;
     createdAt: Attribute.DateTime;
@@ -787,6 +801,71 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+  };
+}
+
+export interface ApiMarketMarket extends Schema.CollectionType {
+  collectionName: 'markets';
+  info: {
+    singularName: 'market';
+    pluralName: 'markets';
+    displayName: 'market';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.Text &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    categories: Attribute.Relation<
+      'api::market.market',
+      'manyToMany',
+      'api::category.category'
+    >;
+    slug: Attribute.UID &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    articles: Attribute.Relation<
+      'api::market.market',
+      'manyToMany',
+      'api::article.article'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::market.market',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::market.market',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::market.market',
+      'oneToMany',
+      'api::market.market'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -808,6 +887,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::article.article': ApiArticleArticle;
       'api::category.category': ApiCategoryCategory;
+      'api::market.market': ApiMarketMarket;
     }
   }
 }

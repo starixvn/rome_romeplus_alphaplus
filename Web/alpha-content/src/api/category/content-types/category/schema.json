@@ -4,7 +4,8 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "category"
+    "displayName": "category",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -19,11 +20,29 @@
       "type": "uid",
       "targetField": "name"
     },
-    "articles": {
+    "markets": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::market.market",
+      "inversedBy": "categories"
+    },
+    "categories": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::article.article",
+      "target": "api::category.category",
       "mappedBy": "category"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "categories"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "categories"
     }
   }
 }
