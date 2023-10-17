@@ -57,6 +57,16 @@
       "relation": "manyToMany",
       "target": "api::market.market",
       "inversedBy": "articles"
+    },
+    "isFeatured": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
