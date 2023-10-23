@@ -49,7 +49,7 @@ namespace Sunplus.Agent.Model.Transfer.Extensions
 
         private static ICacheService InitCacheService()
         {
-            var redisConfigurationOptions = WebConfigurationManager.AppSettings["RedisConfigurationOptions:AlphaPlus.Transfer"];
+            var redisConfigurationOptions = WebConfigurationManager.AppSettings["RedisConfigurationOptions:Alpha.Transfer"];
             var configurationOptions = ConfigurationOptions.Parse(redisConfigurationOptions);
             var redisCacheOptions = new RedisCacheOptions
             {
