@@ -28,21 +28,26 @@
     },
     "categories": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::category.category",
-      "mappedBy": "category"
+      "mappedBy": "categoriesParent"
     },
-    "category": {
+    "categoriesParent": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "categories"
     },
-    "article": {
+    "articles": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::article.article",
       "inversedBy": "categories"
+    },
+    "isMain": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

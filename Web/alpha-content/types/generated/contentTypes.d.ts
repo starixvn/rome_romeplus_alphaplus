@@ -803,7 +803,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       }>;
     categories: Attribute.Relation<
       'api::article.article',
-      'oneToMany',
+      'manyToMany',
       'api::category.category'
     >;
     ckeditor_content: Attribute.RichText &
@@ -831,6 +831,13 @@ export interface ApiArticleArticle extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<false>;
+    summary: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -876,19 +883,20 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     >;
     categories: Attribute.Relation<
       'api::category.category',
-      'oneToMany',
+      'manyToMany',
       'api::category.category'
     >;
-    category: Attribute.Relation<
+    categoriesParent: Attribute.Relation<
       'api::category.category',
-      'manyToOne',
+      'manyToMany',
       'api::category.category'
     >;
-    article: Attribute.Relation<
+    articles: Attribute.Relation<
       'api::category.category',
-      'manyToOne',
+      'manyToMany',
       'api::article.article'
     >;
+    isMain: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
