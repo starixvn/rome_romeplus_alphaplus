@@ -1,0 +1,32 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Kaveh&#39;s Blog</title>
+      <link>https://kaveh.page//blog</link>
+      <description>Kaveh Tehrani&#39;s Blog - leaving tradfi for web3</description>
+      <language>en-us</language>
+      <managingEditor> (Kaveh)</managingEditor>
+      <webMaster> (Kaveh)</webMaster>
+      <lastBuildDate>Fri, 21 Jul 2023 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://kaveh.page//tags/linux/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://kaveh.page//snippets/conky</guid>
+    <title>My Favorite Tool for Live Monitoring Linux</title>
+    <link>https://kaveh.page//snippets/conky</link>
+    <description>A free and light-weight monitoring tool for linux</description>
+    <pubDate>Fri, 21 Jul 2023 00:00:00 GMT</pubDate>
+    <category>linux</category><category>ubuntu</category>
+  </item>
+
+  <item>
+    <guid>https://kaveh.page//snippets/ubuntu-airpods</guid>
+    <title>Automatic Pairing of Airpods with Ubuntu</title>
+    <link>https://kaveh.page//snippets/ubuntu-airpods</link>
+    <description>Automatic Pairing of Airpods with Ubuntu</description>
+    <pubDate>Sun, 18 Jun 2023 00:00:00 GMT</pubDate>
+    <category>linux</category><category>ubuntu</category>
+  </item>
+
+    </channel>
+  </rss>

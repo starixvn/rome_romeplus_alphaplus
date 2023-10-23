@@ -1,0 +1,23 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Kaveh&#39;s Blog</title>
+      <link>https://kaveh.page//blog</link>
+      <description>Kaveh Tehrani&#39;s Blog - leaving tradfi for web3</description>
+      <language>en-us</language>
+      <managingEditor> (Kaveh)</managingEditor>
+      <webMaster> (Kaveh)</webMaster>
+      <lastBuildDate>Fri, 25 Aug 2023 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://kaveh.page//tags/statistics/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://kaveh.page//blog/correlation-most-misunderstood-metric</guid>
+    <title>Correlation: A Misunderstood Concept in Finance</title>
+    <link>https://kaveh.page//blog/correlation-most-misunderstood-metric</link>
+    <description>Positive correlation between two time-series does NOT mean they are moving the same direction.</description>
+    <pubDate>Fri, 25 Aug 2023 00:00:00 GMT</pubDate>
+    <category>statistics</category><category>finance</category>
+  </item>
+
+    </channel>
+  </rss>

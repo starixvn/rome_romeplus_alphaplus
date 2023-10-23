@@ -1,0 +1,23 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Kaveh&#39;s Blog</title>
+      <link>https://kaveh.page//blog</link>
+      <description>Kaveh Tehrani&#39;s Blog - leaving tradfi for web3</description>
+      <language>en-us</language>
+      <managingEditor> (Kaveh)</managingEditor>
+      <webMaster> (Kaveh)</webMaster>
+      <lastBuildDate>Sun, 05 Dec 2021 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://kaveh.page//tags/investments/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://kaveh.page//blog/not-investment-advice</guid>
+    <title>Not Investment Advice</title>
+    <link>https://kaveh.page//blog/not-investment-advice</link>
+    <description>“This is not investment advice.” is the phrase you come across frequently navigating any media dealing with investments.</description>
+    <pubDate>Sun, 05 Dec 2021 00:00:00 GMT</pubDate>
+    <category>finance</category><category>investments</category>
+  </item>
+
+    </channel>
+  </rss>
