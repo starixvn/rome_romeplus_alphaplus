@@ -873,8 +873,19 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   options: {
     draftAndPublish: false;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    name: Attribute.String & Attribute.Required;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     slug: Attribute.UID<'api::category.category', 'name'>;
     markets: Attribute.Relation<
       'api::category.category',
@@ -896,7 +907,14 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'manyToMany',
       'api::article.article'
     >;
-    isMain: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+    isMain: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -911,6 +929,12 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::category.category'
+    >;
+    locale: Attribute.String;
   };
 }
 
