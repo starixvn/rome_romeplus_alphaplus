@@ -14,5 +14,27 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     const results = await this.sanitizeOutput(entity, ctx);
 
     return this.transformResponse(results);
+  },
+  async findManyByCategory(ctx) {
+    const { slug } = ctx.params;
+
+    const entities = await strapi.entityService.findMany('api::article.article', {
+      populate: {
+        categories: {
+          fields: '*',
+        }
+      },
+      filters: {
+        categories: {
+          slug: {
+            $contains: slug
+          }
+        }
+      }
+    });
+
+    const results = await this.sanitizeOutput(entities, ctx);
+
+    return this.transformResponse(results);
   }
 }));

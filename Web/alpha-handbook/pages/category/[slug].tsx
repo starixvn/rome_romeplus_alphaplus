@@ -9,7 +9,7 @@ import { formatDate } from '~/utils/date'
 export const getServerSideProps = (async (context) => {
   const { slug } = context.query
   const articles: Article[] = await getArticlesByCategorySlug(slug as string)
-  if (!articles)
+  if (articles)
     articles.forEach((article) => {
       article.attributes.publishedAt = formatDate(article.attributes.publishedAt)
     })
@@ -41,27 +41,30 @@ export const getServerSideProps = (async (context) => {
 //   )
 // }
 
-export default function Page({ articles }) {
+export default function Page({ articles }: { articles: Article[] }) {
   return (
     <>
- {articles != true ? (<div>
-  <div className="mt-24 text-center">
-          <PageTitle>
-            Under construction
-            <span role="img" aria-label="roadwork sign">
-              🚧
-            </span>
-          </PageTitle>
+      {!articles || articles.length == 0 ? (
+        <div>
+          <Head>Categories</Head>
+          <div className="mt-24 text-center">
+            <PageTitle>
+              Under construction
+              <span role="img" aria-label="roadwork sign">
+                🚧
+              </span>
+            </PageTitle>
+          </div>
         </div>
- </div>
-      ) : (<div>
-           <Head>Articles</Head>
-       <Link href={'/'}>
-         <span>Back to home page</span>
-       </Link>
-       <BlogListLayout articles={articles} title="" />        
-      </div>
-      )}      
+      ) : (
+        <div>
+          <Head>Articles</Head>
+          <Link href={'/'}>
+            <span>Back to home page</span>
+          </Link>
+          <BlogListLayout articles={articles} title="" />
+        </div>
+      )}
     </>
   )
 }

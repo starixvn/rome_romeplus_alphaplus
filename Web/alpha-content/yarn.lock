@@ -363,6 +363,14 @@
     ckeditor5 "^36.0.1"
     lodash-es "^4.17.15"
 
+"@ckeditor/ckeditor5-autosave@^40.0.0":
+  version "40.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-autosave/-/ckeditor5-autosave-40.0.0.tgz#318c520aab894b43229bd444ab043b9abbcc35a3"
+  integrity sha512-+Mmpp6kpJ9vkK8Qnw1p/+z1q+wK8kuvDBWMGJH13b20Gd1yiZQOtXcctfjrT+IJ70WI20JXxI0QQjGIBVqP+9g==
+  dependencies:
+    ckeditor5 "40.0.0"
+    lodash-es "4.17.21"
+
 "@ckeditor/ckeditor5-basic-styles@^36.0.0":
   version "36.0.1"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-basic-styles/-/ckeditor5-basic-styles-36.0.1.tgz#847f722be4153b11237df159f9f5c4fc66e39b37"
@@ -8968,6 +8976,11 @@ std-env@^3.0.1:
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.4.3.tgz#326f11db518db751c83fd58574f449b7c3060910"
   integrity sha512-f9aPhy8fYBuMN+sNfakZV18U39PbalgjXG3lLB9WkaYTxijru61wb57V9wxxNthXM5Sd88ETBWi29qLAsHO52Q==
+
+strapi-plugin-duplicate-button@^1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-duplicate-button/-/strapi-plugin-duplicate-button-1.1.13.tgz#727b9f845e73c7234bde04cc88389144d70156e7"
+  integrity sha512-XbSH+HKHNAAgjSU5iT/2NqlZI0Ba8gMz8kfhEv3V/fepre2bmu8s8hJPrJrtLDvNqDnsXERbv5utaqSNiocGiw==
 
 strapi-plugin-ratings@^1.1.9:
   version "1.1.9"

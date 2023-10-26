@@ -1,20 +1,10 @@
-import Tags from '~/components/homepage/Tags'
 import { BlogListLayout } from '~/layouts/BlogListLayout'
-import type { BlogFrontMatter, TagsCount } from '~/types'
 import type { Article } from '~/types/article'
-import type { Category } from '~/types/category'
-import Categories from './homepage/Categories'
 
 const Blog = ({
-  posts,
-  tags,
   articles,
-  categories,
 }: {
-  posts: BlogFrontMatter[]
-  tags: TagsCount
   articles: Article[]
-  categories: Category[]
 }) => {
   return (
     <>

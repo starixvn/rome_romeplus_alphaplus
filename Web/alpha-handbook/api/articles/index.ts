@@ -29,8 +29,9 @@ export async function getArticle(slug: string) {
     const response = await fetchAPI(url, urlParamsObject, options);
     return response.data;
 }
-export async function getArticlesByCategorySlug(categorySlug: string) {
-
+export async function getArticlesByCategorySlug(slug: string) {
+    const url = `${path}/category/${slug}`;    
+        
     const urlParamsObject = {
         populate: {
             categories: { populate: "*" },
@@ -38,11 +39,12 @@ export async function getArticlesByCategorySlug(categorySlug: string) {
         filters: {
             categories: {
                 slug: {
-                    $eq: categorySlug
+                    $eq: slug
                 }
             }
         }
     };
 
-    return await fetchAPI(path, urlParamsObject, options);
+    const response = await fetchAPI(url, urlParamsObject, options);
+    return response.data;
 }

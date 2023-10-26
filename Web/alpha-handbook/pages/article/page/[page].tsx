@@ -5,55 +5,62 @@ import { siteMetadata } from '~/data/siteMetadata'
 import { getAllFilesFrontMatter } from '~/libs/mdx'
 import type { BlogListProps } from '~/types'
 import { getArticles } from '~/api/articles'
+import type { GetServerSideProps } from 'next/types'
+import type { Article } from '~/types/article'
 
-export async function getStaticPaths() {
-  let totalPosts = getAllFilesFrontMatter('blog')
-  let totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE)
-  let paths = Array.from({ length: totalPages }, (_, i) => ({
-    params: { page: (i + 1).toString() },
-  }))
+// export async function getStaticPaths() {
+//   let totalPosts = getAllFilesFrontMatter('blog')
+//   let totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE)
+//   let paths = Array.from({ length: totalPages }, (_, i) => ({
+//     params: { page: (i + 1).toString() },
+//   }))
 
-  return {
-    paths,
-    fallback: false,
-  }
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   }
+// }
 
-export async function getStaticProps({ params }: { params: { page: string } }) {
-  let { page } = params
-  let posts = getAllFilesFrontMatter('blog')
+// export async function getStaticProps({ params }: { params: { page: string } }) {
+//   let { page } = params
+//   let posts = getAllFilesFrontMatter('blog')
+//   const articles = await getArticles()
+
+//   let pageNumber = parseInt(page)
+//   let initialDisplayPosts = posts.slice(
+//     POSTS_PER_PAGE * (pageNumber - 1),
+//     POSTS_PER_PAGE * pageNumber
+//   )
+//   let pagination = {
+//     currentPage: pageNumber,
+//     totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
+//   }
+
+//   return {
+//     props: {
+//       posts,
+//       articles,
+//       initialDisplayPosts,
+//       pagination,
+//     },
+//   }
+// }
+
+export const getServerSideProps = (async (context) => {
   const articles = await getArticles()
 
-  let pageNumber = parseInt(page)
-  let initialDisplayPosts = posts.slice(
-    POSTS_PER_PAGE * (pageNumber - 1),
-    POSTS_PER_PAGE * pageNumber
-  )
-  let pagination = {
-    currentPage: pageNumber,
-    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
-  }
+  return { props: { articles } }
+}) satisfies GetServerSideProps<{
+  articles: Article[]
+}>
 
-  return {
-    props: {
-      posts,
-      articles,
-      initialDisplayPosts,
-      pagination,
-    },
-  }
-}
-
-
-
-export default function PostPage(props: BlogListProps) {
-  let {  articles, initialDisplayPosts, pagination } = props
+export default function PostPage(articles: Article[]) {
   return (
     <>
       <PageSeo title={siteMetadata.title} description={siteMetadata.description} />
       <BlogListLayout
         articles={articles}
-        pagination={pagination}
+        // pagination={pagination}
         title="All Posts"
       />
     </>
