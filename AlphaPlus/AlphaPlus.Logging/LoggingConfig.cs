@@ -67,7 +67,7 @@
 
         public static ILogEngine CreateLogLib(string libName, string ravenScriptPath = null)
         {
-            var type = Type.GetType($"Alpha.Logging.LogEngines.{libName}LogEngine");
+            var type = Type.GetType($"AlphaPlus.Logging.LogEngines.{libName}LogEngine");
             if (type == null)
             {
                 return null;
