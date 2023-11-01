@@ -5,7 +5,8 @@ WORKDIR /app
 # Install dependencies based on the preferred package manager
 COPY Web/alpha-handbook/package.json ./
 COPY Web/alpha-handbook/yarn.lock ./
-RUN yarn --frozen-lockfile
+RUN --mount=type=cache,target=/app/node_modules \
+    yarn --frozen-lockfile
 
 # 2. Rebuild the source code only when needed
 FROM hub.nexdev.net/base/node:18.16-alpine AS builder

@@ -7,11 +7,12 @@ WORKDIR /opt/
 COPY Web/alpha-content/package.json ./
 COPY Web/alpha-content/yarn.lock ./
 RUN yarn global add node-gyp
-RUN yarn config set network-timeout 600000 -g && yarn install --production
+RUN --mount=type=cache,target=/opt/app/node_modules \
+    yarn config set network-timeout 600000 -g && yarn install --production
 ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY Web/alpha-content .
-RUN yarn build
+RUN  yarn build
 
 # Creating final production image
 FROM hub.nexdev.net/base/node:18.16-alpine
