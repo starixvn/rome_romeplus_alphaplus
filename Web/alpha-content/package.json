@@ -13,6 +13,7 @@
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.0.4",
     "@ckeditor/ckeditor5-find-and-replace": "^40.0.0",
+    "@ckeditor/ckeditor5-markdown-gfm": "^40.0.0",
     "@ckeditor/ckeditor5-upload": "^40.0.0",
     "@strapi/plugin-i18n": "4.14.3",
     "@strapi/plugin-users-permissions": "4.14.3",

@@ -9,9 +9,16 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     const { id } = ctx.params;
 
     const entity = await strapi.db.query('api::article.article').findOne({
-      where: { slug: id }
+      where: { slug: id },
     });
-    const results = await this.sanitizeOutput(entity, ctx);
+    const article = await strapi.entityService.findOne('api::article.article', entity.id, {
+      populate: {
+        categories: {
+          fields: ['name', 'slug']
+        }
+      }
+    });
+    const results = await this.sanitizeOutput(article, ctx);
 
     return this.transformResponse(results);
   },
