@@ -19,7 +19,7 @@ export default function Tags({ tags }: { tags: TagsCount }) {
             return (
               <div key={tag} className="pl-2 flex border-2 rounded-lg text-center align-middle">
                 <div className="">
-                  <Tag text={tag} />
+                  <Tag text={tag} key={tag} url={`/category/${tag}`} />
                 </div>
                 
                 {/* <Link

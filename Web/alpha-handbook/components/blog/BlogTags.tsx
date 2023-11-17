@@ -8,7 +8,7 @@ export function BlogTags({ tags }: { tags: string[] }) {
   return (
     <div className="flex flex-wrap">
       {tags.map((tag) => (
-        <Tag key={tag} text={tag} />
+        <Tag key={tag} text={tag} url={`/category/${tag}`}  />
       ))}
     </div>
   )

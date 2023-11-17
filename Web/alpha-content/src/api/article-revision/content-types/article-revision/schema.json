@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_revisions",
+  "info": {
+    "singularName": "article-revision",
+    "pluralName": "article-revisions",
+    "displayName": "ArticleRevision"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    }
+  }
+}

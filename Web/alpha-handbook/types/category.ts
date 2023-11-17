@@ -4,6 +4,7 @@ export interface Category {
   id: number;
   attributes: {
     name: string;
+    shortName: string;
     slug?: string;
     categories: {
       data: Category[];

@@ -48,7 +48,7 @@ export function PostListItem({
             </h3>
             <div className="mt-1 flex flex-wrap">
               {tags.map((tag) => (
-                <Tag key={tag.attributes.slug} text={tag.attributes.name} />
+                <Tag key={tag.attributes.slug} text={tag.attributes.shortName} url={`/category/${tag.attributes.slug}`} />
               ))}
             </div>
           </div>

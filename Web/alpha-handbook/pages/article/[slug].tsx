@@ -104,7 +104,7 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
 
       <div className="mt-20 flex flex-wrap">
         {categories.data.map((tag) => (
-          <Tag key={tag.attributes.slug} text={tag.attributes.name} />
+          <Tag text={tag.attributes.shortName} key={tag.attributes.slug} url={`/category/${tag.attributes.slug}`} />
         ))}
       </div>
 

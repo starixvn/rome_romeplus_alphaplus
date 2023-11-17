@@ -4,6 +4,7 @@ const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 const options = { headers: { Authorization: `Bearer ${token}` } };
 
 export async function getArticles() {
+    const url = `${path}/latest/all`;
     const urlParamsObject = {
         sort: { createdAt: "desc" },
         populate: {
@@ -14,7 +15,7 @@ export async function getArticles() {
             // limit: limit,
         },
     };
-    const response = await fetchAPI(path, urlParamsObject, options);
+    const response = await fetchAPI(url, urlParamsObject, options);
     return response.data;
 }
 
@@ -30,7 +31,7 @@ export async function getArticle(slug: string) {
     return response.data;
 }
 export async function getArticlesByCategorySlug(slug: string) {
-    const url = `${path}/category/${slug}`;    
+    const url = `${path}/latest/category/${slug}`;    
         
     const urlParamsObject = {
         populate: {

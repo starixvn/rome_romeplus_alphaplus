@@ -58,16 +58,6 @@
       "target": "api::market.market",
       "inversedBy": "articles"
     },
-    "isFeatured": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
     "summary": {
       "pluginOptions": {
         "i18n": {
@@ -85,10 +75,46 @@
       },
       "type": "customField",
       "options": {
-        "preset": "markdown"
+        "preset": "custom"
       },
       "required": true,
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "version": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer",
+      "default": 1,
+      "required": true,
+      "unique": false
+    },
+    "environment": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "default": "LOCAL",
+      "required": true
+    },
+    "userLevels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::user-level.user-level",
+      "inversedBy": "articles"
+    },
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
     }
   }
 }

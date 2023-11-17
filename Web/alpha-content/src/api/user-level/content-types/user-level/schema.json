@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_levels",
+  "info": {
+    "singularName": "user-level",
+    "pluralName": "user-levels",
+    "displayName": "UserLevel",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "userLevels"
+    }
+  }
+}

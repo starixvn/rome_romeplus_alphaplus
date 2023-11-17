@@ -27,7 +27,7 @@ export default function Categories({ categories }: { categories: Category[] }) {
                   key={category.id}
                 >
                   <div className="">
-                    <Tag text={category.attributes.name} />
+                    <Tag text={category.attributes.shortName} key={category.attributes.slug} url={`/category/${category.attributes.slug}`}  />
                   </div>
                   {/* <Link
                   href={`/tags/${kebabCase(tag)}`}
@@ -41,7 +41,7 @@ export default function Categories({ categories }: { categories: Category[] }) {
                   {category.attributes.categories.data.map((childCategory) => {
                     return (
                       <>
-                        <Tag text={childCategory.attributes.name} />
+                        <Tag text={childCategory.attributes.shortName} key={childCategory.attributes.slug} url={`/category/${childCategory.attributes.slug}`}  />
                       </>
                     )
                   })}

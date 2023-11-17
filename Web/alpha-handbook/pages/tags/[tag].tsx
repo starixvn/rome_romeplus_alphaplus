@@ -52,7 +52,7 @@ export default function Tag({
   articles: Article[]
 }) {
   // Capitalize first letter and convert space to dash
-  let title = tag[0] + tag.split(' ').join('-').slice(1)
+  let title = tag[0] + (tag ?? "").split(' ').join('-').slice(1)
   return (
     <>
       <PageSeo
