@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2.0.0-standard4</Version>
+    <Authors>Rome</Authors>
+    <Company>Starix Soft</Company>
+    <Product>Alpha Plus</Product>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.BetList.Core" Version="3.0.1.0" />
+    <PackageReference Include="NPOI" Version="2.2.1.0" />
+    <PackageReference Include="TplNetCore" Version="1.0.1-beta4" />
+  </ItemGroup>
+</Project>
