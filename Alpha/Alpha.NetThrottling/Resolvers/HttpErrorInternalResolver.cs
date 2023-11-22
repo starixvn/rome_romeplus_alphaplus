@@ -10,7 +10,7 @@ namespace Alpha.NetThrottling.Resolvers
             var currentAppPath = HttpRuntime.AppDomainAppVirtualPath;
             var isCookieless = context.Session.IsCookieless;
             var routing = !isCookieless && currentAppPath.Equals("/", StringComparison.OrdinalIgnoreCase) ?
-                "site-reports/" : string.Empty;
+                "site-reports/" : $"site-reports/(S({context.Session.SessionID}))/";
 
             context.Response.Redirect($"~/{routing}error/blocked?path={context.Request.Path}");
         }
