@@ -1492,6 +1492,15 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@notum-cz/strapi-plugin-content-versioning@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@notum-cz/strapi-plugin-content-versioning/-/strapi-plugin-content-versioning-1.1.6.tgz#f01089cba3307d89466481217541db47b9077092"
+  integrity sha512-Xzh8hx/sV+nCcLIjqiNhTnov4+q2exrHoi1dNwN1Vo7wcxSOPqqrLQWIx8D8sEthFJ4zX1OuYuJbvhNHS9+EWQ==
+  dependencies:
+    "@strapi/utils" "^4.15.4"
+    lodash "^4.17.21"
+    uuid "^9.0.1"
+
 "@pmmmwh/react-refresh-webpack-plugin@0.5.10":
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.10.tgz#2eba163b8e7dbabb4ce3609ab5e32ab63dda3ef8"
@@ -1933,6 +1942,13 @@
   dependencies:
     escape-string-regexp "^2.0.0"
     lodash.deburr "^4.1.0"
+
+"@sklinet/strapi-plugin-tinymce@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@sklinet/strapi-plugin-tinymce/-/strapi-plugin-tinymce-1.0.6.tgz#bb8b2981b9cc9de1c17e63599f42bfb8b5b439dc"
+  integrity sha512-m5g7noVQAqo6zJgUt8GsjKoV1umhr00KjspXiTBGVE8tZdWL2WYkCDoosG3YlZNmIeX8vrHCRFOWxfwyCfgJ9g==
+  dependencies:
+    "@tinymce/tinymce-react" "4.2.0"
 
 "@strapi/admin@4.14.3":
   version "4.14.3"
@@ -2462,6 +2478,18 @@
     p-map "4.0.0"
     yup "0.32.9"
 
+"@strapi/utils@^4.15.4":
+  version "4.15.4"
+  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.15.4.tgz#4f8b0f064f866bc2175cff63ea4a16d221b351d2"
+  integrity sha512-w6dURdVraSoVkfZiU4enkJlrAJ0XxW/ma+SSsQJQuYjvyqg2wCndqhkjOnCu9mHZ701IbkYqRhF5jpm8gVEoDg==
+  dependencies:
+    "@sindresorhus/slugify" "1.1.0"
+    date-fns "2.30.0"
+    http-errors "1.8.1"
+    lodash "4.17.21"
+    p-map "4.0.0"
+    yup "0.32.9"
+
 "@swc/helpers@^0.5.0":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.5.2.tgz#85ea0c76450b61ad7d10a37050289eded783c27d"
@@ -2475,6 +2503,14 @@
   integrity sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==
   dependencies:
     defer-to-connect "^2.0.0"
+
+"@tinymce/tinymce-react@4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-4.2.0.tgz#af2a098153e6eeadc36cfb8940880d7dce425ac5"
+  integrity sha512-Oyi/hDvARR29oqUwTgYXDnMV9E/c7C8V+iK+gUj9tndVXsfSJRYVOw3MTK9CCC9f7alN/S4CYaPpIaA3f4VZzw==
+  dependencies:
+    prop-types "^15.6.2"
+    tinymce "^6.0.0 || ^5.5.1"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -9471,6 +9507,11 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2, tiny-warning@^1.0.3:
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
 
+"tinymce@^6.0.0 || ^5.5.1":
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-6.8.0.tgz#5704cdaa7c01c07fd63c64b0f2f390f6e6244592"
+  integrity sha512-WSQlyfW8aPkOVMmmHmSVeA5Dq4JuUZjTB+PmePJ27oQ+ruv3Zn4KSTsvSnDUrHlqygjDvRidrCB/m5nTWCC2nA==
+
 title-case@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/title-case/-/title-case-2.1.1.tgz#3e127216da58d2bc5becf137ab91dae3a7cd8faa"
@@ -9812,6 +9853,11 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+uuid@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
+  integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
 
 v8flags@^2.0.10:
   version "2.1.1"

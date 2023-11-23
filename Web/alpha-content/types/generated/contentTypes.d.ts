@@ -771,12 +771,47 @@ export interface PluginRatingsRContentId extends Schema.CollectionType {
   };
 }
 
+export interface ApiAdminActionAdminAction extends Schema.CollectionType {
+  collectionName: 'admin_actions';
+  info: {
+    singularName: 'admin-action';
+    pluralName: 'admin-actions';
+    displayName: 'Admin Action';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    actorId: Attribute.BigInteger;
+    action: Attribute.String;
+    targetCollection: Attribute.Text;
+    targetInfo: Attribute.Text;
+    targetValue: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::admin-action.admin-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::admin-action.admin-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiArticleArticle extends Schema.CollectionType {
   collectionName: 'articles';
   info: {
     singularName: 'article';
     pluralName: 'articles';
-    displayName: 'article';
+    displayName: 'Article';
     description: '';
   };
   options: {
@@ -785,6 +820,9 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   pluginOptions: {
     i18n: {
       localized: true;
+    };
+    versions: {
+      versioned: true;
     };
   };
   attributes: {
@@ -795,29 +833,11 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    slug: Attribute.UID<'api::article.article', 'title'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     categories: Attribute.Relation<
       'api::article.article',
       'manyToMany',
       'api::category.category'
     >;
-    ckeditor_content: Attribute.RichText &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'custom';
-        }
-      > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     markets: Attribute.Relation<
       'api::article.article',
       'manyToMany',
@@ -830,35 +850,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    content: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'custom';
-        }
-      > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    version: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.DefaultTo<1>;
-    environment: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.DefaultTo<'LOCAL'>;
     userLevels: Attribute.Relation<
       'api::article.article',
       'manyToMany',
@@ -871,6 +862,30 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    environment: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'api::environment.environment'
+    >;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        versions: {
+          versioned: true;
+        };
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        versions: {
+          versioned: true;
+        };
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -886,6 +901,15 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    versions: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::article.article'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
     localizations: Attribute.Relation<
       'api::article.article',
       'oneToMany',
@@ -895,35 +919,70 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
 }
 
-export interface ApiArticleRevisionArticleRevision
+export interface ApiArticleComponentArticleComponent
   extends Schema.CollectionType {
-  collectionName: 'article_revisions';
+  collectionName: 'article_components';
   info: {
-    singularName: 'article-revision';
-    pluralName: 'article-revisions';
-    displayName: 'ArticleRevision';
+    singularName: 'article-component';
+    pluralName: 'article-components';
+    displayName: 'Article Component';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    articles: Attribute.Relation<
-      'api::article-revision.article-revision',
-      'oneToMany',
-      'api::article.article'
-    >;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    content: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::article-revision.article-revision',
+      'api::article-component.article-component',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::article-revision.article-revision',
+      'api::article-component.article-component',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiArticleDraftArticleDraft extends Schema.CollectionType {
+  collectionName: 'article_drafts';
+  info: {
+    singularName: 'article-draft';
+    pluralName: 'article-drafts';
+    displayName: 'Article Draft';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    revision: Attribute.Integer;
+    title: Attribute.String;
+    summary: Attribute.Text;
+    name: Attribute.String;
+    slug: Attribute.String;
+    content: Attribute.RichText;
+    vuid: Attribute.String;
+    version_number: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::article-draft.article-draft',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::article-draft.article-draft',
       'oneToOne',
       'admin::user'
     > &
@@ -936,7 +995,8 @@ export interface ApiArticleViewArticleView extends Schema.CollectionType {
   info: {
     singularName: 'article-view';
     pluralName: 'article-views';
-    displayName: 'ArticleView';
+    displayName: 'Article View';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -968,12 +1028,55 @@ export interface ApiArticleViewArticleView extends Schema.CollectionType {
   };
 }
 
+export interface ApiBlogBlog extends Schema.CollectionType {
+  collectionName: 'blogs';
+  info: {
+    singularName: 'blog';
+    pluralName: 'blogs';
+    displayName: 'Blog';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    versions: {
+      versioned: true;
+    };
+  };
+  attributes: {
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'custom';
+        }
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    versions: Attribute.Relation<
+      'api::blog.blog',
+      'manyToMany',
+      'api::blog.blog'
+    >;
+    vuid: Attribute.String;
+    versionNumber: Attribute.Integer & Attribute.DefaultTo<1>;
+    versionComment: Attribute.String;
+    isVisibleInListView: Attribute.Boolean & Attribute.DefaultTo<true>;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
     singularName: 'category';
     pluralName: 'categories';
-    displayName: 'category';
+    displayName: 'Category';
     description: '';
   };
   options: {
@@ -1048,6 +1151,36 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::category.category'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiEnvironmentEnvironment extends Schema.CollectionType {
+  collectionName: 'environments';
+  info: {
+    singularName: 'environment';
+    pluralName: 'environments';
+    displayName: 'Environment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::environment.environment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::environment.environment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1129,7 +1262,7 @@ export interface ApiMarketMarket extends Schema.CollectionType {
   info: {
     singularName: 'market';
     pluralName: 'markets';
-    displayName: 'market';
+    displayName: 'Market';
     description: '';
   };
   options: {
@@ -1194,7 +1327,7 @@ export interface ApiUserLevelUserLevel extends Schema.CollectionType {
   info: {
     singularName: 'user-level';
     pluralName: 'user-levels';
-    displayName: 'UserLevel';
+    displayName: 'User Level';
     description: '';
   };
   options: {
@@ -1243,10 +1376,14 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::ratings.review': PluginRatingsReview;
       'plugin::ratings.r-content-id': PluginRatingsRContentId;
+      'api::admin-action.admin-action': ApiAdminActionAdminAction;
       'api::article.article': ApiArticleArticle;
-      'api::article-revision.article-revision': ApiArticleRevisionArticleRevision;
+      'api::article-component.article-component': ApiArticleComponentArticleComponent;
+      'api::article-draft.article-draft': ApiArticleDraftArticleDraft;
       'api::article-view.article-view': ApiArticleViewArticleView;
+      'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
+      'api::environment.environment': ApiEnvironmentEnvironment;
       'api::favorite.favorite': ApiFavoriteFavorite;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::market.market': ApiMarketMarket;

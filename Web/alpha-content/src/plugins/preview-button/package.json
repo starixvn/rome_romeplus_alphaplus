@@ -1,10 +1,10 @@
 {
-  "name": "preview-button",
+  "name": "admin-tools",
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "preview-button",
-    "description": "Description of preview-button plugin",
+    "name": "admin-tools",
+    "description": "Description of admin-tools plugin",
     "kind": "plugin"
   },
   "dependencies": {

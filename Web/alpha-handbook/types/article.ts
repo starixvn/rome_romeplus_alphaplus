@@ -11,6 +11,7 @@ export interface Article {
         content: string;
         isFeatured: boolean;
         summary: string;
+        locale: string;
         categories: {
             data: Category[];
         };

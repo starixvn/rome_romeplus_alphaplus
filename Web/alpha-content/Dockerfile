@@ -12,12 +12,15 @@ RUN --mount=type=cache,target=/opt/app/node_modules \
 ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY Web/alpha-content .
+
 RUN  yarn build
 
 # Creating final production image
 FROM hub.nexdev.net/base/node:18.16-alpine
+
 RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
+
 WORKDIR /opt/
 COPY --from=builder /opt/node_modules ./node_modules
 WORKDIR /opt/app

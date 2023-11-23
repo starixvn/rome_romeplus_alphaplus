@@ -19,9 +19,10 @@ export async function getArticles() {
     return response.data;
 }
 
-export async function getArticle(slug: string) {
+export async function getArticle(slug: string, id: string) {
     const url = `${path}/${slug}`;
     const urlParamsObject = {
+        id,
         populate: {
             categories: { populate: "*" },
         },

@@ -163,3 +163,59 @@ html.lightbox-loading * {
     margin: 0 -150px;
   }
 }
+
+
+body {  
+  font-family: Roboto, Tofu;
+}
+
+.body-en, .body-vi-VN {
+  font-family: Roboto, Tofu;
+}
+
+.body-th-TH, .body-zh-Hans, .body-zh-Hant  {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.haft-screen { width: 49%; display: inline-block; vertical-align: top; padding: 5px 0; }
+.col-1st { border-right: solid 1px #eee; }
+ul.ul-marked { list-style-type: "✓"; }
+ul.ul-x { list-style-type: "✗"; }
+ul.ul-arr { list-style-type: "➣"; }
+ul.ul-em-dash { list-style-type: "—"; }
+ul.ul-plus { list-style-type: "+"; } 
+ul.ul-minus { list-style-type: "-"; } 
+
+ul>li>ul>li>ul>li>ul { list-style-type: "+"; }
+ul>li>ul>li>ul>li>ul>li>ul { list-style-type: "-"; } 
+
+menu, ol, ul {
+  list-style: revert;
+  padding: revert;
+}
+
+li {
+  padding: 0 4px;
+}
+
+img {
+  display: inline-block;
+  margin-top: -2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

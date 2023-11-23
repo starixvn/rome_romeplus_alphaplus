@@ -3,6 +3,7 @@
  */
 
 import { factories } from '@strapi/strapi'
+import qs from "qs";
 
 type  ResponseModel = {
   data: [any];
@@ -40,16 +41,21 @@ function filterLatestVersion(response: ResponseModel) {
   }); 
 
   return result;
-
 }
 
 export default factories.createCoreController('api::article.article', ({ strapi }) => ({
   async findOne(ctx) {
     const { id } = ctx.params;
+    const urlParamsObject = qs.parse(ctx.querystring);
 
     const entity = await strapi.db.query('api::article.article').findOne({
-      where: { slug: id },
+      where: urlParamsObject.id ? { id: urlParamsObject.id  } : {slug: id, publishedAt: { $null:  false } },
     });
+
+    if(entity == null) {
+      return {};
+    }
+
     const article = await strapi.entityService.findOne('api::article.article', entity.id, {
       populate: {
         categories: {
@@ -60,9 +66,11 @@ export default factories.createCoreController('api::article.article', ({ strapi 
         }
       }
     });
-    const results = await this.sanitizeOutput(article, ctx);
 
-    return this.transformResponse(results);
+    const output = await this.sanitizeOutput(article, ctx);
+    const response = this.transformResponse(output);
+
+    return response;
   },
 
   async findManyByCategory(ctx) {
@@ -107,8 +115,10 @@ export default factories.createCoreController('api::article.article', ({ strapi 
 
     const output = await this.sanitizeOutput(entities, ctx);
 
-    const response = this.transformResponse(output) as ResponseModel;
-    return filterLatestVersion(response);
+    // const response = this.transformResponse(output) as ResponseModel;
+    // return filterLatestVersion(response);
+
+    return this.transformResponse(output);
   },
   async findManyLatestByCategory (ctx) {
     const { slug } = ctx.params;
@@ -134,7 +144,9 @@ export default factories.createCoreController('api::article.article', ({ strapi 
 
     const output = await this.sanitizeOutput(entities, ctx);
 
-    const response = this.transformResponse(output) as ResponseModel;
-    return filterLatestVersion(response);
+    // const response = this.transformResponse(output) as ResponseModel;
+    // return filterLatestVersion(response);
+
+    return this.transformResponse(output);
   },
 }));

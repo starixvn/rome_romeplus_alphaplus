@@ -96,10 +96,19 @@ globalThis.CKEditorConfig = {
                     CKEditor5.table.TableColumnResize,
                     CKEditor5.table.TableCaption,
                     CKEditor5.removeFormat.RemoveFormat,
-                    //CKEditor5.strapiPlugins.StrapiMediaLib,
+                    CKEditor5.strapiPlugins.StrapiMediaLib,
                     CKEditor5.strapiPlugins.StrapiUploadAdapter,
                     CKEditor5.sourceEditing.SourceEditing,
-                    CKEditor5.upload.Base64UploadAdapter
+                    CKEditor5.upload.Base64UploadAdapter,
+                    CKEditor5.htmlEmbed.HtmlEmbed,
+                    CKEditor5.mediaEmbed.MediaEmbed,
+                    CKEditor5.mediaEmbed.MediaEmbedToolbar,
+                    CKEditor5.specialCharacters.SpecialCharacters,
+                    CKEditor5.specialCharacters.SpecialCharactersArrows,
+                    CKEditor5.specialCharacters.SpecialCharactersCurrency,
+                    CKEditor5.specialCharacters.SpecialCharactersLatin,
+                    CKEditor5.specialCharacters.SpecialCharactersMathematical,
+                    CKEditor5.specialCharacters.SpecialCharactersText,
                   ],
 
                   /* By default, for plugin's UI will use
@@ -121,22 +130,26 @@ globalThis.CKEditorConfig = {
                   blockToolbar: [
                     'paragraph', 'heading1', 'heading2','heading3',
                      ],
-                  toolbar: [
+                  toolbar: {
+                    items: [
                     'heading','alignment',
                     '|',
                     'font','fontSize','fontFamily','fontColor','fontBackgroundColor',
                     '|',
                     'bold', 'italic','underline', 'strikethrough', 'subscript', 'superscript', 'link',
                     '|',
-                    //'strapiMediaLib',
+                     'strapiMediaLib',
                      'insertTable','uploadImage',
+                     'specialCharacters','htmlEmbed','mediaEmbed',
                     '|','outdent','indent','horizontalLine',
                     'blockQuote','removeFormat',
                     'bulletedList', 'numberedList','undo', 'redo',
                     '|',
                     'findAndReplace',
                     'sourceEditing',
-                  ],
+                   ],
+                   shouldNotGroupWhenFull: true
+                  },
                   heading: {
                     options: [
                       { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
@@ -224,7 +237,7 @@ globalThis.CKEditorConfig = {
                     CKEditor5.table.TableColumnResize,
                     CKEditor5.table.TableCaption,
                     CKEditor5.removeFormat.RemoveFormat,
-                    //CKEditor5.strapiPlugins.StrapiMediaLib,
+                    CKEditor5.strapiPlugins.StrapiMediaLib,
                     CKEditor5.strapiPlugins.StrapiUploadAdapter,
                     CKEditor5.sourceEditing.SourceEditing,
                     CKEditor5.upload.Base64UploadAdapter
@@ -245,7 +258,7 @@ globalThis.CKEditorConfig = {
                         'codeBlock',
                         '|',
                         'uploadImage',
-                        //'strapiMediaLib',
+                        'strapiMediaLib',
                         'blockQuote','removeFormat',
                         'bulletedList', 'numberedList','undo', 'redo',
                         '-',

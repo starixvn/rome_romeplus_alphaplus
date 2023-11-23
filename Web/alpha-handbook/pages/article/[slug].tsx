@@ -6,63 +6,30 @@ import { PageTitle } from '~/components/PageTitle'
 import { Tag } from '~/components/Tag'
 import type { Article } from '~/types/article'
 import { formatDate } from '~/utils/date'
-import { remark } from 'remark'
-import html from 'remark-html'
-import matter from 'gray-matter'
 
 export const getServerSideProps = (async (context) => {
-  const { slug, preview = null } = context.query
-  let isPreview = false
-  if (preview) {
-    isPreview = true
-  }
+  const { slug, id = null } = context.query
 
-  const article: Article = await getArticle(slug as string)
+  const article: Article = await getArticle(slug as string, id as string)
   article.attributes.publishedAt = article.attributes.publishedAt
     ? formatDate(article.attributes.publishedAt)
-    : ''
-  const matterResult = matter(article.attributes.content)
+    : '';
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark().use(html).process(matterResult.content)
-  article.attributes.content = processedContent.toString()
-
-  return { props: { article, isPreview } }
+  return { props: { article, isPreview: !!id } }
 }) satisfies GetServerSideProps<{
   article: Article
   isPreview: boolean
 }>
 
-// export async function getStaticProps({ params }: { params: { slug: string } }) {
-//   const article: Article = await getArticle(params.slug)
-//   article.attributes.publishedAt = formatDate(article.attributes.publishedAt)
-//   return { props: { article } }
-// }
-
-// export default function Article(props: Article) {
-//   let { title, publishedAt, ckeditor_content } = props.attributes
-//   return (
-//     <>
-//       <Head>{title}</Head>
-//       <div className="mt-24 text-center">
-//         <PageTitle>
-//           <span>{title}</span>
-//         </PageTitle>
-//       </div>
-//       <p>{publishedAt}</p>
-//       <div dangerouslySetInnerHTML={{ __html: ckeditor_content }} />
-//     </>
-//   )
-// }
 
 export default function Page({ article, isPreview }: { article: Article; isPreview: boolean }) {
-  let { title, publishedAt, content, categories } = article.attributes
+  let { title, publishedAt, content, categories, locale } = article.attributes
 
   const handleClickTurnOff = () => {
     window.close()
   }
   return (
-    <>
+    <div className={"body-" + locale}>
       <Head>{title}</Head>
 
       {isPreview ? (
@@ -78,13 +45,6 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
                   <Link className="underline hover:text-cyan transition-colors" href={"/"} onClick={handleClickTurnOff}>
                     turn off
                   </Link>
-
-                  {/* <a
-                  href="http://localhost:3000/api/exit-preview"
-                  className="underline hover:text-cyan transition-colors"
-                >
-                  turn off
-                </a> */}
                 </span>
               </p>
             </div>
@@ -113,6 +73,6 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
           <span>Back to home page</span>
         </Link>
       </div>
-    </>
+    </div>
   )
 }

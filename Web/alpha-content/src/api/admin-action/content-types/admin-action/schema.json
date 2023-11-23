@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "admin_actions",
+  "info": {
+    "singularName": "admin-action",
+    "pluralName": "admin-actions",
+    "displayName": "Admin Action",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "actorId": {
+      "type": "biginteger"
+    },
+    "action": {
+      "type": "string"
+    },
+    "targetCollection": {
+      "type": "text"
+    },
+    "targetInfo": {
+      "type": "text"
+    },
+    "targetValue": {
+      "type": "json"
+    }
+  }
+}

@@ -11,7 +11,6 @@ RUN --mount=type=cache,target=/app/node_modules \
 # 2. Rebuild the source code only when needed
 FROM hub.nexdev.net/base/node:18.16-alpine AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
 COPY Web/alpha-handbook .
 
 # Register TRANSFORM_CONFIG argument for transforming by environment
@@ -23,7 +22,7 @@ RUN echo $TRANSFORM_CONFIG
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 COPY "Web/alpha-handbook/.env.$TRANSFORM_CONFIG" .env.production
-RUN yarn install
+RUN yarn install --prefer-offline --frozen-lockfile
 RUN yarn build
 
 # If using npm comment out above and use below instead

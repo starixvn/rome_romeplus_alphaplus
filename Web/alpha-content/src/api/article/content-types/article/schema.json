@@ -4,7 +4,7 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "article",
+    "displayName": "Article",
     "description": ""
   },
   "options": {
@@ -13,6 +13,9 @@
   "pluginOptions": {
     "i18n": {
       "localized": true
+    },
+    "versions": {
+      "versioned": true
     }
   },
   "attributes": {
@@ -25,32 +28,11 @@
         }
       }
     },
-    "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "uid",
-      "targetField": "title"
-    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::category.category",
       "mappedBy": "articles"
-    },
-    "ckeditor_content": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "customField",
-      "options": {
-        "preset": "custom"
-      },
-      "customField": "plugin::ckeditor5.CKEditor"
     },
     "markets": {
       "type": "relation",
@@ -67,40 +49,6 @@
       "type": "text",
       "required": true
     },
-    "content": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "customField",
-      "options": {
-        "preset": "custom"
-      },
-      "required": true,
-      "customField": "plugin::ckeditor5.CKEditor"
-    },
-    "version": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "integer",
-      "default": 1,
-      "required": true,
-      "unique": false
-    },
-    "environment": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "LOCAL",
-      "required": true
-    },
     "userLevels": {
       "type": "relation",
       "relation": "manyToMany",
@@ -114,6 +62,35 @@
         }
       },
       "type": "string",
+      "required": true
+    },
+    "environment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::environment.environment"
+    },
+    "slug": {
+      "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": false
+    },
+    "content": {
+      "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext",
       "required": true
     }
   }

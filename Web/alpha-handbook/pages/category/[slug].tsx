@@ -19,28 +19,6 @@ export const getServerSideProps = (async (context) => {
   articles: Article[]
 }>
 
-// export async function getStaticProps({ params }: { params: { slug: string } }) {
-//   const article: Article = await getArticle(params.slug)
-//   article.attributes.publishedAt = formatDate(article.attributes.publishedAt)
-//   return { props: { article } }
-// }
-
-// export default function Article(props: Article) {
-//   let { title, publishedAt, ckeditor_content } = props.attributes
-//   return (
-//     <>
-//       <Head>{title}</Head>
-//       <div className="mt-24 text-center">
-//         <PageTitle>
-//           <span>{title}</span>
-//         </PageTitle>
-//       </div>
-//       <p>{publishedAt}</p>
-//       <div dangerouslySetInnerHTML={{ __html: ckeditor_content }} />
-//     </>
-//   )
-// }
-
 export default function Page({ articles }: { articles: Article[] }) {
   return (
     <>
