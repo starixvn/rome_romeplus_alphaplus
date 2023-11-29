@@ -10,7 +10,7 @@
     <PackageTags>alpha net throttling</PackageTags>
     <Authors>Starixsoft</Authors>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Version>2.0.0-standard1</Version>
+    <Version>2.0.0</Version>
     <PackageReleaseNotes>Use redis cache
 handle exception
 fix child action

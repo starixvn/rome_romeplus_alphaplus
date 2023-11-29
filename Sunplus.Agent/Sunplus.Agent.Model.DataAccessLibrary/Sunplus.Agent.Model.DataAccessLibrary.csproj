@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Starixsoft</Authors>
+    <Version>3.0.0.2</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fanex.Data" Version="0.5.404.59" />
+    <PackageReference Include="Fanex.Logging.Extensions.Web" Version="1.0.8" />
+  </ItemGroup>
+</Project>

@@ -3,7 +3,7 @@
     <TargetFramework>net461</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Fanex.Age.UI.Components.Transfer</PackageId>
-    <Version>4.0.0-standard2</Version>
+    <Version>4.0.0</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>
@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Sunplus.Agent\Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj" />
     <ProjectReference Include="..\..\Sunplus.Agent\Sunplus.Agent.Model.Transfer\Sunplus.Agent.Model.Transfer.csproj" />
-    <PackageReference Include="TplNetCore" Version="1.0.1-beta4" />
+    <PackageReference Include="TplNetCore" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="LocalResources\UIComponentsLang.vi-VN.resx">

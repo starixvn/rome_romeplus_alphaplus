@@ -6,7 +6,7 @@
     <TargetFramework>net461</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Fanex.Age.UI.Components</PackageId>
-    <Version>4.0.0-standard3</Version>
+    <Version>4.0.0</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>

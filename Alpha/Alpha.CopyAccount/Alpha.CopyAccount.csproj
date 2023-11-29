@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Starixsoft</Authors>
+    <Version>1.0.0.4</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="105.2.3" />
+    <PackageReference Include="SimpleInjector" Version="3.3.2" />
+    <PackageReference Include="SimpleInjector.Integration.Web" Version="3.3.2" />
+    <PackageReference Include="SimpleInjector.Integration.Web.MVC" Version="3.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+</Project>

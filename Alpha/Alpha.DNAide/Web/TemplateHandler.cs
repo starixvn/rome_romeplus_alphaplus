@@ -3,6 +3,7 @@
     using DNAide.Core;
     using Fanex.Caching;
     using Fanex.Caching.Memory;
+    using ILogger;
     using System;
     using System.Configuration;
     using System.IO;
@@ -73,17 +74,22 @@
                 }
             }
             string str = Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, templateFolder), templateName);
-
-            if (File.Exists(str))
+            try
             {
-                using (StreamReader streamReader = File.OpenText(str))
+                if (File.Exists(str))
                 {
-                    empty = streamReader.ReadToEnd();
-                    streamReader.Close();
+                    using (StreamReader streamReader = File.OpenText(str))
+                    {
+                        empty = streamReader.ReadToEnd();
+                        streamReader.Close();
+                    }
                 }
             }
-
-
+            catch (Exception exception)
+            {
+                Service.WriteLog(exception.Message, LoggingType.Error);
+                empty = string.Empty;
+            }
             if (hasShrinkHtml && !string.IsNullOrEmpty(empty))
             {
                 TemplateHandler.ShrinkHtml(ref empty);
