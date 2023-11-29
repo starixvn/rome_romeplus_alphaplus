@@ -31,7 +31,7 @@ namespace Sunplus.Agent.Model.Transfer.Services
             request = multipleTransferMemberRequest;
             result = new TransferResult();
             bo = new TransferBO();
-            dataTransfer = bo.GetDataTransfer(request.Status, request.UserName, request.IsYesterdayBalance);
+            dataTransfer = bo.GetDataTransfer(request.Status, request.UserName, request.IsYesterdayBalance, request.AutoTransferFilter);
             transferStatus = new TransferStatus();
             request.IsClose = GetStatus();
             transferCacheService = new TransferCacheServiceImplement(multipleTransferMemberRequest.AdminId, multipleTransferMemberRequest.AdminName, cacheService);
@@ -81,7 +81,7 @@ namespace Sunplus.Agent.Model.Transfer.Services
                 try
                 {
                     string errMsg = string.Empty;
-                    result.ErrCode += bo.TransferYesCleareBalanceForAgent(isUsingCache ? string.Join(",", listValidCustId) : _CustID, request.CheckAll, request.IsClose, request.ClientIP, out errMsg);
+                    result.ErrCode += bo.TransferYesCleareBalanceForAgent(isUsingCache ? string.Join(",", listValidCustId) : _CustID, request.CheckAll, request.IsClose, request.AutoTransferFilter, request.ClientIP,  out errMsg);
                     result.ErrMsg = errMsg;
                 }
                 finally

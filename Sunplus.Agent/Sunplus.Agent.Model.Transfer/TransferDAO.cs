@@ -4,17 +4,19 @@ namespace Sunplus.Agent.Model.Transfer
     using System.Collections;
     using System.Data;
     using System.Diagnostics;
-    using AlphaPlus.User.Models;
     using Fanex.Data;
+    using Fanex.Data.DNAide;
     using Fanex.Logging.Extensions.Web;
+    using AlphaPlus.User.Models;
     using Sunplus.Agent.Model.DL.Base;
+    using AlphaPlus.User.Models;
     using Sunplus.Agent.Model.Transfer.AppResources;
     using Sunplus.Agent.Model.Transfer.Extensions;
 
     public class TransferDAO : DAOBase
     {
         private string key = UserSession.Current.SiteDBGroupId > 0 ? $"SiteDB{UserSession.Current.SiteDBGroupId}_" : string.Empty;
-
+        
         public DataTable GetSuperInAutomateTransferAll(int custId)
         {
             var htb = new Hashtable
@@ -26,7 +28,8 @@ namespace Sunplus.Agent.Model.Transfer
 
             return rs.ResultSet.Tables[0];
         }
-        public int Age_Transfer_Ins_Ag(string fromCustId, string toUserName, int creatorId, int subAccId, string ip, double amt, bool isFullTransfer, string superIdStransferTotal, string language, bool isAllDayBalTransfer, out string errMsg)
+
+        public int Age_Transfer_Ins_Ag(string fromCustId, string toUserName, int creatorId, int subAccId, string ip, double amt, bool isFullTransfer, string superIdStransferTotal, string language, bool isAllDayBalTransfer, int autoTransferFilter, out string errMsg)
         {
             // isYes=1 --> Only Yesterday
             // isYes=0 --> Get All
@@ -40,7 +43,8 @@ namespace Sunplus.Agent.Model.Transfer
                 { "language", language },
                 { "subaccid", subAccId },
                 { "ip", ip },
-                { "isalldaybaltransfer", isAllDayBalTransfer }
+                { "isalldaybaltransfer", isAllDayBalTransfer },
+                { "autotransfer", autoTransferFilter }
             };
             //// AppSession.UserID : UserID of Admin Login
             var outputs = new Hashtable();
@@ -64,7 +68,7 @@ namespace Sunplus.Agent.Model.Transfer
             return (int)outputs["errcode"];
         }
 
-        public int Age_Transfer_Ins_MAg(string toCustIds, int creatorId, int subAccId, int masterId, string ip, double amt, bool isFullTransfer, string status, string superIdStransferTotal, string language, out string errMsg)
+        public int Age_Transfer_Ins_MAg(string toCustIds, int creatorId, int subAccId, int masterId, string ip, double amt, bool isFullTransfer, string status, string superIdStransferTotal, string language, int autoTransferFilter, out string errMsg)
         {
             // isYes=1 --> Only Yesterday
             // isYes=0 --> Get All
@@ -79,21 +83,21 @@ namespace Sunplus.Agent.Model.Transfer
                 { "ip", ip },
                 { "amttrans", amt },
                 { "masterid", masterId },
-                { "custstatus", status }
+                { "custstatus", status },
+                { "autotransfer", autoTransferFilter }
             };
 
             using (var db = new ObjectDb($"{key}Age_Transfer_Ins_MAg"))
             {
                 db.ExecuteNonQueryScaleoutDB(parameters, UserSession.Current.AGIP);
-                var outputs = db.GetOuputParams();
+                var output = db.GetOuputParams();
+                errMsg = output["errmsg"] as string;
 
-                errMsg = outputs["errmsg"] as string;
-
-                return (int)outputs["errcode"];
+                return (int)output["errcode"];
             }
         }
 
-        public int Age_Transfer_Ins_SAg(string toCustIds, int creatorId, int subAccId, int superId, string ip, double amt, bool isFullTransfer, string status, string superIdStransferTotal, string language, out string errMsg)
+        public int Age_Transfer_Ins_SAg(string toCustIds, int creatorId, int subAccId, int superId, string ip, double amt, bool isFullTransfer, string status, string superIdStransferTotal, string language, int autoTransferFilter, out string errMsg)
         {
             //// isYes=1 --> Only Yesterday
             //// isYes=0 --> Get All
@@ -108,21 +112,21 @@ namespace Sunplus.Agent.Model.Transfer
                 { "ip", ip },
                 { "amttrans", amt },
                 { "sagid", superId },
-                { "custstatus", status }
+                { "custstatus", status },
+                { "autotransfer", autoTransferFilter }
             };
-
+            
             using (var db = new ObjectDb($"{key}Age_Transfer_Ins_SAg"))
             {
                 db.ExecuteNonQueryScaleoutDB(parameters, UserSession.Current.AGIP);
-                var outputs = db.GetOuputParams();
+                var output = db.GetOuputParams();
+                errMsg = output["errmsg"] as string;
 
-                errMsg = outputs["errmsg"] as string;
-
-                return (int)outputs["errcode"];
+                return (int)output["errcode"];
             }
         }
 
-        public int Age_Transfer_InsClearBalance_Ag(string toCustIds, int subAccId, int creatorId, int fromCustId, string ip, string status, string language, string superIdStransferTotal, bool isAllDayBalTransfer, out string errMsg)
+        public int Age_Transfer_InsClearBalance_Ag(string toCustIds, int subAccId, int creatorId, int fromCustId, string ip, string status, string language, string superIdStransferTotal, bool isAllDayBalTransfer, int autoTransferFilter, out string errMsg)
         {
             var parameters = new Hashtable
             {
@@ -134,20 +138,34 @@ namespace Sunplus.Agent.Model.Transfer
                 { "ip", ip },
                 { "custstatus", status },
                 { "superidstransfertotal", superIdStransferTotal },
-                { "isalldaybaltransfer", isAllDayBalTransfer }
+                { "isalldaybaltransfer", isAllDayBalTransfer },
+                { "autotransfer", autoTransferFilter }
             };
 
             using (var db = new ObjectDb($"{key}Age_Transfer_InsClearBalance_Ag"))
             {
                 db.ExecuteNonQueryScaleoutDB(parameters, UserSession.Current.AGIP);
-                var outputs = db.GetOuputParams();
+                var output = db.GetOuputParams();
+                errMsg = output["errmsg"] as string;
 
-                errMsg = outputs["errmsg"] as string;
-
-                return (int)outputs["errcode"];
+                return (int)output["errcode"];
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="custid"></param>
+        /// <param name="closed"></param>
+        /// <param name="suspended"></param>
+        /// <param name="enabled"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalPages"></param>
+        /// <param name="userName"></param>
+        /// <param name="isYesterdayBalance"></param>
+        /// <param name="isAllowedTotalBalTrans"></param>
+        /// <returns>Return table. When login is agent</returns>
         public DataTable Age_Transfer_SelList_Ag(
             int custid,
             string custStatus,
@@ -156,7 +174,8 @@ namespace Sunplus.Agent.Model.Transfer
             ref int totalPages,
             string userName,
             bool isYesterdayBalance,
-            bool isAllowedTotalBalTrans)
+            bool isAllowedTotalBalTrans,
+            int autoTransferFilter)
         {
             //// Function list data transfer of Agent
             var htb = new Hashtable
@@ -167,18 +186,34 @@ namespace Sunplus.Agent.Model.Transfer
                 { "username", userName },
                 { "isyesterdaybalance", isYesterdayBalance },
                 { "isallowtotalbalance", isAllowedTotalBalTrans },
-                { "custstatus", custStatus }
+                { "custstatus", custStatus },
+                { "autotransfer", autoTransferFilter }
             };
 
             using (var db = new ObjectDb($"{key}Age_Transfer_SelList_Ag"))
             {
-                var result = db.ExecuteDataSetScaleoutDB(htb, UserSession.Current.AGIP);
-                totalPages = (int)db.GetOuputParams()["totalpages"];
+                var ds = db.ExecuteDataSetScaleoutDB(htb, UserSession.Current.AGIP);
+                var output = db.GetOuputParams();
+                totalPages = (int)output["totalpages"];
 
-                return result.Tables[0];
+                return ds.Tables[0];
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="custid"></param>
+        /// <param name="closed"></param>
+        /// <param name="suspended"></param>
+        /// <param name="enabled"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalPages"></param>
+        /// <param name="userName"></param>
+        /// <param name="isYesterdayBalance"></param>
+        /// <param name="isAllowedTotalBalTrans"></param>
+        /// <returns>Return table. When login is master</returns>
         public DataTable Age_Transfer_SelList_MAg(
             int custid,
             string custStatus,
@@ -187,7 +222,8 @@ namespace Sunplus.Agent.Model.Transfer
             ref int totalPages,
             string userName,
             bool isYesterdayBalance,
-            bool isAllowedTotalBalTrans)
+            bool isAllowedTotalBalTrans,
+            int autoTransferFilter)
         {
             //// Function list data transfer of Agent
             var htb = new Hashtable
@@ -198,7 +234,8 @@ namespace Sunplus.Agent.Model.Transfer
                 { "username", userName },
                 { "isyesterdaybalance", isYesterdayBalance },
                 { "isallowtotalbalance", isAllowedTotalBalTrans },
-                { "custstatus", custStatus }
+                { "custstatus", custStatus },
+                { "autotransfer", autoTransferFilter }
             };
 
             var rs = ExecSp("Age_Transfer_SelList_MAg", htb);
@@ -229,7 +266,8 @@ namespace Sunplus.Agent.Model.Transfer
             ref int totalPages,
             string userName,
             bool isYesterdayBalance,
-            bool isAllowedTotalBalTrans)
+            bool isAllowedTotalBalTrans,
+            int autoTransferFilter)
         {
             //// Function list data transfer of Agent
             var htb = new Hashtable
@@ -240,7 +278,8 @@ namespace Sunplus.Agent.Model.Transfer
                 { "username", userName },
                 { "isyesterdaybalance", isYesterdayBalance },
                 { "isallowtotalbalance", isAllowedTotalBalTrans },
-                { "custstatus", custStatus }
+                { "custstatus", custStatus },
+                { "autotransfer", autoTransferFilter }
             };
 
             var rs = ExecSp("Age_Transfer_SelList_SAg", htb);
@@ -265,13 +304,12 @@ namespace Sunplus.Agent.Model.Transfer
                 { "maxtransdate", DateTime.Now },
                 { "futurebetcredit", 0 }
             };
-
+            
             using (var db = new ObjectDb($"{key}Age_Transfer_SelMemberInfo_Yesterday"))
             {
-                db.ExecuteDataSetScaleoutDB(htb, UserSession.Current.AGIP);
-                var outputs = db.GetOuputParams();
+                var ds = db.ExecuteDataSetScaleoutDB(htb, UserSession.Current.AGIP);
 
-                return outputs;
+                return db.GetOuputParams();
             }
         }
 
@@ -285,6 +323,11 @@ namespace Sunplus.Agent.Model.Transfer
             return rs.ResultSet.Tables[0];
         }
 
+        /// <summary>
+        /// Get option transfer Condition
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         public string Acc_CustomerSelTransferOption(int custId)
         {
             return Acc_CustomerSelTransferOption(custId, string.Empty);
@@ -303,9 +346,10 @@ namespace Sunplus.Agent.Model.Transfer
             return (string)outputs["transferoption"];
         }
 
-        public Hashtable Acc_CustomerUpdTransferOption(
+        public DbResult Acc_CustomerUpdTransferOption(
             string custId,
             string transferOption,
+            string autoTransferOption,
             string userId,
             int subAccId,
             string langKey,
@@ -315,6 +359,7 @@ namespace Sunplus.Agent.Model.Transfer
             {
                 { "custid", custId },
                 { "transferoption", transferOption },
+                { "turnoffautotransfer", autoTransferOption == "1"},
                 { "userid", userId },
                 { "subaccid", subAccId },
                 { "language", langKey },
@@ -324,7 +369,7 @@ namespace Sunplus.Agent.Model.Transfer
                 { "errmsg", string.Empty }
             };
 
-            return ExecSpHashtable("Acc_CustomerUpdTransferOption", parameters);
+            return ExecSp("Acc_CustomerUpdTransferOption", parameters);
         }
 
         public bool IsAllDayBalanceTransfer(int custId)

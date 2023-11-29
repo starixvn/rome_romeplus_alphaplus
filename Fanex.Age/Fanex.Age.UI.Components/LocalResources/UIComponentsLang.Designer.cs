@@ -603,6 +603,15 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto Tranfer.
+        /// </summary>
+        internal static string autoTransfer {
+            get {
+                return ResourceManager.GetString("autoTransfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Baccarat.
         /// </summary>
         internal static string baccarat {
@@ -5725,6 +5734,15 @@ namespace Fanex.Age.UI.Components.LocalResources {
         internal static string strConfirmDisableVirtualSports {
             get {
                 return ResourceManager.GetString("strConfirmDisableVirtualSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        internal static string Enabled {
+            get {
+                return ResourceManager.GetString("Enabled", resourceCulture);
             }
         }
         

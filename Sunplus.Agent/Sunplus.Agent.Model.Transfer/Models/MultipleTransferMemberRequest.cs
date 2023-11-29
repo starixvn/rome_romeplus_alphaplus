@@ -32,5 +32,7 @@ namespace Sunplus.Agent.Model.Transfer.Models
         public string NetSessionId { get; set; }
 
         public string TransferSuccessMessage { get; set; }
+
+        public int AutoTransferFilter { get; set; }
     }
 }
