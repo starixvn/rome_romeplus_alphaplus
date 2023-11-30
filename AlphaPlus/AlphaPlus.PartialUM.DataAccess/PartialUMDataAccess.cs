@@ -2,36 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using AlphaPlus.PartialUM.DataAccess.Criteria;
 using AlphaPlus.PartialUM.Models;
-using Fanex.Data;
+using Fanex.Data.Repository;
 
 namespace AlphaPlus.PartialUM.DataAccess
 {
     public class PartialUMDataAccess : IPartialUMDataAccess
     {
+        private readonly IDynamicRepository dynamicRepository;
+
+        public PartialUMDataAccess(IDynamicRepository dynamicRepository)
+            => this.dynamicRepository = dynamicRepository;
+
         public IEnumerable<UMInfo> GetUMInfoList(string siteName)
-        {
-            var inputParams = new Hashtable
-            {
-                ["siteName"] = siteName
-            };
-
-            using (var db = ObjectDbFactory.CreateInstance("Acc_CheckUM_ByReport"))
-            {
-                using (var reader = db.ExecuteReader(inputParams))
-                {
-                    while (reader.Read())
-                    {
-                        yield return ToUMInfo(reader);
-                    }
-                }
-            }
-        }
-
-        private static UMInfo ToUMInfo(IDataReader reader)
-            => new UMInfo(
-                reader["FunctionTypeName"].ToString(),
-                Convert.ToDateTime(reader["BeginTime"]),
-                Convert.ToDateTime(reader["EndTime"]));
+            => dynamicRepository.Fetch<UMInfo>(new CheckPartialUMCriteria(siteName));
     }
 }

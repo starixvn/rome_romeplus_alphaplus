@@ -1,187 +1,92 @@
 ﻿namespace Alpha.Auth.DataAccesses.Impl
 {
-    using System;
-    using System.Collections;
-    using Fanex.Common;
-    using Fanex.Data;
+    using Alpha.Auth.Criteria;
+    using Fanex.Data.Repository;
     using Models;
 
     public class AuthorizationDataAccess : IAuthorizationDataAccess
     {
+        private readonly IDynamicRepository dynamicRepository;
+
+        public AuthorizationDataAccess(IDynamicRepository dynamicRepository = null)
+            => this.dynamicRepository = dynamicRepository ?? new DynamicRepository();
         public AccountStatus GetAccountStatus(int customerId, int subAccountId)
         {
-            using (var db = ObjectDbFactory.CreateInstance("Age_CustomerStatusSel"))
-            {
-                db.ExecuteNonQuery(new Hashtable
-                {
-                    ["custid"] = customerId,
-                    ["subaccid"] = subAccountId,
-                    ["isactive"] = false,
-                    ["locked"] = 0
-                });
-                var ouputParams = db.GetOutputParams();
+            var criteria = new GetCustomerStatusCommand(customerId, subAccountId);
+            dynamicRepository.Execute(criteria);
 
-                return new AccountStatus(
-                    Convert.ToBoolean(ouputParams["isactive"]),
-                    Convert.ToByte(ouputParams["locked"]));
-            }
+            return new AccountStatus(criteria.IsActive, criteria.Locked);
         }
 
         public bool IsActive(int customerId, int subAccountId)
-        {
-            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustomerStatusSel"))
-            {
-                dynamic inputParams = new Hashtable
-                {
-                    { "custid", customerId },
-                    { "subaccid", subAccountId },
-                    { "isactive", false }
-                };
-
-                objectDb.ExecuteNonQuery(inputParams);
-
-                return Converter.ToBool(objectDb.GetOutputParams()["isactive"]);
-            }
-        }
+            => GetAccountStatus(customerId, subAccountId).IsActive;
 
         public string GetSubAccountPermission(int subAccountId)
         {
-            dynamic inputParams = new Hashtable
-            {
-                { "subaccid", subAccountId },
-                { "pageaccess", string.Empty }
-            };
+            var criteria = new GetSubAccPermissionCommand(subAccountId);
+            dynamicRepository.Execute(criteria);
 
-            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustSubPageAccessSel"))
-            {
-                objectDb.ExecuteNonQuery(inputParams);
-
-                return Converter.ToString2(objectDb.GetOutputParams()["pageaccess"]);
-            }
+            return criteria.PageAccess;
         }
 
         public bool IsBelongingOld(int custId, int currentCustId, long transId)
         {
-            dynamic parameters = new Hashtable
-            {
-                { "sessioncustid", currentCustId },
-                { "transid", transId },
-                { "roleid", 0 }
-            };
+            var criteria = new CheckBelongingOldCommand(currentCustId, custId == 0 ? default(int?) : custId, transId);
+            dynamicRepository.Execute(criteria);
 
-            if (custId != 0)
-            {
-                parameters.Add("custid", custId);
-            }
-
-            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustomerSelCheckBelonging_OLD"))
-            {
-                objectDb.ExecuteNonQuery(parameters);
-                var outputs = objectDb.GetOutputParams();
-                return (short)outputs["roleid"] > 0;
-            }
+            return criteria.RoleId > 0;
         }
 
         public BelongingInfo IsBelonging(int custId, int currentCustId, int subAccountId, long transId, bool isInternal)
         {
-            dynamic parameters = new Hashtable
+            var criteria = new CheckBelongingCommand(
+                currentCustId,
+                custId == 0 ? default(int?) : custId,
+                subAccountId,
+                transId);
+            dynamicRepository.Execute(criteria);
+
+            return new BelongingInfo
             {
-                { "sessioncustid", currentCustId },
-                { "subaccountid", subAccountId },
-                { "transid", transId },
-                { "roleid", 0 },
-                { "isactive", true }
+                RoleId = criteria.RoleId,
+                IsActive = isInternal || (criteria.RoleId > 0 && criteria.IsActive)
             };
-
-            if (custId != 0)
-            {
-                parameters.Add("custid", custId);
-            }
-
-            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustomerSelCheckBelonging"))
-            {
-                objectDb.ExecuteNonQuery(parameters);
-                var outputs = objectDb.GetOutputParams();
-                var roleId = Converter.To<byte>(outputs["roleid"]);
-
-                return new BelongingInfo
-                {
-                    RoleId = roleId,
-                    IsActive = isInternal || roleId > 0 && Converter.ToBool(outputs["isactive"])
-                };
-            }
         }
 
         public BelongingInfo IsCustomerConsolidatedGroupBelonging(int custId, int currentCustId, int subAccountId, long transId, bool isInternal)
         {
-            dynamic parameters = new Hashtable();
+            var criteria = new CheckBelongingConsolidatedGroupCommand(
+                currentCustId,
+                custId == 0 ? default(int?) : custId,
+                subAccountId,
+                transId);
+            dynamicRepository.Execute(criteria);
 
-            parameters.Add("sessioncustid", currentCustId);
-            parameters.Add("subaccountid", subAccountId);
-            if (custId != 0)
+            return new BelongingInfo
             {
-                parameters.Add("custid", custId);
-            }
-
-            parameters.Add("transid", transId);
-            parameters.Add("roleid", 0);
-            parameters.Add("isactive", true);
-
-            using (var objectDb = ObjectDbFactory.CreateInstance("Age_Rpt_CustomerConsolidatedGroup_CheckBelonging"))
-            {
-                objectDb.ExecuteNonQuery(parameters);
-                var outputs = objectDb.GetOutputParams();
-                var roleId = Converter.To<byte>(outputs["roleid"]);
-
-                return new BelongingInfo
-                {
-                    RoleId = roleId,
-                    IsActive = isInternal || roleId > 0 && Converter.ToBool(outputs["isactive"])
-                };
-            }
+                RoleId = criteria.RoleId,
+                IsActive = isInternal || (criteria.RoleId > 0 && criteria.IsActive)
+            };
         }
 
         public BelongingInfo IsMultipleCustomersBelonging(string custIds, int currentCustId, int subAccountId, bool isInternal)
         {
-            dynamic parameters = new Hashtable
+            var criteria = new CheckBelongingMultipleCommand(currentCustId, custIds, subAccountId);
+            dynamicRepository.Execute(criteria);
+
+            return new BelongingInfo
             {
-                { "sessioncustid", currentCustId },
-                { "subaccountid", subAccountId },
-                { "custid", custIds },
-                { "roleid", 0 },
-                { "isactive", true }
+                RoleId = criteria.RoleId,
+                IsActive = isInternal || (criteria.RoleId > 0 && criteria.IsActive)
             };
-
-            using (var objectDb = ObjectDbFactory.CreateInstance("Age_CustomerSelCheckBelonging_MultiCust"))
-            {
-                objectDb.ExecuteNonQuery(parameters);
-                var outputs = objectDb.GetOutputParams();
-                var roleId = Converter.To<byte>(outputs["roleid"]);
-
-                return new BelongingInfo
-                {
-                    RoleId = roleId,
-                    IsActive = isInternal || roleId > 0 && Converter.ToBool(outputs["isactive"])
-                };
-            }
         }
 
         public KickoutInfo IsKickedOut(int onlineUserId)
         {
-            using (var objectDb = ObjectDbFactory.CreateInstance("Age_ReCheckin"))
-            {
-                dynamic inputParams = new Hashtable
-                {
-                    { "on_userid", onlineUserId },
-                    { "iskickedout", 0 },
-                    { "kickoutreason", 0 }
-                };
+            var criteria = new RecheckInCommand(onlineUserId);
+            dynamicRepository.Execute(criteria);
 
-                objectDb.ExecuteNonQuery(inputParams);
-                var outputParams = objectDb.GetOutputParams();
-
-                return new KickoutInfo(Converter.ToBool(outputParams["iskickedout"]), Convert.ToByte(outputParams["kickoutreason"]));
-            }
+            return new KickoutInfo(criteria.IsKickedOut, criteria.KickOutReason);
         }
     }
 }
