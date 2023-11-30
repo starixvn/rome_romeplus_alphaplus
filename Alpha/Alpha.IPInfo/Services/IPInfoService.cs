@@ -21,16 +21,19 @@ namespace Alpha.IPInfo.Services
         private const string IPV6CacheKey = "Alpha.IPInfo.IPV6";
 
         private readonly IPInformationConfig cacheConfig;
-        private readonly ICacheService cacheService;
+        private readonly ICacheService commonCacheService;
+        private readonly ICacheService individualCacheService;
         private readonly IIPInfoDataAccess ipInfoDataAccess;
 
         public IPInfoService(
             IPInformationConfig cacheConfig,
-            ICacheService cacheService,
+            ICacheService commonCacheService,
+            ICacheService individualCacheService,
             IIPInfoDataAccess ipInfoDataAccess)
         {
             this.cacheConfig = cacheConfig;
-            this.cacheService = cacheService;
+            this.commonCacheService = commonCacheService;
+            this.individualCacheService = individualCacheService;
             this.ipInfoDataAccess = ipInfoDataAccess;
         }
 
@@ -55,7 +58,7 @@ namespace Alpha.IPInfo.Services
         private async Task IPV4ToCountry(IDictionary<string, string> ipDictionary, IList<string> ipList)
         {
             var ipV4TopCountries = await GetIPV4ByTopCountry();
-            var ipV4NotInTopCountries = await cacheService.GetAsync<List<IPRange>>(IPV4CacheKey) ?? new List<IPRange>();
+            var ipV4NotInTopCountries = await individualCacheService.GetAsync<List<IPRange>>(IPV4CacheKey) ?? new List<IPRange>();
             var ipV4NotFoundList = new List<string>();
 
             foreach (var ip in ipList)
@@ -80,7 +83,7 @@ namespace Alpha.IPInfo.Services
         }
 
         private Task<IList<IPRange>> GetIPV4ByTopCountry()
-            => cacheService.GetOrSetAsync(
+            => commonCacheService.GetOrSetAsync(
                 IPV4TopCountriesCacheKey,
                 GetIPV4ByTopCountryFromDB,
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheConfig.IPV4TopCountriesCacheInMinutes)));
@@ -113,14 +116,14 @@ namespace Alpha.IPInfo.Services
 
         private async Task<IList<IPRange>> MergeIPV4Country(IList<string> ipList)
         {
-            var availableIPV4List = await cacheService.GetAsync<List<IPRange>>(IPV4CacheKey) ?? new List<IPRange>();
+            var availableIPV4List = await individualCacheService.GetAsync<List<IPRange>>(IPV4CacheKey) ?? new List<IPRange>();
             availableIPV4List.AddRange(await GetIPV4CountryFromDB(ipList));
 
             var comparer = new IPRangeEqualityComparer();
             availableIPV4List = availableIPV4List.Distinct(comparer).ToList();
             availableIPV4List.Sort();
 
-            await cacheService.SetAsync(
+            await individualCacheService.SetAsync(
                 IPV4CacheKey,
                 availableIPV4List,
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheConfig.IPV4CacheInMinutes)));
@@ -138,7 +141,7 @@ namespace Alpha.IPInfo.Services
 
             foreach (var ip in ipList)
             {
-                var country = await cacheService.GetAsync<string>($"{IPV6CacheKey}_{ip}");
+                var country = await individualCacheService.GetAsync<string>($"{IPV6CacheKey}_{ip}");
 
                 if (country == null)
                 {
@@ -162,7 +165,7 @@ namespace Alpha.IPInfo.Services
 
             foreach (var ip in ipV6Info)
             {
-                await cacheService.SetAsync(
+                await individualCacheService.SetAsync(
                     $"{IPV6CacheKey}_{ip.IP}",
                     ip.CountryLong,
                     new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheConfig.IPV6CacheInMinutes)));
