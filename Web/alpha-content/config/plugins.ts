@@ -34,18 +34,18 @@ module.exports = () => ({
                 convert_urls: false,
                 entity_encoding: "raw",
                 plugins:
-                  'print preview casechange \
+                  'print preview code \
                   importcss tinydrive searchreplace autolink \
-                  autosave save directionality advcode \
+                  autosave save directionality \
                   visualblocks visualchars fullscreen image \
-                  link media mediaembed template \
+                  link media template \
                   codesample table charmap hr \
                   pagebreak nonbreaking anchor \
-                  toc insertdatetime advlist lists checklist \
-                  wordcount tinymcespellchecker a11ychecker imagetools \
-                  textpattern noneditable help formatpainter permanentpen \
-                  pageembed charmap mentions quickbars linkchecker \
-                  emoticons advtable export hr',                 
+                  toc insertdatetime advlist lists \
+                  wordcount imagetools \
+                  textpattern noneditable help \
+                  charmap quickbars linkchecker \
+                  emoticons hr',                 
                 toolbar:
                     "fullscreen preview code | \
                     undo redo | bold italic underline superscript subscript strikethrough | \
@@ -117,6 +117,8 @@ module.exports = () => ({
                   'ul.ul-minus { list-style-type: "-"; } '+
                   'ul>li>ul>li>ul>li>ul { list-style-type: "+"; } '+
                   'ul>li>ul>li>ul>li>ul>li>ul { list-style-type: "-"; } '+
+                  '.div-img { display: inline-block; } '+
+                  '.icon-vruler { width: 24px; height: 24px; background-image: url("vruler.png"); } '+
                   '',
              
                 formats: {

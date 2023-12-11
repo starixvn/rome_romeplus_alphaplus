@@ -26,9 +26,9 @@ function ondrop(ev) {
 
   var box = getBoxPos();
   var x = box.x + ev.x - mPos.x;
-  var y = box.y + ev.y - mPos.y;
+  // var y = box.y + ev.y - mPos.y;
   vruler.style.left = x + "px";
-  vruler.style.top = y + "px";
+  // vruler.style.top = y + "px";
 }
 
 
@@ -37,7 +37,7 @@ function showRuler() {
   if(!ruler) {
     var r =    document.createElement('div');
     r.innerHTML  = '<div draggable="true" id="vruler-container" style="display: none; width: 20px; height: 2000px; position: absolute; opacity: 0.3; background-color: #3cb043; z-index: 2000; bottom: 0; left: 50%; top: 0; cursor: move;"><div id="vruler" style="height: 2000px; width: 1px; margin: auto; text-align: center; background-color: black;"></div></div>';
-    document.body.append(r.firstChild);
+    document.getElementById('main-content').append(r.firstChild);
   }
 
   ruler = document.getElementById('vruler-container');
@@ -55,9 +55,16 @@ function showRuler() {
   document.body.ondragover =   ondragover;
 } 
 
+function cleanUpVRuler() {
+  var ruler = document.getElementById('vruler-container');
+  if(ruler) {
+    ruler.remove();
+  }
+}
+
 const VRuler = () => {
   const {slug} = useCMEditViewDataManager();
-var a = useCMEditViewDataManager();
+  var a = useCMEditViewDataManager();
 
   if (!configs.autoSaveModels.some(c => c===slug)) {
     return null;

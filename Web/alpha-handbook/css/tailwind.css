@@ -203,6 +203,9 @@ img {
   margin-top: -2px;
 }
 
+.div-img {
+  display: inline-block; 
+}
 
 
 

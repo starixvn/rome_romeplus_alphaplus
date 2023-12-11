@@ -23,7 +23,7 @@ function formatArticle() {
   var iframe = editor.getElementsByTagName('iframe')[0];
 
   var imgs = iframe.contentWindow.document.getElementsByTagName("img");
-  for(var i=0; i<imgs.length; i++) {
+  for(var i=0, len = imgs.length; i<len; i++) {
     var img = imgs[i];
     var src = img.src;
 
@@ -34,15 +34,54 @@ function formatArticle() {
     img.setAttribute('crossOrigin', 'anonymous');
     //var base64 = getBase64Image(img);
 
+    var count = 0;
+
     toDataUrl(src, function(myBase64) {
       // img.setAttribute("data-mce-src", myBase64); // myBase64 is the base64 string
 
       var div = iframe.contentWindow.document.createElement('div');
-      div.style = "background-image: url('" + myBase64 +"');";
+      div.className = "div-img";
+      div.style = "background-image: url('" + myBase64 +"'); width: " + img.width +"px; height: " + img.height + "px;";
       img.replaceWith(div, img);
+      count++;
+
+      if(count === len) {
+        saveArticle(iframe.contentWindow.document.getElementsByTagName("body")[0], imgs);
+      }
     });
   }
 }
+
+function saveArticle(editor, imgs) {
+  try{
+    for(var i=0; i<imgs.length; i++) {
+      var img = imgs[i];
+      img.remove();
+    }
+
+    tinymce.activeEditor.setDirty(true);
+
+    editor.focus();
+
+    var n = document.getElementById('name');
+    n.focus();
+
+    setTimeout(() => {
+      var bs = document.getElementsByTagName('button');
+      for(var i=0; i<bs.length; i++) {
+        var b = bs[i];
+        var t = b.innerText;
+        if(t === 'Save') {
+          b.focus();
+          b.click();
+          location.reload();
+        }
+      }
+    }, 1000);
+  } catch(e) {
+    console.log(e);
+  }
+} 
 
 const ArticleFormat = () => {
   const {slug} = useCMEditViewDataManager();
