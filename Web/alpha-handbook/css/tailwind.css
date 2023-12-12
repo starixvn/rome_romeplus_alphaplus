@@ -205,14 +205,10 @@ img {
 
 .div-img {
   display: inline-block; 
+  background-size: 100% 100%;
 }
 
-
-
-
-
-
-
+.floating-table { float: right; width: 45%; position: fixed; top: 0; right: 0; } 
 
 
 

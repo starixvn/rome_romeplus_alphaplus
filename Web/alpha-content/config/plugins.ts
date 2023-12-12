@@ -29,7 +29,7 @@ module.exports = () => ({
                 },
                 
                 menubar: 'file edit insert view format table tools help',
-                extended_valid_elements: "span, img, small, strong, p",
+                extended_valid_elements: "span, img, small, strong, p, div",
                 forced_root_block: "",
                 convert_urls: false,
                 entity_encoding: "raw",
@@ -51,7 +51,7 @@ module.exports = () => ({
                     undo redo | bold italic underline superscript subscript strikethrough | \
                     blocks | fontfamily fontsizeinput | \
                     alignleft aligncenter alignright alignjustify | \
-                    link image table pageembed media | \
+                    link table pageembed | \
                     lineheight numlist bullist checklist | \
                     outdent indent | \
                     backcolor forecolor formatpainter removeformat | \
@@ -117,8 +117,8 @@ module.exports = () => ({
                   'ul.ul-minus { list-style-type: "-"; } '+
                   'ul>li>ul>li>ul>li>ul { list-style-type: "+"; } '+
                   'ul>li>ul>li>ul>li>ul>li>ul { list-style-type: "-"; } '+
-                  '.div-img { display: inline-block; } '+
-                  '.icon-vruler { width: 24px; height: 24px; background-image: url("vruler.png"); } '+
+                  '.div-img { display: inline-block; resize:both; overflow:auto; background-size: 100% 100%; } '+
+                  '.floating-table { float: right; width: 45%; position: fixed; top: 0; right: 0; } '+
                   '',
              
                 formats: {
@@ -175,9 +175,34 @@ module.exports = () => ({
                         <li>List Item 1</li>\
                         <li>List Item 2</li>\
                       </ul>'
+                  },
+                  {
+                    title: 'Floating Table',
+                    description: 'Floating Table',
+                    content: '<table class="floating-table" style="border-collapse: collapse;" border="1">\
+                                <colgroup><col style="width: 50%;"><col style="width: 50%;"></colgroup>\
+                                <tbody>\
+                                  <tr>\
+                                    <td>Cell 1</td>\
+                                    <td>Cell 2</td>\
+                                  </tr>\
+                                </tbody>\
+                              </table>'
                   }
+                ],
+                paste_data_images: true,
+                charmap_append: [
+                  [0x2600, 'sun'],
+                  [0x2601, 'cloud'],
+                  [0x2713, 'check'],
+                  [0x2192, 'rarrow'],
+                  [0x2265, 'greaterorequal'],
+                  [0x2264, 'lessorequal'],
+                  [0x2260, 'notequal'],
+                  [0x2B9A, 'bwarrow']
                 ]
             },
+
         },
       }
   }

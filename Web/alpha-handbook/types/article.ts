@@ -9,7 +9,6 @@ export interface Article {
         publishedAt: string;
         slug: string;
         content: string;
-        isFeatured: boolean;
         summary: string;
         locale: string;
         categories: {

@@ -22,7 +22,7 @@ RUN echo $TRANSFORM_CONFIG
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 COPY "Web/alpha-handbook/.env.$TRANSFORM_CONFIG" .env.production
-RUN yarn install --prefer-offline --frozen-lockfile
+RUN yarn install
 RUN yarn build
 
 # If using npm comment out above and use below instead

@@ -4,6 +4,7 @@
 
 import { factories } from '@strapi/strapi'
 import qs from "qs";
+import {isValidToken}  from '../../security';
 
 type  ResponseModel = {
   data: [any];
@@ -62,7 +63,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           fields: ['name', 'slug', 'shortName']
         },
         userLevels: {
-          fields: '*',
+          fields: ['name'],
         }
       }
     });
@@ -82,7 +83,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           fields: '*',
         },
         userLevels: {
-          fields: '*',
+          fields: ['name'],
         }
       },
       filters: {
@@ -99,26 +100,32 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     return this.transformResponse(results);
   },
   async findManyLatest (ctx) {
-    const entities = await strapi.entityService.findMany('api::article.article', {
-      populate: {
-        categories: {
-          fields: '*',
+    try {
+      const entities = await strapi.entityService.findMany('api::article.article', {
+        filters: {
+          publishedAt: { $null: false }
         },
-        userLevels: {
-          fields: '*',
-        }
-      },
-      filters: {
-        publishedAt: { $null: false }
-      }
-    });
+        populate: {
+          categories: {
+            fields: ['name', 'slug', 'shortName'],
+          },
+          userLevels: {
+            fields: ['name'],
+          }
+        },
+      });  
 
-    const output = await this.sanitizeOutput(entities, ctx);
+      const output = await this.sanitizeOutput(entities, ctx);
 
-    // const response = this.transformResponse(output) as ResponseModel;
-    // return filterLatestVersion(response);
+      // const response = this.transformResponse(output) as ResponseModel;
+      // return filterLatestVersion(response);
 
-    return this.transformResponse(output);
+      return this.transformResponse(output);
+    } catch(e) {
+      console.log(e);
+    }
+
+    return {data: []};
   },
   async findManyLatestByCategory (ctx) {
     const { slug } = ctx.params;
@@ -129,7 +136,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           fields: '*',
         },
         userLevels: {
-          fields: '*',
+          fields: ['name'],
         }
       },
       filters: {
@@ -148,5 +155,40 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     // return filterLatestVersion(response);
 
     return this.transformResponse(output);
+  },
+
+  async cleanUnpublished(ctx) {
+    const { slug } = ctx.params;
+
+    const { token } = JSON.parse(ctx.request.body);
+    var isValid = isValidToken(token);
+    if(!isValid) {
+      return "Expired Token!";
+    }
+
+    const entities = await strapi.db.query('api::article.article').findMany({
+      where: {
+        publishedAt: null,
+        slug,
+      },
+      orderBy: [{
+        versionNumber: 'desc',
+      }]
+    });  
+    
+    var count = 0;
+    var deleted = 0;
+    for(var i=0; i<entities.length; i++) {
+      if(count < 10) {
+        count++;
+        continue;
+      }
+
+      var ent = entities[i];
+      await strapi.entityService.delete('api::article.article', ent.id);
+      deleted++;
+    }
+
+    return deleted;
   },
 }));

@@ -1257,6 +1257,40 @@ export interface ApiFeedbackFeedback extends Schema.CollectionType {
   };
 }
 
+export interface ApiImageImage extends Schema.CollectionType {
+  collectionName: 'images';
+  info: {
+    singularName: 'image';
+    pluralName: 'images';
+    displayName: 'Image';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    data: Attribute.Text;
+    width: Attribute.Integer;
+    height: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::image.image',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::image.image',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMarketMarket extends Schema.CollectionType {
   collectionName: 'markets';
   info: {
@@ -1386,6 +1420,7 @@ declare module '@strapi/types' {
       'api::environment.environment': ApiEnvironmentEnvironment;
       'api::favorite.favorite': ApiFavoriteFavorite;
       'api::feedback.feedback': ApiFeedbackFeedback;
+      'api::image.image': ApiImageImage;
       'api::market.market': ApiMarketMarket;
       'api::user-level.user-level': ApiUserLevelUserLevel;
     }

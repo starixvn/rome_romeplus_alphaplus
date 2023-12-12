@@ -33,6 +33,12 @@
               "uriFormat": "%s",
               "action": "debugWithChrome"
             }
+          },
+          {
+            "name": "Launch Handbook",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "yarn run start"
           }
     ]
 }

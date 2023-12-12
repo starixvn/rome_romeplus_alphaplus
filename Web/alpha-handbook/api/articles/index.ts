@@ -1,22 +1,24 @@
 import { fetchAPI } from "~/libs/utils/fetch-api";
 const path = `/articles`;
 const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-const options = { headers: { Authorization: `Bearer ${token}` } };
+const options = { 
+    headers: { Authorization: `Bearer ${token}` },
+    timeout: 120000,
+};
 
 export async function getArticles() {
-    const url = `${path}/latest/all`;
-    const urlParamsObject = {
-        sort: { createdAt: "desc" },
-        populate: {
-            categories: { populate: "*" },
-        },
-        pagination: {
-            // start: start,
-            // limit: limit,
-        },
-    };
-    const response = await fetchAPI(url, urlParamsObject, options);
-    return response.data;
+    try {
+        const url = `${path}/latest/all`;
+        const urlParamsObject = {};
+    
+        const response = await fetchAPI(url, urlParamsObject, options);
+        // const response = {data: []};
+        return response.data;
+    } catch(e) {
+        console.log(e);
+    }
+
+    return [];
 }
 
 export async function getArticle(slug: string, id: string) {

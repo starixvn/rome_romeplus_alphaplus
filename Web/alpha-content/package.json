@@ -20,6 +20,7 @@
     "@strapi/plugin-i18n": "4.14.3",
     "@strapi/plugin-users-permissions": "4.14.3",
     "@strapi/strapi": "4.14.3",
+    "crypto-js": "^4.2.0",
     "mysql": "2.18.1",
     "strapi-plugin-duplicate-button": "^1.1.13",
     "strapi-plugin-ratings": "^1.1.9"

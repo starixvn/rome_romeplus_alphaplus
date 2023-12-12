@@ -9,6 +9,8 @@ module.exports = (config, webpack) => {
   config.plugins.push(
     new webpack.DefinePlugin({
       CLIENT_FRONTEND_URL: JSON.stringify(process.env.CLIENT_FRONTEND_URL),
+      ADMIN_FRONTEND_URL: JSON.stringify(process.env.ADMIN_FRONTEND_URL),
+      ADMIN_JWT_SECRET: JSON.stringify(process.env.ADMIN_JWT_SECRET)
     })
   )
   return config;

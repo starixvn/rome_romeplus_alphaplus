@@ -8,9 +8,13 @@ import { getHRulerButton, showHRuler } from './hruler';
 import { getDemoButton, showDemo } from './demo';
 import { getAutoSaveButton, autoSave } from './auto-save';
 import { getUploadImageButton, uploadImage } from './upload-image';
+import { getCleanUnpublishedButton, cleanUnpublished } from './clean-unpublished';
+import { getUpdateImageButton, updateImage } from './update-image';
 
+var addedCss = false;
 function showTinyMcePlusInfo() {
-  alert('Additional Buttons on Editor: vruler, hruler, demo, image upload, auto save');
+  alert('Additional Buttons on Editor: \
+    upload image, update image, vruler, hruler, demo, auto save, cleanup drafts');
 }
 
 function checkEditorReady(initialData, demoUrl) {
@@ -33,22 +37,41 @@ function addCustomedButtons(initialData, demoUrl) {
     return;
   }
 
+  if(!addedCss) {
+    var r =  document.createElement('div');
+    r.innerHTML = '<link rel="stylesheet" href="/tiny-mce-plus.css" type="text/css" />';
+    document.body.append(r.firstChild);
+  }
+
+  addedCss = true;
   var r =  document.createElement('div');
   r.innerHTML  = '<div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group">'
   + getUploadImageButton()
+  + getUpdateImageButton()
   + getVRulerButton()
   + getHRulerButton()
   + getDemoButton()
   + getAutoSaveButton()
+  + getCleanUnpublishedButton()
   ;
 
   t.append(r.firstChild);
 
+  var adminUrl = ADMIN_FRONTEND_URL;
   document.getElementById('btn-vruler').onclick = () => { showVRuler(); };
   document.getElementById('btn-hruler').onclick = () => { showHRuler(); };
   document.getElementById('btn-demo').onclick = () => { showDemo(initialData, demoUrl); };
   document.getElementById('btn-auto-save').onclick = () => { autoSave(); };
-  document.getElementById('btn-upload-image').onclick = () => { uploadImage(); };
+
+  document.getElementById('btn-clean-unpublished').onclick = () => { cleanUnpublished(initialData); };
+  document.getElementById('btn-upload-image').onclick = () => { uploadImage(adminUrl); };
+  document.getElementById('btn-update-image').onclick = () => { updateImage(adminUrl); };
+  cleanUpEditor();
+}
+
+function cleanUpEditor() {
+  var toolbox = document.getElementsByClassName('tox-tinymce')[0];
+  toolbox.parentNode.childNodes[1].remove();
 }
 
 const TinyMcePlus = () => {

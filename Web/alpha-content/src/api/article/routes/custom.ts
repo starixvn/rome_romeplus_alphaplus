@@ -14,6 +14,11 @@ export default {
       method: 'GET',
       path: '/articles/latest/category/:slug',
       handler: 'article.findManyLatestByCategory',
+    },
+    {
+      method: 'PUT',
+      path: '/articles/clean-unpublished/:slug',
+      handler: 'article.cleanUnpublished',
     }
   ]
 }

@@ -74,7 +74,7 @@ function saveArticle(editor, imgs) {
         if(t === 'Save') {
           b.focus();
           b.click();
-          location.reload();
+          location.reload(true);
         }
       }
     }, 1000);

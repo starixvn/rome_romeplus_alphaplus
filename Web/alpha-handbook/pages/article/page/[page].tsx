@@ -47,9 +47,10 @@ import type { Article } from '~/types/article'
 // }
 
 export const getServerSideProps = (async (context) => {
-  const articles = await getArticles()
+  const articles = await getArticles();
 
-  return { props: { articles } }
+  return { props: { articles } };
+  
 }) satisfies GetServerSideProps<{
   articles: Article[]
 }>

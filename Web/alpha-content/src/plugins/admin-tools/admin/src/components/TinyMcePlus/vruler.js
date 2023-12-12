@@ -1,8 +1,7 @@
 function getVRulerButton() {
   return '<button id="btn-vruler" aria-label="VRuler" title="VRuler" type="button" tabindex="-1" \
             class="tox-tbtn" aria-disabled="false" style="width: 34px;" >\
-            <span class="tox-icon tox-tbtn__icon-wrap icon-vruler"\
-            style="width: 24px; height: 24px; background-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAALVBMVEUBAQFMaXEBAQEDAwMAAAAFBQUMDAwAAAABAQECAgIAAAABAQEICAgAAAAAAADOKPMdAAAADnRSTlObANpw1Dkj5++3TmoViIKGXHEAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB5SURBVHicjZJRCgAhCAXL0sq2vf9xl6yvesL6ozg4oBiiBdd3R+XVCTuVtKOEA6iqzCofYFoyAiQiDwIlJTNFoOoQ0MrxAnUMxioihSC7qtZa8MCYFXkq8vY4Qel9bX4CktVHqoRVqnbcW8XMJgOq1w75e8J7hvt9PsiiBbQdkdh2AAAAAElFTkSuQmCC\');"></span>\
+            <span class="tox-icon tox-tbtn__icon-wrap icon-vruler"></span>\
           </button>';
 }
 
@@ -37,7 +36,9 @@ function showVRuler() {
   var ruler = document.getElementById('vruler-container');
   if(!ruler) {
     var r =    document.createElement('div');
-    r.innerHTML  = '<div draggable="true" id="vruler-container" style="display: none; width: 20px; height: 2000px; position: absolute; opacity: 0.3; background-color: #3cb043; z-index: 2000; bottom: 0; left: 50%; top: 0; cursor: move;"><div id="vruler" style="height: 2000px; width: 1px; margin: auto; text-align: center; background-color: black;"></div></div>';
+    r.innerHTML  = '<div draggable="true" id="vruler-container">\
+                      <div id="vruler"></div>\
+                    </div>';
     document.getElementById('main-content').append(r.firstChild);
   }
 
@@ -48,7 +49,8 @@ function showVRuler() {
   vruler.style.left = "50%";
   vruler.style.top = "0px";
   
-  ruler.style.display =  d === 'none' ? "block" : "none";
+  debugger
+  ruler.style.display =  d === '' || d === 'none' ? "block" : "none";
 
   vruler.ondragstart = ondragstart;
   document.body.ondrop = ondrop;

@@ -3,7 +3,6 @@ import { prefixPluginTranslations } from '@strapi/helper-plugin';
 import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
 import Initializer from './components/Initializer';
-import ArticleFormat from './components/ArticleFormat';
 import TinyMcePlus from './components/TinyMcePlus';
 
 import PluginIcon from './components/PluginIcon';
@@ -24,14 +23,10 @@ export default {
 
   bootstrap(app: any) {
     app.injectContentManagerComponent('editView', 'right-links', {
-      name: 'article-format',
-      Component: ArticleFormat
-    });
-    app.injectContentManagerComponent('editView', 'right-links', {
       name: 'tinymce-plus',
       Component: TinyMcePlus
     });
-  },
+  }, 
 
   async registerTrads(app: any) {
     const { locales } = app;

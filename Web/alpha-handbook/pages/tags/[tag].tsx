@@ -25,12 +25,13 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { tag: string } }) {
-  let allPosts = getAllFilesFrontMatter('blog', 'snippets')
-  const articles = await getArticles()
+  let allPosts = getAllFilesFrontMatter('blog', 'snippets');
+  
+  const articles = await getArticles();
 
   let filteredPosts = allPosts.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(params.tag)
-  )
+  );
 
   // rss
   let root = process.cwd()
