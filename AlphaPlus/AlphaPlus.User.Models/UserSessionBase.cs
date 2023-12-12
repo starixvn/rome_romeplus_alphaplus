@@ -479,6 +479,12 @@ namespace AlphaPlus.User.Models
             return value == null ? defaultValue : (T)value;
         }
 
+        public bool HasProperty(string propertyName)
+        {
+            var value = _httpContextHelper.GetSession(propertyName);
+            return value != null;
+        }
+
         public void SetProperty(string propertyName, object value)
         {
             _httpContextHelper.SetSession(propertyName, value);

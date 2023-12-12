@@ -157,5 +157,7 @@ namespace AlphaPlus.User.Models
         T GetProperty<T>(string propertyName, T defaultValue = default);
 
         void SetProperty(string propertyName, object value);
+
+        bool HasProperty(string propertyName);
     }
 }

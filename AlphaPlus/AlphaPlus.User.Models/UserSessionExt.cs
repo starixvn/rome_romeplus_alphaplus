@@ -406,5 +406,7 @@ namespace AlphaPlus.User.Models
         public void SetProperty(string propertyName, object value) => UserSession.Current.SetProperty(propertyName, value);
 
         public T GetProperty<T>(string propertyName, T defaultValue = default) => UserSession.Current.GetProperty(propertyName, defaultValue);
+        
+        public bool HasProperty(string propertyName) => UserSession.Current.HasProperty(propertyName);
     }
 }
