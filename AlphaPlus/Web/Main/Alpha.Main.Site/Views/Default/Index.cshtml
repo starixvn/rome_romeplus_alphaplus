@@ -1,0 +1,91 @@
+﻿@model IndexViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=@Model.InitialScaleViewPort, user-scalable=yes">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-main/{Model.UserLevel}")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/default-index")
+    @StaticResources.RenderStylesWithMediaDarkMode(767, "~/assets/bundles/page-mobile-calculate-07")
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    <![endif]-->
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+
+<body>
+    @GoogleAnalyticHelper.GtagNoScript()
+    @Html.PartialAsync("Popup")
+    @* @Html.Action("HeaderHotMsg") *@
+    <aside class="sidebar" id="side-bar">
+        @* TODO: <div class="partial-content customer-profile" id="profile"
+        data-url="@Url.Action("BriefProfile", "CustomerProfile")"></div> *@
+        <nav class="navigation" id="navigation">
+            @* TODO: @Html.Action("MenuBar") *@
+        </nav>
+    </aside>
+    <div class="content-wrapper" id="content-wrapper">
+        @Html.PartialAsync("SearchBar")
+        <header class="header" id="header">
+            @Html.PartialAsync("HeaderNav", Model.HeaderNavViewModel)
+            @Html.PartialAsync("HeaderMarquee", Model.IsProtectedMode)
+        </header>
+        <main class="content" id="content" data-default-url="@Model.DefaultPath">
+        </main>
+        <div class="float-section">
+            <div class="progress-box hide" id="progress-box" data-toggle="modal">
+                <span class="icon-progress"></span>
+                <span class="txt-progress">@Resources.DataProcessingIsInProgress</span>
+            </div>
+        </div>
+        <div class="div-feedback @Model.Language hide" id="feedback-function">
+            <div class="feedback-box">
+                <div class="icon-feedback"></div>
+                <div class="txt-feedback"></div>
+            </div>
+            <div class="icon-close-feedback" title="@Resources.close"></div>
+        </div>
+        @Html.PartialAsync("NewFeatureHighlightPopup", Model)
+    </div>
+    @Html.PartialAsync("HiddenFields", Model)
+    @Html.PartialAsync("AnnouncementPopup")
+    @Html.PartialAsync("DataProccessingPopup")
+    @Html.PartialAsync("UMMessagePopup")
+    @if (Model.IsShowSuggestEnableTelegramOtp)
+    {
+        @Html.PartialAsync("SuggestEnableTelegramOtpPopup")
+        ;
+
+    }
+    @Html.PartialAsync("~/Views/Advertisement/AdvertisementPopup.cshtml")
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.Render("/bundles/site-main/default")
+    @StaticResources.RenderScripts("~/assets/bundles/default-index")
+    @if (Model.IsShowSuggestEnableTelegramOtp)
+    {
+        @Html.Hidden("EnabledOTPSuccessMessage", ChatBot.EnabledTelegramOtpNotification)
+        @StaticResources.RenderScripts("~/assets/bundles/suggest-telegram-otp")
+    }
+    @if (Model.IsOfferLiveChat)
+    {
+        @StaticResources.RenderScripts("~/assets/bundles/home/le-mtagconfig")
+        <!-- Start of LiveChat (www.livechatinc.com) code -->
+        <noscript>
+            <a href="https://www.livechatinc.com/chat-with/14782380/" rel="nofollow">Chat with us</a>,
+            powered by <a href="https://www.livechatinc.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
+        </noscript>
+        <!-- End of LiveChat code -->
+    }
+</body>
+
+</html>

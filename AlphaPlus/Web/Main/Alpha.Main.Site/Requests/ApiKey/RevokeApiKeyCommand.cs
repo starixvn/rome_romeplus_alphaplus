@@ -1,0 +1,23 @@
+﻿namespace Alpha.Main.Site.Requests.ApiKey
+{
+    using Alpha.Main.Models.ApiKey;
+    using AlphaPlus.Core.Models;
+    using MediatR;
+
+    public class RevokeApiKeyCommand : IRequest<Result>
+    {
+        public RevokeApiKeyCommand() : this(null)
+        {
+        }
+
+        public RevokeApiKeyCommand(IUserSession userSession)
+        {
+            userSession = userSession ?? new UserSessionExt();
+            IP = userSession.UserLoginIp;
+        }
+
+        public string Key { get; set; }
+
+        public string IP { get; }
+    }
+}

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.1.0-netcore01</Version>
+    <Authors>Rome</Authors>
+    <Company>Starix</Company>
+    <Product>Alpha Plus</Product>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Caching" Version="2.2.4" />
+    <PackageReference Include="Fanex.Data.Repository" Version="4.2.5.1" />
+  </ItemGroup>
+</Project>

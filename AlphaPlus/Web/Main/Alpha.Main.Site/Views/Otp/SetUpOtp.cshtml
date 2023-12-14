@@ -1,0 +1,100 @@
+﻿@using Alpha.Main.Site.ViewModels.Security
+@model OtpViewModel
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Setup Otp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/otp/otp")
+    @if (!Model.RegisterAccountViewModel.ChatBotViewModel.IsLinked)
+    {
+        @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/telegramchatbot/register-account")
+    }
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/telegramchatbot/chatbot")
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+
+<body>
+    @GoogleAnalyticHelper.GtagNoScript()
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="passwordNav">
+            <a href="@($"{Model.MainRootPath}Password/ChangePassword")" role="tab"
+                data-toggle="tab">@Security.Password</a>
+        </li>
+        @if (Model.EnableSecurityCode)
+        {
+            <li role="presentation" class="securityCodeNav">
+                <a href="@($"{Model.MainRootPath}SecurityCode/ChangeUserOwnSecurityCode")" role="tab"
+                    data-toggle="tab">@Security.SecurityCode</a>
+            </li>
+        }
+        <li role="presentation">
+            <a id="profilePicture"
+                href="@MicroSites.AccountInfoUrl($"~/ProfilePicture/")">@Resources.EditProfilePicture</a>
+        </li>
+        @if (Model.IsShowNicknameLink)
+        {
+            <li role="presentation">
+                <a href="@MicroSites.MainUrl($"~/LoginOption/?custid={Model.CustomerOtp.CustId}")">@Resources.nickname</a>
+            </li>
+        }
+        <li role="presentation" class="active">
+            <a aria-controls="home" role="tab" data-toggle="tab">OTP</a>
+        </li>
+        @if (Model.IsOfferProtectedMode)
+        {
+            <li role="presentation">
+                @Html.ActionLink(Resources.ProtectionCode, "Setup", "ProtectionCode")
+            </li>
+        }
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active otp-config" id="otp">
+            <p>
+                @Security.OtpNotes
+            </p>
+            @if (!Model.RegisterAccountViewModel.ChatBotViewModel.IsLinked)
+            {
+                @Html.PartialAsync("SetUpTelegramOtp", Model.RegisterAccountViewModel)
+            }
+            else
+            {
+                @Html.PartialAsync("ChangeOtpTelegramStatus", Model.RegisterAccountViewModel)
+            }
+
+            @if (!Model.IsAlreadySetup)
+            {
+                @Html.PartialAsync("RegisterAuthenticatorApp", Model)
+            }
+            @Html.PartialAsync("RemoveSecretKey", Model)
+        </div>
+    </div>
+    @Html.AntiForgeryToken()
+    @Html.Hidden("RemoveOtpWarning", Security.RemoveOtpWarning)
+    @Html.Hidden("RemoveOtpSuccessMessage", Security.RemoveOtpSuccessMessage)
+    @Html.Hidden("OtpIsInvalidOrExpired", Security.OtpIsInvalidOrExpired)
+    @Html.Hidden("AuthenticatorAppVerified", Security.AuthenticatorAppVerified)
+    @Html.Hidden("ThereIsNoChange", Resources.ThereIsNoChange)
+    @Html.Hidden("ThisFieldRequired", Security.alertSecCodeEmpty)
+    @* @Html.Hidden("oldMainRootPath", MicroSites.OldMainUrl("~/")) *@
+    @Html.Hidden("mainRootPath", MicroSites.MainUrl())
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.Render("/bundles/site-main/otp/otp-default")
+    @StaticResources.RenderScripts("~/assets/bundles/security/otp/setup-otp")
+    @if (Model.RegisterAccountViewModel.ChatBotViewModel.IsLinked)
+    {
+        @StaticResources.RenderScripts("~/assets/bundles/security/otp/change-otp-telegram-status")
+    }
+    @if (!Model.RegisterAccountViewModel.ChatBotViewModel.IsLinked)
+    {
+        @StaticResources.RenderScripts("~/assets/bundles/telegramchatbot/register-account")
+    }
+
+</body>
+
+</html>

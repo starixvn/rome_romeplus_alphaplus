@@ -1,0 +1,78 @@
+﻿using AlphaPlus.Core.Models;
+using MediatR;
+using CustomResult = Alpha.Main.Models.Result;
+
+namespace Alpha.Main.Site.Requests.Password
+{
+    public class ResetMainAccountPasswordCommand : IRequest<CustomResult>
+    {
+        private readonly IUserSession userSession;
+
+        public ResetMainAccountPasswordCommand() : this(null)
+        {
+        }
+
+        internal ResetMainAccountPasswordCommand(IUserSession userSession)
+        {
+            this.userSession = userSession ?? new UserSessionExt();
+        }
+
+        public int CustId { get; set; }
+
+        public int ActorId
+        {
+            get
+            {
+                return this.userSession.UserId;
+            }
+        }
+
+        public int SubAccountId
+        {
+            get
+            {
+                return this.userSession.SubAccId;
+            }
+        }
+
+        public string NewPassword { get; set; }
+
+        public string LanguageKey
+        {
+            get
+            {
+                return this.userSession.LangKey;
+            }
+        }
+
+        public string IP
+        {
+            get
+            {
+                return this.userSession.UserLoginIp;
+            }
+        }
+
+        public string ActorName
+        {
+            get
+            {
+                return this.userSession.IsSubAcc ? this.userSession.SubUserName : this.userSession.UserName;
+            }
+        }
+
+        public byte CustRoleId { get; set; }
+
+        public int ServerId => userSession.ServerId;
+
+        public int IndirectCustId => userSession.IndirectCustId;
+
+        public bool IsIndirectLoggedIn => userSession.IsIndirectLoggedIn;
+
+        public int IndirectSubAccId => userSession.IndirectSubAccId;
+
+        public string IndirectUsername => userSession.IndirectUsername;
+
+        public bool IsValid() => UserLevel.Member.Value <= CustRoleId && CustRoleId <= UserLevel.Super.Value;
+    }
+}

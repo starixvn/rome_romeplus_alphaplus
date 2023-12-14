@@ -1,0 +1,68 @@
+﻿@{ Layout = null; }
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Security Code FAQS</title>
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    <link href="~/assets/styles/security/lean-more.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h1 class="page-title">Những câu hỏi thường gặp về mã bảo mật</h1>
+    <div class="content">
+        <ol class="list-faqs">
+            <li>
+                <strong>Mã bảo mật là gì?</strong>
+                <p>
+                    Mã bảo mật là chuỗi bao gồm 6 chữ số [từ 0 đến 9], bạn được yêu cầu phải nhập mã bảo mật mỗi khi thực hiện
+                    những thay đổi có tính chất quan trọng, ví dụ như cập nhật thông tin tài khoản.
+                </p>
+            </li>
+            <li>
+                <strong>Cách thiết lập mã bảo mật?</strong>
+                <div>
+                    <p>Nhập mã bảo mật và xác nhận.</p>
+                    <div class="italic">Lưu ý:</div>
+                    <ul class="setup">
+                        <li>
+                            Mã bảo mật bao gồm 6 chữ số (từ 0 đến 9) và bắt buộc phải có ít nhất 2 chữ số khác nhau.
+                        </li>
+                        <li>
+                            Mã bảo mật không được ở dạng chuỗi "Tiến liên tiếp" hoặc "Lùi liên tiếp"
+                            (chuỗi "Tiến liên tiếp" là chuỗi số mà toàn bộ các số trong chuỗi tăng dần, theo thứ tự từ trái qua
+                            phải; và chuỗi "Lùi liên tiếp" là chuỗi số mà toàn bộ các số trong chuỗi giảm dần, theo thứ tự từ trái
+                            qua phải. Ví dụ những chuỗi số không hợp lệ: 123456, 456789, 764321,...)
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <strong>Mã bảo mật có thời hạn sử dụng không?</strong>
+                <p>
+                    Mã bảo mật không có thời hạn sử dụng, nhưng để an toàn hơn bạn nên thay đổi định kỳ.
+                </p>
+            </li>
+            <li>
+                <strong>Nếu tôi nhập sai mã bảo mật thì sao?</strong>
+                <p>
+                    Bạn sẽ được yêu cầu nhập lại mã bảo mật, xin lưu ý rằng tài khoản của bạn sẽ bị khóa sau hơn 5 lần nhập sai mã bảo mật.
+                    Vui lòng liên hệ bộ phận Chăm sóc khách hàng hoặc cấp trên của bạn trong trường hợp này
+                </p>
+            </li>
+            <li>
+                <strong>Nếu tôi quên mã bảo mật của mình thì sao?</strong>
+                <p>
+                    Vui lòng liên hệ với bộ phận Chăm sóc khách hàng hoặc cấp trên của bạn
+                    trong trường hợp này.
+                </p>
+            </li>
+            <li>
+                <strong>Làm thế nào để thay đổi mã bảo mật?</strong>
+                <p>
+                    Bạn có thể vào trang chủ, tìm đến phần Bảo mật, vào liên kết "Mã bảo mật", và thay đổi mã bảo mật của bạn.
+                </p>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>

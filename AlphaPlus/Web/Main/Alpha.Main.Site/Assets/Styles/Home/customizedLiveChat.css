@@ -1,0 +1,22 @@
+﻿.lpc_desktop .lpc_maximized-header, .lpc_mobile .lpc_maximized-header {
+  background: linear-gradient(#444B66, #555E80) !important; }
+
+.lpc_desktop .lpc_maximized-header__text, .lpc_mobile .lpc_maximized-header__text {
+  color: #fff !important; }
+
+.lpc_desktop .lpc_maximized-header__minimize-button, .lpc_mobile .lpc_maximized-header__minimize-button {
+  display: none !important; }
+
+.lpc_desktop .lpc_message_agent, .lpc_mobile .lpc_message_agent {
+  background: #555E80 !important;
+  border-color: #555E80 !important; }
+
+.lpc_desktop .lp_confirm_button,
+.lpc_desktop .lp_submit_button, .lpc_mobile .lp_confirm_button,
+.lpc_mobile .lp_submit_button {
+  background-color: #555E80 !important; }
+  .lpc_desktop .lp_confirm_button:hover,
+  .lpc_desktop .lp_submit_button:hover, .lpc_mobile .lp_confirm_button:hover,
+  .lpc_mobile .lp_submit_button:hover {
+    background-color: #555E80 !important; }
+

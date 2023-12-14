@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="personalMessageSample" xml:space="preserve">
+    <value>เอี่ยวขั้นต่ำของท่าน ถูกเปลี่ยนโดยทางต้นสายเป็นที่เรียบร้อยแล้ว กรุณาตรวจสอบรายละเอียดต่าง ๆ ของลูกค้าของท่านอีกครั้ง</value>
+  </data>
+  <data name="systemAnnouncementSample" xml:space="preserve">
+    <value>เรียน ลูกค้าที่เคารพ&lt;br /&gt;ทางเราขอแจ้งให้ทราบว่า บริษัทได้เพิ่มเกมส์ตัวใหม่เข้าไปยัง "Macau Games" คุณสามารถเข้าไปทำการตั้งค่าต่างๆ ได้ตั้งแต่วันที่ 10/05/2018.&lt;br /&gt;ขอบพระคุณ</value>
+  </data>
+  <data name="grossComm" xml:space="preserve">
+    <value>ยอดรวมของคอมมิชชั่น</value>
+  </data>
+  <data name="IntroChatbot" xml:space="preserve">
+    <value>&lt;strong&gt;ฟังก์ชัน "Chatbot"&lt;/strong&gt; ที่รวมเข้ากับ &lt;strong&gt;Letstalk IM&lt;/strong&gt; ช่วยให้คุณได้รับ&lt;strong&gt;ข้อมูลสำคัญเ&lt;/strong&gt;กี่ยวกับธุรกิจของคุณอย่าง&lt;strong&gt;สะดวกและปลอดภัย&lt;/strong&gt;โดยไม่จำเป็นต้องเข้าถึงไซต์นี้&lt;br /&gt;เริ่มต้นการตั้งค่า Chatbot, โปรดทำตามขั้นตอนด้านล่าง:</value>
+  </data>
+  <data name="InstallLetstalk" xml:space="preserve">
+    <value>ติดตั้ง Letstalk สร้างฟรียูเซอร์</value>
+  </data>
+  <data name="IntroLetstalk" xml:space="preserve">
+    <value>คือเครื่องมือสื่อสารที่&lt;strong&gt;มีความปลอดภัยสูง&lt;/strong&gt;</value>
+  </data>
+  <data name="pleaseInputLetstalkAccount" xml:space="preserve">
+    <value>ป้อนรหัส Letstalk (ไม่ใช่ชื่อหน้าจอ) เพื่อเชื่อมโยงกับ Chatbot.</value>
+  </data>
+  <data name="link" xml:space="preserve">
+    <value>เชื่อมต่อ</value>
+  </data>
+  <data name="unLink" xml:space="preserve">
+    <value>ยกเลิกการเชื่อมต่อ</value>
+  </data>
+  <data name="lblVerificationCode" xml:space="preserve">
+    <value>รหัส ตรวจสอบ</value>
+  </data>
+  <data name="YourLetstalkAccount" xml:space="preserve">
+    <value>Letstalk ID ของท่าน</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>ตรวจสอบ</value>
+  </data>
+  <data name="Resend" xml:space="preserve">
+    <value>ส่งใหม่</value>
+  </data>
+  <data name="VerificationCodeIsInvalidOrExpired" xml:space="preserve">
+    <value>รหัสยืนยัน ไม่ถูกต้อง / หมดอายุ โปรดลองอีกครั้งหรือขอรหัสใหม่</value>
+  </data>
+  <data name="UnsubscribeWarning" xml:space="preserve">
+    <value>ยกเลิกการเชื่อมโยง Atom จะหยุดการทำงานของฟังก์ชันนี้. คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?</value>
+  </data>
+  <data name="FunctionReport" xml:space="preserve">
+    <value>รายงาน</value>
+  </data>
+  <data name="FunctionNotification" xml:space="preserve">
+    <value>การแจ้งเตือน</value>
+  </data>
+  <data name="AccountDoesNotExist" xml:space="preserve">
+    <value>ไม่มี ID Letstalk ดังกล่าว</value>
+  </data>
+  <data name="InvalidCaptcha" xml:space="preserve">
+    <value>Captcha ผิดพลาด</value>
+  </data>
+  <data name="AccountHasAlreadyBeenRegistered" xml:space="preserve">
+    <value>ID ที่คุณป้อนได้เชื่อมต่อแล้ว และตรวจสอบโดยบัญชีอื่น</value>
+  </data>
+  <data name="OverMaxAddAccountTimes" xml:space="preserve">
+    <value>คุณมีคำขอเกินกำหนดของวันนี้ กรุณาลองใหม่ภายหลัง</value>
+  </data>
+  <data name="Command" xml:space="preserve">
+    <value>คำสั่ง</value>
+  </data>
+  <data name="ChatBotLanguage" xml:space="preserve">
+    <value>ภาษา Chatbot</value>
+  </data>
+  <data name="ChatbotName" xml:space="preserve">
+    <value>ชื่อ Chatbot</value>
+  </data>
+  <data name="pleaseSet" xml:space="preserve">
+    <value>โปรดตั้งค่า</value>
+  </data>
+  <data name="IntroReport" xml:space="preserve">
+    <value>เพื่อเปิดใช้งานรายงานที่คุณต้องการ</value>
+  </data>
+  <data name="IntroNotification" xml:space="preserve">
+    <value>เพื่อเปิดใช้การแจ้งเตือนตามที่คุณต้องการ</value>
+  </data>
+  <data name="memberWinLoss" xml:space="preserve">
+    <value>สมาชิก (ชนะ แพ้)</value>
+  </data>
+  <data name="normalAnnouncementSample" xml:space="preserve">
+    <value>โปรดทราบ: [E-Sports] การแข่งขันถูกยกเลิกเงินเดิมพันทั้งหมดได้รับการชำระคืนแล้ว ขอบพระคุณ!</value>
+  </data>
+  <data name="updateLanguageFailed" xml:space="preserve">
+    <value>ตั้งค่าภาษา Chatbot ไม่สำเร็จ กรุณาลองใหม่</value>
+  </data>
+  <data name="expiredOrDidNotRecieveTheCode" xml:space="preserve">
+    <value>ยังไม่ได้รับรหัสยืนยัน?</value>
+  </data>
+  <data name="AccountIsRequired" xml:space="preserve">
+    <value>โปรดกรอก ไอดี Letstalk ของท่าน</value>
+  </data>
+  <data name="verificationCodeIsRequired" xml:space="preserve">
+    <value>โปรดกรอกรหัสยืนยัน</value>
+  </data>
+  <data name="reportExample" xml:space="preserve">
+    <value>ตัวอย่างรายงาน</value>
+  </data>
+  <data name="notificationExample" xml:space="preserve">
+    <value>ตัวอย่างการแจ้งเตือน</value>
+  </data>
+  <data name="howFunctionWorks" xml:space="preserve">
+    <value>ฟังก์ชันทำงานอย่างไร</value>
+  </data>
+  <data name="play" xml:space="preserve">
+    <value>เล่น</value>
+  </data>
+  <data name="playing" xml:space="preserve">
+    <value>กำลังเล่น</value>
+  </data>
+  <data name="IntroVerificationCode" xml:space="preserve">
+    <value>"&lt;strong&gt;Atom&lt;/strong&gt;" ได้ส่งรหัสยืนยัน 6 หลักผ่านทาง Letstalk IM เพื่อยืนยันรหัส Letstalk ของคุณโปรดป้อนรหัสยืนยัน</value>
+  </data>
+  <data name="inputCommand" xml:space="preserve">
+    <value>ป้อนคำสั่ง</value>
+  </data>
+  <data name="systemAnnouncement" xml:space="preserve">
+    <value>ประกาศระบบ</value>
+  </data>
+  <data name="yesterdayWinLoss" xml:space="preserve">
+    <value>ยอดได้เสียเมื่อวาน</value>
+  </data>
+  <data name="EnterVerificationCode" xml:space="preserve">
+    <value>ตรวจสอบบัญชี Letstalk ของท่าน</value>
+  </data>
+  <data name="showQRCode" xml:space="preserve">
+    <value>แสดง QR Code</value>
+  </data>
+  <data name="hideQRCode" xml:space="preserve">
+    <value>ซ่อน QR Code</value>
+  </data>
+  <data name="captchaIsRequired" xml:space="preserve">
+    <value>กรุณาใส่ Captcha</value>
+  </data>
+  <data name="pleaseSetNotification" xml:space="preserve">
+    <value>โปรดตั้งค่า</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>บัญชี</value>
+  </data>
+  <data name="ChatbotSetup" xml:space="preserve">
+    <value>ติดตั้ง Chatbot</value>
+  </data>
+  <data name="LinkTooltip" xml:space="preserve">
+    <value>กรุณาใช้ Letstalk ID ของท่านเชื่อมต่อ chatbot ของเราเพื่อเริ่มต้นการใช้งานดังต่อไปนี้</value>
+  </data>
+  <data name="OutstandingHint" xml:space="preserve">
+    <value>มายเหตุ：คำสั่งแบบรวดเร็ว กรุณาพิมพ์ /os 50</value>
+  </data>
+  <data name="VerifyTooltip" xml:space="preserve">
+    <value>กรุณายืนยัน Letstalk ID ของคุณ เพื่อใช้งานฟังก์ชั่นด้านล่าง</value>
+  </data>
+  <data name="OutstandingHiddenDownlinesCount" xml:space="preserve">
+    <value>มี 97 สมาชิกที่ไม่ได้แสดงผล</value>
+  </data>
+  <data name="YesterdayTotalBalance" xml:space="preserve">
+    <value>ยอดคงเหลือเมื่อวาน</value>
+  </data>
+  <data name="TodayWinLoss" xml:space="preserve">
+    <value>ยอดได้เสียวันนี้</value>
+  </data>
+  <data name="YesterdayWL" xml:space="preserve">
+    <value>ยอดได้เสียเมื่อวาน</value>
+  </data>
+  <data name="MemberOutstanding" xml:space="preserve">
+    <value>การเดิมพันที่ยังไม่สิ้นสุดของ สมาชิก</value>
+  </data>
+  <data name="MemberCredit" xml:space="preserve">
+    <value>เครดิตเมมเบอร์</value>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>เอเย่นต์ยอดคงค้าง</value>
+  </data>
+  <data name="lblMessageSelfDestruct" xml:space="preserve">
+    <value>ระยะเวลาการทำลายตนเองข้อความของ Chatbot's</value>
+  </data>
+  <data name="UpdateMessageSelfDestructMessageFailedMessage" xml:space="preserve">
+    <value>อัปเดท ระยะเวลาการทำลายตนเองไม่ประสบความสำเร็จ กรุณาลองอีกครั้ง.</value>
+  </data>
+  <data name="FifteenMinutes" xml:space="preserve">
+    <value>15 นาที</value>
+  </data>
+  <data name="ThirtyMinutes" xml:space="preserve">
+    <value>30 นาที</value>
+  </data>
+  <data name="OneHour" xml:space="preserve">
+    <value>1 ชั่วโมง</value>
+  </data>
+  <data name="ThreeHours" xml:space="preserve">
+    <value>3 ชั่วโมง</value>
+  </data>
+  <data name="SixHours" xml:space="preserve">
+    <value>6 ชั่วโมง</value>
+  </data>
+  <data name="TwelveHours" xml:space="preserve">
+    <value>12 ชั่วโมง</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>1 วัน</value>
+  </data>
+  <data name="ThreeDays" xml:space="preserve">
+    <value>3 วัน</value>
+  </data>
+  <data name="SevenDays" xml:space="preserve">
+    <value>7 วัน</value>
+  </data>
+  <data name="FifteenDays" xml:space="preserve">
+    <value>15 วัน</value>
+  </data>
+  <data name="ThirtyDays" xml:space="preserve">
+    <value>30 วัน</value>
+  </data>
+  <data name="HintMessage" xml:space="preserve">
+    <value>*หมายเหตุ：คำสั่งแบบรวดเร็ว กรุณาพิมพ์ </value>
+  </data>
+  <data name="FunctionAction" xml:space="preserve">
+    <value>การกระทำ</value>
+  </data>
+  <data name="PleaseSetAction" xml:space="preserve">
+    <value>โปรดตั้งค่า</value>
+  </data>
+  <data name="IntroAction" xml:space="preserve">
+    <value>เพื่อเปิดใช้งานข้อมูลการดำเนินการที่คุณต้องการสอบถาม</value>
+  </data>
+  <data name="cloneAccountNotification" xml:space="preserve">
+    <value>กำลังประมวลผลคำขอของคุณตอนนี้โปรดรอสักครู่ …</value>
+  </data>
+  <data name="cloneAccountSuccessMsg" xml:space="preserve">
+    <value>คัดลอกสมาชิกใหม่จาก member01 แล้ว</value>
+  </data>
+  <data name="actionExample" xml:space="preserve">
+    <value>ตัวอย่างการกระทำ</value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>Balance Info</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>รายละเอียด</value>
+  </data>
+  <data name="EnableDisable" xml:space="preserve">
+    <value>เปิด/ปิด</value>
+  </data>
+  <data name="EnterOTP" xml:space="preserve">
+    <value>ป้อนรหัส OTP ที่ส่งจากTelegram Chatbotเพื่อยืนยันบัญชีของคุณ (รหัส OTP จะหมดอายุภายใน 3 นาที):</value>
+  </data>
+  <data name="GeneratePrivateQRCode" xml:space="preserve">
+    <value>สร้างรหัสคิวอาร์</value>
+  </data>
+  <data name="HowItWorks" xml:space="preserve">
+    <value>ใช้งานอย่างไร</value>
+  </data>
+  <data name="InstallTelegram" xml:space="preserve">
+    <value>ดาวน์โหลดแอปพลิเคชันบน Google Play/App Store หรือคลิก &lt;strong&gt;แสดงรหัสคิวอาร์&lt;/strong&gt; และสแกนรหัสคิวอาร์โดยใช้โทรศัพท์ของคุณ:</value>
+  </data>
+  <data name="IntroTelegramChatbot" xml:space="preserve">
+    <value>&lt;strong&gt;Telegram Chatbot&lt;/strong&gt; ช่วยให้คุณรับข้อมูลทางธุรกิจปัจจุบันโดยสื่อสารกับChatbotโดยไม่จำเป็นต้องเข้าถึงเว็บไซต์ตัวแทน ChatbotทำงานบนTelegramซึ่งเป็นแอปพลิเคชั่นข้อความโต้ตอบอัตโนมัติได้ฟรี ปลอดภัย สะดวก และใช้งานได้หลากหลายแพลตฟอร์ม&lt;br /&gt;ในการตั้งค่าChatbot โปรดปฏิบัติตามคำแนะนำด้านล่าง:</value>
+  </data>
+  <data name="IntroTelegramReports" xml:space="preserve">
+    <value>เทเลแกรมแชทบอท มีระบบช่วยเหลือที่หลากหลายที่ทำให้คุณสามารถดำเนินธุรกรรมได้โดยไม่ต้องเปิดใช้งานเวปไซต์&lt;br /&gt; พิมพ์ "/help" หาแชทบอท เพื่อแสดงรายการคำสั่งที่เปิดให้บริการ</value>
+  </data>
+  <data name="lblOTP" xml:space="preserve">
+    <value>OTP</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>ข้อความแจ้ง/แจ้งเตือน</value>
+  </data>
+  <data name="NotificationAndSettings" xml:space="preserve">
+    <value>ข้อความแจ้ง และการแจ้งเตือน</value>
+  </data>
+  <data name="NotificationAndSettingsIntro" xml:space="preserve">
+    <value>ปรับค่าเทเลแกรมแชทบอทให้ส่งข้อความแจ้ง และการแจ้งเตือนหาคุณ</value>
+  </data>
+  <data name="OrUseThisLink" xml:space="preserve">
+    <value>หรือคลิกที่ลิงค์นี้</value>
+  </data>
+  <data name="OTPIsExpiredMessage" xml:space="preserve">
+    <value>OTP หมดอายุ โปรด &lt;span id="btnResend" class="link resend-code"&gt;คลิกที่นี่&lt;/span&gt; เพื่อรับ OTP ใหม่</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>Outstanding</value>
+  </data>
+  <data name="PersonalMessage" xml:space="preserve">
+    <value>Personal Message</value>
+  </data>
+  <data name="ProblemAccount" xml:space="preserve">
+    <value>Problem Account</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>รายงาน</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>รายงาน</value>
+  </data>
+  <data name="ResendOTPSuccessfully" xml:space="preserve">
+    <value>ส่งรหัส OTP อีกครั้ง</value>
+  </data>
+  <data name="ScanQRCode" xml:space="preserve">
+    <value>ใช้อุปกรณ์โทรศัพท์ของคุณแสกนรหัส OTP นี้เพื่อเปิดTelegram Chatbot</value>
+  </data>
+  <data name="SeeHowItWorks" xml:space="preserve">
+    <value>ดูวิธีวิธีใช้</value>
+  </data>
+  <data name="SelectStartOnTelegramChatbot" xml:space="preserve">
+    <value>คลิก &lt;strong&gt;เริ่มต้นใช้งาน&lt;/strong&gt; ที่Telegram Chatbotจากนั้นไปยังขั้นตอนถัดไป</value>
+  </data>
+  <data name="StartSettingUp" xml:space="preserve">
+    <value>ลงทะเบียนบนTelegramโดยใช้หมายเลขโทรศัพท์ของคุณ แล้วคลิก &lt;strong&gt;สร้างรหัสคิวอาร์&lt;/strong&gt;</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TelegramMessengerInc" xml:space="preserve">
+    <value>Telegram Messenger Inc.</value>
+  </data>
+  <data name="TodayWinLossNew" xml:space="preserve">
+    <value>Today Win Loss</value>
+  </data>
+  <data name="UnsubscribeTelegramBotWarning" xml:space="preserve">
+    <value>คุณต้องการยกเลิกการเชื่อมต่อหรือไม่?</value>
+  </data>
+  <data name="VerifyOTP" xml:space="preserve">
+    <value>ยืนยันรหัส OTP</value>
+  </data>
+  <data name="YesterdayWinLossNotificationDescription" xml:space="preserve">
+    <value>Daily send the total row of Alpha Win Loss report of yesterday at 3:00PM (GMT-4)</value>
+  </data>
+  <data name="YouCanTurnOnOff" xml:space="preserve">
+    <value>คุณสามารถเปิด/ปิดการแจ้งเตือนใดๆ ข้างต้นได้ที่นี่หรือผ่านการตั้งค่าทางเทเลแกรมแชทบ็อต</value>
+  </data>
+  <data name="ChatID" xml:space="preserve">
+    <value>บัญชีสนทนา</value>
+  </data>
+  <data name="HasUnlinkedMessage" xml:space="preserve">
+    <value>Telegramของคุณยกเลิกการเชื่อมโยงกับ {0}</value>
+  </data>
+  <data name="StartBeforeInputOTP" xml:space="preserve">
+    <value>โปรดคลิก &lt;strong&gt;เริ่มต้นใช้งาน&lt;/strong&gt; ที่ Telegram Chatbot ก่อนป้อนรหัส OTP</value>
+  </data>
+  <data name="OTPIsRequired" xml:space="preserve">
+    <value>โปรดป้อนรหัส OTP</value>
+  </data>
+  <data name="InvalidOTP" xml:space="preserve">
+    <value>รหัส OTP ไม่ถูกต้อง โปรดลองใหม่อีกครั้ง</value>
+  </data>
+  <data name="Introducing" xml:space="preserve">
+    <value>แนะนำ</value>
+  </data>
+  <data name="IntroducingContent" xml:space="preserve">
+    <value>24/7 ผู้ช่วยเสมือนจริงที่ช่วยให้คุณดำเนินธุรกิจได้อย่างสะดวกยิ่งขึ้น</value>
+  </data>
+  <data name="IntroducingTitle" xml:space="preserve">
+    <value>{0}แชทบอทบนเทเลแกรม</value>
+  </data>
+  <data name="LatestNotifications" xml:space="preserve">
+    <value>การแจ้งเตือนล่าสุด</value>
+  </data>
+  <data name="SetupNow" xml:space="preserve">
+    <value>ตั้งค่าตอนนี้</value>
+  </data>
+  <data name="BalanceInfoReport" xml:space="preserve">
+    <value>รายงานข้อมูลยอดเงินคงเหลือ</value>
+  </data>
+  <data name="OutstandingReport" xml:space="preserve">
+    <value>รายงานการเดิมพันที่ยังไม่สิ้นสุด</value>
+  </data>
+  <data name="WinLossReport" xml:space="preserve">
+    <value>รายงานยอดได้เสีย</value>
+  </data>
+  <data name="EnabledTelegramOtpNotification" xml:space="preserve">
+    <value>เปิดการแจ้งเตือนรหัส OTP ผ่านเทเลแกรม</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>รายงาน/คุณสมบัติ</value>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>รายงาน/คุณสมบัติ</value>
+  </data>
+</root>

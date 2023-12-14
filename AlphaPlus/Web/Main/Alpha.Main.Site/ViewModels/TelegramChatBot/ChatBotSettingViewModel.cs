@@ -1,0 +1,44 @@
+﻿using Alpha.Main.Configurations;
+using Alpha.Main.Site.Requests.TelegramChatBot;
+using AlphaPlus.Core.Helpers;
+using TelegramBot.Client.Models;
+
+namespace Alpha.Main.Site.ViewModels.TelegramChatBot
+{
+    public class ChatBotSettingViewModel
+    {
+        public ChatBotSettingViewModel(ChatBotViewModel chatBotViewModel, SetUpChatBotQuery query)
+        {
+            ChatBotViewModel = chatBotViewModel;
+
+            UserId = chatBotViewModel.CustBotMessenger.UserId;
+            ChatId = chatBotViewModel.CustBotMessenger.ChatId;
+            ChatBotName = chatBotViewModel.CustBotMessenger.BotName;
+            ReportFunctions = chatBotViewModel.CustBotMessenger.Functions.Where(function => function.Type == 1);
+            NotificationFunctions = chatBotViewModel.CustBotMessenger.Functions.Where(function => function.Type == 2);
+            Language = chatBotViewModel.CustBotMessenger.Language;
+            CustLevel = query.CustLevel.DisplayName;
+        }
+
+        public ChatBotViewModel ChatBotViewModel { get; }
+
+        public int UserId { get; }
+
+        public long ChatId { get; }
+
+        public string ChatBotName { get; }
+
+        public IEnumerable<Function> ReportFunctions { get; }
+
+        public IEnumerable<Function> NotificationFunctions { get; }
+
+        public string Language { get; }
+
+        public string CustLevel { get; }
+
+        public string HowToUseLink
+            => AppSettings.IsSiteLabel789y ?
+                MicroSites.MessageUrl("~/StaticMessage/Guide?id=167819") :
+                MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=167819");
+    }
+}

@@ -1,0 +1,182 @@
+﻿[
+  {
+    "outputFile": "Assets/Styles/home/popup-message.css",
+    "inputFile": "Assets/Styles/home/popup-message.scss"
+  },
+  {
+    "outputFile": "Assets/Styles/home/old-main.css",
+    "inputFile": "Assets/Styles/home/old-main.scss"
+  },
+  {
+    "outputFile": "Assets/Styles/home/page.css",
+    "inputFile": "Assets/Styles/home/page.scss"
+  },
+  {
+    "outputFile": "Assets/Styles/home/tooltip.css",
+    "inputFile": "Assets/Styles/home/tooltip.scss"
+  },
+  {
+    "outputFile": "Assets/Styles/customer-profiles/customer-profile.css",
+    "inputFile": "Assets/Styles/customer-profiles/customer-profile.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/pageIElower10.css",
+    "inputFile": "Assets/styles/home/pageIElower10.scss"
+  },
+  {
+    "outputFile": "Assets/styles/security/security.css",
+    "inputFile": "Assets/styles/security/security.scss"
+  },
+  {
+    "outputFile": "Assets/styles/security/verify-security-code.css",
+    "inputFile": "Assets/styles/security/verify-security-code.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/home.css",
+    "inputFile": "Assets/styles/home/home.scss"
+  },
+  {
+    "outputFile": "Assets/styles/security/lean-more.css",
+    "inputFile": "Assets/styles/security/lean-more.scss"
+  },
+  {
+    "outputFile": "Assets/styles/otp/otp.css",
+    "inputFile": "Assets/styles/otp/otp.scss"
+  },
+  {
+    "outputFile": "Assets/styles/apikey/apikey.css",
+    "inputFile": "Assets/styles/apikey/apikey.scss"
+  },
+  {
+    "outputFile": "Assets/styles/apikey/apikey-dark.css",
+    "inputFile": "Assets/styles/apikey/apikey-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/error/error.css",
+    "inputFile": "Assets/styles/error/error.scss"
+  },
+  {
+    "outputFile": "Assets/styles/partial-um/partial-um.css",
+    "inputFile": "Assets/styles/partial-um/partial-um.scss"
+  },
+  {
+    "outputFile": "Assets/Styles/home/popup-announcement.css",
+    "inputFile": "Assets/Styles/home/popup-announcement.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/page-mobile-calculate-07.css",
+    "inputFile": "Assets/styles/home/page-mobile-calculate-07.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/home-mobile-calculate-07.css",
+    "inputFile": "Assets/styles/home/home-mobile-calculate-07.scss"
+  }, 
+  {
+    "outputFile": "Assets/styles/nickname/nickname.css",
+    "inputFile": "Assets/styles/nickname/nickname.scss"
+  },  
+  {
+    "outputFile": "Assets/styles/protection-code/protection.css",
+    "inputFile": "Assets/styles/protection-code/protection.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/page-dark.css",
+    "inputFile": "Assets/styles/home/page-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/popup-announcement-dark.css",
+    "inputFile": "Assets/styles/home/popup-announcement-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/home-mobile-calculate-07-dark.css",
+    "inputFile": "Assets/styles/home/home-mobile-calculate-07-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/page-mobile-calculate-07-dark.css",
+    "inputFile": "Assets/styles/home/page-mobile-calculate-07-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/error/error-dark.css",
+    "inputFile": "Assets/styles/error/error-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/security/security-dark.css",
+    "inputFile": "Assets/styles/security/security-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/security/verify-security-code-dark.css",
+    "inputFile": "Assets/styles/security/verify-security-code-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/otp/otp-dark.css",
+    "inputFile": "Assets/styles/otp/otp-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/protection-code/protection-dark.css",
+    "inputFile": "Assets/styles/protection-code/protection-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/contact-us/contact-us.css",
+    "inputFile": "Assets/styles/contact-us/contact-us.scss"
+  },
+  {
+    "outputFile": "Assets/styles/contact-us/contact-us-dark.css",
+    "inputFile": "Assets/styles/contact-us/contact-us-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/telegramchatbot/chatbot-setting-dark.css",
+    "inputFile": "Assets/styles/telegramchatbot/chatbot-setting-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/telegramchatbot/chatbot-setting.css",
+    "inputFile": "Assets/styles/telegramchatbot/chatbot-setting.scss"
+  },
+  {
+    "outputFile": "Assets/styles/telegramchatbot/register-account-dark.css",
+    "inputFile": "Assets/styles/telegramchatbot/register-account-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/telegramchatbot/register-account.css",
+    "inputFile": "Assets/styles/telegramchatbot/register-account.scss"
+  },
+  {
+    "outputFile": "Assets/styles/telegramchatbot/chatbot.css",
+    "inputFile": "Assets/styles/telegramchatbot/chatbot.scss"
+  },
+  {
+    "outputFile": "Assets/styles/telegramchatbot/chatbot-dark.css",
+    "inputFile": "Assets/styles/telegramchatbot/chatbot-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/ChatBotBanneri7-dark.css",
+    "inputFile": "Assets/styles/home/ChatBotBanneri7-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/ChatBotBanneri7.css",
+    "inputFile": "Assets/styles/home/ChatBotBanneri7.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/ChatBotBanneri1-dark.css",
+    "inputFile": "Assets/styles/home/ChatBotBanneri1-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/ChatBotBanneri1.css",
+    "inputFile": "Assets/styles/home/ChatBotBanneri1.scss"
+  },
+  {
+    "outputFile": "Assets/styles/home/home-dark.css",
+    "inputFile": "Assets/styles/home/home-dark.scss"
+  },
+  {
+    "outputFile": "Assets/styles/advertisement/popup-advertisement.css",
+    "inputFile": "Assets/styles/advertisement/popup-advertisement.scss"
+  },
+  {
+    "outputFile": "Assets/styles/advertisement/popup-advertisement-dark.css",
+    "inputFile": "Assets/styles/advertisement/popup-advertisement-dark.scss"
+  },
+  {
+    "outputFile": "Assets/Styles/customer-profiles/customer-profile-dark.css",
+    "inputFile": "Assets/Styles/customer-profiles/customer-profile-dark.scss"
+  }
+]

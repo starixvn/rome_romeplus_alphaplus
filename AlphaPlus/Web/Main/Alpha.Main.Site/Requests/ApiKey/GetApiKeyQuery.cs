@@ -1,0 +1,23 @@
+﻿using Alpha.Main.Site.ViewModels.ApiKey;
+using AlphaPlus.Core.Models;
+using MediatR;
+
+namespace Alpha.Main.Site.Requests.ApiKey
+{
+    public class GetApiKeyQuery : IRequest<EditApiKeyViewModel>
+    {
+        public GetApiKeyQuery() : this(null)
+        {
+        }
+
+        public GetApiKeyQuery(IUserSession userSession)
+        {
+            userSession ??= new UserSessionExt();
+            Language = userSession.Language;
+        }
+
+        public string Language { get; }
+
+        public string Key { get; set; }
+    }
+}
