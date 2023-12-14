@@ -1,0 +1,51 @@
+﻿@{
+    var data = Model as Fanex.Alpha.Before.Models.SignInResult;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="~/assets/bundles/bootstrap-ex.min.css" rel="stylesheet" />
+
+    @RenderSection("styles", false)
+
+</head>
+<body>
+
+    <div id="divLoading" style="display: none">
+        <h2>
+            Loading... please wait
+        </h2>
+    </div>
+    <div id="mainholder" class="block-login">
+        <form id="formLogin" class="form-login" action="" method="POST" autocomplete="off">
+            @RenderBody()
+            <input name="code" id="code" type="hidden" value="@data.Captcha" />
+            <input id="detecas-analysis" name="detecas-analysis" value="{}" type="hidden" />
+            <input id="__tk" name="__tk" value="@ViewBag.FPSToken" type="hidden" />
+            <input id="captcha_result" name="captcha_result" value="" type="hidden" />
+            @Html.AntiForgeryToken()
+        </form>
+    </div>
+    @if (data.IsChangedPassword)
+    {
+        <div class="block-info">
+            @data.ChangedPasswordTime
+        </div>
+    }
+
+    <script src="~/assets/bundles/login.min.js" type="text/javascript"></script>
+
+    @await Html.PartialAsync("FPS", data)
+
+    @RenderSection("scripts", false)
+
+    @Html.Hidden("is789y", AppSetting.Is789ySite? "1":"0")
+</body>
+</html>
+

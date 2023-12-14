@@ -1,0 +1,54 @@
+﻿@using CommonAppSetting = Fanex.Alpha.Before.Configurations.AppSetting
+
+@model Fanex.Alpha.Before.Models.SignInResult
+@{
+    Layout = null;
+}
+
+@Html.Hidden("ModelErrCode", Model.ErrCode)
+@Html.Hidden("ModelErrMsg", Html.Raw(Model.ErrMsg))
+@Html.Hidden("ModelLanguage", Model.Language)
+@Html.Hidden("ModelIp", Model.Ip)
+@Html.Hidden("ModelUTMS", Model.UTMS)
+@Html.Hidden("ModelDomain", Model.Domain)
+@Html.Hidden("ModelCaptcha", Model.Captcha)
+@Html.Hidden("CommonAppSettingFpsActivator", CommonAppSetting.FpsActivator)
+@Html.Hidden("RootUrl", Url.Content("~"))
+<style>
+    .grecaptcha-badge {
+        display: none !important;
+    }
+</style>
+<script type="text/javascript">
+    var _page = {
+        errCode: 0,
+        errMsg: '',
+        language: 0,
+        ip: '',
+        __utms: '',
+        domain: '',
+        captcha: '',
+        fpsActivator: ''
+    };
+
+    _page.errCode = document.getElementById("ModelErrCode").value;
+    _page.errMsg = document.getElementById("ModelErrMsg").value;
+    _page.language = document.getElementById("ModelLanguage").value;
+    _page.ip = document.getElementById("ModelIp").value;
+    _page.__utms = document.getElementById("ModelUTMS").value;
+    _page.domain = document.getElementById("ModelDomain").value;
+    _page.captcha = document.getElementById("ModelCaptcha").value;
+    _page.fpsActivator = document.getElementById("CommonAppSettingFpsActivator").value;
+
+    window.rootUrl = document.getElementById("RootUrl").value;
+</script>
+
+@if (CommonAppSetting.IsEnableFPS)
+{
+<script src="~/assets/bundles/fps.js" type="text/javascript"></script>
+}
+
+@if (CommonAppSetting.NewFPSEnabled)
+{    
+    <script src="@CommonAppSetting.NewFPSScriptAPI" async type="text/javascript"></script>
+}
