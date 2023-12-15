@@ -1,4 +1,4 @@
-﻿using AlphaPlus.Core.Models;
+﻿using AlphaPlus.RequestInfo.Models;
 
 namespace Alpha.Main.Params.Otp
 {

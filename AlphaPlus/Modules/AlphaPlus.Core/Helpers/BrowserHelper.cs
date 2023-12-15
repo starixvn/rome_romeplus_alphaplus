@@ -1,8 +1,7 @@
 using System.Text.RegularExpressions;
 using AlphaPlus.Core.Models;
+using AlphaPlus.RequestInfo;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Net.Http.Headers;
-using UAParser;
 
 namespace AlphaPlus.Core.Helpers;
 
@@ -12,17 +11,19 @@ public interface IBrowserHelper
 
     BrowserViewModel CheckSupportedBrowsers();
 
-    Models.Device GetDevice();
+    Device GetDevice();
 
     string GetDeviceId();
 
-    string GetUserAgent();
+    bool IsAndroidNativeBrowser();
 
-    bool IsAndroidNativeBrowser(string userAgent);
+    bool IsAndroid();
 }
 
-public class BrowserHelper : IBrowserHelper
+public class BrowserHelper(IDeviceHelper deviceHelper) : IBrowserHelper
 {
+    private readonly IDeviceHelper deviceHelper = deviceHelper;
+
     private const string DeviceIdSessionKey = "ProcessAfterLogin_Handler.DeviceIdSessionKey";
 
     private static Regex _mobileCheck = new(@"ipad|playbook|tablet|kindle|nexus|android|(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino", RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Compiled);
@@ -42,7 +43,7 @@ public class BrowserHelper : IBrowserHelper
             return browserViewModel;
         }
 
-        var userAgent = GetClientInfo().UA;
+        var userAgent = deviceHelper.GetClientInfo().UA;
         var browserName = userAgent.Family.ToLower();
         var majorVersion = int.Parse(userAgent.Major);
 
@@ -70,63 +71,41 @@ public class BrowserHelper : IBrowserHelper
         return browserViewModel;
     }
 
-    public Models.Device GetDevice()
+    public Device GetDevice()
     {
-        var clientInfo = GetClientInfo();
-        var ua = clientInfo.UA;
-        var os = clientInfo.OS;
-        var platform = $"{os.Family} {os.Major ?? "0"}.{os.Minor ?? "0"}.{os.Patch ?? "0"}";
-
-        return new Models.Device
+        return new Device
         {
             Id = GetDeviceId(),
-            Info = new DeviceInfo
-            {
-                IP = IPHelper.GetClientIP(),
-                BrowserName = ua.Family,
-                BrowserVersion = $"{ua.Major}.{ua.Minor}.{ua.Patch ?? "0"}",
-                DeviceName = platform
-            }
+            Info = deviceHelper.GetDeviceInfo()
         };
     }
 
     public string GetDeviceId() => AlphaContext.Current.Session.GetString(DeviceIdSessionKey) ?? "N/A";
 
-    private ClientInfo GetClientInfo()
-    {
-        var userAgent = GetUserAgent();
-        var uaParser = Parser.GetDefault();
-        return uaParser.Parse(userAgent);
-    }
+    public bool IsAndroidNativeBrowser() => _androidNativeBrowserCheck.IsMatch(deviceHelper.GetUserAgent());
 
-    public string GetUserAgent() => AlphaContext.Current.Request.Headers[HeaderNames.UserAgent].ToString() ?? "N/A";
-
-    public bool IsAndroidNativeBrowser(string userAgent) => _androidNativeBrowserCheck.IsMatch(userAgent);
+    public bool IsAndroid() => deviceHelper.GetUserAgent().Contains("android", StringComparison.OrdinalIgnoreCase);
 
     public bool IsMobile(bool isOnlyTablet = false)
     {
-        if (AlphaContext.Current.Request != null)
+        var u = deviceHelper.GetUserAgent();
+        if (string.IsNullOrWhiteSpace(u) || u.Length < 4)
         {
-            var u = AlphaContext.Current.Request.Headers[HeaderNames.UserAgent].ToString();
+            return false;
+        }
 
-            if (u.Length < 4)
+        if (isOnlyTablet)
+        {
+            if (_tabletCheck.IsMatch(u))
             {
-                return false;
+                return true;
             }
-
-            if (isOnlyTablet)
+        }
+        else
+        {
+            if (_mobileCheck.IsMatch(u) || _mobileVersionCheck.IsMatch(u.Substring(0, 4)))
             {
-                if (_tabletCheck.IsMatch(u))
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                if (_mobileCheck.IsMatch(u) || _mobileVersionCheck.IsMatch(u.Substring(0, 4)))
-                {
-                    return true;
-                }
+                return true;
             }
         }
 

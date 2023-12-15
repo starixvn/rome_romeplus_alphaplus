@@ -1,4 +1,5 @@
-﻿using Fanex.Alpha.Before.Configurations;
+﻿using AlphaPlus.RequestInfo;
+using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.Constants;
 using Fanex.Alpha.Before.Helpers;
 using Microsoft.Extensions.Caching.Distributed;
@@ -27,7 +28,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
         private string GetLoginUserFailedCountSessionKey(string username)
         {
-            return string.Format(SessionConstants.LOGINUSERFAILEDCOUNT, AppSetting.SiteGroup, _ipHelper.ClientIP(), username);
+            return string.Format(SessionConstants.LOGINUSERFAILEDCOUNT, AppSetting.SiteGroup, _ipHelper.GetClientIP(), username);
         }
 
         public Task<int> GetLoginUserFailedCount(string username)

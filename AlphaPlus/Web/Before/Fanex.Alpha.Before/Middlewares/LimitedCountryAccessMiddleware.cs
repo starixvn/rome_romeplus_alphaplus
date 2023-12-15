@@ -1,4 +1,4 @@
-using Fanex.Alpha.Before.Helpers;
+using AlphaPlus.RequestInfo;
 using Fanex.Alpha.Before.Services;
 using Microsoft.AspNetCore.Authorization;
 using ONEbook.UM.Services;
@@ -41,7 +41,7 @@ public class LimitedCountryAccessMiddleware
             return;
         }
 
-        if (_limitedCountryAccessService.IsLimitedAccess(_ipHelper.ClientIP()) && context.Request.Path.Value != LimitedCountryAccessPath)
+        if (_limitedCountryAccessService.IsLimitedAccess(_ipHelper.GetClientIP()) && context.Request.Path.Value != LimitedCountryAccessPath)
         {
             context.Response.Redirect(LimitedCountryAccessPath, permanent: true, preserveMethod: true);
             return;

@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using AlphaPlus.RequestInfo.Models;
+using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.Extensions;
 using Fanex.Alpha.Before.Models;
 using Fanex.Common;
@@ -8,12 +10,12 @@ namespace Fanex.Alpha.Before.Repositories
 {
     public interface ISignInRepository
     {
-        VerifySignInResult VerifyDownlineLogin(string username, string password, Hashtable requestInfo, bool? isDarkMode);
+        VerifySignInResult VerifyDownlineLogin(string username, string password, RequestInfo requestInfo, bool? isDarkMode);
     }
 
     public class SignInRepository : ISignInRepository
     {
-        public VerifySignInResult VerifyDownlineLogin(string username, string password, Hashtable requestInfo, bool? isDarkMode)
+        public VerifySignInResult VerifyDownlineLogin(string username, string password, RequestInfo requestInfo, bool? isDarkMode)
         {
             using var objectDB = ObjectDbFactory.CreateInstance("Age_LoginVerifyDownline");
             Hashtable parameters = new()
@@ -35,7 +37,8 @@ namespace Fanex.Alpha.Before.Repositories
                     { "roleid", 0 },
                     { "subusername", string.Empty },
                     { "iskickout", false },
-                    { "isdarkmode", isDarkMode }
+                    { "isdarkmode", isDarkMode },
+                    { "sitegroup", AppSetting.SiteGroup}
                 };
             InsertRequestInfo(requestInfo, parameters);
 
@@ -66,12 +69,13 @@ namespace Fanex.Alpha.Before.Repositories
 
         }
 
-        private static void InsertRequestInfo(Hashtable requestInfo, Hashtable parameters)
+        private static void InsertRequestInfo(RequestInfo requestInfo, Hashtable parameters)
         {
-            foreach (DictionaryEntry d in requestInfo)
-            {
-                parameters.Add(d.Key, d.Value);
-            }
+            parameters.Add("loginip", requestInfo.LoginIp);
+            parameters.Add("countrycode", requestInfo.CountryCode);
+            parameters.Add("logindomain", requestInfo.LoginDomain);
+            parameters.Add("browsername", requestInfo.BrowserName);
+            parameters.Add("platform", requestInfo.Platform);
         }
     }
 }

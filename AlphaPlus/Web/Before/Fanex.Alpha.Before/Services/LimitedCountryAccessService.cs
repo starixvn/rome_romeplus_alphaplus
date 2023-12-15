@@ -3,6 +3,7 @@ using Fanex.Alpha.Before.Models;
 using Fanex.Alpha.Before.Criteria.LimitedCountryAccess;
 using Fanex.Alpha.Before.Configurations;
 using Microsoft.Extensions.Caching.Memory;
+using AlphaPlus.RequestInfo;
 
 namespace Fanex.Alpha.Before.Services
 {
@@ -20,22 +21,25 @@ namespace Fanex.Alpha.Before.Services
         private readonly IConfiguration configuration;
         private readonly Logging.ILogger logger;
         private readonly IDynamicRepository dynamicRepository;
+        private readonly IPHelper ipHelper;
 
         public LimitedCountryAccessService(
             IMemoryCache memoryCache,
             Logging.ILogger logger,
             IDynamicRepository dynamicRepository,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IPHelper ipHelper)
         {
             this.memoryCache = memoryCache;
             this.logger = logger;
             this.dynamicRepository = dynamicRepository;
             this.configuration = configuration;
+            this.ipHelper = ipHelper;
         }
 
         public bool IsLimitedAccess(string clientIP)
         {
-            if (IpServiceImpl.IsIPV6(clientIP))
+            if (ipHelper.IsIPV6(clientIP))
             {
                 logger.Info($"Customer Access via IPV6: {clientIP}");
             }
@@ -66,11 +70,11 @@ namespace Fanex.Alpha.Before.Services
             IEnumerable<LimitedCountriesConfigModel> activeRestrictedCountriesConfig,
             string clientIP)
         {
-            var isIpV6 = IpServiceImpl.IsIPV6(clientIP);
+            var isIpV6 = ipHelper.IsIPV6(clientIP);
             var restrictedIPRangeList = GetIPRangesByRestrictedCountry(activeRestrictedCountriesConfig, isIpV6);
             var ipNumber = isIpV6
-                ? IpServiceImpl.ConvertIPV6ToNumber(clientIP)
-                : IpServiceImpl.ConvertIPV4ToNumber(clientIP);
+                ? ipHelper.ConvertIPV6ToNumber(clientIP)
+                : ipHelper.ConvertIPV4ToNumber(clientIP);
 
             return restrictedIPRangeList
                 ?.FirstOrDefault(

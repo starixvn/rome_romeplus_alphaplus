@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunplus.Agent.Model.Auth", "Sunplus.Agent.Model.Auth\Sunplus.Agent.Model.Auth.csproj", "{9F3CB3AA-4D6C-4511-B7A2-380D38439FAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunplus.Agent.Model.DataAccessLibrary", "Sunplus.Agent.Model.DataAccessLibrary\Sunplus.Agent.Model.DataAccessLibrary.csproj", "{093EF39C-F4AE-4FCC-A0CF-83EF0E0EB1A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunplus.Agent.Model.Transfer", "Sunplus.Agent.Model.Transfer\Sunplus.Agent.Model.Transfer.csproj", "{46645518-A69D-4AD1-9DF7-F0DDD4501B91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunplus.Agent.UI.ScoreMap", "Sunplus.Agent.UI.Scoremap\Sunplus.Agent.UI.ScoreMap.csproj", "{74CBDEF9-6C01-43A0-9C0E-2142B5832EF3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunplus.Agent.Utilities", "Sunplus.Agent.Utilities\Sunplus.Agent.Utilities.csproj", "{31F4A3E4-902B-466B-9A77-B5657B93AA09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F3CB3AA-4D6C-4511-B7A2-380D38439FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3CB3AA-4D6C-4511-B7A2-380D38439FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3CB3AA-4D6C-4511-B7A2-380D38439FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3CB3AA-4D6C-4511-B7A2-380D38439FAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093EF39C-F4AE-4FCC-A0CF-83EF0E0EB1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093EF39C-F4AE-4FCC-A0CF-83EF0E0EB1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093EF39C-F4AE-4FCC-A0CF-83EF0E0EB1A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093EF39C-F4AE-4FCC-A0CF-83EF0E0EB1A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46645518-A69D-4AD1-9DF7-F0DDD4501B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46645518-A69D-4AD1-9DF7-F0DDD4501B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46645518-A69D-4AD1-9DF7-F0DDD4501B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46645518-A69D-4AD1-9DF7-F0DDD4501B91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74CBDEF9-6C01-43A0-9C0E-2142B5832EF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74CBDEF9-6C01-43A0-9C0E-2142B5832EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74CBDEF9-6C01-43A0-9C0E-2142B5832EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74CBDEF9-6C01-43A0-9C0E-2142B5832EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31F4A3E4-902B-466B-9A77-B5657B93AA09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31F4A3E4-902B-466B-9A77-B5657B93AA09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31F4A3E4-902B-466B-9A77-B5657B93AA09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31F4A3E4-902B-466B-9A77-B5657B93AA09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B55B25EA-DA3C-4BED-ADE2-2A9A2A50779C}
+	EndGlobalSection
+EndGlobal

@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Alpha.Captcha.Core;
 using Alpha.Captcha.Core.Services;
+using AlphaPlus.RequestInfo;
 using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.Constants;
 using Fanex.Alpha.Before.Extensions;
@@ -35,7 +36,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private readonly CommonOptions commonOptions;
         private readonly AutomationTestOptions automationTestOptions;
         private readonly IPHelper ipHelper;
-        private readonly IPService ipService;
         private readonly ISignInRepository signInRepository;
         private readonly IDistributedCacheService cacheService;
         private readonly IRobotDetector robotDetector;
@@ -47,6 +47,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private readonly ThrottlePolicy throttlePolicy;
         private readonly INetThrottler netThrottler;
         private readonly IEncryptUrlHelper encryptUrlHelper;
+        private readonly IDeviceHelper deviceHelper;
 
         public SignInService(
             IOptions<ManualUMOptions> manualUMOptions,
@@ -61,7 +62,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             CaptchaOptions captchaOptions,
             ICaptchaService captchaService,
             IKickoutCustomerService kickoutCustomerService,
-            IPService ipService,
+            IDeviceHelper deviceHelper,
             INotificationService notificationService,
             IOptions<ThrottlePolicy> throttlePolicy,
             INetThrottler netThrottler,
@@ -72,7 +73,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
             this.automationTestOptions = automationTestOptions.Value;
             this.logger = logger;
             this.ipHelper = ipHelper;
-            this.ipService = ipService;
             this.signInRepository = signInRepository;
             this.cacheService = cacheService;
             this.robotDetector = robotDetector;
@@ -83,6 +83,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             this.throttlePolicy = throttlePolicy.Value;
             this.netThrottler = netThrottler;
             this.encryptUrlHelper = encryptUrlHelper;
+            this.deviceHelper = deviceHelper;
 
             var loginThemeOpt = loginThemeOptions.Value;
             _loginTheme = loginThemeOpt.DefaultTheme;
@@ -98,7 +99,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             var loginResult = new SignInResult
             {
                 LoginTemplate = _loginTheme,
-                Ip = ipHelper.ClientIP(),
+                Ip = ipHelper.GetClientIP(),
                 Username = string.Empty,
                 NoInteractionTimeInMinutes = commonOptions.NoInteractionTimeInMinutes
             };
@@ -138,7 +139,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
         {
             var signInResult = new SignInResult
             {
-                Ip = ipHelper.ClientIP(),
+                Ip = ipHelper.GetClientIP(),
                 LoginTemplate = _loginTheme,
                 Username = model.Username,
                 Captcha = model.Code,
@@ -207,7 +208,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
         {
             var signInResult = new SignInResult
             {
-                Ip = ipHelper.ClientIP(),
+                Ip = ipHelper.GetClientIP(),
                 LoginTemplate = _loginTheme,
                 Username = username,
                 NoInteractionTimeInMinutes = commonOptions.NoInteractionTimeInMinutes
@@ -216,7 +217,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             if (string.IsNullOrEmpty(username) ||
                 string.IsNullOrEmpty(password) ||
                 string.IsNullOrEmpty(captcha) ||
-                !automationTestOptions.AllowedIPs.Contains(ipHelper.ClientIP()) ||
+                !automationTestOptions.AllowedIPs.Contains(ipHelper.GetClientIP()) ||
                 !automationTestOptions.Captcha.Equals(captcha) ||
                 !automationTestOptions.AllowUsernameContainWords.All(s => username.ToUpperInvariant().Contains(s)))
             {
@@ -246,7 +247,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             signInResult.ErrMsg = verifySignInResult.ErrorMessage;
         }
 
-        private void UpdateResultAfterLoginSuccessfully(
+        private async Task UpdateResultAfterLoginSuccessfully(
             string password,
             SignInResult signInResult,
             VerifySignInResult verifySignInResult,
@@ -257,13 +258,13 @@ namespace Fanex.Alpha.Before.Services.SignIn
             string assetAppPath,
             HttpContext httpContext)
         {
-            cacheService.ResetLoginSession(signInResult.Username);
+            await cacheService.ResetLoginSession(signInResult.Username);
 
             var encryptPassword = AesService.Default.Encrypt(password, signInResult.Captcha);
             var crossCookieValue = EncryptExtension.CfsEnCode((verifySignInResult.CustId + verifySignInResult.LoginTime.Minute).ToString());
 
             string url;
-            var robotResult = robotDetector.IsRobot(httpContext.Request);
+            var robotResult = await robotDetector.IsRobot(httpContext.Request);
             if (robotResult == 0 || signInResult.IsCaptchaVerified)
             {
                 url = encryptUrlHelper.BuildAfterURL(
@@ -342,19 +343,17 @@ namespace Fanex.Alpha.Before.Services.SignIn
             var cacheIdentity = CacheIdentity.From(
                 throttlePolicy.Name,
                 AppSetting.SiteGroup,
-                new[] { username.Trim().ToLowerInvariant(), ipHelper.ClientIP() });
+                new[] { username.Trim().ToLowerInvariant(), ipHelper.GetClientIP() });
             var result = await netThrottler.Throttle(
                 async (success) =>
                 {
-                    var clientIP = ipHelper.ClientIP();
+                    var clientIP = ipHelper.GetClientIP();
                     if (!IPAddress.TryParse(clientIP, out _))
                     {
                         return ThrottleResult.Allowed;
                     }
 
-                    var requestInfo = DeviceHelper.GetRequestInfo(request, browserSize, clientIP);
-                    requestInfo["countrycode"] = GetCountryCode(clientIP);
-                    requestInfo.Add("sitegroup", AppSetting.SiteGroup);
+                    var requestInfo = await deviceHelper.GetRequestInfo();
                     verifySignInResult = signInRepository.VerifyDownlineLogin(username, password, requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
                     encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"Call DB result: {JsonConvert.SerializeObject(verifySignInResult)}");
 
@@ -369,7 +368,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
                         signInResult.LoginTime = verifySignInResult.LoginTime;
 
-                        UpdateResultAfterLoginSuccessfully(password, signInResult, verifySignInResult, language, deviceId, browserSize, darkModeName, assetAppPath, httpContext);
+                        await UpdateResultAfterLoginSuccessfully(password, signInResult, verifySignInResult, language, deviceId, browserSize, darkModeName, assetAppPath, httpContext);
 
                         if (throttlePolicy.WhitelistSuperIds.Contains(verifySignInResult.SuperId))
                         {
@@ -396,18 +395,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
             }
 
             encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"After checking login too often: {JsonConvert.SerializeObject(signInResult)}");
-        }
-
-        private string GetCountryCode(string ip)
-        {
-            var countryCode = "Unknown";
-            var ipInformation = ipService.GetIPInformation(ip);
-            if (ipInformation != null)
-            {
-                countryCode = ipInformation.CountryLong == "Reserved" ? null : ipInformation.CountryLong;
-            }
-
-            return countryCode;
         }
     }
 }

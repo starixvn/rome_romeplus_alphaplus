@@ -1,4 +1,5 @@
 using System.Net;
+using AlphaPlus.RequestInfo;
 using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.Models;
 using Fanex.Alpha.Before.Services;
@@ -59,11 +60,11 @@ public class CommonController : Controller
 
     public IActionResult LimitedCountryAccess()
     {
-        var clientIP = _ipHelper.ClientIP();
+        var clientIP = _ipHelper.GetClientIP();
         if (_limitedCountryAccessService.IsLimitedAccess(clientIP))
         {
             ViewData["DarkModeName"] = AppSession.DarkModeName;
-            return View("LimitedCountryAccess", _ipHelper.ClientIP());
+            return View("LimitedCountryAccess", _ipHelper.GetClientIP());
         }
         else
         {

@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Alpha.Before", "Web\B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Alpha.Before.UnitTests", "Web\Before\Fanex.Alpha.Before.UnitTests\Fanex.Alpha.Before.UnitTests.csproj", "{E488A7F2-68F2-4BC7-A4C6-C921A43CF68A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.RequestInfo", "Modules\AlphaPlus.RequestInfo\AlphaPlus.RequestInfo.csproj", "{145B7CFB-F56C-4919-9069-66A99610EA27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{E488A7F2-68F2-4BC7-A4C6-C921A43CF68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E488A7F2-68F2-4BC7-A4C6-C921A43CF68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E488A7F2-68F2-4BC7-A4C6-C921A43CF68A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{145B7CFB-F56C-4919-9069-66A99610EA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{145B7CFB-F56C-4919-9069-66A99610EA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{145B7CFB-F56C-4919-9069-66A99610EA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{145B7CFB-F56C-4919-9069-66A99610EA27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{AB4E5A59-AF99-40F3-8330-8E5D18751A50} = {8E80F0E0-8CF2-4B49-A9BB-AC4329F9BDE6}
 		{2F5023FB-9E7E-4FE4-ACDF-5DB5D3EB83CB} = {AB4E5A59-AF99-40F3-8330-8E5D18751A50}
 		{E488A7F2-68F2-4BC7-A4C6-C921A43CF68A} = {AB4E5A59-AF99-40F3-8330-8E5D18751A50}
+		{145B7CFB-F56C-4919-9069-66A99610EA27} = {11460567-7815-4329-B830-839C4EB8CECC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B8895DC-76DA-4F73-9A2A-BFE606BF96E4}

@@ -7,6 +7,7 @@ using Alpha.Main.Site.Helpers;
 using Alpha.Main.Site.Models.Requests;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.RequestInfo;
 
 namespace Alpha.Main.Site.ViewModels
 {
@@ -29,7 +30,7 @@ namespace Alpha.Main.Site.ViewModels
             PasswordHash = passwordHash;
             this.getDefaultUrl = getDefaultUrl ?? FunctionRegistry.GetDefaultUrl;
             this.browserHelper = browserHelper;
-            this.RequiredNetworkSpeedCalculation = message.CustId > 0 && AppSettings.TrackingConnectionCustIds.Contains(message.CustId);
+            RequiredNetworkSpeedCalculation = message.CustId > 0 && AppSettings.TrackingConnectionCustIds.Contains(message.CustId);
             DisableMessages = message.DisableMessages;
             this.profilePicture = profilePicture;
             IsProtectedMode = message.IsProtectedMode;
@@ -111,10 +112,9 @@ namespace Alpha.Main.Site.ViewModels
             get
             {
                 var browserName = browserHelper.GetDevice().Info.BrowserName.ToLower();
-                var userAgent = browserHelper.GetUserAgent().ToLower();
                 var isTablet = browserHelper.IsMobile(isOnlyTablet: true);
 
-                if (browserName.Contains("chrome") && userAgent.Contains("android") && !browserHelper.IsAndroidNativeBrowser(userAgent))
+                if (browserName.Contains("chrome") && browserHelper.IsAndroid() && !browserHelper.IsAndroidNativeBrowser())
                 {
                     if (!isTablet)
                     {

@@ -5,6 +5,7 @@
 
 using System.Reflection;
 using Alpha.SliderCaptcha.AspNetCore;
+using AlphaPlus.RequestInfo;
 using Fanex.Alpha.Before.Extensions;
 using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.Repositories;
@@ -74,7 +75,7 @@ namespace Fanex.Alpha.Before
             services.AddSingleton<IPHelper, IPHelperImpl>();
             services.AddSingleton<IFPSHelper, FPSHelper>();
             services.AddSingleton<IEncryptUrlHelper, EncryptUrlHelper>();
-            services.AddSingleton<IPService, IpServiceImpl>();
+            services.AddSingleton<IPService, IPServiceImpl>();
             services.AddHttpClient<INotificationService, NotificationService>(httpClient =>
             {
                 httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("TelegramBotUri"));
@@ -125,7 +126,7 @@ namespace Fanex.Alpha.Before
                     var request = HttpContextHelper.Current.Request;
                     return $"x-actual-ip: {request.Headers["x-actual-ip"]}{Environment.NewLine}" +
                         $"x-forwarded-for: {request.Headers["x-forwarded-for"]}{Environment.NewLine}" +
-                        $"GetClientIP: {app.ApplicationServices.GetRequiredService<IPHelper>().ClientIP()}{Environment.NewLine}" +
+                        $"GetClientIP: {app.ApplicationServices.GetRequiredService<IPHelper>().GetClientIP()}{Environment.NewLine}" +
                         $"{Assembly.GetExecutingAssembly().GetName().Name}-{Configuration.GetValue<string>("Environment")}: {Configuration.GetValue<string>("SiteGroup")}";
                 }).AllowAnonymous();
                 endpoints.MapControllerRoute("default", "{controller=Auth}/{action=Index}/{id?}");
