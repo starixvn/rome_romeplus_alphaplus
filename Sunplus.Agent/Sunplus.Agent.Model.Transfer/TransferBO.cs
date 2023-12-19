@@ -1,10 +1,12 @@
 namespace Sunplus.Agent.Model.Transfer
 {
+    using System;
     using System.Collections;
     using System.Data;
     using AlphaPlus.User.Models;
+    using Fanex.Data.DNAide;
 
-    public class TransferBO
+    public class TransferBO 
     {
         public DataTable GetSuperInAutomateTransferAll(int custId)
         {
@@ -13,7 +15,15 @@ namespace Sunplus.Agent.Model.Transfer
             return dao.GetSuperInAutomateTransferAll(custId);
         }
 
-        public int UpdateTransferYesBalance(string custId, double amt, bool isFullTransfer, bool isChecked, string status, string ip, out string errMsg)
+        public int UpdateTransferYesBalance(
+            string custId,
+            double amt,
+            bool isFullTransfer,
+            bool isChecked,
+            string status,
+            int autoTransferFilter,
+            string ip,
+            out string errMsg)
         {
             if (!isChecked)
             {
@@ -36,6 +46,7 @@ namespace Sunplus.Agent.Model.Transfer
                        AppSettings.AllowedListSuperAccounts,
                        UserSession.Current.LangKey,
                        isAllDayBalanceTransfer,
+                       autoTransferFilter,
                        out errMsg);
             }
 
@@ -52,6 +63,7 @@ namespace Sunplus.Agent.Model.Transfer
                     status,
                     AppSettings.AllowedListSuperAccounts,
                     UserSession.Current.LangKey,
+                    autoTransferFilter,
                     out errMsg);
             }
 
@@ -68,6 +80,7 @@ namespace Sunplus.Agent.Model.Transfer
                     status,
                     AppSettings.AllowedListSuperAccounts,
                     UserSession.Current.LangKey,
+                    autoTransferFilter,
                     out errMsg);
             }
 
@@ -76,7 +89,7 @@ namespace Sunplus.Agent.Model.Transfer
             return 0;
         }
 
-        public int TransferYesCleareBalanceForAgent(string toCustIds, bool isChecked, string status, string ip, out string errMsg)
+        public int TransferYesCleareBalanceForAgent(string toCustIds, bool isChecked, string status, int autoTransferFilter, string ip, out string errMsg)
         {
             TransferDAO dao = new TransferDAO();
 
@@ -96,25 +109,27 @@ namespace Sunplus.Agent.Model.Transfer
                 UserSession.Current.LangKey,
                 AppSettings.AllowedListSuperAccounts,
                 isAllDayBalanceTransfer,
+                autoTransferFilter,
                 out errMsg);
         }
 
-        public DataTable GetDataTransfer(int status, string userName, bool isYesterdayBalance)
+        public DataTable GetDataTransfer(int status, string userName, bool isYesterdayBalance, int autoTransferFilter)
         {
             int totalPages = 0;
-            return GetDataTransfer(status, 1, ref totalPages, int.MaxValue - 1, userName, isYesterdayBalance);
+            return GetDataTransfer(status, 1, ref totalPages, int.MaxValue - 1, userName, isYesterdayBalance, autoTransferFilter);
         }
 
-        public DataTable GetDataTransfer(int status, int pageIndex, ref int totalPages, string userName, bool isYesterdayBalance)
+        public DataTable GetDataTransfer(int status, int pageIndex, ref int totalPages, string userName, bool isYesterdayBalance, int autoTransferFilter)
         {
-            return GetDataTransfer(status, pageIndex, ref totalPages, AppSettings.PageSize, userName, isYesterdayBalance);
+            return GetDataTransfer(status, pageIndex, ref totalPages, AppSettings.PageSize, userName, isYesterdayBalance, autoTransferFilter);
         }
 
-        public DataTable GetDataTransfer(int status, int pageIndex, ref int totalPages, int pagesize, string userName, bool isYesterdayBalance)
+        public DataTable GetDataTransfer(int status, int pageIndex, ref int totalPages, int pagesize, string userName, bool isYesterdayBalance, int autoTransferFilter)
         {
             TransferDAO dao = new TransferDAO();
 
-            string custStatus;
+            string custStatus = string.Empty;
+
             switch (status)
             {
                 case 1:
@@ -144,7 +159,8 @@ namespace Sunplus.Agent.Model.Transfer
                     ref totalPages,
                     userName,
                     !isYesterdayBalance,
-                    UserSession.Current.IsAllowedTotalBalanceTransfer);
+                    UserSession.Current.IsAllowedTotalBalanceTransfer,
+                    autoTransferFilter);
             }
 
             if (UserSession.Current.IsMaster)
@@ -157,7 +173,8 @@ namespace Sunplus.Agent.Model.Transfer
                     ref totalPages,
                     userName,
                     !isYesterdayBalance,
-                    UserSession.Current.IsAllowedTotalBalanceTransfer);
+                    UserSession.Current.IsAllowedTotalBalanceTransfer,
+                    autoTransferFilter);
             }
 
             if (UserSession.Current.IsSuper)
@@ -170,7 +187,8 @@ namespace Sunplus.Agent.Model.Transfer
                     ref totalPages,
                     userName,
                     !isYesterdayBalance,
-                    UserSession.Current.IsAllowedTotalBalanceTransfer);
+                    UserSession.Current.IsAllowedTotalBalanceTransfer,
+                    autoTransferFilter);
             }
 
             return null;
@@ -182,7 +200,9 @@ namespace Sunplus.Agent.Model.Transfer
             TransferDAO dao = new TransferDAO();
 
             return UserSession.Current.IsAgent
-                ? dao.Age_Transfer_SelMemberInfo_Yesterday(custId, UserSession.Current.IsAllowedTotalBalanceTransfer)
+                ? dao.Age_Transfer_SelMemberInfo_Yesterday(
+                    custId,
+                    UserSession.Current.IsAllowedTotalBalanceTransfer)
                 : null;
         }
 
@@ -192,7 +212,8 @@ namespace Sunplus.Agent.Model.Transfer
             TransferDAO dao = new TransferDAO();
 
             return UserSession.Current.IsAgent
-                ? dao.Age_Transfer_CheckExisting(custId)
+                ? dao.Age_Transfer_CheckExisting(
+                    custId)
                 : null;
         }
 
@@ -208,13 +229,14 @@ namespace Sunplus.Agent.Model.Transfer
             return dao.Acc_CustomerSelTransferOption(custId, "00000000");
         }
 
-        public Hashtable UpdateTransferCondition(string custId, string transferOption, string ip)
+        public DbResult UpdateTransferCondition(string custId, string transferOption, string autoTransferOption, string ip)
         {
             TransferDAO dao = new TransferDAO();
 
             return dao.Acc_CustomerUpdTransferOption(
                 custId,
                 transferOption,
+                autoTransferOption,
                 UserSession.Current.UserId.ToString(),
                 UserSession.Current.SubAccId,
                 UserSession.Current.LangKey,
