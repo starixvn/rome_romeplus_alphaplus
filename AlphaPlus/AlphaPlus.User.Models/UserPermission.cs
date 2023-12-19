@@ -41,6 +41,9 @@ namespace AlphaPlus.User.Models
             }
         }
 
+        public static bool IsShowOrNotExistProduct(int product)
+        => IsEnableProduct(product) || !CurrentUserSession.HasProperty("HIDEPRODUCT_" + product);
+
         public static bool IsEnableProduct(int product)
         {
             return AppSettings.IsEnabledProduct(product) && !CurrentUserSession.GetHideProduct(product);

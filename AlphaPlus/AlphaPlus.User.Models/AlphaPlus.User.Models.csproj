@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>AlphaPlus.User.Models</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>
