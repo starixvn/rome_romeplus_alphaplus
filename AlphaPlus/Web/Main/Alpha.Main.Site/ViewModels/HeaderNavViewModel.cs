@@ -49,11 +49,11 @@ namespace Alpha.Main.Site.ViewModels
 
         public bool EnableSecurityCode { get; }
 
-        public string HowToUseRootPath => UrlHelper.MapHowToUsePath("~/");
+        public string HowToUseRootPath => UrlHelper.MapHowToUsePath("/");
 
         public bool ShowSearchAccount { get; }
 
-        public string MainRootPath { get; } = UrlHelper.MapMainPath("~/");
+        public string MainRootPath { get; } = UrlHelper.MapMainPath("/");
 
         public string AccountInfoRootPath { get; } = UrlHelper.MapAccountInfoPath("~/");
 
@@ -83,9 +83,11 @@ namespace Alpha.Main.Site.ViewModels
 
         public int SuperId { get; }
 
-        public bool ShowAPIKeyFunction
-            => !IsSubAccount
-            && (AppSettings.APISuperIds.Any(s => string.Equals(s, "*"))
-                || AppSettings.APISuperIds.Any(s => string.Equals(s, SuperId.ToString())));
+        public bool ShowAPIKeyFunction => false;
+        //TODO: ShowAPIKeyFunction
+        // public bool ShowAPIKeyFunction
+        //     => !IsSubAccount
+        //     && (AppSettings.APISuperIds.Any(s => string.Equals(s, "*"))
+        //         || AppSettings.APISuperIds.Any(s => string.Equals(s, SuperId.ToString())));
     }
 }

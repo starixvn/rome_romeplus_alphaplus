@@ -36,7 +36,7 @@
             <div class="text-center"><span class="block-icon-small "></span></div>
         </div>
     </div>
-    @Html.PartialAsync("HiddenFields", Model)
+    @await Html.PartialAsync("HiddenFields", Model)
     <!--[if IE 8]><!-->
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/es5-shim")
     <!--<![endif]-->

@@ -25,7 +25,7 @@
 
 <body>
     @GoogleAnalyticHelper.GtagNoScript()
-    @Html.PartialAsync("Popup")
+    @await Html.PartialAsync("Popup")
     @* @Html.Action("HeaderHotMsg") *@
     <aside class="sidebar" id="side-bar">
         @* TODO: <div class="partial-content customer-profile" id="profile"
@@ -35,10 +35,10 @@
         </nav>
     </aside>
     <div class="content-wrapper" id="content-wrapper">
-        @Html.PartialAsync("SearchBar")
+        @await Html.PartialAsync("SearchBar")
         <header class="header" id="header">
-            @Html.PartialAsync("HeaderNav", Model.HeaderNavViewModel)
-            @Html.PartialAsync("HeaderMarquee", Model.IsProtectedMode)
+            @await Html.PartialAsync("HeaderNav", Model.HeaderNavViewModel)
+            @await Html.PartialAsync("HeaderMarquee", Model.IsProtectedMode)
         </header>
         <main class="content" id="content" data-default-url="@Model.DefaultPath">
         </main>
@@ -55,19 +55,17 @@
             </div>
             <div class="icon-close-feedback" title="@Resources.close"></div>
         </div>
-        @Html.PartialAsync("NewFeatureHighlightPopup", Model)
+        @await Html.PartialAsync("NewFeatureHighlightPopup", Model)
     </div>
-    @Html.PartialAsync("HiddenFields", Model)
-    @Html.PartialAsync("AnnouncementPopup")
-    @Html.PartialAsync("DataProccessingPopup")
-    @Html.PartialAsync("UMMessagePopup")
+    @await Html.PartialAsync("HiddenFields", Model)
+    @await Html.PartialAsync("AnnouncementPopup")
+    @await Html.PartialAsync("DataProccessingPopup")
+    @await Html.PartialAsync("UMMessagePopup")
     @if (Model.IsShowSuggestEnableTelegramOtp)
     {
-        @Html.PartialAsync("SuggestEnableTelegramOtpPopup")
-        ;
-
+        @await Html.PartialAsync("SuggestEnableTelegramOtpPopup")
     }
-    @Html.PartialAsync("~/Views/Advertisement/AdvertisementPopup.cshtml")
+    @await Html.PartialAsync("~/Views/Advertisement/AdvertisementPopup.cshtml")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-main/default")
     @StaticResources.RenderScripts("~/assets/bundles/default-index")

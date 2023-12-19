@@ -14,7 +14,7 @@
         <div class="panel-body has-padding">
             <p>@Security.OTPViaChatbotIntroduction</p>
             <p>@Security.ToSetupChatbot</p>
-            @Html.PartialAsync("../TelegramChatBot/RegisterTelegramAccount", Model)
+            @await Html.PartialAsync("../TelegramChatBot/RegisterTelegramAccount", Model)
             <label class="input-disable ml-16">
                 <input id="cbkEnableOtp" type="checkbox" disabled />
                 @Security.EnableOtpViaTelegramChatbot

@@ -52,7 +52,7 @@
     <Setting Key="Age_CustomerSelProtectionCode" SpName="Age_CustomerSelProtectionCode" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustomerUpdProtectionCode" SpName="Age_CustomerUpdProtectionCode" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
-  
+
   <Function Name="Write Log Change Theme Light/Dark">
     <Setting Key="Age_SwitchDarkMode" SpName="Age_SwitchDarkMode" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
@@ -63,5 +63,14 @@
 
   <Function Name="Transfer Status">
     <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Login">
+    <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_LoginDownline" SpName="Age_LoginDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_LoginDownline_Admin" SpName="Age_LoginDownline_Admin" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_LoginDownline_Sub" SpName="Age_LoginDownline_Sub" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_LoginVerifyDownline" SpName="Age_LoginVerifyDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_LoginDownline_CheckSubUsername" SpName="Age_LoginDownline_CheckSubUsername" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

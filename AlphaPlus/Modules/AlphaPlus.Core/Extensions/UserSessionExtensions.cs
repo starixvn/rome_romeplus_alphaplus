@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Text.RegularExpressions;
 using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Models;
 
-namespace AlphaPlus.Core.Models;
+namespace AlphaPlus.Core.Extensions;
 
 public static class UserSessionExtensions
 {
@@ -25,7 +26,7 @@ public static class UserSessionExtensions
             session.UserName = (values["username"] as string)?.ToUpperInvariant().Trim();
             session.SubAccId = Convert.ToInt32(values["subaccid"]);
             session.SubUserName = values["subaccname"] as string;
-            session.SubPageAccess = (PageAccess)(values["subpageaccess"] as string) ?? new PageAccess();
+            session.SubPageAccess = (Models.PageAccess)(values["subpageaccess"] as string) ?? new Models.PageAccess();
             if (!session.IsSubAcc)
             {
                 session.SubPageAccess.SetFullPermission();
@@ -105,35 +106,39 @@ public static class UserSessionExtensions
 
         setUserStatusAction(session, values);
 
-        session.IsDisabledAutoMPT = (bool)values["disableautompt"];
-        session.SRecommendId = Convert.ToInt32(values["srecommend"]);
-        session.MRecommendId = Convert.ToInt32(values["mrecommend"]);
-        session.ARecommendId = Convert.ToInt32(values["arecommend"]);
-        session.IsAdminCanViewVNIP = (bool)values["isadmincanviewvnip"];
-        session.IsAllowedTotalBalanceTransfer = (bool)values["isallowedtotalbalancetransfer"];
-        session.IsShowConsolidatedReport = (bool)values["isshowconsolidated"];
-        session.IsShowBetChoiceLimit = (bool)values["isShowBetChoiceLimit"];
-        session.AGIP = values["AGIP"].ToString();
-        session.SiteDBGroupId = Convert.ToInt32(values["SiteDBGroupId"]);
-
-        bool isMyanmarOdds = false;
-        if (values["ismyanmarodds"] != null && values["ismyanmarodds"] != DBNull.Value)
+        try
         {
-            _ = bool.TryParse(values["ismyanmarodds"].ToString(), out isMyanmarOdds);
-        }
+            session.IsDisabledAutoMPT = (bool)values["disableautompt"];
+            session.SRecommendId = Convert.ToInt32(values["srecommend"]);
+            session.MRecommendId = Convert.ToInt32(values["mrecommend"]);
+            session.ARecommendId = Convert.ToInt32(values["arecommend"]);
+            session.IsAdminCanViewVNIP = (bool)values["isadmincanviewvnip"];
+            session.IsAllowedTotalBalanceTransfer = (bool)values["isallowedtotalbalancetransfer"];
+            session.IsShowConsolidatedReport = (bool)values["isshowconsolidated"];
+            session.IsShowBetChoiceLimit = (bool)values["isShowBetChoiceLimit"];
+            session.AGIP = values["AGIP"].ToString();
+            session.SiteDBGroupId = Convert.ToInt32(values["SiteDBGroupId"]);
 
-        session.IsMyanmarOdds = isMyanmarOdds;
+            bool isMyanmarOdds = false;
+            if (values["ismyanmarodds"] != null && values["ismyanmarodds"] != DBNull.Value)
+            {
+                _ = bool.TryParse(values["ismyanmarodds"].ToString(), out isMyanmarOdds);
+            }
 
-        if (!string.IsNullOrWhiteSpace(AppSettings.SubAccountPermission_LockAdminAccounts)
-            && Regex.IsMatch(string.Format(",{0},", AppSettings.SubAccountPermission_LockAdminAccounts), string.Format(",{0},", session.AdminId), RegexOptions.IgnoreCase)
-            && session.IsInternal)
-        {
-            session.IsLimitedHostPermissionOnSubAccountFunction = true;
+            session.IsMyanmarOdds = isMyanmarOdds;
+
+            if (!string.IsNullOrWhiteSpace(AppSettings.SubAccountPermission_LockAdminAccounts)
+                && Regex.IsMatch(string.Format(",{0},", AppSettings.SubAccountPermission_LockAdminAccounts), string.Format(",{0},", session.AdminId), RegexOptions.IgnoreCase)
+                && session.IsInternal)
+            {
+                session.IsLimitedHostPermissionOnSubAccountFunction = true;
+            }
+            else
+            {
+                session.IsLimitedHostPermissionOnSubAccountFunction = false;
+            }
         }
-        else
-        {
-            session.IsLimitedHostPermissionOnSubAccountFunction = false;
-        }
+        catch { }
     }
 
     private static void SetProductStatus(IUserSession session, Hashtable values)

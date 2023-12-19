@@ -98,7 +98,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             var host = httpContext.Request.Host.Value.TrimEnd('.');
             var afterUrl = AppSetting.DomainMappings[host];
 
-            var url = $"{afterUrl}{AppSetting.AfterLoginAuthorizationPage}?params={EncryptParameter(JsonSerializer.Serialize(parameter))}";
+            var url = $"{afterUrl}/Account/SSO?parameter={EncryptParameter(JsonSerializer.Serialize(parameter))}";
 
             return url;
         }

@@ -60,18 +60,18 @@
             </p>
             @if (!Model.RegisterAccountViewModel.ChatBotViewModel.IsLinked)
             {
-                @Html.PartialAsync("SetUpTelegramOtp", Model.RegisterAccountViewModel)
+                @await Html.PartialAsync("SetUpTelegramOtp", Model.RegisterAccountViewModel)
             }
             else
             {
-                @Html.PartialAsync("ChangeOtpTelegramStatus", Model.RegisterAccountViewModel)
+                @await Html.PartialAsync("ChangeOtpTelegramStatus", Model.RegisterAccountViewModel)
             }
 
             @if (!Model.IsAlreadySetup)
             {
-                @Html.PartialAsync("RegisterAuthenticatorApp", Model)
+                @await Html.PartialAsync("RegisterAuthenticatorApp", Model)
             }
-            @Html.PartialAsync("RemoveSecretKey", Model)
+            @await Html.PartialAsync("RemoveSecretKey", Model)
         </div>
     </div>
     @Html.AntiForgeryToken()

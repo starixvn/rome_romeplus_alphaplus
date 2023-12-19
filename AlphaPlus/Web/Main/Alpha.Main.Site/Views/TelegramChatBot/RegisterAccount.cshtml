@@ -24,7 +24,7 @@
                 <p>
                     @Html.Raw(ChatBot.IntroTelegramChatbot)
                 </p>
-                @Html.PartialAsync("RegisterTelegramAccount", Model)
+                @await Html.PartialAsync("RegisterTelegramAccount", Model)
             </div>
         </div>
     </div>

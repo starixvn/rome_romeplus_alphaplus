@@ -15,6 +15,8 @@ using ONEbook.OTP.Services;
 using TelegramBot.Client.Services;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.RequestInfo;
+using Fanex.Cryptography.Aes;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -25,7 +27,8 @@ public static class Extensions
         services
             .AddMediatR()
             .AddFanexSql(configuration)
-            .AddRemotingRef(configuration);
+            .AddRemotingRef(configuration)
+            .AddRequestInfo();
 
         services.AddSingleton<IDynamicRepository, DynamicRepository>();
         services.AddSingleton(Fanex.Logging.Logger.Log);
@@ -33,6 +36,9 @@ public static class Extensions
         services.AddSingleton<IBrowserHelper, BrowserHelper>();
         services.AddSingleton<MenuItemBuilder, MenuItemBuilderImpl>();
         services.AddSingleton<CacheRefService, CacheRefServiceImpl>();
+        services.AddSingleton<IAesService, AesService>();
+        services.AddSingleton<IUserSessionService, UserSessionService>();
+        services.AddSingleton<IAuthorizationService, AuthorizationService>();
 
         services.AddSingleton<SiteMenuService, SiteMenuServiceImpl>();
         services.AddSingleton<ProfilePictureServices, ProfilePictureServicesImpl>();

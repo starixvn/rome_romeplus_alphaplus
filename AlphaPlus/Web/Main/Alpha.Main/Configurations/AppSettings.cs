@@ -5,25 +5,25 @@ namespace Alpha.Main.Configurations
 {
     public static class AppSettings
     {
-        public static string VirtualDirectory => GetValue<string>("VirtualDirectory");
+        // public static string VirtualDirectory => GetValue<string>("VirtualDirectory");
 
-        public static string NonUseSecurityCodeSites => GetValue<string>("NonUseSecurityCodeSites");
+        // public static string NonUseSecurityCodeSites => GetValue<string>("NonUseSecurityCodeSites");
 
-        public static string StaticResourcesVersion => GetValue<string>("AssetsApp:StaticResourcesVersion");
+        // public static string StaticResourcesVersion => GetValue<string>("AssetsApp:StaticResourcesVersion");
 
         public static string[] DevicesUseCustomScrollbar => GetValue<string[]>("DevicesUseCustomScrollbar");
 
-        public static string StoreProcedurePath => GetValue<string>("StoredProcedurePath");
+        // public static string StoreProcedurePath => GetValue<string>("StoredProcedurePath");
 
-        public static string MessageSuper => GetValue<string>("Message:Super");
+        // public static string MessageSuper => GetValue<string>("Message:Super");
 
-        public static string MessageMaster => GetValue<string>("Message:Master");
+        // public static string MessageMaster => GetValue<string>("Message:Master");
 
-        public static string MessageAgent => GetValue<string>("Message:Agent");
+        // public static string MessageAgent => GetValue<string>("Message:Agent");
 
         public static bool IsDisabledContactUsLink => GetValue<bool>("IsDisabledContactUsLink");
 
-        public static string GoogleAnalyticId => GetValue<string>("GoogleAnalyticId");
+        // public static string GoogleAnalyticId => GetValue<string>("GoogleAnalyticId");
 
         public static bool DisableMessages => GetValue<bool>("DisableMessages");
 
@@ -35,15 +35,15 @@ namespace Alpha.Main.Configurations
 
         public static bool ShowHelpLink => IsMBCSite;
 
-        public static string[] NoticeTypes => GetValue<string[]>("NoticeTypes");
+        // public static string[] NoticeTypes => GetValue<string[]>("NoticeTypes");
 
         public static string GetAppPath(string name) => GetValue<string>(name);
 
-        public static bool LocalTest => GetValue<bool>("LocalTest");
+        // public static bool LocalTest => GetValue<bool>("LocalTest");
 
-        public static int[] TrackingConnectionCustIds => GetValue<int[]>("TrackingConnectionCustIds");
+        public static int[] TrackingConnectionCustIds => GetValue<int[]>("TrackingConnectionCustIds", []);
 
-        public static string RemoteRefURL => GetValue<string>("RemoteRefURL");
+        // public static string RemoteRefURL => GetValue<string>("RemoteRefURL");
 
         public static string CreatedSettingLastDateSessionKey => "CreatedSettingLastDate";
 
@@ -63,10 +63,10 @@ namespace Alpha.Main.Configurations
 
         public static int UMAnnouncementPopupClientIntervalInMinutes => GetValue<int>("UMAnnouncementPopup:ClientIntervalInMinutes");
 
-        public static string[] NewCaptchaLogCurrencies => GetValue<string[]>("NewCaptcha:LogCurrencies");
+        // public static string[] NewCaptchaLogCurrencies => GetValue<string[]>("NewCaptcha:LogCurrencies");
 
 
-        public static bool IsShowEmptyDashboard => GetValue<bool>("IsShowEmptyDashboard");
+        // public static bool IsShowEmptyDashboard => GetValue<bool>("IsShowEmptyDashboard");
 
         public static string[] DomainsWithViva88ContactInfo => GetValue<string[]>("newdomains");
 
@@ -92,8 +92,8 @@ namespace Alpha.Main.Configurations
         public static int RecheckinIntervalMiliseconds => GetValue("Recheckin:IntervalMiliseconds", 3000);
 
         public static string JsVersion => GetValue<string>("JsVersion");
-        public static Uri ApiKeyServiceUri => new(GetValue<string>("ApiKeyServiceUri"));
-        public static bool IsStoreUserLangEnabled => GetValue<bool>("IsStoreUserLangEnabled");
+        // public static Uri ApiKeyServiceUri => new(GetValue<string>("ApiKeyServiceUri"));
+        // public static bool IsStoreUserLangEnabled => GetValue<bool>("IsStoreUserLangEnabled");
 
         public static string APIGatewaysURL => GetValue<string>("APIGatewaysURL");
 

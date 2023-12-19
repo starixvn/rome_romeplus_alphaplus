@@ -3,6 +3,8 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Logging;
 using Fanex.Logging.Extensions.Database;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
+using StackExchange.Redis;
 
 namespace Alpha.Main.Site;
 
@@ -20,8 +22,21 @@ public class Startup
         AlphaPlus.Core.Configurations.ConfigurationManager.Init(Configuration);
         LoggingConfig.Init(new[] { "password", "seccode", "securitycode" }, DatabaseInfoGetters.GetDbExceptionInfo);
 
+        var redisConfiguration = Configuration.GetValue<string>("RedisConfiguration");
+        services.AddStackExchangeRedisCache(options =>
+           {
+               options.Configuration = redisConfiguration;
+               options.InstanceName = "AlphaPlus";
+           });
+        services.AddSession();
+
+        services
+            .AddDataProtection()
+            .SetApplicationName("AlphaPlus")
+            .PersistKeysToStackExchangeRedis(ConnectionMultiplexer.Connect(redisConfiguration));
+
         services.AddControllersWithViews();
-        services.AddSession()
+        services
             .AddHttpContextAccessor()
             .AddApplicationServices(Configuration)
             .AddAuthorization()
@@ -41,6 +56,7 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
+        app.UsePathBase("/site-main");
         app.UseStaticFiles();
         app.UseRouting();
         app.UseSession();

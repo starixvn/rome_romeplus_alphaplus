@@ -19,7 +19,7 @@
         <div id="captcha-container">
             @if (Model.IsShowCaptcha)
             {
-                @Html.PartialAsync("Captcha")
+                @await Html.PartialAsync("Captcha")
             }
         </div>
         <div class="form-group list-button">

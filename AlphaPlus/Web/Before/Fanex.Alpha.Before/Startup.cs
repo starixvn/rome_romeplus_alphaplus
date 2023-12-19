@@ -14,6 +14,7 @@ using Fanex.Alpha.Before.Services.FPS;
 using Fanex.Alpha.Before.Services.SignIn;
 using Fanex.Caching.Redis;
 using Fanex.Data.Repository;
+using Fanex.Data.SqlServer;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using StackExchange.Redis;
@@ -48,14 +49,16 @@ namespace Fanex.Alpha.Before
                     $"BeforeLogin-{Configuration.GetValue<string>("Environment")}-DataProtection-Keys");
 
             services.AddFanexLogging(Configuration)
-                 .AddONEbookUM(Configuration)
-                 .AddRedisCache(Configuration.GetSection("Fanex.Caching.Redis"))
-                 .AddCustomOptions(Configuration)
-                 .AddNetThrottling(Configuration)
-                 .AddSliderCaptcha(Configuration)
-                 .AddCustomHealthChecks()
-                 .AddControllersWithViews()
-                 .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+                .AddRequestInfo()
+                .AddONEbookUM(Configuration)
+                .AddFanexSql(Configuration)
+                .AddRedisCache(Configuration.GetSection("Fanex.Caching.Redis"))
+                .AddCustomOptions(Configuration)
+                .AddNetThrottling(Configuration)
+                .AddSliderCaptcha(Configuration)
+                .AddCustomHealthChecks()
+                .AddControllersWithViews()
+                .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             services.Configure<ForwardedHeadersOptions>(options =>
             {
@@ -100,7 +103,6 @@ namespace Fanex.Alpha.Before
 
             app.UseForwardedHeaders();
 
-            app.UseFanexDataWithSqlServer(Configuration, env);
             app.UseWebOptimizer();
             app.UseStaticFiles();
             app.UseRouting();
