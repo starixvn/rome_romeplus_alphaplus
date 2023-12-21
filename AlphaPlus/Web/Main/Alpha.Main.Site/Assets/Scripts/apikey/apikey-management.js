@@ -1,5 +1,5 @@
 /// <reference path="../core.ts" />
-'use strict';
+"use strict";
 var ApiKeyManagement = /** @class */ (function () {
     function ApiKeyManagement($, topWindow, clipboard) {
         var _this = this;
@@ -13,25 +13,29 @@ var ApiKeyManagement = /** @class */ (function () {
             _this.registerApiKeyRevokeEvent();
         };
         this.resources = {
-            editAPIKey: document.getElementById('EditAPIKey').value,
-            areYouSureRevokeAPIKey: document.getElementById('AreYouSureRevokeAPIKey').value,
-            thisActionCannotBeUndone: document.getElementById('ThisActionCannotBeUndone').value,
+            editAPIKey: document.getElementById("EditAPIKey").value,
+            areYouSureRevokeAPIKey: (document.getElementById("AreYouSureRevokeAPIKey")).value,
+            thisActionCannotBeUndone: (document.getElementById("ThisActionCannotBeUndone")).value,
         };
         this.registerApiKeyEditEvent = function () {
             var self = _this;
             self.$(".btn-edit").click(function () {
                 var apikey = self.$(this).attr("apikey");
                 var url = alpha.urls.mainRootPath + ("ApiKey/EditApiKey?key=" + apikey);
-                self.topWindow.popupManager.open(url, self.resources.editAPIKey, 380, 540, null, null, null, null, null, null, { customClass: 'api-modal' });
+                self.topWindow.popupManager.open(url, self.resources.editAPIKey, 380, 540, null, null, null, null, null, null, { customClass: "api-modal" });
             });
             _this.$showURL.click(_this.showURL);
-            _this.$apiKeyNames.click(function () { self.showApiKey(self.$(this)); });
-            if (window.document.queryCommandSupported
-                && window.document.queryCommandSupported("copy")) {
+            _this.$apiKeyNames.click(function () {
+                self.showApiKey(self.$(this));
+            });
+            if (window.document.queryCommandSupported &&
+                window.document.queryCommandSupported("copy")) {
                 _this.clipboard
                     .on("success", function (e) {
                     self.$(e.trigger).tooltip("show");
-                    setTimeout(function () { self.$apiKeyPopups.addClass('hide'); }, 3000);
+                    setTimeout(function () {
+                        self.$apiKeyPopups.addClass("hide");
+                    }, 3000);
                 })
                     .on("error", function (e) {
                     self.$(e.trigger).remove();
@@ -45,8 +49,8 @@ var ApiKeyManagement = /** @class */ (function () {
                     return;
                 }
                 var $elm = self.$(e.target);
-                if ($elm.closest('.api-key-popup').length == 0) {
-                    self.$apiKeyPopups.addClass('hide');
+                if ($elm.closest(".api-key-popup").length == 0) {
+                    self.$apiKeyPopups.addClass("hide");
                 }
             });
         };
@@ -59,27 +63,26 @@ var ApiKeyManagement = /** @class */ (function () {
                 self.topWindow.bootboxConfirm(title, undefined, function () {
                     var key = self.$(_this).attr("apikey");
                     self.$.ajax({
-                        type: 'POST',
+                        type: "POST",
                         url: alpha.urls.mainRootPath + "ApiKey/RevokeApiKey",
                         data: { key: key },
-                        dataType: 'json',
+                        dataType: "json",
                         success: function (data, textStatus, jqXHR) {
                             window.location.reload();
                         },
-                        complete: function (jqXHR, textStatus) {
-                        }
+                        complete: function (jqXHR, textStatus) { },
                     });
                 });
             });
         };
         this.showURL = function () {
-            _this.$urlMask.removeClass('close');
-            _this.$urlMask.addClass('open');
+            _this.$urlMask.removeClass("close");
+            _this.$urlMask.addClass("open");
         };
         this.showApiKey = function ($elm) {
-            _this.$apiKeyPopups.addClass('hide');
-            var popup = $elm.parent().find('.api-key-popup');
-            popup.removeClass('hide');
+            _this.$apiKeyPopups.addClass("hide");
+            var popup = $elm.parent().find(".api-key-popup");
+            popup.removeClass("hide");
             popup.css({ left: $elm.position().left });
             _this.apiNameClick = true;
         };
@@ -90,7 +93,12 @@ var ApiKeyManagement = /** @class */ (function () {
     return ApiKeyManagement;
 }());
 $(function () {
-    var apiKeyManagement = new ApiKeyManagement($, window.top, new Clipboard('.icon-content-copy'));
-    apiKeyManagement.init();
+    // TODO:
+    // const apiKeyManagement = new ApiKeyManagement(
+    //   $,
+    //   window.top,
+    //   new Clipboard(".icon-content-copy")
+    // );
+    // apiKeyManagement.init();
 });
 //# sourceMappingURL=apikey-management.js.map

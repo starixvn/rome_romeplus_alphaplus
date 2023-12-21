@@ -1,6 +1,6 @@
 /// <reference path="../core.ts" />
 /// <reference path="index-manager.ts" />
-'use strict';
+"use strict";
 var headerNav = {
     domElements: {
         isDisableToCheckNewMessage: false,
@@ -22,23 +22,23 @@ var headerNav = {
         sideBarContent: null,
         profileImage: null,
         liveChat: null,
-        switchMode: null
+        switchMode: null,
     },
     messageType: {
         Normal: 0,
         Personal: 1,
         Special: 2,
-        System: 3
+        System: 3,
     },
     maximunNewMessage: {
         value: 99,
-        text: "99+"
+        text: "99+",
     },
     resources: {
-        labelAM: '',
-        labelPM: '',
+        labelAM: "",
+        labelPM: "",
         months: [],
-        labelMonths: null
+        labelMonths: null,
     },
     languageCode: null,
     clockTime: null,
@@ -54,14 +54,14 @@ var headerNav = {
         queryUserName: alpha.urls.oldMainRootPath + "_AccountInfo/Handlers/QueryUserName.ashx",
         checkNewMessage: alpha.urls.messageRootPath + "NewMessage/GetNumberOfNewAnnouncement",
         banner: alpha.urls.mainRootPath + "Banner/Get?type=",
-        serverTime: alpha.urls.mainRootPath + "Dashboard/GetServerTime"
+        serverTime: alpha.urls.mainRootPath + "Dashboard/GetServerTime",
     },
     unreadMessage: {
         Normal: 0,
         Special: 0,
         System: 0,
         Personal: 0,
-        Total: 0
+        Total: 0,
     },
     init: function () {
         headerNav.initClock();
@@ -77,7 +77,20 @@ var headerNav = {
         headerNav.domElements.clock = $("#clock");
         headerNav.resources.labelAM = "AM";
         headerNav.resources.labelPM = "PM";
-        headerNav.resources.labelMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        headerNav.resources.labelMonths = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+        ];
         var clock = headerNav.domElements.clock;
         headerNav.clockTime = new Date(clock.attr("data-year"), clock.attr("data-month") - 1, clock.attr("data-day"), clock.attr("data-hour"), clock.attr("data-minute"), clock.attr("data-second"), 0);
     },
@@ -110,12 +123,25 @@ var headerNav = {
         var strMinute = minute >= 10 ? minute : "0" + minute;
         var strSecond = second >= 10 ? second : "0" + second;
         var stra = hour >= 12 ? headerNav.resources.labelPM : headerNav.resources.labelAM;
-        var str = strHours + ":" + strMinute + ":" + strSecond + " " + stra + " " +
-            headerNav.resources.labelMonths[month] + " " + day + ", " + year + " GMT-4";
+        var str = strHours +
+            ":" +
+            strMinute +
+            ":" +
+            strSecond +
+            " " +
+            stra +
+            " " +
+            headerNav.resources.labelMonths[month] +
+            " " +
+            day +
+            ", " +
+            year +
+            " GMT-4";
         return str;
     },
     cachedDomElements: function () {
-        headerNav.domElements.isDisableToCheckNewMessage = $("#disableMessages").val() == "1";
+        headerNav.domElements.isDisableToCheckNewMessage =
+            $("#disableMessages").val() == "1";
         headerNav.domElements.languageCode = $("#language-code");
         headerNav.domElements.language = $("#language");
         headerNav.domElements.languageSelectorContainer = $(".language-selector-container");
@@ -128,7 +154,7 @@ var headerNav = {
         // For mobile
         headerNav.domElements.iconSearch = $(".icon-account-search");
         headerNav.domElements.linkLogout = $(".link-logout");
-        headerNav.domElements.languageDropdownSubMenu = $('.dropdown-submenu.language');
+        headerNav.domElements.languageDropdownSubMenu = $(".dropdown-submenu.language");
         headerNav.domElements.sideBar = $("#side-bar");
         headerNav.domElements.sideBarContent = $(".content-wrapper");
         headerNav.domElements.profileImage = $("#logoProfileImg");
@@ -143,26 +169,32 @@ var headerNav = {
     },
     markMessageAsRead: function (type) {
         if (type == headerNav.messageType.Normal) {
-            headerNav.unreadMessage.Total = headerNav.unreadMessage.Total - headerNav.unreadMessage.Normal;
+            headerNav.unreadMessage.Total =
+                headerNav.unreadMessage.Total - headerNav.unreadMessage.Normal;
             headerNav.unreadMessage.Normal = 0;
         }
         else if (type == headerNav.messageType.Personal) {
-            headerNav.unreadMessage.Total = headerNav.unreadMessage.Total - headerNav.unreadMessage.Personal;
+            headerNav.unreadMessage.Total =
+                headerNav.unreadMessage.Total - headerNav.unreadMessage.Personal;
             headerNav.unreadMessage.Personal = 0;
         }
         else if (type == headerNav.messageType.System) {
-            headerNav.unreadMessage.Total = headerNav.unreadMessage.Total - headerNav.unreadMessage.System;
+            headerNav.unreadMessage.Total =
+                headerNav.unreadMessage.Total - headerNav.unreadMessage.System;
             headerNav.unreadMessage.System = 0;
         }
         else {
-            headerNav.unreadMessage.Total = headerNav.unreadMessage.Total - headerNav.unreadMessage.Special;
+            headerNav.unreadMessage.Total =
+                headerNav.unreadMessage.Total - headerNav.unreadMessage.Special;
             headerNav.unreadMessage.Special = 0;
         }
     },
     buildIconNewMessageByType: function (type) {
         headerNav.markMessageAsRead(type);
         if (headerNav.unreadMessage.Total > 0) {
-            headerNav.domElements.numberNewMessage.text(headerNav.unreadMessage.Total > headerNav.maximunNewMessage.value ? headerNav.maximunNewMessage.text : headerNav.unreadMessage.Total);
+            headerNav.domElements.numberNewMessage.text(headerNav.unreadMessage.Total > headerNav.maximunNewMessage.value
+                ? headerNav.maximunNewMessage.text
+                : headerNav.unreadMessage.Total);
         }
         else {
             headerNav.domElements.numberNewMessage.text("");
@@ -172,7 +204,9 @@ var headerNav = {
     buildIconNewMessage: function () {
         var firstUrl = headerNav.popFirstNewMessage();
         if (headerNav.unreadMessage.Total > 0) {
-            headerNav.domElements.numberNewMessage.text(headerNav.unreadMessage.Total > headerNav.maximunNewMessage.value ? headerNav.maximunNewMessage.text : headerNav.unreadMessage.Total);
+            headerNav.domElements.numberNewMessage.text(headerNav.unreadMessage.Total > headerNav.maximunNewMessage.value
+                ? headerNav.maximunNewMessage.text
+                : headerNav.unreadMessage.Total);
         }
         else {
             headerNav.domElements.numberNewMessage.text("");
@@ -189,7 +223,9 @@ var headerNav = {
                     if (result !== undefined) {
                         headerNav.unreadMessage = result;
                         if (result.Total > 0) {
-                            headerNav.domElements.numberNewMessage.text(result.Total > headerNav.maximunNewMessage.value ? headerNav.maximunNewMessage.text : result.Total);
+                            headerNav.domElements.numberNewMessage.text(result.Total > headerNav.maximunNewMessage.value
+                                ? headerNav.maximunNewMessage.text
+                                : result.Total);
                             headerNav.domElements.numberNewMessage.addClass("badge-title");
                         }
                         else {
@@ -198,14 +234,16 @@ var headerNav = {
                         }
                     }
                     setTimeout(headerNav.checkNewMessage, 2 * 60 * 1000);
-                }
+                },
             });
         }
     },
     popFirstNewMessage: function () {
         if (headerNav.unreadMessage.Special > 0) {
             headerNav.markMessageAsRead(headerNav.messageType.Special);
-            return headerNav.urls.messages + "?messageType=" + headerNav.messageType.Special;
+            return (headerNav.urls.messages +
+                "?messageType=" +
+                headerNav.messageType.Special);
         }
         else if (headerNav.unreadMessage.System > 0) {
             headerNav.markMessageAsRead(headerNav.messageType.System);
@@ -213,10 +251,10 @@ var headerNav = {
         }
         else if (headerNav.unreadMessage.Normal > 0) {
             headerNav.markMessageAsRead(headerNav.messageType.Normal);
-            return headerNav.urls.messages + "?messageType=" + headerNav.messageType.Normal;
+            return (headerNav.urls.messages + "?messageType=" + headerNav.messageType.Normal);
         }
         headerNav.markMessageAsRead(headerNav.messageType.Personal);
-        return headerNav.urls.messages + "?messageType=" + headerNav.messageType.Personal;
+        return (headerNav.urls.messages + "?messageType=" + headerNav.messageType.Personal);
     },
     registerEvents: function () {
         headerNav.domElements.iconLogOut.on("click", alpha.core.signOut2);
@@ -226,17 +264,17 @@ var headerNav = {
         headerNav.domElements.iconQRCodeTop.on("click", function () {
             indexManager.changeMenu(headerNav.urls.qrCodeTop);
         });
-        headerNav.domElements.switchMode.on('click', headerNav.changeTheme);
-        headerNav.domElements.changeLanguageLink.on('click touchend', function (event) {
+        headerNav.domElements.switchMode.on("click", headerNav.changeTheme);
+        headerNav.domElements.changeLanguageLink.on("click touchend", function (event) {
             headerNav.changeLanguage($(event.target).data("value"), false);
         });
         // Logout link for mobile
         headerNav.domElements.linkLogout.on("click", alpha.core.signOut2);
         // Quick search component for mobile
-        headerNav.domElements.iconSearch.on('click', function () {
-            var topSearchbar = $('.top-search-bar'), topSearchInput = $('.top-search-input'), iconClose = $('.icon-close'), searchBarToggleClass = 'search-bar-toggle';
+        headerNav.domElements.iconSearch.on("click", function () {
+            var topSearchbar = $(".top-search-bar"), topSearchInput = $(".top-search-input"), iconClose = $(".icon-close"), searchBarToggleClass = "search-bar-toggle";
             topSearchbar.addClass(searchBarToggleClass);
-            topSearchInput.val('');
+            topSearchInput.val("");
             headerNav.domElements.sideBarContent.append("<div class='blockUI'></div>");
             var onCloseSearchBar = function () {
                 topSearchbar.removeClass(searchBarToggleClass);
@@ -245,7 +283,9 @@ var headerNav = {
             var getSuggestions = function (query, process) {
                 return $.get(headerNav.urls.queryUserName, { query: query }, function (data) {
                     var suggestions = alpha.core.convertReponseToJson(data).suggestions;
-                    if (typeof suggestions !== 'undefined' && suggestions !== null && suggestions.length !== 0) {
+                    if (typeof suggestions !== "undefined" &&
+                        suggestions !== null &&
+                        suggestions.length !== 0) {
                         var sugestionItems = suggestions.map(function (item) {
                             return item[0] + (item[3] ? " (" + item[3] + ")" : "");
                         });
@@ -259,22 +299,25 @@ var headerNav = {
                 menuBar.collapseLeftPanel();
                 menuBar.activateAccountInfoTab(null, item.replace(/\(\S+?\)/g, "").trim());
             };
-            iconClose.on('click', onCloseSearchBar);
-            $(".blockUI").on('click', onCloseSearchBar);
-            var typeaheadOptions = {
-                minLength: 3,
-                items: 10,
-                name: 'userNames',
-                autoSelect: false,
-                delay: 200,
-                source: getSuggestions,
-                afterSelect: afterSelectSuggestionItem
-            };
-            topSearchInput.typeahead(typeaheadOptions);
+            iconClose.on("click", onCloseSearchBar);
+            $(".blockUI").on("click", onCloseSearchBar);
+            // TODO:
+            // const typeaheadOptions: TypeaheadOptions = {
+            //     minLength: 3,
+            //     items: 10,
+            //     name: 'userNames',
+            //     autoSelect: false,
+            //     delay: 200,
+            //     source: getSuggestions,
+            //     afterSelect: afterSelectSuggestionItem
+            // };
+            // topSearchInput.typeahead(typeaheadOptions);
         });
         // Language show options for mobile
-        headerNav.domElements.languageDropdownSubMenu.on('click', function (e) {
-            headerNav.domElements.languageDropdownSubMenu.find('.list-language').toggle();
+        headerNav.domElements.languageDropdownSubMenu.on("click", function (e) {
+            headerNav.domElements.languageDropdownSubMenu
+                .find(".list-language")
+                .toggle();
             e.stopPropagation();
         });
         headerNav.domElements.iconNewMessage.on("click", headerNav.buildIconNewMessage);
@@ -301,7 +344,7 @@ var headerNav = {
                 if (result !== undefined) {
                     headerNav.reloadPage();
                 }
-            }
+            },
         });
     },
     changeTheme: function () {
@@ -312,20 +355,20 @@ var headerNav = {
             data: { isDarkMode: !isDarkMode },
             success: function (result) {
                 result && headerNav.reloadPage();
-            }
+            },
         });
     },
     reloadPage: function () {
         top.location.href = headerNav.removeBookmarksInUrl(top.location.href);
     },
     setProfilePictureOnNav: function (profilePicure) {
-        $('#userPicture').attr('src', profilePicure);
-        $('#profile-avatar-image').attr('src', profilePicure);
-        $("#logoProfileImg").attr('src', profilePicure);
+        $("#userPicture").attr("src", profilePicure);
+        $("#profile-avatar-image").attr("src", profilePicure);
+        $("#logoProfileImg").attr("src", profilePicure);
         briefProfile.setProfilePictureStorage();
     },
     removeBookmarksInUrl: function (url) {
-        if (typeof url !== 'string') {
+        if (typeof url !== "string") {
             return null;
         }
         var i = url.indexOf("#");
@@ -333,14 +376,14 @@ var headerNav = {
             return url;
         }
         return url.substr(0, i);
-    }
+    },
 };
 $(function () {
     headerNav.init();
     window.onfocus = function () {
         headerNav.getServerTime(alpha.user.onUserId || "-1");
     };
-    indexManager.domElements.mainFrame.on('load.newmain', function () {
+    indexManager.domElements.mainFrame.on("load.newmain", function () {
         headerNav.getServerTime(alpha.user.onUserId || "-1");
     });
     try {
@@ -348,7 +391,6 @@ $(function () {
             !document.hidden && headerNav.getServerTime(alpha.user.onUserId || "-1");
         });
     }
-    catch (e) {
-    }
+    catch (e) { }
 });
 //# sourceMappingURL=header-nav.js.map

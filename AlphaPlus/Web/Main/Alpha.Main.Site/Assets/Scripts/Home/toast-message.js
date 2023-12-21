@@ -13,18 +13,23 @@ var ToastMessage = /** @class */ (function () {
         this.$hoursAgo = this.$("#hoursAgo").val();
         this.$daysAgo = this.$("#daysAgo").val();
         this.$here = this.$("#Here").val().toUpperCase();
-        this.monitorURL = alpha.urls.transferRootPath + "AutoTransfer/Monitoring?Status=Failed";
+        this.monitorURL =
+            alpha.urls.transferRootPath + "AutoTransfer/Monitoring?Status=Failed";
         this.showingToasts = {};
         this.toastId = 0;
         this.getMessages();
-        setInterval(function () { _this.updateMinsDiff(); }, 10000);
+        setInterval(function () {
+            _this.updateMinsDiff();
+        }, 10000);
     };
     ToastMessage.prototype.getMessages = function () {
         var self = this;
         this.$.get(this.getMessagesUrl, { LastToastId: this.toastId }, function (data) {
             self.renderMessages(data);
         }).always(function () {
-            setTimeout(function () { self.getMessages(); }, self.getMessagesTimeout);
+            setTimeout(function () {
+                self.getMessages();
+            }, self.getMessagesTimeout);
         });
     };
     ToastMessage.prototype.renderMessages = function (data) {
@@ -49,11 +54,19 @@ var ToastMessage = /** @class */ (function () {
             tapToDismiss: false,
             closeOnHover: false,
             timeOut: 0,
-            positionClass: 'toast-bottom-right',
+            positionClass: "toast-bottom-right",
             closeButton: true,
-            onCloseClick: function () { self.closeMessage(this, message.ToastId); }
+            onCloseClick: function () {
+                self.closeMessage(this, message.ToastId);
+            },
         };
-        var title = '<span>' + message.Title + '</span> <span class="mins-diff" data-org-time="' + message.CreatedTimeStr + '">' + this.getMinDiffs(message.CreatedTimeStr) + '</span>';
+        var title = "<span>" +
+            message.Title +
+            '</span> <span class="mins-diff" data-org-time="' +
+            message.CreatedTimeStr +
+            '">' +
+            this.getMinDiffs(message.CreatedTimeStr) +
+            "</span>";
         var content = this.formatContent(message);
         var t1;
         switch (message.TypeId) {
@@ -75,13 +88,12 @@ var ToastMessage = /** @class */ (function () {
             if (data.ErrCode) {
                 self.topWindow.bootboxAlert(data.ErrMsg);
             }
-        }).always(function () {
-        });
+        }).always(function () { });
     };
     ToastMessage.prototype.formatContent = function (message) {
         var type = message.SiteFunctionId;
         var content = message.Body;
-        var format = this['format_' + type];
+        var format = this["format_" + type];
         return format ? format.call(this, content) : content;
     };
     ToastMessage.prototype.format_1 = function (content) {
@@ -89,10 +101,10 @@ var ToastMessage = /** @class */ (function () {
     };
     ToastMessage.prototype.getDisplayInfo = function () {
         var feedback = this.$("#feedback-function");
-        if (feedback.length && feedback.hasClass('hide')) {
+        if (feedback.length && feedback.hasClass("hide")) {
             return {
                 bottom: 0,
-                width: 350
+                width: 350,
             };
         }
         return {

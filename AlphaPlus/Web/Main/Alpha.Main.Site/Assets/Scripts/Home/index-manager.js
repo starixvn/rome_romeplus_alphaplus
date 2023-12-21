@@ -1,15 +1,15 @@
 /// <reference path="menu-bar.ts" />
-if (typeof String.prototype.startsWith != 'function') {
+if (typeof String.prototype.startsWith != "function") {
     String.prototype.startsWith = function (prefix) {
         return this.slice(0, prefix.length) == prefix;
     };
 }
-'use strict';
+("use strict");
 /*global alpha, briefProfile */
 var indexManager = {
     currentTab: null,
-    currentUrlCookieName: 'DFFKDHFJKLDHFJDH',
-    hidePopupCookies: 'HidePopup',
+    currentUrlCookieName: "DFFKDHFJKLDHFJDH",
+    hidePopupCookies: "HidePopup",
     requiredNetworkSpeedCalculation: false,
     showOldCustomerList: false,
     reportDomain: "",
@@ -23,19 +23,19 @@ var indexManager = {
         accountInfoContent: null,
         pagePopup: null,
         feedbackFunction: null,
-        language: null
+        language: null,
     },
     urls: {
-        reCheckinUrl: alpha.urls.oldMainRootPath + '_Authorization/Handlers/ReCheckin.ashx',
-        feedback: alpha.urls.messageRootPath + 'Feedback/Index',
-        checkExistFeedback: alpha.urls.messageRootPath + 'Feedback/CheckExist?id=',
-        feedbackFunction: alpha.urls.messageRootPath + 'Feedback/Function?id=',
+        reCheckinUrl: alpha.urls.oldMainRootPath + "_Authorization/Handlers/ReCheckin.ashx",
+        feedback: alpha.urls.messageRootPath + "Feedback/Index",
+        checkExistFeedback: alpha.urls.messageRootPath + "Feedback/CheckExist?id=",
+        feedbackFunction: alpha.urls.messageRootPath + "Feedback/Function?id=",
     },
     init: function () {
         alpha.detectResponsiveInformation();
-        if (!alpha.core.IsIe8OrLower()) {
-            $.material.init();
-        }
+        // if (!alpha.core.IsIe8OrLower()) {
+        //     $.material.init();
+        // }
         indexManager.cachedDomElements();
         indexManager.loadPartialViews();
         indexManager.registerEvents();
@@ -46,7 +46,7 @@ var indexManager = {
             setTimeout(indexManager.calculateUserConnectionSpeed, 8000);
         }
         var messageForReloadSite = indexManager.getCustomCookies("messageForReloadSite");
-        if (messageForReloadSite != '') {
+        if (messageForReloadSite != "") {
             window.bootboxAlert(messageForReloadSite);
             indexManager.removeCustomCookies("messageForReloadSite");
         }
@@ -54,12 +54,14 @@ var indexManager = {
     registerEvents: function () {
         indexManager.domElements.pagePopup.tinyDraggable();
         setTimeout(indexManager.reCheckin, indexManager.recheckInIntervalMiliseconds);
-        var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+        var eventMethod = window.addEventListener
+            ? "addEventListener"
+            : "attachEvent";
         var eventer = window[eventMethod];
         var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
         eventer(messageEvent, function (e) {
-            if (e.data.event_id === "daily-statement"
-                || e.data.event_id === "detail-statement") {
+            if (e.data.event_id === "daily-statement" ||
+                e.data.event_id === "detail-statement") {
                 popupManager.open(e.data.url, e.data.title, 900);
             }
             if (e.data.event_id === "betlist-result") {
@@ -68,18 +70,28 @@ var indexManager = {
             if (e.data.event_id === "pplivecasino-result") {
                 var left = popupManager.leftPosition();
                 var top = popupManager.topPosition() + 100;
-                var option = "toolbar=no,scrollbars=no,resizable=yes,top=" + top + ",left=" + left + ",width=835,height=400,location=no";
+                var option = "toolbar=no,scrollbars=no,resizable=yes,top=" +
+                    top +
+                    ",left=" +
+                    left +
+                    ",width=835,height=400,location=no";
                 var resultPopup = window.open("", "_blank", option);
                 resultPopup.document.title = "PP Live Casino Result";
                 $.ajax({
                     type: "POST",
-                    url: location.origin.split(':')[0] + "://" + location.hostname + '/' + alpha.urls.resultRootPath + e.data.url,
+                    url: location.origin.split(":")[0] +
+                        "://" +
+                        location.hostname +
+                        "/" +
+                        alpha.urls.resultRootPath +
+                        e.data.url,
                     success: function (data) {
                         resultPopup.location.href = data.Result;
                     },
                     error: function () {
-                        resultPopup.location.href = alpha.urls.oldMainRootPath + 'Error.aspx';
-                    }
+                        resultPopup.location.href =
+                            alpha.urls.oldMainRootPath + "Error.aspx";
+                    },
                 });
             }
             if (e.data.event_id === "winlossdetailnew-feedback") {
@@ -88,24 +100,28 @@ var indexManager = {
         }, false);
     },
     cachedDomElements: function () {
-        indexManager.isInternal = $('#isInternal').val() === "1";
-        indexManager.domElements.partialContents = $('.partial-content');
-        indexManager.domElements.content = $('#content');
-        indexManager.domElements.accountInfoContent = $('#accountinfo-content');
-        indexManager.domElements.pagePopup = $('#page-popup');
-        indexManager.requiredNetworkSpeedCalculation = $('#requiredNetworkSpeedCalculation').val() == '1';
-        indexManager.showOldCustomerList = $('#showOldCustomerList').val() == '1';
-        indexManager.reportDomain = $('#reportDomain').val();
+        indexManager.isInternal = $("#isInternal").val() === "1";
+        indexManager.domElements.partialContents = $(".partial-content");
+        indexManager.domElements.content = $("#content");
+        indexManager.domElements.accountInfoContent = $("#accountinfo-content");
+        indexManager.domElements.pagePopup = $("#page-popup");
+        indexManager.requiredNetworkSpeedCalculation =
+            $("#requiredNetworkSpeedCalculation").val() == "1";
+        indexManager.showOldCustomerList = $("#showOldCustomerList").val() == "1";
+        indexManager.reportDomain = $("#reportDomain").val();
         indexManager.recheckInIntervalMiliseconds = $("#RecheckinIntervalMiliseconds").val();
         indexManager.domElements.feedbackFunction = $("#feedback-function");
         indexManager.domElements.language = $("#language");
     },
     changeMenu: function (url) {
-        indexManager.domElements.mainFrame.attr('src', url);
+        indexManager.domElements.mainFrame.attr("src", url);
     },
     reCheckin: function () {
         // Post with return result in JSON format
-        $.cookie('ssl', location.href.indexOf('https://') === 0, { expires: 30, path: '/' });
+        $.cookie("ssl", location.href.indexOf("https://") === 0, {
+            expires: 30,
+            path: "/",
+        });
         $.ajax({
             type: "POST",
             url: indexManager.urls.reCheckinUrl,
@@ -122,20 +138,19 @@ var indexManager = {
                         }
                     }
                 }
-                catch (e) {
-                }
+                catch (e) { }
             },
             complete: function () {
                 setTimeout(indexManager.reCheckin, indexManager.recheckInIntervalMiliseconds);
-            }
+            },
         });
     },
     loadPartialViews: function () {
         indexManager.domElements.partialContents.each(function (index, partialContent) {
-            var $partialContent = $(partialContent), url = $partialContent.data('url');
+            var $partialContent = $(partialContent), url = $partialContent.data("url");
             if (url && url.length > 0) {
-                $partialContent.load(url + '?' + Math.random(), function () {
-                    if ($partialContent.hasClass('customer-profile')) {
+                $partialContent.load(url + "?" + Math.random(), function () {
+                    if ($partialContent.hasClass("customer-profile")) {
                         briefProfile.init();
                     }
                 });
@@ -148,14 +163,15 @@ var indexManager = {
             if (!indexManager.isInternal) {
                 var mainFrame = document.getElementById("main");
                 var mainFrameDocument = mainFrame.contentWindow || mainFrame.contentDocument;
-                var currentUrl = mainFrameDocument && mainFrameDocument.location.href || mainFrame.src;
+                var currentUrl = (mainFrameDocument && mainFrameDocument.location.href) ||
+                    mainFrame.src;
                 localStorage.setItem(indexManager.currentUrlCookieName, currentUrl);
             }
         }
         catch (e) { }
     },
     setCurrentUrl: function () {
-        var defaultUrl = indexManager.domElements.content.data('default-url');
+        var defaultUrl = indexManager.domElements.content.data("default-url");
         var currentUrl = indexManager.isInternal
             ? defaultUrl
             : localStorage.getItem(indexManager.currentUrlCookieName) || defaultUrl;
@@ -165,30 +181,32 @@ var indexManager = {
         if (currentUrl.indexOf(headerNav.urls.home) !== -1) {
             currentUrl = currentUrl.replace("Index2", "Index");
         }
-        if (indexManager.domElements.mainFrame
-            && indexManager.domElements.mainFrame.length > 0) {
-            indexManager.domElements.mainFrame.attr('src', currentUrl);
+        if (indexManager.domElements.mainFrame &&
+            indexManager.domElements.mainFrame.length > 0) {
+            indexManager.domElements.mainFrame.attr("src", currentUrl);
         }
         else {
-            indexManager.domElements.content.append('<iframe frameborder="0" id="main" src="' + currentUrl + '" width="100%" height="100%" scrolling="auto" name="main" marginwidth="0" marginheight="0" allowtransparency="true" class="iframe-content"></iframe>');
-            indexManager.domElements.mainFrame = $('#main');
-            indexManager.domElements.mainFrame
-                .on('load.newmain', function () {
+            indexManager.domElements.content.append('<iframe frameborder="0" id="main" src="' +
+                currentUrl +
+                '" width="100%" height="100%" scrolling="auto" name="main" marginwidth="0" marginheight="0" allowtransparency="true" class="iframe-content"></iframe>');
+            indexManager.domElements.mainFrame = $("#main");
+            indexManager.domElements.mainFrame.on("load.newmain", function () {
                 if (indexManager.isReloadTopPage) {
                     window.top.location.reload();
                     return;
                 }
                 indexManager.domElements.feedbackFunction.addClass("hide");
                 toastMessage.updatePosition();
-                var iframeWindow = indexManager.domElements.mainFrame[0].contentWindow || indexManager.domElements.mainFrame[0].contentDocument;
+                var iframeWindow = indexManager.domElements.mainFrame[0].contentWindow ||
+                    indexManager.domElements.mainFrame[0].contentDocument;
                 indexManager.closeAllOpenDropdowns(iframeWindow);
                 indexManager.cacheCurrentUrl();
                 try {
-                    $(iframeWindow.document).on('click touchend', function () {
+                    $(iframeWindow.document).on("click touchend", function () {
                         menuBar.collapseSideBar();
                     });
                     if (alpha.isMobile) {
-                        $(iframeWindow.document).find(':focus').blur();
+                        $(iframeWindow.document).find(":focus").blur();
                     }
                 }
                 catch (e) { }
@@ -210,20 +228,22 @@ var indexManager = {
         }
     },
     getCurrentUrl: function () {
-        return indexManager.isInternal ? "" : localStorage.getItem(indexManager.currentUrlCookieName);
+        return indexManager.isInternal
+            ? ""
+            : localStorage.getItem(indexManager.currentUrlCookieName);
     },
     closeAllOpenDropdowns: function (iframeWindow) {
         var closeDropdownSubMenu = function () {
-            $('.dropdown-submenu').find('.dropdown-menu').hide();
+            $(".dropdown-submenu").find(".dropdown-menu").hide();
         };
-        $(document).on('click touchend', closeDropdownSubMenu);
-        $('#btn-header-menu').on('click', closeDropdownSubMenu);
+        $(document).on("click touchend", closeDropdownSubMenu);
+        $("#btn-header-menu").on("click", closeDropdownSubMenu);
         try {
-            $(iframeWindow.document).on('click touchend', function () {
-                $('.dropdown-toggle').each(function (index, dropdown) {
+            $(iframeWindow.document).on("click touchend", function () {
+                $(".dropdown-toggle").each(function (index, dropdown) {
                     var $dropdown = $(dropdown);
-                    if ($dropdown.parent().hasClass('open')) {
-                        $dropdown.dropdown('toggle');
+                    if ($dropdown.parent().hasClass("open")) {
+                        $dropdown.dropdown("toggle");
                     }
                 });
                 closeDropdownSubMenu();
@@ -234,7 +254,8 @@ var indexManager = {
     closeAllPopup: function () {
         try {
             var prevUrl = localStorage.getItem(indexManager.currentUrlCookieName) || "";
-            var currentUrl = document.getElementById("main").contentWindow.location.href || "";
+            var currentUrl = document.getElementById("main").contentWindow
+                .location.href || "";
             var prevUrlWithoutQueryString = prevUrl.split("?")[0];
             var currentUrlWithoutQueryString = currentUrl.split("?")[0];
             var isCloseAllPopup = !this.isSameUrl(prevUrlWithoutQueryString, currentUrlWithoutQueryString);
@@ -257,27 +278,35 @@ var indexManager = {
         var diff2 = url2.substring(minLength);
         diff2 = diff2.startsWith("/") ? diff2.substring(1) : diff2;
         diff2 = diff2 || "index";
-        return url1.substring(0, minLength) == url2.substring(0, minLength) && diff1 === "index" && diff2 === "index";
+        return (url1.substring(0, minLength) == url2.substring(0, minLength) &&
+            diff1 === "index" &&
+            diff2 === "index");
     },
     removeHashFromTheEndOfURL: function (url) {
         var indexOfHash = url.length - 1;
-        return url[indexOfHash] === "#"
-            ? url.substring(0, indexOfHash)
-            : url;
+        return url[indexOfHash] === "#" ? url.substring(0, indexOfHash) : url;
     },
     calculateUserConnectionSpeed: function () {
-        var iframe = document.getElementById('connection-speed');
-        if (typeof (iframe) == 'undefined'
-            || iframe == null) {
-            iframe = document.createElement('iframe');
-            iframe.id = 'connection-speed';
-            iframe.style.display = 'none';
+        var iframe = document.getElementById("connection-speed");
+        if (typeof iframe == "undefined" || iframe == null) {
+            iframe = document.createElement("iframe");
+            iframe.id = "connection-speed";
+            iframe.style.display = "none";
             iframe.src = alpha.urls.mainRootPath + "NetworkSpeed/Index";
             document.body.appendChild(iframe);
         }
     },
     isIgnoreRedirectUrl: function (currentUrl) {
-        var ignoreUrls = ['error.aspx', 'signin.aspx', 'securitycode', 'dashboard', 'partialum', 'auth', 'kickout', 'signout'];
+        var ignoreUrls = [
+            "error.aspx",
+            "signin.aspx",
+            "securitycode",
+            "dashboard",
+            "partialum",
+            "auth",
+            "kickout",
+            "signout",
+        ];
         var ignoreUrlsLength = ignoreUrls.length;
         var lowerCurrentUrl = currentUrl.toLowerCase();
         for (var i = 0; i < ignoreUrlsLength; i++) {
@@ -291,19 +320,19 @@ var indexManager = {
         if (indexManager.isDCSUrl(url)) {
             return url;
         }
-        var newUrl = url.replace(/(isdarkmode=)[^\&]+/i, '$1' + $('#isDarkMode').val());
-        return newUrl.replace(/(lng=)[^\&]+/i, '$1' + indexManager.domElements.language.data("currentlanguage"));
+        var newUrl = url.replace(/(isdarkmode=)[^\&]+/i, "$1" + $("#isDarkMode").val());
+        return newUrl.replace(/(lng=)[^\&]+/i, "$1" + indexManager.domElements.language.data("currentlanguage"));
     },
     isDCSUrl: function (url) {
-        return url.indexOf('dcs/viewcustomersetting') > -1;
+        return url.indexOf("dcs/viewcustomersetting") > -1;
     },
     initFeedbackGlobal: function () {
         $("#feedback-box").click(function () {
-            popupManager.open(indexManager.urls.feedback, undefined, 440, 380, null, null, null, null, null, null, { customClass: 'feedback-modal' });
+            popupManager.open(indexManager.urls.feedback, undefined, 440, 380, null, null, null, null, null, null, { customClass: "feedback-modal" });
         });
     },
     initFeedbackFunction: function (id, width, height) {
-        var hideFeedbackFunctionSessionKey = indexManager.getCustomerCookiesName('HideFeedbackFunction') + "_" + id;
+        var hideFeedbackFunctionSessionKey = indexManager.getCustomerCookiesName("HideFeedbackFunction") + "_" + id;
         if (sessionStorage.getItem(hideFeedbackFunctionSessionKey) === "1") {
             return;
         }
@@ -311,13 +340,14 @@ var indexManager = {
             if (!result.IsExist) {
                 //indexManager.calulateFeedbackFunctionPosition();
                 var feedbackBox = indexManager.domElements.feedbackFunction.find(".feedback-box");
-                feedbackBox.find(".txt-feedback").text(result.FunctionName || "Feedback");
                 feedbackBox
-                    .off()
-                    .click(function () {
+                    .find(".txt-feedback")
+                    .text(result.FunctionName || "Feedback");
+                feedbackBox.off().click(function () {
                     popupManager.open(indexManager.urls.feedbackFunction + id, undefined, width || 440, height || 380, null, null, null, null, null, null, { customClass: "feedback-modal" });
                 });
-                indexManager.domElements.feedbackFunction.find(".icon-close-feedback")
+                indexManager.domElements.feedbackFunction
+                    .find(".icon-close-feedback")
                     .off()
                     .click(function () {
                     sessionStorage.setItem(hideFeedbackFunctionSessionKey, "1");
@@ -363,8 +393,8 @@ var indexManager = {
             //$(window).scroll(() => box.addClass("hide"));
             $("#main-menu-tab")["mCustomScrollbar"]({
                 callbacks: {
-                    onScrollStart: function () { return box.addClass("hide"); }
-                }
+                    onScrollStart: function () { return box.addClass("hide"); },
+                },
             });
             // indexManager.replaceCookieslessURL(newFeatureLink);
         }
@@ -385,10 +415,14 @@ var indexManager = {
         }
         var retryTimes = 0;
         var rebuildNewFeatureLinkInterval = setInterval(function () {
-            if (menuBar.domElements.sessionId
-                && menuBar.domElements.reportSessionId
-                && newFeatureLink.attr("href").indexOf(menuBar.domElements.reportSessionId) === -1) {
-                newFeatureLink.attr("href", newFeatureLink.attr("href").replace(menuBar.domElements.sessionId, menuBar.domElements.reportSessionId));
+            if (menuBar.domElements.sessionId &&
+                menuBar.domElements.reportSessionId &&
+                newFeatureLink
+                    .attr("href")
+                    .indexOf(menuBar.domElements.reportSessionId) === -1) {
+                newFeatureLink.attr("href", newFeatureLink
+                    .attr("href")
+                    .replace(menuBar.domElements.sessionId, menuBar.domElements.reportSessionId));
                 clearInterval(rebuildNewFeatureLinkInterval);
             }
             retryTimes++;
@@ -401,7 +435,7 @@ var indexManager = {
     },
     getCustomCookies: function (cookieName) {
         var key = indexManager.getCustomerCookiesName(cookieName);
-        return localStorage.getItem(key) || '';
+        return localStorage.getItem(key) || "";
     },
     removeCustomCookies: function (cookieName) {
         var key = indexManager.getCustomerCookiesName(cookieName);

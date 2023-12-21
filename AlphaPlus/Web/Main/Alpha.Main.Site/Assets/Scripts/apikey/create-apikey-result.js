@@ -1,5 +1,5 @@
 /// <reference path="../core.ts" />
-'use strict';
+"use strict";
 var CreateApiKeyResult = /** @class */ (function () {
     function CreateApiKeyResult($, topWindow, clipboardKey, clipboardSecret) {
         var _this = this;
@@ -11,8 +11,8 @@ var CreateApiKeyResult = /** @class */ (function () {
         this.registerEvents = function () {
             var self = _this;
             _this.$showURL.click(_this.showURL);
-            if (window.document.queryCommandSupported
-                && window.document.queryCommandSupported("copy")) {
+            if (window.document.queryCommandSupported &&
+                window.document.queryCommandSupported("copy")) {
                 _this.clipboardKey
                     .on("success", function (e) {
                     self.$(e.trigger).tooltip("show");
@@ -38,8 +38,8 @@ var CreateApiKeyResult = /** @class */ (function () {
             _this.topWindow.popupManager.close();
         };
         this.showURL = function () {
-            _this.$urlMask.removeClass('close');
-            _this.$urlMask.addClass('open');
+            _this.$urlMask.removeClass("close");
+            _this.$urlMask.addClass("open");
         };
         this.$ = $;
         this.topWindow = topWindow;
@@ -49,7 +49,13 @@ var CreateApiKeyResult = /** @class */ (function () {
     return CreateApiKeyResult;
 }());
 $(function () {
-    var createApiKeyResult = new CreateApiKeyResult($, window.top, new Clipboard('.icon-content-copy'), new Clipboard('.icon-copy-secret'));
-    createApiKeyResult.init();
+    // TODO:
+    // const createApiKeyResult = new CreateApiKeyResult(
+    //   $,
+    //   window.top,
+    //   new Clipboard(".icon-content-copy"),
+    //   new Clipboard(".icon-copy-secret")
+    // );
+    // createApiKeyResult.init();
 });
 //# sourceMappingURL=create-apikey-result.js.map

@@ -3,12 +3,12 @@ var SetupOtp = /** @class */ (function () {
     function SetupOtp($, bootbox, clipboard) {
         var _this = this;
         this.resources = {
-            removeOtpWarning: document.getElementById('RemoveOtpWarning').value,
-            removeOtpSuccessMessage: document.getElementById('RemoveOtpSuccessMessage').value,
-            otpIsInvalidOrExpired: document.getElementById('OtpIsInvalidOrExpired').value,
-            authenticatorAppVerified: document.getElementById('AuthenticatorAppVerified').value,
-            thereIsNoChange: document.getElementById('ThereIsNoChange').value,
-            thisFieldRequired: document.getElementById('ThisFieldRequired').value
+            removeOtpWarning: (document.getElementById("RemoveOtpWarning")).value,
+            removeOtpSuccessMessage: (document.getElementById("RemoveOtpSuccessMessage")).value,
+            otpIsInvalidOrExpired: (document.getElementById("OtpIsInvalidOrExpired")).value,
+            authenticatorAppVerified: (document.getElementById("AuthenticatorAppVerified")).value,
+            thereIsNoChange: (document.getElementById("ThereIsNoChange")).value,
+            thisFieldRequired: (document.getElementById("ThisFieldRequired")).value,
         };
         this.init = function () {
             _this.cachedDomElements();
@@ -40,8 +40,8 @@ var SetupOtp = /** @class */ (function () {
             _this.$cbkEnableSophosOtp.click(_this.changeStatusEvent);
             _this.$btnChangeUsername.click(_this.changeUsernameButtonEvent);
             var that = _this;
-            if (window.document.queryCommandSupported
-                && window.document.queryCommandSupported("copy")) {
+            if (window.document.queryCommandSupported &&
+                window.document.queryCommandSupported("copy")) {
                 _this.clipboard
                     .on("success", function (e) {
                     that.$(e.trigger).tooltip("show");
@@ -82,7 +82,7 @@ var SetupOtp = /** @class */ (function () {
                 data: { otp: otp },
                 dataType: "json",
                 success: _this.onSetupSuccess,
-                complete: _this.onComplete
+                complete: _this.onComplete,
             });
         };
         this.onSetupSuccess = function (data) {
@@ -126,7 +126,7 @@ var SetupOtp = /** @class */ (function () {
                 },
                 complete: function (jqXHR, textStatus) {
                     self.$.unblockUI();
-                }
+                },
             });
         };
         this.onChangeStatusSuccess = function (data) {
@@ -147,7 +147,7 @@ var SetupOtp = /** @class */ (function () {
                         url: alpha.urls.mainRootPath + "Otp/RemoveOtp",
                         dataType: "json",
                         success: that.onRemoveOtpSuccess,
-                        complete: that.onComplete
+                        complete: that.onComplete,
                     });
                 }
             });
@@ -166,8 +166,9 @@ var SetupOtp = /** @class */ (function () {
     }
     return SetupOtp;
 }());
-var setUpOtp = new SetupOtp($, bootbox, new Clipboard('.icon-content-copy'));
 $(function () {
-    setUpOtp.init();
+    // TODO:
+    //   var setUpOtp = new SetupOtp($, bootbox, new Clipboard(".icon-content-copy"));
+    //   setUpOtp.init();
 });
 //# sourceMappingURL=setup-otp.js.map

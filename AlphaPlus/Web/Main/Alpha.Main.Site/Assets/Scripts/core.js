@@ -126,10 +126,10 @@ var alpha = {
     isScreenLower1024: false,
     isMobile: false,
     detectResponsiveInformation: function () {
-        if (alpha.core.isIe()) {
-            //// Work arround because in IE, bootstrap modal dont delegate focusin event to others.
-            $.fn.modal.Constructor.prototype.enforceFocus = function () { };
-        }
+        // if (alpha.core.isIe()) {
+        //     //// Work arround because in IE, bootstrap modal dont delegate focusin event to others.
+        //     $.fn.modal.Constructor.prototype.enforceFocus = function () { };
+        // }
         var currentWindowWidth = window.screen.width;
         if (currentWindowWidth < 768) {
             alpha.isScreenLower768 = true;

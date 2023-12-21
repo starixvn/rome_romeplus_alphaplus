@@ -37,6 +37,7 @@ public class Startup
 
         services.AddControllersWithViews();
         services
+            // .AddBundlingAndMinification()
             .AddHttpContextAccessor()
             .AddApplicationServices(Configuration)
             .AddAuthorization()
@@ -56,7 +57,8 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        app.UsePathBase("/site-main");
+        // app.UseWebOptimizer();
+        app.UseDefaultFiles();
         app.UseStaticFiles();
         app.UseRouting();
         app.UseSession();

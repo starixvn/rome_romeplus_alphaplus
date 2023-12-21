@@ -21,9 +21,9 @@ var TelegramChatBotSetting = /** @class */ (function (_super) {
         _this.TELEGRAM_OTP_FUNCTION_ID = 15;
         _this.isFirstLoad = true;
         _this.resources = {
-            unsubscribeWarning: document.getElementById('UnsubscribeWarning').value,
-            updateLanguageFailed: document.getElementById('UpdateLanguageFailed').value,
-            hasUnlinkedMessage: document.getElementById('HasUnlinkedMessage').value
+            unsubscribeWarning: (document.getElementById("UnsubscribeWarning")).value,
+            updateLanguageFailed: (document.getElementById("UpdateLanguageFailed")).value,
+            hasUnlinkedMessage: (document.getElementById("HasUnlinkedMessage")).value,
         };
         _this.init = function () {
             alpha.detectResponsiveInformation();
@@ -51,11 +51,11 @@ var TelegramChatBotSetting = /** @class */ (function (_super) {
             _this.$(".function").click(_this.updateFunction);
             _this.$btnUnsubscribe.click(_this.unsubscribeEvent);
             var self = _this;
-            _this.$changeLanguageLink.on('click touchend', function (e) {
+            _this.$changeLanguageLink.on("click touchend", function (e) {
                 self.changeLanguage(self.$(e.target).data("value"));
             });
-            if (window.document.queryCommandSupported
-                && window.document.queryCommandSupported("copy")) {
+            if (window.document.queryCommandSupported &&
+                window.document.queryCommandSupported("copy")) {
                 _this.clipboard
                     .on("success", function (e) {
                     self.$(e.trigger).tooltip("show");
@@ -127,7 +127,7 @@ var TelegramChatBotSetting = /** @class */ (function (_super) {
                     url: alpha.urls.mainRootPath + "TelegramChatBot/Unsubscribe",
                     dataType: "json",
                     success: self.onUnSubscribeSuccess,
-                    complete: self.onComplete
+                    complete: self.onComplete,
                 });
             });
         };
@@ -158,7 +158,7 @@ var TelegramChatBotSetting = /** @class */ (function (_super) {
                 url: alpha.urls.mainRootPath + "TelegramChatBot/UpdateLanguage",
                 data: { language: lang },
                 success: _this.onChangeLanguageSuccess,
-                complete: _this.onComplete
+                complete: _this.onComplete,
             });
         };
         _this.onChangeLanguageSuccess = function (result) {
@@ -194,7 +194,12 @@ var TelegramChatBotSetting = /** @class */ (function (_super) {
     return TelegramChatBotSetting;
 }(BaseTelegramChatBot));
 $(function () {
-    var telegramChatBotSetting = new TelegramChatBotSetting($, window.top, new Clipboard('.icon-content-copy'));
-    telegramChatBotSetting.init();
+    // TODO:
+    // var telegramChatBotSetting = new TelegramChatBotSetting(
+    //   $,
+    //   window.top,
+    //   new Clipboard(".icon-content-copy")
+    // );
+    // telegramChatBotSetting.init();
 });
 //# sourceMappingURL=telegram-chatbot-setting.js.map

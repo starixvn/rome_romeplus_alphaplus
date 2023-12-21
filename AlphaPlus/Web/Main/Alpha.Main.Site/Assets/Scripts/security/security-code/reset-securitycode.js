@@ -1,18 +1,24 @@
-'use strict';
+/// <reference path="../security-helper.ts" />
+"use strict";
 var resetsecuritycode = {
     initialize: function () {
-        var $form = $('.form-SC');
+        var $form = $(".form-SC");
         $form.submit(function (e) {
             resetsecuritycode.reset();
             e.preventDefault();
         });
-        $form.bind('reset', function (e) {
+        $form.bind("reset", function (e) {
             resetsecuritycode.resetInputValue();
         });
-        $("#txtSecCode").val("").focus().keyup(function () {
+        $("#txtSecCode")
+            .val("")
+            .focus()
+            .keyup(function () {
             securityHelper.validateSecurityCode(this);
         });
-        $("#txtConfirmSecCode").val("").keyup(function () {
+        $("#txtConfirmSecCode")
+            .val("")
+            .keyup(function () {
             securityHelper.validateSecurityCode(this);
         });
         $("#showSCchk").click(function () {
@@ -25,25 +31,29 @@ var resetsecuritycode = {
     },
     reset: function () {
         $.blockUI();
-        var $container = $('#status-message');
-        var $messageContainer = $('#status-message-content');
-        $container.removeClass('display-none');
-        var $txtSecurityCode = $('#txtSecCode');
-        var $txtConfirmSecurityCode = $('#txtConfirmSecCode');
+        var $container = $("#status-message");
+        var $messageContainer = $("#status-message-content");
+        $container.removeClass("display-none");
+        var $txtSecurityCode = $("#txtSecCode");
+        var $txtConfirmSecurityCode = $("#txtConfirmSecCode");
         var message = resetsecuritycode.checkInputParameters($txtSecurityCode, $txtConfirmSecurityCode);
         if (message.length !== 0) {
             securityHelper.showFailMessage($messageContainer, message);
             $.unblockUI();
             return;
         }
-        var hashKey = $('#hashkey').val();
+        var hashKey = $("#hashkey").val();
         var secCode = $txtSecurityCode.val();
         secCode = secCode.encrypt();
         $.ajax({
-            type: 'POST',
-            url: 'ResetSecurityCode',
-            data: { custId: $('#custid').val(), subAccId: $('#subaccid').val(), securityCode: secCode },
-            dataType: 'json',
+            type: "POST",
+            url: "ResetSecurityCode",
+            data: {
+                custId: $("#custid").val(),
+                subAccId: $("#subaccid").val(),
+                securityCode: secCode,
+            },
+            dataType: "json",
             success: function (data, textStatus, jqXHR) {
                 if (data.Code !== 0) {
                     securityHelper.showFailMessage($messageContainer, data.Message);
@@ -55,7 +65,7 @@ var resetsecuritycode = {
             },
             complete: function (jqXHR, textStatus) {
                 $.unblockUI();
-            }
+            },
         });
     },
     checkInputParameters: function ($txtSecurityCode, $txtConfirmSecurityCode) {
@@ -73,13 +83,13 @@ var resetsecuritycode = {
             $txtConfirmSecurityCode.focus();
             return securityCodeResources.errorSecurityCodeConfirm;
         }
-        return '';
+        return "";
     },
     resetInputValue: function () {
         securityHelper.hideHintSC();
         securityHelper.removeValidationIcon($("#txtSecCode"));
         securityHelper.removeValidationIcon($("#txtConfirmSecCode"));
-    }
+    },
 };
 $(function () {
     resetsecuritycode.initialize();

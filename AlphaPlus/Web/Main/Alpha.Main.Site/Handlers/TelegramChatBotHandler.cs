@@ -42,7 +42,7 @@ namespace Alpha.Main.Site.Handlers
                 AppSettings.SiteLabel,
                 Language.MapNewChineseLanguageCode(message.Language));
 
-            var logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Assets/styles/telegramchatbot/images/telegram-logo.png");
+            var logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"wwwroot/assets/styles/telegramchatbot/images/telegram-logo.png");
             var qrCodeDataUrl = QRCodeAdapter.Generate(url, logoPath);
 
             return new VerifyAccountViewModel(url, qrCodeDataUrl);

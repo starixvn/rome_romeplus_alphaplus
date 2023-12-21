@@ -1,0 +1,81 @@
+﻿.breadcrumb {
+    background: none;
+    border-bottom: 1px solid #313334;
+    border-radius: 0;
+    overflow: hidden;
+    padding: 10px 0 5px;
+    margin: 0;
+
+    li {
+        color: #ededed;
+        font-weight: 700;
+        text-transform: uppercase;
+        position: relative;
+
+        + li:before {
+            content: '\276F';
+            color: #ededed;
+            padding: 0 8px;
+        }
+    }
+}
+.breadcrumb-table {
+    background: #212223;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 7px 3px 10px;
+    min-height: 30px;
+    line-height: 18px;
+
+    .breadcrumb {
+        border: 0;
+        padding: 0;
+
+        a {
+            color: #41A4FF;
+        }
+
+        a:hover {
+            color: #F60;
+            text-decoration: none;
+        }
+    }
+
+    .list-icon {
+        ul {
+            display: flex;
+            align-items: center;
+            margin: 0;
+
+            li {
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+
+                .tooltip {
+                    pointer-events: none;
+                }
+
+                .icon-excel + .tooltip {
+                    white-space: nowrap;
+
+                    &.top .tooltip-inner {
+                        &:before {
+                            margin-left: 20px;
+                        }
+
+                        &:after {
+                            margin-left: 22px;
+                        }
+                    }
+                }
+
+                .icon-content-copy {
+                    font-size: 20px;
+                    color: #7f7f7f;
+                }
+            }
+        }
+    }
+}

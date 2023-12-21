@@ -1,36 +1,44 @@
-﻿.text-red {
-  color: #ff0000; }
+.text-red {
+  color: #ff0000;
+}
 
 .lblUsername {
   margin-top: 20px;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+}
 
 .radio label:before {
-  top: 3px; }
-
+  top: 3px;
+}
 .radio label:after {
-  top: 6px; }
+  top: 6px;
+}
 
 .modal.information .modal-content .modal-body ul.list-note {
   list-style: none;
-  padding: 0; }
-  .modal.information .modal-content .modal-body ul.list-note li {
-    line-height: 24px; }
-    .modal.information .modal-content .modal-body ul.list-note li:before {
-      content: "-";
-      display: inline-block;
-      margin-right: 4px; }
+  padding: 0;
+}
+.modal.information .modal-content .modal-body ul.list-note li {
+  line-height: 24px;
+}
+.modal.information .modal-content .modal-body ul.list-note li:before {
+  content: "-";
+  display: inline-block;
+  margin-right: 4px;
+}
 
 .skipOption {
   padding-top: 16px;
-  text-align: center; }
+  text-align: center;
+}
 
 .txtAccent {
-  color: #333; }
+  color: #333;
+}
 
 .block .nickname {
-  opacity: 1 !important; }
-
+  opacity: 1 !important;
+}
 .block label.bold {
-  font-weight: bold; }
-
+  font-weight: bold;
+}
