@@ -11,7 +11,7 @@ namespace Alpha.Main.Configurations
 
         // public static string StaticResourcesVersion => GetValue<string>("AssetsApp:StaticResourcesVersion");
 
-        public static string[] DevicesUseCustomScrollbar => GetValue<string[]>("DevicesUseCustomScrollbar");
+        public static string[] DevicesUseCustomScrollbar => GetValue<string[]>("DevicesUseCustomScrollbar", []);
 
         // public static string StoreProcedurePath => GetValue<string>("StoredProcedurePath");
 

@@ -30,8 +30,6 @@
 
         bool IsHiddenInMobile { get; set; }
 
-        string UseDomainConfig { get; set; }
-
         MenuStatus Status { get; }
 
         bool ShowSubMenus { get; set; }

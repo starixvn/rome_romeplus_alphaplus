@@ -28,10 +28,11 @@
     @await Html.PartialAsync("Popup")
     @* @Html.Action("HeaderHotMsg") *@
     <aside class="sidebar" id="side-bar">
-        @* TODO: <div class="partial-content customer-profile" id="profile"
-        data-url="@Url.Action("BriefProfile", "CustomerProfile")"></div> *@
+        <div class="partial-content customer-profile" id="profile"
+            data-url="@Url.Action("BriefProfile", "CustomerProfile")"></div>
         <nav class="navigation" id="navigation">
-            @* TODO: @Html.Action("MenuBar") *@
+            @await Component.InvokeAsync("MenuBar")
+            @* @Html.Action("MenuBar") *@
         </nav>
     </aside>
     <div class="content-wrapper" id="content-wrapper">
@@ -64,6 +65,7 @@
     @if (Model.IsShowSuggestEnableTelegramOtp)
     {
         @await Html.PartialAsync("SuggestEnableTelegramOtpPopup")
+        ;
     }
     @await Html.PartialAsync("~/Views/Advertisement/AdvertisementPopup.cshtml")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")

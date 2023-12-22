@@ -14,9 +14,9 @@ namespace Alpha.Main.Site.Handlers
 
         public Task<MenuBarViewModel> Handle(MenuBarQuery message, CancellationToken cancellationToken)
         {
-            var menuItems = Enumerable.Empty<IMenuItem>();
             // TODO: menu
             // var menuItems = siteMenuService.GetMenuByUserLevel(message.UserLevel, message.IsCookieLess);
+            var menuItems = siteMenuService.GetMenuByUserLevel(message.UserLevel, message.IsCookieLess);
 
             var viewModel = new MenuBarViewModel(
                 menuItems,

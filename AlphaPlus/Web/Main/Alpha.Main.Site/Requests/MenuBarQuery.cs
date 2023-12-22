@@ -38,6 +38,7 @@ namespace Alpha.Main.Site.Models.Requests
 
         // TODO
         // public bool IsCookieLess => HttpContext.Current != null ? HttpContext.Current.Session.IsCookieless : false;
+        public bool IsCookieLess => false;
 
         public string DarkModeName { get; }
 
