@@ -25,7 +25,11 @@ function getBundles(regexPattern) {
 }
 
 function clean(cb) {
-  deleteSync(["wwwroot/assets/bundles/**/*"]);
+  var files = bundleConfig.map(function (bundle) {
+    return bundle.outputFileName;
+  });
+
+  deleteSync(files);
   cb();
 }
 

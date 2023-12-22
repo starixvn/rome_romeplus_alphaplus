@@ -65,8 +65,8 @@ $contrast-factor: 40% !default;
 // inputs
 $mdb-input-placeholder-color: #BDBDBD !default;
 $mdb-input-underline-color: #D2D2D2 !default;
-$mdb-label-static-size-ratio: 75 / 100 !default;
-$mdb-help-block-size-ratio: 75 / 100 !default;
+$mdb-label-static-size-ratio: 75 * 0.01 !default;
+$mdb-help-block-size-ratio: 75 * 0.01 !default;
 
 $mdb-input-font-size-base: 16px !default;
 $mdb-input-font-size-large: ceil(($font-size-base * 1.25)) !default; // ~20px

@@ -47,11 +47,11 @@
       &:hover,
       &:focus {
         // spec: flat/light bg Hover: 20% #999999
-        background-color: rgba(#999999, (20/100));
+        background-color: rgba(#999999, (20*0.01));
 
         .theme-dark & {
           // spec: dark bg Hover: 15% #CCCCCC
-          background-color: rgba(#CCCCCC, (15/100));
+          background-color: rgba(#CCCCCC, (15*0.01));
         }
       }
     }
@@ -138,8 +138,8 @@
       width: $mdb-btn-fab-size-mini;
 
       &.material-icons {
-        top: ($mdb-btn-icon-size-mini - $mdb-btn-fab-font-size) / 2;
-        left: ($mdb-btn-icon-size-mini - $mdb-btn-fab-font-size) / 2;
+        top: ($mdb-btn-icon-size-mini - $mdb-btn-fab-font-size) * 0.5;
+        left: ($mdb-btn-icon-size-mini - $mdb-btn-fab-font-size) * 0.5;
       }
     }
 
@@ -147,7 +147,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-($mdb-btn-fab-font-size / 2), -($mdb-btn-fab-font-size / 2));
+      transform: translate(-($mdb-btn-fab-font-size * 0.5), -($mdb-btn-fab-font-size * 0.5));
       line-height: $mdb-btn-fab-font-size;
       width: $mdb-btn-fab-font-size;
     }
@@ -186,10 +186,10 @@
   &:disabled,
   &[disabled][disabled] {
     // spec: light theme: Disabled text: 26% #000000
-    color: rgba(#000000, (26/100));
+    color: rgba(#000000, (26*0.01));
     .theme-dark & {
       // spec: dark theme: Disabled text: 30% #FFFFFF
-      color: rgba(#FFFFFF, (30/100));
+      color: rgba(#FFFFFF, (30*0.01));
     }
 
     // flat buttons lose transparency

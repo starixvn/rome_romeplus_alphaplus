@@ -514,7 +514,6 @@
   {
     "outputFileName": "bundles2/site-main/otp/otp-agent.css",
     "inputFiles": [
-      "styles/vendors-extensions/site-main/otp/bootstrap-ex.css",
       "styles/components/accordions.css",
       "styles/themes/components/tabs/tab-agent2.css"
     ]
@@ -1165,7 +1164,6 @@
       "js/libs/clipboard/clipboard.js"
     ]
   },
-  /************************** Dark Mode ************************/
   {
     "outputFileName": "bundles2/common/common-dark.css",
     "inputFiles": [
@@ -1850,7 +1848,6 @@
       "styles-v2/components/filter.css",
       "styles-v2/components/alert.css",
       "styles-v2/components/modal.css"
-
     ]
   },
   {

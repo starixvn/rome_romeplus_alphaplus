@@ -1,10 +1,81 @@
-﻿/*
-This file in the main entry point for defining Gulp tasks and using Gulp plugins.
-Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
-*/
+﻿"use strict";
 
-var gulp = require('gulp');
+import gulp from "gulp";
+import { deleteSync } from "del";
+import concat from "gulp-concat";
+import * as dartSass from "sass";
+import gulpSass from "gulp-sass";
+import cssmin from "gulp-cssmin";
+import postcss from "gulp-postcss";
+import autoprefixer from "autoprefixer";
+import uglify from "gulp-uglify";
+import merge from "merge-stream";
+import bundleConfig from "./bundleconfig.json" assert { type: "json" };
+const sass = gulpSass(dartSass);
 
-gulp.task('default', function () {
-    // place code for your default task here
-});
+const regex = {
+  css: /\.css$/,
+  js: /\.js$/,
+};
+
+function getBundles(regexPattern) {
+  return bundleConfig.filter(function (bundle) {
+    return regexPattern.test(bundle.outputFileName);
+  });
+}
+
+function clean(cb) {
+  var files = bundleConfig.map(function (bundle) {
+    return bundle.outputFileName;
+  });
+
+  deleteSync(files);
+  cb();
+}
+
+function minJs() {
+  var tasks = getBundles(regex.js).map(function (bundle) {
+    return gulp
+      .src(bundle.inputFiles, { base: "." })
+      .pipe(concat(bundle.outputFileName))
+      .pipe(uglify())
+      .pipe(gulp.dest("."));
+  });
+  return merge(tasks);
+}
+
+function compileCss() {
+  return gulp
+    .src("styles/**/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(postcss([autoprefixer()]))
+    .pipe(gulp.dest("styles"));
+}
+
+function compileCssV2() {
+  return gulp
+    .src("styles-v2/**/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(postcss([autoprefixer()]))
+    .pipe(gulp.dest("styles-v2"));
+}
+
+function minCss() {
+  var tasks = getBundles(regex.css).map(function (bundle) {
+    return gulp
+      .src(bundle.inputFiles, { base: "." })
+      .pipe(concat(bundle.outputFileName))
+      .pipe(cssmin())
+      .pipe(gulp.dest("."));
+  });
+  return merge(tasks);
+}
+
+gulp.task(
+  "default",
+  gulp.series(
+    clean,
+    gulp.parallel(compileCss, compileCssV2),
+    gulp.parallel(minCss, minJs)
+  )
+);
