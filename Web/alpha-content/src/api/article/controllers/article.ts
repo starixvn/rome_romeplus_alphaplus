@@ -113,6 +113,9 @@ export default factories.createCoreController('api::article.article', ({ strapi 
             fields: ['name'],
           }
         },
+        sort: {
+          publishedAt: 'desc'
+        }
       });  
 
       const output = await this.sanitizeOutput(entities, ctx);
@@ -146,6 +149,9 @@ export default factories.createCoreController('api::article.article', ({ strapi 
             $contains: slug
           }
         }
+      },
+      sort: {
+        publishedAt: 'desc'
       }
     });
 

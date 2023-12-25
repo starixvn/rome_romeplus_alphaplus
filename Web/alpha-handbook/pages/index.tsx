@@ -5,21 +5,8 @@ import { getArticles } from '~/api/articles'
 import type { Article } from '~/types/article'
 import type { GetServerSideProps } from 'next/types'
 
-var pageData: Article[] = [];
-var retires = 10;
-
 export const getServerSideProps = (async (context) => {
-  console.log('getServerSideProps ' + retires);
-  if(retires <= 0) {
-    return { props: { articles: pageData } };
-  }
-  
-  retires--;
   const articles = await getArticles();
-  if(articles && articles.length) {
-    pageData = articles;
-  }
-
   return { props: { articles } };
 }) satisfies GetServerSideProps<{
   articles: Article[]
@@ -30,9 +17,6 @@ export default function Home({
 }: {
   articles: Article[]
 }) {
-
-  console.log("Call Home");
-  
   return (
     <>
       <PageSeo title={siteMetadata.title} description={siteMetadata.description} />
