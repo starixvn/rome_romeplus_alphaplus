@@ -102,7 +102,7 @@ public class NicknameChecker(IUserSession userSession) : INicknameChecker
     {
         get
         {
-            isRecommendLoginByNickname = isRecommendLoginByNickname ?? IsOfferForceLoginFlow && GetForceLoginDate().Value > DateTime.Today;
+            isRecommendLoginByNickname ??= IsOfferForceLoginFlow && GetForceLoginDate().Value > DateTime.Today;
 
             return isRecommendLoginByNickname.Value;
         }
@@ -112,7 +112,7 @@ public class NicknameChecker(IUserSession userSession) : INicknameChecker
     {
         get
         {
-            isForceLoginByNickname = isForceLoginByNickname ?? IsOfferForceLoginFlow && GetForceLoginDate().Value <= DateTime.Today;
+            isForceLoginByNickname ??= IsOfferForceLoginFlow && GetForceLoginDate().Value <= DateTime.Today;
 
             return isForceLoginByNickname.Value;
         }
@@ -122,7 +122,7 @@ public class NicknameChecker(IUserSession userSession) : INicknameChecker
     {
         get
         {
-            isOfferForceLoginAndOverDueDate = isOfferForceLoginAndOverDueDate ?? IsOfferForceLogin && GetForceLoginDate().Value <= DateTime.Today;
+            isOfferForceLoginAndOverDueDate ??= IsOfferForceLogin && GetForceLoginDate().Value <= DateTime.Today;
 
             return isOfferForceLoginAndOverDueDate.Value;
         }

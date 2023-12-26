@@ -37,7 +37,7 @@ namespace Alpha.Main.Configurations
 
         // public static string[] NoticeTypes => GetValue<string[]>("NoticeTypes");
 
-        public static string GetAppPath(string name) => GetValue<string>(name);
+        public static string GetAppPath(string name) => GetValue<string>(name, string.Empty);
 
         // public static bool LocalTest => GetValue<bool>("LocalTest");
 

@@ -9,12 +9,12 @@ using Fanex.Data.Repository;
 
 namespace Alpha.Main.Services;
 
-public interface IAuthorizationService
+public interface ISignInService
 {
     Task<bool> AfterSignIn(SignInParam param);
 }
 
-public class AuthorizationService(IEncryption encryption, IDynamicRepository dynamicRepository, IUserSessionService userSessionService) : IAuthorizationService
+public class SignInService(IEncryption encryption, IDynamicRepository dynamicRepository, IUserSessionService userSessionService) : ISignInService
 {
     private readonly IEncryption encryption = encryption;
     private readonly IDynamicRepository dynamicRepository = dynamicRepository;
@@ -49,7 +49,9 @@ public class AuthorizationService(IEncryption encryption, IDynamicRepository dyn
         {
             { "custid", command.CustId },
             { "roleid", command.RoleId },
+            { "username", command.UserName },
             { "sitename", GetSiteName(command.RoleId) },
+            { "subaccid", param.SubAccId },
             { "subaccname", param.IsSubAcc ? command.SubUsername: string.Empty },
             { "adminid", 0 },
             { "isshowconsolidated", await IsShowConsolidateReport(command.CustId) },

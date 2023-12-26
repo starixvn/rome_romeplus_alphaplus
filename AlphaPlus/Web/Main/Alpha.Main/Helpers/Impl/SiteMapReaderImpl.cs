@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using System.Xml.Serialization;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Alpha.Main.Helpers.Impl
@@ -8,24 +9,11 @@ namespace Alpha.Main.Helpers.Impl
     {
         private readonly IWebHostEnvironment environment = environment;
 
-        public IEnumerable<SiteMapNode> GetSiteMapNodes()
+        public SiteMap GetRootNode()
         {
-            var nodes = new List<SiteMapNode>();
-            XmlDocument doc = new();
-            doc.Load(string.Concat(environment.WebRootPath, "/App_Data/Alpha.sitemap"));
-
-            foreach (XmlNode node in doc.SelectNodes("/siteMap/siteMapNodes/siteMapNode"))
-            {
-                var siteMapNode = new SiteMapNode
-                {
-                    Key = node["Key"]?.InnerText,
-                    ResourceKey = node["ResourceKey"]?.InnerText
-                };
-
-                nodes.Add(siteMapNode);
-            }
-
-            return nodes;
+            var serializer = new XmlSerializer(typeof(SiteMap));
+            using var reader = new StreamReader(string.Concat(environment.ContentRootPath, "/App_Data/Alpha.sitemap"));
+            return (SiteMap)serializer.Deserialize(reader);
         }
     }
 }

@@ -24,11 +24,16 @@ public class Startup
 
         var redisConfiguration = Configuration.GetValue<string>("RedisConfiguration");
         services.AddStackExchangeRedisCache(options =>
-           {
-               options.Configuration = redisConfiguration;
-               options.InstanceName = "AlphaPlus";
-           });
-        services.AddSession();
+        {
+            options.Configuration = redisConfiguration;
+            options.InstanceName = "AlphaPlus";
+        });
+        services.AddSession(options =>
+        {
+            options.Cookie.Name = ".AlphaPlus.Session";
+            options.IdleTimeout = TimeSpan.FromSeconds(10);
+            options.Cookie.IsEssential = true;
+        });
 
         services
             .AddDataProtection()
@@ -37,7 +42,6 @@ public class Startup
 
         services.AddControllersWithViews();
         services
-            // .AddBundlingAndMinification()
             .AddHttpContextAccessor()
             .AddApplicationServices(Configuration)
             .AddAuthorization()
@@ -57,7 +61,6 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        // app.UseWebOptimizer();
         app.UseDefaultFiles();
         app.UseStaticFiles();
         app.UseRouting();

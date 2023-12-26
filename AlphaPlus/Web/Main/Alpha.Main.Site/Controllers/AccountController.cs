@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using System.Text.Json;
 using Alpha.Main.Params.Authorization;
+using Alpha.Main.Services;
 using Alpha.Main.Site.ViewModels.Account;
 using AlphaPlus.RequestInfo;
 using Fanex.Cryptography.Aes;
@@ -12,9 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace Alpha.Main.Site.Controllers;
 
 [AllowAnonymous]
-public class AccountController(IDeviceHelper deviceHelper, Services.IAuthorizationService authorizationService, IAesService aesService) : Controller
+public class AccountController(IDeviceHelper deviceHelper, ISignInService signInService, IAesService aesService) : Controller
 {
-    private readonly Services.IAuthorizationService authorizationService = authorizationService;
+    private readonly ISignInService signInService = signInService;
     private readonly IAesService aesService = aesService;
     private readonly IDeviceHelper deviceHelper = deviceHelper;
 
@@ -39,7 +40,7 @@ public class AccountController(IDeviceHelper deviceHelper, Services.IAuthorizati
     {
         var param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey));
         var requestInfo = await deviceHelper.GetRequestInfo();
-        var isSignedIn = await authorizationService.AfterSignIn(new SignInParam
+        var isSignedIn = await signInService.AfterSignIn(new SignInParam
         {
             CustId = param.CustId,
             Password = aesService.Decrypt(param.EncryptPassword, param.EncryptCode),

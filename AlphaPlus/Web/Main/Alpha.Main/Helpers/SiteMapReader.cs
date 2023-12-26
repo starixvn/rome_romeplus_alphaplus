@@ -2,6 +2,6 @@
 {
     public interface SiteMapReader
     {
-        IEnumerable<SiteMapNode> GetSiteMapNodes();
+        SiteMap GetRootNode();
     }
 }

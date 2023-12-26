@@ -5,6 +5,6 @@ services:
     image: ${REGISTRY:-alphaplus}/assets:${PLATFORM:-linux}-${TAG:-latest}
     build:
       context: .
-      dockerfile: Web/wwwroot/assets/Dockerfile
+      dockerfile: Web/assets/Dockerfile
     ports:
       - "5100:8080"

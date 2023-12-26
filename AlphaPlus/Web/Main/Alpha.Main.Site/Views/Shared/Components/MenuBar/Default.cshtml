@@ -35,7 +35,7 @@
                     <ul class="sub-menu" style="display: @(menuItem.ShowSubMenus ? "block" : "none");">
                         @foreach (var subMenuItem in menuItem.VisibileSubMenus)
                         {
-                            <li data-domain="@subMenuItem.UseDomainConfig" data-url="@subMenuItem.Link"
+                            <li data-url="@subMenuItem.Link"
                                 class="sub-menu-item @(subMenuItem.Status.Disabled ? "disabled-menu" : string.Empty)"
                                 id="sub-menu-@(subMenuItem.ResourceKey.ToUpper())">
                                 <a href="#" class="redirect-item">
@@ -79,7 +79,7 @@
 {
     <!--[if (gt IE 8)|!(IE)]>
 
-    <!-->
+        <!-->
     <section id="account-info-tab" class="accountinfo-container @(Model.IsSmallDevice ? string.Empty : "mCustomScrollbar")"
         data-mcs-theme="minimal-dark">
         <iframe frameborder="0" id="accountinfo-content" name="menu" marginwidth="0" marginheight="0"
@@ -87,9 +87,9 @@
     </section>
     <!--<![endif]-->
     <!--[if lt IE 9]>
-            <section id="account-info-tab" class="accountinfo-container">
-                <iframe frameborder="0" id="accountinfo-content"
-                        name="menu" marginwidth="0" marginheight="0" allowtransparency="true" class="accinfo-content" scrolling="auto"></iframe>
-            </section>
-        <![endif]-->
+                <section id="account-info-tab" class="accountinfo-container">
+                    <iframe frameborder="0" id="accountinfo-content"
+                            name="menu" marginwidth="0" marginheight="0" allowtransparency="true" class="accinfo-content" scrolling="auto"></iframe>
+                </section>
+            <![endif]-->
 }

@@ -45,10 +45,9 @@ namespace Alpha.Main.Services.Impl
 
             if (menuItems == null || isCookieLess)
             {
-                // TODO
-                // var rootNode = siteMapReader.GetRootNode();
+                var rootNode = siteMapReader.GetRootNode();
 
-                menuItems = BuildMenu(rootNode, userLevel);
+                menuItems = BuildMenus(rootNode.ChildNodes, userLevel);
 
                 if (!isCookieLess)
                 {
@@ -59,30 +58,31 @@ namespace Alpha.Main.Services.Impl
             return menuItems;
         }
 
-        private List<IMenuItem> BuildMenu(SiteMapNode siteMapNode, UserLevel userLevel)
+        private List<IMenuItem> BuildMenus(SiteMapNode[] siteMapNodes, UserLevel userLevel)
         {
             var menuItems = new List<IMenuItem>();
 
-            if (siteMapNode.HasChildNodes)
+            if (siteMapNodes != null && siteMapNodes.Length > 0)
             {
-                siteMapNode.ChildNodes.Cast<SiteMapNode>().ToList().ForEach(
-                    node =>
+                siteMapNodes.ToList().ForEach(node =>
+                {
+                    var roles = node.Roles?.Split(",");
+                    if (roles == null
+                        || roles.Length == 0
+                        || roles.Contains(userLevel.DisplayName)
+                        || roles.Contains(userLevel.DisplayName.ToLowerInvariant())
+                        || roles.Contains(userLevel.Value.ToString()))
                     {
-                        if (node.Roles.Count == 0
-                            || node.Roles.Contains(userLevel.DisplayName)
-                            || node.Roles.Contains(userLevel.DisplayName.ToLowerInvariant())
-                            || node.Roles.Contains(userLevel.Value.ToString()))
+                        var menuItem = menuItemBuilder.BuildMenuItem(node);
+
+                        if (node.HasChildNodes)
                         {
-                            var menuItem = menuItemBuilder.BuildMenuItem(node);
-
-                            if (node.HasChildNodes)
-                            {
-                                menuItem.SubMenus = BuildMenu(node, userLevel);
-                            }
-
-                            menuItems.Add(menuItem);
+                            menuItem.SubMenus = BuildMenus(node.ChildNodes, userLevel);
                         }
-                    });
+
+                        menuItems.Add(menuItem);
+                    }
+                });
             }
 
             return menuItems;

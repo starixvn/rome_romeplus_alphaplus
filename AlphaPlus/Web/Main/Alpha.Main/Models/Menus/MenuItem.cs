@@ -8,12 +8,11 @@ namespace Alpha.Main.Models.Menus
     public class MenuItem : IMenuItem
     {
         private string link = string.Empty;
-        private Func<MenuStatus> getMenuStatusFunc;
-        private Predicate<string> authorizeUrlFunc;
+        private readonly Func<MenuStatus> getMenuStatusFunc;
+        private readonly Predicate<string> authorizeUrlFunc;
         private readonly Func<bool> isProtectedModeFunc;
         private readonly Func<bool> isInternalFunc;
         private readonly Func<bool> isHideForSite;
-        private readonly Func<string, string> buildInvalidSessionUniqueKeyFunc;
         private readonly Func<string> buildLanguageQueryStringFunc;
         private readonly Func<string> buildDarkModeQueryStringFunc;
         private readonly TransferService transferService;
@@ -21,12 +20,12 @@ namespace Alpha.Main.Models.Menus
         private IBrowserHelper browserHelper;
 
         public MenuItem(Func<MenuStatus> getMenuStatusFunc = null)
-            : this(getMenuStatusFunc, null, null, null, null, null, null, null, null, null, null)
+            : this(getMenuStatusFunc, null, null, null, null, null, null, null, null, null)
         {
         }
 
         public MenuItem(Func<MenuStatus> getMenuStatusFunc, Predicate<string> authorizeUrlFunc)
-            : this(getMenuStatusFunc, authorizeUrlFunc, null, null, null, null, null, null, null, null, null)
+            : this(getMenuStatusFunc, authorizeUrlFunc, null, null, null, null, null, null, null, null)
         {
         }
 
@@ -36,7 +35,6 @@ namespace Alpha.Main.Models.Menus
             Func<bool> isProtectedModeFunc,
             Func<bool> isInternalFunc,
             Func<bool> isHideForSite,
-            Func<string, string> buildInvalidSessionUniqueKeyFunc,
             Func<string> buildLanguageQueryStringFunc,
             Func<string> buildDarkModeQueryStringFunc,
             TransferService transferService,
@@ -48,7 +46,6 @@ namespace Alpha.Main.Models.Menus
             this.isProtectedModeFunc = isProtectedModeFunc;
             this.isInternalFunc = isInternalFunc;
             this.isHideForSite = isHideForSite;
-            this.buildInvalidSessionUniqueKeyFunc = buildInvalidSessionUniqueKeyFunc;
             this.buildLanguageQueryStringFunc = buildLanguageQueryStringFunc;
             this.buildDarkModeQueryStringFunc = buildDarkModeQueryStringFunc;
             this.transferService = transferService;
@@ -84,7 +81,7 @@ namespace Alpha.Main.Models.Menus
             {
                 var context = AlphaContext.Current;
                 var session = context?.Session;
-                var appVirtualPath = AppSettings.GetAppPath(AppPath) ?? string.Empty;
+                var appVirtualPath = !string.IsNullOrWhiteSpace(AppPath) ? AppSettings.GetAppPath(AppPath) : string.Empty;
                 var runtimeAppPath = context.Request.Path.Value ?? string.Empty;
                 // var reportUrl = $"{appVirtualPath}{context?.Response?.ApplyAppPathModifier(runtimeAppPath)}{link}";
                 // reportUrl = !string.IsNullOrWhiteSpace(runtimeAppPath) ? reportUrl.Replace(runtimeAppPath, string.Empty) : reportUrl;
@@ -102,7 +99,6 @@ namespace Alpha.Main.Models.Menus
                     link.Replace(runtimeAppPath, appVirtualPath) : string.Empty;
 
 
-                var invalidSessionUniqueKey = buildInvalidSessionUniqueKeyFunc(menuLink);
 
                 if (!string.IsNullOrWhiteSpace(link) && string.Equals("transfer", ResourceKey, StringComparison.OrdinalIgnoreCase))
                 {
@@ -113,14 +109,10 @@ namespace Alpha.Main.Models.Menus
                 {
                     var languageParam = buildLanguageQueryStringFunc();
                     var darkModeParam = buildDarkModeQueryStringFunc();
-                    return string.IsNullOrWhiteSpace(invalidSessionUniqueKey)
-                    ? $"{menuLink}?{languageParam}&{darkModeParam}"
-                    : $"{menuLink}?ssguid={invalidSessionUniqueKey}&{languageParam}&{darkModeParam}";
+                    return $"{menuLink}?{languageParam}&{darkModeParam}";
                 }
 
-                return string.IsNullOrWhiteSpace(invalidSessionUniqueKey)
-                    ? menuLink
-                    : $"{menuLink}?ssguid={invalidSessionUniqueKey}";
+                return menuLink;
             }
 
             set

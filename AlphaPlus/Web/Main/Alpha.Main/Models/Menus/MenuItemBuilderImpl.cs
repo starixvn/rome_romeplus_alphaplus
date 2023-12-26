@@ -1,12 +1,14 @@
 ﻿using Alpha.Main.Helpers;
 using Alpha.Main.Services;
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Alpha.Main.Models.Menus
 {
     public class MenuItemBuilderImpl : MenuItemBuilder
     {
-        private readonly IAuthorizationService authorizationService;
+        private readonly AlphaPlus.Core.Services.IAuthorizationService authorizationService;
         private readonly IDictionary<string, Func<MenuStatus>> menuItemTypeConfiguration;
         private readonly Func<bool> isProtectedModeFunc;
         private readonly Func<bool> isInternalFunc;
@@ -14,11 +16,15 @@ namespace Alpha.Main.Models.Menus
         private readonly Func<string> buildDarkModeQueryStringFunc;
         private readonly TransferService transferService;
         private readonly IUser user;
+        private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly IBrowserHelper browserHelper;
 
         public MenuItemBuilderImpl(
-            IAuthorizationService authorizationService,
+            AlphaPlus.Core.Services.IAuthorizationService authorizationService,
             TransferService transferService,
-            IUser user)
+            IUser user,
+            IHttpContextAccessor httpContextAccessor,
+            IBrowserHelper browserHelper)
         {
             this.authorizationService = authorizationService;
             this.menuItemTypeConfiguration = FunctionRegistry.MenuItemTypeStatusRules;
@@ -28,32 +34,35 @@ namespace Alpha.Main.Models.Menus
             this.user = user;
             this.buildLanguageQueryStringFunc = FunctionRegistry.BuildLanguageQueryString;
             this.buildDarkModeQueryStringFunc = FunctionRegistry.BuildDarkModeQueryString;
+            this.httpContextAccessor = httpContextAccessor;
+            this.browserHelper = browserHelper;
         }
 
-        private static void SetDataForMenuItem(IMenuItem menuItem, SiteMapNode node)
+        private void SetDataForMenuItem(IMenuItem menuItem, SiteMapNode node)
         {
-            var mainDomain = HttpContext.Current == null ? string.Empty : HttpContext.Current.Request.Headers["Host"];
+            var mainDomain = httpContextAccessor.HttpContext.Request.Host;
 
-            if (HttpContext.Current != null && HttpContext.Current.Session.IsCookieless)
-            {
-                var subDomain = mainDomain.Split('.').ElementAt(0);
-                mainDomain = mainDomain.Replace($"{subDomain}.", string.Empty);
-            }
+            // TODO: IsCookieless
+            // if (HttpContext.Current != null && HttpContext.Current.Session.IsCookieless)
+            // {
+            //     var subDomain = mainDomain.Split('.').ElementAt(0);
+            //     mainDomain = mainDomain.Replace($"{subDomain}.", string.Empty);
+            // }
 
-            useDomainConfigValue = useDomainConfigValue.IndexOf("{0}", StringComparison.OrdinalIgnoreCase) != -1 ? string.Format(useDomainConfigValue, mainDomain) : useDomainConfigValue;
+            // useDomainConfigValue = useDomainConfigValue.IndexOf("{0}", StringComparison.OrdinalIgnoreCase) != -1 ? string.Format(useDomainConfigValue, mainDomain) : useDomainConfigValue;
 
             menuItem.Key = node.Key;
             menuItem.ResourceKey = node.ResourceKey;
             menuItem.Link = node.Url;
-            menuItem.AppPath = node["AppPath"];
-            menuItem.IsBeta = node["isBeta"] != null && bool.Parse(node["isBeta"]);
-            menuItem.IsNew = node["menuItemType"] == "CreateAccountMenuItem" ? AppSettings.IsOfferCreateAccountLiteMode : (node["isNew"] != null && bool.Parse(node["isNew"]));
-            menuItem.IsOld = node["isOld"] != null && bool.Parse(node["isOld"]);
-            menuItem.IsHiddenInMobile = node["isHiddenInMobile"] != null && bool.Parse(node["isHiddenInMobile"]);
-            menuItem.ByPassAuthorization = node["byPassAuthorization"] == null ? false : bool.Parse(node["byPassAuthorization"]);
-            menuItem.ByPassProtectedMode = node["byPassProtectedMode"] == null ? false : bool.Parse(node["byPassProtectedMode"]);
-            menuItem.ByPassProtectedModeInternal = node["byPassProtectedModeInternal"] == null ? false : bool.Parse(node["byPassProtectedModeInternal"]);
-            menuItem.SubMenus = new List<IMenuItem>();
+            menuItem.AppPath = node.AppPath;
+            menuItem.IsBeta = node.IsBeta;
+            menuItem.IsNew = node.IsNew;
+            menuItem.IsOld = node.IsOld;
+            menuItem.IsHiddenInMobile = node.IsHiddenInMobile;
+            menuItem.ByPassAuthorization = node.ByPassAuthorization;
+            menuItem.ByPassProtectedMode = node.ByPassProtectedMode;
+            menuItem.ByPassProtectedModeInternal = node.ByPassProtectedModeInternal;
+            menuItem.SubMenus = [];
         }
 
         public IMenuItem BuildMenuItem(SiteMapNode node)
@@ -61,16 +70,16 @@ namespace Alpha.Main.Models.Menus
             Func<bool> isHideForSite = IsHideForSite(node);
 
             var menuItem = new MenuItem(
-                menuItemTypeConfiguration[node["menuItemType"] ?? string.Empty],
+                menuItemTypeConfiguration[node.MenuItemType ?? string.Empty],
                 authorizationService.IsAuthorized,
                 isProtectedModeFunc,
                 isInternalFunc,
                 isHideForSite,
-                buildInvalidSessionUniqueKeyFunc,
                 buildLanguageQueryStringFunc,
                 buildDarkModeQueryStringFunc,
                 transferService,
-                user);
+                user,
+                browserHelper);
 
             SetDataForMenuItem(menuItem, node);
 
@@ -79,8 +88,8 @@ namespace Alpha.Main.Models.Menus
 
         private static Func<bool> IsHideForSite(SiteMapNode node) => () =>
           {
-              var hideForSites = node["hideForSites"] == null ? Enumerable.Empty<string>() :
-                  node["hideForSites"].Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+              var hideForSites = node.HideForSites == null ? Enumerable.Empty<string>() :
+                  node.HideForSites.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
               return hideForSites
                   .Any(site => string.Equals(site, "*", StringComparison.OrdinalIgnoreCase) || string.Equals(site, UserSession.Current?.Site, StringComparison.OrdinalIgnoreCase));
           };

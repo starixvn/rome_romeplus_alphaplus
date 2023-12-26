@@ -4,6 +4,9 @@
   "main": "gulpfile.js",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "gulp": "gulp"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
     "del": "^7.1.0",

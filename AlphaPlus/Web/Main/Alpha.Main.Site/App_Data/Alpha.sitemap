@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" enableLocalization="true">
+<siteMap enableLocalization="true">
   <!--Report-->
   <siteMapNode resourceKey="reports" expand="1" menuItemType="ReportMenuItem" functionType="[E]" byPassProtectedMode="true">
     <siteMapNode resourceKey="memberOutstanding" appPath="ReportsAppPath" url="/outstanding/membernew" roles="Agent" useDomainConfig="Report:Domain"></siteMapNode>
