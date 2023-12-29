@@ -53,7 +53,10 @@ var indexManager = {
     },
     registerEvents: function () {
         indexManager.domElements.pagePopup.tinyDraggable();
-        setTimeout(indexManager.reCheckin, indexManager.recheckInIntervalMiliseconds);
+        // setTimeout(
+        //   indexManager.reCheckin,
+        //   indexManager.recheckInIntervalMiliseconds
+        // );
         var eventMethod = window.addEventListener
             ? "addEventListener"
             : "attachEvent";
@@ -116,35 +119,37 @@ var indexManager = {
     changeMenu: function (url) {
         indexManager.domElements.mainFrame.attr("src", url);
     },
-    reCheckin: function () {
-        // Post with return result in JSON format
-        $.cookie("ssl", location.href.indexOf("https://") === 0, {
-            expires: 30,
-            path: "/",
-        });
-        $.ajax({
-            type: "POST",
-            url: indexManager.urls.reCheckinUrl,
-            data: { onid: alpha.user.onUserId },
-            success: function (result) {
-                try {
-                    result = alpha.core.convertReponseToJson(result);
-                    var errCode = result.errCode;
-                    var errMsg = result.errMsg;
-                    if (errCode !== 0) {
-                        alpha.core.signOut();
-                        if (errMsg) {
-                            alert(errMsg);
-                        }
-                    }
-                }
-                catch (e) { }
-            },
-            complete: function () {
-                setTimeout(indexManager.reCheckin, indexManager.recheckInIntervalMiliseconds);
-            },
-        });
-    },
+    // reCheckin: function () {
+    //   // Post with return result in JSON format
+    //   $.cookie("ssl", location.href.indexOf("https://") === 0, {
+    //     expires: 30,
+    //     path: "/",
+    //   });
+    //   $.ajax({
+    //     type: "POST",
+    //     url: indexManager.urls.reCheckinUrl,
+    //     data: { onid: alpha.user.onUserId },
+    //     success: (result) => {
+    //       try {
+    //         result = alpha.core.convertReponseToJson(result);
+    //         var errCode = result.errCode;
+    //         var errMsg = result.errMsg;
+    //         if (errCode !== 0) {
+    //           alpha.core.signOut();
+    //           if (errMsg) {
+    //             alert(errMsg);
+    //           }
+    //         }
+    //       } catch (e) {}
+    //     },
+    //     complete: () => {
+    //       setTimeout(
+    //         indexManager.reCheckin,
+    //         indexManager.recheckInIntervalMiliseconds
+    //       );
+    //     },
+    //   });
+    // },
     loadPartialViews: function () {
         indexManager.domElements.partialContents.each(function (index, partialContent) {
             var $partialContent = $(partialContent), url = $partialContent.data("url");

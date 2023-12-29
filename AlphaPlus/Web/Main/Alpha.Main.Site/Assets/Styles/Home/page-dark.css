@@ -20,7 +20,8 @@ html {
   touch-action: manipulation;
 }
 
-body, html {
+body,
+html {
   height: 100%;
 }
 
@@ -80,12 +81,12 @@ html * {
   line-height: 20px;
 }
 .profile-group .userinfo .level {
-  color: #E7E7E7;
+  color: #e7e7e7;
 }
 
 .bg-light {
-  border-top: 1px solid #3C3C3C;
-  background-color: #2B2B2B;
+  border-top: 1px solid #3c3c3c;
+  background-color: #2b2b2b;
 }
 
 /********************************** Customer profile ******************************************/
@@ -141,7 +142,8 @@ html * {
 .mainmenu-container.panel-group {
   margin-bottom: 0;
 }
-.mainmenu-container .panel > .panel-heading, .mainmenu-container .panel.panel-default > .panel-heading {
+.mainmenu-container .panel > .panel-heading,
+.mainmenu-container .panel.panel-default > .panel-heading {
   background: #f9f9f9;
 }
 .mainmenu-container .menu-item {
@@ -159,7 +161,7 @@ html * {
   position: absolute;
   left: 6px;
   color: #919191;
-  background: #2F2F2F;
+  background: #2f2f2f;
   border-radius: 5px;
   font-size: 17px;
   margin: 0;
@@ -169,7 +171,7 @@ html * {
   top: 50%;
 }
 .mainmenu-container .menu-item .icon.icon-chatbot {
-  background: url(Images/chatbot-intro.svg) no-repeat !important;
+  background: url(../images/chatbot-intro.svg) no-repeat !important;
   box-shadow: none !important;
   height: 18px;
   width: 18px;
@@ -243,7 +245,7 @@ html * {
   border-radius: 5px;
 }
 .mainmenu-container .menu-item > a.active {
-  background: #3A3A3A;
+  background: #3a3a3a;
   color: #EDEDED;
 }
 .mainmenu-container .menu-item > a.active .icon {
@@ -258,7 +260,7 @@ html * {
   color: #EDEDED;
 }
 .mainmenu-container .menu-item > a:hover {
-  background: #3A3A3A;
+  background: #3a3a3a;
   color: #EDEDED;
 }
 .mainmenu-container .menu-item > a:hover .icon:not(.icon-chatbot) {
@@ -271,7 +273,7 @@ html * {
   margin-bottom: 0;
 }
 .mainmenu-container .menu-item#menu-MYWATCHLIST a, .mainmenu-container .menu-item#menu-SERCURITYCODE a, .mainmenu-container .menu-item#menu-MYTHRESHOLDS a, .mainmenu-container .menu-item#menu-BACKUPDOMAINS a {
-  background: #2C2C2C;
+  background: #2c2c2c;
   border: 1px solid #575757;
   border-radius: 5px;
   padding-top: 7px;
@@ -305,7 +307,7 @@ html * {
   z-index: 1;
   width: 48px;
   height: 32px;
-  background: url(Images/bage_bg_dark.svg) no-repeat center center/cover;
+  background: url(../images/bage_bg_dark.svg) no-repeat center center/cover;
   padding: 5px 0 0 3px;
   text-align: center;
 }
@@ -354,7 +356,7 @@ html * {
 .mainmenu-container .extra-box:before {
   content: "";
   height: 1px;
-  background-color: #767A85;
+  background-color: #767a85;
   position: absolute;
   left: 6px;
   right: 6px;
@@ -391,7 +393,7 @@ html * {
   color: #EDEDED;
 }
 .sidebar .main-tab li a {
-  color: #A3A3A3;
+  color: #a3a3a3;
 }
 
 #main-menu-items {
@@ -444,7 +446,7 @@ html * {
   z-index: 80;
   padding: 0 12px 8px;
   /*-webkit-overflow-scrolling: touch;
-  overflow: auto;*/
+      overflow: auto;*/
 }
 .content-wrapper .content .iframe-content {
   width: 100%;
@@ -471,14 +473,16 @@ html * {
 .top-search-bar.search-bar-toggle {
   top: 0px;
 }
-.top-search-bar .icon-search, .top-search-bar .icon-close {
+.top-search-bar .icon-search,
+.top-search-bar .icon-close {
   color: #7f7f7f;
   cursor: pointer;
   display: inline-block;
   position: absolute;
   top: 9px;
 }
-.top-search-bar .icon-search:before, .top-search-bar .icon-close:before {
+.top-search-bar .icon-search:before,
+.top-search-bar .icon-close:before {
   display: inline-block;
   height: 40px;
   line-height: 40px;
@@ -525,10 +529,10 @@ html * {
 }
 
 .progress-box {
-  background-color: #43342B;
+  background-color: #43342b;
   width: 100%;
-  color: #FF7F36;
-  border-left: 4px solid #FF7F36;
+  color: #ff7f36;
+  border-left: 4px solid #ff7f36;
   height: 52px;
   line-height: 52px;
   margin-top: 10px;
@@ -538,7 +542,7 @@ html * {
   font-size: 13px;
 }
 .progress-box.collapsed {
-  border: 1px solid #FF7F36;
+  border: 1px solid #ff7f36;
   transition: width 0.5s linear;
   width: 52px;
   cursor: pointer;
@@ -579,7 +583,7 @@ html * {
 }
 .modal-float .modal-header .modal-title {
   font-size: 14px;
-  color: #FF7F36;
+  color: #ff7f36;
 }
 .modal-float .modal-header .icon-close {
   top: 8px;
@@ -713,7 +717,7 @@ html * {
     left: 56px;
   }
 }
-@media \0 screen\,screen\9  {
+@media \0 screen\, screen\9  {
   .accountinfo-container #accountinfo-content {
     min-height: initial;
     height: 95%;
@@ -772,14 +776,14 @@ html * {
 .carousel-banner .carousel-indicators li {
   width: 8px;
   height: 8px;
-  background: #6D6D6D;
+  background: #6d6d6d;
   border: 0;
   margin: 0 1px;
   vertical-align: top;
 }
 .carousel-banner .carousel-indicators li.active {
   width: 16px;
-  background: #D9D9D9;
+  background: #d9d9d9;
 }
 
 .modal-mobile-friendly .modal-dialog .modal-header .modal-title {
@@ -790,10 +794,10 @@ html * {
 .feedback-box .icon-feedback {
   position: relative;
   top: -4px;
-  -webkit-mask: url("Images/feedback.svg");
-          mask: url("Images/feedback.svg");
-  -webkit-mask-image: url("Images/feedback.svg");
-  mask-image: url("Images/feedback.svg");
+  -webkit-mask: url("../images/feedback.svg");
+          mask: url("../images/feedback.svg");
+  -webkit-mask-image: url("../images/feedback.svg");
+  mask-image: url("../images/feedback.svg");
   background-color: #fff;
   height: 25px;
   width: 24px;
@@ -803,8 +807,8 @@ html * {
   fill: #fff;
 }
 .feedback-box .icon-feedback:hover {
-  background-color: #FFE65F;
-  fill: #FFE65F;
+  background-color: #ffe65f;
+  fill: #ffe65f;
 }
 
 .div-feedback {
@@ -841,7 +845,7 @@ html * {
   width: 135px;
 }
 .div-feedback .feedback-box {
-  background-color: #38B038;
+  background-color: #38b038;
   border-radius: 14px;
   display: flex;
   text-align: left;
@@ -850,11 +854,11 @@ html * {
   padding: 8px 35px 8px 10px;
 }
 .div-feedback .feedback-box:hover .txt-feedback {
-  color: #FFE65F;
+  color: #ffe65f;
 }
 .div-feedback .feedback-box:hover .icon-feedback {
-  background-color: #FFE65F;
-  fill: #FFE65F;
+  background-color: #ffe65f;
+  fill: #ffe65f;
 }
 .div-feedback .icon-feedback {
   position: relative;
@@ -983,7 +987,7 @@ html * {
   margin: 0 0 8px 0;
 }
 .popup-highlight .text p b {
-  color: #41A4FF;
+  color: #41a4ff;
 }
 .popup-highlight .text ul {
   padding: 0 0 0 19px;
@@ -1030,13 +1034,13 @@ html * {
   height: 28px !important;
   padding: 0 !important;
   min-width: 80px !important;
-  color: #EDEDED !important;
+  color: #ededed !important;
   font-weight: 500 !important;
   font-size: 13px !important;
   line-height: 15px !important;
 }
 .bootbox-confirm .btn-primary {
-  background: #36587D !important;
+  background: #36587d !important;
 }
 .bootbox-confirm .btn-primary:hover {
   background: #2e4b6b !important;

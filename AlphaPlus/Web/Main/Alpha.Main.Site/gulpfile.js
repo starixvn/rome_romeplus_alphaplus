@@ -25,11 +25,7 @@ function getBundles(regexPattern) {
 }
 
 function clean(cb) {
-  var files = bundleConfig.map(function (bundle) {
-    return bundle.outputFileName;
-  });
-
-  deleteSync(files);
+  deleteSync("wwwroot/**/*");
   cb();
 }
 
@@ -49,7 +45,11 @@ function compileCss() {
     .src("assets/styles/**/*.scss")
     .pipe(sass().on("error", sass.logError))
     .pipe(postcss([autoprefixer()]))
-    .pipe(gulp.dest("assets/styles"));
+    .pipe(
+      gulp.dest(function (f) {
+        return f.base;
+      })
+    );
 }
 
 function minCss() {
@@ -63,7 +63,13 @@ function minCss() {
   return merge(tasks);
 }
 
+function copyImages() {
+  return gulp
+    .src("assets/images/**/*")
+    .pipe(gulp.dest("wwwroot/assets/images"));
+}
+
 gulp.task(
   "default",
-  gulp.series(clean, compileCss, gulp.parallel(minCss, minJs))
+  gulp.series(clean, compileCss, gulp.parallel(minCss, minJs, copyImages))
 );
