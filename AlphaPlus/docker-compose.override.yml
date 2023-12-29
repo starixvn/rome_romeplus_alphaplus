@@ -1,0 +1,13 @@
+version: "3.4"
+
+services:
+  assets:
+    ports:
+      - "5100:8080"
+
+  login:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:5000
+    ports:
+      - "5001:5000"

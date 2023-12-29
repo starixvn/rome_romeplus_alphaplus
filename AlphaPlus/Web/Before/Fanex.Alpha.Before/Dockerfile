@@ -1,12 +1,13 @@
-FROM hub.nexdev.net/base/dotnet/core/sdk:7.0 AS builder
+FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS builder
 WORKDIR /src
 
-COPY src/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj ./Fanex.Alpha.Before/Fanex.Alpha.Before.csproj
-RUN dotnet nuget add source https://nuget.nexdev.net/api/v2
-RUN --mount=type=cache,target=/root/.nuget/packages \
-    dotnet restore Fanex.Alpha.Before/Fanex.Alpha.Before.csproj -v n
+COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
+COPY "Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" "Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj"
+COPY "NuGet.config" "NuGet.config"
+RUN dotnet restore "Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" -v n
 
-COPY src/Fanex.Alpha.Before ./Fanex.Alpha.Before
+COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
+COPY "Web/Before/Fanex.Alpha.Before" "Web/Before/Fanex.Alpha.Before"
 
 ARG TRANSFORM_CONFIG
 ARG CI_JOB_TOKEN
@@ -29,7 +30,7 @@ RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
 
 RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
 then \
-  cp "Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json" "Fanex.Alpha.Before/domainmappings.json"; \
+  cp "Web/Before/Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json" "Web/Before/Fanex.Alpha.Before/domainmappings.json"; \
 fi
 
 RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
@@ -40,14 +41,13 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
   || [ "$TRANSFORM_CONFIG" = "AWS2" ] \
   || [ "$TRANSFORM_CONFIG" = "DR2" ]; \
 then \
-	cp "Fanex.Alpha.Before/wwwroot/favicon2.ico" "Fanex.Alpha.Before/wwwroot/favicon.ico"; \
+	cp "Web/Before/Fanex.Alpha.Before/wwwroot/favicon2.ico" "Web/Before/Fanex.Alpha.Before/wwwroot/favicon.ico"; \
 fi
 
-WORKDIR /src/Fanex.Alpha.Before
-RUN --mount=type=cache,target=/root/.nuget/packages \
-    dotnet publish -r linux-x64 --self-contained false -o /app
+WORKDIR /src/Web/Before/Fanex.Alpha.Before
+RUN dotnet publish --no-restore -r linux-x64 --self-contained false -o /app
 
-FROM hub.nexdev.net/base/dotnet/core/aspnet:7.0-slim AS base
+FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 
 # Don’t run as root
 RUN adduser --disabled-password \
