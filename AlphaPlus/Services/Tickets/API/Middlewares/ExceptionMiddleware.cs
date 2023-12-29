@@ -1,11 +1,8 @@
-using System.Data.SqlClient;
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using System.Web;
-using Fanex.Data;
 
-namespace Alpha.Tickets.API.Middlewares;
+namespace AlphaPlus.Tickets.API.Middlewares;
 
 public sealed class ExceptionMiddleware
 {

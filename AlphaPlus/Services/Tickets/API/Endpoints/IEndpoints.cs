@@ -1,4 +1,4 @@
-namespace Alpha.Tickets.API.Endpoints;
+namespace AlphaPlus.Tickets.API.Endpoints;
 
 public interface IEndpoints
 {

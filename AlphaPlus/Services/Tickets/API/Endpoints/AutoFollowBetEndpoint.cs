@@ -1,7 +1,7 @@
 
 using Alpha.Tickets.Infrastructure.Repositories;
 
-namespace Alpha.Tickets.API.Endpoints;
+namespace AlphaPlus.Tickets.API.Endpoints;
 
 public class AutoFollowBetEndpoint : IEndpoints
 {

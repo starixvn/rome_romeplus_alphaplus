@@ -1,4 +1,4 @@
-using Alpha.Tickets.API.Extensions;
+using AlphaPlus.Tickets.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.RegisterServices();

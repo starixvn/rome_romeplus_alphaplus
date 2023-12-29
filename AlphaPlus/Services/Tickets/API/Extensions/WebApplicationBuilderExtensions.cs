@@ -1,7 +1,7 @@
-using Alpha.Tickets.API.Endpoints;
-using Alpha.Tickets.API.Middlewares;
+using AlphaPlus.Tickets.API.Endpoints;
+using AlphaPlus.Tickets.API.Middlewares;
 
-namespace Alpha.Tickets.API.Extensions;
+namespace AlphaPlus.Tickets.API.Extensions;
 
 public static class WebApplicationBuilderExtensions
 {

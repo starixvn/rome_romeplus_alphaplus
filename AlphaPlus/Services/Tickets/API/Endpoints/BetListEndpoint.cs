@@ -2,7 +2,7 @@ using Alpha.Tickets.Infrastructure.Models.BetList;
 using Alpha.Tickets.Infrastructure.Params.BetList;
 using Alpha.Tickets.Infrastructure.Repositories;
 
-namespace Alpha.Tickets.API.Endpoints;
+namespace AlphaPlus.Tickets.API.Endpoints;
 
 public class BetListEndpoint : IEndpoints
 {

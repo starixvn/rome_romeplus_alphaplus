@@ -1,14 +1,10 @@
-using System.Diagnostics.CodeAnalysis;
-using Fanex.Data.Repository;
-using Fanex.Data.SqlServer;
 using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry;
 using Sentry;
 
-namespace Alpha.Tickets.API.Extensions;
+namespace AlphaPlus.Tickets.Site.Extensions;
 
-[ExcludeFromCodeCoverage]
 public static class FanexLibsExtensions
 {
     public static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)
@@ -37,9 +33,4 @@ public static class FanexLibsExtensions
             });
         }
     }
-
-    public static IServiceCollection AddFanexDataWithSqlServer(this IServiceCollection services, IConfiguration configuration)
-        => services
-        .AddFanexSql(configuration)
-        .AddSingleton<IDynamicRepository, DynamicRepository>();
 }
