@@ -11,7 +11,12 @@ namespace AlphaPlus.Tickets.API.Extensions;
 [ExcludeFromCodeCoverage]
 public static class FanexLibsExtensions
 {
-    public static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddFanexLibs(this IServiceCollection services, IConfiguration configuration)
+        => services
+        .AddFanexLogging(configuration)
+        .AddFanexDataWithSqlServer(configuration);
+
+    private static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)
     {
         LogManager
             .SetDefaultLogCategory(configuration["Fanex.Logging:DefaultCategory"])
@@ -38,7 +43,7 @@ public static class FanexLibsExtensions
         }
     }
 
-    public static IServiceCollection AddFanexDataWithSqlServer(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection AddFanexDataWithSqlServer(this IServiceCollection services, IConfiguration configuration)
         => services
         .AddFanexSql(configuration)
         .AddSingleton<IDynamicRepository, DynamicRepository>();

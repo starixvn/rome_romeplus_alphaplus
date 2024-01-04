@@ -5,7 +5,7 @@
     <RootNamespace>AlphaPlus.Tickets.API</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />
@@ -15,7 +15,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Alpha.Tickets.Infrastructure\Alpha.Tickets.Infrastructure.csproj" />
+    <ProjectReference Include="..\BetsForecast\Infrastructure\BetsForecast.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\**">

@@ -1,18 +1,32 @@
-using Alpha.Tickets.Infrastructure.Repositories;
+
+using AlphaPlus.BetsForecast.Infrastructure.Forecast;
 
 namespace AlphaPlus.Tickets.API.Endpoints;
 
-public class ForecastEndpoint : IEndpoints
+public class ForecastEndpoint : IEndpoint
 {
-    public void RegisterServices(IServiceCollection services)
-        => services.AddSingleton<IForecastRepository, ForecastRepository>();
-
-    public void RegisterEndpoints(IEndpointRouteBuilder endpoints)
+    public void MapEndpoints(IEndpointRouteBuilder endpoints)
     {
-        var products = endpoints.MapGroup("/api/forecast");
+        var forecast = endpoints.MapGroup("/api/forecast");
 
-        products.MapGet(
-            "/BetTypesSupportScoreMap",
-            (IForecastRepository repository) => repository.GetBetTypeIdsSupportScoreMap());
+        forecast.MapGet(
+            "/soccerleagues",
+            (bool isLive, bool isShowAll, ILeagueRepository repository) => repository.GetSoccerLeagues(isLive, isShowAll));
+
+        forecast.MapGet(
+            "/soccermatches",
+            (int leagueId, bool isLive, ILeagueRepository repository) => repository.GetSoccerMatches(leagueId, isLive));
+
+        forecast.MapGet(
+            "/soccer",
+            async (int custId,
+            string matchIds,
+            bool isLive,
+            IForecastRepository repository) =>
+            {
+                var (matches, betTypes, winloss) = await repository.GetSoccer(custId, matchIds, isLive);
+
+                return Tuple.Create(matches, betTypes, winloss);
+            });
     }
 }

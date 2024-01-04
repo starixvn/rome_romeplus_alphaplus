@@ -1,8 +1,6 @@
 namespace AlphaPlus.Tickets.API.Endpoints;
 
-public interface IEndpoints
+public interface IEndpoint
 {
-    void RegisterServices(IServiceCollection services);
-
-    void RegisterEndpoints(IEndpointRouteBuilder endpoints);
+    void MapEndpoints(IEndpointRouteBuilder endpoints);
 }

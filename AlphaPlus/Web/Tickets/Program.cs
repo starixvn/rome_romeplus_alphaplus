@@ -1,5 +1,6 @@
-using AlphaPlus.Tickets.Site.Extensions;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
+using AlphaPlus.Tickets.Site.Features.Shared.Middlewares;
 using Fanex.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -9,9 +10,9 @@ var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services
-    .AddFanexLogging(configuration)
+    .AddFanexLibs(configuration)
     .AddSharedSession(configuration)
-    .AddApplicationServices()
+    .AddInfrastructure(configuration)
     .AddMediatR(assembly)
     .AddHealthChecks();
 builder.Services
@@ -24,10 +25,18 @@ builder.Services
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden/";
     });
-builder.Services.AddControllersWithViews();
+builder.Services
+    .AddControllersWithViews()
+    .AddRazorOptions(options =>
+    {
+        // The old locations are /Views/{1}/{0}.cshtml and /Views/Shared/{0}.cshtml
+        // where {1} is the Controller and {0} is the name of the View
+        options.ViewLocationFormats.Clear();
+        options.ViewLocationFormats.Add("/Features/{1}/Views/{0}.cshtml");
+        options.ViewLocationFormats.Add("/Features/Shared/Views/{0}.cshtml");
+    });
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -47,6 +56,7 @@ app
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 
+app.UseMiddleware<RequestCultureMiddleware>();
 app.MapHealthChecks("/health");
 app.MapControllerRoute(
     name: "default",

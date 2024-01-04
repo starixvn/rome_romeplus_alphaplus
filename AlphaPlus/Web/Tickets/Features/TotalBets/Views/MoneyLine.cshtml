@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = Resources.MoneyLine;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
+}
+@model IEnumerable<MoneyLine>
+<div class="page-title">@Resources.MoneyLine</div>
+<div class="filter">
+    <div class="auto-refresh"></div>
+</div>
+<table class="tblRpt tblRpt-bordered width-100per" id="tblRpt">
+    <thead>
+        <tr>
+            <th rowspan="2" class="w-number">#</th>
+            <th rowspan="2">@Resources.Time</th>
+            <th rowspan="2">@Resources.Event</th>
+            <th colspan="4">@Resources.FullTime</th>
+            <th colspan="4">@Resources._1stHalf</th>
+        </tr>
+        <tr class="thead-row2">
+            <th>@Resources.TotalHome</th>
+            <th>@Resources.TotalAway</th>
+            <th>@Resources.ForecastHome</th>
+            <th>@Resources.ForecastAway</th>
+            <th>@Resources.TotalHome</th>
+            <th>@Resources.TotalAway</th>
+            <th>@Resources.ForecastHome</th>
+            <th>@Resources.ForecastAway</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="MoneyLinePartial" />
+    </tbody>
+</table>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="60,75,90,105,120" />
+<input type="hidden" id="hidden-autoRefreshUrl" value="MoneyLine?partial=true" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="MoneyLine" />

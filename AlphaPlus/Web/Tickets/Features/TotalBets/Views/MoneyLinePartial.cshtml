@@ -1,0 +1,60 @@
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+    async Task RenderTotal(int matchId, int betType, decimal total)
+    {
+        <td class="text-right">
+            <view-betlist matchid="@matchId" bettype="@betType" value="@total" />
+        </td>
+    }
+    async Task RenderForecast(int matchId, int betType, decimal total)
+    {
+        <td class="text-right">
+            <view-betlist matchid="@matchId" bettype="@betType" value="@total" redpositive="true" />
+        </td>
+    }
+}
+
+@model IEnumerable<MoneyLine>
+@if (Model.Any())
+{
+    var number = 1;
+    var matchIndex = 0;
+    var currentLeagueId = 0;
+    foreach (var item in Model)
+    {
+        if (currentLeagueId == item.LeagueId)
+        {
+            matchIndex++;
+        }
+        else
+        {
+            matchIndex = 0;
+            currentLeagueId = item.LeagueId;
+            <tr class="col-league">
+                <td colspan="11">@item.LeagueName</td>
+            </tr>
+        }
+        <tr class="@(matchIndex % 2 == 0 ? string.Empty : "odd")">
+            <td>@(number++)</td>
+            <td class="col-time">@Html.Raw(item.ShowTime)</td>
+            <td>@item.Event</td>
+            @{
+                await RenderTotal(item.MatchId, 20, item.Home_Odds);
+                await RenderTotal(item.MatchId, 20, item.Away_Odds);
+                await RenderForecast(item.MatchId, 20, item.WinLost_Home);
+                await RenderForecast(item.MatchId, 20, item.WinLost_Away);
+                await RenderTotal(item.MatchId, 21, item.Home_Odds_HT);
+                await RenderTotal(item.MatchId, 21, item.Away_Odds_HT);
+                await RenderForecast(item.MatchId, 21, item.WinLost_Home_HT);
+                await RenderForecast(item.MatchId, 21, item.WinLost_Away_HT);
+            }
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="11" class="text-center">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

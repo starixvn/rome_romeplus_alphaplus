@@ -1,0 +1,81 @@
+@import '../mixins';
+$dropdown-bg: #fff;
+$border-color-dark: #cecece;
+$dropdown-bg-hover: #ddd;
+$dropdown-color: #333;
+
+.auto-refresh {
+    display: inline-block;
+}
+
+.refresh-countdown {
+    width: 90px;
+    overflow: hidden;
+
+    .refresh-button {
+        background-image: url('../images/btrefresh-large.png');
+        @include border-radius(2px);
+        cursor: pointer;
+        float: left;
+        font-size: 12px;
+        padding-left: 15px;
+        height: 24px;
+        line-height: 24px;
+        width: 64px;
+    }
+
+    .refresh-arrow-down {
+        background-image: url('../images/btdown-large.png');
+        @include border-radius(2px);
+        cursor: pointer;
+        float: right;
+        height: 24px;
+        line-height: 24px;
+        width: 24px;
+        position: relative;
+        left: -4px;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+.refresh-dropdown {
+    background-color: $dropdown-bg;
+    border: solid 1px $border-color-dark;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    list-style: none;
+    width: 86px;
+    @include user-select-none();
+    display: none;
+
+    &.open {
+        display: block;
+    }
+
+    .refresh-dropdown-item {
+        padding: 4px 0 4px 13px;
+
+        &:hover {
+            background-color: $dropdown-bg-hover;
+            color: $dropdown-color;
+        }
+
+        &.selected {
+            background-color: $dropdown-bg-hover;
+            font-weight: bold;
+        }
+    }
+}
+
+// .miniloading {
+//     font-size: 9px;
+//     margin-left: -10px;
+// }
+
+// .div_min_bottom {
+//     border-bottom: solid 1px white;
+// }

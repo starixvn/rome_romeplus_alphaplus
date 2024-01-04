@@ -1,0 +1,16 @@
+[
+  {
+    "outputFileName": "wwwroot/bundles/totalbets/totalbets.css",
+    "inputFiles": [
+      "assets/styles/components/fanex.autorefresh.css",
+      "assets/styles/totalbets/totalbets.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/totalbets/totalbets.js",
+    "inputFiles": [
+      "assets/scripts/components/fanex.autorefresh.js",
+      "assets/scripts/totalbets/totalbets.js"
+    ]
+  }
+]

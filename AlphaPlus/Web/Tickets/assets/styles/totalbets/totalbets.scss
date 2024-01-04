@@ -1,0 +1,114 @@
+@import '../mixins';
+
+$primary-color: #666;
+$hover-back-ground-color: #f8ff8d;
+$win-loss-name-background-color: #ebeaea;
+$positive-color: #e40000;
+$back-ground-focus-color: #bbcae9;
+
+body {
+    background: #f4f4f4;
+    font-family: Roboto, Arial;
+    font-size: 13px;
+}
+
+a:link {
+    color: #045ace;
+    text-decoration: none;
+}
+
+.filter {
+    margin-top: 8px;
+}
+
+table * {
+    box-sizing: content-box;
+}
+
+.tblRpt {
+    &.tbl-outright,
+    &.tbl-1x2 {
+        width: 600px;
+    }
+
+    .width-50 {
+        width: 50px;
+    }
+
+    .width-80 {
+        width: 80px;
+    }
+
+    .width-100 {
+        width: 100px;
+    }
+
+    .width-116 {
+        width: 116px;
+    }
+
+    .w-number {
+        width: 20px;
+    }
+
+    .w-icon-fc {
+        width: 16px;
+    }
+
+    .col-league {
+        background-color: #f3f5e0;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .bg-live {
+        background-color: #f9ceae;
+    }
+
+    .odd {
+        background-color: #eae9ee;
+    }
+
+    .col-time {
+        font-size: 8pt;
+        text-align: center;
+
+        .live {
+            color: #ff0000;
+            font-style: italic;
+        }
+    }
+
+    .col-x {
+        background-color: #ffefde;
+    }
+
+    .fcnum {
+        color: #1d1d1d;
+        font-weight: bold;
+        text-decoration: none;
+
+        .positive {
+            color: $positive-color;
+        }
+    }
+
+    .icon-fc {
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 3px;
+        text-decoration: none;
+        @include ripple-effect-icon($margin-left: -6px);
+
+        &:before {
+            font: {
+                family: Iconalpha;
+                size: 16px;
+            }
+
+            float: left;
+            content: '\e930';
+            color: #2a9cde;
+        }
+    }
+}

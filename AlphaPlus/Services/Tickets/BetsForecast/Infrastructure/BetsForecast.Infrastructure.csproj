@@ -1,11 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>BetsForecast.Infrastructure</AssemblyName>
     <RootNamespace>AlphaPlus.BetsForecast.Infrastructure</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Fanex.Data.Repository" Version="4.2.5.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\BetsForecast.Domain.csproj" />
+  </ItemGroup>
 </Project>
