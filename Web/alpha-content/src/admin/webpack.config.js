@@ -8,8 +8,8 @@ module.exports = (config, webpack) => {
   // Important: return the modified config
   config.plugins.push(
     new webpack.DefinePlugin({
-      CLIENT_FRONTEND_URL: JSON.stringify(process.env.CLIENT_FRONTEND_URL),
-      ADMIN_FRONTEND_URL: JSON.stringify(process.env.ADMIN_FRONTEND_URL),
+      HANDBOOK_ADMIN_URL: JSON.stringify(process.env.HANDBOOK_ADMIN_URL),
+      HANDBOOK_DEMO_URL: JSON.stringify(process.env.HANDBOOK_DEMO_URL),
       ADMIN_JWT_SECRET: JSON.stringify(process.env.ADMIN_JWT_SECRET)
     })
   )

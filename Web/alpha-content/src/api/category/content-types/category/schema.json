@@ -23,45 +23,13 @@
         "i18n": {
           "localized": true
         }
-      }
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "name"
-    },
-    "markets": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::market.market",
-      "inversedBy": "categories"
+      },
+      "unique": false
     },
     "categories": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "mappedBy": "categoriesParent"
-    },
-    "categoriesParent": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "categories"
-    },
-    "articles": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::article.article",
-      "inversedBy": "categories"
-    },
-    "isMain": {
-      "type": "boolean",
-      "default": false,
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "relation": "oneToMany",
+      "target": "api::category.category"
     },
     "shortName": {
       "pluginOptions": {
@@ -71,6 +39,34 @@
       },
       "type": "string",
       "required": true
+    },
+    "user_levels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-level.user-level"
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "markets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::market.market"
+    },
+    "categoriesParent": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
     }
   }
 }

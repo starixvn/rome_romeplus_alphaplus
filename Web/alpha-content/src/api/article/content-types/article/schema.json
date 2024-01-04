@@ -30,15 +30,8 @@
     },
     "categories": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "mappedBy": "articles"
-    },
-    "markets": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::market.market",
-      "inversedBy": "articles"
+      "relation": "oneToMany",
+      "target": "api::category.category"
     },
     "summary": {
       "pluginOptions": {
@@ -48,12 +41,6 @@
       },
       "type": "text",
       "required": true
-    },
-    "userLevels": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::user-level.user-level",
-      "inversedBy": "articles"
     },
     "name": {
       "pluginOptions": {
@@ -92,6 +79,16 @@
       },
       "type": "richtext",
       "required": true
+    },
+    "markets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::market.market"
+    },
+    "user_levels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-level.user-level"
     }
   }
 }

@@ -780,7 +780,7 @@ export interface ApiAdminActionAdminAction extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     actorId: Attribute.BigInteger;
@@ -790,7 +790,6 @@ export interface ApiAdminActionAdminAction extends Schema.CollectionType {
     targetValue: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::admin-action.admin-action',
       'oneToOne',
@@ -835,13 +834,8 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       }>;
     categories: Attribute.Relation<
       'api::article.article',
-      'manyToMany',
+      'oneToMany',
       'api::category.category'
-    >;
-    markets: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::market.market'
     >;
     summary: Attribute.Text &
       Attribute.Required &
@@ -850,11 +844,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    userLevels: Attribute.Relation<
-      'api::article.article',
-      'manyToMany',
-      'api::user-level.user-level'
-    >;
     name: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -886,6 +875,16 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    markets: Attribute.Relation<
+      'api::article.article',
+      'oneToMany',
+      'api::market.market'
+    >;
+    user_levels: Attribute.Relation<
+      'api::article.article',
+      'oneToMany',
+      'api::user-level.user-level'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -929,14 +928,13 @@ export interface ApiArticleComponentArticleComponent
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     content: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::article-component.article-component',
       'oneToOne',
@@ -961,7 +959,7 @@ export interface ApiArticleDraftArticleDraft extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     revision: Attribute.Integer;
@@ -974,7 +972,6 @@ export interface ApiArticleDraftArticleDraft extends Schema.CollectionType {
     version_number: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::article-draft.article-draft',
       'oneToOne',
@@ -999,7 +996,7 @@ export interface ApiArticleViewArticleView extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     custName: Attribute.String;
@@ -1012,7 +1009,6 @@ export interface ApiArticleViewArticleView extends Schema.CollectionType {
     viewDate: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::article-view.article-view',
       'oneToOne',
@@ -1095,35 +1091,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    slug: Attribute.UID<'api::category.category', 'name'>;
-    markets: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::market.market'
-    >;
     categories: Attribute.Relation<
       'api::category.category',
-      'manyToMany',
+      'oneToMany',
       'api::category.category'
     >;
-    categoriesParent: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::category.category'
-    >;
-    articles: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::article.article'
-    >;
-    isMain: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.DefaultTo<false>;
     shortName: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -1131,6 +1103,32 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    user_levels: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::user-level.user-level'
+    >;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    markets: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::market.market'
+    >;
+    categoriesParent: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::category.category'
+    >;
+    articles: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::article.article'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1161,15 +1159,15 @@ export interface ApiEnvironmentEnvironment extends Schema.CollectionType {
     singularName: 'environment';
     pluralName: 'environments';
     displayName: 'Environment';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::environment.environment',
       'oneToOne',
@@ -1191,9 +1189,10 @@ export interface ApiFavoriteFavorite extends Schema.CollectionType {
     singularName: 'favorite';
     pluralName: 'favorites';
     displayName: 'Favorite';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     article: Attribute.Relation<
@@ -1205,7 +1204,6 @@ export interface ApiFavoriteFavorite extends Schema.CollectionType {
     custId: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::favorite.favorite',
       'oneToOne',
@@ -1227,9 +1225,10 @@ export interface ApiFeedbackFeedback extends Schema.CollectionType {
     singularName: 'feedback';
     pluralName: 'feedbacks';
     displayName: 'Feedback';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     content: Attribute.Text;
@@ -1242,7 +1241,6 @@ export interface ApiFeedbackFeedback extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::feedback.feedback',
       'oneToOne',
@@ -1258,6 +1256,78 @@ export interface ApiFeedbackFeedback extends Schema.CollectionType {
   };
 }
 
+export interface ApiGlossaryGlossary extends Schema.CollectionType {
+  collectionName: 'glossaries';
+  info: {
+    singularName: 'glossary';
+    pluralName: 'glossaries';
+    displayName: 'Glossary';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    markets: Attribute.Relation<
+      'api::glossary.glossary',
+      'oneToMany',
+      'api::market.market'
+    >;
+    user_levels: Attribute.Relation<
+      'api::glossary.glossary',
+      'oneToMany',
+      'api::user-level.user-level'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::glossary.glossary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::glossary.glossary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::glossary.glossary',
+      'oneToMany',
+      'api::glossary.glossary'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiImageImage extends Schema.CollectionType {
   collectionName: 'images';
   info: {
@@ -1267,7 +1337,7 @@ export interface ApiImageImage extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
@@ -1276,7 +1346,6 @@ export interface ApiImageImage extends Schema.CollectionType {
     height: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::image.image',
       'oneToOne',
@@ -1301,7 +1370,7 @@ export interface ApiMarketMarket extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   pluginOptions: {
     i18n: {
@@ -1309,33 +1378,26 @@ export interface ApiMarketMarket extends Schema.CollectionType {
     };
   };
   attributes: {
-    name: Attribute.Text &
+    name: Attribute.String &
       Attribute.Required &
-      Attribute.Unique &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     categories: Attribute.Relation<
       'api::market.market',
-      'manyToMany',
+      'oneToMany',
       'api::category.category'
     >;
-    slug: Attribute.UID &
+    slug: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    articles: Attribute.Relation<
-      'api::market.market',
-      'manyToMany',
-      'api::article.article'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::market.market',
       'oneToOne',
@@ -1366,18 +1428,34 @@ export interface ApiUserLevelUserLevel extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
   };
   attributes: {
-    name: Attribute.String;
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    levelId: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     articles: Attribute.Relation<
       'api::user-level.user-level',
-      'manyToMany',
+      'oneToMany',
       'api::article.article'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::user-level.user-level',
       'oneToOne',
@@ -1390,6 +1468,12 @@ export interface ApiUserLevelUserLevel extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::user-level.user-level',
+      'oneToMany',
+      'api::user-level.user-level'
+    >;
+    locale: Attribute.String;
   };
 }
 
@@ -1421,6 +1505,7 @@ declare module '@strapi/types' {
       'api::environment.environment': ApiEnvironmentEnvironment;
       'api::favorite.favorite': ApiFavoriteFavorite;
       'api::feedback.feedback': ApiFeedbackFeedback;
+      'api::glossary.glossary': ApiGlossaryGlossary;
       'api::image.image': ApiImageImage;
       'api::market.market': ApiMarketMarket;
       'api::user-level.user-level': ApiUserLevelUserLevel;

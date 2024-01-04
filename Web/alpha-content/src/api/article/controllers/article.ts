@@ -6,51 +6,13 @@ import { factories } from '@strapi/strapi'
 import qs from "qs";
 import {isValidToken}  from '../../security';
 
-type  ResponseModel = {
-  data: [any];
-};
- 
-function filterLatestVersion(response: ResponseModel) {
-  const versions = {};
-  response.data.forEach((d) =>{
-    var v = d.attributes.version;
-    var t = d.attributes.title;
-
-    if(v == null) {
-      return;
-    }
-
-    var lastVersion = versions[t];
-    if(lastVersion == null || lastVersion < v) {
-      versions[t] = v;
-    }
-  }); 
-
-
-  const result = { data: [] };
-  response.data.forEach((d) =>{
-    var v = d.attributes.version;
-    var t = d.attributes.title;
-
-    if(v == null) {
-      return;
-    }
-
-    if(v == versions[t]) {
-      result.data.push(d);
-    }
-  }); 
-
-  return result;
-}
-
 export default factories.createCoreController('api::article.article', ({ strapi }) => ({
   async findOne(ctx) {
     const { id } = ctx.params;
     const urlParamsObject = qs.parse(ctx.querystring);
 
     const entity = await strapi.db.query('api::article.article').findOne({
-      where: urlParamsObject.id ? { id: urlParamsObject.id  } : {slug: id, publishedAt: { $null:  false } },
+      where: urlParamsObject.id ? { locale: "en", id: urlParamsObject.id  } : {locale: "en", slug: id, publishedAt: { $null:  false } },
     });
 
     if(entity == null) {
@@ -62,8 +24,11 @@ export default factories.createCoreController('api::article.article', ({ strapi 
         categories: {
           fields: ['name', 'slug', 'shortName']
         },
-        userLevels: {
-          fields: ['name'],
+        user_levels:{
+          fields: ['name', 'levelId']
+        },
+        markets: {
+          fields: ['name']
         }
       }
     });
@@ -80,10 +45,13 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     const entities = await strapi.entityService.findMany('api::article.article', {
       populate: {
         categories: {
-          fields: '*',
+          fields: ['name', 'slug', 'shortName']
         },
-        userLevels: {
-          fields: ['name'],
+        user_levels:{
+          fields: ['name', 'levelId']
+        },
+        markets: {
+          fields: ['name']
         }
       },
       filters: {
@@ -107,10 +75,13 @@ export default factories.createCoreController('api::article.article', ({ strapi 
         },
         populate: {
           categories: {
-            fields: ['name', 'slug', 'shortName'],
+            fields: ['name', 'slug', 'shortName']
           },
-          userLevels: {
-            fields: ['name'],
+          user_levels:{
+            fields: ['name', 'levelId']
+          },
+          markets: {
+            fields: ['name']
           }
         },
         sort: {
@@ -119,9 +90,6 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       });  
 
       const output = await this.sanitizeOutput(entities, ctx);
-
-      // const response = this.transformResponse(output) as ResponseModel;
-      // return filterLatestVersion(response);
 
       return this.transformResponse(output);
     } catch(e) {
@@ -136,17 +104,20 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     const entities = await strapi.entityService.findMany('api::article.article', {
       populate: {
         categories: {
-          fields: '*',
+          fields: ['name', 'slug', 'shortName']
         },
-        userLevels: {
-          fields: ['name'],
+        user_levels:{
+          fields: ['name', 'levelId']
+        },
+        markets: {
+          fields: ['name']
         }
       },
       filters: {
         publishedAt: { $null: false },
         categories: {
           slug: {
-            $contains: slug
+            $eqi: slug
           }
         }
       },
@@ -156,9 +127,6 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     });
 
     const output = await this.sanitizeOutput(entities, ctx);
-
-    // const response = this.transformResponse(output) as ResponseModel;
-    // return filterLatestVersion(response);
 
     return this.transformResponse(output);
   },
@@ -197,4 +165,189 @@ export default factories.createCoreController('api::article.article', ({ strapi 
 
     return deleted;
   },
-}));
+
+  async getBySlug(ctx) {
+    const { slug, language, market, level } = ctx.params;
+
+    const entity = await strapi.db.query('api::article.article').findOne({
+      where: {
+        publishedAt: { $null: false },
+        slug: { $eqi: slug },
+        locale: { $eqi: language },
+        user_levels: {
+          levelId: { $eq: level }
+        },
+        markets: {
+          name: { $eqi: market }
+        }
+      },
+      populate: {
+        categories: {
+          fields: ['name', 'slug', 'shortName']
+        }
+      },
+      user_levels:{
+        fields: ['name', 'levelId']
+      },
+      markets: {
+        fields: ['name']
+      }
+    });
+
+    const output = await this.sanitizeOutput(entity, ctx);
+    return output;
+  },
+
+  async search(ctx) {
+    const { keyword, language, market, level } = ctx.params;
+
+    const s = keyword.substring(1);
+
+    if(language === "en") {
+      const entities = await strapi.entityService.findMany('api::article.article', {
+        populate: {
+          categories: {
+            fields: ['name', 'slug', 'shortName']
+          },
+          user_levels:{
+            fields: ['name', 'levelId']
+          },
+          markets: {
+            fields: ['name']
+          }
+        },
+        filters: {
+          publishedAt: { $null: false },
+          title: { $containsi: s },
+          user_levels: {
+            levelId: { $eq: level }
+          },
+          markets: {
+            name: { $eqi: market }
+          }
+        },
+        sort: {
+          publishedAt: 'desc'
+        }
+      });
+  
+      const output = await this.sanitizeOutput(entities, ctx);
+      return output; 
+    }
+
+    const entities = await strapi.entityService.findMany('api::article.article', {
+      filters: {
+        publishedAt: { $null: false },
+        title: { $containsi: s },
+        user_levels: {
+          levelId: { $eq: level }
+        },
+        markets: {
+          name: { $eqi: market }
+        }
+      },
+      populate: 'localizations'
+    });
+
+    const uppercaseLanguage = language.toUpperCase();
+    const uppercaseKeyword = s.toUpperCase();
+    const result = [];
+    const existingArticles = {};
+
+    for(var i = 0; i<entities.length; i++) {
+      const e = entities[i];
+      const localization = e.localizations?.find(l => 
+        l.locale.toUpperCase() === uppercaseLanguage && 
+        l.title.toUpperCase().indexOf(uppercaseKeyword) !== -1);
+      if(localization && !existingArticles[localization.id]) {
+        const artilceByLocale = await strapi.entityService.findOne('api::article.article', localization.id, {
+          populate: {
+            categories: {
+              fields: ['name', 'slug', 'shortName']
+            },
+            user_levels:{
+              fields: ['name', 'levelId']
+            },
+            markets: {
+              fields: ['name']
+            }
+          }
+        });  
+        result.push(await this.sanitizeOutput(artilceByLocale, ctx));
+        existingArticles[localization.id] = true;
+      }
+    }
+
+    return result.sort((a, b) => a.publishedAt - b.publishedAt); 
+  },
+
+  async suggest(ctx) {
+    const { keyword, language, market, level } = ctx.params;
+
+    const s = keyword;
+
+    if(language === "en") {
+      const entities = await strapi.entityService.findMany('api::article.article', {
+        filters: {
+          publishedAt: { $null: false },
+          title: { $containsi: s },
+          user_levels: {
+            levelId: { $eq: level }
+          },
+          markets: {
+            name: { $eqi: market }
+          }
+        },
+        sort: {
+          publishedAt: 'desc'
+        }
+      });
+  
+      const output = await this.sanitizeOutput(entities, ctx) as [any];
+      const result = [];
+      output.forEach(e => {
+        result.push({
+          Id: e.slug,
+          Value: e.title
+        });
+      });
+  
+      return result;
+    }
+
+    const entities = await strapi.entityService.findMany('api::article.article', {
+      filters: {
+        publishedAt: { $null: false },
+        title: { $containsi: s },
+        user_levels: {
+          levelId: { $eq: level }
+        },
+        markets: {
+          name: { $eqi: market }
+        }
+      },
+      populate: 'localizations'
+    });
+
+    const uppercaseLanguage = language.toUpperCase();
+    const uppercaseKeyword = s.toUpperCase();
+    const result = [];
+    const existingArticles = {};
+
+    for(var i = 0; i<entities.length; i++) {
+      const e = entities[i];
+      const localization = e.localizations?.find(l => 
+        l.locale.toUpperCase() === uppercaseLanguage && 
+        l.title.toUpperCase().indexOf(uppercaseKeyword) !== -1);
+      if(localization && !existingArticles[localization.id]) {
+        result.push({
+          Id: localization.slug,
+          Value: localization.title
+        });
+        existingArticles[localization.id] = true;
+      }
+    }
+
+    return result;
+  },
+ }));

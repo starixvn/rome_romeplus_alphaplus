@@ -9,6 +9,18 @@ module.exports = () => ({
 	"content-versioning": {
 		enabled:  true,
 	},
+  'copy-locales': {
+    config: {
+      contentTypes: [
+        'api::category.category',
+        'api::market.market',
+        'api::glossary.glossary',
+        'api::environment.environment',
+        'api::user-level.user-level',
+        'api::article.article'
+      ]
+    }
+  },
   "tinymce": {
     enabled: true,
     config: {

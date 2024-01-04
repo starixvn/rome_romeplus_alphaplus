@@ -25,6 +25,18 @@ export default factories.createCoreController('api::image.image', ({ strapi }) =
 
       return convertBase64ToImage(entity);
     },
+    async base64(ctx) {
+      const { name } = ctx.params;
+      const entity = await strapi.db.query('api::image.image').findOne({
+        where: { name },
+      });
+  
+      if(entity == null) {
+        return "";
+      }
+
+      return entity.data;
+    },
 
     async upload(ctx) {
         const { name, width, height, base64, token } = JSON.parse(ctx.request.body);

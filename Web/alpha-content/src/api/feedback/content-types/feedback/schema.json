@@ -4,10 +4,11 @@
   "info": {
     "singularName": "feedback",
     "pluralName": "feedbacks",
-    "displayName": "Feedback"
+    "displayName": "Feedback",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

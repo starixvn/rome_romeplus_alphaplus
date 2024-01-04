@@ -18,7 +18,7 @@
           size="S"
           startIcon={<Eye/>}
           style={{width: '100%'}}
-          href={`${CLIENT_FRONTEND_URL}/article/${initialData.slug}?id=${initialData.id}`}
+          href={`${HANDBOOK_ADMIN_URL}/article/${initialData.slug}?id=${initialData.id}`}
           variant="secondary"
           target="_blank"
           rel="noopener noreferrer"

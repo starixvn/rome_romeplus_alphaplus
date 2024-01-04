@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -19,18 +19,17 @@
     "name": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
-      "type": "text",
+      "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "categories": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "mappedBy": "markets"
+      "relation": "oneToMany",
+      "target": "api::category.category"
     },
     "slug": {
       "pluginOptions": {
@@ -38,13 +37,7 @@
           "localized": true
         }
       },
-      "type": "uid"
-    },
-    "articles": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::article.article",
-      "mappedBy": "markets"
+      "type": "string"
     }
   }
 }

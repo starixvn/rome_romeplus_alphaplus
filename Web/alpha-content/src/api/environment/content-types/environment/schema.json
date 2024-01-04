@@ -4,10 +4,11 @@
   "info": {
     "singularName": "environment",
     "pluralName": "environments",
-    "displayName": "Environment"
+    "displayName": "Environment",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

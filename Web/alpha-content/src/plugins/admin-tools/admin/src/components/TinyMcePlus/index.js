@@ -17,19 +17,19 @@ function showTinyMcePlusInfo() {
     upload image, update image, vruler, hruler, demo, auto save, cleanup drafts');
 }
 
-function checkEditorReady(initialData, demoUrl) {
+function checkEditorReady(initialData, demoUrl, slug) {
   var toolbars = document.getElementsByClassName('tox-toolbar');
   if(toolbars.length === 0 || toolbars[0].getElementsByClassName('tox-toolbar__group').length < 17) {
     setTimeout(() => {
-      checkEditorReady(initialData, demoUrl);
+      checkEditorReady(initialData, demoUrl, slug);
     }, 100);
     return;
   }
 
-  addCustomedButtons(initialData, demoUrl);
+  addCustomedButtons(initialData, demoUrl, slug);
 }
 
-function addCustomedButtons(initialData, demoUrl) {
+function addCustomedButtons(initialData, demoUrl, slug) {
   var toolbars = document.getElementsByClassName('tox-toolbar');
   var t = toolbars[0];
 
@@ -44,23 +44,28 @@ function addCustomedButtons(initialData, demoUrl) {
   }
 
   addedCss = true;
+  var supportDemo = configs.showDemo.some(c => c === slug);
   var r =  document.createElement('div');
   r.innerHTML  = '<div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group">'
   + getUploadImageButton()
   + getUpdateImageButton()
   + getVRulerButton()
   + getHRulerButton()
-  + getDemoButton()
+  + (supportDemo ? getDemoButton() : "")
   + getAutoSaveButton()
   + getCleanUnpublishedButton()
   ;
 
   t.append(r.firstChild);
 
-  var adminUrl = ADMIN_FRONTEND_URL;
+  var adminUrl = HANDBOOK_ADMIN_URL;
   document.getElementById('btn-vruler').onclick = () => { showVRuler(); };
   document.getElementById('btn-hruler').onclick = () => { showHRuler(); };
-  document.getElementById('btn-demo').onclick = () => { showDemo(initialData, demoUrl); };
+
+  if(supportDemo) {
+    document.getElementById('btn-demo').onclick = () => { showDemo(initialData, demoUrl); };
+  }
+
   document.getElementById('btn-auto-save').onclick = () => { autoSave(); };
 
   document.getElementById('btn-clean-unpublished').onclick = () => { cleanUnpublished(initialData); };
@@ -76,13 +81,13 @@ function cleanUpEditor() {
 
 const TinyMcePlus = () => {
   const { slug, initialData } = useCMEditViewDataManager();
-  var demoUrl = CLIENT_FRONTEND_URL;
+  var demoUrl = HANDBOOK_DEMO_URL;
 
-  if (!configs.autoSaveModels.some(c => c===slug)) {
+  if (!configs.showTinyMCE.some(c => c === slug)) {
     return null;
   }
 
-  checkEditorReady(initialData, demoUrl);
+  checkEditorReady(initialData, demoUrl, slug);
 
   return (
     <Button 

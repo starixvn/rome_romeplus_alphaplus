@@ -19,7 +19,23 @@ export default {
       method: 'PUT',
       path: '/articles/clean-unpublished/:slug',
       handler: 'article.cleanUnpublished',
+    },
+    {
+      method: 'GET',
+      path: '/articles/search/:language/:market/:level/:keyword',
+      handler: 'article.search',
+    },
+    {
+      method: 'GET',
+      path: '/articles/get/:slug/:language/:market/:level',
+      handler: 'article.getBySlug',
+    },
+    {
+      method: 'GET',
+      path: '/articles/suggest/:language/:market/:level/:keyword',
+      handler: 'article.suggest',
     }
   ]
 }
 
+ 

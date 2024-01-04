@@ -5,19 +5,8 @@ const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 const options = { headers: { Authorization: `Bearer ${token}` } };
 
 export async function getCategories() {
-    const urlParamsObject = {
-        populate: [
-            "categories",
-            "name",
-            "articles.data"
-        ],
-        filters: {
-            isMain: {
-                $eq: true
-            }
-        }
-    };
-    const response =  await fetchAPI(path, urlParamsObject, options);
+    const urlParamsObject = {};
+    const response =  await fetchAPI(path + '/latest/getAll', urlParamsObject, options);
     return response.data;
 }
 
