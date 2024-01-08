@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetsForecast.Domain", "Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetsForecast.Infrastructure", "Services\Tickets\BetsForecast\Infrastructure\BetsForecast.Infrastructure.csproj", "{DC95451B-632F-465B-9A60-E3C723E558CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Settings.Site", "Web\Settings\Settings.Site.csproj", "{2A9C2DD3-F65C-4776-95DA-13C6437A650E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,10 @@ Global
 		{DC95451B-632F-465B-9A60-E3C723E558CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC95451B-632F-465B-9A60-E3C723E558CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC95451B-632F-465B-9A60-E3C723E558CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A9C2DD3-F65C-4776-95DA-13C6437A650E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A9C2DD3-F65C-4776-95DA-13C6437A650E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A9C2DD3-F65C-4776-95DA-13C6437A650E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A9C2DD3-F65C-4776-95DA-13C6437A650E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +143,7 @@ Global
 		{8226F02D-3E04-4548-9EB8-332091C82C93} = {DBE3E244-11B4-4021-9392-50D15A34B657}
 		{A60EEE73-A5E8-411C-9E08-B85C65E0EE46} = {8226F02D-3E04-4548-9EB8-332091C82C93}
 		{DC95451B-632F-465B-9A60-E3C723E558CB} = {8226F02D-3E04-4548-9EB8-332091C82C93}
+		{2A9C2DD3-F65C-4776-95DA-13C6437A650E} = {8E80F0E0-8CF2-4B49-A9BB-AC4329F9BDE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B8895DC-76DA-4F73-9A2A-BFE606BF96E4}
