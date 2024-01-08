@@ -1,7 +1,12 @@
+using AlphaPlus.Settings.Site.SubAccount.Services;
+using MediatR;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddMediatR(typeof(Program).Assembly);
+builder.Services.AddSingleton<ISubAccountService, SubAccountService>();
 
 var app = builder.Build();
 
