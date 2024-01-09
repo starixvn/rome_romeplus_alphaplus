@@ -1,16 +1,17 @@
-﻿:root, :root [data-theme='light'] {
+﻿:root,
+:root [data-theme='light'] {
     --font-family: Roboto, Arial, sans-serif;
     --font-size: 13px;
     // text
-    --text-color1: #333333; 
-    --text-color2: #3873E9;  
-    //background
-    --bg-color1: #BCCBDC;      
+    --text-color: #333333;
+    --border-color: #d1d1d1;
+    --bg-color1: #ffffff;
+
+    --text-color2: #3873e9;
 }
 
 :root [data-theme='dark'] {
-    --font-family: Roboto, Arial, sans-serif;
-    --font-size: 13px;
-    --text-color: #EDEDED;
+    --text-color: #ededed;
     --border-color: #474747;
+    --bg-color1: #171717;
 }

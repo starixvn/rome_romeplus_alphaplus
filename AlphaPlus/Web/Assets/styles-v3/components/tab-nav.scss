@@ -1,8 +1,22 @@
-﻿.nav.nav-tabs {
-    --border-nav: #cecece;
-    --text-nav: #333333;
-    --text-nav-active: #97141e;
-    --bg-nav-line: #97141e;
+﻿:root,
+:root [data-theme='light'] {
+    .nav.nav-tabs {
+        --border-nav: #cecece;
+        --text-nav: #333333;
+        --text-nav-active: #97141e;
+        --bg-nav-line: #97141e;
+    }
+}
+:root [data-theme='dark'] {
+    .nav.nav-tabs {
+        --border-nav: #313334;
+        --text-nav: #919191;
+        --text-nav-active: #ededed;
+        --bg-nav-line: #ededed;
+    }
+}
+
+.nav.nav-tabs {
     display: flex;
     border-bottom: 1px solid var(--border-nav);
 
@@ -18,57 +32,24 @@
             text-decoration: none;
             display: block;
             position: relative;
-            
-             
-
             &:after {
                 content: '';
                 position: absolute;
-                width: 100%;
+                width: 0;
                 height: 3px;
                 background-color: var(--bg-nav-line);
                 bottom: 0;
                 left: 0;
-                transform-origin: right;
-                transform: scaleX(0);
-                transition: transform .3s ease-in-out;
+                transition: width 0.3s ease-in-out;
             }
         }
-
-        .icon {
-            padding: 0;
-            position: absolute;
-            top: 0;
-            right: 0;
-
-            &:after {
-                display: none;
-            }
-        }
-
-        [class^=icon-], [class*=" icon-"] {
-            margin: 0;
-            display: block;
-            font-size: 16px;
-            line-height: 39px;
-
-            &.large {
-                font-size: 24px;
-            }
-
-            &:before {
-                color: inherit;
-            }
-        }
-
-
-        &.active, &:hover {
+        &.active,
+        &:hover {
             a {
                 color: var(--text-nav-active);
 
                 &:after {
-                    transform-origin: left;
-                    transform: scaleX(1);
+                    width: 100%;
                 }
             }
         }

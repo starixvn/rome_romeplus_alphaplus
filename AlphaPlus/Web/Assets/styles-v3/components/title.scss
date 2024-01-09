@@ -1,6 +1,17 @@
+:root {
+	.page-title{
+		--border-title: #cecece;
+        --text-title: #9d1c1c;
+	}
+}
+:root [data-theme="dark"]{
+	.page-title{
+		--border-title: #313334;
+        --text-title: #ededed;
+	}
+}
 .page-title {
-    --border-title: #cecece;
-    --text-title: #9d1c1c;
+    
     border-bottom: 1px solid var(--border-title);
     color: var(--text-title);
     font-size: 14px;

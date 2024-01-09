@@ -1,15 +1,27 @@
 @import '../mixins';
 
-$primary-color: #666;
-$hover-back-ground-color: #f8ff8d;
-$win-loss-name-background-color: #ebeaea;
-$positive-color: #e40000;
-$back-ground-focus-color: #bbcae9;
-
-body {
-    background: #f4f4f4;
-    font-family: Roboto, Arial;
-    font-size: 13px;
+:root,
+:root [data-theme='light'] {
+    .tblRpt {
+        --tb-bg-col-league: #f3f5e0;
+        --tb-bg-odd: #eae9ee;
+        --tb-bg-live: #f9ceae;
+        --tb-text-color-live: #ff0000;
+        --tb-text-color-positive: #eb6003;
+        --tb-text-color-num: #1d1d1d;
+        --tb-text-icon-plus: #2a9cde;
+    }
+}
+:root [data-theme='dark'] {
+    .tblRpt {
+        --tb-bg-col-league: #56533c;
+        --tb-bg-odd: #262829;
+        --tb-bg-live: #4d2e18;
+        --tb-text-color-live: #ff0000;
+        --tb-text-color-positive: #eb6003;
+        --tb-text-color-num: #41a4ff;
+        --tb-text-icon-plus: #2a9cde;
+    }
 }
 
 a:link {
@@ -56,25 +68,27 @@ table * {
     }
 
     .col-league {
-        background-color: #f3f5e0;
-        font-weight: bold;
+        background-color: var(--tb-bg-col-league);
         text-transform: uppercase;
+        > * {
+            font-weight: 500;
+        }
+    }
+    .odd {
+        background-color: var(--tb-bg-odd);
     }
 
     .bg-live {
-        background-color: #f9ceae;
-    }
-
-    .odd {
-        background-color: #eae9ee;
+        background-color: var(--tb-bg-live);
     }
 
     .col-time {
         font-size: 8pt;
         text-align: center;
 
-        .live {
-            color: #ff0000;
+        .live,
+        font {
+            color: var(--tb-text-color-live);
             font-style: italic;
         }
     }
@@ -84,12 +98,12 @@ table * {
     }
 
     .fcnum {
-        color: #1d1d1d;
-        font-weight: bold;
+        color: var(--tb-text-color-num);
+        font-weight: 500;
         text-decoration: none;
 
         .positive {
-            color: $positive-color;
+            color: var(--tb-text-color-positive);
         }
     }
 
@@ -98,6 +112,8 @@ table * {
         display: inline-block;
         margin: 0 3px;
         text-decoration: none;
+        position: relative;
+        top: 2px;
         @include ripple-effect-icon($margin-left: -6px);
 
         &:before {
@@ -105,10 +121,8 @@ table * {
                 family: Iconalpha;
                 size: 16px;
             }
-
-            float: left;
             content: '\e930';
-            color: #2a9cde;
+            color: var(--tb-text-icon-plus);
         }
     }
 }
