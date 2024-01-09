@@ -1,6 +1,7 @@
 ﻿namespace Alpha.Main.Services
 {
     using Alpha.Main.Models.ApiKey;
+    using AlphaPlus.Core.Models;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;

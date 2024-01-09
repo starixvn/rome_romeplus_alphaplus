@@ -1,4 +1,6 @@
-﻿namespace Alpha.Main.Models.ApiKey
+﻿using AlphaPlus.Core.Models;
+
+namespace Alpha.Main.Models.ApiKey
 {
     public class CreateApiKeyResult
     {
