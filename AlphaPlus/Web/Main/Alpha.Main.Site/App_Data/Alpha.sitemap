@@ -6,9 +6,9 @@
     <siteMapNode resourceKey="agentOutstanding" appPath="ReportsAppPath" url="/outstanding/agentnew" roles="Master" useDomainConfig="Report:Domain"></siteMapNode>
     <siteMapNode resourceKey="masterOutstanding" appPath="ReportsAppPath" url="/outstanding/masternew" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
 
-    <siteMapNode menuItemType="ReportsMenuItem" resourceKey="memberWinLoss" appPath="ReportsAppPath" url="/enteredresult/member" roles="Agent" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode menuItemType="ReportsMenuItem" resourceKey="agentwinloss" appPath="ReportsAppPath" url="/enteredresult/agent" roles="Master" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode menuItemType="ReportsMenuItem" resourceKey="masterwinloss" appPath="ReportsAppPath" url="/enteredresult/master" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="memberWinLoss" appPath="ReportsAppPath" url="/enteredresult/member" roles="Agent" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="agentwinloss" appPath="ReportsAppPath" url="/enteredresult/agent" roles="Master" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="masterwinloss" appPath="ReportsAppPath" url="/enteredresult/master" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
 
     <!-- <siteMapNode menuItemType="NewReportsMenuItem" resourceKey="memberWinLoss" appPath="ReportsAppPath" url="/enteredresult/membernew" roles="Agent" useDomainConfig="Report:Domain"></siteMapNode>
       <siteMapNode menuItemType="NewReportsMenuItem" resourceKey="agentwinloss" appPath="ReportsAppPath" url="/enteredresult/agentnew" roles="Master" useDomainConfig="Report:Domain"></siteMapNode>

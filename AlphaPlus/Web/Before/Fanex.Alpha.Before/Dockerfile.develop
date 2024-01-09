@@ -12,6 +12,6 @@ RUN dotnet restore "Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj"
 
 COPY . .
 WORKDIR "/src/Web/Before/Fanex.Alpha.Before"
-RUN dotnet build "Fanex.Alpha.Before.csproj" -c Debug
+RUN dotnet build "Fanex.Alpha.Before.csproj" -r linux-x64 -c Debug
 
 ENTRYPOINT ["dotnet", "run", "--no-build", "--no-launch-profile", "-c", "Debug", "--"]

@@ -199,7 +199,7 @@ public class AuthorizationService(
 
     private string[] GetDeniedPages(int roleId)
     {
-        var groupPageAccess = options.GroupPageAccesses.FirstOrDefault(i => i.RoleId == roleId);
+        var groupPageAccess = options?.GroupPageAccesses?.FirstOrDefault(i => i.RoleId == roleId);
         if (groupPageAccess != null)
         {
             return groupPageAccess.DeniedPages;

@@ -2,9 +2,9 @@
 
 namespace AlphaPlus.RequestInfo.Criteria;
 
-public class GetIPInformationCriteria(string ip) : CriteriaBase
+public class GetIPInformationCriteria : CriteriaBase
 {
-    public string Ip { get; set; } = ip;
+    public string Ip { get; init; }
 
     public override string GetSettingKey()
         => "Acc_GetIPInfo_Full";

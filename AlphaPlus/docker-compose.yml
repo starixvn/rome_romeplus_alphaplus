@@ -1,14 +1,14 @@
-version: "3.4"
+version: '3.4'
 
 services:
-  assets:
-    image: ${REGISTRY:-alphaplus}/assets:${PLATFORM:-linux}-${TAG:-latest}
-    build:
-      context: .
-      dockerfile: Web/assets/Dockerfile
+    assets:
+        image: ${REGISTRY:-alphaplus}/assets:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/assets/Dockerfile
 
-  login:
-    image: ${REGISTRY:-alphaplus}/login:${PLATFORM:-linux}-${TAG:-latest}
-    build:
-      context: .
-      dockerfile: Web/Before/Fanex.Alpha.Before/Dockerfile.develop
+    login:
+        image: ${REGISTRY:-alphaplus}/login:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/Before/Fanex.Alpha.Before/Dockerfile

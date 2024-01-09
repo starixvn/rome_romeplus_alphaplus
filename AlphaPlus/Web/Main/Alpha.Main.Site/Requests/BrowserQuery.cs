@@ -1,8 +1,6 @@
 ﻿using AlphaPlus.Core.Models;
-using AlphaPlus.Web.Models;
 using MediatR;
 
-#pragma warning disable 612, 618
 
 namespace Alpha.Main.Site.Requests
 {

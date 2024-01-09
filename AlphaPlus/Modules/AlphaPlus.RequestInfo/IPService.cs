@@ -11,12 +11,17 @@ public interface IPService
     Task<string> GetCountryCode(string ip);
 }
 
-public class IPServiceImpl(IDynamicRepository dynamicRepository) : IPService
+public class IPServiceImpl : IPService
 {
-    private readonly IDynamicRepository dynamicRepository = dynamicRepository;
+    private readonly IDynamicRepository dynamicRepository;
+
+    public IPServiceImpl(IDynamicRepository dynamicRepository)
+    {
+        this.dynamicRepository = dynamicRepository;
+    }
 
     public Task<IPInformationModel> GetIPInformation(string ip)
-        => dynamicRepository.GetAsync<IPInformationModel>(new GetIPInformationCriteria(ip));
+        => dynamicRepository.GetAsync<IPInformationModel>(new GetIPInformationCriteria { Ip = ip });
 
     public async Task<string> GetCountryCode(string ip)
     {

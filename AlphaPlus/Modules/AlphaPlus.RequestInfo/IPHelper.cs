@@ -17,9 +17,14 @@ public interface IPHelper
     ulong ConvertIPV6ToNumber(string ipAddress);
 }
 
-public class IPHelperImpl(IHttpContextAccessor httpContextAccessor) : IPHelper
+public class IPHelperImpl : IPHelper
 {
-    private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
+    private readonly IHttpContextAccessor httpContextAccessor;
+
+    public IPHelperImpl(IHttpContextAccessor httpContextAccessor)
+    {
+        this.httpContextAccessor = httpContextAccessor;
+    }
 
     public string[] GetClientIPs()
     {
@@ -31,7 +36,7 @@ public class IPHelperImpl(IHttpContextAccessor httpContextAccessor) : IPHelper
         actualIP = string.IsNullOrWhiteSpace(actualIP) ? context.Connection.RemoteIpAddress.ToString() : actualIP;
 
         return string.IsNullOrWhiteSpace(actualIP) || actualIP.Equals("localhost") || actualIP.Equals("::1") ?
-            ["127.0.0.1"] : actualIP.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            new[] { "127.0.0.1" } : actualIP.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
     }
 
     public string GetClientIP()
@@ -69,7 +74,7 @@ public class IPHelperImpl(IHttpContextAccessor httpContextAccessor) : IPHelper
             {
                 List<byte> byteList = new(addrBytes);
                 byteList.Reverse();
-                addrBytes = [.. byteList];
+                addrBytes = byteList.ToArray();
             }
 
             var ipNum = BitConverter.ToUInt64(addrBytes, 8);

@@ -45,14 +45,14 @@ public class SiteMapNode
     [XmlAttribute("isHiddenInMobile")]
     public bool IsHiddenInMobile { get; set; }
 
+    [XmlAttribute("url")]
+    public string Url { get; set; }
+
+    [XmlAttribute("menuItemType")]
+    public string MenuItemType { get; set; }
+
     [XmlElement("siteMapNode")]
     public SiteMapNode[] ChildNodes { get; set; }
 
     public bool HasChildNodes => ChildNodes != null && ChildNodes.Length != 0;
-
-    [XmlElement("url")]
-    public string Url { get; set; }
-
-    [XmlElement("menuItemType")]
-    public string MenuItemType { get; set; }
 }

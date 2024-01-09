@@ -12,11 +12,18 @@ public interface IDeviceHelper
     Task<Models.RequestInfo> GetRequestInfo();
 }
 
-public class DeviceHelper(IPHelper ipHelper, IPService ipService, IHttpContextAccessor httpContextAccessor) : IDeviceHelper
+public class DeviceHelper : IDeviceHelper
 {
-    private readonly IPHelper ipHelper = ipHelper;
-    private readonly IPService ipService = ipService;
-    private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
+    private readonly IPHelper ipHelper;
+    private readonly IPService ipService;
+    private readonly IHttpContextAccessor httpContextAccessor;
+
+    public DeviceHelper(IPHelper ipHelper, IPService ipService, IHttpContextAccessor httpContextAccessor)
+    {
+        this.ipHelper = ipHelper;
+        this.ipService = ipService;
+        this.httpContextAccessor = httpContextAccessor;
+    }
 
     public DeviceInfo GetDeviceInfo(string browserSize = null)
     {
