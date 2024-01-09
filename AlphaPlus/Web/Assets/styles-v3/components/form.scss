@@ -1,0 +1,178 @@
+﻿.filter {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    --border-control: #d1d1d1;
+    --border-control-error: #DD3333;
+    --bg-control: #ffffff;
+    --bg-link: #D3DFEC;
+    --text-icon: #888888;
+    --text-label: #444444;
+    --text-link: #0B599C;
+    --text-require: #A11515;
+    margin: 0 15px 15px 0;
+    vertical-align: middle;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    input[type="text"], input[type="password"] {
+        width: 160px;
+        height: 28px;
+        line-height: 28px;
+        outline: none;
+        padding: 0 5px;
+        -webkit-appearance: none;
+        border-radius: 3px;
+        font-size: var(--font-size);
+        border: 1px solid var(--border-control);
+        background: var(--bg-control);
+
+        &.long-control {
+            width: 220px;
+        }
+
+        &.error {
+            border-color: var(--border-control-error);
+        }
+    }
+
+    select {
+        width: 160px;
+        height: 28px;
+        line-height: 28px;
+        outline: none;
+        padding: 0 5px;
+        border-radius: 3px;
+        font-size: var(--font-size);
+        border: 1px solid var(--border-control);
+        background: var(--bg-control);
+
+        &.long-control {
+            width: 220px;
+        }
+
+        &.error {
+            border-color: var(--border-control-error);
+        }
+    }
+
+    > * {
+        margin-top: auto !important;
+        position: relative;
+    }
+
+    .icon-hidden {
+        position: absolute;
+        right: 3px;
+        top: 7px;
+        color: var(--text-icon);
+        font-size: 14px;
+        cursor: pointer;
+
+        + input {
+            padding-right: 20px;
+        }
+    }
+
+    .label-control, label {
+        line-height: 28px;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        color: var(--text-label);
+        line-height: 1.847;
+        font-size: var(--font-size);
+        font-weight: 500;
+
+        input[type="checkbox"], input[type="radio"] {
+            position: relative;
+            margin-right: 4px;
+        }
+
+        [class^=icon-], [class*=" icon-"] {
+            margin: 0 0 0 2px;
+            font-size: 16px;
+            vertical-align: text-bottom;
+
+            &:before {
+                color: inherit;
+            }
+        }
+
+        .right-side {
+            margin-left: auto;
+        }
+    }
+
+    .link-filter {
+        display: inline-block;
+        width: auto;
+        height: 28px;
+        line-height: 28px;
+        display: block;
+        color: var(--text-link);
+        background: var(--bg-link);
+        border-radius: 3px;
+        font-weight: bold;
+        padding: 0 16px;
+        text-decoration: none;
+    }
+
+    &.form-group-daterangepicker {
+        .control-daterangepicker {
+            position: relative;
+
+            input[type="text"], input[type="password"] {
+                width: 200px;
+                padding-right: 30px;
+            }
+
+            .input-group-addon {
+                position: absolute;
+                right: 4px;
+                top: 3px;
+                left: auto;
+                width: auto;
+
+                [class^=icon-], [class*=" icon-"] {
+                    font-size: 20px
+                }
+            }
+        }
+    }
+}
+.label-control {
+    --text-label: #444444;
+    line-height: 28px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: var(--text-label);
+    line-height: 1.847;
+    font-size: var(--font-size);
+    font-weight: 500;
+
+    input[type="checkbox"], input[type="radio"] {
+        position: relative;
+        margin-right: 4px;
+    }
+}
+.require {
+    color: var(--text-require);
+    margin-left: 2px;
+}
+.error {
+    --border-control-error: #DD3333;
+
+    input[type="text"], input[type="password"], select {
+        border-color: var(--border-control-error);
+    }
+}

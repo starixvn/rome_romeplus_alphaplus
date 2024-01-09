@@ -1,0 +1,106 @@
+﻿.pager {
+    --border-pager: #d1d1d1;
+    --bg-pager: #fff;
+    --text-pager: #3D5AD8;
+    --text-pager-disabled: #c4c4c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    > * {
+        margin: 0 4px;
+    }
+
+    input {
+        width: 50px;
+        height: 28px;
+        line-height: 28px;
+        outline: none;
+        padding: 0 5px;
+        -webkit-appearance: none;
+        border-radius: 3px;
+        font-size: var(--font-size);
+        border: 1px solid var(--border-pager);
+        background: var(--bg-pager);
+    }
+
+    .paginate_button {
+        display: flex;
+        align-items: center;
+        color: var(--text-pager);
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.85;
+        }
+
+        &.disabled, &[disabled] {
+            color: var(--text-pager-disabled);
+            cursor: not-allowed;
+            opacity: 1;
+        }
+
+        &:before {
+            font-family: 'Iconalpha' !important;
+            speak: never;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            font-size: 20px;
+        }
+
+        &.previous, &.next {
+            &:before {
+                content: "\e913";
+                transform: rotate(90deg);
+            }
+        }
+
+        &.next {
+            &:before {
+                content: "\e913";
+                transform: rotate(-90deg);
+            }
+        }
+
+        &.first, &.last {
+            &:before {
+                content: "\e914";
+                transform: rotate(90deg);
+            }
+        }
+
+        &.last {
+            &:before {
+                content: "\e914";
+                transform: rotate(-90deg);
+            }
+        }
+    }
+}
+.page-size {
+    --border-pager-size: #d1d1d1;
+    --bg-pager-size: #ffffff;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    select {
+        width: 60px;
+        height: 28px;
+        line-height: 28px;
+        outline: none;
+        padding: 0 5px;
+        border-radius: 3px;
+        font-size: var(--font-size);
+        border: 1px solid var(--border-pager-size);
+        background: var(--bg-pager-size);
+        margin-left: 5px;
+    }
+}

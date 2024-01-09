@@ -1828,5 +1828,18 @@
       "js-v2/components/tipsy/jquery.tipsy.js",
       "js-v2/components/tipsy/tipsy-helper.js"
     ]
+  },
+  {
+    "outputFileName": "bundles3/site-totalbetsforecast/default.css",
+    "inputFiles": [
+      "styles-v3/base/reset.css",
+      "styles-v3/base/fonts/iconalpha/style.css",
+      "styles-v3/base/fonts/roboto/roboto.css",
+      "styles-v3/base/scaffolding.css",
+      "styles-v3/base/utilities.css",
+      "styles-v3/components/table.css",
+      "styles-v3/components/title.css",
+      "styles-v3/components/tab-nav.css"
+    ]
   }
 ]

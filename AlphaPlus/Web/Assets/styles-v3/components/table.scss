@@ -1,0 +1,31 @@
+.tblRpt  {
+	--border-table: #d1d1d1;
+	--bg-head-table: #666666;
+	--bg-head-table2: #3f3f3f;
+	--color-head: #ffffff;
+	
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid var(--border-table);
+
+	th,td {
+		border-collapse: collapse;
+		border: 1px solid var(--border-table);
+		padding: 0 4px;
+		height: 27px;
+		vertical-align: middle;
+		font-weight: 400;
+	}
+	thead {
+		th,td {
+			background-color: var(--bg-head-table);
+			color: var(--color-head);
+			font-weight: 500;
+		}
+		.thead-row2{
+			th,td {
+			background-color: var(--bg-head-table2);
+		}
+		}	 
+	} 
+}

@@ -1,0 +1,115 @@
+﻿%btn {
+    --text-btn: #ffffff;
+    border: none;
+    cursor: pointer;
+    height: 28px;
+    line-height: 28px;
+    outline: none;
+    margin: 0;
+    padding: 0 16px;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    color: var(--text-btn);
+    font-size: 13px;
+    font-weight: bold;
+    -webkit-appearance: none;
+    display: inline-block;
+    vertical-align: middle;
+    transition: 0.25s;
+    width: auto;
+
+    &[disabled], &.disabled {
+        opacity: .8;
+        cursor: not-allowed;
+    }
+
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+.button-cancel {
+    --bg-cancel: #696969;
+    @extend %btn;
+    background-color: var(--bg-cancel);
+}
+
+.button-apply {
+    --bg-apply: #0B599C;
+    @extend %btn;
+    background-color: var(--bg-apply);
+}
+
+.button-save {
+    --bg-save: #18965B;
+    @extend %btn;
+    background-color: var(--bg-save);
+}
+
+.button-remove {
+    --bg-save: #ffffff;
+    --bg-save-hover: #CC0000;
+    --border-save: #CC0000;
+    --text-save: #CC0000;
+    --text-save-hover: #ffffff;
+    @extend %btn;
+    background-color: var(--bg-save);
+    border: 1px solid var(--border-save);
+    color: var(--text-save);
+    line-height: 26px;
+
+    &:hover, &:focus {
+        background-color: var(--bg-save-hover);
+        color: var(--text-save-hover);
+    }
+
+    &[disabled], &.disabled {
+        background-color: var(--bg-save);
+        border: 1px solid var(--border-save);
+        color: var(--text-save);
+    }
+}
+
+.list-button {
+    padding: 10px 0;
+    display: flex;
+
+    &.right-button {
+        justify-content: flex-end;
+    }
+
+    &.center-button {
+        justify-content: center;
+    }
+}
+
+.left-button {
+    > * {
+        margin-right: 15px;
+        display: inline-flex;
+        width: auto;
+        vertical-align: text-bottom;
+    }
+}
+
+.right-button {
+    margin-left: auto;
+
+    > * {
+        margin-left: 15px;
+        display: inline-flex;
+        width: auto;
+        vertical-align: text-bottom;
+    }
+}
+
+.center-button {
+    margin: 0 auto;
+
+    > * {
+        margin: 0 7px;
+        display: inline-flex;
+        width: auto;
+        vertical-align: text-bottom;
+    }
+}

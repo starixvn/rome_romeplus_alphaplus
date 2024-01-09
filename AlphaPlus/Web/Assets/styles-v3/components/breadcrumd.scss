@@ -1,0 +1,50 @@
+﻿.breadcrumb-container {
+    --bg-breadcrumb: #E3E3E3;    
+    background: var(--bg-breadcrumb);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 7px 3px 10px;
+    min-height: 30px;
+    line-height: 18px;
+
+    .icon-copy {
+        color: #333;
+    }
+
+    .icon {
+        font-size: 20px;
+
+        [class^=icon-], [class*=" icon-"] {
+            font-size: inherit;
+            margin-left: 5px;
+        }
+    }
+}
+.breadcrumb {
+    --text-breadcrumb: #9d1c1c;
+    --text-breadcrumb2: #ff6600;
+    --text-breadcrumb3: #333333;
+
+    li {
+        display: inline-block;
+        color: var(--text-breadcrumb);
+        font-weight: 700;
+        text-transform: uppercase;
+        position: relative;
+
+        a {
+            &:hover {
+                color: var(--text-breadcrumb2);
+            }
+        }
+
+        + li {
+            &:before {
+                content: '\276F';
+                color: var(--text-breadcrumb3);
+                padding: 0 8px;
+            }
+        }
+    }
+}

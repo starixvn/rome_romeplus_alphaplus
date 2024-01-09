@@ -45,9 +45,11 @@ COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /app/bundles ./bundles
 COPY --from=builder /app/bundles-v2 ./bundles-v2
+COPY --from=builder /app/bundles3 ./bundles3
 COPY --from=builder /app/styles/fonts/iconalpha/fonts ./bundles/common/fonts
 COPY --from=builder /app/styles/fonts ./bundles/fonts
 COPY --from=builder /app/styles-v2/fonts ./bundles-v2/common/fonts
+COPY --from=builder /app/styles-v3/base/fonts ./bundles3/fonts
 COPY --from=builder /app/styles/images ./images
 
 # RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \

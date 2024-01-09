@@ -1,0 +1,16 @@
+.page-title {
+    --border-title: #cecece;
+    --text-title: #9d1c1c;
+    border-bottom: 1px solid var(--border-title);
+    color: var(--text-title);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .text-title {
+        color: var(--text-title);
+    }    
+}

@@ -60,6 +60,14 @@ function compileCssV2() {
     .pipe(gulp.dest("styles-v2"));
 }
 
+function compileCssV3() {
+  return gulp
+    .src("styles-v3/**/*.scss")
+    .pipe(sass().on("error", sass.logError))
+    .pipe(postcss([autoprefixer()]))
+    .pipe(gulp.dest("styles-v3"));
+}
+
 function minCss() {
   var tasks = getBundles(regex.css).map(function (bundle) {
     return gulp
@@ -75,7 +83,7 @@ gulp.task(
   "default",
   gulp.series(
     clean,
-    gulp.parallel(compileCss, compileCssV2),
+    gulp.parallel(compileCss, compileCssV2, compileCssV3),
     gulp.parallel(minCss, minJs)
   )
 );
