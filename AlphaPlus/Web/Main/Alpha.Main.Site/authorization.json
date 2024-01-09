@@ -1,0 +1,64 @@
+{
+    "Authorization": {
+        "cachedExpireTime": 30,
+        "EnableCheckBelonging": true,
+        "DisabledCheckDuplicationLogin": false,
+        "KickOutUrl": "~/default/kickout",
+        "CustIdQueryStringParamNames": [
+            "subaccid",
+            "subAccountId",
+            "custid",
+            "CustId",
+            "custId",
+            "targetCustId",
+            "id",
+            "cid",
+            "recommend",
+            "mrecommend",
+            "idagent",
+            "masterId",
+            "agentId",
+            "idAgent",
+            "idMaster",
+            "ibccustid",
+            "ACustID"
+        ],
+        "CustIdJsonParamNames": [
+            "txtCustomerObject",
+            "newCustomer"
+        ],
+        "GroupPageAccesses": [
+            {
+                "RoleId": 2,
+                "Name": "Agent",
+                "PageAccesses": [
+                    {
+                        "Url": "SecurityCode/ResetSecurityCode",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Password/ResetMainAccountPassword",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Otp/ResetOtp",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Password/ResetSubAccountPassword",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true,
+                        "IsAllowedCrossLevel": false
+                    }
+                ]
+            }
+        ]
+    }
+}

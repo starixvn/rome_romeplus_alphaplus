@@ -6,12 +6,12 @@ using MediatR;
 
 namespace Alpha.Main.Site.Handlers
 {
-    public class NetworkSpeedHandler(ILogger logger, IUserSession userSession) :
+    public class NetworkSpeedHandler(Fanex.Logging.ILogger logger, IUserSession userSession) :
         IRequestHandler<NetworkSpeedQuery, NetworkSpeedViewModel>,
         IRequestHandler<SaveNetworkSpeedCommand, Unit>
     {
         private static readonly IEnumerable<int> TrackingConnectionCustIds = AppSettings.TrackingConnectionCustIds;
-        private readonly ILogger logger = logger;
+        private readonly Fanex.Logging.ILogger logger = logger;
         private readonly IUserSession userSession = userSession;
 
         public Task<NetworkSpeedViewModel> Handle(NetworkSpeedQuery request, CancellationToken cancellationToken)

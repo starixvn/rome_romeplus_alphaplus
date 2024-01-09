@@ -120,11 +120,11 @@ namespace Alpha.Main
         }
 
         private static string[] AllowedSitesToViewBonusDetail
-            => ConfigurationManager.GetValue<string[]>("AllowedSitesToViewBonusDetail");
+            => ConfigurationManager.GetValue<string[]>("AllowedSitesToViewBonusDetail", []);
 
         private static bool IsAllowedTransferToDownlineHistorySite(string site)
         {
-            var allowSites = ConfigurationManager.GetValue<string[]>("TransferToDownlineHistory:OfferSites");
+            var allowSites = ConfigurationManager.GetValue<string[]>("TransferToDownlineHistory:OfferSites", []);
             return allowSites.Contains("*") || allowSites.Contains(site, StringComparer.OrdinalIgnoreCase);
         }
     }

@@ -33,10 +33,10 @@ namespace Alpha.Main.Models
         public bool IsEnabledJackpot => GetEnableProductsByGameName(Jackpot).Any();
 
         private static IList<int> GetEnableProductsByGameName(string gameName)
-            => AlphaContext.Current.Session.Get<IList<int>>(GameEnableSessionKey + gameName);
+            => AlphaContext.Current.Session.Get<IList<int>>(GameEnableSessionKey + gameName, []);
 
         public bool IsAdminCanUpdateSubAccount
-            => AlphaContext.Current.Session.Get<bool>(IsAdminCanUpdateSubAccountSessionKey);
+            => AlphaContext.Current.Session.Get<bool>(IsAdminCanUpdateSubAccountSessionKey, false);
 
         public bool IsEnabledTelegramOTP
         {
