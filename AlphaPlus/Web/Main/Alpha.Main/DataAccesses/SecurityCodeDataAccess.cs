@@ -1,7 +1,7 @@
 ﻿namespace Alpha.Main.DataAccesses
 {
+    using AlphaPlus.Core.Models;
     using Fanex.Data.Repository;
-    using Models;
 
     public interface SecurityCodeDataAccess
     {

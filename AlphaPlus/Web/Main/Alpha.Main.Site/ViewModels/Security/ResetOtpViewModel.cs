@@ -2,7 +2,7 @@
 {
     using Alpha.Main.AppResources;
     using Alpha.Main.Site.Requests.Otp;
-    using Alpha.Main.Models;
+    using AlphaPlus.Core.Models;
 
     public class ResetOtpViewModel : ResetOtpQuery
     {

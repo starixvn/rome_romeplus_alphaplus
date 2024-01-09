@@ -1,7 +1,6 @@
 ﻿namespace Alpha.Main.Site.Models.Request.SecurityCode
 {
     using AlphaPlus.Core.Models;
-    using Main.Models;
     using MediatR;
 
     public class ChangeSecurityCodeByForcingCommand : IRequest<Result>

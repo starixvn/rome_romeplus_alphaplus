@@ -1,9 +1,8 @@
-﻿namespace Alpha.Main.Site.Requests.ApiKey
-{
-    using Alpha.Main.Models.ApiKey;
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace Alpha.Main.Site.Requests.ApiKey
+{
     public class RevokeApiKeyCommand : IRequest<Result>
     {
         public RevokeApiKeyCommand() : this(null)

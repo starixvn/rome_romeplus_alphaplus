@@ -1,9 +1,9 @@
 ﻿namespace Alpha.Main.DataAccesses.Impl
 {
     using System;
+    using AlphaPlus.Core.Models;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using Models;
 
     public class BaseDataAccessImpl
     {

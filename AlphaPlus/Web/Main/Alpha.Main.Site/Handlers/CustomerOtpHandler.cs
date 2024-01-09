@@ -12,7 +12,7 @@ using Alpha.Main.Services;
 using TelegramBot.Client.Services;
 using Alpha.Main.Site.ViewModels.Security;
 using Function = TelegramBot.Client.Models.Function;
-using TelegramResult = TelegramBot.Client.Models.Result;
+using TelegramResult = AlphaPlus.Core.Models.Result;
 using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
@@ -372,7 +372,7 @@ namespace Alpha.Main.Site.Handlers
                 SetOtpStatusToSession(enabled);
             }
 
-            return result;
+            return new TelegramResult(result.Code, result.Message);
         }
 
         private static void SetOtpStatusToSession(bool isEnabledOtp)

@@ -1,4 +1,5 @@
 ﻿using Alpha.Main.AppResources;
+using AlphaPlus.Core.Models;
 
 namespace Alpha.Main.Models
 {

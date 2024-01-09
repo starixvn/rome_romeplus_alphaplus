@@ -4,6 +4,7 @@ using Alpha.Main.Criteria.Nickname;
 using Fanex.Data.Repository;
 using Alpha.Main.Models;
 using Alpha.Main.Params.Nickname;
+using AlphaPlus.Core.Models;
 
 namespace Alpha.Main.Services.Impl
 {

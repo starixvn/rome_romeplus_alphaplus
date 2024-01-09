@@ -9,7 +9,7 @@ using Alpha.Main.Params.Password;
 using Alpha.Main.Site.Requests.Password;
 using Alpha.Main.Services;
 using Alpha.Main.Site.ViewModels.Security;
-using CustomResult = Alpha.Main.Models.Result;
+using CustomResult = AlphaPlus.Core.Models.Result;
 using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;

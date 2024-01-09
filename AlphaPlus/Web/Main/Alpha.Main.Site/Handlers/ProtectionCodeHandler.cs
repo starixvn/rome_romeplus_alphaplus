@@ -5,7 +5,7 @@ using Alpha.Main.Site.ViewModels.ProtectionCode;
 using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.Core.Models;
 using MediatR;
-using ResultModel = Alpha.Main.Models.Result;
+using ResultModel = AlphaPlus.Core.Models.Result;
 using AlphaPlus.Core.Helpers;
 
 namespace Alpha.Main.Site.Handlers

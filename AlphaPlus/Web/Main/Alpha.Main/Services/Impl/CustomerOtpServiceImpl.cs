@@ -6,7 +6,7 @@ using Alpha.Main.Models.Otp;
 using ONEbook.OTP.Services;
 using Alpha.Main.Params.Otp;
 using TelegramBot.Client.Services;
-using CustomResult = Alpha.Main.Models.Result;
+using CustomResult = AlphaPlus.Core.Models.Result;
 using Fanex.Logging;
 using AlphaPlus.Core.Models;
 

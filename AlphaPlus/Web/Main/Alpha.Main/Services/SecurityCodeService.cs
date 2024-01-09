@@ -1,5 +1,5 @@
-﻿using Alpha.Main.Models;
-using Alpha.Main.Params.SecurityCode;
+﻿using Alpha.Main.Params.SecurityCode;
+using AlphaPlus.Core.Models;
 
 namespace Alpha.Main.Services
 {

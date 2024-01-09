@@ -2,9 +2,9 @@
 {
     using System;
     using Alpha.Main.DataAccesses;
+    using AlphaPlus.Core.Models;
     using Fanex.Data;
     using Fanex.Data.Repository;
-    using Models;
 
     public class SecurityCodeDataAccessImpl : BaseDataAccessImpl, SecurityCodeDataAccess
     {

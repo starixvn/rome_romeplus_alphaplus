@@ -2,7 +2,6 @@
 {
     using AlphaPlus.Core.Models;
     using MediatR;
-    using TelegramBot.Client.Models;
 
     public class UpdateOtpTelegramCommand : IRequest<Result>
     {

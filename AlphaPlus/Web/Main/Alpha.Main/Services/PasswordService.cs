@@ -1,6 +1,6 @@
 ﻿namespace Alpha.Main.Services
 {
-    using Models;
+    using AlphaPlus.Core.Models;
     using Params.Password;
 
     public interface PasswordService

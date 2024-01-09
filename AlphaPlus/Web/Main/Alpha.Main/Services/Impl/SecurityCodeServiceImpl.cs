@@ -5,6 +5,7 @@ using Alpha.Main.Models;
 using Alpha.Main.Params.SecurityCode;
 using Fanex.Data.Repository;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Models;
 
 namespace Alpha.Main.Services.Impl
 {

@@ -7,6 +7,7 @@ using Alpha.Main.Models;
 using Alpha.Main.Params;
 using Alpha.Main.Params.Password;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Models;
 
 namespace Alpha.Main.Services.Impl
 {

@@ -1,7 +1,6 @@
 ﻿namespace Alpha.Main.Site.Requests.ApiKey
 {
     using System;
-    using Alpha.Main.Models.ApiKey;
     using AlphaPlus.Core.Models;
     using MediatR;
 

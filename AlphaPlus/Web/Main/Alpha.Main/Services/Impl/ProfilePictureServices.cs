@@ -1,8 +1,8 @@
-﻿using Alpha.Main.Models;
-using Alpha.Main.ProfilePicture.Commands;
+﻿using Alpha.Main.ProfilePicture.Commands;
 using Alpha.Main.ProfilePicture.Criteria;
 using Alpha.Main.ProfilePicture.Models;
 using Alpha.Main.ProfilePicture.Params;
+using AlphaPlus.Core.Models;
 using Fanex.Data.Repository;
 
 namespace Alpha.Main.ProfilePicture.Services

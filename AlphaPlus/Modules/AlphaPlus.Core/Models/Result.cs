@@ -1,7 +1,22 @@
-﻿namespace Alpha.Main.Models
+namespace AlphaPlus.Core.Models
 {
     public class Result
     {
+        public Result()
+        {
+        }
+
+        public Result(int code)
+        {
+            Code = code;
+        }
+
+        public Result(int code, string message)
+        {
+            Code = code;
+            Message = message;
+        }
+
         public const int ErrorCode = 1;
 
         public int Code { get; set; }

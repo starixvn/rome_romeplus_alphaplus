@@ -1,14 +1,14 @@
 ﻿using Alpha.Main.Constants;
-using Alpha.Main.Models.ApiKey;
 using Alpha.Main.Services;
 using Alpha.Main.Site.Requests.ApiKey;
 using Alpha.Main.Site.ViewModels.ApiKey;
+using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace Alpha.Main.Site.Handlers
 {
     public class ApiKeyHandler(ApiKeyService apiKeyService) :
-        IRequestHandler<CreateApiKeyCommand, CreateApiKeyResult>,
+        IRequestHandler<CreateApiKeyCommand, Main.Models.ApiKey.CreateApiKeyResult>,
         IRequestHandler<GetApiKeyQuery, EditApiKeyViewModel>,
         IRequestHandler<GetCustomerApiKeyQuery, ApiKeyManagementViewModel>,
         IRequestHandler<RevokeApiKeyCommand, Result>,
@@ -16,7 +16,7 @@ namespace Alpha.Main.Site.Handlers
     {
         private readonly ApiKeyService apiKeyService = apiKeyService;
 
-        public Task<CreateApiKeyResult> Handle(CreateApiKeyCommand request, CancellationToken cancellationToken)
+        public Task<Main.Models.ApiKey.CreateApiKeyResult> Handle(CreateApiKeyCommand request, CancellationToken cancellationToken)
             => apiKeyService.CreateApiKey(request.CustId, request.ApiName, request.PassPhrase, request.Scopes, request.IP, request.Language, request.ExpirationDate);
 
 
@@ -39,8 +39,10 @@ namespace Alpha.Main.Site.Handlers
             return new Result(0, "Success");
         }
 
-        public Task<Result> Handle(UpdateApiKeyCommand request, CancellationToken cancellationToken)
-            => apiKeyService.UpdateApiKey(request.ApiKey, request.CustId, request.ApiName, request.Scopes, request.IP, request.Language, request.ExpirationDate);
+        public Task<Result> Handle(UpdateApiKeyCommand request, CancellationToken cancellationToken){
+            var result = apiKeyService.UpdateApiKey(request.ApiKey, request.CustId, request.ApiName, request.Scopes, request.IP, request.Language, request.ExpirationDate);
+            return Task.FromResult(new Result(result.Result.Code, result.Result.Message));
+        }
 
     }
 }

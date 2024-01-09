@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Core.Models;
 using MediatR;
-using CustomResult = Alpha.Main.Models.Result;
+using CustomResult = AlphaPlus.Core.Models.Result;
 
 namespace Alpha.Main.Site.Requests.Password
 {
