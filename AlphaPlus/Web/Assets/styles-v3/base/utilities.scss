@@ -1,13 +1,13 @@
-.text-center{
+.text-center {
     text-align: center;
 }
-.text-left{
+.text-left {
     text-align: left;
 }
-.text-right{
+.text-right {
     text-align: right;
 }
-.mb-10{
+.mb-10 {
     margin-bottom: 10px;
 }
 h4 {
@@ -16,7 +16,7 @@ h4 {
 .hover {
     cursor: pointer;
 }
-.underline{
+.underline {
     text-decoration: underline;
 }
 .hover:hover {
@@ -26,7 +26,11 @@ a {
     color: var(--text-color2);
     text-decoration: none;
 }
-a, a:focus, a:active, a:target, a:hover {
+a,
+a:focus,
+a:active,
+a:target,
+a:hover {
     outline: none;
 }
 
@@ -34,8 +38,12 @@ a, a:focus, a:active, a:target, a:hover {
     display: none;
 }
 .fade {
-    transition: opacity .15s linear;
+    transition: opacity 0.15s linear;
 }
-.relative{
+.relative {
     position: relative;
+}
+a:link {
+    color: var(--link-text-color);
+    text-decoration: none;
 }

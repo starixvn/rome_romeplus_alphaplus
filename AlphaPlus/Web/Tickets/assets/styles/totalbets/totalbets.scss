@@ -10,6 +10,7 @@
         --tb-text-color-positive: #eb6003;
         --tb-text-color-num: #1d1d1d;
         --tb-text-icon-plus: #2a9cde;
+        --tb-text-color-col-x: #ffefde;
     }
 }
 :root [data-theme='dark'] {
@@ -21,6 +22,7 @@
         --tb-text-color-positive: #eb6003;
         --tb-text-color-num: #41a4ff;
         --tb-text-icon-plus: #2a9cde;
+        --tb-text-color-col-x: rgba(77, 46, 24, 0.8);
     }
 }
 
@@ -30,7 +32,9 @@ a:link {
 }
 
 .filter {
-    margin-top: 8px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
 }
 
 table * {
@@ -111,7 +115,7 @@ table * {
     .col-x,
     .col-offsetHDP,
     .col-offsetOU {
-        background-color: #ffefde;
+        background-color: var(--tb-text-color-col-x);
     }
 
     .fcnum {
@@ -127,7 +131,7 @@ table * {
         text-decoration: none;
         position: relative;
         top: 2px;
-        @include ripple-effect-icon($margin-left: -6px);
+        @include ripple-effect-icon($margin-left: -5px);
 
         &:before {
             font: {
@@ -139,8 +143,7 @@ table * {
         }
     }
 
-    .live,
-    font {
+    .live {
         color: var(--tb-text-color-live);
         font-style: italic;
     }

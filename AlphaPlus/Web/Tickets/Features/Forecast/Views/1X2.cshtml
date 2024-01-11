@@ -11,6 +11,10 @@
 <div class="page-title">@Resources._1X2</div>
 <div class="filter">
     <div class="auto-refresh"></div>
+    <div>
+        <label for="ddlLeague">@Resources.League</label>
+        @Html.DropDownList("league", Model.Leagues, new { @id = "ddlLeague" })
+    </div>
 </div>
 <div id="content">
     <partial name="1X2Partial" />
