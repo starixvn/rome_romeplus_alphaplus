@@ -37,12 +37,12 @@
                     Html.Raw(item.ShowTime);
                 }
             </td>
-            <td class="bold width-100">@(item.OffsetHDP + 1)</td>
-            <td class="bold width-100">@item.OffsetHDP</td>
-            <td class="bold width-100">@(item.OffsetHDP - 1)</td>
-            <td class="bold width-100">@(item.OffsetOU + 2)</td>
-            <td class="bold width-100">@(item.OffsetOU + 1)</td>
-            <td class="bold width-100">@item.OffsetOU</td>
+            <td class="bold">@(item.OffsetHDP + 1)</td>
+            <td class="bold col-offsetHDP">@item.OffsetHDP</td>
+            <td class="bold">@(item.OffsetHDP - 1)</td>
+            <td class="bold">@(item.OffsetOU + 2)</td>
+            <td class="bold">@(item.OffsetOU + 1)</td>
+            <td class="bold col-offsetOU">@item.OffsetOU</td>
         </tr>
         <tr>
             <td>@Resources.FullTime</td>
