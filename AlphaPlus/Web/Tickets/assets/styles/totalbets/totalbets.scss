@@ -90,6 +90,7 @@ table * {
             font-weight: 500;
         }
     }
+
     .odd {
         background-color: var(--tb-bg-odd);
     }
@@ -103,13 +104,6 @@ table * {
         text-align: center;
     }
 
-        .live,
-        font {
-            color: var(--tb-text-color-live);
-            font-style: italic;
-        }
-    }
-
     .col-x {
         background-color: #ffefde;
     }
@@ -118,10 +112,6 @@ table * {
         color: var(--tb-text-color-num);
         font-weight: 500;
         text-decoration: none;
-
-        .positive {
-            color: var(--tb-text-color-positive);
-        }
     }
 
     .icon-fc {
@@ -141,5 +131,15 @@ table * {
             content: '\e930';
             color: var(--tb-text-icon-plus);
         }
+    }
+
+    .live,
+    font {
+        color: var(--tb-text-color-live);
+        font-style: italic;
+    }
+
+    .positive {
+        color: var(--tb-text-color-positive);
     }
 }
