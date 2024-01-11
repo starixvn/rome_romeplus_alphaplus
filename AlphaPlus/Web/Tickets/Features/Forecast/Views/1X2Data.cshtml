@@ -1,0 +1,69 @@
+@{
+    Layout = null;
+    async Task RenderViewBetListLink(int matchId, int betType)
+    {
+        <td class="w-icon-fc">
+            <view-betlist-fc matchid="@matchId" bettype="@betType" />
+        </td>
+    }
+
+    async Task RenderCell(decimal? number)
+    {
+        <td class="bold">
+            @if (number.HasValue)
+            {
+                <number value="@number.Value" redpositive="true" />
+            }
+        </td>
+    }
+}
+@model IEnumerable<Forecast1X2>
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <tr class="col-league text-left">
+            <td colspan="5">@item.Event</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @if (item.LiveIndicator)
+                {
+                    <span style="margin-right:10px;">@item.LiveHomeScore - @item.LiveAwayScore</span>
+                    <span class="live">@Resources.Live!</span>
+                }
+                else
+                {
+                    Html.Raw(item.ShowTime);
+                }
+            </td>
+            <td class="bold width-100">1</td>
+            <td class="bold col-x width-100">X</td>
+            <td class="bold width-100">2</td>
+        </tr>
+        <tr>
+            <td>@Resources.FullTime</td>
+            @{
+                await RenderViewBetListLink(item.MatchId, 5);
+                await RenderCell(item.HL);
+                await RenderCell(item.DL);
+                await RenderCell(item.AL);
+            }
+        </tr>
+        <tr>
+            <td>@Resources.HalfTime</td>
+            @{
+                await RenderViewBetListLink(item.MatchId, 15);
+                await RenderCell(item.HT_HL);
+                await RenderCell(item.HT_DL);
+                await RenderCell(item.HT_AL);
+            }
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="5">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

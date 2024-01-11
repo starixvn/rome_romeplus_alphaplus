@@ -1,0 +1,78 @@
+@{
+    Layout = null;
+    async Task RenderViewBetListLink(int matchId, int betType)
+    {
+        <td class="w-icon-fc">
+            <view-betlist-fc matchid="@matchId" bettype="@betType" />
+        </td>
+    }
+
+    async Task RenderCell(decimal? number)
+    {
+        <td class="bold">
+            @if (number.HasValue)
+            {
+                <number value="@number.Value" redpositive="true" />
+            }
+        </td>
+    }
+}
+@model IEnumerable<ForecastHDPOULive>
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <tr class="col-league text-left">
+            <td colspan="8">@item.Event</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @if (item.LiveIndicator)
+                {
+                    <span style="margin-right:10px;">@item.LiveHomeScore - @item.LiveAwayScore</span>
+                    <span class="live">@Resources.Live!</span>
+                }
+                else
+                {
+                    Html.Raw(item.ShowTime);
+                }
+            </td>
+            <td class="bold width-100">@(item.OffsetHDP + 1)</td>
+            <td class="bold width-100">@item.OffsetHDP</td>
+            <td class="bold width-100">@(item.OffsetHDP - 1)</td>
+            <td class="bold width-100">@(item.OffsetOU + 2)</td>
+            <td class="bold width-100">@(item.OffsetOU + 1)</td>
+            <td class="bold width-100">@item.OffsetOU</td>
+        </tr>
+        <tr>
+            <td>@Resources.FullTime</td>
+            @{
+                await RenderViewBetListLink(item.MatchId, 1);
+                await RenderCell(item.WinLost_1_HDP);
+                await RenderCell(item.WinLost_0_HDP);
+                await RenderCell(item.WinLost_M1_HDP);
+                await RenderCell(item.WinLost_2_OU);
+                await RenderCell(item.WinLost_1_OU);
+                await RenderCell(item.WinLost_0_OU);
+            }
+        </tr>
+        <tr>
+            <td>@Resources.HalfTime</td>
+            @{
+                await RenderViewBetListLink(item.MatchId, 7);
+                await RenderCell(item.WinLost_1_HTHDP);
+                await RenderCell(item.WinLost_0_HTHDP);
+                await RenderCell(item.WinLost_M1_HTHDP);
+                await RenderCell(item.WinLost_2_HTOU);
+                await RenderCell(item.WinLost_1_HTOU);
+                await RenderCell(item.WinLost_0_HTOU);
+            }
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="8">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

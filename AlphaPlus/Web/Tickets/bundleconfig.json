@@ -12,5 +12,19 @@
       "assets/scripts/components/fanex.autorefresh.js",
       "assets/scripts/totalbets/totalbets.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/forecast.js",
+    "inputFiles": [
+      "assets/scripts/components/fanex.autorefresh.js",
+      "assets/scripts/forecast/forecast.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/1X2ByMatch.js",
+    "inputFiles": [
+      "assets/scripts/components/fanex.autorefresh.js",
+      "assets/scripts/forecast/1X2ByMatch.js"
+    ]
   }
 ]

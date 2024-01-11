@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Encodings.Web;
+using AlphaPlus.Tickets.Site.App_GlobalResources;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -30,7 +31,7 @@ public class EventTagHelper : TagHelper
             var sb = new StringBuilder();
             sb
                 .Append($"<div>{LiveHomeScore} - {LiveAwayScore}</div>")
-                .Append($"<span class=\"live\">Live!</span>");
+                .Append($"<span class=\"live\">{Resources.Live}!</span>");
             output.Content.SetHtmlContent(sb.ToString());
         }
         else

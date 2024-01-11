@@ -39,7 +39,7 @@ table * {
 
 .tblRpt {
     &.tbl-outright,
-    &.tbl-1x2 {
+    &.tbl-1X2 {
         width: 600px;
     }
 
@@ -55,8 +55,24 @@ table * {
         width: 100px;
     }
 
+    .width-120 {
+        width: 120px;
+    }
+
+    .width-150 {
+        width: 150px;
+    }
+
     .width-116 {
         width: 116px;
+    }
+
+    .width-200 {
+        width: 200px;
+    }
+
+    .width-360 {
+        width: 360px;
     }
 
     .w-number {
@@ -85,6 +101,7 @@ table * {
     .col-time {
         font-size: 8pt;
         text-align: center;
+    }
 
         .live,
         font {

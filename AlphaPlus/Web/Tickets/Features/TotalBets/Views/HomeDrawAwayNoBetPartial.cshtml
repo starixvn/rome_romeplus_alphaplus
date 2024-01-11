@@ -1,0 +1,55 @@
+@{
+    Layout = null;
+    async Task RenderCell(int betCount, int matchId, int betType, decimal total)
+    {
+        <td class="text-right">
+            @if (betCount != 0)
+            {
+                <view-betlist matchid="@matchId" bettype="@betType" value="@total" redpositive="false" />
+            }
+        </td>
+    }
+}
+
+@model IEnumerable<HomeDrawAwayNoBet>
+@if (Model.Any())
+{
+    var number = 1;
+    var matchIndex = 0;
+    var currentLeagueId = 0;
+    foreach (var item in Model)
+    {
+        if (currentLeagueId == item.LeagueId)
+        {
+            matchIndex++;
+        }
+        else
+        {
+            matchIndex = 0;
+            currentLeagueId = item.LeagueId;
+            <tr class="col-league">
+                <td colspan="7">@item.LeagueName</td>
+            </tr>
+        }
+        var className = item.LiveIndicator ? "bg-live" : (matchIndex % 2 == 0 ? string.Empty : "odd");
+        <tr class="@className">
+            <td>@(number++)</td>
+            <td>
+                <event live="@item.LiveIndicator" homescore="@item.LiveHomeScore" awayscore="@item.LiveAwayScore"
+                    time="@item.ShowTime" />
+            </td>
+            <td>@item.Event</td>
+            @{
+                await RenderCell(item.BetCount_HNB, item.MatchId, 121, item.Home_Odds_HNB - item.Away_Odds_HNB);
+                await RenderCell(item.BetCount_DNB, item.MatchId, 25, item.Home_Odds_DNB - item.Away_Odds_DNB);
+                await RenderCell(item.BetCount_ANB, item.MatchId, 122, item.Home_Odds_ANB - item.Away_Odds_ANB);
+            }
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="7" class="text-center">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

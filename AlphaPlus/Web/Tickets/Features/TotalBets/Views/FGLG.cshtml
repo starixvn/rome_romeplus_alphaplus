@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = Resources.FGSlashLG;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
+}
+@model IEnumerable<FirstGoalLastGoal>
+<div class="page-title">@Resources.FGSlashLG</div>
+<div class="filter">
+    <div class="auto-refresh"></div>
+</div>
+<table class="tblRpt tblRpt-bordered" id="tblRpt">
+    <thead>
+        <tr>
+            <th rowspan="2" class="w-number">#</th>
+            <th rowspan="2" class="width-120">@Resources.Time</th>
+            <th rowspan="2" class="width-150">@Resources.HomeSlashAway</th>
+            <th colspan="3">@Resources.FullTime</th>
+            <th colspan="3">@Resources._1stHalf</th>
+        </tr>
+        <tr class="thead-row2">
+            <th>@Resources.FirstGoal</th>
+            <th>@Resources.LastGoal</th>
+            <th>@Resources.NoGoal</th>
+            <th>@Resources.FirstGoal</th>
+            <th>@Resources.LastGoal</th>
+            <th>@Resources.NoGoal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="FGLGPartial" />
+    </tbody>
+</table>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="60,75,90,105,120" />
+<input type="hidden" id="hidden-autoRefreshUrl" value="FGLG?partial=true" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="FGLG" />

@@ -1,3 +1,4 @@
+using AlphaPlus.BetsForecast.Domain.TotalBets;
 using AlphaPlus.Tickets.Site.Features.TotalBets.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,60 +12,41 @@ public class TotalBetsController : Controller
     public TotalBetsController(ITotalBetsService totalBetsService)
         => this.totalBetsService = totalBetsService;
 
-    public async Task<IActionResult> HDPOULive(GetTotalBetsRequest message)
-        => TotalBetsView(
-        nameof(HDPOULive),
-        message.Partial,
-        await totalBetsService.GetHDPOULive(message.ViewerLevel, message.ViewerId));
+    public Task<IActionResult> HDPOULive(GetTotalBetsRequest message)
+        => TotalBetsView<HDPOULive>(nameof(HDPOULive), message);
 
-    public async Task<IActionResult> MoneyLine(GetTotalBetsRequest message)
-        => TotalBetsView(
-        nameof(MoneyLine),
-        message.Partial,
-        await totalBetsService.GetMoneyLine(message.ViewerLevel, message.ViewerId, message.Language));
+    public Task<IActionResult> MoneyLine(GetTotalBetsRequest message)
+        => TotalBetsView<MoneyLine>(nameof(MoneyLine), message);
 
-    public async Task<IActionResult> OE1x2DND(GetTotalBetsRequest message)
-        => TotalBetsView(
-        nameof(OE1x2DND),
-        message.Partial,
-        await totalBetsService.GetOE1x2DND(message.ViewerLevel, message.ViewerId, message.Language));
+    public Task<IActionResult> OE1X2DND(GetTotalBetsRequest message)
+        => TotalBetsView<OE1X2DND>(nameof(OE1X2DND), message);
 
-    public async Task<IActionResult> TotalGoal(GetTotalBetsRequest message)
-        => TotalBetsView(
-        nameof(TotalGoal),
-        message.Partial,
-        await totalBetsService.GetTotalGoal(message.ViewerLevel, message.ViewerId, message.Language));
+    public Task<IActionResult> TotalGoal(GetTotalBetsRequest message)
+        => TotalBetsView<TotalGoal>(nameof(TotalGoal), message);
 
-    public async Task<IActionResult> Outright(GetTotalBetsRequest message)
-        => TotalBetsView(
-        nameof(Outright),
-        message.Partial,
-        await totalBetsService.GetOutright(message.ViewerLevel, message.ViewerId, message.Language));
+    public Task<IActionResult> Outright(GetTotalBetsRequest message)
+        => TotalBetsView<Outright>(nameof(Outright), message);
 
-    public async Task<IActionResult> HTFT(GetTotalBetsRequest message)
-        => TotalBetsView(
-        nameof(HTFT),
-        message.Partial,
-        await totalBetsService.GetHalfTimeFullTime(message.ViewerLevel, message.ViewerId, message.Language));
+    public Task<IActionResult> HTFT(GetTotalBetsRequest message)
+        => TotalBetsView<HalfTimeFullTime>(nameof(HTFT), message);
 
-    public async Task<IActionResult> FGLG(GetTotalBetsRequest message)
-       => TotalBetsView(
-       nameof(FGLG),
-       message.Partial,
-       await totalBetsService.GetFirstGoalLastGoal(message.ViewerLevel, message.ViewerId, message.Language));
+    public Task<IActionResult> FGLG(GetTotalBetsRequest message)
+       => TotalBetsView<FirstGoalLastGoal>(nameof(FGLG), message);
 
-    public async Task<IActionResult> HomeDrawAwayNoBet(GetTotalBetsRequest message)
-       => TotalBetsView(
-       nameof(HomeDrawAwayNoBet),
-       message.Partial,
-       await totalBetsService.GetHomeDrawAwayNoBet(message.ViewerLevel, message.ViewerId, message.Language));
+    public Task<IActionResult> HomeDrawAwayNoBet(GetTotalBetsRequest message)
+       => TotalBetsView<HomeDrawAwayNoBet>(nameof(HomeDrawAwayNoBet), message);
 
-    public async Task<IActionResult> NumberGame(GetTotalBetsRequest message)
-       => TotalBetsView(
-       nameof(NumberGame),
-       message.Partial,
-       await totalBetsService.GetNumberGame(message.ViewerLevel, message.ViewerId, message.Language));
+    public Task<IActionResult> NumberGame(GetTotalBetsRequest message)
+       => TotalBetsView<NumberGame>(nameof(NumberGame), message);
 
-    private IActionResult TotalBetsView(string viewName, bool partial, object data)
-        => View($"{viewName}{(partial ? PartialName : string.Empty)}", data);
+    private async Task<IActionResult> TotalBetsView<T>(string action, GetTotalBetsRequest message)
+    {
+        var totalBets = await totalBetsService.GetTotalBets<T>(
+            action,
+            message.ViewerLevel,
+            message.ViewerId,
+            message.Language);
+
+        return View($"{action}{(message.Partial ? PartialName : string.Empty)}", totalBets);
+    }
 }

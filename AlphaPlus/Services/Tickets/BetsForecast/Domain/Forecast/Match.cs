@@ -14,8 +14,5 @@ public class Match
 
     public string AwayName { get; set; }
 
-    public virtual string Event
-        => string.IsNullOrWhiteSpace(HomeName) || string.IsNullOrWhiteSpace(AwayName)
-        ? null
-        : $"{HomeName} - {AwayName}";
+    public virtual string Event => $"{HomeName} - {AwayName}";
 }

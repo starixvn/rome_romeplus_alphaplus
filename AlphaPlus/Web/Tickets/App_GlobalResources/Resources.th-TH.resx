@@ -117,11 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AA" xml:space="preserve">
+    <value>ทีมเยือนนำครึ่งแรก ทีมเยือนชนะครึ่งหลัง</value>
+  </data>
+  <data name="AD" xml:space="preserve">
+    <value>ทีมเยือนนำครึ่งแรก  ครึ่งหลังเสมอกัน</value>
+  </data>
+  <data name="AH" xml:space="preserve">
+    <value>ทีมเยือนนำครึ่งแรก  เจ้าบ้านชนะครึ่งหลัง</value>
+  </data>
+  <data name="Away" xml:space="preserve">
+    <value>ทีมเยือน</value>
+  </data>
+  <data name="AwayNoBet" xml:space="preserve">
+    <value>Away No Bet</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>ยอดเงิน</value>
+  </data>
+  <data name="DA" xml:space="preserve">
+    <value>ครึ่งแรกเสมอ ครึ่งหลังทีมเยือนนำ</value>
+  </data>
+  <data name="DD" xml:space="preserve">
+    <value>ครึ่งแรกเสมอ ครึ่งหลังเสมอ</value>
+  </data>
+  <data name="DH" xml:space="preserve">
+    <value>ครึ่งแรกเสมอ ครึ่งหลังเจ้าบ้านนำ</value>
+  </data>
+  <data name="DrawNoBet" xml:space="preserve">
+    <value>Draw No Bet</value>
+  </data>
   <data name="DrawSlashNoDraw" xml:space="preserve">
     <value>เสมอ/No Draw</value>
   </data>
   <data name="Event" xml:space="preserve">
     <value>การแข่งขัน</value>
+  </data>
+  <data name="FTDotOSlashE" xml:space="preserve">
+    <value>คู่คี่ เต็มเวลา</value>
+  </data>
+  <data name="FirstGoal" xml:space="preserve">
+    <value>ประตูแรก</value>
   </data>
   <data name="Forecast" xml:space="preserve">
     <value>การทำนายผลล่วงหน้า</value>
@@ -135,26 +171,116 @@
   <data name="FullTime" xml:space="preserve">
     <value>เต็มเวลา</value>
   </data>
+  <data name="FullTimeOddEven" xml:space="preserve">
+    <value>คู่คี่ เต็มเวลา</value>
+  </data>
+  <data name="HA" xml:space="preserve">
+    <value>เจ้าบ้านนำครึ่งแรก ทีมเยือนชนะครึ่งหลัง</value>
+  </data>
+  <data name="HD" xml:space="preserve">
+    <value>เจ้าบ้านนำครึ่งแรก ครึ่งหลังเสมอกัน</value>
+  </data>
   <data name="HDPOULive" xml:space="preserve">
     <value>ราคาต่อรอง / สูง ต่ำ / เกมส์สด</value>
+  </data>
+  <data name="HH" xml:space="preserve">
+    <value>เจ้าบ้านนำครึ่งแรก เจ้าบ้านชนะครึ่งหลัง</value>
+  </data>
+  <data name="HTSlashFT" xml:space="preserve">
+    <value>ครึ่งเวลาแรก/ เต็มเวลา</value>
+  </data>
+  <data name="HalfTime" xml:space="preserve">
+    <value>Half Time</value>
   </data>
   <data name="Handicap" xml:space="preserve">
     <value>ราคาต่อรอง</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>ทีมเหย้า</value>
+  </data>
+  <data name="HomeNoBet" xml:space="preserve">
+    <value>Home No Bet</value>
+  </data>
+  <data name="HomeSlashAway" xml:space="preserve">
+    <value>เจ้าบ้าน/ ทีมเยือน</value>
+  </data>
+  <data name="LastBall" xml:space="preserve">
+    <value>บอลสุดท้าย</value>
+  </data>
+  <data name="LastGoal" xml:space="preserve">
+    <value>ประตูสุดท้าย</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>ลีค</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>สด</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>Live Game</value>
+  </data>
   <data name="MoneyLine" xml:space="preserve">
     <value>การทายผู้เล่นหรือทีมที่จะชนะ</value>
+  </data>
+  <data name="NextBall" xml:space="preserve">
+    <value>บอลลูกต่อไป</value>
+  </data>
+  <data name="NextCombo" xml:space="preserve">
+    <value>คอมโบ้ถัดไป</value>
+  </data>
+  <data name="NextRSlashB" xml:space="preserve">
+    <value>ถัดไป แดง/สีน้ำเงิน</value>
+  </data>
+  <data name="NoGoal" xml:space="preserve">
+    <value>ไม่มีการทำประตู</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>ไม่มีข้อมูล</value>
   </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>เกมหมายเลข</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>เกมหมายเลข เลขที่</value>
+  </data>
+  <data name="NumberWheel" xml:space="preserve">
+    <value>กลุ่มหมายเลข</value>
+  </data>
+  <data name="OCommaE" xml:space="preserve">
+    <value>สูง คู่</value>
+  </data>
+  <data name="OCommaO" xml:space="preserve">
+    <value>สูง คี่</value>
+  </data>
+  <data name="OSlashE" xml:space="preserve">
+    <value>คี่ / คู่</value>
+  </data>
+  <data name="OSlashU" xml:space="preserve">
+    <value>สูง / ต่ำ</value>
+  </data>
   <data name="OddSlashEven" xml:space="preserve">
     <value>คู่/คี่</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>ทายผลผู้ชนะ</value>
+  </data>
+  <data name="OverCommaEven" xml:space="preserve">
+    <value>สูง คู่</value>
+  </data>
+  <data name="OverCommaOdd" xml:space="preserve">
+    <value>สูง คี่</value>
   </data>
   <data name="OverSlashUnder" xml:space="preserve">
     <value>สูง/ต่ำ</value>
   </data>
+  <data name="PreGame" xml:space="preserve">
+    <value>Pre Game</value>
+  </data>
   <data name="Refresh" xml:space="preserve">
     <value>รีเฟรช</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>ทีม</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>เวลา</value>
@@ -165,11 +291,41 @@
   <data name="TotalBets" xml:space="preserve">
     <value>จำนวนการวางเดิมพันทั้งหมด</value>
   </data>
+  <data name="TotalGoal" xml:space="preserve">
+    <value>ประตูรวม</value>
+  </data>
+  <data name="TotalGoal01" xml:space="preserve">
+    <value>ประตูรวมระหว่าง 0 ถึง 1 ประตู</value>
+  </data>
+  <data name="TotalGoal23" xml:space="preserve">
+    <value>ประตูรวมระหว่าง 2 ถึง 3 ประตู</value>
+  </data>
+  <data name="TotalGoal46" xml:space="preserve">
+    <value>ประตูรวมระหว่าง 4 ถึง 6 ประตู</value>
+  </data>
+  <data name="TotalGoal4Over" xml:space="preserve">
+    <value>4&amp;มากกว่า</value>
+  </data>
+  <data name="TotalGoal7Over" xml:space="preserve">
+    <value>มากกว่า 7 ลูก</value>
+  </data>
   <data name="TotalHome" xml:space="preserve">
     <value>จำนวนรวมของทีมเจ้าบ้าน</value>
   </data>
+  <data name="UCommaE" xml:space="preserve">
+    <value>ต่ำ คู่</value>
+  </data>
+  <data name="UCommaO" xml:space="preserve">
+    <value>ต่ำ คี่</value>
+  </data>
+  <data name="UnderCommaEven" xml:space="preserve">
+    <value>ต่ำ คู่</value>
+  </data>
   <data name="_1X2" xml:space="preserve">
     <value>ราคาพูล</value>
+  </data>
+  <data name="_1stBall" xml:space="preserve">
+    <value>ลูกแรก</value>
   </data>
   <data name="_1stHalf" xml:space="preserve">
     <value>ครึ่งแรก</value>

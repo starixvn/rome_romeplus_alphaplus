@@ -1,7 +1,6 @@
 using System.Net;
 using AlphaPlus.Tickets.Site.Features.Forecast;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
-using AlphaPlus.Tickets.Site.Features.Shared.Services;
 using AlphaPlus.Tickets.Site.Features.TotalBets;
 using Microsoft.AspNetCore.DataProtection;
 using StackExchange.Redis;
@@ -65,6 +64,6 @@ public static class InfrastructureExtenstions
             })
             .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
 
-        return services.AddSingleton<ICacheRefService, CacheRefService>();
+        return services;
     }
 }

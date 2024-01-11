@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = Resources.Outright;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
+}
+@model IEnumerable<Outright>
+<div class="page-title">@Resources.Outright</div>
+<div class="filter">
+    <div class="auto-refresh"></div>
+</div>
+<table class="tblRpt tblRpt-bordered tbl-outright" id="tblRpt">
+    <thead>
+        <tr>
+            <th class="w-number">#</th>
+            <th>@Resources.Team</th>
+            <th>@Resources.Balance</th>
+            <th>@Resources.Forecast</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="OutrightPartial" />
+    </tbody>
+</table>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="60,75,90,105,120" />
+<input type="hidden" id="hidden-autoRefreshUrl" value="Outright?partial=true" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="Outright" />

@@ -14,10 +14,7 @@ public class TotalBetsMatch : Match
 
     public bool IsNeutral { get; init; }
 
-    public new string Event
-        => string.IsNullOrWhiteSpace(HomeName) || string.IsNullOrWhiteSpace(AwayName)
-        ? null
-        : $"{HomeName} -vs- {AwayName}";
+    public new string Event => $"{HomeName} -vs- {AwayName}";
 
     public int LiveHomeScore { get; init; }
 

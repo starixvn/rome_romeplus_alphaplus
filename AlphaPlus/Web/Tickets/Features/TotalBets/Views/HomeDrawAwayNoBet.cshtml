@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = Resources.HomeDrawAwayNoBet;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
+}
+@model IEnumerable<HomeDrawAwayNoBet>
+<div class="page-title">@Resources.HomeDrawAwayNoBet</div>
+<div class="filter">
+    <div class="auto-refresh"></div>
+</div>
+<table class="tblRpt tblRpt-bordered" id="tblRpt">
+    <thead>
+        <tr>
+            <th rowspan="2" class="w-number">#</th>
+            <th rowspan="2" class="width-120">@Resources.Time</th>
+            <th rowspan="2" class="width-360">@Resources.Event</th>
+            <th colspan="3">@Resources.FullTime</th>
+        </tr>
+        <tr class="thead-row2">
+            <th class="width-100">@Resources.HomeNoBet</th>
+            <th class="width-100">@Resources.DrawNoBet</th>
+            <th class="width-100">@Resources.AwayNoBet</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="HomeDrawAwayNoBetPartial" />
+    </tbody>
+</table>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="15,30,45,60,75" />
+<input type="hidden" id="hidden-autoRefreshUrl" value="HomeDrawAwayNoBet?partial=true" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="HomeDrawAwayNoBet" />

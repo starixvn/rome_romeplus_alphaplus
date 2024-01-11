@@ -1,0 +1,41 @@
+@{
+    Layout = null;
+    async Task RenderCell(int betCount, decimal total)
+    {
+        <td class="fcnum text-right width-80">
+            @if (betCount != 0)
+            {
+                <number value="@total" redpositive="true" />
+            }
+        </td>
+    }
+}
+
+@model IEnumerable<TotalGoal>
+@if (Model.Any())
+{
+    var number = 0;
+    foreach (var item in Model)
+    {
+        <tr class="@(number++ % 2 == 0 ? string.Empty : "odd")">
+            <td>@number</td>
+            <td><view-betlist matchid="@item.MatchId" bettype="6" text="@item.HomeName" /></td>
+            <td>@item.AwayName</td>
+            @{
+                await RenderCell(item.BetCount_6, item._6_Total01);
+                await RenderCell(item.BetCount_6, item._6_Total23);
+                await RenderCell(item.BetCount_6, item._6_Total46);
+                await RenderCell(item.BetCount_6, item._6_Total7Over);
+                await RenderCell(item.BetCount_126, item._126_Total01);
+                await RenderCell(item.BetCount_126, item._126_Total23);
+                await RenderCell(item.BetCount_126, item._126_Total4Over);
+            }
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="10" class="text-center">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

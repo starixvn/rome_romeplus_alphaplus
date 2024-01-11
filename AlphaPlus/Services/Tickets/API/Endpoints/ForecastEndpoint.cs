@@ -11,22 +11,41 @@ public class ForecastEndpoint : IEndpoint
 
         forecast.MapGet(
             "/soccerleagues",
-            (bool isLive, bool isShowAll, ILeagueRepository repository) => repository.GetSoccerLeagues(isLive, isShowAll));
+            (bool isLive, bool isShowAll, string language, ILeagueService service)
+            => service.GetSoccerLeagues(isLive, isShowAll, language));
 
         forecast.MapGet(
             "/soccermatches",
-            (int leagueId, bool isLive, ILeagueRepository repository) => repository.GetSoccerMatches(leagueId, isLive));
+            (int leagueId, bool isLive, string language, ILeagueService service)
+            => service.GetSoccerMatches(leagueId, isLive, language));
 
         forecast.MapGet(
             "/soccer",
-            async (int custId,
-            string matchIds,
-            bool isLive,
-            IForecastRepository repository) =>
+            async (int custId, string matchIds, bool isLive, string language, IForecastService service) =>
             {
-                var (matches, betTypes, winloss) = await repository.GetSoccer(custId, matchIds, isLive);
+                var (matches, betTypes, winloss) = await service.GetSoccer(custId, matchIds, isLive);
 
                 return Tuple.Create(matches, betTypes, winloss);
             });
+
+        forecast.MapGet(
+            "/runningleagues",
+            (byte custLevel, int custId, string betTypes, string language, ILeagueService service)
+            => service.GetRunningLeagues(custLevel, custId, betTypes, language));
+
+        forecast.MapGet(
+            "/hdpoulive",
+            (byte custLevel, int custId, int leagueId, string language, IForecastService service)
+            => service.GetHDPOULive(custLevel, custId, leagueId, language));
+
+        forecast.MapGet(
+            "/1x2",
+            (byte custLevel, int custId, int leagueId, string language, IForecastService service)
+            => service.Get1X2(custLevel, custId, leagueId, language));
+
+        forecast.MapGet(
+            "/1x2bymatch",
+            (byte custLevel, int custId, int matchId, int betType, string language, IForecastService service)
+            => service.Get1X2(custLevel, custId, matchId, betType, language));
     }
 }

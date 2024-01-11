@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <AssemblyName>Tickets.API</AssemblyName>
+    <AssemblyName>AlphaPlus.Tickets.API</AssemblyName>
     <RootNamespace>AlphaPlus.Tickets.API</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>

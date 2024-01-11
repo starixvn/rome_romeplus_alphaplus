@@ -1,0 +1,62 @@
+@{
+    Layout = null;
+    async Task RenderCell(int betCount, decimal total, int? rowSpan = null)
+    {
+        <td class="fcnum text-right width-100" @(rowSpan == null ? string.Empty : " rowspan=" + rowSpan)>
+            @if (betCount != 0)
+            {
+                <number value="@total" redpositive="true" />
+            }
+        </td>
+    }
+}
+
+@model IEnumerable<FirstGoalLastGoal>
+@if (Model.Any())
+{
+    var number = 1;
+    var matchIndex = 0;
+    var currentLeagueId = 0;
+    foreach (var item in Model)
+    {
+        if (currentLeagueId == item.LeagueId)
+        {
+            matchIndex++;
+        }
+        else
+        {
+            matchIndex = 0;
+            currentLeagueId = item.LeagueId;
+            <tr class="col-league">
+                <td colspan="9">@item.LeagueName</td>
+            </tr>
+        }
+        var className = matchIndex % 2 == 0 ? string.Empty : "odd";
+        <tr class="@className">
+            <td rowspan="2">@(number++)</td>
+            <td rowspan="2" class="col-time">@Html.Raw(item.ShowTime)</td>
+            <td><view-betlist matchid="@item.MatchId" bettype="14" text="@item.HomeName" /></td>
+            @{
+                await RenderCell(item.BetCount_14, item._14_WinLost_HomeFG);
+                await RenderCell(item.BetCount_14, item._14_WinLost_HomeLG);
+                await RenderCell(item.BetCount_14, item._14_WinLost_NoGoal, 2);
+                await RenderCell(item.BetCount_127, item._127_WinLost_HomeFG);
+                await RenderCell(item.BetCount_127, item._127_WinLost_HomeLG);
+                await RenderCell(item.BetCount_127, item._127_WinLost_NoGoal, 2);
+            }
+        </tr>
+        <tr class="@className">
+            <td><view-betlist matchid="@item.MatchId" bettype="14" text="@item.AwayName" /></td>
+            @RenderCell(item.BetCount_14, item._14_WinLost_AwayFG)
+            @RenderCell(item.BetCount_14, item._14_WinLost_AwayLG)
+            @RenderCell(item.BetCount_127, item._127_WinLost_AwayFG)
+            @RenderCell(item.BetCount_127, item._127_WinLost_AwayLG)
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="9" class="text-center">@Resources.NoInformationIsAvailable</td>
+    </tr>
+}

@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 
-public class GetFCSoccerCriteria(int custId, string matchIds, bool isLive) : CriteriaBase
+internal class GetFCSoccerCriteria(int custId, string matchIds, bool isLive) : CriteriaBase
 {
     public int CustId { get; } = custId;
 

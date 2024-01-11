@@ -31,5 +31,6 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 node_modules/
+*.map
 wwwroot
 *.bat

@@ -1,6 +1,6 @@
 namespace AlphaPlus.BetsForecast.Domain.TotalBets;
 
-public class OE1x2DND : TotalBetsMatch
+public class OE1X2DND : TotalBetsMatch
 {
     public decimal Home_Odds_OE { get; init; }
 
@@ -30,9 +30,9 @@ public class OE1x2DND : TotalBetsMatch
 
     public int BetCount_OE_1st { get; init; }
 
-    public int BetCount_1x2 { get; init; }
+    public int BetCount_1X2 { get; init; }
 
-    public int BetCount_1x2_1st { get; init; }
+    public int BetCount_1X2_1st { get; init; }
 
     public int BetCount_DND { get; init; }
 }

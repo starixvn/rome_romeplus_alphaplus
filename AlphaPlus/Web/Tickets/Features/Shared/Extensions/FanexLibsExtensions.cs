@@ -1,7 +1,6 @@
 using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry;
-using Fanex.RemotingRef;
 using Sentry;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.Extensions;
@@ -11,7 +10,6 @@ public static class FanexLibsExtensions
     public static IServiceCollection AddFanexLibs(this IServiceCollection services, IConfiguration configuration)
         => services
         .AddFanexLogging(configuration)
-        .AddRemotingRef(configuration)
         .AddFanexCachingMemory();
 
     private static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)
@@ -39,15 +37,6 @@ public static class FanexLibsExtensions
                 Dsn = new Dsn(sentryUrl)
             });
         }
-    }
-
-    private static IServiceCollection AddRemotingRef(this IServiceCollection services, IConfiguration configuration)
-    {
-        RefDataTypeContainer
-            .ConnectTo(new Uri(configuration["RemotingRefUrl"]))
-            .FromApplication("AlphaPlus.Tickets.Site");
-
-        return services.AddSingleton<IRemotingRefService, RemotingRefService>();
     }
 
     private static IServiceCollection AddFanexCachingMemory(this IServiceCollection services)

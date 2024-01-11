@@ -117,11 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AA" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="AD" xml:space="preserve">
+    <value>AD</value>
+  </data>
+  <data name="AH" xml:space="preserve">
+    <value>AH</value>
+  </data>
+  <data name="Away" xml:space="preserve">
+    <value>Away</value>
+  </data>
+  <data name="AwayNoBet" xml:space="preserve">
+    <value>Away No Bet</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="DA" xml:space="preserve">
+    <value>DA</value>
+  </data>
+  <data name="DD" xml:space="preserve">
+    <value>DD</value>
+  </data>
+  <data name="DH" xml:space="preserve">
+    <value>DH</value>
+  </data>
+  <data name="DrawNoBet" xml:space="preserve">
+    <value>Draw No Bet</value>
+  </data>
   <data name="DrawSlashNoDraw" xml:space="preserve">
     <value>Draw/No Draw</value>
   </data>
   <data name="Event" xml:space="preserve">
     <value>Event</value>
+  </data>
+  <data name="FTDotOSlashE" xml:space="preserve">
+    <value>FT.O/E</value>
+  </data>
+  <data name="FirstGoal" xml:space="preserve">
+    <value>First Goal</value>
   </data>
   <data name="Forecast" xml:space="preserve">
     <value>Forecast</value>
@@ -135,26 +171,116 @@
   <data name="FullTime" xml:space="preserve">
     <value>Full Time</value>
   </data>
+  <data name="FullTimeOddEven" xml:space="preserve">
+    <value>Full Time Odd Even</value>
+  </data>
+  <data name="HA" xml:space="preserve">
+    <value>HA</value>
+  </data>
+  <data name="HD" xml:space="preserve">
+    <value>HD</value>
+  </data>
   <data name="HDPOULive" xml:space="preserve">
     <value>Handicap/Over Under/Live</value>
+  </data>
+  <data name="HH" xml:space="preserve">
+    <value>HH</value>
+  </data>
+  <data name="HTSlashFT" xml:space="preserve">
+    <value>HT/FT</value>
+  </data>
+  <data name="HalfTime" xml:space="preserve">
+    <value>Half Time</value>
   </data>
   <data name="Handicap" xml:space="preserve">
     <value>Handicap</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HomeNoBet" xml:space="preserve">
+    <value>Home No Bet</value>
+  </data>
+  <data name="HomeSlashAway" xml:space="preserve">
+    <value>Home/Away</value>
+  </data>
+  <data name="LastBall" xml:space="preserve">
+    <value>Last Ball</value>
+  </data>
+  <data name="LastGoal" xml:space="preserve">
+    <value>Last Goal</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>League</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>Live</value>
+  </data>
+  <data name="LiveGame" xml:space="preserve">
+    <value>Live Game</value>
+  </data>
   <data name="MoneyLine" xml:space="preserve">
     <value>Money Line</value>
+  </data>
+  <data name="NextBall" xml:space="preserve">
+    <value>Next Ball</value>
+  </data>
+  <data name="NextCombo" xml:space="preserve">
+    <value>Next Combo</value>
+  </data>
+  <data name="NextRSlashB" xml:space="preserve">
+    <value>Next R/B</value>
+  </data>
+  <data name="NoGoal" xml:space="preserve">
+    <value>No Goal</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>No information is available</value>
   </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>Number Game</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>Number Game No</value>
+  </data>
+  <data name="NumberWheel" xml:space="preserve">
+    <value>Number Wheel</value>
+  </data>
+  <data name="OCommaE" xml:space="preserve">
+    <value>O,E</value>
+  </data>
+  <data name="OCommaO" xml:space="preserve">
+    <value>O,O</value>
+  </data>
+  <data name="OSlashE" xml:space="preserve">
+    <value>O/E</value>
+  </data>
+  <data name="OSlashU" xml:space="preserve">
+    <value>O/U</value>
+  </data>
   <data name="OddSlashEven" xml:space="preserve">
     <value>Odd/Even</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>Outright</value>
+  </data>
+  <data name="OverCommaEven" xml:space="preserve">
+    <value>Over, Even</value>
+  </data>
+  <data name="OverCommaOdd" xml:space="preserve">
+    <value>Over, Odd</value>
   </data>
   <data name="OverSlashUnder" xml:space="preserve">
     <value>Over/Under</value>
   </data>
+  <data name="PreGame" xml:space="preserve">
+    <value>Pre Game</value>
+  </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>Team</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Time</value>
@@ -165,11 +291,41 @@
   <data name="TotalBets" xml:space="preserve">
     <value>Total Bets</value>
   </data>
+  <data name="TotalGoal" xml:space="preserve">
+    <value>Total Goal</value>
+  </data>
+  <data name="TotalGoal01" xml:space="preserve">
+    <value>0-1</value>
+  </data>
+  <data name="TotalGoal23" xml:space="preserve">
+    <value>2-3</value>
+  </data>
+  <data name="TotalGoal46" xml:space="preserve">
+    <value>4-6</value>
+  </data>
+  <data name="TotalGoal4Over" xml:space="preserve">
+    <value>4&amp;Over</value>
+  </data>
+  <data name="TotalGoal7Over" xml:space="preserve">
+    <value>7&amp;Over</value>
+  </data>
   <data name="TotalHome" xml:space="preserve">
     <value>Total Home</value>
   </data>
+  <data name="UCommaE" xml:space="preserve">
+    <value>U,E</value>
+  </data>
+  <data name="UCommaO" xml:space="preserve">
+    <value>U,O</value>
+  </data>
+  <data name="UnderCommaEven" xml:space="preserve">
+    <value>Under, Even</value>
+  </data>
   <data name="_1X2" xml:space="preserve">
     <value>1X2</value>
+  </data>
+  <data name="_1stBall" xml:space="preserve">
+    <value>1st Ball</value>
   </data>
   <data name="_1stHalf" xml:space="preserve">
     <value>1st Half</value>

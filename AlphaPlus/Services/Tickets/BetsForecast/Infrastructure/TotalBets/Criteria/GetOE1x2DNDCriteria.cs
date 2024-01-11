@@ -2,7 +2,7 @@ using AlphaPlus.BetsForecast.Domain.Shared;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.TotalBets.Criteria;
 
-internal class GetOE1x2DNDCriteria(byte custLevel, int custId, string language) : GetMoneyLineCriteria(custLevel, custId, language)
+internal class GetOE1X2DNDCriteria(byte custLevel, int custId, string language) : GetMoneyLineCriteria(custLevel, custId, language)
 {
     public override string GetSettingKey()
         => CustLevel switch

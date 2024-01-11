@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = Resources.TotalGoal;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
+}
+@model IEnumerable<TotalGoal>
+<div class="page-title">@Resources.TotalGoal</div>
+<div class="filter">
+    <div class="auto-refresh"></div>
+</div>
+<table class="tblRpt tblRpt-bordered" id="tblRpt">
+    <thead>
+        <tr>
+            <th rowspan="2" class="w-number">#</th>
+            <th rowspan="2">@Resources.Home</th>
+            <th rowspan="2">@Resources.Away</th>
+            <th colspan="4">@Resources.FullTime</th>
+            <th colspan="3">@Resources._1stHalf</th>
+        </tr>
+        <tr class="thead-row2">
+            <th>@Resources.TotalGoal01</th>
+            <th>@Resources.TotalGoal23</th>
+            <th>@Resources.TotalGoal46</th>
+            <th>@Resources.TotalGoal7Over</th>
+            <th>@Resources.TotalGoal01</th>
+            <th>@Resources.TotalGoal23</th>
+            <th>@Resources.TotalGoal4Over</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="TotalGoalPartial" />
+    </tbody>
+</table>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="60,75,90,105,120" />
+<input type="hidden" id="hidden-autoRefreshUrl" value="TotalGoal?partial=true" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="TotalGoal" />

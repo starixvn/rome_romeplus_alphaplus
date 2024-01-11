@@ -7,7 +7,7 @@
 @section Scripts {
     <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
 }
-@model IEnumerable<OE1x2DND>
+@model IEnumerable<OE1X2DND>
 <div class="page-title">@Resources.OddSlashEven + @Resources._1X2 + @Resources.DrawSlashNoDraw</div>
 <div class="filter">
     <div class="auto-refresh"></div>
@@ -30,10 +30,10 @@
         </tr>
     </thead>
     <tbody>
-        <partial name="OE1x2DNDPartial" />
+        <partial name="OE1X2DNDPartial" />
     </tbody>
 </table>
 <input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
 <input type="hidden" id="hidden-autoRefreshSeconds" value="15,30,45,60,75" />
-<input type="hidden" id="hidden-autoRefreshUrl" value="OE1x2DND?partial=true" />
-<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="OE1x2DND" />
+<input type="hidden" id="hidden-autoRefreshUrl" value="OE1X2DND?partial=true" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="OE1X2DND" />

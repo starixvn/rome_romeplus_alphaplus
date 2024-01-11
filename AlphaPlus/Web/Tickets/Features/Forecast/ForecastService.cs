@@ -1,6 +1,5 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
-using AlphaPlus.Tickets.Site.Features.Shared.Services;
 using Fanex.Caching;
 using Microsoft.Extensions.Options;
 
@@ -8,65 +7,54 @@ namespace AlphaPlus.Tickets.Site.Features.Forecast;
 
 public interface IForecastService
 {
-    Task<IEnumerable<League>> GetSoccerLeagues(bool isLive);
+    Task<IEnumerable<League>> GetSoccerLeagues(bool isLive, string language);
 
-    Task<IEnumerable<Match>> GetSoccerMatches(int leagueId, bool isLive);
+    Task<IEnumerable<Match>> GetSoccerMatches(int leagueId, bool isLive, string language);
 
-    Task GetSoccer(int custId, string matchIds, bool isLive);
+    Task GetSoccer(int custId, string matchIds, bool isLive, string language);
+
+    Task<IEnumerable<League>> GetRunningLeagues(byte custLevel, int custId, string betTypes, string language);
+
+    Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(byte custLevel, int custId, int leagueId, string language);
+
+    Task<IEnumerable<Forecast1X2>> Get1X2(byte custLevel, int custId, int leagueId, string language);
+
+    Task<IEnumerable<Forecast1X2>> Get1X2(byte custLevel, int custId, int matchId, int betType, string language);
 }
 
 public class ForecastService : IForecastService
 {
-    private const string LeaguesCachingKey = "AlphaPlus.Tickets.Site.SoccerLeagues_{0}";
+    private const string ForecastUrl = "api/forecast";
+    private const string LeaguesCachingKey = "AlphaPlus.Tickets.Site.SoccerLeagues_{0}_{1}";
     private const int LeaguesCacheTimeOut = 5; // 5 Minutes
     private const int HalfTimeMinutes = 45;
 
     private readonly HttpClient client;
     private readonly IOptions<AppSettings> options;
     private readonly ICacheService cacheService;
-    private readonly ICacheRefService cacheRefService;
 
     public ForecastService(
         HttpClient client,
         IOptions<AppSettings> options,
-        ICacheService cacheService,
-        ICacheRefService cacheRefService)
-        => (this.client, this.options, this.cacheService, this.cacheRefService) = (client, options, cacheService, cacheRefService);
+        ICacheService cacheService)
+        => (this.client, this.options, this.cacheService) = (client, options, cacheService);
 
-    public Task<IEnumerable<League>> GetSoccerLeagues(bool isLive)
+    public Task<IEnumerable<League>> GetSoccerLeagues(bool isLive, string language)
         => cacheService.GetOrSetAsync(
-            string.Format(LeaguesCachingKey, isLive),
-            async () =>
-            {
-                var leagues = await client.GetFromJsonAsync<IEnumerable<League>>(
-                    $"api/forecast/soccerleagues?isLive={isLive}&isShowAll={options.Value.LocalTest}");
-                foreach (var item in leagues)
-                {
-                    item.LeagueName = cacheRefService.GetLeagueName(item.LeagueId);
-                }
-
-                return leagues;
-            }, new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(LeaguesCacheTimeOut)));
+            string.Format(LeaguesCachingKey, isLive, language),
+            () => client.GetFromJsonAsync<IEnumerable<League>>(
+                    $"{ForecastUrl}/soccerleagues?isLive={isLive}&isShowAll={options.Value.LocalTest}&language={language}"),
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(LeaguesCacheTimeOut)));
 
 
-    public async Task<IEnumerable<Match>> GetSoccerMatches(int leagueId, bool isLive)
-    {
-        var matches = await client.GetFromJsonAsync<IEnumerable<Match>>(
-            $"api/forecast/soccermatches?leagueId={leagueId}&isLive={isLive}");
+    public Task<IEnumerable<Match>> GetSoccerMatches(int leagueId, bool isLive, string language)
+        => client.GetFromJsonAsync<IEnumerable<Match>>(
+            $"{ForecastUrl}/soccermatches?leagueId={leagueId}&isLive={isLive}&language={language}");
 
-        foreach (var item in matches)
-        {
-            item.HomeName = cacheRefService.GetTeamName(item.HomeId);
-            item.AwayName = cacheRefService.GetTeamName(item.AwayId);
-        }
-
-        return matches;
-    }
-
-    public async Task GetSoccer(int custId, string matchIds, bool isLive)
+    public async Task GetSoccer(int custId, string matchIds, bool isLive, string language)
     {
         var result = await client.GetFromJsonAsync<Tuple<IEnumerable<SoccerMatch>, IEnumerable<SoccerBetType>, IEnumerable<SoccerWinLoss>>>(
-            $"api/forecast/soccer?custId={custId}&matchIds={matchIds}&isLive={isLive}");
+            $"{ForecastUrl}/soccer?custId={custId}&matchIds={matchIds}&isLive={isLive}&language={language}");
         var (matches, betTypes, winloss) = result;
 
         if (matches.Any())
@@ -85,4 +73,20 @@ public class ForecastService : IForecastService
 
         throw new NotImplementedException();
     }
+
+    public Task<IEnumerable<League>> GetRunningLeagues(byte custLevel, int custId, string betTypes, string language)
+        => client.GetFromJsonAsync<IEnumerable<League>>(
+            $"{ForecastUrl}/runningleagues?custLevel={custLevel}&custId={custId}&betTypes={betTypes}&language={language}");
+
+    public Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(byte custLevel, int custId, int leagueId, string language)
+        => client.GetFromJsonAsync<IEnumerable<ForecastHDPOULive>>(
+            $"{ForecastUrl}/hdpoulive?custLevel={custLevel}&custId={custId}&leagueId={leagueId}&language={language}");
+
+    public Task<IEnumerable<Forecast1X2>> Get1X2(byte custLevel, int custId, int leagueId, string language)
+        => client.GetFromJsonAsync<IEnumerable<Forecast1X2>>(
+            $"{ForecastUrl}/1x2?custLevel={custLevel}&custId={custId}&leagueId={leagueId}&language={language}");
+
+    public Task<IEnumerable<Forecast1X2>> Get1X2(byte custLevel, int custId, int matchId, int betType, string language)
+        => client.GetFromJsonAsync<IEnumerable<Forecast1X2>>(
+            $"{ForecastUrl}/1x2bymatch?custLevel={custLevel}&custId={custId}&matchId={matchId}&betType={betType}&language={language}");
 }
