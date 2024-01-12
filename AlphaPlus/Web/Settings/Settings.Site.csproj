@@ -12,6 +12,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />
     <PackageReference Include="Fanex.Caching" Version="2.2.4" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
@@ -24,5 +25,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Services\Settings\SubAccount\Infrastructure\Settings.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Services\Shared\CommonExtensions.cs" Link="Extensions\CommonExtensions.cs" />
   </ItemGroup>
 </Project>

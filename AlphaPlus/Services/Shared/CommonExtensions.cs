@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.Logging;
@@ -9,8 +10,9 @@ using Sentry;
 
 
 [ExcludeFromCodeCoverage]
-internal static class FanexLibsExtensions
+internal static class CommonExtensions
 {
+
     public static IServiceCollection AddFanexLibs(this IServiceCollection services, IConfiguration configuration)
         => services
         .AddFanexLogging(configuration)
@@ -53,7 +55,7 @@ internal static class FanexLibsExtensions
     {
         RefDataTypeContainer
             .ConnectTo(new Uri(configuration["RemotingRefUrl"]))
-            .FromApplication("AlphaPlus.Tickets.Site");
+            .FromApplication(Assembly.GetExecutingAssembly().FullName);
 
         return services.AddSingleton<IRemotingRefService, RemotingRefService>();
     }
