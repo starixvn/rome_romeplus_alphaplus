@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>AlphaPlus.Settings.Domain</AssemblyName>
@@ -6,7 +9,4 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Services\Settings\SubAccount\Infrastruture\Infrastruture.csproj" />
-  </ItemGroup>
  </Project>

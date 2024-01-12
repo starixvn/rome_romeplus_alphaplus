@@ -15,14 +15,14 @@
     <PackageReference Include="Fanex.Caching" Version="2.2.4" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
-    <PackageReference Include="Fanex.RemotingRef" Version="1.5.1" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
     <PackageReference Include="MediatR" Version="11.1.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Services\Settings\SubAccount\Infrastructure\Settings.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
-    <ProjectReference Include="..\..\Services\Settings\SubAccount\Domain\Domain.csproj" />
   </ItemGroup>
 </Project>
