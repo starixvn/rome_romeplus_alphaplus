@@ -110,6 +110,17 @@
     <Setting Key="Age_Forecast1x2_SelByLeague_MAg" SpName="Age_Forecast1x2_SelByLeague_MAg" DbName="DBBOF.bodb02.BODBDownlineNet" />
     <Setting Key="Age_Forecast1x2_SelByLeague_Ag" SpName="Age_Forecast1x2_SelByLeague_Ag" DbName="DBBOF.bodb02.BODBDownlineNet" />
     <Setting Key="Age_Forecast_Sel1X2" SpName="Age_Forecast_Sel1X2" DbName="DBBOF.bodb02.BODBDownlineNet" />
+    <!-- AH -->
+    <Setting Key="Age_Forecast_OddsSelTopByMatch" SpName="Age_Forecast_OddsSelTopByMatch" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <!-- Score Map -->
+    <Setting Key="Age_ScoreMap_SelLeague" SpName="Age_ScoreMap_SelLeague" DbName="DBBOF.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="DBBOF.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="DBBOF.bodb02.BODBDownlineNet">
+      <Mapping DataField="1stId" ObjectProperty="FirstId" />
+    </Setting>
+    <Setting Key="Age_ScoreMap_Result_SAg" SpName="Age_ScoreMap_Result_SAg" DbName="DBBOF.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_ScoreMap_Result_MAg" SpName="Age_ScoreMap_Result_MAg" DbName="DBBOF.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_ScoreMap_Result_Ag" SpName="Age_ScoreMap_Result_Ag" DbName="DBBOF.bodb02.BODBDownlineNet" />
   </Function>
 
   <Function Name="Total Bets">

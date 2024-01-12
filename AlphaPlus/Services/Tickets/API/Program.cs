@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Http.Json;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services
-    .AddFanexLibs(configuration)
+    .AddFanexLogging(configuration)
+    .AddFanexDataWithSqlServer(configuration)
+    .AddRemotingRef(configuration)
     .AddInfrastructure()
     // .AddResponseCompression(options =>
     // {

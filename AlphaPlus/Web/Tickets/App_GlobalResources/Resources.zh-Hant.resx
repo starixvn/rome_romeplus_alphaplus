@@ -126,6 +126,9 @@
   <data name="AH" xml:space="preserve">
     <value>客主</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
   <data name="Away" xml:space="preserve">
     <value>客</value>
   </data>
@@ -135,6 +138,9 @@
   <data name="Balance" xml:space="preserve">
     <value>現金</value>
   </data>
+  <data name="ClickToViewScoreMapInfo" xml:space="preserve">
+    <value>點擊查看盈利預測圖資料</value>
+  </data>
   <data name="DA" xml:space="preserve">
     <value>和客</value>
   </data>
@@ -143,6 +149,9 @@
   </data>
   <data name="DH" xml:space="preserve">
     <value>和主</value>
+  </data>
+  <data name="DeadBall" xml:space="preserve">
+    <value>非滾球</value>
   </data>
   <data name="DrawNoBet" xml:space="preserve">
     <value>Draw No Bet</value>
@@ -155,6 +164,9 @@
   </data>
   <data name="FGSlashLG" xml:space="preserve">
     <value>最先得分 / 最後得分</value>
+  </data>
+  <data name="FT" xml:space="preserve">
+    <value>全場</value>
   </data>
   <data name="FTDotOSlashE" xml:space="preserve">
     <value>全場單雙</value>
@@ -189,6 +201,9 @@
   <data name="HH" xml:space="preserve">
     <value>主主</value>
   </data>
+  <data name="HT" xml:space="preserve">
+    <value>半場</value>
+  </data>
   <data name="HTSlashFT" xml:space="preserve">
     <value>半場 / 全場</value>
   </data>
@@ -197,6 +212,9 @@
   </data>
   <data name="Handicap" xml:space="preserve">
     <value>亞洲盤</value>
+  </data>
+  <data name="HideMatch" xml:space="preserve">
+    <value>隱藏賽事</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>主</value>
@@ -221,6 +239,9 @@
   </data>
   <data name="Live" xml:space="preserve">
     <value>現場</value>
+  </data>
+  <data name="LiveBall" xml:space="preserve">
+    <value>現場球</value>
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
@@ -284,6 +305,18 @@
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>刷新</value>
+  </data>
+  <data name="ScoreMap" xml:space="preserve">
+    <value>盈利預測圖</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>選擇</value>
+  </data>
+  <data name="SelectMatch" xml:space="preserve">
+    <value>選擇賽事</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
   </data>
   <data name="Team" xml:space="preserve">
     <value>隊伍</value>

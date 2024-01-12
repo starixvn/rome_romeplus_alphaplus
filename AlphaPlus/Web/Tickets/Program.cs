@@ -1,9 +1,11 @@
+using System.Text.Json.Serialization;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using AlphaPlus.Tickets.Site.Features.Shared.Middlewares;
 using Fanex.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 
 var assembly = typeof(Program).Assembly;
 
@@ -26,6 +28,11 @@ builder.Services
         options.AccessDeniedPath = "/Forbidden/";
     });
 builder.Services
+    .Configure<JsonOptions>(options =>
+    {
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    })
     .AddControllersWithViews()
     .AddRazorOptions(options =>
     {

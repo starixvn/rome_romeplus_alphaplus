@@ -8,18 +8,10 @@ using Fanex.Logging.Sentry;
 using Fanex.RemotingRef;
 using Sentry;
 
-
 [ExcludeFromCodeCoverage]
 internal static class CommonExtensions
 {
-
-    public static IServiceCollection AddFanexLibs(this IServiceCollection services, IConfiguration configuration)
-        => services
-        .AddFanexLogging(configuration)
-        .AddFanexDataWithSqlServer(configuration)
-        .AddRemotingRef(configuration);
-
-    private static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)
+    internal static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)
     {
         LogManager
             .SetDefaultLogCategory(configuration["Fanex.Logging:DefaultCategory"])
@@ -46,12 +38,12 @@ internal static class CommonExtensions
         }
     }
 
-    private static IServiceCollection AddFanexDataWithSqlServer(this IServiceCollection services, IConfiguration configuration)
+    internal static IServiceCollection AddFanexDataWithSqlServer(this IServiceCollection services, IConfiguration configuration)
         => services
         .AddFanexSql(configuration)
         .AddSingleton<IDynamicRepository, DynamicRepository>();
 
-    private static IServiceCollection AddRemotingRef(this IServiceCollection services, IConfiguration configuration)
+    internal static IServiceCollection AddRemotingRef(this IServiceCollection services, IConfiguration configuration)
     {
         RefDataTypeContainer
             .ConnectTo(new Uri(configuration["RemotingRefUrl"]))

@@ -14,8 +14,13 @@ public class TotalBetsService : ITotalBetsService
 
     public Task<IEnumerable<T>> GetTotalBets<T>(string action, byte custLevel, int custId, string language)
     {
-        var apiUrl = $"api/totalbets/{action}?custlevel={custLevel}&custid={custId}&language={language}";
+        var queryString = QueryString.Create(new[]
+        {
+            KeyValuePair.Create(nameof(custLevel), custLevel.ToString()),
+            KeyValuePair.Create(nameof(custId), custId.ToString()),
+            KeyValuePair.Create(nameof(language), language)
+        });
 
-        return client.GetFromJsonAsync<IEnumerable<T>>(apiUrl);
+        return client.GetFromJsonAsync<IEnumerable<T>>($"api/totalbets/{action}{queryString}");
     }
 }

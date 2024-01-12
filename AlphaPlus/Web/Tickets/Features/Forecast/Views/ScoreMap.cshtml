@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = Resources.ScoreMap;
+    void RenderLiveDeadBalls(IList<ScoreMapBetType> betTypes, bool isLive, string checkedId)
+    {
+        ScoreMapBetType betType;
+        var betTypeCount = betTypes.Count;
+        var haftBetTypeCount = betTypeCount / 2;
+        if (betTypeCount % 2 != 0)
+        {
+            haftBetTypeCount++;
+        }
+
+        string checkAllId, checkAllText, checkClass;
+        if (isLive)
+        {
+            checkAllId = "chk-allLiveBetType";
+            checkAllText = Resources.LiveBall;
+            checkClass = "live-bettype";
+        }
+        else
+        {
+            checkAllId = "chk-allDeadBetType";
+            checkAllText = Resources.DeadBall;
+            checkClass = "dead-bettype";
+        }
+        <tr>
+            <td rowspan="2" class="even_row">
+                <input type="checkbox" id="@checkAllId" @(checkedId == null ? "checked" : string.Empty) />
+                <label title="@checkAllText" for="@checkAllId">@checkAllText</label>
+            </td>
+            @for (int i = 0; i < haftBetTypeCount; i++)
+            {
+                betType = betTypes[i];
+                <td>
+                    <input type="checkbox" id="@(checkClass + betType.BetType)" class="@checkClass" @(checkedId == null ||
+            betType.FollowedBetTypes.Contains(checkedId) ? "checked" : string.Empty) value="@betType.BetType" />
+                    <label for="@(checkClass + betType.BetType)" title="@betType.BetTypeName">@betType.BetTypeName</label>
+                </td>
+            }
+        </tr>
+        <tr>
+            @for (int i = haftBetTypeCount; i < betTypeCount; i++)
+            {
+                betType = betTypes[i];
+                <td>
+                    <input type="checkbox" id="@(checkClass + betType.BetType)" class="@checkClass" @(checkedId == null ||
+            betType.FollowedBetTypes.Contains(checkedId) ? "checked" : string.Empty) value="@betType.BetType" />
+                    <label for="@(checkClass + betType.BetType)" title="@betType.BetTypeName">@betType.BetTypeName</label>
+                </td>
+            }
+        </tr>
+    }
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/forecast/scoremap.js" asp-append-version="true"></script>
+}
+@model ScoreMapViewModel
+<div class="page-title">@Resources.ScoreMap</div>
+<div class="filter">
+    <label for="ddlLeague">@Resources.League</label>
+    @Html.DropDownList("league", Model.Leagues, new { @id = "ddlLeague" })
+    <span class="icon-refresh" id="icon-refresh"></span>
+    <button type="button" class="btn-submit" id="btn-select-matches">@Resources.SelectMatch</button>
+</div>
+<table class="tblLiveDead">
+    <tbody>
+        @{
+            RenderLiveDeadBalls(Model.ScoreMapBetTypes[0].ToList(), true, null);
+            RenderLiveDeadBalls(Model.ScoreMapBetTypes[1].ToList(), false, null);
+        }
+    </tbody>
+</table>
+<div>
+    <button type="button" class="btn-submit" id="btn-submit">@Resources.Submit</button>
+</div>
+<div id="content"></div>
+<div class="match-box hide" id="match-box">
+    <div class="title">
+        <div class="title-header">@Resources.SelectMatch</div>
+        <div class="notification">
+            <div class="hide" id="tblMsgMatch">
+                <div class="msgerr" id="msgMatchErr"></div>
+            </div>
+        </div>
+        <div class="icon-close"></div>
+    </div>
+    <div class="content">
+        <ul class="match-list" id="match-list"></ul>
+    </div>
+    <div class="footer"><button type="button" class="btn" id="dSubmitInMatch">@Resources.Select</button></div>
+</div>
+<input type="hidden" id="hidden-allText" value="@Resources.All" />
+<input type="hidden" id="hidden-selectMatchText" value="@Resources.SelectMatch" />
+<input type="hidden" id="hidden-hideMatchText" value="@Resources.HideMatch" />

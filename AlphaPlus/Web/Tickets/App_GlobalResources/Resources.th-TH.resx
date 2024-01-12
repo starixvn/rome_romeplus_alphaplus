@@ -126,6 +126,9 @@
   <data name="AH" xml:space="preserve">
     <value>ทีมเยือนนำครึ่งแรก  เจ้าบ้านชนะครึ่งหลัง</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
   <data name="Away" xml:space="preserve">
     <value>ทีมเยือน</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>ยอดเงิน</value>
+  </data>
+  <data name="ClickToViewScoreMapInfo" xml:space="preserve">
+    <value>Click to view Score Map Info</value>
   </data>
   <data name="DA" xml:space="preserve">
     <value>ครึ่งแรกเสมอ ครึ่งหลังทีมเยือนนำ</value>
@@ -144,6 +150,9 @@
   <data name="DH" xml:space="preserve">
     <value>ครึ่งแรกเสมอ ครึ่งหลังเจ้าบ้านนำ</value>
   </data>
+  <data name="DeadBall" xml:space="preserve">
+    <value>เกมส์ไม่สด</value>
+  </data>
   <data name="DrawNoBet" xml:space="preserve">
     <value>Draw No Bet</value>
   </data>
@@ -152,6 +161,9 @@
   </data>
   <data name="Event" xml:space="preserve">
     <value>การแข่งขัน</value>
+  </data>
+  <data name="FT" xml:space="preserve">
+    <value>เต็มเวลา</value>
   </data>
   <data name="FTDotOSlashE" xml:space="preserve">
     <value>คู่คี่ เต็มเวลา</value>
@@ -186,6 +198,9 @@
   <data name="HH" xml:space="preserve">
     <value>เจ้าบ้านนำครึ่งแรก เจ้าบ้านชนะครึ่งหลัง</value>
   </data>
+  <data name="HT" xml:space="preserve">
+    <value>ครึ่งเวลาแรก</value>
+  </data>
   <data name="HTSlashFT" xml:space="preserve">
     <value>ครึ่งเวลาแรก/ เต็มเวลา</value>
   </data>
@@ -194,6 +209,9 @@
   </data>
   <data name="Handicap" xml:space="preserve">
     <value>ราคาต่อรอง</value>
+  </data>
+  <data name="HideMatch" xml:space="preserve">
+    <value>ซ่อนคู่แข่งขัน</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>ทีมเหย้า</value>
@@ -215,6 +233,9 @@
   </data>
   <data name="Live" xml:space="preserve">
     <value>สด</value>
+  </data>
+  <data name="LiveBall" xml:space="preserve">
+    <value>บอลสด</value>
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
@@ -278,6 +299,18 @@
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>รีเฟรช</value>
+  </data>
+  <data name="ScoreMap" xml:space="preserve">
+    <value>กระดานผล</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>เลือก</value>
+  </data>
+  <data name="SelectMatch" xml:space="preserve">
+    <value>เลือกคู่แข่งขัน</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>ตกลง</value>
   </data>
   <data name="Team" xml:space="preserve">
     <value>ทีม</value>

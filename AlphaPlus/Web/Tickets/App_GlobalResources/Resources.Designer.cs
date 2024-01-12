@@ -879,5 +879,126 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
                 return ResourceManager.GetString("Live", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Score Map.
+        /// </summary>
+        internal static string ScoreMap
+        {
+            get
+            {
+                return ResourceManager.GetString("ScoreMap", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select Match.
+        /// </summary>
+        internal static string SelectMatch
+        {
+            get
+            {
+                return ResourceManager.GetString("SelectMatch", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Live Ball.
+        /// </summary>
+        internal static string LiveBall
+        {
+            get
+            {
+                return ResourceManager.GetString("LiveBall", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Dead Ball.
+        /// </summary>
+        internal static string DeadBall
+        {
+            get
+            {
+                return ResourceManager.GetString("DeadBall", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        internal static string Submit
+        {
+            get
+            {
+                return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click to view Score Map Info.
+        /// </summary>
+        internal static string ClickToViewScoreMapInfo
+        {
+            get
+            {
+                return ResourceManager.GetString("ClickToViewScoreMapInfo", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        internal static string Select
+        {
+            get
+            {
+                return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Hide Match.
+        /// </summary>
+        internal static string HideMatch
+        {
+            get
+            {
+                return ResourceManager.GetString("HideMatch", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        internal static string All
+        {
+            get
+            {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to HT.
+        /// </summary>
+        internal static string HT
+        {
+            get
+            {
+                return ResourceManager.GetString("HT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to FT.
+        /// </summary>
+        internal static string FT
+        {
+            get
+            {
+                return ResourceManager.GetString("FT", resourceCulture);
+            }
+        }
     }
 }

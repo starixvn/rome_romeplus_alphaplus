@@ -1,6 +1,7 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 using AlphaPlus.Tickets.Site.Features.Forecast.ViewModels;
+using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -84,5 +85,55 @@ public class ForecastController : Controller//BaseController
         }
 
         return View(new Forecast1X2ByMatchViewModel(message.MatchId, message.BetType, data));
+    }
+
+    public async Task<IActionResult> ScoreMap()
+    {
+        var betTypesTask = forecastService.GetScoreMapBetTypes("en-US");
+        var leaguesTask = forecastService.GetScoreMapLeagues(23003140, "en-US");
+        await Task.WhenAll(betTypesTask, leaguesTask);
+
+        return View(new ScoreMapViewModel(await betTypesTask, await leaguesTask));
+    }
+
+    public async Task<IActionResult> GetScoreMapLeagues()
+        => Json(await forecastService.GetScoreMapLeagues(23003140, "en-US"));
+
+    public async Task<IActionResult> GetScoreMapMatches(int leagueId)
+        => Json(await forecastService.GetScoreMapMatches(23003140, leagueId, "en-US"));
+
+    public async Task<IActionResult> GetResult(GetScoreMapResultRequest message)
+    {
+        var betTypes = await forecastService.GetScoreMapBetTypes(message.Language);
+        var liveBetTypes = GetBetTypeIds(message.LiveBetTypes, betTypes[0]);
+        var deadBetTypes = GetBetTypeIds(message.DeadBetTypes, betTypes[1]);
+
+        var scoreMaps = await forecastService.GetScoreMapResult(
+            message.ViewerLevel,
+            message.ViewerId,
+            message.MatchIds,
+            liveBetTypes.Join(),
+            deadBetTypes.Join(),
+            message.Language
+        );
+
+        return PartialView("ScoreMapResult", scoreMaps);
+    }
+
+    private static IEnumerable<string> GetBetTypeIds(string ids, IEnumerable<ScoreMapBetType> betTypes)
+    {
+        if (!string.IsNullOrWhiteSpace(ids))
+        {
+            var arrayIds = ids.ToListInt();
+            var betTypeHash = betTypes.ToDictionary(kvp => kvp.BetType, kvp => kvp.FollowedBetTypes);
+
+            foreach (var item in arrayIds)
+            {
+                if (betTypeHash.TryGetValue(item, out var followedBetTypes))
+                {
+                    yield return followedBetTypes;
+                }
+            }
+        }
     }
 }

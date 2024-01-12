@@ -7,6 +7,8 @@ public interface ICacheRefService
     string GetLeagueName(int leagueId, string language);
 
     string GetTeamName(int teamId, string language);
+
+    string GetBetTypeName(int betType, string language);
 }
 
 public class CacheRefService : ICacheRefService
@@ -21,4 +23,7 @@ public class CacheRefService : ICacheRefService
 
     public string GetTeamName(int teamId, string language)
         => remotingRefService.GetTeamName(teamId.ToString(), language);
+
+    public string GetBetTypeName(int betType, string language)
+        => remotingRefService.GetBetTypeName(betType.ToString(), language);
 }

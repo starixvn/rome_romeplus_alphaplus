@@ -47,5 +47,28 @@ public class ForecastEndpoint : IEndpoint
             "/1x2bymatch",
             (byte custLevel, int custId, int matchId, int betType, string language, IForecastService service)
             => service.Get1X2(custLevel, custId, matchId, betType, language));
+
+        forecast.MapGet(
+            "/scoremap/bettypes",
+            (string language, IForecastService service) => service.GetScoreMapBetTypes(language));
+
+        forecast.MapGet(
+            "/scoremap/leagues",
+            (int custId, string language, ILeagueService service) => service.GetScoreMapLeagues(custId, language));
+
+        forecast.MapGet(
+            "/scoremap/matches",
+            (int custId, int leagueId, string language, ILeagueService service) => service.GetScoreMapMatches(custId, leagueId, language));
+
+        forecast.MapGet(
+            "/scoremap/result",
+            (byte custLevel,
+            int custId,
+            string matchIds,
+            string liveBetTypes,
+            string deadBetTypes,
+            string language,
+            IForecastService service)
+            => service.GetScoreMapResult(custLevel, custId, matchIds, liveBetTypes, deadBetTypes, language));
     }
 }

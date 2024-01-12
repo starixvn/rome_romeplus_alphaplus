@@ -126,6 +126,9 @@
   <data name="AH" xml:space="preserve">
     <value>AH</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="Away" xml:space="preserve">
     <value>Away</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Balance</value>
+  </data>
+  <data name="ClickToViewScoreMapInfo" xml:space="preserve">
+    <value>Click to view Score Map Info</value>
   </data>
   <data name="DA" xml:space="preserve">
     <value>DA</value>
@@ -144,6 +150,9 @@
   <data name="DH" xml:space="preserve">
     <value>DH</value>
   </data>
+  <data name="DeadBall" xml:space="preserve">
+    <value>Dead Ball</value>
+  </data>
   <data name="DrawNoBet" xml:space="preserve">
     <value>Draw No Bet</value>
   </data>
@@ -152,6 +161,9 @@
   </data>
   <data name="Event" xml:space="preserve">
     <value>Event</value>
+  </data>
+  <data name="FT" xml:space="preserve">
+    <value>FT</value>
   </data>
   <data name="FTDotOSlashE" xml:space="preserve">
     <value>FT.O/E</value>
@@ -186,6 +198,9 @@
   <data name="HH" xml:space="preserve">
     <value>HH</value>
   </data>
+  <data name="HT" xml:space="preserve">
+    <value>HT</value>
+  </data>
   <data name="HTSlashFT" xml:space="preserve">
     <value>HT/FT</value>
   </data>
@@ -194,6 +209,9 @@
   </data>
   <data name="Handicap" xml:space="preserve">
     <value>Handicap</value>
+  </data>
+  <data name="HideMatch" xml:space="preserve">
+    <value>Hide Match</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -215,6 +233,9 @@
   </data>
   <data name="Live" xml:space="preserve">
     <value>Live</value>
+  </data>
+  <data name="LiveBall" xml:space="preserve">
+    <value>Live Ball</value>
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
@@ -278,6 +299,18 @@
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="ScoreMap" xml:space="preserve">
+    <value>Score Map</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectMatch" xml:space="preserve">
+    <value>Select Match</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
   </data>
   <data name="Team" xml:space="preserve">
     <value>Team</value>
