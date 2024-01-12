@@ -62,8 +62,6 @@ public interface IUserSession
 
     bool IsPasswordExpired { get; set; }
 
-    DateTime LastChangedPassword { get; set; }
-
     bool IsAdminCanViewVNIP { get; set; }
 
     bool IsAgent { get; }

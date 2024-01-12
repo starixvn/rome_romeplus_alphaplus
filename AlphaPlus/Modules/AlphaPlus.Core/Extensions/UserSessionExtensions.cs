@@ -50,15 +50,6 @@ public static class UserSessionExtensions
         {
         }
 
-        try
-        {
-            DateTime lastChangedPwd = (DateTime)values["lastchangedpwddate"];
-            session.LastChangedPassword = lastChangedPwd;
-        }
-        catch
-        {
-            session.LastChangedPassword = DateTime.MinValue;
-        }
 
         try
         {

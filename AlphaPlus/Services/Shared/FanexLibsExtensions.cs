@@ -7,10 +7,9 @@ using Fanex.Logging.Sentry;
 using Fanex.RemotingRef;
 using Sentry;
 
-namespace AlphaPlus.Tickets.API.Extensions;
 
 [ExcludeFromCodeCoverage]
-public static class FanexLibsExtensions
+internal static class FanexLibsExtensions
 {
     public static IServiceCollection AddFanexLibs(this IServiceCollection services, IConfiguration configuration)
         => services

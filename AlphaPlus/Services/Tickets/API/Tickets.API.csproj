@@ -7,6 +7,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Shared\FanexLibsExtensions.cs" Link="Extensions\FanexLibsExtensions.cs" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />

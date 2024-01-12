@@ -200,12 +200,6 @@ public class UserSessionExt : IUserSession
         set => UserSession.Current.Language = value;
     }
 
-    public DateTime LastChangedPassword
-    {
-        get => UserSession.Current.LastChangedPassword;
-        set => UserSession.Current.LastChangedPassword = value;
-    }
-
     public int MRecommendId
     {
         get => UserSession.Current.MRecommendId;
