@@ -4,8 +4,6 @@ public class Match
 {
     public int MatchId { get; init; }
 
-    public string MatchCode { get; init; }
-
     public int HomeId { get; init; }
 
     public string HomeName { get; set; }
@@ -14,5 +12,5 @@ public class Match
 
     public string AwayName { get; set; }
 
-    public virtual string Event => $"{HomeName} - {AwayName}";
+    public virtual string Event => $"{HomeName} -vs- {AwayName}";
 }

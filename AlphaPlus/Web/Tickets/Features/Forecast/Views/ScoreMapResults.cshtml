@@ -2,7 +2,7 @@
     Layout = null;
     void RenderMatrix(int rowNumber, int columnNumber, int[,] matrix, string tableId)
     {
-        <table id="@tableId" class="tblScoreMap">
+        <table id="@tableId">
             <thead>
                 <tr>
                     <td rowspan="2">@Resources.Away</td>
@@ -38,26 +38,22 @@
 @* bool isRefresh = (bool)ViewBag.IsRefresh; *@
 @foreach (var item in Model)
 {
-    var matchId = item.MatchId;
-    var rowNumber = item.RowNumber;
-    var columnNumber = item.ColumnNumber;
     @* if (!isRefresh)
 {
 @:<div class="paddingTopMatch" id="RefreshContent@(item.MatchId)">
 } *@
-    <div class="button_mid" data-matchid="@matchId">
-        <span id="lnkGroupscoreMap@(matchId)" class="lnkGroup">@item.Event</span>
-        <span id="lnkRefresh@(matchId)" class="lnkRefresh" title="@Resources.Refresh" data-matchid="@matchId"></span>
+    <div data-matchid="@item.MatchId">
+        <span id="lnkGroupscoreMap@(item.MatchId)">@item.Event</span>
+        <span id="lnkRefresh@(item.MatchId)" title="@Resources.Refresh" data-matchid="@item.MatchId"></span>
     </div>
-    <div style="clear:both"></div>
-    <div id="scoreMap@(matchId)" class="scoreMap">
+    <div id="scoreMap@(item.MatchId)">
         <div class="round haft-time">@Resources.HT</div>
         @{
-            RenderMatrix(rowNumber, columnNumber, item.HaftTime, "tblht" + matchId);
+            RenderMatrix(item.RowNumber, item.ColumnNumber, item.HaftTime, "tblht" + item.MatchId);
         }
         <div class="round full-time">@Resources.FT</div>
         @{
-            RenderMatrix(rowNumber, columnNumber, item.FullTime, "tblft" + matchId);
+            RenderMatrix(item.RowNumber, item.ColumnNumber, item.FullTime, "tblft" + item.MatchId);
         }
     </div>
     @* if (!isRefresh)

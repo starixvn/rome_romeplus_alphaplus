@@ -300,6 +300,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="Score" xml:space="preserve">
+    <value>Score</value>
+  </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>Score Map</value>
   </data>

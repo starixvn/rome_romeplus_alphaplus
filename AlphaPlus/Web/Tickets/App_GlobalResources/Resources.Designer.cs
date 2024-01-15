@@ -1000,5 +1000,16 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
                 return ResourceManager.GetString("FT", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Score.
+        /// </summary>
+        internal static string Score
+        {
+            get
+            {
+                return ResourceManager.GetString("Score", resourceCulture);
+            }
+        }
     }
 }

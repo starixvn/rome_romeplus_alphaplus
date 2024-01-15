@@ -9,7 +9,8 @@ public static class InfrastructureExtenstions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         => services
         .AddSingleton<ICacheRefService, CacheRefService>()
+        .AddSingleton<ITotalBetsService, TotalBetsService>()
         .AddSingleton<ILeagueService, LeagueService>()
         .AddSingleton<IForecastService, ForecastService>()
-        .AddSingleton<ITotalBetsService, TotalBetsService>();
+        .AddSingleton<IScoreMapService, ScoreMapService>();
 }

@@ -104,7 +104,7 @@
             liveBetTypes: liveBetTypes.join(),
             deadBetTypes: deadBetTypes.join()
         };
-        $.get('GetResult?' + $.param(queryString), function (html) {
+        $.get('GetScoreMapResults?' + $.param(queryString), function (html) {
             $('#content').html(html);
         });
     }

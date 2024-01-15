@@ -1,6 +1,7 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.BetsForecast.Domain.Shared;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
+using AlphaPlus.BetsForecast.Infrastructure.Forecast.Params;
 using AlphaPlus.BetsForecast.Infrastructure.Shared.Services;
 using Fanex.Data.Repository;
 
@@ -10,15 +11,9 @@ public interface ILeagueService
 {
     Task<IEnumerable<League>> GetSoccerLeagues(bool isLive, bool isShowAll, string language);
 
-    Task<IEnumerable<League>> GetRunningLeagues(byte custLevel, int custId, string betTypes, string language);
-
-    Task<IEnumerable<League>> GetScoreMapLeagues(int custId, string language);
+    Task<IEnumerable<League>> GetRunningLeagues(GetRunningLeaguesParam param);
 
     Task<IEnumerable<Match>> GetSoccerMatches(int leagueId, bool isLive, string language);
-
-    Task<IEnumerable<Match>> GetScoreMapMatches(int custId, int leagueId, string language);
-
-    Task<ForecastMatch> GetMatch(int matchId, int betType, string language);
 }
 
 public class LeagueService : ILeagueService
@@ -32,21 +27,18 @@ public class LeagueService : ILeagueService
     public Task<IEnumerable<League>> GetSoccerLeagues(bool isLive, bool isShowAll, string language)
         => GetLeagues(new GetSoccerLeagueCriteria(isLive, isShowAll), language);
 
-    public Task<IEnumerable<League>> GetRunningLeagues(byte custLevel, int custId, string betTypes, string language)
+    public Task<IEnumerable<League>> GetRunningLeagues(GetRunningLeaguesParam param)
     {
-        ICriteria criteria = (UserLevel)custLevel switch
+        ICriteria criteria = (UserLevel)param.CustLevel switch
         {
-            UserLevel.Super => new GetRunningLeagueSuperCriteria(custId, betTypes),
-            UserLevel.Master => new GetRunningLeagueMasterCriteria(custId, betTypes),
-            UserLevel.Agent => new GetRunningLeagueAgentCriteria(custId, betTypes),
-            _ => throw new ArgumentException("Invalid enum value for CustLevel", nameof(custLevel)),
+            UserLevel.Super => new GetRunningLeagueSuperCriteria(param.CustId, param.BetTypes),
+            UserLevel.Master => new GetRunningLeagueMasterCriteria(param.CustId, param.BetTypes),
+            UserLevel.Agent => new GetRunningLeagueAgentCriteria(param.CustId, param.BetTypes),
+            _ => throw new ArgumentException("Invalid enum value for CustLevel", nameof(param.CustLevel)),
         };
 
-        return GetLeagues(criteria, language);
+        return GetLeagues(criteria, param.Language);
     }
-
-    public Task<IEnumerable<League>> GetScoreMapLeagues(int custId, string language)
-        => GetLeagues(new GetScoreMapLeagueCriteria(custId), language);
 
     private async Task<IEnumerable<League>> GetLeagues(ICriteria criteria, string language)
     {
@@ -59,15 +51,9 @@ public class LeagueService : ILeagueService
         return leagues;
     }
 
-    public Task<IEnumerable<Match>> GetSoccerMatches(int leagueId, bool isLive, string language)
-        => GetMatches(new GetSoccerMatchCriteria(leagueId, isLive), language);
-
-    public Task<IEnumerable<Match>> GetScoreMapMatches(int custId, int leagueId, string language)
-        => GetMatches(new GetScoreMapMatchCriteria(custId, leagueId), language);
-
-    private async Task<IEnumerable<Match>> GetMatches(ICriteria criteria, string language)
+    public async Task<IEnumerable<Match>> GetSoccerMatches(int leagueId, bool isLive, string language)
     {
-        var matches = await repository.FetchAsync<Match>(criteria);
+        var matches = await repository.FetchAsync<Match>(new GetSoccerMatchCriteria(leagueId, isLive));
         foreach (var item in matches)
         {
             item.HomeName = cacheRefService.GetTeamName(item.HomeId, language);
@@ -75,17 +61,5 @@ public class LeagueService : ILeagueService
         }
 
         return matches;
-    }
-
-    public async Task<ForecastMatch> GetMatch(int matchId, int betType, string language)
-    {
-        var match = await repository.GetAsync<ForecastMatch>(new GetMatchCriteria(matchId, betType));
-        if (match != null)
-        {
-            match.HomeName = cacheRefService.GetTeamName(match.HomeId, language);
-            match.AwayName = cacheRefService.GetTeamName(match.AwayId, language);
-        }
-
-        return match;
     }
 }

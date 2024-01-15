@@ -40,6 +40,18 @@ public static class InfrastructureExtenstions
         const int HttpClientPooledConnectionLifetime = 15;
         var ticketsAPIBaseUrl = configuration.GetValue<string>("TicketsAPIBaseUrl");
         services
+            .AddHttpClient<ITotalBetsService, TotalBetsService>(httpClient
+                => httpClient.BaseAddress = new Uri(ticketsAPIBaseUrl))
+            .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+            })
+            .ConfigurePrimaryHttpMessageHandler(_ => new SocketsHttpHandler()
+            {
+                PooledConnectionLifetime = TimeSpan.FromMinutes(HttpClientPooledConnectionLifetime)
+            })
+            .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
+        services
             .AddHttpClient<IForecastService, ForecastService>(httpClient
                 => httpClient.BaseAddress = new Uri(ticketsAPIBaseUrl))
             .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
@@ -52,7 +64,7 @@ public static class InfrastructureExtenstions
             })
             .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
         services
-            .AddHttpClient<ITotalBetsService, TotalBetsService>(httpClient
+            .AddHttpClient<IScoreMapService, ScoreMapService>(httpClient
                 => httpClient.BaseAddress = new Uri(ticketsAPIBaseUrl))
             .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
             {

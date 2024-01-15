@@ -8,7 +8,7 @@ public class ForecastMatch : Match
 
     public bool IsNeutral { get; init; }
 
-    public new string Event => $"{HomeName} -vs- {AwayName}";
+    public new string Event => $"{HomeName}{(IsNeutral ? " (N)" : string.Empty)} -vs- {AwayName}";
 
     public int LiveHomeScore { get; init; }
 

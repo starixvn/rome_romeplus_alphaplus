@@ -1,7 +1,6 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 using AlphaPlus.Tickets.Site.Features.Forecast.ViewModels;
-using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -11,9 +10,10 @@ public class ForecastController : Controller//BaseController
 {
     private const string PartialName = "Partial";
     private readonly IForecastService forecastService;
+    private readonly IScoreMapService scoreMapService;
 
-    public ForecastController(IForecastService forecastService)
-        => this.forecastService = forecastService;
+    public ForecastController(IForecastService forecastService, IScoreMapService scoreMapService)
+        => (this.forecastService, this.scoreMapService) = (forecastService, scoreMapService);
 
     public async Task<IActionResult> Soccer()
     {
@@ -48,6 +48,11 @@ public class ForecastController : Controller//BaseController
         => View(
             nameof(HDPOULiveData),
             await forecastService.GetHDPOULive(message.ViewerLevel, message.ViewerId, message.LeagueId, message.Language));
+
+    public async Task<IActionResult> AH(GetAHRequest message)
+        => View(
+            $"{nameof(AH)}{(message.Partial ? PartialName : string.Empty)}",
+            await forecastService.GetAH(message));
 
     [ActionName("1X2")]
     public async Task<IActionResult> _1X2(GetForecastRequest message)
@@ -89,51 +94,19 @@ public class ForecastController : Controller//BaseController
 
     public async Task<IActionResult> ScoreMap()
     {
-        var betTypesTask = forecastService.GetScoreMapBetTypes("en-US");
-        var leaguesTask = forecastService.GetScoreMapLeagues(23003140, "en-US");
+        var betTypesTask = scoreMapService.GetBetTypes("en-US");
+        var leaguesTask = scoreMapService.GetLeagues(23003140, "en-US");
         await Task.WhenAll(betTypesTask, leaguesTask);
 
         return View(new ScoreMapViewModel(await betTypesTask, await leaguesTask));
     }
 
     public async Task<IActionResult> GetScoreMapLeagues()
-        => Json(await forecastService.GetScoreMapLeagues(23003140, "en-US"));
+        => Json(await scoreMapService.GetLeagues(23003140, "en-US"));
 
     public async Task<IActionResult> GetScoreMapMatches(int leagueId)
-        => Json(await forecastService.GetScoreMapMatches(23003140, leagueId, "en-US"));
+        => Json(await scoreMapService.GetMatches(23003140, leagueId, "en-US"));
 
-    public async Task<IActionResult> GetResult(GetScoreMapResultRequest message)
-    {
-        var betTypes = await forecastService.GetScoreMapBetTypes(message.Language);
-        var liveBetTypes = GetBetTypeIds(message.LiveBetTypes, betTypes[0]);
-        var deadBetTypes = GetBetTypeIds(message.DeadBetTypes, betTypes[1]);
-
-        var scoreMaps = await forecastService.GetScoreMapResult(
-            message.ViewerLevel,
-            message.ViewerId,
-            message.MatchIds,
-            liveBetTypes.Join(),
-            deadBetTypes.Join(),
-            message.Language
-        );
-
-        return PartialView("ScoreMapResult", scoreMaps);
-    }
-
-    private static IEnumerable<string> GetBetTypeIds(string ids, IEnumerable<ScoreMapBetType> betTypes)
-    {
-        if (!string.IsNullOrWhiteSpace(ids))
-        {
-            var arrayIds = ids.ToListInt();
-            var betTypeHash = betTypes.ToDictionary(kvp => kvp.BetType, kvp => kvp.FollowedBetTypes);
-
-            foreach (var item in arrayIds)
-            {
-                if (betTypeHash.TryGetValue(item, out var followedBetTypes))
-                {
-                    yield return followedBetTypes;
-                }
-            }
-        }
-    }
+    public async Task<IActionResult> GetScoreMapResults(GetScoreMapResultRequest message)
+        => View("ScoreMapResults", await scoreMapService.GetResults(message));
 }

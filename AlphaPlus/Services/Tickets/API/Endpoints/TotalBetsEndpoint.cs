@@ -1,5 +1,6 @@
 
 using AlphaPlus.BetsForecast.Infrastructure.TotalBets;
+using AlphaPlus.BetsForecast.Infrastructure.TotalBets.Params;
 
 namespace AlphaPlus.Tickets.API.Endpoints;
 
@@ -11,47 +12,38 @@ public class TotalBetsEndpoint : IEndpoint
 
         totalBets.MapGet(
             "/hdpoulive",
-            (byte custLevel, int custId, string language, ITotalBetsService service)
-            => service.GetHDPOULive(custLevel, custId, language));
+            ([AsParameters] GetTotalBetsParam param, ITotalBetsService service) => service.GetHDPOULive(param));
 
         totalBets.MapGet(
             "/moneyline",
-            (byte custLevel, int custId, string language, ITotalBetsService service)
-            => service.GetMoneyLine(custLevel, custId, language));
+            ([AsParameters] GetTotalBetsParam param, ITotalBetsService service) => service.GetMoneyLine(param));
 
         totalBets.MapGet(
             "/oe1x2dnd",
-            (byte custLevel, int custId, string language, ITotalBetsService service)
-            => service.GetOE1X2DND(custLevel, custId, language));
+            ([AsParameters] GetTotalBetsParam param, ITotalBetsService service) => service.GetOE1X2DND(param));
 
         totalBets.MapGet(
             "/totalgoal",
-            (byte custLevel, int custId, string language, ITotalBetsService service)
-            => service.GetTotalGoal(custLevel, custId, language));
+            ([AsParameters] GetTotalBetsParam param, ITotalBetsService service) => service.GetTotalGoal(param));
 
         totalBets.MapGet(
             "/outright",
-            (byte custLevel, int custId, string? language, ITotalBetsService service)
-            => service.GetOutright(custLevel, custId, language));
+            ([AsParameters] GetTotalBetsParam param, ITotalBetsService service) => service.GetOutright(param));
 
         totalBets.MapGet(
             "/htft",
-            (byte custLevel, int custId, string? language, ITotalBetsService service)
-            => service.GetHalfTimeFullTime(custLevel, custId, language));
+            ([AsParameters] GetTotalBetsParam param, ITotalBetsService service) => service.GetHalfTimeFullTime(param));
 
         totalBets.MapGet(
             "/fglg",
-            (byte custLevel, int custId, string? language, ITotalBetsService service)
-            => service.GetFirstGoalLastGoal(custLevel, custId, language));
+            ([AsParameters] GetTotalBetsParam param, ITotalBetsService service) => service.GetFirstGoalLastGoal(param));
 
         totalBets.MapGet(
             "/homedrawawaynobet",
-            (byte custLevel, int custId, string? language, ITotalBetsService service)
-            => service.GetHomeDrawAwayNoBet(custLevel, custId, language));
+            ([AsParameters] GetTotalBetsParam param, ITotalBetsService service) => service.GetHomeDrawAwayNoBet(param));
 
         totalBets.MapGet(
             "/numbergame",
-            (byte custLevel, int custId, string? language, ITotalBetsService service)
-            => service.GetNumberGame(custLevel, custId, language));
+            ([AsParameters] GetTotalBetsParam param, ITotalBetsService service) => service.GetNumberGame(param));
     }
 }

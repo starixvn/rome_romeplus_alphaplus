@@ -300,6 +300,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>Làm mới</value>
   </data>
+  <data name="Score" xml:space="preserve">
+    <value>Tỷ số</value>
+  </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>Score Map</value>
   </data>

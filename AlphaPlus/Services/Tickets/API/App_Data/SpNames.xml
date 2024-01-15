@@ -112,6 +112,8 @@
     <Setting Key="Age_Forecast_Sel1X2" SpName="Age_Forecast_Sel1X2" DbName="DBBOF.bodb02.BODBDownlineNet" />
     <!-- AH -->
     <Setting Key="Age_Forecast_OddsSelTopByMatch" SpName="Age_Forecast_OddsSelTopByMatch" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Forecast_SelHDP" SpName="Age_Forecast_SelHDP" DbName="DBBOF.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Forecast_SelOU" SpName="Age_Forecast_SelOU" DbName="DBBOF.bodb02.BODBDownlineNet" />
     <!-- Score Map -->
     <Setting Key="Age_ScoreMap_SelLeague" SpName="Age_ScoreMap_SelLeague" DbName="DBBOF.bodb02.BODBDownlineNet" />
     <Setting Key="Age_ScoreMap_SelMatch" SpName="Age_ScoreMap_SelMatch" DbName="DBBOF.bodb02.BODBDownlineNet" />

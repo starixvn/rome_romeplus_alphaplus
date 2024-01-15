@@ -300,6 +300,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>刷新</value>
   </data>
+  <data name="Score" xml:space="preserve">
+    <value>比分</value>
+  </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>盈利预测图</value>
   </data>

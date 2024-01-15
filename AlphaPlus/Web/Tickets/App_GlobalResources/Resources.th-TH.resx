@@ -300,6 +300,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>รีเฟรช</value>
   </data>
+  <data name="Score" xml:space="preserve">
+    <value>ผล</value>
+  </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>กระดานผล</value>
   </data>

@@ -1,5 +1,6 @@
 
 using AlphaPlus.BetsForecast.Infrastructure.Forecast;
+using AlphaPlus.BetsForecast.Infrastructure.Forecast.Params;
 
 namespace AlphaPlus.Tickets.API.Endpoints;
 
@@ -30,45 +31,38 @@ public class ForecastEndpoint : IEndpoint
 
         forecast.MapGet(
             "/runningleagues",
-            (byte custLevel, int custId, string betTypes, string language, ILeagueService service)
-            => service.GetRunningLeagues(custLevel, custId, betTypes, language));
+            ([AsParameters] GetRunningLeaguesParam param, ILeagueService service) => service.GetRunningLeagues(param));
 
         forecast.MapGet(
             "/hdpoulive",
-            (byte custLevel, int custId, int leagueId, string language, IForecastService service)
-            => service.GetHDPOULive(custLevel, custId, leagueId, language));
+            ([AsParameters] GetForecastParam param, IForecastService service) => service.GetHDPOULive(param));
+
+        forecast.MapGet(
+            "/ah",
+            ([AsParameters] GetAHParam param, IForecastService service) => service.GetAH(param));
 
         forecast.MapGet(
             "/1x2",
-            (byte custLevel, int custId, int leagueId, string language, IForecastService service)
-            => service.Get1X2(custLevel, custId, leagueId, language));
+            ([AsParameters] GetForecastParam param, IForecastService service) => service.Get1X2(param));
 
         forecast.MapGet(
             "/1x2bymatch",
-            (byte custLevel, int custId, int matchId, int betType, string language, IForecastService service)
-            => service.Get1X2(custLevel, custId, matchId, betType, language));
+            ([AsParameters] Get1X2ByMatchParam param, IForecastService service) => service.Get1X2(param));
 
         forecast.MapGet(
             "/scoremap/bettypes",
-            (string language, IForecastService service) => service.GetScoreMapBetTypes(language));
+            (string language, IScoreMapService service) => service.GetBetTypes(language));
 
         forecast.MapGet(
             "/scoremap/leagues",
-            (int custId, string language, ILeagueService service) => service.GetScoreMapLeagues(custId, language));
+            (int custId, string language, IScoreMapService service) => service.GetLeagues(custId, language));
 
         forecast.MapGet(
             "/scoremap/matches",
-            (int custId, int leagueId, string language, ILeagueService service) => service.GetScoreMapMatches(custId, leagueId, language));
+            ([AsParameters] GetScoreMapMatchesParam param, IScoreMapService service) => service.GetMatches(param));
 
         forecast.MapGet(
-            "/scoremap/result",
-            (byte custLevel,
-            int custId,
-            string matchIds,
-            string liveBetTypes,
-            string deadBetTypes,
-            string language,
-            IForecastService service)
-            => service.GetScoreMapResult(custLevel, custId, matchIds, liveBetTypes, deadBetTypes, language));
+            "/scoremap/results",
+            ([AsParameters] GetScoreMapResultParam param, IScoreMapService service) => service.GetResults(param));
     }
 }

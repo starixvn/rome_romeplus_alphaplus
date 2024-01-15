@@ -2,10 +2,8 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 
-internal class GetHDPOULiveMasterCriteria(int masterId, int leagueId, string language) : CriteriaBase
+internal abstract class GetHDPOULiveBaseCriteria(int leagueId, string language) : CriteriaBase
 {
-    public int MRecommend { get; } = masterId;
-
     public int LeagueId { get; } = leagueId;
 
     public string Language { get; } = language;
@@ -18,7 +16,5 @@ internal class GetHDPOULiveMasterCriteria(int masterId, int leagueId, string lan
 
     public int BaseOffsetHTOU { get; }
 
-    public override string GetSettingKey() => "Age_Forecast_SelByLeague_MAg";
-
-    public override bool IsValid() => MRecommend > 0 && LeagueId > 0;
+    public override bool IsValid() => LeagueId > 0;
 }

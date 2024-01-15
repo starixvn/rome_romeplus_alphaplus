@@ -6,8 +6,6 @@ public class Outright
 
     public string LeagueName { get; set; }
 
-    public string MatchCode { get; init; }
-
     public int OrId { get; init; }
 
     public int TeamId { get; init; }
