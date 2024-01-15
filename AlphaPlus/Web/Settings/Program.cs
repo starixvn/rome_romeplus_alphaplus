@@ -12,7 +12,7 @@ builder.Services.AddSingleton<InfraServices.ISubAccountService, InfraServices.Su
 
 var configuration = builder.Configuration;
 builder.Services
-    .AddFanexLibs(configuration)
+    .AddFanexDataWithSqlServer(configuration)
     .AddHealthChecks();
 
 builder.Services
