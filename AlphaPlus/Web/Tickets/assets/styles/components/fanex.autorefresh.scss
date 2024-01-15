@@ -27,6 +27,10 @@
 .auto-refresh {
     display: inline-block;
     margin-right: 10px;
+    &.left-side{
+        float: left;
+        margin: 10px 10px 0 0;
+    }
 }
 
 .refresh-countdown {
