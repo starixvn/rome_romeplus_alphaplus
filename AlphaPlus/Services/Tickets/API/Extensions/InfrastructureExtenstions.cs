@@ -1,5 +1,5 @@
 using AlphaPlus.BetsForecast.Infrastructure.Forecast;
-using AlphaPlus.BetsForecast.Infrastructure.Shared.Services;
+using AlphaPlus.BetsForecast.Infrastructure.Shared;
 using AlphaPlus.BetsForecast.Infrastructure.TotalBets;
 
 namespace AlphaPlus.Tickets.API.Extensions;

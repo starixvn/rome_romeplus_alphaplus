@@ -2,11 +2,11 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 
-internal abstract class GetHDPOULiveBaseCriteria(int leagueId, string language) : CriteriaBase
+internal abstract class GetHDPOULiveBaseCriteria(int leagueId) : CriteriaBase
 {
     public int LeagueId { get; } = leagueId;
 
-    public string Language { get; } = language;
+    public string Language { get; } = string.Empty;
 
     public int BaseOffsetHDP { get; }
 

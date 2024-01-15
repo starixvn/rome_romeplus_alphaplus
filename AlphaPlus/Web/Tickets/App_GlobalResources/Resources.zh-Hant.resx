@@ -138,6 +138,12 @@
   <data name="Balance" xml:space="preserve">
     <value>現金</value>
   </data>
+  <data name="BetList" xml:space="preserve">
+    <value>投注歷史</value>
+  </data>
+  <data name="BetTypes" xml:space="preserve">
+    <value>投註類型</value>
+  </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>點擊查看盈利預測圖資料</value>
   </data>
@@ -188,6 +194,9 @@
   </data>
   <data name="FullTimeOddEven" xml:space="preserve">
     <value>全場單雙</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>組別</value>
   </data>
   <data name="HA" xml:space="preserve">
     <value>主客</value>
@@ -264,6 +273,9 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>沒資料顯示</value>
   </data>
+  <data name="Note" xml:space="preserve">
+    <value>備註</value>
+  </data>
   <data name="NumberGame" xml:space="preserve">
     <value>數字游戲</value>
   </data>
@@ -311,6 +323,15 @@
   </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>盈利預測圖</value>
+  </data>
+  <data name="ScoreMapInformation" xml:space="preserve">
+    <value>盈利預測圖資料</value>
+  </data>
+  <data name="ScoreMapInformationDescription" xml:space="preserve">
+    <value>勾選, 選擇框在盈利預測圖功能被應用到投註類型如下:</value>
+  </data>
+  <data name="ScoreMapNoteContent" xml:space="preserve">
+    <value>此信息僅供參考。可能會逾期，請聯繫客服部以了解更多詳情。</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>選擇</value>
@@ -363,6 +384,18 @@
   <data name="UnderCommaEven" xml:space="preserve">
     <value>小/雙</value>
   </data>
+  <data name="View1stHandicapForecast" xml:space="preserve">
+    <value>瀏覽上半場亞洲盤預測圖</value>
+  </data>
+  <data name="View1stOverUnderForecast" xml:space="preserve">
+    <value>瀏覽上半場大小盤預測圖</value>
+  </data>
+  <data name="ViewHandicapForecast" xml:space="preserve">
+    <value>瀏覽亞洲盤預測圖</value>
+  </data>
+  <data name="ViewOverUnderForecast" xml:space="preserve">
+    <value>瀏覽大小盤預測圖</value>
+  </data>
   <data name="_1X2" xml:space="preserve">
     <value>獨贏盤</value>
   </data>
@@ -371,5 +404,11 @@
   </data>
   <data name="_1stHalf" xml:space="preserve">
     <value>上半场</value>
+  </data>
+  <data name="_1stHdp" xml:space="preserve">
+    <value>上半場亞洲盤</value>
+  </data>
+  <data name="_1stOU" xml:space="preserve">
+    <value>上半場大小盤</value>
   </data>
 </root>

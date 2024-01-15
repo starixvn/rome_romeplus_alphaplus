@@ -13,34 +13,10 @@
     <div class="auto-refresh"></div>
 </div>
 <div id="content">
-    <table class="tblRpt width-100per">
-        <thead>
-            <tr>
-                <th>@Resources.Team</th>
-                <th>@Resources.Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Model.Event</td>
-                <td>@Model.LiveHomeScore : @Model.LiveAwayScore</td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="tblRpt width-100per">
-        <tbody>
-            <tr>
-                <td>{Title</td>
-                <td colspan="4">
-                    <!--ForecastPointContent-->
-                    <a href='javascript:GetFCAH({MatchId},{ForecastPoint},{BetType})'>{ForecastPointValue}</a>&nbsp;
-                    <!--/ForecastPointContent-->
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <partial name="AHPartial" />
 </div>
 <input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
 <input type="hidden" id="hidden-autoRefreshSeconds" value="15,30,45,60,75" />
-<input type="hidden" id="hidden-autoRefreshUrl" value="AH?partial=true&leagueId=" />
+<input type="hidden" id="hidden-autoRefreshUrl"
+    value="AH?partial=true&matchid=@Model.MatchId&bettype=@Model.BetType&score=@Model.CurrentScore" />
 <input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="AH" />

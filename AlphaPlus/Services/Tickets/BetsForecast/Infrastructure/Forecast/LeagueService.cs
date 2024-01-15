@@ -1,8 +1,7 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
-using AlphaPlus.BetsForecast.Domain.Shared;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Params;
-using AlphaPlus.BetsForecast.Infrastructure.Shared.Services;
+using AlphaPlus.BetsForecast.Infrastructure.Shared;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast;
@@ -29,13 +28,20 @@ public class LeagueService : ILeagueService
 
     public Task<IEnumerable<League>> GetRunningLeagues(GetRunningLeaguesParam param)
     {
-        ICriteria criteria = (UserLevel)param.CustLevel switch
+        ICriteria criteria;
+        var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevel);
+        if (custLevel.IsSuperLevel())
         {
-            UserLevel.Super => new GetRunningLeagueSuperCriteria(param.CustId, param.BetTypes),
-            UserLevel.Master => new GetRunningLeagueMasterCriteria(param.CustId, param.BetTypes),
-            UserLevel.Agent => new GetRunningLeagueAgentCriteria(param.CustId, param.BetTypes),
-            _ => throw new ArgumentException("Invalid enum value for CustLevel", nameof(param.CustLevel)),
-        };
+            criteria = new GetRunningLeagueSuperCriteria(param.CustId, param.BetTypes);
+        }
+        else if (custLevel.IsMasterLevel())
+        {
+            criteria = new GetRunningLeagueMasterCriteria(param.CustId, param.BetTypes);
+        }
+        else
+        {
+            criteria = new GetRunningLeagueAgentCriteria(param.CustId, param.BetTypes);
+        }
 
         return GetLeagues(criteria, param.Language);
     }

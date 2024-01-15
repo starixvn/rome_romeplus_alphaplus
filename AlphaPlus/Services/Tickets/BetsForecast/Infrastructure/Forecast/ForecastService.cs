@@ -1,9 +1,7 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
-using AlphaPlus.BetsForecast.Domain.Shared;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Params;
-using AlphaPlus.BetsForecast.Infrastructure.Shared.Helper;
-using AlphaPlus.BetsForecast.Infrastructure.Shared.Services;
+using AlphaPlus.BetsForecast.Infrastructure.Shared;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast;
@@ -18,12 +16,6 @@ public interface IForecastService
     Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastParam param);
 
     Task<AH> GetAH(GetAHParam param);
-
-    Task<(bool, decimal[])> GetHDP(GetAHParam param);
-
-    Task<(bool, decimal[])> GetOU(GetAHParam param);
-
-    Task<ForecastMatch> GetMatch(int matchId, int betType, string language);
 
     Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastParam param);
 
@@ -46,44 +38,60 @@ public class ForecastService : IForecastService
 
     public Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastParam param)
     {
-        var langCode = LanguageHelper.GetLangCode(param.Language);
-        ICriteria criteria = (UserLevel)param.CustLevel switch
+        ICriteria criteria;
+        var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevel);
+        if (custLevel.IsSuperLevel())
         {
-            UserLevel.Super => new GetHDPOULiveSuperCriteria(param.CustId, param.LeagueId, langCode),
-            UserLevel.Master => new GetHDPOULiveMasterCriteria(param.CustId, param.LeagueId, langCode),
-            UserLevel.Agent => new GetHDPOULiveAgentCriteria(param.CustId, param.LeagueId, langCode),
-            _ => throw new ArgumentException("Invalid enum value for CustLevel", nameof(param.CustLevel)),
-        };
+            criteria = new GetHDPOULiveSuperCriteria(param.CustId, param.LeagueId);
+        }
+        else if (custLevel.IsMasterLevel())
+        {
+            criteria = new GetHDPOULiveMasterCriteria(param.CustId, param.LeagueId);
+        }
+        else
+        {
+            criteria = new GetHDPOULiveAgentCriteria(param.CustId, param.LeagueId);
+        }
 
         return GetForecast<ForecastHDPOULive>(criteria, param.Language);
     }
 
     public async Task<AH> GetAH(GetAHParam param)
     {
-        var matchTask = GetMatch(param.MatchId, param.BetType, param.Language);
-        var hdpouTask = IsHDP(param.BetType) ? GetHDP(param) : GetOU(param);
+        var isHDP = IsHDP(param.BetType);
+        var hdpouTask = isHDP ? GetAHHDP(param) : GetAHOU(param);
+        var matchTask = GetAHMatch(param.MatchId, param.BetType, param.Language);
         await Task.WhenAll(matchTask, hdpouTask);
 
         var match = await matchTask;
         var (hasData, hdpou) = await hdpouTask;
 
-        return new AH(hasData, hdpou)
-        {
-            MatchId = match.MatchId,
-            HomeId = match.HomeId,
-            HomeName = match.HomeName,
-            AwayId = match.AwayId,
-            AwayName = match.AwayName,
-            IsNeutral = match.IsNeutral,
-            LiveHomeScore = match.LiveHomeScore,
-            LiveAwayScore = match.LiveAwayScore
-        };
+        return new AH(
+            param.MatchId,
+            match.Event,
+            $"{match.LiveHomeScore} : {match.LiveAwayScore}",
+            param.BetType,
+            cacheRefService.GetBetTypeName(param.BetType, param.Language),
+            param.Score,
+            hasData,
+            hdpou,
+            GetAHAllScores(isHDP, param.Score),
+            GetAHForecastScores(isHDP, param.Score));
     }
 
-    private static bool IsHDP(int betType)
-        => betType == 1 || betType == 7 || betType == 301 || betType == 303;
+    private async Task<ForecastMatch> GetAHMatch(int matchId, int betType, string language)
+    {
+        var match = await repository.GetAsync<ForecastMatch>(new GetMatchCriteria(matchId, betType));
+        if (match != null)
+        {
+            match.HomeName = cacheRefService.GetTeamName(match.HomeId, language);
+            match.AwayName = cacheRefService.GetTeamName(match.AwayId, language);
+        }
 
-    public async Task<(bool, decimal[])> GetHDP(GetAHParam param)
+        return match;
+    }
+
+    private async Task<(bool, decimal[])> GetAHHDP(GetAHParam param)
     {
         var hdp0 = 0M;
         var hdp1 = 0M;
@@ -94,19 +102,19 @@ public class ForecastService : IForecastService
             new GetHDPCriteria(param.CustLevel, param.CustId, param.MatchId, param.BetType));
         foreach (var item in rawdata)
         {
-            hdp0 = GetHDPValue(item, param.CurrentScore, -2, hdp0);
-            hdp1 = GetHDPValue(item, param.CurrentScore, -1, hdp1);
-            hdp2 = GetHDPValue(item, param.CurrentScore, 0, hdp2);
-            hdp3 = GetHDPValue(item, param.CurrentScore, 1, hdp3);
-            hdp4 = GetHDPValue(item, param.CurrentScore, 2, hdp4);
+            hdp0 = GetAHHDPValue(item, param.Score, -2, hdp0);
+            hdp1 = GetAHHDPValue(item, param.Score, -1, hdp1);
+            hdp2 = GetAHHDPValue(item, param.Score, 0, hdp2);
+            hdp3 = GetAHHDPValue(item, param.Score, 1, hdp3);
+            hdp4 = GetAHHDPValue(item, param.Score, 2, hdp4);
         }
 
-        return (rawdata.Any(), [hdp0, hdp1, hdp2, hdp3, hdp4]);
+        return (rawdata.Any(), [hdp4, hdp3, hdp2, hdp1, hdp0]);
     }
 
-    private static decimal GetHDPValue(HDPOU hdp, int currentScore, int scoreOffset, decimal forecast)
+    private static decimal GetAHHDPValue(HDPOU hdp, int score, int scoreOffset, decimal forecast)
     {
-        decimal forecastScore = currentScore - hdp.Offset + scoreOffset;
+        decimal forecastScore = score - hdp.Offset + scoreOffset;
 
         if (forecastScore > 0 && forecastScore < 0.5M)
         {
@@ -133,7 +141,7 @@ public class ForecastService : IForecastService
         return forecast;
     }
 
-    public async Task<(bool, decimal[])> GetOU(GetAHParam param)
+    private async Task<(bool, decimal[])> GetAHOU(GetAHParam param)
     {
         var ou0 = 0M;
         var ou1 = 0M;
@@ -144,19 +152,19 @@ public class ForecastService : IForecastService
             new GetOUCriteria(param.CustLevel, param.CustId, param.MatchId, param.BetType));
         foreach (var item in rawdata)
         {
-            ou0 = GetOUValue(item, param.CurrentScore, 0, ou0);
-            ou1 = GetOUValue(item, param.CurrentScore, 1, ou1);
-            ou2 = GetOUValue(item, param.CurrentScore, 2, ou2);
-            ou3 = GetOUValue(item, param.CurrentScore, 3, ou3);
-            ou4 = GetOUValue(item, param.CurrentScore, 4, ou4);
+            ou0 = GetAHOUValue(item, param.Score, 0, ou0);
+            ou1 = GetAHOUValue(item, param.Score, 1, ou1);
+            ou2 = GetAHOUValue(item, param.Score, 2, ou2);
+            ou3 = GetAHOUValue(item, param.Score, 3, ou3);
+            ou4 = GetAHOUValue(item, param.Score, 4, ou4);
         }
 
-        return (rawdata.Any(), [ou0, ou1, ou2, ou3, ou4]);
+        return (rawdata.Any(), [ou4, ou3, ou2, ou1, ou0]);
     }
 
-    private static decimal GetOUValue(HDPOU ou, int currentScore, int scoreOffset, decimal forecast)
+    private static decimal GetAHOUValue(HDPOU ou, int score, int scoreOffset, decimal forecast)
     {
-        decimal forecastScore = currentScore - ou.Offset + scoreOffset;
+        decimal forecastScore = score - ou.Offset + scoreOffset;
 
         if (forecastScore == 0.25M)
         {
@@ -183,17 +191,38 @@ public class ForecastService : IForecastService
         return forecast;
     }
 
-    public async Task<ForecastMatch> GetMatch(int matchId, int betType, string language)
+    private static IEnumerable<int> GetAHAllScores(bool isHDP, int score)
     {
-        var match = await repository.GetAsync<ForecastMatch>(new GetMatchCriteria(matchId, betType));
-        if (match != null)
+        int maxIndex, endIndex;
+        if (isHDP)
         {
-            match.HomeName = cacheRefService.GetTeamName(match.HomeId, language);
-            match.AwayName = cacheRefService.GetTeamName(match.AwayId, language);
+            maxIndex = 11;
+            endIndex = score + 5;
+        }
+        else
+        {
+            maxIndex = 16;
+            endIndex = 15;
         }
 
-        return match;
+        for (int i = 0; i < maxIndex; i++)
+        {
+            yield return endIndex--;
+        }
     }
+
+    private static IEnumerable<int> GetAHForecastScores(bool isHDP, int score)
+    {
+        int startIndex = isHDP ? score - 2 : score;
+        yield return startIndex + 4;
+        yield return startIndex + 3;
+        yield return startIndex + 2;
+        yield return startIndex + 1;
+        yield return startIndex;
+    }
+
+    private static bool IsHDP(int betType)
+        => betType == 1 || betType == 7 || betType == 301 || betType == 303;
 
     public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastParam param)
         => GetForecast<Forecast1X2>(new Get1X2ByLeagueCriteria(param.CustLevel, param.CustId, param.LeagueId), param.Language);

@@ -1,0 +1,101 @@
+@{
+    Layout = null;
+    int toggleBetType;
+    string toggleForecast;
+    switch (Model.BetType)
+    {
+        case 1:
+            toggleBetType = 3;
+            toggleForecast = Resources.ViewOverUnderForecast;
+            break;
+        case 3:
+            toggleBetType = 1;
+            toggleForecast = Resources.ViewHandicapForecast;
+            break;
+        case 7:
+            toggleBetType = 8;
+            toggleForecast = Resources.View1stOverUnderForecast;
+            break;
+        case 8:
+            toggleBetType = 7;
+            toggleForecast = Resources.View1stHandicapForecast;
+            break;
+        default:
+            toggleBetType = Model.BetType;
+            toggleForecast = string.Empty;
+            break;
+    }
+}
+@model AH
+<table class="tblRpt width-100per">
+    <thead>
+        <tr>
+            <th>@Resources.Team</th>
+            <th>@Resources.Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.EventName</td>
+            <td>@Model.EventScore</td>
+        </tr>
+    </tbody>
+</table>
+<table class="tblRpt width-100per">
+    <tbody>
+        <tr>
+            <td>
+                @if (Model.BetType == 7)
+                {
+                    @:@Resources._1stHdp
+                }
+                else if (Model.BetType == 8)
+                {
+                    @:@Resources._1stOU
+                }
+                else
+                {
+                    @:@Model.BetTypeName
+                }
+            </td>
+            <td colspan="4">
+                @foreach (var item in Model.AllScores)
+                {
+                    <a asp-action="AH" asp-route-matchid="@Model.MatchId" asp-route-bettype="@Model.BetType"
+                        asp-route-score="@item" class="@(item == Model.CurrentScore ? "selected" : string.Empty)">@item</a>
+                }
+            </td>
+        </tr>
+        @if (Model.HasData)
+        {
+            <tr>
+                @foreach (var item in Model.ForecastScores)
+                {
+                    <td>@item</td>
+                }
+            </tr>
+            <tr>
+                @foreach (var item in Model.HDPOU)
+                {
+                    <td>
+                        <number value="item" redpositive="true" />
+                    </td>
+                }
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">@Resources.NoInformationIsAvailable</td>
+            </tr>
+        }
+        <tr>
+            <td colspan="5">
+                <a asp-controller="BetListByBetTypeAndMatch" asp-action="Index" asp-route-matchid="@Model.MatchId"
+                    asp-route-bettype="@Model.BetType">@Resources.BetList</a>
+                <a asp-action="AH" asp-route-matchid="@Model.MatchId" asp-route-bettype="@toggleBetType"
+                    asp-route-score="0">@toggleForecast</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

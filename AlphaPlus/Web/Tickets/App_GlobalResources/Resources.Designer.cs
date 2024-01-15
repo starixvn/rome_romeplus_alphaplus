@@ -1011,5 +1011,148 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
                 return ResourceManager.GetString("Score", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Score Map Information.
+        /// </summary>
+        internal static string ScoreMapInformation
+        {
+            get
+            {
+                return ResourceManager.GetString("ScoreMapInformation", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        internal static string Note
+        {
+            get
+            {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Check boxes in Score Map function are applied to bet types as following:.
+        /// </summary>
+        internal static string ScoreMapInformationDescription
+        {
+            get
+            {
+                return ResourceManager.GetString("ScoreMapInformationDescription", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        internal static string Group
+        {
+            get
+            {
+                return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Types.
+        /// </summary>
+        internal static string BetTypes
+        {
+            get
+            {
+                return ResourceManager.GetString("BetTypes", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This information is for reference only. It might become obsolete, please contact CSD for more information..
+        /// </summary>
+        internal static string ScoreMapNoteContent
+        {
+            get
+            {
+                return ResourceManager.GetString("ScoreMapNoteContent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 1st Hdp.
+        /// </summary>
+        internal static string _1stHdp
+        {
+            get
+            {
+                return ResourceManager.GetString("_1stHdp", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 1st OU.
+        /// </summary>
+        internal static string _1stOU
+        {
+            get
+            {
+                return ResourceManager.GetString("_1stOU", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bet List.
+        /// </summary>
+        internal static string BetList
+        {
+            get
+            {
+                return ResourceManager.GetString("BetList", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to View Over Under Forecast.
+        /// </summary>
+        internal static string ViewOverUnderForecast
+        {
+            get
+            {
+                return ResourceManager.GetString("ViewOverUnderForecast", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to View Handicap Forecast.
+        /// </summary>
+        internal static string ViewHandicapForecast
+        {
+            get
+            {
+                return ResourceManager.GetString("ViewHandicapForecast", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to View 1st Over/Under Forecast.
+        /// </summary>
+        internal static string View1stOverUnderForecast
+        {
+            get
+            {
+                return ResourceManager.GetString("View1stOverUnderForecast", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to View 1st Handicap Forecast.
+        /// </summary>
+        internal static string View1stHandicapForecast
+        {
+            get
+            {
+                return ResourceManager.GetString("View1stHandicapForecast", resourceCulture);
+            }
+        }
     }
 }

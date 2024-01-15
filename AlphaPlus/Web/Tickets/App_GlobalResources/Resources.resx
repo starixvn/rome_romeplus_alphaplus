@@ -138,6 +138,12 @@
   <data name="Balance" xml:space="preserve">
     <value>Balance</value>
   </data>
+  <data name="BetList" xml:space="preserve">
+    <value>Bet List</value>
+  </data>
+  <data name="BetTypes" xml:space="preserve">
+    <value>Bet Types</value>
+  </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Click to view Score Map Info</value>
   </data>
@@ -185,6 +191,9 @@
   </data>
   <data name="FullTimeOddEven" xml:space="preserve">
     <value>Full Time Odd Even</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
   </data>
   <data name="HA" xml:space="preserve">
     <value>HA</value>
@@ -258,6 +267,9 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>No information is available</value>
   </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
   <data name="NumberGame" xml:space="preserve">
     <value>Number Game</value>
   </data>
@@ -305,6 +317,15 @@
   </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>Score Map</value>
+  </data>
+  <data name="ScoreMapInformation" xml:space="preserve">
+    <value>Score Map Information</value>
+  </data>
+  <data name="ScoreMapInformationDescription" xml:space="preserve">
+    <value>Check boxes in Score Map function are applied to bet types as following:</value>
+  </data>
+  <data name="ScoreMapNoteContent" xml:space="preserve">
+    <value>This information is for reference only. It might become obsolete, please contact CSD for more information.</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
@@ -357,6 +378,18 @@
   <data name="UnderCommaEven" xml:space="preserve">
     <value>Under, Even</value>
   </data>
+  <data name="View1stHandicapForecast" xml:space="preserve">
+    <value>View 1st Handicap Forecast</value>
+  </data>
+  <data name="View1stOverUnderForecast" xml:space="preserve">
+    <value>View 1st Over/Under Forecast</value>
+  </data>
+  <data name="ViewHandicapForecast" xml:space="preserve">
+    <value>View Handicap Forecast</value>
+  </data>
+  <data name="ViewOverUnderForecast" xml:space="preserve">
+    <value>View Over Under Forecast</value>
+  </data>
   <data name="_1X2" xml:space="preserve">
     <value>1X2</value>
   </data>
@@ -365,5 +398,11 @@
   </data>
   <data name="_1stHalf" xml:space="preserve">
     <value>1st Half</value>
+  </data>
+  <data name="_1stHdp" xml:space="preserve">
+    <value>1st Hdp</value>
+  </data>
+  <data name="_1stOU" xml:space="preserve">
+    <value>1st OU</value>
   </data>
 </root>

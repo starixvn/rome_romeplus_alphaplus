@@ -138,6 +138,12 @@
   <data name="Balance" xml:space="preserve">
     <value>ยอดเงิน</value>
   </data>
+  <data name="BetList" xml:space="preserve">
+    <value>รายการวางเดิมพัน</value>
+  </data>
+  <data name="BetTypes" xml:space="preserve">
+    <value>Bet Types</value>
+  </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Click to view Score Map Info</value>
   </data>
@@ -185,6 +191,9 @@
   </data>
   <data name="FullTimeOddEven" xml:space="preserve">
     <value>คู่คี่ เต็มเวลา</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
   </data>
   <data name="HA" xml:space="preserve">
     <value>เจ้าบ้านนำครึ่งแรก ทีมเยือนชนะครึ่งหลัง</value>
@@ -258,6 +267,9 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>ไม่มีข้อมูล</value>
   </data>
+  <data name="Note" xml:space="preserve">
+    <value>หมายเหตุ</value>
+  </data>
   <data name="NumberGame" xml:space="preserve">
     <value>เกมหมายเลข</value>
   </data>
@@ -305,6 +317,15 @@
   </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>กระดานผล</value>
+  </data>
+  <data name="ScoreMapInformation" xml:space="preserve">
+    <value>Score Map Information</value>
+  </data>
+  <data name="ScoreMapInformationDescription" xml:space="preserve">
+    <value>Check boxes in Score Map function are applied to bet types as following:</value>
+  </data>
+  <data name="ScoreMapNoteContent" xml:space="preserve">
+    <value>ข้อมูลดังกล่าวเป็นการอ้างอิงเท่านั้น ซึ่งอาจไม่ใช่ข้อมูลล่าสุด โปรดทำการติดต่อฝ่ายบริการลูกค้าสำหรับรายละเอียดเพิ่มเติม</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>เลือก</value>
@@ -357,6 +378,18 @@
   <data name="UnderCommaEven" xml:space="preserve">
     <value>ต่ำ คู่</value>
   </data>
+  <data name="View1stHandicapForecast" xml:space="preserve">
+    <value>การทำนายผลล่วงหน้า ราคา Handicap ในครึ่งแรก</value>
+  </data>
+  <data name="View1stOverUnderForecast" xml:space="preserve">
+    <value>การทำนายผลล่วงหน้า ครึ่งแรก มากกว่า/น้อยกว่า</value>
+  </data>
+  <data name="ViewHandicapForecast" xml:space="preserve">
+    <value>การทำนายผลล่วงหน้าของ แฮนดิแคป</value>
+  </data>
+  <data name="ViewOverUnderForecast" xml:space="preserve">
+    <value>การทำนายผลล่วงหน้าของ มากกว่า น้อยกว่า</value>
+  </data>
   <data name="_1X2" xml:space="preserve">
     <value>ราคาพูล</value>
   </data>
@@ -365,5 +398,11 @@
   </data>
   <data name="_1stHalf" xml:space="preserve">
     <value>ครึ่งแรก</value>
+  </data>
+  <data name="_1stHdp" xml:space="preserve">
+    <value>ราคาต่อรอง ครึ่งแรก</value>
+  </data>
+  <data name="_1stOU" xml:space="preserve">
+    <value>สูง/ต่ำ ครึ่งแรก</value>
   </data>
 </root>

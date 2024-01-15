@@ -1,8 +1,7 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
-using AlphaPlus.BetsForecast.Domain.Shared;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Params;
-using AlphaPlus.BetsForecast.Infrastructure.Shared.Services;
+using AlphaPlus.BetsForecast.Infrastructure.Shared;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast;
@@ -77,15 +76,7 @@ public class ScoreMapService : IScoreMapService
 
     public async Task<IEnumerable<ScoreMapResultDTO>> GetResults(GetScoreMapResultParam param)
     {
-        ICriteria criteria = (UserLevel)param.CustLevel switch
-        {
-            UserLevel.Super => new GetScoreMapResultSuperCriteria(param.CustId, param.MatchIds, param.LiveBetTypes, param.DeadBetTypes),
-            UserLevel.Master => new GetScoreMapResultMasterCriteria(param.CustId, param.MatchIds, param.LiveBetTypes, param.DeadBetTypes),
-            UserLevel.Agent => new GetScoreMapResultAgentCriteria(param.CustId, param.MatchIds, param.LiveBetTypes, param.DeadBetTypes),
-            _ => throw new ArgumentException("Invalid enum value for CustLevel", nameof(param.CustLevel)),
-        };
-
-        var (scoreMapResultEntities, matches) = await repository.FetchMultipleAsync<ScoreMapResultEntity, Match>(criteria);
+        var (scoreMapResultEntities, matches) = await repository.FetchMultipleAsync<ScoreMapResultEntity, Match>(GetResultsCriteria(param));
         var matchHash = matches.ToDictionary(kvp => kvp.MatchId, kvp => kvp);
 
         return scoreMapResultEntities.GroupBy(
@@ -106,5 +97,21 @@ public class ScoreMapService : IScoreMapService
                     AwayName = cacheRefService.GetTeamName(match.AwayId, param.Language)
                 };
             });
+    }
+
+    private static ICriteria GetResultsCriteria(GetScoreMapResultParam param)
+    {
+        var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevel);
+        if (custLevel.IsSuperLevel())
+        {
+            return new GetScoreMapResultSuperCriteria(param.CustId, param.MatchIds, param.LiveBetTypes, param.DeadBetTypes);
+        }
+
+        if (custLevel.IsMasterLevel())
+        {
+            return new GetScoreMapResultMasterCriteria(param.CustId, param.MatchIds, param.LiveBetTypes, param.DeadBetTypes);
+        }
+
+        return new GetScoreMapResultAgentCriteria(param.CustId, param.MatchIds, param.LiveBetTypes, param.DeadBetTypes);
     }
 }

@@ -138,6 +138,12 @@
   <data name="Balance" xml:space="preserve">
     <value>Số dư tài khoản</value>
   </data>
+  <data name="BetList" xml:space="preserve">
+    <value>Danh sách cược</value>
+  </data>
+  <data name="BetTypes" xml:space="preserve">
+    <value>Loại cược</value>
+  </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Nhấn vào đây để xem Thông tin Score Map</value>
   </data>
@@ -185,6 +191,9 @@
   </data>
   <data name="FullTimeOddEven" xml:space="preserve">
     <value>Tổng Ba Banh Lẻ/Chẵn</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Nhóm</value>
   </data>
   <data name="HA" xml:space="preserve">
     <value>HA</value>
@@ -258,6 +267,9 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>Không có dữ liệu</value>
   </data>
+  <data name="Note" xml:space="preserve">
+    <value>Lưu ý</value>
+  </data>
   <data name="NumberGame" xml:space="preserve">
     <value>Number Game</value>
   </data>
@@ -305,6 +317,15 @@
   </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>Score Map</value>
+  </data>
+  <data name="ScoreMapInformation" xml:space="preserve">
+    <value>Thông tin Score Map</value>
+  </data>
+  <data name="ScoreMapInformationDescription" xml:space="preserve">
+    <value>Các ô đánh dấu trong Score Map dùng để áp dụng cho những loại cược sau:</value>
+  </data>
+  <data name="ScoreMapNoteContent" xml:space="preserve">
+    <value>Thông tin này chỉ để tham khảo. Vui lòng liên hệ CSD để có thông tin chính xác.</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Lưa chọn</value>
@@ -357,6 +378,18 @@
   <data name="UnderCommaEven" xml:space="preserve">
     <value>Xỉu, Chẵn</value>
   </data>
+  <data name="View1stHandicapForecast" xml:space="preserve">
+    <value>Xem dự đoán kết quả hiệp 1 - Cược Chấp</value>
+  </data>
+  <data name="View1stOverUnderForecast" xml:space="preserve">
+    <value>Xem dự đoán kết quả hiệp 1 -  Tài Xỉu</value>
+  </data>
+  <data name="ViewHandicapForecast" xml:space="preserve">
+    <value>Xem dự đoán kết quả - Cược Chấp</value>
+  </data>
+  <data name="ViewOverUnderForecast" xml:space="preserve">
+    <value>Xem dự đoán kết quả - Tài Xỉu</value>
+  </data>
   <data name="_1X2" xml:space="preserve">
     <value>1X2</value>
   </data>
@@ -365,5 +398,11 @@
   </data>
   <data name="_1stHalf" xml:space="preserve">
     <value>Hiệp 1</value>
+  </data>
+  <data name="_1stHdp" xml:space="preserve">
+    <value>Hiệp 1 - Cược Chấp</value>
+  </data>
+  <data name="_1stOU" xml:space="preserve">
+    <value>Hiệp 1 - Tài Xỉu</value>
   </data>
 </root>

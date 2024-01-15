@@ -50,9 +50,11 @@ public class ForecastController : Controller//BaseController
             await forecastService.GetHDPOULive(message.ViewerLevel, message.ViewerId, message.LeagueId, message.Language));
 
     public async Task<IActionResult> AH(GetAHRequest message)
-        => View(
+    {
+        return View(
             $"{nameof(AH)}{(message.Partial ? PartialName : string.Empty)}",
             await forecastService.GetAH(message));
+    }
 
     [ActionName("1X2")]
     public async Task<IActionResult> _1X2(GetForecastRequest message)
@@ -109,4 +111,7 @@ public class ForecastController : Controller//BaseController
 
     public async Task<IActionResult> GetScoreMapResults(GetScoreMapResultRequest message)
         => View("ScoreMapResults", await scoreMapService.GetResults(message));
+
+    public async Task<IActionResult> ScoreMapInformation()
+        => View(await scoreMapService.GetBetTypes("en-US"));
 }

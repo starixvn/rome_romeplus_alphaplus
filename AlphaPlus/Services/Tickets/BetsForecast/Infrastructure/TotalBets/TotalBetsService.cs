@@ -1,6 +1,5 @@
 using AlphaPlus.BetsForecast.Domain.TotalBets;
-using AlphaPlus.BetsForecast.Infrastructure.Shared.Helper;
-using AlphaPlus.BetsForecast.Infrastructure.Shared.Services;
+using AlphaPlus.BetsForecast.Infrastructure.Shared;
 using AlphaPlus.BetsForecast.Infrastructure.TotalBets.Criteria;
 using AlphaPlus.BetsForecast.Infrastructure.TotalBets.Params;
 using Fanex.Data.Repository;
@@ -37,27 +36,25 @@ public class TotalBetsService : ITotalBetsService
         => (this.repository, this.cacheRefService) = (repository, cacheRefService);
 
     public Task<IEnumerable<HDPOULive>> GetHDPOULive(GetTotalBetsParam param)
-        => GetTotalBets<HDPOULive>(new GetHDPOULiveCriteria(param.CustLevel, param.CustId), param.Language);
+        => GetTotalBets<HDPOULive>(
+            new GetHDPOULiveCriteria(param.CustLevel, param.CustId), param.Language);
 
     public Task<IEnumerable<MoneyLine>> GetMoneyLine(GetTotalBetsParam param)
         => GetTotalBets<MoneyLine>(
-            new GetMoneyLineCriteria(param.CustLevel, param.CustId, LanguageHelper.GetLangCode(param.Language)),
-            param.Language);
+            new GetMoneyLineCriteria(param.CustLevel, param.CustId), param.Language);
 
     public Task<IEnumerable<OE1X2DND>> GetOE1X2DND(GetTotalBetsParam param)
         => GetTotalBets<OE1X2DND>(
-            new GetOE1X2DNDCriteria(param.CustLevel, param.CustId, LanguageHelper.GetLangCode(param.Language)),
-            param.Language);
+            new GetOE1X2DNDCriteria(param.CustLevel, param.CustId), param.Language);
 
     public Task<IEnumerable<TotalGoal>> GetTotalGoal(GetTotalBetsParam param)
         => GetTotalBets<TotalGoal>(
-            new GetTotalGoalCriteria(param.CustLevel, param.CustId, LanguageHelper.GetLangCode(param.Language)),
-            param.Language);
+            new GetTotalGoalCriteria(param.CustLevel, param.CustId), param.Language);
 
     public async Task<IEnumerable<Outright>> GetOutright(GetTotalBetsParam param)
     {
         var rawdata = await repository.FetchAsync<Outright>(
-            new GetOutrightCriteria(param.CustLevel, param.CustId, LanguageHelper.GetLangCode(param.Language)));
+            new GetOutrightCriteria(param.CustLevel, param.CustId));
         foreach (var item in rawdata)
         {
             item.LeagueName = cacheRefService.GetLeagueName(item.LeagueId, param.Language);
@@ -69,23 +66,20 @@ public class TotalBetsService : ITotalBetsService
 
     public Task<IEnumerable<HalfTimeFullTime>> GetHalfTimeFullTime(GetTotalBetsParam param)
         => GetTotalBets<HalfTimeFullTime>(
-            new GetHalfTimeFullTimeCriteria(param.CustLevel, param.CustId, LanguageHelper.GetLangCode(param.Language)),
-            param.Language);
+            new GetHalfTimeFullTimeCriteria(param.CustLevel, param.CustId), param.Language);
 
     public Task<IEnumerable<FirstGoalLastGoal>> GetFirstGoalLastGoal(GetTotalBetsParam param)
         => GetTotalBets<FirstGoalLastGoal>(
-            new GetFirstGoalLastGoalCriteria(param.CustLevel, param.CustId, LanguageHelper.GetLangCode(param.Language)),
-            param.Language);
+            new GetFirstGoalLastGoalCriteria(param.CustLevel, param.CustId), param.Language);
 
     public Task<IEnumerable<HomeDrawAwayNoBet>> GetHomeDrawAwayNoBet(GetTotalBetsParam param)
         => GetTotalBets<HomeDrawAwayNoBet>(
-            new GetHomeDrawAwayNoBetCriteria(param.CustLevel, param.CustId, LanguageHelper.GetLangCode(param.Language)),
-            param.Language);
+            new GetHomeDrawAwayNoBetCriteria(param.CustLevel, param.CustId), param.Language);
 
     public async Task<IEnumerable<NumberGame>> GetNumberGame(GetTotalBetsParam param)
     {
         var rawdata = await repository.FetchAsync<NumberGame>(
-            new GetNumberGameCriteria(param.CustLevel, param.CustId, LanguageHelper.GetLangCode(param.Language)));
+            new GetNumberGameCriteria(param.CustLevel, param.CustId));
         foreach (var item in rawdata)
         {
             item.LeagueName = cacheRefService.GetLeagueName(item.LeagueId, param.Language);

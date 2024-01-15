@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = Resources.ScoreMapInformation;
+    void RenderBetTypes(IEnumerable<ScoreMapBetType> betTypes, bool isLive)
+    {
+        <div>@(isLive ? Resources.Live + "!" : Resources.DeadBall)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>@Resources.Group</th>
+                    <th>@Resources.BetTypes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var group in betTypes)
+                {
+                    var followedBetTypeNames = group.FollowedBetTypeNames.ToList();
+                    var betTypesCount = followedBetTypeNames.Count;
+                    <tr>
+                        <td rowspan="@betTypesCount">@group.BetTypeName</td>
+                        <td>@(betTypesCount == 0 ? string.Empty : followedBetTypeNames[0])</td>
+                    </tr>
+                    for (int i = 1; i < betTypesCount; i++)
+                    {
+                        <tr>
+                            <td>@followedBetTypeNames[i]</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script type="text/javascript">
+    </script>
+}
+@model IEnumerable<ScoreMapBetType>[]
+<div>
+    <div>@Resources.Note</div>
+    <div>@Resources.ScoreMapNoteContent</div>
+</div>
+<div>
+    <div>@Resources.ScoreMapInformation</div>
+    <p>@Resources.ScoreMapInformationDescription</p>
+    @{
+        RenderBetTypes(Model[0], true);
+        RenderBetTypes(Model[1], false);
+    }
+</div>

@@ -1,7 +1,6 @@
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 
-internal class GetHDPOULiveMasterCriteria(int masterId, int leagueId, string language)
-    : GetHDPOULiveBaseCriteria(leagueId, language)
+internal class GetHDPOULiveMasterCriteria(int masterId, int leagueId) : GetHDPOULiveBaseCriteria(leagueId)
 {
     public int MRecommend { get; } = masterId;
 

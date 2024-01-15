@@ -5,5 +5,5 @@ public record GetAHParam(
     int CustId,
     int MatchId,
     int BetType,
-    int CurrentScore,
+    int Score,
     string Language);

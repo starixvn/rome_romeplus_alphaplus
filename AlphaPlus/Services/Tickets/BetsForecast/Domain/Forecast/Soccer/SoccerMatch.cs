@@ -1,5 +1,3 @@
-using AlphaPlus.BetsForecast.Domain.Shared;
-
 namespace AlphaPlus.BetsForecast.Domain.Forecast;
 
 public class SoccerMatch : Match

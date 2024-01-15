@@ -135,7 +135,7 @@ public class ForecastService : IForecastService
             KeyValuePair.Create("custId", message.ViewerId.ToString()),
             KeyValuePair.Create(nameof(message.MatchId), message.MatchId.ToString()),
             KeyValuePair.Create(nameof(message.BetType), message.BetType.ToString()),
-            KeyValuePair.Create("currentScore", message.Score.ToString()),
+            KeyValuePair.Create(nameof(message.Score), message.Score.ToString()),
             KeyValuePair.Create(nameof(message.Language), message.Language)
         });
 

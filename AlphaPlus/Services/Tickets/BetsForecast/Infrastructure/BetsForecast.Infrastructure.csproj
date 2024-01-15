@@ -7,6 +7,10 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Shared\Enumeration.cs" Link="Shared\Enumeration.cs" />
+    <Compile Include="..\..\..\Shared\UserLevel.cs" Link="Shared\UserLevel.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Fanex.Data.Repository" Version="4.2.5.3" />
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
   </ItemGroup>

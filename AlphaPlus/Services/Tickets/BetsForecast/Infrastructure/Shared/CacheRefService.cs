@@ -1,6 +1,6 @@
 using Fanex.RemotingRef;
 
-namespace AlphaPlus.BetsForecast.Infrastructure.Shared.Services;
+namespace AlphaPlus.BetsForecast.Infrastructure.Shared;
 
 public interface ICacheRefService
 {

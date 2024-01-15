@@ -1,15 +1,11 @@
-using AlphaPlus.BetsForecast.Domain.Shared;
-
 namespace AlphaPlus.BetsForecast.Infrastructure.TotalBets.Criteria;
 
-internal class GetTotalGoalCriteria(byte custLevel, int custId, string language) : GetMoneyLineCriteria(custLevel, custId, language)
+internal class GetTotalGoalCriteria(byte custLevel, int custId) : GetTotalBetsCriteriaBase(custLevel, custId)
 {
     public override string GetSettingKey()
-        => CustLevel switch
-        {
-            UserLevel.Super => "Age_TotalBets_Sel6_SAg",
-            UserLevel.Master => "Age_TotalBets_Sel6_MAg",
-            UserLevel.Agent => "Age_TotalBets_Sel6_Ag",
-            _ => throw new ArgumentException("Invalid enum value for CustLevel", nameof(CustLevel)),
-        };
+        => CustLevel.IsSuperLevel()
+        ? "Age_TotalBets_Sel6_SAg"
+        : (CustLevel.IsMasterLevel()
+            ? "Age_TotalBets_Sel6_MAg"
+            : "Age_TotalBets_Sel6_Ag");
 }

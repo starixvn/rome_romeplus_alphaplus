@@ -1,12 +1,7 @@
 namespace AlphaPlus.Tickets.Site.Features.TotalBets.Requests;
 
-public class GetTotalBetsRequest
-{
-    public byte ViewerLevel { get; } = 4;
-
-    public int ViewerId { get; } = 23003140; //1176070
-
-    public string Language { get; } = "en-US";
-
-    public bool Partial { get; set; }
-}
+public record GetTotalBetsRequest(
+    byte ViewerLevel = 4,
+    int ViewerId = 23003140,//1176070
+    string Language = "en-US",
+    bool Partial = false);
