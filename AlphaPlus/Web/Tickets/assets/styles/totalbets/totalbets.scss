@@ -211,10 +211,29 @@ table * {
 }
 .icon-refresh {
     margin-right: 15px;
-    margin-top: 5px;
     position: relative;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     color: #90979a;
+}
+.match-list{
+    display: flex;
+    flex-wrap: wrap;
+    li{
+        width: 50%;
+        text-indent: -19px;
+        padding: 4px 0 4px 21px;
+        label{
+            cursor: pointer;
+        }
+        input{
+            position: relative;
+            top: 2px;
+            margin: 3px 3px 3px 4px;
+        }
+    }
+}
+.modal-dialog{
+    max-width: 700px;
 }

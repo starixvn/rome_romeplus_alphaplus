@@ -60,10 +60,10 @@
 @model ScoreMapViewModel
 <div class="page-title">@Resources.ScoreMap</div>
 <div class="filter">
-    <label for="ddlLeague">@Resources.League</label>
+    <label for="ddlLeague">@Resources.League</label>&nbsp;&nbsp;
     @Html.DropDownList("league", Model.Leagues, new { @id = "ddlLeague" })
     <span class="icon-refresh" id="icon-refresh"></span>
-    <button type="button" class="btn-submit" id="btn-select-matches">@Resources.SelectMatch</button>
+    <button type="button" class="btn-submit" id="btn-select-matches" data-toggle="modal"  data-target="#myModal"  >@Resources.SelectMatch</button>
 </div>
 <table class="tblLiveDead">
     <tbody>
@@ -73,25 +73,35 @@
         }
     </tbody>
 </table>
-<div>
+<div class="mt-10">
     <button type="button" class="btn-submit" id="btn-submit">@Resources.Submit</button>
 </div>
 <div id="content"></div>
-<div class="match-box hide" id="match-box">
-    <div class="title">
-        <div class="title-header">@Resources.SelectMatch</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
+        <div class="modal-title">@Resources.SelectMatch</div>
+      </div>
+      <div class="modal-body">
         <div class="notification">
             <div class="hide" id="tblMsgMatch">
                 <div class="msgerr" id="msgMatchErr"></div>
             </div>
         </div>
-        <div class="icon-close"></div>
+        <ul class="match-list" id="match-list">
+           
+        </ul>
+      </div>
+      <div class="modal-footer">     
+        <button type="button" class="btn-submit" id="dSubmitInMatch" data-dismiss="modal">@Resources.Select</button>
+      </div>
     </div>
-    <div class="content">
-        <ul class="match-list" id="match-list"></ul>
-    </div>
-    <div class="footer"><button type="button" class="btn" id="dSubmitInMatch">@Resources.Select</button></div>
+  </div>
 </div>
+
+
 <input type="hidden" id="hidden-allText" value="@Resources.All" />
 <input type="hidden" id="hidden-selectMatchText" value="@Resources.SelectMatch" />
 <input type="hidden" id="hidden-hideMatchText" value="@Resources.HideMatch" />
