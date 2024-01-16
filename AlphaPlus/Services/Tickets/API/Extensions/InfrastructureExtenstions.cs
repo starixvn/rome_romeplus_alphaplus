@@ -10,7 +10,7 @@ public static class InfrastructureExtenstions
         => services
         .AddSingleton<ICacheRefService, CacheRefService>()
         .AddSingleton<ITotalBetsService, TotalBetsService>()
-        .AddSingleton<ILeagueService, LeagueService>()
         .AddSingleton<IForecastService, ForecastService>()
-        .AddSingleton<IScoreMapService, ScoreMapService>();
+        .AddSingleton<IScoreMapService, ScoreMapService>()
+        .AddSingleton<ISoccerService, SoccerService>();
 }

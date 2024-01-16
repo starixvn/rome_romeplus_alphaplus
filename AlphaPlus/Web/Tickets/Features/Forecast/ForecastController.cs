@@ -11,18 +11,22 @@ public class ForecastController : Controller//BaseController
     private const string PartialName = "Partial";
     private readonly IForecastService forecastService;
     private readonly IScoreMapService scoreMapService;
+    private readonly ISoccerService soccerService;
 
-    public ForecastController(IForecastService forecastService, IScoreMapService scoreMapService)
-        => (this.forecastService, this.scoreMapService) = (forecastService, scoreMapService);
+    public ForecastController(
+        IForecastService forecastService,
+        IScoreMapService scoreMapService,
+        ISoccerService soccerService)
+        => (this.forecastService, this.scoreMapService, this.soccerService) = (forecastService, scoreMapService, soccerService);
 
     public async Task<IActionResult> Soccer()
     {
         var isLive = true;
-        var leagues = await forecastService.GetSoccerLeagues(isLive, "en-US");
+        var leagues = await soccerService.GetLeagues(isLive, "en-US");
         var firstLeague = leagues.FirstOrDefault();
         var matches = firstLeague == null
             ? Enumerable.Empty<Match>()
-            : await forecastService.GetSoccerMatches(firstLeague.LeagueId, isLive, "en-US");
+            : await soccerService.GetMatches(firstLeague.LeagueId, isLive, "en-US");
 
         return View(Tuple.Create(
             leagues.Select(l => new SelectListItem(l.LeagueName, l.LeagueId.ToString())),

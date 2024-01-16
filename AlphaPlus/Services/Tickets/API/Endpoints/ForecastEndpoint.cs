@@ -12,26 +12,26 @@ public class ForecastEndpoint : IEndpoint
 
         forecast.MapGet(
             "/soccerleagues",
-            (bool isLive, bool isShowAll, string language, ILeagueService service)
-            => service.GetSoccerLeagues(isLive, isShowAll, language));
+            (bool isLive, bool isShowAll, string language, ISoccerService service)
+            => service.GetLeagues(isLive, isShowAll, language));
 
         forecast.MapGet(
             "/soccermatches",
-            (int leagueId, bool isLive, string language, ILeagueService service)
-            => service.GetSoccerMatches(leagueId, isLive, language));
+            (int leagueId, bool isLive, string language, ISoccerService service)
+            => service.GetMatches(leagueId, isLive, language));
 
         forecast.MapGet(
             "/soccer",
-            async (int custId, string matchIds, bool isLive, string language, IForecastService service) =>
+            async (int custId, string matchIds, bool isLive, string language, ISoccerService service) =>
             {
-                var (matches, betTypes, winloss) = await service.GetSoccer(custId, matchIds, isLive);
+                var (matches, betTypes, winloss) = await service.GetResults(custId, matchIds, isLive);
 
                 return Tuple.Create(matches, betTypes, winloss);
             });
 
         forecast.MapGet(
             "/runningleagues",
-            ([AsParameters] GetRunningLeaguesParam param, ILeagueService service) => service.GetRunningLeagues(param));
+            ([AsParameters] GetRunningLeaguesParam param, IForecastService service) => service.GetRunningLeagues(param));
 
         forecast.MapGet(
             "/hdpoulive",

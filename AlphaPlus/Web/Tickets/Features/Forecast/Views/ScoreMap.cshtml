@@ -60,16 +60,17 @@
 @model ScoreMapViewModel
 <div class="page-title">@Resources.ScoreMap</div>
 <div class="filter">
-    <label for="ddlLeague">@Resources.League</label>&nbsp;&nbsp;
-    @Html.DropDownList("league", Model.Leagues, new { @id = "ddlLeague" })
+    <label for="ddlLeague">@Resources.League</label>
+    <select asp-items="Model.Leagues" id="ddlLeague"></select>
     <span class="icon-refresh" id="icon-refresh"></span>
-    <button type="button" class="btn-submit" id="btn-select-matches" data-toggle="modal"  data-target="#myModal"  >@Resources.SelectMatch</button>
+    <button type="button" class="btn-submit" id="btn-select-matches" data-toggle="modal"
+        data-target="#myModal">@Resources.SelectMatch</button>
 </div>
 <table class="tblLiveDead">
     <tbody>
         @{
-            RenderLiveDeadBalls(Model.ScoreMapBetTypes[0].ToList(), true, null);
-            RenderLiveDeadBalls(Model.ScoreMapBetTypes[1].ToList(), false, null);
+            RenderLiveDeadBalls(Model.BetTypes[0].ToList(), true, null);
+            RenderLiveDeadBalls(Model.BetTypes[1].ToList(), false, null);
         }
     </tbody>
 </table>
@@ -78,30 +79,29 @@
 </div>
 <div id="content"></div>
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal" aria-labelledby="myModalLabel">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
-        <div class="modal-title">@Resources.SelectMatch</div>
-      </div>
-      <div class="modal-body">
-        <div class="notification">
-            <div class="hide" id="tblMsgMatch">
-                <div class="msgerr" id="msgMatchErr"></div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
+                <div class="modal-title">@Resources.SelectMatch</div>
+            </div>
+            <div class="modal-body">
+                <div class="notification">
+                    <div class="hide" id="tblMsgMatch">
+                        <div class="msgerr" id="msgMatchErr"></div>
+                    </div>
+                </div>
+                <ul class="match-list" id="match-list">
+
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-submit" id="dSubmitInMatch"
+                    data-dismiss="modal">@Resources.Select</button>
             </div>
         </div>
-        <ul class="match-list" id="match-list">
-           
-        </ul>
-      </div>
-      <div class="modal-footer">     
-        <button type="button" class="btn-submit" id="dSubmitInMatch" data-dismiss="modal">@Resources.Select</button>
-      </div>
     </div>
-  </div>
 </div>
-
-
 <input type="hidden" id="hidden-allText" value="@Resources.All" />
 <input type="hidden" id="hidden-selectMatchText" value="@Resources.SelectMatch" />
 <input type="hidden" id="hidden-hideMatchText" value="@Resources.HideMatch" />

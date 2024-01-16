@@ -75,6 +75,18 @@ public static class InfrastructureExtenstions
                 PooledConnectionLifetime = TimeSpan.FromMinutes(HttpClientPooledConnectionLifetime)
             })
             .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
+        services
+            .AddHttpClient<ISoccerService, SoccerService>(httpClient
+                => httpClient.BaseAddress = new Uri(ticketsAPIBaseUrl))
+            .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+            })
+            .ConfigurePrimaryHttpMessageHandler(_ => new SocketsHttpHandler()
+            {
+                PooledConnectionLifetime = TimeSpan.FromMinutes(HttpClientPooledConnectionLifetime)
+            })
+            .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
 
         return services;
     }

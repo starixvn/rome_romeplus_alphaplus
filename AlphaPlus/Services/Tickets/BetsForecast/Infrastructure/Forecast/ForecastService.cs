@@ -8,10 +8,7 @@ namespace AlphaPlus.BetsForecast.Infrastructure.Forecast;
 
 public interface IForecastService
 {
-    Task<(IEnumerable<SoccerMatch>, IEnumerable<SoccerBetType>, IEnumerable<SoccerWinLoss>)> GetSoccer(
-        int custId,
-        string matchIds,
-        bool isLive);
+    Task<IEnumerable<League>> GetRunningLeagues(GetRunningLeaguesParam param);
 
     Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastParam param);
 
@@ -30,11 +27,31 @@ public class ForecastService : IForecastService
     public ForecastService(IDynamicRepository repository, ICacheRefService cacheRefService)
         => (this.repository, this.cacheRefService) = (repository, cacheRefService);
 
-    public Task<(IEnumerable<SoccerMatch>, IEnumerable<SoccerBetType>, IEnumerable<SoccerWinLoss>)> GetSoccer(
-        int custId,
-        string matchIds,
-        bool isLive)
-        => repository.FetchMultipleAsync<SoccerMatch, SoccerBetType, SoccerWinLoss>(new GetSoccerForecastCriteria(custId, matchIds, isLive));
+    public async Task<IEnumerable<League>> GetRunningLeagues(GetRunningLeaguesParam param)
+    {
+        ICriteria criteria;
+        var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevel);
+        if (custLevel.IsSuperLevel())
+        {
+            criteria = new GetRunningLeagueSuperCriteria(param.CustId, param.BetTypes);
+        }
+        else if (custLevel.IsMasterLevel())
+        {
+            criteria = new GetRunningLeagueMasterCriteria(param.CustId, param.BetTypes);
+        }
+        else
+        {
+            criteria = new GetRunningLeagueAgentCriteria(param.CustId, param.BetTypes);
+        }
+
+        var leagues = await repository.FetchAsync<League>(criteria);
+        foreach (var item in leagues)
+        {
+            item.LeagueName = cacheRefService.GetLeagueName(item.LeagueId, param.Language);
+        }
+
+        return leagues;
+    }
 
     public Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastParam param)
     {
@@ -58,8 +75,8 @@ public class ForecastService : IForecastService
 
     public async Task<AH> GetAH(GetAHParam param)
     {
-        var isHDP = IsHDP(param.BetType);
-        var hdpouTask = isHDP ? GetAHHDP(param) : GetAHOU(param);
+        var isHandicap = IsHandicap(param.BetType);
+        var hdpouTask = isHandicap ? GetAHHDP(param) : GetAHOU(param);
         var matchTask = GetAHMatch(param.MatchId, param.BetType, param.Language);
         await Task.WhenAll(matchTask, hdpouTask);
 
@@ -75,8 +92,8 @@ public class ForecastService : IForecastService
             param.Score,
             hasData,
             hdpou,
-            GetAHAllScores(isHDP, param.Score),
-            GetAHForecastScores(isHDP, param.Score));
+            GetAHAllScores(isHandicap, param.Score),
+            GetAHForecastScores(isHandicap, param.Score));
     }
 
     private async Task<ForecastMatch> GetAHMatch(int matchId, int betType, string language)
@@ -191,10 +208,10 @@ public class ForecastService : IForecastService
         return forecast;
     }
 
-    private static IEnumerable<int> GetAHAllScores(bool isHDP, int score)
+    private static IEnumerable<int> GetAHAllScores(bool isHandicap, int score)
     {
         int maxIndex, endIndex;
-        if (isHDP)
+        if (isHandicap)
         {
             maxIndex = 11;
             endIndex = score + 5;
@@ -211,9 +228,9 @@ public class ForecastService : IForecastService
         }
     }
 
-    private static IEnumerable<int> GetAHForecastScores(bool isHDP, int score)
+    private static IEnumerable<int> GetAHForecastScores(bool isHandicap, int score)
     {
-        int startIndex = isHDP ? score - 2 : score;
+        int startIndex = isHandicap ? score - 2 : score;
         yield return startIndex + 4;
         yield return startIndex + 3;
         yield return startIndex + 2;
@@ -221,8 +238,8 @@ public class ForecastService : IForecastService
         yield return startIndex;
     }
 
-    private static bool IsHDP(int betType)
-        => betType == 1 || betType == 7 || betType == 301 || betType == 303;
+    private static bool IsHandicap(int betType)
+        => betType == BetTypeConstants.Handicap || betType == BetTypeConstants._1stHandicap;
 
     public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastParam param)
         => GetForecast<Forecast1X2>(new Get1X2ByLeagueCriteria(param.CustLevel, param.CustId, param.LeagueId), param.Language);
