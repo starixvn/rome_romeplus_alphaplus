@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Domain;
 using AlphaPlus.Settings.Site.SubAccount.Models;
 using AlphaPlus.Settings.Site.SubAccount.Requests;
 
@@ -34,7 +31,17 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
         public async Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountRequest subAccountRequest)
         {
             var result = await subAccountService.GetSubAccountList(subAccountRequest.CustId);
-            return await Task.FromResult(Enumerable.Empty<SubAccountViewModel>());
+            var model = new List<SubAccountViewModel>();
+
+            foreach (var item in result)
+            {
+                model.Add(new SubAccountViewModel{
+                     Closed = item.Closed, CreateDate = item.CreateDate, Firstname = item.Firstname, 
+                     Lastname = item.Lastname, Nickname = item.Nickname, PageAccess = item.PageAccess.ParsePageAccess(), 
+                     Password = item.Password, SubAccId = item.SubAccId, Username = item.Username});
+            }
+
+            return model;
         }
 
         public async Task<Result> Update(SubAccountViewModel subAccountViewModel)

@@ -4,14 +4,14 @@ namespace AlphaPlus.Settings.Site.SubAccount.Models
 {
     public class SubAccountViewModel
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public string NickName { get; set; }
-        public string PassWord { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int SubAccId { get; set; }
+        public string Username { get; set; }
+        public string Nickname { get; set; }
+        public string Password { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
         public DateTime CreateDate { get; set; }
-        public bool IsClosed { get; set; }
+        public bool Closed { get; set; }
         public PageAccess PageAccess { get; set; }
     }
 }
