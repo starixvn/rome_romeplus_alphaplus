@@ -2,32 +2,14 @@ namespace Alpha.IPInfo.Models
 {
     public class IPV6Information
     {
-        public IPV6Information()
-        {
-        }
+        public string IP { get; set; }
 
-        public IPV6Information(
-            string ip,
-            byte[] ipFrom,
-            byte[] ipTo,
-            string countryShort,
-            string countryLong)
-        {
-            IP = ip;
-            IPFrom = ipFrom;
-            IPTo = ipTo;
-            CountryShort = countryShort;
-            CountryLong = countryLong;
-        }
+        public byte[] IPFrom { get; set; }
 
-        public string IP { get; }
+        public byte[] IPTo { get; set; }
 
-        public byte[] IPFrom { get; }
+        public string CountryShort { get; set; }
 
-        public byte[] IPTo { get; }
-
-        public string CountryShort { get; }
-
-        public string CountryLong { get; }
+        public string CountryLong { get; set; }
     }
 }

@@ -2,32 +2,14 @@ namespace Alpha.IPInfo.Models
 {
     public class IPV4Information
     {
-        public IPV4Information()
-        {
-        }
+        public string IP { get; set; }
 
-        public IPV4Information(
-            string ip,
-            long ipFrom,
-            long ipTo,
-            string countryShort,
-            string countryLong)
-        {
-            IP = ip;
-            IPFrom = ipFrom;
-            IPTo = ipTo;
-            CountryShort = countryShort;
-            CountryLong = countryLong;
-        }
+        public long IPFrom { get; set; }
 
-        public string IP { get; }
+        public long IPTo { get; set; }
 
-        public long IPFrom { get; }
+        public string CountryShort { get; set; }
 
-        public long IPTo { get; }
-
-        public string CountryShort { get; }
-
-        public string CountryLong { get; }
+        public string CountryLong { get; set; }
     }
 }

@@ -4,24 +4,10 @@
 
     public sealed class UMInfo
     {
-        public UMInfo()
-        {
-        }
+        public string FunctionTypeName { get; set; }
 
-        public UMInfo(
-            string functionTypeName,
-            DateTime beginTime,
-            DateTime endTime)
-        {
-            FunctionTypeName = functionTypeName;
-            BeginTime = beginTime;
-            EndTime = endTime;
-        }
+        public DateTime BeginTime { get; set; }
 
-        public string FunctionTypeName { get; }
-
-        public DateTime BeginTime { get; }
-
-        public DateTime EndTime { get; }
+        public DateTime EndTime { get; set; }
     }
 }
