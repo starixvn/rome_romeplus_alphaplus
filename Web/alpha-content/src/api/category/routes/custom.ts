@@ -2,8 +2,8 @@ export default {
   routes: [
     {
       method: 'GET',
-      path: '/categories/latest/getAll',
-      handler: 'category.getAll',
+      path: '/categories/latest/demo',
+      handler: 'category.demo',
     },
     {
       method: 'GET',

@@ -11,6 +11,8 @@ export const getServerSideProps = (async (context) => {
 }>
 
 export default function Categories({ categories }: { categories: Category[] }) {
+  const c = categories || [];
+
   return (
     <>
       <div
@@ -19,8 +21,8 @@ export default function Categories({ categories }: { categories: Category[] }) {
         md:space-x-6 md:divide-y-0"
       >
         <div className="flex flex-wrap gap-y-2 gap-x-3 mt-4">
-          {categories.length === 0 && 'No category found.'}
-          {categories.map((category: Category) => {
+          {c.length === 0 && 'No category found.'}
+          {c.map((category: Category) => {
             return (
               <div>
                 <div

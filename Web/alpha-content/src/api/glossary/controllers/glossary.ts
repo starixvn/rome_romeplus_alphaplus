@@ -32,6 +32,7 @@ export default factories.createCoreController('api::glossary.glossary', ({ strap
           try {
             const { group, market, level} = ctx.params;
             const g = group.substring(1);
+            const isSelectAll = !g || g == '#';
             const entities = await strapi.entityService.findMany('api::glossary.glossary', {
               filters: {
                 publishedAt: { $null: false },
@@ -41,7 +42,7 @@ export default factories.createCoreController('api::glossary.glossary', ({ strap
                 user_levels: {
                   levelId: { $eq: level }
                 },
-                name: {  $startsWithi: g }
+                name: isSelectAll ? {} : {  $startsWithi: g }
               }
             });  
             const output = await this.sanitizeOutput(entities, ctx);

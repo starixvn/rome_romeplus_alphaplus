@@ -12,7 +12,7 @@ export function BlogListLayout(props: ListLayoutProps) {
     pagination,
   } = props
   let [searchValue, setSearchValue] = useState('')
-  let filteredBlogArticles = articles.filter((article) => {
+  let filteredBlogArticles = (articles || []).filter((article) => {
     const searchContent =
       article.attributes.title +
       article.attributes.summary +

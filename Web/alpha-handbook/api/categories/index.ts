@@ -6,7 +6,7 @@ const options = { headers: { Authorization: `Bearer ${token}` } };
 
 export async function getCategories() {
     const urlParamsObject = {};
-    const response =  await fetchAPI(path + '/latest/getAll', urlParamsObject, options);
+    const response =  await fetchAPI(path + '/latest/demo', urlParamsObject, options);
     return response.data;
 }
 

@@ -8,7 +8,7 @@ const options = {
 
 export async function getArticles() {
     try {
-        const url = `${path}/latest/all`;
+        const url = `${path}/latest/demo`;
         const urlParamsObject = {};
     
         const response = await fetchAPI(url, urlParamsObject, options);

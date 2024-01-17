@@ -2,13 +2,13 @@ export default {
   routes: [
     { // Path defined with a URL parameter
       method: 'GET',
-      path: '/articles/category/:slug',
-      handler: 'article.findManyByCategory',
+      path: '/articles/latest/demo',
+      handler: 'article.findDemo',
     },
     { // Path defined with a URL parameter
       method: 'GET',
-      path: '/articles/latest/all',
-      handler: 'article.findManyLatest',
+      path: '/articles/category/:slug',
+      handler: 'article.findManyByCategory',
     },
     { // Path defined with a URL parameter
       method: 'GET',

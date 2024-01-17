@@ -67,11 +67,12 @@ export default factories.createCoreController('api::article.article', ({ strapi 
 
     return this.transformResponse(results);
   },
-  async findManyLatest (ctx) {
+  async findDemo (ctx) {
     try {
       const entities = await strapi.entityService.findMany('api::article.article', {
         filters: {
-          publishedAt: { $null: false }
+          publishedAt: { $null: false },
+          markets: { name: 'MBC' }
         },
         populate: {
           categories: {

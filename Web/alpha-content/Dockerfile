@@ -13,6 +13,11 @@ ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY Web/alpha-content .
 
+# Register TRANSFORM_CONFIG argument for transforming by environment
+ARG TRANSFORM_CONFIG
+RUN echo $TRANSFORM_CONFIG
+COPY "Web/alpha-content/.env.$TRANSFORM_CONFIG" .env
+
 RUN  yarn build
 
 # Creating final production image
