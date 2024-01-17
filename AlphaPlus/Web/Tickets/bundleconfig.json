@@ -7,6 +7,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/bundles/totalbets/scoremap.css",
+    "inputFiles": [
+      "assets/styles/totalbets/scoremap.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/bundles/totalbets/totalbets.js",
     "inputFiles": [
       "assets/scripts/components/fanex.autorefresh.js",

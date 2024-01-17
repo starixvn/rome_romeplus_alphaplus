@@ -1843,7 +1843,9 @@
       "styles-v3/components/tab-nav.css",
       "styles-v3/components/form.css",
       "styles-v3/components/button.css",
-      "styles-v3/components/modal.css"
+      "styles-v3/components/modal.css",
+      "styles-v3/components/icon.css",
+      "styles-v3/components/alert.css"
     ]
   }
 ]

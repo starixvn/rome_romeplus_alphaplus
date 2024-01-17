@@ -2,13 +2,13 @@
     Layout = null;
     void RenderMatrix(int rowNumber, int columnNumber, int[,] matrix, string tableId)
     {
-        <table id="@tableId">
+        <table id="@tableId" class="tbl-score-result">
             <thead>
-                <tr>
+                <tr class="vsmHomeWay">
                     <td rowspan="2">@Resources.Away</td>
                     <td colspan="@columnNumber">@Resources.Home</td>
                 </tr>
-                <tr>
+                <tr class="vsm">
                     @for (int i = 0; i < columnNumber; i++)
                     {
                         <td style="width:13%;">@i</td>
@@ -21,7 +21,7 @@
                     @for (int i = 0; i < rowNumber; i++)
                     {
                         <tr>
-                            <td>@i</td>
+                            <td class="vsm">@i</td>
                             @for (int j = 0; j < columnNumber; j++)
                             {
                                 var score = matrix[i, j];
@@ -42,11 +42,13 @@
 {
 @:<div class="paddingTopMatch" id="RefreshContent@(item.MatchId)">
 } *@
-    <div data-matchid="@item.MatchId">
+    <div data-matchid="@item.MatchId" class="match-title">
+        <span class="icon-menu-down open"></span>
         <span id="lnkGroupscoreMap@(item.MatchId)">@item.Event</span>
-        <span id="lnkRefresh@(item.MatchId)" title="@Resources.Refresh" data-matchid="@item.MatchId"></span>
+        <span id="lnkRefresh@(item.MatchId)" class="icon-refresh" title="@Resources.Refresh" data-matchid="@item.MatchId"></span>
+        <span class="lds-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
     </div>
-    <div id="scoreMap@(item.MatchId)">
+    <div id="scoreMap@(item.MatchId)" class="tbl-ht-time">
         <div class="round haft-time">@Resources.HT</div>
         @{
             RenderMatrix(item.RowNumber, item.ColumnNumber, item.HaftTime, "tblht" + item.MatchId);

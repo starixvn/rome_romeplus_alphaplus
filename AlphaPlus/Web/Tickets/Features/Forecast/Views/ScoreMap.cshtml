@@ -59,12 +59,13 @@
 }
 @model ScoreMapViewModel
 <div class="page-title">@Resources.ScoreMap</div>
-<div class="filter">
+<div class="filter mt-10">
     <label for="ddlLeague">@Resources.League</label>
     <select asp-items="Model.Leagues" id="ddlLeague"></select>
     <span class="icon-refresh" id="icon-refresh"></span>
     <button type="button" class="btn-submit" id="btn-select-matches" data-toggle="modal"
         data-target="#myModal">@Resources.SelectMatch</button>
+    <span class="lds-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
 </div>
 <table class="tblLiveDead">
     <tbody>
@@ -74,23 +75,24 @@
         }
     </tbody>
 </table>
-<div class="mt-10">
+<div class="filter mt-10">
     <button type="button" class="btn-submit" id="btn-submit">@Resources.Submit</button>
+    <span class="lds-spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
 </div>
-<div id="content"></div>
+<div id="content" class="list-table-match"></div>
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="notification">
+                    <div class="" id="tblMsgMatch">
+                        <div class="alert error" id="msgMatchErr">Please choose a match!</div>
+                    </div>
+                </div>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
                 <div class="modal-title">@Resources.SelectMatch</div>
             </div>
-            <div class="modal-body">
-                <div class="notification">
-                    <div class="hide" id="tblMsgMatch">
-                        <div class="msgerr" id="msgMatchErr"></div>
-                    </div>
-                </div>
+            <div class="modal-body">                
                 <ul class="match-list" id="match-list">
 
                 </ul>

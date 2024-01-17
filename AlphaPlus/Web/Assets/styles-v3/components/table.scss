@@ -27,8 +27,7 @@
         border: 1px solid var(--border-table);
         padding: 0 4px;
         height: 27px;
-        vertical-align: middle;
-        font-weight: 400;
+        vertical-align: middle;        
     }
     thead {
         th,
@@ -41,6 +40,7 @@
             th,
             td {
                 background-color: var(--bg-head-table2);
+                font-weight: 400;
             }
         }
     }

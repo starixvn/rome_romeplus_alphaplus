@@ -1,7 +1,41 @@
-﻿.alert {
-    --border-error: #FF130A;
-    --bg-error: #FADDDD;
-    --text-error: #FE0000;
+﻿:root,
+:root [data-theme='light'] {
+    .alert{
+        --border-error: #ef2d2d;
+        --bg-error: #fadddd;
+        --text-error: #fe0000;
+        --border-warning: #7F3D1D;
+        --bg-warning: #FAF9DD;
+        --text-warning: #7F3D1D;
+        --border-success: #2D982D;
+        --bg-success: #EEFBE9;
+        --text-success: #2D982D;
+        --border-info: #2865B5;
+        --bg-info: #E3F4FB;
+        --text-info: #2865B5;
+    }
+}
+:root [data-theme='dark'] {
+    .alert{        
+        --border-error: #ef2d2d;
+        --bg-error: #361212;
+        --text-error: #cc7070;
+        //color below is not dark mode
+        --border-warning: #7F3D1D;
+        --bg-warning: #FAF9DD;
+        --text-warning: #7F3D1D;
+        --border-success: #2D982D;
+        --bg-success: #EEFBE9;
+        --text-success: #2D982D;
+        --border-info: #2865B5;
+        --bg-info: #E3F4FB;
+        --text-info: #2865B5;
+    }
+}
+.alert {
+    --border-error: #ef2d2d;
+    --bg-error: #fadddd;
+    --text-error: #fe0000;
     --border-warning: #7F3D1D;
     --bg-warning: #FAF9DD;
     --text-warning: #7F3D1D;
@@ -17,7 +51,7 @@
     font-weight: 500;
     margin-bottom: 10px;
     font-size: var(--font-size);
-    border-radius: 3px;
+    border-radius: 2px;
     position: relative;
 
     &:before {
@@ -34,43 +68,43 @@
         font-size: 20px;
     }
 
-    &-error {
+    &.error {
         border-color: var(--border-error);
         background-color: var(--bg-error);
         color: var(--text-error);
 
         &:before {
-            content: "\e907";
+            content: "\e93e";
         }
     }
 
-    &-warning {
+    &.warning {
         border-color: var(--border-warning);
         background-color: var(--bg-warning);
         color: var(--text-warning);
 
         &:before {
-            content: "\e90c";
+            content: "\e93d";
         }
     }
 
-    &-success {
+    &.success {
         border-color: var(--border-success);
         background-color: var(--bg-success);
         color: var(--text-success);
 
         &:before {
-            content: "\e901";
+            content: "\e93b";
         }
     }
 
-    &-info {
+    &.info {
         border-color: var(--border-info);
         background-color: var(--bg-info);
         color: var(--text-info);
 
         &:before {
-            content: "\e908";
+            content: "\e93c";
         }
     }
 }
