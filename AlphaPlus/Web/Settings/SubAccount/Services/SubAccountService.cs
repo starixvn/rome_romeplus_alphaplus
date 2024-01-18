@@ -31,17 +31,19 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
         public async Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountRequest subAccountRequest)
         {
             var result = await subAccountService.GetSubAccountList(subAccountRequest.CustId);
-            var model = new List<SubAccountViewModel>();
 
-            foreach (var item in result)
+            return result.Select(item => new SubAccountViewModel
             {
-                model.Add(new SubAccountViewModel{
-                     Closed = item.Closed, CreateDate = item.CreateDate, Firstname = item.Firstname, 
-                     Lastname = item.Lastname, Nickname = item.Nickname, PageAccess = item.PageAccess, 
-                     Password = item.Password, SubAccId = item.SubAccId, Username = item.Username});
-            }
-
-            return model;
+                Closed = item.Closed,
+                CreateDate = item.CreateDate,
+                Firstname = item.Firstname,
+                Lastname = item.Lastname,
+                Nickname = item.Nickname,
+                PageAccess = item.PageAccess,
+                Password = item.Password,
+                SubAccId = item.SubAccId,
+                Username = item.Username
+            });
         }
 
         public async Task<Result> Update(SubAccountViewModel subAccountViewModel)
