@@ -1,47 +1,38 @@
-'use strict';
-(function ($) {
-    const rootUrl = $('#RootURL').val();
-    const $tblRpt = $('#tblRpt tbody');
-
-    function bindViewForecastLink() {
-        $('.icon-fc')
-            .off('click')
-            .click(function () {
-                const $this = $(this);
-                const url = [
-                    rootUrl,
-                    'Forecast/FC1x2ByMatchAndBetType?matchId=',
-                    $this.data('matchid'),
-                    '&betType=',
-                    $this.data('bettype')
-                ].join('');
-                top.popupManager.open(url, '', 900);
-            });
-    }
-
-    function initAutoRefresh() {
+"use strict";
+class TotalBets {
+    initAutoRefresh($tblRpt) {
         const autoRefreshSeconds = $('#hidden-autoRefreshSeconds')
             .val()
             .split(',')
             .map(function (second) {
-                return +second;
-            });
+            return +second;
+        });
         const autoRefreshUrl = $('#hidden-autoRefreshUrl').val();
         $('.auto-refresh').fanexAutoRefresh({
             buttonRefreshTooltip: $('#hidden-autoRefreshRefreshText').val(),
             seconds: autoRefreshSeconds,
             refreshHandler: function () {
-                $.get(autoRefreshUrl, function (html) {
+                $.get(autoRefreshUrl, (html) => {
                     $tblRpt.html(html);
-                    bindViewForecastLink();
+                    this.bindViewForecast();
                 });
             },
             savedSecondKey: $('#hidden-autoRefreshSavedSecondKey').val()
         });
     }
-
-    $(function () {
-        initAutoRefresh();
-        bindViewForecastLink();
-    });
-})(window.jQuery);
+    bindViewForecast($tblRpt) {
+        $tblRpt
+            .find('.icon-fc')
+            .off('click')
+            .click(function (e) {
+            //e.preventDefault();
+            top.popupManager.open($(e.target).attr('href'), '', 900);
+        });
+    }
+    init() {
+        this.initAutoRefresh($('#tblRpt').find('tbody'));
+    }
+}
+$(function () {
+    new TotalBets().init();
+});

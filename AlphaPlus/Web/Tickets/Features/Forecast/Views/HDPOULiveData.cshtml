@@ -1,12 +1,11 @@
 @{
     Layout = null;
-    async Task RenderViewBetListLink(int matchId, int betType)
+    async Task RenderViewBetList(int matchId, int betType)
     {
         <td class="w-icon-fc">
-            <view-betlist-fc matchid="@matchId" bettype="@betType" />
+            <a asp-action="AH" asp-route-matchid="@matchId" asp-route-bettype="@betType" class="icon-fc"></a>
         </td>
     }
-
     async Task RenderCell(decimal? number)
     {
         <td class="bold">
@@ -47,7 +46,7 @@
         <tr>
             <td>@Resources.FullTime</td>
             @{
-                await RenderViewBetListLink(item.MatchId, 1);
+                await RenderViewBetList(item.MatchId, 1);
                 await RenderCell(item.WinLost_1_HDP);
                 await RenderCell(item.WinLost_0_HDP);
                 await RenderCell(item.WinLost_M1_HDP);
@@ -59,7 +58,7 @@
         <tr>
             <td>@Resources.HalfTime</td>
             @{
-                await RenderViewBetListLink(item.MatchId, 7);
+                await RenderViewBetList(item.MatchId, 7);
                 await RenderCell(item.WinLost_1_HTHDP);
                 await RenderCell(item.WinLost_0_HTHDP);
                 await RenderCell(item.WinLost_M1_HTHDP);

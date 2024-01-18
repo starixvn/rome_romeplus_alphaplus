@@ -83,17 +83,19 @@ public class ForecastService : IForecastService
         var match = await matchTask;
         var (hasData, hdpou) = await hdpouTask;
 
-        return new AH(
-            param.MatchId,
-            match.Event,
-            $"{match.LiveHomeScore} : {match.LiveAwayScore}",
-            param.BetType,
-            cacheRefService.GetBetTypeName(param.BetType, param.Language),
-            param.Score,
-            hasData,
-            hdpou,
-            GetAHAllScores(isHandicap, param.Score),
-            GetAHForecastScores(isHandicap, param.Score));
+        return match == null
+            ? null
+            : new AH(
+                param.MatchId,
+                match.Event,
+                $"{match.LiveHomeScore} : {match.LiveAwayScore}",
+                param.BetType,
+                cacheRefService.GetBetTypeName(param.BetType, param.Language),
+                param.Score,
+                hasData,
+                hdpou,
+                GetAHAllScores(isHandicap, param.Score),
+                GetAHForecastScores(isHandicap, param.Score));
     }
 
     private async Task<ForecastMatch> GetAHMatch(int matchId, int betType, string language)

@@ -27,13 +27,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/bundles/forecast/1X2ByMatch.js",
-    "inputFiles": [
-      "assets/scripts/components/fanex.autorefresh.js",
-      "assets/scripts/forecast/1X2ByMatch.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/bundles/forecast/scoremap.js",
     "inputFiles": [
       "assets/scripts/forecast/scoremap.js"

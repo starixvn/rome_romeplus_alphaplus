@@ -1,6 +1,7 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 using AlphaPlus.Tickets.Site.Features.Forecast.ViewModels;
+using AlphaPlus.Tickets.Site.Features.Shared.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -37,85 +38,78 @@ public class ForecastController : Controller//BaseController
     {
         // bettypes = 1: for HDP/OU/Live
         var leagues = await forecastService.GetRunningLeagues(message.ViewerLevel, message.ViewerId, "1", message.Language);
-        var firstLeagueId = leagues.FirstOrDefault()?.LeagueId ?? 0;
-        var selectedLeagueId = message.LeagueId > 0 ? message.LeagueId : firstLeagueId;
-        var data = firstLeagueId == 0
+        message.LeagueId = message.LeagueId == 0
+            ? leagues.FirstOrDefault()?.LeagueId ?? 0
+            : message.LeagueId;
+        var forecast = message.LeagueId == 0
             ? Enumerable.Empty<ForecastHDPOULive>()
-            : await forecastService.GetHDPOULive(message.ViewerLevel, message.ViewerId, selectedLeagueId, message.Language);
+            : await forecastService.GetHDPOULive(message);
 
         return View(
             $"{nameof(HDPOULive)}{(message.Partial ? PartialName : string.Empty)}",
-            new ForecastViewModel<ForecastHDPOULive>(selectedLeagueId, leagues, data));
+            new ForecastViewModel<ForecastHDPOULive>(message.LeagueId, leagues, forecast));
     }
 
     public async Task<IActionResult> HDPOULiveData(GetForecastRequest message)
-        => View(
-            nameof(HDPOULiveData),
-            await forecastService.GetHDPOULive(message.ViewerLevel, message.ViewerId, message.LeagueId, message.Language));
+        => View(await forecastService.GetHDPOULive(message));
 
     public async Task<IActionResult> AH(GetAHRequest message)
-    {
-        return View(
+        => View(
             $"{nameof(AH)}{(message.Partial ? PartialName : string.Empty)}",
             await forecastService.GetAH(message));
-    }
 
     [ActionName("1X2")]
     public async Task<IActionResult> _1X2(GetForecastRequest message)
     {
         // bettypes = 5: for 1X2
         var leagues = await forecastService.GetRunningLeagues(message.ViewerLevel, message.ViewerId, "5", message.Language);
-        var firstLeagueId = leagues.FirstOrDefault()?.LeagueId ?? 0;
-        var selectedLeagueId = message.LeagueId > 0 ? message.LeagueId : firstLeagueId;
-        var data = firstLeagueId == 0
+        message.LeagueId = message.LeagueId == 0
+            ? leagues.FirstOrDefault()?.LeagueId ?? 0
+            : message.LeagueId;
+        var forecast = message.LeagueId == 0
             ? Enumerable.Empty<Forecast1X2>()
-            : await forecastService.Get1X2(message.ViewerLevel, message.ViewerId, selectedLeagueId, message.Language);
+            : await forecastService.Get1X2(message);
 
         return View(
             $"1X2{(message.Partial ? PartialName : string.Empty)}",
-            new ForecastViewModel<Forecast1X2>(selectedLeagueId, leagues, data));
+            new ForecastViewModel<Forecast1X2>(message.LeagueId, leagues, forecast));
     }
 
     [ActionName("1X2Data")]
     public async Task<IActionResult> _1X2Data(GetForecastRequest message)
-        => View(await forecastService.Get1X2(message.ViewerLevel, message.ViewerId, message.LeagueId, message.Language));
+        => View(await forecastService.Get1X2(message));
 
     [ActionName("1X2ByMatch")]
     public async Task<IActionResult> _1X2ByMatch(GetForecast1X2ByMatchRequest message)
     {
-        var data = await forecastService.Get1X2(
-            message.ViewerLevel,
-            message.ViewerId,
-            message.MatchId,
-            message.BetType,
-            message.Language);
+        var forecast = await forecastService.Get1X2(message);
 
         if (message.Partial)
         {
-            return View("1X2Data", data);
+            return View("1X2Data", forecast);
         }
 
-        return View(new Forecast1X2ByMatchViewModel(message.MatchId, message.BetType, data));
+        return View(new Forecast1X2ByMatchViewModel(message.MatchId, message.BetType, forecast));
     }
 
-    public async Task<IActionResult> ScoreMap()
+    public async Task<IActionResult> ScoreMap(RequestBase message)
     {
-        var betTypesTask = scoreMapService.GetBetTypes("en-US");
-        var leaguesTask = scoreMapService.GetLeagues(23003140, "en-US");
+        var betTypesTask = scoreMapService.GetBetTypes(message.Language);
+        var leaguesTask = scoreMapService.GetLeagues(message.ViewerId, message.Language);
         await Task.WhenAll(betTypesTask, leaguesTask);
 
         return View(new ScoreMapViewModel(await betTypesTask, await leaguesTask));
     }
 
-    public async Task<IActionResult> GetScoreMapLeagues()
-        => Json(await scoreMapService.GetLeagues(23003140, "en-US"));
+    public async Task<IActionResult> GetScoreMapLeagues(RequestBase message)
+        => Json(await scoreMapService.GetLeagues(message.ViewerId, message.Language));
 
-    public async Task<IActionResult> GetScoreMapMatches(int leagueId)
-        => Json(await scoreMapService.GetMatches(23003140, leagueId, "en-US"));
+    public async Task<IActionResult> GetScoreMapMatches(GetForecastRequest message)
+        => Json(await scoreMapService.GetMatches(message.ViewerId, message.LeagueId, message.Language));
 
-    public async Task<IActionResult> GetScoreMapResults(GetScoreMapResultRequest message)
-        => View("ScoreMapResults", await scoreMapService.GetResults(message));
+    public async Task<IActionResult> ScoreMapResults(GetScoreMapResultRequest message)
+        => View(await scoreMapService.GetResults(message));
 
-    public async Task<IActionResult> ScoreMapInformation()
-        => View(await scoreMapService.GetBetTypes("en-US"));
+    public async Task<IActionResult> ScoreMapInformation(RequestBase message)
+        => View(await scoreMapService.GetBetTypes(message.Language));
 }

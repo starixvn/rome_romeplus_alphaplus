@@ -7,13 +7,13 @@ public interface IForecastService
 {
     Task<IEnumerable<League>> GetRunningLeagues(byte custLevel, int custId, string betTypes, string language);
 
-    Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(byte custLevel, int custId, int leagueId, string language);
+    Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastRequest message);
 
     Task<AH> GetAH(GetAHRequest message);
 
-    Task<IEnumerable<Forecast1X2>> Get1X2(byte custLevel, int custId, int leagueId, string language);
+    Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastRequest message);
 
-    Task<IEnumerable<Forecast1X2>> Get1X2(byte custLevel, int custId, int matchId, int betType, string language);
+    Task<IEnumerable<Forecast1X2>> Get1X2(GetForecast1X2ByMatchRequest message);
 }
 
 public class ForecastService : IForecastService
@@ -37,17 +37,17 @@ public class ForecastService : IForecastService
         return client.GetFromJsonAsync<IEnumerable<League>>($"{ForecastUrl}/runningleagues{queryString}");
     }
 
-    public Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(byte custLevel, int custId, int leagueId, string language)
+    public async Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastRequest message)
     {
         var queryString = QueryString.Create(new[]
         {
-            KeyValuePair.Create(nameof(custLevel), custLevel.ToString()),
-            KeyValuePair.Create(nameof(custId), custId.ToString()),
-            KeyValuePair.Create(nameof(leagueId), leagueId.ToString()),
-            KeyValuePair.Create(nameof(language), language)
+            KeyValuePair.Create("custLevel", message.ViewerLevel.ToString()),
+            KeyValuePair.Create("custId", message.ViewerId.ToString()),
+            KeyValuePair.Create(nameof(message.LeagueId), message.LeagueId.ToString()),
+            KeyValuePair.Create(nameof(message.Language), message.Language)
         });
 
-        return client.GetFromJsonAsync<IEnumerable<ForecastHDPOULive>>($"{ForecastUrl}/hdpoulive{queryString}");
+        return await client.GetFromJsonAsync<IEnumerable<ForecastHDPOULive>>($"{ForecastUrl}/hdpoulive{queryString}");
     }
 
     public Task<AH> GetAH(GetAHRequest message)
@@ -65,28 +65,28 @@ public class ForecastService : IForecastService
         return client.GetFromJsonAsync<AH>($"{ForecastUrl}/ah{queryString}");
     }
 
-    public Task<IEnumerable<Forecast1X2>> Get1X2(byte custLevel, int custId, int leagueId, string language)
+    public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastRequest message)
     {
         var queryString = QueryString.Create(new[]
         {
-            KeyValuePair.Create(nameof(custLevel), custLevel.ToString()),
-            KeyValuePair.Create(nameof(custId), custId.ToString()),
-            KeyValuePair.Create(nameof(leagueId), leagueId.ToString()),
-            KeyValuePair.Create(nameof(language), language)
+            KeyValuePair.Create("custLevel", message.ViewerLevel.ToString()),
+            KeyValuePair.Create("custId", message.ViewerId.ToString()),
+            KeyValuePair.Create(nameof(message.LeagueId), message.LeagueId.ToString()),
+            KeyValuePair.Create(nameof(message.Language), message.Language)
         });
 
         return client.GetFromJsonAsync<IEnumerable<Forecast1X2>>($"{ForecastUrl}/1x2{queryString}");
     }
 
-    public Task<IEnumerable<Forecast1X2>> Get1X2(byte custLevel, int custId, int matchId, int betType, string language)
+    public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecast1X2ByMatchRequest message)
     {
         var queryString = QueryString.Create(new[]
         {
-            KeyValuePair.Create(nameof(custLevel), custLevel.ToString()),
-            KeyValuePair.Create(nameof(custId), custId.ToString()),
-            KeyValuePair.Create(nameof(matchId), matchId.ToString()),
-            KeyValuePair.Create(nameof(betType), betType.ToString()),
-            KeyValuePair.Create(nameof(language), language)
+            KeyValuePair.Create("custLevel", message.ViewerLevel.ToString()),
+            KeyValuePair.Create("custId", message.ViewerId.ToString()),
+            KeyValuePair.Create(nameof(message.MatchId), message.MatchId.ToString()),
+            KeyValuePair.Create(nameof(message.BetType), message.BetType.ToString()),
+            KeyValuePair.Create(nameof(message.Language), message.Language)
         });
 
         return client.GetFromJsonAsync<IEnumerable<Forecast1X2>>($"{ForecastUrl}/1x2bymatch{queryString}");

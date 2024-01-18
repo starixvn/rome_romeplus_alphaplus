@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
 
-[HtmlTargetElement("view-betlist-fc")]
-public class ViewBetListFCTagHelper : TagHelper
+[HtmlTargetElement("view-betlist-icon")]
+public class ViewBetListIconTagHelper : TagHelper
 {
     [HtmlAttributeName("matchid")]
     public int MatchId { get; set; }

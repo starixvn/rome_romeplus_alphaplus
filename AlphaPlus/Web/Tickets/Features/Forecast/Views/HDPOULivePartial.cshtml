@@ -4,7 +4,7 @@
 @model ForecastViewModel<ForecastHDPOULive>
 <div class="dropdown-league">
     <label for="ddlLeague">@Resources.League</label>
-    @Html.DropDownList("league", Model.Leagues, new { @id = "ddlLeague" })
+    <select asp-items="Model.Leagues" id="ddlLeague"></select>
 </div>
 <div class="clearfix"></div>
 <table class="tblRpt tblRpt-bordered tbl-hdpoulive text-center" id="tblRpt">

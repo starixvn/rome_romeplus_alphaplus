@@ -11,7 +11,8 @@
         <td class="w-icon-fc">
             @if (betCount != 0)
             {
-                <span class="icon-fc" data-matchid="@matchId" data-bettype="@betType"></span>
+                <a asp-controller="Forecast" asp-action="AH" asp-route-matchid="@matchId" asp-route-bettype="@betType"
+                    class="icon-fc"></a>
             }
         </td>
     }

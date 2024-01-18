@@ -1,42 +1,39 @@
-'use strict';
-(function ($) {
-    const $content = $('#content');
-    const dataUrl = $('#hidden-dataUrl').val();
-
-    function bindLeagueChangeEvent() {
-        $('#ddlLeague')
-            .off('change')
-            .change(function () {
-                $.get(dataUrl + this.value, function (html) {
-                    $('#tblRpt tbody').html(html);
-                });
-            });
-    }
-
-    function initAutoRefresh() {
+"use strict";
+class Forecast {
+    initAutoRefresh($content) {
         const autoRefreshSeconds = $('#hidden-autoRefreshSeconds')
             .val()
             .split(',')
             .map(function (second) {
-                return +second;
-            });
+            return +second;
+        });
         const autoRefreshUrl = $('#hidden-autoRefreshUrl').val();
         $('.auto-refresh').fanexAutoRefresh({
             buttonRefreshTooltip: $('#hidden-autoRefreshRefreshText').val(),
             seconds: autoRefreshSeconds,
-            refreshHandler: function () {
+            refreshHandler: () => {
                 const $ddlLeague = $('#ddlLeague');
-                $.get(autoRefreshUrl + ($ddlLeague.length ? $ddlLeague.val() : ''), function (html) {
+                $.get(autoRefreshUrl + ($ddlLeague.length ? $ddlLeague.val() : ''), (html) => {
                     $content.html(html);
-                    bindLeagueChangeEvent();
+                    this.bindLeagueChangeEvent($ddlLeague);
                 });
             },
             savedSecondKey: $('#hidden-autoRefreshSavedSecondKey').val()
         });
     }
-
-    $(function () {
-        initAutoRefresh();
-        bindLeagueChangeEvent();
-    });
-})(window.jQuery);
+    bindLeagueChangeEvent($ddlLeague) {
+        $ddlLeague.off('change').change(() => {
+            $.get(this.dataUrl + $ddlLeague.val(), function (html) {
+                $('#tblRpt tbody').html(html);
+            });
+        });
+    }
+    init() {
+        this.dataUrl = $('#hidden-dataUrl').val();
+        this.initAutoRefresh($('#content'));
+        this.bindLeagueChangeEvent($('#ddlLeague'));
+    }
+}
+$(function () {
+    new Forecast().init();
+});
