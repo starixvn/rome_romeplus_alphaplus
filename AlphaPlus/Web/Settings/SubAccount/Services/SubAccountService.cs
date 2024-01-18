@@ -37,7 +37,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
             {
                 model.Add(new SubAccountViewModel{
                      Closed = item.Closed, CreateDate = item.CreateDate, Firstname = item.Firstname, 
-                     Lastname = item.Lastname, Nickname = item.Nickname, PageAccess = item.PageAccess.ParsePageAccess(), 
+                     Lastname = item.Lastname, Nickname = item.Nickname, PageAccess = item.PageAccess, 
                      Password = item.Password, SubAccId = item.SubAccId, Username = item.Username});
             }
 
