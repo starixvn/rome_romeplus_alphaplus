@@ -4,7 +4,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
 {
     public static class AuthenticateEndpoints
     {
-        public static IEndpointRouteBuilder MapAuthenticateEndpoints(this IEndpointRouteBuilder endpoints)
+        public static IEndpointRouteBuilder MapAuthEndpoints(this IEndpointRouteBuilder endpoints)
         {
             var auth = endpoints.MapGroup("/auth")
                 .WithTags("Auth")

@@ -9,11 +9,15 @@
 
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Extensions\FanexDataExtensions.cs" Link="Extensions\FanexDataExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Middlewares\ExceptionMiddleware.cs" Link="Middlewares\ExceptionMiddleware.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Fanex.Data.Repository" Version="4.2.5.3" />
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
