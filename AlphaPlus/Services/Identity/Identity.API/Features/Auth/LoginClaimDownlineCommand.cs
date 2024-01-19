@@ -52,9 +52,9 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public bool IsFirstLogin { get; set; }
 
-        public bool IsNickName { get; set; }
+        public DateTime PwdExpiry { get; set; }
 
-        public bool NickNameLoginOnly { get; set; }
+        public bool IsNickName { get; set; }
 
         public string SecurityCode { get; set; }
 
@@ -63,6 +63,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
         public bool IsProtectedMode { get; set; }
 
         public string LanguageUsage { get; set; }
+
 
         public string GetSettingKey() => "Age_LoginClaimDownline";
 

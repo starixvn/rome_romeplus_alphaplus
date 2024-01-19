@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\..\Shared\Extensions\FanexDataExtensions.cs" Link="Extensions\FanexDataExtensions.cs" />
     <Compile Include="..\..\Shared\BaseMessage.cs" Link="Shared\BaseMessage.cs" />
     <Compile Include="..\..\Shared\BaseRequest.cs" Link="Shared\BaseRequest.cs" />
     <Compile Include="..\..\Shared\BaseResponse.cs" Link="Shared\BaseResponse.cs" />
@@ -15,7 +16,14 @@
 
   <ItemGroup>
     <PackageReference Include="Fanex.Data.Repository" Version="4.2.5.3" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Data\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
