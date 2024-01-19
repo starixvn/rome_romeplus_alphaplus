@@ -33,7 +33,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
             await dynamicRepository.ExecuteAsync(command);
 
-            return new AuthenticateResponse(request.CorrelationId())
+            return new AuthenticateResponse
             {
                 CustId = command.CustId,
                 UserName = command.UserName,

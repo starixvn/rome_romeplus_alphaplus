@@ -1,7 +1,7 @@
 
 namespace AlphaPlus.Identity.API.Features.Auth
 {
-    public class AuthenticateRequest : BaseRequest
+    public class AuthenticateRequest
     {
         public int CustId { get; set; }
 

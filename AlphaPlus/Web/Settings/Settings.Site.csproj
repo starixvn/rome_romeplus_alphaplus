@@ -27,6 +27,6 @@
     <ProjectReference Include="..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Services\Shared\CommonExtensions.cs" Link="Extensions\CommonExtensions.cs" />
+    <Compile Include="..\..\Shared\CommonExtensions.cs" Link="Extensions\CommonExtensions.cs" />
   </ItemGroup>
 </Project>

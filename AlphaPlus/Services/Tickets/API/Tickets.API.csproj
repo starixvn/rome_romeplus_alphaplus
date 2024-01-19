@@ -8,7 +8,7 @@
     <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\Shared\CommonExtensions.cs" Link="Extensions\CommonExtensions.cs" />
+    <Compile Include="..\..\..\Shared\CommonExtensions.cs" Link="Extensions\CommonExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />

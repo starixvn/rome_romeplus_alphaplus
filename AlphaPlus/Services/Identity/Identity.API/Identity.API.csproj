@@ -8,10 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\Shared\Extensions\FanexDataExtensions.cs" Link="Extensions\FanexDataExtensions.cs" />
-    <Compile Include="..\..\Shared\BaseMessage.cs" Link="Shared\BaseMessage.cs" />
-    <Compile Include="..\..\Shared\BaseRequest.cs" Link="Shared\BaseRequest.cs" />
-    <Compile Include="..\..\Shared\BaseResponse.cs" Link="Shared\BaseResponse.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\FanexDataExtensions.cs" Link="Extensions\FanexDataExtensions.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 namespace AlphaPlus.Identity.API.Features.Auth
 {
-    public class AuthenticateResponse(Guid correlationId) : BaseResponse(correlationId)
+    public class AuthenticateResponse
     {
         public int CustId { get; init; }
 
