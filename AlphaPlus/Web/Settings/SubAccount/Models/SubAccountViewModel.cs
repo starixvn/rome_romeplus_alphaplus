@@ -33,22 +33,22 @@ namespace AlphaPlus.Settings.Site.SubAccount.Models
 
         private bool HasFullPermission => PageAccess.Equals(FullPermission, StringComparison.InvariantCultureIgnoreCase);
 
-        public bool HasCreateAccountPermission => HasFullPermission || PageAccess.Contains("[A][B][H]");
+        public bool HasCreateAccountPermission => HasFullPermission || PageAccess.Contains("[A][B][H]", StringComparison.InvariantCultureIgnoreCase);
 
-        public bool HasUpdatePermission => HasFullPermission || PageAccess.Contains("[B][H]");
+        public bool HasUpdatePermission => HasFullPermission || PageAccess.Contains("[B][H]", StringComparison.InvariantCultureIgnoreCase);
 
-        public bool HasViewMemberInfoPermission => HasFullPermission || PageAccess.Contains("[H]");
+        public bool HasViewMemberInfoPermission => HasFullPermission || PageAccess.Contains("[H]", StringComparison.InvariantCultureIgnoreCase);
 
         public bool HasNonMemberInfoPermission => !HasViewMemberInfoPermission;
 
-        public bool HasBetsForecastPermission => HasFullPermission || PageAccess.Contains("[D]");
+        public bool HasBetsForecastPermission => HasFullPermission || PageAccess.Contains("[D]", StringComparison.InvariantCultureIgnoreCase);
 
-        public bool HasReportPermission => HasFullPermission || PageAccess.Contains("[E]");
+        public bool HasReportPermission => HasFullPermission || PageAccess.Contains("[E]", StringComparison.InvariantCultureIgnoreCase);
 
-        public bool HasBetlistPermission => HasFullPermission || PageAccess.Contains("[L]");
+        public bool HasBetlistPermission => HasFullPermission || PageAccess.Contains("[L]", StringComparison.InvariantCultureIgnoreCase);
 
-        public bool HasViewLogPermission => HasFullPermission || PageAccess.Contains("[G]");
+        public bool HasViewLogPermission => HasFullPermission || PageAccess.Contains("[G]", StringComparison.InvariantCultureIgnoreCase);
         
-        public bool HasTransferPermission => HasFullPermission || PageAccess.Contains("[C]");
+        public bool HasTransferPermission => HasFullPermission || PageAccess.Contains("[C]", StringComparison.InvariantCultureIgnoreCase);
     }
 }
