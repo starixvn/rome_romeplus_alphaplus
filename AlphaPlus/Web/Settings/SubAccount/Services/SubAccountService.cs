@@ -1,5 +1,4 @@
 using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Domain;
 using AlphaPlus.Settings.Site.SubAccount.Models;
 using AlphaPlus.Settings.Site.SubAccount.Requests;
 
@@ -7,7 +6,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
 {
     public interface ISubAccountService
     {
-        public Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountRequest subAccountRequest);
+        public Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountListRequest subAccountRequest);
 
         public Task<SubAccountViewModel> GetSubAccount(int subAccId);
 
@@ -28,7 +27,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountRequest subAccountRequest)
+        public async Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountListRequest subAccountRequest)
         {
             var result = await subAccountService.GetSubAccountList(subAccountRequest.CustId);
 
