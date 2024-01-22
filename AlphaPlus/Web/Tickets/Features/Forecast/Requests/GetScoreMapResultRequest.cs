@@ -13,4 +13,6 @@ public class GetScoreMapResultRequest
     public string LiveBetTypes { get; set; }
 
     public string DeadBetTypes { get; set; }
+
+    public bool IsRefresh { get; set; }
 }

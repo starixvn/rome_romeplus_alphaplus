@@ -306,6 +306,12 @@
   <data name="OverSlashUnder" xml:space="preserve">
     <value>大小盘</value>
   </data>
+  <data name="PleaseChooseABetType" xml:space="preserve">
+    <value>请选择投注类别</value>
+  </data>
+  <data name="PleaseChooseAMatch" xml:space="preserve">
+    <value>Please choose a match</value>
+  </data>
   <data name="PreGame" xml:space="preserve">
     <value>Pre Game</value>
   </data>

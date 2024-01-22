@@ -108,7 +108,11 @@ public class ForecastController : Controller//BaseController
         => Json(await scoreMapService.GetMatches(message.ViewerId, message.LeagueId, message.Language));
 
     public async Task<IActionResult> ScoreMapResults(GetScoreMapResultRequest message)
-        => View(await scoreMapService.GetResults(message));
+    {
+        ViewData["IsRefresh"] = message.IsRefresh;
+
+        return View(await scoreMapService.GetResults(message));
+    }
 
     public async Task<IActionResult> ScoreMapInformation(RequestBase message)
         => View(await scoreMapService.GetBetTypes(message.Language));

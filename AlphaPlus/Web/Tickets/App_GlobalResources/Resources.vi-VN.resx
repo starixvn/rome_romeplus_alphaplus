@@ -306,6 +306,12 @@
   <data name="OverSlashUnder" xml:space="preserve">
     <value>Tài/Xỉu </value>
   </data>
+  <data name="PleaseChooseABetType" xml:space="preserve">
+    <value>Vui lòng chọn 1 loại hình cá cược</value>
+  </data>
+  <data name="PleaseChooseAMatch" xml:space="preserve">
+    <value>Vui lòng chọn một trận đấu</value>
+  </data>
   <data name="PreGame" xml:space="preserve">
     <value>Chưa bắt đầu</value>
   </data>

@@ -1154,5 +1154,27 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
                 return ResourceManager.GetString("View1stHandicapForecast", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a match.
+        /// </summary>
+        internal static string PleaseChooseAMatch
+        {
+            get
+            {
+                return ResourceManager.GetString("PleaseChooseAMatch", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a bet type.
+        /// </summary>
+        internal static string PleaseChooseABetType
+        {
+            get
+            {
+                return ResourceManager.GetString("PleaseChooseABetType", resourceCulture);
+            }
+        }
     }
 }
