@@ -8,7 +8,10 @@
     <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Shared\CommonExtensions.cs" Link="Extensions\CommonExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\FanexDataExtensions.cs" Link="Extensions\FanexDataExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Extensions\RemotingRefExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Middlewares\ExceptionMiddleware.cs" Link="Middlewares\ExceptionMiddleware.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />

@@ -1,5 +1,4 @@
 using AlphaPlus.Tickets.API.Endpoints;
-using AlphaPlus.Tickets.API.Middlewares;
 
 namespace AlphaPlus.Tickets.API.Extensions;
 
