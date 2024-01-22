@@ -9,9 +9,9 @@ internal abstract class GetScoreMapResultBaseCriteria(
 {
     public string MatchIds { get; } = matchIds;
 
-    public string BetTypes_Live { get; } = liveBetTypes;
+    public string BetTypes_Live { get; } = liveBetTypes ?? string.Empty;
 
-    public string BetTypes_Dead { get; } = deadBetTypes;
+    public string BetTypes_Dead { get; } = deadBetTypes ?? string.Empty;
 
     public override bool IsValid()
         => !string.IsNullOrWhiteSpace(MatchIds)

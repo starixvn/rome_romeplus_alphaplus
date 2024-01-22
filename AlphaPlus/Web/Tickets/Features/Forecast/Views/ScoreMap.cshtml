@@ -64,7 +64,10 @@
     <script src="~/bundles/forecast/scoremap.js" asp-append-version="true"></script>
 }
 @model ScoreMapViewModel
-<div class="page-title">@Resources.ScoreMap<a href="#" class="icon-information-outline"></a></div>
+<div class="page-title">
+    @Resources.ScoreMap
+    <a asp-action="ScoreMapInformation" class="icon-information-outline" target="_blank"></a>
+</div>
 <div class="filter mt-10">
     <label for="ddlLeague">@Resources.League</label>
     <select asp-items="Model.Leagues" id="ddlLeague"></select>
@@ -94,12 +97,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="alert error hidden" id="popup-matchesError">@Resources.PleaseChooseAMatch</div>
+                <div class="alert error hidden" id="popup-alertMatchError">@Resources.PleaseChooseAMatch</div>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
                 <div class="modal-title">@Resources.SelectMatch</div>
             </div>
             <div class="modal-body">
-                <ul class="match-list" id="match-list"></ul>
+                <ul class="match-list" id="popup-matchList"></ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-submit" id="popup-btnSelect">@Resources.Select</button>

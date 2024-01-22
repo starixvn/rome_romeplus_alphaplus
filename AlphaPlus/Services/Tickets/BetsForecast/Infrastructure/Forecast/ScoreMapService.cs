@@ -1,8 +1,10 @@
+using System.Runtime.CompilerServices;
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Params;
 using AlphaPlus.BetsForecast.Infrastructure.Shared;
 using Fanex.Data.Repository;
+using Microsoft.VisualBasic;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast;
 
@@ -79,7 +81,7 @@ public class ScoreMapService : IScoreMapService
         var (scoreMapResultEntities, matches) = await repository.FetchMultipleAsync<ScoreMapResultEntity, Match>(GetResultsCriteria(param));
         var matchHash = matches.ToDictionary(kvp => kvp.MatchId, kvp => kvp);
 
-        return scoreMapResultEntities.GroupBy(
+        var resultHash = scoreMapResultEntities.GroupBy(
             s => s.MatchId,
             (matchId, entities) =>
             {
@@ -96,7 +98,10 @@ public class ScoreMapService : IScoreMapService
                     AwayId = match.AwayId,
                     AwayName = cacheRefService.GetTeamName(match.AwayId, param.Language)
                 };
-            });
+            }).ToDictionary(kvp => kvp.MatchId, kvp => kvp);
+        AddEmptyResults(resultHash, matchHash, param.Language);
+
+        return resultHash.Values;
     }
 
     private static ICriteria GetResultsCriteria(GetScoreMapResultParam param)
@@ -113,5 +118,34 @@ public class ScoreMapService : IScoreMapService
         }
 
         return new GetScoreMapResultAgentCriteria(param.CustId, param.MatchIds, param.LiveBetTypes, param.DeadBetTypes);
+    }
+
+    private void AddEmptyResults(
+        IDictionary<int, ScoreMapResultDTO> resultHash,
+        IDictionary<int, Match> matchHash,
+        string language)
+    {
+        foreach (KeyValuePair<int, Match> item in matchHash)
+        {
+            if (!resultHash.ContainsKey(item.Key))
+            {
+                var entity = new ScoreMapResultEntity
+                {
+                    MatchId = item.Key,
+                    Home = item.Value.HomeId,
+                    Away = item.Value.AwayId,
+                    HT = null,
+                    FT = null,
+                };
+                resultHash.Add(item.Key, new ScoreMapResultDTO([entity])
+                {
+                    MatchId = item.Key,
+                    HomeId = item.Value.HomeId,
+                    HomeName = cacheRefService.GetTeamName(item.Value.HomeId, language),
+                    AwayId = item.Value.AwayId,
+                    AwayName = cacheRefService.GetTeamName(item.Value.AwayId, language)
+                });
+            }
+        }
     }
 }

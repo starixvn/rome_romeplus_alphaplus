@@ -4,9 +4,10 @@ interface JQuery {
 
 class ScoreMap {
     $ddlLeague: JQuery = null;
-    $matchList: JQuery = null;
     $iconLoadingLeague: JQuery = null;
-    $popupMatchesError: JQuery = null;
+    $popupMatches: JQuery = null;
+    $popupMatchList: JQuery = null;
+    $popupAlertMatchError: JQuery = null;
     $popupBtnSelect: JQuery = null;
     $tblLiveDeadBetType: JQuery = null;
     $btnSubmit: JQuery = null;
@@ -19,9 +20,10 @@ class ScoreMap {
 
     constructor() {
         this.$ddlLeague = $('#ddlLeague');
-        this.$matchList = $('#match-list');
         this.$iconLoadingLeague = $('#icon-loadingLeague');
-        this.$popupMatchesError = $('#popup-matchesError');
+        this.$popupMatches = $('#popup-matches');
+        this.$popupMatchList = $('#popup-matchList');
+        this.$popupAlertMatchError = $('#popup-alertMatchError');
         this.$popupBtnSelect = $('#popup-btnSelect');
         this.$tblLiveDeadBetType = $('#tbl-liveDeadBetType');
         this.$btnSubmit = $('#btn-submit');
@@ -45,16 +47,16 @@ class ScoreMap {
         });
         $('#icon-refreshLeague').click(() => this.refreshLeagues());
         $('#btn-selectMatch').click(() => this.getMatches());
-        $('#popup-matches').on('hidden.bs.modal', () => {
-            this.$popupMatchesError.addClass('hidden');
+        this.$popupMatches.on('hidden.bs.modal', () => {
+            this.$popupAlertMatchError.addClass('hidden');
             this.$tblLiveDeadBetType.removeClass('hidden');
             this.$btnSubmit.removeClass('hidden');
         });
         this.$popupBtnSelect.click(() => {
-            if (this.$matchList.find('.match:checked').length) {
-                $('#popup-matches').modal('hide');
+            if (this.$popupMatchList.find('.match:checked').length) {
+                this.$popupMatches.modal('hide');
             } else {
-                this.$popupMatchesError.removeClass('hidden');
+                this.$popupAlertMatchError.removeClass('hidden');
             }
         });
 
@@ -99,7 +101,7 @@ class ScoreMap {
 
     getMatches() {
         if (!this.isLeagueChanged) {
-            $('#popup-matches').modal('show');
+            this.$popupMatches.modal('show');
             return;
         }
         this.$iconLoadingLeague.removeClass('hidden');
@@ -132,9 +134,9 @@ class ScoreMap {
                 });
             }
 
-            this.$matchList.html(html.join(''));
-            const $chkAllMatch = this.$matchList.find('#chk-allMatch');
-            const $chkMatches = this.$matchList
+            this.$popupMatchList.html(html.join(''));
+            const $chkAllMatch = this.$popupMatchList.find('#chk-allMatch');
+            const $chkMatches = this.$popupMatchList
                 .find('.match')
                 .off()
                 .change(function () {
@@ -147,7 +149,7 @@ class ScoreMap {
             $chkAllMatch.off().change(function () {
                 $chkMatches.prop('checked', this.checked);
             });
-            $('#popup-matches').modal('show');
+            this.$popupMatches.modal('show');
         }).always(() => {
             this.isLeagueChanged = false;
             this.$iconLoadingLeague.addClass('hidden');
@@ -185,7 +187,7 @@ class ScoreMap {
         }
 
         const matchIds = [];
-        this.$matchList.find('.match:checked').each(function () {
+        this.$popupMatchList.find('.match:checked').each(function () {
             matchIds.push(this.value);
         });
 

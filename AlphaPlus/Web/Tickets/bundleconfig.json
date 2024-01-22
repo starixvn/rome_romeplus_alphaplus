@@ -37,11 +37,5 @@
     "inputFiles": [
       "assets/scripts/forecast/scoremap.js"
     ]
-  },
-  {
-    "outputFileName": "wwwroot/bundles/forecast/scoremapinformation.js",
-    "inputFiles": [
-      "assets/scripts/forecast/scoremapinformation.js"
-    ]
   }
 ]
