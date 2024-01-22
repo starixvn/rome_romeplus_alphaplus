@@ -7,9 +7,15 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/bundles/totalbets/scoremap.css",
+    "outputFileName": "wwwroot/bundles/forecast/scoremap.css",
     "inputFiles": [
-      "assets/styles/totalbets/scoremap.css"
+      "assets/styles/forecast/scoremap.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/scoremapinformation.css",
+    "inputFiles": [
+      "assets/styles/forecast/scoremapinformation.css"
     ]
   },
   {
@@ -30,6 +36,12 @@
     "outputFileName": "wwwroot/bundles/forecast/scoremap.js",
     "inputFiles": [
       "assets/scripts/forecast/scoremap.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/scoremapinformation.js",
+    "inputFiles": [
+      "assets/scripts/forecast/scoremapinformation.js"
     ]
   }
 ]

@@ -52,13 +52,13 @@
     }
 }
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/bundles/forecast/scoremap.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/forecast/scoremap.js" asp-append-version="true"></script>
 }
 @model ScoreMapViewModel
-<div class="page-title">@Resources.ScoreMap</div>
+<div class="page-title">@Resources.ScoreMap<a href="#" class="icon-information-outline"></a></div>
 <div class="filter mt-10">
     <label for="ddlLeague">@Resources.League</label>
     <select asp-items="Model.Leagues" id="ddlLeague"></select>

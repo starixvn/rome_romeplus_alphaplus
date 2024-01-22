@@ -2,51 +2,56 @@
     ViewData["Title"] = Resources.ScoreMapInformation;
     void RenderBetTypes(IEnumerable<ScoreMapBetType> betTypes, bool isLive)
     {
-        <div>@(isLive ? Resources.Live + "!" : Resources.DeadBall)</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>@Resources.Group</th>
-                    <th>@Resources.BetTypes</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var group in betTypes)
-                {
-                    var followedBetTypeNames = group.FollowedBetTypeNames.ToList();
-                    var betTypesCount = followedBetTypeNames.Count;
-                    <tr>
-                        <td rowspan="@betTypesCount">@group.BetTypeName</td>
-                        <td>@(betTypesCount == 0 ? string.Empty : followedBetTypeNames[0])</td>
-                    </tr>
-                    for (int i = 1; i < betTypesCount; i++)
-                    {
+        <div class="bettype-container">
+            <div class="header"><span class="icon-table-sort-desc"></span>@(isLive ? Resources.Live + "!" : Resources.DeadBall)</div>
+            <div>
+                <table>
+                    <thead>
                         <tr>
-                            <td>@followedBetTypeNames[i]</td>
+                            <th>@Resources.Group</th>
+                            <th>@Resources.BetTypes</th>
                         </tr>
-                    }
-                }
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var group in betTypes)
+                        {
+                            var followedBetTypeNames = group.FollowedBetTypeNames.ToList();
+                            var betTypesCount = followedBetTypeNames.Count;
+                            <tr>
+                                <td class="bettype" rowspan="@betTypesCount">@group.BetTypeName</td>
+                                <td>@(betTypesCount == 0 ? string.Empty : followedBetTypeNames[0])</td>
+                            </tr>
+                            for (int i = 1; i < betTypesCount; i++)
+                            {
+                                <tr>
+                                    <td>@followedBetTypeNames[i]</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     }
 }
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/bundles/forecast/scoremapinformation.css" asp-append-version="true" />
 }
 @section Scripts {
-    <script type="text/javascript">
-    </script>
+    <script src="~/bundles/forecast/scoremapinformation.js" asp-append-version="true"></script>
 }
 @model IEnumerable<ScoreMapBetType>[]
-<div>
-    <div>@Resources.Note</div>
-    <div>@Resources.ScoreMapNoteContent</div>
-</div>
-<div>
-    <div>@Resources.ScoreMapInformation</div>
-    <p>@Resources.ScoreMapInformationDescription</p>
-    @{
-        RenderBetTypes(Model[0], true);
-        RenderBetTypes(Model[1], false);
-    }
-</div>
+    <div class="score-map-information">
+        <div class="note-box">
+            <div class="note">@Resources.Note</div>
+            <div>@Resources.ScoreMapNoteContent</div>
+        </div>
+        <div class="content">
+            <div class="title">@Resources.ScoreMapInformation</div>
+            <p>@Resources.ScoreMapInformationDescription</p>
+            @{
+                RenderBetTypes(Model[0], true);
+                RenderBetTypes(Model[1], false);
+            }
+        </div>
+    </div>
