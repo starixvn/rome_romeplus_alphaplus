@@ -25,6 +25,40 @@ h4 {
 .hover {
     cursor: pointer;
 }
+.hover-effect-rip{
+    position: relative;
+    &:after {
+        position: absolute;
+        content: '';
+        width: 24px;
+        height: 24px;
+        left: 50%;
+        margin-left: -12px;
+        top: 50%;
+        margin-top: -12px;        
+        background: var(--bg-hover-rip);
+        transform: scale(0);
+        border-radius: 100%;
+        pointer-events: none;
+    }
+    &:hover:after {
+        animation: ripple 1s ease-out;
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+    }
+    20% {
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
 .underline {
     text-decoration: underline;
 }

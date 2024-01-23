@@ -66,12 +66,12 @@
 @model ScoreMapViewModel
 <div class="page-title">
     @Resources.ScoreMap
-    <a asp-action="ScoreMapInformation" class="icon-information-outline" target="_blank"></a>
+    <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip" target="_blank"></a>
 </div>
 <div class="filter mt-10">
     <label for="ddlLeague">@Resources.League</label>
     <select asp-items="Model.Leagues" id="ddlLeague"></select>
-    <span class="icon-refresh" id="icon-refreshLeague"></span>
+    <span class="icon-refresh hover-effect-rip" id="icon-refreshLeague"></span>
     <button type="button" class="btn-submit" id="btn-selectMatch">@Resources.SelectMatch</button>
     @{
         RenderLoadingIcon("icon-loadingLeague");

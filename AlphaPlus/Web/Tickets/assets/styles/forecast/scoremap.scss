@@ -2,6 +2,7 @@
 //  scoremap 
 :root,
 :root [data-theme='light'] {
+    --text-color-icon-refresh: #90979a;
     .tblLiveDead,.tbl-score-result{
         --border-table-livedead: #d1d1d1;
         --bg-table-livedead: #ffffff;
@@ -23,6 +24,7 @@
     }
 }
 :root [data-theme='dark'] {
+    --text-color-icon-refresh: #ededed;
     .tblLiveDead,.tbl-score-result{
         --border-table-livedead: #5f626b;
         --bg-table-livedead: #212223;
@@ -222,3 +224,5 @@
         }
     }
 }
+
+
