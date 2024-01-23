@@ -16,7 +16,7 @@
     {
         <tr class="@(number++ % 2 == 0 ? string.Empty : "odd")">
             <td>@number</td>
-            <td><view-betlist matchid="@item.MatchId" bettype="16" text="@item.HomeName" /></td>
+            <td><view-betlist matchid="@item.MatchId" bettype="BetTypeConstants.HTFT" text="@item.HomeName" /></td>
             <td>@item.AwayName</td>
             @{
                 await RenderCell(item.TotalHH);

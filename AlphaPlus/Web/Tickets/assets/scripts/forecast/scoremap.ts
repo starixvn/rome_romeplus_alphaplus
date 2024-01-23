@@ -31,26 +31,26 @@ class ScoreMap {
         this.$alertBetTypeError = $('#alert-betTypeError');
         this.$content = $('#content');
         this.resources = {
-            all: $('#hidden-allText').val(),
-            selectMatch: $('#hidden-selectMatchText').val(),
-            hideMatch: $('#hidden-hideMatchText').val()
+            all: $('#hidden-allText').val()
         };
     }
 
     init() {
         this.$ddlLeague.change(() => {
             this.isLeagueChanged = true;
-            this.$alertBetTypeError.addClass('hidden');
-            this.$content.html('');
-            this.$btnSubmit.addClass('hidden');
-            this.$tblLiveDeadBetType.addClass('hidden');
+            this.resetUIControls();
         });
         $('#icon-refreshLeague').click(() => this.refreshLeagues());
         $('#btn-selectMatch').click(() => this.getMatches());
         this.$popupMatches.on('hidden.bs.modal', () => {
+            if ($(document.activeElement).attr('id') === 'popup-btnSelect') {
+                this.$btnSubmit.removeClass('hidden');
+                this.$tblLiveDeadBetType.removeClass('hidden');
+            } else {
+                this.resetUIControls();
+            }
+
             this.$popupAlertMatchError.addClass('hidden');
-            this.$tblLiveDeadBetType.removeClass('hidden');
-            this.$btnSubmit.removeClass('hidden');
         });
         this.$popupBtnSelect.click(() => {
             if (this.$popupMatchList.find('.match:checked').length) {
@@ -59,32 +59,16 @@ class ScoreMap {
                 this.$popupAlertMatchError.removeClass('hidden');
             }
         });
-
-        const $chkAllLiveBetType = $('#chk-allLiveBetType');
-        const $chkLiveBetTypes = $('.live-bettype').change(function () {
-            if (this.checked) {
-                $chkAllLiveBetType.prop('checked', $chkLiveBetTypes.filter(':not(:checked)').length === 0);
-            } else {
-                $chkAllLiveBetType.prop('checked', false);
-            }
-        });
-        $chkAllLiveBetType.change(function () {
-            $chkLiveBetTypes.prop('checked', this.checked);
-        });
-
-        const $chkAllDeadBetType = $('#chk-allDeadBetType');
-        const $chkDeadBetTypes = $('.dead-bettype').change(function () {
-            if (this.checked) {
-                $chkAllDeadBetType.prop('checked', $chkDeadBetTypes.filter(':not(:checked)').length === 0);
-            } else {
-                $chkAllDeadBetType.prop('checked', false);
-            }
-        });
-        $chkAllDeadBetType.change(function () {
-            $chkDeadBetTypes.prop('checked', this.checked);
-        });
-
+        this.bindLiveDeadBallsEvents($('#chk-allLiveBetType'), $('.live-bettype'));
+        this.bindLiveDeadBallsEvents($('#chk-allDeadBetType'), $('.dead-bettype'));
         this.$btnSubmit.click(() => this.getScoreMapResults());
+    }
+
+    resetUIControls() {
+        this.$alertBetTypeError.addClass('hidden');
+        this.$content.html('');
+        this.$btnSubmit.addClass('hidden');
+        this.$tblLiveDeadBetType.addClass('hidden');
     }
 
     refreshLeagues() {
@@ -156,7 +140,24 @@ class ScoreMap {
         });
     }
 
+    bindLiveDeadBallsEvents($chkAllBetType: JQuery, $chkBetTypes) {
+        const allBetTypesLength = $chkBetTypes.length;
+        $chkAllBetType.change(function () {
+            $chkBetTypes.prop('checked', this.checked);
+        });
+        $chkBetTypes.change(function () {
+            const checkedBetTypesLength = $chkBetTypes.filter(':checked').length;
+            const isCheckAll = checkedBetTypesLength > 0 && checkedBetTypesLength === allBetTypesLength;
+            const isIndeterminate = !isCheckAll && checkedBetTypesLength > 0;
+            $chkAllBetType.prop({
+                indeterminate: isIndeterminate,
+                checked: isCheckAll
+            });
+        });
+    }
+
     getScoreMapResults() {
+        this.$content.html('');
         this.globalFormData = this.getScoreMapResultsFormData();
         if (typeof this.globalFormData !== 'undefined') {
             this.$iconLoadingScoreMapResults.removeClass('hidden');
@@ -181,7 +182,6 @@ class ScoreMap {
         });
 
         if (!liveBetTypes.length && !deadBetTypes.length) {
-            this.$content.html('');
             this.$alertBetTypeError.removeClass('hidden');
             return;
         }
@@ -190,6 +190,8 @@ class ScoreMap {
         this.$popupMatchList.find('.match:checked').each(function () {
             matchIds.push(this.value);
         });
+
+        this.$alertBetTypeError.addClass('hidden');
 
         return {
             matchIds: matchIds.join(),

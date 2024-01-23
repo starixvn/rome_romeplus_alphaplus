@@ -47,10 +47,10 @@
         <tr class="@className">
             <td><view-betlist matchid="@item.MatchId" bettype="14" text="@item.AwayName" /></td>
             @{
-                RenderCell(item.BetCount_14, item._14_WinLost_AwayFG);
-                RenderCell(item.BetCount_14, item._14_WinLost_AwayLG);
-                RenderCell(item.BetCount_127, item._127_WinLost_AwayFG);
-                RenderCell(item.BetCount_127, item._127_WinLost_AwayLG);
+                await RenderCell(item.BetCount_14, item._14_WinLost_AwayFG);
+                await RenderCell(item.BetCount_14, item._14_WinLost_AwayLG);
+                await RenderCell(item.BetCount_127, item._127_WinLost_AwayFG);
+                await RenderCell(item.BetCount_127, item._127_WinLost_AwayLG);
             }
         </tr>
     }

@@ -36,7 +36,7 @@ public class ScoreMapService : IScoreMapService
         {
             var betType = new ScoreMapBetType(
                 item.TypeId,
-                item.TypeId == 5 ? null : cacheRefService.GetBetTypeName(item.TypeId, language),
+                item.TypeId == BetTypeConstants._1X2 ? null : cacheRefService.GetBetTypeName(item.TypeId, language),
                 item.FirstId,
                 item.InfoId.Split(',').Select(id => cacheRefService.GetBetTypeName(id, language)));
 

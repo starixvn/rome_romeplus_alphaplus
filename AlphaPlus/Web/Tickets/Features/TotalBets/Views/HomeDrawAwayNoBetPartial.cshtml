@@ -40,9 +40,12 @@
             </td>
             <td>@item.Event</td>
             @{
-                await RenderCell(item.BetCount_HNB, item.MatchId, 121, item.Home_Odds_HNB - item.Away_Odds_HNB);
-                await RenderCell(item.BetCount_DNB, item.MatchId, 25, item.Home_Odds_DNB - item.Away_Odds_DNB);
-                await RenderCell(item.BetCount_ANB, item.MatchId, 122, item.Home_Odds_ANB - item.Away_Odds_ANB);
+                await RenderCell(item.BetCount_HNB, item.MatchId, BetTypeConstants.HomeNoBet, item.Home_Odds_HNB -
+                item.Away_Odds_HNB);
+                await RenderCell(item.BetCount_DNB, item.MatchId, BetTypeConstants.DrawNoBet, item.Home_Odds_DNB -
+                item.Away_Odds_DNB);
+                await RenderCell(item.BetCount_ANB, item.MatchId, BetTypeConstants.AwayNoBet, item.Home_Odds_ANB -
+                item.Away_Odds_ANB);
             }
         </tr>
     }

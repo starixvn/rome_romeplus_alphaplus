@@ -50,14 +50,19 @@
             </td>
             <td>@item.Event</td>
             @{
-                await RenderViewBetListCell(item.BetCount_OE, item.MatchId, 2, item.Home_Odds_OE - item.Away_Odds_OE);
-                await RenderViewBetListCell(item.BetCount_1X2, item.MatchId, 5, item.Odds_1 + item.Odds_X + item.Odds_2);
-                await RenderViewForecastCell(item.BetCount_1X2, item.MatchId, 5);
-                await RenderViewBetListCell(item.BetCount_DND, item.MatchId, 123, item.Home_Odds_DND - item.Away_Odds_DND);
-                await RenderViewBetListCell(item.BetCount_OE_1st, item.MatchId, 12, item.Home_Odds_OE_1st - item.Away_Odds_OE_1st);
-                await RenderViewBetListCell(item.BetCount_1X2_1st, item.MatchId, 15, item.Odds_1_1st + item.Odds_X_1st +
+                await RenderViewBetListCell(item.BetCount_OE, item.MatchId, BetTypeConstants.OddEven, item.Home_Odds_OE -
+                item.Away_Odds_OE);
+                await RenderViewBetListCell(item.BetCount_1X2, item.MatchId, BetTypeConstants._1X2, item.Odds_1 + item.Odds_X +
+                item.Odds_2);
+                await RenderViewForecastCell(item.BetCount_1X2, item.MatchId, BetTypeConstants._1X2);
+                await RenderViewBetListCell(item.BetCount_DND, item.MatchId, BetTypeConstants.DrawNoDraw, item.Home_Odds_DND -
+                item.Away_Odds_DND);
+                await RenderViewBetListCell(item.BetCount_OE_1st, item.MatchId, BetTypeConstants._1stOddEven, item.Home_Odds_OE_1st
+                - item.Away_Odds_OE_1st);
+                await RenderViewBetListCell(item.BetCount_1X2_1st, item.MatchId, BetTypeConstants._1st1X2, item.Odds_1_1st +
+                item.Odds_X_1st +
                 item.Odds_2_1st);
-                await RenderViewForecastCell(item.BetCount_1X2_1st, item.MatchId, 15);
+                await RenderViewForecastCell(item.BetCount_1X2_1st, item.MatchId, BetTypeConstants._1st1X2);
             }
         </tr>
     }

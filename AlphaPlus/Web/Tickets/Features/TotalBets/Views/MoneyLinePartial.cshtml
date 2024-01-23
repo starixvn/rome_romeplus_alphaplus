@@ -40,14 +40,14 @@
             <td class="col-time">@Html.Raw(item.ShowTime)</td>
             <td>@item.Event</td>
             @{
-                await RenderTotal(item.MatchId, 20, item.Home_Odds);
-                await RenderTotal(item.MatchId, 20, item.Away_Odds);
-                await RenderForecast(item.MatchId, 20, item.WinLost_Home);
-                await RenderForecast(item.MatchId, 20, item.WinLost_Away);
-                await RenderTotal(item.MatchId, 21, item.Home_Odds_HT);
-                await RenderTotal(item.MatchId, 21, item.Away_Odds_HT);
-                await RenderForecast(item.MatchId, 21, item.WinLost_Home_HT);
-                await RenderForecast(item.MatchId, 21, item.WinLost_Away_HT);
+                await RenderTotal(item.MatchId, BetTypeConstants.Moneyline, item.Home_Odds);
+                await RenderTotal(item.MatchId, BetTypeConstants.Moneyline, item.Away_Odds);
+                await RenderForecast(item.MatchId, BetTypeConstants.Moneyline, item.WinLost_Home);
+                await RenderForecast(item.MatchId, BetTypeConstants.Moneyline, item.WinLost_Away);
+                await RenderTotal(item.MatchId, BetTypeConstants._1stMoneyline, item.Home_Odds_HT);
+                await RenderTotal(item.MatchId, BetTypeConstants._1stMoneyline, item.Away_Odds_HT);
+                await RenderForecast(item.MatchId, BetTypeConstants._1stMoneyline, item.WinLost_Home_HT);
+                await RenderForecast(item.MatchId, BetTypeConstants._1stMoneyline, item.WinLost_Away_HT);
             }
         </tr>
     }

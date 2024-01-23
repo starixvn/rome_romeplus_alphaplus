@@ -47,10 +47,10 @@
             </td>
             <td>@item.Event</td>
             @{
-                await RenderCell(item.BetCount_HDP, item.MatchId, 1, item.Total_Odds_HDP);
-                await RenderCell(item.BetCount_OU, item.MatchId, 3, item.Total_Odds_OU);
-                await RenderCell(item.BetCount_HTHDP, item.MatchId, 7, item.Total_Odds_HTHDP);
-                await RenderCell(item.BetCount_HTOU, item.MatchId, 8, item.Total_Odds_HTOU);
+                await RenderCell(item.BetCount_HDP, item.MatchId, BetTypeConstants.Handicap, item.Total_Odds_HDP);
+                await RenderCell(item.BetCount_OU, item.MatchId, BetTypeConstants.OverUnder, item.Total_Odds_OU);
+                await RenderCell(item.BetCount_HTHDP, item.MatchId, BetTypeConstants._1stHandicap, item.Total_Odds_HTHDP);
+                await RenderCell(item.BetCount_HTOU, item.MatchId, BetTypeConstants._1stOverUnder, item.Total_Odds_HTOU);
             }
         </tr>
     }

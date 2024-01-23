@@ -63,11 +63,11 @@
         <div class="tbl-ht-time">
             <div class="round haft-time">@Resources.HT</div>
         @{
-            RenderMatrix(item.RowNumber, item.ColumnNumber, item.HaftTime, "tblht" + item.MatchId);
+            await RenderMatrix(item.RowNumber, item.ColumnNumber, item.HaftTime, "tblht" + item.MatchId);
         }
             <div class="round full-time">@Resources.FT</div>
         @{
-            RenderMatrix(item.RowNumber, item.ColumnNumber, item.FullTime, "tblft" + item.MatchId);
+            await RenderMatrix(item.RowNumber, item.ColumnNumber, item.FullTime, "tblft" + item.MatchId);
         }
         </div>
     if (!isRefresh)

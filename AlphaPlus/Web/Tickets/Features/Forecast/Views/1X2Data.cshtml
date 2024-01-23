@@ -43,7 +43,7 @@
         <tr>
             <td>@Resources.FullTime</td>
             @{
-                await RenderViewBetList(item.MatchId, 5);
+                await RenderViewBetList(item.MatchId, BetTypeConstants._1X2);
                 await RenderCell(item.HL);
                 await RenderCell(item.DL);
                 await RenderCell(item.AL);
@@ -52,7 +52,7 @@
         <tr>
             <td>@Resources.HalfTime</td>
             @{
-                await RenderViewBetList(item.MatchId, 15);
+                await RenderViewBetList(item.MatchId, BetTypeConstants._1st1X2);
                 await RenderCell(item.HT_HL);
                 await RenderCell(item.HT_DL);
                 await RenderCell(item.HT_AL);

@@ -46,7 +46,7 @@
         <tr>
             <td>@Resources.FullTime</td>
             @{
-                await RenderViewBetList(item.MatchId, 1);
+                await RenderViewBetList(item.MatchId, BetTypeConstants.Handicap);
                 await RenderCell(item.WinLost_1_HDP);
                 await RenderCell(item.WinLost_0_HDP);
                 await RenderCell(item.WinLost_M1_HDP);
@@ -58,7 +58,7 @@
         <tr>
             <td>@Resources.HalfTime</td>
             @{
-                await RenderViewBetList(item.MatchId, 7);
+                await RenderViewBetList(item.MatchId, BetTypeConstants._1stHandicap);
                 await RenderCell(item.WinLost_1_HTHDP);
                 await RenderCell(item.WinLost_0_HTHDP);
                 await RenderCell(item.WinLost_M1_HTHDP);

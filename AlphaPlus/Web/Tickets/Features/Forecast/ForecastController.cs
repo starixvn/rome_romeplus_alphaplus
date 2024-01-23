@@ -37,7 +37,11 @@ public class ForecastController : Controller//BaseController
     public async Task<IActionResult> HDPOULive(GetForecastRequest message)
     {
         // bettypes = 1: for HDP/OU/Live
-        var leagues = await forecastService.GetRunningLeagues(message.ViewerLevel, message.ViewerId, "1", message.Language);
+        var leagues = await forecastService.GetRunningLeagues(
+            message.ViewerLevel,
+            message.ViewerId,
+            BetTypeConstants.Handicap.ToString(),
+            message.Language);
         message.LeagueId = message.LeagueId == 0
             ? leagues.FirstOrDefault()?.LeagueId ?? 0
             : message.LeagueId;
@@ -62,7 +66,11 @@ public class ForecastController : Controller//BaseController
     public async Task<IActionResult> _1X2(GetForecastRequest message)
     {
         // bettypes = 5: for 1X2
-        var leagues = await forecastService.GetRunningLeagues(message.ViewerLevel, message.ViewerId, "5", message.Language);
+        var leagues = await forecastService.GetRunningLeagues(
+            message.ViewerLevel,
+            message.ViewerId,
+            BetTypeConstants._1X2.ToString(),
+            message.Language);
         message.LeagueId = message.LeagueId == 0
             ? leagues.FirstOrDefault()?.LeagueId ?? 0
             : message.LeagueId;

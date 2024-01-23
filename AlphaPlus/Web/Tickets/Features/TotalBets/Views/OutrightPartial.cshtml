@@ -36,7 +36,7 @@
         }
         <tr class="@(matchIndex % 2 == 0 ? string.Empty : "odd")">
             <td>@(number++)</td>
-            <td><view-betlist matchid="@item.OrId" bettype="10" text="@item.TeamName" /></td>
+            <td><view-betlist matchid="@item.OrId" bettype="BetTypeConstants.Outright" text="@item.TeamName" /></td>
             <td class="text-right">
                 <number value="@item.Balance" />
             </td>

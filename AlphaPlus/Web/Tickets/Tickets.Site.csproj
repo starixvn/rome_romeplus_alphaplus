@@ -7,10 +7,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\Shared\Constants\BetTypeConstants.cs" Link="Features\Shared\Constants\BetTypeConstants.cs" />
     <Compile Include="..\..\Shared\Extensions\EnumerableExtensions.cs" Link="Features\Shared\Extensions\EnumerableExtensions.cs" />
     <Compile Include="..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Features\Shared\Extensions\FanexLoggingExtensions.cs" />
     <Compile Include="..\..\Shared\Extensions\StringExtensions.cs" Link="Features\Shared\Extensions\StringExtensions.cs" />
     <Compile Include="..\..\Shared\LanguageHelper.cs" Link="Features\Shared\Helpers\LanguageHelper.cs" />
+    <Compile Include="..\..\Shared\ExceptionHelper.cs" Link="Features\Shared\Helpers\ExceptionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Caching" Version="2.2.4" />
@@ -18,6 +20,7 @@
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>

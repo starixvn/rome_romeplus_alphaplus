@@ -12,6 +12,7 @@
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Extensions\RemotingRefExtensions.cs" />
     <Compile Include="..\..\..\Shared\Middlewares\ExceptionMiddleware.cs" Link="Middlewares\ExceptionMiddleware.cs" />
+    <Compile Include="..\..\..\Shared\ExceptionHelper.cs" Link="Helpers\ExceptionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />

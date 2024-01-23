@@ -4,20 +4,20 @@
     string toggleForecast;
     switch (Model.BetType)
     {
-        case 1:
-            toggleBetType = 3;
+        case BetTypeConstants.Handicap:
+            toggleBetType = BetTypeConstants.OverUnder;
             toggleForecast = Resources.ViewOverUnderForecast;
             break;
-        case 3:
-            toggleBetType = 1;
+        case BetTypeConstants.OverUnder:
+            toggleBetType = BetTypeConstants.Handicap;
             toggleForecast = Resources.ViewHandicapForecast;
             break;
-        case 7:
-            toggleBetType = 8;
+        case BetTypeConstants._1stHandicap:
+            toggleBetType = BetTypeConstants._1stOverUnder;
             toggleForecast = Resources.View1stOverUnderForecast;
             break;
-        case 8:
-            toggleBetType = 7;
+        case BetTypeConstants._1stOverUnder:
+            toggleBetType = BetTypeConstants._1stHandicap;
             toggleForecast = Resources.View1stHandicapForecast;
             break;
         default:
@@ -47,11 +47,11 @@
         <tr>
             <td>
                 <b>
-                    @if (Model.BetType == 7)
+                    @if (Model.BetType == BetTypeConstants._1stHandicap)
                     {
                         @:@Resources._1stHdp
                     }
-                    else if (Model.BetType == 8)
+                    else if (Model.BetType == BetTypeConstants._1stOverUnder)
                     {
                         @:@Resources._1stOU
                     }

@@ -49,7 +49,7 @@ public class ScoreMapService : IScoreMapService
     {
         foreach (var item in betTypes)
         {
-            if (item.BetType == 5)
+            if (item.BetType == BetTypeConstants._1X2)
             {
                 item.BetTypeName = Resources._1X2;
             }
