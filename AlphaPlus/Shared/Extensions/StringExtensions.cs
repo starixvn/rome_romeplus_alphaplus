@@ -1,5 +1,3 @@
-namespace AlphaPlus.Tickets.Site.Features.Shared.Extensions;
-
 public static class StringExtensions
 {
     private static readonly char[] SplitSeparator = { ',' };

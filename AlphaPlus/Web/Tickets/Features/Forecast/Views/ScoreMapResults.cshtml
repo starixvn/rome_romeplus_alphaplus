@@ -1,7 +1,7 @@
 @{
     Layout = null;
     bool isRefresh = (bool)ViewData["IsRefresh"];
-    void RenderMatrix(int rowNumber, int columnNumber, int[,] matrix, string tableId)
+    async Task RenderMatrix(int rowNumber, int columnNumber, int[,] matrix, string tableId)
     {
         <table id="@tableId" class="tbl-score-result">
             <thead>
@@ -25,8 +25,9 @@
                             <td class="vsm">@i</td>
                             @for (int j = 0; j < columnNumber; j++)
                             {
-                                var score = matrix[i, j];
-                                <td class="@(score > 0 ? "positive" : string.Empty)">@score</td>
+                                <td>
+                                    <number value="@matrix[i, j]" redpositive="true" />
+                                </td>
                             }
                         </tr>
                     }

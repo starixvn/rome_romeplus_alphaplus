@@ -12,7 +12,7 @@ var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services
-    .AddFanexLibs(configuration)
+    .AddFanexLogging(configuration)
     .AddSharedSession(configuration)
     .AddInfrastructure(configuration)
     .AddMediatR(assembly)

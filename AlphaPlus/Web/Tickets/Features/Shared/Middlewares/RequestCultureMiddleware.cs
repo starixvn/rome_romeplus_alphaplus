@@ -1,5 +1,4 @@
 using System.Globalization;
-using AlphaPlus.Tickets.Site.Features.Shared.Helpers;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.Middlewares;
 

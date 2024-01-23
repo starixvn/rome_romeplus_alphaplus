@@ -33,6 +33,7 @@ public static class InfrastructureExtenstions
 
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>();
         services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
 
         // https://www.milanjovanovic.tech/blog/the-right-way-to-use-httpclient-in-dotnet
