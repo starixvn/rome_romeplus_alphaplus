@@ -41,6 +41,8 @@ namespace Alpha.Main
             ["ProgressiveContributionMenuItem"] = () => new MenuStatus(() => new User().IsEnabledJackpot),
             ["ProgressiveJackpotMenuItem"] = () => new MenuStatus(() => new User().ShowProgressiveJackpotGames),
             ["IndirectLoginAccountMenuItem"] = () => new MenuStatus(
+                () => true),
+            ["IndirectLoginAccountMenuItem"] = () => new MenuStatus(
                 () => IsAllowedIndirectLogin(Current.SRecommendId) && !Current.IsIndirectLoggedIn && (Current.IsSuper || Current.IsMaster)),
             ["DormantAccountListMenuItem"] = () => new MenuStatus(() => Current.IsSuper || Current.IsMaster),
             ["BonusDetailMenuItem"] = () => new MenuStatus(() => AllowedSitesToViewBonusDetail.Contains(Current.Site.ToUpper()))
@@ -58,7 +60,7 @@ namespace Alpha.Main
                     return false;
                 }
 
-                var offerClearGivenCreditSites = ConfigurationManager.GetValue<string[]>("OfferClearGivenCredit:Sites");
+                var offerClearGivenCreditSites = ConfigurationManager.GetValue<string[]>("OfferClearGivenCredit:Sites", []);
                 return offerClearGivenCreditSites.Any(s
                     => string.Equals(s, Current.Site, StringComparison.OrdinalIgnoreCase)
                     || string.Equals(s, "*", StringComparison.OrdinalIgnoreCase));
@@ -114,7 +116,7 @@ namespace Alpha.Main
 
         private static bool IsAllowedIndirectLogin(int srecommend)
         {
-            var allowSuperIds = ConfigurationManager.GetValue<string[]>("IndirectLogin:AllowSuperIds");
+            var allowSuperIds = ConfigurationManager.GetValue<string[]>("IndirectLogin:AllowSuperIds", []);
 
             return allowSuperIds.Contains("*") || allowSuperIds.Contains(srecommend.ToString());
         }

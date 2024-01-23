@@ -51,7 +51,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 PwdExpiry = command.PwdExpiry,
                 Nickname = command.Nickname,
                 IsNickName = command.IsNickname,
-
+                Code = command.ErrCode,
+                Message = command.ErrMsg
             };
 
         }

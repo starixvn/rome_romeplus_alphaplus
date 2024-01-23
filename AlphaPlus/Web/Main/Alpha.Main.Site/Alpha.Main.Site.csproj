@@ -12,6 +12,9 @@
     </Content> -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Shared\Extensions\HttpClientExtensions.cs" Link="Extensions\HttpClientExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Alpha.Main\Alpha.Main.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Logging\AlphaPlus.Logging.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />

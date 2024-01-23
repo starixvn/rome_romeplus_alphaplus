@@ -6,7 +6,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
     {
         public static IEndpointRouteBuilder MapAuthEndpoints(this IEndpointRouteBuilder endpoints)
         {
-            var auth = endpoints.MapGroup("/auth")
+            var auth = endpoints.MapGroup("/api/auth")
                 .WithTags("Auth")
                 .WithOpenApi();
 

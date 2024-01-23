@@ -20,6 +20,7 @@ using Fanex.Cryptography.Aes;
 using Fanex.Caching;
 using AlphaPlus.Core.Services;
 using AlphaPlus.Core;
+using System.Net;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -46,7 +47,6 @@ public static class Extensions
         services.AddSingleton<CacheRefService, CacheRefServiceImpl>();
         services.AddSingleton<IAesService, AesService>();
         services.AddSingleton<IUserSessionService, UserSessionService>();
-        services.AddSingleton<ISignInService, SignInService>();
 
         services.AddSingleton<SiteMenuService, SiteMenuServiceImpl>();
         services.AddSingleton<ProfilePictureServices, ProfilePictureServicesImpl>();
@@ -87,6 +87,11 @@ public static class Extensions
         services.AddSingleton<UpdateUsageLanguageService, UpdateUsageLanguageServiceImpl>();
 
         services.AddHttpClient<ApiKeyService, ApiKeyServiceImpl>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
+        services.AddHttpClient<ISignInService, SignInService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))
+            .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+            });
 
         return services;
     }

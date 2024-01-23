@@ -38,7 +38,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public string ErrMsg { get; set; }
 
-        public byte RoleId { get; set; } = 0;
+        public int RoleId { get; set; } = 0;
 
         public int CurrencyId { get; set; }
 
@@ -52,9 +52,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public bool IsFirstLogin { get; set; }
 
-        public DateTime PwdExpiry { get; set; }
-
-        public bool IsNickName { get; set; }
+        public DateTime PwdExpiry { get; set; } = DateTime.Now;
 
         public string SecurityCode { get; set; }
 

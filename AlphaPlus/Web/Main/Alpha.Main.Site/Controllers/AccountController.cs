@@ -3,6 +3,7 @@ using System.Text.Json;
 using Alpha.Main.Params.Authorization;
 using Alpha.Main.Services;
 using Alpha.Main.Site.ViewModels.Account;
+using AlphaPlus.Core.Models;
 using AlphaPlus.RequestInfo;
 using Fanex.Cryptography.Aes;
 using Microsoft.AspNetCore.Authentication;
@@ -48,6 +49,7 @@ public class AccountController(IDeviceHelper deviceHelper, ISignInService signIn
             Nickname = param.Nickname,
             IsNickname = param.IsNickname,
             LoginTime = new DateTime(param.LoginTime),
+            Language = UserSession.Current.LangKey,
             RequestInfo = requestInfo
         });
 

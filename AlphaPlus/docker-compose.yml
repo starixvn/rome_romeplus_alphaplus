@@ -1,6 +1,12 @@
 version: '3.4'
 
 services:
+    identity-api:
+        image: ${REGISTRY:-alphaplus}/identity.api:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Services/Identity/Identity.API/Dockerfile
+
     assets:
         image: ${REGISTRY:-alphaplus}/assets:${PLATFORM:-linux}-${TAG:-latest}
         build:

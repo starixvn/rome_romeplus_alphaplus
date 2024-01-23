@@ -2,6 +2,10 @@ namespace AlphaPlus.Identity.API.Features.Auth
 {
     public class AuthenticateResponse
     {
+        public int Code { get; init; }
+
+        public string Message { get; init; }
+
         public int CustId { get; init; }
 
         public string UserName { get; init; }
@@ -12,7 +16,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public string SubPageAccess { get; init; }
 
-        public byte RoleId { get; init; }
+        public int RoleId { get; init; }
 
         public string Site { get; init; }
 
