@@ -34,7 +34,7 @@ public class SignInService(HttpClient client) : ISignInService
         });
 
 
-        if (result.Code != 0)
+        if (result.IsFailed)
         {
             return false;
         }
@@ -58,6 +58,7 @@ public class SignInService(HttpClient client) : ISignInService
         //     int serverId = (int)outputs["serverid"];
         //     this.dao.Acc_Checkin(custId, subAccId, userSession.NetSessionId, serverId, requestInfo["loginip"].ToString(), out int onUserId);
         //     outputs.Add("on_userid", onUserId);
+        await CheckIn(result.CustId, result.SubAccId, UserSession.Current.NetSessionId, result.ServerId, param.RequestInfo.LoginIp);
         // }
 
         // this.GetCustomerStatus(custId, adminId, ref outputs, systemLogin);
@@ -73,7 +74,20 @@ public class SignInService(HttpClient client) : ISignInService
 
     }
 
-    public void SetUserSessionValues(IUserSession session, SignInResult signInResult)
+    private async Task CheckIn(int custId, int subAccId, string netSessionId, int serverId, string loginIP)
+    {
+        var onlineUserId = await client.PostAsJsonAsync<int>("api/auth/check-in", new
+        {
+            custId,
+            subAccId,
+            netSessionId,
+            loginIP
+        });
+
+        UserSession.Current.OnUserId = onlineUserId;
+    }
+
+    private static void SetUserSessionValues(IUserSession session, SignInResult signInResult)
     {
         if (session == null)
         {

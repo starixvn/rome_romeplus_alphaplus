@@ -11,6 +11,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 .WithOpenApi();
 
             auth.MapPost("/after", AfterSignIn);
+            auth.MapPost("/check-in", CheckIn);
 
             return endpoints;
         }
@@ -19,6 +20,12 @@ namespace AlphaPlus.Identity.API.Features.Auth
         {
             var response = await service.LoginClaimDownline(request);
             return TypedResults.Ok(response);
+        }
+
+        static async Task<Results<Ok<int>, BadRequest>> CheckIn(CheckInRequest request, IAuthenticateService service)
+        {
+            var onlineUserId = await service.CheckIn(request);
+            return TypedResults.Ok(onlineUserId);
         }
     }
 }

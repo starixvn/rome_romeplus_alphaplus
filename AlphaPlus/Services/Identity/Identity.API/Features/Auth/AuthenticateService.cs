@@ -6,6 +6,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
     public interface IAuthenticateService
     {
         Task<AuthenticateResponse> LoginClaimDownline(AuthenticateRequest request);
+
+        Task<int> CheckIn(CheckInRequest request);
     }
 
     public class AuthenticateService(IEncryption encryption, IDynamicRepository dynamicRepository) : IAuthenticateService
@@ -55,6 +57,20 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 Message = command.ErrMsg
             };
 
+        }
+
+        public async Task<int> CheckIn(CheckInRequest request)
+        {
+            var command = new CheckInCommand
+            {
+                CustId = request.CustId,
+                SubAccId = request.SubAccId,
+                NetSessionId = request.NetSessionId,
+                ServerId = request.ServerId,
+                IP = request.IP
+            };
+            await dynamicRepository.ExecuteAsync(command);
+            return command.OnlineUserId;
         }
     }
 }

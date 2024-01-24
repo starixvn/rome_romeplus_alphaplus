@@ -41,8 +41,6 @@ namespace Alpha.Main
             ["ProgressiveContributionMenuItem"] = () => new MenuStatus(() => new User().IsEnabledJackpot),
             ["ProgressiveJackpotMenuItem"] = () => new MenuStatus(() => new User().ShowProgressiveJackpotGames),
             ["IndirectLoginAccountMenuItem"] = () => new MenuStatus(
-                () => true),
-            ["IndirectLoginAccountMenuItem"] = () => new MenuStatus(
                 () => IsAllowedIndirectLogin(Current.SRecommendId) && !Current.IsIndirectLoggedIn && (Current.IsSuper || Current.IsMaster)),
             ["DormantAccountListMenuItem"] = () => new MenuStatus(() => Current.IsSuper || Current.IsMaster),
             ["BonusDetailMenuItem"] = () => new MenuStatus(() => AllowedSitesToViewBonusDetail.Contains(Current.Site.ToUpper()))

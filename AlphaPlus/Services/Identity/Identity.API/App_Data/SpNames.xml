@@ -2,5 +2,6 @@
 <Functions>
   <Function Name="Auth">
     <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_Checkin" SpName="Age_Checkin" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>
