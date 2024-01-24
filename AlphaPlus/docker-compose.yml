@@ -1,11 +1,25 @@
 version: '3.4'
 
 services:
+    tickets-api:
+        image: ${REGISTRY:-alphaplus}/tickets.api:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Services/Tickets/API/Dockerfile
+
     identity-api:
         image: ${REGISTRY:-alphaplus}/identity.api:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
             dockerfile: Services/Identity/Identity.API/Dockerfile
+
+    tickets-site:
+        image: ${REGISTRY:-alphaplus}/tickets.site:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/Tickets/Dockerfile
+        depends_on:
+            - tickets-api
 
     assets:
         image: ${REGISTRY:-alphaplus}/assets:${PLATFORM:-linux}-${TAG:-latest}

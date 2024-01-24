@@ -30,11 +30,6 @@ function clean(cb) {
     cb();
 }
 
-function cleanCss(cb) {
-    deleteSync('wwwroot/**/*.css');
-    cb();
-}
-
 function compileCss() {
     return gulp
         .src('assets/styles/**/*.scss')
@@ -84,6 +79,8 @@ function minJs() {
     });
     return merge(tasks);
 }
+
+gulp.task('clean', clean);
 
 gulp.task(
     'default',

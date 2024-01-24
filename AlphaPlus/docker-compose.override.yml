@@ -1,12 +1,26 @@
 version: '3.4'
 
 services:
+    tickets-api:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://0.0.0.0:5000
+        ports:
+            - '5201:5000'
+
     identity-api:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
             - ASPNETCORE_URLS=http://0.0.0.0:5000
         ports:
             - '5200:5000'
+
+    tickets-site:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://0.0.0.0:5000
+        ports:
+            - '5101:5000'
 
     assets:
         ports:
