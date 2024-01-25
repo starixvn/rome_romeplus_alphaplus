@@ -1,8 +1,8 @@
 using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Domain;
+using AlphaPlus.Settings.SubAccount.Domain;
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.Settings.Infrastruture;
+namespace AlphaPlus.Settings.SubAccount.Infrastruture;
 
 public interface ISubAccountService
 {

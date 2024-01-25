@@ -1,6 +1,6 @@
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.Settings.Infrastruture
+namespace AlphaPlus.Settings.SubAccount.Infrastruture
 {
     public class SubAccountListCriteria : CriteriaBase
     {

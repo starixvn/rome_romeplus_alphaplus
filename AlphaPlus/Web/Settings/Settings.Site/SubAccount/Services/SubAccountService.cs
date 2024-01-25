@@ -25,16 +25,16 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
 
     public class SubAccountService : ISubAccountService
     {
-        private readonly Infrastruture.ISubAccountService subAccountService;
+        private readonly Settings.SubAccount.Infrastruture.ISubAccountService subAccountService;
 
-        public SubAccountService(Infrastruture.ISubAccountService subAccountService)
+        public SubAccountService(Settings.SubAccount.Infrastruture.ISubAccountService subAccountService)
         {
             this.subAccountService = subAccountService;
         }
 
         public async Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest)
         {
-            return await subAccountService.AddSubAccount(new Domain.SubAccountModel
+            return await subAccountService.AddSubAccount(new Settings.SubAccount.Domain.SubAccountModel
             {
                 Username = addSubAccountRequest.Username,
                 Password = addSubAccountRequest.Password,
@@ -86,7 +86,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
 
         public async Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest)
         {
-            return await subAccountService.UpdateSubAccountInfo(new Domain.SubAccountModel
+            return await subAccountService.UpdateSubAccountInfo(new Settings.SubAccount.Domain.SubAccountModel
             {
                 SubAccId = updateSubAccountInfoRequest.SubAccId,
                 Firstname = updateSubAccountInfoRequest.Firstname,

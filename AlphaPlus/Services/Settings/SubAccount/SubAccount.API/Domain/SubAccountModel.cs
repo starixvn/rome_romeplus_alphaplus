@@ -1,4 +1,4 @@
-namespace AlphaPlus.Settings.Domain
+namespace AlphaPlus.Settings.SubAccount.Domain
 {
     public class SubAccountModel
     {

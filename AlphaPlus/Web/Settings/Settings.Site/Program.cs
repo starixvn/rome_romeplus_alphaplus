@@ -1,5 +1,5 @@
 using SiteServices = AlphaPlus.Settings.Site.SubAccount.Services;
-using InfraServices = AlphaPlus.Settings.Infrastruture;
+using InfraServices = AlphaPlus.Settings.SubAccount.Infrastruture;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
