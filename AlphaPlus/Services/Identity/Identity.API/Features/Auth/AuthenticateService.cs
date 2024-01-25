@@ -7,7 +7,6 @@ namespace AlphaPlus.Identity.API.Features.Auth
     {
         Task<AuthenticateResponse> LoginClaimDownline(AuthenticateRequest request);
 
-        Task<int> CheckIn(CheckInRequest request);
     }
 
     public class AuthenticateService(IEncryption encryption, IDynamicRepository dynamicRepository) : IAuthenticateService
@@ -35,7 +34,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
             await dynamicRepository.ExecuteAsync(command);
 
-            return new AuthenticateResponse
+            var response = new AuthenticateResponse
             {
                 CustId = command.CustId,
                 UserName = command.UserName,
@@ -57,17 +56,24 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 Message = command.ErrMsg
             };
 
+            if (response.IsOk && request.IsCheckIn)
+            {
+                response.OnlineUserId = await CheckIn(response.CustId, response.SubAccId, request.SessionId, response.ServerId, request.LoginIp);
+            }
+
+            return response;
+
         }
 
-        public async Task<int> CheckIn(CheckInRequest request)
+        private async Task<int> CheckIn(int custId, int subAccId, string sessionId, int serverId, string ip)
         {
             var command = new CheckInCommand
             {
-                CustId = request.CustId,
-                SubAccId = request.SubAccId,
-                NetSessionId = request.NetSessionId,
-                ServerId = request.ServerId,
-                IP = request.IP
+                CustId = custId,
+                SubAccId = subAccId,
+                NetSessionId = sessionId,
+                ServerId = serverId,
+                IP = ip
             };
             await dynamicRepository.ExecuteAsync(command);
             return command.OnlineUserId;

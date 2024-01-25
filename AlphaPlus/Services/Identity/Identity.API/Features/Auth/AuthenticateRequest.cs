@@ -26,5 +26,10 @@ namespace AlphaPlus.Identity.API.Features.Auth
         public string BrowserName { get; set; }
 
         public string Platform { get; set; }
+
+        public bool IsCheckIn { get; set; }
+
+        public string SessionId { get; set; }
+
     }
 }

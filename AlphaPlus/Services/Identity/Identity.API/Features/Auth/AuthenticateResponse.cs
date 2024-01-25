@@ -41,5 +41,10 @@ namespace AlphaPlus.Identity.API.Features.Auth
         public string Nickname { get; init; }
 
         public bool IsNickName { get; init; }
+
+        public int OnlineUserId { get; set; } = 0;
+
+        internal bool IsOk => Code != 0;
+
     }
 }
