@@ -10,7 +10,17 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
 
         public Task<SubAccountViewModel> GetSubAccount(int subAccId);
 
-        public Task<Result> Update(SubAccountViewModel subAccountViewModel);
+        public Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest);
+
+        public Task<Result> UpdateSubAccountPassword(UpdateSubAccountPasswordRequest updateSubAccountPasswordRequest);
+
+        public Task<Result> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest updateSubAccountPageAccessRequest);
+
+        public Task<Result> UpdateSubAccountSecurityCode(UpdateSubAccountSecurityCodeRequest updateSubAccountSecurityCodeRequest);
+
+        public Task<Result> RemoveSubAccountOtp(RemoveSubAccountOtpRequest removeSubAccountOtpRequest);
+
+        public Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest);
     }
 
     public class SubAccountService : ISubAccountService
@@ -22,14 +32,38 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
             this.subAccountService = subAccountService;
         }
 
+        public async Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest)
+        {
+            return await subAccountService.AddSubAccount(new Domain.SubAccountModel
+            {
+                Username = addSubAccountRequest.Username,
+                Password = addSubAccountRequest.Password,
+                Firstname = addSubAccountRequest.Firstname,
+                Lastname = addSubAccountRequest.Lastname,
+                PageAccess = addSubAccountRequest.PageAccess
+            });
+        }
+
         public async Task<SubAccountViewModel> GetSubAccount(int subAccId)
         {
-            throw new NotImplementedException();
+            var result = await subAccountService.GetSubAccount(subAccId);
+            return new SubAccountViewModel
+            {
+                Closed = result.Closed,
+                CreateDate = result.CreateDate,
+                Firstname = result.Firstname,
+                Lastname = result.Lastname,
+                Nickname = result.Nickname,
+                PageAccess = result.PageAccess,
+                Password = result.Password,
+                SubAccId = result.SubAccId,
+                Username = result.Username
+            };
         }
 
         public async Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountListRequest subAccountRequest)
         {
-            var result = await subAccountService.GetSubAccountList(subAccountRequest.CustId);
+            var result = await subAccountService.GetSubAccounts(subAccountRequest.CustId);
 
             return result.Select(item => new SubAccountViewModel
             {
@@ -45,9 +79,35 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
             });
         }
 
-        public async Task<Result> Update(SubAccountViewModel subAccountViewModel)
+        public async Task<Result> RemoveSubAccountOtp(RemoveSubAccountOtpRequest removeSubAccountOtpRequest)
         {
-            throw new NotImplementedException();
+            return await subAccountService.RemoveSubAccountOtp(removeSubAccountOtpRequest.SubAccId);
+        }
+
+        public async Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest)
+        {
+            return await subAccountService.UpdateSubAccountInfo(new Domain.SubAccountModel
+            {
+                SubAccId = updateSubAccountInfoRequest.SubAccId,
+                Firstname = updateSubAccountInfoRequest.Firstname,
+                Closed = updateSubAccountInfoRequest.Closed,
+                Lastname = updateSubAccountInfoRequest.Lastname
+            });
+        }
+
+        public async Task<Result> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest updateSubAccountPageAccessRequest)
+        {
+            return await subAccountService.UpdateSubAccountPageAccess(updateSubAccountPageAccessRequest.SubAccId, updateSubAccountPageAccessRequest.PageAccess);
+        }
+
+        public async Task<Result> UpdateSubAccountPassword(UpdateSubAccountPasswordRequest updateSubAccountPasswordRequest)
+        {
+            return await subAccountService.UpdateSubAccountPassword(updateSubAccountPasswordRequest.SubAccId, updateSubAccountPasswordRequest.NewPassword);
+        }
+
+        public async Task<Result> UpdateSubAccountSecurityCode(UpdateSubAccountSecurityCodeRequest updateSubAccountSecurityCodeRequest)
+        {
+            return await subAccountService.UpdateSubAccountSecurityCode(updateSubAccountSecurityCodeRequest.SubAccId, updateSubAccountSecurityCodeRequest.NewSecurityCode);
         }
     }
 }

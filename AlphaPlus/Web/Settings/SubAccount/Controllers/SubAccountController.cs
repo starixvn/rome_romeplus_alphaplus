@@ -17,5 +17,40 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
         {
             return View(await mediator.Send(subAccountListRequest));
         }
+
+        public async Task<IActionResult> Get(SubAccountRequest subAccountRequest)
+        {
+            return View(await mediator.Send(subAccountRequest));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateSubAccountInfo(UpdateSubAccountInfoRequest subAccountRequest)
+        {
+            return View(await mediator.Send(subAccountRequest));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateSubAccountPassword(UpdateSubAccountPasswordRequest subAccountRequest)
+        {
+            return View(await mediator.Send(subAccountRequest));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest subAccountRequest)
+        {
+            return View(await mediator.Send(subAccountRequest));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateSubAccountSecurityCode(UpdateSubAccountInfoRequest subAccountRequest)
+        {
+            return View(await mediator.Send(subAccountRequest));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveSubAccountOtp(RemoveSubAccountOtpRequest subAccountRequest)
+        {
+            return View(await mediator.Send(subAccountRequest));
+        }
     }
 }

@@ -30,37 +30,37 @@ namespace AlphaPlus.Settings.Site.SubAccount.Handlers
 
         public async Task<Result> Handle(RemoveSubAccountOtpRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await subAccountService.RemoveSubAccountOtp(request);
         }
 
         public async Task<Result> Handle(UpdateSubAccountInfoRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await subAccountService.UpdateSubAccountInfo(request);
         }
 
         public async Task<Result> Handle(UpdateSubAccountPasswordRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await subAccountService.UpdateSubAccountPassword(request);
         }
 
         public async Task<Result> Handle(UpdateSubAccountPageAccessRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await subAccountService.UpdateSubAccountPageAccess(request);
         }
 
         public async Task<SubAccountViewModel> Handle(SubAccountRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await subAccountService.GetSubAccount(request.SubAccId);
         }
 
         public async Task<Result> Handle(UpdateSubAccountSecurityCodeRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await subAccountService.UpdateSubAccountSecurityCode(request);
         }
 
         public async Task<Result> Handle(AddSubAccountRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await subAccountService.AddSubAccount(request);
         }
     }
 }
