@@ -48,7 +48,11 @@ namespace AlphaPlus.Settings.Site.SubAccount.Models
         public bool HasBetlistPermission => HasFullPermission || PageAccess.Contains("[L]", StringComparison.InvariantCultureIgnoreCase);
 
         public bool HasViewLogPermission => HasFullPermission || PageAccess.Contains("[G]", StringComparison.InvariantCultureIgnoreCase);
-        
+
         public bool HasTransferPermission => HasFullPermission || PageAccess.Contains("[C]", StringComparison.InvariantCultureIgnoreCase);
+
+        public string GetPermission() => HasCreateAccountPermission ? "Full Control" :
+            HasUpdatePermission ? "Update" :
+            HasViewMemberInfoPermission ? "View" : "None";
     }
 }

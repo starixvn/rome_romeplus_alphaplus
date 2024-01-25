@@ -20,12 +20,22 @@
         <main role="main" class="pb-3">
             <table>
                 <tr>
-                    <td>No.</td>
+                    <td>#</td>
                     <td>Username</td>
                     <td>Nickname</td>
                     <td>Firstname</td>
                     <td>Lastname</td>
                     <td>Created Date</td>
+                    <td>Member Information</td>
+                    <td>Bets & Forecast</td>
+                    <td>Reports</td>
+                    <td>Bet Lists</td>
+                    <td>Transfer</td>
+                    <td>View Log</td>
+                    <td>Edit</td>
+                    <td>Password</td>
+                    <td>Security Code</td>
+                    <td>Remove OTP</td>
                 </tr>
                 @foreach(var subAcc in Model)
                 {
@@ -37,6 +47,16 @@
                     <td>@subAcc.Firstname</td>
                     <td>@subAcc.Lastname</td>
                     <td>@subAcc.CreateDate</td>
+                    <td>@subAcc.GetPermission()</td>
+                    <td>@subAcc.HasBetsForecastPermission</td>
+                    <td>@subAcc.HasReportPermission</td>
+                    <td>@subAcc.HasBetlistPermission</td>
+                    <td>@subAcc.HasTransferPermission</td>
+                    <td>@subAcc.HasViewLogPermission</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 }
             </table>
