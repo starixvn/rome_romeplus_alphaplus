@@ -50,7 +50,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Handlers
 
         public async Task<SubAccountViewModel> Handle(SubAccountRequest request, CancellationToken cancellationToken)
         {
-            return await subAccountService.GetSubAccount(request.SubAccId);
+            return await subAccountService.GetSubAccount(request.CustId, request.SubAccId);
         }
 
         public async Task<Result> Handle(UpdateSubAccountSecurityCodeRequest request, CancellationToken cancellationToken)

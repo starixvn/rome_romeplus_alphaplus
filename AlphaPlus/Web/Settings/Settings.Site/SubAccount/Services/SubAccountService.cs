@@ -8,7 +8,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
     {
         public Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountListRequest subAccountRequest);
 
-        public Task<SubAccountViewModel> GetSubAccount(int subAccId);
+        public Task<SubAccountViewModel> GetSubAccount(int custId, int subAccId);
 
         public Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest);
 
@@ -44,9 +44,9 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
             });
         }
 
-        public async Task<SubAccountViewModel> GetSubAccount(int subAccId)
+        public async Task<SubAccountViewModel> GetSubAccount(int custId, int subAccId)
         {
-            var result = await subAccountService.GetSubAccount(subAccId);
+            var result = await subAccountService.GetSubAccount(custId, subAccId);
             return new SubAccountViewModel
             {
                 Closed = result.Closed,

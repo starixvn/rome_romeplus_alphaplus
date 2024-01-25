@@ -8,7 +8,7 @@ public interface ISubAccountService
 {
     public Task<IEnumerable<SubAccountModel>> GetSubAccounts(int custId);
 
-    public Task<SubAccountModel> GetSubAccount(int subAccId);
+    public Task<SubAccountModel> GetSubAccount(int custId, int subAccId);
 
     public Task<Result> UpdateSubAccountInfo(SubAccountModel subAccountModel);
 
@@ -37,14 +37,15 @@ public class SubAccountService : ISubAccountService
         throw new NotImplementedException();
     }
 
-    public async Task<SubAccountModel> GetSubAccount(int subAccId)
+    public async Task<SubAccountModel> GetSubAccount(int custId, int subAccId)
     {
-        throw new NotImplementedException();
+        var result = await dynamicRepository.GetAsync<SubAccountModel>(new SubAccountCriteria { CustId = custId, SubAccId = subAccId });
+        return result;
     }
 
     public async Task<IEnumerable<SubAccountModel>> GetSubAccounts(int custId)
     {
-        var result = await dynamicRepository.FetchAsync<SubAccountModel>(new SubAccountListCriteria{ CustId = custId });
+        var result = await dynamicRepository.FetchAsync<SubAccountModel>(new SubAccountListCriteria { CustId = custId });
         return result;
     }
 

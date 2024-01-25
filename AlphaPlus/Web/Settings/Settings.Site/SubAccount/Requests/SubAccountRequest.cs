@@ -5,5 +5,6 @@ namespace AlphaPlus.Settings.Site.SubAccount.Requests
 {
     public class SubAccountRequest : SubAccountBaseRequest, IRequest<SubAccountViewModel>
     {
+        public int CustId { get; set; }
     }
 }
