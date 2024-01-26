@@ -34,13 +34,13 @@
   {
     "outputFileName": "wwwroot/assets/bundles/default-index.css",
     "inputFiles": [
-      "assets/Styles/home/page.css",
-      "assets/Styles/customer-profiles/customer-profile.css",
-      "assets/Styles/home/popup-announcement.css",
-      "assets/Styles/home/tooltip.css",
-      "assets/Styles/home/popup-message.css",
-      "assets/Styles/home/old-main.css",
-      "assets/Styles/advertisement/popup-advertisement.css"
+      "assets/styles/Home/page.css",
+      "assets/styles/customer-profiles/customer-profile.css",
+      "assets/styles/Home/popup-announcement.css",
+      "assets/styles/Home/tooltip.css",
+      "assets/styles/Home/popup-message.css",
+      "assets/styles/Home/old-main.css",
+      "assets/styles/advertisement/popup-advertisement.css"
     ]
   },
   {
@@ -58,7 +58,7 @@
   {
     "outputFileName": "wwwroot/assets/bundles/default-home.css",
     "inputFiles": [
-      "assets/Styles/home/home.css"
+      "assets/styles/Home/home.css"
     ]
   },
   {
@@ -249,13 +249,13 @@
   {
     "outputFileName": "wwwroot/assets/bundles/home-mobile-calculate-07.css",
     "inputFiles": [
-      "assets/styles/home/home-mobile-calculate-07.css"
+      "assets/styles/Home/home-mobile-calculate-07.css"
     ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/page-mobile-calculate-07.css",
     "inputFiles": [
-      "assets/styles/home/page-mobile-calculate-07.css"
+      "assets/styles/Home/page-mobile-calculate-07.css"
     ]
   },
   {
@@ -336,31 +336,31 @@
   {
     "outputFileName": "wwwroot/assets/bundles/default-index-dark.css",
     "inputFiles": [
-      "assets/Styles/home/page-dark.css",
-      "assets/Styles/customer-profiles/customer-profile-dark.css",
-      "assets/Styles/home/popup-announcement-dark.css",
-      "assets/Styles/home/tooltip.css",
-      "assets/Styles/home/popup-message.css",
-      "assets/Styles/home/old-main.css",
-      "assets/Styles/advertisement/popup-advertisement-dark.css"
+      "assets/styles/Home/page-dark.css",
+      "assets/styles/customer-profiles/customer-profile-dark.css",
+      "assets/styles/Home/popup-announcement-dark.css",
+      "assets/styles/Home/tooltip.css",
+      "assets/styles/Home/popup-message.css",
+      "assets/styles/Home/old-main.css",
+      "assets/styles/advertisement/popup-advertisement-dark.css"
     ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/default-home-dark.css",
     "inputFiles": [
-      "assets/Styles/home/home-dark.css"
+      "assets/styles/Home/home-dark.css"
     ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/page-mobile-calculate-07-dark.css",
     "inputFiles": [
-      "assets/styles/home/page-mobile-calculate-07-dark.css"
+      "assets/styles/Home/page-mobile-calculate-07-dark.css"
     ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/home-mobile-calculate-07-dark.css",
     "inputFiles": [
-      "assets/styles/home/home-mobile-calculate-07-dark.css"
+      "assets/styles/Home/home-mobile-calculate-07-dark.css"
     ]
   },
   {
@@ -420,25 +420,25 @@
   {
     "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri7-dark.css",
     "inputFiles": [
-      "assets/Styles/home/ChatBotBanneri7-dark.css"
+      "assets/styles/Home/ChatBotBanneri7-dark.css"
     ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri7.css",
     "inputFiles": [
-      "assets/Styles/home/ChatBotBanneri7.css"
+      "assets/styles/Home/ChatBotBanneri7.css"
     ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri1-dark.css",
     "inputFiles": [
-      "assets/Styles/home/ChatBotBanneri1-dark.css"
+      "assets/styles/Home/ChatBotBanneri1-dark.css"
     ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri1.css",
     "inputFiles": [
-      "assets/Styles/home/ChatBotBanneri1.css"
+      "assets/styles/Home/ChatBotBanneri1.css"
     ]
   },
   {

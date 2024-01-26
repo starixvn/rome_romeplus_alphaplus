@@ -6,18 +6,21 @@ services:
         build:
             context: .
             dockerfile: Services/Tickets/API/Dockerfile
+        restart: always
 
     identity-api:
         image: ${REGISTRY:-alphaplus}/identity.api:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
             dockerfile: Services/Identity/Identity.API/Dockerfile
+        restart: always
 
     tickets-site:
         image: ${REGISTRY:-alphaplus}/tickets.site:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
             dockerfile: Web/Tickets/Dockerfile
+        restart: always
         depends_on:
             - tickets-api
 
@@ -26,9 +29,27 @@ services:
         build:
             context: .
             dockerfile: Web/assets/Dockerfile
+        restart: always
+
+    main:
+        image: ${REGISTRY:-alphaplus}/main:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/Main/Alpha.Main.Site/Dockerfile
+        restart: always
+        depends_on:
+            - identity-api
 
     login:
         image: ${REGISTRY:-alphaplus}/login:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
             dockerfile: Web/Before/Fanex.Alpha.Before/Dockerfile
+        restart: always
+
+    proxy:
+        build: proxy
+        ports:
+            - 5100:80
+        depends_on:
+            - main

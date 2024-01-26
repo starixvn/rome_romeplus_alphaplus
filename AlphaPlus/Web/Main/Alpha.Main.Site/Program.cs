@@ -30,6 +30,7 @@ builder.Services.AddSession(options =>
     options.Cookie.Name = ".AlphaPlus.Session";
     options.IdleTimeout = TimeSpan.FromSeconds(10);
     options.Cookie.IsEssential = true;
+    options.Cookie.Path = "/";
 });
 
 builder.Services
@@ -56,12 +57,16 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UsePathBase("/site-main");
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
+
 app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 
