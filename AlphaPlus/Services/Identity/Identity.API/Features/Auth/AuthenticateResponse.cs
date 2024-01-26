@@ -44,7 +44,14 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public int OnlineUserId { get; set; } = 0;
 
-        internal bool IsOk => Code != 0;
+        public CustomerStatus Status { get; set; }
 
+        public bool IsShowConsolidatedReport { get; set; }
+
+        public bool IsShowBetChoiceLimit { get; set; }
+
+        public SiteDB SiteDB { get; set; }
+
+        public bool IsAllowTotalBalanceTransfer { get; set; }
     }
 }

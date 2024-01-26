@@ -1,18 +1,22 @@
 using AlphaPlus.Identity.API.Utils;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Identity.API.Features.Auth
 {
     public interface IAuthenticateService
     {
         Task<AuthenticateResponse> LoginClaimDownline(AuthenticateRequest request);
-
     }
 
-    public class AuthenticateService(IEncryption encryption, IDynamicRepository dynamicRepository) : IAuthenticateService
+    public class AuthenticateService(
+        IEncryption encryption,
+        IDynamicRepository dynamicRepository,
+        IOptions<AppSettings> appSettings) : IAuthenticateService
     {
         private readonly IEncryption encryption = encryption;
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
+        private readonly AppSettings appSettings = appSettings.Value;
 
         public async Task<AuthenticateResponse> LoginClaimDownline(AuthenticateRequest request)
         {
@@ -56,9 +60,14 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 Message = command.ErrMsg
             };
 
-            if (response.IsOk && request.IsCheckIn)
+            if (command.ErrCode == 0)
             {
                 response.OnlineUserId = await CheckIn(response.CustId, response.SubAccId, request.SessionId, response.ServerId, request.LoginIp);
+                response.Status = await GetCustomerStatus(response.CustId, response.AdminId);
+                response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
+                response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
+                response.SiteDB = await GetSiteDB(response.CustId);
+                response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
             }
 
             return response;
@@ -77,6 +86,35 @@ namespace AlphaPlus.Identity.API.Features.Auth
             };
             await dynamicRepository.ExecuteAsync(command);
             return command.OnlineUserId;
+        }
+
+        private Task<CustomerStatus> GetCustomerStatus(int custId, int adminId, string system = "NAP")
+            => dynamicRepository.GetAsync<CustomerStatus>(new GetCustomerStatusCriteria
+            {
+                CustId = custId,
+                AdminId = adminId,
+                System = system,
+                SettingStatus = appSettings.SettingStatus
+            });
+
+        private async Task<bool> IsShowConsolidateReport(int custId)
+        {
+            var command = new CheckShowConsolidateReportCommand(custId);
+            await dynamicRepository.ExecuteAsync(command);
+            return command.IsShownMenu;
+        }
+
+        private Task<bool> IsShowBetChoiceLimit(int custId)
+            => dynamicRepository.GetAsync<bool>(new CheckShowBetChoiceLimitCriteria(custId));
+
+        private Task<SiteDB> GetSiteDB(int custId)
+            => dynamicRepository.GetAsync<SiteDB>(new GetSiteDBConfigCriteria(custId));
+
+        private async Task<bool> IsAllowTotalBalanceTransfer(int custId)
+        {
+            var command = new CheckAllowTotalBalanceTransferCommand(custId, appSettings.AllowedListSuperAccounts);
+            await dynamicRepository.ExecuteAsync(command);
+            return command.IsAllowed;
         }
     }
 }

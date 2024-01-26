@@ -39,4 +39,44 @@ public class SignInResult : Result
     public string Nickname { get; init; }
 
     public bool IsNickName { get; init; }
+
+    public int OnlineUserId { get; init; }
+
+    public CustomerStatus Status { get; init; }
+
+    public bool IsShowConsolidatedReport { get; init; }
+
+    public bool IsShowBetChoiceLimit { get; init; }
+
+    public SiteDB SiteDB { get; init; }
+
+    public bool IsAllowTotalBalanceTransfer { get; init; }
+}
+
+public class CustomerStatus
+{
+    public bool DoubleCommLosing { get; init; }
+
+    public bool DisableAutoMPT { get; init; }
+
+    public int SRecommend { get; init; }
+
+    public int MRecommend { get; init; }
+
+    public int ARecommend { get; init; }
+
+    public bool IsAdminCanViewVNIP { get; init; }
+
+    public bool IsMyanmarOdds { get; init; }
+}
+
+public class SiteDB
+{
+    public int SiteDBGroupId { get; init; }
+
+    public string LinkedServerName { get; init; }
+
+    public string ClientAccessName { get; init; }
+
+    public string AGIP { get; init; }
 }

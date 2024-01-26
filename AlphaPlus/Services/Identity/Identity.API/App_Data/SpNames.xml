@@ -3,5 +3,10 @@
   <Function Name="Auth">
     <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_Checkin" SpName="Age_Checkin" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_CustomerSelStatus" SpName="Acc_CustomerSelStatus" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustSetting_BetChoiceLimitCheck" SpName="Age_CustSetting_BetChoiceLimitCheck" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_Rpt_ConsolidatedGroup_isShownMenu" SpName="Age_Rpt_ConsolidatedGroup_isShownMenu" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Acc_SiteDBConfigSel" SpName="Acc_SiteDBConfigSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_Transfer_CheckTotalBalanceTransfer" SpName="Age_Transfer_CheckTotalBalanceTransfer" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>
