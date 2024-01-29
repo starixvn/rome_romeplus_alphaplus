@@ -2,7 +2,7 @@ FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS builder
 
 #Installing npm & gulp global
 RUN apk add --update nodejs npm
-RUN npm install -g gulp
+RUN npm install -g yarn gulp-cli
 
 WORKDIR /src
 
@@ -24,9 +24,7 @@ COPY "Web/Main/Alpha.Main.Site" "Web/Main/Alpha.Main.Site"
 COPY "Shared" "Shared"
 
 WORKDIR /src/Web/Main/Alpha.Main.Site
-
-RUN npm install
-RUN gulp default
+RUN yarn && gulp default
 RUN dotnet publish --no-restore -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base

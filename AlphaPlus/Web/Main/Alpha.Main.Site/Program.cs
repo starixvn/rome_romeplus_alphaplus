@@ -25,13 +25,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.Configuration = redisConfiguration;
     options.InstanceName = "AlphaPlus";
 });
-builder.Services.AddSession(options =>
-{
-    options.Cookie.Name = ".AlphaPlus.Session";
-    options.IdleTimeout = TimeSpan.FromSeconds(10);
-    options.Cookie.IsEssential = true;
-    options.Cookie.Path = "/";
-});
+builder.Services.AddSession();
 
 builder.Services
     .AddDataProtection()

@@ -62,14 +62,14 @@ namespace Alpha.Main.Site.ViewModels.Banner
 
         private string GetMobileSabaAppImageSource(string siteGroup)
             => string.Format(
-                "~/Assets/Images/MenuBarBanner/{0}/{1}_msa_{2}.jpg",
+                "~/assets/images/MenuBarBanner/{0}/{1}_msa_{2}.jpg",
                 siteGroup,
                 Type == BannerType.Mobile ? "600x140" : "280x70",
                 Main.Constants.Language.MapToMainLanguageCode(Language));
 
         private string GetSabaSportMarketingAppImageSource()
             => string.Format(
-                "~/Assets/Images/MenuBarBanner/789Y/{0}_ssma_{1}.jpg",
+                "~/assets/images/MenuBarBanner/789Y/{0}_ssma_{1}.jpg",
                 Type == BannerType.Mobile ? "600x140" : "280x70",
                 MapSabaSportMarketingAppLanguage());
 
