@@ -50,7 +50,7 @@ COPY --from=builder /app/styles/fonts/iconalpha/fonts ./bundles/common/fonts
 COPY --from=builder /app/styles/fonts ./bundles/fonts
 COPY --from=builder /app/styles-v2/fonts ./bundles-v2/common/fonts
 COPY --from=builder /app/styles-v3/base/fonts ./bundles3/fonts
-COPY --from=builder /app/styles/images ./images
+COPY --from=builder /app/styles/images ./bundles/images
 
 # RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
 # 		|| [ "$TRANSFORM_CONFIG" = "SIT2" ] \

@@ -1,9 +1,9 @@
 using Alpha.Main.Site.Helpers;
 using Alpha.Main.Site.Models.Requests;
-using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Alpha.Main.Configurations;
 
 namespace Alpha.Main.Site.ViewModels;
 
@@ -19,8 +19,7 @@ public class MenuBarViewComponent(IMediator mediator, IUserSession userSession) 
             userSession.RoleId,
             Request.Headers.UserAgent.ToString(),
             darkModeName: DarkModeHelper.GetDarkModeName(userSession),
-            isHideBanner: false));
-        // isHideBanner: AppSettings.BannerIsHide || userSession.IsProtectedMode));
+            isHideBanner: AppSettings.BannerIsHide || userSession.IsProtectedMode));
 
         return View(viewModel);
     }

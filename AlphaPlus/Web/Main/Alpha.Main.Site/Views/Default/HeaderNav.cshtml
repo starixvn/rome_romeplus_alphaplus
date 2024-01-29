@@ -38,7 +38,7 @@
                 data-second="@DateTime.Now.Second"></span>
         </li>
         <li class="hidden-mobile dropdown language">
-            @* TODO: Language @Html.Action("List", "Language") *@
+            @await Component.InvokeAsync("LanguageList")
         </li>
 
         @if (Model.ShowCreateMemberByQRCode)
@@ -81,7 +81,7 @@
                         </div>
                     </li>
                     <li class="dropdown-submenu language">
-                        @* TODO: Language @Html.Action("List", "Language") *@
+                        @await Component.InvokeAsync("LanguageList")
                     </li>
                     <li class="bg-light">
                         <a class="link-logout"><span class="icon-pc icon-logout"></span>@Resources.LogOut</a>

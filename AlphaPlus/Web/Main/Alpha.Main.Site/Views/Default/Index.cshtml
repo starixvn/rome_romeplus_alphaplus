@@ -13,8 +13,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-main/{Model.UserLevel}")
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/default-index")
-    @StaticResources.RenderStylesWithMediaDarkMode(767, "~/assets/bundles/page-mobile-calculate-07")
+    <link href="~/assets/bundles/default-index.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+    <link href="~/assets/bundles/page-mobile-calculate-07.css" rel="stylesheet" type="text/css"
+        asp-append-version="true" media="screen and(max-device-width: 767px)" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,7 +33,6 @@
             data-url="@Url.Action("BriefProfile", "CustomerProfile")"></div>
         <nav class="navigation" id="navigation">
             @await Component.InvokeAsync("MenuBar")
-            @* @Html.Action("MenuBar") *@
         </nav>
     </aside>
     <div class="content-wrapper" id="content-wrapper">
@@ -65,12 +65,12 @@
     @if (Model.IsShowSuggestEnableTelegramOtp)
     {
         @await Html.PartialAsync("SuggestEnableTelegramOtpPopup")
-        ;
     }
     @await Html.PartialAsync("~/Views/Advertisement/AdvertisementPopup.cshtml")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-main/default")
-    @StaticResources.RenderScripts("~/assets/bundles/default-index")
+    <script src="~/assets/bundles/default-index.js" type="text/javascript" asp-append-version="true"></script>
+    @* @StaticResources.RenderScripts("~/assets/bundles/default-index") *@
     @if (Model.IsShowSuggestEnableTelegramOtp)
     {
         @Html.Hidden("EnabledOTPSuccessMessage", ChatBot.EnabledTelegramOtpNotification)

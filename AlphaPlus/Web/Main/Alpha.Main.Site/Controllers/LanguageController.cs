@@ -14,13 +14,13 @@ namespace Alpha.Main.Site.Controllers
         private readonly IUserSession userSession = userSession;
         private readonly IMediator mediator = mediator;
 
-        [AllowProtectedMode]
-        public async Task<IActionResult> List()
-        {
-            var viewModel = await mediator.Send(new AllLanguagesQuery(userSession.Language, AppSettings.DisabledVietnamese));
+        // [AllowProtectedMode]
+        // public async Task<IActionResult> List()
+        // {
+        //     var viewModel = await mediator.Send(new AllLanguagesQuery(userSession.Language, AppSettings.DisabledVietnamese));
 
-            return PartialView(viewModel);
-        }
+        //     return PartialView(viewModel);
+        // }
 
         [HttpPost]
         [AllowProtectedMode]

@@ -24,7 +24,7 @@ COPY "Web/Main/Alpha.Main.Site" "Web/Main/Alpha.Main.Site"
 COPY "Shared" "Shared"
 
 WORKDIR /src/Web/Main/Alpha.Main.Site
-RUN yarn && gulp default
+RUN yarn && yarn build
 RUN dotnet publish --no-restore -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
