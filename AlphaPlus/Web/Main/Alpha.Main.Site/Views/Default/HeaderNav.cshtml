@@ -137,7 +137,7 @@
                         </div>
                     </li>
                     <li class="visible-mobile dropdown-submenu language">
-                        @* TODO: Language @Html.Action("List", "Language") *@
+                        @Component.InvokeAsync("LanguageList")
                     </li>
                     @if (Model.ShowNicknameMenu)
                     {

@@ -14,9 +14,14 @@
 
             this.$.ajax(ajaxSettings);
         }
-    }
+    };
 
-    private createAjaxSettings = (url: string, method: string, component: any, handleOnSuccessLoading: any): JQueryAjaxSettings => {
+    private createAjaxSettings = (
+        url: string,
+        method: string,
+        component: any,
+        handleOnSuccessLoading: any
+    ): JQueryAjaxSettings => {
         const ajaxSetting: JQueryAjaxSettings = {
             method: method,
             url: url,
@@ -28,5 +33,10 @@
         };
 
         return ajaxSetting;
-    }
+    };
 }
+
+$(() => {
+    const balance = new DashboardBase($);
+    balance.loadInfo('#balance', () => {});
+});

@@ -2,6 +2,8 @@ namespace AlphaPlus.Core.Configurations;
 
 public class AuthorizationOptions
 {
+    public const string Authorization = "Authorization";
+
     public int CachedExpireTime { get; set; }
 
     public GroupPageAccess[] GroupPageAccesses { get; set; }

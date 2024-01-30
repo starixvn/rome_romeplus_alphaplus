@@ -6,7 +6,6 @@ using Alpha.Main.ProfilePicture.Services;
 using Alpha.Main.Services;
 using Alpha.Main.Services.Impl;
 using AlphaPlus.SecurityCode.Services;
-using AlphaPlus.Core.Models;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;
@@ -18,9 +17,8 @@ using AlphaPlus.Core.Utils;
 using AlphaPlus.RequestInfo;
 using Fanex.Cryptography.Aes;
 using Fanex.Caching;
-using AlphaPlus.Core.Services;
-using AlphaPlus.Core;
 using System.Net;
+using AlphaPlus.Core.Extensions;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -37,11 +35,7 @@ public static class Extensions
         services.AddSingleton<IDynamicRepository, DynamicRepository>();
         services.AddSingleton(Fanex.Logging.Logger.Log);
 
-        services.AddSingleton<IUserSession, UserSessionExt>();
-        services.AddSingleton<IRequestAnalyst, RequestAnalyst>();
-        services.AddSingleton<IBrowserHelper, BrowserHelper>();
-        services.AddSingleton<IRequestContext, RequestContext>();
-        services.AddSingleton<IAuthorizationService, AuthorizationService>();
+        services.AddAlphaPlusCore(configuration);
 
         services.AddSingleton<MenuItemBuilder, MenuItemBuilderImpl>();
         services.AddSingleton<CacheRefService, CacheRefServiceImpl>();

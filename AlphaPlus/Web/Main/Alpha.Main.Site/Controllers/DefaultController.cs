@@ -96,20 +96,6 @@ namespace Alpha.Main.Site.Controllers
             return View(message as object);
         }
 
-        // TODO: DisabledVietnamese
-        // protected override void Initialize(RequestContext requestContext)
-        // {
-        //     var cultureName = UserSession.Current.Language;
-
-        //     if (AppSettings.DisabledVietnamese && cultureName == Language.Vietnamese)
-        //     {
-        //         cultureName = English;
-        //         UserSession.Current.Language = cultureName;
-        //     }
-
-        //     base.Initialize(requestContext);
-        // }
-
         private static void ClearSession()
         {
             AlphaContext.Current.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

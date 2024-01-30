@@ -29,8 +29,7 @@
         </ul>
     </div>
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active balance-info" id="balance">
-            @*TODO: BalanceInfo @Html.Action("BalanceInfo") *@
+        <div role="tabpanel" class="tab-pane active balance-info" id="balance" action-url="@Url.Action("BalanceInfo")">
         </div>
         <div role="tabpanel" class="tab-pane statistic" id="stats" action-url="@Url.Action("Index", "Statistics")">
             <div class="text-center"><span class="block-icon-small "></span></div>

@@ -1,7 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Alpha.Main.AppResources;
 using Alpha.Main.Criteria.SecurityCode;
-using Alpha.Main.Models;
 using Alpha.Main.Params.SecurityCode;
 using Fanex.Data.Repository;
 using AlphaPlus.Core.Utils;

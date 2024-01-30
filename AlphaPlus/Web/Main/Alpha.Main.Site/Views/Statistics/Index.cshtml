@@ -39,14 +39,10 @@
 <div class="container">
     <div class="panel-title"><span class="icon-statistics"></span>@Resources.statistics</div>
     <div class="group-title">@Resources.outstanding</div>
-    @{
-        Html.NumericRow(Model.OutstandingLabel, statistics.Outstanding,
-        Model.CanViewReports, Model.MemberOutstandingReportPath, "dashboard-outstanding");
-
-        Html.NumericRow(Resources.totalOutstanding, statistics.TotalOutstanding,
-        Model.CanViewReports, Model.MemberOutstandingReportPath, "dashboard-total-outstanding");
-    }
-
+    @Html.NumericRow(Model.OutstandingLabel, statistics.Outstanding, Model.CanViewReports,
+            Model.MemberOutstandingReportPath, "dashboard-outstanding")
+    @Html.NumericRow(Resources.totalOutstanding, statistics.TotalOutstanding,
+            Model.CanViewReports, Model.MemberOutstandingReportPath, "dashboard-total-outstanding")
     <div class="group-title">@Resources.memberInfo</div>
 
     @if (Model.UserLevel.IsSuperLevel())

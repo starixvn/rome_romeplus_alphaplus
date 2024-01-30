@@ -1,11 +1,10 @@
-﻿namespace Alpha.Main.Site.Handlers
-{
-    using System;
-    using MediatR;
-    using Requests.Dashboard.Statistics;
-    using Services;
-    using ViewModels.Dashboard.Statistics;
+﻿using MediatR;
+using Alpha.Main.Site.Requests.Dashboard.Statistics;
+using Alpha.Main.Services;
+using Alpha.Main.Site.ViewModels.Dashboard.Statistics;
 
+namespace Alpha.Main.Site.Handlers
+{
     public class StatisticsHandler :
         IRequestHandler<StatisticsQuery, StatisticsViewModel>,
         IRequestHandler<TopWinningMembersQuery, TopWinningMembersViewModel>,

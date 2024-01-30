@@ -75,10 +75,16 @@ public class SignInService(HttpClient client) : ISignInService
             session.UserName = signInResult.UserName?.ToUpperInvariant().Trim();
             session.SubAccId = signInResult.SubAccId;
             session.SubUserName = signInResult.SubUsername;
-            session.SubPageAccess = (PageAccess)signInResult.SubPageAccess ?? new PageAccess();
-            if (!session.IsSubAcc)
+
+            if (session.IsSubAcc)
             {
-                session.SubPageAccess.SetFullPermission();
+                session.SubPageAccess = (PageAccess)signInResult.SubPageAccess ?? new PageAccess();
+            }
+            else
+            {
+                var subPageAccess = new PageAccess();
+                subPageAccess.SetFullPermission();
+                session.SubPageAccess = subPageAccess;
             }
 
             session.SiteName = GetSiteName(signInResult.RoleId);
