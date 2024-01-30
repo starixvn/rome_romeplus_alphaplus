@@ -21,28 +21,29 @@ public class ForecastController : Controller//BaseController
         ISoccerService soccerService)
         => (this.forecastService, this.scoreMapService, this.soccerService) = (forecastService, scoreMapService, soccerService);
 
-    public async Task<IActionResult> Soccer(bool isLive = true)
+    public async Task<IActionResult> Soccer(SoccerRequest message)
     {
-        var leagues = await soccerService.GetLeagues(isLive, "en-US");
-        var firstLeague = leagues.FirstOrDefault();
-        var matches = firstLeague == null
+        var leagues = await soccerService.GetLeagues(message.IsLive, message.Language);
+        message.LeagueId = message.LeagueId == 0
+            ? leagues.FirstOrDefault()?.LeagueId ?? 0
+            : message.LeagueId;
+        var matches = message.LeagueId == 0
             ? Enumerable.Empty<Match>()
-            : await soccerService.GetMatches(firstLeague.LeagueId, isLive, "en-US");
+            : await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language);
 
         var viewModel = new SoccerViewModel([
-            new SelectListItem(Resources.Live, "true", isLive),
-            new SelectListItem(Resources.NonLive, "false", !isLive)
-        ], leagues, matches);
+            new SelectListItem(Resources.Live, "true", message.IsLive),
+            new SelectListItem(Resources.NonLive, "false", !message.IsLive)
+        ], message.LeagueId, leagues, matches);
 
         return View(viewModel);
     }
 
+    public async Task<IActionResult> GetSoccerLeagues(SoccerRequest message)
+        => Json(await soccerService.GetLeagues(message.IsLive, message.Language));
 
-    public async Task<IActionResult> GetSoccerLeagues(bool isLive = true)
-        => Json(await soccerService.GetLeagues(isLive, "en-US"));
-
-    public async Task<IActionResult> GetSoccerMatches(int leagueId, bool isLive)
-        => Json(await soccerService.GetMatches(leagueId, isLive, "en-US"));
+    public async Task<IActionResult> GetSoccerMatches(SoccerRequest message)
+        => Json(await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language));
 
     public async Task<IActionResult> GetSoccerResults(GetSoccerResultRequest message)
         => Json(await soccerService.GetResults(

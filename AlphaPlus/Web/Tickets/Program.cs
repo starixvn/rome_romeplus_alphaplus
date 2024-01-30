@@ -14,6 +14,7 @@ var configuration = builder.Configuration;
 builder.Services
     .AddFanexLogging(configuration)
     .AddSharedSession(configuration)
+    .AddApplicationServices(configuration)
     .AddInfrastructure(configuration)
     .AddMediatR(assembly)
     .AddHealthChecks();

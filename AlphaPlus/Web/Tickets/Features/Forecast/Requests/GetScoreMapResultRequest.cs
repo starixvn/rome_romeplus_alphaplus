@@ -1,18 +1,15 @@
+using AlphaPlus.Core.Models;
+using AlphaPlus.Tickets.Site.Features.Shared.Requests;
+
 namespace AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 
-public class GetScoreMapResultRequest
+public class GetScoreMapResultRequest(IUserSession userSession) : RequestBase(userSession)
 {
-    public byte ViewerLevel { get; } = 4;
+    public string MatchIds { get; init; }
 
-    public int ViewerId { get; } = 23003140; //1176070
+    public string LiveBetTypes { get; init; }
 
-    public string Language { get; } = "en-US";
+    public string DeadBetTypes { get; init; }
 
-    public string MatchIds { get; set; }
-
-    public string LiveBetTypes { get; set; }
-
-    public string DeadBetTypes { get; set; }
-
-    public bool IsRefresh { get; set; }
+    public bool IsRefresh { get; init; }
 }

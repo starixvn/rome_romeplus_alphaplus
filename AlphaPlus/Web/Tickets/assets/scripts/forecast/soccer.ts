@@ -289,6 +289,13 @@ const soccer = {
                 };
             })
         });
+        soccer.domElements.ddlLeague.off('change.select2').on('change.select2', function () {
+            soccer.loadMatches();
+            soccer.domElements.mainContent.hide().find('tbody').remove();
+            soccer.stopCountdown();
+
+            sessionStorage.setItem(soccer.cookies.league, soccer.domElements.ddlLeague.val());
+        });
         // let leagueId = soccer.domElements.ddlLeague.val() || $.cookie(soccer.cookies.league);
         // leagueId = leagueId || (leagues.length > 0 ? leagues[0].Id : 0);
         // const processedLeagues = leagues.map(function (league) {

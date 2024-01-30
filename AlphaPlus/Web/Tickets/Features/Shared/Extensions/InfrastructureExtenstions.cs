@@ -1,4 +1,5 @@
 using System.Net;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Tickets.Site.Features.Forecast;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Tickets.Site.Features.TotalBets;
@@ -11,31 +12,30 @@ public static class InfrastructureExtenstions
 {
     public static IServiceCollection AddSharedSession(this IServiceCollection services, IConfiguration configuration)
     {
+        const string AppName = "AlphaPlus";
         var redisConfiguration = configuration.GetValue<string>("RedisConfiguration");
         services
             .AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = redisConfiguration;
-                options.InstanceName = "AlphaPlus";
+                options.InstanceName = AppName;
             })
-            .AddSession(options =>
-            {
-                options.Cookie.Name = ".AlphaPlus.Session";
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.IsEssential = true;
-            })
+            .AddSession()
             .AddDataProtection()
-            .SetApplicationName("AlphaPlus")
+            .SetApplicationName(AppName)
             .PersistKeysToStackExchangeRedis(ConnectionMultiplexer.Connect(redisConfiguration));
 
         return services;
     }
 
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+        => services
+            .AddSingleton<IUserSession, UserSessionExt>()
+            .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>()
+            .Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
+
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>();
-        services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
-
         // https://www.milanjovanovic.tech/blog/the-right-way-to-use-httpclient-in-dotnet
         // Why You Should Avoid Typed Clients In Singleton Services
         const int HttpClientPooledConnectionLifetime = 15;
