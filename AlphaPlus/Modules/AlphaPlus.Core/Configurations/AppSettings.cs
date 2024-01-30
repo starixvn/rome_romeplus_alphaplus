@@ -69,6 +69,8 @@ public static class AppSettings
 
     public static bool IsSiteLabel789y => SiteLabel.Equals("789y");
 
+    public static bool DisabledVietnamese => !IsSiteLabel789y;
+
     public static byte SettingStatus => ConfigurationManager.GetValue<byte>("SettingStatus");
 
     public static string DBTXN_IP => ConfigurationManager.GetValue<string>("DBTXN_IP");

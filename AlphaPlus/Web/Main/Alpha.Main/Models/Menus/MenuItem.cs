@@ -2,6 +2,7 @@
 using Alpha.Main.AppResources;
 using Alpha.Main.Configurations;
 using AlphaPlus.Core.Helpers;
+using System.Text.RegularExpressions;
 
 namespace Alpha.Main.Models.Menus
 {
@@ -53,7 +54,6 @@ namespace Alpha.Main.Models.Menus
             this.browserHelper = browserHelper;
         }
 
-        public string Key { get; set; }
 
         public string ResourceKey { get; set; }
 
@@ -80,32 +80,16 @@ namespace Alpha.Main.Models.Menus
             get
             {
                 var context = AlphaContext.Current;
-                var session = context?.Session;
                 var appVirtualPath = !string.IsNullOrWhiteSpace(AppPath) ? AppSettings.GetAppPath(AppPath) : string.Empty;
-                var runtimeAppPath = context.Request.Path.Value ?? string.Empty;
-                // var reportUrl = $"{appVirtualPath}{context?.Response?.ApplyAppPathModifier(runtimeAppPath)}{link}";
-                // reportUrl = !string.IsNullOrWhiteSpace(runtimeAppPath) ? reportUrl.Replace(runtimeAppPath, string.Empty) : reportUrl;
 
-                // var cookieless = session != null && session.IsCookieless ?
-                //     $"/(S({session?.SessionID}))" : string.Empty;
+                var menuLink = string.IsNullOrWhiteSpace(appVirtualPath) ? link : Regex.Replace(link, context.Request.PathBase.Value ?? string.Empty, appVirtualPath);
 
-                // var menuLink = !string.IsNullOrWhiteSpace(UseDomainConfig) ? $"{UseDomainConfig}{cookieless}{link}" :
-                //     appVirtualPath.Equals("/site-reports") || appVirtualPath.Equals("/site-betlists") ? reportUrl :
-                //     !string.IsNullOrWhiteSpace(link) && !string.IsNullOrWhiteSpace(runtimeAppPath) ?
-                //     link.Replace(runtimeAppPath, appVirtualPath) : string.Empty;
-
-                var menuLink = !string.IsNullOrWhiteSpace(UseDomainConfig) ? $"{UseDomainConfig}{link}" :
-                    !string.IsNullOrWhiteSpace(link) && !string.IsNullOrWhiteSpace(runtimeAppPath) ?
-                    link.Replace(runtimeAppPath, appVirtualPath) : string.Empty;
-
-
-
-                if (!string.IsNullOrWhiteSpace(link) && string.Equals("transfer", ResourceKey, StringComparison.OrdinalIgnoreCase))
+                if (!string.IsNullOrWhiteSpace(menuLink) && string.Equals("transfer", ResourceKey, StringComparison.OrdinalIgnoreCase))
                 {
                     menuLink = string.Format(menuLink, transferService.IsAllDayBalanceTransfer(user.CustId));
                 }
 
-                if (menuLink.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)
+                if (!string.IsNullOrWhiteSpace(menuLink) && menuLink.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)
                 {
                     var languageParam = buildLanguageQueryStringFunc();
                     var darkModeParam = buildDarkModeQueryStringFunc();
@@ -167,8 +151,6 @@ namespace Alpha.Main.Models.Menus
         public bool IsMobileView => browserHelper.IsMobile();
 
         public bool IsHiddenInMobile { get; set; }
-
-        public string UseDomainConfig { get; set; }
 
         private bool isVisibleForMobileOrDesktop() =>
             IsMobileView && !IsHiddenInMobile ||

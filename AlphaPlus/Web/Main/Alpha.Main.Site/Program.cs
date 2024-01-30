@@ -1,5 +1,6 @@
 using Alpha.Main.Site.Extensions;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
 using Fanex.Logging.Extensions.Database;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -61,6 +62,7 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseMiddleware<RequestCultureMiddleware>();
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 

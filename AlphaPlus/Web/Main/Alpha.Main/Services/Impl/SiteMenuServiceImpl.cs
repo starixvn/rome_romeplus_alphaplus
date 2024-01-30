@@ -30,8 +30,6 @@ namespace Alpha.Main.Services.Impl
 
         public IEnumerable<IMenuItem> GetMenuByUserLevel(UserLevel userLevel, bool isCookieLess = false)
         {
-            //var menuItems = Enumerable.Empty<IMenuItem>();
-
             var menuItems = GetMenuDataByUserLevel(userLevel, isCookieLess);
 
             return menuItems;

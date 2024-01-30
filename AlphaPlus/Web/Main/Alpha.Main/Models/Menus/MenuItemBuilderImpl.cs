@@ -51,7 +51,6 @@ namespace Alpha.Main.Models.Menus
 
             // useDomainConfigValue = useDomainConfigValue.IndexOf("{0}", StringComparison.OrdinalIgnoreCase) != -1 ? string.Format(useDomainConfigValue, mainDomain) : useDomainConfigValue;
 
-            menuItem.Key = node.Key;
             menuItem.ResourceKey = node.ResourceKey;
             menuItem.Link = node.Url;
             menuItem.AppPath = node.AppPath;

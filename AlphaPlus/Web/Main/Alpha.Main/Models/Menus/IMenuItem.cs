@@ -4,8 +4,6 @@
 
     public interface IMenuItem
     {
-        string Key { get; set; }
-
         string ResourceKey { get; set; }
 
         string DisplayName { get; }

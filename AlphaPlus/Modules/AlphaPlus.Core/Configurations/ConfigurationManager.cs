@@ -14,15 +14,8 @@ public static class ConfigurationManager
     {
         try
         {
-            var value = _config[key];
-            if (value == null)
-            {
-                return defaultValue;
-            }
+            return _config.GetValue<T>(key, defaultValue);
 
-            TypeConverter typeConverter = TypeDescriptor.GetConverter(typeof(T));
-
-            return (T)typeConverter.ConvertFromString(value);
         }
         catch (Exception ex)
         {
