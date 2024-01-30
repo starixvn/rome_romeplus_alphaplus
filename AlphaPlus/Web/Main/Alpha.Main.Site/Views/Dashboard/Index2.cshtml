@@ -41,7 +41,8 @@
     <!--<![endif]-->
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-main/dashboard/dashboard-default")
-    @StaticResources.RenderScripts("~/assets/bundles/default-dashboard")
+    @* @StaticResources.RenderScripts("~/assets/bundles/default-dashboard") *@
+    <script src="~/assets/bundles/default-dashboard.js" type="text/javascript" asp-append-version="true"></script>
     <script>
         $(() => {
             const topWindow = window.top;
