@@ -1,16 +1,69 @@
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = Resources.BetsAndForecast;
 }
-@model Tuple<string, IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
-<div>@Model.Item1</div>
-<div>
-    <select asp-items="@Model.Item2"></select>
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/forecast/soccer.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="http://localhost:5100/bundles3/site-totalbetsforecast/soccer.js"></script>
+    <script src="~/bundles/forecast/soccer.js" asp-append-version="true"></script>
+}
+@model SoccerViewModel
+<div class="container-fluid totalandforecast">
+    <ul class="breadcrumb">
+        <li>@Resources.BetsAndForecast</li>
+        <li>
+            @Resources.Soccer
+            <span class="help" data-toggle="modal" data-target="#helpModal" title="Help"></span>
+        </li>
+    </ul>
+    <form class="filter form-inline" role="form">
+        <div class="form-group">
+            <select asp-items="Model.LiveStatus" id="ddlDeadBall"></select>
+        </div>
+        <div class="form-group">
+            <label>@Resources.League</label>
+            <select asp-items="Model.Leagues" id="ddlLeague"></select>
+        </div>
+        <div class="form-group last-filter">
+            <label>@Resources.Event</label>
+            <select asp-items="Model.Matches" id="ddlMatch"></select>
+            @* <select id="ddlMatch" multiple="multiple" data-init-lable="@Resources.SelectAMatch"
+            data-selected-event-text="@Resources.SelectedEvents"
+            data-select-at-least="@Resources.SelectAtLeastOneMatch" data-select-all-text="@Resources.AllEvents"
+            style="display:none;"></select> *@
+        </div>
+        <div class="form-group">
+            <input type="button" class="btn-submit" id="btnSubmit" value="@Resources.Submit" />
+            <div class="dropdown btn btn-default btn-countdown ">
+                <span class="icon-refresh"></span>
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span id="ddlRefresh">30</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="refresh-value" aria-labelledby="dropdownMenu2">
+                    <li><a href="javascript:void(0);" data-refresh-value="30">30</a></li>
+                    <li><a href="javascript:void(0);" data-refresh-value="45">45</a></li>
+                    <li><a href="javascript:void(0);" data-refresh-value="60">60</a></li>
+                </ul>
+            </div>
+            <span class="block-icon-small" id="blockIconSmall" style="display:none;"></span>
+        </div>
+    </form>
+    <table class="tblRpt tblRpt-bordered" id="mainContent">
+        <thead>
+            <tr class="RptHeader">
+                <th class="text-center">@Resources.Time</th>
+                <th class="text-center">@Resources.Event</th>
+                <th class="text-center">@Resources.BetType</th>
+                <th class="text-center">@Resources.BetCount</th>
+                <th class="text-center">@Resources.Turnover</th>
+                <th class="text-center" colspan="5">@Resources.ForecastWinLoss</th>
+            </tr>
+        </thead>
+    </table>
 </div>
-<div>
-    <select asp-items="@Model.Item3"></select>
-</div>
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<input type="hidden" id="hidden-noDataText" value="@Resources.NoInformationIsAvailable" />
+<input type="hidden" id="hidden-liveText" value="@Resources.Live" />
+<input type="hidden" id="hidden-totalText" value="@Resources.Total" />

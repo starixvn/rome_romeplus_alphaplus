@@ -11,23 +11,19 @@ public class ForecastEndpoint : IEndpoint
         var forecast = endpoints.MapGroup("/api/forecast");
 
         forecast.MapGet(
-            "/soccerleagues",
+            "/soccer/leagues",
             (bool isLive, bool isShowAll, string language, ISoccerService service)
             => service.GetLeagues(isLive, isShowAll, language));
 
         forecast.MapGet(
-            "/soccermatches",
+            "/soccer/matches",
             (int leagueId, bool isLive, string language, ISoccerService service)
             => service.GetMatches(leagueId, isLive, language));
 
         forecast.MapGet(
-            "/soccer",
-            async (int custId, string matchIds, bool isLive, string language, ISoccerService service) =>
-            {
-                var (matches, betTypes, winloss) = await service.GetResults(custId, matchIds, isLive);
-
-                return Tuple.Create(matches, betTypes, winloss);
-            });
+            "/soccer/results",
+            (int custId, string matchIds, bool isLive, string language, ISoccerService service)
+            => service.GetResults(custId, matchIds, isLive, language));
 
         forecast.MapGet(
             "/runningleagues",

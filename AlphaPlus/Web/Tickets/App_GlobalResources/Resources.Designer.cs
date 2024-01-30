@@ -1176,5 +1176,93 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
                 return ResourceManager.GetString("PleaseChooseABetType", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Non-Live.
+        /// </summary>
+        internal static string NonLive
+        {
+            get
+            {
+                return ResourceManager.GetString("NonLive", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Soccer.
+        /// </summary>
+        internal static string Soccer
+        {
+            get
+            {
+                return ResourceManager.GetString("Soccer", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bets & Forecast.
+        /// </summary>
+        internal static string BetsAndForecast
+        {
+            get
+            {
+                return ResourceManager.GetString("BetsAndForecast", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Type.
+        /// </summary>
+        internal static string BetType
+        {
+            get
+            {
+                return ResourceManager.GetString("BetType", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Count.
+        /// </summary>
+        internal static string BetCount
+        {
+            get
+            {
+                return ResourceManager.GetString("BetCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover.
+        /// </summary>
+        internal static string Turnover
+        {
+            get
+            {
+                return ResourceManager.GetString("Turnover", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Forecast Win/Loss.
+        /// </summary>
+        internal static string ForecastWinLoss
+        {
+            get
+            {
+                return ResourceManager.GetString("ForecastWinLoss", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        internal static string Total
+        {
+            get
+            {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
     }
 }

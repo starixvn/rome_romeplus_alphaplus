@@ -138,11 +138,20 @@
   <data name="Balance" xml:space="preserve">
     <value>Số dư tài khoản</value>
   </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>Số Cược</value>
+  </data>
   <data name="BetList" xml:space="preserve">
     <value>Danh sách cược</value>
   </data>
+  <data name="BetType" xml:space="preserve">
+    <value>Loại cược</value>
+  </data>
   <data name="BetTypes" xml:space="preserve">
     <value>Loại cược</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>Tổng Cược &amp; Dự Đoán</value>
   </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Nhấn vào đây để xem Thông tin Score Map</value>
@@ -185,6 +194,9 @@
   </data>
   <data name="ForecastHome" xml:space="preserve">
     <value>Dự đoán cho Đội Nhà</value>
+  </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>Dự đoán Thắng Thua</value>
   </data>
   <data name="FullTime" xml:space="preserve">
     <value>Toàn trận</value>
@@ -267,6 +279,9 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>Không có dữ liệu</value>
   </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>Không Trực Tiếp</value>
+  </data>
   <data name="Note" xml:space="preserve">
     <value>Lưu ý</value>
   </data>
@@ -339,6 +354,9 @@
   <data name="SelectMatch" xml:space="preserve">
     <value>Chọn trận đấu</value>
   </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>Bóng Đá</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Xác nhận</value>
   </data>
@@ -347,6 +365,9 @@
   </data>
   <data name="Time" xml:space="preserve">
     <value>Thời gian</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Tổng cộng</value>
   </data>
   <data name="TotalAway" xml:space="preserve">
     <value>Tổng cược cho Đội Khách</value>
@@ -374,6 +395,9 @@
   </data>
   <data name="TotalHome" xml:space="preserve">
     <value>Tổng cược cho Đội Nhà</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>Doanh Thu</value>
   </data>
   <data name="UCommaE" xml:space="preserve">
     <value>Xỉu, Chẵn</value>

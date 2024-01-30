@@ -138,11 +138,20 @@
   <data name="Balance" xml:space="preserve">
     <value>ยอดเงิน</value>
   </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>นับเดิมพัน</value>
+  </data>
   <data name="BetList" xml:space="preserve">
     <value>รายการวางเดิมพัน</value>
   </data>
+  <data name="BetType" xml:space="preserve">
+    <value>ประเภทการเดิมพัน</value>
+  </data>
   <data name="BetTypes" xml:space="preserve">
     <value>Bet Types</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>ยอดการเล่นและคำนวณผล</value>
   </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Click to view Score Map Info</value>
@@ -185,6 +194,9 @@
   </data>
   <data name="ForecastHome" xml:space="preserve">
     <value>ทายผล เจ้าบ้าน</value>
+  </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>การคาดการณ์ ได้/เสีย ล่วงหน้า</value>
   </data>
   <data name="FullTime" xml:space="preserve">
     <value>เต็มเวลา</value>
@@ -267,6 +279,9 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>ไม่มีข้อมูล</value>
   </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>ไม่มีเกมสด</value>
+  </data>
   <data name="Note" xml:space="preserve">
     <value>หมายเหตุ</value>
   </data>
@@ -339,6 +354,9 @@
   <data name="SelectMatch" xml:space="preserve">
     <value>เลือกคู่แข่งขัน</value>
   </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>ฟุตบอล</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>ตกลง</value>
   </data>
@@ -347,6 +365,9 @@
   </data>
   <data name="Time" xml:space="preserve">
     <value>เวลา</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>ยอดรวม</value>
   </data>
   <data name="TotalAway" xml:space="preserve">
     <value>จำนวนรวมของทีมเยือน</value>
@@ -374,6 +395,9 @@
   </data>
   <data name="TotalHome" xml:space="preserve">
     <value>จำนวนรวมของทีมเจ้าบ้าน</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>เงินหมุนเวียน</value>
   </data>
   <data name="UCommaE" xml:space="preserve">
     <value>ต่ำ คู่</value>

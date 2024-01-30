@@ -1838,6 +1838,7 @@
       "styles-v3/base/scaffolding.css",
       "styles-v3/base/utilities.css",
       "styles-v3/vendors-extensions/common/bootstrap-ex.css",
+      "styles-v3/vendors/select2.css",
       "styles-v3/components/table.css",
       "styles-v3/components/title.css",
       "styles-v3/components/tab-nav.css",
@@ -1846,6 +1847,18 @@
       "styles-v3/components/modal.css",
       "styles-v3/components/icon.css",
       "styles-v3/components/alert.css"
+    ]
+  },
+  {
+    "outputFileName": "bundles3/site-totalbetsforecast/soccer.js",
+    "inputFiles": [
+      "js/libs/jquery/jquery.cookie.js",
+      "js/libs/numeral/numeral.js",
+      "js/components/coloranimation/jquery.animate-colors.js",
+      "js/components/highlight/jquery.pulse.js",
+      "js/components/countdown/jquery.countdown.js",
+      "js/components/multiselect/bootstrap-multiselect.js",
+      "js/components/select2/select2.js"
     ]
   }
 ]

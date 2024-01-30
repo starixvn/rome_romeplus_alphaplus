@@ -5,9 +5,6 @@
     <Setting Key="Age_NewTotalBetsForeCast_LeagueSel" SpName="Age_NewTotalBetsForeCast_LeagueSel" DbName="DBBOF.bodb02.BODBDownlineNet" />
     <Setting Key="Age_NewTotalBetsForeCast_EventSel" SpName="Age_NewTotalBetsForeCast_EventSel" DbName="DBBOF.bodb02.BODBDownlineNet" />
     <Setting Key="Age_NewTotalBetsForeCast_Main" SpName="Age_NewTotalBetsForeCast_Main" DbName="DBOST.bodb_ost.BODBDownlineNet" TimeOut="55" />
-    <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="DBBOF.bodb02.BODBDownlineNet">
-      <Mapping DataField="1stId" ObjectProperty="FirstId"></Mapping>
-    </Setting>
     <!-- Running Leagues -->
     <Setting Key="Age_LeagueSelRunning_SAg" SpName="Age_LeagueSelRunning_SAg" DbName="DBBOF.bodb02.BODBDownlineNet" />
     <Setting Key="Age_LeagueSelRunning_MAg" SpName="Age_LeagueSelRunning_MAg" DbName="DBBOF.bodb02.BODBDownlineNet" />

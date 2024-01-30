@@ -11,7 +11,7 @@ public interface ISoccerService
 
     Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language);
 
-    Task GetResults(int custId, string matchIds, bool isLive, string language);
+    Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language);
 }
 
 public class SoccerService : ISoccerService
@@ -61,7 +61,7 @@ public class SoccerService : ISoccerService
         return client.GetFromJsonAsync<IEnumerable<Match>>($"{SoccerUrl}/matches{queryString}");
     }
 
-    public async Task GetResults(int custId, string matchIds, bool isLive, string language)
+    public Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language)
     {
         var queryString = QueryString.Create(new[]
         {
@@ -70,23 +70,7 @@ public class SoccerService : ISoccerService
             KeyValuePair.Create(nameof(isLive), isLive.ToString()),
             KeyValuePair.Create(nameof(language), language)
         });
-        var result = await client.GetFromJsonAsync<Tuple<IEnumerable<SoccerMatch>, IEnumerable<SoccerBetType>, IEnumerable<SoccerWinLoss>>>($"{SoccerUrl}/results{queryString}");
-        var (matches, betTypes, winloss) = result;
 
-        if (matches.Any())
-        {
-            var betTypesLookup = betTypes.ToLookup(b => b.MatchId);
-            var winlossLookup = winloss.ToLookup(w => w.MatchId);
-
-            foreach (var item in matches)
-            {
-                var betTypeList = betTypesLookup[item.MatchId].OrderBy(b => b.BetTypeId);
-                var winLossList = winlossLookup[item.MatchId].OrderBy(w => w.BetTypeId);
-
-                //matchForecasts.Add(BuildMatchForecast(match, betTypes, winLossNames));
-            }
-        }
-
-        throw new NotImplementedException();
+        return client.GetFromJsonAsync<IEnumerable<SoccerResult>>($"{SoccerUrl}/results{queryString}");
     }
 }

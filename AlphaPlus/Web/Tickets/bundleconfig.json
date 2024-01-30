@@ -19,6 +19,13 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/bundles/forecast/soccer.css",
+    "inputFiles": [
+      "assets/styles/forecast/soccer.css",
+      "assets/styles/forecast/soccer-quickintro.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/bundles/totalbets/totalbets.js",
     "inputFiles": [
       "assets/scripts/components/fanex.autorefresh.js",
@@ -36,6 +43,13 @@
     "outputFileName": "wwwroot/bundles/forecast/scoremap.js",
     "inputFiles": [
       "assets/scripts/forecast/scoremap.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/forecast/soccer.js",
+    "inputFiles": [
+      "assets/scripts/forecast/soccer-renderer.js",
+      "assets/scripts/forecast/soccer.js"
     ]
   }
 ]

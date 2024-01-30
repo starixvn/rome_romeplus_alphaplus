@@ -1,4 +1,5 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
+using AlphaPlus.Tickets.Site.App_GlobalResources;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 using AlphaPlus.Tickets.Site.Features.Forecast.ViewModels;
 using AlphaPlus.Tickets.Site.Features.Shared.Requests;
@@ -20,19 +21,35 @@ public class ForecastController : Controller//BaseController
         ISoccerService soccerService)
         => (this.forecastService, this.scoreMapService, this.soccerService) = (forecastService, scoreMapService, soccerService);
 
-    public async Task<IActionResult> Soccer()
+    public async Task<IActionResult> Soccer(bool isLive = true)
     {
-        var isLive = true;
         var leagues = await soccerService.GetLeagues(isLive, "en-US");
         var firstLeague = leagues.FirstOrDefault();
         var matches = firstLeague == null
             ? Enumerable.Empty<Match>()
             : await soccerService.GetMatches(firstLeague.LeagueId, isLive, "en-US");
 
-        return View(Tuple.Create(
-            leagues.Select(l => new SelectListItem(l.LeagueName, l.LeagueId.ToString())),
-            matches.Select(m => new SelectListItem(m.Event, m.MatchId.ToString()))));
+        var viewModel = new SoccerViewModel([
+            new SelectListItem(Resources.Live, "true", isLive),
+            new SelectListItem(Resources.NonLive, "false", !isLive)
+        ], leagues, matches);
+
+        return View(viewModel);
     }
+
+
+    public async Task<IActionResult> GetSoccerLeagues(bool isLive = true)
+        => Json(await soccerService.GetLeagues(isLive, "en-US"));
+
+    public async Task<IActionResult> GetSoccerMatches(int leagueId, bool isLive)
+        => Json(await soccerService.GetMatches(leagueId, isLive, "en-US"));
+
+    public async Task<IActionResult> GetSoccerResults(GetSoccerResultRequest message)
+        => Json(await soccerService.GetResults(
+            message.ViewerId,
+            message.MatchIds,
+            message.IsLive,
+            message.Language));
 
     public async Task<IActionResult> HDPOULive(GetForecastRequest message)
     {

@@ -138,11 +138,20 @@
   <data name="Balance" xml:space="preserve">
     <value>現金</value>
   </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>投注統計</value>
+  </data>
   <data name="BetList" xml:space="preserve">
     <value>投注歷史</value>
   </data>
+  <data name="BetType" xml:space="preserve">
+    <value>投注類別</value>
+  </data>
   <data name="BetTypes" xml:space="preserve">
     <value>投註類型</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>投注 &amp; 預測</value>
   </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>點擊查看盈利預測圖資料</value>
@@ -188,6 +197,9 @@
   </data>
   <data name="ForecastHome" xml:space="preserve">
     <value>主場預測</value>
+  </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>預測贏/輸</value>
   </data>
   <data name="FullTime" xml:space="preserve">
     <value>全場</value>
@@ -273,6 +285,9 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>沒資料顯示</value>
   </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>非現場</value>
+  </data>
   <data name="Note" xml:space="preserve">
     <value>備註</value>
   </data>
@@ -345,6 +360,9 @@
   <data name="SelectMatch" xml:space="preserve">
     <value>選擇賽事</value>
   </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>足球</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
   </data>
@@ -353,6 +371,9 @@
   </data>
   <data name="Time" xml:space="preserve">
     <value>時間</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>總和</value>
   </data>
   <data name="TotalAway" xml:space="preserve">
     <value>客場總和</value>
@@ -380,6 +401,9 @@
   </data>
   <data name="TotalHome" xml:space="preserve">
     <value>主場總和</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>投注額</value>
   </data>
   <data name="UCommaE" xml:space="preserve">
     <value>小/雙</value>

@@ -138,11 +138,20 @@
   <data name="Balance" xml:space="preserve">
     <value>Balance</value>
   </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>Bet Count</value>
+  </data>
   <data name="BetList" xml:space="preserve">
     <value>Bet List</value>
   </data>
+  <data name="BetType" xml:space="preserve">
+    <value>Bet Type</value>
+  </data>
   <data name="BetTypes" xml:space="preserve">
     <value>Bet Types</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>Bets &amp; Forecast</value>
   </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Click to view Score Map Info</value>
@@ -185,6 +194,9 @@
   </data>
   <data name="ForecastHome" xml:space="preserve">
     <value>Forecast Home</value>
+  </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>Forecast Win/Loss</value>
   </data>
   <data name="FullTime" xml:space="preserve">
     <value>Full Time</value>
@@ -267,6 +279,9 @@
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>No information is available</value>
   </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>Non-Live</value>
+  </data>
   <data name="Note" xml:space="preserve">
     <value>Note</value>
   </data>
@@ -339,6 +354,9 @@
   <data name="SelectMatch" xml:space="preserve">
     <value>Select Match</value>
   </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>Soccer</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
@@ -347,6 +365,9 @@
   </data>
   <data name="Time" xml:space="preserve">
     <value>Time</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="TotalAway" xml:space="preserve">
     <value>Total Away</value>
@@ -374,6 +395,9 @@
   </data>
   <data name="TotalHome" xml:space="preserve">
     <value>Total Home</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>Turnover</value>
   </data>
   <data name="UCommaE" xml:space="preserve">
     <value>U,E</value>
