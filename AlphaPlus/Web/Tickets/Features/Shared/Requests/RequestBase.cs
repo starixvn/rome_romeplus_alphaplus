@@ -2,13 +2,25 @@ using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.Requests;
 
-public class RequestBase(IUserSession userSession)
+public class RequestBase
 {
-    protected IUserSession UserSession { get; } = userSession;
+    public RequestBase() : this(null)
+    {
+    }
 
-    public int ViewerId { get; } = userSession.CustId;
+    internal RequestBase(IUserSession userSession)
+    {
+        UserSession = userSession ?? new UserSessionExt();
+        ViewerId = UserSession.CustId;
+        ViewerLevel = UserSession.RoleId;
+        Language = UserSession.Language;
+    }
 
-    public byte ViewerLevel { get; } = userSession.RoleId;
+    protected IUserSession UserSession { get; }
 
-    public string Language { get; } = userSession.Language;
+    public int ViewerId { get; }
+
+    public byte ViewerLevel { get; }
+
+    public string Language { get; }
 }

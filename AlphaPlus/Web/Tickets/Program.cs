@@ -53,10 +53,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UsePathBase("/tickets");
-
 app
-    //.UseHttpsRedirection()
+    .UsePathBase("/tickets")
     //.UseDefaultFiles()
     .UseStaticFiles()
     .UseRouting()

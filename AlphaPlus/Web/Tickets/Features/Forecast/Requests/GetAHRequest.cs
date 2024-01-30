@@ -1,9 +1,8 @@
-using AlphaPlus.Core.Models;
 using AlphaPlus.Tickets.Site.Features.Shared.Requests;
 
 namespace AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 
-public class GetAHRequest(IUserSession userSession) : RequestBase(userSession)
+public class GetAHRequest : RequestBase
 {
     public int MatchId { get; init; }
 

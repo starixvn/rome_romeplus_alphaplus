@@ -20,10 +20,10 @@ class TotalBets {
         $('.auto-refresh').fanexAutoRefresh({
             buttonRefreshTooltip: $('#hidden-autoRefreshRefreshText').val(),
             seconds: autoRefreshSeconds,
-            refreshHandler: function () {
+            refreshHandler: () => {
                 $.get(autoRefreshUrl, (html) => {
                     $tblRpt.html(html);
-                    this.bindViewForecast();
+                    this.bindViewForecast($tblRpt);
                 });
             },
             savedSecondKey: $('#hidden-autoRefreshSavedSecondKey').val()

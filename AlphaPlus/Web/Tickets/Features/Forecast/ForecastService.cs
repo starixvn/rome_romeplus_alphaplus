@@ -1,5 +1,6 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
+using AlphaPlus.Tickets.Site.Features.Shared;
 
 namespace AlphaPlus.Tickets.Site.Features.Forecast;
 
@@ -16,13 +17,13 @@ public interface IForecastService
     Task<IEnumerable<Forecast1X2>> Get1X2(GetForecast1X2ByMatchRequest message);
 }
 
-public class ForecastService : IForecastService
+public class ForecastService : ServiceBase, IForecastService
 {
     private const string ForecastUrl = "api/forecast";
 
-    private readonly HttpClient client;
-
-    public ForecastService(HttpClient client) => this.client = client;
+    public ForecastService(HttpClient client) : base(client)
+    {
+    }
 
     public Task<IEnumerable<League>> GetRunningLeagues(byte custLevel, int custId, string betTypes, string language)
     {
@@ -34,10 +35,10 @@ public class ForecastService : IForecastService
             KeyValuePair.Create(nameof(language), language)
         });
 
-        return client.GetFromJsonAsync<IEnumerable<League>>($"{ForecastUrl}/runningleagues{queryString}");
+        return GetFromJson<IEnumerable<League>>($"{ForecastUrl}/runningleagues{queryString}");
     }
 
-    public async Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastRequest message)
+    public Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastRequest message)
     {
         var queryString = QueryString.Create(new[]
         {
@@ -47,7 +48,7 @@ public class ForecastService : IForecastService
             KeyValuePair.Create(nameof(message.Language), message.Language)
         });
 
-        return await client.GetFromJsonAsync<IEnumerable<ForecastHDPOULive>>($"{ForecastUrl}/hdpoulive{queryString}");
+        return GetFromJson<IEnumerable<ForecastHDPOULive>>($"{ForecastUrl}/hdpoulive{queryString}");
     }
 
     public Task<AH> GetAH(GetAHRequest message)
@@ -62,7 +63,7 @@ public class ForecastService : IForecastService
             KeyValuePair.Create(nameof(message.Language), message.Language)
         });
 
-        return client.GetFromJsonAsync<AH>($"{ForecastUrl}/ah{queryString}");
+        return GetFromJson<AH>($"{ForecastUrl}/ah{queryString}");
     }
 
     public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastRequest message)
@@ -75,7 +76,7 @@ public class ForecastService : IForecastService
             KeyValuePair.Create(nameof(message.Language), message.Language)
         });
 
-        return client.GetFromJsonAsync<IEnumerable<Forecast1X2>>($"{ForecastUrl}/1x2{queryString}");
+        return GetFromJson<IEnumerable<Forecast1X2>>($"{ForecastUrl}/1x2{queryString}");
     }
 
     public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecast1X2ByMatchRequest message)
@@ -89,6 +90,6 @@ public class ForecastService : IForecastService
             KeyValuePair.Create(nameof(message.Language), message.Language)
         });
 
-        return client.GetFromJsonAsync<IEnumerable<Forecast1X2>>($"{ForecastUrl}/1x2bymatch{queryString}");
+        return GetFromJson<IEnumerable<Forecast1X2>>($"{ForecastUrl}/1x2bymatch{queryString}");
     }
 }

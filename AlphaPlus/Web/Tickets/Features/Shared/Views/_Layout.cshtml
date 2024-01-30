@@ -1,19 +1,22 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.Extensions.Options.IOptions<AppSettings> appSettings
+@{
+    var assets = appSettings.Value.AssetAppPath;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <!-- <link rel="stylesheet" href="http://localhost:5100/bundles/site-totalbetsforecast/default.css" /> -->
-    <!-- css below is new assets -->
-    <link rel="stylesheet" href="http://localhost:5100/bundles3/site-totalbetsforecast/default.css" />
+    <link rel="stylesheet" href="@assets/bundles3/site-totalbetsforecast/default.css" />
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body data-theme="">
     @RenderBody()
-    <script src="http://localhost:5100/bundles/common/common.js"></script>
+    <script src="@assets/bundles/common/common.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

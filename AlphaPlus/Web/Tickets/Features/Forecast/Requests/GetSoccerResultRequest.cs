@@ -1,9 +1,8 @@
-using AlphaPlus.Core.Models;
 using AlphaPlus.Tickets.Site.Features.Shared.Requests;
 
 namespace AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 
-public class GetSoccerResultRequest(IUserSession userSession) : RequestBase(userSession)
+public class GetSoccerResultRequest : RequestBase
 {
     public bool IsLive { get; init; } = true;
 
