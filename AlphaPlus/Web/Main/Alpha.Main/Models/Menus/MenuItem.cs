@@ -1,8 +1,6 @@
 ﻿using Alpha.Main.Services;
 using Alpha.Main.AppResources;
-using Alpha.Main.Configurations;
 using AlphaPlus.Core.Helpers;
-using System.Text.RegularExpressions;
 
 namespace Alpha.Main.Models.Menus
 {
@@ -79,24 +77,19 @@ namespace Alpha.Main.Models.Menus
         {
             get
             {
-                var context = AlphaContext.Current;
-                var appVirtualPath = !string.IsNullOrWhiteSpace(AppPath) ? AppSettings.GetAppPath(AppPath) : string.Empty;
-
-                var menuLink = string.IsNullOrWhiteSpace(appVirtualPath) ? link : Regex.Replace(link, context.Request.PathBase.Value ?? string.Empty, appVirtualPath);
-
-                if (!string.IsNullOrWhiteSpace(menuLink) && string.Equals("transfer", ResourceKey, StringComparison.OrdinalIgnoreCase))
+                if (!string.IsNullOrWhiteSpace(link) && string.Equals("transfer", ResourceKey, StringComparison.OrdinalIgnoreCase))
                 {
-                    menuLink = string.Format(menuLink, transferService.IsAllDayBalanceTransfer(user.CustId));
+                    return string.Format(link, transferService.IsAllDayBalanceTransfer(user.CustId));
                 }
 
-                if (!string.IsNullOrWhiteSpace(menuLink) && menuLink.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)
+                if (!string.IsNullOrWhiteSpace(link) && link.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)
                 {
                     var languageParam = buildLanguageQueryStringFunc();
                     var darkModeParam = buildDarkModeQueryStringFunc();
-                    return $"{menuLink}?{languageParam}&{darkModeParam}";
+                    return $"{link}?{languageParam}&{darkModeParam}";
                 }
 
-                return menuLink;
+                return link;
             }
 
             set
