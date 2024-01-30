@@ -2,95 +2,87 @@
 <siteMap enableLocalization="true">
   <!--Report-->
   <siteMapNode resourceKey="reports" expand="1" menuItemType="ReportMenuItem" functionType="[E]" byPassProtectedMode="true">
-    <siteMapNode resourceKey="memberOutstanding" appPath="ReportsAppPath" url="/outstanding/membernew" roles="Agent" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="agentOutstanding" appPath="ReportsAppPath" url="/outstanding/agentnew" roles="Master" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="masterOutstanding" appPath="ReportsAppPath" url="/outstanding/masternew" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="memberOutstanding" url="/outstanding/membernew" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="agentOutstanding" url="/outstanding/agentnew" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="masterOutstanding" url="/outstanding/masternew" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="memberWinLoss" appPath="ReportsAppPath" url="/enteredresult/member" roles="Agent" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="agentwinloss" appPath="ReportsAppPath" url="/enteredresult/agent" roles="Master" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="masterwinloss" appPath="ReportsAppPath" url="/enteredresult/master" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="memberWinLoss" url="/enteredresult/member" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="agentwinloss" url="/enteredresult/agent" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="masterwinloss" url="/enteredresult/master" roles="Super"></siteMapNode>
 
-    <!-- <siteMapNode menuItemType="NewReportsMenuItem" resourceKey="memberWinLoss" appPath="ReportsAppPath" url="/enteredresult/membernew" roles="Agent" useDomainConfig="Report:Domain"></siteMapNode>
-      <siteMapNode menuItemType="NewReportsMenuItem" resourceKey="agentwinloss" appPath="ReportsAppPath" url="/enteredresult/agentnew" roles="Master" useDomainConfig="Report:Domain"></siteMapNode>
-      <siteMapNode menuItemType="NewReportsMenuItem" resourceKey="masterwinloss" appPath="ReportsAppPath" url="/enteredresult/masternew" roles="Super" useDomainConfig="Report:Domain"></siteMapNode> -->
+    <siteMapNode resourceKey="memberwinlossdetail" url="/winlossdetail/member" roles="Agent" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="agentwinlostdetail" url="/winlossdetail/agent" roles="Master" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="masterwinlostdetail" url="/winlossdetail/master" roles="Super" byPassProtectedMode="true"></siteMapNode>
 
-    <siteMapNode resourceKey="memberwinlossdetail" appPath="ReportsAppPath" url="/winlossdetail/member" roles="Agent" byPassProtectedMode="true" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="agentwinlostdetail" appPath="ReportsAppPath" url="/winlossdetail/agent" roles="Master" byPassProtectedMode="true" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="masterwinlostdetail" appPath="ReportsAppPath" url="/winlossdetail/master" roles="Super" byPassProtectedMode="true" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="matchWinLostDetail" url="/matchwinlossdetail/index"></siteMapNode>
 
-    <siteMapNode resourceKey="matchWinLostDetail" appPath="ReportsAppPath" url="/matchwinlossdetail/index" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="winlossanalysis" url="/winlossanalysis/member" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="winlossanalysis" url="/winlossanalysis/agent" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="winlossanalysis" url="/winlossanalysis/master" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="winlossanalysis" appPath="ReportsAppPath" url="/winlossanalysis/member" roles="Agent" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="winlossanalysis" appPath="ReportsAppPath" url="/winlossanalysis/agent" roles="Master" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="winlossanalysis" appPath="ReportsAppPath" url="/winlossanalysis/master" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="winLossAnalysisChart" url="/winlossanalysischart/member" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="winLossAnalysisChart" url="/winlossanalysischart/agent" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="winLossAnalysisChart" url="/winlossanalysischart/master" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="winLossAnalysisChart" appPath="ReportsAppPath" url="/winlossanalysischart/member" roles="Agent" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="winLossAnalysisChart" appPath="ReportsAppPath" url="/winlossanalysischart/agent" roles="Master" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="winLossAnalysisChart" appPath="ReportsAppPath" url="/winlossanalysischart/master" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="winLossByProduct" url="/WinLossByProduct/member" roles="Agent" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="winLossByProduct" url="/WinLossByProduct/agent" roles="Master" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="winLossByProduct" url="/WinLossByProduct/master" roles="Super" byPassProtectedMode="true"></siteMapNode>
 
-    <siteMapNode resourceKey="winLossByProduct" appPath="ReportsAppPath" url="/WinLossByProduct/member" roles="Agent" byPassProtectedMode="true" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="winLossByProduct" appPath="ReportsAppPath" url="/WinLossByProduct/agent" roles="Master" byPassProtectedMode="true" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="winLossByProduct" appPath="ReportsAppPath" url="/WinLossByProduct/master" roles="Super" byPassProtectedMode="true" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="superWinLossDetailByPT" url="/SuperWinLossDetailByPT/Index" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="superWinLossDetailByPT" appPath="ReportsAppPath" url="/SuperWinLossDetailByPT/Index" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="commissionByBettype" url="/commissionbybettype/member" roles="Agent" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="commissionByBettype" url="/commissionbybettype/agent" roles="Master" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="commissionByBettype" url="/commissionbybettype/master" roles="Super" byPassProtectedMode="true"></siteMapNode>
 
-    <siteMapNode resourceKey="commissionByBettype" appPath="ReportsAppPath" url="/commissionbybettype/member" roles="Agent" byPassProtectedMode="true" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="commissionByBettype" appPath="ReportsAppPath" url="/commissionbybettype/agent" roles="Master" byPassProtectedMode="true" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="commissionByBettype" appPath="ReportsAppPath" url="/commissionbybettype/master" roles="Super" byPassProtectedMode="true" useDomainConfig="Report:Domain"></siteMapNode>
-
-    <siteMapNode menuItemType="ConsolidatedReportMenuItem" resourceKey="consolidatedreport" appPath="ReportsAppPath" url="/consolidation/consolidationbyusername" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="statement" appPath="ReportsAppPath" url="/Statement/SMAStatement" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode menuItemType="ConsolidatedReportMenuItem" resourceKey="consolidatedreport" url="/consolidation/consolidationbyusername"></siteMapNode>
+    <siteMapNode resourceKey="statement" url="/Statement/SMAStatement"></siteMapNode>
 
     <siteMapNode resourceKey="result" url="~/Normal" appPath="ResultSiteVirtualPath" byPassProtectedMode="true"></siteMapNode>
 
-    <siteMapNode menuItemType="ProgressiveContributionMenuItem" resourceKey="ProgressiveGamesContribution" appPath="ReportsAppPath" url="/progressivecontribution/index" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode menuItemType="BonusDetailMenuItem" resourceKey="BonusDetail" appPath="ReportsAppPath" url="/bonusdetail/index" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetCreditTracking" appPath="ReportsAppPath" url="/betcredithistory/index" isHiddenInMobile="true" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode menuItemType="ProgressiveContributionMenuItem" resourceKey="ProgressiveGamesContribution" url="/progressivecontribution/index"></siteMapNode>
+    <siteMapNode menuItemType="BonusDetailMenuItem" resourceKey="BonusDetail" url="/bonusdetail/index"></siteMapNode>
+    <siteMapNode resourceKey="BetCreditTracking" url="/betcredithistory/index" isHiddenInMobile="true"></siteMapNode>
   </siteMapNode>
   <!--/Report-->
   <!--MemberInfo-->
   <siteMapNode resourceKey="memberInfo" menuItemType="MemberInfoMenuItem" functionType="[H]" byPassProtectedModeInternal="true">
-    <siteMapNode resourceKey="newMaster" appPath="MemberInfoAppPath" url="CopyAccount?lv=4" menuItemType="CreateAccountMenuItem" roles="Super"></siteMapNode>
-    <siteMapNode resourceKey="newAgent" appPath="MemberInfoAppPath" url="CopyAccount?lv=3" menuItemType="CreateAccountMenuItem" roles="Master"></siteMapNode>
-    <siteMapNode resourceKey="newMember" appPath="MemberInfoAppPath" url="CopyAccount?lv=2" menuItemType="CreateAccountMenuItem" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="PTTemplate" appPath="MemberInfoAppPath" url="PTTemplate/Index" isNew="true" menuItemType="PTTemplateMenuItem"></siteMapNode>
-    <siteMapNode menuItemType="SubAccountMenuItem" resourceKey="subaccount" appPath="OldMainAppPath" url="_SubAcc/SubAccList.aspx" byPassProtectedModeInternal="true"></siteMapNode>
+    <siteMapNode resourceKey="newMaster" url="CopyAccount?lv=4" menuItemType="CreateAccountMenuItem" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="newAgent" url="CopyAccount?lv=3" menuItemType="CreateAccountMenuItem" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="newMember" url="CopyAccount?lv=2" menuItemType="CreateAccountMenuItem" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="PTTemplate" url="PTTemplate/Index" isNew="true" menuItemType="PTTemplateMenuItem"></siteMapNode>
+    <siteMapNode menuItemType="SubAccountMenuItem" resourceKey="subaccount" url="_SubAcc/SubAccList.aspx" byPassProtectedModeInternal="true"></siteMapNode>
 
-    <siteMapNode resourceKey="customerlist" appPath="MemberInfoAppPath" url="CustomerList/member" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="agentList" appPath="MemberInfoAppPath" url="CustomerList/agent" roles="Master"></siteMapNode>
-    <siteMapNode resourceKey="masterList" appPath="MemberInfoAppPath" url="CustomerList/master" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="customerlist" url="CustomerList/member" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="agentList" url="CustomerList/agent" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="masterList" url="CustomerList/master" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="customerlist" appPath="OldMainAppPath" url="_MemberInfo/CustomerList/Agent/MemberList.aspx" roles="Agent" isOld="true" isHiddenInMobile="true" hideForSites="*"></siteMapNode>
-    <siteMapNode resourceKey="agentList" appPath="OldMainAppPath" url="_MemberInfo/CustomerList/Master/AgentList.aspx" roles="Master" isOld="true" isHiddenInMobile="true" hideForSites="*"></siteMapNode>
-    <siteMapNode resourceKey="masterList" appPath="OldMainAppPath" url="_MemberInfo/CustomerList/Super/MasterList.aspx" roles="Super" isOld="true" isHiddenInMobile="true" hideForSites="*"></siteMapNode>
+    <siteMapNode resourceKey="problemAccountList" url="ProblemAccount"></siteMapNode>
 
-    <siteMapNode resourceKey="problemAccountList" appPath="MemberInfoAppPath" url="ProblemAccount"></siteMapNode>
+    <siteMapNode resourceKey="creditbalance" url="CreditBalance"></siteMapNode>
+    <siteMapNode resourceKey="positionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
 
-    <siteMapNode resourceKey="creditbalance" appPath="MemberInfoAppPath" url="CreditBalance"></siteMapNode>
-    <siteMapNode resourceKey="positionTaking" appPath="OldMainAppPath" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
-
-    <siteMapNode resourceKey="memberCommission" appPath="OldMainAppPath" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx"></siteMapNode>
-    <!--<siteMapNode resourceKey="BetChoiceLimit" menuItemType="BetChoiceLimitMenuItem" appPath="OldMainAppPath" url="MemberInformation/BetChoiceLimit/Index"></siteMapNode>-->
-    <siteMapNode resourceKey="IndirectLoginAccount" menuItemType="IndirectLoginAccountMenuItem" appPath="MemberInfoAppPath" url="IndirectLoginAccount/Index"></siteMapNode>
-    <siteMapNode resourceKey="DormantAccountList" menuItemType="DormantAccountListMenuItem" appPath="MemberInfoAppPath" url="DormantAccount/Index"></siteMapNode>
+    <siteMapNode resourceKey="memberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx"></siteMapNode>
+    <!--<siteMapNode resourceKey="BetChoiceLimit" menuItemType="BetChoiceLimitMenuItem" url="MemberInformation/BetChoiceLimit/Index"></siteMapNode>-->
+    <siteMapNode resourceKey="IndirectLoginAccount" menuItemType="IndirectLoginAccountMenuItem" url="IndirectLoginAccount/Index"></siteMapNode>
+    <siteMapNode resourceKey="DormantAccountList" menuItemType="DormantAccountListMenuItem" url="DormantAccount/Index"></siteMapNode>
   </siteMapNode>
   <!--/MemberInfo-->
-  <siteMapNode resourceKey="BetLists" appPath="OldMainAppPath" menuItemType="BetListsMenuItem" functionType="[L]">
-    <siteMapNode menuItemType="LastBetMonitorMenuItem" resourceKey="LastBets" appPath="BetListsAppPath" url="/LastBets/Index" roles="Agent" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
-    <siteMapNode resourceKey="searchTickets" appPath="BetListsAppPath" url="/SearchTickets/Index" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
-    <siteMapNode resourceKey="cancelledBets" appPath="BetListsAppPath" url="/CancelledBet/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
+  <siteMapNode resourceKey="BetLists" menuItemType="BetListsMenuItem" functionType="[L]">
+    <siteMapNode menuItemType="LastBetMonitorMenuItem" resourceKey="LastBets" url="/LastBets/Index" roles="Agent" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
+    <siteMapNode resourceKey="searchTickets" url="/SearchTickets/Index" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
+    <siteMapNode resourceKey="cancelledBets" url="/CancelledBet/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
 
-    <siteMapNode resourceKey="correctscore" appPath="BetListsAppPath" url="/correctscore/index" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="parlay" appPath="BetListsAppPath" url="/CombinationMixParlay/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType13" appPath="BetListsAppPath" url="/betlistbybettype/CleanSheet?bettype=13" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType24" appPath="BetListsAppPath" url="/betlistbybettype/DoubleChance?bettype=24" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType26" appPath="BetListsAppPath" url="/betlistbybettype/BothNoneNeitherTeamToScore?bettype=26" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType27" appPath="BetListsAppPath" url="/betlistbybettype/ToWinToNil?bettype=27" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType28" appPath="BetListsAppPath" url="/betlistbybettype/ThreeWayHandicap?bettype=28" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="correctscore" url="/correctscore/index" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="parlay" url="/CombinationMixParlay/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType13" url="/betlistbybettype/CleanSheet?bettype=13" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType24" url="/betlistbybettype/DoubleChance?bettype=24" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType26" url="/betlistbybettype/BothNoneNeitherTeamToScore?bettype=26" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType27" url="/betlistbybettype/ToWinToNil?bettype=27" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType28" url="/betlistbybettype/ThreeWayHandicap?bettype=28" useDomainConfig="Betlist:Domain"></siteMapNode>
   </siteMapNode>
 
   <siteMapNode resourceKey="BetsAndForecast" menuItemType="TotalBetsMenuItem" functionType="[D]">
-    <siteMapNode resourceKey="soccer" appPath="TotalbetsForecastSiteVirtualPath" url="~/Forecast" menuItemType="TotalBetsForecast"></siteMapNode>
+    <siteMapNode resourceKey="soccer" url="~/Forecast" menuItemType="TotalBetsForecast"></siteMapNode>
     <siteMapNode resourceKey="HOUL" appPath="ExTotalBetsForecastAppPath" url="/tickets/TotalBets/HDPOULive"></siteMapNode>
     <siteMapNode resourceKey="moneyline" appPath="ExTotalBetsForecastAppPath" url="_TotalBets/MoneyLine.aspx"></siteMapNode>
     <siteMapNode resourceKey="OE1x2DND" appPath="ExTotalBetsForecastAppPath" url="_TotalBets/OddEven1x2.aspx"></siteMapNode>
@@ -105,50 +97,50 @@
   </siteMapNode>
 
   <siteMapNode resourceKey="BetStatistics" menuItemType="BetStatisticsMenuItem" functionType="[E]" roles="Super">
-    <siteMapNode resourceKey="IPMatching" appPath="ReportsAppPath" url="/RiskAnalysisIPMatching" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetChoiceMatching" appPath="ReportsAppPath" url="/BetChoiceMatching" roles="Super" useDomainConfig="Report:Domain"></siteMapNode>
+    <siteMapNode resourceKey="IPMatching" url="/RiskAnalysisIPMatching" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="BetChoiceMatching" url="/BetChoiceMatching" roles="Super"></siteMapNode>
   </siteMapNode>
 
   <siteMapNode resourceKey="transfer" menuItemType="TransferMenuItem" functionType="[C]" roles="Super">
-    <siteMapNode resourceKey="transfer" appPath="OldMainAppPath" url="_Transfer/Super/MasterList.aspx?adbt={0}" functionType="[C]"></siteMapNode>
+    <siteMapNode resourceKey="transfer" url="_Transfer/Super/MasterList.aspx?adbt={0}" functionType="[C]"></siteMapNode>
     <siteMapNode menuItemType="AutoTransferMonitoringMenuItem" resourceKey="AutoTransferMonitoring" appPath="TransferAppPath" url="AutoTransfer/Monitoring?v4"></siteMapNode>
     <siteMapNode menuItemType="TransferAllAndClearCreditMenuItem" resourceKey="TransferAllAndClearCredit" appPath="TransferAppPath" url="TransferAllAndClearCredit/Index?v4"></siteMapNode>
     <siteMapNode menuItemType="TransferDownlineHistoryMenuItem" resourceKey="TransferToDownlineHistory" appPath="TransferAppPath" url="TransferToDownlineHistory/Index?v4"></siteMapNode>
   </siteMapNode>
   <siteMapNode resourceKey="transfer" menuItemType="TransferMenuItem" functionType="[C]" roles="Master">
-    <siteMapNode resourceKey="transfer" appPath="OldMainAppPath" url="_Transfer/Master/AgentList.aspx?adbt={0}" functionType="[C]"></siteMapNode>
+    <siteMapNode resourceKey="transfer" url="_Transfer/Master/AgentList.aspx?adbt={0}" functionType="[C]"></siteMapNode>
     <siteMapNode menuItemType="AutoTransferMonitoringMenuItem" resourceKey="AutoTransferMonitoring" appPath="TransferAppPath" url="AutoTransfer/Monitoring?v3"></siteMapNode>
     <siteMapNode menuItemType="TransferAllAndClearCreditMenuItem" resourceKey="TransferAllAndClearCredit" appPath="TransferAppPath" url="TransferAllAndClearCredit/Index?v3"></siteMapNode>
     <siteMapNode menuItemType="TransferDownlineHistoryMenuItem" resourceKey="TransferToDownlineHistory" appPath="TransferAppPath" url="TransferToDownlineHistory/Index?v3"></siteMapNode>
   </siteMapNode>
   <siteMapNode resourceKey="transfer" menuItemType="TransferMenuItem" functionType="[C]" roles="Agent">
-    <siteMapNode resourceKey="transfer" appPath="OldMainAppPath" url="_Transfer/Agent/MemberList.aspx?adbt={0}" functionType="[C]"></siteMapNode>
+    <siteMapNode resourceKey="transfer" url="_Transfer/Agent/MemberList.aspx?adbt={0}" functionType="[C]"></siteMapNode>
     <siteMapNode menuItemType="AutoTransferMonitoringMenuItem" resourceKey="AutoTransferMonitoring" appPath="TransferAppPath" url="AutoTransfer/Monitoring?v2"></siteMapNode>
     <siteMapNode menuItemType="TransferDownlineHistoryMenuItem" resourceKey="TransferToDownlineHistory" appPath="TransferAppPath" url="TransferToDownlineHistory/Index?v2"></siteMapNode>
   </siteMapNode>
 
-  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" appPath="OldMainAppPath" url="_Transfer/Super/MasterList.aspx?v=2&amp;adbt={0}" functionType="[C]" roles="Super"></siteMapNode>
-  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" appPath="OldMainAppPath" url="_Transfer/Master/AgentList.aspx?v=2&amp;adbt={0}" functionType="[C]" roles="Master"></siteMapNode>
-  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" appPath="OldMainAppPath" url="_Transfer/Agent/MemberList.aspx?v=2&amp;adbt={0}" functionType="[C]" roles="Agent"></siteMapNode>
+  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" url="_Transfer/Super/MasterList.aspx?v=2&amp;adbt={0}" functionType="[C]" roles="Super"></siteMapNode>
+  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" url="_Transfer/Master/AgentList.aspx?v=2&amp;adbt={0}" functionType="[C]" roles="Master"></siteMapNode>
+  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" url="_Transfer/Agent/MemberList.aspx?v=2&amp;adbt={0}" functionType="[C]" roles="Agent"></siteMapNode>
 
   <siteMapNode resourceKey="viewLog" menuItemType="ViewLogMenuItem" functionType="[G]">
-    <siteMapNode resourceKey="Setting" appPath="ViewLogsAppPath" url="Setting"></siteMapNode>
-    <siteMapNode resourceKey="status" appPath="ViewLogsAppPath" url="Status"></siteMapNode>
-    <siteMapNode resourceKey="credit" appPath="ViewLogsAppPath" url="Credit"></siteMapNode>
-    <siteMapNode resourceKey="login" appPath="ViewLogsAppPath" url="Login"></siteMapNode>
+    <siteMapNode resourceKey="Setting" url="Setting"></siteMapNode>
+    <siteMapNode resourceKey="status" url="Status"></siteMapNode>
+    <siteMapNode resourceKey="credit" url="Credit"></siteMapNode>
+    <siteMapNode resourceKey="login" url="Login"></siteMapNode>
   </siteMapNode>
   <siteMapNode resourceKey="announcements" byPassProtectedMode="true">
-    <siteMapNode resourceKey="normal" appPath="MessageAppPath" url="MessageHistory/Index?messagetype=0" byPassAuthorization="true" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="special" appPath="MessageAppPath" url="MessageHistory/Index?messagetype=2" byPassAuthorization="true" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="systemUpdate" appPath="MessageAppPath" url="Announcement/Index" byPassAuthorization="true" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="personalMessage" appPath="MessageAppPath" url="MessageHistory/Index?messagetype=1" byPassAuthorization="true"></siteMapNode>
+    <siteMapNode resourceKey="normal" url="MessageHistory/Index?messagetype=0" byPassAuthorization="true" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="special" url="MessageHistory/Index?messagetype=2" byPassAuthorization="true" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="systemUpdate" url="Announcement/Index" byPassAuthorization="true" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="personalMessage" url="MessageHistory/Index?messagetype=1" byPassAuthorization="true"></siteMapNode>
   </siteMapNode>
   <siteMapNode resourceKey="riskManagement" menuItemType="MemberInfoMenuItem" functionType="[H]">
-    <siteMapNode resourceKey="MemberWinLimit" appPath="MemberInfoAppPath" url="WinLossLimit/Index"></siteMapNode>
-    <siteMapNode resourceKey="MyWatchlist" appPath="MemberInfoAppPath" url="ReachedThreshold/Index" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="MyThresholds" appPath="MemberInfoAppPath" url="MyThresholds/Index" roles="Super,Master"></siteMapNode>
+    <siteMapNode resourceKey="MemberWinLimit" url="WinLossLimit/Index"></siteMapNode>
+    <siteMapNode resourceKey="MyWatchlist" url="ReachedThreshold/Index" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="MyThresholds" url="MyThresholds/Index" roles="Super,Master"></siteMapNode>
   </siteMapNode>
-  <siteMapNode resourceKey="chatbot" appPath="MainAppPath" url="TelegramChatBot/Setup"></siteMapNode>
-  <siteMapNode resourceKey="SercurityCode" appPath="MainAppPath" url="Otp/SetupOtp" isNew="false"></siteMapNode>
-  <siteMapNode resourceKey="BackupDomains" menuItemType="MemberInfoMenuItem" functionType="[H]" appPath="MessageAppPath" url="backupdomains/index" isNew="true"></siteMapNode>
+  <siteMapNode resourceKey="chatbot" url="TelegramChatBot/Setup"></siteMapNode>
+  <siteMapNode resourceKey="SercurityCode" url="Otp/SetupOtp" isNew="false"></siteMapNode>
+  <siteMapNode resourceKey="BackupDomains" menuItemType="MemberInfoMenuItem" functionType="[H]" url="backupdomains/index" isNew="true"></siteMapNode>
 </siteMap>

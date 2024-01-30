@@ -33,7 +33,7 @@ public static class StaticResources
 
     private static HtmlString RenderStyle(params string[] paths)
     {
-        var styleHtml = string.Join(string.Empty, paths.Select(path => $"<link href=\"{path}\" rel=\"stylesheet\" type=\"text/css\" asp-append-version=\"true\">"));
+        var styleHtml = string.Join(string.Empty, paths.Select(path => $"<link href=\"{path}\" rel=\"stylesheet\" type=\"text/css\">"));
 
         return new HtmlString(styleHtml);
     }
@@ -47,7 +47,7 @@ public static class StaticResources
 
     private static HtmlString RenderScript(params string[] paths)
     {
-        var scriptHtml = string.Join(string.Empty, paths.Select(path => $"<script src=\"{path}\" type=\"text/javascript\" asp-append-version=\"true\"></script>"));
+        var scriptHtml = string.Join(string.Empty, paths.Select(path => $"<script src=\"{path}\" type=\"text/javascript\"></script>"));
 
         return new HtmlString(scriptHtml);
     }

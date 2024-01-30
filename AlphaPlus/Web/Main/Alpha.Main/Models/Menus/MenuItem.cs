@@ -16,7 +16,7 @@ namespace Alpha.Main.Models.Menus
         private readonly Func<string> buildDarkModeQueryStringFunc;
         private readonly TransferService transferService;
         private readonly IUser user;
-        private IBrowserHelper browserHelper;
+        private readonly IBrowserHelper browserHelper;
 
         public MenuItem(Func<MenuStatus> getMenuStatusFunc = null)
             : this(getMenuStatusFunc, null, null, null, null, null, null, null, null, null)
@@ -55,8 +55,6 @@ namespace Alpha.Main.Models.Menus
 
         public string ResourceKey { get; set; }
 
-        public string AppPath { get; set; }
-
         public bool ByPassAuthorization { get; set; }
 
         public bool ByPassProtectedMode { get; set; }
@@ -65,13 +63,7 @@ namespace Alpha.Main.Models.Menus
 
         public bool IsBeta { get; set; }
 
-        public string DisplayName
-        {
-            get
-            {
-                return Alpha_sitemap.ResourceManager.GetString(ResourceKey);
-            }
-        }
+        public string DisplayName => Alpha_sitemap.ResourceManager.GetString(ResourceKey);
 
         public virtual string Link
         {
@@ -104,7 +96,7 @@ namespace Alpha.Main.Models.Menus
             {
                 var isAuthorized = (ByPassAuthorization
                     || authorizeUrlFunc(Link))
-                    && isVisibleForMobileOrDesktop()
+                    && IsVisibleForMobileOrDesktop()
                     && !isHideForSite();
 
                 if (isProtectedModeFunc())
@@ -127,26 +119,16 @@ namespace Alpha.Main.Models.Menus
 
         public List<IMenuItem> SubMenus { get; set; }
 
-        public IEnumerable<IMenuItem> VisibileSubMenus
-        {
-            get
-            {
-                return SubMenus.Where(menuItem => menuItem.Status.Visible);
-            }
-        }
+        public IEnumerable<IMenuItem> VisibleSubMenus => SubMenus.Where(menuItem => menuItem.Status.Visible);
 
         public bool IsNew { get; set; }
 
         public bool IsOld { get; set; }
 
-        public bool IsIncludeLanguage { get; set; }
-
         public bool IsMobileView => browserHelper.IsMobile();
 
         public bool IsHiddenInMobile { get; set; }
 
-        private bool isVisibleForMobileOrDesktop() =>
-            IsMobileView && !IsHiddenInMobile ||
-            !IsMobileView;
+        private bool IsVisibleForMobileOrDesktop() => IsMobileView && !IsHiddenInMobile || !IsMobileView;
     }
 }

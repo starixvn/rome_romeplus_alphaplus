@@ -4,8 +4,6 @@ namespace Alpha.Main.Helpers;
 
 public class SiteMapNode
 {
-    public string Key { get; set; }
-
     [XmlAttribute("roles")]
     public string Roles { get; set; }
 
@@ -14,12 +12,6 @@ public class SiteMapNode
 
     [XmlAttribute("resourceKey")]
     public string ResourceKey { get; set; }
-
-    [XmlAttribute("link")]
-    public string Link { get; set; }
-
-    [XmlAttribute("appPath")]
-    public string AppPath { get; set; }
 
     [XmlAttribute("byPassAuthorization")]
     public bool ByPassAuthorization { get; set; }

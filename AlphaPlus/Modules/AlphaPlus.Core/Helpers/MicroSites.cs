@@ -21,7 +21,7 @@ public static class MicroSites
         => microSiteUrls[microSiteName](virtualPath);
 
     public static string MainUrl(string virtualPath = "~/")
-        => AppPathHelper.GetAppPath(AppSettings.MainAppPath, virtualPath);
+        => AppPathHelper.GetAppPath("/main", virtualPath);
 
     public static string ReportsUrl(string virtualPath = "~/")
         => AppPathHelper.GetAppPath(AppSettings.ReportsAppPath, virtualPath);

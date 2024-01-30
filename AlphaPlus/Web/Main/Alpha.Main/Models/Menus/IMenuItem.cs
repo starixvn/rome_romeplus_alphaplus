@@ -10,8 +10,6 @@
 
         string Link { get; set; }
 
-        string AppPath { get; set; }
-
         bool ByPassAuthorization { get; set; }
 
         bool ByPassProtectedMode { get; set; }
@@ -34,6 +32,6 @@
 
         List<IMenuItem> SubMenus { get; set; }
 
-        IEnumerable<IMenuItem> VisibileSubMenus { get; }
+        IEnumerable<IMenuItem> VisibleSubMenus { get; }
     }
 }

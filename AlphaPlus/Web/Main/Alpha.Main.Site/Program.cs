@@ -52,7 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UsePathBase("/site-main");
+app.UsePathBase("/main");
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

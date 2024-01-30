@@ -53,7 +53,6 @@ namespace Alpha.Main.Models.Menus
 
             menuItem.ResourceKey = node.ResourceKey;
             menuItem.Link = node.Url;
-            menuItem.AppPath = node.AppPath;
             menuItem.IsBeta = node.IsBeta;
             menuItem.IsNew = node.IsNew;
             menuItem.IsOld = node.IsOld;
