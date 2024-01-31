@@ -1,8 +1,9 @@
 using System.Security.Claims;
 using System.Text.Json;
+using Alpha.Main.AppResources;
+using Alpha.Main.Models;
 using Alpha.Main.Params.Authorization;
 using Alpha.Main.Services;
-using Alpha.Main.Site.ViewModels.Account;
 using AlphaPlus.Core.Models;
 using AlphaPlus.RequestInfo;
 using Fanex.Cryptography.Aes;
@@ -10,31 +11,76 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace Alpha.Main.Site.Controllers;
 
 [AllowAnonymous]
-public class AccountController(IDeviceHelper deviceHelper, ISignInService signInService, IAesService aesService) : Controller
+public class AccountController(
+    IConfiguration configuration,
+    IDeviceHelper deviceHelper,
+    ISignInService signInService,
+    IAesService aesService,
+    IOptions<AlphaPlus.Core.Configurations.AuthorizationOptions> options)
+    : Controller
 {
+    private readonly IConfiguration configuration = configuration;
     private readonly ISignInService signInService = signInService;
     private readonly IAesService aesService = aesService;
     private readonly IDeviceHelper deviceHelper = deviceHelper;
+    private readonly AlphaPlus.Core.Configurations.AuthorizationOptions options = options.Value;
 
     private const string SecretKey = "!@#$";
 
-    [HttpGet]
     public IActionResult Login(string returnUrl)
     {
-        ViewData["ReturnUrl"] = returnUrl;
-        return View(new LoginInputViewModel { ReturnUrl = returnUrl });
+        // TODO: mapping before domain
+        var beforeUrl = configuration.GetValue<string>("BeforeUrl");
+        return Redirect(beforeUrl);
+    }
+
+    [Authorize]
+    public async Task<IActionResult> Logout()
+    {
+        if (!options.DisabledCheckDuplicationLogin)
+        {
+            await signInService.SignOut();
+        }
+
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+        var beforeUrl = Url.Action(nameof(Login), "Account");
+        return SignOut(new AuthenticationProperties { RedirectUri = beforeUrl });
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Login(LoginInputViewModel model)
+    [Authorize]
+    public async Task<IActionResult> ReCheckIn(int onid)
     {
-        return Ok();
+        var result = onid < 0 ? new ReCheckInResult { IsKickedOut = true } : await signInService.ReCheckIn(onid);
+        return Json(result.IsKickedOut
+            ? Result.CreateErrorResult(MapKickOutReasonToUserMessage(result.KickOutReason))
+            : Result.CreateSuccessfulResult());
     }
+
+    private static string MapKickOutReasonToUserMessage(byte kickoutReason)
+    {
+        const byte ResetPasswordForceKickout = 1;
+        const byte ProtectedModeForceKickout = 2;
+
+        switch (kickoutReason)
+        {
+            case ResetPasswordForceKickout:
+                return Security.KickoutMessageByForceChangePassword;
+
+            case ProtectedModeForceKickout:
+                return Security.KickoutMessageByProtectedMode;
+
+            default:
+                return Security.stringSessionLogged.Replace("\n", string.Empty);
+        }
+    }
+
 
     [HttpGet]
     public async Task<IActionResult> SSO(string parameter)
@@ -55,6 +101,11 @@ public class AccountController(IDeviceHelper deviceHelper, ISignInService signIn
 
         if (isSignedIn)
         {
+            if (!options.DisabledCheckDuplicationLogin)
+            {
+                await signInService.CheckIn();
+            }
+
             var claims = new List<Claim>{
                 new (ClaimTypes.NameIdentifier,Guid.NewGuid().ToString())
             };

@@ -1,7 +1,7 @@
 ﻿namespace Alpha.Main.Site.Models.Requests
 {
     using AlphaPlus.Core.Models;
-    using Configurations;
+    using Alpha.Main.Configurations;
     using MediatR;
     using ViewModels;
 

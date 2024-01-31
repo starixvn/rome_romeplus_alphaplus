@@ -8,5 +8,7 @@
     <Setting Key="Age_Rpt_ConsolidatedGroup_isShownMenu" SpName="Age_Rpt_ConsolidatedGroup_isShownMenu" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="Acc_SiteDBConfigSel" SpName="Acc_SiteDBConfigSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_Transfer_CheckTotalBalanceTransfer" SpName="Age_Transfer_CheckTotalBalanceTransfer" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CheckOut" SpName="Age_CheckOut" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_RecheckIn" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

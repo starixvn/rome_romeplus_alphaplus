@@ -40,8 +40,6 @@ public class SignInResult : Result
 
     public bool IsNickName { get; init; }
 
-    public int OnlineUserId { get; init; }
-
     public CustomerStatus Status { get; init; }
 
     public bool IsShowConsolidatedReport { get; init; }

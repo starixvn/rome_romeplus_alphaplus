@@ -2,7 +2,6 @@
 using Alpha.Main.Site.Helpers;
 using AlphaPlus.Core.Models;
 using Alpha.Main.AppResources;
-using Alpha.Main.Configurations;
 using MediatR;
 using Alpha.Main.Site.Models.Requests;
 using Alpha.Main.Site.Models.Requests.UserMessages;
@@ -15,7 +14,8 @@ using Microsoft.AspNetCore.Http.Extensions;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Filters;
-
+using Microsoft.Extensions.Options;
+using AlphaPlus.Core.Configurations;
 
 namespace Alpha.Main.Site.Controllers
 {
@@ -23,7 +23,8 @@ namespace Alpha.Main.Site.Controllers
         IUserSession userSession,
         IMediator mediator,
         ISecurityCodeChecker securityCodeChecker,
-        INicknameChecker nicknameChecker) : BaseController
+        INicknameChecker nicknameChecker,
+        IOptions<AuthorizationOptions> options) : BaseController
     {
         private const string OtpVerifyDifferenceDevicePath = "~/otp/VerifyOtpDifferenceDevice";
         private const string UnSupportedBrowsers = "UnsupportedBrowsers";
@@ -31,6 +32,7 @@ namespace Alpha.Main.Site.Controllers
         private readonly IMediator mediator = mediator;
         private readonly ISecurityCodeChecker securityCodeChecker = securityCodeChecker;
         private readonly INicknameChecker nicknameChecker = nicknameChecker;
+        private readonly AuthorizationOptions authorizationOptions = options.Value;
 
         [AllowProtectedMode]
         public async Task<IActionResult> Index(string action = null)
@@ -52,7 +54,7 @@ namespace Alpha.Main.Site.Controllers
                 return View(UnSupportedBrowsers, browser);
             }
 
-            var query = new IndexQuery(userSession, securityCodeChecker.IsEnableSecurityCode(), null, nicknameChecker);
+            var query = new IndexQuery(userSession, securityCodeChecker.IsEnableSecurityCode(), null, nicknameChecker, authorizationOptions);
 
             var viewModel = await mediator.Send(query);
 
@@ -66,7 +68,7 @@ namespace Alpha.Main.Site.Controllers
                 userSession.RoleId,
                 Request.Headers.UserAgent.ToString(),
                 darkModeName: DarkModeHelper.GetDarkModeName(userSession),
-                isHideBanner: AppSettings.BannerIsHide || userSession.IsProtectedMode));
+                isHideBanner: Configurations.AppSettings.BannerIsHide || userSession.IsProtectedMode));
 
             return PartialView(viewModel);
         }

@@ -7,7 +7,6 @@ using Alpha.Main.Site.Helpers;
 using Alpha.Main.Site.Models.Requests;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.RequestInfo;
 
 namespace Alpha.Main.Site.ViewModels
 {
@@ -54,7 +53,6 @@ namespace Alpha.Main.Site.ViewModels
 
         public string LanguageKey => message.LanguageKey;
 
-
         public string HowToUseRootPath => UrlHelper.MapHowToUsePath("~/");
 
         public string MemberInfoRootPath => UrlHelper.MapMemberInfoPath("~/");
@@ -88,7 +86,7 @@ namespace Alpha.Main.Site.ViewModels
         public string DefaultPath => getDefaultUrl?.Invoke() ?? MainRootPath;
 
         public HeaderNavViewModel HeaderNavViewModel =>
-            new HeaderNavViewModel(
+            new(
                 CustId,
                 message.UserName,
                 BuildNickName(message),
@@ -132,7 +130,7 @@ namespace Alpha.Main.Site.ViewModels
 
         public bool IsProtectedMode { get; }
 
-        internal string BuildNickName(IndexQuery message)
+        internal static string BuildNickName(IndexQuery message)
         {
             if (message.IsSubAcc)
             {
@@ -176,5 +174,7 @@ namespace Alpha.Main.Site.ViewModels
         public string HightLightFeatureUrl => MicroSites.MessageUrl($"~/BackupDomains/Index");
 
         public bool IsEnableAutoTransfer { get; set; }
+
+        public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
     }
 }

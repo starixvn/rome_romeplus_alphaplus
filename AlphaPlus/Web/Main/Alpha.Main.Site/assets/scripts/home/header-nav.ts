@@ -60,7 +60,7 @@ var headerNav = {
         announcements: alpha.urls.messageRootPath + 'Announcement/Index',
         changeTheme: alpha.urls.mainRootPath + 'Theme/Change',
         changeLanguage: alpha.urls.mainRootPath + 'Language/Change',
-        queryUserName: alpha.urls.oldMainRootPath + '_AccountInfo/Handlers/QueryUserName.ashx',
+        queryUserName: alpha.urls.mainRootPath + '_AccountInfo/Handlers/QueryUserName.ashx',
         checkNewMessage: alpha.urls.messageRootPath + 'NewMessage/GetNumberOfNewAnnouncement',
         banner: alpha.urls.mainRootPath + 'Banner/Get?type=',
         serverTime: alpha.urls.mainRootPath + 'Dashboard/GetServerTime'

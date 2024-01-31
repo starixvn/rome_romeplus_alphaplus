@@ -1,3 +1,5 @@
+using System.Text;
+using System.Text.Json;
 using Alpha.Main.Extensions;
 using Alpha.Main.Models;
 using Alpha.Main.Params.Authorization;
@@ -8,11 +10,53 @@ namespace Alpha.Main.Services;
 public interface ISignInService
 {
     Task<bool> AfterSignIn(SignInParam param);
+
+    Task CheckIn();
+
+    Task<ReCheckInResult> ReCheckIn(int onlineUserId);
+
+    Task SignOut(string reason = null);
 }
 
-public class SignInService(HttpClient client) : ISignInService
+public class SignInService(HttpClient client, IUserSession session) : ISignInService
 {
     private readonly HttpClient client = client;
+    private readonly IUserSession session = session;
+
+    public async Task CheckIn()
+    {
+        var onlineUserId = await client.PostAsJsonAsync<int>("api/auth/check-in", new
+        {
+            CustId = session.CustId,
+            SubAccId = session.SubAccId,
+            SessionId = session.NetSessionId,
+            ServerId = session.ServerId,
+            IP = session.UserLoginIp
+        });
+
+        session.OnUserId = onlineUserId;
+    }
+
+    public Task<ReCheckInResult> ReCheckIn(int onlineUserId)
+        => client.GetAsJsonAsync<ReCheckInResult>($"api/auth/re-check-in?onlineUserId={onlineUserId}");
+
+    public async Task SignOut(string reason = null)
+    {
+        using StringContent payload = new(JsonSerializer.Serialize(new
+        {
+            onlineUserId = session.OnUserId,
+            username = session.IsSubAcc ? session.SubUserName : session.UserName,
+            nickname = session.IsNickname ? session.NickName : string.Empty,
+            roleId = session.RoleId,
+            serverId = session.ServerId,
+            reason
+        }),
+        Encoding.UTF8,
+        "application/json");
+
+        using HttpResponseMessage response = await client.PostAsync("api/auth/check-out", payload);
+        response.EnsureSuccessStatusCode();
+    }
 
     public async Task<bool> AfterSignIn(SignInParam param)
     {
@@ -30,7 +74,7 @@ public class SignInService(HttpClient client) : ISignInService
             LoginDomain = param.RequestInfo.LoginDomain,
             BrowserName = param.RequestInfo.BrowserName,
             Platform = param.RequestInfo.Platform,
-            SessionId = UserSession.Current.NetSessionId
+            SessionId = session.NetSessionId
         });
 
 
@@ -54,15 +98,15 @@ public class SignInService(HttpClient client) : ISignInService
         // outputs.Add("SiteDBGroupId", siteDBConfig.SiteDBGroupId);
         // UserSession.Current.SetUserSessionValues(outputs, userSessionService.SetUserStatusToSession);
 
-        SetUserSessionValues(UserSession.Current, result);
+        SetUserSessionValues(result);
+
+        session.UserLoginIp = param.RequestInfo.LoginIp;
 
         return true;
 
     }
 
-
-
-    private static void SetUserSessionValues(IUserSession session, SignInResult signInResult)
+    private void SetUserSessionValues(SignInResult signInResult)
     {
         if (session == null)
         {
@@ -103,8 +147,6 @@ public class SignInService(HttpClient client) : ISignInService
             // Security code
             session.IsForcedSecurityCode = signInResult.IsForcedChangeSecurityCode;
             session.SecurityCode = signInResult.SecurityCode;
-
-            session.OnUserId = signInResult.OnlineUserId;
         }
         catch
         {

@@ -1,9 +1,9 @@
 ﻿using Alpha.Main.Site.Helpers;
 using AlphaPlus.Core.Models;
-using Alpha.Main.Configurations;
 using MediatR;
 using Alpha.Main.Site.ViewModels;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Configurations;
 
 
 namespace Alpha.Main.Site.Models.Requests
@@ -14,19 +14,22 @@ namespace Alpha.Main.Site.Models.Requests
         private readonly IUserSession userSession;
         private readonly bool disableMessages;
         private readonly INicknameChecker nicknameChecker;
+        private readonly AuthorizationOptions options;
 
         public IndexQuery(
             IUserSession userSession,
             bool isEnableSecurityCode,
             bool? disableMessages,
-            INicknameChecker nicknameChecker)
+            INicknameChecker nicknameChecker,
+            AuthorizationOptions options)
         {
             this.userSession = userSession;
             this.isEnableSecurityCode = isEnableSecurityCode;
-            this.disableMessages = disableMessages ?? AppSettings.DisableMessages;
+            this.disableMessages = disableMessages ?? Configurations.AppSettings.DisableMessages;
             this.nicknameChecker = nicknameChecker;
             IsProtectedMode = userSession.IsProtectedMode;
             IsOfferProtectedMode = userSession.IsOfferProtectedMode;
+            this.options = options;
         }
 
         public int CustId => userSession.CustId;
@@ -81,15 +84,23 @@ namespace Alpha.Main.Site.Models.Requests
 
         public string DarkModeName => DarkModeHelper.GetDarkModeName(userSession);
 
+        public IndexQuery(bool isProtectedMode, bool isOfferProtectedMode)
+        {
+            this.IsProtectedMode = isProtectedMode;
+            this.IsOfferProtectedMode = isOfferProtectedMode;
+
+        }
         public bool IsProtectedMode { get; }
 
         public bool IsOfferProtectedMode { get; }
 
         public string AssetAppPath => userSession.AssetAppPath;
 
-        private static bool IsQRCodeHidden => AppSettings.HideQRCode;
+        private static bool IsQRCodeHidden => Configurations.AppSettings.HideQRCode;
         public int SuperId => userSession.SRecommendId;
 
         public string Currency => userSession.Currency;
+
+        public bool IsEnableReCheckIn => !userSession.IsInternal || !options.DisabledCheckDuplicationLogin;
     }
 }

@@ -42,8 +42,6 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public bool IsNickName { get; init; }
 
-        public int OnlineUserId { get; set; } = 0;
-
         public CustomerStatus Status { get; set; }
 
         public bool IsShowConsolidatedReport { get; set; }

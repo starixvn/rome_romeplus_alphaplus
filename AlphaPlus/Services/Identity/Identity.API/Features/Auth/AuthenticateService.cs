@@ -7,6 +7,12 @@ namespace AlphaPlus.Identity.API.Features.Auth
     public interface IAuthenticateService
     {
         Task<AuthenticateResponse> LoginClaimDownline(AuthenticateRequest request);
+
+        Task<int> CheckIn(CheckInRequest request);
+
+        Task CheckOut(CheckOutRequest request);
+
+        Task<ReCheckInResponse> ReCheckIn(int onlineUserId);
     }
 
     public class AuthenticateService(
@@ -17,6 +23,26 @@ namespace AlphaPlus.Identity.API.Features.Auth
         private readonly IEncryption encryption = encryption;
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
         private readonly AppSettings appSettings = appSettings.Value;
+
+        public async Task<ReCheckInResponse> ReCheckIn(int onlineUserId)
+        {
+            var command = new ReCheckInCommand(onlineUserId);
+            await dynamicRepository.ExecuteAsync(command);
+            return new ReCheckInResponse
+            {
+                IsKickedOut = command.IsKickedOut,
+                KickOutReason = command.KickOutReason
+            };
+        }
+
+        public Task CheckOut(CheckOutRequest request)
+            => dynamicRepository.ExecuteAsync(new CheckOutCommand(
+                request.OnlineUserId,
+                request.Username,
+                request.RoleId,
+                request.ServerId,
+                request.Nickname,
+                request.Reason));
 
         public async Task<AuthenticateResponse> LoginClaimDownline(AuthenticateRequest request)
         {
@@ -62,7 +88,6 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
             if (command.ErrCode == 0)
             {
-                response.OnlineUserId = await CheckIn(response.CustId, response.SubAccId, request.SessionId, response.ServerId, request.LoginIp);
                 response.Status = await GetCustomerStatus(response.CustId, response.AdminId);
                 response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
                 response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
@@ -74,15 +99,15 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         }
 
-        private async Task<int> CheckIn(int custId, int subAccId, string sessionId, int serverId, string ip)
+        public async Task<int> CheckIn(CheckInRequest request)
         {
             var command = new CheckInCommand
             {
-                CustId = custId,
-                SubAccId = subAccId,
-                NetSessionId = sessionId,
-                ServerId = serverId,
-                IP = ip
+                CustId = request.CustId,
+                SubAccId = request.SubAccId,
+                NetSessionId = request.SessionId,
+                ServerId = request.ServerId,
+                IP = request.IP
             };
             await dynamicRepository.ExecuteAsync(command);
             return command.OnlineUserId;
