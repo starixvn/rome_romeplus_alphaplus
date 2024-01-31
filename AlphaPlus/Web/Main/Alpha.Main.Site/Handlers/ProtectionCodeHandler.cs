@@ -15,27 +15,22 @@ namespace Alpha.Main.Site.Handlers
         IRequestHandler<UpdateProtectionCodeCommand, ResultModel>
     {
         private const string HashKeySessionKey = "Alpha.Main.ProtectionCodeHandler.ProtectionCodeHash";
-
         private readonly ISessionManager sessionManager;
-        private readonly INicknameChecker nicknameChecker;
         private readonly ProtectionCodeService protectionCodeService;
         private readonly ISecurityCodeChecker securityCodeChecker;
 
         public ProtectionCodeHandler(
             ISessionManager sessionManager,
-            INicknameChecker nicknameChecker,
             ProtectionCodeService protectionCodeService,
             ISecurityCodeChecker securityCodeChecker)
         {
             this.sessionManager = sessionManager;
-            this.nicknameChecker = nicknameChecker;
             this.protectionCodeService = protectionCodeService;
             this.securityCodeChecker = securityCodeChecker;
         }
 
         public async Task<ProtectionCodeViewModel> Handle(ProtectionCodeQuery message, CancellationToken cancellationToken)
         {
-            var isShowNicknameLink = !nicknameChecker.IsOfferForceLoginAndOverDueDate;
             var protectionCode = await protectionCodeService.GetAsync(message.CustId, message.SubAccId);
 
             return new ProtectionCodeViewModel(
@@ -43,7 +38,6 @@ namespace Alpha.Main.Site.Handlers
                 Enumeration.FromValue<UserLevel>(message.RoleId).DisplayName.ToLowerInvariant(),
                 message.Language,
                 HashKey,
-                isShowNicknameLink,
                 !string.IsNullOrWhiteSpace(protectionCode),
                 securityCodeChecker.IsEnableSecurityCode());
         }

@@ -63,22 +63,17 @@ public class AccountController(
             : Result.CreateSuccessfulResult());
     }
 
-    private static string MapKickOutReasonToUserMessage(byte kickoutReason)
+    private static string MapKickOutReasonToUserMessage(byte kickOutReason)
     {
-        const byte ResetPasswordForceKickout = 1;
-        const byte ProtectedModeForceKickout = 2;
+        const byte ResetPasswordForceKickOut = 1;
+        const byte ProtectedModeForceKickOut = 2;
 
-        switch (kickoutReason)
+        return kickOutReason switch
         {
-            case ResetPasswordForceKickout:
-                return Security.KickoutMessageByForceChangePassword;
-
-            case ProtectedModeForceKickout:
-                return Security.KickoutMessageByProtectedMode;
-
-            default:
-                return Security.stringSessionLogged.Replace("\n", string.Empty);
-        }
+            ResetPasswordForceKickOut => Security.KickoutMessageByForceChangePassword,
+            ProtectedModeForceKickOut => Security.KickoutMessageByProtectedMode,
+            _ => Security.stringSessionLogged.Replace("\n", string.Empty),
+        };
     }
 
 

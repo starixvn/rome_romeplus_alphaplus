@@ -41,7 +41,6 @@ namespace Alpha.Main.Site.Handlers
         private readonly ISessionManager sessionManager;
         private readonly IBrowserHelper browserHelper;
         private readonly IUser user;
-        private readonly INicknameChecker nicknameChecker;
         private readonly ISettingService telegramSettingService;
         private readonly ISecurityCodeChecker securityCodeChecker;
         private readonly Fanex.Logging.ILogger logger;
@@ -52,7 +51,6 @@ namespace Alpha.Main.Site.Handlers
             ISessionManager sessionManager,
             IBrowserHelper browserHelper,
             IUser user,
-            INicknameChecker nicknameChecker,
             ISettingService telegramSettingService,
             ISecurityCodeChecker securityCodeChecker,
             Fanex.Logging.ILogger logger)
@@ -62,7 +60,6 @@ namespace Alpha.Main.Site.Handlers
             this.sessionManager = sessionManager;
             this.browserHelper = browserHelper;
             this.user = user;
-            this.nicknameChecker = nicknameChecker;
             this.telegramSettingService = telegramSettingService;
             this.securityCodeChecker = securityCodeChecker;
             this.logger = logger;
@@ -255,7 +252,6 @@ namespace Alpha.Main.Site.Handlers
             {
                 CustomerOtp = customerOtp,
                 IsAlreadySetup = true,
-                IsShowNicknameLink = !nicknameChecker.IsOfferForceLoginAndOverDueDate,
                 IsOfferProtectedMode = request.IsOfferProtectedMode,
                 EnableSecurityCode = securityCodeChecker.IsEnableSecurityCode()
             };

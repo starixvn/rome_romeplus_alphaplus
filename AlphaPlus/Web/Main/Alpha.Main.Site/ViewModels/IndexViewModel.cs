@@ -95,7 +95,6 @@ namespace Alpha.Main.Site.ViewModels
                 IsEnabledOtp,
                 string.IsNullOrEmpty(profilePicture.ImageBase64String),
                 profilePicture.ImageBase64String,
-                message.ShowNicknameMenu,
                 message.ShowCreateMemberByQRCode,
                 !string.IsNullOrWhiteSpace(message.DarkModeName),
                 IsProtectedMode,

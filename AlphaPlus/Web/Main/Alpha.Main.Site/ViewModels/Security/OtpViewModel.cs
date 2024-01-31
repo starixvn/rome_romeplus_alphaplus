@@ -10,8 +10,6 @@ namespace Alpha.Main.Site.ViewModels.Security
 
         public bool IsAlreadySetup { get; set; }
 
-        public bool IsShowNicknameLink { get; set; }
-
         public bool IsOfferProtectedMode { get; set; }
 
         public RegisterAccountViewModel RegisterAccountViewModel { get; set; }

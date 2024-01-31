@@ -5,7 +5,6 @@ using Alpha.Main.Site.ViewModels;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Configurations;
 
-
 namespace Alpha.Main.Site.Models.Requests
 {
     public class IndexQuery : IRequest<IndexViewModel>
@@ -13,20 +12,17 @@ namespace Alpha.Main.Site.Models.Requests
         private readonly bool isEnableSecurityCode;
         private readonly IUserSession userSession;
         private readonly bool disableMessages;
-        private readonly INicknameChecker nicknameChecker;
         private readonly AuthorizationOptions options;
 
         public IndexQuery(
             IUserSession userSession,
             bool isEnableSecurityCode,
             bool? disableMessages,
-            INicknameChecker nicknameChecker,
             AuthorizationOptions options)
         {
             this.userSession = userSession;
             this.isEnableSecurityCode = isEnableSecurityCode;
             this.disableMessages = disableMessages ?? Configurations.AppSettings.DisableMessages;
-            this.nicknameChecker = nicknameChecker;
             IsProtectedMode = userSession.IsProtectedMode;
             IsOfferProtectedMode = userSession.IsOfferProtectedMode;
             this.options = options;
@@ -70,9 +66,6 @@ namespace Alpha.Main.Site.Models.Requests
             => userSession.SubPageAccess.ViewMemberInfo && !IsProtectedMode;
 
         public bool DisableMessages => disableMessages;
-
-        public bool ShowNicknameMenu
-            => !nicknameChecker.IsOfferForceLoginAndOverDueDate;
 
         public bool ShowCreateMemberByQRCode =>
             userSession.SubPageAccess.CreateAccount

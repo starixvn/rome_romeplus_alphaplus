@@ -1,7 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
-using Alpha.Main.AppResources;
 using Alpha.Main.Site.Helpers;
-using Alpha.Main.Models;
 using AlphaPlus.Core.Helpers;
 
 namespace Alpha.Main.Site.ViewModels.Nickname
@@ -22,9 +20,6 @@ namespace Alpha.Main.Site.ViewModels.Nickname
         }
 
         public string Nickname { get; }
-
-        public string NicknameEffectedFrom
-            => string.Format(Resources.NicknameEffectedFrom, nicknameChecker.ForceLoginDate);
 
         public bool IsRecommendLoginByNickname
             => nicknameChecker.IsRecommendLoginByNickname;

@@ -7,7 +7,6 @@
             string userLevel,
             string language,
             string hashKey,
-            bool isShowNicknameLink,
             bool isExistedProtectionCode,
             bool enableSecurityCode)
         {
@@ -15,7 +14,6 @@
             UserLevel = userLevel;
             Language = language;
             HashKey = hashKey;
-            IsShowNicknameLink = isShowNicknameLink;
             IsExistedProtectionCode = isExistedProtectionCode;
             EnableSecurityCode = enableSecurityCode;
         }
@@ -27,8 +25,6 @@
         public string Language { get; }
 
         public string HashKey { get; }
-
-        public bool IsShowNicknameLink { get; }
 
         public bool IsExistedProtectionCode { get; }
 

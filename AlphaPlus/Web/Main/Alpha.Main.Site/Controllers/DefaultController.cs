@@ -54,7 +54,7 @@ namespace Alpha.Main.Site.Controllers
                 return View(UnSupportedBrowsers, browser);
             }
 
-            var query = new IndexQuery(userSession, securityCodeChecker.IsEnableSecurityCode(), null, nicknameChecker, authorizationOptions);
+            var query = new IndexQuery(userSession, securityCodeChecker.IsEnableSecurityCode(), null, authorizationOptions);
 
             var viewModel = await mediator.Send(query);
 

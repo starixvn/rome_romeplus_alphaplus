@@ -1,7 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
-using Alpha.Main.Models;
 using MediatR;
-using AlphaPlus.Web.Helpers;
 using AlphaPlus.Core.Helpers;
 
 namespace Alpha.Main.Site.Requests.Nickname

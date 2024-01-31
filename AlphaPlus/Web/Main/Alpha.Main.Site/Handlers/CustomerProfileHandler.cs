@@ -13,11 +13,9 @@ namespace Alpha.Main.Site.Handlers
     public class CustomerProfileHandler(
         ProfilePictureServices customerProfileService,
         IUserSession userSession,
-        INicknameChecker nicknameChecker,
         IEncryption encryption) : IRequestHandler<BriefProfileQuery, BriefProfileViewModel>
     {
         private readonly ProfilePictureServices customerProfileService = customerProfileService;
-        private readonly INicknameChecker nicknameChecker = nicknameChecker;
         private readonly IUserSession userSession = userSession;
         private readonly IEncryption encryption = encryption;
 
@@ -35,7 +33,7 @@ namespace Alpha.Main.Site.Handlers
                 NickName = BuildNickName(request),
                 IntroduceNickNameTooltipCookieName = encryption.CfsEnCode($"ToolTip_{request.CustId}"),
                 IsEnableOtp = request.IsEnabledOtp,
-                IsHideNicknameLink = nicknameChecker.IsOfferForceLoginAndOverDueDate || request.IsProtectedMode,
+                IsHideNicknameLink = request.IsProtectedMode,
                 SubAccountTooltip = request.IsSubAcc ? $"{Resources.subAcc} {HttpUtility.HtmlEncode(request.SubUserName)}" : string.Empty,
                 IsShowProfilePictureTooltip = !profile.Modified.HasValue,
                 IsProtectedMode = request.IsProtectedMode

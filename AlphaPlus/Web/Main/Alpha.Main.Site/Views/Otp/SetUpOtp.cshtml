@@ -37,12 +37,6 @@
             <a id="profilePicture"
                 href="@MicroSites.AccountInfoUrl($"~/ProfilePicture/")">@Resources.EditProfilePicture</a>
         </li>
-        @if (Model.IsShowNicknameLink)
-        {
-            <li role="presentation">
-                <a href="@MicroSites.MainUrl($"~/LoginOption/?custid={Model.CustomerOtp.CustId}")">@Resources.nickname</a>
-            </li>
-        }
         <li role="presentation" class="active">
             <a aria-controls="home" role="tab" data-toggle="tab">OTP</a>
         </li>

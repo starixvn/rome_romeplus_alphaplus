@@ -139,11 +139,6 @@
                     <li class="visible-mobile dropdown-submenu language">
                         @Component.InvokeAsync("LanguageList")
                     </li>
-                    @if (Model.ShowNicknameMenu)
-                    {
-                        <li><a href="@($"{Model.MainRootPath}LoginOption?custId={Model.CustId}")" target="main"><span
-                                    class="icon icon-account-key"></span>@Resources.nickname</a></li>
-                    }
                     <li><a href="@viewProfileUrl" target="main"><span
                                 class="icon icon-account-circle"></span>@Resources.EditProfilePicture</a></li>
                     <li><a href="@($"{Model.MainRootPath}Password/ChangePassword")" target="main"><span

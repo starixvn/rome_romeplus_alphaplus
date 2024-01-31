@@ -35,7 +35,6 @@ namespace Alpha.Main.Site.Handlers
         private readonly ProfilePictureServices customerProfileService;
         private readonly ISecurityCodeChecker securityCodeChecker;
         private readonly IUser user;
-        private readonly INicknameChecker nicknameChecker;
         private readonly Func<int> getInsertProfilePictureSiteMode;
 
         public PasswordHandler(
@@ -45,9 +44,8 @@ namespace Alpha.Main.Site.Handlers
             ISessionManager sessionManager,
             IEncryption encryption,
             ISecurityCodeChecker securityCodeChecker,
-            IUser user,
-            INicknameChecker nicknameChecker)
-           : this(passwordService, userSession, customerProfileService, sessionManager, encryption, securityCodeChecker, user, nicknameChecker, null)
+            IUser user)
+           : this(passwordService, userSession, customerProfileService, sessionManager, encryption, securityCodeChecker, user, null)
         {
         }
 
@@ -59,7 +57,6 @@ namespace Alpha.Main.Site.Handlers
             IEncryption encryption,
             ISecurityCodeChecker securityCodeChecker,
             IUser user,
-            INicknameChecker nicknameChecker,
             Func<int> getInsertProfilePictureSiteMode)
         {
             this.passwordService = passwordService;
@@ -69,7 +66,6 @@ namespace Alpha.Main.Site.Handlers
             this.customerProfileService = customerProfileService;
             this.securityCodeChecker = securityCodeChecker;
             this.user = user;
-            this.nicknameChecker = nicknameChecker;
             this.getInsertProfilePictureSiteMode = getInsertProfilePictureSiteMode ??
              SimpleServiceLocator.GetService<Func<int>>();
         }
@@ -109,7 +105,6 @@ namespace Alpha.Main.Site.Handlers
                 HashKey = GetHasKey(),
                 EnableSecurityCode = securityCodeChecker.IsEnableSecurityCode(),
                 IsOfferProtectedMode = message.IsOfferProtectedMode,
-                IsShowNicknameLink = !nicknameChecker.IsOfferForceLoginAndOverDueDate
             });
         }
 

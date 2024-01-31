@@ -1,108 +1,31 @@
-using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Core.Helpers;
 
 public interface INicknameChecker
 {
-    string ForceLoginDate { get; }
-
-    bool IsOfferForceLogin { get; }
-
     bool IsOfferForceLoginFlow { get; }
 
     bool IsRecommendLoginByNickname { get; }
 
     bool IsForceLoginByNickname { get; }
 
-    bool IsOfferForceLoginAndOverDueDate { get; }
 }
 
 public class NicknameChecker(IUserSession userSession) : INicknameChecker
 {
     private readonly IUserSession userSession = userSession;
 
-    private bool? isOfferForceLogin;
-    private bool? isOfferForceLoginFlow;
     private bool? isRecommendLoginByNickname;
     private bool? isForceLoginByNickname;
-    private bool? isOfferForceLoginAndOverDueDate;
 
-    public string ForceLoginDate
-    {
-        get
-        {
-            var forceLoginDate = GetForceLoginDate();
-
-            return forceLoginDate == null
-                ? string.Empty
-                : forceLoginDate.Value.ToString("dd/MM/yyyy");
-        }
-    }
-
-    public bool IsOfferForceLogin
-    {
-        get
-        {
-            if (isOfferForceLogin == null)
-            {
-                if (GetForceLoginDate() == null)
-                {
-                    isOfferForceLogin = false;
-                }
-                else
-                {
-                    var isIgnore = AppSettings.ForceLoginNicknameIgnoreList.Count > 0
-                        && new[]
-                        {
-                                userSession.SRecommendId,
-                                userSession.MRecommendId,
-                                userSession.ARecommendId,
-                                userSession.CustId
-                        }.Any(id => id != 0 && AppSettings.ForceLoginNicknameIgnoreList.ContainsKey(id));
-
-                    isOfferForceLogin = !isIgnore;
-                }
-            }
-
-            return isOfferForceLogin.Value;
-        }
-    }
-
-    public bool IsOfferForceLoginFlow
-    {
-        get
-        {
-            if (isOfferForceLoginFlow == null)
-            {
-                if (userSession.IsInternal || GetForceLoginDate() == null)
-                {
-                    isOfferForceLoginFlow = false;
-                }
-                else
-                {
-                    var isIgnore = AppSettings.ForceLoginNicknameIgnoreList.Count > 0
-                        && new[]
-                        {
-                                userSession.SRecommendId,
-                                userSession.MRecommendId,
-                                userSession.ARecommendId,
-                                userSession.CustId
-                        }.Any(id => id != 0 && AppSettings.ForceLoginNicknameIgnoreList.ContainsKey(id));
-
-                    isOfferForceLoginFlow = !isIgnore && !(!string.IsNullOrWhiteSpace(userSession.NickName) && userSession.IsNicknameLoginOnly);
-                }
-            }
-
-            return isOfferForceLoginFlow.Value;
-        }
-    }
+    public bool IsOfferForceLoginFlow => !userSession.IsInternal || string.IsNullOrWhiteSpace(userSession.NickName);
 
     public bool IsRecommendLoginByNickname
     {
         get
         {
-            isRecommendLoginByNickname ??= IsOfferForceLoginFlow && GetForceLoginDate().Value > DateTime.Today;
+            isRecommendLoginByNickname ??= IsOfferForceLoginFlow;
 
             return isRecommendLoginByNickname.Value;
         }
@@ -112,24 +35,9 @@ public class NicknameChecker(IUserSession userSession) : INicknameChecker
     {
         get
         {
-            isForceLoginByNickname ??= IsOfferForceLoginFlow && GetForceLoginDate().Value <= DateTime.Today;
+            isForceLoginByNickname ??= IsOfferForceLoginFlow;
 
             return isForceLoginByNickname.Value;
         }
     }
-
-    public bool IsOfferForceLoginAndOverDueDate
-    {
-        get
-        {
-            isOfferForceLoginAndOverDueDate ??= IsOfferForceLogin && GetForceLoginDate().Value <= DateTime.Today;
-
-            return isOfferForceLoginAndOverDueDate.Value;
-        }
-    }
-
-    private DateTime? GetForceLoginDate()
-        => userSession.IsSubAcc
-        ? AppSettings.ForceLoginNicknameDate4SubAccount
-        : AppSettings.ForceLoginNicknameDate;
 }

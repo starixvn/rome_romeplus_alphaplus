@@ -29,17 +29,7 @@
             @* TODO: Languages @Html.Action("Languages", "SecurityCode") *@
             @Html.AntiForgeryToken()
             <h1 class="title">@Resources.nickname</h1>
-            <p>
-                @Resources.NicknameCompanyPolicy
-                @if (Model.IsRecommendLoginByNickname)
-                {
-                    <br />
-                    <span class="text-red bold">@Model.NicknameEffectedFrom</span>
-                    <div>
-                        <a class="link" href="@MicroSites.MainUrl("~/Default/Index?action=Skip")">@Resources.NicknameSkipText</a>
-                    </div>
-                }
-            </p>
+            <p>@Resources.NicknameCompanyPolicy</p>
             <p class="lblUsername">@(Model.IsDisableUpdateNickname ? Resources.PleaseSelectLoginByNickname : Resources.PleaseChooseNickname):</p>
             <div class="rowlg">
                 <input type="text" id="nickname" name="nickname" value="@Model.Nickname" class="txt nickname" autocomplete="off" placeholder="@Resources.nickname" maxlength="20" @(Model.IsDisableUpdateNickname ? "disabled" : string.Empty)>

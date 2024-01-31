@@ -30,12 +30,6 @@
         <li role="presentation">
             <a href="@MicroSites.AccountInfoUrl($"~/ProfilePicture/")">@Resources.EditProfilePicture</a>
         </li>
-        @if (Model.IsShowNicknameLink)
-        {
-            <li role="presentation">
-                <a href="@MicroSites.MainUrl($"~/LoginOption/?custid={Model.CustId}")">@Resources.nickname</a>
-            </li>
-        }
         <li role="presentation">
             @Html.ActionLink("OTP", "SetUpOtp", "OTP")
         </li>

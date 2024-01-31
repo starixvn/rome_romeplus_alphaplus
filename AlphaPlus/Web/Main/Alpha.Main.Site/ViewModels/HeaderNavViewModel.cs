@@ -14,7 +14,6 @@ namespace Alpha.Main.Site.ViewModels
             bool isEnabledOtp,
             bool isDefaultAvatar,
             string embedImage,
-            bool showNicknameMenu,
             bool showCreateMemberByQRCode,
             bool isDarkMode,
             bool isProtectedMode,
@@ -30,7 +29,6 @@ namespace Alpha.Main.Site.ViewModels
             IsEnabledOtp = isEnabledOtp;
             IsDefaultAvatar = isDefaultAvatar;
             EmbedImage = embedImage;
-            ShowNicknameMenu = showNicknameMenu;
             ShowCreateMemberByQRCode = showCreateMemberByQRCode;
             IsDarkMode = isDarkMode;
             IsProtectedMode = isProtectedMode;
@@ -66,8 +64,6 @@ namespace Alpha.Main.Site.ViewModels
         public bool IsDefaultAvatar { get; }
 
         public string EmbedImage { get; }
-
-        public bool ShowNicknameMenu { get; }
 
         public bool ShowCreateMemberByQRCode { get; }
 
