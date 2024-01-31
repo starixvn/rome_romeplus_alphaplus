@@ -129,6 +129,9 @@
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>All Events</value>
+  </data>
   <data name="Away" xml:space="preserve">
     <value>Away</value>
   </data>
@@ -351,8 +354,17 @@
   <data name="Select" xml:space="preserve">
     <value>Select</value>
   </data>
+  <data name="SelectAnEvent" xml:space="preserve">
+    <value>Select an event</value>
+  </data>
+  <data name="SelectAtLeastOneEvent" xml:space="preserve">
+    <value>Please select at least one event</value>
+  </data>
   <data name="SelectMatch" xml:space="preserve">
     <value>Select Match</value>
+  </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>Selected Event(s)</value>
   </data>
   <data name="Soccer" xml:space="preserve">
     <value>Soccer</value>

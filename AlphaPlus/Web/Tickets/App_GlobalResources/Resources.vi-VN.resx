@@ -129,6 +129,9 @@
   <data name="All" xml:space="preserve">
     <value>Tất cả</value>
   </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>Tất cả sự kiện</value>
+  </data>
   <data name="Away" xml:space="preserve">
     <value>Đội Khách</value>
   </data>
@@ -351,8 +354,17 @@
   <data name="Select" xml:space="preserve">
     <value>Lưa chọn</value>
   </data>
+  <data name="SelectAnEvent" xml:space="preserve">
+    <value>Chọn một sự kiện</value>
+  </data>
+  <data name="SelectAtLeastOneEvent" xml:space="preserve">
+    <value>Vui lòng chọn ít nhất một sự kiện</value>
+  </data>
   <data name="SelectMatch" xml:space="preserve">
     <value>Chọn trận đấu</value>
+  </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>Sự Kiện Đã Chọn</value>
   </data>
   <data name="Soccer" xml:space="preserve">
     <value>Bóng Đá</value>

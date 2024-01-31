@@ -5,6 +5,8 @@ interface JQuery {
 interface Window {
     popupManager: {
         open(url: string, title: string, width: number): void;
+        open(url: string, title: string, width: number, height: number): void;
+        openMultiple(url: string, title: string, width: number): void;
     };
 }
 
@@ -35,13 +37,15 @@ class TotalBets {
             .find('.icon-fc')
             .off('click')
             .click(function (e) {
-                //e.preventDefault();
+                e.preventDefault();
                 top.popupManager.open($(e.target).attr('href'), '', 900);
             });
     }
 
     init() {
-        this.initAutoRefresh($('#tblRpt').find('tbody'));
+        const $tblRpt = $('#tblRpt').find('tbody');
+        this.initAutoRefresh($tblRpt);
+        this.bindViewForecast($tblRpt);
     }
 }
 

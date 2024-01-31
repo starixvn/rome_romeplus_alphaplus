@@ -296,64 +296,31 @@ const soccer = {
 
             sessionStorage.setItem(soccer.cookies.league, soccer.domElements.ddlLeague.val());
         });
-        // let leagueId = soccer.domElements.ddlLeague.val() || $.cookie(soccer.cookies.league);
-        // leagueId = leagueId || (leagues.length > 0 ? leagues[0].Id : 0);
-        // const processedLeagues = leagues.map(function (league) {
-        //     return {
-        //         label: league.LeagueName,
-        //         value: league.LeagueId,
-        //         selected: league.LeagueId === parseInt(leagueId)
-        //     };
-        // });
-
-        // soccer.domElements.ddlLeague.multiselect({
-        //     maxHeight: 300,
-        //     enableFiltering: true,
-        //     numberDisplayed: 1,
-        //     enableCaseInsensitiveFiltering: true,
-        //     nonSelectedText: soccer.domElements.mainContent.data('no-data-text'),
-        //     onChange: function (option, checked) {
-        //         soccer.loadMatches();
-        //         soccer.domElements.mainContent.hide().find('tbody').remove();
-        //         soccer.stopCountdown();
-
-        //         $.cookie(soccer.cookies.league, soccer.domElements.ddlLeague.val(), {
-        //             expires: soccer.cookieExpireTime
-        //         });
-        //     }
-        // });
-
-        //soccer.domElements.ddlLeague.multiselect('dataprovider', processedLeagues);
     },
 
     loadMatches: function () {
-        $.ajax({
-            url: soccer.urls.getMatches,
-            type: 'GET',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: {
+        try {
+            $.blockUI();
+        } catch (e) {}
+        $.get(
+            `${soccer.urls.getMatches}?${$.param({
+                isLive: soccer.domElements.ddlDeadBall.val(),
                 leagueId: soccer.domElements.ddlLeague.val(),
-                isLive: soccer.domElements.ddlDeadBall.val() === 'true',
                 version: Math.random()
-            },
-            beforeSend: function () {
-                try {
-                    $.blockUI();
-                } catch (e) {}
-            }
-        })
-            .done(function (matches) {
+            })}`,
+            function (matches) {
                 if (matches) {
+                    console.dir(matches);
+
                     soccer.renderMatches(matches);
                 }
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                try {
-                    $.unblockUI();
-                } catch (e) {}
-                soccer.processAjaxError(jqXHR);
-            });
+            }
+        ).always(function (jqXHR) {
+            try {
+                $.unblockUI();
+            } catch (e) {}
+            soccer.processAjaxError(jqXHR);
+        });
     },
 
     renderMatches: function (matches) {

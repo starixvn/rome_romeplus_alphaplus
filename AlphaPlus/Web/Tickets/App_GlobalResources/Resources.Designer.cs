@@ -1264,5 +1264,49 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
                 return ResourceManager.GetString("Total", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select an event.
+        /// </summary>
+        internal static string SelectAnEvent
+        {
+            get
+            {
+                return ResourceManager.GetString("SelectAnEvent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Event(s).
+        /// </summary>
+        internal static string SelectedEvents
+        {
+            get
+            {
+                return ResourceManager.GetString("SelectedEvents", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please select at least one event.
+        /// </summary>
+        internal static string SelectAtLeastOneEvent
+        {
+            get
+            {
+                return ResourceManager.GetString("SelectAtLeastOneEvent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All Events.
+        /// </summary>
+        internal static string AllEvents
+        {
+            get
+            {
+                return ResourceManager.GetString("AllEvents", resourceCulture);
+            }
+        }
     }
 }

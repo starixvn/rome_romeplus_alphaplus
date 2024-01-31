@@ -1847,6 +1847,13 @@
     ]
   },
   {
+    "outputFileName": "bundles3/site-totalbetsforecast/soccer.css",
+    "inputFiles": [
+      "styles-v3/vendors/bootstrap-multiselect.css",
+      "styles-v3/components/dropdown.css"
+    ]
+  },
+  {
     "outputFileName": "bundles3/site-totalbetsforecast/soccer.js",
     "inputFiles": [
       "js/libs/jquery/jquery.cookie.js",

@@ -129,6 +129,9 @@
   <data name="All" xml:space="preserve">
     <value>全部</value>
   </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>全部赛事</value>
+  </data>
   <data name="Away" xml:space="preserve">
     <value>客</value>
   </data>
@@ -351,8 +354,17 @@
   <data name="Select" xml:space="preserve">
     <value>选择</value>
   </data>
+  <data name="SelectAnEvent" xml:space="preserve">
+    <value>选择一个赛事</value>
+  </data>
+  <data name="SelectAtLeastOneEvent" xml:space="preserve">
+    <value>请选择至少一个赛事</value>
+  </data>
   <data name="SelectMatch" xml:space="preserve">
     <value>选择赛事</value>
+  </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>选定赛事（S）</value>
   </data>
   <data name="Soccer" xml:space="preserve">
     <value>足球</value>

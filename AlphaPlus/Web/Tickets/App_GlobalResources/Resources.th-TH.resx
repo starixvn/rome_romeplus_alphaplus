@@ -129,6 +129,9 @@
   <data name="All" xml:space="preserve">
     <value>ทั้งหมด</value>
   </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>ทุกการแข่งขัน</value>
+  </data>
   <data name="Away" xml:space="preserve">
     <value>ทีมเยือน</value>
   </data>
@@ -351,8 +354,17 @@
   <data name="Select" xml:space="preserve">
     <value>เลือก</value>
   </data>
+  <data name="SelectAnEvent" xml:space="preserve">
+    <value>เลื่อกการแข่งขัน</value>
+  </data>
+  <data name="SelectAtLeastOneEvent" xml:space="preserve">
+    <value>กรุณาเลือกอย่างน้อยหนึ่งการแข่งขัน</value>
+  </data>
   <data name="SelectMatch" xml:space="preserve">
     <value>เลือกคู่แข่งขัน</value>
+  </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>เลื่อกการแข่งขันต่างๆ</value>
   </data>
   <data name="Soccer" xml:space="preserve">
     <value>ฟุตบอล</value>

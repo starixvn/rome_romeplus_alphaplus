@@ -40,7 +40,17 @@ public class ForecastController : Controller//BaseController
     }
 
     public async Task<IActionResult> GetSoccerLeagues(SoccerRequest message)
-        => Json(await soccerService.GetLeagues(message.IsLive, message.Language));
+    {
+        var leagues = await soccerService.GetLeagues(message.IsLive, message.Language);
+        message.LeagueId = message.LeagueId == 0
+            ? leagues.FirstOrDefault()?.LeagueId ?? 0
+            : message.LeagueId;
+        var matches = message.LeagueId == 0
+            ? Enumerable.Empty<Match>()
+            : await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language);
+
+        return Json(new { Leagues = leagues, Matches = matches });
+    }
 
     public async Task<IActionResult> GetSoccerMatches(SoccerRequest message)
         => Json(await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language));

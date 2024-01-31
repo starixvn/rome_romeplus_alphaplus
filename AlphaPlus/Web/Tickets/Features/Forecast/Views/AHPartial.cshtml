@@ -96,7 +96,7 @@
             <td colspan="5">
                 <div class="flex justify-content-space-between">
                     <a asp-controller="BetListByBetTypeAndMatch" asp-action="Index" asp-route-matchid="@Model.MatchId"
-                        asp-route-bettype="@Model.BetType">@Resources.BetList</a>
+                        asp-route-bettype="@Model.BetType" class="view-betlist">@Resources.BetList</a>
                     <a asp-action="AH" asp-route-matchid="@Model.MatchId" asp-route-bettype="@toggleBetType"
                         asp-route-score="0">@toggleForecast</a>
                 </div>
