@@ -237,8 +237,8 @@ class Result {
     isWarning: boolean;
 
     constructor(data?: any) {
-        this.code = data.Code;
-        this.message = data.Message || '';
+        this.code = data.code;
+        this.message = data.message || '';
         this.isFailed = this.code !== 0;
         this.isSuccessful = this.code === 0;
         this.isWarning = data.Code === Result.warningCode;

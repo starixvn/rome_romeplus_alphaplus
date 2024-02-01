@@ -8,7 +8,7 @@
     @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/telegramchatbot/chatbot-setting")
     <style>
         .chatbot-linked-telegram .chatbot-notification-setting .tbl-notifications tbody tr:last-child td:last-child:after {
-            background: url("/site-main/assets/Images/TelegramChatbot/tryitnow_en-US.png");
+            background: url("/main/assets/images/TelegramChatbot/tryitnow_en-US.png");
         }
     </style>
 }
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label>@ChatBot.ChatBotLanguage:</label>
                             <div class="dropdown language">
-                                @* TODO: Language @Html.Action("Language", new { langCode = Model.Language }) *@
+                                @await Html.PartialAsync("Language", Model.LanguageViewModel)
                             </div>
                         </div>
                     </form>

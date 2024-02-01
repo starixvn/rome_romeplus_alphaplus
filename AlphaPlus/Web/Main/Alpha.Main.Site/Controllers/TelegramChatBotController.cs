@@ -97,13 +97,6 @@ namespace Alpha.Main.Site.Controllers
         [HttpGet]
         public IActionResult Captcha() => PartialView();
 
-        public IActionResult Language(string langCode)
-        {
-            var viewModel = mediator.Send(new TelegramBotLanguageQuery(langCode, AppSettings.DisabledVietnamese));
-
-            return PartialView(viewModel);
-        }
-
         [HttpPost]
         public async Task<IActionResult> UpdateFunction(UpdateFunctionCommand command)
         {

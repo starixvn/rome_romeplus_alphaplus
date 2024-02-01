@@ -36,6 +36,15 @@ namespace Alpha.Main.Site.ViewModels.TelegramChatBot
 
         public string CustLevel { get; }
 
+        public LanguageViewModel LanguageViewModel => new(
+                AppSettings.DisabledVietnamese ? Main.Constants.Language.TelegramChatBotCodeNamesWithoutVietNamese : Main.Constants.Language.TelegramChatBotCodeNames,
+                StandardizeTelegramBotCodeNames(Language));
+
+        private static string StandardizeTelegramBotCodeNames(string languageCode)
+            => string.IsNullOrWhiteSpace(languageCode) || !Main.Constants.Language.TelegramChatBotCodeNames.Keys.Contains(languageCode)
+            ? Main.Constants.Language.Default
+            : languageCode;
+
         public string HowToUseLink
             => AppSettings.IsSiteLabel789y ?
                 MicroSites.MessageUrl("~/StaticMessage/Guide?id=167819") :

@@ -7,17 +7,11 @@ using Alpha.Main.Site.ViewModels;
 
 namespace Alpha.Main.Site.Handlers
 {
-    public class LanguageHandler :
+    public class LanguageHandler(UpdateUsageLanguageService updateUsageLanguageService) :
         IRequestHandler<AllLanguagesQuery, LanguageViewModel>,
-        IRequestHandler<TelegramBotLanguageQuery, LanguageViewModel>,
         IRequestHandler<ChangeLanguageCommand, string>
     {
-        private readonly UpdateUsageLanguageService updateUsageLanguageService;
-
-        public LanguageHandler(UpdateUsageLanguageService updateUsageLanguageService)
-        {
-            this.updateUsageLanguageService = updateUsageLanguageService;
-        }
+        private readonly UpdateUsageLanguageService updateUsageLanguageService = updateUsageLanguageService;
 
         public async Task<string> Handle(ChangeLanguageCommand message, CancellationToken cancellationToken)
         {
@@ -42,22 +36,8 @@ namespace Alpha.Main.Site.Handlers
             return Task.FromResult(viewModel);
         }
 
-        public Task<LanguageViewModel> Handle(TelegramBotLanguageQuery message, CancellationToken cancellationToken)
-        {
-            var viewModel = new LanguageViewModel(
-                message.DisabledVietnamese ? Language.TelegramChatBotCodeNamesWithoutVietNamese : Language.TelegramChatBotCodeNames,
-                StandardizeTelegramBotCodeNames(message.LanguageCode));
-
-            return Task.FromResult(viewModel);
-        }
-
         private static string Standardize(string languageCode)
             => string.IsNullOrWhiteSpace(languageCode) || !Language.CodeNames.Keys.Contains(languageCode)
-            ? Language.Default
-            : languageCode;
-
-        private static string StandardizeTelegramBotCodeNames(string languageCode)
-            => string.IsNullOrWhiteSpace(languageCode) || !Language.TelegramChatBotCodeNames.Keys.Contains(languageCode)
             ? Language.Default
             : languageCode;
     }
