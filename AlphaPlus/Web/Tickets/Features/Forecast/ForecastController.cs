@@ -1,4 +1,5 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
+using AlphaPlus.Core;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 using AlphaPlus.Tickets.Site.Features.Forecast.ViewModels;
 using AlphaPlus.Tickets.Site.Features.Shared.Requests;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Tickets.Site.Features.Forecast;
 
-public class ForecastController : Controller//BaseController
+public class ForecastController : BaseController
 {
     private const string PartialName = "Partial";
     private readonly IForecastService forecastService;

@@ -27,6 +27,7 @@ builder.Services
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden/";
+        options.Cookie.Path = "/";
     });
 builder.Services
     .Configure<JsonOptions>(options =>
@@ -55,12 +56,12 @@ if (!app.Environment.IsDevelopment())
 
 app
     .UsePathBase("/tickets")
-    //.UseDefaultFiles()
+    .UseDefaultFiles()
     .UseStaticFiles()
     .UseRouting()
-    .UseSession();
-//.UseAuthentication()
-//.UseAuthorization();
+    .UseSession()
+    .UseAuthentication()
+    .UseAuthorization();
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 

@@ -49,6 +49,7 @@ builder.Services
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden/";
+        options.Cookie.Path = "/";
     });
 
 var app = builder.Build();

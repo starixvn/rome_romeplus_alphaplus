@@ -21,20 +21,14 @@ public class CacheRefService : ICacheRefService
         => this.remotingRefService = remotingRefService;
 
     public string GetLeagueName(int leagueId, string language)
-        => remotingRefService.GetLeagueName(
-            leagueId.ToString(),
-            LanguageHelper.MapChineseLanguageCode(language));
+        => remotingRefService.GetLeagueName(leagueId.ToString(), language);
 
     public string GetTeamName(int teamId, string language)
-        => remotingRefService.GetTeamName(
-            teamId.ToString(),
-            LanguageHelper.MapChineseLanguageCode(language));
+        => remotingRefService.GetTeamName(teamId.ToString(), language);
 
     public string GetBetTypeName(int betType, string language)
         => GetBetTypeName(betType.ToString(), language);
 
     public string GetBetTypeName(string betType, string language)
-        => remotingRefService.GetBetTypeName(
-            betType,
-            LanguageHelper.MapChineseLanguageCode(language));
+        => remotingRefService.GetBetTypeName(betType, language);
 }

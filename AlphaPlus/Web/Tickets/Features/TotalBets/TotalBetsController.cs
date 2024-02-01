@@ -1,10 +1,11 @@
 using AlphaPlus.BetsForecast.Domain.TotalBets;
+using AlphaPlus.Core;
 using AlphaPlus.Tickets.Site.Features.TotalBets.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Tickets.Site.Features.TotalBets;
 
-public class TotalBetsController : Controller
+public class TotalBetsController : BaseController
 {
     private const string PartialName = "Partial";
     private readonly ITotalBetsService totalBetsService;

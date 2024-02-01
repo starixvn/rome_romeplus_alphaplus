@@ -150,7 +150,7 @@
                 }
 
                 .arrow {
-                    @include listStyle($image: url(images/arrow.png));
+                    @include listStyle($image: url(../images/arrow.png));
                 }
 
                 .c-red {
