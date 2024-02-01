@@ -1,7 +1,6 @@
-@inject Microsoft.Extensions.Options.IOptions<AlphaPlus.Tickets.Site.Features.Shared.Models.AppSettings> appSettings
+@using AlphaPlus.Core.Helpers
 @{
     Layout = null;
-    var assets = appSettings.Value.AssetAppPath;
 }
 @model SoccerViewModel
 <!DOCTYPE html>
@@ -11,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@Resources.BetsAndForecast</title>
-    <link rel="stylesheet" href="@assets/bundles/site-totalbetsforecast/default.css" />
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-totalbetsforecast/default")
     <link rel="stylesheet" href="~/bundles/forecast/soccer.css" asp-append-version="true" />
 </head>
 
@@ -104,7 +103,7 @@
     <input type="hidden" id="hidden-noDataText" value="@Resources.NoInformationIsAvailable" />
     <input type="hidden" id="hidden-liveText" value="@Resources.Live" />
     <input type="hidden" id="hidden-totalText" value="@Resources.Total" />
-    <script src="@assets/bundles/site-totalbetsforecast/default.js"></script>
+    @StaticResources.AssetScripts.Render("/bundles/site-totalbetsforecast/default")
     <script src="~/bundles/forecast/soccer.js" asp-append-version="true"></script>
 </body>
 

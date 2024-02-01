@@ -1,8 +1,6 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.Tickets.Site.Features.Shared;
-using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using Fanex.Caching;
-using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Tickets.Site.Features.Forecast;
 
@@ -21,14 +19,12 @@ public class SoccerService : ServiceBase, ISoccerService
     private const string LeaguesCacheKey = "AlphaPlus.Tickets.Site.SoccerLeagues_{0}_{1}";
     private const int LeaguesCacheTimeOut = 5; // 5 Minutes
 
-    private readonly IOptions<AppSettings> options;
     private readonly ICacheService cacheService;
 
     public SoccerService(
         HttpClient client,
-        IOptions<AppSettings> options,
         ICacheService cacheService) : base(client)
-        => (this.options, this.cacheService) = (options, cacheService);
+        => this.cacheService = cacheService;
 
     public Task<IEnumerable<League>> GetLeagues(bool isLive, string language)
     {
@@ -36,7 +32,7 @@ public class SoccerService : ServiceBase, ISoccerService
             string.Format(LeaguesCacheKey, isLive, language),
             () =>
             {
-                var isShowAll = options.Value.LocalTest;
+                var isShowAll = AlphaPlus.Core.Configurations.AppSettings.LocalTest;
                 var queryString = QueryString.Create(new[]
                 {
                     KeyValuePair.Create(nameof(isLive), isLive.ToString()),

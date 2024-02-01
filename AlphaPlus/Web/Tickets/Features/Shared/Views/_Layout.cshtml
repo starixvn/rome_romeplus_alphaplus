@@ -1,21 +1,17 @@
-﻿@inject Microsoft.Extensions.Options.IOptions<AppSettings> appSettings
-@{
-    var assets = appSettings.Value.AssetAppPath;
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="@assets/bundles3/site-totalbetsforecast/default.css" />
+    @StaticResources.AssetStyles.RenderCommon("/bundles3/site-totalbetsforecast/default")
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body data-theme="">
     @RenderBody()
-    <script src="@assets/bundles/common/common.js"></script>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

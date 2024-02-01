@@ -1,7 +1,6 @@
 using System.Net;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Tickets.Site.Features.Forecast;
-using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Tickets.Site.Features.TotalBets;
 using Microsoft.AspNetCore.DataProtection;
 using StackExchange.Redis;
@@ -31,8 +30,7 @@ public static class InfrastructureExtenstions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         => services
             .AddSingleton<IUserSession, UserSessionExt>()
-            .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>()
-            .Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
+            .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>();
 
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {

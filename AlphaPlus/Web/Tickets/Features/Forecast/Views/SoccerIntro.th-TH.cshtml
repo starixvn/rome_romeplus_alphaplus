@@ -1,7 +1,6 @@
-﻿@inject Microsoft.Extensions.Options.IOptions<AlphaPlus.Tickets.Site.Features.Shared.Models.AppSettings> appSettings
-@{
+﻿@{
     Layout = null;
-    var version = appSettings.Value.JsVersion;
+    var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
 }
 @model string
 <p class="main-desc">

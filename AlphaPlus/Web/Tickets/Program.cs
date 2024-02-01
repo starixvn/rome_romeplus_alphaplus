@@ -11,6 +11,7 @@ var assembly = typeof(Program).Assembly;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
 builder.Services
     .AddFanexLogging(configuration)
     .AddSharedSession(configuration)
