@@ -19,6 +19,7 @@ using Fanex.Cryptography.Aes;
 using Fanex.Caching;
 using System.Net;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.SecurityCode.Configurations;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -86,6 +87,8 @@ public static class Extensions
             {
                 AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
             });
+
+        services.Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode));
 
         return services;
     }

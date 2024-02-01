@@ -1,4 +1,4 @@
-﻿'use strict'; 
+﻿'use strict';
 
 var resetSubAccountPassword = {
     initialize: function () {
@@ -11,21 +11,26 @@ var resetSubAccountPassword = {
             resetSubAccountPassword.resetInputValue();
         });
 
-        $("#txtNewPwd").val("").focus().keyup(function () {
-            securityHelper.validatePassword(this);
-        });
+        $('#txtNewPwd')
+            .val('')
+            .focus()
+            .keyup(function () {
+                securityHelper.validatePassword(this);
+            });
 
-        $("#txtConfirmPwd").val("").keyup(function () {
-            securityHelper.validatePassword(this);
-        });
+        $('#txtConfirmPwd')
+            .val('')
+            .keyup(function () {
+                securityHelper.validatePassword(this);
+            });
 
-        $("#showPasswordchk").click(function () {
-            var isChecked = $(this).is(":checked");
+        $('#showPasswordchk').click(function () {
+            var isChecked = $(this).is(':checked');
             isChecked ? securityHelper.showHint() : securityHelper.hideHint();
         });
 
         if (top.hasPopupOpen()) {
-            $("#container").addClass("has-popup");
+            $('#container').addClass('has-popup');
         }
     },
     reset: function () {
@@ -52,18 +57,20 @@ var resetSubAccountPassword = {
             url: 'ResetSubAccountPassword',
             data: { subAccountId: $('#subAccountId').val(), newPassword: password },
             success: function (data, textStatus, jqXHR) {
-                if (data.Code !== 0) {
-                    securityHelper.showFailMessage($messageContainer, data.Message);
+                if (data.code !== 0) {
+                    securityHelper.showFailMessage($messageContainer, data.message);
                     $txtSecurityCode.focus();
-                }
-                else {
-                    securityHelper.showSuccessfullyMessage($messageContainer, passwordResources.changePasswordSuccessfully);
+                } else {
+                    securityHelper.showSuccessfullyMessage(
+                        $messageContainer,
+                        passwordResources.changePasswordSuccessfully
+                    );
                 }
             },
             complete: function (jqXHR, textStatus) {
                 $.unblockUI();
             }
-        })
+        });
     },
     checkInputParameters: function ($txtSecurityCode, $txtConfirmSecurityCode) {
         var password = $txtSecurityCode.val();
@@ -71,7 +78,6 @@ var resetSubAccountPassword = {
         if (password.length === 0) {
             $txtSecurityCode.focus();
             return passwordResources.passwordCannotEmpty;
-
         }
 
         if (!securityHelper.isValidPassword(password)) {
@@ -88,10 +94,10 @@ var resetSubAccountPassword = {
     },
     resetInputValue: function () {
         securityHelper.hideHint();
-        securityHelper.removeValidationIcon($("#txtNewPwd"));
-        securityHelper.removeValidationIcon($("#txtConfirmPwd"));
+        securityHelper.removeValidationIcon($('#txtNewPwd'));
+        securityHelper.removeValidationIcon($('#txtConfirmPwd'));
     }
-}
+};
 
 $(function () {
     resetSubAccountPassword.initialize();

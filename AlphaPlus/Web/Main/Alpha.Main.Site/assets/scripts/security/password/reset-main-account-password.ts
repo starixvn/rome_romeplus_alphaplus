@@ -13,24 +13,29 @@ var resetMainAccountPassword = {
             resetMainAccountPassword.resetInputValue();
         });
 
-        $("#password").val("").focus().keyup(function () {
-            securityHelper.validatePassword(this, resetMainAccountPassword.isChangeMemberPassword);
-        });
+        $('#password')
+            .val('')
+            .focus()
+            .keyup(function () {
+                securityHelper.validatePassword(this, resetMainAccountPassword.isChangeMemberPassword);
+            });
 
-        $("#confirmPassword").val("").keyup(function () {
-            securityHelper.validatePassword(this, resetMainAccountPassword.isChangeMemberPassword);
-        });
+        $('#confirmPassword')
+            .val('')
+            .keyup(function () {
+                securityHelper.validatePassword(this, resetMainAccountPassword.isChangeMemberPassword);
+            });
 
-        $("#showPasswordchk").click(function () {
-            var isChecked = $(this).is(":checked");
+        $('#showPasswordchk').click(function () {
+            var isChecked = $(this).is(':checked');
             isChecked ? securityHelper.showHint() : securityHelper.hideHint();
         });
 
         if (top.hasPopupOpen()) {
-            $("#container").addClass("has-popup");
+            $('#container').addClass('has-popup');
         }
 
-        resetMainAccountPassword.isChangeMemberPassword = $("#isChangeMemberPassword").val() === "True";
+        resetMainAccountPassword.isChangeMemberPassword = $('#isChangeMemberPassword').val() === 'True';
     },
     reset: function () {
         $.blockUI();
@@ -54,21 +59,23 @@ var resetMainAccountPassword = {
         $.ajax({
             type: 'POST',
             url: 'ResetMainAccountPassword',
-            data: { custId: $('#custId').val(), custRoleId: $('#custRoleId').val(), newPassword: password},
+            data: { custId: $('#custId').val(), custRoleId: $('#custRoleId').val(), newPassword: password },
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                if (data.Code !== 0) {
-                    securityHelper.showFailMessage($messageContainer, data.Message);
+                if (data.code !== 0) {
+                    securityHelper.showFailMessage($messageContainer, data.message);
                     $txtSecurityCode.focus();
-                }
-                else {
-                    securityHelper.showSuccessfullyMessage($messageContainer, passwordResources.changePasswordSuccessfully);
+                } else {
+                    securityHelper.showSuccessfullyMessage(
+                        $messageContainer,
+                        passwordResources.changePasswordSuccessfully
+                    );
                 }
             },
             complete: function (jqXHR, textStatus) {
                 $.unblockUI();
             }
-        })
+        });
     },
     checkInputParameters: function ($txtSecurityCode, $txtConfirmSecurityCode) {
         var password = $txtSecurityCode.val();
@@ -92,10 +99,10 @@ var resetMainAccountPassword = {
     },
     resetInputValue: function () {
         securityHelper.hideHint();
-        securityHelper.removeValidationIcon($("#password"));
-        securityHelper.removeValidationIcon($("#confirmPassword"));
+        securityHelper.removeValidationIcon($('#password'));
+        securityHelper.removeValidationIcon($('#confirmPassword'));
     }
-}
+};
 
 $(function () {
     resetMainAccountPassword.initialize();
