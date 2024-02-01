@@ -9,22 +9,26 @@ var changeSecurityCodeByForcing = {
             e.preventDefault();
         });
 
-        $("#btn-back").bind("click", function () {
+        $('#btn-back').bind('click', function () {
             securityHelper.signOut();
         });
 
-        $('#txtOldSecCode').val("").focus();
+        $('#txtOldSecCode').val('').focus();
 
-        $("#txtSecCode").val("").keyup(function () {
-            securityHelper.validateSecurityCode(this);
-        });
+        $('#txtSecCode')
+            .val('')
+            .keyup(function () {
+                securityHelper.validateSecurityCode(this);
+            });
 
-        $("#txtConfirmSecCode").val("").keyup(function () {
-            securityHelper.validateSecurityCode(this);
-        });
+        $('#txtConfirmSecCode')
+            .val('')
+            .keyup(function () {
+                securityHelper.validateSecurityCode(this);
+            });
 
-        $("#showSCchk").click(function () {
-            var isChecked = $(this).is(":checked");
+        $('#showSCchk').click(function () {
+            var isChecked = $(this).is(':checked');
             isChecked ? securityHelper.showHintSC() : securityHelper.hideHintSC();
         });
     },
@@ -33,7 +37,13 @@ var changeSecurityCodeByForcing = {
         var $txtOldSecurityCode = $('#txtOldSecCode');
         var $txtSecurityCode = $('#txtSecCode');
         var $txtConfirmSecurityCode = $('#txtConfirmSecCode');
-        if (!changeSecurityCodeByForcing.validateInputSecurityCode($txtOldSecurityCode, $txtSecurityCode, $txtConfirmSecurityCode)) {
+        if (
+            !changeSecurityCodeByForcing.validateInputSecurityCode(
+                $txtOldSecurityCode,
+                $txtSecurityCode,
+                $txtConfirmSecurityCode
+            )
+        ) {
             $.unblockUI();
             return;
         }
@@ -49,16 +59,16 @@ var changeSecurityCodeByForcing = {
             data: { oldSecurityCode: oldSecCode, securityCode: secCode },
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                if (data.Code === 0) { // OK
+                if (data.code === 0) {
+                    // OK
                     securityHelper.redirectToHomePage(2000);
-                }
-                else if (data.Code === 2) { // account is closed
-                    alert(data.Message);
+                } else if (data.code === 2) {
+                    // account is closed
+                    alert(data.message);
                     securityHelper.signOut();
-                }
-                else {
-                    $("#txtOldSecCode").addClass('error');
-                    $("#txtOldSecCode-error").empty().html(data.Message);
+                } else {
+                    $('#txtOldSecCode').addClass('error');
+                    $('#txtOldSecCode-error').empty().html(data.message);
                     $txtOldSecurityCode.focus();
                     $.unblockUI();
                 }
@@ -69,7 +79,7 @@ var changeSecurityCodeByForcing = {
             error: function (jqXHR) {
                 jqXHR.status === 403 && securityHelper.redirectToHomePage(100);
             }
-        })
+        });
     },
     validateInputSecurityCode: function ($txtOldSecurityCode, $txtSecurityCode, $txtConfirmSecurityCode) {
         changeSecurityCodeByForcing.resetOriginalInputStatus();
@@ -77,32 +87,34 @@ var changeSecurityCodeByForcing = {
         var secCode = $txtSecurityCode.val();
         var confirmSecCode = $txtConfirmSecurityCode.val();
         if (oldSecCode.length === 0) {
-            $("#txtOldSecCode").addClass('error');
-            $("#txtOldSecCode-error").empty().html(securityCodeResources.oldSecurityCodeEmpty);
+            $('#txtOldSecCode').addClass('error');
+            $('#txtOldSecCode-error').empty().html(securityCodeResources.oldSecurityCodeEmpty);
             $txtOldSecurityCode.focus();
             return false;
-        }
-        else if (secCode.length === 0) {
-            $("#txtSecCode").addClass('error');
-            $("#txtSecCode-error").empty().html(securityCodeResources.securityCodeEmpty).append(securityCodeResources.rules);
+        } else if (secCode.length === 0) {
+            $('#txtSecCode').addClass('error');
+            $('#txtSecCode-error')
+                .empty()
+                .html(securityCodeResources.securityCodeEmpty)
+                .append(securityCodeResources.rules);
             $txtSecurityCode.focus();
             return false;
-        }
-        else if (!securityHelper.isValidSecurityCode(secCode)) {
-            $("#txtSecCode").addClass('error');
-            $("#txtSecCode-error").empty().html(securityCodeResources.securityCodeWrongRule).append(securityCodeResources.rules);
+        } else if (!securityHelper.isValidSecurityCode(secCode)) {
+            $('#txtSecCode').addClass('error');
+            $('#txtSecCode-error')
+                .empty()
+                .html(securityCodeResources.securityCodeWrongRule)
+                .append(securityCodeResources.rules);
             $txtSecurityCode.focus();
             return false;
-        }
-        else if (secCode != confirmSecCode) {
-            $("#txtConfirmSecCode").addClass('error');
-            $("#txtConfirmSecCode-error").empty().html(securityCodeResources.errorSecurityCodeConfirm);
+        } else if (secCode != confirmSecCode) {
+            $('#txtConfirmSecCode').addClass('error');
+            $('#txtConfirmSecCode-error').empty().html(securityCodeResources.errorSecurityCodeConfirm);
             $txtConfirmSecurityCode.focus();
             return false;
-        }
-        else if (oldSecCode === secCode) {
-            $("#txtConfirmSecCode").addClass('error');
-            $("#txtConfirmSecCode-error").empty().html(securityCodeResources.sameSecurityCode);
+        } else if (oldSecCode === secCode) {
+            $('#txtConfirmSecCode').addClass('error');
+            $('#txtConfirmSecCode-error').empty().html(securityCodeResources.sameSecurityCode);
             $txtSecurityCode.focus();
             return false;
         }
@@ -110,14 +122,14 @@ var changeSecurityCodeByForcing = {
         return true;
     },
     resetOriginalInputStatus: function () {
-        $("#txtOldSecCode").removeClass('error');
-        $("#txtOldSecCode-error").empty();
-        $("#txtSecCode").removeClass('error');
-        $("#txtSecCode-error").empty();
-        $("#txtConfirmSecCode").removeClass('error');
-        $("#txtConfirmSecCode-error").empty();
+        $('#txtOldSecCode').removeClass('error');
+        $('#txtOldSecCode-error').empty();
+        $('#txtSecCode').removeClass('error');
+        $('#txtSecCode-error').empty();
+        $('#txtConfirmSecCode').removeClass('error');
+        $('#txtConfirmSecCode-error').empty();
     }
-}
+};
 
 $(function () {
     changeSecurityCodeByForcing.initialize();

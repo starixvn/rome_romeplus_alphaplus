@@ -29,7 +29,7 @@ namespace Alpha.Main.Configurations
 
         public static bool IsMBCSite => !IsSiteLabel789y;
 
-        public static bool IsSiteLabel789y => SiteLabel.Equals(SiteLabel789y);
+        public static bool IsSiteLabel789y => SiteLabel.Equals("789y");
 
         public static bool DisabledVietnamese => IsMBCSite;
 

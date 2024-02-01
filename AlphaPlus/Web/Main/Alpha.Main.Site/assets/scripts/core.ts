@@ -216,7 +216,7 @@ $(() => {
         beforeSend: function (xhr) {
             var antiXSRFToken = document.getElementsByName('__RequestVerificationToken');
             if (antiXSRFToken.length > 0) {
-                xhr.setRequestHeader('__RequestVerificationToken', (<HTMLInputElement>antiXSRFToken[0]).value);
+                xhr.setRequestHeader('RequestVerificationToken', (<HTMLInputElement>antiXSRFToken[0]).value);
             }
         },
         error: function (xhr) {

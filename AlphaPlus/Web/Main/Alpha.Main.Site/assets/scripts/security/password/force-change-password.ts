@@ -1,4 +1,4 @@
-﻿'use strict'; 
+﻿'use strict';
 
 var forceChangePassword = {
     initialize: function () {
@@ -8,42 +8,45 @@ var forceChangePassword = {
             forceChangePassword.changePassword();
         });
 
-        $("#btn-back").bind("click", function () {
+        $('#btn-back').bind('click', function () {
             securityHelper.signOut();
         });
 
-        $('#txtOldPwd').val("").focus();
+        $('#txtOldPwd').val('').focus();
 
-        $("#txtNewPwd").val("").keyup(function () {
-            securityHelper.validatePassword(this);
-        });
+        $('#txtNewPwd')
+            .val('')
+            .keyup(function () {
+                securityHelper.validatePassword(this);
+            });
 
-        $("#txtConfirmPwd").val("").keyup(function () {
-            securityHelper.validatePassword(this);
-        });
+        $('#txtConfirmPwd')
+            .val('')
+            .keyup(function () {
+                securityHelper.validatePassword(this);
+            });
 
-        $("#showPasswordchk").click(function () {
-            var isChecked = $(this).is(":checked");
+        $('#showPasswordchk').click(function () {
+            var isChecked = $(this).is(':checked');
             isChecked ? securityHelper.showHint() : securityHelper.hideHint();
         });
 
         $('.skip-force-change').click(() => {
-            forceChangePassword.setSkipChangePasswordStorage("true");
+            forceChangePassword.setSkipChangePasswordStorage('true');
             $('.force-change-password-container').addClass('hidden');
             $('.skip-force-change-container').removeClass('hidden');
         });
 
         $('#skip-text').keyup(() => {
             if ($('#skip-text').val().toUpperCase() === 'OK') {
-                $('#btn-submit-skip').removeAttr("disabled");
-            }
-            else {
+                $('#btn-submit-skip').removeAttr('disabled');
+            } else {
                 $('#btn-submit-skip').attr('disabled', 'disabled');
             }
         });
 
         $('#btn-back-skip').click(() => {
-            forceChangePassword.setSkipChangePasswordStorage("false");
+            forceChangePassword.setSkipChangePasswordStorage('false');
             $('.force-change-password-container').removeClass('hidden');
             $('.skip-force-change-container').addClass('hidden');
         });
@@ -59,23 +62,26 @@ var forceChangePassword = {
     },
 
     setSkipForceChangeContainerHeight: function () {
-        var containerHeight = $(".force-change-password-container").height();
-        $(".skip-force-change-container").height(containerHeight);
+        var containerHeight = $('.force-change-password-container').height();
+        $('.skip-force-change-container').height(containerHeight);
     },
 
     setProfilePictureStorage: function () {
         const profilePicture = $('#logoProfileImg');
-        localStorage.setItem('actorProfilePicture', JSON.stringify({
-            ImageId: profilePicture.attr('profile-image-id'),
-            Image: profilePicture.attr('src'),
-            IsDefaultAvatar: profilePicture.attr('default-avatar')
-        }));
+        localStorage.setItem(
+            'actorProfilePicture',
+            JSON.stringify({
+                ImageId: profilePicture.attr('profile-image-id'),
+                Image: profilePicture.attr('src'),
+                IsDefaultAvatar: profilePicture.attr('default-avatar')
+            })
+        );
     },
     setSkipChangePasswordStorage: function (isSkip: string) {
         localStorage.setItem('isSkipChangePassword', isSkip);
     },
     getSkipChangePasswordStorage: function () {
-        return localStorage.getItem("isSkipChangePassword") === "true";
+        return localStorage.getItem('isSkipChangePassword') === 'true';
     },
     setSkipFormStatus: function () {
         if (forceChangePassword.getSkipChangePasswordStorage()) {
@@ -102,20 +108,19 @@ var forceChangePassword = {
             data: { currentPassword: oldPassword, newPassword: password },
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                if (data.Code === 0) { // OK
+                if (data.code === 0) {
+                    // OK
                     securityHelper.redirectToHomePage(2000);
-                }
-                else if (data.Code === 104) { // account is locked
-                    alert(data.Message);
+                } else if (data.code === 104) {
+                    // account is locked
+                    alert(data.message);
                     securityHelper.signOut();
-                }
-                else if (data.Code === 101) {
+                } else if (data.code === 101) {
                     $txtOldPassword.addClass('error').focus();
-                    $("#txtOldPwd-error").empty().html(data.Message);
-                }
-                else {
+                    $('#txtOldPwd-error').empty().html(data.Message);
+                } else {
                     $txtPassword.addClass('error').focus();
-                    $("#txtNewPwd-error").empty().html(data.Message);
+                    $('#txtNewPwd-error').empty().html(data.Message);
                 }
             },
             complete: function (jqXHR, textStatus) {
@@ -124,16 +129,16 @@ var forceChangePassword = {
             error: function (jqXHR) {
                 jqXHR.status === 403 && securityHelper.redirectToHomePage(100);
             }
-        })
+        });
     },
     validateInputSecurityCode: function ($txtOldPassword, $txtPassword, $txtConfirmPassword) {
         forceChangePassword.resetOriginalInputStatus();
         var oldPassword = $txtOldPassword.val();
         var password = $txtPassword.val();
         var confirmPassword = $txtConfirmPassword.val();
-        var oldPasswordError = $("#txtOldPwd-error");
-        var newPasswordError = $("#txtNewPwd-error");
-        var confirmPasswordError = $("#txtConfirmPwd-error");
+        var oldPasswordError = $('#txtOldPwd-error');
+        var newPasswordError = $('#txtNewPwd-error');
+        var confirmPasswordError = $('#txtConfirmPwd-error');
         if (oldPassword.length === 0) {
             $txtOldPassword.addClass('error');
             oldPasswordError.html(passwordResources.pleaseEnterOldPassword);
@@ -150,7 +155,9 @@ var forceChangePassword = {
 
         if (!securityHelper.isValidPassword(password)) {
             $txtPassword.focus();
-            newPasswordError.html(passwordResources.passwordDoesNotMeetMinimunRequirement).append(passwordResources.rules);
+            newPasswordError
+                .html(passwordResources.passwordDoesNotMeetMinimunRequirement)
+                .append(passwordResources.rules);
             return false;
         }
 
@@ -171,14 +178,14 @@ var forceChangePassword = {
         return true;
     },
     resetOriginalInputStatus: function () {
-        $("#txtOldPwd").removeClass('error');
-        $("#txtOldPwd-error").empty();
-        $("#txtNewPwd").removeClass('error');
-        $("#txtNewPwd-error").empty();
-        $("#txtConfirmPwd").removeClass('error');
-        $("#txtConfirmPwd-error").empty();
+        $('#txtOldPwd').removeClass('error');
+        $('#txtOldPwd-error').empty();
+        $('#txtNewPwd').removeClass('error');
+        $('#txtNewPwd-error').empty();
+        $('#txtConfirmPwd').removeClass('error');
+        $('#txtConfirmPwd-error').empty();
     }
-}
+};
 
 $(function () {
     forceChangePassword.initialize();

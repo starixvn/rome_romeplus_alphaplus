@@ -35,7 +35,6 @@ namespace Alpha.Main.Site.Handlers
         private readonly ProfilePictureServices customerProfileService;
         private readonly ISecurityCodeChecker securityCodeChecker;
         private readonly IUser user;
-        private readonly Func<int> getInsertProfilePictureSiteMode;
 
         public PasswordHandler(
             PasswordService passwordService,
@@ -45,19 +44,6 @@ namespace Alpha.Main.Site.Handlers
             IEncryption encryption,
             ISecurityCodeChecker securityCodeChecker,
             IUser user)
-           : this(passwordService, userSession, customerProfileService, sessionManager, encryption, securityCodeChecker, user, null)
-        {
-        }
-
-        internal PasswordHandler(
-            PasswordService passwordService,
-            IUserSession userSession,
-            ProfilePictureServices customerProfileService,
-            ISessionManager sessionManager,
-            IEncryption encryption,
-            ISecurityCodeChecker securityCodeChecker,
-            IUser user,
-            Func<int> getInsertProfilePictureSiteMode)
         {
             this.passwordService = passwordService;
             this.userSession = userSession;
@@ -66,8 +52,6 @@ namespace Alpha.Main.Site.Handlers
             this.customerProfileService = customerProfileService;
             this.securityCodeChecker = securityCodeChecker;
             this.user = user;
-            this.getInsertProfilePictureSiteMode = getInsertProfilePictureSiteMode ??
-             SimpleServiceLocator.GetService<Func<int>>();
         }
 
         public Task<CustomResult> Handle(ResetSubAccountPasswordCommand message, CancellationToken cancellationToken)
@@ -242,10 +226,7 @@ namespace Alpha.Main.Site.Handlers
             if (profile == null || string.IsNullOrEmpty(profile.ImageBase64String))
             {
                 var result = await customerProfileService.UpdateActorProfilePicture(
-                    new UpdateActorProfilePictureParam(
-                        userSession.CustId,
-                        getInsertProfilePictureSiteMode(),
-                        userSession.UserLoginIp));
+                    new UpdateActorProfilePictureParam(userSession.CustId, userSession.UserLoginIp));
 
                 profile = result.IsOk ? await customerProfileService.GetActorProfilePicture(userSession.CustId) : new ActorProfilePictureModel();
             }

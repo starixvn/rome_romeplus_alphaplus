@@ -21,9 +21,6 @@ namespace Alpha.Main.Site.ViewModels.Nickname
 
         public string Nickname { get; }
 
-        public bool IsRecommendLoginByNickname
-            => nicknameChecker.IsRecommendLoginByNickname;
-
         public bool IsDisableUpdateNickname
             => !string.IsNullOrWhiteSpace(userSession.NickName);
 

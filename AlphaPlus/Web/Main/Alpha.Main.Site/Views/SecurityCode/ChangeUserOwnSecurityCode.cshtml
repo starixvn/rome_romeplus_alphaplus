@@ -7,7 +7,7 @@
 @section css {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-main/tab-{Model.UserLevel}")
-    @StaticResources.RenderStylesWithDarkMode("~/Assets/bundles/security/security")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/security/security")
 }
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" id="passwordNav">
@@ -108,5 +108,5 @@
 @section js {
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-main/security/before-home-page")
-    @StaticResources.RenderScripts("~/Assets/bundles/security/security-code/change-user-own-securitycode")
+    @StaticResources.RenderScripts("~/assets/bundles/security/security-code/change-user-own-securitycode")
 }

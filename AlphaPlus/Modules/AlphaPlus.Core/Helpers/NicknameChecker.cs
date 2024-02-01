@@ -19,7 +19,7 @@ public class NicknameChecker(IUserSession userSession) : INicknameChecker
     private bool? isRecommendLoginByNickname;
     private bool? isForceLoginByNickname;
 
-    public bool IsOfferForceLoginFlow => !userSession.IsInternal || string.IsNullOrWhiteSpace(userSession.NickName);
+    public bool IsOfferForceLoginFlow => !userSession.IsInternal && string.IsNullOrWhiteSpace(userSession.NickName);
 
     public bool IsRecommendLoginByNickname
     {

@@ -1,4 +1,5 @@
-﻿using Alpha.Main.ProfilePicture.Commands;
+﻿using Alpha.Main.Configurations;
+using Alpha.Main.ProfilePicture.Commands;
 using Alpha.Main.ProfilePicture.Criteria;
 using Alpha.Main.ProfilePicture.Models;
 using Alpha.Main.ProfilePicture.Params;
@@ -27,9 +28,7 @@ namespace Alpha.Main.ProfilePicture.Services
         public async Task<Result> UpdateActorProfilePicture(UpdateActorProfilePictureParam param)
         {
             var command = new UpdateActorProfilePictureMainServerCommand(
-                    param.ActorId,
-                    param.Mode,
-                    param.IP);
+                param.ActorId, AppSettings.IsMBCSite ? 1 : 2, param.IP);
 
             await dynamicRepository.ExecuteAsync(command);
 

@@ -6,7 +6,7 @@
 @section css {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-main/apikey")
-    @StaticResources.RenderStylesWithDarkMode("~/Assets/bundles/apikey/apikey")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/apikey/apikey")
 }
 
 <form class="block" id="apikey-form" autocomplete="off">
@@ -42,7 +42,7 @@
             @foreach (var scope in Model.Scopes)
             {
                 var isChecked = Model.ApiKeyInfo.ScopeIdList.Contains(scope);
-                <div><label class="scope-input"><input type="checkbox" value="@scope" name="scope" @(isChecked ? "checked" :
+                    <div><label class="scope-input"><input type="checkbox" value="@scope" name="scope" @(isChecked ? "checked" :
                         "") />@ResourceHelper.GetApiKeyResource($"Scope_{scope}", Model.Language)</label></div>
             }
         </div>
@@ -64,5 +64,5 @@
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-main/apikey")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-main/apikey/clipboard")
-    @StaticResources.RenderScripts("~/Assets/bundles/apikey/edit-apikey")
+    @StaticResources.RenderScripts("~/assets/bundles/apikey/edit-apikey")
 }

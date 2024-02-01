@@ -1,4 +1,5 @@
 using Alpha.Main.Site.Extensions;
+using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
@@ -33,7 +34,11 @@ builder.Services
     .SetApplicationName("AlphaPlus")
     .PersistKeysToStackExchangeRedis(ConnectionMultiplexer.Connect(redisConfiguration));
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<AfterLoginFlowFilterAttribute>();
+});
+
 builder.Services
     .AddHttpContextAccessor()
     .AddApplicationServices(builder.Configuration)

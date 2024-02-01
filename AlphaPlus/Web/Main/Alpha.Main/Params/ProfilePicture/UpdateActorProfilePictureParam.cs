@@ -1,17 +1,9 @@
 ﻿namespace Alpha.Main.ProfilePicture.Params
 {
-    public class UpdateActorProfilePictureParam
+    public class UpdateActorProfilePictureParam(int actorId, string ip)
     {
-        public UpdateActorProfilePictureParam(int actorId, int mode, string ip)
-        {
-            ActorId = actorId;
-            Mode = mode;
-            IP = ip;
-        }
-        public int ActorId { get; }
+        public int ActorId { get; } = actorId;
 
-        public int Mode { get; }
-
-        public string IP { get; }
+        public string IP { get; } = ip;
     }
 }

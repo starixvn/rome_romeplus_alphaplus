@@ -6,7 +6,7 @@
 }
 @section css {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
-    @StaticResources.RenderStylesWithDarkMode("~/Assets/bundles/security/security")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/security/security")
 }
 <h1 id="title_header" class="page-title">@Model.Title</h1>
 <div id="status-message" class="msg-content display-none">
@@ -50,5 +50,5 @@
 @section js {
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-main/security/before-home-page")
-    @StaticResources.RenderScripts("~/Assets/bundles/security/security-code/reset-securitycode")
+    @StaticResources.RenderScripts("~/assets/bundles/security/security-code/reset-securitycode")
 }

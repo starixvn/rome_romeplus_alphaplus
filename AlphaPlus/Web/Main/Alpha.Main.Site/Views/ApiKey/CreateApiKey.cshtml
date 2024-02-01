@@ -7,7 +7,7 @@
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/site-main/tab-{Model.CustLevel.ToLowerInvariant()}")
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-main/apikey")
-    @StaticResources.RenderStylesWithDarkMode("~/Assets/bundles/apikey/apikey")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/apikey/apikey")
 }
 <div class="realtive">
     <ul class="nav nav-tabs" role="tablist">
@@ -90,5 +90,5 @@
 @section js {
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-main/apikey")
-    @StaticResources.RenderScripts("~/Assets/bundles/apikey/create-apikey")
+    @StaticResources.RenderScripts("~/assets/bundles/apikey/create-apikey")
 }
