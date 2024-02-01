@@ -9,7 +9,7 @@
 }
 <div class="block">
     <form class="form-SC form-validation" id="otp-form">
-        @*TODO: Languages @Html.Action("Languages", "SecurityCode") *@
+        @await Component.InvokeAsync("Languages")
         <h1 class="title">OTP</h1>
         <p> @string.Format(Security.OtpHiMessage, Model.UsernameShower)</p>
         <figure class="avatar">

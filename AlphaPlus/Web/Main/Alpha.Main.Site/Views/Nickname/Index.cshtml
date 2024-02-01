@@ -26,7 +26,7 @@
     <div class="block nickname">
         @using (Html.BeginForm("Index", "Nickname", FormMethod.Post, new { id = "frmNickname", @class = "form-SC form-validation", novalidate = "novalidate" }))
         {
-            @* TODO: Languages @Html.Action("Languages", "SecurityCode") *@
+            @await Component.InvokeAsync("Languages")
             @Html.AntiForgeryToken()
             <h1 class="title">@Resources.nickname</h1>
             <p>@Resources.NicknameCompanyPolicy</p>

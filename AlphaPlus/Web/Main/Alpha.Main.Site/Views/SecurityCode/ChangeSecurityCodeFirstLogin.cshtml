@@ -9,8 +9,7 @@
 }
 <div class="block">
     <form class="form-SC form-SC-before form-validation">
-        @* TODO: Languages*@
-        @* @Html.Action("Languages", "SecurityCode") *@
+        @await Component.InvokeAsync("Languages")
         <h1 class="title">@Security.SecurityCode</h1>
         <p> @Security.createSecurityCode</p>
         <figure class="avatar">

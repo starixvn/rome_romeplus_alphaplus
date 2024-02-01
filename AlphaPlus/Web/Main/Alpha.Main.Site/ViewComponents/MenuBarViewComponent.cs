@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Alpha.Main.Configurations;
 
-namespace Alpha.Main.Site.ViewModels;
+namespace Alpha.Main.Site.ViewComponents;
 
 public class MenuBarViewComponent(IMediator mediator, IUserSession userSession) : ViewComponent
 {
