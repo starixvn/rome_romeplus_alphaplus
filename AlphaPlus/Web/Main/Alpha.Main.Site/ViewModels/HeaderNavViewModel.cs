@@ -47,11 +47,11 @@ namespace Alpha.Main.Site.ViewModels
 
         public bool EnableSecurityCode { get; }
 
-        public string HowToUseRootPath => UrlHelper.MapHowToUsePath("/");
+        public string HowToUseRootPath => UrlHelper.MapHowToUsePath("~/");
 
         public bool ShowSearchAccount { get; }
 
-        public string MainRootPath { get; } = UrlHelper.MapMainPath("/");
+        public string MainRootPath { get; } = UrlHelper.MapMainPath("~/");
 
         public string AccountInfoRootPath { get; } = UrlHelper.MapAccountInfoPath("~/");
 

@@ -1,5 +1,3 @@
-using AlphaPlus.Core.Configurations;
-
 namespace AlphaPlus.Core.Models;
 
 public class UserPermission
@@ -42,7 +40,7 @@ public class UserPermission
 
     public static bool IsEnableProduct(int product)
     {
-        return AppSettings.IsEnabledProduct(product) && !CurrentUserSession.GetHideProduct(product);
+        return !CurrentUserSession.GetHideProduct(product);
     }
 
     public static bool IsSyncedProduct(int product)

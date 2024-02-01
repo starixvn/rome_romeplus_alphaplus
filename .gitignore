@@ -33,5 +33,5 @@ packages/
 node_modules/
 *.map
 *.js
-wwwroot
+wwwroot/assets/bundles/
 *.bat
