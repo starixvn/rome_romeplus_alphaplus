@@ -21,23 +21,11 @@ public class ForecastController : Controller//BaseController
         ISoccerService soccerService)
         => (this.forecastService, this.scoreMapService, this.soccerService) = (forecastService, scoreMapService, soccerService);
 
-    public async Task<IActionResult> Soccer(SoccerRequest message)
-    {
-        var leagues = await soccerService.GetLeagues(message.IsLive, message.Language);
-        message.LeagueId = message.LeagueId == 0
-            ? leagues.FirstOrDefault()?.LeagueId ?? 0
-            : message.LeagueId;
-        var matches = message.LeagueId == 0
-            ? Enumerable.Empty<Match>()
-            : await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language);
-
-        var viewModel = new SoccerViewModel([
+    public IActionResult Soccer(SoccerRequest message)
+        => View(new[] {
             new SelectListItem(Resources.Live, "true", message.IsLive),
             new SelectListItem(Resources.NonLive, "false", !message.IsLive)
-        ], message.LeagueId, leagues, matches);
-
-        return View(viewModel);
-    }
+        });
 
     public async Task<IActionResult> GetSoccerLeagues(SoccerRequest message)
     {

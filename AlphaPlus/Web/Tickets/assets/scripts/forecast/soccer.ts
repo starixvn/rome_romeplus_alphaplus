@@ -37,7 +37,7 @@ const soccer = {
 
     domElements: {
         btnSubmit: null,
-        ddlDeadBall: null,
+        ddlLiveStatus: null,
         ddlLeague: null,
         ddlMatch: null,
         mainContent: null,
@@ -63,7 +63,7 @@ const soccer = {
         soccer.domElements.btnSubmit = $('#btnSubmit');
         soccer.domElements.ddlMatch = $('#ddlMatch');
         soccer.domElements.ddlLeague = $('#ddlLeague').select2();
-        soccer.domElements.ddlDeadBall = $('#ddlDeadBall').select2({ minimumResultsForSearch: Infinity });
+        soccer.domElements.ddlLiveStatus = $('#ddlLiveStatus'); //.select2({ minimumResultsForSearch: -1 });
         soccer.domElements.mainContent = $('#mainContent');
         soccer.domElements.browserWarning = $('#browser-warning');
         soccer.domElements.closeWarning = $('#close-warning');
@@ -75,23 +75,26 @@ const soccer = {
     registerEvents: function () {
         soccer.checkIEBrowserAndShowWarning();
 
-        const matchStatusCache = $.cookie(soccer.cookies.status);
-        if (matchStatusCache) {
-            soccer.domElements.ddlDeadBall.val(matchStatusCache);
-        }
+        // const matchStatusCache = $.cookie(soccer.cookies.status);
+        // if (matchStatusCache) {
+        //     soccer.domElements.ddlLiveStatus.val(matchStatusCache);
+        // }
 
-        soccer.domElements.ddlDeadBall.off('change.select2').on('change.select2', function () {
-            soccer.domElements.mainContent.hide().find('tbody').remove();
-            const statusValue = soccer.domElements.ddlDeadBall.val();
-            const isLive = statusValue === 'true';
+        soccer.domElements.ddlLiveStatus
+            .off('change.select2')
+            .on('change.select2', function () {
+                soccer.domElements.mainContent.hide().find('tbody').remove();
+                const statusValue = soccer.domElements.ddlLiveStatus.val();
+                const isLive = statusValue === 'true';
 
-            soccer.stopCountdown();
-            soccer.countDownSeconds = isLive ? soccer.countDownLiveBallSeconds : soccer.countDownDeadBallSeconds;
-            soccer.domElements.ddlRefresh.text(soccer.countDownSeconds);
-            soccer.loadLeagues();
+                soccer.stopCountdown();
+                soccer.countDownSeconds = isLive ? soccer.countDownLiveBallSeconds : soccer.countDownDeadBallSeconds;
+                soccer.domElements.ddlRefresh.text(soccer.countDownSeconds);
+                soccer.loadLeagues();
 
-            $.cookie(soccer.cookies.status, statusValue, { expires: soccer.cookieExpireTime });
-        });
+                //$.cookie(soccer.cookies.status, statusValue, { expires: soccer.cookieExpireTime });
+            })
+            .trigger('change.select2');
 
         soccer.domElements.btnSubmit.off('click.forecast').on('click.forecast', soccer.loadMatchForecasts);
 
@@ -111,8 +114,7 @@ const soccer = {
         }
 
         soccer.stopCountdown();
-        //const matchIds = soccer.domElements.ddlMatch.val();
-        const matchIds = [77819293, 77819298];
+        const matchIds = soccer.domElements.ddlMatch.val();
         if (matchIds == null) {
             soccer.domElements.btnMatchSelect
                 .attr('title', soccer.domElements.ddlMatch.data('select-at-least'))
@@ -130,7 +132,7 @@ const soccer = {
             data: {
                 matchIds: matchIds.join(','),
                 leagueId: soccer.domElements.ddlLeague.val(),
-                isLive: soccer.domElements.ddlDeadBall.val() === 'true',
+                isLive: soccer.domElements.ddlLiveStatus.val() === 'true',
                 version: Math.random()
             }
         })
@@ -168,7 +170,7 @@ const soccer = {
                 soccer.processAjaxError(jqXHR);
             });
 
-        $.cookie(soccer.cookies.match, matchIds.join(','), { expires: soccer.cookieExpireTime });
+        //$.cookie(soccer.cookies.match, matchIds.join(','), { expires: soccer.cookieExpireTime });
     },
 
     removeLoadingIcon: function () {
@@ -259,18 +261,12 @@ const soccer = {
         } catch (e) {}
         $.get(
             `${soccer.urls.getLeagues}?${$.param({
-                isLive: soccer.domElements.ddlDeadBall.val(),
+                isLive: soccer.domElements.ddlLiveStatus.val(),
                 version: Math.random()
             })}`,
-            function (leagues) {
-                if (leagues) {
-                    soccer.renderLeagues(leagues);
-                    if (leagues.length > 0) {
-                        soccer.loadMatches();
-                    } else {
-                        soccer.renderMatches([]);
-                    }
-                }
+            function (result) {
+                soccer.renderLeagues(result.Leagues);
+                soccer.renderMatches(result.Matches);
             }
         ).always(function (jqXHR) {
             try {
@@ -294,7 +290,7 @@ const soccer = {
             soccer.domElements.mainContent.hide().find('tbody').remove();
             soccer.stopCountdown();
 
-            sessionStorage.setItem(soccer.cookies.league, soccer.domElements.ddlLeague.val());
+            //sessionStorage.setItem(soccer.cookies.league, soccer.domElements.ddlLeague.val());
         });
     },
 
@@ -304,16 +300,12 @@ const soccer = {
         } catch (e) {}
         $.get(
             `${soccer.urls.getMatches}?${$.param({
-                isLive: soccer.domElements.ddlDeadBall.val(),
+                isLive: soccer.domElements.ddlLiveStatus.val(),
                 leagueId: soccer.domElements.ddlLeague.val(),
                 version: Math.random()
             })}`,
             function (matches) {
-                if (matches) {
-                    console.dir(matches);
-
-                    soccer.renderMatches(matches);
-                }
+                matches && soccer.renderMatches(matches);
             }
         ).always(function (jqXHR) {
             try {
@@ -326,9 +318,9 @@ const soccer = {
     renderMatches: function (matches) {
         let matchIds = soccer.domElements.ddlMatch.val();
 
-        if (!matchIds && $.cookie(soccer.cookies.match)) {
-            matchIds = $.cookie(soccer.cookies.match).split(',');
-        }
+        // if (!matchIds && $.cookie(soccer.cookies.match)) {
+        //     matchIds = $.cookie(soccer.cookies.match).split(',');
+        // }
 
         let anyMatchSelected = false;
         let processedMatches = matches.map(function (match) {
@@ -375,7 +367,7 @@ const soccer = {
                             return !$(this).is(':selected');
                         });
 
-                        const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
+                        //const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
                         nonSelectedOptions.each(function () {
                             const input = $('input[value="' + $(this).val() + '"]');
                             input.prop('disabled', true);
@@ -383,7 +375,7 @@ const soccer = {
                         });
                     } else {
                         // Enable all checkboxes.
-                        const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
+                        //const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
                         soccer.domElements.ddlMatch.find('option').each(function () {
                             const input = $('input[value="' + $(this).val() + '"]');
                             input.prop('disabled', false);
