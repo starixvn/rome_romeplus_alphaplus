@@ -1,71 +1,111 @@
 @inject Microsoft.Extensions.Options.IOptions<AlphaPlus.Tickets.Site.Features.Shared.Models.AppSettings> appSettings
 @{
-    ViewData["Title"] = Resources.BetsAndForecast;
+    Layout = null;
     var assets = appSettings.Value.AssetAppPath;
 }
-@section Styles {
-    <link rel="stylesheet" href="@assets/bundles3/site-totalbetsforecast/soccer.css" />
+@model SoccerViewModel
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Resources.BetsAndForecast</title>
+    <link rel="stylesheet" href="@assets/bundles/site-totalbetsforecast/default.css" />
     <link rel="stylesheet" href="~/bundles/forecast/soccer.css" asp-append-version="true" />
-}
-@section Scripts {
-    <script src="@assets/bundles3/site-totalbetsforecast/soccer.js"></script>
-    <script src="~/bundles/forecast/soccer.js" asp-append-version="true"></script>
-}
-@model SelectListItem[]
-<div class="container-fluid totalandforecast">
-    <ul class="breadcrumb">
-        <li>@Resources.BetsAndForecast</li>
-        <li>
-            @Resources.Soccer
-            <span class="help" data-toggle="modal" data-target="#helpModal" title="Help"></span>
-        </li>
-    </ul>
-    <form class="filter form-inline" role="form">
-        <div class="form-group">
-            <select asp-items="Model" id="ddlLiveStatus"></select>
+</head>
+
+<body>
+    <div id="browser-warning" class="note-browser" style="display:none;">
+        <span class="icon-alert"></span>
+        <div class="textnote-box">
+            <span class="text-note">@Resources.BrowserIsOutOfDate</span>
+            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie"
+                target="_blank">@Resources.ClickToUpdateBrowser</a>
         </div>
-        <div class="form-group">
-            <label>@Resources.League</label>
-            <select id="ddlLeague"></select>
+        <span class="icon-closed" id="close-warning"></span>
+    </div>
+
+    <div class="container-fluid totalandforecast">
+        <ul class="breadcrumb">
+            <li>@Resources.BetsAndForecast</li>
+            <li>
+                @Resources.Soccer
+                <span class="help" data-toggle="modal" data-target="#helpModal" title="Help"></span>
+            </li>
+        </ul>
+        <div class="filter">
+            <form class="filter form-inline" role="form">
+                <div class="form-group">
+                    <select asp-items="Model.LiveStatus" id="ddlLiveStatus"></select>
+                </div>
+                <div class="form-group">
+                    <label>@Resources.League</label>
+                    <select id="ddlLeague" style="display:none;"></select>
+                </div>
+                <div class="form-group last-filter">
+                    <label>@Resources.Event</label>
+                    <select id="ddlMatch" multiple="multiple" data-init-lable="@Resources.SelectAnEvent"
+                        data-selected-event-text="@Resources.SelectedEvents"
+                        data-select-at-least="@Resources.SelectAtLeastOneEvent"
+                        data-select-all-text="@Resources.AllEvents" style="display:none;"></select>
+                </div>
+                <div class="form-group">
+                    <input type="button" class="btn-submit" id="btnSubmit" value="@Resources.Submit" />
+                    <div class="dropdown btn btn-default btn-countdown ">
+                        <span class="icon-refresh"></span>
+                        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <span id="ddlRefresh">30</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" id="refresh-value" aria-labelledby="dropdownMenu2">
+                            <li><a href="javascript:;" data-refresh-value="30">30</a></li>
+                            <li><a href="javascript:;" data-refresh-value="45">45</a></li>
+                            <li><a href="javascript:;" data-refresh-value="60">60</a></li>
+                        </ul>
+                    </div>
+                    <span class="block-icon-small" id="blockIconSmall" style="display:none;"></span>
+                </div>
+            </form>
         </div>
-        <div class="form-group last-filter">
-            <label>@Resources.Event</label>
-            <select id="ddlMatch" multiple="multiple" data-init-lable="@Resources.SelectAnEvent"
-                data-selected-event-text="@Resources.SelectedEvents"
-                data-select-at-least="@Resources.SelectAtLeastOneEvent" data-select-all-text="@Resources.AllEvents"
-                style="display:none;"></select>
+        <div class="content" style="display:none;">
+            <table class="tblRpt tblRpt-bordered width-100per" id="mainContent">
+                <thead>
+                    <tr class="RptHeader">
+                        <th class="text-center">@Resources.Time</th>
+                        <th class="text-center">@Resources.Event</th>
+                        <th class="text-center">@Resources.BetType</th>
+                        <th class="text-center">@Resources.BetCount</th>
+                        <th class="text-center">@Resources.Turnover</th>
+                        <th class="text-center" colspan="5">@Resources.ForecastWinLoss</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
-        <div class="form-group">
-            <input type="button" class="btn-submit" id="btnSubmit" value="@Resources.Submit" />
-            <div class="dropdown btn btn-default btn-countdown ">
-                <span class="icon-refresh"></span>
-                <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <span id="ddlRefresh">30</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" id="refresh-value" aria-labelledby="dropdownMenu2">
-                    <li><a href="javascript:;" data-refresh-value="30">30</a></li>
-                    <li><a href="javascript:;" data-refresh-value="45">45</a></li>
-                    <li><a href="javascript:;" data-refresh-value="60">60</a></li>
-                </ul>
+    </div>
+
+    <div class="modal fade guidelinesModal" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i
+                            class="icon-close"></i></button>
+                    <h4 class="modal-title" id="myModalLabel">@Resources.BetsAndForecastGuidelines</h4>
+                </div>
+                <div class="modal-body">
+                    <partial name="SoccerIntro.@Model.Language" model="Model.Language" />
+                </div>
             </div>
-            <span class="block-icon-small" id="blockIconSmall" style="display:none;"></span>
         </div>
-    </form>
-    <table class="tblRpt tblRpt-bordered" id="mainContent">
-        <thead>
-            <tr class="RptHeader">
-                <th class="text-center">@Resources.Time</th>
-                <th class="text-center">@Resources.Event</th>
-                <th class="text-center">@Resources.BetType</th>
-                <th class="text-center">@Resources.BetCount</th>
-                <th class="text-center">@Resources.Turnover</th>
-                <th class="text-center" colspan="5">@Resources.ForecastWinLoss</th>
-            </tr>
-        </thead>
-    </table>
-</div>
-<input type="hidden" id="hidden-noDataText" value="@Resources.NoInformationIsAvailable" />
-<input type="hidden" id="hidden-liveText" value="@Resources.Live" />
-<input type="hidden" id="hidden-totalText" value="@Resources.Total" />
+    </div>
+    <partial name="SoccerQuickIntro" model="Model.Language" />
+
+    <input type="hidden" id="hidden-noDataText" value="@Resources.NoInformationIsAvailable" />
+    <input type="hidden" id="hidden-liveText" value="@Resources.Live" />
+    <input type="hidden" id="hidden-totalText" value="@Resources.Total" />
+    <script src="@assets/bundles/site-totalbetsforecast/default.js"></script>
+    <script src="~/bundles/forecast/soccer.js" asp-append-version="true"></script>
+</body>
+
+</html>

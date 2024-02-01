@@ -49,7 +49,8 @@
     "outputFileName": "wwwroot/bundles/forecast/soccer.js",
     "inputFiles": [
       "assets/scripts/forecast/soccer-renderer.js",
-      "assets/scripts/forecast/soccer.js"
+      "assets/scripts/forecast/soccer.js",
+      "assets/scripts/forecast/soccer-quickintro.js"
     ]
   }
 ]

@@ -1,0 +1,87 @@
+@inject Microsoft.Extensions.Options.IOptions<AlphaPlus.Tickets.Site.Features.Shared.Models.AppSettings> appSettings
+@{
+    Layout = null;
+    var version = appSettings.Value.JsVersion;
+}
+@model string
+<div class="modal fade" id="beginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog smallModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong class="modal-title">@Resources.Forecast_Title</strong></p>
+                <p>@Resources.Forecast_Title_Content</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-default" data-dismiss="modal" aria-label="Close" id="btnClose"><span
+                        aria-hidden="true">@Resources.Forecast_Title_NotNow</span></button>
+                <button class="btn-submit js-let-go-btn"
+                    data-toggle="modal"><span>@Resources.Forecast_Title_LetsGo</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large modal -->
+<div class="modal fade" id="quickIntroductionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  largeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                        class="icon-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="carousel-main" class="carousel slide carousel-fade" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <h4>@Resources.Forecast_Popup_1</h4>
+                            <div class="slider"><img src="~/images/@Model/slide2.png?v=@version" />
+                            </div>
+                        </div>
+                        <div class="item">
+                            <h4>@Resources.Forecast_Popup_1</h4>
+                            <div class="slider"><img src="~/images/@Model/slide3.png?v=@version" />
+                            </div>
+                        </div>
+                        <div class="item">
+                            <h4>@Resources.Forecast_Popup_2</h4>
+                            <ul class="info-text">
+                                <li>@Resources.Forecast_Popup_3</li>
+                                <li>@Resources.Forecast_Popup_4</li>
+                            </ul>
+                            <div class="slider">
+                                <img src="~/images/@Model/slide4.png?v=@version" />
+                            </div>
+
+                            <div class="slider-text">
+                                * @Resources.Forecast_Popup_5
+                                <a class="js-help icon-information-outline c-blue" href="javascript:void(0);"
+                                    id="btnShowUserguide">
+                                    &nbsp;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="buttons-control">
+                        <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="text prev"><i class="icon-caret-left"></i></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-main" role="button" data-slide="next">
+                            <span class="text next"><i class="icon-caret-right"></i></span>
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                    <!-- /.carousel -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

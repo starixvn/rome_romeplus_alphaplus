@@ -1,10 +1,8 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 using AlphaPlus.Tickets.Site.Features.Forecast.ViewModels;
 using AlphaPlus.Tickets.Site.Features.Shared.Requests;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Tickets.Site.Features.Forecast;
 
@@ -22,10 +20,7 @@ public class ForecastController : Controller//BaseController
         => (this.forecastService, this.scoreMapService, this.soccerService) = (forecastService, scoreMapService, soccerService);
 
     public IActionResult Soccer(SoccerRequest message)
-        => View(new[] {
-            new SelectListItem(Resources.Live, "true", message.IsLive),
-            new SelectListItem(Resources.NonLive, "false", !message.IsLive)
-        });
+        => View(new SoccerViewModel(message.IsLive, message.Language));
 
     public async Task<IActionResult> GetSoccerLeagues(SoccerRequest message)
     {

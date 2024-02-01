@@ -1308,5 +1308,137 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
                 return ResourceManager.GetString("AllEvents", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Your browser is out of date and might not be working properly width our website. For a better support, we strongly recommend that you upgrade to a newer version.
+        /// </summary>
+        internal static string BrowserIsOutOfDate
+        {
+            get
+            {
+                return ResourceManager.GetString("BrowserIsOutOfDate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to update your browser.
+        /// </summary>
+        internal static string ClickToUpdateBrowser
+        {
+            get
+            {
+                return ResourceManager.GetString("ClickToUpdateBrowser", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bets & Forecast Guidelines.
+        /// </summary>
+        internal static string BetsAndForecastGuidelines
+        {
+            get
+            {
+                return ResourceManager.GetString("BetsAndForecastGuidelines", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Take a quick tour of Bets & Forecast.
+        /// </summary>
+        internal static string Forecast_Title
+        {
+            get
+            {
+                return ResourceManager.GetString("Forecast_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to It’s the fastest and most centralized Total Bets and Forecast ever.
+        /// </summary>
+        internal static string Forecast_Title_Content
+        {
+            get
+            {
+                return ResourceManager.GetString("Forecast_Title_Content", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Let’s go.
+        /// </summary>
+        internal static string Forecast_Title_LetsGo
+        {
+            get
+            {
+                return ResourceManager.GetString("Forecast_Title_LetsGo", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Not now.
+        /// </summary>
+        internal static string Forecast_Title_NotNow
+        {
+            get
+            {
+                return ResourceManager.GetString("Forecast_Title_NotNow", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to It starts with the new and intuitive menu.
+        /// </summary>
+        internal static string Forecast_Popup_1
+        {
+            get
+            {
+                return ResourceManager.GetString("Forecast_Popup_1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The meaningful LIVE Forecast Win Loss of Handicap.
+        /// </summary>
+        internal static string Forecast_Popup_2
+        {
+            get
+            {
+                return ResourceManager.GetString("Forecast_Popup_2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Old Forecast Win Loss always starts from Score 0.
+        /// </summary>
+        internal static string Forecast_Popup_3
+        {
+            get
+            {
+                return ResourceManager.GetString("Forecast_Popup_3", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to New Forecast Win Loss starts from Current Score.
+        /// </summary>
+        internal static string Forecast_Popup_4
+        {
+            get
+            {
+                return ResourceManager.GetString("Forecast_Popup_4", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Each bet type has its own Forecast Win Loss display, please refer to this guideline for more details.
+        /// </summary>
+        internal static string Forecast_Popup_5
+        {
+            get
+            {
+                return ResourceManager.GetString("Forecast_Popup_5", resourceCulture);
+            }
+        }
     }
 }

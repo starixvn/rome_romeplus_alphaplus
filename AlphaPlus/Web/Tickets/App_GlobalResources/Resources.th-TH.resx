@@ -156,6 +156,15 @@
   <data name="BetsAndForecast" xml:space="preserve">
     <value>ยอดการเล่นและคำนวณผล</value>
   </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>แนวทางการใช้งาน 'เดิมพันและการคาดการณ์การแข่งขัน'</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>เบราว์เซอร์ของท่านตกรุ่น ซึ่งอาจทำงานได้อย่างไม่เหมาะสมกับเวปไซค์ของทางบริษัท. เพื่อตอบสนองการใช้งานที่ดียิ่งขึ้น ทางเราใคร่ขอแนะนำให้ท่าน ทำการอัพเกรดให้เป็นเวอร์ชั่นที่ใหม่กว่าเดิม</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>คลิ๊กตรงนี้เพื่อทำการอัพเกรด เบราว์เซอร์ของท่าน</value>
+  </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Click to view Score Map Info</value>
   </data>
@@ -200,6 +209,33 @@
   </data>
   <data name="ForecastWinLoss" xml:space="preserve">
     <value>การคาดการณ์ ได้/เสีย ล่วงหน้า</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>เริ่มต้นด้วยเมนูใหม่ที่ใช้งานง่าย</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>ความสำคัญของการคาดการณ์การชนะหรือแพ้ของราคาต่อรองแบบสด</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>จากเดิม คาดการณ์ผลการชนะหรือแพ้ จะเริ่มต้นจากคะแนน 0 เสมอ</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>การชนะ/แพ้ที่คาดการณ์ไว้ใหม่เริ่มต้นจากคะแนนปัจจุบัน</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>การเดิมพันแต่ละประเภทมีการแสดงการชนะหรือแพ้ที่คาดการณ์ไว้ โปรดศึกษาคู่มือนี้สำหรับรายละเอียดเพิ่มเติม</value>
+  </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>ดูการเดิมพันและการคาดการณ์การแข่งขันอย่างรวดเร็ว</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>นี่คือการรวบรวมข้อมูลเดิมพันและการคาดการณ์การแข่งขันที่รวดเร็วและเข้มข้นที่สุด</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>เริ่มเลย</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>ไม่ใช่ตอนนี้</value>
   </data>
   <data name="FullTime" xml:space="preserve">
     <value>เต็มเวลา</value>

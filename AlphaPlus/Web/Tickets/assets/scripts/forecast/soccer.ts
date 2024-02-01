@@ -12,6 +12,14 @@ interface JQuery {
     select2(method: string, options): void;
 }
 
+interface Window {
+    alpha: {
+        urls: {
+            mainRootPath: string;
+        };
+    };
+}
+
 const soccer = {
     countDownSeconds: 30,
     countDownDeadBallSeconds: 60,
@@ -29,15 +37,15 @@ const soccer = {
     },
 
     cookies: {
-        status: 'soccer_match_status',
-        league: 'soccer_league',
-        match: 'soccer_match'
+        status: 'forecast_match_status',
+        league: 'forecast_league',
+        match: 'forecast_match'
     },
     cookieExpireTime: 1,
 
     domElements: {
         btnSubmit: null,
-        ddlLiveStatus: null,
+        ddlDeadBall: null,
         ddlLeague: null,
         ddlMatch: null,
         mainContent: null,
@@ -62,8 +70,8 @@ const soccer = {
     cachedDOM: function () {
         soccer.domElements.btnSubmit = $('#btnSubmit');
         soccer.domElements.ddlMatch = $('#ddlMatch');
-        soccer.domElements.ddlLeague = $('#ddlLeague').select2();
-        soccer.domElements.ddlLiveStatus = $('#ddlLiveStatus'); //.select2({ minimumResultsForSearch: -1 });
+        soccer.domElements.ddlLeague = $('#ddlLeague');
+        soccer.domElements.ddlDeadBall = $('#ddlLiveStatus');
         soccer.domElements.mainContent = $('#mainContent');
         soccer.domElements.browserWarning = $('#browser-warning');
         soccer.domElements.closeWarning = $('#close-warning');
@@ -75,16 +83,16 @@ const soccer = {
     registerEvents: function () {
         soccer.checkIEBrowserAndShowWarning();
 
-        // const matchStatusCache = $.cookie(soccer.cookies.status);
-        // if (matchStatusCache) {
-        //     soccer.domElements.ddlLiveStatus.val(matchStatusCache);
-        // }
+        const matchStatusCache = $.cookie(soccer.cookies.status);
+        if (matchStatusCache) {
+            soccer.domElements.ddlDeadBall.val(matchStatusCache);
+        }
 
-        soccer.domElements.ddlLiveStatus
-            .off('change.select2')
-            .on('change.select2', function () {
-                soccer.domElements.mainContent.hide().find('tbody').remove();
-                const statusValue = soccer.domElements.ddlLiveStatus.val();
+        soccer.domElements.ddlDeadBall
+            .off('change.forecast')
+            .on('change.forecast', function () {
+                soccer.domElements.mainContent.parent().hide().find('tbody').remove();
+                const statusValue = soccer.domElements.ddlDeadBall.val();
                 const isLive = statusValue === 'true';
 
                 soccer.stopCountdown();
@@ -92,9 +100,9 @@ const soccer = {
                 soccer.domElements.ddlRefresh.text(soccer.countDownSeconds);
                 soccer.loadLeagues();
 
-                //$.cookie(soccer.cookies.status, statusValue, { expires: soccer.cookieExpireTime });
+                $.cookie(soccer.cookies.status, statusValue, { expires: soccer.cookieExpireTime });
             })
-            .trigger('change.select2');
+            .trigger('change');
 
         soccer.domElements.btnSubmit.off('click.forecast').on('click.forecast', soccer.loadMatchForecasts);
 
@@ -115,11 +123,12 @@ const soccer = {
 
         soccer.stopCountdown();
         const matchIds = soccer.domElements.ddlMatch.val();
+
         if (matchIds == null) {
             soccer.domElements.btnMatchSelect
                 .attr('title', soccer.domElements.ddlMatch.data('select-at-least'))
                 .tooltip('show');
-            soccer.domElements.mainContent.hide().find('tbody').remove();
+            soccer.domElements.mainContent.parent().hide().find('tbody').remove();
             return;
         }
         soccer.domElements.blockIconSmall.show();
@@ -132,7 +141,7 @@ const soccer = {
             data: {
                 matchIds: matchIds.join(','),
                 leagueId: soccer.domElements.ddlLeague.val(),
-                isLive: soccer.domElements.ddlLiveStatus.val() === 'true',
+                isLive: soccer.domElements.ddlDeadBall.val() === 'true',
                 version: Math.random()
             }
         })
@@ -144,7 +153,7 @@ const soccer = {
                         const noInfoHtml = soccerRenderer.renderNoInfo('no-info-body');
                         soccer.addNoInfoRow(noInfoHtml);
                     } else {
-                        for (let i = 0, max = matchForecasts.length; i < max; i++) {
+                        for (let i = 0; i < matchForecasts.length; i++) {
                             const matchForecast = matchForecasts[i];
 
                             if (matchForecast) {
@@ -162,7 +171,7 @@ const soccer = {
                         soccerRenderer.updateMatchesCached(matchForecasts);
                     }
 
-                    soccer.domElements.mainContent.show();
+                    soccer.domElements.mainContent.parent().show();
                 }
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
@@ -170,7 +179,7 @@ const soccer = {
                 soccer.processAjaxError(jqXHR);
             });
 
-        //$.cookie(soccer.cookies.match, matchIds.join(','), { expires: soccer.cookieExpireTime });
+        $.cookie(soccer.cookies.match, matchIds.join(','), { expires: soccer.cookieExpireTime });
     },
 
     removeLoadingIcon: function () {
@@ -242,7 +251,7 @@ const soccer = {
                 .start();
         } else {
             soccer.stopCountdown();
-            soccer.domElements.mainContent.hide().find('tbody').remove();
+            soccer.domElements.mainContent.parent().hide().find('tbody').remove();
         }
     },
 
@@ -256,72 +265,111 @@ const soccer = {
     },
 
     loadLeagues: function () {
-        try {
-            $.blockUI();
-        } catch (e) {}
-        $.get(
-            `${soccer.urls.getLeagues}?${$.param({
-                isLive: soccer.domElements.ddlLiveStatus.val(),
+        $.ajax({
+            url: soccer.urls.getLeagues,
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: {
+                isLive: soccer.domElements.ddlDeadBall.val() === 'true',
                 version: Math.random()
-            })}`,
-            function (result) {
+            },
+            beforeSend: function () {
+                try {
+                    $.blockUI();
+                } catch (e) {}
+            }
+        })
+            .done(function (result) {
                 soccer.renderLeagues(result.Leagues);
                 soccer.renderMatches(result.Matches);
-            }
-        ).always(function (jqXHR) {
-            try {
-                $.unblockUI();
-            } catch (e) {}
-            soccer.processAjaxError(jqXHR);
-        });
+                // if (leagues) {
+                //     soccer.renderLeagues(leagues);
+                //     if (leagues.length > 0) {
+                //         soccer.loadMatches();
+                //     } else {
+                //         soccer.renderMatches([]);
+                //     }
+                // }
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                try {
+                    $.unblockUI();
+                } catch (e) {}
+                soccer.processAjaxError(jqXHR);
+            });
     },
 
     renderLeagues: function (leagues) {
-        soccer.domElements.ddlLeague.html('').select2({
-            data: leagues.map(function (league) {
-                return {
-                    id: league.LeagueId,
-                    text: league.LeagueName
-                };
-            })
+        let leagueId = soccer.domElements.ddlLeague.val() || $.cookie(soccer.cookies.league);
+        leagueId = leagueId || (leagues.length > 0 ? leagues[0].Id : 0);
+        const options = '';
+        const processedLeagues = leagues.map(function (league) {
+            return {
+                label: league.LeagueName,
+                value: league.LeagueId,
+                selected: league.LeagueId === parseInt(leagueId)
+            };
         });
-        soccer.domElements.ddlLeague.off('change.select2').on('change.select2', function () {
-            soccer.loadMatches();
-            soccer.domElements.mainContent.hide().find('tbody').remove();
-            soccer.stopCountdown();
 
-            //sessionStorage.setItem(soccer.cookies.league, soccer.domElements.ddlLeague.val());
+        soccer.domElements.ddlLeague.multiselect({
+            maxHeight: 300,
+            enableFiltering: true,
+            numberDisplayed: 1,
+            enableCaseInsensitiveFiltering: true,
+            nonSelectedText: soccer.domElements.mainContent.data('no-data-text'),
+            onChange: function (option, checked) {
+                soccer.loadMatches();
+                soccer.domElements.mainContent.parent().hide().find('tbody').remove();
+                soccer.stopCountdown();
+
+                $.cookie(soccer.cookies.league, soccer.domElements.ddlLeague.val(), {
+                    expires: soccer.cookieExpireTime
+                });
+            }
         });
+
+        soccer.domElements.ddlLeague.multiselect('dataprovider', processedLeagues);
     },
 
     loadMatches: function () {
-        try {
-            $.blockUI();
-        } catch (e) {}
-        $.get(
-            `${soccer.urls.getMatches}?${$.param({
-                isLive: soccer.domElements.ddlLiveStatus.val(),
+        $.ajax({
+            url: soccer.urls.getMatches,
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: {
                 leagueId: soccer.domElements.ddlLeague.val(),
+                isLive: soccer.domElements.ddlDeadBall.val() === 'true',
                 version: Math.random()
-            })}`,
-            function (matches) {
-                matches && soccer.renderMatches(matches);
+            },
+            beforeSend: function () {
+                try {
+                    $.blockUI();
+                } catch (e) {}
             }
-        ).always(function (jqXHR) {
-            try {
-                $.unblockUI();
-            } catch (e) {}
-            soccer.processAjaxError(jqXHR);
-        });
+        })
+            .done(function (matches) {
+                if (matches) {
+                    soccer.renderMatches(matches);
+                }
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                try {
+                    $.unblockUI();
+                } catch (e) {}
+                soccer.processAjaxError(jqXHR);
+            });
     },
 
     renderMatches: function (matches) {
         let matchIds = soccer.domElements.ddlMatch.val();
 
-        // if (!matchIds && $.cookie(soccer.cookies.match)) {
-        //     matchIds = $.cookie(soccer.cookies.match).split(',');
-        // }
+        if (!matchIds && $.cookie(soccer.cookies.match)) {
+            matchIds = $.cookie(soccer.cookies.match).split(',');
+        }
 
+        const options = '';
         let anyMatchSelected = false;
         let processedMatches = matches.map(function (match) {
             const selected = matchIds ? matchIds.indexOf(match.MatchId.toString()) > -1 : true;
@@ -367,7 +415,7 @@ const soccer = {
                             return !$(this).is(':selected');
                         });
 
-                        //const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
+                        const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
                         nonSelectedOptions.each(function () {
                             const input = $('input[value="' + $(this).val() + '"]');
                             input.prop('disabled', true);
@@ -375,7 +423,7 @@ const soccer = {
                         });
                     } else {
                         // Enable all checkboxes.
-                        //const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
+                        const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
                         soccer.domElements.ddlMatch.find('option').each(function () {
                             const input = $('input[value="' + $(this).val() + '"]');
                             input.prop('disabled', false);
@@ -404,14 +452,14 @@ const soccer = {
 
     processAjaxError: function (xhr) {
         if (xhr.status === 500 && xhr.responseText) {
-            var jsonData = JSON.parse(xhr.responseText);
+            const jsonData = JSON.parse(xhr.responseText);
             if (jsonData.UMFrom && jsonData.UMTo) {
-                // location.href =
-                //     top.alpha.urls.mainRootPath +
-                //     'PartialUM/Index?umfrom=' +
-                //     jsonData.UMFrom +
-                //     '&umto=' +
-                //     jsonData.UMTo;
+                location.href =
+                    top.alpha.urls.mainRootPath +
+                    'PartialUM/Index?umfrom=' +
+                    jsonData.UMFrom +
+                    '&umto=' +
+                    jsonData.UMTo;
             }
         }
     }

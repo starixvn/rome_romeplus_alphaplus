@@ -156,6 +156,15 @@
   <data name="BetsAndForecast" xml:space="preserve">
     <value>Tổng Cược &amp; Dự Đoán</value>
   </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>Hướng dẫn sử dụng Tổng Cược &amp; Dự Đoán</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>Trình duyệt của bạn đã cũ và có thể không tương thích với trang web của chúng tôi. Để hỗ trợ tốt hơn, chúng tôi đề nghị bạn nâng cấp lên một phiên bản mới hơn.</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>Nhấn vào đây để cập nhật trình duyệt của bạn.</value>
+  </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Nhấn vào đây để xem Thông tin Score Map</value>
   </data>
@@ -200,6 +209,33 @@
   </data>
   <data name="ForecastWinLoss" xml:space="preserve">
     <value>Dự đoán Thắng Thua</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>Bắt đầu bằng menu mới, hấp dẫn và trực quan hơn</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>Thông tin Dự Đoán Thắng Thua Cược Chấp TRỰC TIẾP hoàn chỉnh hơn</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>Dự Đoán Thắng Thua cũ luôn bắt đầu từ tỷ số 0.</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>Dự Đoán Thắng Thua mới sẽ bắt đầu từ Tỷ số hiện tại</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>Mỗi loại cược sẽ hiển thị thông tin Dự Đoán Thắng Thua khác nhau, vui lòng tham khảo hướng dẫn để biết thêm chi tiết.</value>
+  </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>Hãy cùng khám phá những tính năng Tổng Cược &amp; Dự Đoán</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>Trải nghiệm tính năng tối ưu và tập trung nhất từ trước đến nay của Tổng Cược và Dự Đoán.</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>Bắt đầu nào</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>Không phải bây giờ</value>
   </data>
   <data name="FullTime" xml:space="preserve">
     <value>Toàn trận</value>

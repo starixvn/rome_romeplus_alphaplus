@@ -156,6 +156,15 @@
   <data name="BetsAndForecast" xml:space="preserve">
     <value>投注 &amp; 預測</value>
   </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>投注&amp;預測指導方針</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>您的瀏覽器已過期，可能無法與我們的網站正常操作。為了提供更好的支援，我們強烈建議您升級至新的版本。</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>請點擊這里以升級您的瀏覽器。</value>
+  </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>點擊查看盈利預測圖資料</value>
   </data>
@@ -203,6 +212,33 @@
   </data>
   <data name="ForecastWinLoss" xml:space="preserve">
     <value>預測贏/輸</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>它始於新的直觀目錄</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>意味著預測滾球讓球盤的輸/贏</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>舊預測輸/贏從0比分開始。</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>新預測輸贏從目前比分開始。</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>每種投注類型都有各自預測輸贏顯示，請參閱本指南了解更多詳情。</value>
+  </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>快速瀏覽投注&amp;預測</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>這是最快、最集中的總投注和預測。</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>現在開始</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>不是現在</value>
   </data>
   <data name="FullTime" xml:space="preserve">
     <value>全場</value>

@@ -1,0 +1,131 @@
+﻿@inject Microsoft.Extensions.Options.IOptions<AlphaPlus.Tickets.Site.Features.Shared.Models.AppSettings> appSettings
+@{
+    Layout = null;
+    var version = appSettings.Value.JsVersion;
+}
+@model string
+<p class="main-desc">
+    คุณสมบัติการเดิมพันและการคาดการณ์การแข่งขันจะสรุปประเภทการเดิมพันหลัก จำนวนตั๋วเดิมพัน
+    และยอดเงินเดิมพันตามตั๋วที่กำลังดำเนินอยู่การสำหรับการแข่งขันแต่ละนัด
+    นอกจากนี้ยังคาดการณ์จำนวนผลชนะหรือแพ้จากคะแนนปัจจุบัน
+    และแสดงการชนะหรือแพ้ทั้งหมดที่คาดการณ์ไว้สำหรับการแข่งขันสดแต่ละรายการ
+</p>
+<img class="img-big" src="~/images/@Model/1.png?v=@version" />
+<div class="block-Guideline">
+    <h4 class="title-Guideline">การคาดการณ์การชนะหรือแพ้ของราคาต่อรอง</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>สด</h5>
+            <ul class="circle">
+                <li>การคาดการณ์การชนะหรือแพ้จะเริ่มต้นจากผลต่างของคะแนนปัจจุบัน</li>
+                <li>ตัวอย่าง: คะแนนสดปัจจุบัน 2 – 0</li>
+            </ul>
+            <div class="c-red txt-bold">
+                <p>ผลต่างของคะแนนปัจจุบัน (X) = คะแนนตลาดสดของทีมเหย้า - คะแนนตลาดสดของทีมเยือน = 2 - 0 = 2</p>
+            </div>
+            <div class="img-small">
+                <img src="~/images/@Model/2.png?v=@version" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>ไม่ใช่เกมสด</h5>
+            <ul class="circle">
+                <li>การคาดการณ์การชนะหรือแพ้เริ่มต้นจากค่าเฉลี่ยของราคาต่อรองหากค่าเฉลี่ยมีจุดทศนิยมจะปัดเศษทศนิยมลง
+                </li>
+                <li>
+                    ตัวอย่าง: การแข่งขันมีราคาต่อรอง: 1.5 – 2
+                    <ul class="circle c-red txt-bold">
+                        <li>ค่าเฉลี่ยของราคาต่อรอง = (1.5 + 2)/2 = 1.75</li>
+                        <li>เมื่อปัดเศษทศนิยมค่าเฉลี่ยราคาต่อรอง (Y) = 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/images/@Model/3.png?v=@version" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-Guideline">
+    <h4 class="title-Guideline">การคาดการณ์การชนะหรือแพ้ของสูง/ต่ำ</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>สด</h5>
+            <ul class="circle">
+                <li>การคาดการณ์การชนะหรือแพ้เริ่มต้นจากคะแนนรวมปัจจุบัน</li>
+                <li>ตัวอย่าง: คะแนนสดปัจจุบัน 0 - 4</li>
+            </ul>
+            <div class="c-red txt-bold">
+                <p>คะแนนรวมปัจจุบัน (X)</p>
+                <p>= คะแนนสดทีมเหย้า + คะแนนสดทีมเยือน = 0 + 4 = 4</p>
+            </div>
+            <div class="img-small">
+                <img src="~/images/@Model/4.png?v=@version" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>ไม่ใช่เกมสด</h5>
+            <ul class="circle">
+                <li>การคาดการณ์การชนะหรือแพ้เริ่มต้นจากค่าเฉลี่ยของประตูรวมหากค่าเฉลี่ยมีจุดทศนิยมจะปัดเศษทศนิยมลง</li>
+                <li>
+                    ตัวอย่าง: การแข่งขันมีค่าสูง/ต่ำ: 2-2.5
+                    <ul class="circle c-red txt-bold">
+                        <li>ค่าเฉลี่ยประตูรวม = (2 + 2.5)/2 = 2.25</li>
+                        <li>ปัดเศษทศนิยมค่าเฉลี่ยประตูรวมลง (Y) = 2</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/images/@Model/5.png?v=@version" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-Guideline">
+    <h4 class="title-Guideline">การคาดการณ์การชนะหรือแพ้ของราคาพูล (1X2)</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>สด</h5>
+            <ul class="circle">
+                <li>การเน้น ผลลัพธ์ปัจจุบัน</li>
+                <li>
+                    ตัวอย่าง: คะแนนสดปัจจุบัน 2 - 0
+                    <ul class="arrow txt-bold">
+                        <li>ทีมเหย้าชนะ</li>
+                        <li>เน้นหัวข้อ 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/images/@Model/6.png?v=@version" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>ไม่ใช่เกมสด</h5>
+            <ul class="circle">
+                <li>
+                    หากการแข่งขันมีการเสนอประเภทการเดิมพันแฮนดิแคป
+                    <div class="img-small img-ex">
+                        <img src="~/images/@Model/7.png?v=@version" />
+                    </div>
+                </li>
+                <li>หากการแข่งขันไม่มีการเสนอประเภทการเดิมพันแฮนดิแคป หัวข้อจะไม่ถูกเน้น</li>
+                <li>
+                    ตัวอย่าง: การแข่งขันมีราคาต่อรอง: 1.5 – 2
+                    <ul class="circle c-red txt-bold">
+                        <li>ค่าเฉลี่ยของราคาต่อรอง = (1.5 + 2)/2 = 1.75</li>
+                        <li>เมื่อปัดเศษทศนิยมค่าเฉลี่ยราคาต่อรอง (X) = 1 > 0</li>
+                    </ul>
+                    <ul class="arrow txt-bold">
+                        <li>เน้นหัวข้อ 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small img-ex">
+                <img src="~/images/@Model/8.png?v=@version" />
+            </div>
+        </div>
+    </div>
+</div>

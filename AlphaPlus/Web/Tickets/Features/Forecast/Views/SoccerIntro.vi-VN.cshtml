@@ -1,0 +1,131 @@
+﻿@inject Microsoft.Extensions.Options.IOptions<AlphaPlus.Tickets.Site.Features.Shared.Models.AppSettings> appSettings
+@{
+    Layout = null;
+    var version = appSettings.Value.JsVersion;
+}
+@model string
+<p class="main-desc">
+    Chức năng Tổng Cược & Dự Đoán tổng hợp thông tin các loại cược chính, số vé cược và số tiền cược
+    trên các vé cược đang diễn ra trong mỗi sự kiện.
+    Chức năng này cũng dự đoán tiền thắng thua cho các cược dựa trên tỷ số hiện tại và hiển thị Tổng Dự
+    Đoán Thắng Thua cho từng sự kiện Trực Tiếp.
+</p>
+<img class="img-big" src="~/images/@Model/1.png?v=@version" />
+<div class="block-Guideline">
+    <h4 class="title-Guideline">Dự Đoán Thắng Thua cho Cược Chấp</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>Trực tiếp</h5>
+            <ul class="circle">
+                <li>Dự Đoán Thắng Thua bắt đầu từ Hiệu Số Điểm Số Hiện Tại</li>
+                <li>Ví dụ: Tỷ số Trực Tiếp hiện tại đang là 2 - 0</li>
+            </ul>
+            <div class="c-red txt-bold">
+                <p>Hiệu Số Điểm Số Hiện Tại (X)</p>
+                <p>= Tỷ Số Trực Tiếp của Đội Nhà - Tỷ Số Trực Tiếp của Đội Khách = 2 – 0 = 2</p>
+            </div>
+            <div class="img-small">
+                <img src="~/images/@Model/2.png?v=@version" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>Không Trực Tiếp</h5>
+            <ul class="circle">
+                <li>Dự đoán Thắng Thua bắt đầu từ Tỷ Số Chấp Trung Bình được làm tròn xuống.</li>
+                <li>
+                    Ví dụ: Sự kiện có giá trị Cược Chấp: 1.5 - 2
+                    <ul class="circle c-red txt-bold">
+                        <li>Tỷ Số Chấp Trung Bình = (1.5 +2)/2 = 1.75</li>
+                        <li>Tỷ Số Chấp Trung Bình được làm tròn xuống (Y) = 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/images/@Model/3.png?v=@version" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-Guideline">
+    <h4 class="title-Guideline">Dự Đoán Thắng Thua cho Tài Xỉu</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>Trực tiếp</h5>
+            <ul class="circle">
+                <li>Dự Đoán Thắng Thua bắt đầu từ Tổng Tỷ Số Hiện Tại.</li>
+                <li>Ví dụ: Tỷ số Trực Tiếp hiện tại đang là 0 - 4</li>
+            </ul>
+            <div class="c-red txt-bold">
+                <p>Tổng Tỷ Số Hiện Tại (X)</p>
+                <p>= Tỷ Số Trực Tiếp của Đội Nhà + Tỷ Số Trực Tiếp của Đội Khách = 0 + 4 = 4</p>
+            </div>
+            <div class="img-small">
+                <img src="~/images/@Model/4.png?v=@version" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>Không Trực Tiếp</h5>
+            <ul class="circle">
+                <li>Dự đoán Thắng Thua bắt đầu từ tỷ lệ Tổng Tỷ Số Trung Bình được làm tròn xuống.</li>
+                <li>
+                    Ví dụ: Sự kiện có giá trị Tài Xỉu: 2-2.5
+                    <ul class="circle c-red txt-bold">
+                        <li>Tổng Tỷ Số Trung Bình = (2 + 2.5)/2 = 2.25</li>
+                        <li>Tổng Tỷ Số Trung Bình được làm tròn xuống (Y) = 2</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/images/@Model/5.png?v=@version" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-Guideline">
+    <h4 class="title-Guideline">Dự Đoán Thắng Thua cho 1X2</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>Trực tiếp</h5>
+            <ul class="circle">
+                <li>Kết quả hiện tại sẽ được đánh dấu.</li>
+                <li>
+                    Ví dụ: Tỷ Số Trực Tiếp hiện Tại 2 - 0
+                    <ul class="arrow txt-bold">
+                        <li>Đội Nhà Thắng</li>
+                        <li>Tiêu đề 1 sẽ được đánh dấu</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/images/@Model/6.png?v=@version" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>Không Trực Tiếp</h5>
+            <ul class="circle">
+                <li>
+                    Nếu sự kiện cho phép Cược Chấp.
+                    <div class="img-small img-ex">
+                        <img src="~/images/@Model/7.png?v=@version" />
+                    </div>
+                </li>
+                <li>Nếu sự kiện không cho phép Cược Chấp, sẽ KHÔNG có tiêu đề nào được đánh dấu</li>
+                <li>
+                    Ví dụ: Sự kiện có giá trị Cượ̣c Chấp: 1.5 - 2
+                    <ul class="circle c-red txt-bold">
+                        <li>Tỷ Số Chấp Trung Bình = (1.5 + 2)/2 = 1.75</li>
+                        <li>Tỷ Số Chấp Trung Bình được làm tròn xuống (X) = 1 > 0</li>
+                    </ul>
+                    <ul class="arrow txt-bold">
+                        <li>Tiêu đề 1 sẽ được đánh dấu</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small img-ex">
+                <img src="~/images/@Model/8.png?v=@version" />
+            </div>
+        </div>
+    </div>
+</div>

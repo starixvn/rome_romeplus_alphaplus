@@ -156,6 +156,15 @@
   <data name="BetsAndForecast" xml:space="preserve">
     <value>Bets &amp; Forecast</value>
   </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>Bets &amp; Forecast Guidelines</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>Your browser is out of date and might not be working properly width our website. For a better support, we strongly recommend that you upgrade to a newer version.</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>Click here to update your browser</value>
+  </data>
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Click to view Score Map Info</value>
   </data>
@@ -200,6 +209,33 @@
   </data>
   <data name="ForecastWinLoss" xml:space="preserve">
     <value>Forecast Win/Loss</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>It starts with the new and intuitive menu</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>The meaningful LIVE Forecast Win Loss of Handicap</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>Old Forecast Win Loss always starts from Score 0.</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>New Forecast Win Loss starts from Current Score.</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>Each bet type has its own Forecast Win Loss display, please refer to this guideline for more details.</value>
+  </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>Take a quick tour of Bets &amp; Forecast</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>It’s the fastest and most centralized Total Bets and Forecast ever.</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>Let’s go</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>Not now</value>
   </data>
   <data name="FullTime" xml:space="preserve">
     <value>Full Time</value>
