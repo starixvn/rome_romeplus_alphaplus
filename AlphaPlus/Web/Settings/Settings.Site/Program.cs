@@ -2,20 +2,20 @@ using SiteServices = AlphaPlus.Settings.Site.SubAccount.Services;
 using InfraServices = AlphaPlus.Settings.SubAccount.Infrastruture;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using AlphaPlus.Settings.Site.SubAccount.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddMediatR(typeof(Program).Assembly);
-builder.Services.AddSingleton<SiteServices.ISubAccountService, SiteServices.SubAccountService>();
-builder.Services.AddSingleton<InfraServices.ISubAccountService, InfraServices.SubAccountService>();
 
 var configuration = builder.Configuration;
 builder.Services
     .AddFanexDataWithSqlServer(configuration)
     .AddFanexLogging(configuration)
     .AddRemotingRef(configuration)
-    .AddHealthChecks();
+    .AddHttpClient<ISubAccountService, SubAccountService>
+        (httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CustomerSettingApi")));
 
 builder.Services
     .AddHttpContextAccessor()
@@ -37,6 +37,9 @@ builder.Services
         options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
     });
 
+builder.Services
+    .AddHealthChecks();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -56,6 +59,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=SubAccount}/{action=Index}/{id?}");
+    pattern: "{controller=SubAccount}/{action=Index}/{id?}/{custId=1176070}");
 
 app.Run();

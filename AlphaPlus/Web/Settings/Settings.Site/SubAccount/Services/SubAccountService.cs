@@ -25,89 +25,64 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
 
     public class SubAccountService : ISubAccountService
     {
-        private readonly Settings.SubAccount.Infrastruture.ISubAccountService subAccountService;
+        private const string subAccountApiGroup = "api/sub-account";
 
-        public SubAccountService(Settings.SubAccount.Infrastruture.ISubAccountService subAccountService)
+        private readonly HttpClient httpClient;
+
+        public SubAccountService(HttpClient httpClient)
         {
-            this.subAccountService = subAccountService;
+            this.httpClient = httpClient;
         }
 
         public async Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest)
         {
-            return await subAccountService.AddSubAccount(new Settings.SubAccount.Domain.SubAccountModel
-            {
-                Username = addSubAccountRequest.Username,
-                Password = addSubAccountRequest.Password,
-                Firstname = addSubAccountRequest.Firstname,
-                Lastname = addSubAccountRequest.Lastname,
-                PageAccess = addSubAccountRequest.PageAccess
-            });
+            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/add", addSubAccountRequest);
         }
 
         public async Task<SubAccountViewModel> GetSubAccount(int custId, int subAccId)
         {
-            var result = await subAccountService.GetSubAccount(custId, subAccId);
-            return new SubAccountViewModel
+            var queryString = QueryString.Create(new[]
             {
-                Closed = result.Closed,
-                CreateDate = result.CreateDate,
-                Firstname = result.Firstname,
-                Lastname = result.Lastname,
-                Nickname = result.Nickname,
-                PageAccess = result.PageAccess,
-                Password = result.Password,
-                SubAccId = result.SubAccId,
-                Username = result.Username
-            };
+                KeyValuePair.Create("custId", custId.ToString()),
+                KeyValuePair.Create("subAccId", subAccId.ToString())
+            });
+
+            return await httpClient.GetFromJsonAsync<SubAccountViewModel>($"{subAccountApiGroup}/get{queryString}");
         }
 
         public async Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountListRequest subAccountRequest)
         {
-            var result = await subAccountService.GetSubAccounts(subAccountRequest.CustId);
-
-            return result.Select(item => new SubAccountViewModel
+            var queryString = QueryString.Create(new[]
             {
-                Closed = item.Closed,
-                CreateDate = item.CreateDate,
-                Firstname = item.Firstname,
-                Lastname = item.Lastname,
-                Nickname = item.Nickname,
-                PageAccess = item.PageAccess,
-                Password = item.Password,
-                SubAccId = item.SubAccId,
-                Username = item.Username
+                KeyValuePair.Create("custId", subAccountRequest.CustId.ToString())
             });
+
+            return await httpClient.GetFromJsonAsync<IEnumerable<SubAccountViewModel>>($"{subAccountApiGroup}/index{queryString}");
         }
 
         public async Task<Result> RemoveSubAccountOtp(RemoveSubAccountOtpRequest removeSubAccountOtpRequest)
         {
-            return await subAccountService.RemoveSubAccountOtp(removeSubAccountOtpRequest.SubAccId);
+            throw new NotImplementedException();
         }
 
         public async Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest)
         {
-            return await subAccountService.UpdateSubAccountInfo(new Settings.SubAccount.Domain.SubAccountModel
-            {
-                SubAccId = updateSubAccountInfoRequest.SubAccId,
-                Firstname = updateSubAccountInfoRequest.Firstname,
-                Closed = updateSubAccountInfoRequest.Closed,
-                Lastname = updateSubAccountInfoRequest.Lastname
-            });
+            throw new NotImplementedException();
         }
 
         public async Task<Result> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest updateSubAccountPageAccessRequest)
         {
-            return await subAccountService.UpdateSubAccountPageAccess(updateSubAccountPageAccessRequest.SubAccId, updateSubAccountPageAccessRequest.PageAccess);
+            throw new NotImplementedException();
         }
 
         public async Task<Result> UpdateSubAccountPassword(UpdateSubAccountPasswordRequest updateSubAccountPasswordRequest)
         {
-            return await subAccountService.UpdateSubAccountPassword(updateSubAccountPasswordRequest.SubAccId, updateSubAccountPasswordRequest.NewPassword);
+            throw new NotImplementedException();
         }
 
         public async Task<Result> UpdateSubAccountSecurityCode(UpdateSubAccountSecurityCodeRequest updateSubAccountSecurityCodeRequest)
         {
-            return await subAccountService.UpdateSubAccountSecurityCode(updateSubAccountSecurityCodeRequest.SubAccId, updateSubAccountSecurityCodeRequest.NewSecurityCode);
+            throw new NotImplementedException();
         }
     }
 }
