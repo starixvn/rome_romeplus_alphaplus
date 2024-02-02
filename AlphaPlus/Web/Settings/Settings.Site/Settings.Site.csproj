@@ -30,6 +30,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
-    <ProjectReference Include="..\..\..\Services\Settings\SubAccount\SubAccount.API\Infrastructure\Settings.SubAccount.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
