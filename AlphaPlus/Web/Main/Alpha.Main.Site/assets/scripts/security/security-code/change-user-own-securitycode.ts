@@ -15,25 +15,29 @@ var changeUserOwnSecurityCode = {
         });
 
         $('#passwordNav').click(function () {
-            changeUserOwnSecurityCode.gotoPasswordPage()
+            changeUserOwnSecurityCode.gotoPasswordPage();
         });
 
-        $('#txtOldSecCode').val("").focus();
+        $('#txtOldSecCode').val('').focus();
 
-        $("#txtSecCode").val("").keyup(function () {
-            securityHelper.validateSecurityCode(this);
-        });
+        $('#txtSecCode')
+            .val('')
+            .keyup(function () {
+                securityHelper.validateSecurityCode(this);
+            });
 
-        $("#txtConfirmSecCode").val("").keyup(function () {
-            securityHelper.validateSecurityCode(this);
-        });
+        $('#txtConfirmSecCode')
+            .val('')
+            .keyup(function () {
+                securityHelper.validateSecurityCode(this);
+            });
 
-        $("#showSCchk").click(function () {
-            var isChecked = $(this).is(":checked");
+        $('#showSCchk').click(function () {
+            var isChecked = $(this).is(':checked');
             isChecked ? securityHelper.showHintSC() : securityHelper.hideHintSC();
         });
 
-        $(".switch-on").click(changeUserOwnSecurityCode.handleSwitchButton);
+        $('.switch-on').click(changeUserOwnSecurityCode.handleSwitchButton);
     },
     change: function () {
         $.blockUI();
@@ -43,7 +47,11 @@ var changeUserOwnSecurityCode = {
         var $txtOldSecurityCode = $('#txtOldSecCode');
         var $txtSecurityCode = $('#txtSecCode');
         var $txtConfirmSecurityCode = $('#txtConfirmSecCode');
-        var message = changeUserOwnSecurityCode.checkInputParameters($txtOldSecurityCode, $txtSecurityCode, $txtConfirmSecurityCode);
+        var message = changeUserOwnSecurityCode.checkInputParameters(
+            $txtOldSecurityCode,
+            $txtSecurityCode,
+            $txtConfirmSecurityCode
+        );
         if (message.length !== 0) {
             securityHelper.showFailMessage($messageContainer, message);
             $.unblockUI();
@@ -61,23 +69,26 @@ var changeUserOwnSecurityCode = {
             data: { oldSecurityCode: oldSecCode, securityCode: secCode },
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                if (data.Code === 0) { // OK
-                    securityHelper.showSuccessfullyMessage($messageContainer, securityCodeResources.securityCodeChangeSucessfully);
+                if (data.code === 0) {
+                    // OK
+                    securityHelper.showSuccessfullyMessage(
+                        $messageContainer,
+                        securityCodeResources.securityCodeChangeSucessfully
+                    );
                     setTimeout(changeUserOwnSecurityCode.refreshPage, 5000);
-                }
-                else if (data.Code === 2) { // account is closed
-                    alert(data.Message);
+                } else if (data.code === 2) {
+                    // account is closed
+                    alert(data.message);
                     securityHelper.signOut();
-                }
-                else {
-                    securityHelper.showFailMessage($messageContainer, data.Message);
+                } else {
+                    securityHelper.showFailMessage($messageContainer, data.message);
                     $txtOldSecurityCode.focus();
                 }
             },
             complete: function (jqXHR, textStatus) {
                 $.unblockUI();
             }
-        })
+        });
     },
     checkInputParameters: function ($txtOldSecurityCode, $txtSecurityCode, $txtConfirmSecurityCode) {
         var oldSecCode = $txtOldSecurityCode.val();
@@ -86,20 +97,16 @@ var changeUserOwnSecurityCode = {
         if (oldSecCode.length === 0) {
             $txtOldSecurityCode.focus();
             return securityCodeResources.oldSecurityCodeEmpty;
-        }
-        else if (secCode.length === 0) {
+        } else if (secCode.length === 0) {
             $txtSecurityCode.focus();
             return securityCodeResources.securityCodeEmpty;
-        }
-        else if (!securityHelper.isValidSecurityCode(secCode)) {
+        } else if (!securityHelper.isValidSecurityCode(secCode)) {
             $txtSecurityCode.focus();
             return securityCodeResources.securityCodeWrongRule;
-        }
-        else if (secCode != confirmSecCode) {
+        } else if (secCode != confirmSecCode) {
             $txtConfirmSecurityCode.focus();
             return securityCodeResources.errorSecurityCodeConfirm;
-        }
-        else if (oldSecCode === secCode) {
+        } else if (oldSecCode === secCode) {
             $txtSecurityCode.focus();
             return securityCodeResources.sameSecurityCode;
         }
@@ -108,41 +115,37 @@ var changeUserOwnSecurityCode = {
     },
     resetOriginalInputStatus: function () {
         securityHelper.hideHintSC();
-        securityHelper.removeValidationIcon($("#txtSecCode"));
-        securityHelper.removeValidationIcon($("#txtConfirmSecCode"));
+        securityHelper.removeValidationIcon($('#txtSecCode'));
+        securityHelper.removeValidationIcon($('#txtConfirmSecCode'));
     },
     gotoPasswordPage: function () {
-        window.location.href = $("#mainRootPath").val() + 'Password/ChangePassword';
+        window.location.href = $('#mainRootPath').val() + 'Password/ChangePassword';
     },
     refreshPage: function () {
-        window.location.href = $("#mainRootPath").val() + 'SecurityCode/ChangeUserOwnSecurityCode';
+        window.location.href = $('#mainRootPath').val() + 'SecurityCode/ChangeUserOwnSecurityCode';
     },
     handleSwitchButton: function () {
         $.blockUI();
         const $element = $(this);
-        const isOff = $element.hasClass("switch-off");
-        const functionName = $element.data("function");
-        $.post("UpdateSecurityCodeFunction", { function: functionName, isOn: isOff }, function (data) {
-            if (data.IsOk) {
+        const isOff = $element.hasClass('switch-off');
+        const functionName = $element.data('function');
+        $.post('UpdateSecurityCodeFunction', { function: functionName, isOn: isOff }, function (data) {
+            if (data.isOk) {
                 setTimeout(() => {
                     if (isOff) {
-                        $element
-                            .removeClass("switch-off")
-                            .text(securityCodeResources.switchLableOn);
+                        $element.removeClass('switch-off').text(securityCodeResources.switchLableOn);
                     } else {
-                        $element
-                            .addClass("switch-off")
-                            .text(securityCodeResources.switchLableOff);
+                        $element.addClass('switch-off').text(securityCodeResources.switchLableOff);
                     }
                 }, 3000);
             } else {
-                $("#status-message").removeClass("display-none");
-                securityHelper.showFailMessage($("#status-message-content"), data.Message);
+                $('#status-message').removeClass('display-none');
+                securityHelper.showFailMessage($('#status-message-content'), data.message);
                 $(window).scrollTop(0);
             }
         }).always($.unblockUI);
     }
-}
+};
 
 $(function () {
     changeUserOwnSecurityCode.initialize();

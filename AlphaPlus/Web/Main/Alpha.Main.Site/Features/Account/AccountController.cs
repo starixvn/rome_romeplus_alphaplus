@@ -13,10 +13,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace Alpha.Main.Site.Controllers;
+namespace Alpha.Main.Site.Features.Account;
 
 [AllowAnonymous]
 public class AccountController(
+    IUserSession userSession,
     IConfiguration configuration,
     IDeviceHelper deviceHelper,
     ISignInService signInService,
@@ -24,6 +25,7 @@ public class AccountController(
     IOptions<AlphaPlus.Core.Configurations.AuthorizationOptions> options)
     : Controller
 {
+    private readonly IUserSession userSession = userSession;
     private readonly IConfiguration configuration = configuration;
     private readonly ISignInService signInService = signInService;
     private readonly IAesService aesService = aesService;
@@ -90,7 +92,7 @@ public class AccountController(
             Nickname = param.Nickname,
             IsNickname = param.IsNickname,
             LoginTime = new DateTime(param.LoginTime),
-            Language = UserSession.Current.LangKey,
+            Language = userSession.LangKey,
             RequestInfo = requestInfo
         });
 
@@ -113,33 +115,4 @@ public class AccountController(
     }
 }
 
-public class SSOParam
-{
-    public int CustId { get; set; }
 
-    public int SubAccId { get; set; }
-
-    public long LoginTime { get; set; }
-
-    public string EncryptPassword { get; set; }
-
-    public string Nickname { get; set; }
-
-    public bool IsNickname { get; set; }
-
-    public string Language { get; set; }
-
-    public bool NumberCrossCookie { get; set; }
-
-    public string DeviceId { get; set; }
-
-    public string BrowserSize { get; set; }
-
-    public string EncryptCode { get; set; }
-
-    public string DarkModeName { get; set; }
-
-    public string AssetAppPath { get; set; }
-
-    public string UMToken { get; set; }
-}

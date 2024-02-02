@@ -8,7 +8,7 @@ var verifySecurityCode = {
     initialize: function () {
         verifySecurityCode.topWindow = window.top;
         const actorProfilePicture = JSON.parse(localStorage.getItem('actorProfilePicture'));
-        $('.profile-avatar').attr("src", actorProfilePicture.Image);
+        $('.profile-avatar').attr('src', actorProfilePicture.Image);
 
         const $txtSecCode = $('#txtSecCode');
         $txtSecCode.keypress(function (e) {
@@ -23,22 +23,22 @@ var verifySecurityCode = {
             e.preventDefault();
         });
 
-        $txtSecCode.val("");
+        $txtSecCode.val('');
 
         $txtSecCode.keyup(function () {
             securityHelper.validateSecurityCode(this);
         });
 
-        $("#showSCchk").click(function () {
-            var isChecked = $(this).is(":checked");
+        $('#showSCchk').click(function () {
+            var isChecked = $(this).is(':checked');
             isChecked ? securityHelper.showHintSC() : securityHelper.hideHintSC();
         });
 
         if (top.hasPopupOpen()) {
-            top.setSecurityCodePopupTitle($("#title_header").text());
-            $("#container").addClass("has-popup");
-            $("#verify-security-code-container").addClass("has-popup");
-            $("#title_header").remove();
+            top.setSecurityCodePopupTitle($('#title_header').text());
+            $('#container').addClass('has-popup');
+            $('#verify-security-code-container').addClass('has-popup');
+            $('#title_header').remove();
         }
     },
     verify: function () {
@@ -62,10 +62,11 @@ var verifySecurityCode = {
             data: { securityCode: secCode },
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                var code = data.Code;
-                if (code === 0) { // OK
-                    $txtSecurityCode.attr("disabled", "disabled");
-                    $("#btn-submit").remove();
+                var code = data.code;
+                if (code === 0) {
+                    // OK
+                    $txtSecurityCode.attr('disabled', 'disabled');
+                    $('#btn-submit').remove();
                     if (top.hasPopupOpen()) {
                         top.revertSecurityCodePopupTitle();
                     }
@@ -73,20 +74,19 @@ var verifySecurityCode = {
                     setTimeout(() => {
                         securityHelper.afterVerifed();
                     }, 3000);
-                }
-                else if (code === 2) { // account is closed 
-                    alert(data.Message);
+                } else if (code === 2) {
+                    // account is closed
+                    alert(data.message);
                     securityHelper.signOut();
-                }
-                else {
-                    securityHelper.showFailMessage($messageContainer, data.Message);
+                } else {
+                    securityHelper.showFailMessage($messageContainer, data.message);
                     $txtSecurityCode.focus();
                 }
             },
             complete: function (jqXHR, textStatus) {
                 $.unblockUI();
             }
-        })
+        });
     },
     checkInputParameters: function ($txtSecurityCode) {
         var message = '';
@@ -97,7 +97,7 @@ var verifySecurityCode = {
         }
         return message;
     }
-}
+};
 
 $(function () {
     verifySecurityCode.initialize();
