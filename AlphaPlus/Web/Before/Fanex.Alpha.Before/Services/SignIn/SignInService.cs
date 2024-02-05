@@ -14,8 +14,8 @@ using Fanex.Alpha.Before.Resources;
 using Fanex.Alpha.Before.Services.FPS;
 using Fanex.Cryptography.Aes;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using TelegramBot.Client.Services;
+using System.Text.Json;
 
 namespace Fanex.Alpha.Before.Services.SignIn
 {
@@ -355,7 +355,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
                     var requestInfo = await deviceHelper.GetRequestInfo();
                     verifySignInResult = signInRepository.VerifyDownlineLogin(username, password, requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
-                    encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"Call DB result: {JsonConvert.SerializeObject(verifySignInResult)}");
+                    encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"Call DB result: {JsonSerializer.Serialize(verifySignInResult)}");
 
                     if (verifySignInResult.ErrorCode == 0)
                     {
@@ -394,7 +394,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 signInResult.ErrMsg = string.Format(Labels.LoginTooOftenBlockedMessage, username);
             }
 
-            encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"After checking login too often: {JsonConvert.SerializeObject(signInResult)}");
+            encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"After checking login too often: {JsonSerializer.Serialize(signInResult)}");
         }
     }
 }
