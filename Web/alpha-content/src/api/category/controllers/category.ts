@@ -10,22 +10,7 @@ function isValid(model, market, level) {
     && model.markets?.some(m => m.name.toUpperCase() == market.toUpperCase());
 }
 
-function filterRootCategories(categories, market, level) {
-  categories.forEach(element => {
-    if(element.categories) {
-      element.categories = filterSubCategories(element.categories, market, level);
-    }
-
-    if(element.articles) { 
-      element.articles = element.articles.filter(a  => isValid(a, market,level));
-    }
-  });
-
-  return categories.filter(c => !c.categoriesParent?.length  && (c.categories?.length || c.articles?.length));
-}
-
-
-function filterSubCategories(categories, market, level) {
+function filterCategoriesHasData(categories, market, level) {
   categories.forEach(element => {
     if(element.articles) { 
       element.articles = element.articles.filter(a  => isValid(a, market,level));
@@ -54,25 +39,6 @@ export default factories.createCoreController('api::category.category', ({ strap
               },
               markets: {
                 fields: ['name']
-              }
-            }
-          },
-          categoriesParent:{
-            fields: ['name']
-          },
-          categories: {
-            fields: ['name', 'slug', 'shortName'],
-            populate: {
-              articles: {
-                fields: ['slug', 'title', 'publishedAt'],
-                populate: {
-                  user_levels:{
-                    fields: ['levelId']
-                  },
-                  markets: {
-                    fields: ['name']
-                  }
-                }
               }
             }
           },
@@ -120,25 +86,6 @@ export default factories.createCoreController('api::category.category', ({ strap
                 }
               }
             },
-            categoriesParent:{
-              fields: ['name']
-            },
-            categories: {
-              fields: ['name', 'slug', 'shortName'],
-              populate: {
-                articles: {
-                  fields: ['slug', 'title', 'publishedAt'],
-                  populate: {
-                    user_levels:{
-                      fields: ['levelId']
-                    },
-                    markets: {
-                      fields: ['name']
-                    }
-                  }
-                }
-              }
-            },
             markets: {
               fields: ['name', 'slug'],
             },
@@ -149,9 +96,8 @@ export default factories.createCoreController('api::category.category', ({ strap
         });  
   
         const output = await this.sanitizeOutput(entities, ctx);
-        return filterRootCategories(output, market, level);
+        return filterCategoriesHasData(output, market, level);
       }
-
       
       const entities = await strapi.entityService.findMany('api::category.category', {
         filters: {
@@ -188,25 +134,6 @@ export default factories.createCoreController('api::category.category', ({ strap
                     }
                   }
                 },
-                categoriesParent:{
-                  fields: ['name']
-                },
-                categories: {
-                  fields: ['name', 'slug', 'shortName'],
-                  populate: {
-                    articles: {
-                      fields: ['slug', 'title', 'publishedAt'],
-                      populate: {
-                        user_levels:{
-                          fields: ['levelId']
-                        },
-                        markets: {
-                          fields: ['name']
-                        }
-                      }
-                    }
-                  }
-                },
                 markets: {
                   fields: ['name', 'slug'],
                 },
@@ -215,12 +142,13 @@ export default factories.createCoreController('api::category.category', ({ strap
                 }
               }
             });  
+
           result.push(await this.sanitizeOutput(categoryByLocale, ctx));
           existingCategories[localization.id] = true;
         }
       }
 
-      return filterRootCategories(result, market, level);
+      return filterCategoriesHasData(result, market, level);
     } catch(e) {
       console.log(e);
     }
@@ -255,25 +183,6 @@ export default factories.createCoreController('api::category.category', ({ strap
               }
             }
           },
-          categoriesParent:{
-            fields: ['name']
-          },
-          categories: {
-            fields: ['name', 'slug', 'shortName'],
-            populate: {
-              articles: {
-                fields: ['slug', 'title', 'publishedAt'],
-                populate: {
-                  user_levels:{
-                    fields: ['levelId']
-                  },
-                  markets: {
-                    fields: ['name']
-                  }
-                }
-              }
-            }
-          },
           markets: {
             fields: ['name', 'slug'],
           },
@@ -289,8 +198,7 @@ export default factories.createCoreController('api::category.category', ({ strap
         return null;
       }
       
-      const c0 = output[0];
-      const result= c0.categoriesParent?.length ? filterSubCategories(output, market, level) : filterRootCategories(output, market, level);
+      const result = filterCategoriesHasData(output, market, level);
       return result[0];
     }
 
@@ -330,25 +238,6 @@ export default factories.createCoreController('api::category.category', ({ strap
                   }
                 }
               },
-              categoriesParent:{
-                fields: ['name']
-              },
-              categories: {
-                fields: ['name', 'slug', 'shortName'],
-                populate: {
-                  articles: {
-                    fields: ['slug', 'title', 'publishedAt'],
-                    populate: {
-                      user_levels:{
-                        fields: ['levelId']
-                      },
-                      markets: {
-                        fields: ['name']
-                      }
-                    }
-                  }
-                }
-              },
               markets: {
                 fields: ['name', 'slug'],
               },
@@ -357,6 +246,7 @@ export default factories.createCoreController('api::category.category', ({ strap
               }
             }
           });  
+
         result.push(await this.sanitizeOutput(categoryByLocale, ctx));
         existingCategories[localization.id] = true;
       }
@@ -367,8 +257,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       return null;
     }
 
-    const c0 = result[0];
-    const r= c0.categoriesParent?.length ? filterSubCategories(result, market, level) : filterRootCategories(result, market, level);
+    filterCategoriesHasData(result, market, level);
     return result[0];
   },
 }));
