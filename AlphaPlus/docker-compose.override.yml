@@ -1,6 +1,13 @@
 version: '3.4'
 
 services:
+    settings-site:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://0.0.0.0:5000
+        ports:
+            - '5204:5000'
+
     tickets-api:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
