@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 namespace AlphaPlus.Core.Filters;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-public sealed class AfterLoginFlowFilterAttribute(INicknameChecker nicknameChecker) : ActionFilterAttribute
+public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INicknameChecker nicknameChecker) : ActionFilterAttribute
 {
+    private readonly IUserSession userSession = userSession;
     private readonly INicknameChecker nicknameChecker = nicknameChecker;
 
     public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -25,10 +26,10 @@ public sealed class AfterLoginFlowFilterAttribute(INicknameChecker nicknameCheck
         }
     }
 
-    private static bool IsValidSession(ActionExecutingContext filterContext)
+    private bool IsValidSession(ActionExecutingContext filterContext)
             => filterContext.HttpContext?.Session != null
-            && UserSession.Current.UserId > 0
-            && !UserSession.Current.IsInternal;
+            && userSession.UserId > 0
+            && !userSession.IsInternal;
 
     private string GetAfterLoginFlowUrl(ActionExecutingContext filterContext)
     {
@@ -43,9 +44,9 @@ public sealed class AfterLoginFlowFilterAttribute(INicknameChecker nicknameCheck
                 return ForceChangePasswordUrl(currentUrl);
             }
 
-            if (UserSession.Current.IsForcedSecurityCode)
+            if (userSession.IsForcedSecurityCode)
             {
-                return ForceChangeSecurityCodeUrl(currentUrl, UserSession.Current.SecurityCode);
+                return ForceChangeSecurityCodeUrl(currentUrl, userSession.SecurityCode);
             }
 
             if (IsForceLoginByNickname)
@@ -61,8 +62,8 @@ public sealed class AfterLoginFlowFilterAttribute(INicknameChecker nicknameCheck
             => currentUrl.Equals("Language/Change", StringComparison.OrdinalIgnoreCase)
             || currentUrl.Equals("Default/Kickout", StringComparison.OrdinalIgnoreCase);
 
-    private static bool IsForceChangePassword
-        => !UserSession.Current.IsLogged || UserSession.Current.IsPasswordExpired;
+    private bool IsForceChangePassword
+        => !userSession.IsLogged || userSession.IsPasswordExpired;
 
     private static string ForceChangePasswordUrl(string currentUrl)
         => currentUrl.Equals("Password/ForceChangePassword", StringComparison.OrdinalIgnoreCase) ||

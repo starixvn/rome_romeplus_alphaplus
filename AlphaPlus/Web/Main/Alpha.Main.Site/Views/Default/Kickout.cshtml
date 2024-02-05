@@ -10,7 +10,6 @@
 
 <body>
     @Html.Hidden("message", Model)
-    @* @Html.Hidden("oldMainRootPath", MicroSites.OldMainUrl("~/")) *@
     @Html.Hidden("mainRootPath", MicroSites.MainUrl("~/"))
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.RenderScripts("~/assets/bundles/kick-out")

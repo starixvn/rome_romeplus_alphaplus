@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Text;
 using System.Text.Json;
 using Alpha.Main.Extensions;
@@ -82,20 +83,6 @@ public class AccountService(HttpClient client, IUserSession session) : IAccountS
             return false;
         }
 
-        // TODO: DuplicationLogin
-        // if (!isDisabledDuplicationLogin)
-        // {
-        //     int serverId = (int)outputs["serverid"];
-        //     this.dao.Acc_Checkin(custId, subAccId, userSession.NetSessionId, serverId, requestInfo["loginip"].ToString(), out int onUserId);
-        //     outputs.Add("on_userid", onUserId);
-        // }
-
-        // this.GetCustomerStatus(custId, adminId, ref outputs, systemLogin);
-
-        // var siteDBConfig = await GetSiteDBConfig(command.CustId);
-        // outputs.Add("AGIP", siteDBConfig.AGIP);
-        // outputs.Add("SiteDBGroupId", siteDBConfig.SiteDBGroupId);
-        // UserSession.Current.SetUserSessionValues(outputs, userSessionService.SetUserStatusToSession);
 
         SetUserSessionValues(result);
 
@@ -170,6 +157,8 @@ public class AccountService(HttpClient client, IUserSession session) : IAccountS
         // SetProductStatusToDictionary(session, values);
 
         // setUserStatusAction(session, values);
+
+        ProductTransform.TransformProductStatus(session, []);
 
         try
         {

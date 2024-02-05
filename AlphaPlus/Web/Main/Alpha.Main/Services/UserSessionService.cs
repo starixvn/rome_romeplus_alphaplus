@@ -20,7 +20,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 
     public void SetUserStatusToSession(IUserSession session, Hashtable userData)
     {
-        // ProductManager.SetProductsStatusToSession(userData);
+        //ProductManager.SetProductsStatusToSession(userData);
 
         var custId = session.CustId;
         var subAccId = session.SubAccId;
