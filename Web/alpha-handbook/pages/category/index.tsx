@@ -40,7 +40,7 @@ export default function Categories({ categories }: { categories: Category[] }) {
                 </Link> */}
                 </div>
                 <div>
-                  {category.attributes.categories.data.map((childCategory) => {
+                  {category.attributes.categories && category.attributes.categories.data.map((childCategory) => {
                     return (
                       <>
                         <Tag text={childCategory.attributes.shortName} key={childCategory.attributes.slug} url={`/category/${childCategory.attributes.slug}`}  />

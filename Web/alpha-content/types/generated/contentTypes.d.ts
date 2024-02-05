@@ -1129,6 +1129,12 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'oneToMany',
       'api::article.article'
     >;
+    order: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
