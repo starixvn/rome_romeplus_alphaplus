@@ -1,5 +1,4 @@
 using Alpha.Main.Criteria;
-using Alpha.Main.Models;
 using AlphaPlus.Core.Models;
 using Fanex.Data.Repository;
 

@@ -1,5 +1,4 @@
 ﻿using AlphaPlus.Core.Models;
-using AlphaPlus.Web.Models;
 
 namespace Alpha.Main.Models.Otp
 {

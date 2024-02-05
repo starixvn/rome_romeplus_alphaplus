@@ -1,4 +1,4 @@
-﻿@using Alpha.Main.Site.ViewModels.ApiKey
+﻿@using Alpha.Main.Site.Features.ApiKey
 @model EditApiKeyViewModel
 @{
     Layout = "~/Views/ApiKey/Shared/_Layout.cshtml";
@@ -42,7 +42,7 @@
             @foreach (var scope in Model.Scopes)
             {
                 var isChecked = Model.ApiKeyInfo.ScopeIdList.Contains(scope);
-                    <div><label class="scope-input"><input type="checkbox" value="@scope" name="scope" @(isChecked ? "checked" :
+                <div><label class="scope-input"><input type="checkbox" value="@scope" name="scope" @(isChecked ? "checked" :
                         "") />@ResourceHelper.GetApiKeyResource($"Scope_{scope}", Model.Language)</label></div>
             }
         </div>

@@ -18,7 +18,6 @@
 
         public const string Default = English;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Reviewed!")]
         public static readonly Dictionary<string, string> CodeKeys = new Dictionary<string, string>
         {
             [English] = "E",
@@ -30,7 +29,6 @@
             [Vietnamese] = "VI"
         };
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Reviewed!")]
         public static readonly Dictionary<string, string> CodeNames = new Dictionary<string, string>
         {
             [English] = "English",
@@ -55,39 +53,27 @@
             .Where(langauge => langauge.Key != Vietnamese)
             .ToDictionary(language => language.Key, language => language.Value);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Reviewed!")]
         public static readonly Dictionary<string, string> CodeNamesWithoutVietNamese = CodeNames
             .Where(langauge => langauge.Key != Vietnamese)
             .ToDictionary(language => language.Key, language => language.Value);
 
         public static string MapNewChineseLanguageCode(string languageCode)
         {
-            switch (languageCode)
+            return languageCode switch
             {
-                case ChineseTraditional:
-                    return NewChineseTraditional;
-
-                case ChineseSimplified:
-                    return NewChineseSimplified;
-
-                default:
-                    return languageCode;
-            }
+                ChineseTraditional => NewChineseTraditional,
+                ChineseSimplified => NewChineseSimplified,
+                _ => languageCode,
+            };
         }
 
         public static string MapToMainLanguageCode(string languageCode)
         {
-            switch (languageCode)
+            return languageCode switch
             {
-                case ChineseTraditional:
-                case ChineseSimplified:
-                case Thai:
-                case Vietnamese:
-                    return languageCode;
-
-                default:
-                    return English;
-            }
+                ChineseTraditional or ChineseSimplified or Thai or Vietnamese => languageCode,
+                _ => English,
+            };
         }
     }
 }

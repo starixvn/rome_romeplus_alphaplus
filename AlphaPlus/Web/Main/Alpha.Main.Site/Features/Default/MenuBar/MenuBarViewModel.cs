@@ -1,0 +1,36 @@
+﻿using Alpha.Main.Models.Menus;
+
+namespace Alpha.Main.Site.Features.Default.MenuBar
+{
+    public class MenuBarViewModel
+    {
+        private readonly Func<bool> accountInfoVisibleFunc;
+
+        public MenuBarViewModel(
+            IEnumerable<IMenuItem> menuItems,
+            bool isSmallDevice = false,
+            Func<bool> accountInfoVisibleFunc = null,
+            bool isDarkMode = false,
+            bool isHideBanner = false)
+        {
+            MenuItems = menuItems.Where(menuItem => menuItem.Status.Visible);
+            IsSmallDevice = isSmallDevice;
+            this.accountInfoVisibleFunc = accountInfoVisibleFunc ?? FunctionRegistry.ShowAccountInfo;
+            IsDarkMode = isDarkMode;
+            IsHideBanner = isHideBanner;
+        }
+
+        public bool IsAccountInfoVisible
+        {
+            get { return accountInfoVisibleFunc?.Invoke() ?? false; }
+        }
+
+        public IEnumerable<IMenuItem> MenuItems { get; }
+
+        public bool IsSmallDevice { get; }
+
+        public bool IsDarkMode { get; }
+
+        public bool IsHideBanner { get; }
+    }
+}

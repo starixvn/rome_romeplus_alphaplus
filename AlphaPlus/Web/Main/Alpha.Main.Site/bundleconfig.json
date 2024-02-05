@@ -11,8 +11,7 @@
       "assets/scripts/home/header-msg.js",
       "assets/scripts/home/menu-bar.js",
       "assets/scripts/customer-profiles/brief-profile.js",
-      "assets/scripts/dashboard/popup-announcement.js",
-      "assets/scripts/advertisement/popup-advertisement.js"
+      "assets/scripts/dashboard/popup-announcement.js"
     ]
   },
   {
@@ -39,8 +38,7 @@
       "assets/styles/Home/popup-announcement.css",
       "assets/styles/Home/tooltip.css",
       "assets/styles/Home/popup-message.css",
-      "assets/styles/Home/old-main.css",
-      "assets/styles/advertisement/popup-advertisement.css"
+      "assets/styles/Home/old-main.css"
     ]
   },
   {
@@ -341,8 +339,7 @@
       "assets/styles/Home/popup-announcement-dark.css",
       "assets/styles/Home/tooltip.css",
       "assets/styles/Home/popup-message.css",
-      "assets/styles/Home/old-main.css",
-      "assets/styles/advertisement/popup-advertisement-dark.css"
+      "assets/styles/Home/old-main.css"
     ]
   },
   {

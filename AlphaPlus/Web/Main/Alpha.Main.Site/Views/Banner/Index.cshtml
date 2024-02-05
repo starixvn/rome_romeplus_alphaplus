@@ -1,5 +1,7 @@
-﻿@model Alpha.Main.Site.ViewModels.Banner.BannerViewModel
-@{ var maxBanners = Model == null ? 0 : Model.Banners.Length; }
+﻿@model Alpha.Main.Site.Features.Banner.BannerViewModel
+@{
+    var maxBanners = Model == null ? 0 : Model.Banners.Length;
+}
 @if (maxBanners > 0)
 {
     <!-- Wrapper for slides -->
@@ -14,7 +16,7 @@
                 }
                 else
                 {
-                    <img data-href="@banner.RedirectUrl" src="@Url.Content(banner.ImageSource)" />                
+                    <img data-href="@banner.RedirectUrl" src="@Url.Content(banner.ImageSource)" />
                 }
             </div>
         }

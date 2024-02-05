@@ -3,7 +3,6 @@ using Alpha.Main.AppResources;
 using Alpha.Main.Criteria.Password;
 using Fanex.Cryptography.Aes;
 using Fanex.Data.Repository;
-using Alpha.Main.Models;
 using Alpha.Main.Params;
 using Alpha.Main.Params.Password;
 using AlphaPlus.Core.Utils;

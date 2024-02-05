@@ -1,4 +1,4 @@
-﻿@model Alpha.Main.Site.ViewModels.TelegramChatBot.ChatBotSettingViewModel
+﻿@model Alpha.Main.Site.Features.TelegramChatBot.ChatBotSettingViewModel
 
 @if (Model.ReportFunctions.Any())
 {
@@ -22,12 +22,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var function in Model.ReportFunctions)
+                        @foreach (var function in Model.ReportFunctions)
                         {
                             <tr>
                                 <td class="text-center bold">@function.FunctionName</td>
                                 <td>@Html.Raw(function.Description)</td>
-                                <td><a role="button" class="btn-chatbot btn-how-it-works" href="@Model.HowToUseLink" target="_blank">@ChatBot.SeeHowItWorks</a></td>
+                                <td><a role="button" class="btn-chatbot btn-how-it-works" href="@Model.HowToUseLink"
+                                        target="_blank">@ChatBot.SeeHowItWorks</a></td>
                             </tr>
                         }
                     </tbody>

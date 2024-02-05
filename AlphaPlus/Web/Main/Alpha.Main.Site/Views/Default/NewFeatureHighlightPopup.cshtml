@@ -1,4 +1,5 @@
-﻿@model IndexViewModel
+﻿@using Alpha.Main.Site.Features.Default
+@model IndexViewModel
 @if (Model.HightLightFeaturePermission)
 {
     <div class="popup-highlight hide" id="boxHighlightPopupNewFeature">
@@ -6,7 +7,8 @@
             <span aria-hidden="true"></span>
         </button>
         <div class="text">
-            <img src="~/Assets/Images/new_feature@(Model.DarkModeName).svg?v=@AppSettings.JsVersion" alt="@Resources.HighlightPopupNewFeatureTitle">
+            <img src="~/Assets/Images/new_feature@(Model.DarkModeName).svg?v=@AppSettings.JsVersion"
+                alt="@Resources.HighlightPopupNewFeatureTitle">
             <div>
                 <p>
                     <span>@Html.Raw(Resources.HighlightPopupNewFeatureTitle)</span>
@@ -19,7 +21,8 @@
                 <input id="chkHideHighlightPopupNewFeature" type="checkbox" />
                 <span>@Resources.doNotShowAgain</span>
             </label>
-            <a class="btn-submit" id="linkHighlightPopupCheckOut" href="@Model.HightLightFeatureUrl" target="main">@Resources.GetStarted</a>
+            <a class="btn-submit" id="linkHighlightPopupCheckOut" href="@Model.HightLightFeatureUrl"
+                target="main">@Resources.GetStarted</a>
         </div>
     </div>
 }

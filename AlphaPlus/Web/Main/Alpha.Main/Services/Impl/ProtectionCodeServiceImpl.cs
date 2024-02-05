@@ -1,6 +1,5 @@
 ﻿using Alpha.Main.AppResources;
 using Alpha.Main.Criteria.ProtectionCode;
-using Alpha.Main.Models;
 using Alpha.Main.Params.ProtectionCode;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;

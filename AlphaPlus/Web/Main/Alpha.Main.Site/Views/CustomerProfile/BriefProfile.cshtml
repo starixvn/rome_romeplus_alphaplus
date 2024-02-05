@@ -1,9 +1,7 @@
-﻿@using Alpha.Main.Site.ViewModels.CustomerProfile
+﻿@using Alpha.Main.Site.Features.CustomerProfile
 @model BriefProfileViewModel
 @{
     Layout = null;
-    var changeNickNameUrl = string.Empty;
-    @* var changeNickNameUrl = $"{Model.OldMainRootApp}LoginOption?custId={Model.CustId}"; *@ @*TODO*@
     var viewProfileUrl = $"{Model.AccountInfoRootPath}ProfilePicture";
     var mainFrameName = "main";
 }
@@ -33,30 +31,11 @@
             <span class="icon-account-circle">&nbsp;</span>
         }
         <br />
-        @if (Model.IsHideNicknameLink)
-        {
-            <div id="adminAndSubAcc" class="adminAndSubAcc"
-                title="@(Model.SubAccountTooltip.Length == 0 ? Model.NickName : Model.SubAccountTooltip)"
-                data-placement="right" data-toggle="tooltip">@Model.NickName</div>
-        }
-        else
-        {
-            <div class="nickname-box" title="@Model.SubAccountTooltip" data-placement="right" data-toggle="tooltip">
-                @if (!string.IsNullOrEmpty(Model.NickName))
-                {
-                    <a href="@changeNickNameUrl" class="linkNickName" id="linkNickNameID" target="@mainFrameName">
-                        <span id="labelNickname">@Model.NickName</span>
-                    </a>
-                }
-                else
-                {
-                    <span id="spanNickNameID">@Resources.nickname: </span>
-                    <a href="@changeNickNameUrl" class="linkConfigNow" id="linkNickNameID" target="@mainFrameName">
-                        <span id="labelNickname">@Resources.configNow</span>
-                    </a>
-                }
-            </div>
-        }
+
+        <div id="adminAndSubAcc" class="adminAndSubAcc"
+            title="@(Model.SubAccountTooltip.Length == 0 ? Model.NickName : Model.SubAccountTooltip)"
+            data-placement="right" data-toggle="tooltip">@Model.NickName</div>
+
         @if (Model.IsProtectedMode)
         {
             <span class="otp">OTP: @(Model.IsEnableOtp ? Resources.Enabled : Resources.Disabled)</span>

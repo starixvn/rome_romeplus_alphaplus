@@ -1,14 +1,16 @@
 ﻿@{
     Layout = null;
 }
-@model Alpha.Main.Site.ViewModels.NetworkSpeed.NetworkSpeedViewModel
+@model Alpha.Main.Site.Features.NetworkSpeed.NetworkSpeedViewModel
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Network Speed Calculator</title>
 </head>
+
 <body>
     @if (Model.RequiredCalculation)
     {
@@ -83,4 +85,5 @@
         </script>
     }
 </body>
+
 </html>

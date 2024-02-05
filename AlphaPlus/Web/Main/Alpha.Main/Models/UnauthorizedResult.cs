@@ -10,7 +10,7 @@ namespace Alpha.Main.Models
         public bool IsNotAuthorized => Code == UnauthorizedCode;
 
         public static UnauthorizedResult CreateUnauthorizedResult()
-            => new UnauthorizedResult
+            => new()
             {
                 Code = UnauthorizedCode,
                 Message = Security.NotAuthorized

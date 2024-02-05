@@ -20,6 +20,7 @@ using Fanex.Caching;
 using System.Net;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.SecurityCode.Configurations;
+using Alpha.Main.Site.Features.Account;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -82,7 +83,7 @@ public static class Extensions
         services.AddSingleton<UpdateUsageLanguageService, UpdateUsageLanguageServiceImpl>();
 
         services.AddHttpClient<ApiKeyService, ApiKeyServiceImpl>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
-        services.AddHttpClient<ISignInService, SignInService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))
+        services.AddHttpClient<IAccountService, AccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))
             .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
             {
                 AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip

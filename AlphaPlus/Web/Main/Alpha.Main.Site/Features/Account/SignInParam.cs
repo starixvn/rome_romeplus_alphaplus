@@ -1,0 +1,24 @@
+using AlphaPlus.RequestInfo.Models;
+
+namespace Alpha.Main.Site.Features.Account;
+
+public class SignInParam
+{
+    public int CustId { get; init; }
+
+    public string Password { get; init; }
+
+    public int SubAccId { get; init; }
+
+    public bool IsSubAcc => SubAccId > 0;
+
+    public string Nickname { get; init; }
+
+    public bool IsNickname { get; init; }
+
+    public DateTime LoginTime { get; init; }
+
+    public string Language { get; init; }
+
+    public RequestInfo RequestInfo { get; init; }
+}

@@ -2,7 +2,6 @@
 using Alpha.Main.AppResources;
 using Alpha.Main.Criteria.Nickname;
 using Fanex.Data.Repository;
-using Alpha.Main.Models;
 using Alpha.Main.Params.Nickname;
 using AlphaPlus.Core.Models;
 

@@ -1,6 +1,4 @@
-﻿using Fanex.Alpha.Before.Services;
-
-namespace Fanex.Alpha.Before.UnitTests.Services
+﻿namespace Fanex.Alpha.Before.UnitTests.Services
 {
     public class IPServiceTests
     {

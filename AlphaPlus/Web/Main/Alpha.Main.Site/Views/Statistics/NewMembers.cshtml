@@ -1,4 +1,4 @@
-﻿@using Alpha.Main.Site.ViewModels.Dashboard.Statistics
+﻿@using Alpha.Main.Site.Features.Dashboard.Statistics
 @model NewMembersViewModel
 
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per">
@@ -11,7 +11,7 @@
     </thead>
     <tbody>
         @if (!Model.Members.Any())
-            {
+        {
             <tr class="text-center">
                 <td colspan="3">@Resources.noInfo</td>
             </tr>

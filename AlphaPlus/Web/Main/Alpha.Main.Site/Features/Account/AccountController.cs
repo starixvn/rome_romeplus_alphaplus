@@ -2,8 +2,6 @@ using System.Security.Claims;
 using System.Text.Json;
 using Alpha.Main.AppResources;
 using Alpha.Main.Models;
-using Alpha.Main.Params.Authorization;
-using Alpha.Main.Services;
 using AlphaPlus.Core.Models;
 using AlphaPlus.RequestInfo;
 using Fanex.Cryptography.Aes;
@@ -20,14 +18,14 @@ public class AccountController(
     IUserSession userSession,
     IConfiguration configuration,
     IDeviceHelper deviceHelper,
-    ISignInService signInService,
+    IAccountService accountService,
     IAesService aesService,
     IOptions<AlphaPlus.Core.Configurations.AuthorizationOptions> options)
     : Controller
 {
     private readonly IUserSession userSession = userSession;
     private readonly IConfiguration configuration = configuration;
-    private readonly ISignInService signInService = signInService;
+    private readonly IAccountService accountService = accountService;
     private readonly IAesService aesService = aesService;
     private readonly IDeviceHelper deviceHelper = deviceHelper;
     private readonly AlphaPlus.Core.Configurations.AuthorizationOptions options = options.Value;
@@ -46,7 +44,7 @@ public class AccountController(
     {
         if (!options.DisabledCheckDuplicationLogin)
         {
-            await signInService.SignOut();
+            await accountService.SignOut();
         }
 
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -59,7 +57,7 @@ public class AccountController(
     [Authorize]
     public async Task<IActionResult> ReCheckIn(int onid)
     {
-        var result = onid < 0 ? new ReCheckInResult { IsKickedOut = true } : await signInService.ReCheckIn(onid);
+        var result = onid < 0 ? new ReCheckInResult { IsKickedOut = true } : await accountService.ReCheckIn(onid);
         return Json(result.IsKickedOut
             ? Result.CreateErrorResult(MapKickOutReasonToUserMessage(result.KickOutReason))
             : Result.CreateSuccessfulResult());
@@ -84,7 +82,7 @@ public class AccountController(
     {
         var param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey));
         var requestInfo = await deviceHelper.GetRequestInfo();
-        var isSignedIn = await signInService.AfterSignIn(new SignInParam
+        var isSignedIn = await accountService.AfterSignIn(new SignInParam
         {
             CustId = param.CustId,
             Password = aesService.Decrypt(param.EncryptPassword, param.EncryptCode),
@@ -100,7 +98,7 @@ public class AccountController(
         {
             if (!options.DisabledCheckDuplicationLogin)
             {
-                await signInService.CheckIn();
+                await accountService.CheckIn();
             }
 
             var claims = new List<Claim>{

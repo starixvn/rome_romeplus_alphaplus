@@ -1,4 +1,5 @@
-﻿@model IndexViewModel
+﻿@using Alpha.Main.Site.Features.Default
+@model IndexViewModel
 @{
     Layout = null;
 }
@@ -27,7 +28,6 @@
 <body>
     @GoogleAnalyticHelper.GtagNoScript()
     @await Html.PartialAsync("Popup")
-    @* @Html.Action("HeaderHotMsg") *@
     <aside class="sidebar" id="side-bar">
         <div class="partial-content customer-profile" id="profile"
             data-url="@Url.Action("BriefProfile", "CustomerProfile")"></div>
@@ -66,7 +66,6 @@
     {
         @await Html.PartialAsync("SuggestEnableTelegramOtpPopup")
     }
-    @await Html.PartialAsync("~/Views/Advertisement/AdvertisementPopup.cshtml")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-main/default")
     <script src="~/assets/bundles/default-index.js" type="text/javascript" asp-append-version="true"></script>

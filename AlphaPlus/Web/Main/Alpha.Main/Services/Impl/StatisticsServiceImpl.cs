@@ -1,6 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
 using Alpha.Main.Criteria.Statistics;
-using Alpha.Main.DataAccesses;
 using Fanex.Data.Repository;
 using Alpha.Main.Models.Statistics;
 

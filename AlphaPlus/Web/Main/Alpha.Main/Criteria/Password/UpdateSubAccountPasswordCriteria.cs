@@ -1,7 +1,5 @@
 ﻿namespace Alpha.Main.Criteria.Password
 {
-    using Fanex.Data.Repository;
-
     public class UpdateSubAccountPasswordCriteria : BaseCommand
     {
         public int CustId { get; set; }

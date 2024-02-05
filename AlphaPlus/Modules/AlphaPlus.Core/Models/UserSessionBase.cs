@@ -97,7 +97,7 @@ public class UserSessionBase : IUserSession, IDisposable
         set => SetProperty(LANGKEY, value);
     }
 
-    public CultureInfo Culture => new CultureInfo(Language);
+    public CultureInfo Culture => new(Language);
 
     public string CaptchaCode
     {

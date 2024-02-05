@@ -13,13 +13,8 @@
         privateMessage: null,
         publicMessage: null,
         marqueeMessage: null,
-        hotMessages: null,
-        userMessageModal: null,
-        currentHotMessage: null,
         scroller: null,
-        contentMessage: null,
-        showMoreContainer: null,
-        showLessContainer: null
+        contentMessage: null
     };
     protected urls = {
         mainAppPrivateMessageForm: alpha.urls.messageRootPath + 'MessageHistory/Index?messageType=1',
@@ -37,7 +32,7 @@
         this.cacheElements();
         this.registerEvents();
         this.getMessages();
-    }
+    };
 
     viewLiveMessage = (event: JQueryEventObject) => {
         const messageType = parseInt(this.$(event.currentTarget).attr('messageType'));
@@ -50,96 +45,27 @@
         } else if (messageType == alpha.messageType.Special) {
             indexManager.changeMenu(this.urls.mainAppSpecialMessageForm);
         }
-    }
-
-    resetHotMessageElements = (showFullMessage) => {
-        const minMessageHeight = 40;
-        this.domElements.currentHotMessage.css('min-height', minMessageHeight);
-
-        if (showFullMessage) {
-            this.domElements.showMoreContainer.addClass("hide");
-            this.domElements.currentHotMessage.removeClass("brief-content");
-            this.domElements.currentHotMessage.css('height', '');
-        } else {
-            this.domElements.showLessContainer.addClass("hide");
-            this.domElements.currentHotMessage.removeClass("brief-content");
-        }
-    }
-
-    setHotMessageElementStyleByMessageHeight = (showFullMessage, messageHeight, maxMessageHeight) => {
-        if (showFullMessage) {
-            if (messageHeight <= maxMessageHeight) {
-                this.domElements.showLessContainer.addClass("hide");
-            } else {
-                this.domElements.showLessContainer.removeClass("hide");
-            }
-        }
-        else {
-            if (messageHeight <= maxMessageHeight) {
-                this.domElements.showMoreContainer.addClass("hide");
-            } else {
-                this.domElements.currentHotMessage.addClass("brief-content").height(maxMessageHeight);
-                this.domElements.showMoreContainer.removeClass("hide");
-            }
-        }
-    }
-
-    calculateHotMessageHeight = (showFullMessage, maxMessageHeight) => {
-        const bodyBorderHeight = 2;
-        const bodyPaddingHeight = 5 + bodyBorderHeight;
-        let messageHeight = this.domElements.currentHotMessage.height();
-
-        this.setHotMessageElementStyleByMessageHeight(showFullMessage, messageHeight, maxMessageHeight);
-
-        if (maxMessageHeight < messageHeight) {
-            messageHeight = showFullMessage ?
-                messageHeight + this.domElements.showLessContainer.height() :
-                maxMessageHeight + this.domElements.showMoreContainer.height();
-        }
-
-        messageHeight += bodyPaddingHeight;
-
-        return messageHeight;
-    }
-
-    calculateHotMessagePopupHeight = (showFullMessage) => {
-        this.resetHotMessageElements(showFullMessage);
-
-        const maxMessageHeight = 53;
-        const messageHeight = this.calculateHotMessageHeight(showFullMessage, maxMessageHeight);
-        const headerHeight = 10;
-        const popUpHeight = headerHeight + messageHeight;
-
-        this.domElements.userMessageModal.height(popUpHeight);
     };
-
-    showMoreHotMessage = () => {
-        this.calculateHotMessagePopupHeight(true);
-    }
-
-    showLessHotMessage = () => {
-        this.calculateHotMessagePopupHeight(false);
-    }
 
     getMessages = () => {
         this.$.ajax({
-            type: "POST",
+            type: 'POST',
             url: this.urls.getMessages,
             success: this.onSuccessGetMessages
         });
-    }
+    };
 
     onSuccessGetMessages = (rawResults) => {
         const results = rawResults;
 
-        this.showPublicMessage(results);      
+        this.showPublicMessage(results);
 
         this.showPrivateMessage(results);
 
         this.applyScroller();
 
         setTimeout(this.getMessages, 5 * 60 * 1000);
-    }
+    };
 
     showPublicMessage = (results: any) => {
         const publicMessage = results.PublicMessage ? results.PublicMessage : 0;
@@ -147,8 +73,7 @@
         // Process Public Message: show new public message and its link to message form
         const url = this.urls.mainAppPublicMessageForm;
 
-        if (publicMessage.Id
-            && publicMessage.Id !== this.publicMessageId) {
+        if (publicMessage.Id && publicMessage.Id !== this.publicMessageId) {
             this.domElements.publicMessage
                 .html(publicMessage.Content + '. ')
                 .attr('messageType', publicMessage.MessageType);
@@ -157,8 +82,8 @@
             if (this.publicMessageId !== 0) {
                 this.appendMessageToPopup(publicMessage.Content);
             }
-        }       
-    }
+        }
+    };
 
     showPrivateMessage = (results: any) => {
         const privateMessage = results.PrivateMessage ? results.PrivateMessage : 0;
@@ -166,26 +91,27 @@
         // Process Private Message: show new private message
         const url = this.urls.mainAppPrivateMessageForm;
 
-        if (privateMessage.Id
-            && this.privateMessageId !== privateMessage.Id) {
+        if (privateMessage.Id && this.privateMessageId !== privateMessage.Id) {
             //// Append Private Message to Marquee with green color format.
-            this.domElements.privateMessage.html(
-                "<font id='private-message-content' color=\"green\">Private message: " +
-                privateMessage.Content +
-                "</font>")
+            this.domElements.privateMessage
+                .html(
+                    '<font id=\'private-message-content\' color="green">Private message: ' +
+                        privateMessage.Content +
+                        '</font>'
+                )
                 .attr('messageType', privateMessage.MessageType);
 
             if (this.privateMessageId !== 0) {
                 this.appendMessageToPopup(privateMessage.Content);
             }
         }
-    }
+    };
 
     appendMessageToPopup = (message) => {
         this.domElements.contentMessage.append('<p class="not-shown-message"></p>');
 
-        this.domElements.contentMessage.find("p:last").html(message);
-    }
+        this.domElements.contentMessage.find('p:last').html(message);
+    };
 
     applyScroller = () => {
         if (this.scrollerLeft) {
@@ -210,7 +136,7 @@
         this.maskWidth = textNews.offsetWidth;
 
         this.scrollMessage();
-    }
+    };
 
     playMarquee = () => {
         if (this.scrollerPaused) {
@@ -219,13 +145,13 @@
         } else {
             this.scrollerPaused = false;
         }
-    }
+    };
 
     pauseMarquee = () => {
         clearTimeout(this.scrollMessageTimeout);
         this.scrollMessageTimeout = 0;
         this.scrollerPaused = true;
-    }
+    };
 
     scrollMessage = () => {
         if (this.scrollerPaused) {
@@ -237,28 +163,21 @@
             this.scrollerWidth = this.domElements.scroller.width();
         }
 
-        this.scroller.style.left = (this.scrollerLeft--) + 'px';
+        this.scroller.style.left = this.scrollerLeft-- + 'px';
         this.scrollMessageTimeout = setTimeout(this.scrollMessage, 20);
-    }
+    };
 
     protected cacheElements = () => {
         this.domElements.privateMessage = this.$('#private-message');
         this.domElements.publicMessage = this.$('#public-message');
         this.domElements.marqueeMessage = this.$('#marqueeMessage');
-        this.domElements.hotMessages = this.$('#userMessageModalBody');
         this.domElements.contentMessage = this.$('#msg-content');
-        this.domElements.userMessageModal = this.$('#userMessageModal');
-        this.domElements.currentHotMessage = this.domElements.hotMessages.find('p.current-hot-message');
         this.domElements.scroller = this.$('#scroller');
-        this.domElements.showMoreContainer = this.$(".showmore-container");
-        this.domElements.showLessContainer = this.$(".showless-container");
     };
 
     protected registerEvents = () => {
         this.domElements.privateMessage.on('click', this.viewLiveMessage);
         this.domElements.publicMessage.on('click', this.viewLiveMessage);
-        this.domElements.showMoreContainer.on('click', this.showMoreHotMessage);
-        this.domElements.showLessContainer.on('click', this.showLessHotMessage);
     };
 }
 

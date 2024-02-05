@@ -1,4 +1,4 @@
-﻿@using Alpha.Main.Site.ViewModels.Security
+﻿@using Alpha.Main.Site.Features.OTP
 @model OtpViewModel
 @{
     Layout = null;
@@ -79,7 +79,8 @@
                                     <p>@Security.ManualInputOtpKey</p>
                                     <p>Key: <strong id="secret-key">@Html.Raw(Model.CustomerOtp.SecretKey)</strong>
                                         <span id="copy-icon" class="icon-content-copy" data-clipboard-action="copy"
-                                            data-clipboard-target="#secret-key" title="@Security.Copied"></span></p>
+                                            data-clipboard-target="#secret-key" title="@Security.Copied"></span>
+                                    </p>
                                     <div class="example">
                                         <div class="col-left">
                                             <img src="~/Assets/Styles/otp/images/manual-ios.png" title="IOS" />
