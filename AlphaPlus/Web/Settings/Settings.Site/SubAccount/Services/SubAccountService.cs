@@ -62,27 +62,27 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
 
         public async Task<Result> RemoveSubAccountOtp(RemoveSubAccountOtpRequest removeSubAccountOtpRequest)
         {
-            throw new NotImplementedException();
+            return await httpClient.PostAsJsonAsync<Result>($"api/customer/otp/reset", removeSubAccountOtpRequest);;
         }
 
         public async Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest)
         {
-            throw new NotImplementedException();
+            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/update-info", updateSubAccountInfoRequest);
         }
 
         public async Task<Result> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest updateSubAccountPageAccessRequest)
         {
-            throw new NotImplementedException();
+            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/update-pageaccess", updateSubAccountPageAccessRequest);;
         }
 
         public async Task<Result> UpdateSubAccountPassword(UpdateSubAccountPasswordRequest updateSubAccountPasswordRequest)
         {
-            throw new NotImplementedException();
+            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/password/reset", updateSubAccountPasswordRequest);;
         }
 
         public async Task<Result> UpdateSubAccountSecurityCode(UpdateSubAccountSecurityCodeRequest updateSubAccountSecurityCodeRequest)
         {
-            throw new NotImplementedException();
+            return await httpClient.PostAsJsonAsync<Result>($"api/security-code/verify", updateSubAccountSecurityCodeRequest);;
         }
     }
 }
