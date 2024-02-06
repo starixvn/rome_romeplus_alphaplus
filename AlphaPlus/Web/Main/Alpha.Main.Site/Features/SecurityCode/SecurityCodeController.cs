@@ -10,7 +10,6 @@ using Alpha.Main.Site.Features.Language;
 
 namespace Alpha.Main.Site.Features.SecurityCode
 {
-    [ProtectedModeFilter]
     public class SecurityCodeController(IMediator mediator, IUserSession userSession) : BaseController
     {
         private readonly IMediator mediator = mediator;

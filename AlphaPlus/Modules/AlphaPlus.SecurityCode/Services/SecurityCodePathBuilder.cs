@@ -8,25 +8,21 @@ namespace AlphaPlus.SecurityCode.Services;
 
 public interface ISecurityCodePathBuilder
 {
-    string BuildResetSecurityCodePath(string rootPath = null, string appVirtualPath = null);
+    string BuildResetSecurityCodePath();
 
     string BuildVerifyingSecurityCodePath(
         string redirectUrl = "",
-        IDictionary<string, string> queryStringItems = null,
-        string rootPath = null,
-        string appVirtualPath = null);
+        IDictionary<string, string> queryStringItems = null);
 }
 
 public class SecurityCodePathBuilder(IOptions<SecurityCodeOptions> options) : ISecurityCodePathBuilder
 {
     private readonly SecurityCodeOptions options = options.Value;
 
-    public string BuildResetSecurityCodePath(string rootPath = null, string appVirtualPath = null)
-    {
-        return BuildRootPath(rootPath, appVirtualPath) + options.ResetSecurityCodePath;
-    }
+    public string BuildResetSecurityCodePath()
+        => MicroSites.MainUrl($"~/{options.ResetSecurityCodePath}");
 
-    public string BuildVerifyingSecurityCodePath(string redirectUrl = "", IDictionary<string, string> queryStringItems = null, string rootPath = null, string appVirtualPath = null)
+    public string BuildVerifyingSecurityCodePath(string redirectUrl = "", IDictionary<string, string> queryStringItems = null)
     {
         var queryString = string.Empty;
         if (queryStringItems != null
@@ -46,21 +42,8 @@ public class SecurityCodePathBuilder(IOptions<SecurityCodeOptions> options) : IS
                 + $"redirectUrl={HttpUtility.UrlEncode(redirectUrl)}";
         }
 
-        var scRootPath = BuildRootPath(rootPath, appVirtualPath);
 
-        return $"{scRootPath}{BuildSecurityCheckingPath()}{queryString}";
-    }
-
-    private string BuildRootPath(string rootPath = null, string appVirtualPath = null)
-    {
-        rootPath ??= AlphaContext.Current.Request.PathBase.Value;
-
-        if (options.IsSiteMain)
-        {
-            return rootPath;
-        }
-
-        return rootPath.Replace(appVirtualPath ?? AlphaContext.Current.Request.Path.Value, options.SiteMainApp);
+        return MicroSites.MainUrl($"~/{BuildSecurityCheckingPath()}{queryString}");
     }
 
     private string BuildSecurityCheckingPath()

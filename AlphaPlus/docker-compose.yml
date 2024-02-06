@@ -43,9 +43,14 @@ services:
         build:
             context: .
             dockerfile: Web/Main/Alpha.Main.Site/Dockerfile
+            target: development
         restart: always
         depends_on:
             - identity-api
+        develop:
+            watch:
+                - action: rebuild
+            path: .
 
     login:
         image: ${REGISTRY:-alphaplus}/login:${PLATFORM:-linux}-${TAG:-latest}

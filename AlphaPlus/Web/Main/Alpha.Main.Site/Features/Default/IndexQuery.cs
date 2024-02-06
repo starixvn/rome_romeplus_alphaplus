@@ -92,6 +92,6 @@ namespace Alpha.Main.Site.Features.Default
 
         public string Currency => userSession.Currency;
 
-        public bool IsEnableReCheckIn => !userSession.IsInternal || !options.DisabledCheckDuplicationLogin;
+        public bool IsEnableReCheckIn => !userSession.IsInternal && !options.DisabledCheckDuplicationLogin;
     }
 }

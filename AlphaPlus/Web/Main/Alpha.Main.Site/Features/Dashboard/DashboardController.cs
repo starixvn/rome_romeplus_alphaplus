@@ -52,7 +52,7 @@ namespace Alpha.Main.Site.Features.Dashboard
         [AllowProtectedMode]
         public IActionResult GetServerTime(int onUserId = -1)
         {
-            if (options.DisabledCheckDuplicationLogin && ((onUserId > 0 && onUserId != userSession.OnUserId) || userSession.OnUserId == 0))
+            if (!options.DisabledCheckDuplicationLogin && ((onUserId > 0 && onUserId != userSession.OnUserId) || userSession.OnUserId == 0))
             {
                 return Json(new
                 {

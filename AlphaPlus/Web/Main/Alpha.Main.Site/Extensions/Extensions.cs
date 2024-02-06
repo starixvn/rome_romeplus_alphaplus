@@ -21,6 +21,7 @@ using System.Net;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.SecurityCode.Configurations;
 using Alpha.Main.Site.Features.Account;
+using AlphaPlus.SecurityCode.Web;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -39,6 +40,8 @@ public static class Extensions
 
         services.AddAlphaPlusCore(configuration);
 
+        services.AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>();
+        services.AddSingleton<ISecurityCodeHttpContext, SecurityCodeHttpContext>();
         services.AddSingleton<MenuItemBuilder, MenuItemBuilderImpl>();
         services.AddSingleton<CacheRefService, CacheRefServiceImpl>();
         services.AddSingleton<IAesService, AesService>();

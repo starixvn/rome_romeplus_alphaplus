@@ -7,7 +7,6 @@ using AlphaPlus.Core;
 
 namespace Alpha.Main.Site.Features.Password
 {
-    [ProtectedModeFilter]
     public class PasswordController(IMediator mediator, IUserSession userSession) : BaseController
     {
         private readonly IMediator mediator = mediator;

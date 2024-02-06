@@ -13,7 +13,7 @@ public class SecurityCodeOptions
 
     public IEnumerable<string> Sites { get; set; } = [];
 
-    public string SiteMainApp { get; set; }
+    public string SiteMainApp { get; set; } = "/main";
 
     public string VerifyingSecurityCodePath { get; set; }
 

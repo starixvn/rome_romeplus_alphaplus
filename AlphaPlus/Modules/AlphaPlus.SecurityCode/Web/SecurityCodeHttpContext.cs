@@ -48,9 +48,9 @@ public class SecurityCodeHttpContext(ISecurityCodePathBuilder securityCodePathBu
     }
 
     public bool IsValidRequest()
-        => AlphaContext.Current == null
-            || AlphaContext.Current.Request == null
-            || AlphaContext.Current.Session == null;
+        => AlphaContext.Current != null
+            && AlphaContext.Current.Request != null
+            && AlphaContext.Current.Session != null;
 
     public void RedirectToVerifySecurityCodePage()
     {

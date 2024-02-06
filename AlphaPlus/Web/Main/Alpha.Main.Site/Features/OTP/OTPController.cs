@@ -9,7 +9,6 @@ using Alpha.Main.Site.Features.TelegramChatBot;
 
 namespace Alpha.Main.Site.Features.OTP
 {
-    [ProtectedModeFilter]
     public class OtpController(IMediator mediator, IUserSession userSession) : BaseController
     {
         private readonly IMediator mediator = mediator;

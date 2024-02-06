@@ -8,23 +8,18 @@ namespace AlphaPlus.SecurityCode.Filters;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
 public class SecurityCodeFilterAttribute : TypeFilterAttribute
 {
-    public SecurityCodeFilterAttribute(bool isBetLists = false, bool isStatement = false)
+    public SecurityCodeFilterAttribute()
         : base(typeof(SecurityCodeFilter))
     {
-        Arguments = [isBetLists, isStatement];
     }
 
     private class SecurityCodeFilter(
         ISecurityCodeChecker securityCodeChecker,
-        ISecurityCodeHttpContext securityCodeHttpContext,
-        bool isBetLists,
-        bool isStatement)
+        ISecurityCodeHttpContext securityCodeHttpContext)
         : IActionFilter
     {
         private readonly ISecurityCodeChecker securityCodeChecker = securityCodeChecker;
         private readonly ISecurityCodeHttpContext securityCodeHttpContext = securityCodeHttpContext;
-        private readonly bool isBetLists = isBetLists;
-        private readonly bool isStatement = isStatement;
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
@@ -37,7 +32,8 @@ public class SecurityCodeFilterAttribute : TypeFilterAttribute
                 return;
             }
 
-            var isRequiredSecurityCode = securityCodeChecker.IsRequiredSecurityCode(isBetLists, isStatement);
+            var relativePath = securityCodeHttpContext.GetRelativePath();
+            var isRequiredSecurityCode = securityCodeChecker.IsRequiredSecurityCode(relativePath);
 
             if (isRequiredSecurityCode)
             {

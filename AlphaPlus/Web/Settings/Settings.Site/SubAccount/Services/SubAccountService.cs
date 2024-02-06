@@ -62,7 +62,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
 
         public async Task<Result> RemoveSubAccountOtp(RemoveSubAccountOtpRequest removeSubAccountOtpRequest)
         {
-            return await httpClient.PostAsJsonAsync<Result>($"api/customer/otp/reset", removeSubAccountOtpRequest);;
+            return await httpClient.PostAsJsonAsync<Result>($"api/customer/otp/remove", removeSubAccountOtpRequest);;
         }
 
         public async Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest)

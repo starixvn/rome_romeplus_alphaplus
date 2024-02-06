@@ -27,6 +27,12 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
+            var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute>().Any();
+            if (allowAnonymous)
+            {
+                return;
+            }
+
             if (options.EnableCheckBelonging)
             {
                 if (!await authorizationService.IsBelonging())

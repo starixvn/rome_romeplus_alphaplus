@@ -1,28 +1,34 @@
 using AlphaPlus.Core.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace AlphaPlus.Core.Filters;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-public class ProtectedModeFilterAttribute : AuthorizeAttribute, IAuthorizationFilter
+public class ProtectedModeFilterAttribute : TypeFilterAttribute
 {
-    public void OnAuthorization(AuthorizationFilterContext context)
+    public ProtectedModeFilterAttribute() : base(typeof(ProtectedModeFilter)) { }
+
+    public class ProtectedModeFilter(IUserSession userSession) : IAuthorizationFilter
     {
-        if (context.Result is UnauthorizedResult)
-        {
-            return;
-        }
+        private readonly IUserSession userSession = userSession;
 
-        if (UserSession.Current.IsProtectedMode)
+        public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var allowProtectedMode = context.ActionDescriptor.EndpointMetadata.OfType<AllowProtectedModeAttribute>().Any();
-
-            if (!allowProtectedMode)
+            if (context.Result is UnauthorizedResult)
             {
-                context.Result = new UnauthorizedResult();
                 return;
+            }
+
+            if (userSession.IsProtectedMode)
+            {
+                var allowProtectedMode = context.ActionDescriptor.EndpointMetadata.OfType<AllowProtectedModeAttribute>().Any();
+
+                if (!allowProtectedMode)
+                {
+                    context.Result = new UnauthorizedResult();
+                    return;
+                }
             }
         }
     }

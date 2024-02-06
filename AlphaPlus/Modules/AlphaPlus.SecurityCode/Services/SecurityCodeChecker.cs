@@ -6,8 +6,6 @@ namespace AlphaPlus.SecurityCode.Services;
 
 public interface ISecurityCodeChecker
 {
-    bool IsRequiredSecurityCode(bool isBetLists, bool isStatement);
-
     bool IsRequiredSecurityCode(string relativePath);
 
     bool IsEnableSecurityCode();
@@ -52,32 +50,6 @@ public class SecurityCodeChecker(IOptions<SecurityCodeOptions> options) : ISecur
     public bool IsForcedChangeSecurityCode()
         => !SecurityCodeSessionManager.SecurityCodeSession.IsInternal
             && SecurityCodeSessionManager.SecurityCodeSession.IsForcedChangeSecurityCode;
-
-    public bool IsRequiredSecurityCode(bool isBetLists, bool isStatement)
-    {
-        if (ByPassSecurity())
-        {
-            return false;
-        }
-
-        if (!SecurityCodeSessionManager.SecurityCodeSession.IsEnabledOtp
-            && !IsEnableSecurityCode())
-        {
-            return false;
-        }
-
-        if (isBetLists && SecurityCodeSessionManager.SecurityCodeSession.IsEnabledSecurityCodeInBetLists)
-        {
-            return true;
-        }
-
-        if (isStatement && SecurityCodeSessionManager.SecurityCodeSession.IsEnabledSecurityCodeInStatement)
-        {
-            return true;
-        }
-
-        return false;
-    }
 
     public bool IsRequiredSecurityCode(string relativePath)
     {
@@ -125,7 +97,7 @@ public class SecurityCodeChecker(IOptions<SecurityCodeOptions> options) : ISecur
 
     private bool IsRequiredSecurityCodeInStatement(string relativePath)
         => SecurityCodeSessionManager.SecurityCodeSession.IsEnabledSecurityCodeInStatement
-            && options.BetListsPaths != null
+            && options.StatementPaths != null
             && options.StatementPaths.Any(url => relativePath.Contains(url, StringComparison.OrdinalIgnoreCase));
 
 }

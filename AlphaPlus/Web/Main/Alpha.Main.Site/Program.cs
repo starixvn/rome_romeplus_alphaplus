@@ -3,6 +3,7 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
+using AlphaPlus.SecurityCode.Filters;
 using Fanex.Logging.Extensions.Database;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
@@ -36,7 +37,10 @@ builder.Services
 
 builder.Services.AddControllersWithViews(options =>
 {
+    options.Filters.Add<CheckBelongingFilterAttribute>();
     options.Filters.Add<AfterLoginFlowFilterAttribute>();
+    options.Filters.Add<ProtectedModeFilterAttribute>();
+    options.Filters.Add<SecurityCodeFilterAttribute>();
 });
 
 builder.Services

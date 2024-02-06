@@ -77,6 +77,7 @@ var indexManager = {
         indexManager.domElements.pagePopup.tinyDraggable();
 
         if (indexManager.isEnableReCheckIn) {
+            console.log(indexManager.isEnableReCheckIn);
             setTimeout(indexManager.reCheckin, indexManager.recheckInIntervalMiliseconds);
         }
 
@@ -163,6 +164,7 @@ var indexManager = {
     },
 
     reCheckin: function () {
+        console.log('reCheckin');
         // Post with return result in JSON format
         $.cookie('ssl', location.href.indexOf('https://') === 0, {
             expires: 30,
