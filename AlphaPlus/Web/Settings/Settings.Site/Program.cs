@@ -49,7 +49,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UsePathBase("/settings");
-//app.UseHttpsRedirection();
+app.MapHealthChecks("/health");
 app.UseStaticFiles();
 
 app.UseRouting();
