@@ -1,35 +1,33 @@
-﻿namespace Alpha.Main.Services.Impl
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Resources;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Alpha.Main.AppResources;
-    using Alpha.Main.Configurations;
-    using Alpha.Main.Constants;
-    using Alpha.Main.Criteria.UMMessage;
-    using Alpha.Main.Extensions;
-    using Alpha.Main.Models.UMMessage;
-    using Alpha.Main.Params.UMMessage;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
+using System.Resources;
+using System.Text;
+using Alpha.Main.AppResources;
+using Alpha.Main.Configurations;
+using Alpha.Main.Services;
+using Alpha.Main.Site.Extensions;
+using Fanex.Caching;
+using Fanex.Data.Repository;
 
-    public class UMMessageServiceImpl : UMMessageService
+namespace Alpha.Main.Site.Features.UMMessage
+{
+    public interface IUMMessageService
+    {
+        Task<IEnumerable<UMMessageDTO>> GetMessagesAsync(UMMessageParam param);
+    }
+
+    public class UMMessageService : IUMMessageService
     {
         private const string UMMessageCacheKey = "Alpha.Main.Services.Impl.UMMessageService";
-
         private readonly IDynamicRepository dynamicRepository;
         private readonly CacheRefService cacheRefService;
         private readonly ResourceManager settingTypeResource;
         private readonly ICacheService cacheService;
 
-        public UMMessageServiceImpl(IDynamicRepository dynamicRepository, CacheRefService cacheRefService)
+        public UMMessageService(IDynamicRepository dynamicRepository, CacheRefService cacheRefService)
             : this(dynamicRepository, cacheRefService, new CacheService())
         {
         }
 
-        internal UMMessageServiceImpl(IDynamicRepository dynamicRepository, CacheRefService cacheRefService, ICacheService cacheService)
+        internal UMMessageService(IDynamicRepository dynamicRepository, CacheRefService cacheRefService, ICacheService cacheService)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheRefService = cacheRefService;
@@ -49,10 +47,10 @@
             {
                 messages = await dynamicRepository.FetchAsync<UMMessageItem>(new GetUMMessageCriteria(param.CustId));
 
-                 cacheService.Set(
-                    cacheKey,
-                    messages,
-                    new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(AppSettings.UMAnnouncementPopupServerCacheInMinutes)));
+                cacheService.Set(
+                   cacheKey,
+                   messages,
+                   new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(AppSettings.UMAnnouncementPopupServerCacheInMinutes)));
             }
 
             return messages;

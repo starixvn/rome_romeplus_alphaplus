@@ -1,8 +1,8 @@
-﻿namespace Alpha.Main.Criteria.Banner
-{
-    using Alpha.Main.Constants;
-    using Fanex.Data.Repository;
+﻿using Alpha.Main.Constants;
+using Fanex.Data.Repository;
 
+namespace Alpha.Main.Site.Features.Banner
+{
     public class GetBannerCriteria : CriteriaBase
     {
         public GetBannerCriteria(

@@ -23,6 +23,9 @@ using AlphaPlus.SecurityCode.Configurations;
 using Alpha.Main.Site.Features.Account;
 using AlphaPlus.SecurityCode.Web;
 using Alpha.Main.Site.Features.ApiKey;
+using Alpha.Main.Site.Features.Banner;
+using Alpha.Main.Site.Features.Theme;
+using Alpha.Main.Site.Features.UMMessage;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -80,10 +83,10 @@ public static class Extensions
         services.AddSingleton<INicknameChecker, NicknameChecker>();
 
         services.AddSingleton<KickoutCustomerService, KickoutCustomerServiceImpl>();
-        services.AddSingleton<BannerService, BannerServiceImpl>();
-        services.AddSingleton<UMMessageService, UMMessageServiceImpl>();
+        services.AddSingleton<IBannerService, BannerService>();
+        services.AddSingleton<IUMMessageService, UMMessageService>();
         services.AddSingleton<ProtectionCodeService, ProtectionCodeServiceImpl>();
-        services.AddSingleton<ThemeService, ThemeServiceImpl>();
+        services.AddSingleton<IThemeService, ThemeService>();
         services.AddSingleton<UpdateUsageLanguageService, UpdateUsageLanguageServiceImpl>();
 
         services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));

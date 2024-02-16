@@ -1,11 +1,9 @@
-﻿namespace Alpha.Main.Site.Features.UMMessage
-{
-    using System.Collections.Generic;
-    using Alpha.Main.Configurations;
-    using Alpha.Main.Models.UMMessage;
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using Alpha.Main.Configurations;
+using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace Alpha.Main.Site.Features.UMMessage
+{
     public class UMMessageQuery : IRequest<IEnumerable<UMMessageDTO>>
     {
         private readonly IUserSession userSession;

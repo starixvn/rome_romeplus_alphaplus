@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Models.UMMessage
+﻿namespace Alpha.Main.Site.Features.UMMessage
 {
     public class UMMessageDTO(long id, string message)
     {

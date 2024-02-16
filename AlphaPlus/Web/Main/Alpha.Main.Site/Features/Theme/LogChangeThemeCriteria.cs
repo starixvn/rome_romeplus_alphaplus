@@ -1,7 +1,7 @@
-﻿namespace Alpha.Main.Criteria.Theme
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace Alpha.Main.Site.Features.Theme
+{
     public class LogChangeThemeCriteria : NonQueryCommand
     {
         public LogChangeThemeCriteria(

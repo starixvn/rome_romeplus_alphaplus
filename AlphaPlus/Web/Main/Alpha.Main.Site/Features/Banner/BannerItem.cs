@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Models.Banner
+﻿namespace Alpha.Main.Site.Features.Banner
 {
     public class BannerItem
     {

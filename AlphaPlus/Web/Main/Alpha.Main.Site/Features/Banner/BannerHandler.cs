@@ -1,6 +1,4 @@
-﻿using Alpha.Main.Models.Banner;
-using Alpha.Main.Services;
-using MediatR;
+﻿using MediatR;
 
 namespace Alpha.Main.Site.Features.Banner
 {

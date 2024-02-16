@@ -17,7 +17,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
     private readonly IConfiguration configuration = configuration;
     private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
     private readonly IUserSession userSession = userSession;
-    private readonly string systemLogin;
 
     public void SetUserSessionValues(SignInResult signInResult)
     {

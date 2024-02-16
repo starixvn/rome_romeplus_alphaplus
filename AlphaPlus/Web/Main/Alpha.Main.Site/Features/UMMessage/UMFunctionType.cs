@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Constants
+﻿namespace Alpha.Main.Site.Features.UMMessage
 {
     public static class UMFunctionType
     {

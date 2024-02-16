@@ -1,5 +1,4 @@
 using AlphaPlus.Core.Models;
-using TelegramBot.Client.Extensions;
 
 namespace Alpha.Main.Site.Features.ApiKey
 {
@@ -38,7 +37,7 @@ namespace Alpha.Main.Site.Features.ApiKey
 
         public async Task RevokeApiKey(string apiKey, string ip)
         {
-            await httpClient.DeleteAsStringAsync($"{apiKey}?ip={ip}");
+            await httpClient.DeleteAsync($"{apiKey}?ip={ip}");
         }
 
         public async Task<Result> UpdateApiKey(string apiKey, int custId, string apiName, string scopes, string ip, string language, DateTime? expirationDate)

@@ -8,6 +8,14 @@ public static class HttpClientExtensions
         PropertyNameCaseInsensitive = true
     };
 
+    public static async Task<T> GetAsJsonAsync<T>(this HttpClient httpClient, string requestUri)
+    {
+        var response = await httpClient.GetAsync(requestUri);
+        response.EnsureSuccessStatusCode();
+        var content = await response.Content.ReadAsStringAsync();
+        return JsonSerializer.Deserialize<T>(content, serializerOptions);
+    }
+
     public static async Task<T> PostAsJsonAsync<T>(this HttpClient httpClient, string requestUri, object payload = null)
     {
         var response = await httpClient.PostAsStringAsync(requestUri, payload);
@@ -39,12 +47,6 @@ public static class HttpClientExtensions
     public static async Task<T> PutAsJsonAsync<T>(this HttpClient httpClient, string requestUri, object value = null)
     {
         var content = await PutAsStringAsync(httpClient, requestUri, value);
-        return JsonSerializer.Deserialize<T>(content);
-    }
-
-    public static Task DeleteAsStringAsync(this HttpClient httpClient, string requestUri)
-    {
-        var uri = new Uri(httpClient.BaseAddress, requestUri);
-        return httpClient.DeleteAsync(uri);
+        return JsonSerializer.Deserialize<T>(content, serializerOptions);
     }
 }

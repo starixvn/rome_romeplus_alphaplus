@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Constants
+﻿namespace Alpha.Main.Site.Features.Banner
 {
     public static class BannerType
     {

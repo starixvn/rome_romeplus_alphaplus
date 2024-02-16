@@ -1,12 +1,14 @@
-﻿namespace Alpha.Main.Services.Impl
-{
-    using System.Threading.Tasks;
-    using Alpha.Main.Configurations;
-    using Alpha.Main.Criteria.Banner;
-    using Alpha.Main.Models.Banner;
-    using Fanex.Data.Repository;
+using Alpha.Main.Configurations;
+using Fanex.Data.Repository;
 
-    public class BannerServiceImpl(IDynamicRepository dynamicRepository) : BannerService
+namespace Alpha.Main.Site.Features.Banner
+{
+    public interface IBannerService
+    {
+        Task<BannerItem> GetBanner(string languageCode, byte type);
+    }
+
+    public class BannerService(IDynamicRepository dynamicRepository) : IBannerService
     {
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
 

@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Criteria.UMMessage
+﻿namespace Alpha.Main.Site.Features.UMMessage
 {
     using Fanex.Data.Repository;
 

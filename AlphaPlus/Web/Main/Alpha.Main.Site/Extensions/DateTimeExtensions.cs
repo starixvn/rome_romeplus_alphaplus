@@ -1,7 +1,5 @@
-﻿namespace Alpha.Main.Extensions
+﻿namespace Alpha.Main.Site.Extensions
 {
-    using System;
-
     public static class DateTimeExtensions
     {
         private const string LongDateWithSlash = "dd/MM/yyyy hh:mm tt";

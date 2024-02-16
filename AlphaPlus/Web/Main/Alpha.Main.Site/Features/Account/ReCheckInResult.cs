@@ -1,4 +1,4 @@
-namespace Alpha.Main.Models
+namespace Alpha.Main.Site.Features.Account
 {
     public class ReCheckInResult
     {

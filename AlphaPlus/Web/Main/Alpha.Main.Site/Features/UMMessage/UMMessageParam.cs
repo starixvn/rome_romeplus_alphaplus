@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Params.UMMessage
+﻿namespace Alpha.Main.Site.Features.UMMessage
 {
     public class UMMessageParam
     {
