@@ -40,7 +40,7 @@ namespace Alpha.Main.Site.Features.Account
 
         public bool IsNickName { get; init; }
 
-        public CustomerStatus Status { get; init; }
+        public IDictionary<string, string> Status { get; init; }
 
         public bool IsShowConsolidatedReport { get; init; }
 
@@ -49,5 +49,15 @@ namespace Alpha.Main.Site.Features.Account
         public SiteDB SiteDB { get; init; }
 
         public bool IsAllowTotalBalanceTransfer { get; init; }
+
+        public DateTime DateLimit { get; init; }
+
+        public bool IsAdminCanUpdateSubAccount { get; init; }
+
+        public bool IsEnabledSecurityCodeInBetLists { get; init; }
+
+        public bool IsEnabledSecurityCodeInStatement { get; init; }
+
+        public bool AutoFollowBet { get; init; }
     }
 }

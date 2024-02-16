@@ -11,4 +11,16 @@
     <Setting Key="Age_CheckOut" SpName="Age_CheckOut" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_RecheckIn" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
   </Function>
+
+  <Function Name="Customer limit time range">
+    <Setting Key="Age_CustomerSelDateLimit" SpName="Age_CustomerSelDateLimit" DbName="DBAGE.bodb02.BODBDownlineNet" />
+  </Function>
+
+  <Function Name="Security Code">
+    <Setting Key="Age_CustomerSelSecurityFunctionInfo" SpName="Age_CustomerSelSecurityFunctionInfo" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
+
+  <Function Name="Auto Follow Bet">
+    <Setting Key="NAP_Customer_FollowBetAccountDummyAgentSel" SpName="NAP_Customer_FollowBetAccountDummyAgentSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
 </Functions>

@@ -43,7 +43,7 @@ services:
         build:
             context: .
             dockerfile: Web/Main/Alpha.Main.Site/Dockerfile
-            target: development
+            target: final
         restart: always
         depends_on:
             - identity-api

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Text.Json;
 using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Core.Models;
@@ -13,20 +14,20 @@ public class ProductTransform
     /// disable-productid
     /// synced-productid
     /// </summary>
-    private static readonly Dictionary<string, bool> StatusDefaultValues = new Dictionary<string, bool>
+    private static readonly Dictionary<string, bool> StatusDefaultValues = new()
     {
         ["hide-"] = true,
         ["disable-"] = true,
         ["synced-"] = true
     };
 
-    public static void TransformProductStatus(IUserSession session, Hashtable values)
+    public static void TransformProductStatus(IUserSession session, IDictionary<string, string> values)
     {
         TransformProductStatusByName(session, values);
         TransformProductStatusByConvention(session, values);
     }
 
-    public static void TransformProductStatusByName(IUserSession session, Hashtable values)
+    public static void TransformProductStatusByName(IUserSession session, IDictionary<string, string> values)
     {
         foreach (var productName in ProductNames)
         {
@@ -36,24 +37,28 @@ public class ProductTransform
         }
     }
 
-    private static bool GetProductStatus(string productStatus, Hashtable values, bool defaultValue)
+    private static bool GetProductStatus(string productStatus, IDictionary<string, string> values, bool defaultValue)
     {
-        return values.Contains(productStatus) ? (bool)values[productStatus] : defaultValue;
+        if (values.TryGetValue(productStatus, out string value))
+        {
+            return Convert.ToBoolean(value);
+        }
+
+        return defaultValue;
     }
 
-    private static void TransformProductStatusByConvention(IUserSession session, Hashtable values)
+    private static void TransformProductStatusByConvention(IUserSession session, IDictionary<string, string> values)
     {
         var productIds = new List<int>();
 
         foreach (string key in values.Keys)
         {
-            var productId = 0;
             var prefix = StatusDefaultValues
                 .Where(statusPrefix => key.StartsWith(statusPrefix.Key))
                 .FirstOrDefault();
 
             if (string.IsNullOrEmpty(prefix.Key)
-               || !int.TryParse(key.Substring(prefix.Key.Length), out productId)
+               || !int.TryParse(key[prefix.Key.Length..], out int productId)
                || productIds.Contains(productId))
             {
                 continue;
@@ -81,7 +86,7 @@ public class ProductTransform
         var productText = AppSettings.ProductColumnNameMappings;
         if (!string.IsNullOrEmpty(productText))
         {
-            var products = productText.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var products = productText.Split(",", StringSplitOptions.RemoveEmptyEntries);
             foreach (var product in products)
             {
                 var items = product.Split('=');

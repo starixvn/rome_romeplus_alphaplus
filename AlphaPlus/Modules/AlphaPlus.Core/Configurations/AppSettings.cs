@@ -11,8 +11,6 @@ public static class AppSettings
         GetForceLoginNicknameConfiguration();
     }
 
-    public static string OldMainAppPath => ConfigurationManager.GetValue("OldMainAppPath", "ex-main");
-
     public static bool EnableKickOutWhenSessionInvalid => ConfigurationManager.GetValue("EnableKickOutWhenSessionInvalid", false);
 
     public static string SessionVerificationTokenCookie => ConfigurationManager.GetValue("SessionVerificationTokenCookie", "__SessionVerificationToken_");
@@ -20,8 +18,6 @@ public static class AppSettings
     public static bool EnableSessionValidation => ConfigurationManager.GetValue("EnableSessionValidation", false);
 
     public static bool EnableAntiXSRF => ConfigurationManager.GetValue("EnableAntiXSRF", true);
-
-    public static string MainAppPath => ConfigurationManager.GetValue("MainAppPath", "site-main");
 
     public static string AssetAppPath => ConfigurationManager.GetValue("AssetAppPath", "assets");
 

@@ -5,5 +5,7 @@ namespace AlphaPlus.Identity.API
         public byte SettingStatus { get; set; }
 
         public string AllowedListSuperAccounts { get; set; }
+
+        public int AutoFollowBetMasterId { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public bool IsNickName { get; init; }
 
-        public CustomerStatus Status { get; set; }
+        public IDictionary<string, string> Status { get; set; }
 
         public bool IsShowConsolidatedReport { get; set; }
 
@@ -51,5 +51,15 @@ namespace AlphaPlus.Identity.API.Features.Auth
         public SiteDB SiteDB { get; set; }
 
         public bool IsAllowTotalBalanceTransfer { get; set; }
+
+        public DateTime DateLimit { get; set; }
+
+        public bool IsAdminCanUpdateSubAccount { get; set; }
+
+        public bool IsEnabledSecurityCodeInBetLists { get; set; }
+
+        public bool IsEnabledSecurityCodeInStatement { get; set; }
+
+        public bool AutoFollowBet { get; set; }
     }
 }

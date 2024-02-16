@@ -3,33 +3,6 @@ namespace AlphaPlus.Core.Models;
 public class UserPermission
 {
 
-    public static bool IsShowMixedSport => true;
-
-    public static bool IsShowSportsbook2
-    {
-        get
-        {
-            return !CurrentUserSession.GetHideProduct(ProductIdConstants.Sportsbook2);
-        }
-    }
-
-    public static bool IsShowDoubleCommission
-    {
-        get
-        {
-            return CurrentUserSession.IsDoubleCommLosing;
-        }
-    }
-
-
-    public static bool IsShowMyanmarOdds
-    {
-        get
-        {
-            return CurrentUserSession.IsMyanmarOdds;
-        }
-    }
-
     protected static IUserSession CurrentUserSession
     {
         get
@@ -55,17 +28,13 @@ public class UserPermission
 
     public static bool HasPermissionOnProduct(int productId)
     {
-        switch (productId)
+        return productId switch
         {
-            case 1: // sportsbook
-                return true;
-            case 16: // SP2
-                return IsShowSportsbook2;
-            case 5: // Virtual Sports
-            case 44: // RNG Lottery
-                return IsEnableProduct(productId);
-            default:
-                return IsEnableProduct(productId) && IsSyncedProduct(productId);
-        }
+            // sportsbook
+            1 => true,
+            // Virtual Sports
+            5 or 44 => IsEnableProduct(productId),
+            _ => IsEnableProduct(productId) && IsSyncedProduct(productId),
+        };
     }
 }

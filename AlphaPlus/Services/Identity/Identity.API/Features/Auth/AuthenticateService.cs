@@ -1,4 +1,7 @@
+using System.Data;
+using AlphaPlus.Identity.API.Constants;
 using AlphaPlus.Identity.API.Utils;
+using Fanex.Data;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Options;
 
@@ -93,6 +96,17 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
                 response.SiteDB = await GetSiteDB(response.CustId);
                 response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
+                response.DateLimit = await GetDateLimit(response.CustId);
+
+                var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, response.SubAccId);
+                response.IsEnabledSecurityCodeInBetLists = securityCodeFunction.BetList;
+                response.IsEnabledSecurityCodeInStatement = securityCodeFunction.Statement;
+
+                // Auto Follow Bet
+                var masterId = response.Status.TryGetValue("mrecommend", out string value) ? Convert.ToInt32(value) : 0;
+                response.AutoFollowBet = response.RoleId == RoleIdConstants.Agent
+                    && appSettings.AutoFollowBetMasterId == masterId
+                    && (await IsAutoFollowBetDummyAgent(response.CustId));
             }
 
             return response;
@@ -113,14 +127,35 @@ namespace AlphaPlus.Identity.API.Features.Auth
             return command.OnlineUserId;
         }
 
-        private Task<CustomerStatus> GetCustomerStatus(int custId, int adminId, string system = "NAP")
-            => dynamicRepository.GetAsync<CustomerStatus>(new GetCustomerStatusCriteria
+        private async Task<IDictionary<string, string>> GetCustomerStatus(int custId, int adminId, string system = "NAP")
+        {
+            var status = new Dictionary<string, string>();
+            var criteria = new GetCustomerStatusCriteria
             {
                 CustId = custId,
                 AdminId = adminId,
                 System = system,
                 SettingStatus = appSettings.SettingStatus
-            });
+            };
+
+            using var objectDb = ObjectDbFactory.CreateInstance(criteria.GetSettingKey());
+            var dataSet = await objectDb.ExecuteDataSetAsync(criteria);
+            if (dataSet.Tables != null && dataSet.Tables.Count > 0)
+            {
+                var table = dataSet.Tables[0];
+                if (table != null && table.Rows.Count > 0)
+                {
+                    var row = table.Rows[0];
+                    foreach (DataColumn column in table.Columns)
+                    {
+                        status.Add(column.ColumnName.ToLowerInvariant(), row[column].ToString());
+                    }
+                }
+            }
+
+            return status;
+        }
+
 
         private async Task<bool> IsShowConsolidateReport(int custId)
         {
@@ -140,6 +175,18 @@ namespace AlphaPlus.Identity.API.Features.Auth
             var command = new CheckAllowTotalBalanceTransferCommand(custId, appSettings.AllowedListSuperAccounts);
             await dynamicRepository.ExecuteAsync(command);
             return command.IsAllowed;
+        }
+
+        private Task<DateTime> GetDateLimit(int custId)
+            => dynamicRepository.GetAsync<DateTime>(new GetCustomerDateLimitCriteria(custId));
+
+        private Task<SecurityCodeFunction> GetSecurityCodeOptionalFunction(int custId, int subAccId)
+            => dynamicRepository.GetAsync<SecurityCodeFunction>(new GetSecurityCodeFunctionCriteria(custId, subAccId));
+
+        private async Task<bool> IsAutoFollowBetDummyAgent(int custId)
+        {
+            var dummyIds = await dynamicRepository.FetchAsync<int>(new GetAutoFollowBetDummyAgentCriteria());
+            return dummyIds.Any(id => id == custId);
         }
     }
 }
