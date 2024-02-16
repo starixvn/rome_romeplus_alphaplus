@@ -23,4 +23,8 @@
   <Function Name="Auto Follow Bet">
     <Setting Key="NAP_Customer_FollowBetAccountDummyAgentSel" SpName="NAP_Customer_FollowBetAccountDummyAgentSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
+
+  <Function Name="Game Enable">
+    <Setting Key="Acc_GameLaunchSel" SpName="Acc_GameLaunchSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" TimeOut="600" />
+  </Function>
 </Functions>

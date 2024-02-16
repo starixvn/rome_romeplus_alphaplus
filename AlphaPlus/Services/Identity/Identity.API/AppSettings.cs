@@ -7,5 +7,7 @@ namespace AlphaPlus.Identity.API
         public string AllowedListSuperAccounts { get; set; }
 
         public int AutoFollowBetMasterId { get; set; }
+
+        public bool IsTest { get; set; }
     }
 }

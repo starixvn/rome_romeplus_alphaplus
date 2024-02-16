@@ -12,7 +12,8 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 {
     private const string CustomerDateLimitSessionKey = "CustomerDateLimit";
     private const string IsAdminCanUpdateSubAccountSessionKey = "IsAdminCanUpdateSubAccount";
-    public const string MainDomainSessionKey = "MainDomain";
+    private const string MainDomainSessionKey = "MainDomain";
+    private const string EnableJackpotSessionKey = "GameEnable_Jackpot";
     private readonly IConfiguration configuration = configuration;
     private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
     private readonly IUserSession userSession = userSession;
@@ -106,6 +107,8 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.IsEnabledSecurityCodeInStatement = signInResult.IsEnabledSecurityCodeInStatement;
 
         userSession.AutoFollowBetIsDummyAgent = signInResult.AutoFollowBet;
+
+        userSession.SetProperty(EnableJackpotSessionKey, signInResult.OfferedJackpotProducts);
     }
 
     private static string GetSiteName(int roleId)
@@ -159,21 +162,9 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         // TODO: Fanex.Products
         //ProductManager.SetProductsStatusToSession(userData);
 
-        // AddEnabledProductsByGameToSession(session.Site, session.CurrencyId);
-
         AddIsProtectedModeToSession(status);
         AddMainDomainToSession();
         SetDisplayLanguage(status);
-    }
-
-    private void AddEnabledProductsByGameToSession(string site, int currency)
-    {
-        // foreach (var gameName in configuration.GetValue<string[]>("EnabledGames"))
-        // {
-        //     // TODO: GetEnabledProductsByGame
-        //     // var offeredProducts = productService.GetEnabledProductsByGame();
-        //     // userSession.SetProperty(SessionKey.GameEnableSessionKey + gameName, offeredProducts.GetProductBySiteAndCurrency(site, currency));
-        // }
     }
 
     private void AddCustomerDateLimitToSession(int custId, bool isInternal)
@@ -248,8 +239,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
     {
         userSession.SetProperty(MainDomainSessionKey, $"//{httpContextAccessor.HttpContext.Request.Host}");
     }
-
-
 
     private void SetDisplayLanguage(IDictionary<string, string> userData)
     {

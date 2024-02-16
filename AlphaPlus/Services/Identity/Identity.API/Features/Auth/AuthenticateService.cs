@@ -3,6 +3,7 @@ using AlphaPlus.Identity.API.Constants;
 using AlphaPlus.Identity.API.Utils;
 using Fanex.Data;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Identity.API.Features.Auth
@@ -21,11 +22,13 @@ namespace AlphaPlus.Identity.API.Features.Auth
     public class AuthenticateService(
         IEncryption encryption,
         IDynamicRepository dynamicRepository,
-        IOptions<AppSettings> appSettings) : IAuthenticateService
+        IOptions<AppSettings> appSettings,
+        IMemoryCache memoryCache) : IAuthenticateService
     {
         private readonly IEncryption encryption = encryption;
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
         private readonly AppSettings appSettings = appSettings.Value;
+        private readonly IMemoryCache memoryCache = memoryCache;
 
         public async Task<ReCheckInResponse> ReCheckIn(int onlineUserId)
         {
@@ -101,6 +104,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, response.SubAccId);
                 response.IsEnabledSecurityCodeInBetLists = securityCodeFunction.BetList;
                 response.IsEnabledSecurityCodeInStatement = securityCodeFunction.Statement;
+
+                response.OfferedJackpotProducts = await GetOfferedJackpotProducts(response.Site, response.CurrencyId);
 
                 // Auto Follow Bet
                 var masterId = response.Status.TryGetValue("mrecommend", out string value) ? Convert.ToInt32(value) : 0;
@@ -187,6 +192,24 @@ namespace AlphaPlus.Identity.API.Features.Auth
         {
             var dummyIds = await dynamicRepository.FetchAsync<int>(new GetAutoFollowBetDummyAgentCriteria());
             return dummyIds.Any(id => id == custId);
+        }
+
+        private async Task<IList<int>> GetOfferedJackpotProducts(string site, int currency)
+        {
+            var key = "AlphaPlus.Identity.API.Features.Auth.AuthenticateService.OfferedJackpot";
+
+            if (!memoryCache.TryGetValue(key, out JackpotOffered products))
+            {
+                var (bySite, byCurrency) = await dynamicRepository.FetchMultipleAsync<JackpotOfferedBySite, JackpotOfferedByCurrency>(new GetEnabledProductsByGameCriteria(appSettings.IsTest));
+                products = new JackpotOffered(bySite, byCurrency);
+
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(7));
+
+                memoryCache.Set(key, products, cacheEntryOptions);
+            }
+
+            return products.GetProductBySiteAndCurrency(site, currency);
         }
     }
 }

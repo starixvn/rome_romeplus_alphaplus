@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 builder.Services
+    .AddMemoryCache()
     .AddFanexDataWithSqlServer(configuration)
     .AddFanexLogging(configuration)
     .Configure<AppSettings>(configuration)

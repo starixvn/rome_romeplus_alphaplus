@@ -61,5 +61,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
         public bool IsEnabledSecurityCodeInStatement { get; set; }
 
         public bool AutoFollowBet { get; set; }
+
+        public IList<int> OfferedJackpotProducts { get; set; }
     }
 }

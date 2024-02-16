@@ -59,5 +59,7 @@ namespace Alpha.Main.Site.Features.Account
         public bool IsEnabledSecurityCodeInStatement { get; init; }
 
         public bool AutoFollowBet { get; init; }
+
+        public IList<int> OfferedJackpotProducts { get; init; }
     }
 }
