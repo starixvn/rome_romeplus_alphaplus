@@ -3,14 +3,14 @@ using MediatR;
 
 namespace Alpha.Main.Site.Features.ApiKey
 {
-    public class ApiKeyHandler(ApiKeyService apiKeyService) :
+    public class ApiKeyHandler(IApiKeyService apiKeyService) :
         IRequestHandler<CreateApiKeyCommand, CreateApiKeyResult>,
         IRequestHandler<GetApiKeyQuery, EditApiKeyViewModel>,
         IRequestHandler<GetCustomerApiKeyQuery, ApiKeyManagementViewModel>,
         IRequestHandler<RevokeApiKeyCommand, Result>,
         IRequestHandler<UpdateApiKeyCommand, Result>
     {
-        private readonly ApiKeyService apiKeyService = apiKeyService;
+        private readonly IApiKeyService apiKeyService = apiKeyService;
 
         public Task<CreateApiKeyResult> Handle(CreateApiKeyCommand request, CancellationToken cancellationToken)
             => apiKeyService.CreateApiKey(request.CustId, request.ApiName, request.PassPhrase, request.Scopes, request.IP, request.Language, request.ExpirationDate);

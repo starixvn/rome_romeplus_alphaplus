@@ -1,13 +1,12 @@
 ﻿using MediatR;
-using Alpha.Main.Services;
 
 namespace Alpha.Main.Site.Features.Default.MenuBar
 {
     public class MenuBarHandler(
-        SiteMenuService siteMenuService) :
+        ISiteMenuService siteMenuService) :
         IRequestHandler<MenuBarQuery, MenuBarViewModel>
     {
-        private readonly SiteMenuService siteMenuService = siteMenuService;
+        private readonly ISiteMenuService siteMenuService = siteMenuService;
 
         public Task<MenuBarViewModel> Handle(MenuBarQuery message, CancellationToken cancellationToken)
         {

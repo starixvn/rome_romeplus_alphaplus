@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace Alpha.Main.Helpers;
+namespace Alpha.Main.Site.Features.Default.MenuBar;
 
 public class SiteMapNode
 {

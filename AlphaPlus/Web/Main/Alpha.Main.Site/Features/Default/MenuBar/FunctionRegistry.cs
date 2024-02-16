@@ -1,19 +1,16 @@
 ﻿using Alpha.Main.Constants;
-using Alpha.Main.Services;
-using Alpha.Main.Services.Impl;
 using AlphaPlus.Core.Models;
 using Alpha.Main.Models;
-using Alpha.Main.Models.Menus;
 using static AlphaPlus.Core.Models.UserPermission;
 using static AlphaPlus.Core.Models.UserSession;
-using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
+using Fanex.Data.Repository;
 
-namespace Alpha.Main
+namespace Alpha.Main.Site.Features.Default.MenuBar
 {
     public static class FunctionRegistry
     {
-        private static readonly TransferService transferService = new TransferServiceImpl();
+        private static readonly ITransferService transferService = new TransferService(new DynamicRepository());
 
         public static readonly Dictionary<string, Func<MenuStatus>> MenuItemTypeStatusRules = new()
         {
@@ -58,7 +55,7 @@ namespace Alpha.Main
                     return false;
                 }
 
-                var offerClearGivenCreditSites = ConfigurationManager.GetValue<string[]>("OfferClearGivenCredit:Sites", []);
+                var offerClearGivenCreditSites = AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string[]>("OfferClearGivenCredit:Sites", []);
                 return offerClearGivenCreditSites.Any(s
                     => string.Equals(s, Current.Site, StringComparison.OrdinalIgnoreCase)
                     || string.Equals(s, "*", StringComparison.OrdinalIgnoreCase));
@@ -114,17 +111,17 @@ namespace Alpha.Main
 
         private static bool IsAllowedIndirectLogin(int srecommend)
         {
-            var allowSuperIds = ConfigurationManager.GetValue<string[]>("IndirectLogin:AllowSuperIds", []);
+            var allowSuperIds = AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string[]>("IndirectLogin:AllowSuperIds", []);
 
             return allowSuperIds.Contains("*") || allowSuperIds.Contains(srecommend.ToString());
         }
 
         private static string[] AllowedSitesToViewBonusDetail
-            => ConfigurationManager.GetValue<string[]>("AllowedSitesToViewBonusDetail", []);
+            => AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string[]>("AllowedSitesToViewBonusDetail", []);
 
         private static bool IsAllowedTransferToDownlineHistorySite(string site)
         {
-            var allowSites = ConfigurationManager.GetValue<string[]>("TransferToDownlineHistory:OfferSites", []);
+            var allowSites = AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string[]>("TransferToDownlineHistory:OfferSites", []);
             return allowSites.Contains("*") || allowSites.Contains(site, StringComparer.OrdinalIgnoreCase);
         }
     }

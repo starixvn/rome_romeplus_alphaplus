@@ -2,9 +2,9 @@
 
 namespace Alpha.Main.Site.Features.Banner
 {
-    public class BannerHandler(BannerService bannerService) : IRequestHandler<BannerQuery, BannerViewModel>
+    public class BannerHandler(IBannerService bannerService) : IRequestHandler<BannerQuery, BannerViewModel>
     {
-        private readonly BannerService bannerService = bannerService;
+        private readonly IBannerService bannerService = bannerService;
 
         public async Task<BannerViewModel> Handle(BannerQuery request, CancellationToken cancellationToken)
         {

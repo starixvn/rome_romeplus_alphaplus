@@ -1,6 +1,4 @@
-﻿using Alpha.Main.Models.Menus;
-
-namespace Alpha.Main.Site.Features.Default.MenuBar
+﻿namespace Alpha.Main.Site.Features.Default.MenuBar
 {
     public class MenuBarViewModel
     {

@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Criteria.Language
+﻿namespace Alpha.Main.Site.Features.Language
 {
     using Fanex.Data.Repository;
 

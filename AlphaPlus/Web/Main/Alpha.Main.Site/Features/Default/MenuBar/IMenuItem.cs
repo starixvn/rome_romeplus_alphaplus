@@ -1,7 +1,5 @@
-﻿namespace Alpha.Main.Models.Menus
+﻿namespace Alpha.Main.Site.Features.Default.MenuBar
 {
-    using System.Collections.Generic;
-
     public interface IMenuItem
     {
         string ResourceKey { get; set; }

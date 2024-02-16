@@ -1,10 +1,13 @@
 ﻿using System.Xml.Serialization;
-using Microsoft.AspNetCore.Hosting;
 
-namespace Alpha.Main.Helpers.Impl
+namespace Alpha.Main.Site.Features.Default.MenuBar
 {
+    public interface ISiteMapReader
+    {
+        SiteMap GetRootNode();
+    }
 
-    public class SiteMapReaderImpl(IWebHostEnvironment environment) : SiteMapReader
+    public class SiteMapReader(IWebHostEnvironment environment) : ISiteMapReader
     {
         private readonly IWebHostEnvironment environment = environment;
 

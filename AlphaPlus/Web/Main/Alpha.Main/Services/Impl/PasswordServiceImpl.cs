@@ -7,6 +7,7 @@ using Alpha.Main.Params;
 using Alpha.Main.Params.Password;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Core.Models;
+using TelegramBot.Client.Services;
 
 namespace Alpha.Main.Services.Impl
 {
@@ -24,7 +25,7 @@ namespace Alpha.Main.Services.Impl
         private readonly IAesService aes;
         private readonly KickoutCustomerService kickoutCustomerService;
         // private readonly INetThrottlingService netThrottlingService;
-        private readonly TelegramBotService telegramBotService;
+        private readonly INotificationService notificationService;
 
         public PasswordServiceImpl(
             IEncryption encryption,
@@ -32,14 +33,14 @@ namespace Alpha.Main.Services.Impl
             KickoutCustomerService kickoutCustomerService,
             IDynamicRepository dynamicRepository,
             // INetThrottlingService netThrottlingService,
-            TelegramBotService telegramBotService)
+            INotificationService notificationService)
             : base(dynamicRepository)
         {
             this.encryption = encryption;
             this.aes = aes;
             this.kickoutCustomerService = kickoutCustomerService;
             // this.netThrottlingService = netThrottlingService;
-            this.telegramBotService = telegramBotService;
+            this.notificationService = notificationService;
         }
 
         public async Task<Result> ChangeMainAccountPassword(ChangeMainAccountPasswordParam param)
@@ -94,7 +95,7 @@ namespace Alpha.Main.Services.Impl
 
                 if (!param.CustLevel.IsMemberLevel())
                 {
-                    Task.Run(() => telegramBotService.NotifyChangePassword(param.CustId, 0));
+                    Task.Run(() => notificationService.NotifyChangePassword(param.CustId, 0));
                 }
             }
 
@@ -153,7 +154,7 @@ namespace Alpha.Main.Services.Impl
 
                 if (!param.CustLevel.IsMemberLevel())
                 {
-                    Task.Run(() => telegramBotService.NotifyChangePassword(param.CustId, param.SubAccountId));
+                    Task.Run(() => notificationService.NotifyChangePassword(param.CustId, param.SubAccountId));
                 }
             }
 
@@ -203,7 +204,7 @@ namespace Alpha.Main.Services.Impl
 
                     if (!param.CustLevel.IsMemberLevel())
                     {
-                        telegramBotService.NotifyChangePassword(param.CustId, 0);
+                        notificationService.NotifyChangePassword(param.CustId, 0);
                     }
                 });
             }
@@ -275,7 +276,7 @@ namespace Alpha.Main.Services.Impl
 
                     if (!param.CustLevel.IsMemberLevel())
                     {
-                        telegramBotService.NotifyChangePassword(param.CustId, param.SubAccountId);
+                        notificationService.NotifyChangePassword(param.CustId, param.SubAccountId);
                     }
                 });
             }

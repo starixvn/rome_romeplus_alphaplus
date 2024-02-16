@@ -6,6 +6,7 @@ using Alpha.Main.Configurations;
 using Alpha.Main.Site.Helpers;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
+using Alpha.Main.Site.Features.Default.MenuBar;
 
 namespace Alpha.Main.Site.Features.Default
 {
@@ -21,8 +22,7 @@ namespace Alpha.Main.Site.Features.Default
             string passwordHash,
             Func<string> getDefaultUrl,
             IBrowserHelper browserHelper,
-            ActorProfilePictureModel profilePicture,
-            bool isEnableAutoTransfer)
+            ActorProfilePictureModel profilePicture)
         {
             this.message = message;
             PasswordHash = passwordHash;
@@ -33,7 +33,6 @@ namespace Alpha.Main.Site.Features.Default
             this.profilePicture = profilePicture;
             IsProtectedMode = message.IsProtectedMode;
             AssetAppPath = message.AssetAppPath;
-            IsEnableAutoTransfer = isEnableAutoTransfer;
         }
 
         public bool EnableSecurityCode => message.EnableSecurityCode;
@@ -170,8 +169,6 @@ namespace Alpha.Main.Site.Features.Default
         public bool HightLightFeaturePermission => false;
 
         public string HightLightFeatureUrl => MicroSites.MessageUrl($"~/BackupDomains/Index");
-
-        public bool IsEnableAutoTransfer { get; set; }
 
         public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
     }

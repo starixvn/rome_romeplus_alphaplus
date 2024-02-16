@@ -1,13 +1,12 @@
-﻿using Alpha.Main.Services.Impl;
-using MediatR;
+﻿using MediatR;
 
 namespace Alpha.Main.Site.Features.Language
 {
-    public class LanguageHandler(UpdateUsageLanguageService updateUsageLanguageService) :
+    public class LanguageHandler(ILanguageService languageService) :
         IRequestHandler<AllLanguagesQuery, LanguageViewModel>,
         IRequestHandler<ChangeLanguageCommand, string>
     {
-        private readonly UpdateUsageLanguageService updateUsageLanguageService = updateUsageLanguageService;
+        private readonly ILanguageService languageService = languageService;
 
         public async Task<string> Handle(ChangeLanguageCommand message, CancellationToken cancellationToken)
         {
@@ -16,7 +15,7 @@ namespace Alpha.Main.Site.Features.Language
 
             if (message.IsUpdateDisplayLanguage)
             {
-                await updateUsageLanguageService.UpdateUsageLanguage(message.CustId, message.SubAccId, languageKey, message.IP);
+                await languageService.UpdateUsageLanguage(message.CustId, message.SubAccId, languageKey, message.IP);
                 message.SetDisplayLanguage(languageCode);
             }
 

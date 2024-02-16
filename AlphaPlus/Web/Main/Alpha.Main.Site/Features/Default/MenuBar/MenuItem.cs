@@ -1,8 +1,8 @@
-﻿using Alpha.Main.Services;
-using Alpha.Main.AppResources;
+﻿using Alpha.Main.AppResources;
 using AlphaPlus.Core.Helpers;
+using Alpha.Main.Models;
 
-namespace Alpha.Main.Models.Menus
+namespace Alpha.Main.Site.Features.Default.MenuBar
 {
     public class MenuItem : IMenuItem
     {
@@ -14,7 +14,7 @@ namespace Alpha.Main.Models.Menus
         private readonly Func<bool> isHideForSite;
         private readonly Func<string> buildLanguageQueryStringFunc;
         private readonly Func<string> buildDarkModeQueryStringFunc;
-        private readonly TransferService transferService;
+        private readonly ITransferService transferService;
         private readonly IUser user;
         private readonly IBrowserHelper browserHelper;
 
@@ -36,7 +36,7 @@ namespace Alpha.Main.Models.Menus
             Func<bool> isHideForSite,
             Func<string> buildLanguageQueryStringFunc,
             Func<string> buildDarkModeQueryStringFunc,
-            TransferService transferService,
+            ITransferService transferService,
             IUser user,
             IBrowserHelper browserHelper)
         {

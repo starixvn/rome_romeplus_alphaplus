@@ -1,7 +1,6 @@
 using Alpha.Main.Helpers;
 using Alpha.Main.Helpers.Impl;
 using Alpha.Main.Models;
-using Alpha.Main.Models.Menus;
 using Alpha.Main.ProfilePicture.Services;
 using Alpha.Main.Services;
 using Alpha.Main.Services.Impl;
@@ -26,6 +25,8 @@ using Alpha.Main.Site.Features.ApiKey;
 using Alpha.Main.Site.Features.Banner;
 using Alpha.Main.Site.Features.Theme;
 using Alpha.Main.Site.Features.UMMessage;
+using Alpha.Main.Site.Features.Default.MenuBar;
+using Alpha.Main.Site.Features.Language;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -46,17 +47,17 @@ public static class Extensions
 
         services.AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>();
         services.AddSingleton<ISecurityCodeHttpContext, SecurityCodeHttpContext>();
-        services.AddSingleton<MenuItemBuilder, MenuItemBuilderImpl>();
+        services.AddSingleton<IMenuItemBuilder, MenuItemBuilder>();
         services.AddSingleton<CacheRefService, CacheRefServiceImpl>();
         services.AddSingleton<IAesService, AesService>();
         services.AddSingleton<IUserSessionService, UserSessionService>();
 
-        services.AddSingleton<SiteMenuService, SiteMenuServiceImpl>();
+        services.AddSingleton<ISiteMenuService, SiteMenuService>();
         services.AddSingleton<ProfilePictureServices, ProfilePictureServicesImpl>();
         services.AddSingleton<SecurityCodeService, SecurityCodeServiceImpl>();
         services.AddSingleton<ISessionManager, SessionManager>();
         services.AddSingleton<PasswordService, PasswordServiceImpl>();
-        services.AddSingleton<SiteMapReader, SiteMapReaderImpl>();
+        services.AddSingleton<ISiteMapReader, SiteMapReader>();
         services.AddSingleton<IEncryption, Encryption>();
         services.AddSingleton<BalanceUpDayInfoService, BalanceUpDayInfoServiceImpl>();
         services.AddSingleton<BalanceInfoService, BalanceInfoServiceImpl>();
@@ -72,8 +73,7 @@ public static class Extensions
         services.AddSingleton<CustomerOtpService, CustomerOtpServiceImpl>();
 
         services.AddTelegramBot(configuration);
-        services.AddSingleton<TelegramBotService, TelegramBotServiceImpl>();
-        services.AddSingleton<TransferService, TransferServiceImpl>();
+        services.AddSingleton<ITransferService, TransferService>();
         services.AddSingleton<IUser, User>();
 
         services.AddSingleton<LogoutService, LogoutServiceImpl>();
@@ -87,7 +87,7 @@ public static class Extensions
         services.AddSingleton<IUMMessageService, UMMessageService>();
         services.AddSingleton<ProtectionCodeService, ProtectionCodeServiceImpl>();
         services.AddSingleton<IThemeService, ThemeService>();
-        services.AddSingleton<UpdateUsageLanguageService, UpdateUsageLanguageServiceImpl>();
+        services.AddSingleton<ILanguageService, LanguageService>();
 
         services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
         services.AddHttpClient<IAccountService, AccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))

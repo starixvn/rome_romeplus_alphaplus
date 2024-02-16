@@ -9,6 +9,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
+using Alpha.Main.Site.Features.Default.MenuBar;
 
 namespace Alpha.Main.Site.Features.Default
 {
@@ -30,7 +31,7 @@ namespace Alpha.Main.Site.Features.Default
         private readonly ProfilePictureServices customerProfileService;
         private readonly LogoutService logoutService;
         private readonly ISettingService telegramSettingService;
-        private readonly TransferService transferService;
+        private readonly ITransferService transferService;
         private readonly IEncryption encryption;
         private readonly Fanex.Logging.ILogger logger;
 
@@ -39,7 +40,7 @@ namespace Alpha.Main.Site.Features.Default
             LogoutService logoutService,
             ProfilePictureServices customerProfileService,
             ISettingService telegramSettingService,
-            TransferService transferService,
+            ITransferService transferService,
             IEncryption encryption,
             Fanex.Logging.ILogger logger)
             : this(sessionManager, browserHelper, logoutService, null, customerProfileService, telegramSettingService, transferService, encryption, logger)
@@ -54,7 +55,7 @@ namespace Alpha.Main.Site.Features.Default
             Func<string> getDefaultUrl,
             ProfilePictureServices customerProfileService,
             ISettingService telegramSettingService,
-            TransferService transferService,
+            ITransferService transferService,
             IEncryption encryption,
             Fanex.Logging.ILogger logger)
         {
@@ -89,10 +90,9 @@ namespace Alpha.Main.Site.Features.Default
         {
             var profile = await customerProfileService.GetActorProfilePicture(message.CustId);
 
-            var isEnableAutoTransfer = transferService.IsEnableAutoTransfer(message.Currency, message.CustId);
 
             var viewModel = new IndexViewModel(
-                message, encryption.RandomString(4), getDefaultUrl, browserHelper, profile, isEnableAutoTransfer);
+                message, encryption.RandomString(4), getDefaultUrl, browserHelper, profile);
 
             var custBotMessenger = await GetCustBotMessenger(message.CustId, message.SubAccId, message.Language);
             if (custBotMessenger == null)

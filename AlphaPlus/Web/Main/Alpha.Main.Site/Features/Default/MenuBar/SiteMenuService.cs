@@ -1,28 +1,28 @@
-﻿using AlphaPlus.Core.Models;
-using Alpha.Main.Helpers;
-using Alpha.Main.Models.Menus;
+using AlphaPlus.Core.Models;
 using Fanex.Caching;
 
-namespace Alpha.Main.Services.Impl
+namespace Alpha.Main.Site.Features.Default.MenuBar
 {
-    public class SiteMenuServiceImpl : SiteMenuService
+    public interface ISiteMenuService
+    {
+        IEnumerable<IMenuItem> GetMenuByUserLevel(UserLevel userLevel, bool isCookieLess = false);
+    }
+
+    public class SiteMenuService : ISiteMenuService
     {
         private const string CacheKeyMenuByUserLevel = "Alpha.Main.MenuForLevel.";
 
-        // private readonly CachingManager cacheManager;
         private readonly ICacheService cacheService;
-        private readonly MenuItemBuilder menuItemBuilder;
-        private readonly SiteMapReader siteMapReader;
+        private readonly IMenuItemBuilder menuItemBuilder;
+        private readonly ISiteMapReader siteMapReader;
 
 
-        public SiteMenuServiceImpl(
-            // CachingManager cacheManager,
+        public SiteMenuService(
             ICacheService cacheService,
-            MenuItemBuilder menuItemBuilder,
-            SiteMapReader siteMapReader)
+            IMenuItemBuilder menuItemBuilder,
+            ISiteMapReader siteMapReader)
         {
 
-            // this.cacheManager = cacheManager;
             this.cacheService = cacheService;
             this.menuItemBuilder = menuItemBuilder;
             this.siteMapReader = siteMapReader;

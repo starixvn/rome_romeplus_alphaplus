@@ -5,6 +5,7 @@ using Alpha.Main.Params.SecurityCode;
 using Fanex.Data.Repository;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Core.Models;
+using TelegramBot.Client.Services;
 
 namespace Alpha.Main.Services.Impl
 {
@@ -22,18 +23,18 @@ namespace Alpha.Main.Services.Impl
         private const int WrongSecurityCode = 9009;
         private readonly IEncryption encryption;
         // private readonly INetThrottlingService netThrottlingService;
-        private readonly TelegramBotService telegramBotService;
+        private readonly INotificationService notificationService;
 
         public SecurityCodeServiceImpl(
             IDynamicRepository dynamicRepository,
             IEncryption encryption,
             // INetThrottlingService netThrottlingService,
-            TelegramBotService telegramBotService)
+            INotificationService notificationService)
             : base(dynamicRepository)
         {
             this.encryption = encryption;
             // this.netThrottlingService = netThrottlingService;
-            this.telegramBotService = telegramBotService;
+            this.notificationService = notificationService;
         }
 
         public async Task<Result> ChangeMainAccountSecurityCode(ChangeSecurityCodeParam param)
@@ -57,7 +58,7 @@ namespace Alpha.Main.Services.Impl
 
             if (result != null && result.IsSuccessful && !param.IsMemberLevel)
             {
-                Task.Run(() => telegramBotService.NotifyChangeSecurityCode(param.CustId, 0));
+                Task.Run(() => notificationService.NotifyChangeSecurityCode(param.CustId, 0));
             }
 
             return result;
@@ -84,7 +85,7 @@ namespace Alpha.Main.Services.Impl
 
             if (result != null && result.IsSuccessful && !param.IsMemberLevel)
             {
-                Task.Run(() => telegramBotService.NotifyChangeSecurityCode(param.CustId, param.SubAccId));
+                Task.Run(() => notificationService.NotifyChangeSecurityCode(param.CustId, param.SubAccId));
             }
 
             return result;
@@ -121,7 +122,7 @@ namespace Alpha.Main.Services.Impl
                 // TODO
                 // netThrottlingService.Throttle();
 
-                Task.Run(() => telegramBotService.NotifyChangeSecurityCode(param.CustId, param.SubAccId));
+                Task.Run(() => notificationService.NotifyChangeSecurityCode(param.CustId, param.SubAccId));
             }
 
             return result;

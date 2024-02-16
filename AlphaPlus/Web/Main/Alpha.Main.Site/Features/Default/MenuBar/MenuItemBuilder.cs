@@ -1,12 +1,15 @@
-﻿using Alpha.Main.Helpers;
-using Alpha.Main.Services;
+﻿using Alpha.Main.Models;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
-using Microsoft.AspNetCore.Http;
 
-namespace Alpha.Main.Models.Menus
+namespace Alpha.Main.Site.Features.Default.MenuBar
 {
-    public class MenuItemBuilderImpl : MenuItemBuilder
+    public interface IMenuItemBuilder
+    {
+        IMenuItem BuildMenuItem(SiteMapNode node);
+    }
+
+    public class MenuItemBuilder : IMenuItemBuilder
     {
         private readonly AlphaPlus.Core.Services.IAuthorizationService authorizationService;
         private readonly IDictionary<string, Func<MenuStatus>> menuItemTypeConfiguration;
@@ -14,14 +17,14 @@ namespace Alpha.Main.Models.Menus
         private readonly Func<bool> isInternalFunc;
         private readonly Func<string> buildLanguageQueryStringFunc;
         private readonly Func<string> buildDarkModeQueryStringFunc;
-        private readonly TransferService transferService;
+        private readonly ITransferService transferService;
         private readonly IUser user;
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IBrowserHelper browserHelper;
 
-        public MenuItemBuilderImpl(
+        public MenuItemBuilder(
             AlphaPlus.Core.Services.IAuthorizationService authorizationService,
-            TransferService transferService,
+            ITransferService transferService,
             IUser user,
             IHttpContextAccessor httpContextAccessor,
             IBrowserHelper browserHelper)

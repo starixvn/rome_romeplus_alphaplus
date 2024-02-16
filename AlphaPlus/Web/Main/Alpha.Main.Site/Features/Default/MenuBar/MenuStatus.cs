@@ -1,7 +1,5 @@
-﻿namespace Alpha.Main.Models.Menus
+﻿namespace Alpha.Main.Site.Features.Default.MenuBar
 {
-    using System;
-
     public class MenuStatus
     {
         public MenuStatus(bool visible = true, bool disabled = false)

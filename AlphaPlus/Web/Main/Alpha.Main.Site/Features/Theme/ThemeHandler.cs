@@ -1,16 +1,15 @@
-﻿using Alpha.Main.Services;
-using AlphaPlus.Core.Configurations;
+﻿using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace Alpha.Main.Site.Features.Theme
 {
-    public class ThemeHandler(IUserSession userSession, ThemeService themeService) :
+    public class ThemeHandler(IUserSession userSession, IThemeService themeService) :
         IRequestHandler<ChangeThemeQuery, bool>,
         IRequestHandler<ResetAssetAppPathQuery, bool>
     {
         private readonly IUserSession userSession = userSession;
-        private readonly ThemeService themeService = themeService;
+        private readonly IThemeService themeService = themeService;
 
         public async Task<bool> Handle(ChangeThemeQuery request, CancellationToken cancellationToken)
         {

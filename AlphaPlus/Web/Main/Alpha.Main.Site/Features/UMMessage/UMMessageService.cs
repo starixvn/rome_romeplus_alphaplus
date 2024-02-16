@@ -102,7 +102,7 @@ namespace Alpha.Main.Site.Features.UMMessage
         }
 
         private static UMMessageDTO BuildUMPatternFromTo(string pattern, UMMessageItem message)
-            => new UMMessageDTO(
+            => new(
                 BitConverter.ToInt64(message.Time_Stamp, 0),
                 string.Format(
                     pattern,
