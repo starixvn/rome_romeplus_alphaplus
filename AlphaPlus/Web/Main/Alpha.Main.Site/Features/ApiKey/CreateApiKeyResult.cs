@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Core.Models;
 
-namespace Alpha.Main.Models.ApiKey
+namespace Alpha.Main.Site.Features.ApiKey
 {
     public class CreateApiKeyResult
     {

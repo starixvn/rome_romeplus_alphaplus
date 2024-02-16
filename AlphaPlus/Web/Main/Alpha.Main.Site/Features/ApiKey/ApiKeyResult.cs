@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Models.ApiKey
+﻿namespace Alpha.Main.Site.Features.ApiKey
 {
     public class ApiKeyResult
     {

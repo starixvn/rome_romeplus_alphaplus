@@ -1,12 +1,10 @@
-﻿using Alpha.Main.Constants;
-using Alpha.Main.Services;
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace Alpha.Main.Site.Features.ApiKey
 {
     public class ApiKeyHandler(ApiKeyService apiKeyService) :
-        IRequestHandler<CreateApiKeyCommand, Main.Models.ApiKey.CreateApiKeyResult>,
+        IRequestHandler<CreateApiKeyCommand, CreateApiKeyResult>,
         IRequestHandler<GetApiKeyQuery, EditApiKeyViewModel>,
         IRequestHandler<GetCustomerApiKeyQuery, ApiKeyManagementViewModel>,
         IRequestHandler<RevokeApiKeyCommand, Result>,
@@ -14,7 +12,7 @@ namespace Alpha.Main.Site.Features.ApiKey
     {
         private readonly ApiKeyService apiKeyService = apiKeyService;
 
-        public Task<Main.Models.ApiKey.CreateApiKeyResult> Handle(CreateApiKeyCommand request, CancellationToken cancellationToken)
+        public Task<CreateApiKeyResult> Handle(CreateApiKeyCommand request, CancellationToken cancellationToken)
             => apiKeyService.CreateApiKey(request.CustId, request.ApiName, request.PassPhrase, request.Scopes, request.IP, request.Language, request.ExpirationDate);
 
 

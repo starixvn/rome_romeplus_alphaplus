@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Constants
+﻿namespace Alpha.Main.Site.Features.ApiKey
 {
     public static class ApiKeyScope
     {

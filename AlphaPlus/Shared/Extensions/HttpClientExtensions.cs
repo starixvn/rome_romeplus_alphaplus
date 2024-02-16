@@ -21,4 +21,30 @@ public static class HttpClientExtensions
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadAsStringAsync();
     }
+
+    public static async Task<string> PutAsStringAsync(this HttpClient httpClient, string requestUri, object value = null)
+    {
+        var json = value != null ? JsonSerializer.Serialize(value) : string.Empty;
+        var contentString = new StringContent(json, Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Put,
+            RequestUri = new Uri(httpClient.BaseAddress, requestUri),
+            Content = contentString
+        };
+        var response = await httpClient.SendAsync(request);
+        return await response.Content.ReadAsStringAsync();
+    }
+
+    public static async Task<T> PutAsJsonAsync<T>(this HttpClient httpClient, string requestUri, object value = null)
+    {
+        var content = await PutAsStringAsync(httpClient, requestUri, value);
+        return JsonSerializer.Deserialize<T>(content);
+    }
+
+    public static Task DeleteAsStringAsync(this HttpClient httpClient, string requestUri)
+    {
+        var uri = new Uri(httpClient.BaseAddress, requestUri);
+        return httpClient.DeleteAsync(uri);
+    }
 }

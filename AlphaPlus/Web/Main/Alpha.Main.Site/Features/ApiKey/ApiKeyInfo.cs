@@ -1,7 +1,5 @@
-﻿namespace Alpha.Main.Models.ApiKey
+﻿namespace Alpha.Main.Site.Features.ApiKey
 {
-    using System;
-
     public class ApiKeyInfo
     {
         public string Key { get; set; }

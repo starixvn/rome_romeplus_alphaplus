@@ -1,21 +1,24 @@
-﻿namespace Alpha.Main.Services.Impl
+using AlphaPlus.Core.Models;
+using TelegramBot.Client.Extensions;
+
+namespace Alpha.Main.Site.Features.ApiKey
 {
-    using Alpha.Main.Extensions;
-    using Alpha.Main.Models.ApiKey;
-    using AlphaPlus.Core.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-
-    public class ApiKeyServiceImpl : ApiKeyService
+    public interface IApiKeyService
     {
-        private readonly HttpClient httpClient;
+        Task<CreateApiKeyResult> CreateApiKey(int custId, string apiName, string passPhrase, string scopes, string ip, string language, DateTime? expirationDate);
 
-        public ApiKeyServiceImpl(HttpClient httpClient)
-        {
-            this.httpClient = httpClient;
-        }
+        Task RevokeApiKey(string apiKey, string ip);
+
+        Task<Result> UpdateApiKey(string apiKey, int custId, string apiName, string scopes, string ip, string language, DateTime? expirationDate);
+
+        Task<IEnumerable<ApiKeyInfo>> GetApiKeyByCustId(int custId);
+
+        Task<ApiKeyInfo> GetApiKeyByKey(string key);
+    }
+
+    public class ApiKeyService(HttpClient httpClient) : IApiKeyService
+    {
+        private readonly HttpClient httpClient = httpClient;
 
         public async Task<CreateApiKeyResult> CreateApiKey(int custId, string apiName, string passPhrase, string scopes, string ip, string language, DateTime? expirationDate)
         {

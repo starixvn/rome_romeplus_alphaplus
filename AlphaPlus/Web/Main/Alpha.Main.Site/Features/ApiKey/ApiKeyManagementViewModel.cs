@@ -1,5 +1,4 @@
-﻿using Alpha.Main.Models.ApiKey;
-using Alpha.Main.Site.Helpers;
+﻿using Alpha.Main.Site.Helpers;
 
 namespace Alpha.Main.Site.Features.ApiKey
 {

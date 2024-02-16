@@ -22,6 +22,7 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.SecurityCode.Configurations;
 using Alpha.Main.Site.Features.Account;
 using AlphaPlus.SecurityCode.Web;
+using Alpha.Main.Site.Features.ApiKey;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -85,7 +86,7 @@ public static class Extensions
         services.AddSingleton<ThemeService, ThemeServiceImpl>();
         services.AddSingleton<UpdateUsageLanguageService, UpdateUsageLanguageServiceImpl>();
 
-        services.AddHttpClient<ApiKeyService, ApiKeyServiceImpl>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
+        services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
         services.AddHttpClient<IAccountService, AccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))
             .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
             {
