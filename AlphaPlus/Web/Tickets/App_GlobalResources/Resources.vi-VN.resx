@@ -138,6 +138,9 @@
   <data name="AwayNoBet" xml:space="preserve">
     <value>Khách Không Tính</value>
   </data>
+  <data name="BadRequest" xml:space="preserve">
+    <value/>
+  </data>
   <data name="Balance" xml:space="preserve">
     <value>Số dư tài khoản</value>
   </data>
@@ -188,6 +191,12 @@
   </data>
   <data name="Event" xml:space="preserve">
     <value>Sự kiện</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Xuất sang Excel</value>
+  </data>
+  <data name="FGSlashLG" xml:space="preserve">
+    <value/>
   </data>
   <data name="FT" xml:space="preserve">
     <value>Cả trận</value>
@@ -276,6 +285,9 @@
   <data name="Home" xml:space="preserve">
     <value>Đội Nhà</value>
   </data>
+  <data name="HomeDrawAwayNoBet" xml:space="preserve">
+    <value/>
+  </data>
   <data name="HomeNoBet" xml:space="preserve">
     <value>Nhà Không Tính</value>
   </data>
@@ -321,6 +333,9 @@
   <data name="NonLive" xml:space="preserve">
     <value>Không Trực Tiếp</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này.</value>
+  </data>
   <data name="Note" xml:space="preserve">
     <value>Lưu ý</value>
   </data>
@@ -359,6 +374,27 @@
   </data>
   <data name="OverSlashUnder" xml:space="preserve">
     <value>Tài/Xỉu </value>
+  </data>
+  <data name="Platform_0" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="Platform_1" xml:space="preserve">
+    <value>Máy tính</value>
+  </data>
+  <data name="Platform_2" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="Platform_3" xml:space="preserve">
+    <value>Ứng dụng</value>
+  </data>
+  <data name="Platform_99" xml:space="preserve">
+    <value>Chưa phân loại</value>
+  </data>
+  <data name="Platform_NA" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="Platform_Uncategorized" xml:space="preserve">
+    <value>Chưa phân loại</value>
   </data>
   <data name="PleaseChooseABetType" xml:space="preserve">
     <value>Vui lòng chọn 1 loại hình cá cược</value>
@@ -407,6 +443,12 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Xác nhận</value>
+  </data>
+  <data name="Subtotal_com" xml:space="preserve">
+    <value>Tổng phụ (hoa hồng)</value>
+  </data>
+  <data name="Subtotal_wl" xml:space="preserve">
+    <value>Tổng phụ (thắng thua)</value>
   </data>
   <data name="Team" xml:space="preserve">
     <value>Đội</value>
@@ -468,6 +510,9 @@
   <data name="ViewOverUnderForecast" xml:space="preserve">
     <value>Xem dự đoán kết quả - Tài Xỉu</value>
   </data>
+  <data name="Win" xml:space="preserve">
+    <value>Thắng</value>
+  </data>
   <data name="_1X2" xml:space="preserve">
     <value>1X2</value>
   </data>
@@ -482,5 +527,47 @@
   </data>
   <data name="_1stOU" xml:space="preserve">
     <value>Hiệp 1 - Tài Xỉu</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>PT của Agent</value>
+  </data>
+  <data name="choice" xml:space="preserve">
+    <value>Lựa chọn</value>
+  </data>
+  <data name="ipnote" xml:space="preserve">
+    <value>Thông tin về quốc gia, được cung cấp bởi IP2Location™ và DNSstuff, chỉ mang tính chất tham khảo và không được đảm bảo chính xác. Vui lòng tham khảo các nguồn đáng tin cậy khác để cập nhật thông tin mới nhất và chính xác nhất nếu cần.</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>Hoa hồng</value>
+  </data>
+  <data name="masterPT" xml:space="preserve">
+    <value>PT của Master</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>Thành viên</value>
+  </data>
+  <data name="memberBetList" xml:space="preserve">
+    <value>Danh sách đặt cược của Member</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>Tỷ lệ</value>
+  </data>
+  <data name="place" xml:space="preserve">
+    <value>Place</value>
+  </data>
+  <data name="platform" xml:space="preserve">
+    <value>Nền tảng</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>Tiền cược</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="superPT" xml:space="preserve">
+    <value>PT của Super</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>Thời gian</value>
   </data>
 </root>

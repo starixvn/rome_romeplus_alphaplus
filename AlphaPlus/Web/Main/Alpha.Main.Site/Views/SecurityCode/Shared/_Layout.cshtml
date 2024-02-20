@@ -1,31 +1,34 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="description">
-    <meta content="" name="author">
-    @RenderSection("css", required: false)
-    <title> @ViewBag.Title</title>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="description">
+  <meta content="" name="author">
+  @RenderSection("css", required: false)
+  <title> @ViewBag.Title</title>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
     <![endif]-->
-    @AlphaPlus.Web.Helpers.GoogleAnalyticHelper.GtagScript()
+  @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagScript()
 </head>
+
 <body>
-    @AlphaPlus.Web.Helpers.GoogleAnalyticHelper.GtagNoScript()
-    @RenderBody()
-    @Html.AntiForgeryToken()
-    @Html.Hidden("alert-old-securitycode-empty", Security.alertOldSecCodeEmpty)
-    @Html.Hidden("alert-securitycode-empty", Security.alertSecCodeEmpty)
-    @Html.Hidden("alert-securitycode-wrong-rule", Security.lblSecCodeWrongRule)
-    @Html.Hidden("alert-error-securitycode-confirm", Security.alertErrorSecCodeConfirm)
-    @Html.Hidden("alert-same-securitycode", Security.alertSameSecCode)
-    @Html.Hidden("alert-securitycode-change-ok", Security.alertSecCodeChangedOK)
-    @Html.Hidden("text-securitycode-switch-label-on", Security.SwitchLabelOn)
-    @Html.Hidden("text-securitycode-switch-label-off", Security.SwitchLabelOff)
-    @RenderSection("js", required: false)
+  @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagNoScript()
+  @RenderBody()
+  @Html.AntiForgeryToken()
+  @Html.Hidden("alert-old-securitycode-empty", Security.alertOldSecCodeEmpty)
+  @Html.Hidden("alert-securitycode-empty", Security.alertSecCodeEmpty)
+  @Html.Hidden("alert-securitycode-wrong-rule", Security.lblSecCodeWrongRule)
+  @Html.Hidden("alert-error-securitycode-confirm", Security.alertErrorSecCodeConfirm)
+  @Html.Hidden("alert-same-securitycode", Security.alertSameSecCode)
+  @Html.Hidden("alert-securitycode-change-ok", Security.alertSecCodeChangedOK)
+  @Html.Hidden("text-securitycode-switch-label-on", Security.SwitchLabelOn)
+  @Html.Hidden("text-securitycode-switch-label-off", Security.SwitchLabelOff)
+  @RenderSection("js", required: false)
 </body>
+
 </html>

@@ -1,7 +1,9 @@
 using System.Text.Json.Serialization;
+using AlphaPlus.BetLists.Extensions;
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
-using AlphaPlus.Tickets.Site.Features.Shared.Middlewares;
 using Fanex.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -14,22 +16,17 @@ var configuration = builder.Configuration;
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
 builder.Services
     .AddFanexLogging(configuration)
-    .AddSharedSession(configuration)
+    .AddRemotingRef(configuration)
+    .AddAlphaPlusCore(configuration)
+    .AddBetListsServices()
     .AddApplicationServices(configuration)
-    .AddInfrastructure(configuration)
     .AddMediatR(assembly)
     .AddHealthChecks();
 builder.Services
     .AddHttpContextAccessor()
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-        options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/";
-        options.Cookie.Path = "/";
-    });
+    .AddSharedCookie();
 builder.Services
     .Configure<JsonOptions>(options =>
     {
@@ -44,6 +41,9 @@ builder.Services
         options.ViewLocationFormats.Clear();
         options.ViewLocationFormats.Add("/Features/{1}/Views/{0}.cshtml");
         options.ViewLocationFormats.Add("/Features/Shared/Views/{0}.cshtml");
+        // For BetLists feature
+        options.ViewLocationFormats.Add("/Features/BetLists/Views/{1}/{0}.cshtml");
+        options.ViewLocationFormats.Add("/Features/BetLists/Views/Shared/{0}.cshtml");
     });
 
 var app = builder.Build();

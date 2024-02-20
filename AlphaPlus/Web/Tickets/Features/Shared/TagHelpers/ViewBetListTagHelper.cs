@@ -33,7 +33,7 @@ public class ViewBetListTagHelper : TagHelper
     {
         output.TagName = "a";
         output.TagMode = TagMode.StartTagAndEndTag;
-        var link = $"../site-betlists/BetListByBetTypeAndMatch/Index?matchid={MatchId}bettype={BetType}";
+        var link = $"~/BetListByBetTypeAndMatch/Index?matchid={MatchId}bettype={BetType}";
         if (IsLive.HasValue)
         {
             link += "&islive=" + IsLive;
@@ -66,7 +66,7 @@ public class ViewBetListTagHelper : TagHelper
         }
         else
         {
-            output.Content.SetHtmlContent(Text);
+            output.Content.SetContent(Text);
         }
     }
 }

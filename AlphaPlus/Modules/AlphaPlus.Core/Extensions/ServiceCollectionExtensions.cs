@@ -2,24 +2,61 @@ using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 
-namespace AlphaPlus.Core.Extensions
+namespace AlphaPlus.Core.Extensions;
+
+public static class ServiceCollectionExtensions
 {
-    public static class ServiceCollectionExtensions
+    public static IServiceCollection AddAlphaPlusCore(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection AddAlphaPlusCore(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddSingleton<IUserSession, UserSessionExt>();
-            services.AddSingleton<IRequestAnalyst, RequestAnalyst>();
-            services.AddSingleton<IBrowserHelper, BrowserHelper>();
-            services.AddSingleton<IRequestContext, RequestContext>();
-            services.AddSingleton<IAuthorizationService, AuthorizationService>();
+        services.AddSingleton<IUserSession, UserSessionExt>();
+        services.AddSingleton<IRequestAnalyst, RequestAnalyst>();
+        services.AddSingleton<IBrowserHelper, BrowserHelper>();
+        services.AddSingleton<IRequestContext, RequestContext>();
+        services.AddSingleton<IAuthorizationService, AuthorizationService>();
 
-            services.Configure<AuthorizationOptions>(configuration.GetSection(AuthorizationOptions.Authorization));
-
-            return services;
-        }
+        services.Configure<AuthorizationOptions>(configuration.GetSection(AuthorizationOptions.Authorization));
+        return services.AddSharedSession(configuration);
     }
+
+    private static IServiceCollection AddSharedSession(this IServiceCollection services, IConfiguration configuration)
+    {
+        const string AppName = "AlphaPlus";
+        var redisConfiguration = configuration.GetValue<string>("RedisConfiguration");
+        services
+            .AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = redisConfiguration;
+                options.InstanceName = AppName;
+            })
+            .AddSession()
+            .AddDataProtection()
+            .SetApplicationName(AppName)
+            .PersistKeysToStackExchangeRedis(ConnectionMultiplexer.Connect(redisConfiguration));
+
+        return services;
+    }
+
+    public static AuthenticationBuilder AddSharedCookie(this AuthenticationBuilder builder)
+        => builder.AddCookie(options =>
+        {
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+            options.SlidingExpiration = true;
+            options.AccessDeniedPath = "/Forbidden/";
+            options.Cookie.Path = "/";
+            options.Events = new CookieAuthenticationEvents
+            {
+                OnRedirectToLogin = ctx =>
+                {
+                    ctx.Response.Redirect($"{ctx.Request.Host.Value}/Account/Login");
+                    return Task.CompletedTask;
+                }
+            };
+        });
 }

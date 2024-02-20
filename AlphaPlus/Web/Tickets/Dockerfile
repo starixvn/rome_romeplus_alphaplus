@@ -9,6 +9,12 @@ WORKDIR /src
 COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
 COPY "Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj" "Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj"
+
+COPY "Modules/Alpha.IPInfo/Alpha.IPInfo.csproj" "Modules/Alpha.IPInfo/Alpha.IPInfo.csproj"
+COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
+COPY "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj" "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj"
+COPY "Services/Tickets/BetLists/AlphaPlus.BetLists.csproj" "Services/Tickets/BetLists/AlphaPlus.BetLists.csproj"
+
 COPY "Web/Tickets/Tickets.Site.csproj" "Web/Tickets/Tickets.Site.csproj"
 COPY "NuGet.config" "NuGet.config"
 RUN dotnet restore "Web/Tickets/Tickets.Site.csproj" -v n
@@ -16,6 +22,12 @@ RUN dotnet restore "Web/Tickets/Tickets.Site.csproj" -v n
 COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
 COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
 COPY "Services/Tickets/BetsForecast/Domain" "Services/Tickets/BetsForecast/Domain"
+
+COPY "Modules/Alpha.IPInfo" "Modules/Alpha.IPInfo"
+COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
+COPY "Modules/AlphaPlus.SmartPunter" "Modules/AlphaPlus.SmartPunter"
+COPY "Services/Tickets/BetLists" "Services/Tickets/BetLists"
+
 COPY "Web/Tickets" "Web/Tickets"
 COPY "Shared" "Shared"
 

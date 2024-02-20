@@ -138,6 +138,9 @@
   <data name="AwayNoBet" xml:space="preserve">
     <value>Away No Bet</value>
   </data>
+  <data name="BadRequest" xml:space="preserve">
+    <value/>
+  </data>
   <data name="Balance" xml:space="preserve">
     <value>現金</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="Event" xml:space="preserve">
     <value>賽事</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>導出到Excel</value>
   </data>
   <data name="FGSlashLG" xml:space="preserve">
     <value>最先得分 / 最後得分</value>
@@ -327,6 +333,9 @@
   <data name="NonLive" xml:space="preserve">
     <value>非現場</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>您沒有使用此功能的權限</value>
+  </data>
   <data name="Note" xml:space="preserve">
     <value>備註</value>
   </data>
@@ -365,6 +374,27 @@
   </data>
   <data name="OverSlashUnder" xml:space="preserve">
     <value>大小盤</value>
+  </data>
+  <data name="Platform_0" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="Platform_1" xml:space="preserve">
+    <value>桌機</value>
+  </data>
+  <data name="Platform_2" xml:space="preserve">
+    <value>手機</value>
+  </data>
+  <data name="Platform_3" xml:space="preserve">
+    <value>應用程式</value>
+  </data>
+  <data name="Platform_99" xml:space="preserve">
+    <value>未分類</value>
+  </data>
+  <data name="Platform_NA" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="Platform_Uncategorized" xml:space="preserve">
+    <value>未分類</value>
   </data>
   <data name="PleaseChooseABetType" xml:space="preserve">
     <value>請選擇投注類別</value>
@@ -413,6 +443,12 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
+  </data>
+  <data name="Subtotal_com" xml:space="preserve">
+    <value>小計(佣金)</value>
+  </data>
+  <data name="Subtotal_wl" xml:space="preserve">
+    <value>小計(輸贏)</value>
   </data>
   <data name="Team" xml:space="preserve">
     <value>隊伍</value>
@@ -474,6 +510,9 @@
   <data name="ViewOverUnderForecast" xml:space="preserve">
     <value>瀏覽大小盤預測圖</value>
   </data>
+  <data name="Win" xml:space="preserve">
+    <value>輸贏</value>
+  </data>
   <data name="_1X2" xml:space="preserve">
     <value>獨贏盤</value>
   </data>
@@ -488,5 +527,47 @@
   </data>
   <data name="_1stOU" xml:space="preserve">
     <value>上半場大小盤</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>代理占成数</value>
+  </data>
+  <data name="choice" xml:space="preserve">
+    <value>選擇</value>
+  </data>
+  <data name="ipnote" xml:space="preserve">
+    <value>由IP2Location™ 和 DNSstuff提供的國家與城市的信息只供參考, 並無保證. 如有需要, 請諮詢其他可靠來源以獲得最新的及準確的信息.</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>佣金</value>
+  </data>
+  <data name="masterPT" xml:space="preserve">
+    <value>总代理占成数</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="memberBetList" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>賠率</value>
+  </data>
+  <data name="place" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="platform" xml:space="preserve">
+    <value>平台</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>投注額 </value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="superPT" xml:space="preserve">
+    <value>超级总代理占成数</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>交易時間</value>
   </data>
 </root>

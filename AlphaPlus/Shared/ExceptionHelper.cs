@@ -7,20 +7,14 @@ internal static class ExceptionHelper
     private const string BreakLine = "\r\n";
     private const string TwoBreakLine = "\r\n\r\n";
 
-    public static async Task<string> BuildError(HttpRequest request, Exception exception, string requestedUrl = "")
+    public static async Task<string> BuildError(HttpRequest request, Exception exception)
     {
         var errorBuilder = new StringBuilder();
         errorBuilder
             .Append(exception.Message).Append(TwoBreakLine)
             .Append("PATH: ")
             .Append($"{request.Scheme}://{request.Host}{request.PathBase}{request.Path}{request.QueryString}")
-            .Append(TwoBreakLine);
-        if (!string.IsNullOrWhiteSpace(requestedUrl))
-        {
-            errorBuilder.Append($"REQUESTED URL: {requestedUrl}").Append(TwoBreakLine);
-        }
-
-        errorBuilder
+            .Append(TwoBreakLine)
             .Append("BODY: ")
             .Append(await GetRawBodyStringAsync(request))
             .Append(TwoBreakLine)

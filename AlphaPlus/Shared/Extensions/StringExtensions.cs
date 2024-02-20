@@ -1,10 +1,10 @@
 public static class StringExtensions
 {
-    private static readonly char[] SplitSeparator = { ',' };
+    private static readonly char[] SplitSeparator = [','];
 
     public static IEnumerable<int> ToListInt(this string value)
     {
-        var arrayString = value.ToList();
+        var arrayString = ToList(value);
 
         foreach (var item in arrayString)
         {

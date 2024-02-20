@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.BetLists</AssemblyName>
+    <RootNamespace>AlphaPlus.BetLists</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Shared\Models\Enumeration.cs" Link="Models\Enumeration.cs" />
+    <Compile Include="..\..\..\Shared\Models\UserLevel.cs" Link="Models\UserLevel.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\StringExtensions.cs" Link="Extensions\StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.BetList.Core" Version="3.0.1.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\Alpha.IPInfo\Alpha.IPInfo.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.SmartPunter\AlphaPlus.SmartPunter.csproj" />
+  </ItemGroup>
+</Project>

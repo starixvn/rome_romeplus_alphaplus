@@ -1,4 +1,5 @@
 using Alpha.Main.Site.Extensions;
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
@@ -6,8 +7,6 @@ using AlphaPlus.Logging;
 using AlphaPlus.SecurityCode.Filters;
 using Fanex.Logging.Extensions.Database;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.DataProtection;
-using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,19 +21,6 @@ builder.Configuration
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
 LoggingConfig.Init(new[] { "password", "seccode", "securitycode" }, DatabaseInfoGetters.GetDbExceptionInfo);
 
-var redisConfiguration = builder.Configuration.GetValue<string>("RedisConfiguration");
-builder.Services.AddStackExchangeRedisCache(options =>
-{
-    options.Configuration = redisConfiguration;
-    options.InstanceName = "AlphaPlus";
-});
-builder.Services.AddSession();
-
-builder.Services
-    .AddDataProtection()
-    .SetApplicationName("AlphaPlus")
-    .PersistKeysToStackExchangeRedis(ConnectionMultiplexer.Connect(redisConfiguration));
-
 builder.Services.AddControllersWithViews(options =>
 {
     options.Filters.Add<CheckBelongingFilterAttribute>();
@@ -48,13 +34,7 @@ builder.Services
     .AddApplicationServices(builder.Configuration)
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-        options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/";
-        options.Cookie.Path = "/";
-    });
+    .AddSharedCookie();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

@@ -1440,5 +1440,304 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
                 return ResourceManager.GetString("Forecast_Popup_5", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function.
+        /// </summary>
+        internal static string NotAuthorized
+        {
+            get
+            {
+                return ResourceManager.GetString("NotAuthorized", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bad Request.
+        /// </summary>
+        internal static string BadRequest
+        {
+            get
+            {
+                return ResourceManager.GetString("BadRequest", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Member Bet List.
+        /// </summary>
+        internal static string memberBetList
+        {
+            get
+            {
+                return ResourceManager.GetString("memberBetList", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Country info provided by IP2Location™ and DNSstuff is for reference only, without warranty. For current and accurate info, consult reliable sources if needed.
+        /// </summary>
+        internal static string ipnote
+        {
+            get
+            {
+                return ResourceManager.GetString("ipnote", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Export to Excel.
+        /// </summary>
+        internal static string ExportToExcel
+        {
+            get
+            {
+                return ResourceManager.GetString("ExportToExcel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        internal static string member
+        {
+            get
+            {
+                return ResourceManager.GetString("member", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Trans.Time.
+        /// </summary>
+        internal static string transtime
+        {
+            get
+            {
+                return ResourceManager.GetString("transtime", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Choice.
+        /// </summary>
+        internal static string choice
+        {
+            get
+            {
+                return ResourceManager.GetString("choice", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Odds.
+        /// </summary>
+        internal static string odds
+        {
+            get
+            {
+                return ResourceManager.GetString("odds", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string status
+        {
+            get
+            {
+                return ResourceManager.GetString("status", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Stake.
+        /// </summary>
+        internal static string stake
+        {
+            get
+            {
+                return ResourceManager.GetString("stake", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Super PT.
+        /// </summary>
+        internal static string superPT
+        {
+            get
+            {
+                return ResourceManager.GetString("superPT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Comm.
+        /// </summary>
+        internal static string lblComm
+        {
+            get
+            {
+                return ResourceManager.GetString("lblComm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master PT.
+        /// </summary>
+        internal static string masterPT
+        {
+            get
+            {
+                return ResourceManager.GetString("masterPT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Agent PT.
+        /// </summary>
+        internal static string agentPT
+        {
+            get
+            {
+                return ResourceManager.GetString("agentPT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Platform.
+        /// </summary>
+        internal static string platform
+        {
+            get
+            {
+                return ResourceManager.GetString("platform", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        internal static string Platform_0
+        {
+            get
+            {
+                return ResourceManager.GetString("Platform_0", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Desktop.
+        /// </summary>
+        internal static string Platform_1
+        {
+            get
+            {
+                return ResourceManager.GetString("Platform_1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile.
+        /// </summary>
+        internal static string Platform_2
+        {
+            get
+            {
+                return ResourceManager.GetString("Platform_2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to APP.
+        /// </summary>
+        internal static string Platform_3
+        {
+            get
+            {
+                return ResourceManager.GetString("Platform_3", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Uncategorized.
+        /// </summary>
+        internal static string Platform_99
+        {
+            get
+            {
+                return ResourceManager.GetString("Platform_99", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        internal static string Platform_NA
+        {
+            get
+            {
+                return ResourceManager.GetString("Platform_NA", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Uncategorized.
+        /// </summary>
+        internal static string Platform_Uncategorized
+        {
+            get
+            {
+                return ResourceManager.GetString("Platform_Uncategorized", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Win.
+        /// </summary>
+        internal static string Win
+        {
+            get
+            {
+                return ResourceManager.GetString("Win", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Place.
+        /// </summary>
+        internal static string place
+        {
+            get
+            {
+                return ResourceManager.GetString("place", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Subtotal(winlost).
+        /// </summary>
+        internal static string Subtotal_wl
+        {
+            get
+            {
+                return ResourceManager.GetString("Subtotal_wl", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Subtotal(Com.).
+        /// </summary>
+        internal static string Subtotal_com
+        {
+            get
+            {
+                return ResourceManager.GetString("Subtotal_com", resourceCulture);
+            }
+        }
+
+
     }
 }

@@ -13,11 +13,11 @@
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-main/dashboard/dashboard-{Model.UserLevelName}")
     @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/default-home")
     @StaticResources.RenderStylesWithMediaDarkMode(767, "~/assets/bundles/home-mobile-calculate-07")
-    @AlphaPlus.Web.Helpers.GoogleAnalyticHelper.GtagScript()
+    @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagScript()
 </head>
 
 <body>
-    @AlphaPlus.Web.Helpers.GoogleAnalyticHelper.GtagNoScript()
+    @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagNoScript()
     <div class="scroll-tabs">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active" id="balance-tab">

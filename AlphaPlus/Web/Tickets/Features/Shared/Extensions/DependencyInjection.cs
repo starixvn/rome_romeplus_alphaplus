@@ -1,39 +1,16 @@
 using System.Net;
-using AlphaPlus.Core.Models;
 using AlphaPlus.Tickets.Site.Features.Forecast;
 using AlphaPlus.Tickets.Site.Features.TotalBets;
-using Microsoft.AspNetCore.DataProtection;
-using StackExchange.Redis;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 
-public static class InfrastructureExtenstions
+public static class DependencyInjection
 {
-    public static IServiceCollection AddSharedSession(this IServiceCollection services, IConfiguration configuration)
-    {
-        const string AppName = "AlphaPlus";
-        var redisConfiguration = configuration.GetValue<string>("RedisConfiguration");
-        services
-            .AddStackExchangeRedisCache(options =>
-            {
-                options.Configuration = redisConfiguration;
-                options.InstanceName = AppName;
-            })
-            .AddSession()
-            .AddDataProtection()
-            .SetApplicationName(AppName)
-            .PersistKeysToStackExchangeRedis(ConnectionMultiplexer.Connect(redisConfiguration));
-
-        return services;
-    }
-
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
-        => services
-            .AddSingleton<IUserSession, UserSessionExt>()
+    {
+        services
             .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>();
 
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
-    {
         // https://www.milanjovanovic.tech/blog/the-right-way-to-use-httpclient-in-dotnet
         // Why You Should Avoid Typed Clients In Singleton Services
         const int HttpClientPooledConnectionLifetime = 15;

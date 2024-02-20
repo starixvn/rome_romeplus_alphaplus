@@ -1,0 +1,25 @@
+@using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetTypeAndMatch
+@model BetListByBetTypeAndMatchViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+<div class="bl_title">
+    <div class="box">
+        <div>@Model.Title</div>
+        <div>
+            <partial name="IconInformation" model="new List<string>() { Resources.ipnote }" />
+        </div>
+        <div class="push">
+            <div class="bl-export-excel">
+                <a asp-action="BetListByBetTypeAndMatch" asp-route-matchid="@Model.MatchId"
+                    asp-route-bettype="@Model.BetType" asp-route-islive="@Model.IsLive"
+                    asp-route-betteam="@Model.BetTeam" id="icon-excel" class="icon icon-excel"
+                    title="@Resources.ExportToExcel"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="TableWithoutWinLoss" model="Model" />
+@section Scripts {
+    <script src="~/bundles/betlists/icon-note.js" asp-append-version="true"></script>
+}

@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
-using AlphaPlus.Tickets.API.Extensions;
+using AlphaPlus.BetsForecast.Infrastructure.Shared;
+using AlphaPlus.Tickets.API.Endpoints;
 using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,10 +27,22 @@ builder.Services
     .AddHealthChecks();
 
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger().UseSwaggerUI();
+}
+
 app
-    .UseMiddlewares()
-    .MapEndpoints();
-//app.UseHttpsRedirection();
+    //.UseResponseCompression()
+    .UseMiddleware<ExceptionMiddleware>();
+app.MapHealthChecks("/health");
+typeof(IEndpoint).Assembly
+    .GetTypes()
+    .Where(p => p.IsClass && p.IsAssignableTo(typeof(IEndpoint)))
+    .Select(Activator.CreateInstance)
+    .Cast<IEndpoint>()
+    .ToList()
+    .ForEach(module => module.MapEndpoints(app));
 
 await Fanex.Logging.Logger.Log.InfoAsync($"{typeof(Program).Assembly.GetName().Name} has been started up.");
 await app.RunAsync();

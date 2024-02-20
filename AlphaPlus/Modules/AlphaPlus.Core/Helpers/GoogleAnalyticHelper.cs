@@ -1,7 +1,7 @@
 using AlphaPlus.Core.Configurations;
 using Microsoft.AspNetCore.Html;
 
-namespace AlphaPlus.Web.Helpers;
+namespace AlphaPlus.Core.Helpers;
 
 public static class GoogleAnalyticHelper
 {

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.Results</AssemblyName>
+    <RootNamespace>AlphaPlus.Results</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Constants\BetTypeConstants.cs" />
+    <Compile Include="..\..\..\Shared\Constants\SportTypeConstants.cs" Link="Constants\SportTypeConstants.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Data.ProxyClient" Version="0.0.3-alpha02" />
+    <PackageReference Include="Fanex.Result.Core-Sportsbook" Version="2.0.0.2" />
+  </ItemGroup>
+</Project>

@@ -138,6 +138,9 @@
   <data name="AwayNoBet" xml:space="preserve">
     <value>Away No Bet</value>
   </data>
+  <data name="BadRequest" xml:space="preserve">
+    <value/>
+  </data>
   <data name="Balance" xml:space="preserve">
     <value>ยอดเงิน</value>
   </data>
@@ -188,6 +191,12 @@
   </data>
   <data name="Event" xml:space="preserve">
     <value>การแข่งขัน</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>ส่งออกไปที่โปรแกรมเอกเซล</value>
+  </data>
+  <data name="FGSlashLG" xml:space="preserve">
+    <value/>
   </data>
   <data name="FT" xml:space="preserve">
     <value>เต็มเวลา</value>
@@ -276,6 +285,9 @@
   <data name="Home" xml:space="preserve">
     <value>ทีมเหย้า</value>
   </data>
+  <data name="HomeDrawAwayNoBet" xml:space="preserve">
+    <value/>
+  </data>
   <data name="HomeNoBet" xml:space="preserve">
     <value>Home No Bet</value>
   </data>
@@ -321,6 +333,9 @@
   <data name="NonLive" xml:space="preserve">
     <value>ไม่มีเกมสด</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
+  </data>
   <data name="Note" xml:space="preserve">
     <value>หมายเหตุ</value>
   </data>
@@ -359,6 +374,27 @@
   </data>
   <data name="OverSlashUnder" xml:space="preserve">
     <value>สูง/ต่ำ</value>
+  </data>
+  <data name="Platform_0" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="Platform_1" xml:space="preserve">
+    <value>เดสก์ทอป</value>
+  </data>
+  <data name="Platform_2" xml:space="preserve">
+    <value>โทรศัพท์มือถือ</value>
+  </data>
+  <data name="Platform_3" xml:space="preserve">
+    <value>แอป</value>
+  </data>
+  <data name="Platform_99" xml:space="preserve">
+    <value>ไม่มีหมวดหมู่</value>
+  </data>
+  <data name="Platform_NA" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="Platform_Uncategorized" xml:space="preserve">
+    <value>ไม่มีหมวดหมู่</value>
   </data>
   <data name="PleaseChooseABetType" xml:space="preserve">
     <value>โปรดเลือกประเภทการเดิมพัน</value>
@@ -407,6 +443,12 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>ตกลง</value>
+  </data>
+  <data name="Subtotal_com" xml:space="preserve">
+    <value>ผลรวมย่อย คอมมิชชั่น</value>
+  </data>
+  <data name="Subtotal_wl" xml:space="preserve">
+    <value>ผลรวมย่อย( ชนะ แพ้ )</value>
   </data>
   <data name="Team" xml:space="preserve">
     <value>ทีม</value>
@@ -468,6 +510,9 @@
   <data name="ViewOverUnderForecast" xml:space="preserve">
     <value>การทำนายผลล่วงหน้าของ มากกว่า น้อยกว่า</value>
   </data>
+  <data name="Win" xml:space="preserve">
+    <value>ชนะ</value>
+  </data>
   <data name="_1X2" xml:space="preserve">
     <value>ราคาพูล</value>
   </data>
@@ -482,5 +527,47 @@
   </data>
   <data name="_1stOU" xml:space="preserve">
     <value>สูง/ต่ำ ครึ่งแรก</value>
+  </data>
+  <data name="agentPT" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของเอเย่น</value>
+  </data>
+  <data name="choice" xml:space="preserve">
+    <value>เลือก</value>
+  </data>
+  <data name="ipnote" xml:space="preserve">
+    <value>ข้อมูลประเทศ ได้รับมาจาก IP2Location™ และ DNSstuff ซึ่งใช้สำหรับการอ้างอิงเท่านั้น โดยไม่มีการรับประกัน หากท่านจำเป็นที่จะได้รับข้อมูลที่เป็นปัจจุบันและถูกต้อง โปรดตรวจสอบจากแหล่งข้อมูลที่เชื่อถือได้</value>
+  </data>
+  <data name="lblComm" xml:space="preserve">
+    <value>คอมมิชชั่น</value>
+  </data>
+  <data name="masterPT" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของมาสเตอร์</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>สมาชิก</value>
+  </data>
+  <data name="memberBetList" xml:space="preserve">
+    <value>รายการการวางเดิมพันของสมาชิก</value>
+  </data>
+  <data name="odds" xml:space="preserve">
+    <value>ราคา</value>
+  </data>
+  <data name="place" xml:space="preserve">
+    <value>วาง</value>
+  </data>
+  <data name="platform" xml:space="preserve">
+    <value>แพลตฟอร์ม</value>
+  </data>
+  <data name="stake" xml:space="preserve">
+    <value>เงินเดิมพัน </value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="superPT" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของซุปเปอร์</value>
+  </data>
+  <data name="transtime" xml:space="preserve">
+    <value>เวลาการดำเนินการ</value>
   </data>
 </root>

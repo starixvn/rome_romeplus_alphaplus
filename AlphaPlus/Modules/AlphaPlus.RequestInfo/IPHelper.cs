@@ -45,7 +45,6 @@ public class IPHelperImpl : IPHelper
         return ips[0].Trim();
     }
 
-
     public bool IsIPV6(string clientIP)
     {
         return IPAddress.TryParse(clientIP, out IPAddress address)

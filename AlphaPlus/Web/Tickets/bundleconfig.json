@@ -52,5 +52,11 @@
       "assets/scripts/forecast/soccer.js",
       "assets/scripts/forecast/soccer-quickintro.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/icon-note.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/icon-note.js"
+    ]
   }
 ]
