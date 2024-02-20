@@ -10,7 +10,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddBetListsServices(this IServiceCollection services)
         => services
-        .AddSingleton<IIPInfoDataAccess, IIPInfoDataAccess>()
+        .AddSingleton<IIPInfoDataAccess, IPInfoDataAccess>()
         .AddSingleton<ISmartPunterDataAccess, SmartPunterDataAccess>()
         .AddSingleton<IForecastService, ForecastService>()
         .AddSingleton<IRunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchService>();

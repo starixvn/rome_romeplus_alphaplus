@@ -14,12 +14,12 @@ public class BetListByBetTypeAndMatchHandler :
     BetListBaseHandler,
     IRequestHandler<BetListByBetTypeAndMatchQuery, BetListByBetTypeAndMatchViewModel>
 {
-    private readonly ForecastService forecastService;
-    private readonly RunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService;
+    private readonly IForecastService forecastService;
+    private readonly IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService;
 
     public BetListByBetTypeAndMatchHandler(
-        RunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService,
-        ForecastService forecastService,
+        IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService,
+        IForecastService forecastService,
         IBetListHTMLBuilder builder,
         ITicketHelper ticketHelper,
         ISmartPunterBetListMonitor monitorService,

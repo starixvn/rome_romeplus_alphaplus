@@ -19,8 +19,6 @@
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
     <PackageReference Include="MediatR" Version="11.1.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Extensions\FanexDataExtensions.cs" Link="Extensions\FanexDataExtensions.cs" />

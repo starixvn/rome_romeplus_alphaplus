@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AlphaPlus.Settings.Site.SubAccount.Services;
+using AlphaPlus.Core.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,15 +17,11 @@ builder.Services
         (httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CustomerSettingApi")));
 
 builder.Services
+    .AddAlphaPlusCore(configuration)
     .AddHttpContextAccessor()
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-        options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/";
-    });
+    .AddSharedCookie();
 
 builder.Services
     .AddControllersWithViews()
