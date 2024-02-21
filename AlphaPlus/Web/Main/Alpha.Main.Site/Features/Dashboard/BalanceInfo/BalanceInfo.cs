@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Models.BalanceInfo
+﻿namespace Alpha.Main.Site.Features.Dashboard.BalanceInfo
 {
     public class BalanceInfo
     {

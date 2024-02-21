@@ -1,15 +1,23 @@
-﻿using AlphaPlus.Core.Models;
-using Alpha.Main.Criteria.Statistics;
+using Alpha.Main.Site.Features.Dashboard.BalanceInfo;
+using AlphaPlus.Core.Models;
 using Fanex.Data.Repository;
-using Alpha.Main.Models.Statistics;
 
-namespace Alpha.Main.Services.Impl
+namespace Alpha.Main.Site.Features.Dashboard.Statistics
 {
-    public class StatisticsServiceImpl(
-        BalanceUpDayInfoService balanceUpDayInfoService,
-        IDynamicRepository dynamicRepository) : StatisticsService
+    public interface IStatisticsService
     {
-        private readonly BalanceUpDayInfoService balanceUpDayInfoService = balanceUpDayInfoService;
+        Task<Statistics> GetStatistics(int custId, UserLevel userLevel);
+
+        Task<IEnumerable<TopWinningMember>> GetTopWinningMembers(int custId, UserLevel userLevel);
+
+        Task<IEnumerable<TopTurnoverMember>> GetTopTurnoverMembers(int custId, UserLevel userLevel);
+
+        Task<IEnumerable<NewMember>> GetNewMembers(int custId);
+    }
+
+    public class StatisticsService(IBalanceInfoService balanceInfoService, IDynamicRepository dynamicRepository) : IStatisticsService
+    {
+        private readonly IBalanceInfoService balanceInfoService = balanceInfoService;
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
 
         public Task<Statistics> GetStatistics(int custId, UserLevel userLevel)
@@ -17,7 +25,7 @@ namespace Alpha.Main.Services.Impl
 
         public async Task<IEnumerable<TopWinningMember>> GetTopWinningMembers(int custId, UserLevel userLevel)
         {
-            var balanceUpDayInfo = await balanceUpDayInfoService.GetBalanceUpDayInfo();
+            var balanceUpDayInfo = await balanceInfoService.GetBalanceUpDayInfo();
             var criteria = new GetTopWinningMembersCriteria(
                 userLevel,
                 custId,
@@ -29,7 +37,7 @@ namespace Alpha.Main.Services.Impl
 
         public async Task<IEnumerable<TopTurnoverMember>> GetTopTurnoverMembers(int custId, UserLevel userLevel)
         {
-            var balanceUpDayInfo = await balanceUpDayInfoService.GetBalanceUpDayInfo();
+            var balanceUpDayInfo = await balanceInfoService.GetBalanceUpDayInfo();
             var criteria = new GetTopTurnoverMembersCriteria(
                 userLevel,
                 custId,

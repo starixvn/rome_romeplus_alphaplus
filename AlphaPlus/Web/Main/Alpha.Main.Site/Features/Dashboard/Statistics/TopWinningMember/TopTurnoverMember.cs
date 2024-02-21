@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Models.Statistics
+﻿namespace Alpha.Main.Site.Features.Dashboard.Statistics
 {
     public class TopTurnoverMember
     {

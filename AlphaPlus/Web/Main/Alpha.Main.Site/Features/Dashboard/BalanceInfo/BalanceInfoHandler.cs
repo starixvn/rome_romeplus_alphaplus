@@ -1,11 +1,10 @@
 ﻿using MediatR;
-using Alpha.Main.Services;
 
 namespace Alpha.Main.Site.Features.Dashboard.BalanceInfo
 {
-    public class BalanceInfoHandler(BalanceInfoService balanceInfoService) : IRequestHandler<BalanceInfoQuery, BalanceInfoViewModel>
+    public class BalanceInfoHandler(IBalanceInfoService balanceInfoService) : IRequestHandler<BalanceInfoQuery, BalanceInfoViewModel>
     {
-        private readonly BalanceInfoService balanceInfoService = balanceInfoService;
+        private readonly IBalanceInfoService balanceInfoService = balanceInfoService;
 
         public async Task<BalanceInfoViewModel> Handle(BalanceInfoQuery request, CancellationToken cancellationToken)
         {

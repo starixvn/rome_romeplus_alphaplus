@@ -27,6 +27,8 @@ using Alpha.Main.Site.Features.UMMessage;
 using Alpha.Main.Site.Features.Default.MenuBar;
 using Alpha.Main.Site.Features.Language;
 using Fanex.Data;
+using Alpha.Main.Site.Features.Dashboard.BalanceInfo;
+using Alpha.Main.Site.Features.Dashboard.Statistics;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -59,9 +61,8 @@ public static class Extensions
         services.AddSingleton<PasswordService, PasswordServiceImpl>();
         services.AddSingleton<ISiteMapReader, SiteMapReader>();
         services.AddSingleton<IEncryption, Encryption>();
-        services.AddSingleton<BalanceUpDayInfoService, BalanceUpDayInfoServiceImpl>();
-        services.AddSingleton<BalanceInfoService, BalanceInfoServiceImpl>();
-        services.AddSingleton<StatisticsService, StatisticsServiceImpl>();
+        services.AddSingleton<IBalanceInfoService, BalanceInfoService>();
+        services.AddSingleton<IStatisticsService, StatisticsService>();
         services.AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>();
 
 

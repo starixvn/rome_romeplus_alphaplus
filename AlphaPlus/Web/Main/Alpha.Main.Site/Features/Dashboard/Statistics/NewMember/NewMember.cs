@@ -1,7 +1,5 @@
-﻿namespace Alpha.Main.Models.Statistics
+﻿namespace Alpha.Main.Site.Features.Dashboard.Statistics
 {
-    using System;
-
     public class NewMember
     {
         public NewMember(int custId, string userName, DateTime createdDate, decimal givenCredit)

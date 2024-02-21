@@ -1,20 +1,22 @@
-﻿using AlphaPlus.Core.Models;
-using Fanex.Data.Repository;
-
-namespace Alpha.Main.Criteria.Statistics
+﻿namespace Alpha.Main.Site.Features.Dashboard.Statistics
 {
-    public class GetTopTurnoverMembersCriteria : CriteriaBase
+    using AlphaPlus.Core.Models;
+    using Fanex.Data.Repository;
+    using System;
+    using System.Collections.Generic;
+
+    public class GetTopWinningMembersCriteria : CriteriaBase
     {
         private static readonly Dictionary<UserLevel, string> SettingKeys = new()
         {
-            [UserLevel.Agent] = "Age_CustomerSelTopTurnoverMembers_Ag",
-            [UserLevel.Master] = "Age_CustomerSelTopTurnoverMembers_MAg",
-            [UserLevel.Super] = "Age_CustomerSelTopTurnoverMembers_SAg"
+            [UserLevel.Agent] = "Age_CustomerSelTopWinningMembers_Ag",
+            [UserLevel.Master] = "Age_CustomerSelTopWinningMembers_MAg",
+            [UserLevel.Super] = "Age_CustomerSelTopWinningMembers_SAg"
         };
 
         private readonly string settingKey;
 
-        public GetTopTurnoverMembersCriteria(
+        public GetTopWinningMembersCriteria(
             UserLevel userLevel,
             int custId,
             DateTime balanceUpDay,

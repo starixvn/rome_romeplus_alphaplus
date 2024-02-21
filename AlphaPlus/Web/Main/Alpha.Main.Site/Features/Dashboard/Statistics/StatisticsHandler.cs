@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Alpha.Main.Services;
 
 namespace Alpha.Main.Site.Features.Dashboard.Statistics
 {

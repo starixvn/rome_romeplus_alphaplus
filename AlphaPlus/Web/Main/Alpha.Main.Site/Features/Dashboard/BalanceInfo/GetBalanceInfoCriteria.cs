@@ -1,7 +1,7 @@
 ﻿using AlphaPlus.Core.Models;
 using Fanex.Data.Repository;
 
-namespace Alpha.Main.Criteria.BalanceInfo
+namespace Alpha.Main.Site.Features.Dashboard.BalanceInfo
 {
     public class GetBalanceInfoCriteria : CriteriaBase
     {

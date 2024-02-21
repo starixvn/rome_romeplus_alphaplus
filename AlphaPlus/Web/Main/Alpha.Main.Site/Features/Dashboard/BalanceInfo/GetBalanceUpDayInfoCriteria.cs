@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Criteria.BalanceInfo
+﻿namespace Alpha.Main.Site.Features.Dashboard.BalanceInfo
 {
     using Fanex.Data.Repository;
 

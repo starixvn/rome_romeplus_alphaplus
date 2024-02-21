@@ -1,9 +1,8 @@
-﻿namespace Alpha.Main.Criteria.Statistics
-{
-    using AlphaPlus.Core.Models;
-    using Fanex.Data.Repository;
-    using System.Collections.Generic;
+﻿using AlphaPlus.Core.Models;
+using Fanex.Data.Repository;
 
+namespace Alpha.Main.Site.Features.Dashboard.Statistics
+{
     public class GetStatisticsCriteria : CriteriaBase
     {
         private static readonly Dictionary<UserLevel, string> SettingKeys = new()

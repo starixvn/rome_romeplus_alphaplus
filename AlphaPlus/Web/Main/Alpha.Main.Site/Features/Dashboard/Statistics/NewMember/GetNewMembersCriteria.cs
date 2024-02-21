@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Criteria.Statistics
+﻿namespace Alpha.Main.Site.Features.Dashboard.Statistics
 {
     using Fanex.Data.Repository;
 

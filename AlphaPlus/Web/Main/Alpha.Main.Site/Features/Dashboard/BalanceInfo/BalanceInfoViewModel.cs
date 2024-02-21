@@ -1,10 +1,9 @@
-﻿namespace Alpha.Main.Site.Features.Dashboard.BalanceInfo
-{
-    using AlphaPlus.Core.Models;
-    using Alpha.Main.AppResources;
-    using Alpha.Main.Site.Helpers;
-    using Alpha.Main.Models.BalanceInfo;
+﻿using AlphaPlus.Core.Models;
+using Alpha.Main.AppResources;
+using Alpha.Main.Site.Helpers;
 
+namespace Alpha.Main.Site.Features.Dashboard.BalanceInfo
+{
     public class BalanceInfoViewModel
     {
         private const string DefaultCurrency = "UUS";

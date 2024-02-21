@@ -1,11 +1,10 @@
-﻿namespace Alpha.Main.Site.Features.Dashboard.Statistics
-{
-    using Alpha.Main.AppResources;
-    using Alpha.Main.Models.Statistics;
-    using Alpha.Main.Site.Helpers;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Core.Models;
+﻿using Alpha.Main.AppResources;
+using Alpha.Main.Site.Helpers;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 
+namespace Alpha.Main.Site.Features.Dashboard.Statistics
+{
     public class StatisticsViewModel
     {
         public StatisticsViewModel(Statistics statistics, UserLevel userLevel, bool canViewReports)
