@@ -1,17 +1,32 @@
 using Alpha.IPInfo.DataAccess;
+using Alpha.IPInfo.Models;
+using Alpha.IPInfo.Services;
 using AlphaPlus.BetLists.DataAccesses;
 using AlphaPlus.BetLists.Services;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 using AlphaPlus.SmartPunter.DataAccesses;
+using AlphaPlus.SmartPunter.Services;
+using AlphaPlus.Utilities.IP;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AlphaPlus.BetLists.Extensions;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddBetListsServices(this IServiceCollection services)
+    public static IServiceCollection AddBetListsServices(this IServiceCollection services, IConfiguration configuration)
         => services
         .AddSingleton<IIPInfoDataAccess, IPInfoDataAccess>()
         .AddSingleton<ISmartPunterDataAccess, SmartPunterDataAccess>()
+        .AddSingleton<IPService, IPServiceImpl>()
+        .AddSingleton(_ => configuration.GetSection("IPInformationConfig").Get<IPInformationConfig>())
+        .AddSingleton<IIPInfoService, IPInfoService>()
+        .AddSingleton<ISmartPunterService, SmartPunterService>()
+        .AddSingleton(sp => SmartPunterBetListMonitor.CreateInstance(
+            sp.GetService<IUserSession>(),
+            sp.GetService<ISmartPunterService>(),
+            IPHelper.GetClientIP))
         .AddSingleton<IForecastService, ForecastService>()
         .AddSingleton<IRunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchService>();
 }

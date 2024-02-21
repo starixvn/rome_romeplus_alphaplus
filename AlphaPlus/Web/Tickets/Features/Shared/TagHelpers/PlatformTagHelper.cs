@@ -1,6 +1,4 @@
-using System.Text.Encodings.Web;
 using AlphaPlus.Tickets.Site.App_GlobalResources;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
@@ -14,7 +12,7 @@ public class PlatformTagHelper : TagHelper
     {
         output.TagName = "td";
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.AddClass("platform-block bl_underdog text-center", HtmlEncoder.Default);
+        output.Attributes.Add("class", "platform-block bl_underdog text-center");
 
         var platform = Resources.Platform_NA;
         if (Device != null)

@@ -9,5 +9,9 @@ namespace Alpha.IPInfo.Models
         public int IPV4CacheInMinutes { get; set; } = 60;
 
         public int IPV6CacheInMinutes { get; set; } = 10;
+
+        public string CommonIPInfoRedisConfiguration { get; set; }
+
+        public string IndividualIPInfoRedisConfiguration { get; set; }
     }
 }

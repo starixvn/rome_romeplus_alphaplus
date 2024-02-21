@@ -33,7 +33,7 @@ public class ViewBetListTagHelper : TagHelper
     {
         output.TagName = "a";
         output.TagMode = TagMode.StartTagAndEndTag;
-        var link = $"~/BetListByBetTypeAndMatch/Index?matchid={MatchId}bettype={BetType}";
+        var link = $"/tickets/BetListByBetTypeAndMatch/Index?matchid={MatchId}&bettype={BetType}";
         if (IsLive.HasValue)
         {
             link += "&islive=" + IsLive;

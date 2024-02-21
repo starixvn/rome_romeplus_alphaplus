@@ -4,10 +4,12 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
+using AlphaPlus.RequestInfo;
 using Fanex.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Fanex.Data;
 
 var assembly = typeof(Program).Assembly;
 
@@ -15,15 +17,18 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
 builder.Services
+    .AddMediatR(assembly)
     .AddFanexLogging(configuration)
     .AddRemotingRef(configuration)
+    .AddFanexData(configuration)
+    .AddRequestInfo()
     .AddAlphaPlusCore(configuration)
-    .AddBetListsServices()
+    .AddSharedSession(configuration)
+    .AddBetListsServices(configuration)
     .AddApplicationServices(configuration)
-    .AddMediatR(assembly)
     .AddHealthChecks();
 builder.Services
-    .AddHttpContextAccessor()
+    //.AddHttpContextAccessor()
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();

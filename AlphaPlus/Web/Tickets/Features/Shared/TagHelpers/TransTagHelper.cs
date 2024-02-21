@@ -1,7 +1,5 @@
-using System.Text.Encodings.Web;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
@@ -18,8 +16,8 @@ public class TransTagHelper : TagHelper
     {
         output.TagName = "td";
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.AddClass("trans-block text-center nonbreak", HtmlEncoder.Default);
+        output.Attributes.Add("class", "trans-block text-center nonbreak");
 
-        output.Content.SetContent($"<div class=\"time\">{Builder.BuildTrans(Ticket)}</div>");
+        output.Content.SetHtmlContent($"<div class=\"time\">{Builder.BuildTrans(Ticket)}</div>");
     }
 }

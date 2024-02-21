@@ -5,7 +5,6 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
 using AlphaPlus.SecurityCode.Filters;
-using Fanex.Logging.Extensions.Database;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +18,7 @@ builder.Configuration
     .AddCommandLine(args);
 
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
-LoggingConfig.Init(new[] { "password", "seccode", "securitycode" }, DatabaseInfoGetters.GetDbExceptionInfo);
+LoggingConfig.Init(["password", "seccode", "securitycode"]);
 
 builder.Services.AddControllersWithViews(options =>
 {

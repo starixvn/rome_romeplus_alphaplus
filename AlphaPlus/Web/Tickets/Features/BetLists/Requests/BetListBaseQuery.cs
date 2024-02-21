@@ -6,7 +6,7 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Requests;
 
 public class BetListBaseQuery
 {
-    protected BetListBaseQuery() : this(null)
+    public BetListBaseQuery() : this(null)
     {
     }
 

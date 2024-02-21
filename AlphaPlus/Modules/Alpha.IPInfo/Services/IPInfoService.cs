@@ -6,6 +6,7 @@ using Alpha.IPInfo.DataAccess;
 using Alpha.IPInfo.Extensions;
 using Alpha.IPInfo.Models;
 using Fanex.Caching;
+using Fanex.Caching.Redis;
 
 namespace Alpha.IPInfo.Services
 {
@@ -21,21 +22,28 @@ namespace Alpha.IPInfo.Services
         private const string IPV6CacheKey = "Alpha.IPInfo.IPV6";
 
         private readonly IPInformationConfig cacheConfig;
+        private readonly IIPInfoDataAccess ipInfoDataAccess;
         private readonly ICacheService commonCacheService;
         private readonly ICacheService individualCacheService;
-        private readonly IIPInfoDataAccess ipInfoDataAccess;
 
         public IPInfoService(
             IPInformationConfig cacheConfig,
-            ICacheService commonCacheService,
-            ICacheService individualCacheService,
             IIPInfoDataAccess ipInfoDataAccess)
         {
             this.cacheConfig = cacheConfig;
-            this.commonCacheService = commonCacheService;
-            this.individualCacheService = individualCacheService;
             this.ipInfoDataAccess = ipInfoDataAccess;
+            commonCacheService = GetCacheServiceInstance(cacheConfig.CommonIPInfoRedisConfiguration);
+            individualCacheService = GetCacheServiceInstance(cacheConfig.IndividualIPInfoRedisConfiguration);
         }
+
+        private static ICacheService GetCacheServiceInstance(string redisConnectionString)
+            => string.IsNullOrWhiteSpace(redisConnectionString)
+            ? new CacheService()
+            : new CacheService(new RedisCache(new RedisCacheOptions
+            {
+                ConnectionString = redisConnectionString,
+                ApplicationName = "AlphaPlus.Tickets.BetLists"
+            }));
 
         public async Task<IDictionary<string, string>> GetCountries(IEnumerable<string> ipList)
         {

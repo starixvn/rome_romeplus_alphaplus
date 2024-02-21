@@ -6,7 +6,6 @@ using Alpha.Main.Services;
 using Alpha.Main.Services.Impl;
 using AlphaPlus.SecurityCode.Services;
 using Fanex.Data.Repository;
-using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;
 using ONEbook.OTP.Helpers;
 using ONEbook.OTP.Services;
@@ -27,6 +26,7 @@ using Alpha.Main.Site.Features.Theme;
 using Alpha.Main.Site.Features.UMMessage;
 using Alpha.Main.Site.Features.Default.MenuBar;
 using Alpha.Main.Site.Features.Language;
+using Fanex.Data;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -36,14 +36,14 @@ public static class Extensions
     {
         services
             .AddMediatR()
-            .AddFanexSql(configuration)
+            .AddFanexData(configuration)
             .AddRemotingRef(configuration)
             .AddRequestInfo();
         services.AddSingleton<ICacheService, CacheService>();
         services.AddSingleton<IDynamicRepository, DynamicRepository>();
         services.AddSingleton(Fanex.Logging.Logger.Log);
 
-        services.AddAlphaPlusCore(configuration);
+        services.AddAlphaPlusCore(configuration).AddSharedSession(configuration);
 
         services.AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>();
         services.AddSingleton<ISecurityCodeHttpContext, SecurityCodeHttpContext>();

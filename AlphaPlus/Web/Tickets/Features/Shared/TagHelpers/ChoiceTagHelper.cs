@@ -1,7 +1,5 @@
-using System.Text.Encodings.Web;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
@@ -27,8 +25,8 @@ public class ChoiceTagHelper : TagHelper
     {
         output.TagName = "td";
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.AddClass($"choice-block text-right sport-{Ticket.SportTypeId}", HtmlEncoder.Default);
+        output.Attributes.Add("class", $"choice-block text-right sport-{Ticket.SportTypeId}");
 
-        output.Content.SetContent(Builder.BuildChoice(Ticket, TicketHelper, TicketData, IsShowScoreMap));
+        output.Content.SetHtmlContent(Builder.BuildChoice(Ticket, TicketHelper, TicketData, IsShowScoreMap));
     }
 }

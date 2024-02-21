@@ -37,17 +37,12 @@ public interface IUser
     string IP { get; }
 }
 
-public class User : IUser
+public class User(IUserSession userSession) : IUser
 {
     private const int Casino = 6;
     private const string Jackpot = "Jackpot";
     private const string CustomerDatelimit = "CustomerDateLimit";
     private const string GameEnable = "GameEnable_";
-
-    private readonly IUserSession userSession;
-
-    public User(IUserSession userSession)
-        => this.userSession = userSession;
 
     public int Id => userSession.CustId;
 

@@ -9,13 +9,15 @@ using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.Models;
 using Fanex.Alpha.Before.NetThrottling;
 using Fanex.Alpha.Before.NetThrottling.Models;
-using Fanex.Alpha.Before.Repositories;
 using Fanex.Alpha.Before.Resources;
 using Fanex.Alpha.Before.Services.FPS;
 using Fanex.Cryptography.Aes;
 using Microsoft.Extensions.Options;
 using TelegramBot.Client.Services;
 using System.Text.Json;
+using Fanex.Data.Repository;
+using Fanex.Alpha.Before.Criteria;
+using AlphaPlus.RequestInfo.Models;
 
 namespace Fanex.Alpha.Before.Services.SignIn
 {
@@ -36,7 +38,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private readonly CommonOptions commonOptions;
         private readonly AutomationTestOptions automationTestOptions;
         private readonly IPHelper ipHelper;
-        private readonly ISignInRepository signInRepository;
+        private readonly IDynamicRepository repository;
         private readonly IDistributedCacheService cacheService;
         private readonly IRobotDetector robotDetector;
         private readonly CaptchaOptions captchaOptions;
@@ -56,7 +58,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             IOptions<LoginThemeOptions> loginThemeOptions,
             Logging.ILogger logger,
             IPHelper ipHelper,
-            ISignInRepository signInRepository,
+            IDynamicRepository repository,
             IRobotDetector robotDetector,
             IDistributedCacheService cacheService,
             CaptchaOptions captchaOptions,
@@ -73,7 +75,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             this.automationTestOptions = automationTestOptions.Value;
             this.logger = logger;
             this.ipHelper = ipHelper;
-            this.signInRepository = signInRepository;
+            this.repository = repository;
             this.cacheService = cacheService;
             this.robotDetector = robotDetector;
             this.captchaOptions = captchaOptions;
@@ -354,7 +356,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     }
 
                     var requestInfo = await deviceHelper.GetRequestInfo();
-                    verifySignInResult = signInRepository.VerifyDownlineLogin(username, password, requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
+                    verifySignInResult = await VerifyDownlineLogin(username, password, requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
                     encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"Call DB result: {JsonSerializer.Serialize(verifySignInResult)}");
 
                     if (verifySignInResult.ErrorCode == 0)
@@ -395,6 +397,40 @@ namespace Fanex.Alpha.Before.Services.SignIn
             }
 
             encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"After checking login too often: {JsonSerializer.Serialize(signInResult)}");
+        }
+
+        private async Task<VerifySignInResult> VerifyDownlineLogin(string username, string password, RequestInfo requestInfo, bool isDarkMode)
+        {
+            var criteria = new VerifyDownlineLoginCommand(
+                username,
+                EncryptExtension.CfsEnCode(password),
+                requestInfo.LoginIp,
+                requestInfo.LoginDomain,
+                AppSession.LangKey,
+                requestInfo.BrowserName,
+                requestInfo.Platform,
+                requestInfo.CountryCode,
+                isDarkMode);
+            await repository.ExecuteAsync(criteria);
+
+            return new VerifySignInResult
+            {
+                CustId = criteria.CustId,
+                Username = username,
+                SubAccId = criteria.SubAccId,
+                IsNickname = criteria.IsNickname,
+                Nickname = criteria.Nickname,
+                LoginTime = criteria.LoginTime,
+                LastTimeToChangePassword = criteria.LastChangedPwdDate ?? DateTime.MinValue,
+                ErrorCode = criteria.ErrCode,
+                ErrorMessage = criteria.ErrMsg,
+                SuperId = criteria.SuperId,
+                Site = criteria.Site,
+                RoleId = criteria.RoleId,
+                SubUserName = criteria.SubUsername,
+                ServerId = criteria.ServerId,
+                IsKickoutDueToProtectedMode = criteria.IsKickOut
+            };
         }
     }
 }

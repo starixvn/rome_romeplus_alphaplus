@@ -1,7 +1,5 @@
-using System.Text.Encodings.Web;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
@@ -21,8 +19,8 @@ public class StakeTagHelper : TagHelper
     {
         output.TagName = "td";
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.AddClass("stake-block bl_underdog text-right", HtmlEncoder.Default);
+        output.Attributes.Add("class", "stake-block bl_underdog text-right");
 
-        output.Content.SetContent(Builder.BuildStake(Ticket, TicketHelper));
+        output.Content.SetHtmlContent(Builder.BuildStake(Ticket, TicketHelper));
     }
 }

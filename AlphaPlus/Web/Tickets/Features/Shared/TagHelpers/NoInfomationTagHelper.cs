@@ -27,7 +27,7 @@ public class NoInfomationTagHelper : TagHelper
         }
 
         output.TagMode = TagMode.StartTagAndEndTag;
-        sb.Append($"<td colspan=\"@Colspan\" class=\"text-center\">{Resources.NoInformationIsAvailable}</td>");
+        sb.Append($"<td colspan=\"{Colspan}\" class=\"text-center\">{Resources.NoInformationIsAvailable}</td>");
 
         if (HasTBody)
         {

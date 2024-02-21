@@ -1,7 +1,5 @@
-using System.Text.Encodings.Web;
 using AlphaPlus.Tickets.Site.Features.BetLists.Builders.HtmlBuilders;
 using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
@@ -22,7 +20,7 @@ public class PositionTakingTagHelper : TagHelper
     {
         output.TagName = "td";
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.AddClass("position-taking-block text-right", HtmlEncoder.Default);
+        output.Attributes.Add("class", "position-taking-block text-right");
 
         output.Content.SetHtmlContent(BetListHtmlBuilderExt.BuildPtComm(Ticket, TicketData, CustLevel));
     }

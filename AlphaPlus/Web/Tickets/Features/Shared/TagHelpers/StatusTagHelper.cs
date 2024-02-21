@@ -1,9 +1,7 @@
 using System.Text;
-using System.Text.Encodings.Web;
 using AlphaPlus.BetLists.Models;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
@@ -29,7 +27,7 @@ public class StatusTagHelper : TagHelper
     {
         output.TagName = "td";
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.AddClass($"status-block text-center sport-{Ticket.SportTypeId}", HtmlEncoder.Default);
+        output.Attributes.Add("class", $"status-block text-center sport-{Ticket.SportTypeId}");
 
         var status = new StringBuilder();
         status.Append(Builder.BuildStatus(Ticket, TicketHelper, TicketData, IsShowVNIP));
@@ -39,6 +37,6 @@ public class StatusTagHelper : TagHelper
             status.Append($"<div class=\"country\">{Ticket.Country}</div>");
         }
 
-        output.Content.SetContent(status.ToString());
+        output.Content.SetHtmlContent(status.ToString());
     }
 }

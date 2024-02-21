@@ -54,6 +54,13 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/bundles/betlists/default.css",
+    "inputFiles": [
+      "assets/styles/betlists/bet-list.css",
+      "assets/styles/betlists/details-popup.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/bundles/betlists/icon-note.js",
     "inputFiles": [
       "assets/scripts/betlists/common/icon-note.js"

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Fanex.Caching" Version="2.2.2" />
+    <PackageReference Include="Fanex.Caching.Redis" Version="2.2.2.1" />
   </ItemGroup>
 
 </Project>

@@ -21,11 +21,10 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IRequestContext, RequestContext>();
         services.AddSingleton<IAuthorizationService, AuthorizationService>();
 
-        services.Configure<AuthorizationOptions>(configuration.GetSection(AuthorizationOptions.Authorization));
-        return services.AddSharedSession(configuration);
+        return services.Configure<AuthorizationOptions>(configuration.GetSection(AuthorizationOptions.Authorization));
     }
 
-    private static IServiceCollection AddSharedSession(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddSharedSession(this IServiceCollection services, IConfiguration configuration)
     {
         const string AppName = "AlphaPlus";
         var redisConfiguration = configuration.GetValue<string>("RedisConfiguration");

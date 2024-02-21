@@ -8,13 +8,11 @@ using Alpha.SliderCaptcha.AspNetCore;
 using AlphaPlus.RequestInfo;
 using Fanex.Alpha.Before.Extensions;
 using Fanex.Alpha.Before.Helpers;
-using Fanex.Alpha.Before.Repositories;
 using Fanex.Alpha.Before.Services;
 using Fanex.Alpha.Before.Services.FPS;
 using Fanex.Alpha.Before.Services.SignIn;
 using Fanex.Caching.Redis;
 using Fanex.Data.Repository;
-using Fanex.Data.SqlServer;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using StackExchange.Redis;
@@ -51,7 +49,6 @@ namespace Fanex.Alpha.Before
             services.AddFanexLogging(Configuration)
                 .AddRequestInfo()
                 .AddONEbookUM(Configuration)
-                .AddFanexSql(Configuration)
                 .AddRedisCache(Configuration.GetSection("Fanex.Caching.Redis"))
                 .AddCustomOptions(Configuration)
                 .AddNetThrottling(Configuration)
@@ -68,8 +65,8 @@ namespace Fanex.Alpha.Before
 
             services.AddAssetsBundle(Configuration);
 
+            services.AddFanexDataWithSqlServer(Configuration);
             services.AddSingleton<IDynamicRepository, DynamicRepository>();
-            services.AddSingleton<ISignInRepository, SignInRepository>();
             services.AddSingleton<IRobotDetector, RobotDetector>();
             services.AddSingleton<IDistributedCacheHelper, DistributedCacheHelper>();
             services.AddSingleton<IDistributedCacheService, DistributedCacheService>();

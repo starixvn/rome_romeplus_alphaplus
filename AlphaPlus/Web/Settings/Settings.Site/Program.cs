@@ -17,7 +17,7 @@ builder.Services
         (httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CustomerSettingApi")));
 
 builder.Services
-    .AddAlphaPlusCore(configuration)
+    .AddSharedSession(configuration)
     .AddHttpContextAccessor()
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
