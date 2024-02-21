@@ -6,6 +6,9 @@ import { PageTitle } from '~/components/PageTitle'
 import { Tag } from '~/components/Tag'
 import type { Article } from '~/types/article'
 import { formatDate } from '~/utils/date'
+import $ from 'jquery'
+import { useEffect, useState } from 'react'
+
 
 export const getServerSideProps = (async (context) => {
   const { slug, id = null } = context.query
@@ -21,10 +24,32 @@ export const getServerSideProps = (async (context) => {
   isPreview: boolean
 }>
 
-function getHeadings() {
-  var articleContent = document.getElementsByClassName('article-content');
+function getHeadings(content) {
+  const articleContent = $('<div>' + content + '</div>');
+  const result = [];
+  const hs = ['h1', 'h2', 'h3'];
+  const headings = articleContent.find(hs.join(", "));
+  if (headings.length === 0) {
+      return result;
+  }
 
+  headings.each((i, e) => {
+    const $e = $(e);
+    const t = $e.html();
+    const newH = $('<div>' + t + '</div>');
+    newH.find('a').remove();
+    hs.forEach(h => {
+      if ($e.is(h)) {
+        result.push(
+            '<' + h + '><a href="#' + $e.find('a').attr('id') + '">' +
+              newH.html() +
+            '</a></' + h + '>');
+          return;
+      }
+    });
+  });
 
+  return result;
 }
 
 export default function Page({ article, isPreview }: { article: Article; isPreview: boolean }) {
@@ -33,6 +58,18 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
   const handleClickTurnOff = () => {
     window.close()
   }
+
+  const [headings, setHeadings] = useState([]);
+
+  useEffect(() => {
+    if(headings.length) {
+      return;
+    }
+
+    const hs = getHeadings(content);
+    setHeadings(hs);
+  });
+
   return (
     <>
     <div className={"article-body body-" + locale }>
@@ -80,16 +117,20 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
         </Link>
       </div>
     </div>
-      <div className="right-container">
-            <div className="inner">
-                <h2 className="title-content">Contents</h2>
-                <div id="float-content">
-                  <ul className="list-content">
-                    <li><h1><a href="#h1">My H1</a></h1></li>
-                  </ul>
-                </div>
-            </div>
-        </div>
+    {
+      headings.length > 0 && <div className="right-container">
+          <div className="inner">
+              <h2 className="title-content">Contents</h2>
+              <div id="float-content">
+                <ul className="list-content">
+                  {headings.map((h: any, i: number) => {
+                    return (<li  dangerouslySetInnerHTML={{ __html: h }}></li>);
+                  })}  
+                </ul>
+              </div>
+          </div>
+      </div>
+    }
     </>
   )
 }
