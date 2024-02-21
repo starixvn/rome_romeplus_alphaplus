@@ -178,17 +178,6 @@ body {
 }
 
 .haft-screen { width: 49%; display: inline-block; vertical-align: top; padding: 5px 0; }
-.col-1st { border-right: solid 1px #eee; }
-ul.ul-marked { list-style-type: "✓"; }
-ul.ul-x { list-style-type: "✗"; }
-ul.ul-arr { list-style-type: "➣"; }
-ul.ul-em-dash { list-style-type: "—"; }
-ul.ul-plus { list-style-type: "+"; } 
-ul.ul-minus { list-style-type: "-"; } 
-
-ul>li>ul>li>ul>li>ul { list-style-type: "+"; }
-ul>li>ul>li>ul>li>ul>li>ul { list-style-type: "-"; } 
-
 menu, ol, ul {
   list-style: revert;
   padding: revert;
@@ -208,12 +197,62 @@ img {
   background-size: 100% 100%;
 }
 
-.floating-table { float: right; width: 45%; position: fixed; top: 0; right: 0; } 
+.article-body {
+  overflow: auto;
+  max-height: 750px;
+}
 
+.right-container {  
+  width: 450px;
+  position: absolute;
+  top: 50px;
+  right: 0;
 
+  .inner {
+      position: sticky;
+      top: 0;
+  }
+}
 
+.title-content {
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 8px;
+  padding: 4px 0 5px 11px;
+}
 
+.list-content {  
+    list-style: none;
+    padding: 12px 0 0 24px;
 
+    li {
+        + li {
+            margin-top: 16px;
+        }
+
+        a {
+            line-height: 16px;
+            display: inline-block;            
+            font-weight: 500!important; 
+            &.active, &:hover {
+                font-weight: bold;
+                color: #345164;
+                position: relative;
+
+                &:before {
+                    position: absolute;
+                    content: "";
+                    top: -7px;
+                    left: -12px;
+                    width: 3px;
+                    height: calc(100% + 12px);
+                    background-color: #345164;
+                }
+            }
+        }
+    }
+}
 
 
 

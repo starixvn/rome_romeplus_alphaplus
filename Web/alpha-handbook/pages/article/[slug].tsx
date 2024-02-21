@@ -21,6 +21,11 @@ export const getServerSideProps = (async (context) => {
   isPreview: boolean
 }>
 
+function getHeadings() {
+  var articleContent = document.getElementsByClassName('article-content');
+
+
+}
 
 export default function Page({ article, isPreview }: { article: Article; isPreview: boolean }) {
   let { title, publishedAt, content, categories, locale } = article.attributes
@@ -29,7 +34,8 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
     window.close()
   }
   return (
-    <div className={"body-" + locale}>
+    <>
+    <div className={"article-body body-" + locale }>
       <Head>{title}</Head>
 
       {isPreview ? (
@@ -60,7 +66,7 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
         </PageTitle>
       </div>
       <p>{publishedAt}</p>
-      <div className="mt-10" dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="mt-10 article-content" dangerouslySetInnerHTML={{ __html: content }} />
 
       <div className="mt-20 flex flex-wrap">
         {categories.data.map((tag) => (
@@ -74,5 +80,16 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
         </Link>
       </div>
     </div>
+      <div className="right-container">
+            <div className="inner">
+                <h2 className="title-content">Contents</h2>
+                <div id="float-content">
+                  <ul className="list-content">
+                    <li><h1><a href="#h1">My H1</a></h1></li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </>
   )
 }
