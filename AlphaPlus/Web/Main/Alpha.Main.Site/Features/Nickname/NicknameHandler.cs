@@ -14,7 +14,6 @@ namespace Alpha.Main.Site.Features.Nickname
         {
             var isEnableUpdateNickname = !message.IsDisableUpdateNickname;
             var nickname = message.Nickname == null ? string.Empty : message.Nickname.Trim();
-            var isNicknameLoginOnly = true;
 
             var result = await nicknameService.CreateNickname(
                 new CreateNicknameParam(
@@ -23,12 +22,11 @@ namespace Alpha.Main.Site.Features.Nickname
                     nickname,
                     message.IP,
                     message.LanguageKey,
-                    isEnableUpdateNickname),
-                isNicknameLoginOnly);
+                    isEnableUpdateNickname));
 
             if (result.IsSuccessful)
             {
-                userSession.IsNicknameLoginOnly = isNicknameLoginOnly;
+                userSession.IsNicknameLoginOnly = true;
 
                 if (isEnableUpdateNickname)
                 {

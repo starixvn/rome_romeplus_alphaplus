@@ -40,7 +40,7 @@ namespace Alpha.Main.Site.Features.OTP
             => httpClient.PostAsJsonAsync<bool>("customer/otp/isdifferent-device", new { custId, deviceId, subAccId });
 
         public Task<bool> IsEnabledOtp(int custId, int subAccId = 0)
-            => httpClient.PostAsJsonAsync<bool>("customer/otp/isenable", new { custId, subAccId });
+            => httpClient.PostAsJsonAsync<bool>("customer/otp/isenabled", new { custId, subAccId });
 
         public Task<Result> RemoveSecretKey(RemoveSecretKeyParam param)
             => httpClient.PostAsJsonAsync<Result>("customer/otp/remove", param);

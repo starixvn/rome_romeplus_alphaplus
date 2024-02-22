@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.Core.Models;
-using Alpha.Main.AppResources;
+using Alpha.Main.Site.AppResources;
 using MediatR;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Filters;
@@ -9,6 +9,8 @@ using Alpha.Main.Site.Features.TelegramChatBot;
 
 namespace Alpha.Main.Site.Features.OTP
 {
+    using Alpha.Main.Site.Shared.Models;
+
     public class OtpController(IMediator mediator, IUserSession userSession) : BaseController
     {
         private readonly IMediator mediator = mediator;
@@ -141,6 +143,6 @@ namespace Alpha.Main.Site.Features.OTP
             return Json(await mediator.Send(command));
         }
 
-        private JsonResult UnauthorizedResponse() => Json(Main.Models.UnauthorizedResult.CreateUnauthorizedResult());
+        private JsonResult UnauthorizedResponse() => Json(UnauthorizedResult.CreateUnauthorizedResult());
     }
 }

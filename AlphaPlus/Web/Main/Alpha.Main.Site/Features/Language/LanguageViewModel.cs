@@ -1,12 +1,14 @@
 ﻿namespace Alpha.Main.Site.Features.Language
 {
+    using Alpha.Main.Site.Shared.Constants;
+
     public class LanguageViewModel
     {
         public LanguageViewModel(
             Dictionary<string, string> data,
-            string currentLanguage = Constants.Language.Default)
+            string currentLanguage = Language.Default)
         {
-            Data = data ?? Constants.Language.CodeNames;
+            Data = data ?? Language.CodeNames;
             CurrentLanguage = currentLanguage;
         }
 

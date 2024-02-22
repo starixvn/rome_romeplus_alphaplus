@@ -3,6 +3,8 @@ using AlphaPlus.Core.Models;
 
 namespace Alpha.Main.Site.Features.Account;
 
+using Alpha.Main.Site.Shared.Constants;
+
 public interface IUserSessionService
 {
     void SetUserSessionValues(SignInResult signInResult);
@@ -248,7 +250,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         {
             if (!string.IsNullOrWhiteSpace(languageKey))
             {
-                languageCode = Constants.Language.CodeKeys[languageKey] ?? null;
+                languageCode = Language.CodeKeys[languageKey] ?? null;
 
                 if (!string.IsNullOrWhiteSpace(languageCode))
                 {

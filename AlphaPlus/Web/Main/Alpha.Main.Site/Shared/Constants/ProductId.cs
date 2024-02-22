@@ -1,4 +1,4 @@
-﻿namespace Alpha.Main.Constants
+﻿namespace Alpha.Main.Site.Shared.Constants
 {
     public static class ProductId
     {

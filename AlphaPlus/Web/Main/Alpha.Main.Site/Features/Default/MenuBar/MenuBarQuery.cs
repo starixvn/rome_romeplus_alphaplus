@@ -1,5 +1,4 @@
 ﻿using AlphaPlus.Core.Models;
-using Alpha.Main.Configurations;
 using MediatR;
 
 namespace Alpha.Main.Site.Features.Default.MenuBar

@@ -1,5 +1,4 @@
-﻿using Alpha.Main.Configurations;
-using Alpha.Main.Site.Features.Language;
+﻿using Alpha.Main.Site.Features.Language;
 using AlphaPlus.Core.Helpers;
 using TelegramBot.Client.Models;
 
@@ -37,12 +36,12 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
         public string CustLevel { get; }
 
         public LanguageViewModel LanguageViewModel => new(
-                AppSettings.DisabledVietnamese ? Constants.Language.TelegramChatBotCodeNamesWithoutVietNamese : Constants.Language.TelegramChatBotCodeNames,
+                AppSettings.DisabledVietnamese ? Shared.Constants.Language.TelegramChatBotCodeNamesWithoutVietNamese : Shared.Constants.Language.TelegramChatBotCodeNames,
                 StandardizeTelegramBotCodeNames(Language));
 
         private static string StandardizeTelegramBotCodeNames(string languageCode)
-            => string.IsNullOrWhiteSpace(languageCode) || !Constants.Language.TelegramChatBotCodeNames.ContainsKey(languageCode)
-            ? Constants.Language.Default
+            => string.IsNullOrWhiteSpace(languageCode) || !Shared.Constants.Language.TelegramChatBotCodeNames.ContainsKey(languageCode)
+            ? Shared.Constants.Language.Default
             : languageCode;
 
         public string HowToUseLink

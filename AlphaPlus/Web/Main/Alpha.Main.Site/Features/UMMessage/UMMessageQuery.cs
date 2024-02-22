@@ -1,5 +1,4 @@
-﻿using Alpha.Main.Configurations;
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace Alpha.Main.Site.Features.UMMessage

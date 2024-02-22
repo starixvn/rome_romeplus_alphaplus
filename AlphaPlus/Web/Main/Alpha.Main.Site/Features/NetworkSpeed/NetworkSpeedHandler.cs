@@ -1,6 +1,5 @@
 ﻿using Alpha.Main.Site.Requests.NetworkSpeed;
 using AlphaPlus.Core.Models;
-using Alpha.Main.Configurations;
 using MediatR;
 using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.AspNetCore;

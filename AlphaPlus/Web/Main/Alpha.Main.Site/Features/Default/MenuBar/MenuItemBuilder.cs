@@ -1,4 +1,4 @@
-﻿using Alpha.Main.Models;
+﻿using Alpha.Main.Site.Shared.Models;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 

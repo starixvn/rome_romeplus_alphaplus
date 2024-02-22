@@ -1,7 +1,6 @@
 using System.Resources;
 using System.Text;
-using Alpha.Main.AppResources;
-using Alpha.Main.Configurations;
+using Alpha.Main.Site.AppResources;
 using Alpha.Main.Site.Extensions;
 using Fanex.Caching;
 using Fanex.Data.Repository;

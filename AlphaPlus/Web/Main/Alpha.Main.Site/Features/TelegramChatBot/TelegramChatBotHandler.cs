@@ -1,11 +1,12 @@
-﻿using Alpha.Main.Configurations;
-using Alpha.Main.Site.Helpers;
+﻿using Alpha.Main.Site.Helpers;
 using AlphaPlus.Core.Models;
 using MediatR;
 using TelegramBot.Client.Services;
 
 namespace Alpha.Main.Site.Features.TelegramChatBot
 {
+    using Alpha.Main.Site.Shared.Constants;
+
     public class TelegramChatBotHandler(
         ISettingService settingService,
         IBotService botService) :
@@ -26,7 +27,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
             var custBotMessenger = await settingService.GetCustBotMessengerAsync(
                 message.CustId,
                 message.SubAccId,
-                Constants.Language.MapNewChineseLanguageCode(message.Language));
+                Language.MapNewChineseLanguageCode(message.Language));
 
             return new ChatBotViewModel(custBotMessenger);
         }
@@ -37,7 +38,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
                 message.CustId,
                 message.SubAccId,
                 AppSettings.SiteLabel,
-                Constants.Language.MapNewChineseLanguageCode(message.Language));
+                Language.MapNewChineseLanguageCode(message.Language));
 
             var logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"wwwroot/assets/styles/telegramchatbot/images/telegram-logo.png");
             var qrCodeDataUrl = QRCodeAdapter.Generate(url, logoPath);
@@ -105,7 +106,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
             var result = await settingService.UpdateLanguage(
                 custBotMessenger.UserId,
                 bot.BotId,
-                Constants.Language.MapNewChineseLanguageCode(message.Language),
+                Language.MapNewChineseLanguageCode(message.Language),
                 message.CustId,
                 message.IP);
 
@@ -118,7 +119,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
             var custBotMessengerTask = settingService.GetCustBotMessengerAsync(
                 custId,
                 subAccId,
-                Constants.Language.MapNewChineseLanguageCode(language));
+                Language.MapNewChineseLanguageCode(language));
 
             await Task.WhenAll(botTask, custBotMessengerTask);
 

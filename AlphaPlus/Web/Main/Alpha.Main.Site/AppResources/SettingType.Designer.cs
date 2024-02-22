@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Alpha.Main.AppResources
+namespace Alpha.Main.Site.AppResources
 {
     using System;
 
@@ -45,7 +45,7 @@ namespace Alpha.Main.AppResources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alpha.Main.AppResources.SettingType", typeof(SettingType).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alpha.Main.Site.AppResources.SettingType", typeof(SettingType).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

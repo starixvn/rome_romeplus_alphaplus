@@ -1,5 +1,4 @@
-﻿using Alpha.Main.Constants;
-using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
 namespace Alpha.Main.Site.Features.Banner
 {

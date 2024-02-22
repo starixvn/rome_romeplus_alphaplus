@@ -1,4 +1,3 @@
-using Alpha.Main.Models;
 using AlphaPlus.SecurityCode.Services;
 using Fanex.Data.Repository;
 using Fanex.RemotingRef;
@@ -15,7 +14,6 @@ using Alpha.Main.Site.Features.Account;
 using AlphaPlus.SecurityCode.Web;
 using Alpha.Main.Site.Features.ApiKey;
 using Alpha.Main.Site.Features.Banner;
-using Alpha.Main.Site.Features.Theme;
 using Alpha.Main.Site.Features.UMMessage;
 using Alpha.Main.Site.Features.Default.MenuBar;
 using Alpha.Main.Site.Features.Language;
@@ -28,6 +26,7 @@ using Alpha.Main.Site.Features.Nickname;
 using Alpha.Main.Site.Features.OTP;
 using Alpha.Main.Site.Features.ProtectionCode;
 using Alpha.Main.Site.Features.CustomerProfile;
+using Alpha.Main.Site.Shared.Models;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -53,7 +52,6 @@ public static class Extensions
         services.AddSingleton<IUserSessionService, UserSessionService>();
 
         services.AddSingleton<ISiteMenuService, SiteMenuService>();
-        services.AddSingleton<IProfilePictureService, ProfilePictureService>();
         services.AddSingleton<ISessionManager, SessionManager>();
         services.AddSingleton<ISiteMapReader, SiteMapReader>();
         services.AddSingleton<IEncryption, Encryption>();
@@ -65,12 +63,10 @@ public static class Extensions
         services.AddSingleton<ITransferService, TransferService>();
         services.AddSingleton<IUser, User>();
 
-        services.AddSingleton<INicknameService, NicknameService>();
+
         services.AddSingleton<INicknameChecker, NicknameChecker>();
         services.AddSingleton<IBannerService, BannerService>();
         services.AddSingleton<IUMMessageService, UMMessageService>();
-        services.AddSingleton<IProtectionCodeService, ProtectionCodeService>();
-        services.AddSingleton<IThemeService, ThemeService>();
         services.AddSingleton<ILanguageService, LanguageService>();
 
         services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
@@ -80,11 +76,14 @@ public static class Extensions
                 AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
             });
 
-
-        var customerServiceUri = new Uri(configuration.GetValue<string>("Fanxex.Customer:ServiceUrl"));
+        var customerServiceUri = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUrl"));
         services.AddHttpClient<IPasswordService, PasswordService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ISecurityCodeService, SecurityCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ICustomerOtpService, CustomerOtpService>(httpClient => httpClient.BaseAddress = customerServiceUri);
+        services.AddHttpClient<INicknameService, NicknameService>(httpClient => httpClient.BaseAddress = customerServiceUri);
+        services.AddHttpClient<IProfilePictureService, ProfilePictureService>(httpClient => httpClient.BaseAddress = customerServiceUri);
+        services.AddHttpClient<IProtectionCodeService, ProtectionCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
+
         services.Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode));
 
         return services;

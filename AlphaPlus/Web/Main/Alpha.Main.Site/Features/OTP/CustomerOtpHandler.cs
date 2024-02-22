@@ -1,6 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
-using Alpha.Main.AppResources;
-using Alpha.Main.Models;
+using Alpha.Main.Site.AppResources;
 using MediatR;
 using TelegramBot.Client.Services;
 using Function = TelegramBot.Client.Models.Function;
@@ -8,9 +7,14 @@ using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
 using Alpha.Main.Site.Features.TelegramChatBot;
+using Alpha.Main.Site.Shared.Models;
 
 namespace Alpha.Main.Site.Features.OTP
 {
+    using Fanex.Logging;
+    using Alpha.Main.Site.Shared.Constants;
+
+
     public class CustomerOtpHandler :
         IRequestHandler<SetUpOtpQuery, OtpViewModel>,
         IRequestHandler<ResetOtpQuery, ResetOtpViewModel>,
@@ -36,7 +40,7 @@ namespace Alpha.Main.Site.Features.OTP
         private readonly ISettingService telegramSettingService;
         private readonly ISecurityCodeChecker securityCodeChecker;
         private readonly IOTPService telegramOTPService;
-        private readonly Fanex.Logging.ILogger logger;
+        private readonly ILogger logger;
 
         public CustomerOtpHandler(
             ICustomerOtpService customerOtpService,
@@ -47,7 +51,7 @@ namespace Alpha.Main.Site.Features.OTP
             ISettingService telegramSettingService,
             ISecurityCodeChecker securityCodeChecker,
             IOTPService telegramOTPService,
-            Fanex.Logging.ILogger logger)
+            ILogger logger)
         {
             this.customerOtpService = customerOtpService;
             this.userSession = userSession;
@@ -254,7 +258,7 @@ namespace Alpha.Main.Site.Features.OTP
             var custBotMessenger = await telegramSettingService.GetCustBotMessengerAsync(
                 request.CustId,
                 request.SubAccountId,
-                Constants.Language.MapNewChineseLanguageCode(request.Language));
+                Language.MapNewChineseLanguageCode(request.Language));
 
             viewModel.RegisterAccountViewModel =
                 new RegisterAccountViewModel(new ChatBotViewModel(custBotMessenger), new SetUpChatBotQuery());

@@ -1,5 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
-using Alpha.Main.AppResources;
+using Alpha.Main.Site.AppResources;
 using Alpha.Main.Site.Helpers;
 
 namespace Alpha.Main.Site.Features.Dashboard.BalanceInfo

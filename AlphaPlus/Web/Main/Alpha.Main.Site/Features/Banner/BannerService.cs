@@ -1,4 +1,3 @@
-using Alpha.Main.Configurations;
 using Fanex.Data.Repository;
 
 namespace Alpha.Main.Site.Features.Banner

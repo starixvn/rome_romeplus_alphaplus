@@ -1,17 +1,17 @@
 ﻿using System.Web;
 using AlphaPlus.Core.Models;
-using Alpha.Main.AppResources;
+using Alpha.Main.Site.AppResources;
 using MediatR;
 using AlphaPlus.Core.Utils;
 
 namespace Alpha.Main.Site.Features.CustomerProfile
 {
     public class CustomerProfileHandler(
-        ProfilePictureService customerProfileService,
+        IProfilePictureService customerProfileService,
         IUserSession userSession,
         IEncryption encryption) : IRequestHandler<BriefProfileQuery, BriefProfileViewModel>
     {
-        private readonly ProfilePictureService customerProfileService = customerProfileService;
+        private readonly IProfilePictureService customerProfileService = customerProfileService;
         private readonly IUserSession userSession = userSession;
         private readonly IEncryption encryption = encryption;
 

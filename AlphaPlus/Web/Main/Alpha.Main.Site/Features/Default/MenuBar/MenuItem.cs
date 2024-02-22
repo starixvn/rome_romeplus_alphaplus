@@ -1,6 +1,6 @@
-﻿using Alpha.Main.AppResources;
+﻿using Alpha.Main.Site.AppResources;
+using Alpha.Main.Site.Shared.Models;
 using AlphaPlus.Core.Helpers;
-using Alpha.Main.Models;
 
 namespace Alpha.Main.Site.Features.Default.MenuBar
 {

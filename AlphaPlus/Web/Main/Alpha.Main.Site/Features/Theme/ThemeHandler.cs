@@ -1,31 +1,21 @@
-﻿using AlphaPlus.Core.Configurations;
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace Alpha.Main.Site.Features.Theme
 {
-    public class ThemeHandler(IUserSession userSession, IThemeService themeService) :
+    using AlphaPlus.Core.Configurations;
+
+    public class ThemeHandler(IUserSession userSession) :
         IRequestHandler<ChangeThemeQuery, bool>,
         IRequestHandler<ResetAssetAppPathQuery, bool>
     {
         private readonly IUserSession userSession = userSession;
-        private readonly IThemeService themeService = themeService;
 
-        public async Task<bool> Handle(ChangeThemeQuery request, CancellationToken cancellationToken)
+        public Task<bool> Handle(ChangeThemeQuery request, CancellationToken cancellationToken)
         {
             userSession.DarkModeName = request.IsDarkMode ? "-dark" : string.Empty;
 
-            if (!request.IsInternal)
-            {
-                await themeService.WriteLog(
-                    request.CustId,
-                    request.SubAccId,
-                    request.IsDarkMode,
-                    request.IP,
-                    request.Location);
-            }
-
-            return true;
+            return Task.FromResult(true);
         }
 
         public Task<bool> Handle(ResetAssetAppPathQuery request, CancellationToken cancellationToken)

@@ -1,6 +1,4 @@
-﻿using Alpha.Main.Configurations;
-
-namespace Alpha.Main.Site.Features.ContactUs
+﻿namespace Alpha.Main.Site.Features.ContactUs
 {
     public class ContactUsViewModel
     {

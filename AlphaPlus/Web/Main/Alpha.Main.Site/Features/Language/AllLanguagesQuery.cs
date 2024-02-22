@@ -1,7 +1,6 @@
 ﻿namespace Alpha.Main.Site.Features.Language
 {
     using AlphaPlus.Core.Models;
-    using Alpha.Main.Configurations;
     using MediatR;
 
     public class AllLanguagesQuery : IRequest<LanguageViewModel>

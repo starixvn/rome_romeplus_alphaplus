@@ -3,6 +3,7 @@ using AlphaPlus.Core.Models;
 using MediatR;
 using ResultModel = AlphaPlus.Core.Models.Result;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Utils;
 
 namespace Alpha.Main.Site.Features.ProtectionCode
 {
@@ -14,15 +15,19 @@ namespace Alpha.Main.Site.Features.ProtectionCode
         private readonly ISessionManager sessionManager;
         private readonly IProtectionCodeService protectionCodeService;
         private readonly ISecurityCodeChecker securityCodeChecker;
+        private readonly IEncryption encryption;
+        private const int Length = 4;
 
         public ProtectionCodeHandler(
             ISessionManager sessionManager,
             IProtectionCodeService protectionCodeService,
-            ISecurityCodeChecker securityCodeChecker)
+            ISecurityCodeChecker securityCodeChecker,
+            IEncryption encryption)
         {
             this.sessionManager = sessionManager;
             this.protectionCodeService = protectionCodeService;
             this.securityCodeChecker = securityCodeChecker;
+            this.encryption = encryption;
         }
 
         public async Task<ProtectionCodeViewModel> Handle(ProtectionCodeQuery message, CancellationToken cancellationToken)
@@ -55,12 +60,15 @@ namespace Alpha.Main.Site.Features.ProtectionCode
 
                 if (string.IsNullOrWhiteSpace(hashKey))
                 {
-                    hashKey = protectionCodeService.GenerateHashKey();
+                    hashKey = GenerateHashKey();
                     sessionManager.Add(HashKeySessionKey, hashKey);
                 }
 
                 return hashKey;
             }
         }
+
+        private string GenerateHashKey()
+            => encryption.RandomString(Length);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Alpha.Main.Site.Features.Language
 {
-    using Alpha.Main.Constants;
+    using Alpha.Main.Site.Shared.Constants;
     using AlphaPlus.Core.Models;
     using MediatR;
 

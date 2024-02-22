@@ -1,7 +1,4 @@
-﻿using Alpha.Main.Configurations;
-using Alpha.Main.Constants;
-
-namespace Alpha.Main.Site.Features.Banner
+﻿namespace Alpha.Main.Site.Features.Banner
 {
     public class BannerViewModel
     {
@@ -65,7 +62,7 @@ namespace Alpha.Main.Site.Features.Banner
                 "~/assets/images/MenuBarBanner/{0}/{1}_msa_{2}.jpg",
                 siteGroup,
                 Type == BannerType.Mobile ? "600x140" : "280x70",
-                Main.Constants.Language.MapToMainLanguageCode(Language));
+                Shared.Constants.Language.MapToMainLanguageCode(Language));
 
         private string GetSabaSportMarketingAppImageSource()
             => string.Format(
@@ -74,8 +71,8 @@ namespace Alpha.Main.Site.Features.Banner
                 MapSabaSportMarketingAppLanguage());
 
         private string MapSabaSportMarketingAppLanguage()
-            => Language.Equals(Main.Constants.Language.Vietnamese, StringComparison.OrdinalIgnoreCase)
-            ? Main.Constants.Language.Vietnamese
-            : Main.Constants.Language.English;
+            => Language.Equals(Shared.Constants.Language.Vietnamese, StringComparison.OrdinalIgnoreCase)
+            ? Shared.Constants.Language.Vietnamese
+            : Shared.Constants.Language.English;
     }
 }

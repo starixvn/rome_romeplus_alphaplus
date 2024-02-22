@@ -5,5 +5,7 @@
         public int ActorId { get; } = actorId;
 
         public string IP { get; } = ip;
+
+        public bool IsMBCSite => AppSettings.IsMBCSite;
     }
 }

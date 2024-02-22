@@ -5,6 +5,8 @@ using AlphaPlus.Core;
 
 namespace Alpha.Main.Site.Features.TelegramChatBot
 {
+    using Alpha.Main.Site.Shared.Models;
+
     public class TelegramChatBotController(IMediator mediator, IUserSession userSession) : BaseController
     {
         private readonly IMediator mediator = mediator;
@@ -36,7 +38,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
         {
             if (userSession.IsInternal)
             {
-                return Json(Main.Models.UnauthorizedResult.CreateUnauthorizedResult());
+                return Json(UnauthorizedResult.CreateUnauthorizedResult());
             }
 
             return Json(await mediator.Send(command));
@@ -47,7 +49,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
         {
             if (userSession.IsInternal)
             {
-                return Json(Main.Models.UnauthorizedResult.CreateUnauthorizedResult());
+                return Json(UnauthorizedResult.CreateUnauthorizedResult());
             }
 
             var viewModel = await mediator.Send(command);
@@ -60,7 +62,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
         {
             if (userSession.IsInternal)
             {
-                return Json(Main.Models.UnauthorizedResult.CreateUnauthorizedResult());
+                return Json(UnauthorizedResult.CreateUnauthorizedResult());
             }
 
             // TODO: captcha mvc
@@ -84,7 +86,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
         {
             if (userSession.IsInternal)
             {
-                return Json(Main.Models.UnauthorizedResult.CreateUnauthorizedResult());
+                return Json(UnauthorizedResult.CreateUnauthorizedResult());
             }
 
             return Json(await mediator.Send(command));
@@ -98,7 +100,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
         {
             if (userSession.IsInternal)
             {
-                return Json(Main.Models.UnauthorizedResult.CreateUnauthorizedResult());
+                return Json(UnauthorizedResult.CreateUnauthorizedResult());
             }
 
             return Json(await mediator.Send(command));
@@ -109,7 +111,7 @@ namespace Alpha.Main.Site.Features.TelegramChatBot
         {
             if (userSession.IsInternal || string.IsNullOrWhiteSpace(command.Language))
             {
-                return Json(Main.Models.UnauthorizedResult.CreateUnauthorizedResult());
+                return Json(UnauthorizedResult.CreateUnauthorizedResult());
             }
 
             return Json(await mediator.Send(command));

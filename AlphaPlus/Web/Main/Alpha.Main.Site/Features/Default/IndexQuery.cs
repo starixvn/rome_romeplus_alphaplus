@@ -20,7 +20,7 @@ namespace Alpha.Main.Site.Features.Default
         {
             this.userSession = userSession;
             this.isEnableSecurityCode = isEnableSecurityCode;
-            this.disableMessages = disableMessages ?? Configurations.AppSettings.DisableMessages;
+            this.disableMessages = disableMessages ?? AppSettings.DisableMessages;
             IsProtectedMode = userSession.IsProtectedMode;
             IsOfferProtectedMode = userSession.IsOfferProtectedMode;
             this.options = options;
@@ -87,7 +87,7 @@ namespace Alpha.Main.Site.Features.Default
 
         public string AssetAppPath => userSession.AssetAppPath;
 
-        private static bool IsQRCodeHidden => Configurations.AppSettings.HideQRCode;
+        private static bool IsQRCodeHidden => AppSettings.HideQRCode;
         public int SuperId => userSession.SRecommendId;
 
         public string Currency => userSession.Currency;

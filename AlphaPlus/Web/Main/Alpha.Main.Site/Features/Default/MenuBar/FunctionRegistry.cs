@@ -1,10 +1,10 @@
-﻿using Alpha.Main.Constants;
-using AlphaPlus.Core.Models;
-using Alpha.Main.Models;
+﻿using AlphaPlus.Core.Models;
 using static AlphaPlus.Core.Models.UserPermission;
 using static AlphaPlus.Core.Models.UserSession;
 using AlphaPlus.Core.Helpers;
 using Fanex.Data.Repository;
+using Alpha.Main.Site.Shared.Constants;
+using Alpha.Main.Site.Shared.Models;
 
 namespace Alpha.Main.Site.Features.Default.MenuBar
 {

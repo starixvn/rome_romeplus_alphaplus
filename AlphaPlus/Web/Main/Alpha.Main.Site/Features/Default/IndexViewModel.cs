@@ -1,7 +1,6 @@
 ﻿using System.Web;
-using Alpha.Main.AppResources;
+using Alpha.Main.Site.AppResources;
 using AlphaPlus.Core.Models;
-using Alpha.Main.Configurations;
 using Alpha.Main.Site.Helpers;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;

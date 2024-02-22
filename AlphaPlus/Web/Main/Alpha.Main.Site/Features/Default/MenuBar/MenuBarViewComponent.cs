@@ -2,7 +2,6 @@ using Alpha.Main.Site.Helpers;
 using AlphaPlus.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Alpha.Main.Configurations;
 
 namespace Alpha.Main.Site.Features.Default.MenuBar;
 

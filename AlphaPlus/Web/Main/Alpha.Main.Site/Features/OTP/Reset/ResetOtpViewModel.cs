@@ -1,6 +1,6 @@
 ﻿namespace Alpha.Main.Site.Features.OTP
 {
-    using Alpha.Main.AppResources;
+    using Alpha.Main.Site.AppResources;
     using AlphaPlus.Core.Models;
 
     public class ResetOtpViewModel : ResetOtpQuery

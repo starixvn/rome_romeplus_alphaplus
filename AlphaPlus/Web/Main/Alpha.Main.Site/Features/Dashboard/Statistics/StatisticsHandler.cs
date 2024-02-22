@@ -2,13 +2,13 @@
 
 namespace Alpha.Main.Site.Features.Dashboard.Statistics
 {
-    public class StatisticsHandler(StatisticsService statisticsService) :
+    public class StatisticsHandler(IStatisticsService statisticsService) :
         IRequestHandler<StatisticsQuery, StatisticsViewModel>,
         IRequestHandler<TopWinningMembersQuery, TopWinningMembersViewModel>,
         IRequestHandler<TopTurnoverMembersQuery, TopTurnoverMembersViewModel>,
         IRequestHandler<NewMembersQuery, NewMembersViewModel>
     {
-        private readonly StatisticsService statisticsService = statisticsService;
+        private readonly IStatisticsService statisticsService = statisticsService;
 
         public async Task<StatisticsViewModel> Handle(StatisticsQuery message, CancellationToken cancellationToken)
         {

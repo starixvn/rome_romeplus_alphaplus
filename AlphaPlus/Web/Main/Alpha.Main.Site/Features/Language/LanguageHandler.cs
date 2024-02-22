@@ -2,6 +2,8 @@
 
 namespace Alpha.Main.Site.Features.Language
 {
+    using Alpha.Main.Site.Shared.Constants;
+
     public class LanguageHandler(ILanguageService languageService) :
         IRequestHandler<AllLanguagesQuery, LanguageViewModel>,
         IRequestHandler<ChangeLanguageCommand, string>
@@ -25,15 +27,15 @@ namespace Alpha.Main.Site.Features.Language
         public Task<LanguageViewModel> Handle(AllLanguagesQuery message, CancellationToken cancellationToken)
         {
             var viewModel = new LanguageViewModel(
-                message.DisabledVietnamese ? Constants.Language.CodeNamesWithoutVietNamese : Constants.Language.CodeNames,
+                message.DisabledVietnamese ? Language.CodeNamesWithoutVietNamese : Language.CodeNames,
                 Standardize(message.LanguageCode));
 
             return Task.FromResult(viewModel);
         }
 
         private static string Standardize(string languageCode)
-            => string.IsNullOrWhiteSpace(languageCode) || !Constants.Language.CodeNames.Keys.Contains(languageCode)
-            ? Constants.Language.Default
+            => string.IsNullOrWhiteSpace(languageCode) || !Language.CodeNames.Keys.Contains(languageCode)
+            ? Language.Default
             : languageCode;
     }
 }

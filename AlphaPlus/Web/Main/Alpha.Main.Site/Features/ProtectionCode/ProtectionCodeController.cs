@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Alpha.Main.AppResources;
+using Alpha.Main.Site.AppResources;
 using AlphaPlus.Core.Models;
 using MediatR;
 using AlphaPlus.Core;

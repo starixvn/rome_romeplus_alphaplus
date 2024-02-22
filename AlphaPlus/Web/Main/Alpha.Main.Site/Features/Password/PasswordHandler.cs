@@ -1,12 +1,12 @@
 ﻿using AlphaPlus.Core.Models;
-using Alpha.Main.AppResources;
-using Alpha.Main.Models;
+using Alpha.Main.Site.AppResources;
 using MediatR;
 using CustomResult = AlphaPlus.Core.Models.Result;
 using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
 using Alpha.Main.Site.Features.CustomerProfile;
+using Alpha.Main.Site.Shared.Models;
 
 namespace Alpha.Main.Site.Features.Password
 {

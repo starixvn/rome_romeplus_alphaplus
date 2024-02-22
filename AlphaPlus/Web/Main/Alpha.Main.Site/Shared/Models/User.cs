@@ -1,9 +1,8 @@
-﻿using Alpha.Main.Configurations;
-using Alpha.Main.Constants;
-using AlphaPlus.Core.Helpers;
+﻿using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Extensions;
+using Alpha.Main.Site.Shared.Constants;
 
-namespace Alpha.Main.Models
+namespace Alpha.Main.Site.Shared.Models
 {
     public interface IUser
     {
@@ -51,6 +50,6 @@ namespace Alpha.Main.Models
         }
 
         public void RemoveNewCaptchaByCurrency()
-            => AlphaContext.Current.Session.Set(AppSettings.CreatedSettingLastDateSessionKey, DateTime.MinValue);
+            => AlphaContext.Current.Session.Set("CreatedSettingLastDate", DateTime.MinValue);
     }
 }

@@ -1,8 +1,5 @@
-﻿namespace Alpha.Main.Constants
+﻿namespace Alpha.Main.Site.Shared.Constants
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     public static class Language
     {
         public const string English = "en-US";

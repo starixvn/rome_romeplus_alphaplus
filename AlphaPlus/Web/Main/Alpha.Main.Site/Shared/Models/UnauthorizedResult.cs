@@ -1,7 +1,7 @@
-﻿using Alpha.Main.AppResources;
+﻿using Alpha.Main.Site.AppResources;
 using AlphaPlus.Core.Models;
 
-namespace Alpha.Main.Models
+namespace Alpha.Main.Site.Shared.Models
 {
     public class UnauthorizedResult : Result
     {

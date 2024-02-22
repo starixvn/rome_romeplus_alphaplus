@@ -1,13 +1,13 @@
 ﻿using AlphaPlus.Core.Models;
-using Alpha.Main.AppResources;
+using Alpha.Main.Site.AppResources;
 using Fanex.Cryptography.Aes;
-using Alpha.Main.Models;
 using MediatR;
 using CustomResult = AlphaPlus.Core.Models.Result;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
 using Alpha.Main.Site.Features.CustomerProfile;
+using Alpha.Main.Site.Shared.Models;
 
 namespace Alpha.Main.Site.Features.SecurityCode
 {

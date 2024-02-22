@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Alpha.Main.Site.Helpers;
 using AlphaPlus.Core.Models;
-using Alpha.Main.AppResources;
+using Alpha.Main.Site.AppResources;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -66,7 +66,7 @@ namespace Alpha.Main.Site.Features.Default
                 userSession.RoleId,
                 Request.Headers.UserAgent.ToString(),
                 darkModeName: DarkModeHelper.GetDarkModeName(userSession),
-                isHideBanner: Configurations.AppSettings.BannerIsHide || userSession.IsProtectedMode));
+                isHideBanner: AppSettings.BannerIsHide || userSession.IsProtectedMode));
 
             return PartialView(viewModel);
         }

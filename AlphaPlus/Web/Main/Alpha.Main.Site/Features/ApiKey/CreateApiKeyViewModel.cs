@@ -1,5 +1,4 @@
-﻿using Alpha.Main.Constants;
-using Alpha.Main.Site.Helpers;
+﻿using Alpha.Main.Site.Helpers;
 
 namespace Alpha.Main.Site.Features.ApiKey
 {
@@ -15,11 +14,11 @@ namespace Alpha.Main.Site.Features.ApiKey
 
         public string Language { get; }
 
-        public List<string> Scopes = new List<string>
-        {
+        public List<string> Scopes =
+        [
             ApiKeyScope.WinLossDetail,
             ApiKeyScope.Outstanding
-        };
+        ];
 
         public DateTime CurrentDate => DateTime.Now;
 

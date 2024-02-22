@@ -1,6 +1,4 @@
-﻿using Alpha.Main.Configurations;
-using AlphaPlus.Core.Models;
-using Fanex.Data.Repository;
+﻿using AlphaPlus.Core.Models;
 
 namespace Alpha.Main.Site.Features.CustomerProfile
 {
@@ -11,24 +9,14 @@ namespace Alpha.Main.Site.Features.CustomerProfile
         Task<Result> UpdateActorProfilePicture(UpdateActorProfilePictureParam param);
     }
 
-    public class ProfilePictureService(IDynamicRepository dynamicRepository) : IProfilePictureService
+    public class ProfilePictureService(HttpClient httpClient) : IProfilePictureService
     {
-        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
+        private readonly HttpClient httpClient = httpClient;
 
-        public async Task<ActorProfilePictureModel> GetActorProfilePicture(int custId)
-        {
-            var model = await dynamicRepository.GetAsync<ActorProfilePictureModel>(new SelectActorProfilePictureCriteria(custId));
-            return model ?? new ActorProfilePictureModel();
-        }
+        public Task<ActorProfilePictureModel> GetActorProfilePicture(int custId)
+            => httpClient.GetAsJsonAsync<ActorProfilePictureModel>($"customer/profile-picture?custId={custId}");
 
-        public async Task<Result> UpdateActorProfilePicture(UpdateActorProfilePictureParam param)
-        {
-            var command = new UpdateActorProfilePictureMainServerCommand(
-                param.ActorId, AppSettings.IsMBCSite ? 1 : 2, param.IP);
-
-            await dynamicRepository.ExecuteAsync(command);
-
-            return Result.CreateErrorResult(command.ErrMsg, command.ErrCode);
-        }
+        public Task<Result> UpdateActorProfilePicture(UpdateActorProfilePictureParam param)
+            => httpClient.PostAsJsonAsync<Result>("customer/profile-picture", param);
     }
 }
