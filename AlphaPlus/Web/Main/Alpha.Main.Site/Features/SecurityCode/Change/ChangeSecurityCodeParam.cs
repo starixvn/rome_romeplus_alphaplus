@@ -1,0 +1,11 @@
+﻿namespace Alpha.Main.Site.Features.SecurityCode
+{
+    public class ChangeSecurityCodeParam : ResetSecurityCodeParam
+    {
+        public bool MustVerifyCurrentSecurityCode { get; set; }
+
+        public string CurrentSecurityCode { get; set; }
+
+        public string Salt { get; set; }
+    }
+}

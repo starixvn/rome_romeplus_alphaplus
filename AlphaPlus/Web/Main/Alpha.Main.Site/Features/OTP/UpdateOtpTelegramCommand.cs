@@ -11,7 +11,7 @@
 
         public UpdateOtpTelegramCommand(IUserSession userSession)
         {
-            userSession = userSession ?? new UserSessionExt();
+            userSession ??= new UserSessionExt();
             CustId = userSession.CustId;
             SubAccId = userSession.SubAccId;
             Language = userSession.Language;

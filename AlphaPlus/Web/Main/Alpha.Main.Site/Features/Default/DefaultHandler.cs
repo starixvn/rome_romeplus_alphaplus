@@ -1,7 +1,4 @@
-﻿using Alpha.Main.ProfilePicture.Services;
-using MediatR;
-using Alpha.Main.Params;
-using Alpha.Main.Services;
+﻿using MediatR;
 using TelegramBot.Client.Models;
 using TelegramBot.Client.Services;
 using TelegramBot.Constants;
@@ -10,6 +7,8 @@ using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
 using Alpha.Main.Site.Features.Default.MenuBar;
+using Alpha.Main.Site.Features.Account;
+using Alpha.Main.Site.Features.CustomerProfile;
 
 namespace Alpha.Main.Site.Features.Default
 {
@@ -28,22 +27,20 @@ namespace Alpha.Main.Site.Features.Default
         private readonly ISessionManager sessionManager;
         private readonly IBrowserHelper browserHelper;
         private readonly Func<string> getDefaultUrl;
-        private readonly ProfilePictureServices customerProfileService;
-        private readonly LogoutService logoutService;
+        private readonly IProfilePictureService customerProfileService;
+        private readonly IAccountService accountService;
         private readonly ISettingService telegramSettingService;
-        private readonly ITransferService transferService;
         private readonly IEncryption encryption;
         private readonly Fanex.Logging.ILogger logger;
 
         public DefaultHandler(ISessionManager sessionManager,
             IBrowserHelper browserHelper,
-            LogoutService logoutService,
-            ProfilePictureServices customerProfileService,
+            IAccountService accountService,
+            IProfilePictureService customerProfileService,
             ISettingService telegramSettingService,
-            ITransferService transferService,
             IEncryption encryption,
             Fanex.Logging.ILogger logger)
-            : this(sessionManager, browserHelper, logoutService, null, customerProfileService, telegramSettingService, transferService, encryption, logger)
+            : this(sessionManager, browserHelper, accountService, null, customerProfileService, telegramSettingService, encryption, logger)
         {
 
         }
@@ -51,22 +48,20 @@ namespace Alpha.Main.Site.Features.Default
         internal DefaultHandler(
             ISessionManager sessionManager,
             IBrowserHelper browserHelper,
-            LogoutService logoutService,
+            IAccountService accountService,
             Func<string> getDefaultUrl,
-            ProfilePictureServices customerProfileService,
+            IProfilePictureService customerProfileService,
             ISettingService telegramSettingService,
-            ITransferService transferService,
             IEncryption encryption,
             Fanex.Logging.ILogger logger)
         {
             this.sessionManager = sessionManager;
             this.browserHelper = browserHelper;
-            this.logoutService = logoutService;
+            this.accountService = accountService;
 
             this.getDefaultUrl = getDefaultUrl ?? FunctionRegistry.GetDefaultUrl;
             this.customerProfileService = customerProfileService;
             this.telegramSettingService = telegramSettingService;
-            this.transferService = transferService;
             this.encryption = encryption;
             this.logger = logger;
         }
@@ -130,14 +125,7 @@ namespace Alpha.Main.Site.Features.Default
         {
             try
             {
-                await logoutService.Logout(new LogoutParam(
-                    request.OnlineUserId,
-                    request.ActorName,
-                    request.SubUserName,
-                    request.NickName ?? string.Empty,
-                    request.ActorLevelId,
-                    request.ServerId,
-                    " Kicked out: Session Changed"));
+                await accountService.CheckOut(" Kicked out: Session Changed");
             }
             catch (Exception ex)
             {

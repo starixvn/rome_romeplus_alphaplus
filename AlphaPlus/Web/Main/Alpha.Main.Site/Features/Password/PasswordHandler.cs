@@ -1,16 +1,12 @@
-﻿using Alpha.Main.ProfilePicture.Models;
-using Alpha.Main.ProfilePicture.Params;
-using Alpha.Main.ProfilePicture.Services;
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
 using Alpha.Main.AppResources;
 using Alpha.Main.Models;
 using MediatR;
-using Alpha.Main.Params.Password;
-using Alpha.Main.Services;
 using CustomResult = AlphaPlus.Core.Models.Result;
 using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
+using Alpha.Main.Site.Features.CustomerProfile;
 
 namespace Alpha.Main.Site.Features.Password
 {
@@ -26,18 +22,18 @@ namespace Alpha.Main.Site.Features.Password
     {
         private const string HashKeySessionKey = "Alpha.Main.PasswordHandler.PasswordHash";
 
-        private readonly PasswordService passwordService;
+        private readonly IPasswordService passwordService;
         private readonly IUserSession userSession;
         private readonly ISessionManager sessionManager;
         private readonly IEncryption encryption;
-        private readonly ProfilePictureServices customerProfileService;
+        private readonly IProfilePictureService customerProfileService;
         private readonly ISecurityCodeChecker securityCodeChecker;
         private readonly IUser user;
 
         public PasswordHandler(
-            PasswordService passwordService,
+            IPasswordService passwordService,
             IUserSession userSession,
-            ProfilePictureServices customerProfileService,
+            IProfilePictureService customerProfileService,
             ISessionManager sessionManager,
             IEncryption encryption,
             ISecurityCodeChecker securityCodeChecker,
@@ -59,7 +55,7 @@ namespace Alpha.Main.Site.Features.Password
                 return Task.FromResult(CustomResult.CreateErrorResult(Security.NotAuthorized));
             }
 
-            return this.passwordService.ResetSubAccountPassword(
+            return passwordService.ResetSubAccountPassword(
                 new ResetSubAccountPasswordParam
                 {
                     ActorId = message.ActorId,
@@ -180,7 +176,7 @@ namespace Alpha.Main.Site.Features.Password
                 CurrentPassword = message.CurrentPassword,
                 CustId = message.CustId,
                 CustLevel = Enumeration.FromValue<UserLevel>(message.RoleId),
-                HashKey = this.sessionManager.Get<string>(HashKeySessionKey),
+                HashKey = sessionManager.Get<string>(HashKeySessionKey),
                 IP = message.IP,
                 LanguageKey = message.LanguageKey,
                 NewPassword = message.NewPassword,
@@ -233,8 +229,8 @@ namespace Alpha.Main.Site.Features.Password
             {
                 HashKey = GetHasKey(),
                 IsDefaultAvatar = string.IsNullOrEmpty(profile.ImageBase64String),
-                Username = this.userSession.UserName,
-                AlternateUsername = this.BuildAlternateUsername(message),
+                Username = userSession.UserName,
+                AlternateUsername = BuildAlternateUsername(message),
                 UsernameShower = BuildUsernameShower(message),
                 EmbedImage = profile.ImageBase64String,
                 ProfileImageId = profile.ImageId,

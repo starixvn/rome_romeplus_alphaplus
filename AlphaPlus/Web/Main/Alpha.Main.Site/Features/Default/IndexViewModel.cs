@@ -1,12 +1,12 @@
 ﻿using System.Web;
 using Alpha.Main.AppResources;
-using Alpha.Main.ProfilePicture.Models;
 using AlphaPlus.Core.Models;
 using Alpha.Main.Configurations;
 using Alpha.Main.Site.Helpers;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
 using Alpha.Main.Site.Features.Default.MenuBar;
+using Alpha.Main.Site.Features.CustomerProfile;
 
 namespace Alpha.Main.Site.Features.Default
 {

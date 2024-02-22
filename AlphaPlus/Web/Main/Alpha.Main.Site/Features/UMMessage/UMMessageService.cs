@@ -2,10 +2,10 @@ using System.Resources;
 using System.Text;
 using Alpha.Main.AppResources;
 using Alpha.Main.Configurations;
-using Alpha.Main.Services;
 using Alpha.Main.Site.Extensions;
 using Fanex.Caching;
 using Fanex.Data.Repository;
+using Fanex.RemotingRef;
 
 namespace Alpha.Main.Site.Features.UMMessage
 {
@@ -18,19 +18,14 @@ namespace Alpha.Main.Site.Features.UMMessage
     {
         private const string UMMessageCacheKey = "Alpha.Main.Services.Impl.UMMessageService";
         private readonly IDynamicRepository dynamicRepository;
-        private readonly CacheRefService cacheRefService;
         private readonly ResourceManager settingTypeResource;
         private readonly ICacheService cacheService;
+        private readonly IRemotingRefService remotingRefService;
 
-        public UMMessageService(IDynamicRepository dynamicRepository, CacheRefService cacheRefService)
-            : this(dynamicRepository, cacheRefService, new CacheService())
-        {
-        }
-
-        internal UMMessageService(IDynamicRepository dynamicRepository, CacheRefService cacheRefService, ICacheService cacheService)
+        public UMMessageService(IDynamicRepository dynamicRepository, ICacheService cacheService, IRemotingRefService remotingRefService)
         {
             this.dynamicRepository = dynamicRepository;
-            this.cacheRefService = cacheRefService;
+            this.remotingRefService = remotingRefService;
             this.cacheService = cacheService;
             settingTypeResource = new ResourceManager(typeof(SettingType));
         }
@@ -95,10 +90,10 @@ namespace Alpha.Main.Site.Features.UMMessage
         {
             if (sportTypeId > 0)
             {
-                return cacheRefService.GetSportName(sportTypeId);
+                return GetSportName(sportTypeId);
             }
 
-            return productId == 0 ? Resources.AllProducts : cacheRefService.GetProductName(productId);
+            return productId == 0 ? Resources.AllProducts : GetProductName(productId);
         }
 
         private static UMMessageDTO BuildUMPatternFromTo(string pattern, UMMessageItem message)
@@ -108,5 +103,19 @@ namespace Alpha.Main.Site.Features.UMMessage
                     pattern,
                     message.BeginTime.ToLongDateWithSlash(),
                     message.EndTime.ToLongDateWithSlash()));
+
+        public string GetSportName(int sportTypeId)
+            => remotingRefService.GetSportName(sportTypeId.ToString(), LanguageCode, null)
+            ?? remotingRefService.GetResourceDataByRefIdAndResourceId("DummySport", sportTypeId.ToString(), LanguageCode, string.Empty);
+
+        public string GetProductName(int productId)
+            => remotingRefService.GetResourceDataByRefIdAndResourceId(
+                "Product",
+                productId.ToString(),
+                LanguageCode,
+                string.Empty);
+
+        private static string LanguageCode
+            => Thread.CurrentThread.CurrentCulture.Name;
     }
 }

@@ -43,7 +43,7 @@ public class AccountController(
     {
         if (!options.DisabledCheckDuplicationLogin)
         {
-            await accountService.SignOut();
+            await accountService.CheckOut();
         }
 
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

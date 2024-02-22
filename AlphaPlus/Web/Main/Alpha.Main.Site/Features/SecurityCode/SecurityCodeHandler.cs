@@ -1,15 +1,13 @@
-﻿using Alpha.Main.ProfilePicture.Services;
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
 using Alpha.Main.AppResources;
 using Fanex.Cryptography.Aes;
 using Alpha.Main.Models;
 using MediatR;
-using Alpha.Main.Params.SecurityCode;
-using Alpha.Main.Services;
 using CustomResult = AlphaPlus.Core.Models.Result;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
+using Alpha.Main.Site.Features.CustomerProfile;
 
 namespace Alpha.Main.Site.Features.SecurityCode
 {
@@ -23,20 +21,23 @@ namespace Alpha.Main.Site.Features.SecurityCode
         IRequestHandler<VerifySecurityCodeCommand, CustomResult>,
         IRequestHandler<UpdateSecurityCodeFunctionCommand, CustomResult>
     {
+        private const string MD5 = "MD5";
+        private const string SECURITYCODEPADDING = "1qaw3+{:P)";
         private const string HashKeySessionKey = "ph";
         private const string SecurityCodeTokenSessionKey = "SECURITYCODETOKEN";
+        private const int Length = 6;
 
         private readonly ISessionManager sessionManager;
         private readonly IEncryption encryption;
-        private readonly SecurityCodeService securityCodeService;
-        private readonly ProfilePictureServices customerProfileService;
+        private readonly ISecurityCodeService securityCodeService;
+        private readonly IProfilePictureService customerProfileService;
         private readonly IUserSession userSession;
         private readonly IUser user;
         private readonly IAesService aes;
 
         public SecurityCodeHandler(
-          SecurityCodeService securityCodeService,
-          ProfilePictureServices customerProfileService,
+          ISecurityCodeService securityCodeService,
+          IProfilePictureService customerProfileService,
           ISessionManager sessionManager,
           IEncryption encryption,
           IUserSession userSession,
@@ -79,7 +80,7 @@ namespace Alpha.Main.Site.Features.SecurityCode
 
         public Task<SecurityCodeViewModel> Handle(SecurityCodeQuery message, CancellationToken cancellationToken)
         {
-            string securityCodeToken = securityCodeService.GenerateSecurityToken();
+            string securityCodeToken = GenerateSecurityToken();
             sessionManager.Add(SecurityCodeTokenSessionKey, securityCodeToken);
 
             return Task.FromResult(new SecurityCodeViewModel
@@ -100,11 +101,11 @@ namespace Alpha.Main.Site.Features.SecurityCode
 
         public async Task<ForceChangeSecurityCodeViewModel> Handle(ForceChangeSecurityCodeQuery message, CancellationToken cancellationToken)
         {
-            var securityCodeToken = securityCodeService.GenerateSecurityToken();
+            var securityCodeToken = GenerateSecurityToken();
 
             sessionManager.Add(SecurityCodeTokenSessionKey, securityCodeToken);
 
-            var profile = await customerProfileService.GetActorProfilePicture(this.userSession.CustId);
+            var profile = await customerProfileService.GetActorProfilePicture(userSession.CustId);
 
             return new ForceChangeSecurityCodeViewModel
             {
@@ -386,7 +387,9 @@ namespace Alpha.Main.Site.Features.SecurityCode
         {
             var actualCustId = userSession.SubAccId > 0 ? userSession.SubAccId : userSession.CustId;
 
-            return securityCodeService.GenerateSalt(actualCustId);
+            string plainText = actualCustId.ToString();
+
+            return encryption.ComputeHash(MD5, plainText, SECURITYCODEPADDING);
         }
 
         private static string BuildSecurityCodeTitle(string username)
@@ -432,6 +435,11 @@ namespace Alpha.Main.Site.Features.SecurityCode
             {
                 userSession.IsEnabledSecurityCodeInStatement = isOn;
             }
+        }
+
+        private string GenerateSecurityToken()
+        {
+            return encryption.RandomString(Length);
         }
     }
 }

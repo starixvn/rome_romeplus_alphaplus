@@ -1,10 +1,7 @@
 ﻿using AlphaPlus.Core.Models;
 using Alpha.Main.AppResources;
 using Alpha.Main.Models;
-using Alpha.Main.Models.Otp;
 using MediatR;
-using Alpha.Main.Params.Otp;
-using Alpha.Main.Services;
 using TelegramBot.Client.Services;
 using Function = TelegramBot.Client.Models.Function;
 using AlphaPlus.SecurityCode.Services;
@@ -31,23 +28,25 @@ namespace Alpha.Main.Site.Features.OTP
         private const string SecretKeySessionKey = "CustomerOtpHandler.SecretKeySessionKey";
         private const int UnlinkedErrorCode = 102;
 
-        private readonly CustomerOtpService customerOtpService;
+        private readonly ICustomerOtpService customerOtpService;
         private readonly IUserSession userSession;
         private readonly ISessionManager sessionManager;
         private readonly IBrowserHelper browserHelper;
         private readonly IUser user;
         private readonly ISettingService telegramSettingService;
         private readonly ISecurityCodeChecker securityCodeChecker;
+        private readonly IOTPService telegramOTPService;
         private readonly Fanex.Logging.ILogger logger;
 
         public CustomerOtpHandler(
-            CustomerOtpService customerOtpService,
+            ICustomerOtpService customerOtpService,
             IUserSession userSession,
             ISessionManager sessionManager,
             IBrowserHelper browserHelper,
             IUser user,
             ISettingService telegramSettingService,
             ISecurityCodeChecker securityCodeChecker,
+            IOTPService telegramOTPService,
             Fanex.Logging.ILogger logger)
         {
             this.customerOtpService = customerOtpService;
@@ -57,6 +56,7 @@ namespace Alpha.Main.Site.Features.OTP
             this.user = user;
             this.telegramSettingService = telegramSettingService;
             this.securityCodeChecker = securityCodeChecker;
+            this.telegramOTPService = telegramOTPService;
             this.logger = logger;
         }
 
@@ -267,7 +267,7 @@ namespace Alpha.Main.Site.Features.OTP
                     request.Username = userSession.IsSubAcc ? userSession.SubUserName : userSession.UserName;
                 }
 
-                viewModel.CustomerOtp = customerOtpService.GenerateCustomerOtp(request.CustId, request.Username, request.SubAccountId);
+                viewModel.CustomerOtp = await customerOtpService.GenerateCustomerOtp(request.CustId, request.Username, request.SubAccountId);
                 viewModel.IsAlreadySetup = false;
                 sessionManager.Add(SecretKeySessionKey, viewModel.CustomerOtp.SecretKey);
             }
@@ -380,7 +380,7 @@ namespace Alpha.Main.Site.Features.OTP
         {
             if (await IsEnabledTelegramOTP(request.CustId, request.SubAccId))
             {
-                await customerOtpService.GenerateTelegramOTP(request.CustId, request.SubAccId);
+                await telegramOTPService.SendOTP(request.CustId, request.SubAccId);
                 return Result.CreateSuccessfulResult();
             }
             else

@@ -1,6 +1,4 @@
-﻿using Alpha.Main.Params.ProtectionCode;
-using Alpha.Main.Services;
-using AlphaPlus.SecurityCode.Services;
+﻿using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.Core.Models;
 using MediatR;
 using ResultModel = AlphaPlus.Core.Models.Result;
@@ -14,12 +12,12 @@ namespace Alpha.Main.Site.Features.ProtectionCode
     {
         private const string HashKeySessionKey = "Alpha.Main.ProtectionCodeHandler.ProtectionCodeHash";
         private readonly ISessionManager sessionManager;
-        private readonly ProtectionCodeService protectionCodeService;
+        private readonly IProtectionCodeService protectionCodeService;
         private readonly ISecurityCodeChecker securityCodeChecker;
 
         public ProtectionCodeHandler(
             ISessionManager sessionManager,
-            ProtectionCodeService protectionCodeService,
+            IProtectionCodeService protectionCodeService,
             ISecurityCodeChecker securityCodeChecker)
         {
             this.sessionManager = sessionManager;

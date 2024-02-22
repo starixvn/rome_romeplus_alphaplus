@@ -1,14 +1,7 @@
-using Alpha.Main.Helpers;
-using Alpha.Main.Helpers.Impl;
 using Alpha.Main.Models;
-using Alpha.Main.ProfilePicture.Services;
-using Alpha.Main.Services;
-using Alpha.Main.Services.Impl;
 using AlphaPlus.SecurityCode.Services;
 using Fanex.Data.Repository;
 using Fanex.RemotingRef;
-using ONEbook.OTP.Helpers;
-using ONEbook.OTP.Services;
 using TelegramBot.Client.Services;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
@@ -29,6 +22,12 @@ using Alpha.Main.Site.Features.Language;
 using Fanex.Data;
 using Alpha.Main.Site.Features.Dashboard.BalanceInfo;
 using Alpha.Main.Site.Features.Dashboard.Statistics;
+using Alpha.Main.Site.Features.Password;
+using Alpha.Main.Site.Features.SecurityCode;
+using Alpha.Main.Site.Features.Nickname;
+using Alpha.Main.Site.Features.OTP;
+using Alpha.Main.Site.Features.ProtectionCode;
+using Alpha.Main.Site.Features.CustomerProfile;
 
 namespace Alpha.Main.Site.Extensions;
 
@@ -50,43 +49,27 @@ public static class Extensions
         services.AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>();
         services.AddSingleton<ISecurityCodeHttpContext, SecurityCodeHttpContext>();
         services.AddSingleton<IMenuItemBuilder, MenuItemBuilder>();
-        services.AddSingleton<CacheRefService, CacheRefServiceImpl>();
         services.AddSingleton<IAesService, AesService>();
         services.AddSingleton<IUserSessionService, UserSessionService>();
 
         services.AddSingleton<ISiteMenuService, SiteMenuService>();
-        services.AddSingleton<ProfilePictureServices, ProfilePictureServicesImpl>();
-        services.AddSingleton<SecurityCodeService, SecurityCodeServiceImpl>();
+        services.AddSingleton<IProfilePictureService, ProfilePictureService>();
         services.AddSingleton<ISessionManager, SessionManager>();
-        services.AddSingleton<PasswordService, PasswordServiceImpl>();
         services.AddSingleton<ISiteMapReader, SiteMapReader>();
         services.AddSingleton<IEncryption, Encryption>();
         services.AddSingleton<IBalanceInfoService, BalanceInfoService>();
         services.AddSingleton<IStatisticsService, StatisticsService>();
         services.AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>();
 
-
-        services.AddSingleton<OtpService, OtpServiceImpl>();
-        services.AddSingleton<OtpAdapter, OtpAdapterImpl>();
-        services.AddSingleton<QrCodeAdapter, QrCodeAdapterImpl>();
-        services.AddSingleton<RandomHelper, RandomHelperImpl>();
-        services.AddSingleton<JsonHelper, JsonHelperImpl>();
-        services.AddSingleton<CustomerOtpService, CustomerOtpServiceImpl>();
-
         services.AddTelegramBot(configuration);
         services.AddSingleton<ITransferService, TransferService>();
         services.AddSingleton<IUser, User>();
 
-        services.AddSingleton<LogoutService, LogoutServiceImpl>();
-
-        services.AddSingleton<NicknameService, NicknameServiceImpl>();
-
+        services.AddSingleton<INicknameService, NicknameService>();
         services.AddSingleton<INicknameChecker, NicknameChecker>();
-
-        services.AddSingleton<KickoutCustomerService, KickoutCustomerServiceImpl>();
         services.AddSingleton<IBannerService, BannerService>();
         services.AddSingleton<IUMMessageService, UMMessageService>();
-        services.AddSingleton<ProtectionCodeService, ProtectionCodeServiceImpl>();
+        services.AddSingleton<IProtectionCodeService, ProtectionCodeService>();
         services.AddSingleton<IThemeService, ThemeService>();
         services.AddSingleton<ILanguageService, LanguageService>();
 
@@ -97,6 +80,11 @@ public static class Extensions
                 AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
             });
 
+
+        var customerServiceUri = new Uri(configuration.GetValue<string>("Fanxex.Customer:ServiceUrl"));
+        services.AddHttpClient<IPasswordService, PasswordService>(httpClient => httpClient.BaseAddress = customerServiceUri);
+        services.AddHttpClient<ISecurityCodeService, SecurityCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
+        services.AddHttpClient<ICustomerOtpService, CustomerOtpService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode));
 
         return services;

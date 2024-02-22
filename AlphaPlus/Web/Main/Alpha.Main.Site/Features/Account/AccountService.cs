@@ -12,7 +12,7 @@ public interface IAccountService
 
     Task<ReCheckInResult> ReCheckIn(int onlineUserId);
 
-    Task SignOut(string reason = null);
+    Task CheckOut(string reason = null);
 }
 
 public class AccountService(HttpClient client, IUserSession session, IUserSessionService userSessionService) : IAccountService
@@ -38,7 +38,7 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
     public Task<ReCheckInResult> ReCheckIn(int onlineUserId)
         => client.GetAsJsonAsync<ReCheckInResult>($"api/auth/re-check-in?onlineUserId={onlineUserId}");
 
-    public async Task SignOut(string reason = null)
+    public async Task CheckOut(string reason = null)
     {
         using StringContent payload = new(JsonSerializer.Serialize(new
         {

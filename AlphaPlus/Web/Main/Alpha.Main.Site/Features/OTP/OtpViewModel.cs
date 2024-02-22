@@ -1,5 +1,4 @@
 ﻿using Alpha.Main.Site.Helpers;
-using Alpha.Main.Models.Otp;
 using Alpha.Main.Site.Features.TelegramChatBot;
 
 namespace Alpha.Main.Site.Features.OTP
