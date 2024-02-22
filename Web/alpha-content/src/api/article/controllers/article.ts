@@ -142,6 +142,9 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     }
 
     const entities = await strapi.db.query('api::article.article').findMany({
+      populate: {
+        environment: ['name']
+      },
       where: {
         publishedAt: null,
         slug,
@@ -154,12 +157,16 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     var count = 0;
     var deleted = 0;
     for(var i=0; i<entities.length; i++) {
+      var ent = entities[i];
+      if(ent.environment?.name === "PROD") {
+        continue;
+      }
+
       if(count < 10) {
         count++;
         continue;
       }
 
-      var ent = entities[i];
       await strapi.entityService.delete('api::article.article', ent.id);
       deleted++;
     }

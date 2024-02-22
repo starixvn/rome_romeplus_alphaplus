@@ -8,7 +8,7 @@ BEFORE UPDATE ON articles
 FOR EACH ROW
 BEGIN
   IF (new.slug is null) THEN
-	SET new.slug = REPLACE(LOWER(new.title), ' ', '-');
+	  SET new.slug = REPLACE(LOWER(new.title), ' ', '-');
   END IF;
 END$$   
 DELIMITER ; 

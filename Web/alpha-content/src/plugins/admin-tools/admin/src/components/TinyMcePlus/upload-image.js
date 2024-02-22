@@ -82,7 +82,7 @@ function appendImage(img, adminUrl) {
       var height = img.height;
       var name = selectedFile.name;
 
-      var html = '<image src="' + adminUrl + '/api/images/get/' + name + '" style="width:' + width + 'px; height:' + height + 'px;" />';
+      var html = '<image src="' + adminUrl + '/api/images/get/' + name + '" style="margin-top: 10px; width:' + width + 'px; height:' + height + 'px;" />';
       tinyMCE.execCommand('mceInsertContent', false, html);
 }
 

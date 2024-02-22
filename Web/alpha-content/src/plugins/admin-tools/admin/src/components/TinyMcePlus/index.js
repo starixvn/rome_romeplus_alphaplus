@@ -10,6 +10,7 @@ import { getAutoSaveButton, autoSave } from './auto-save';
 import { getUploadImageButton, uploadImage } from './upload-image';
 import { getCleanUnpublishedButton, cleanUnpublished } from './clean-unpublished';
 import { getUpdateImageButton, updateImage } from './update-image';
+import { getUploadIconButton, uploadIcon } from './upload-icon';
 
 var addedCss = false;
 function showTinyMcePlusInfo() {
@@ -48,6 +49,7 @@ function addCustomedButtons(initialData, demoUrl, slug) {
   var r =  document.createElement('div');
   r.innerHTML  = '<div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group">'
   + getUploadImageButton()
+  + getUploadIconButton()
   + getUpdateImageButton()
   + getVRulerButton()
   + getHRulerButton()
@@ -71,6 +73,7 @@ function addCustomedButtons(initialData, demoUrl, slug) {
   document.getElementById('btn-clean-unpublished').onclick = () => { cleanUnpublished(initialData); };
   document.getElementById('btn-upload-image').onclick = () => { uploadImage(adminUrl); };
   document.getElementById('btn-update-image').onclick = () => { updateImage(adminUrl); };
+  document.getElementById('btn-upload-icon').onclick = () => { uploadIcon(adminUrl); };
   cleanUpEditor();
 }
 

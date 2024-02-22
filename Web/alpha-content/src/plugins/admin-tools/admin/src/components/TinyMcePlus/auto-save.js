@@ -23,13 +23,15 @@ function autoSave() {
         var t = b.innerText;
         if(t === 'Save') {
           b.click();
-          location.reload(true);
+          // location.reload(true);
         }
       }
     } catch(e) {
       console.log(e);
     }
-  }, saveTimeInMinutes * 60 * 1000);
+  }, 
+  // 1000);
+  saveTimeInMinutes * 60 * 1000);
 }
 
 export { getAutoSaveButton, autoSave };
