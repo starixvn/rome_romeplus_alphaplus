@@ -1,0 +1,61 @@
+﻿namespace AlphaPlus.Main.Site.Features.Dashboard.Statistics
+{
+    public class Statistics
+    {
+        public Statistics()
+        {
+        }
+
+        public Statistics(
+            decimal outStanding,
+            decimal totalOutStanding,
+            int totalMemberActive,
+            int totalMemberClosed,
+            int totalMemberSuspended,
+            int totalAgentActive,
+            int totalAgentClosed,
+            int totalAgentSuspended,
+            int totalMasterActive,
+            int totalMasterClosed,
+            int totalMasterSuspended,
+            int numberNewMembers)
+        {
+            Outstanding = outStanding;
+            TotalOutstanding = totalOutStanding;
+            TotalMemberActive = totalMemberActive;
+            TotalMemberClosed = totalMemberClosed;
+            TotalMemberSuspended = totalMemberSuspended;
+            TotalAgentActive = totalAgentActive;
+            TotalAgentClosed = totalAgentClosed;
+            TotalAgentSuspended = totalAgentSuspended;
+            TotalMasterActive = totalMasterActive;
+            TotalMasterClosed = totalMasterClosed;
+            TotalMasterSuspended = totalMasterSuspended;
+            NumberNewMembers = numberNewMembers;
+        }
+
+        public decimal Outstanding { get; private set; }
+
+        public decimal TotalOutstanding { get; private set; }
+
+        public int TotalMemberActive { get; private set; }
+
+        public int TotalMemberClosed { get; private set; }
+
+        public int TotalMemberSuspended { get; private set; }
+
+        public int TotalAgentActive { get; private set; }
+
+        public int TotalAgentClosed { get; private set; }
+
+        public int TotalAgentSuspended { get; private set; }
+
+        public int TotalMasterActive { get; private set; }
+
+        public int TotalMasterClosed { get; private set; }
+
+        public int TotalMasterSuspended { get; private set; }
+
+        public int NumberNewMembers { get; private set; }
+    }
+}

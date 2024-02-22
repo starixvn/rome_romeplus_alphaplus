@@ -1,0 +1,35 @@
+﻿@model AlphaPlus.Main.Site.Features.TelegramChatBot.RegisterAccountViewModel
+@{
+    Layout = "~/Views/TelegramChatBot/Shared/_Layout.cshtml";
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-main/chatbot/chatbot-default")
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/site-main/tab-{Model.CustLevel.ToLowerInvariant()}")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/telegramchatbot/register-account")
+}
+
+<div class="page-title">@ChatBot.Telegram</div>
+<div class="tab-content">
+    <div class="panel" id="register-panel">
+        <div class="panel-heading" role="tab" id="headingRegister">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#registerTelegram"
+                    aria-expanded="false" aria-controls="registerTelegram">
+                    @ChatBot.Account
+                </a>
+            </h4>
+        </div>
+        <div id="registerTelegram" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRegister">
+            <div class="panel-body has-padding">
+                <p>
+                    @Html.Raw(ChatBot.IntroTelegramChatbot)
+                </p>
+                @await Html.PartialAsync("RegisterTelegramAccount", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/telegramchatbot/register-account")
+}

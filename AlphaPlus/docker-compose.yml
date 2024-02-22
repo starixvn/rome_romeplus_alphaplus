@@ -42,7 +42,7 @@ services:
         image: ${REGISTRY:-alphaplus}/main:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/Main/Alpha.Main.Site/Dockerfile
+            dockerfile: Web/Main/Main.Site/Dockerfile
             target: final
         restart: always
         depends_on:
