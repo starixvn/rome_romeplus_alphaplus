@@ -1,6 +1,6 @@
 @{
     Layout = null;
-    bool isRefresh = (bool)ViewData["IsRefresh"];
+    bool isRefresh = (bool)(ViewData["IsRefresh"] ?? false);
     async Task RenderMatrix(int rowNumber, int columnNumber, int[,] matrix, string tableId)
     {
         <table id="@tableId" class="tbl-score-result">

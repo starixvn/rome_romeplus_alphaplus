@@ -531,6 +531,9 @@
   <data name="agentPT" xml:space="preserve">
     <value>ค่าแบ่งสู้ของเอเย่น</value>
   </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของเอเย่น/ คอมมิชชั่น</value>
+  </data>
   <data name="choice" xml:space="preserve">
     <value>เลือก</value>
   </data>
@@ -543,11 +546,17 @@
   <data name="masterPT" xml:space="preserve">
     <value>ค่าแบ่งสู้ของมาสเตอร์</value>
   </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของมาสเตอร์/ คอมมิชชั่น</value>
+  </data>
   <data name="member" xml:space="preserve">
     <value>สมาชิก</value>
   </data>
   <data name="memberBetList" xml:space="preserve">
     <value>รายการการวางเดิมพันของสมาชิก</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>#</value>
   </data>
   <data name="odds" xml:space="preserve">
     <value>ราคา</value>
@@ -566,6 +575,9 @@
   </data>
   <data name="superPT" xml:space="preserve">
     <value>ค่าแบ่งสู้ของซุปเปอร์</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>ค่าแบ่งสู้ของซุปเปอร์/ คอมมิชชั่น</value>
   </data>
   <data name="transtime" xml:space="preserve">
     <value>เวลาการดำเนินการ</value>

@@ -12,55 +12,31 @@ public class UserLevel : Enumeration
     {
     }
 
-    private UserLevel(byte value, string displayName)
-        : base(value, displayName)
+    private UserLevel(byte value, string displayName) : base(value, displayName)
     {
     }
 
-    public bool IsAgentLevel()
-    {
-        return this == Agent;
-    }
+    public bool IsAgentLevel() => this == Agent;
 
-    public bool IsNotAgentLevel()
-    {
-        return !IsAgentLevel();
-    }
+    public bool IsNotAgentLevel() => !IsAgentLevel();
 
-    public bool IsMasterLevel()
-    {
-        return this == Master;
-    }
+    public bool IsMasterLevel() => this == Master;
 
-    public bool IsNotMasterLevel()
-    {
-        return !IsMasterLevel();
-    }
+    public bool IsNotMasterLevel() => !IsMasterLevel();
 
-    public bool IsSuperLevel()
-    {
-        return this == Super;
-    }
+    public bool IsMasterOrSuperLevel() => IsMasterLevel() || IsSuperLevel();
 
-    public bool IsNotSuperLevel()
-    {
-        return !IsSuperLevel();
-    }
+    public bool IsSuperLevel() => this == Super;
 
-    public bool IsMemberLevel()
-    {
-        return this == Member;
-    }
+    public bool IsNotSuperLevel() => !IsSuperLevel();
+
+    public bool IsMemberLevel() => this == Member;
 
     public bool IsDirectUplineOf(byte downlineLevelValue)
-    {
-        return GapBetweenTwoLevels(this.Value, downlineLevelValue) == 1;
-    }
+        => GapBetweenTwoLevels(this.Value, downlineLevelValue) == 1;
 
     public bool IsNotDirectUplineOf(byte downlineLevelValue)
-    {
-        return !IsDirectUplineOf(downlineLevelValue);
-    }
+        => !IsDirectUplineOf(downlineLevelValue);
 
     public bool IsDirectUplineOf(Enumeration customerLevel)
     {
@@ -73,9 +49,7 @@ public class UserLevel : Enumeration
     }
 
     public bool IsNotDirectUplineOf(Enumeration customerLevel)
-    {
-        return !IsDirectUplineOf(customerLevel);
-    }
+        => !IsDirectUplineOf(customerLevel);
 
     public bool IsDirectDownlineOf(Enumeration uplineLevel)
     {
@@ -84,13 +58,11 @@ public class UserLevel : Enumeration
             return false;
         }
 
-        return GapBetweenTwoLevels(uplineLevel.Value, this.Value) == 1;
+        return GapBetweenTwoLevels(uplineLevel.Value, Value) == 1;
     }
 
     public bool IsNotDirectDownlineOf(Enumeration uplineLevel)
-    {
-        return !IsDirectDownlineOf(uplineLevel);
-    }
+        => !IsDirectDownlineOf(uplineLevel);
 
     public bool Is(Enumeration level)
     {
@@ -102,13 +74,8 @@ public class UserLevel : Enumeration
         return false;
     }
 
-    public bool IsNot(Enumeration level)
-    {
-        return !Is(level);
-    }
+    public bool IsNot(Enumeration level) => !Is(level);
 
     private static int GapBetweenTwoLevels(byte uplineLevelValue, byte downlineLevelValue)
-    {
-        return uplineLevelValue - downlineLevelValue;
-    }
+        => uplineLevelValue - downlineLevelValue;
 }

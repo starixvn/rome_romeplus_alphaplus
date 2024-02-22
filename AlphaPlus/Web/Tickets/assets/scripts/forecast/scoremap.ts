@@ -17,6 +17,7 @@ class ScoreMap {
     resources = null;
     isLeagueChanged = true;
     globalFormData = null;
+    cacheMatchIds = null;
 
     constructor() {
         this.$ddlLeague = $('#ddlLeague');
@@ -33,6 +34,7 @@ class ScoreMap {
         this.resources = {
             all: $('#hidden-allText').val()
         };
+        this.cacheMatchIds = $('#hidden-matchIds').val();
     }
 
     init() {
@@ -187,6 +189,7 @@ class ScoreMap {
         }
 
         const matchIds = [];
+        this.cacheMatchIds && matchIds.push(this.cacheMatchIds);
         this.$popupMatchList.find('.match:checked').each(function () {
             matchIds.push(this.value);
         });

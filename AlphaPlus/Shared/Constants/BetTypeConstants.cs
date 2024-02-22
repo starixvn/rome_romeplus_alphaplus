@@ -21,11 +21,21 @@ public static class BetTypeConstants
     public const int DrawNoDraw = 123;
     public const int MixParlayBetRadarVirtualSports = 2799;
 
+    public const int VirtualHorseRacing_Win = 1231;
+    public const int VirtualHorseRacing_Place = 1232;
+    public const int VirtualHorseRacing_WinPlace = 1233;
+
     public const int JackpotContribution = 2198;
     public const int JackpotContribution_Mobile = 2398;
     public const int JackpotContribution_Tablet = 2998;
     public const int PPJackpotContribution = 4297;
     public const int SGJackpotContribution = 4599;
+
+    public const int Happy5LinkedGamesMin = 3601;
+    public const int Happy5LinkedGamesMax = 3610;
+
+    public const int LeapGamingMin = 5301;
+    public const int LeapGamingMax = 5399;
 
     public static bool IsOutright(int betType) => betType == Outright;
 

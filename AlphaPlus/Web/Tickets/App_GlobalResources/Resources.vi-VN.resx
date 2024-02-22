@@ -531,6 +531,9 @@
   <data name="agentPT" xml:space="preserve">
     <value>PT của Agent</value>
   </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>PT của Agent/ Hoa hồng</value>
+  </data>
   <data name="choice" xml:space="preserve">
     <value>Lựa chọn</value>
   </data>
@@ -543,11 +546,17 @@
   <data name="masterPT" xml:space="preserve">
     <value>PT của Master</value>
   </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>PT của Master/ Hoa hồng</value>
+  </data>
   <data name="member" xml:space="preserve">
     <value>Thành viên</value>
   </data>
   <data name="memberBetList" xml:space="preserve">
     <value>Danh sách đặt cược của Member</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>#</value>
   </data>
   <data name="odds" xml:space="preserve">
     <value>Tỷ lệ</value>
@@ -566,6 +575,9 @@
   </data>
   <data name="superPT" xml:space="preserve">
     <value>PT của Super</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>PT của Super/ Hoa hồng</value>
   </data>
   <data name="transtime" xml:space="preserve">
     <value>Thời gian</value>

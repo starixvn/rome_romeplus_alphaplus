@@ -7,6 +7,8 @@ using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
 using Fanex.BetList.Core.RemotingRef;
 using Fanex.BetList.Core.TicketHelper;
+using ONEbook.SpreadSheets;
+using ONEbook.SpreadSheets.BetListNPOI;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 
@@ -79,7 +81,7 @@ public static class DependencyInjection
         => services
         .AddSingleton<ICacheRef, CacheRef>()
         .AddSingleton<ITicketHelper, TicketHelper>()
-        //.AddSingleton(typeof(Workbook<>), typeof(NpoiWorkbook<>), Lifestyle.Scoped)
+        .AddScoped(typeof(Workbook<>), typeof(NpoiWorkbook<>))
         .AddSingleton<IBetListFactory<BetListHTMLBuilder>, BetListHTMLFactory>()
         .AddSingleton<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>()
         .AddSingleton<IBetListHTMLBuilder>(sp => sp.GetService<IBetListFactory<BetListHTMLBuilder>>().CreateBuilder())

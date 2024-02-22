@@ -531,6 +531,9 @@
   <data name="agentPT" xml:space="preserve">
     <value>Agent PT</value>
   </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>Agent PT/ Comm</value>
+  </data>
   <data name="choice" xml:space="preserve">
     <value>Choice</value>
   </data>
@@ -543,11 +546,17 @@
   <data name="masterPT" xml:space="preserve">
     <value>Master PT</value>
   </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>Master PT/ Comm</value>
+  </data>
   <data name="member" xml:space="preserve">
     <value>Member</value>
   </data>
   <data name="memberBetList" xml:space="preserve">
     <value>Member Bet List</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>#</value>
   </data>
   <data name="odds" xml:space="preserve">
     <value>Odds</value>
@@ -566,6 +575,9 @@
   </data>
   <data name="superPT" xml:space="preserve">
     <value>Super PT</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>Super PT/ Comm</value>
   </data>
   <data name="transtime" xml:space="preserve">
     <value>Trans.Time</value>

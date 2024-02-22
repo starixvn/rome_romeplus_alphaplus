@@ -1,3 +1,5 @@
+using _UserLevel = AlphaPlus.Core.Models.UserLevel;
+
 namespace AlphaPlus.BetLists.Params;
 
 public class RunningBetListByBetTypeAndMatchParam(
@@ -7,7 +9,7 @@ public class RunningBetListByBetTypeAndMatchParam(
     string language,
     int liveIndicator,
     string betTeam,
-    UserLevel custLevel,
+    _UserLevel custLevel,
     bool displayVNIP)
 {
     public int MatchId { get; } = matchId;
@@ -22,7 +24,7 @@ public class RunningBetListByBetTypeAndMatchParam(
 
     public string BetTeam { get; } = betTeam;
 
-    public UserLevel CustLevel { get; } = custLevel;
+    public _UserLevel CustLevel { get; } = custLevel;
 
     public bool DisplayVNIP { get; } = displayVNIP;
 }

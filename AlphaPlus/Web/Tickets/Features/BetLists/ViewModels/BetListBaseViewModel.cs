@@ -3,16 +3,17 @@ using AlphaPlus.Tickets.Site.App_GlobalResources;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
+using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 
 public class BetListBaseViewModel
 {
-    private static readonly IDictionary<UserLevel, int> TotalColumnByViewLevelId = new Dictionary<UserLevel, int>
+    private static readonly IDictionary<_UserLevel, int> TotalColumnByViewLevelId = new Dictionary<_UserLevel, int>
     {
-        [UserLevel.Agent] = 9,
-        [UserLevel.Master] = 10,
-        [UserLevel.Super] = 11
+        [_UserLevel.Agent] = 9,
+        [_UserLevel.Master] = 10,
+        [_UserLevel.Super] = 11
     };
 
     protected readonly BetListBaseQuery baseQuery;
@@ -115,7 +116,7 @@ public class BetListBaseViewModel
 
     public byte ViewerLevelId { get; }
 
-    public UserLevel ViewerLevel { get; }
+    public _UserLevel ViewerLevel { get; }
 
     public string Title { get; protected set; }
 

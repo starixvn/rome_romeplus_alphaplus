@@ -61,6 +61,25 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/bundles/betlists/default.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/popup-details.js",
+      "assets/scripts/betlists/common/utils.js",
+      "assets/scripts/betlists/common/app-path.js",
+      "assets/scripts/betlists/common/core.js",
+      "assets/scripts/betlists/status/result-details/base-result-details.js",
+      "assets/scripts/betlists/status/result-details/sportsbook-result-details.js",
+      "assets/scripts/betlists/status/result-details/casino-result-details.js",
+      "assets/scripts/betlists/status/result-details/other-result-details.js",
+      "assets/scripts/betlists/status/ip-details.js",
+      "assets/scripts/betlists/choice/score-map.js",
+      "assets/scripts/betlists/choice/ticket-details/base-ticket-details.js",
+      "assets/scripts/betlists/choice/ticket-details/sportsbook-ticket-details.js",
+      "assets/scripts/betlists/choice/ticket-details/casino-ticket-details.js",
+      "assets/scripts/betlists/choice/ticket-details/other-ticket-details.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/bundles/betlists/icon-note.js",
     "inputFiles": [
       "assets/scripts/betlists/common/icon-note.js"

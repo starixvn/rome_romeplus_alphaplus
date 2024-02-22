@@ -10,6 +10,7 @@
     <Compile Include="..\..\..\Shared\Models\Enumeration.cs" Link="Models\Enumeration.cs" />
     <Compile Include="..\..\..\Shared\Models\UserLevel.cs" Link="Models\UserLevel.cs" />
     <Compile Include="..\..\..\Shared\Extensions\StringExtensions.cs" Link="Extensions\StringExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Constants\BetTypeConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.BetList.Core" Version="3.0.1.9" />

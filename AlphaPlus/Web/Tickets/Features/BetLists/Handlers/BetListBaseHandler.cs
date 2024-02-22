@@ -8,8 +8,6 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers;
 
 public class BetListBaseHandler
 {
-    private Func<string, string> mapPath;
-
     protected BetListBaseHandler(
         IBetListHTMLBuilder builder,
         ITicketHelper ticketHelper,
@@ -35,12 +33,6 @@ public class BetListBaseHandler
     protected internal GetCachePropertyById GetOddsTypeName { get; }
 
     internal Func<string, bool> IsFileExist { get; set; } = File.Exists;
-
-    // protected internal Func<string, string> MapPath
-    // {
-    //     get { return mapPath ?? HostingEnvironment.MapPath; }
-    //     set { mapPath = value; }
-    // }
 
     protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)
          => MonitorService.WriteLog(custId, tickets.ToList<ITicket>());

@@ -1738,6 +1738,48 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
             }
         }
 
+        /// <summary>
+        ///   Looks up a localized string similar to #.
+        /// </summary>
+        internal static string number
+        {
+            get
+            {
+                return ResourceManager.GetString("number", resourceCulture);
+            }
+        }
 
+        /// <summary>
+        ///   Looks up a localized string similar to Super PT/ Comm.
+        /// </summary>
+        internal static string superptcomm
+        {
+            get
+            {
+                return ResourceManager.GetString("superptcomm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master PT/ Comm.
+        /// </summary>
+        internal static string masterptcomm
+        {
+            get
+            {
+                return ResourceManager.GetString("masterptcomm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Agent PT/ Comm.
+        /// </summary>
+        internal static string agentptcomm
+        {
+            get
+            {
+                return ResourceManager.GetString("agentptcomm", resourceCulture);
+            }
+        }
     }
 }

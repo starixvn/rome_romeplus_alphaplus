@@ -30,7 +30,7 @@ public class RunningBetListByBetTypeAndMatchService : BetListServiceBase, IRunni
             param.BetType,
             param.LiveIndicator,
             param.BetTeam,
-            param.CustLevel));
+            Enumeration.FromValue<UserLevel>(param.CustLevel.Value)));
         await AssignCountry(tickets, param.DisplayVNIP);
 
         return new BetListData(tickets, ticketData);

@@ -1,6 +1,8 @@
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Models;
+using _Enumeration = AlphaPlus.Core.Models.Enumeration;
+using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Requests;
 
@@ -20,7 +22,7 @@ public class BetListBaseQuery
 
         ViewerId = viewer.Id;
         ViewerLevelId = viewer.LevelId;
-        ViewerLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
+        ViewerLevel = _Enumeration.FromValue<_UserLevel>(ViewerLevelId);
         ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
         AdminId = viewer.AdminId;
         SubAccId = viewer.SubAccId;
@@ -64,7 +66,7 @@ public class BetListBaseQuery
 
     public bool DisplayVNIP { get; }
 
-    public UserLevel ViewerLevel { get; }
+    public _UserLevel ViewerLevel { get; }
 
     public string Type { get; set; }
 

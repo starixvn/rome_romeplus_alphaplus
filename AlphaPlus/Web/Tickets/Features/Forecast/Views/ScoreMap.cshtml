@@ -1,52 +1,5 @@
 @{
     ViewData["Title"] = Resources.ScoreMap;
-    void RenderLiveDeadBalls(IList<ScoreMapBetType> betTypes, bool isLive, string checkedId)
-    {
-        var betTypeCount = betTypes.Count;
-        var haftBetTypeCount = betTypeCount / 2;
-        if (betTypeCount % 2 != 0)
-        {
-            haftBetTypeCount++;
-        }
-
-        string checkAllId, checkAllText, checkClass;
-        if (isLive)
-        {
-            checkAllId = "chk-allLiveBetType";
-            checkAllText = Resources.LiveBall;
-            checkClass = "live-bettype";
-        }
-        else
-        {
-            checkAllId = "chk-allDeadBetType";
-            checkAllText = Resources.DeadBall;
-            checkClass = "dead-bettype";
-        }
-        <tr>
-            <td rowspan="2" class="even_row">
-                <input type="checkbox" id="@checkAllId" @(checkedId == null ? "checked" : string.Empty) />
-                <label title="@checkAllText" for="@checkAllId">@checkAllText</label>
-            </td>
-            @for (int i = 0; i < haftBetTypeCount; i++)
-            {
-                RenderBetTypeCell(betTypes[i], checkClass, checkedId);
-            }
-        </tr>
-        <tr>
-            @for (int i = haftBetTypeCount; i < betTypeCount; i++)
-            {
-                RenderBetTypeCell(betTypes[i], checkClass, checkedId);
-            }
-        </tr>
-    }
-    void RenderBetTypeCell(ScoreMapBetType betType, string checkClass, string checkedId)
-    {
-        <td>
-            <input type="checkbox" id="@(checkClass + betType.BetType)" class="@checkClass" @(checkedId == null ||
-        betType.FollowedBetTypes.Contains(checkedId) ? "checked" : string.Empty) value="@betType.BetType" />
-            <label for="@(checkClass + betType.BetType)" title="@betType.BetTypeName">@betType.BetTypeName</label>
-        </td>
-    }
     void RenderLoadingIcon(string id)
     {
         <span class="lds-spinner hidden" id="@id">
@@ -64,50 +17,59 @@
     <script src="~/bundles/forecast/scoremap.js" asp-append-version="true"></script>
 }
 @model ScoreMapViewModel
-<div class="page-title">
-    @Resources.ScoreMap
-    <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip" target="_blank"></a>
-</div>
-<div class="filter mt-10">
-    <label for="ddlLeague">@Resources.League</label>
-    <select asp-items="Model.Leagues" id="ddlLeague"></select>
-    <span class="icon-refresh hover-effect-rip" id="icon-refreshLeague"></span>
-    <button type="button" class="btn-submit" id="btn-selectMatch">@Resources.SelectMatch</button>
-    @{
-        RenderLoadingIcon("icon-loadingLeague");
+@{
+    if (Model.FromBetList)
+    {
+        <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip" target="_blank"></a>
+        <input type="hidden" id="hidden-matchIds" value="@Model.MatchIds" />
     }
-</div>
-<table class="tblLiveDead hidden" id="tbl-liveDeadBetType">
-    <tbody>
-        @{
-            RenderLiveDeadBalls(Model.BetTypes[0].ToList(), true, null);
-            RenderLiveDeadBalls(Model.BetTypes[1].ToList(), false, null);
-        }
-    </tbody>
-</table>
+    else
+    {
+        <div class="page-title">
+            @Resources.ScoreMap
+            <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip" target="_blank"></a>
+        </div>
+        <div class="filter mt-10">
+            <label for="ddlLeague">@Resources.League</label>
+            <select asp-items="Model.Leagues" id="ddlLeague"></select>
+            <span class="icon-refresh hover-effect-rip" id="icon-refreshLeague"></span>
+            <button type="button" class="btn-submit" id="btn-selectMatch">@Resources.SelectMatch</button>
+            @{
+                RenderLoadingIcon("icon-loadingLeague");
+            }
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="popup-matches" aria-labelledby="myModalLabel" data-backdrop="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="alert error hidden" id="popup-alertMatchError">@Resources.PleaseChooseAMatch</div>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
+                        <div class="modal-title">@Resources.SelectMatch</div>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="match-list" id="popup-matchList"></ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-submit" id="popup-btnSelect">@Resources.Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<partial name="ScoreMapBetTypes" model="Model" />
 <div class="filter mt-10 mb-10">
-    <button type="button" class="btn-submit hidden" id="btn-submit">@Resources.Submit</button>
+    <button type="button" class="btn-submit@(Model.FromBetList ? string.Empty : " hidden")"
+        id="btn-submit">@Resources.Submit</button>
     @{
         RenderLoadingIcon("icon-loadingScoreMapResults");
     }
 </div>
 <div class="alert error hidden mt-10" id="alert-betTypeError">@Resources.PleaseChooseABetType</div>
-<div id="content" class="list-table-match"></div>
-<div class="modal" tabindex="-1" role="dialog" id="popup-matches" aria-labelledby="myModalLabel" data-backdrop="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="alert error hidden" id="popup-alertMatchError">@Resources.PleaseChooseAMatch</div>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
-                <div class="modal-title">@Resources.SelectMatch</div>
-            </div>
-            <div class="modal-body">
-                <ul class="match-list" id="popup-matchList"></ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-submit" id="popup-btnSelect">@Resources.Select</button>
-            </div>
-        </div>
-    </div>
+<div id="content" class="list-table-match">
+    @if (Model.FromBetList)
+    {
+        <partial name="ScoreMapResults" model="Model.Results" />
+    }
 </div>
 <input type="hidden" id="hidden-allText" value="@Resources.All" />

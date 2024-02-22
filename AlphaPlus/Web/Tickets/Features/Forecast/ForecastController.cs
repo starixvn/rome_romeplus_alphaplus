@@ -112,13 +112,30 @@ public class ForecastController : BaseController
         return View(new Forecast1X2ByMatchViewModel(message.MatchId, message.BetType, forecast));
     }
 
-    public async Task<IActionResult> ScoreMap(RequestBase message)
+    public async Task<IActionResult> ScoreMap(GetScoreMapResultRequest message)
     {
+        ScoreMapViewModel viewModel;
         var betTypesTask = scoreMapService.GetBetTypes(message.Language);
-        var leaguesTask = scoreMapService.GetLeagues(message.ViewerId, message.Language);
-        await Task.WhenAll(betTypesTask, leaguesTask);
 
-        return View(new ScoreMapViewModel(await betTypesTask, await leaguesTask));
+        if (string.IsNullOrWhiteSpace(message.MatchIds))
+        {
+            var leaguesTask = scoreMapService.GetLeagues(message.ViewerId, message.Language);
+            await Task.WhenAll(betTypesTask, leaguesTask);
+            viewModel = new ScoreMapViewModel(await betTypesTask, await leaguesTask);
+        }
+        else // From BetLists
+        {
+            var resultTask = scoreMapService.GetResults(message);
+            await Task.WhenAll(betTypesTask, resultTask);
+            viewModel = new ScoreMapViewModel(
+                await betTypesTask,
+                message.LiveBetTypes,
+                message.DeadBetTypes,
+                message.MatchIds,
+                await resultTask);
+        }
+
+        return View(viewModel);
     }
 
     public async Task<IActionResult> GetScoreMapLeagues(RequestBase message)

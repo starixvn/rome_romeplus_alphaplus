@@ -531,6 +531,9 @@
   <data name="agentPT" xml:space="preserve">
     <value>代理占成数</value>
   </data>
+  <data name="agentptcomm" xml:space="preserve">
+    <value>代理占成数/ 佣金</value>
+  </data>
   <data name="choice" xml:space="preserve">
     <value>选择</value>
   </data>
@@ -543,11 +546,17 @@
   <data name="masterPT" xml:space="preserve">
     <value>总代理占成数</value>
   </data>
+  <data name="masterptcomm" xml:space="preserve">
+    <value>总代理占成数/ 佣金</value>
+  </data>
   <data name="member" xml:space="preserve">
     <value>会员</value>
   </data>
   <data name="memberBetList" xml:space="preserve">
     <value>会员</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>#</value>
   </data>
   <data name="odds" xml:space="preserve">
     <value>赔率</value>
@@ -566,6 +575,9 @@
   </data>
   <data name="superPT" xml:space="preserve">
     <value>超级总代理占成数</value>
+  </data>
+  <data name="superptcomm" xml:space="preserve">
+    <value>超级总代理占成数/ 佣金</value>
   </data>
   <data name="transtime" xml:space="preserve">
     <value>交易时间</value>
