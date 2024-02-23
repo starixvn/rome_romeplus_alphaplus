@@ -9,7 +9,7 @@ builder.Services
     .AddFanexLogging(configuration)
     .AddFanexDataWithSqlServer(configuration)
     .AddRemotingRef(configuration)
-    .AddInfrastructure()
+    .AddInfrastructure(configuration)
     // .AddResponseCompression(options =>
     // {
     //     options.EnableForHttps = false;

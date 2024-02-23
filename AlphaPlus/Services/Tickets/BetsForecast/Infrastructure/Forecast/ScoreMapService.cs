@@ -2,34 +2,39 @@ using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Params;
 using AlphaPlus.BetsForecast.Infrastructure.Shared;
+using AlphaPlus.PartialUM.Services;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast;
 
 public interface IScoreMapService
 {
-    Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language);
+    Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language, string siteName);
 
-    Task<IEnumerable<League>> GetLeagues(int custId, string language);
+    Task<IEnumerable<League>> GetLeagues(int custId, string language, string siteName);
 
     Task<IEnumerable<Match>> GetMatches(GetScoreMapMatchesParam param);
 
     Task<IEnumerable<ScoreMapResultDTO>> GetResults(GetScoreMapResultParam param);
 }
 
-public class ScoreMapService : IScoreMapService
+public class ScoreMapService(
+    IDynamicRepository repository,
+    ICacheRefService cacheRefService,
+    IPartialUMService partialUMService) : IScoreMapService
 {
-    private readonly IDynamicRepository repository;
-    private readonly ICacheRefService cacheRefService;
+    private readonly IDynamicRepository repository = repository;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
 
-    public ScoreMapService(IDynamicRepository repository, ICacheRefService cacheRefService)
-        => (this.repository, this.cacheRefService) = (repository, cacheRefService);
-
-    public async Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language)
+    public async Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language, string siteName)
     {
+        var criteria = new GetScoreMapBetTypeCriteria();
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), siteName);
+
         var liveBetTypes = new List<ScoreMapBetType>();
         var deadBetTypes = new List<ScoreMapBetType>();
-        var rawdata = await repository.FetchAsync<ScoreMapBetTypeEntity>(new GetScoreMapBetTypeCriteria());
+        var rawdata = await repository.FetchAsync<ScoreMapBetTypeEntity>(criteria);
         foreach (var item in rawdata)
         {
             var betType = new ScoreMapBetType(
@@ -48,12 +53,15 @@ public class ScoreMapService : IScoreMapService
             }
         }
 
-        return new[] { liveBetTypes, deadBetTypes };
+        return [liveBetTypes, deadBetTypes];
     }
 
-    public async Task<IEnumerable<League>> GetLeagues(int custId, string language)
+    public async Task<IEnumerable<League>> GetLeagues(int custId, string language, string siteName)
     {
-        var leagues = await repository.FetchAsync<League>(new GetScoreMapLeagueCriteria(custId));
+        var criteria = new GetScoreMapLeagueCriteria(custId);
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), siteName);
+
+        var leagues = await repository.FetchAsync<League>(criteria);
         foreach (var item in leagues)
         {
             item.LeagueName = cacheRefService.GetLeagueName(item.LeagueId, language);

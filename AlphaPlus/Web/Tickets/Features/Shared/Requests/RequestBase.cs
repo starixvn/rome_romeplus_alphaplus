@@ -23,4 +23,6 @@ public class RequestBase
     public byte ViewerLevel { get; }
 
     public string Language { get; }
+
+    public string SiteName => UserSession.Site;
 }

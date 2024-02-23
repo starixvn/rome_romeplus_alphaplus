@@ -12,18 +12,18 @@ public class ForecastEndpoint : IEndpoint
 
         forecast.MapGet(
             "/soccer/leagues",
-            (bool isLive, bool isShowAll, string language, ISoccerService service)
-            => service.GetLeagues(isLive, isShowAll, language));
+            (bool isLive, bool isShowAll, string language, string siteName, ISoccerService service)
+            => service.GetLeagues(isLive, isShowAll, language, siteName));
 
         forecast.MapGet(
             "/soccer/matches",
-            (int leagueId, bool isLive, string language, ISoccerService service)
-            => service.GetMatches(leagueId, isLive, language));
+            (int leagueId, bool isLive, string language, string siteName, ISoccerService service)
+            => service.GetMatches(leagueId, isLive, language, siteName));
 
         forecast.MapGet(
             "/soccer/results",
-            (int custId, string matchIds, bool isLive, string language, ISoccerService service)
-            => service.GetResults(custId, matchIds, isLive, language));
+            (int custId, string matchIds, bool isLive, string language, string siteName, ISoccerService service)
+            => service.GetResults(custId, matchIds, isLive, language, siteName));
 
         forecast.MapGet(
             "/runningleagues",
@@ -47,11 +47,11 @@ public class ForecastEndpoint : IEndpoint
 
         forecast.MapGet(
             "/scoremap/bettypes",
-            (string language, IScoreMapService service) => service.GetBetTypes(language));
+            (string language, string siteName, IScoreMapService service) => service.GetBetTypes(language, siteName));
 
         forecast.MapGet(
             "/scoremap/leagues",
-            (int custId, string language, IScoreMapService service) => service.GetLeagues(custId, language));
+            (int custId, string language, string siteName, IScoreMapService service) => service.GetLeagues(custId, language, siteName));
 
         forecast.MapGet(
             "/scoremap/matches",

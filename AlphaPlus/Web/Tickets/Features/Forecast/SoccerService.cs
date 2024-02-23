@@ -6,11 +6,11 @@ namespace AlphaPlus.Tickets.Site.Features.Forecast;
 
 public interface ISoccerService
 {
-    Task<IEnumerable<League>> GetLeagues(bool isLive, string language);
+    Task<IEnumerable<League>> GetLeagues(bool isLive, string language, string siteName);
 
-    Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language);
+    Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language, string siteName);
 
-    Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language);
+    Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language, string siteName);
 }
 
 public class SoccerService : ServiceBase, ISoccerService
@@ -26,7 +26,7 @@ public class SoccerService : ServiceBase, ISoccerService
         ICacheService cacheService) : base(client)
         => this.cacheService = cacheService;
 
-    public Task<IEnumerable<League>> GetLeagues(bool isLive, string language)
+    public Task<IEnumerable<League>> GetLeagues(bool isLive, string language, string siteName)
     {
         return cacheService.GetOrSetAsync(
             string.Format(LeaguesCacheKey, isLive, language),
@@ -37,7 +37,8 @@ public class SoccerService : ServiceBase, ISoccerService
                 {
                     KeyValuePair.Create(nameof(isLive), isLive.ToString()),
                     KeyValuePair.Create(nameof(isShowAll), isShowAll.ToString()),
-                    KeyValuePair.Create(nameof(language), language)
+                    KeyValuePair.Create(nameof(language), language),
+                    KeyValuePair.Create(nameof(siteName), siteName)
                 });
 
                 return GetFromJson<IEnumerable<League>>($"{SoccerUrl}/leagues{queryString}");
@@ -45,26 +46,28 @@ public class SoccerService : ServiceBase, ISoccerService
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(LeaguesCacheTimeOut)));
     }
 
-    public Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language)
+    public Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language, string siteName)
     {
         var queryString = QueryString.Create(new[]
         {
             KeyValuePair.Create(nameof(leagueId), leagueId.ToString()),
             KeyValuePair.Create(nameof(isLive), isLive.ToString()),
-            KeyValuePair.Create(nameof(language), language)
+            KeyValuePair.Create(nameof(language), language),
+            KeyValuePair.Create(nameof(siteName), siteName)
         });
 
         return GetFromJson<IEnumerable<Match>>($"{SoccerUrl}/matches{queryString}");
     }
 
-    public Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language)
+    public Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language, string siteName)
     {
         var queryString = QueryString.Create(new[]
         {
             KeyValuePair.Create(nameof(custId), custId.ToString()),
             KeyValuePair.Create(nameof(matchIds), matchIds),
             KeyValuePair.Create(nameof(isLive), isLive.ToString()),
-            KeyValuePair.Create(nameof(language), language)
+            KeyValuePair.Create(nameof(language), language),
+            KeyValuePair.Create(nameof(siteName), siteName)
         });
 
         return GetFromJson<IEnumerable<SoccerResult>>($"{SoccerUrl}/results{queryString}");

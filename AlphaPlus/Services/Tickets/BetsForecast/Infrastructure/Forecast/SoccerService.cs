@@ -1,30 +1,35 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 using AlphaPlus.BetsForecast.Infrastructure.Shared;
+using AlphaPlus.PartialUM.Services;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast;
 
 public interface ISoccerService
 {
-    Task<IEnumerable<League>> GetLeagues(bool isLive, bool isShowAll, string language);
+    Task<IEnumerable<League>> GetLeagues(bool isLive, bool isShowAll, string language, string siteName);
 
-    Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language);
+    Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language, string siteName);
 
-    Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language);
+    Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language, string siteName);
 }
 
-public class SoccerService : ISoccerService
+public class SoccerService(
+    IDynamicRepository repository,
+    ICacheRefService cacheRefService,
+    IPartialUMService partialUMService) : ISoccerService
 {
-    private readonly IDynamicRepository repository;
-    private readonly ICacheRefService cacheRefService;
+    private readonly IDynamicRepository repository = repository;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
 
-    public SoccerService(IDynamicRepository repository, ICacheRefService cacheRefService)
-        => (this.repository, this.cacheRefService) = (repository, cacheRefService);
-
-    public async Task<IEnumerable<League>> GetLeagues(bool isLive, bool isShowAll, string language)
+    public async Task<IEnumerable<League>> GetLeagues(bool isLive, bool isShowAll, string language, string siteName)
     {
-        var leagues = await repository.FetchAsync<League>(new GetSoccerLeagueCriteria(isLive, isShowAll));
+        var criteria = new GetSoccerLeagueCriteria(isLive, isShowAll);
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), siteName);
+
+        var leagues = await repository.FetchAsync<League>(criteria);
         foreach (var item in leagues)
         {
             item.LeagueName = cacheRefService.GetLeagueName(item.LeagueId, language);
@@ -33,9 +38,12 @@ public class SoccerService : ISoccerService
         return leagues;
     }
 
-    public async Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language)
+    public async Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language, string siteName)
     {
-        var matches = await repository.FetchAsync<Match>(new GetSoccerMatchCriteria(leagueId, isLive));
+        var criteria = new GetSoccerMatchCriteria(leagueId, isLive);
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), siteName);
+
+        var matches = await repository.FetchAsync<Match>(criteria);
         foreach (var item in matches)
         {
             item.HomeName = cacheRefService.GetTeamName(item.HomeId, language);
@@ -45,11 +53,12 @@ public class SoccerService : ISoccerService
         return matches;
     }
 
-    public async Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language)
+    public async Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language, string siteName)
     {
-        var (matches, betTypes, winloss) = await repository.FetchMultipleAsync<SoccerMatch, SoccerBetType, SoccerWinLoss>(
-            new GetSoccerForecastCriteria(custId, matchIds, isLive));
+        var criteria = new GetSoccerForecastCriteria(custId, matchIds, isLive);
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), siteName);
 
+        var (matches, betTypes, winloss) = await repository.FetchMultipleAsync<SoccerMatch, SoccerBetType, SoccerWinLoss>(criteria);
         if (!matches.Any())
         {
             return Enumerable.Empty<SoccerResult>();

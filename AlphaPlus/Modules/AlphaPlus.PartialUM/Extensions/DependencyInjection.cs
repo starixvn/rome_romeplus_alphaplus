@@ -11,31 +11,31 @@ public static class DependencyInjection
     {
         services
             .Configure<PartialUMOptions>(configuration.GetSection(nameof(PartialUMOptions)))
-            .AddSingleton(GetPartialUMHash(configuration))
+            .AddSingleton(GetPartialUMConfig(configuration))
             .AddSingleton<IPartialUMService, PartialUMService>();
 
         return services;
     }
 
-    private static Dictionary<string, IList<string>> GetPartialUMHash(IConfiguration configuration)
+    private static Dictionary<string, IList<string>> GetPartialUMConfig(IConfiguration configuration)
     {
-        var partialUMHash = new Dictionary<string, IList<string>>(StringComparer.OrdinalIgnoreCase);
-        var partialUMArray = configuration.GetSection("PartialUMOptions.PartialUM").Get<UMConfiguration[]>();
+        var partialUMConfig = new Dictionary<string, IList<string>>(StringComparer.OrdinalIgnoreCase);
+        var partialUMArray = configuration.GetSection("PartialUMOptions:PartialUM").Get<UMConfig[]>();
 
         foreach (var partialUM in partialUMArray)
         {
             foreach (var key in partialUM.SettingKeys)
             {
-                if (!partialUMHash.TryGetValue(key, out var functionNames))
+                if (!partialUMConfig.TryGetValue(key, out var functionNames))
                 {
                     functionNames = new List<string>();
-                    partialUMHash[key] = functionNames;
+                    partialUMConfig[key] = functionNames;
                 }
 
                 functionNames.Add(partialUM.FunctionName);
             }
         }
 
-        return partialUMHash;
+        return partialUMConfig;
     }
 }

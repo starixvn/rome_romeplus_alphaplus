@@ -46,7 +46,8 @@ public class TotalBetsController : BaseController
             action,
             message.ViewerLevel,
             message.ViewerId,
-            message.Language);
+            message.Language,
+            message.SiteName);
 
         return View($"{action}{(message.Partial ? PartialName : string.Empty)}", totalBets);
     }

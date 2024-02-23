@@ -2,6 +2,7 @@ using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Criteria;
 using AlphaPlus.BetsForecast.Infrastructure.Forecast.Params;
 using AlphaPlus.BetsForecast.Infrastructure.Shared;
+using AlphaPlus.PartialUM.Services;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetsForecast.Infrastructure.Forecast;
@@ -19,13 +20,14 @@ public interface IForecastService
     Task<IEnumerable<Forecast1X2>> Get1X2(Get1X2ByMatchParam param);
 }
 
-public class ForecastService : IForecastService
+public class ForecastService(
+    IDynamicRepository repository,
+    ICacheRefService cacheRefService,
+    IPartialUMService partialUMService) : IForecastService
 {
-    private readonly IDynamicRepository repository;
-    private readonly ICacheRefService cacheRefService;
-
-    public ForecastService(IDynamicRepository repository, ICacheRefService cacheRefService)
-        => (this.repository, this.cacheRefService) = (repository, cacheRefService);
+    private readonly IDynamicRepository repository = repository;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
 
     public async Task<IEnumerable<League>> GetRunningLeagues(GetRunningLeaguesParam param)
     {
@@ -43,6 +45,8 @@ public class ForecastService : IForecastService
         {
             criteria = new GetRunningLeagueAgentCriteria(param.CustId, param.BetTypes);
         }
+
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var leagues = await repository.FetchAsync<League>(criteria);
         foreach (var item in leagues)

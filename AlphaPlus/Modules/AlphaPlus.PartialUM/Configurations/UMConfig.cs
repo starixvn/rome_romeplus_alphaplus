@@ -1,6 +1,6 @@
 namespace AlphaPlus.PartialUM.Configurations;
 
-public class UMConfiguration
+internal class UMConfig
 {
     public string FunctionName { get; init; }
 

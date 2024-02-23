@@ -1,6 +1,6 @@
 {
     "PartialUMOptions": {
-        "ReportsBetListsCacheInSeconds": 15,
+        "CacheInSeconds": 15,
         "PartialUM": [
             {
                 "FunctionName": "Results",

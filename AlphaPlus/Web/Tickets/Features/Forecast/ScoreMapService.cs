@@ -9,9 +9,9 @@ namespace AlphaPlus.Tickets.Site.Features.Forecast;
 
 public interface IScoreMapService
 {
-    Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language);
+    Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language, string siteName);
 
-    Task<IEnumerable<League>> GetLeagues(int custId, string language);
+    Task<IEnumerable<League>> GetLeagues(int custId, string language, string siteName);
 
     Task<IEnumerable<Match>> GetMatches(int custId, int leagueId, string language);
 
@@ -29,19 +29,24 @@ public class ScoreMapService : ServiceBase, IScoreMapService
     public ScoreMapService(HttpClient client, ICacheService cacheService) : base(client)
         => this.cacheService = cacheService;
 
-    public Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language)
-    => cacheService.GetOrSetAsync(
-        string.Format(BetTypesCacheKey, language),
-        async () =>
-        {
-            var queryString = QueryString.Create(nameof(language), language);
-            var rawdata = await GetFromJson<IEnumerable<ScoreMapBetType>[]>($"{ScoreMapUrl}/bettypes{queryString}");
-            UpdateBetTypeName(rawdata[0]);
-            UpdateBetTypeName(rawdata[1]);
+    public Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language, string siteName)
+        => cacheService.GetOrSetAsync(
+            string.Format(BetTypesCacheKey, language),
+            async () =>
+            {
+                var queryString = QueryString.Create(new[]
+                {
+                    KeyValuePair.Create(nameof(language), language),
+                    KeyValuePair.Create(nameof(siteName), siteName)
+                });
 
-            return rawdata;
-        },
-        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromHours(BetTypesCacheTimeOut)));
+                var rawdata = await GetFromJson<IEnumerable<ScoreMapBetType>[]>($"{ScoreMapUrl}/bettypes{queryString}");
+                UpdateBetTypeName(rawdata[0]);
+                UpdateBetTypeName(rawdata[1]);
+
+                return rawdata;
+            },
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromHours(BetTypesCacheTimeOut)));
 
     private static void UpdateBetTypeName(IEnumerable<ScoreMapBetType> betTypes)
     {
@@ -54,12 +59,13 @@ public class ScoreMapService : ServiceBase, IScoreMapService
         }
     }
 
-    public Task<IEnumerable<League>> GetLeagues(int custId, string language)
+    public Task<IEnumerable<League>> GetLeagues(int custId, string language, string siteName)
     {
         var queryString = QueryString.Create(new[]
         {
             KeyValuePair.Create(nameof(custId), custId.ToString()),
-            KeyValuePair.Create(nameof(language), language)
+            KeyValuePair.Create(nameof(language), language),
+            KeyValuePair.Create(nameof(siteName), siteName)
         });
 
         return GetFromJson<IEnumerable<League>>($"{ScoreMapUrl}/leagues{queryString}");
@@ -79,7 +85,7 @@ public class ScoreMapService : ServiceBase, IScoreMapService
 
     public async Task<IEnumerable<ScoreMapResult>> GetResults(GetScoreMapResultRequest message)
     {
-        var betTypes = await GetBetTypes(message.Language);
+        var betTypes = await GetBetTypes(message.Language, message.SiteName);
         var liveBetTypes = BuildFollowedBetTypes(message.LiveBetTypes, betTypes[0]).Join();
         var deadBetTypes = BuildFollowedBetTypes(message.DeadBetTypes, betTypes[1]).Join();
 

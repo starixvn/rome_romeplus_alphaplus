@@ -1,8 +1,13 @@
 ﻿namespace AlphaPlus.PartialUM.Exceptions;
 
-public class PartialUMException(string umFrom, string umTo) : Exception
+[Serializable]
+public class PartialUMException(string StartTime, string EndTime) : Exception
 {
-    public string UMFrom { get; } = umFrom;
+    public int ErrorCode { get; } = 9999;
 
-    public string UMTo { get; } = umTo;
+    public IDictionary<string, string> ErrorData { get; } = new Dictionary<string, string>
+    {
+        [nameof(StartTime)] = StartTime,
+        [nameof(EndTime)] = EndTime
+    };
 }

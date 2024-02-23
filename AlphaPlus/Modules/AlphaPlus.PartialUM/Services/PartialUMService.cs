@@ -15,36 +15,39 @@ public interface IPartialUMService
 public class PartialUMService(
     ICacheService cacheService,
     IPartialUMDataAccess partialUMDataAccess,
-    Dictionary<string, IList<string>> partialUMConfiguration,
+    Dictionary<string, IList<string>> partialUMConfig,
     IOptions<PartialUMOptions> options) : IPartialUMService
 {
     private readonly ICacheService cacheService = cacheService;
     private readonly IPartialUMDataAccess partialUMDataAccess = partialUMDataAccess;
-    private readonly Dictionary<string, IList<string>> partialUMConfiguration = partialUMConfiguration;
-    private readonly int cacheInSeconds = options.Value.ReportsBetListsCacheInSeconds;
+    private readonly Dictionary<string, IList<string>> partialUMConfig = partialUMConfig;
+    private readonly int cacheInSeconds = options.Value.CacheInSeconds;
 
     public async Task ThrowIfUM(string settingKey, string siteName)
     {
-        if (partialUMConfiguration.TryGetValue(settingKey, out var functionNames))
+        var umEntities = await GetUMEntities(siteName);
+
+        if (!umEntities.Any())
         {
-            var umEntities = await GetUMEntities(siteName);
-            if (!umEntities.Any())
-            {
-                return;
-            }
+            return;
+        }
 
-            var partialUMException = functionNames
-                .Join(
-                    umEntities,
-                    funcName => funcName,
-                    um => um.FunctionTypeName,
-                    (_, um) => new PartialUMException(FormatUMTime(um.BeginTime), FormatUMTime(um.EndTime)))
-                .FirstOrDefault();
+        if (!partialUMConfig.TryGetValue(settingKey, out var functionNames))
+        {
+            return;
+        }
 
-            if (partialUMException != null)
-            {
-                throw partialUMException;
-            }
+        var partialUMException = functionNames
+            .Join(
+                umEntities,
+                funcName => funcName,
+                um => um.FunctionTypeName,
+                (_, um) => new PartialUMException(FormatUMTime(um.BeginTime), FormatUMTime(um.EndTime)))
+            .FirstOrDefault();
+
+        if (partialUMException != null)
+        {
+            throw partialUMException;
         }
     }
 

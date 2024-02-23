@@ -25,26 +25,27 @@ public class ForecastController : BaseController
 
     public async Task<IActionResult> GetSoccerLeagues(SoccerRequest message)
     {
-        var leagues = await soccerService.GetLeagues(message.IsLive, message.Language);
+        var leagues = await soccerService.GetLeagues(message.IsLive, message.Language, message.SiteName);
         message.LeagueId = message.LeagueId == 0
             ? leagues.FirstOrDefault()?.LeagueId ?? 0
             : message.LeagueId;
         var matches = message.LeagueId == 0
             ? Enumerable.Empty<Match>()
-            : await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language);
+            : await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language, message.SiteName);
 
         return Json(new { Leagues = leagues, Matches = matches });
     }
 
     public async Task<IActionResult> GetSoccerMatches(SoccerRequest message)
-        => Json(await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language));
+        => Json(await soccerService.GetMatches(message.LeagueId, message.IsLive, message.Language, message.SiteName));
 
     public async Task<IActionResult> GetSoccerResults(GetSoccerResultRequest message)
         => Json(await soccerService.GetResults(
             message.ViewerId,
             message.MatchIds,
             message.IsLive,
-            message.Language));
+            message.Language,
+            message.SiteName));
 
     public async Task<IActionResult> HDPOULive(GetForecastRequest message)
     {
@@ -115,11 +116,11 @@ public class ForecastController : BaseController
     public async Task<IActionResult> ScoreMap(GetScoreMapResultRequest message)
     {
         ScoreMapViewModel viewModel;
-        var betTypesTask = scoreMapService.GetBetTypes(message.Language);
+        var betTypesTask = scoreMapService.GetBetTypes(message.Language, message.SiteName);
 
         if (string.IsNullOrWhiteSpace(message.MatchIds))
         {
-            var leaguesTask = scoreMapService.GetLeagues(message.ViewerId, message.Language);
+            var leaguesTask = scoreMapService.GetLeagues(message.ViewerId, message.Language, message.SiteName);
             await Task.WhenAll(betTypesTask, leaguesTask);
             viewModel = new ScoreMapViewModel(await betTypesTask, await leaguesTask);
         }
@@ -139,7 +140,7 @@ public class ForecastController : BaseController
     }
 
     public async Task<IActionResult> GetScoreMapLeagues(RequestBase message)
-        => Json(await scoreMapService.GetLeagues(message.ViewerId, message.Language));
+        => Json(await scoreMapService.GetLeagues(message.ViewerId, message.Language, message.SiteName));
 
     public async Task<IActionResult> GetScoreMapMatches(GetForecastRequest message)
         => Json(await scoreMapService.GetMatches(message.ViewerId, message.LeagueId, message.Language));
@@ -152,5 +153,5 @@ public class ForecastController : BaseController
     }
 
     public async Task<IActionResult> ScoreMapInformation(RequestBase message)
-        => View(await scoreMapService.GetBetTypes(message.Language));
+        => View(await scoreMapService.GetBetTypes(message.Language, message.SiteName));
 }
