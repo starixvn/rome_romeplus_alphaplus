@@ -1,12 +1,14 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS builder
 WORKDIR /src
 
+COPY "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
 COPY "Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj" "Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj"
 COPY "Services/Tickets/BetsForecast/Infrastructure/BetsForecast.Infrastructure.csproj" "Services/Tickets/BetsForecast/Infrastructure/BetsForecast.Infrastructure.csproj"
 COPY "Services/Tickets/API/Tickets.API.csproj" "Services/Tickets/API/Tickets.API.csproj"
 COPY "NuGet.config" "NuGet.config"
 RUN dotnet restore "Services/Tickets/API/Tickets.API.csproj" -v n
 
+COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
 COPY "Services/Tickets/BetsForecast/Domain" "Services/Tickets/BetsForecast/Domain"
 COPY "Services/Tickets/BetsForecast/Infrastructure" "Services/Tickets/BetsForecast/Infrastructure"
 COPY "Services/Tickets/API" "Services/Tickets/API"
