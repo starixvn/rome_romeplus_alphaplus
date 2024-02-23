@@ -2,22 +2,11 @@
 {
     public class ActorProfilePictureModel
     {
-        public ActorProfilePictureModel()
-        {
-        }
+        public byte[] Image { get; init; }
 
-        public ActorProfilePictureModel(byte[] image, int imageId, DateTime? modified)
-        {
-            Image = image;
-            ImageId = imageId;
-            Modified = modified;
-        }
+        public int ImageId { get; init; }
 
-        public byte[] Image { get; private set; }
-
-        public int ImageId { get; private set; }
-
-        public DateTime? Modified { get; private set; }
+        public DateTime? Modified { get; init; }
 
         public string ImageBase64String => Image == null ? string.Empty : $"data:image/jpeg;base64,{Convert.ToBase64String(Image)}";
     }

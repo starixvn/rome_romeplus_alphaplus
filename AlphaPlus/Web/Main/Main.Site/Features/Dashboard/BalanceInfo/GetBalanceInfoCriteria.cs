@@ -1,9 +1,10 @@
 ﻿using AlphaPlus.Core.Models;
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
 {
-    public class GetBalanceInfoCriteria : CriteriaBase
+    public class GetBalanceInfoCriteria(UserLevel userLevel, int custId, DateTime moveBetsDay) : CriteriaBase
     {
         private static readonly Dictionary<UserLevel, string> SettingKeys = new()
         {
@@ -12,20 +13,14 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
             [UserLevel.Super] = "Age_CustomerSelBalanceInfo_SAg"
         };
 
-        private readonly string settingKey;
+        [SpParam(Ignored = true)]
+        public UserLevel UserLevel { get; } = userLevel;
 
-        public GetBalanceInfoCriteria(UserLevel userLevel, int custId, DateTime moveBetsDay)
-        {
-            settingKey = SettingKeys[userLevel];
-            CustId = custId;
-            MoveBetsDay = moveBetsDay;
-        }
+        public int CustId { get; } = custId;
 
-        public int CustId { get; }
+        public DateTime MoveBetsDay { get; } = moveBetsDay;
 
-        public DateTime MoveBetsDay { get; }
-
-        public override string GetSettingKey() => settingKey;
+        public override string GetSettingKey() => SettingKeys[UserLevel];
 
         public override bool IsValid() => CustId > 0;
     }

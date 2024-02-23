@@ -24,18 +24,18 @@
             Time_Stamp = time_Stamp;
         }
 
-        public int ProductId { get; }
+        public int ProductId { get; init; }
 
-        public int SportType { get; }
+        public int SportType { get; init; }
 
-        public byte SettingType { get; }
+        public byte SettingType { get; init; }
 
-        public byte FunctionType { get; }
+        public byte FunctionType { get; init; }
 
-        public DateTime BeginTime { get; }
+        public DateTime BeginTime { get; init; }
 
-        public DateTime EndTime { get; }
+        public DateTime EndTime { get; init; }
 
-        public byte[] Time_Stamp { get; }
+        public byte[] Time_Stamp { get; init; }
     }
 }

@@ -53,7 +53,7 @@ public static class ServiceCollectionExtensions
             {
                 OnRedirectToLogin = ctx =>
                 {
-                    ctx.Response.Redirect("main/Account/Login");
+                    ctx.Response.Redirect($"{ctx.Request.Scheme}://{ctx.Request.Host.Value}/main/Account/Login");
                     return Task.CompletedTask;
                 }
             };

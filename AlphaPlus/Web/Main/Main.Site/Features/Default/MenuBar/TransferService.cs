@@ -5,6 +5,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
     public interface ITransferService
     {
         bool IsAllDayBalanceTransfer(int custId);
+
         bool IsEnableAutoTransfer(string currency, int custId);
     }
 

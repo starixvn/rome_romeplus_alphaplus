@@ -2,60 +2,28 @@
 {
     public class Statistics
     {
-        public Statistics()
-        {
-        }
+        public decimal Outstanding { get; init; }
 
-        public Statistics(
-            decimal outStanding,
-            decimal totalOutStanding,
-            int totalMemberActive,
-            int totalMemberClosed,
-            int totalMemberSuspended,
-            int totalAgentActive,
-            int totalAgentClosed,
-            int totalAgentSuspended,
-            int totalMasterActive,
-            int totalMasterClosed,
-            int totalMasterSuspended,
-            int numberNewMembers)
-        {
-            Outstanding = outStanding;
-            TotalOutstanding = totalOutStanding;
-            TotalMemberActive = totalMemberActive;
-            TotalMemberClosed = totalMemberClosed;
-            TotalMemberSuspended = totalMemberSuspended;
-            TotalAgentActive = totalAgentActive;
-            TotalAgentClosed = totalAgentClosed;
-            TotalAgentSuspended = totalAgentSuspended;
-            TotalMasterActive = totalMasterActive;
-            TotalMasterClosed = totalMasterClosed;
-            TotalMasterSuspended = totalMasterSuspended;
-            NumberNewMembers = numberNewMembers;
-        }
+        public decimal TotalOutstanding { get; init; }
 
-        public decimal Outstanding { get; private set; }
+        public int TotalMemberActive { get; init; }
 
-        public decimal TotalOutstanding { get; private set; }
+        public int TotalMemberClosed { get; init; }
 
-        public int TotalMemberActive { get; private set; }
+        public int TotalMemberSuspended { get; init; }
 
-        public int TotalMemberClosed { get; private set; }
+        public int TotalAgentActive { get; init; }
 
-        public int TotalMemberSuspended { get; private set; }
+        public int TotalAgentClosed { get; init; }
 
-        public int TotalAgentActive { get; private set; }
+        public int TotalAgentSuspended { get; init; }
 
-        public int TotalAgentClosed { get; private set; }
+        public int TotalMasterActive { get; init; }
 
-        public int TotalAgentSuspended { get; private set; }
+        public int TotalMasterClosed { get; init; }
 
-        public int TotalMasterActive { get; private set; }
+        public int TotalMasterSuspended { get; init; }
 
-        public int TotalMasterClosed { get; private set; }
-
-        public int TotalMasterSuspended { get; private set; }
-
-        public int NumberNewMembers { get; private set; }
+        public int NumberNewMembers { get; init; }
     }
 }

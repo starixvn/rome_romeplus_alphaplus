@@ -1,74 +1,59 @@
 ﻿using AlphaPlus.PartialUM.Configurations;
-using AlphaPlus.PartialUM.Criteria;
 using AlphaPlus.PartialUM.Exceptions;
-using AlphaPlus.PartialUM.Helpers;
 using AlphaPlus.PartialUM.Models;
-using AlphaPlus.Core.Models;
 using Fanex.Caching;
-using Fanex.Data.Repository;
+using AlphaPlus.PartialUM.DataAccess;
+using Microsoft.Extensions.Options;
 
-namespace AlphaPlus.PartialUM.Services
+namespace AlphaPlus.PartialUM.Services;
+
+public interface IPartialUMService
 {
-    public interface IPartialUMService
+    Task ThrowIfUM(string settingKey, string siteName);
+}
+
+public class PartialUMService(
+    ICacheService cacheService,
+    IPartialUMDataAccess partialUMDataAccess,
+    Dictionary<string, IList<string>> partialUMConfiguration,
+    IOptions<PartialUMOptions> options) : IPartialUMService
+{
+    private readonly ICacheService cacheService = cacheService;
+    private readonly IPartialUMDataAccess partialUMDataAccess = partialUMDataAccess;
+    private readonly Dictionary<string, IList<string>> partialUMConfiguration = partialUMConfiguration;
+    private readonly int cacheInSeconds = options.Value.ReportsBetListsCacheInSeconds;
+
+    public async Task ThrowIfUM(string settingKey, string siteName)
     {
-        Task ThrowIfUM(string settingKey);
-
-        Task ThrowIfUM(string settingKey, string siteName);
-    }
-
-    public class PartialUMService(ICacheService cacheService, IDynamicRepository dynamicRepository, IPartialUMSectionHelper partialUMSectionHelper)
-        : IPartialUMService
-    {
-        private readonly ICacheService cacheService = cacheService;
-        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
-        private readonly IPartialUMSectionHelper partialUMSectionHelper = partialUMSectionHelper;
-
-        public Task ThrowIfUM(string settingKey)
-            => ThrowIfUM(settingKey, UserSession.Current.Site);
-
-        public async Task ThrowIfUM(string settingKey, string siteName)
+        if (partialUMConfiguration.TryGetValue(settingKey, out var functionNames))
         {
-            var functionNames = partialUMSectionHelper.GetFunctionNames(settingKey);
-            if (!functionNames.Any())
+            var umEntities = await GetUMEntities(siteName);
+            if (!umEntities.Any())
             {
                 return;
             }
 
-            var umInfoDictionary = await GetUMInfoDictionary(siteName);
-            if (umInfoDictionary.Count == 0)
-            {
-                return;
-            }
+            var partialUMException = functionNames
+                .Join(
+                    umEntities,
+                    funcName => funcName,
+                    um => um.FunctionTypeName,
+                    (_, um) => new PartialUMException(FormatUMTime(um.BeginTime), FormatUMTime(um.EndTime)))
+                .FirstOrDefault();
 
-            foreach (var function in functionNames)
+            if (partialUMException != null)
             {
-                if (umInfoDictionary.TryGetValue(function, out var umInfo))
-                {
-                    throw new PartialUMException(FormatUMTime(umInfo.BeginTime), FormatUMTime(umInfo.EndTime));
-                }
+                throw partialUMException;
             }
         }
-
-        private Task<IDictionary<string, UMInfo>> GetUMInfoDictionary(string siteName)
-            => cacheService.GetOrSetAsync(
-                $"AlphaPlus.PartialUM.Services.MinimizedUM.SiteName-{siteName}",
-                () => GetUMInfoDictionaryFromDB(siteName),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(AppSettings.PartialUMReportsBetListsCacheInSeconds)));
-
-        private async Task<IDictionary<string, UMInfo>> GetUMInfoDictionaryFromDB(string siteName)
-        {
-            var umInfoList = await dynamicRepository.FetchAsync<UMInfo>(new GetUMInfoListCriteria(siteName));
-            var umInfoDictionary = new Dictionary<string, UMInfo>(StringComparer.OrdinalIgnoreCase);
-
-            foreach (var item in umInfoList)
-            {
-                umInfoDictionary[item.FunctionTypeName] = item;
-            }
-
-            return umInfoDictionary;
-        }
-
-        private static string FormatUMTime(DateTime dateTime)
-            => dateTime.ToString("dd/MM/yyyy hh:mm tt");
     }
+
+    private Task<IEnumerable<UMEntity>> GetUMEntities(string siteName)
+        => cacheService.GetOrSetAsync(
+            $"AlphaPlus.PartialUM.Services.PartialUM.SiteName-{siteName}",
+            () => partialUMDataAccess.GetUMEntities(siteName),
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(cacheInSeconds)));
+
+    private static string FormatUMTime(DateTime dateTime)
+        => dateTime.ToString("dd/MM/yyyy hh:mm tt");
 }

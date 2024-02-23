@@ -2,52 +2,24 @@
 {
     public class BalanceInfo
     {
-        public BalanceInfo()
-        {
-        }
+        public string UserName { get; init; }
 
-        public BalanceInfo(
-            string userName,
-            decimal cashBalance,
-            decimal yesterdayCashBalance,
-            decimal totalBalance,
-            decimal yesterdayTotalBalance,
-            decimal todayWinLoss,
-            decimal yesterdayWinLoss,
-            decimal givenCredit,
-            decimal memberCredit,
-            decimal pendingTransfer3rd)
-        {
-            UserName = userName;
-            CashBalance = cashBalance;
-            YesterdayCashBalance = yesterdayCashBalance;
-            TotalBalance = totalBalance;
-            YesterdayTotalBalance = yesterdayTotalBalance;
-            TodayWinLoss = todayWinLoss;
-            YesterdayWinLoss = yesterdayWinLoss;
-            GivenCredit = givenCredit;
-            MemberCredit = memberCredit;
-            PendingTransfer3rd = pendingTransfer3rd;
-        }
+        public decimal CashBalance { get; init; }
 
-        public string UserName { get; }
+        public decimal YesterdayCashBalance { get; init; }
 
-        public decimal CashBalance { get; }
+        public decimal TotalBalance { get; init; }
 
-        public decimal YesterdayCashBalance { get; }
+        public decimal YesterdayTotalBalance { get; init; }
 
-        public decimal TotalBalance { get; }
+        public decimal TodayWinLoss { get; init; }
 
-        public decimal YesterdayTotalBalance { get; }
+        public decimal YesterdayWinLoss { get; init; }
 
-        public decimal TodayWinLoss { get; }
+        public decimal GivenCredit { get; init; }
 
-        public decimal YesterdayWinLoss { get; }
+        public decimal MemberCredit { get; init; }
 
-        public decimal GivenCredit { get; }
-
-        public decimal MemberCredit { get; }
-
-        public decimal PendingTransfer3rd { get; }
+        public decimal PendingTransfer3rd { get; init; }
     }
 }

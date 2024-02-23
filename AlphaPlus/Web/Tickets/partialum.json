@@ -1,0 +1,16 @@
+{
+    "PartialUMOptions": {
+        "ReportsBetListsCacheInSeconds": 15,
+        "PartialUM": [
+            {
+                "FunctionName": "Results",
+                "SettingKeys": [
+                    "Age_Result_SportSelByDate",
+                    "Age_Result_LeagueSelByDate",
+                    "Age_Result_MatchSelByLeague",
+                    "Age_Result_Outright"
+                ]
+            }
+        ]
+    }
+}

@@ -2,15 +2,6 @@
 {
     public class BannerItem
     {
-        public BannerItem()
-        {
-        }
-
-        public BannerItem(byte[] imageContent)
-        {
-            ImageContent = imageContent;
-        }
-
-        public byte[] ImageContent { get; }
+        public byte[] ImageContent { get; init; }
     }
 }
