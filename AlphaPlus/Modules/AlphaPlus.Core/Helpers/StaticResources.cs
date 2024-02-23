@@ -193,7 +193,7 @@ public static class StaticResources
         return Enumeration.FromValue<UserLevel>(userSession.RoleId).DisplayName.ToLowerInvariant();
     }
 
-    private static string GetDarkModeName(IUserSession userSession = null)
+    public static string GetDarkModeName(IUserSession userSession = null)
     {
         userSession ??= GetCurrentUserSession();
 

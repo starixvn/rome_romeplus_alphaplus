@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,79 +26,82 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -119,645 +122,890 @@
   </resheader>
   <data name="close" xml:space="preserve">
     <value>Close</value>
+    <comment/>
   </data>
   <data name="ProfileClickTootip" xml:space="preserve">
     <value>Click here to edit profile settings.</value>
+    <comment/>
   </data>
   <data name="subAcc" xml:space="preserve">
     <value>Sub-Acc</value>
+    <comment/>
   </data>
   <data name="admin" xml:space="preserve">
     <value>Admin</value>
+    <comment/>
   </data>
   <data name="configNow" xml:space="preserve">
     <value>Config now</value>
+    <comment/>
   </data>
   <data name="introNickname" xml:space="preserve">
-    <value>&lt;div&gt;Dear customers! Now you can login with your own nickname&lt;/div&gt;
-&lt;div&gt;... more secure and personalized.&lt;/div&gt;</value>
+    <value>&lt;div&gt;Dear customers! Now you can login with your own nickname&lt;/div&gt;&lt;div&gt;... more secure and personalized.&lt;/div&gt;</value>
+    <comment/>
   </data>
   <data name="nickname" xml:space="preserve">
     <value>Nickname</value>
+    <comment/>
   </data>
   <data name="ProfileLoginTip" xml:space="preserve">
     <value>Dear valued Agents, We have selected a default profile picture to help distinguish our site from fake ones. You can &lt;a class="change-picture-link" href="{0}" target="main" id="changePictureLink"&gt;click here&lt;/a&gt; to pick up a new one.&lt;br/&gt;In addition, you can set your language preferences &lt;a class="change-picture-link" href="{1}" target="main"&gt;here&lt;/a&gt;. Thank you.</value>
+    <comment/>
   </data>
   <data name="clickHere" xml:space="preserve">
     <value>Click here</value>
+    <comment/>
   </data>
   <data name="uploadNow" xml:space="preserve">
     <value>to upload now!</value>
+    <comment/>
   </data>
   <data name="strNotAccessPage" xml:space="preserve">
     <value>Sorry, You don't have permission to access this page.</value>
+    <comment/>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
+    <comment/>
   </data>
   <data name="ContactUs" xml:space="preserve">
     <value>Contact Us</value>
+    <comment/>
   </data>
   <data name="EditProfilePicture" xml:space="preserve">
     <value>Profile Settings</value>
+    <comment/>
   </data>
   <data name="LoginOption" xml:space="preserve">
     <value>Login option</value>
+    <comment/>
   </data>
   <data name="password" xml:space="preserve">
     <value>Password</value>
+    <comment/>
   </data>
   <data name="SecurityCode" xml:space="preserve">
     <value>Security Code</value>
+    <comment/>
   </data>
   <data name="OldView" xml:space="preserve">
     <value>Old View</value>
+    <comment/>
   </data>
   <data name="accountInfo" xml:space="preserve">
     <value>Account Info</value>
+    <comment/>
   </data>
   <data name="mainMenu" xml:space="preserve">
     <value>Main menu</value>
+    <comment/>
   </data>
   <data name="balanceInfo" xml:space="preserve">
     <value>Balance</value>
+    <comment/>
   </data>
   <data name="agent" xml:space="preserve">
     <value>Agent</value>
+    <comment/>
   </data>
   <data name="master" xml:space="preserve">
     <value>Master</value>
+    <comment/>
   </data>
   <data name="super" xml:space="preserve">
     <value>Super</value>
+    <comment/>
   </data>
   <data name="agentGivenCredit" xml:space="preserve">
     <value>Agent Given</value>
+    <comment/>
   </data>
   <data name="masterGivenCredit" xml:space="preserve">
     <value>Master Given</value>
+    <comment/>
   </data>
   <data name="superGivenCredit" xml:space="preserve">
     <value>Super Given</value>
+    <comment/>
   </data>
   <data name="totalAgentCredit" xml:space="preserve">
     <value>Total Agent</value>
+    <comment/>
   </data>
   <data name="totalMasterCredit" xml:space="preserve">
     <value>Total Master</value>
+    <comment/>
   </data>
   <data name="totalMemberCredit" xml:space="preserve">
     <value>Total Member</value>
+    <comment/>
   </data>
   <data name="cashBalance" xml:space="preserve">
     <value>Cash</value>
+    <comment/>
   </data>
   <data name="currency" xml:space="preserve">
     <value>Currency</value>
+    <comment/>
   </data>
   <data name="todayWinLoss" xml:space="preserve">
     <value>Today Win Loss</value>
+    <comment/>
   </data>
   <data name="totalBalance" xml:space="preserve">
     <value>Total</value>
+    <comment/>
   </data>
   <data name="yesterdayBalance" xml:space="preserve">
     <value>Yesterday Balance</value>
+    <comment/>
   </data>
   <data name="yesterdayCashBalance" xml:space="preserve">
     <value>Yesterday Cash</value>
+    <comment/>
   </data>
   <data name="yesterdayTotalBalance" xml:space="preserve">
     <value>Yesterday Total</value>
+    <comment/>
   </data>
   <data name="yesterdayWinLoss" xml:space="preserve">
     <value>Yesterday</value>
+    <comment/>
   </data>
   <data name="announcement" xml:space="preserve">
     <value>Announcement</value>
+    <comment/>
   </data>
   <data name="noInfo" xml:space="preserve">
     <value>No information is available</value>
+    <comment/>
   </data>
   <data name="more" xml:space="preserve">
     <value>More</value>
+    <comment/>
   </data>
   <data name="totalActiveClosedSuspended" xml:space="preserve">
     <value>Total active/closed/suspended</value>
+    <comment/>
   </data>
   <data name="totalAgentActiveClosedSuspended" xml:space="preserve">
     <value>Total Agent active/closed/suspended</value>
+    <comment/>
   </data>
   <data name="totalMasterACS" xml:space="preserve">
     <value>Total Master active/closed/suspended</value>
+    <comment/>
   </data>
   <data name="statistics" xml:space="preserve">
     <value>Statistics</value>
+    <comment/>
   </data>
   <data name="highestTurnoverOfTheMonth" xml:space="preserve">
     <value>Highest turnover members of the month</value>
+    <comment/>
   </data>
   <data name="newMemberOfTheMonth" xml:space="preserve">
     <value>New members of the month</value>
+    <comment/>
   </data>
   <data name="superOutstanding" xml:space="preserve">
     <value>Super</value>
+    <comment/>
   </data>
   <data name="top10WinningMembers" xml:space="preserve">
     <value>Top 10 winning members of the month</value>
+    <comment/>
   </data>
   <data name="totalOutstanding" xml:space="preserve">
     <value>Total Outstanding</value>
+    <comment/>
   </data>
   <data name="agentOutstanding" xml:space="preserve">
     <value>Agent</value>
+    <comment/>
   </data>
   <data name="masterOutstanding" xml:space="preserve">
     <value>Master</value>
+    <comment/>
   </data>
   <data name="show" xml:space="preserve">
     <value>Show</value>
+    <comment/>
   </data>
   <data name="member" xml:space="preserve">
     <value>Member</value>
+    <comment/>
   </data>
   <data name="turnover" xml:space="preserve">
     <value>Turnover</value>
+    <comment/>
   </data>
   <data name="username" xml:space="preserve">
     <value>Username</value>
+    <comment/>
   </data>
   <data name="winningAmount" xml:space="preserve">
     <value>Winning amount</value>
+    <comment/>
   </data>
   <data name="createdDate" xml:space="preserve">
     <value>Created Date</value>
+    <comment/>
   </data>
   <data name="givenCredit" xml:space="preserve">
     <value>Given Credit</value>
+    <comment/>
   </data>
   <data name="Notice_2" xml:space="preserve">
     <value>Your betting limit value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+    <comment/>
   </data>
   <data name="Notice_1_2" xml:space="preserve">
     <value>Your minimum position taking and betting limit value have been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+    <comment/>
   </data>
   <data name="Notice_1" xml:space="preserve">
     <value>Your minimum position taking value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+    <comment/>
   </data>
   <data name="doNotShowAgain" xml:space="preserve">
     <value>Do not show again</value>
+    <comment/>
   </data>
   <data name="PrivateMessage" xml:space="preserve">
     <value>Private Message</value>
+    <comment/>
   </data>
   <data name="less" xml:space="preserve">
     <value>less</value>
+    <comment/>
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Log out</value>
+    <comment/>
   </data>
   <data name="BrowserIsOutOfDate" xml:space="preserve">
     <value>Your browser is outdated and might not be working properly with our website. For a better support, we strongly recommend that you upgrade to a newer version. Please, </value>
+    <comment/>
   </data>
   <data name="ClickToUpdateBrowser" xml:space="preserve">
     <value>click here to update your browser</value>
+    <comment/>
   </data>
   <data name="BackOldViewText" xml:space="preserve">
     <value>Or click here to home page</value>
+    <comment/>
   </data>
   <data name="ClickToBackOldView" xml:space="preserve">
     <value>Click here to get back</value>
+    <comment/>
   </data>
   <data name="WarningOldViewDate" xml:space="preserve">
     <value>The old version is only available until</value>
+    <comment/>
   </data>
   <data name="WarningText" xml:space="preserve">
     <value>Warning: </value>
+    <comment/>
   </data>
   <data name="TitleUnsupportBrowser" xml:space="preserve">
     <value>Browser Update Required! </value>
+    <comment/>
   </data>
   <data name="HomeIconIntroduction" xml:space="preserve">
     <value>Home icon – access to home page</value>
+    <comment/>
   </data>
   <data name="TransferAndViewLogIntroduction" xml:space="preserve">
     <value>Transfer and View Log are now located in the Main Menu</value>
+    <comment/>
   </data>
   <data name="QuickMenuIntroduction" xml:space="preserve">
     <value>Quick access to Account Settings</value>
+    <comment/>
   </data>
   <data name="QuickMenu" xml:space="preserve">
     <value>Quick Menu</value>
+    <comment/>
   </data>
   <data name="SwitchView" xml:space="preserve">
     <value>Switch View</value>
+    <comment/>
   </data>
   <data name="BackOldViewIntroduction" xml:space="preserve">
     <value>Not yet familiar with this new interface? Click here to get back.</value>
+    <comment/>
   </data>
   <data name="WarningOldVersionDeadline" xml:space="preserve">
     <value>Note: The old version is only available until </value>
+    <comment/>
   </data>
   <data name="MainMenuIntroduction" xml:space="preserve">
     <value>Logical order, all in one place</value>
+    <comment/>
   </data>
   <data name="ReportMenuIntroduction" xml:space="preserve">
     <value>What’s new in the Reports? Click this</value>
+    <comment/>
   </data>
   <data name="WinLossAnalysisChartIntroduction" xml:space="preserve">
     <value>The Win Loss Analysis Chart is here</value>
+    <comment/>
   </data>
   <data name="CollapseExpandIcon" xml:space="preserve">
     <value>Collapse/Expand Icon</value>
+    <comment/>
   </data>
   <data name="CollapseExpandIconIntroduction" xml:space="preserve">
     <value>Click to free up space</value>
+    <comment/>
   </data>
   <data name="MainIntroductionTitle" xml:space="preserve">
     <value>Experience the new look and feel</value>
+    <comment/>
   </data>
   <data name="MainIntroductionDescription" xml:space="preserve">
     <value>More visualized and convenient.</value>
+    <comment/>
   </data>
   <data name="NotNow" xml:space="preserve">
     <value>Not now</value>
+    <comment/>
   </data>
   <data name="QuickTour" xml:space="preserve">
     <value>Quick tour</value>
+    <comment/>
   </data>
   <data name="TransferMenuIntroduction" xml:space="preserve">
     <value>Transfer is now located in the Main Menu</value>
+    <comment/>
   </data>
   <data name="ViewLogMenuIntroduction" xml:space="preserve">
     <value>View Log is now located in the Main Menu</value>
+    <comment/>
   </data>
   <data name="ShowMainMenu" xml:space="preserve">
     <value>Show Main Menu</value>
+    <comment/>
   </data>
   <data name="GotIt" xml:space="preserve">
     <value>Got it</value>
+    <comment/>
   </data>
   <data name="Replay" xml:space="preserve">
     <value>Replay</value>
+    <comment/>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
+    <comment/>
   </data>
   <data name="Skip" xml:space="preserve">
     <value>Skip</value>
+    <comment/>
   </data>
   <data name="ReplayInstruction" xml:space="preserve">
     <value>You can replay this tour by clicking on this icon.</value>
+    <comment/>
   </data>
   <data name="TakeTourInstruction" xml:space="preserve">
     <value>You can take the tour by clicking on this icon.</value>
+    <comment/>
   </data>
   <data name="QuickTourTooltip" xml:space="preserve">
     <value>Quick tour</value>
+    <comment/>
   </data>
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>Successfully updated.</value>
+    <comment/>
   </data>
   <data name="lblBack" xml:space="preserve">
     <value>Back</value>
+    <comment/>
   </data>
   <data name="lblChangePassword" xml:space="preserve">
     <value>Change Password</value>
+    <comment/>
   </data>
   <data name="lblresetpassword" xml:space="preserve">
     <value>Reset Password</value>
+    <comment/>
   </data>
   <data name="balance" xml:space="preserve">
     <value>Balance</value>
+    <comment/>
   </data>
   <data name="winloss" xml:space="preserve">
     <value>Win Loss</value>
+    <comment/>
   </data>
   <data name="credit" xml:space="preserve">
     <value>Credit</value>
+    <comment/>
   </data>
   <data name="memberInfo" xml:space="preserve">
     <value>Member Info</value>
+    <comment/>
   </data>
   <data name="notice" xml:space="preserve">
     <value>Notice</value>
+    <comment/>
   </data>
   <data name="stats" xml:space="preserve">
     <value>Stats</value>
+    <comment/>
   </data>
   <data name="personalMessage" xml:space="preserve">
     <value>Personal Message</value>
+    <comment/>
   </data>
   <data name="specialNotice" xml:space="preserve">
     <value>Special Notice</value>
+    <comment/>
   </data>
   <data name="message" xml:space="preserve">
     <value>Message</value>
+    <comment/>
   </data>
   <data name="submit" xml:space="preserve">
     <value>Submit</value>
+    <comment/>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>Enabled</value>
+    <comment/>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>Disabled</value>
+    <comment/>
   </data>
   <data name="ThereIsNoChange" xml:space="preserve">
     <value>There is no change to update</value>
+    <comment/>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
+    <comment/>
   </data>
   <data name="outstanding" xml:space="preserve">
     <value>Outstanding</value>
+    <comment/>
   </data>
   <data name="active" xml:space="preserve">
     <value>Active</value>
+    <comment/>
   </data>
   <data name="closed" xml:space="preserve">
     <value>Closed</value>
+    <comment/>
   </data>
   <data name="suspended" xml:space="preserve">
     <value>Suspended</value>
+    <comment/>
   </data>
   <data name="to" xml:space="preserve">
     <value>To</value>
+    <comment/>
   </data>
   <data name="loading" xml:space="preserve">
     <value>Loading</value>
+    <comment/>
   </data>
   <data name="searchAccount" xml:space="preserve">
     <value>Search Account</value>
+    <comment/>
   </data>
   <data name="viewMessage" xml:space="preserve">
     <value>View Message</value>
+    <comment/>
   </data>
   <data name="viewAnnouncement" xml:space="preserve">
     <value>View Announcement</value>
+    <comment/>
   </data>
   <data name="changeLanguage" xml:space="preserve">
     <value>Change Language</value>
+    <comment/>
   </data>
   <data name="normalAnnouncement" xml:space="preserve">
     <value>Normal Announcement</value>
+    <comment/>
   </data>
   <data name="specialAnnouncement" xml:space="preserve">
     <value>Special Announcement</value>
+    <comment/>
   </data>
   <data name="from" xml:space="preserve">
     <value>From</value>
+    <comment/>
   </data>
   <data name="firstName" xml:space="preserve">
     <value>First Name</value>
+    <comment/>
   </data>
   <data name="lastName" xml:space="preserve">
     <value>Last Name</value>
+    <comment/>
   </data>
   <data name="NoPermissionAccessPage" xml:space="preserve">
     <value>Sorry, You don't have permission to access this page.</value>
+    <comment/>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Request</value>
+    <comment/>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>No information is available</value>
+    <comment/>
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>New</value>
+    <comment/>
   </data>
   <data name="Notice_3" xml:space="preserve">
     <value>Your upline has enabled Fishing World for your downlines. Please go to setting page to configure your own PT settings.</value>
+    <comment/>
   </data>
   <data name="highlights" xml:space="preserve">
     <value>HIGHLIGHTS</value>
+    <comment/>
   </data>
   <data name="systemUpdate" xml:space="preserve">
     <value>System</value>
+    <comment/>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
+    <comment/>
   </data>
   <data name="ConfiguredNicknameSuccessfully" xml:space="preserve">
     <value>Your nickname was configured successfully</value>
+    <comment/>
   </data>
   <data name="NicknameRule" xml:space="preserve">
     <value>Nickname must be unique, only alphabet or numeric and should have at least a minimum of 5 characters and maximum of 20 characters.</value>
+    <comment/>
   </data>
   <data name="NicknameCompanyPolicy" xml:space="preserve">
     <value>To increase security and protect your account, you are required to login only by nickname.</value>
+    <comment/>
   </data>
   <data name="NicknameEffectedFrom" xml:space="preserve">
     <value>New policy will take effect from {0}.</value>
+    <comment/>
   </data>
   <data name="NicknameNote1" xml:space="preserve">
     <value>You are not allowed to change your nickname afterward.</value>
+    <comment/>
   </data>
   <data name="NicknameNote2" xml:space="preserve">
     <value>Only your direct upline can see your nickname.</value>
+    <comment/>
   </data>
   <data name="SubAccNicknameNote2" xml:space="preserve">
     <value>Only the main account user can see your nickname.</value>
+    <comment/>
   </data>
   <data name="NicknameOption1" xml:space="preserve">
     <value>Login by username or nickname</value>
+    <comment/>
   </data>
   <data name="NicknameOption2" xml:space="preserve">
     <value>Login by nickname only</value>
+    <comment/>
   </data>
   <data name="NicknameSkipText" xml:space="preserve">
     <value>Skip this step and go to Home Page</value>
+    <comment/>
   </data>
   <data name="NicknameRules" xml:space="preserve">
     <value>Nickname rules</value>
+    <comment/>
   </data>
   <data name="PleaseChooseNickname" xml:space="preserve">
     <value>Please choose your desired nickname</value>
+    <comment/>
   </data>
   <data name="PleaseSelectLoginByNickname" xml:space="preserve">
     <value>Please select Login by nickname only</value>
+    <comment/>
   </data>
   <data name="DataProcessingNotification" xml:space="preserve">
     <value>Data Processing Notification</value>
+    <comment/>
   </data>
   <data name="DataProcessingIsInProgress" xml:space="preserve">
     <value>Data processing is in progress.</value>
+    <comment/>
   </data>
   <data name="invalidCaptcha" xml:space="preserve">
     <value>You input an invalid code "{0}" (comparing with "{1}")</value>
+    <comment/>
   </data>
   <data name="IamNotARobot" xml:space="preserve">
     <value>I'm not a robot</value>
+    <comment/>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
     <value>Create Member with QR Code</value>
+    <comment/>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>3rd Party Pending Transfer</value>
+    <comment/>
   </data>
   <data name="UMAnnouncementTitle" xml:space="preserve">
     <value>Maintenance Notice</value>
+    <comment/>
   </data>
   <data name="UMFrom" xml:space="preserve">
     <value>from</value>
+    <comment/>
   </data>
   <data name="UMSchedule" xml:space="preserve">
     <value>There's a planned maintenance (GMT +8) and during this period, these features are unavailable:</value>
+    <comment/>
   </data>
   <data name="UMSorryForInconvenience" xml:space="preserve">
     <value>We are sorry for any inconvenience caused.</value>
+    <comment/>
   </data>
   <data name="UMTo" xml:space="preserve">
     <value>to</value>
+    <comment/>
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>All products</value>
+    <comment/>
   </data>
   <data name="UMCustomerSettingsPattern" xml:space="preserve">
     <value>&lt;strong&gt;_SettingType_&lt;/strong&gt; of &lt;strong&gt;_Product_&lt;/strong&gt;: Unavailable from &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; to &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
+    <comment/>
   </data>
   <data name="UMTransferPattern" xml:space="preserve">
     <value>&lt;strong&gt;Transfer&lt;/strong&gt;: Unavailable from &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; to &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
+    <comment/>
   </data>
   <data name="UMNewAccountPattern" xml:space="preserve">
     <value>&lt;strong&gt;New Account&lt;/strong&gt;: Unavailable from &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; to &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
+    <comment/>
   </data>
   <data name="UMDearValuedCustomers" xml:space="preserve">
     <value> Dear valued customers,</value>
+    <comment/>
   </data>
   <data name="DashboardViewOverallInformation" xml:space="preserve">
     <value>Please click on the {0} to view overall information.</value>
+    <comment/>
   </data>
   <data name="PartialUMAnnouncement" xml:space="preserve">
     <value>We're updating this function for a better experience. Thus, this function is turned off temporarily ({0} - {1} (GMT+8)). Please try again later and sorry for the inconvenience.</value>
+    <comment/>
   </data>
   <data name="LiveMessage" xml:space="preserve">
     <value>Live Message</value>
+    <comment/>
   </data>
   <data name="NewProtectionCode" xml:space="preserve">
     <value>New Protection Code</value>
+    <comment/>
   </data>
   <data name="ProtectionCode" xml:space="preserve">
     <value>Protection Code</value>
+    <comment/>
   </data>
   <data name="ConfirmProtectionCode" xml:space="preserve">
     <value>Confirm Protection Code</value>
+    <comment/>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Create</value>
+    <comment/>
   </data>
   <data name="NotMatchedConfirmProtectionCode" xml:space="preserve">
     <value>Those protection codes do not match.</value>
+    <comment/>
   </data>
   <data name="ProtectionCodeRule" xml:space="preserve">
     <value>Protection Code must be at least 6 characters, CAN be the same as your Security Code but CANNOT be the same as your Password.</value>
+    <comment/>
   </data>
   <data name="RequiredNewProtectionCode" xml:space="preserve">
     <value>New Protection Code is required.</value>
+    <comment/>
   </data>
   <data name="ShowProtectionCode" xml:space="preserve">
     <value>Show Protection Code</value>
+    <comment/>
   </data>
   <data name="MinLengthNewProtectionCodeError" xml:space="preserve">
     <value>The protection code must be at least 6 characters long.</value>
+    <comment/>
   </data>
   <data name="RequiredConfirmProtectionCode" xml:space="preserve">
     <value>Confirm Protection Code is required.</value>
+    <comment/>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
+    <comment/>
   </data>
   <data name="UpdateProtectionCodeSuccessfully" xml:space="preserve">
     <value>Your Protection Code has been updated successfully.</value>
+    <comment/>
   </data>
   <data name="ContainsSpaceOrUnicodeCharacterError" xml:space="preserve">
     <value>The protection code must not contain any Unicode characters or spaces.</value>
+    <comment/>
   </data>
   <data name="ContactUs_Content" xml:space="preserve">
     <value>Customer Service specialists are available to assist any of your question(s) encounter at agency site.</value>
+    <comment/>
   </data>
   <data name="Download" xml:space="preserve">
     <value>Download</value>
+    <comment/>
   </data>
   <data name="LetstalkIMID" xml:space="preserve">
     <value>Letstalk IM ID</value>
+    <comment/>
   </data>
   <data name="SkypeID" xml:space="preserve">
     <value>Skype ID</value>
+    <comment/>
   </data>
   <data name="ContactUsLegend" xml:space="preserve">
     <value>For Better Security</value>
+    <comment/>
   </data>
   <data name="AdvertisementMyWatchlist" xml:space="preserve">
     <value>&lt;b&gt;Easily&lt;/b&gt; monitor your win loss using &lt;b&gt;My Thresholds&lt;/b&gt;</value>
+    <comment/>
   </data>
   <data name="AdvertisementMyWatchlistGlobalThreshold" xml:space="preserve">
     <value>My Thresholds: set winning / losing threshold based on your position taking</value>
+    <comment/>
   </data>
   <data name="AdvertisementMyWatchlistGlobalThresholdDetail" xml:space="preserve">
     <value>Go to &lt;b&gt;Risk Management&lt;/b&gt; --&gt; My Thresholds --&gt; set Winning / Losing threshold</value>
+    <comment/>
   </data>
   <data name="LearnMore" xml:space="preserve">
     <value>Learn More</value>
+    <comment/>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+    <comment/>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+    <comment/>
   </data>
   <data name="AdvertisementMyWatchlistGlobalThresholdDetailAgent" xml:space="preserve">
     <value>Go to &lt;b&gt;Risk Management&lt;/b&gt; --&gt; My Watchlist - My Thresholds --&gt; set Winning / Losing threshold</value>
+    <comment/>
   </data>
   <data name="Feedback" xml:space="preserve">
     <value>Feedback</value>
+    <comment/>
   </data>
   <data name="FeedbackTitle" xml:space="preserve">
     <value>Help us improve!</value>
+    <comment/>
   </data>
   <data name="LoveToHear" xml:space="preserve">
     <value>We’d love to hear from you.</value>
+    <comment/>
   </data>
   <data name="CheckOut" xml:space="preserve">
     <value>Check Out</value>
+    <comment/>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
     <value>&lt;b&gt;Member domains&lt;/b&gt; now included. Enjoy &lt;b&gt;easy domain retrieval&lt;/b&gt; with Telegram chatbot.</value>
+    <comment/>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
     <value>Available Domains</value>
+    <comment/>
   </data>
   <data name="GetStarted" xml:space="preserve">
     <value>Get Started</value>
+    <comment/>
   </data>
   <data name="SessionExpired" xml:space="preserve">
     <value>Your login has timed out.</value>
+    <comment/>
   </data>
   <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
     <value>Copy data from Report without exporting</value>
+    <comment/>
   </data>
   <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
     <value>Filter tickets on Bet List</value>
+    <comment/>
   </data>
   <data name="FeedbackOnFunctionTitle" xml:space="preserve">
     <value>Help us improve {0}</value>
+    <comment/>
   </data>
   <data name="WinLossDetailReport" xml:space="preserve">
     <value>Win Loss Detail Report</value>
+    <comment/>
   </data>
   <data name="Here" xml:space="preserve">
     <value>Here</value>
+    <comment/>
   </data>
   <data name="minAgo" xml:space="preserve">
     <value>1 min ago</value>
+    <comment/>
   </data>
   <data name="minsAgo" xml:space="preserve">
     <value>mins ago</value>
+    <comment/>
   </data>
   <data name="hoursAgo" xml:space="preserve">
     <value>hour(s) ago</value>
+    <comment/>
   </data>
   <data name="daysAgo" xml:space="preserve">
     <value>day(s) ago</value>
+    <comment/>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+    <comment/>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+    <comment/>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+    <comment/>
+  </data>
+  <data name="IPNote" xml:space="preserve">
+    <value>Additional info at DNSstuff:&lt;a href="{0}" target="_blank"&gt; click here&lt;/a&gt;.Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required.</value>
+    <comment/>
+  </data>
+  <data name="ipv6note" xml:space="preserve">
+    <value>For IPv6, the same IP address may be displayed differently.</value>
+    <comment/>
+  </data>
+  <data name="ForExample" xml:space="preserve">
+    <value>For example:</value>
+    <comment/>
+  </data>
+  <data name="ipv61" xml:space="preserve">
+    <value>- IP address 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
+    <comment/>
+  </data>
+  <data name="ipv62" xml:space="preserve">
+    <value>- IP address 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+    <comment/>
   </data>
 </root>

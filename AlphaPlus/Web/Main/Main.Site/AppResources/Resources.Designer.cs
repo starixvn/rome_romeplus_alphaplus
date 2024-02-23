@@ -2423,5 +2423,93 @@ namespace AlphaPlus.Main.Site.AppResources
                 return ResourceManager.GetString("yesterdayWinLoss", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to IP.
+        /// </summary>
+        public static string IP
+        {
+            get
+            {
+                return ResourceManager.GetString("IP", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country
+        {
+            get
+            {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string City
+        {
+            get
+            {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Additional info at DNSstuff:<a href="{0}" target="_blank"> click here</a>.Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required.
+        /// </summary>
+        public static string IPNote
+        {
+            get
+            {
+                return ResourceManager.GetString("IPNote", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For IPv6, the same IP address may be displayed differently.
+        /// </summary>
+        public static string ipv6note
+        {
+            get
+            {
+                return ResourceManager.GetString("ipv6note", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For example:.
+        /// </summary>
+        public static string ForExample
+        {
+            get
+            {
+                return ResourceManager.GetString("ForExample", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to - IP address 1: 2001:db8:3333:4444:5555:6666:1.2.3.4.
+        /// </summary>
+        public static string ipv61
+        {
+            get
+            {
+                return ResourceManager.GetString("ipv61", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to - IP address 2: 2001:0db8:3333:4444:5555:6666:0102:0304.
+        /// </summary>
+        public static string ipv62
+        {
+            get
+            {
+                return ResourceManager.GetString("ipv62", resourceCulture);
+            }
+        }
     }
 }

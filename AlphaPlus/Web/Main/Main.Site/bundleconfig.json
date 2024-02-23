@@ -443,5 +443,17 @@
     "inputFiles": [
       "assets/styles/apikey/apikey-dark.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/ip-info/ip-info.css",
+    "inputFiles": [
+      "assets/styles/ip-info/ip-info.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/ip-info/ip-info-dark.css",
+    "inputFiles": [
+      "assets/styles/ip-info/ip-info-dark.css"
+    ]
   }
 ]

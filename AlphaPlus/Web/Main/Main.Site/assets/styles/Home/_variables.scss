@@ -1,21 +1,22 @@
 ﻿$font-size: 13px;
 $font-size-mobile: 14px;
-$font-family: Roboto, Arial, Tahoma,helvetica,sans-serif;
+$font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;
 $text-color: #333;
 $border-color: #dfdfdf;
 $border-color-dark: #cecece;
 $height-normal: 28px;
 $height-mobile: 36px;
+$table-border-color: #d1d1d1;
 
 $link-color: #045ace;
-$link-hover-color: #F60;
+$link-hover-color: #f60;
 
 /*******************************************/
 /* Popup */
 /*******************************************/
 $popup-bg: #fff;
 $popup-border: $border-color;
-$popup-title-color: #FF6230;
+$popup-title-color: #ff6230;
 $popup-text-color: #444;
 $popup-button-color-text: #094b84;
 $popup-button-color-border: #094b84;
@@ -30,7 +31,7 @@ $msg-public: #333;
 $table-td-hover-color: #f8eb95;
 
 $link-color: #045ace;
-$link-hover-color: #F60;
+$link-hover-color: #f60;
 $msg-error-color: #fe0000;
 $msg-error-border: #ef2d2d;
 $msg-warning-color: #7e3d00;
@@ -60,8 +61,7 @@ $conent-device-greater1024: (1024px - $content-gutter-width);
 $sidebar-width: 300px;
 
 // Menu
-$menu-color-text: #333333;  
-$menu-color-icon: #333333; 
-
+$menu-color-text: #333333;
+$menu-color-icon: #333333;
 
 $color-slidebar: #333333;

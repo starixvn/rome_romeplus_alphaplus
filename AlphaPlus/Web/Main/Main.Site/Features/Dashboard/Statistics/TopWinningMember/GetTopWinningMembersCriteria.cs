@@ -1,20 +1,17 @@
-﻿namespace AlphaPlus.Main.Site.Features.Dashboard.Statistics
-{
-    using AlphaPlus.Core.Models;
-    using Fanex.Data.Repository;
-    using System;
-    using System.Collections.Generic;
+﻿using AlphaPlus.Core.Models;
+using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Main.Site.Features.Dashboard.Statistics
+{
     public class GetTopWinningMembersCriteria : CriteriaBase
     {
-        private static readonly Dictionary<UserLevel, string> SettingKeys = new()
+        private static readonly Dictionary<UserLevel, string> SettingKeys = new Dictionary<UserLevel, string>
         {
             [UserLevel.Agent] = "Age_CustomerSelTopWinningMembers_Ag",
             [UserLevel.Master] = "Age_CustomerSelTopWinningMembers_MAg",
             [UserLevel.Super] = "Age_CustomerSelTopWinningMembers_SAg"
         };
-
-        private readonly string settingKey;
 
         public GetTopWinningMembersCriteria(
             UserLevel userLevel,
@@ -22,11 +19,14 @@
             DateTime balanceUpDay,
             DateTime moveBetsDay)
         {
-            settingKey = SettingKeys[userLevel];
+            UserLevel = userLevel;
             CustId = custId;
             BalanceUpDay = balanceUpDay;
             MoveBetsDay = moveBetsDay;
         }
+
+        [SpParam(Ignored = true)]
+        public UserLevel UserLevel { get; }
 
         public int CustId { get; }
 
@@ -34,7 +34,7 @@
 
         public DateTime MoveBetsDay { get; }
 
-        public override string GetSettingKey() => settingKey;
+        public override string GetSettingKey() => SettingKeys[UserLevel];
 
         public override bool IsValid() => CustId > 0;
     }
