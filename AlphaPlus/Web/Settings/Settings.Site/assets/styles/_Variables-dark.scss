@@ -1,0 +1,234 @@
+﻿/*******************************************/
+/* Common */
+/*******************************************/
+$font-size: 13px;
+$font-family: Roboto, Arial, Tahoma,helvetica,sans-serif;
+$text-color: #cbcbcb;
+$text-red-color: #9d1c1c;
+$text-red-color-light: #FF4F50;
+$link-color: #41a4ff;
+$link-hover-color: #F60;
+$title-color: #9d1c1c;
+$compopent-height: 30px;
+$height-normal: 28px;
+$border-color: #474747;
+$border-color-dark: #cecece;
+$bg-color: #171717;
+$roboto-fonts: "/assets/styles/base/roboto-fonts.css";
+$icon-alpha-fonts: "/assets/styles/base/icon-fonts.css";
+
+
+$component-bg: #171717;
+$component-color: #EDEDED;
+$component-border-color: #292929;
+
+/*******************************************/
+/* Themes */
+/*******************************************/
+$theme-super-bg-light: #f0e6e7;
+$theme-super-bg: #67151b;
+$theme-super-bg-dark: #5c1218;
+$theme-super-color: #E52C3E;
+$theme-super-link-color-hover: #E52C3E;
+$theme-super-tab-focused-color: $theme-super-color;
+$theme-super-tab-focused-border: $theme-super-bg;
+
+$theme-master-bg-light: #e8edea;
+$theme-master-bg: #276443;
+$theme-master-bg-dark: #1c5334;
+$theme-master-color: #4DE590;
+$theme-master-link-color-hover: #4DE590;
+$theme-master-tab-focused-color: $theme-master-color;
+$theme-master-tab-focused-border: $theme-master-bg;
+
+$theme-agent-bg-light: #e5e9ec;
+$theme-agent-bg: #516e8f;
+$theme-agent-bg-dark: #37587d;
+$theme-agent-color: #63A2E5;
+$theme-agent-link-color-hover: #63A2E5;
+$theme-agent-tab-focused-color: $theme-agent-color;
+$theme-agent-tab-focused-border: $theme-agent-bg;
+
+/*******************************************/
+/* Buttons */
+/*******************************************/
+$btn-bg: #e1e1e1;
+$btn-color: #212121;
+$btn-bg-hover: #e1e1e1;
+$btn-color-hover: #212121;
+$btn-bg-hover: darken($btn-bg, 5%);
+
+$btn-submit-bg: #36587D;
+$btn-submit-color: #EDEDED;
+$btn-submit-bg-hover: darken($btn-submit-bg, 5%);
+$btn-submit-color-hover: #fff;
+
+$btn-reset-bg: #F6731B;
+$btn-reset-color: #fff;
+$btn-reset-bg-hover: darken($btn-reset-bg, 5%);
+$btn-reset-color-hover: #fff;
+
+$btn-cancel-bg: #696969;
+$btn-cancel-color: #fff;
+$btn-cancel-bg-hover: darken($btn-cancel-bg, 5%);
+$btn-cancel-color-hover: #fff;
+
+$btn-refresh-bg: #1bac69;
+$btn-refresh-color: #fff;
+$btn-refresh-bg-hover: darken($btn-refresh-bg, 5%);
+$btn-refresh-color-hover: #fff;
+
+
+
+/*******************************************/
+/* Icons */
+/*******************************************/
+$icon-color: #888;
+$icon-color-dark: #333;
+$icon-hover-color: #e38514;
+$icon-disable-color: lighten($icon-color, 20%);
+$icon-version: 4l5hbw;
+
+/*******************************************/
+/* Table */
+/*******************************************/
+$table-red-color: #FF4F50;
+$table-td-hover-color: #36362E;
+$table-border-color: #5F626B;
+$table-header-bg-color: #383838;
+$table-header-color: #EDEDED;
+$table-header-border-color: #5F626B;
+$table-subheader-bg-color: #383838;
+$table-subheader-color: #fff;
+$table-compopent-height: 22px;
+$table-compopent-height-large: 28px;
+$table-even-bg: #212223;
+$table-odd-bg: #262829;
+$table-footer-bg: #7f3d1d;
+$table-footer-color: #fff;
+$table-league-bg: #66665D;
+$table-live-bg: #f9ceae;
+
+
+/*******************************************/
+/* Popup */
+/*******************************************/
+$popup-bg: #1C1C1C;
+$popup-border: #474747;
+
+
+/*******************************************/
+/* Tooltip */
+/*******************************************/
+
+
+/*******************************************/
+/* Tab */
+/*******************************************/
+
+$tab-color: #cbcbcb;
+$tab-line-color: #313334;
+
+
+/*******************************************/
+/* Dropdown */
+/*******************************************/
+$dropdown-color: $component-color;
+$dropdown-color-disable: #888;
+$dropdown-bg: $component-bg;
+$dropdown-bg-hover: #3c3c3c;
+$dropdown-border: $component-border-color;
+
+/*******************************************/
+/* Message */
+/*******************************************/
+
+$msg-private: #18910b;
+$msg-special: $text-red-color;
+$msg-public: $text-color;
+
+$msg-warning-bg: #312F26;
+$msg-warning-color: #F6F2D7;
+$msg-warning-border: #78776D;
+$msg-warning-icon-color: #F6F2D7;
+
+$msg-error-bg: #290E0E;
+$msg-error-color: #DD6161;
+$msg-error-border: #FF130A;
+
+$msg-success-bg: #3A5031;
+$msg-success-color: #7ECC4D;
+$msg-success-border: #7ECC4D;
+
+$msg-info-bg: #e3f5fa;
+$msg-info-color: #326cb4;
+$msg-info-border: #3475c7;
+
+/*******************************************/
+/* Note */
+/*******************************************/
+$note-color: #666;
+
+/*******************************************/
+/* PT setting */
+/*******************************************/
+$pt-col-height: 30px;
+$pt-col-height-has-padding: 24px; // padding top/bottom: 2px
+$pt-col-height-large: 34px;
+$pt-col-height-has-padding-large: 28px;
+$pt-component-height: 22px;
+$pt-component-height-large: 24px;
+$pt-col-highlight-bg: #282828;
+$pt-icon-edit-color: #fff;
+$pt-icon-edit-color-active: #67b4fb;
+$pt-icon-copy-color: #fff;
+$pt-icon-copy-color-active: #67b4fb;
+$pt-icon-copy-color-active-dark: #368ad8;
+$pt-bg: #181919;
+$pt-border-color: $table-border-color;
+
+/*******************************************/
+/* Paging */
+/*******************************************/
+$paging-bg: #fff;
+$paging-btn-bg: #979797;
+$paging-btn-color: #fff;
+$paging-btn-bg-hover: #676767;
+$paging-border: #666;
+
+/*******************************************/
+/* Customer List */
+/*******************************************/
+$customer-icon-edit-multi: #fff;
+$customer-icon-edit-multi-hover: #e38514;
+$customer-icon-arrow: #333;
+$customer-icon-arrow-hover: #e38514;
+$customer-icon-view: #333;
+$customer-icon-view-hover: #055ad1;
+$customer-icon-other: #333;
+$customer-icon-other-hover: #e38514;
+
+/*******************************************/
+/* Status */
+/*******************************************/
+$status-closed: #6E654E;
+$status-closedby-pwd-others: #6E654E;
+$status-closedby-admin: #453659;
+$status-closedby-upline: #874D1E;
+$status-closedby-otp-sc: #0D3C54;
+$status-closedby-archive: #0B2945;
+$status-suspended: #805757;
+$status-disabled: #4B5425;
+$status-live: #ffddcc;
+$status-closedby-pwd: #6E654E;
+$status-closedby-otp: #0D3C54;
+/*******************************************/
+/* hint tooltip */
+/*******************************************/
+$hint-warning-bg: #FFFFCC;
+$hint-warning-color: #333;
+$hint-warning-border-color: #CC9933;
+$hint-warning-border-radius: 2px;
+
+
+

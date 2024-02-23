@@ -1,0 +1,208 @@
+﻿@import "../_Variables-dark.scss";
+@import "../_Mixins.scss";
+@import url($icon-alpha-fonts);
+
+@include keyframes-ripple;
+
+// To remove the 300-350ms tap delay
+html {
+  touch-action: manipulation;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.title-page {
+    margin-bottom: 12px;
+
+    .txt-title, .btn-add {
+        float: left;
+    }
+
+    .txt-title {
+        line-height: 36px;
+    }
+}
+
+.btn-add {
+    height: 24px;
+    position: relative;
+    top: 7px;
+    margin-left: 20px;
+    line-height: 22px;
+}
+
+.btn-add-disable {
+    @extend .btn-add;
+    opacity: 0.5;
+    cursor: default;
+}
+
+/************************************/
+/* Info */
+/************************************/
+#number1 {
+    margin: 0 8px;
+}
+
+.form-control {
+    border: 1px solid $border-color;
+}
+
+input.form-control {
+    border: 1px solid $border-color;
+    min-width: 260px;
+    margin-left: 0;
+    margin-right: 4px;
+}
+
+/************************************/
+/* Table*/
+/************************************/
+.col-memberinfo, .col-lblForecast, .col-totalbets {
+    width: 110px;
+}
+
+.col-reports, .col-transfer, .col-viewlog {
+    width: 70px;
+}
+
+table.tblPop td.lbl-accPermission {
+    padding: 20px 0 2px;
+}
+
+/************************************/
+/* Icons */
+/************************************/
+%icon {
+    font-family: 'Iconalpha';
+    cursor: pointer;
+    display: inline-block;    
+}
+
+.editBtn {
+    cursor: pointer;
+    padding: 2px;
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    @include ripple-effect-icon($top: 2px);
+
+    &:before {
+        @extend %icon;
+        content: '\e937';
+        font-size: 16px;
+        position: relative;
+        top: 3px;
+    }
+}
+
+.editBtnDisable, .editBtn:disabled {
+	@extend .editBtn;
+}
+
+.editBtn-Disable {
+    cursor: default;
+    padding: 2px;
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    opacity: 0.5;
+
+    &:before {
+        @extend %icon;
+        content: '\e937';
+        font-size: 16px;
+        position: relative;
+        top: 3px;
+        cursor: default;
+    }
+}
+
+%iconMemInfo {
+    cursor: pointer;
+
+    &:after {
+        @extend %icon;
+	    content: '\e93a';
+        font-size: $font-size;
+        margin-left: 2px;
+        position: relative;
+        top: 1px;
+    }
+}
+
+.infoIco {
+    &:before { cursor: default; }
+
+    &:hover:after {
+        -moz-animation-name: none;
+        -o-animation-name: none;
+        -webkit-animation-name: none;
+        animation-name: none;
+    }
+}
+
+.pMemInfo {
+    @extend %iconMemInfo;   
+    color : $link-color;
+    &:hover {
+        color: $link-hover-color;
+    }
+
+    &:hover:after {
+	    color: $icon-hover-color;
+    }
+}
+
+.pMemInfoActive:after {
+    @extend %iconMemInfo;
+}
+
+.schint-message {
+    color: $note-color;
+    font-style: italic;
+    padding: 4px;
+    min-width: 450px;
+    
+    pre {
+        white-space: pre-wrap;
+    }
+    p {
+         font-weight: bold;
+    }
+
+    ul {
+        list-style: none;        
+        margin: 6px 0;
+    }
+
+    > ul {        
+        padding: 0;
+
+        ul {
+            padding-left: 20px;
+        }
+    }
+
+    pre {
+        font-family: $font-family;
+        line-height: 18px;
+    }
+}
+
+
+.tblRpt {
+    border-top: none;
+    border-right: none;
+    tr:nth-child(even) {
+        background: #2E2C1F;
+    }
+}
+
+.closed {
+    background-color: #4D4F52 !important;
+}
