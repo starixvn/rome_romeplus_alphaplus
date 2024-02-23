@@ -20,8 +20,10 @@
 @{
     if (Model.FromBetList)
     {
-        <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip" target="_blank"></a>
+        <div class="text-right mt-10 mb-10">
+        <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip font-size-icon" target="_blank"></a>
         <input type="hidden" id="hidden-matchIds" value="@Model.MatchIds" />
+        </div>
     }
     else
     {
