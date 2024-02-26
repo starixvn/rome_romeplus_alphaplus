@@ -56,6 +56,13 @@ services:
                 - action: rebuild
             path: .
 
+    account:
+        image: ${REGISTRY:-alphaplus}/account:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/Account/Account.Site/Dockerfile
+        restart: always
+
     login:
         image: ${REGISTRY:-alphaplus}/login:${PLATFORM:-linux}-${TAG:-latest}
         build:

@@ -36,6 +36,11 @@ services:
             - ASPNETCORE_ENVIRONMENT=Development
             - ASPNETCORE_URLS=http://0.0.0.0:5000
 
+    account:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://0.0.0.0:5000
+
     login:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
