@@ -1,18 +1,16 @@
-import 'bootstrap/dist/css/bootstrap.css';
-
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href') as string;
 const rootElement = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(rootElement);
 
 root.render(
-    <BrowserRouter basename={baseUrl}>
+    <React.StrictMode>
         <App />
-    </BrowserRouter>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
