@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.Reports</AssemblyName>
+    <RootNamespace>AlphaPlus.Reports</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Shared\Models\Enumeration.cs" Link="Features\Shared\Models\Enumeration.cs" />
+    <Compile Include="..\..\..\Shared\Models\UserLevel.cs" Link="Features\Shared\Models\UserLevel.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\StringExtensions.cs" Link="Features\Shared\Extensions\StringExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Features\Shared\Constants\BetTypeConstants.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Data.ProxyClient" Version="0.0.3-alpha02" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
+  </ItemGroup>
+</Project>

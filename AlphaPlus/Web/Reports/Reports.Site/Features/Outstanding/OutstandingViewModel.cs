@@ -1,0 +1,104 @@
+using AlphaPlus.Reports.Features.Outstanding;
+using AlphaPlus.Reports.Features.Shared.Constants;
+using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace AlphaPlus.Reports.Site.Features.Outstanding;
+
+public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingModel>
+{
+    private const string CustNamePropertyName = nameof(OutstandingModel.CustName);
+
+    public OutstandingViewModel(
+        OutstandingQuery query,
+        IEnumerable<OutstandingModel> outstandingDataSource,
+        IEnumerable<int> selectedProductIds,
+        IEnumerable<SelectListItem> products,
+        IEnumerable<Breadcrumb> breadcrumbs,
+        bool isMobile) : base(query.CustLevel, breadcrumbs)
+    {
+        Query = query;
+        ReportLevel = Query.CustLevel.GetDirectDownlineLevel();
+        for (var level = (byte)(ReportLevel.Value + 1); level <= Query.ViewerLevel.Value; level++)
+        {
+            DisplayOutstandingLevels.Add(Enumeration.FromValue<UserLevel>(level));
+        }
+
+        ProductViewModel = new ProductViewModel(products, string.Join(',', selectedProductIds), string.Empty);
+
+        OutstandingDatasource = outstandingDataSource;
+        CanSort = OutstandingDatasource.Count() > 1;
+        SortPropertyName = CanSort ? GetSortedProperty(query.SortPropertyName) : DefaultVariables.SortPropertyName;
+        IsDescendingSort = CanSort && query.IsDescendingSort;
+
+        BetListPath = "/tickets/RunningBetList/Index";
+        IsMobileView = isMobile;
+    }
+
+    public OutstandingQuery Query { get; }
+
+    public UserLevel ReportLevel { get; }
+
+    public bool IsFilterVisible => Query.IsFilterVisible;
+
+    public List<UserLevel> DisplayOutstandingLevels { get; } = new();
+
+    public int NumberOfOutstandingColumn => DisplayOutstandingLevels.Count;
+
+    public ProductViewModel ProductViewModel { get; }
+
+    public IEnumerable<OutstandingModel> OutstandingDatasource { get; }
+
+    public OutstandingModel Total => OutstandingModel.GetAccumulatedData(OutstandingDatasource);
+
+    public bool CanSort { get; }
+
+    public string SortPropertyName { get; }
+
+    public bool IsDescendingSort { get; }
+
+    public bool IsMobileView { get; }
+
+    public string Title
+        => ReportLevel.IsMasterLevel()
+        ? Resources.MasterOutstanding
+        : ReportLevel.IsAgentLevel()
+            ? Resources.AgentOutstanding
+            : Resources.MemberOutstanding;
+
+    protected override IEnumerable<KeyValuePair<string, string>> GetDownlineLinkQueryParams(OutstandingModel model)
+        => [
+            KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
+            KeyValuePair.Create(nameof(model.CustName), model.CustName),
+            KeyValuePair.Create(nameof(ProductViewModel.UserSelectedProductIds), ProductViewModel.UserSelectedProductIds),
+            KeyValuePair.Create(nameof(SortPropertyName), SortPropertyName),
+            KeyValuePair.Create(nameof(IsDescendingSort), IsDescendingSort.ToString()),
+            KeyValuePair.Create(nameof(IsFilterVisible), IsFilterVisible.ToString())
+        ];
+
+    protected override IEnumerable<KeyValuePair<string, string>> GetBetListLinkQueryParams(OutstandingModel model)
+        => [
+            KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
+            KeyValuePair.Create(nameof(model.CustName), model.CustName),
+            KeyValuePair.Create("GetAll", "True"),
+            KeyValuePair.Create("ProductIds", ProductViewModel.UserSelectedProductIds)];
+
+    private string GetSortedProperty(string sortedProperty)
+    {
+        if (string.IsNullOrWhiteSpace(sortedProperty))
+        {
+            return DefaultVariables.SortPropertyName;
+        }
+
+        var sortableColumns = DisplayOutstandingLevels
+            .Select(level => (level.DisplayName + "Outstanding").ToUpperInvariant())
+            .Concat([CustNamePropertyName])
+            .ToList();
+
+        return sortableColumns.Contains(sortedProperty.ToUpperInvariant())
+            ? sortedProperty
+            : DefaultVariables.SortPropertyName;
+    }
+}

@@ -15,7 +15,7 @@ var assembly = typeof(Program).Assembly;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
-AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
+AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
 builder.Services
     .AddMediatR(assembly)
     .AddFanexLogging(configuration)
@@ -53,29 +53,20 @@ builder.Services
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
 app
+    .UseExceptionHandler("/Home/Error")
     .UsePathBase("/tickets")
+    .UseRouting()
     .UseDefaultFiles()
     .UseStaticFiles()
-    .UseRouting()
     .UseSession()
     .UseAuthentication()
-    .UseAuthorization();
+    .UseAuthorization()
+    .UseMiddleware<RequestCultureMiddleware>();
+app.MapHealthChecks("/health");
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
-
-app.UseMiddleware<RequestCultureMiddleware>();
-app.MapHealthChecks("/health");
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapDefaultControllerRoute();
 
 await Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
 await app.RunAsync();

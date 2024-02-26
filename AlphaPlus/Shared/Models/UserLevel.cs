@@ -22,4 +22,16 @@ public class UserLevel : Enumeration
     public bool IsMasterOrSuperLevel() => IsMasterLevel() || IsSuperLevel();
 
     public bool IsAgentLevel() => this == Agent;
+
+    public bool IsMemberLevel() => this == Member;
+
+    public bool IsNotMemberLevel() => !IsMemberLevel();
+
+    public UserLevel GetDirectDownlineLevel() => FromValue<UserLevel>((byte)(Value - 1));
+
+    public bool IsEqualOrUplineOf(Enumeration custLevel)
+        => GapBetweenTwoLevels(Value, custLevel.Value) >= 0;
+
+    private static int GapBetweenTwoLevels(byte uplineLevelValue, byte downlineLevelValue)
+        => uplineLevelValue - downlineLevelValue;
 }

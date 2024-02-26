@@ -1,8 +1,10 @@
 using System.Text.Json.Serialization;
 using AlphaPlus.BetsForecast.Infrastructure.Shared;
-using AlphaPlus.Tickets.API.Endpoints;
+using AlphaPlus.Tickets.API.Extensions;
+using AlphaPlus.Tickets.API.Middlewares;
 using Microsoft.AspNetCore.Http.Json;
 
+var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services
@@ -17,6 +19,7 @@ builder.Services
     //     options.Providers.Add<GzipCompressionProvider>();
     //     options.MimeTypes = ResponseCompressionDefaults.MimeTypes;
     // })
+    .AddEndpoints(assembly)
     .Configure<JsonOptions>(options =>
     {
         options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
@@ -36,13 +39,7 @@ app
     //.UseResponseCompression()
     .UseMiddleware<ExceptionMiddleware>();
 app.MapHealthChecks("/health");
-typeof(IEndpoint).Assembly
-    .GetTypes()
-    .Where(p => p.IsClass && p.IsAssignableTo(typeof(IEndpoint)))
-    .Select(Activator.CreateInstance)
-    .Cast<IEndpoint>()
-    .ToList()
-    .ForEach(module => module.MapEndpoints(app));
+app.MapEndpoints();
 
-await Fanex.Logging.Logger.Log.InfoAsync($"{typeof(Program).Assembly.GetName().Name} has been started up.");
+await Fanex.Logging.Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
 await app.RunAsync();

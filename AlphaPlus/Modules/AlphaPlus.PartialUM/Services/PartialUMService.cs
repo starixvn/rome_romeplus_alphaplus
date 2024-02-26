@@ -25,14 +25,14 @@ public class PartialUMService(
 
     public async Task ThrowIfUM(string settingKey, string siteName)
     {
-        var umEntities = await GetUMEntities(siteName);
-
-        if (!umEntities.Any())
+        if (!partialUMConfig.TryGetValue(settingKey, out var functionNames))
         {
             return;
         }
 
-        if (!partialUMConfig.TryGetValue(settingKey, out var functionNames))
+        var umEntities = await GetUMEntities(siteName);
+
+        if (!umEntities.Any())
         {
             return;
         }
