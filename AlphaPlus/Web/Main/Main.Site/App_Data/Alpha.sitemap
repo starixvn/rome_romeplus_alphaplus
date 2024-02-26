@@ -63,8 +63,8 @@
 
     <siteMapNode resourceKey="memberCommission" url="/settings/sportsbookcomm"></siteMapNode>
     <!--<siteMapNode resourceKey="BetChoiceLimit" menuItemType="BetChoiceLimitMenuItem" url="MemberInformation/BetChoiceLimit/Index"></siteMapNode>-->
-    <siteMapNode resourceKey="IndirectLoginAccount" menuItemType="/settings/IndirectLoginAccountMenuItem" url="IndirectLoginAccount/Index"></siteMapNode>
-    <siteMapNode resourceKey="DormantAccountList" menuItemType="/settings/DormantAccountListMenuItem" url="DormantAccount/Index"></siteMapNode>
+    <siteMapNode resourceKey="IndirectLoginAccount" menuItemType="IndirectLoginAccountMenuItem" url="/settings/IndirectLoginAccount/Index"></siteMapNode>
+    <siteMapNode resourceKey="DormantAccountList" menuItemType="DormantAccountListMenuItem" url="/settings/DormantAccount/Index"></siteMapNode>
   </siteMapNode>
   <!--/MemberInfo-->
   <siteMapNode resourceKey="BetLists" menuItemType="BetListsMenuItem" functionType="[L]">

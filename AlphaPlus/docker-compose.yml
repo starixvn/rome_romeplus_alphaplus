@@ -7,6 +7,10 @@ services:
             context: .
             dockerfile: Web/Settings/Settings.Site/Dockerfile
         restart: always
+        develop:
+            watch:
+                - action: rebuild
+            path: .
 
     tickets-api:
         image: ${REGISTRY:-alphaplus}/tickets.api:${PLATFORM:-linux}-${TAG:-latest}
