@@ -46,25 +46,25 @@
   <!--/Report-->
   <!--MemberInfo-->
   <siteMapNode resourceKey="memberInfo" menuItemType="MemberInfoMenuItem" functionType="[H]" byPassProtectedModeInternal="true">
-    <siteMapNode resourceKey="newMaster" url="CopyAccount?lv=4" menuItemType="CreateAccountMenuItem" roles="Super"></siteMapNode>
-    <siteMapNode resourceKey="newAgent" url="CopyAccount?lv=3" menuItemType="CreateAccountMenuItem" roles="Master"></siteMapNode>
-    <siteMapNode resourceKey="newMember" url="CopyAccount?lv=2" menuItemType="CreateAccountMenuItem" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="PTTemplate" url="PTTemplate/Index" isNew="true" menuItemType="PTTemplateMenuItem"></siteMapNode>
-    <siteMapNode menuItemType="SubAccountMenuItem" resourceKey="subaccount" url="_SubAcc/SubAccList.aspx" byPassProtectedModeInternal="true"></siteMapNode>
+    <siteMapNode resourceKey="newMaster" url="/settings/CopyAccount?lv=4" menuItemType="CreateAccountMenuItem" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="newAgent" url="/settings/CopyAccount?lv=3" menuItemType="CreateAccountMenuItem" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="newMember" url="/settings/CopyAccount?lv=2" menuItemType="CreateAccountMenuItem" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="PTTemplate" url="/settings/PTTemplate/Index" isNew="true" menuItemType="PTTemplateMenuItem"></siteMapNode>
+    <siteMapNode menuItemType="SubAccountMenuItem" resourceKey="subaccount" url="/settings/subaccount" byPassProtectedModeInternal="true"></siteMapNode>
 
-    <siteMapNode resourceKey="customerlist" url="CustomerList/member" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="agentList" url="CustomerList/agent" roles="Master"></siteMapNode>
-    <siteMapNode resourceKey="masterList" url="CustomerList/master" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="customerlist" url="/settings/CustomerList/member" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="agentList" url="/settings/CustomerList/agent" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="masterList" url="/settings/CustomerList/master" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="problemAccountList" url="ProblemAccount"></siteMapNode>
+    <siteMapNode resourceKey="problemAccountList" url="/settings/ProblemAccount"></siteMapNode>
 
-    <siteMapNode resourceKey="creditbalance" url="CreditBalance"></siteMapNode>
-    <siteMapNode resourceKey="positionTaking" url="_MemberInfo/PositionTakingList/Sportbook/SportbookPositionTakingList.aspx"></siteMapNode>
+    <siteMapNode resourceKey="creditbalance" url="/settings/CreditBalance"></siteMapNode>
+    <siteMapNode resourceKey="positionTaking" url="/settings/sportsbookpt"></siteMapNode>
 
-    <siteMapNode resourceKey="memberCommission" url="_MemberInfo/Commission/MemberCommissionSportbook.aspx"></siteMapNode>
+    <siteMapNode resourceKey="memberCommission" url="/settings/sportsbookcomm"></siteMapNode>
     <!--<siteMapNode resourceKey="BetChoiceLimit" menuItemType="BetChoiceLimitMenuItem" url="MemberInformation/BetChoiceLimit/Index"></siteMapNode>-->
-    <siteMapNode resourceKey="IndirectLoginAccount" menuItemType="IndirectLoginAccountMenuItem" url="IndirectLoginAccount/Index"></siteMapNode>
-    <siteMapNode resourceKey="DormantAccountList" menuItemType="DormantAccountListMenuItem" url="DormantAccount/Index"></siteMapNode>
+    <siteMapNode resourceKey="IndirectLoginAccount" menuItemType="/settings/IndirectLoginAccountMenuItem" url="IndirectLoginAccount/Index"></siteMapNode>
+    <siteMapNode resourceKey="DormantAccountList" menuItemType="/settings/DormantAccountListMenuItem" url="DormantAccount/Index"></siteMapNode>
   </siteMapNode>
   <!--/MemberInfo-->
   <siteMapNode resourceKey="BetLists" menuItemType="BetListsMenuItem" functionType="[L]">
