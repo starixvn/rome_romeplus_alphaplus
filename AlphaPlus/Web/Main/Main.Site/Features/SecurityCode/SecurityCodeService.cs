@@ -32,6 +32,6 @@ namespace AlphaPlus.Main.Site.Features.SecurityCode
             => httpClient.PostAsJsonAsync<Result>("security-code/update-function", param);
 
         public Task<Result> VerifySecurityCode(VerifySecurityCodeParam param)
-            => httpClient.PostAsJsonAsync<Result>("security-code/verify", param);
+            => httpClient.PostAsJsonAsync<Result>("security-code/check", param);
     }
 }
