@@ -30,7 +30,7 @@
 
         public string SecurityCodeToken => userSession.SecurityCodeToken;
 
-        public string Language => userSession.Language;
+        public string Language => userSession.LangKey;
 
         public string IP => userSession.UserLoginIp;
     }

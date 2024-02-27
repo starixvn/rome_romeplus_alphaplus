@@ -67,7 +67,6 @@ public static class Extensions
         services.AddSingleton<INicknameChecker, NicknameChecker>();
         services.AddSingleton<IBannerService, BannerService>();
         services.AddSingleton<IUMMessageService, UMMessageService>();
-        services.AddSingleton<ILanguageService, LanguageService>();
 
         services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
         services.AddHttpClient<IAccountService, AccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))
@@ -83,6 +82,7 @@ public static class Extensions
         services.AddHttpClient<INicknameService, NicknameService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<IProfilePictureService, ProfilePictureService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<IProtectionCodeService, ProtectionCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
+        services.AddHttpClient<ILanguageService, LanguageService>(httpClient => httpClient.BaseAddress = customerServiceUri);
 
         services.Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode));
 

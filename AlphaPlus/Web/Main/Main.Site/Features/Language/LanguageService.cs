@@ -1,16 +1,16 @@
-using Fanex.Data.Repository;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Main.Site.Features.Language
 {
     public interface ILanguageService
     {
-        Task UpdateUsageLanguage(int custId, int subAccId, string languageKey, string ip);
+        Task<Result> UpdateUsageLanguage(int custId, int subAccId, string languageKey, string ip);
     }
 
-    public class LanguageService(IDynamicRepository dynamicRepository) : ILanguageService
+    public class LanguageService(HttpClient httpClient) : ILanguageService
     {
-        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
-        public Task UpdateUsageLanguage(int custId, int subAccId, string languageKey, string ip)
-            => dynamicRepository.ExecuteAsync(new UpdateUsageLanguageCommand(custId, subAccId, languageKey, ip));
+        private readonly HttpClient httpClient = httpClient;
+        public Task<Result> UpdateUsageLanguage(int custId, int subAccId, string languageKey, string ip)
+            => httpClient.PostAsJsonAsync<Result>("customer/usage-language", new UpdateUsageLanguageCommand(custId, subAccId, languageKey, ip));
     }
 }

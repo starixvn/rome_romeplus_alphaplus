@@ -64,7 +64,7 @@
         {
             get
             {
-                return this.userSession.Language;
+                return this.userSession.LangKey;
             }
         }
 
