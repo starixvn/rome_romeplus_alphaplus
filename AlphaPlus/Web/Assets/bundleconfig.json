@@ -1,1868 +1,1707 @@
 ﻿[
-  {
-    "outputFileName": "bundles/common/common.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/common/bootstrap-ex.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding.css",
-      "styles/components/alerts.css",
-      "styles/components/blockui.css",
-      "styles/components/buttons.css",
-      "styles/components/breadcrumbs.css",
-      "styles/components/checkbox-radio.css",
-      "styles/components/dropdown.css",
-      "styles/components/form.css",
-      "styles/components/textboxes.css",
-      "styles/components/modals.css",
-      "styles/components/tabs.css",
-      "styles/components/icon.css",
-      "styles/base/pass-font.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/pass-font.css",
-    "inputFiles": [
-      "styles/base/pass-font.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/common-Super.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super.css",
-      "styles/themes/components/buttons/button-super.css",
-      "styles/components/customize-checkbox-radio.css",
-      "styles/themes/components/checkbox-radio/checkbox-radio-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/common-Master.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master.css",
-      "styles/themes/components/buttons/button-master.css",
-      "styles/components/customize-checkbox-radio.css",
-      "styles/themes/components/checkbox-radio/checkbox-radio-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/common-Agent.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent.css",
-      "styles/themes/components/buttons/button-agent.css",
-      "styles/components/customize-checkbox-radio.css",
-      "styles/themes/components/checkbox-radio/checkbox-radio-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/agent.css",
-    "inputFiles": [
-      "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
-      "styles/vendors/ripples.css",
-      "styles/vendors/jquery.mCustomScrollbar.css",
-      "styles/layout/default-layout/header.css",
-      "styles/layout/default-layout/navigation.css",
-      "styles/layout/default-layout/sidebar.css",
-      "styles/themes/agent.css",
-      "styles/vendors/toastr/toastr.css",
-      "styles/components/toastr.css",
-      "styles/components/resizable.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/master.css",
-    "inputFiles": [
-      "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
-      "styles/vendors/ripples.css",
-      "styles/vendors/jquery.mCustomScrollbar.css",
-      "styles/layout/default-layout/header.css",
-      "styles/layout/default-layout/navigation.css",
-      "styles/layout/default-layout/sidebar.css",
-      "styles/themes/master.css",
-      "styles/vendors/toastr/toastr.css",
-      "styles/components/toastr.css",
-      "styles/components/resizable.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/super.css",
-    "inputFiles": [
-      "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
-      "styles/vendors/ripples.css",
-      "styles/vendors/jquery.mCustomScrollbar.css",
-      "styles/layout/default-layout/header.css",
-      "styles/layout/default-layout/navigation.css",
-      "styles/layout/default-layout/sidebar.css",
-      "styles/themes/super.css",
-      "styles/vendors/toastr/toastr.css",
-      "styles/components/toastr.css",
-      "styles/components/resizable.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/unsupport-browser/super.css",
-    "inputFiles": [
-      "styles/fonts/iconalpha/style.css",
-      "styles/themes/unsupport-browser/super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/unsupport-browser/master.css",
-    "inputFiles": [
-      "styles/fonts/iconalpha/style.css",
-      "styles/themes/unsupport-browser/master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/unsupport-browser/agent.css",
-    "inputFiles": [
-      "styles/fonts/iconalpha/style.css",
-      "styles/themes/unsupport-browser/agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/default.js",
-    "inputFiles": [
-      "js/libs/bootstrap/tab.js",
-      "js/libs/bootstrap-material/material.js",
-      "js/libs/bootstrap-material/ripples.js",
-      "js/libs/jquery/jquery.cookie.js",
-      "js/libs/jquery/jquery-ui.min.js",
-      "js/libs/jquery/jquery.ui.touch-punch.min.js",
-      "js/libs/storejs/store.js",
-      "js/components/scrollbar/jquery.mCustomScrollbar.js",
-      "js/components/draggable/tiny-draggable.js",
-      "js/components/typeahead/typeahead.js",
-      "js/components/toastr/toastr.js",
-      "js/components/resizable/resizable.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-results/super.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding.css",
-      "styles/components/modals.css",
-      "styles/components/tabs.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/themes/components/tabs/tab-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-results/master.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding.css",
-      "styles/components/modals.css",
-      "styles/components/tabs.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/themes/components/tabs/tab-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-results/agent.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding.css",
-      "styles/components/modals.css",
-      "styles/components/tabs.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/themes/components/tabs/tab-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-results/default.js",
-    "inputFiles": [
-      "js/libs/jquery/jquery-1.11.3.js",
-      "js/libs/bootstrap/button.js",
-      "js/libs/bootstrap/dropdown.js",
-      "js/libs/bootstrap/modal.js",
-      "js/libs/moment/moment.js",
-      "js/components/datetimepicker/datepicker.js",
-      "js/components/datetimepicker/bootstrap-datetimepicker.js",
-      "js/components/select2/select2.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-totalbetsforecast/default.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-totalbetsforecast/bootstrap-ex.css",
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding.css",
-      "styles/components/blockui.css",
-      "styles/components/tables.css",
-      "styles/components/tabs.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/components/dropdown.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-totalbetsforecast/default.js",
-    "inputFiles": [
-      "js/libs/jquery/jquery-1.11.3.js",
-      "js/libs/bootstrap/button.js",
-      "js/libs/bootstrap/dropdown.js",
-      "js/libs/bootstrap/carousel.js",
-      "js/libs/bootstrap/modal.js",
-      "js/libs/bootstrap/tooltip.js",
-      "js/components/blockui/jquery.blockUI.js",
-      "js/libs/underscore/underscore-min.js",
-      "js/libs/numeral/numeral.js",
-      "js/components/coloranimation/jquery.animate-colors.js",
-      "js/components/highlight/jquery.pulse.js",
-      "js/components/countdown/jquery.countdown.js",
-      "js/components/multiselect/bootstrap-multiselect.js",
-      "js/libs/jquery/jquery.cookie.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-totalbetsforecast/unsupport-browser/default.js",
-    "inputFiles": [
-      "js/libs/jquery/jquery-1.11.3.js",
-      "js/libs/bootstrap/button.js",
-      "js/libs/bootstrap/dropdown.js",
-      "js/libs/bootstrap/carousel.js",
-      "js/libs/bootstrap/modal.js",
-      "js/libs/bootstrap/tooltip.js",
-      "js/components/blockui/jquery.blockUI.js",
-      "js/libs/underscore/underscore-min.js",
-      "js/libs/numeral/numeral.js",
-      "js/components/coloranimation/jquery.animate-colors.js",
-      "js/components/highlight/jquery.pulse.js",
-      "js/components/countdown/jquery.countdown.ie8.js",
-      "js/components/multiselect/bootstrap-multiselect.ie8.js",
-      "js/libs/jquery/jquery.cookie.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-viewlogs/viewlogs-super.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
-      "styles/base/scaffolding.css",
-      "styles/base/roboto-fonts.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/monthpicker/monPickr-0.0.3.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/vendors/jquery-easyui-1.5/icon.css",
-      "styles/components/month-picker.css",
-      "styles/components/tabs.css",
-      "styles/themes/components/tabs/tab-super.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/components/dropdown.css",
-      "styles/components/form.css",
-      "styles/components/checkbox-radio.css",
-      "styles/components/tables.css",
-      "styles/components/pagination.css",
-      "styles/components/blockui.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-viewlogs/viewlogs-master.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
-      "styles/base/scaffolding.css",
-      "styles/base/roboto-fonts.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/monthpicker/monPickr-0.0.3.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/vendors/jquery-easyui-1.5/icon.css",
-      "styles/components/month-picker.css",
-      "styles/components/tabs.css",
-      "styles/themes/components/tabs/tab-master.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/components/dropdown.css",
-      "styles/components/form.css",
-      "styles/components/checkbox-radio.css",
-      "styles/components/tables.css",
-      "styles/components/pagination.css",
-      "styles/components/blockui.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-viewlogs/viewlogs-agent.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
-      "styles/base/scaffolding.css",
-      "styles/base/roboto-fonts.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/monthpicker/monPickr-0.0.3.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/vendors/jquery-easyui-1.5/icon.css",
-      "styles/components/month-picker.css",
-      "styles/components/tabs.css",
-      "styles/themes/components/tabs/tab-agent.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/components/dropdown.css",
-      "styles/components/form.css",
-      "styles/components/checkbox-radio.css",
-      "styles/components/tables.css",
-      "styles/components/pagination.css",
-      "styles/components/blockui.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-viewlogs/default.js",
-    "inputFiles": [
-      "js/libs/jquery/jquery-1.11.3.js",
-      "js/libs/bootstrap/button.js",
-      "js/libs/bootstrap/dropdown.js",
-      "js/libs/bootstrap/tab.js",
-      "js/components/monthpicker/monPickr-0.0.3.js",
-      "js/components/pagination/jquery.draggable.js",
-      "js/components/pagination/jquery.resizable.js",
-      "js/components/pagination/jquery.parser.js",
-      "js/components/pagination/jquery.linkbutton.js",
-      "js/components/pagination/jquery.pagination.js",
-      "js/components/autocomplete/autocomplete.js",
-      "js/libs/jquery/jquery.cookie.js",
-      "js/components/sticky-table-headers/jquery.stickytableheaders.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/security/before-home-page.css",
-    "inputFiles": [
-      "styles/layout/before-home-page/before-home-page.css",
-      "styles/components/customize-checkbox-radio.css",
-      "styles/themes/components/checkbox-radio/checkbox-radio-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/security/security-super.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/security/security-master.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/security/security-agent.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/dashboard/dashboard-super.css",
-    "inputFiles": [
-      "styles/components/tables.css",
-      "styles/themes/components/tabs/tab-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/dashboard/dashboard-master.css",
-    "inputFiles": [
-      "styles/components/tables.css",
-      "styles/themes/components/tabs/tab-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/dashboard/dashboard-agent.css",
-    "inputFiles": [
-      "styles/components/tables.css",
-      "styles/themes/components/tabs/tab-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/dashboard/dashboard-default.js",
-    "inputFiles": [
-      "js/libs/bootstrap/tab.js",
-      "js/libs/hammer/hammer.js",
-      "js/libs/hammer/jquery.hammer.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-messages/message-Super.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables.css",
-      "styles/components/calendars.css",
-      "styles/themes/components/tabs/tab-super.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/month-picker.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-messages/message-Master.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables.css",
-      "styles/components/calendars.css",
-      "styles/themes/components/tabs/tab-master.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/month-picker.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-messages/message-Agent.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables.css",
-      "styles/components/calendars.css",
-      "styles/themes/components/tabs/tab-agent.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/month-picker.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-messages/message-default.js",
-    "inputFiles": [
-      "js/libs/moment/moment.js",
-      "js/libs/bootstrap/tab.js",
-      "js/components/datetimepicker/datepicker.js",
-      "js/components/datetimepicker/bootstrap-datetimepicker.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/security/before-home-page.js",
-    "inputFiles": [
-      "js/components/secure-hashing/sha1.js",
-      "js/components/secure-hashing/sha256.js",
-      "js/components/inputconstraint/constraint-input.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/common.js",
-    "inputFiles": [
-      "js/libs/jquery/jquery-1.11.3.js",
-      "js/libs/bootstrap/button.js",
-      "js/libs/bootstrap/dropdown.js",
-      "js/libs/bootstrap/modal.js",
-      "js/libs/bootstrap/tooltip.js",
-      "js/libs/mobile/isMobile.js",
-      "js/components/blockui/jquery.blockUI.js",
-      "js/libs/bootstrap/carousel.js",
-      "js/libs/jquery/jquery.touchSwipe.js",
-      "js/components/bootbox/bootbox.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/es5-shim.js",
-    "inputFiles": [
-      "js/libs/support-IE8/shim.js",
-      "js/libs/support-IE8/sham.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/support-IE8.js",
-    "inputFiles": [
-      "js/libs/support-IE8/html5shiv.js",
-      "js/libs/support-IE8/respond.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/cleave-jquery.js",
-    "inputFiles": [
-      "js/libs/cleave/cleave-1.5.8.js",
-      "js/libs/cleave/jquery.cleave.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/ajaxSetup.js",
-    "inputFiles": [
-      "js/components/ajaxSetup/jquery.ajaxSetup.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/otp/otp-super.css",
-    "inputFiles": [
-      "styles/components/accordions.css",
-      "styles/themes/components/tabs/tab-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/otp/otp-master.css",
-    "inputFiles": [
-      "styles/components/accordions.css",
-      "styles/themes/components/tabs/tab-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/otp/otp-agent.css",
-    "inputFiles": [
-      "styles/components/accordions.css",
-      "styles/themes/components/tabs/tab-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/otp/otp-default.js",
-    "inputFiles": [
-      "js/libs/bootstrap/transition.js",
-      "js/libs/bootstrap/collapse.js",
-      "js/components/bootbox/bootbox.js",
-      "js/components/inputconstraint/constraint-input.js",
-      "js/libs/clipboard/clipboard.js",
-      "js/components/storejs/store.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/dcs/customizeDCS.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/base/icon-fonts.css",
-      "styles/layout/dcs/customizeDCS.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/default.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/monthpicker/monPickr-0.0.3.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/components/month-picker.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/vendors/multiselect/fanex.multiSelect.css",
-      "styles/components/bootstrap-multiselect.css",
-      "styles/components/pagination.css",
-      "styles/components/tablesorter.css",
-      "styles/base/roboto-fonts.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/components/icon.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/default.js",
-    "inputFiles": [
-      "js/libs/bootstrap/transition.js",
-      "js/libs/bootstrap/collapse.js",
-      "js/libs/moment/moment.js",
-      "js/components/datetimepicker/datepicker.js",
-      "js/components/datetimepicker/bootstrap-datetimepicker.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js",
-      "js/components/monthpicker/monPickr-0.0.3.js",
-      "js/components/pagination/jquery.draggable.js",
-      "js/components/pagination/jquery.resizable.js",
-      "js/components/pagination/jquery.parser.js",
-      "js/components/pagination/jquery.linkbutton.js",
-      "js/components/pagination/jquery.pagination.js",
-      "js/components/autocomplete/autocomplete.js",
-      "js/libs/jquery/jquery.cookie.js",
-      "js/components/multiselect/bootstrap-multiselect.js",
-      "js/components/multiselect/fanex.multiSelect.js",
-      "js/components/sticky-table-headers/jquery.stickytableheaders.js",
-      "js/components/tablesorter/tablesorter.js",
-      "js/components/draggable/tiny-draggable.js",
-      "js/components/storejs/store.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/winloss-analysis-chart.js",
-    "inputFiles": [
-      "js/components/chartjs/chart.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/default.css",
-    "inputFiles": [
-      "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/components/tablesorter.css",
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/components/bootstrap-multiselect.css",
-      "styles/components/pagination.css",
-      "styles/components/icon.css",
-      "styles/themes/customer-status.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/problem-account-Super.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding.css",
-      "styles/components/modals.css",
-      "styles/components/tabs.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/components/tables.css",
-      "styles/components/calendars.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/components/month-picker.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/icon.css",
-      "styles/themes/components/tabs/tab-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/problem-account-Master.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding.css",
-      "styles/components/modals.css",
-      "styles/components/tabs.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/components/tables.css",
-      "styles/components/calendars.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/components/month-picker.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/icon.css",
-      "styles/themes/components/tabs/tab-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/problem-account-Agent.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding.css",
-      "styles/components/modals.css",
-      "styles/components/tabs.css",
-      "styles/components/buttons.css",
-      "styles/components/textboxes.css",
-      "styles/components/tables.css",
-      "styles/components/calendars.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/components/month-picker.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/icon.css",
-      "styles/themes/components/tabs/tab-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/problem-account.js",
-    "inputFiles": [
-      "js/libs/bootstrap/collapse.js",
-      "js/libs/moment/moment.js",
-      "js/libs/bootstrap/tab.js",
-      "js/components/datetimepicker/datepicker.js",
-      "js/components/datetimepicker/bootstrap-datetimepicker.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js",
-      "js/components/multiselect/bootstrap-multiselect.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/default.js",
-    "inputFiles": [
-      "js/libs/bootstrap/transition.js",
-      "js/libs/bootstrap/collapse.js",
-      "js/libs/cleave/cleave-1.5.8.js",
-      "js/libs/cleave/jquery.cleave.js",
-      "js/components/pagination/jquery.draggable.js",
-      "js/components/pagination/jquery.resizable.js",
-      "js/components/pagination/jquery.parser.js",
-      "js/components/pagination/jquery.linkbutton.js",
-      "js/components/pagination/jquery.pagination.js",
-      "js/components/bootbox/bootbox.js",
-      "js/libs/jquery/jquery.cookie.js",
-      "js/components/sticky-table-headers/jquery.stickytableheaders.js",
-      "js/components/tablesorter/tablesorter.js",
-      "js/components/multiselect/bootstrap-multiselect.js",
-      "js/components/storejs/store.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/credit-balance.js",
-    "inputFiles": [
-      "js/components/typeahead/typeahead.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/default.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/default.js",
-    "inputFiles": [
-      "js/libs/bootstrap/transition.js",
-      "js/libs/bootstrap/collapse.js",
-      "js/libs/storejs/store.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/filter.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/components/bootstrap-multiselect.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars.css",
-      "styles/components/bootstrap.nexDatePicker.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/filter-new.css",
-    "inputFiles": [
-      "styles/components/calendars.css",
-      "styles/vendors/daterangepicker/jquery.daterangepicker.css",
-      "styles/components/daterangepicker-customize.css",
-      "styles/vendors/multiselect/fanex.multiSelect.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/filter.js",
-    "inputFiles": [
-      "js/components/multiselect/bootstrap-multiselect.js",
-      "js/libs/moment/moment.js",
-      "js/components/datetimepicker/datepicker.js",
-      "js/components/datetimepicker/bootstrap-datetimepicker.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/filter-new.js",
-    "inputFiles": [
-      "js/libs/moment/moment.js",
-      "js/libs/moment/locale/en-gb.js",
-      "js/libs/moment/locale/ja.js",
-      "js/libs/moment/locale/ko.js",
-      "js/libs/moment/locale/th.js",
-      "js/libs/moment/locale/vi.js",
-      "js/libs/moment/locale/zh-cn.js",
-      "js/libs/moment/locale/zh-tw.js",
-      "js/libs/moment/switch-locale.js",
-      "js/components/daterangepicker/jquery.daterangepicker.js",
-      "js/components/multiselect/fanex.multiSelect.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/last-bets.js",
-    "inputFiles": [
-      "js/libs/jquery/jquery.cookie.js",
-      "js/components/shortcut/shortcut.js",
-      "js/libs/storejs/store.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/pagination.css",
-    "inputFiles": [
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/components/pagination.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/pagination.js",
-    "inputFiles": [
-      "js/components/pagination/jquery.draggable.js",
-      "js/components/pagination/jquery.resizable.js",
-      "js/components/pagination/jquery.parser.js",
-      "js/components/pagination/jquery.linkbutton.js",
-      "js/components/pagination/jquery.pagination.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-transfer/pagination.js",
-    "inputFiles": [
-      "js/components/pagination/jquery.draggable.js",
-      "js/components/pagination/jquery.resizable.js",
-      "js/components/pagination/jquery.parser.js",
-      "js/components/pagination/jquery.linkbutton.js",
-      "js/components/pagination/jquery.pagination.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-accountinfo/index.css",
-    "inputFiles": [
-      "styles/components/tables.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Agent.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Master.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Super.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/account-info/index.js",
-    "inputFiles": [
-      "js/libs/bootstrap/tooltip.js",
-      "js/libs/bootstrap-material/ripples.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/chatbot/chatbot-default.css",
-    "inputFiles": [
-      "styles/components/popover.css",
-      "styles/components/tables.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/chatbot/chatbot-default.js",
-    "inputFiles": [
-      "js/libs/bootstrap/transition.js",
-      "js/libs/bootstrap/collapse.js",
-      "js/libs/jquery/jquery-ui.min.js",
-      "js/libs/bootstrap/tooltip.js",
-      "js/libs/clipboard/clipboard.js",
-      "js/components/storejs/store.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-transfer/default.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/components/tablesorter.css",
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/components/bootstrap-multiselect.css",
-      "styles/components/icon.css",
-      "styles/components/pagination.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-transfer/default.js",
-    "inputFiles": [
-      "js/libs/bootstrap/transition.js",
-      "js/libs/bootstrap/collapse.js",
-      "js/components/pagination/jquery.draggable.js",
-      "js/components/pagination/jquery.resizable.js",
-      "js/components/bootbox/bootbox.js",
-      "js/libs/jquery/jquery.cookie.js",
-      "js/components/sticky-table-headers/jquery.stickytableheaders.js",
-      "js/components/tablesorter/tablesorter.js",
-      "js/components/multiselect/bootstrap-multiselect.js",
-      "js/components/countdown/jquery.countdown.js",
-      "js/components/storejs/store.js",
-      "js/components/autocomplete/autocomplete.js",
-      "js/components/three-state-button/jquery.theswitch.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-transfer/filter.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/dropdown.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-transfer/filter.js",
-    "inputFiles": [
-      "js/libs/moment/moment.js",
-      "js/components/datetimepicker/datepicker.js",
-      "js/components/datetimepicker/bootstrap-datetimepicker.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-asset/numeral.js",
-    "inputFiles": [
-      "js/libs/numeral/numeral.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-asset/data-table.js",
-    "inputFiles": [
-      "js/components/data-table/jquery.dataTables.js",
-      "js/components/data-table/dataTables.fixedHeader.js",
-      "js/components/data-table/dataTables.responsive.js",
-      "js/components/data-table/dataTables.pagination.input.js",
-      "js/libs/bootstrap/modal.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-asset/data-table.css",
-    "inputFiles": [
-      "styles/vendors/data-table/jquery.dataTables.css",
-      "styles/vendors/data-table/responsive.dataTables.css",
-      "styles/vendors/data-table/fixedHeader.dataTables.css",
-      "styles/components/datatable-customize.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-asset/daterangepicker.js",
-    "inputFiles": [
-      "js/libs/moment/locale/en-gb.js",
-      "js/libs/moment/locale/ja.js",
-      "js/libs/moment/locale/ko.js",
-      "js/libs/moment/locale/th.js",
-      "js/libs/moment/locale/vi.js",
-      "js/libs/moment/locale/zh-cn.js",
-      "js/libs/moment/locale/zh-tw.js",
-      "js/libs/moment/switch-locale.js",
-      "js/components/daterangepicker/jquery.daterangepicker.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
-      "js/components/daterangepicker/nexDateRangePicker.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-asset/daterangepicker.css",
-    "inputFiles": [
-      "styles/vendors/daterangepicker/jquery.daterangepicker.css",
-      "styles/components/daterangepicker-customize.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/data-table.js",
-    "inputFiles": [
-      "js/components/data-table/jquery.dataTables.js",
-      "js/components/data-table/dataTables.fixedHeader.js",
-      "js/components/data-table/dataTables.responsive.js",
-      "js/components/data-table/dataTables.pagination.input.js",
-      "js/libs/bootstrap/modal.js",
-      "js/libs/jquery/jquery-ui.min.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/tab-super.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/tab-master.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/tab-agent.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/tab-super.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/tab-master.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/tab-agent.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/daterangepicker.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars.css",
-      "styles/components/bootstrap.nexDatePicker.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/daterangepicker.js",
-    "inputFiles": [
-      "js/libs/moment/moment.js",
-      "js/components/datetimepicker/datepicker.js",
-      "js/components/datetimepicker/bootstrap-datetimepicker.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/apikey.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/icon.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/apikey.js",
-    "inputFiles": [
-      "js/libs/moment/moment.js",
-      "js/components/datetimepicker/datepicker.js",
-      "js/components/datetimepicker/bootstrap-datetimepicker.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js",
-      "js/components/storejs/store.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/apikey/clipboard.js",
-    "inputFiles": [
-      "js/libs/bootstrap/tooltip.js",
-      "js/libs/clipboard/clipboard.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/winlossdetail-new.js",
-    "inputFiles": [
-      "js/libs/moment/locale/en-gb.js",
-      "js/libs/moment/locale/ja.js",
-      "js/libs/moment/locale/ko.js",
-      "js/libs/moment/locale/th.js",
-      "js/libs/moment/locale/vi.js",
-      "js/libs/moment/locale/zh-cn.js",
-      "js/libs/moment/locale/zh-tw.js",
-      "js/libs/moment/switch-locale.js",
-      "js/components/daterangepicker/jquery.daterangepicker.js",
-      "js/components/typeahead/typeahead.js",
-      "js/libs/clipboard/clipboard.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/winlossdetail-new.css",
-    "inputFiles": [
-      "styles/vendors/daterangepicker/jquery.daterangepicker.css",
-      "styles/components/daterangepicker-customize.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles-v2/site-betlists/monitoring-bets.js",
-    "inputFiles": [
-      "js/components/multiselect/bootstrap-multiselect.js",
-      "js/libs/clipboard/clipboard.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/common-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/common/bootstrap-ex.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/components/alerts-dark.css",
-      "styles/components/blockui-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/breadcrumbs-dark.css",
-      "styles/components/checkbox-radio.css",
-      "styles/components/dropdown-dark.css",
-      "styles/components/form-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/components/modals-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/components/icon-dark.css",
-      "styles/base/pass-font.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/common-Super-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super-dark.css",
-      "styles/themes/components/buttons/button-super-dark.css",
-      "styles/components/customize-checkbox-radio-dark.css",
-      "styles/themes/components/checkbox-radio/checkbox-radio-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/common-Master-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master-dark.css",
-      "styles/themes/components/buttons/button-master-dark.css",
-      "styles/components/customize-checkbox-radio-dark.css",
-      "styles/themes/components/checkbox-radio/checkbox-radio-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/common/common-Agent-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent-dark.css",
-      "styles/themes/components/buttons/button-agent-dark.css",
-      "styles/components/customize-checkbox-radio-dark.css",
-      "styles/themes/components/checkbox-radio/checkbox-radio-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/agent-dark.css",
-    "inputFiles": [
-      "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
-      "styles/vendors/ripples.css",
-      "styles/vendors/jquery.mCustomScrollbar.css",
-      "styles/layout/default-layout/header-dark.css",
-      "styles/layout/default-layout/navigation.css",
-      "styles/layout/default-layout/sidebar-dark.css",
-      "styles/themes/agent-dark.css",
-      "styles/vendors/toastr/toastr.css",
-      "styles/components/toastr-dark.css",
-      "styles/components/resizable.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/master-dark.css",
-    "inputFiles": [
-      "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
-      "styles/vendors/ripples.css",
-      "styles/vendors/jquery.mCustomScrollbar.css",
-      "styles/layout/default-layout/header-dark.css",
-      "styles/layout/default-layout/navigation.css",
-      "styles/layout/default-layout/sidebar-dark.css",
-      "styles/themes/master-dark.css",
-      "styles/vendors/toastr/toastr.css",
-      "styles/components/toastr-dark.css",
-      "styles/components/resizable.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/super-dark.css",
-    "inputFiles": [
-      "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
-      "styles/vendors/ripples.css",
-      "styles/vendors/jquery.mCustomScrollbar.css",
-      "styles/layout/default-layout/header-dark.css",
-      "styles/layout/default-layout/navigation.css",
-      "styles/layout/default-layout/sidebar-dark.css",
-      "styles/themes/super-dark.css",
-      "styles/vendors/toastr/toastr.css",
-      "styles/components/toastr-dark.css",
-      "styles/components/resizable.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-results/super-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars-dark.css",
-      "styles/vendors/select2.css",
-      "styles/components/select2-dark.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/components/modals-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/themes/components/tabs/tab-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-results/master-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars-dark.css",
-      "styles/vendors/select2.css",
-      "styles/components/select2-dark.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/components/modals-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/themes/components/tabs/tab-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-results/agent-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars-dark.css",
-      "styles/vendors/select2.css",
-      "styles/components/select2-dark.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/components/modals-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/themes/components/tabs/tab-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-totalbetsforecast/default-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-totalbetsforecast/bootstrap-ex.css",
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/components/blockui-dark.css",
-      "styles/components/tables-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/components/dropdown-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-viewlogs/viewlogs-super-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/base/roboto-fonts.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/monthpicker/monPickr-0.0.3.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/vendors/jquery-easyui-1.5/icon.css",
-      "styles/components/month-picker-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/themes/components/tabs/tab-super-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/components/dropdown-dark.css",
-      "styles/components/form-dark.css",
-      "styles/components/checkbox-radio.css",
-      "styles/components/tables-dark.css",
-      "styles/components/pagination-dark.css",
-      "styles/components/blockui-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-viewlogs/viewlogs-master-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/base/roboto-fonts.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/monthpicker/monPickr-0.0.3.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/vendors/jquery-easyui-1.5/icon.css",
-      "styles/components/month-picker-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/themes/components/tabs/tab-master-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/components/dropdown-dark.css",
-      "styles/components/form-dark.css",
-      "styles/components/checkbox-radio.css",
-      "styles/components/tables-dark.css",
-      "styles/components/pagination-dark.css",
-      "styles/components/blockui-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-viewlogs/viewlogs-agent-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/base/roboto-fonts.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/monthpicker/monPickr-0.0.3.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/vendors/jquery-easyui-1.5/icon.css",
-      "styles/components/month-picker-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/themes/components/tabs/tab-agent-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/components/dropdown-dark.css",
-      "styles/components/form-dark.css",
-      "styles/components/checkbox-radio.css",
-      "styles/components/tables-dark.css",
-      "styles/components/pagination-dark.css",
-      "styles/components/blockui-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/security/before-home-page-dark.css",
-    "inputFiles": [
-      "styles/layout/before-home-page/before-home-page-dark.css",
-      "styles/components/customize-checkbox-radio-dark.css",
-      "styles/themes/components/checkbox-radio/checkbox-radio-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/security/security-super-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/security/security-master-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/security/security-agent-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/dashboard/dashboard-super-dark.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/themes/components/tabs/tab-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/dashboard/dashboard-master-dark.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/themes/components/tabs/tab-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/dashboard/dashboard-agent-dark.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/themes/components/tabs/tab-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-messages/message-Super-dark.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/components/calendars-dark.css",
-      "styles/themes/components/tabs/tab-super-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/month-picker-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-messages/message-Master-dark.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/components/calendars-dark.css",
-      "styles/themes/components/tabs/tab-master-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/month-picker-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-messages/message-Agent-dark.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/components/calendars-dark.css",
-      "styles/themes/components/tabs/tab-agent-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/month-picker-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/otp/otp-super-dark.css",
-    "inputFiles": [
-      "styles/components/accordions-dark.css",
-      "styles/themes/components/tabs/tab-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/otp/otp-master-dark.css",
-    "inputFiles": [
-      "styles/components/accordions-dark.css",
-      "styles/themes/components/tabs/tab-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/otp/otp-agent-dark.css",
-    "inputFiles": [
-      "styles/components/accordions-dark.css",
-      "styles/themes/components/tabs/tab-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/dcs/customizeDCS-dark.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/base/icon-fonts.css",
-      "styles/layout/dcs/customizeDCS-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/default-dark.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars-dark.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/monthpicker/monPickr-0.0.3.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/components/month-picker-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/components/bootstrap-multiselect-dark.css",
-      "styles/vendors/multiselect/fanex.multiSelect-dark.css",
-      "styles/components/pagination-dark.css",
-      "styles/components/tablesorter.css",
-      "styles/base/roboto-fonts.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/components/icon-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/default-dark.css",
-    "inputFiles": [
-      "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/components/tablesorter.css",
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/components/bootstrap-multiselect-dark.css",
-      "styles/components/pagination-dark.css",
-      "styles/components/icon-dark.css",
-      "styles/themes/customer-status-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/problem-account-Super-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/components/modals-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/components/tables-dark.css",
-      "styles/components/calendars-dark.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/components/month-picker-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/icon-dark.css",
-      "styles/themes/components/tabs/tab-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/problem-account-Master-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/components/modals-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/components/tables-dark.css",
-      "styles/components/calendars-dark.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/components/month-picker-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/icon-dark.css",
-      "styles/themes/components/tabs/tab-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/problem-account-Agent-dark.css",
-    "inputFiles": [
-      "styles/base/reset.css",
-      "styles/vendors-extensions/site-results/bootstrap-ex.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/vendors/select2.css",
-      "styles/fonts/iconalpha/style.css",
-      "styles/base/scaffolding-dark.css",
-      "styles/components/modals-dark.css",
-      "styles/components/tabs-dark.css",
-      "styles/components/buttons-dark.css",
-      "styles/components/textboxes-dark.css",
-      "styles/components/tables-dark.css",
-      "styles/components/calendars-dark.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/components/month-picker-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/icon-dark.css",
-      "styles/themes/components/tabs/tab-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/default-dark.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/filter-dark.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/components/bootstrap-multiselect-dark.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/filter-new-dark.css",
-    "inputFiles": [
-      "styles/components/calendars-dark.css",
-      "styles/vendors/daterangepicker/jquery.daterangepicker.css",
-      "styles/components/daterangepicker-customize-dark.css",
-      "styles/vendors/multiselect/fanex.multiSelect-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-betlists/pagination-dark.css",
-    "inputFiles": [
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/components/pagination-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-accountinfo/index-dark.css",
-    "inputFiles": [
-      "styles/components/tables-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Agent-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Master-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Super-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/chatbot/chatbot-default-dark.css",
-    "inputFiles": [
-      "styles/components/popover-dark.css",
-      "styles/components/tables-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-transfer/default-dark.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
-      "styles/vendors/jquery-easyui-1.5/easyui.css",
-      "styles/components/tablesorter.css",
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/components/bootstrap-multiselect-dark.css",
-      "styles/components/icon-dark.css",
-      "styles/components/pagination-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-transfer/filter-dark.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/dropdown-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-asset/data-table-dark.css",
-    "inputFiles": [
-      "styles/vendors/data-table/jquery.dataTables.css",
-      "styles/vendors/data-table/responsive.dataTables.css",
-      "styles/vendors/data-table/fixedHeader.dataTables.css",
-      "styles/components/datatable-customize-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-asset/daterangepicker-dark.css",
-    "inputFiles": [
-      "styles/vendors/daterangepicker/jquery.daterangepicker.css",
-      "styles/components/daterangepicker-customize-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/unsupport-browser/super-dark.css",
-    "inputFiles": [
-      "styles/fonts/iconalpha/style.css",
-      "styles/themes/unsupport-browser/super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/unsupport-browser/master-dark.css",
-    "inputFiles": [
-      "styles/fonts/iconalpha/style.css",
-      "styles/themes/unsupport-browser/master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/unsupport-browser/agent-dark.css",
-    "inputFiles": [
-      "styles/fonts/iconalpha/style.css",
-      "styles/themes/unsupport-browser/agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/tab-super.css",
-    "inputFiles": [
-      "styles/components/accordions.css",
-      "styles/themes/components/tabs/tab-super.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/tab-master.css",
-    "inputFiles": [
-      "styles/components/accordions.css",
-      "styles/themes/components/tabs/tab-master.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/tab-agent.css",
-    "inputFiles": [
-      "styles/components/accordions.css",
-      "styles/themes/components/tabs/tab-agent.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/tab-super-dark.css",
-    "inputFiles": [
-      "styles/components/accordions.css",
-      "styles/themes/components/tabs/tab-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/tab-master-dark.css",
-    "inputFiles": [
-      "styles/components/accordions.css",
-      "styles/themes/components/tabs/tab-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/tab-agent-dark.css",
-    "inputFiles": [
-      "styles/components/accordions.css",
-      "styles/themes/components/tabs/tab-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/tab-super-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/tab-master-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/tab-agent-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/tab-super-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-super-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/tab-master-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-master-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/tab-agent-dark.css",
-    "inputFiles": [
-      "styles/themes/components/tabs/tab-agent-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/daterangepicker-dark.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-main/apikey-dark.css",
-    "inputFiles": [
-      "styles/base/roboto-fonts.css",
-      "styles/components/tables-dark.css",
-      "styles/vendors/bootstrap-datetimepicker.css",
-      "styles/components/calendars-dark.css",
-      "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/icon-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-reports/winlossdetail-new-dark.css",
-    "inputFiles": [
-      "styles/vendors/daterangepicker/jquery.daterangepicker.css",
-      "styles/components/daterangepicker-customize-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-messages/backup-domains.js",
-    "inputFiles": [
-      "js/libs/clipboard/clipboard.js",
-      "js/libs/bootstrap/tab.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles/site-memberinfo/copy-account.js",
-    "inputFiles": [
-      "js/libs/clipboard/clipboard.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles-v2/common/common.css",
-    "inputFiles": [
-      "styles-v2/base/reset.css",
-      "styles-v2/fonts/iconalpha/style.css",
-      "styles-v2/base/scaffolding.css",
-      "styles-v2/components/buttons.css",
-      "styles-v2/components/textboxes.css",
-      "styles-v2/components/dropdown.css",
-      "styles-v2/components/utilities.css",
-      "styles-v2/components/filter.css",
-      "styles-v2/components/alert.css",
-      "styles-v2/components/modal.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles-v2/site-betlists/search-tickets.css",
-    "inputFiles": [
-      "styles-v2/vendors/tipsy.css",
-      "styles-v2/components/tables.css",
-      "styles-v2/components/multiselect.css",
-      "styles-v2/components/tipsy-modify.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles-v2/site-betlists/monitoring-bets.css",
-    "inputFiles": [
-      "styles/vendors/bootstrap-multiselect.css",
-      "styles/components/bootstrap-multiselect.css",
-      "styles/vendors/select2.css",
-      "styles-v2/vendors/tipsy.css",
-      "styles-v2/components/tables.css",
-      "styles-v2/components/multiselect.css",
-      "styles-v2/components/tipsy-modify.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles-v2/site-betlists/monitoring-bets.js",
-    "inputFiles": [
-      "js/components/multiselect/bootstrap-multiselect.js",
-      "js/components/select2/select2.js",
-      "js/libs/clipboard/clipboard.js",
-      "js/components/typeahead/typeahead.js",
-      "js-v2/components/tipsy/jquery.tipsy.js",
-      "js-v2/components/tipsy/tipsy-helper.js"
-    ]
-  },
-  {
-    "outputFileName": "bundles3/site-totalbetsforecast/default.css",
-    "inputFiles": [
-      "styles-v3/base/reset.css",
-      "styles-v3/base/fonts/iconalpha/style.css",
-      "styles-v3/base/fonts/roboto/roboto.css",
-      "styles-v3/base/scaffolding.css",
-      "styles-v3/base/utilities.css",
-      "styles-v3/vendors-extensions/common/bootstrap-ex.css",
-      "styles-v3/vendors/select2.css",
-      "styles-v3/components/table.css",
-      "styles-v3/components/title.css",
-      "styles-v3/components/tab-nav.css",
-      "styles-v3/components/form.css",
-      "styles-v3/components/button.css",
-      "styles-v3/components/modal.css",
-      "styles-v3/components/icon.css",
-      "styles-v3/components/alert.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles3/site-totalbetsforecast/soccer.css",
-    "inputFiles": [
-      "styles-v3/vendors/bootstrap-multiselect.css",
-      "styles-v3/components/dropdown.css"
-    ]
-  },
-  {
-    "outputFileName": "bundles3/site-totalbetsforecast/soccer.js",
-    "inputFiles": [
-      "js/libs/jquery/jquery.cookie.js",
-      "js/libs/numeral/numeral.js",
-      "js/components/coloranimation/jquery.animate-colors.js",
-      "js/components/highlight/jquery.pulse.js",
-      "js/components/countdown/jquery.countdown.js",
-      "js/components/multiselect/bootstrap-multiselect.js",
-      "js/components/select2/select2.js"
-    ]
-  }
+    {
+        "outputFileName": "bundles/common/common.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/common/bootstrap-ex.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding.css",
+            "styles/components/alerts.css",
+            "styles/components/blockui.css",
+            "styles/components/buttons.css",
+            "styles/components/breadcrumbs.css",
+            "styles/components/checkbox-radio.css",
+            "styles/components/dropdown.css",
+            "styles/components/form.css",
+            "styles/components/textboxes.css",
+            "styles/components/modals.css",
+            "styles/components/tabs.css",
+            "styles/components/icon.css",
+            "styles/base/pass-font.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/common/pass-font.css",
+        "inputFiles": ["styles/base/pass-font.css"]
+    },
+    {
+        "outputFileName": "bundles/common/common-Super.css",
+        "inputFiles": [
+            "styles/themes/components/tabs/tab-super.css",
+            "styles/themes/components/buttons/button-super.css",
+            "styles/components/customize-checkbox-radio.css",
+            "styles/themes/components/checkbox-radio/checkbox-radio-super.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/common/common-Master.css",
+        "inputFiles": [
+            "styles/themes/components/tabs/tab-master.css",
+            "styles/themes/components/buttons/button-master.css",
+            "styles/components/customize-checkbox-radio.css",
+            "styles/themes/components/checkbox-radio/checkbox-radio-master.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/common/common-Agent.css",
+        "inputFiles": [
+            "styles/themes/components/tabs/tab-agent.css",
+            "styles/themes/components/buttons/button-agent.css",
+            "styles/components/customize-checkbox-radio.css",
+            "styles/themes/components/checkbox-radio/checkbox-radio-agent.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/agent.css",
+        "inputFiles": [
+            "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+            "styles/vendors/ripples.css",
+            "styles/vendors/jquery.mCustomScrollbar.css",
+            "styles/layout/default-layout/header.css",
+            "styles/layout/default-layout/navigation.css",
+            "styles/layout/default-layout/sidebar.css",
+            "styles/themes/agent.css",
+            "styles/vendors/toastr/toastr.css",
+            "styles/components/toastr.css",
+            "styles/components/resizable.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/master.css",
+        "inputFiles": [
+            "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+            "styles/vendors/ripples.css",
+            "styles/vendors/jquery.mCustomScrollbar.css",
+            "styles/layout/default-layout/header.css",
+            "styles/layout/default-layout/navigation.css",
+            "styles/layout/default-layout/sidebar.css",
+            "styles/themes/master.css",
+            "styles/vendors/toastr/toastr.css",
+            "styles/components/toastr.css",
+            "styles/components/resizable.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/super.css",
+        "inputFiles": [
+            "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+            "styles/vendors/ripples.css",
+            "styles/vendors/jquery.mCustomScrollbar.css",
+            "styles/layout/default-layout/header.css",
+            "styles/layout/default-layout/navigation.css",
+            "styles/layout/default-layout/sidebar.css",
+            "styles/themes/super.css",
+            "styles/vendors/toastr/toastr.css",
+            "styles/components/toastr.css",
+            "styles/components/resizable.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/unsupport-browser/super.css",
+        "inputFiles": ["styles/fonts/iconalpha/style.css", "styles/themes/unsupport-browser/super.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/unsupport-browser/master.css",
+        "inputFiles": ["styles/fonts/iconalpha/style.css", "styles/themes/unsupport-browser/master.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/unsupport-browser/agent.css",
+        "inputFiles": ["styles/fonts/iconalpha/style.css", "styles/themes/unsupport-browser/agent.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/default.js",
+        "inputFiles": [
+            "js/libs/bootstrap/tab.js",
+            "js/libs/bootstrap-material/material.js",
+            "js/libs/bootstrap-material/ripples.js",
+            "js/libs/jquery/jquery.cookie.js",
+            "js/libs/jquery/jquery-ui.min.js",
+            "js/libs/jquery/jquery.ui.touch-punch.min.js",
+            "js/libs/storejs/store.js",
+            "js/components/scrollbar/jquery.mCustomScrollbar.js",
+            "js/components/draggable/tiny-draggable.js",
+            "js/components/typeahead/typeahead.js",
+            "js/components/toastr/toastr.js",
+            "js/components/resizable/resizable.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-results/super.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding.css",
+            "styles/components/modals.css",
+            "styles/components/tabs.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/themes/components/tabs/tab-super.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-results/master.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding.css",
+            "styles/components/modals.css",
+            "styles/components/tabs.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/themes/components/tabs/tab-master.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-results/agent.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding.css",
+            "styles/components/modals.css",
+            "styles/components/tabs.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/themes/components/tabs/tab-agent.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-results/default.js",
+        "inputFiles": [
+            "js/libs/jquery/jquery-1.11.3.js",
+            "js/libs/bootstrap/button.js",
+            "js/libs/bootstrap/dropdown.js",
+            "js/libs/bootstrap/modal.js",
+            "js/libs/moment/moment.js",
+            "js/components/datetimepicker/datepicker.js",
+            "js/components/datetimepicker/bootstrap-datetimepicker.js",
+            "js/components/select2/select2.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-totalbetsforecast/default.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-totalbetsforecast/bootstrap-ex.css",
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding.css",
+            "styles/components/blockui.css",
+            "styles/components/tables.css",
+            "styles/components/tabs.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/components/dropdown.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-totalbetsforecast/default.js",
+        "inputFiles": [
+            "js/libs/jquery/jquery-1.11.3.js",
+            "js/libs/bootstrap/button.js",
+            "js/libs/bootstrap/dropdown.js",
+            "js/libs/bootstrap/carousel.js",
+            "js/libs/bootstrap/modal.js",
+            "js/libs/bootstrap/tooltip.js",
+            "js/components/blockui/jquery.blockUI.js",
+            "js/libs/underscore/underscore-min.js",
+            "js/libs/numeral/numeral.js",
+            "js/components/coloranimation/jquery.animate-colors.js",
+            "js/components/highlight/jquery.pulse.js",
+            "js/components/countdown/jquery.countdown.js",
+            "js/components/multiselect/bootstrap-multiselect.js",
+            "js/libs/jquery/jquery.cookie.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-totalbetsforecast/unsupport-browser/default.js",
+        "inputFiles": [
+            "js/libs/jquery/jquery-1.11.3.js",
+            "js/libs/bootstrap/button.js",
+            "js/libs/bootstrap/dropdown.js",
+            "js/libs/bootstrap/carousel.js",
+            "js/libs/bootstrap/modal.js",
+            "js/libs/bootstrap/tooltip.js",
+            "js/components/blockui/jquery.blockUI.js",
+            "js/libs/underscore/underscore-min.js",
+            "js/libs/numeral/numeral.js",
+            "js/components/coloranimation/jquery.animate-colors.js",
+            "js/components/highlight/jquery.pulse.js",
+            "js/components/countdown/jquery.countdown.ie8.js",
+            "js/components/multiselect/bootstrap-multiselect.ie8.js",
+            "js/libs/jquery/jquery.cookie.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-viewlogs/viewlogs-super.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
+            "styles/base/scaffolding.css",
+            "styles/base/roboto-fonts.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/monthpicker/monPickr-0.0.3.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/vendors/jquery-easyui-1.5/icon.css",
+            "styles/components/month-picker.css",
+            "styles/components/tabs.css",
+            "styles/themes/components/tabs/tab-super.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/components/dropdown.css",
+            "styles/components/form.css",
+            "styles/components/checkbox-radio.css",
+            "styles/components/tables.css",
+            "styles/components/pagination.css",
+            "styles/components/blockui.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-viewlogs/viewlogs-master.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
+            "styles/base/scaffolding.css",
+            "styles/base/roboto-fonts.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/monthpicker/monPickr-0.0.3.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/vendors/jquery-easyui-1.5/icon.css",
+            "styles/components/month-picker.css",
+            "styles/components/tabs.css",
+            "styles/themes/components/tabs/tab-master.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/components/dropdown.css",
+            "styles/components/form.css",
+            "styles/components/checkbox-radio.css",
+            "styles/components/tables.css",
+            "styles/components/pagination.css",
+            "styles/components/blockui.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-viewlogs/viewlogs-agent.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
+            "styles/base/scaffolding.css",
+            "styles/base/roboto-fonts.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/monthpicker/monPickr-0.0.3.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/vendors/jquery-easyui-1.5/icon.css",
+            "styles/components/month-picker.css",
+            "styles/components/tabs.css",
+            "styles/themes/components/tabs/tab-agent.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/components/dropdown.css",
+            "styles/components/form.css",
+            "styles/components/checkbox-radio.css",
+            "styles/components/tables.css",
+            "styles/components/pagination.css",
+            "styles/components/blockui.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-viewlogs/default.js",
+        "inputFiles": [
+            "js/libs/jquery/jquery-1.11.3.js",
+            "js/libs/bootstrap/button.js",
+            "js/libs/bootstrap/dropdown.js",
+            "js/libs/bootstrap/tab.js",
+            "js/components/monthpicker/monPickr-0.0.3.js",
+            "js/components/pagination/jquery.draggable.js",
+            "js/components/pagination/jquery.resizable.js",
+            "js/components/pagination/jquery.parser.js",
+            "js/components/pagination/jquery.linkbutton.js",
+            "js/components/pagination/jquery.pagination.js",
+            "js/components/autocomplete/autocomplete.js",
+            "js/libs/jquery/jquery.cookie.js",
+            "js/components/sticky-table-headers/jquery.stickytableheaders.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/security/before-home-page.css",
+        "inputFiles": [
+            "styles/layout/before-home-page/before-home-page.css",
+            "styles/components/customize-checkbox-radio.css",
+            "styles/themes/components/checkbox-radio/checkbox-radio-super.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/security/security-super.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-super.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/security/security-master.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-master.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/security/security-agent.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-agent.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/dashboard/dashboard-super.css",
+        "inputFiles": ["styles/components/tables.css", "styles/themes/components/tabs/tab-super.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/dashboard/dashboard-master.css",
+        "inputFiles": ["styles/components/tables.css", "styles/themes/components/tabs/tab-master.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/dashboard/dashboard-agent.css",
+        "inputFiles": ["styles/components/tables.css", "styles/themes/components/tabs/tab-agent.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/dashboard/dashboard-default.js",
+        "inputFiles": ["js/libs/bootstrap/tab.js", "js/libs/hammer/hammer.js", "js/libs/hammer/jquery.hammer.js"]
+    },
+    {
+        "outputFileName": "bundles/site-messages/message-Super.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables.css",
+            "styles/components/calendars.css",
+            "styles/themes/components/tabs/tab-super.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/month-picker.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-messages/message-Master.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables.css",
+            "styles/components/calendars.css",
+            "styles/themes/components/tabs/tab-master.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/month-picker.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-messages/message-Agent.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables.css",
+            "styles/components/calendars.css",
+            "styles/themes/components/tabs/tab-agent.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/month-picker.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-messages/message-default.js",
+        "inputFiles": [
+            "js/libs/moment/moment.js",
+            "js/libs/bootstrap/tab.js",
+            "js/components/datetimepicker/datepicker.js",
+            "js/components/datetimepicker/bootstrap-datetimepicker.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/security/before-home-page.js",
+        "inputFiles": [
+            "js/components/secure-hashing/sha1.js",
+            "js/components/secure-hashing/sha256.js",
+            "js/components/inputconstraint/constraint-input.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/common/common.js",
+        "inputFiles": [
+            "js/libs/jquery/jquery-1.11.3.js",
+            "js/libs/bootstrap/button.js",
+            "js/libs/bootstrap/dropdown.js",
+            "js/libs/bootstrap/modal.js",
+            "js/libs/bootstrap/tooltip.js",
+            "js/libs/mobile/isMobile.js",
+            "js/components/blockui/jquery.blockUI.js",
+            "js/libs/bootstrap/carousel.js",
+            "js/libs/jquery/jquery.touchSwipe.js",
+            "js/components/bootbox/bootbox.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/common/es5-shim.js",
+        "inputFiles": ["js/libs/support-IE8/shim.js", "js/libs/support-IE8/sham.js"]
+    },
+    {
+        "outputFileName": "bundles/common/support-IE8.js",
+        "inputFiles": ["js/libs/support-IE8/html5shiv.js", "js/libs/support-IE8/respond.js"]
+    },
+    {
+        "outputFileName": "bundles/common/cleave-jquery.js",
+        "inputFiles": ["js/libs/cleave/cleave-1.5.8.js", "js/libs/cleave/jquery.cleave.js"]
+    },
+    {
+        "outputFileName": "bundles/common/ajaxSetup.js",
+        "inputFiles": ["js/components/ajaxSetup/jquery.ajaxSetup.js"]
+    },
+    {
+        "outputFileName": "bundles/site-main/otp/otp-super.css",
+        "inputFiles": ["styles/components/accordions.css", "styles/themes/components/tabs/tab-super.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/otp/otp-master.css",
+        "inputFiles": ["styles/components/accordions.css", "styles/themes/components/tabs/tab-master.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/otp/otp-agent.css",
+        "inputFiles": ["styles/components/accordions.css", "styles/themes/components/tabs/tab-agent.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/otp/otp-default.js",
+        "inputFiles": [
+            "js/libs/bootstrap/transition.js",
+            "js/libs/bootstrap/collapse.js",
+            "js/components/bootbox/bootbox.js",
+            "js/components/inputconstraint/constraint-input.js",
+            "js/libs/clipboard/clipboard.js",
+            "js/components/storejs/store.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/dcs/customizeDCS.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/base/icon-fonts.css",
+            "styles/layout/dcs/customizeDCS.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-reports/default.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/monthpicker/monPickr-0.0.3.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/components/month-picker.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/vendors/multiselect/fanex.multiSelect.css",
+            "styles/components/bootstrap-multiselect.css",
+            "styles/components/pagination.css",
+            "styles/components/tablesorter.css",
+            "styles/base/roboto-fonts.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/components/icon.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-reports/default.js",
+        "inputFiles": [
+            "js/libs/bootstrap/transition.js",
+            "js/libs/bootstrap/collapse.js",
+            "js/libs/moment/moment.js",
+            "js/components/datetimepicker/datepicker.js",
+            "js/components/datetimepicker/bootstrap-datetimepicker.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js",
+            "js/components/monthpicker/monPickr-0.0.3.js",
+            "js/components/pagination/jquery.draggable.js",
+            "js/components/pagination/jquery.resizable.js",
+            "js/components/pagination/jquery.parser.js",
+            "js/components/pagination/jquery.linkbutton.js",
+            "js/components/pagination/jquery.pagination.js",
+            "js/components/autocomplete/autocomplete.js",
+            "js/libs/jquery/jquery.cookie.js",
+            "js/components/multiselect/bootstrap-multiselect.js",
+            "js/components/multiselect/fanex.multiSelect.js",
+            "js/components/sticky-table-headers/jquery.stickytableheaders.js",
+            "js/components/tablesorter/tablesorter.js",
+            "js/components/draggable/tiny-draggable.js",
+            "js/components/storejs/store.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-reports/winloss-analysis-chart.js",
+        "inputFiles": ["js/components/chartjs/chart.js"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/default.css",
+        "inputFiles": [
+            "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/components/tablesorter.css",
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/components/bootstrap-multiselect.css",
+            "styles/components/pagination.css",
+            "styles/components/icon.css",
+            "styles/themes/customer-status.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/problem-account-Super.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding.css",
+            "styles/components/modals.css",
+            "styles/components/tabs.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/components/tables.css",
+            "styles/components/calendars.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/components/month-picker.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/icon.css",
+            "styles/themes/components/tabs/tab-super.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/problem-account-Master.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding.css",
+            "styles/components/modals.css",
+            "styles/components/tabs.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/components/tables.css",
+            "styles/components/calendars.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/components/month-picker.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/icon.css",
+            "styles/themes/components/tabs/tab-master.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/problem-account-Agent.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding.css",
+            "styles/components/modals.css",
+            "styles/components/tabs.css",
+            "styles/components/buttons.css",
+            "styles/components/textboxes.css",
+            "styles/components/tables.css",
+            "styles/components/calendars.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/components/month-picker.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/icon.css",
+            "styles/themes/components/tabs/tab-agent.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/problem-account.js",
+        "inputFiles": [
+            "js/libs/bootstrap/collapse.js",
+            "js/libs/moment/moment.js",
+            "js/libs/bootstrap/tab.js",
+            "js/components/datetimepicker/datepicker.js",
+            "js/components/datetimepicker/bootstrap-datetimepicker.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js",
+            "js/components/multiselect/bootstrap-multiselect.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/default.js",
+        "inputFiles": [
+            "js/libs/bootstrap/transition.js",
+            "js/libs/bootstrap/collapse.js",
+            "js/libs/cleave/cleave-1.5.8.js",
+            "js/libs/cleave/jquery.cleave.js",
+            "js/components/pagination/jquery.draggable.js",
+            "js/components/pagination/jquery.resizable.js",
+            "js/components/pagination/jquery.parser.js",
+            "js/components/pagination/jquery.linkbutton.js",
+            "js/components/pagination/jquery.pagination.js",
+            "js/components/bootbox/bootbox.js",
+            "js/libs/jquery/jquery.cookie.js",
+            "js/components/sticky-table-headers/jquery.stickytableheaders.js",
+            "js/components/tablesorter/tablesorter.js",
+            "js/components/multiselect/bootstrap-multiselect.js",
+            "js/components/storejs/store.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/credit-balance.js",
+        "inputFiles": ["js/components/typeahead/typeahead.js"]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/default.css",
+        "inputFiles": ["styles/base/roboto-fonts.css", "styles/components/tables.css"]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/default.js",
+        "inputFiles": ["js/libs/bootstrap/transition.js", "js/libs/bootstrap/collapse.js", "js/libs/storejs/store.js"]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/filter.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/components/bootstrap-multiselect.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars.css",
+            "styles/components/bootstrap.nexDatePicker.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/filter-new.css",
+        "inputFiles": [
+            "styles/components/calendars.css",
+            "styles/vendors/daterangepicker/jquery.daterangepicker.css",
+            "styles/components/daterangepicker-customize.css",
+            "styles/vendors/multiselect/fanex.multiSelect.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/filter.js",
+        "inputFiles": [
+            "js/components/multiselect/bootstrap-multiselect.js",
+            "js/libs/moment/moment.js",
+            "js/components/datetimepicker/datepicker.js",
+            "js/components/datetimepicker/bootstrap-datetimepicker.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/filter-new.js",
+        "inputFiles": [
+            "js/libs/moment/moment.js",
+            "js/libs/moment/locale/en-gb.js",
+            "js/libs/moment/locale/ja.js",
+            "js/libs/moment/locale/ko.js",
+            "js/libs/moment/locale/th.js",
+            "js/libs/moment/locale/vi.js",
+            "js/libs/moment/locale/zh-cn.js",
+            "js/libs/moment/locale/zh-tw.js",
+            "js/libs/moment/switch-locale.js",
+            "js/components/daterangepicker/jquery.daterangepicker.js",
+            "js/components/multiselect/fanex.multiSelect.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/last-bets.js",
+        "inputFiles": [
+            "js/libs/jquery/jquery.cookie.js",
+            "js/components/shortcut/shortcut.js",
+            "js/libs/storejs/store.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/pagination.css",
+        "inputFiles": ["styles/vendors/jquery-easyui-1.5/easyui.css", "styles/components/pagination.css"]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/pagination.js",
+        "inputFiles": [
+            "js/components/pagination/jquery.draggable.js",
+            "js/components/pagination/jquery.resizable.js",
+            "js/components/pagination/jquery.parser.js",
+            "js/components/pagination/jquery.linkbutton.js",
+            "js/components/pagination/jquery.pagination.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-transfer/pagination.js",
+        "inputFiles": [
+            "js/components/pagination/jquery.draggable.js",
+            "js/components/pagination/jquery.resizable.js",
+            "js/components/pagination/jquery.parser.js",
+            "js/components/pagination/jquery.linkbutton.js",
+            "js/components/pagination/jquery.pagination.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-accountinfo/index.css",
+        "inputFiles": ["styles/components/tables.css"]
+    },
+    {
+        "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Agent.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-agent.css"]
+    },
+    {
+        "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Master.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-master.css"]
+    },
+    {
+        "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Super.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-super.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/account-info/index.js",
+        "inputFiles": ["js/libs/bootstrap/tooltip.js", "js/libs/bootstrap-material/ripples.js"]
+    },
+    {
+        "outputFileName": "bundles/site-main/chatbot/chatbot-default.css",
+        "inputFiles": ["styles/components/popover.css", "styles/components/tables.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/chatbot/chatbot-default.js",
+        "inputFiles": [
+            "js/libs/bootstrap/transition.js",
+            "js/libs/bootstrap/collapse.js",
+            "js/libs/jquery/jquery-ui.min.js",
+            "js/libs/bootstrap/tooltip.js",
+            "js/libs/clipboard/clipboard.js",
+            "js/components/storejs/store.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-transfer/default.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/components/tablesorter.css",
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/components/bootstrap-multiselect.css",
+            "styles/components/icon.css",
+            "styles/components/pagination.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-transfer/default.js",
+        "inputFiles": [
+            "js/libs/bootstrap/transition.js",
+            "js/libs/bootstrap/collapse.js",
+            "js/components/pagination/jquery.draggable.js",
+            "js/components/pagination/jquery.resizable.js",
+            "js/components/bootbox/bootbox.js",
+            "js/libs/jquery/jquery.cookie.js",
+            "js/components/sticky-table-headers/jquery.stickytableheaders.js",
+            "js/components/tablesorter/tablesorter.js",
+            "js/components/multiselect/bootstrap-multiselect.js",
+            "js/components/countdown/jquery.countdown.js",
+            "js/components/storejs/store.js",
+            "js/components/autocomplete/autocomplete.js",
+            "js/components/three-state-button/jquery.theswitch.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-transfer/filter.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/dropdown.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-transfer/filter.js",
+        "inputFiles": [
+            "js/libs/moment/moment.js",
+            "js/components/datetimepicker/datepicker.js",
+            "js/components/datetimepicker/bootstrap-datetimepicker.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-asset/numeral.js",
+        "inputFiles": ["js/libs/numeral/numeral.js"]
+    },
+    {
+        "outputFileName": "bundles/site-asset/data-table.js",
+        "inputFiles": [
+            "js/components/data-table/jquery.dataTables.js",
+            "js/components/data-table/dataTables.fixedHeader.js",
+            "js/components/data-table/dataTables.responsive.js",
+            "js/components/data-table/dataTables.pagination.input.js",
+            "js/libs/bootstrap/modal.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-asset/data-table.css",
+        "inputFiles": [
+            "styles/vendors/data-table/jquery.dataTables.css",
+            "styles/vendors/data-table/responsive.dataTables.css",
+            "styles/vendors/data-table/fixedHeader.dataTables.css",
+            "styles/components/datatable-customize.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-asset/daterangepicker.js",
+        "inputFiles": [
+            "js/libs/moment/locale/en-gb.js",
+            "js/libs/moment/locale/ja.js",
+            "js/libs/moment/locale/ko.js",
+            "js/libs/moment/locale/th.js",
+            "js/libs/moment/locale/vi.js",
+            "js/libs/moment/locale/zh-cn.js",
+            "js/libs/moment/locale/zh-tw.js",
+            "js/libs/moment/switch-locale.js",
+            "js/components/daterangepicker/jquery.daterangepicker.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
+            "js/components/daterangepicker/nexDateRangePicker.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-asset/daterangepicker.css",
+        "inputFiles": [
+            "styles/vendors/daterangepicker/jquery.daterangepicker.css",
+            "styles/components/daterangepicker-customize.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/data-table.js",
+        "inputFiles": [
+            "js/components/data-table/jquery.dataTables.js",
+            "js/components/data-table/dataTables.fixedHeader.js",
+            "js/components/data-table/dataTables.responsive.js",
+            "js/components/data-table/dataTables.pagination.input.js",
+            "js/libs/bootstrap/modal.js",
+            "js/libs/jquery/jquery-ui.min.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-reports/tab-super.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-super.css"]
+    },
+    {
+        "outputFileName": "bundles/site-reports/tab-master.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-master.css"]
+    },
+    {
+        "outputFileName": "bundles/site-reports/tab-agent.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-agent.css"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/tab-super.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-super.css"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/tab-master.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-master.css"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/tab-agent.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-agent.css"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/daterangepicker.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars.css",
+            "styles/components/bootstrap.nexDatePicker.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/daterangepicker.js",
+        "inputFiles": [
+            "js/libs/moment/moment.js",
+            "js/components/datetimepicker/datepicker.js",
+            "js/components/datetimepicker/bootstrap-datetimepicker.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/apikey.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/icon.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/apikey.js",
+        "inputFiles": [
+            "js/libs/moment/moment.js",
+            "js/components/datetimepicker/datepicker.js",
+            "js/components/datetimepicker/bootstrap-datetimepicker.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
+            "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js",
+            "js/components/storejs/store.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/apikey/clipboard.js",
+        "inputFiles": ["js/libs/bootstrap/tooltip.js", "js/libs/clipboard/clipboard.js"]
+    },
+    {
+        "outputFileName": "bundles/site-reports/winlossdetail-new.js",
+        "inputFiles": [
+            "js/libs/moment/locale/en-gb.js",
+            "js/libs/moment/locale/ja.js",
+            "js/libs/moment/locale/ko.js",
+            "js/libs/moment/locale/th.js",
+            "js/libs/moment/locale/vi.js",
+            "js/libs/moment/locale/zh-cn.js",
+            "js/libs/moment/locale/zh-tw.js",
+            "js/libs/moment/switch-locale.js",
+            "js/components/daterangepicker/jquery.daterangepicker.js",
+            "js/components/typeahead/typeahead.js",
+            "js/libs/clipboard/clipboard.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-reports/winlossdetail-new.css",
+        "inputFiles": [
+            "styles/vendors/daterangepicker/jquery.daterangepicker.css",
+            "styles/components/daterangepicker-customize.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles-v2/site-betlists/monitoring-bets.js",
+        "inputFiles": ["js/components/multiselect/bootstrap-multiselect.js", "js/libs/clipboard/clipboard.js"]
+    },
+    {
+        "outputFileName": "bundles/common/common-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/common/bootstrap-ex.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/components/alerts-dark.css",
+            "styles/components/blockui-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/breadcrumbs-dark.css",
+            "styles/components/checkbox-radio.css",
+            "styles/components/dropdown-dark.css",
+            "styles/components/form-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/components/modals-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/components/icon-dark.css",
+            "styles/base/pass-font.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/common/common-Super-dark.css",
+        "inputFiles": [
+            "styles/themes/components/tabs/tab-super-dark.css",
+            "styles/themes/components/buttons/button-super-dark.css",
+            "styles/components/customize-checkbox-radio-dark.css",
+            "styles/themes/components/checkbox-radio/checkbox-radio-super-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/common/common-Master-dark.css",
+        "inputFiles": [
+            "styles/themes/components/tabs/tab-master-dark.css",
+            "styles/themes/components/buttons/button-master-dark.css",
+            "styles/components/customize-checkbox-radio-dark.css",
+            "styles/themes/components/checkbox-radio/checkbox-radio-master-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/common/common-Agent-dark.css",
+        "inputFiles": [
+            "styles/themes/components/tabs/tab-agent-dark.css",
+            "styles/themes/components/buttons/button-agent-dark.css",
+            "styles/components/customize-checkbox-radio-dark.css",
+            "styles/themes/components/checkbox-radio/checkbox-radio-agent-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/agent-dark.css",
+        "inputFiles": [
+            "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+            "styles/vendors/ripples.css",
+            "styles/vendors/jquery.mCustomScrollbar.css",
+            "styles/layout/default-layout/header-dark.css",
+            "styles/layout/default-layout/navigation.css",
+            "styles/layout/default-layout/sidebar-dark.css",
+            "styles/themes/agent-dark.css",
+            "styles/vendors/toastr/toastr.css",
+            "styles/components/toastr-dark.css",
+            "styles/components/resizable.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/master-dark.css",
+        "inputFiles": [
+            "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+            "styles/vendors/ripples.css",
+            "styles/vendors/jquery.mCustomScrollbar.css",
+            "styles/layout/default-layout/header-dark.css",
+            "styles/layout/default-layout/navigation.css",
+            "styles/layout/default-layout/sidebar-dark.css",
+            "styles/themes/master-dark.css",
+            "styles/vendors/toastr/toastr.css",
+            "styles/components/toastr-dark.css",
+            "styles/components/resizable.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/super-dark.css",
+        "inputFiles": [
+            "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+            "styles/vendors/ripples.css",
+            "styles/vendors/jquery.mCustomScrollbar.css",
+            "styles/layout/default-layout/header-dark.css",
+            "styles/layout/default-layout/navigation.css",
+            "styles/layout/default-layout/sidebar-dark.css",
+            "styles/themes/super-dark.css",
+            "styles/vendors/toastr/toastr.css",
+            "styles/components/toastr-dark.css",
+            "styles/components/resizable.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-results/super-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars-dark.css",
+            "styles/vendors/select2.css",
+            "styles/components/select2-dark.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/components/modals-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/themes/components/tabs/tab-super-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-results/master-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars-dark.css",
+            "styles/vendors/select2.css",
+            "styles/components/select2-dark.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/components/modals-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/themes/components/tabs/tab-master-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-results/agent-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars-dark.css",
+            "styles/vendors/select2.css",
+            "styles/components/select2-dark.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/components/modals-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/themes/components/tabs/tab-agent-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-totalbetsforecast/default-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-totalbetsforecast/bootstrap-ex.css",
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/components/blockui-dark.css",
+            "styles/components/tables-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/components/dropdown-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-viewlogs/viewlogs-super-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/base/roboto-fonts.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/monthpicker/monPickr-0.0.3.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/vendors/jquery-easyui-1.5/icon.css",
+            "styles/components/month-picker-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/themes/components/tabs/tab-super-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/components/dropdown-dark.css",
+            "styles/components/form-dark.css",
+            "styles/components/checkbox-radio.css",
+            "styles/components/tables-dark.css",
+            "styles/components/pagination-dark.css",
+            "styles/components/blockui-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-viewlogs/viewlogs-master-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/base/roboto-fonts.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/monthpicker/monPickr-0.0.3.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/vendors/jquery-easyui-1.5/icon.css",
+            "styles/components/month-picker-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/themes/components/tabs/tab-master-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/components/dropdown-dark.css",
+            "styles/components/form-dark.css",
+            "styles/components/checkbox-radio.css",
+            "styles/components/tables-dark.css",
+            "styles/components/pagination-dark.css",
+            "styles/components/blockui-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-viewlogs/viewlogs-agent-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-viewlogs/bootstrap-ex.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/base/roboto-fonts.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/monthpicker/monPickr-0.0.3.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/vendors/jquery-easyui-1.5/icon.css",
+            "styles/components/month-picker-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/themes/components/tabs/tab-agent-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/components/dropdown-dark.css",
+            "styles/components/form-dark.css",
+            "styles/components/checkbox-radio.css",
+            "styles/components/tables-dark.css",
+            "styles/components/pagination-dark.css",
+            "styles/components/blockui-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/security/before-home-page-dark.css",
+        "inputFiles": [
+            "styles/layout/before-home-page/before-home-page-dark.css",
+            "styles/components/customize-checkbox-radio-dark.css",
+            "styles/themes/components/checkbox-radio/checkbox-radio-super-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/security/security-super-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-super-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/security/security-master-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-master-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/security/security-agent-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-agent-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/dashboard/dashboard-super-dark.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/themes/components/tabs/tab-super-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/dashboard/dashboard-master-dark.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/themes/components/tabs/tab-master-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/dashboard/dashboard-agent-dark.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/themes/components/tabs/tab-agent-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-messages/message-Super-dark.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/components/calendars-dark.css",
+            "styles/themes/components/tabs/tab-super-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/month-picker-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-messages/message-Master-dark.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/components/calendars-dark.css",
+            "styles/themes/components/tabs/tab-master-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/month-picker-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-messages/message-Agent-dark.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/components/calendars-dark.css",
+            "styles/themes/components/tabs/tab-agent-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/month-picker-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/otp/otp-super-dark.css",
+        "inputFiles": ["styles/components/accordions-dark.css", "styles/themes/components/tabs/tab-super-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/otp/otp-master-dark.css",
+        "inputFiles": ["styles/components/accordions-dark.css", "styles/themes/components/tabs/tab-master-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/otp/otp-agent-dark.css",
+        "inputFiles": ["styles/components/accordions-dark.css", "styles/themes/components/tabs/tab-agent-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/dcs/customizeDCS-dark.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/base/icon-fonts.css",
+            "styles/layout/dcs/customizeDCS-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-reports/default-dark.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars-dark.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/monthpicker/monPickr-0.0.3.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/components/month-picker-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/components/bootstrap-multiselect-dark.css",
+            "styles/vendors/multiselect/fanex.multiSelect-dark.css",
+            "styles/components/pagination-dark.css",
+            "styles/components/tablesorter.css",
+            "styles/base/roboto-fonts.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/components/icon-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/default-dark.css",
+        "inputFiles": [
+            "styles/vendors-extensions/site-main/bootstrap-material-ex.css",
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/components/tablesorter.css",
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/components/bootstrap-multiselect-dark.css",
+            "styles/components/pagination-dark.css",
+            "styles/components/icon-dark.css",
+            "styles/themes/customer-status-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/problem-account-Super-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/components/modals-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/components/tables-dark.css",
+            "styles/components/calendars-dark.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/components/month-picker-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/icon-dark.css",
+            "styles/themes/components/tabs/tab-super-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/problem-account-Master-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/components/modals-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/components/tables-dark.css",
+            "styles/components/calendars-dark.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/components/month-picker-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/icon-dark.css",
+            "styles/themes/components/tabs/tab-master-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/problem-account-Agent-dark.css",
+        "inputFiles": [
+            "styles/base/reset.css",
+            "styles/vendors-extensions/site-results/bootstrap-ex.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/vendors/select2.css",
+            "styles/fonts/iconalpha/style.css",
+            "styles/base/scaffolding-dark.css",
+            "styles/components/modals-dark.css",
+            "styles/components/tabs-dark.css",
+            "styles/components/buttons-dark.css",
+            "styles/components/textboxes-dark.css",
+            "styles/components/tables-dark.css",
+            "styles/components/calendars-dark.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/components/month-picker-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/icon-dark.css",
+            "styles/themes/components/tabs/tab-agent-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/default-dark.css",
+        "inputFiles": ["styles/base/roboto-fonts.css", "styles/components/tables-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/filter-dark.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/components/bootstrap-multiselect-dark.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/filter-new-dark.css",
+        "inputFiles": [
+            "styles/components/calendars-dark.css",
+            "styles/vendors/daterangepicker/jquery.daterangepicker.css",
+            "styles/components/daterangepicker-customize-dark.css",
+            "styles/vendors/multiselect/fanex.multiSelect-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-betlists/pagination-dark.css",
+        "inputFiles": ["styles/vendors/jquery-easyui-1.5/easyui.css", "styles/components/pagination-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-accountinfo/index-dark.css",
+        "inputFiles": ["styles/components/tables-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Agent-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-agent-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Master-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-master-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-accountinfo/profilepicture/profilepicture-Super-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-super-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/chatbot/chatbot-default-dark.css",
+        "inputFiles": ["styles/components/popover-dark.css", "styles/components/tables-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-transfer/default-dark.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/vendors/jqueryui/jquery-ui-1.9.1.custom.css",
+            "styles/vendors/jquery-easyui-1.5/easyui.css",
+            "styles/components/tablesorter.css",
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/components/bootstrap-multiselect-dark.css",
+            "styles/components/icon-dark.css",
+            "styles/components/pagination-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-transfer/filter-dark.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/dropdown-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-asset/data-table-dark.css",
+        "inputFiles": [
+            "styles/vendors/data-table/jquery.dataTables.css",
+            "styles/vendors/data-table/responsive.dataTables.css",
+            "styles/vendors/data-table/fixedHeader.dataTables.css",
+            "styles/components/datatable-customize-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-asset/daterangepicker-dark.css",
+        "inputFiles": [
+            "styles/vendors/daterangepicker/jquery.daterangepicker.css",
+            "styles/components/daterangepicker-customize-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/unsupport-browser/super-dark.css",
+        "inputFiles": ["styles/fonts/iconalpha/style.css", "styles/themes/unsupport-browser/super-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/unsupport-browser/master-dark.css",
+        "inputFiles": ["styles/fonts/iconalpha/style.css", "styles/themes/unsupport-browser/master-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/unsupport-browser/agent-dark.css",
+        "inputFiles": ["styles/fonts/iconalpha/style.css", "styles/themes/unsupport-browser/agent-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/tab-super.css",
+        "inputFiles": ["styles/components/accordions.css", "styles/themes/components/tabs/tab-super.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/tab-master.css",
+        "inputFiles": ["styles/components/accordions.css", "styles/themes/components/tabs/tab-master.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/tab-agent.css",
+        "inputFiles": ["styles/components/accordions.css", "styles/themes/components/tabs/tab-agent.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/tab-super-dark.css",
+        "inputFiles": ["styles/components/accordions.css", "styles/themes/components/tabs/tab-super-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/tab-master-dark.css",
+        "inputFiles": ["styles/components/accordions.css", "styles/themes/components/tabs/tab-master-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-main/tab-agent-dark.css",
+        "inputFiles": ["styles/components/accordions.css", "styles/themes/components/tabs/tab-agent-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-reports/tab-super-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-super-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-reports/tab-master-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-master-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-reports/tab-agent-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-agent-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/tab-super-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-super-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/tab-master-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-master-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/tab-agent-dark.css",
+        "inputFiles": ["styles/themes/components/tabs/tab-agent-dark.css"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/daterangepicker-dark.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/apikey-dark.css",
+        "inputFiles": [
+            "styles/base/roboto-fonts.css",
+            "styles/components/tables-dark.css",
+            "styles/vendors/bootstrap-datetimepicker.css",
+            "styles/components/calendars-dark.css",
+            "styles/components/bootstrap.nexDatePicker.css",
+            "styles/components/icon-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-reports/winlossdetail-new-dark.css",
+        "inputFiles": [
+            "styles/vendors/daterangepicker/jquery.daterangepicker.css",
+            "styles/components/daterangepicker-customize-dark.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-messages/backup-domains.js",
+        "inputFiles": ["js/libs/clipboard/clipboard.js", "js/libs/bootstrap/tab.js"]
+    },
+    {
+        "outputFileName": "bundles/site-memberinfo/copy-account.js",
+        "inputFiles": ["js/libs/clipboard/clipboard.js"]
+    },
+    {
+        "outputFileName": "bundles-v2/common/common.css",
+        "inputFiles": [
+            "styles-v2/base/reset.css",
+            "styles-v2/fonts/iconalpha/style.css",
+            "styles-v2/base/scaffolding.css",
+            "styles-v2/components/buttons.css",
+            "styles-v2/components/textboxes.css",
+            "styles-v2/components/dropdown.css",
+            "styles-v2/components/utilities.css",
+            "styles-v2/components/filter.css",
+            "styles-v2/components/alert.css",
+            "styles-v2/components/modal.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles-v2/site-betlists/search-tickets.css",
+        "inputFiles": [
+            "styles-v2/vendors/tipsy.css",
+            "styles-v2/components/tables.css",
+            "styles-v2/components/multiselect.css",
+            "styles-v2/components/tipsy-modify.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles-v2/site-betlists/monitoring-bets.css",
+        "inputFiles": [
+            "styles/vendors/bootstrap-multiselect.css",
+            "styles/components/bootstrap-multiselect.css",
+            "styles/vendors/select2.css",
+            "styles-v2/vendors/tipsy.css",
+            "styles-v2/components/tables.css",
+            "styles-v2/components/multiselect.css",
+            "styles-v2/components/tipsy-modify.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles-v2/site-betlists/monitoring-bets.js",
+        "inputFiles": [
+            "js/components/multiselect/bootstrap-multiselect.js",
+            "js/components/select2/select2.js",
+            "js/libs/clipboard/clipboard.js",
+            "js/components/typeahead/typeahead.js",
+            "js-v2/components/tipsy/jquery.tipsy.js",
+            "js-v2/components/tipsy/tipsy-helper.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles3/site-totalbetsforecast/default.css",
+        "inputFiles": [
+            "styles-v3/base/reset.css",
+            "styles-v3/base/fonts/iconalpha/style.css",
+            "styles-v3/base/fonts/roboto/roboto.css",
+            "styles-v3/base/scaffolding.css",
+            "styles-v3/base/utilities.css",
+            "styles-v3/vendors-extensions/common/bootstrap-ex.css",
+            "styles-v3/vendors/select2.css",
+            "styles-v3/components/table.css",
+            "styles-v3/components/title.css",
+            "styles-v3/components/tab-nav.css",
+            "styles-v3/components/form.css",
+            "styles-v3/components/button.css",
+            "styles-v3/components/modal.css",
+            "styles-v3/components/icon.css",
+            "styles-v3/components/alert.css",
+            "styles-v3/components/breadcrumd.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles3/site-totalbetsforecast/soccer.css",
+        "inputFiles": [
+            "styles-v3/base/reset.css",
+            "styles-v3/base/fonts/iconalpha/style.css",
+            "styles-v3/base/fonts/roboto/roboto.css",
+            "styles-v3/base/scaffolding.css",
+            "styles-v3/base/utilities.css",
+            "styles-v3/vendors/bootstrap-multiselect.css",
+            "styles-v3/components/dropdown.css",
+            "styles-v3/components/modal.css",
+            "styles-v3/components/breadcrumd.css",
+            "styles-v3/components/button.css",
+            "styles-v3/components/tooltip.css",
+            "styles-v3/components/table.css",
+            "styles-v3/components/form.css",
+            "styles-v3/components/carousel.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles3/site-totalbetsforecast/soccer.js",
+        "inputFiles": [
+            "js/libs/jquery/jquery.cookie.js",
+            "js/libs/numeral/numeral.js",
+            "js/components/coloranimation/jquery.animate-colors.js",
+            "js/components/highlight/jquery.pulse.js",
+            "js/components/countdown/jquery.countdown.js",
+            "js/components/multiselect/bootstrap-multiselect.js",
+            "js/components/select2/select2.js"
+        ]
+    }
 ]

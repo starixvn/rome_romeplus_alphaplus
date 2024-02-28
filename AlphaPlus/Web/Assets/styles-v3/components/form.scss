@@ -4,12 +4,12 @@
     --select-text-color: #333;
 }
 :root [data-theme='dark'] {
-    --select-border: 1px solid #363636;
-    --select-bg: #1f1f1f;
+    --select-border: 1px solid #292929;
+    --select-bg: #171717;
     --select-text-color: #ededed;
 }
 select {
-    height: 30px;
+    height: 28px;
     border: var(--select-border);
     color: var(--select-text-color);
     background: var(--select-bg);

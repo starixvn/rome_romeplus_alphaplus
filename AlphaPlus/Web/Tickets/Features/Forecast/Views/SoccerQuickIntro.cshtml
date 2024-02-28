@@ -3,12 +3,10 @@
     var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
 }
 @model string
-<div class="modal fade" id="beginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+<div class="modal modal-quicktour fade" id="beginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog smallModal">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
+         
             <div class="modal-body">
                 <p><strong class="modal-title">@Resources.Forecast_Title</strong></p>
                 <p>@Resources.Forecast_Title_Content</p>
@@ -23,29 +21,26 @@
     </div>
 </div>
 <!-- Large modal -->
-<div class="modal fade" id="quickIntroductionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal modal-quickIntro fade" id="quickIntroductionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog  largeModal">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
-                        class="icon-close"></i></button>
-            </div>
+            <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true"><i class="icon-close"></i></button>
             <div class="modal-body">
-                <div id="carousel-main" class="carousel slide carousel-fade" data-ride="carousel">
+                <div id="carousel-main" class="carousel slide carousel-fade carouselquickIntro" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="carousel-item item active">
                             <h4>@Resources.Forecast_Popup_1</h4>
                             <div class="slider"><img src="~/bundles/images/@Model/slide2.png?v=@version" />
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="carousel-item item">
                             <h4>@Resources.Forecast_Popup_1</h4>
                             <div class="slider"><img src="~/bundles/images/@Model/slide3.png?v=@version" />
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="carousel-item item">
                             <h4>@Resources.Forecast_Popup_2</h4>
                             <ul class="info-text">
                                 <li>@Resources.Forecast_Popup_3</li>
@@ -66,7 +61,6 @@
                     </div>
                     <div class="carousel-caption">
                     </div>
-
                     <!-- Controls -->
                     <div class="buttons-control">
                         <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">

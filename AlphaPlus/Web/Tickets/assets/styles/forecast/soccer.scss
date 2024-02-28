@@ -1,21 +1,47 @@
 @import '../mixins';
 
-$primary-color: #666;
-$hover-back-ground-color: #f8ff8d;
-$win-loss-name-background-color: #ebeaea;
-$positive-color: #e40000;
-$back-ground-focus-color: #bbcae9;
+//  scoremap
+:root,
+:root [data-theme='light'] {
+    .totalandforecast {
+        --color-icon-alert-browser: #fe7e01;
+        --color-icon-close-browser: #bcba7d;
+        --color-note-browser: #803f00;
+        --bg-note-browser: #faf9dd;
+        --border-note-browser: #bcba7d;
+
+        // table
+        --background-col-table: #ffffff;
+        --border-table: #d1d1d1;
+        --background-ground-color: #f8ff8d;
+        --background-win-loss-name: #ebeaea;
+        --color-positive: #e40000;
+        --background-focus-color: #bbcae9;
+    }
+}
+:root [data-theme='dark'] {
+    background-color: #171717;
+    .totalandforecast {
+        // table
+        --background-col-table: #171717;
+        --border-table: #5f626b;
+        --background-ground-color: #36362e;
+        --background-win-loss-name: #2e2f30;
+        --color-positive: #ff4f50;
+        --background-focus-color: #2d4372;
+    }
+}
 
 body {
     font-size: 13px;
-    background: #f4f4f4;
+    background: transparent;
     font-family: Roboto, Arial;
 }
 
 .note-browser {
-    background: #faf9dd;
-    border: 1px solid #bcba7d;
-    color: #803f00;
+    background: var(--bg-note-browser);
+    border: 1px solid var(--border-note-browser);
+    color: var(--color-note-browser);
     padding: 0 15px;
     width: 100%;
     display: table;
@@ -29,13 +55,12 @@ body {
     .icon-alert:before {
         font-family: 'Iconalpha';
         content: '\e937';
-        color: #fe7e01;
+        color: var(--color-icon-alert-browser);
         font-size: 28px;
     }
 
     a {
         font-weight: bold;
-        color: #045bce;
         text-decoration: underline;
         white-space: nowrap;
     }
@@ -47,7 +72,7 @@ body {
     .icon-closed:before {
         font-family: 'Iconalpha';
         content: '\e92c';
-        color: #bcba7d;
+        color: var(--color-icon-close-browser);
         font-size: 18px;
         position: absolute;
         top: 5px;
@@ -58,7 +83,6 @@ body {
 
 .totalandforecast {
     .filter {
-        padding-top: 15px;
         position: relative;
 
         .form-inline {
@@ -74,7 +98,7 @@ body {
             margin-right: 8px;
         }
 
-        .btnSubmit {
+        .btn-submit {
             margin-right: 8px;
         }
 
@@ -88,46 +112,6 @@ body {
             font-weight: normal;
         }
     }
-
-    .breadcrumb {
-        overflow: hidden;
-        padding: 10px 0 5px;
-        margin: 0;
-        border-bottom: 1px solid #cecece;
-        border-radius: 0;
-
-        li {
-            color: #9d1c1c;
-            font-weight: 700;
-            text-transform: uppercase;
-            position: relative;
-
-            + li:before {
-                content: '\276F';
-                color: #333;
-                padding: 0 8px;
-            }
-
-            .help {
-                position: absolute;
-                right: -27px;
-                top: -5px;
-                cursor: pointer;
-                font-weight: normal;
-
-                &:before {
-                    content: '\e92a';
-                    font-family: 'Iconalpha';
-                    font-size: 18px;
-                    color: #0f82c4;
-                }
-
-                &:hover {
-                    color: #666;
-                }
-            }
-        }
-    }
 }
 
 table * {
@@ -139,15 +123,13 @@ table * {
 }
 
 .tblRpt {
-    color: #000;
-
     tbody tr {
         &:hover {
-            background-color: $hover-back-ground-color;
+            background-color: var(--background-ground-color);
 
             td {
                 &.ex-col {
-                    background-color: $hover-back-ground-color !important;
+                    background-color: var(--background-ground-color) !important;
                 }
 
                 &.win-loss-name {
@@ -160,31 +142,31 @@ table * {
     tr td {
         &.col-time,
         &.col-event {
-            font-weight: bold;
+            font-weight: 500;
 
             &:hover {
-                background-color: #fff !important;
+                background-color: var(--background-ground-color) !important;
             }
         }
 
         &.high-light-score {
-            background-color: $back-ground-focus-color !important;
+            background-color: var(--background-focus-color) !important;
         }
 
         &.high-light-win-loss {
-            font-weight: bold;
+            font-weight: 500;
         }
     }
 
     tr:hover td {
         &.col-time,
         &.col-event {
-            background-color: #fff !important;
+            background-color: var(--background-ground-table) !important;
         }
     }
 
     &.tblRpt-bordered tr.last-row td.ex-col {
-        border-bottom: 1px solid #dfdfdf;
+        border-bottom: 1px solid var(--border-table);
     }
 
     tr.cl-league td {
@@ -207,9 +189,8 @@ table * {
         border-bottom: none;
 
         &.head {
-            background: $win-loss-name-background-color;
-            color: #000;
-            border-bottom: 1px solid #dfdfdf;
+            background: var(--background-win-loss-name);
+            border-bottom: 1px solid var(--border-table);
             font-size: 10px;
         }
 
@@ -231,7 +212,7 @@ table * {
         font-size: 13px;
 
         td.total-text {
-            background-color: $back-ground-focus-color;
+            background-color: var(--background-focus-color);
         }
     }
 
@@ -240,7 +221,7 @@ table * {
     .live-status,
     .positive,
     .live-match {
-        color: $positive-color;
+        color: var(--color-positive);
     }
 
     .offer-live {
@@ -263,170 +244,8 @@ table * {
     }
 
     .match-score {
-        color: $positive-color;
+        color: var(--color-positive);
     }
-}
-
-.btn.btn-countdown {
-    background-color: #eee;
-    color: #212121;
-    padding: 6px 4px 2px 8px;
-    font-size: 13px;
-    width: 83px;
-
-    &:focus,
-    &:active {
-        @include box-shadow(0, 2px, 2px, rgba(0, 0, 0, 0.3));
-    }
-
-    &:hover {
-        background-color: #e1e1e1;
-    }
-
-    .icon-refresh,
-    .dropdown-toggle {
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .dropdown-toggle {
-        border: 0;
-        background: inherit;
-    }
-
-    .icon-refresh:before {
-        content: '\e933';
-        font-family: 'Iconalpha';
-        font-size: 20px;
-        position: relative;
-        color: #212121;
-        top: -2px;
-    }
-
-    #ddlRefresh {
-        position: relative;
-        top: -1px;
-    }
-}
-
-#refresh-value {
-    padding: 0;
-    border-radius: 0;
-
-    > li {
-        > a {
-            padding: 5px 32px;
-            font-size: 12px;
-        }
-
-        a:hover {
-            background: #d9d9d9;
-        }
-    }
-}
-
-.btn-group button.multiselect {
-    @include box-shadow(0, 1px, 1px, rgba(0, 0, 0, 0.3));
-    background: #fff;
-    position: relative;
-    padding: 6px 10px;
-    font-size: 13px;
-
-    &:hover {
-        color: inherit;
-    }
-
-    &:focus,
-    &:visited {
-        @include box-shadow(0, 1px, 1px, rgba(0, 0, 0, 0.3));
-    }
-
-    .caret {
-        position: absolute;
-        right: 10px;
-        top: 12px;
-    }
-}
-
-.btn-group.open > .dropdown-toggle.btn-default {
-    background: #fff;
-}
-
-.btn-group.open > .dropdown-toggle {
-    box-shadow: none;
-}
-
-.multiselect {
-    &.btn-default.active,
-    &.btn-default:active {
-        background: #fff;
-    }
-}
-
-.form-inline .multiselect-container label.checkbox {
-    padding: 3px 20px 3px 35px;
-}
-
-.multiselect-container.dropdown-menu {
-    font-size: 13px;
-
-    > li > a > label {
-        padding: 3px 20px 3px 35px;
-    }
-
-    li:hover {
-        background: #5897fb;
-    }
-
-    .filter {
-        padding: 0;
-
-        &:hover {
-            background: #fff;
-        }
-
-        .input-group {
-            width: 91%;
-
-            .form-control.multiselect-search {
-                width: 100%;
-            }
-
-            .input-group-addon,
-            .input-group-btn {
-                display: none;
-            }
-
-            .form-control.multiselect-search {
-                border-radius: 2px;
-                box-shadow: none;
-                border: 1px solid #aaa;
-                line-height: 18px;
-
-                &:hover {
-                    background: #fff;
-                }
-            }
-        }
-    }
-
-    .checkbox input[type='checkbox'],
-    .checkbox-inline input[type='checkbox'],
-    .radio input[type='radio'],
-    .radio-inline input[type='radio'] {
-        margin-left: -22px;
-        top: 1px;
-    }
-}
-
-.multiselect-selected-text {
-    width: 170px;
-    margin-right: 10px;
-    display: inline-block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    text-align: left;
 }
 
 .content {
@@ -457,7 +276,7 @@ table * {
     line-height: 28px;
 
     .bold {
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .highlight {
@@ -509,12 +328,13 @@ table * {
 
 #helpModal {
     .modal-header {
-        padding: 10px 15px;
-
+        .btn-close {
+            background-color: transparent;
+            top: 8px;
+        }
         #myModalLabel {
             font-size: 15px;
             font-weight: bold;
-            margin-left: -15px;
         }
     }
 
@@ -522,37 +342,16 @@ table * {
         padding: 0;
     }
 }
-
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 900px;
+    }
+}
 a:hover {
     text-decoration: none;
 }
 
 /*******************Dropdown****************/
-.dropdown {
-    display: inline-block;
-
-    .caret {
-        top: 13px;
-        right: 12px;
-        position: absolute;
-    }
-
-    .dropdown-menu {
-        min-width: 83px;
-    }
-
-    .dropdown-toggle {
-        padding-right: 28px;
-    }
-}
-
-.dropdown-menu > .active > a {
-    &,
-    &:hover,
-    &:focus {
-        color: #333;
-    }
-}
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1051px) {
     .totalandforecast {

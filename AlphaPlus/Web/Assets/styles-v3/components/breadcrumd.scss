@@ -1,49 +1,60 @@
-﻿.breadcrumb-container {
-    --bg-breadcrumb: #E3E3E3;    
-    background: var(--bg-breadcrumb);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 7px 3px 10px;
-    min-height: 30px;
-    line-height: 18px;
-
-    .icon-copy {
-        color: #333;
-    }
-
-    .icon {
-        font-size: 20px;
-
-        [class^=icon-], [class*=" icon-"] {
-            font-size: inherit;
-            margin-left: 5px;
-        }
+﻿:root,
+:root [data-theme='light'] {
+    .breadcrumb-title {
+        --border-breadcrumb-title: #cecece;
+        --color-breadcrumb-title: #9d1c1c;
+        --color-breadcrumb-title-arrow: #333;
+        --color-breadcrumb-title-icon: #0f82c4;
+        --color-breadcrumb-title-icon-hover: #666;
     }
 }
-.breadcrumb {
-    --text-breadcrumb: #9d1c1c;
-    --text-breadcrumb2: #ff6600;
-    --text-breadcrumb3: #333333;
+:root [data-theme='dark'] {
+    .breadcrumb-title {
+        --border-breadcrumb-title: #313334;
+        --color-breadcrumb-title: #ededed;
+        --color-breadcrumb-title-arrow: #ededed;
+        --color-breadcrumb-title-icon: #0f82c4;
+        --color-breadcrumb-title-icon-hover: #666;
+    }
+}
+
+.breadcrumb-title {
+    overflow: hidden;
+    padding: 10px 0 5px;
+    margin: 0;
+    border-bottom: 1px solid var(--border-breadcrumb-title);
+    border-radius: 0;
 
     li {
-        display: inline-block;
-        color: var(--text-breadcrumb);
-        font-weight: 700;
+        color: var(--color-breadcrumb-title);
+        font-weight: 500;
         text-transform: uppercase;
         position: relative;
-
-        a {
-            &:hover {
-                color: var(--text-breadcrumb2);
-            }
+        display: inline-block;
+        + li:before {
+            content: '\276F';
+            color: var(--color-breadcrumb-title-arrow);
+            padding: 0 8px;
         }
 
-        + li {
+        .help {
+            position: absolute;
+            right: -27px;
+            top: -5px;
+            cursor: pointer;
+            font-weight: normal;
+
             &:before {
-                content: '\276F';
-                color: var(--text-breadcrumb3);
-                padding: 0 8px;
+                content: '\e92a';
+                font-family: 'Iconalpha';
+                font-size: 18px;
+                color: var(--color-breadcrumb-title-icon);
+            }
+
+            &:hover {
+                &:before {
+                    color: var(--color-breadcrumb-title-icon-hover);
+                }
             }
         }
     }

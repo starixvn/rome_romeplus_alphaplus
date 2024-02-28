@@ -10,11 +10,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@Resources.BetsAndForecast</title>
-    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-totalbetsforecast/default")
+    @StaticResources.AssetStyles.RenderCommon("/bundles3/site-totalbetsforecast/soccer")
     <link rel="stylesheet" href="~/bundles/forecast/soccer.css" asp-append-version="true" />
 </head>
 
-<body>
+<body data-theme=''>
     <div id="browser-warning" class="note-browser" style="display:none;">
         <span class="icon-alert"></span>
         <div class="textnote-box">
@@ -26,15 +26,15 @@
     </div>
 
     <div class="container-fluid totalandforecast">
-        <ul class="breadcrumb">
+        <ul class="breadcrumb-title">
             <li>@Resources.BetsAndForecast</li>
             <li>
                 @Resources.Soccer
                 <span class="help" data-toggle="modal" data-target="#helpModal" title="Help"></span>
             </li>
         </ul>
-        <div class="filter">
-            <form class="filter form-inline" role="form">
+        <div class="filter mt-10" >
+            <form class="form-inline" role="form">
                 <div class="form-group">
                     <select asp-items="Model.LiveStatus" id="ddlLiveStatus"></select>
                 </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group">
                     <input type="button" class="btn-submit" id="btnSubmit" value="@Resources.Submit" />
-                    <div class="dropdown btn btn-default btn-countdown ">
+                    <div class="dropdown btn btn-countdown ">
                         <span class="icon-refresh"></span>
                         <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -83,12 +83,11 @@
             </table>
         </div>
     </div>
-
     <div class="modal fade guidelinesModal" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i
                             class="icon-close"></i></button>
                     <h4 class="modal-title" id="myModalLabel">@Resources.BetsAndForecastGuidelines</h4>
                 </div>
