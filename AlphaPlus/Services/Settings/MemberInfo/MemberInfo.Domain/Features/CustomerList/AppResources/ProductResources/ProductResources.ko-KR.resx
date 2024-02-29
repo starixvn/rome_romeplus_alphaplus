@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountNotFound" xml:space="preserve">
+    <value>Account not found!</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>액티브</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>에이전트</value>
+  </data>
+  <data name="AgentList" xml:space="preserve">
+    <value>에이전트 목록</value>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>에이전트 아웃스텐딩</value>
+  </data>
+  <data name="Agents" xml:space="preserve">
+    <value>Agents (Active/Closed/Suspended)</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>뒤</value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>잔액정보</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>배팅 크레딧</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>배팅 목록</value>
+  </data>
+  <data name="BetSettingViewModelText" xml:space="preserve">
+    <value>배팅 설정</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="ClosedByAdmin" xml:space="preserve">
+    <value>This account was closed by admin.</value>
+  </data>
+  <data name="ClosedByFailedLoginOrAccountExpired" xml:space="preserve">
+    <value>This account was closed by failed login or account expired.</value>
+  </data>
+  <data name="ClosedByFailedOTPOrSC" xml:space="preserve">
+    <value>This account was closed due to failed OTP/Security Code attempts.</value>
+  </data>
+  <data name="ClosedByUpline" xml:space="preserve">
+    <value>This account was closed by upline.</value>
+  </data>
+  <data name="CommissionViewModelText" xml:space="preserve">
+    <value>수수료</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>이 마스터의 자동 포지션 설정 기능을 비활성화 하시겠습니까?</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>이 마스터의 자동 포지션 설정 기능을 활성화하시겠습니까?</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
+    <value>자동 포지션 설정 허가</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>이 고객의 기타베팅을 거부하시겠습니까?</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>이 고객의 기타 상태 설정을 허용하시겠습니까?</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>기타베팅 허용</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
+    <value>이 고객의 계정을 비활성화 상태로 바꾸시겠습니까?</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
+    <value>이 고객의 계정을 비활성화 상태로 바꾸시겠습니까? 주의!! 모든 하부라인의 계정도 비활성화 되어집니다.</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
+    <value>Are you sure you want to open this account?</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>중지</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
+    <value>고객님의 스포츠 북에 해당하는 진 티켓에 대한 더블 커미션 기능을 허용하지 않겠습니까 ? 알림 :  에이젼트에 해당하는 모든 회원 또한 허용되지 않습니다.</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
+    <value>고객님의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을  켜시겠습니까?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
+    <value>고객의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을 허용하지 않겠습니까 ?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
+    <value>고객님의 스포츠 북에 해당하는 진 티켓의 더블 커미션 기능을 끄시겠습니까?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>더블 커미션</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>이 고객의 계정을 일시정지로 바꾸시겠습니까? 주의! 이 에이젼트 소속의 모든 회원의 계정도 일시정지 되어집니다.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
+    <value>이 고객의 계정을 일시정지로 바꾸시겟습니까? 주의! 이 회원은 베팅할수 없게 되어집니다.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>이 고객의 계정을 일시정지로 바꾸시겠습니까? 주의! 모든 하부라인도 일시정지 되어집니다.</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
+    <value>보류</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>보류</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>작성일</value>
+  </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>Create Member with QR Code</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>고객</value>
+  </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>하부라인 목록</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>고객</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>팩스</value>
+  </data>
+  <data name="FirstLoginQRCode" xml:space="preserve">
+    <value>FIRST LOGIN QR CODE</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>주어진 크레딧</value>
+  </data>
+  <data name="GivenCreditPopupTitle" xml:space="preserve">
+    <value>Update Given Credit</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>아이피</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>마지막 로그인</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>마지막거래(배팅)</value>
+  </data>
+  <data name="LoginInfo" xml:space="preserve">
+    <value>Login Info</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>로그인 아이피</value>
+  </data>
+  <data name="LoginTime" xml:space="preserve">
+    <value>로그인 시간</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>마스터</value>
+  </data>
+  <data name="MasterOutstanding" xml:space="preserve">
+    <value>마스터 대기 포인트</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>회원</value>
+  </data>
+  <data name="MemberList" xml:space="preserve">
+    <value>고객 리스트</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>회원 최대 크레딧</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Members (Active/Closed/Suspended)</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="NetPosition" xml:space="preserve">
+    <value>Net Position</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>닉네임</value>
+  </data>
+  <data name="NoDataChange" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>가능한 정보가 없습니다</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>가능한 정보가 없습니다</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>해당 기능에 대한 권한이 없습니다.</value>
+  </data>
+  <data name="NumberOrder" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="OnlineList" xml:space="preserve">
+    <value>온라인 목록</value>
+  </data>
+  <data name="OutrightDisabledUpline" xml:space="preserve">
+    <value>Upline has been disabled Outright betting</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>대기 포인트</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>페이지</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>3rd Party Pending Transfer</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>전화</value>
+  </data>
+  <data name="RemoveOtpViewModelText" xml:space="preserve">
+    <value>Remove OTP</value>
+  </data>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>비밀번호 재설정</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>Reset Security Code</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="ShowContactInfo" xml:space="preserve">
+    <value>Contact Info</value>
+  </data>
+  <data name="Sportsbook2ViewModelText" xml:space="preserve">
+    <value>Sportsbook 2</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>최소조건 수정</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>기록</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>상황</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>슈퍼</value>
+  </data>
+  <data name="SuspendedByUplineTooltip" xml:space="preserve">
+    <value>This account was indirectly suspended by upline</value>
+  </data>
+  <data name="ThisAccountWasDisabled" xml:space="preserve">
+    <value>이 계정은 실행하실수없는 계정입니다.</value>
+  </data>
+  <data name="ThisAccountWasSuspended" xml:space="preserve">
+    <value>This account was suspended.</value>
+  </data>
+  <data name="ThisUserIsNotOnline" xml:space="preserve">
+    <value>회원이 온라인 상에 있지 않습니다.</value>
+  </data>
+  <data name="TotalAgentActiveClosed" xml:space="preserve">
+    <value>총 에이전트 접속/중지/보류됨</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>총잔액</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>총 현금</value>
+  </data>
+  <data name="TotalMemberActiveClosed" xml:space="preserve">
+    <value>총 회원 접속/중지/보류됨</value>
+  </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>전송</value>
+  </data>
+  <data name="UnuspendStatusPopupHeader" xml:space="preserve">
+    <value>Unsuspend &lt;username&gt;</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>Successfully updated!</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>사용된 크레딧</value>
+  </data>
+  <data name="UserNamePlaceHolder" xml:space="preserve">
+    <value>사용자 이름 또는 성(이름)</value>
+  </data>
+  <data name="Viewlog" xml:space="preserve">
+    <value>Viewlog</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>어제의 잔액</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>어제의 현금</value>
+  </data>
+  <data name="Update1" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="EditMultipleSportsbook2Text" xml:space="preserve">
+    <value>Edit Multiple Sportsbook 2</value>
+  </data>
+  <data name="EditMultipleSportsbookText" xml:space="preserve">
+    <value>멀티플 스포츠 북 수정하기</value>
+  </data>
+  <data name="EditMultipleLiveCasinoText" xml:space="preserve">
+    <value>Edit Multiple Live Casino</value>
+  </data>
+  <data name="EditMultipleVoidbridgeText" xml:space="preserve">
+    <value>Edit Multiple Macau Games</value>
+  </data>
+  <data name="EditMultiple" xml:space="preserve">
+    <value>복합 수정</value>
+  </data>
+  <data name="EditMultipleDoubleCommText" xml:space="preserve">
+    <value>멀티 더블 커미션 수정하기</value>
+  </data>
+  <data name="EditMultipleSuspendedStatusText" xml:space="preserve">
+    <value>Edit Multiple Suspended Status</value>
+  </data>
+  <data name="EditMultipleVirtualSportsText" xml:space="preserve">
+    <value>가상 스포츠 멀티수정</value>
+  </data>
+  <data name="Sportsbook2MultipeViewModelText" xml:space="preserve">
+    <value>Sportsbook 2</value>
+  </data>
+  <data name="EditMultipleClosedStatusText" xml:space="preserve">
+		<value>Edit Multiple Closed Status</value>
+	</data>
+  <data name="UpdateMultipleClosedStatusText" xml:space="preserve">
+		<value>Edit Multiple Closed Status</value>
+	</data>
+  <data name="UnuspendStatusPopupHeaderText" xml:space="preserve">
+		<value>Unsuspend &lt;username&gt;</value>
+	</data>
+  <data name="OpenCustomerPopupHeaderText" xml:space="preserve">
+		<value>Open &lt;username&gt;</value>
+	</data>
+  <data name="IndirectlyClosedByUpline" xml:space="preserve">
+		<value>This account is indirectly closed by upline</value>
+	</data>
+  <data name="ParlayMaxPayoutText" xml:space="preserve">
+    <value>Parlay Max Payout</value>
+  </data>
+  <data name="ParlayMaxPayoutPopupHeaderText" xml:space="preserve">
+    <value>Edit &lt;username&gt;</value>
+  </data>
+  <data name="ParlayMaxPayoutMultipleText" xml:space="preserve">
+    <value>Edit Multiple Parlay Max Payout</value>
+  </data>
+</root>

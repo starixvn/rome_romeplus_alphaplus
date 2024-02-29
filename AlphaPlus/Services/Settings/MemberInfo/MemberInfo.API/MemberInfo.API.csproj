@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.Settings.MemberInfo.API</AssemblyName>
+    <RootNamespace>AlphaPlus.Settings.MemberInfo.API</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
+    <PackageReference Include="RSACryptoPad" Version="1.0.0.0" />
+    <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
+    <PackageReference Include="Alpha.CopyAccount" Version="1.0.0.4" />
+    <PackageReference Include="Sunplus.Agent.Utilities" Version="4.0.0" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
+    <PackageReference Include="Fanex.Logging.Extensions.Web" Version="1.0.8" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
+    <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
+    <ProjectReference Include="..\MemberInfo.Domain\MemberInfo.Domain.csproj" />
+  </ItemGroup>
+</Project>

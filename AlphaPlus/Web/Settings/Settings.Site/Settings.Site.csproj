@@ -12,6 +12,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Sunplus.Agent.Utilities" Version="4.0.0" />
+    <PackageReference Include="Alpha.Products.AccountInfo" Version="1.0.0-beta91" />
+    <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
+    <PackageReference Include="Gma.QrCodeNet.Encoding" Version="2.0.0" />
+    <PackageReference Include="ONEbook.Common.Auth" Version="2.0.0" />
+    <PackageReference Include="ONEbook.SpreadSheets" Version="1.0.0.1" />
+    <PackageReference Include="ONEbook.SpreadSheets.NPOI" Version="1.0.0.3" />
     <PackageReference Include="Fanex.Data.SqlServer" Version="4.2.5.3" />
     <PackageReference Include="Fanex.Caching" Version="2.2.4" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
@@ -28,5 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+    <ProjectReference Include="..\..\..\Services\Settings\MemberInfo\MemberInfo.Domain\MemberInfo.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
   </ItemGroup>
 </Project>

@@ -49,4 +49,7 @@ public static class MicroSites
 
     public static string ViewLogUrl(string virtualPath = "~/")
         => AppPathHelper.GetAppPath(AppSettings.ViewLogsAppPath, virtualPath);
+
+    public static string Settings(string virtualPath = "~/")
+        => AppPathHelper.GetAppPath("/settings", virtualPath);
 }

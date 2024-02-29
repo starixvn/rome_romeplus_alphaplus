@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.Settings.MemberInfo.Domain</AssemblyName>
+    <RootNamespace>AlphaPlus.Settings.MemberInfo.Domain</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+  </ItemGroup>
+</Project>

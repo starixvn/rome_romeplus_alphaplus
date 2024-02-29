@@ -1,0 +1,71 @@
+﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.Params
+{
+    using AlphaPlus.Core.Models;
+
+    public class CustomerListParam
+    {
+        public CustomerListParam(
+            int userId,
+            UserLevel directUplineCustLevel,
+            int directUplineId,
+            string username,
+            bool? enabled,
+            bool? closed,
+            bool? suspended,
+            bool locked,
+            byte doubleCommLosing,
+            int pageSize,
+            int pageIndex,
+            bool limitedDateToShowInfo,
+            bool showNickname,
+            bool isShowMyanmarOdds,
+            int allowAutoTransfer)
+        {
+            UserId = userId;
+            DirectUplineId = directUplineId;
+            DirectUplineCustLevel = directUplineCustLevel;
+            Username = username;
+            Enabled = enabled;
+            Closed = closed;
+            Suspended = suspended;
+            Locked = locked;
+            DoubleCommLosing = doubleCommLosing;
+            PageSize = pageSize;
+            PageIndex = pageIndex;
+            LimitedDateToShowInfo = limitedDateToShowInfo;
+            ShowNickname = showNickname;
+            IsShowMyanmarOdds = isShowMyanmarOdds;
+            AllowAutoTransfer = allowAutoTransfer;
+        }
+
+        public int UserId { get; }
+
+        public int DirectUplineId { get; }
+
+        public UserLevel DirectUplineCustLevel { get; }
+
+        public string Username { get; }
+
+        public bool? Enabled { get; }
+
+        public bool? Closed { get; }
+
+        public bool? Suspended { get; }
+
+        public bool Locked { get; }
+
+        public byte DoubleCommLosing { get; }
+
+        public int PageSize { get; }
+
+        public int PageIndex { get; }
+
+        public bool LimitedDateToShowInfo { get; }
+
+        public bool ShowNickname { get; }
+
+        public bool IsShowMyanmarOdds { get; }
+
+        public int AllowAutoTransfer { get; }
+    }
+}
