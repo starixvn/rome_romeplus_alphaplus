@@ -1,3 +1,7 @@
+import 'react-tippy/dist/tippy.css';
+import './index.scss';
+import './i18n/config';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 

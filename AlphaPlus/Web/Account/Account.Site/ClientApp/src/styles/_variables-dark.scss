@@ -1,0 +1,48 @@
+﻿$font-family: Roboto, Arial, Tahoma, sans-serif;
+$font-size: 13px;
+
+$text-color: #cbcbcb;
+$text-red-color: #FF4F50;
+
+$link-color: #41A4FF;
+$link-hover-color: #F60;
+
+$border-color: #dfdfdf;
+$border-color-dark: #cecece;
+
+$height-normal: 28px;
+$height-mobile: 36px;
+
+$icon-color: #888;
+$icon-color-dark: #333;
+$icon-hover-color: #e38514;
+$icon-disable-color: lighten($icon-color, 20%);
+
+$paging-bg: #fff;
+$paging-item-color: #131212;
+$paging-item-color-hover: #ff0000;
+$paging-item-bg-hover: #ee6e73;
+$paging-border: #666;
+
+// Devices
+$screen-device-lower768: 767px;
+$screen-device-greater768: 768px;
+$screen-device-greater1024: 1024px;
+
+$component-bg-color: #2B2B2B;
+$component-color: #E7E7E7;
+$component-border-color: #474747;
+
+// Account status colors
+$disabled-color: #cbcbcb;
+$disabled-bgcolor: #4B5425;
+
+$closed-color: #cbcbcb;
+$closed-pwdothers-bgcolor: #6E654E;
+$closed-admin-bgcolor: #453659;
+$closed-upline-bgcolor: #874D1E;
+$closed-otpsc-bgcolor: #0D3C54;
+$closed-archive-bgcolor: #0B2945;
+
+$suspended-color: #cbcbcb;
+$suspended-bgcolor: #805757;

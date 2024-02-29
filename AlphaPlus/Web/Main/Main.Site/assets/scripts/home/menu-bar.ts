@@ -25,18 +25,18 @@ var menuBar = {
         announcementItems: null,
         closeIconOnMobile: null,
         reportDomain: null,
-        cookieless: "/",
-        sessionId: "",
-        reportSessionId: "",
-        betlistCookieless: "/",
-        betlistSessionId: "",
+        cookieless: '/',
+        sessionId: '',
+        reportSessionId: '',
+        betlistCookieless: '/',
+        betlistSessionId: '',
         authReportCount: 0,
         authBetlistCount: 0
     },
 
     urls: {
-        accountInfo: alpha.urls.accountInfoRootPath + 'SearchAccount',
-        banner: alpha.urls.mainRootPath + 'Banner/Index?type=',
+        accountInfo: alpha.urls.accountInfoRootPath,
+        banner: alpha.urls.mainRootPath + 'Banner/Index?type='
     },
 
     init: function () {
@@ -66,19 +66,21 @@ var menuBar = {
         menuBar.domElements.mainMenuHeader = $('#main-menu-header');
         menuBar.domElements.hamburgerIcon = $('#hamburger-icon');
         menuBar.domElements.profileImage = $('#logoProfileImg');
-        menuBar.domElements.announcementItems = $("#menu-ANNOUNCEMENTS li a");
+        menuBar.domElements.announcementItems = $('#menu-ANNOUNCEMENTS li a');
         menuBar.domElements.closeIconOnMobile = $('#closeIconOnMobile');
         menuBar.domElements.reportDomain = $('#reportDomain').val();
         menuBar.domElements.reportSessionId =
             menuBar.domElements.betlistSessionId =
-            menuBar.domElements.sessionId = $('#SessionId').val();
+            menuBar.domElements.sessionId =
+                $('#SessionId').val();
 
         if (menuBar.domElements.reportDomain) {
-            var authCookie = menuBar.topWindow.indexManager.currentUrlCookieName + "-" + menuBar.domElements.sessionId;
-            var authCookieBetlist = menuBar.topWindow.indexManager.currentUrlCookieName + "-betlist-" + menuBar.domElements.sessionId;
+            var authCookie = menuBar.topWindow.indexManager.currentUrlCookieName + '-' + menuBar.domElements.sessionId;
+            var authCookieBetlist =
+                menuBar.topWindow.indexManager.currentUrlCookieName + '-betlist-' + menuBar.domElements.sessionId;
 
-            menuBar.domElements.betlistCookieless =
-                menuBar.domElements.cookieless = "/(S(" + menuBar.domElements.sessionId + "))";
+            menuBar.domElements.betlistCookieless = menuBar.domElements.cookieless =
+                '/(S(' + menuBar.domElements.sessionId + '))';
 
             $.cookie(authCookie, menuBar.domElements.sessionId, { path: '/' });
             $.cookie(authCookieBetlist, menuBar.domElements.sessionId, { path: '/' });
@@ -117,17 +119,17 @@ var menuBar = {
         menuBar.domElements.menuOpeners.click(function (e) {
             var $this = $(this),
                 sideBar = menuBar.domElements.sideBar,
-                isCollapsed = sideBar.hasClass('focusout')
-                    && sideBar.hasClass('collapsed-smallsize')
-                    && !sideBar.hasClass('docked'),
+                isCollapsed =
+                    sideBar.hasClass('focusout') &&
+                    sideBar.hasClass('collapsed-smallsize') &&
+                    !sideBar.hasClass('docked'),
                 isActive = $this.hasClass('active');
 
             menuBar.expandSideBar();
 
             if (isCollapsed && isActive) {
                 menuBar.activateMainMenuTab();
-            }
-            else {
+            } else {
                 menuBar.toggleMainMenu($this);
             }
         });
@@ -158,7 +160,7 @@ var menuBar = {
     },
 
     clickAnnouncementItem: function (menu) {
-        var url = menu.attr("href");
+        var url = menu.attr('href');
         var parameters = url.split('?');
         if (parameters.length == 2) {
             var messageType = parameters[1].split('=')[1];
@@ -170,15 +172,11 @@ var menuBar = {
 
     registerMouseHoverForDesktopBrowsers: function () {
         if (!alpha.isMobile) {
-            menuBar.domElements.sideBar
-                .off('mouseenter.menubar')
-                .on('mouseenter.menubar', function (e) {
-                    setTimeout(menuBar.expandSideBar, 50);
-                });
+            menuBar.domElements.sideBar.off('mouseenter.menubar').on('mouseenter.menubar', function (e) {
+                setTimeout(menuBar.expandSideBar, 50);
+            });
 
-            menuBar.domElements.sideBar
-                .off('mouseleave.menubar')
-                .on('mouseleave.menubar', menuBar.collapseSideBar);
+            menuBar.domElements.sideBar.off('mouseleave.menubar').on('mouseleave.menubar', menuBar.collapseSideBar);
         }
     },
 
@@ -197,14 +195,12 @@ var menuBar = {
                 header.addClass('expanded-header-mobile');
                 hamburgerIcon.hide();
                 closeIconOnMobile.addClass('active');
-            }
-            else {
+            } else {
                 content.removeClass('expanded-mobile');
                 sidebar.addClass('hidden-mobile collapse-mobile').removeClass('visible-mobile');
                 header.removeClass('expanded-header-mobile');
             }
-        }
-        else {
+        } else {
             var collapsedClass = 'collapsed',
                 expandedClass = 'expanded',
                 collapseImageClass = 'collapse-image',
@@ -223,9 +219,8 @@ var menuBar = {
                 //// When expanding, check current active tab, and active it
                 if (menuBar.domElements.accountInfoHeader.hasClass('active')) {
                     menuBar.domElements.mainMenuTab.hide();
-                    menuBar.domElements.accountInfoTab.show()
-                }
-                else {
+                    menuBar.domElements.accountInfoTab.show();
+                } else {
                     menuBar.domElements.mainMenuTab.show();
                     menuBar.domElements.accountInfoTab.hide();
                 }
@@ -256,7 +251,10 @@ var menuBar = {
         }
 
         if (userName !== '' || typeof userName === 'undefined') {
-            accInfoContent.attr('src', menuBar.urls.accountInfo + '?mobileView=' + alpha.isScreenLower768 + '&SearchAccountName=' + userName);
+            accInfoContent.attr(
+                'src',
+                menuBar.urls.accountInfo + '?mobileView=' + alpha.isScreenLower768 + '&SearchAccountName=' + userName
+            );
         }
 
         // To work on IE, use plain-old javascript onload event
@@ -264,13 +262,13 @@ var menuBar = {
             var navigationHeight = $('#navigation').height();
             var mainMenuHeight = $('.main-tab').height();
             var accountInfoIframeHeight = navigationHeight - mainMenuHeight;
-            menuBar.domElements.accountInfoTab.css("height", accountInfoIframeHeight);
+            menuBar.domElements.accountInfoTab.css('height', accountInfoIframeHeight);
 
             if (alpha.isMobile) {
-                $('#accountinfo-content').css("height", accountInfoIframeHeight - 20);
+                $('#accountinfo-content').css('height', accountInfoIframeHeight - 20);
                 menuBar.domElements.accountInfoContent.addClass('small-device');
             } else {
-                $('#accountinfo-content').css("height", accountInfoIframeHeight - 5);
+                $('#accountinfo-content').css('height', accountInfoIframeHeight - 5);
             }
         };
     },
@@ -280,47 +278,59 @@ var menuBar = {
         subMenu.addClass('active');
         try {
             if (!alpha.core.isIe()) {
-                $('#main').contents().find("head").append($("#AssetCommonCssLink").val());
+                $('#main').contents().find('head').append($('#AssetCommonCssLink').val());
                 $('#main').contents().find('body').empty().block();
             }
-        } catch (e) { }
+        } catch (e) {}
 
         var authCookie = null;
         var authCookieValue = null;
-        var subMenuURL = subMenu.data("url");
+        var subMenuURL = subMenu.data('url');
 
         if (subMenuURL.indexOf('reports') !== -1) {
-            authCookie = menuBar.topWindow.indexManager.currentUrlCookieName + "-" + menuBar.domElements.sessionId;
+            authCookie = menuBar.topWindow.indexManager.currentUrlCookieName + '-' + menuBar.domElements.sessionId;
             authCookieValue = $.cookie(authCookie);
 
-            if (subMenu.data("domain") && location.href.indexOf("(S(") !== -1 && authCookieValue && authCookieValue.length > 0) {
-                menuBar.domElements.cookieless = "/(S(" + authCookieValue + "))";
+            if (
+                subMenu.data('domain') &&
+                location.href.indexOf('(S(') !== -1 &&
+                authCookieValue &&
+                authCookieValue.length > 0
+            ) {
+                menuBar.domElements.cookieless = '/(S(' + authCookieValue + '))';
                 menuBar.domElements.reportSessionId = authCookieValue;
 
-                var indexSessionId = subMenu.data("url").indexOf("(S(");
-                var oldsessionId = subMenu.data("url").substr(indexSessionId + 3, 24);
+                var indexSessionId = subMenu.data('url').indexOf('(S(');
+                var oldsessionId = subMenu.data('url').substr(indexSessionId + 3, 24);
 
-                subMenuURL = subMenuURL.replace(menuBar.domElements.sessionId, authCookieValue)
+                subMenuURL = subMenuURL
+                    .replace(menuBar.domElements.sessionId, authCookieValue)
                     .replace(oldsessionId, authCookieValue);
             }
-        }
-        else if (subMenuURL.indexOf('betlists') !== -1) {
-            authCookie = menuBar.topWindow.indexManager.currentUrlCookieName + "-betlist-" + menuBar.domElements.sessionId;
+        } else if (subMenuURL.indexOf('betlists') !== -1) {
+            authCookie =
+                menuBar.topWindow.indexManager.currentUrlCookieName + '-betlist-' + menuBar.domElements.sessionId;
             authCookieValue = $.cookie(authCookie);
 
-            if (subMenu.data("domain") && location.href.indexOf("(S(") !== -1 && authCookieValue && authCookieValue.length > 0) {
-                menuBar.domElements.betlistCookieless = "/(S(" + authCookieValue + "))";
+            if (
+                subMenu.data('domain') &&
+                location.href.indexOf('(S(') !== -1 &&
+                authCookieValue &&
+                authCookieValue.length > 0
+            ) {
+                menuBar.domElements.betlistCookieless = '/(S(' + authCookieValue + '))';
                 menuBar.domElements.betlistSessionId = authCookieValue;
 
-                var indexSessionId = subMenu.data("url").indexOf("(S(");
-                var oldsessionId = subMenu.data("url").substr(indexSessionId + 3, 24);
+                var indexSessionId = subMenu.data('url').indexOf('(S(');
+                var oldsessionId = subMenu.data('url').substr(indexSessionId + 3, 24);
 
-                subMenuURL = subMenuURL.replace(menuBar.domElements.sessionId, authCookieValue)
+                subMenuURL = subMenuURL
+                    .replace(menuBar.domElements.sessionId, authCookieValue)
                     .replace(oldsessionId, authCookieValue);
             }
         }
 
-        $('#main').attr('src', subMenuURL).attr("target", "main");
+        $('#main').attr('src', subMenuURL).attr('target', 'main');
     },
 
     expandSideBar: function () {
@@ -351,8 +361,7 @@ var menuBar = {
             sideBar.addClass('hidden-mobile').removeClass('visible-mobile');
             closeIconOnMobile.removeClass('active');
             hamburgerIcon.show();
-        }
-        else {
+        } else {
             if (sideBar.hasClass('docked')) {
                 return;
             }
@@ -435,7 +444,7 @@ var menuBar = {
                 } else {
                     carouselBanner.remove();
                 }
-            })
+            });
         }
     },
 
@@ -452,7 +461,7 @@ var menuBar = {
 
     activeMyWatchlistSubMenuItem: function () {
         const riskManagementMenu = $('#menu-RISKMANAGEMENT');
-        riskManagementMenu.find('.parent-menu').trigger("click");
+        riskManagementMenu.find('.parent-menu').trigger('click');
         riskManagementMenu.find('#sub-menu-MYWATCHLIST').addClass('active');
     }
 };
@@ -461,6 +470,6 @@ $(function () {
     menuBar.init();
 });
 
-$(window).on("orientationchange", function () {
+$(window).on('orientationchange', function () {
     menuBar.setMenuBarBanner();
 });

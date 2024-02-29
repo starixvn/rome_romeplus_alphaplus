@@ -1,0 +1,36 @@
+@import './styles/variables';
+@import './styles/mixins';
+
+@include keyframes-ripple;
+
+body {
+    height: auto;
+    font-family: $font-family;
+    font-size: $font-size;
+    background-color: #fff;
+}
+
+[class^='col'] {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+%linkColor {
+    color: $link-color;
+
+    &:hover {
+        color: $link-hover-color;
+    }
+}
+
+a,
+.link {
+    @extend %linkColor;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
+}

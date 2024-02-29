@@ -1,13 +1,12 @@
-import './custom.scss';
+import styles from './App.module.scss';
+import SearchBox from './components/SearchBox';
 
-import { Component } from 'react';
-
-import { Home } from './components/Home';
-
-export default class App extends Component {
-    static displayName = App.name;
-
-    render() {
-        return <Home />;
-    }
+function App() {
+    return (
+        <div className={styles.container}>
+            <SearchBox />
+        </div>
+    );
 }
+
+export default App;
