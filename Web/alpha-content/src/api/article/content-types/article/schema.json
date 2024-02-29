@@ -100,6 +100,17 @@
         }
       },
       "type": "string"
+    },
+    "order": {
+      "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "biginteger"
     }
   }
 }

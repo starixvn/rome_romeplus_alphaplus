@@ -5,7 +5,7 @@
 import { factories } from '@strapi/strapi'
 
 function isValid(model, market, level, isProd) {
-  return (isProd || model.publishedAt != null)
+  return (!isProd || model.publishedAt != null)
     && model.user_levels?.some(l => l.levelId == level)
     && model.markets?.some(m => m.name.toUpperCase() == market.toUpperCase());
 }
@@ -69,7 +69,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       if(language === 'en') {
         const entities = await strapi.entityService.findMany('api::category.category', {
           filters: {
-            publishedAt: (isProd ? { $null: false } : null),
+            publishedAt: (isProd ? { $null: false } : {}),
             user_levels: (level =='0' ? {} : { levelId: { $eq: level } }),
             markets: {
               name: { $eqi: market }
@@ -77,7 +77,7 @@ export default factories.createCoreController('api::category.category', ({ strap
           },
           populate: {
             articles: {
-              fields: ['slug', 'title', 'publishedAt'],
+              fields: ['slug', 'title', 'publishedAt', 'order'],
               populate: {
                 user_levels:{
                   fields: ['levelId']
@@ -103,7 +103,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       const entities = await strapi.db.query('api::category.category').findMany({
         where: {
           locale: language,
-          publishedAt: (isProd ? { $null: false } : null),
+          publishedAt: (isProd ? { $null: false } : {}),
           user_levels: {
             levelId: { $eq: level }
           },
@@ -113,7 +113,7 @@ export default factories.createCoreController('api::category.category', ({ strap
         },
         populate: {
           articles: {
-            fields: ['slug', 'title', 'publishedAt'],
+            fields: ['slug', 'title', 'publishedAt', 'order'],
             populate: {
               user_levels:{
                 fields: ['levelId']
@@ -149,7 +149,7 @@ export default factories.createCoreController('api::category.category', ({ strap
     if(language === 'en') {
       const entities = await strapi.entityService.findMany('api::category.category', {
         filters: {
-          publishedAt: (isProd ? { $null: false } : null),
+          publishedAt: (isProd ? { $null: false } : {}),
           slug: { $eqi: slug },
           user_levels: {
             levelId: { $eq: level }
@@ -160,7 +160,7 @@ export default factories.createCoreController('api::category.category', ({ strap
         },
         populate:{
           articles: {
-            fields: ['slug', 'title', 'publishedAt'],
+            fields: ['slug', 'title', 'publishedAt', 'order'],
             populate: {
               user_levels:{
                 fields: ['levelId']
@@ -192,7 +192,7 @@ export default factories.createCoreController('api::category.category', ({ strap
     const entities = await strapi.db.query('api::category.category').findMany({
       where: {
         locale: language,
-        publishedAt: (isProd ? { $null: false } : null),
+        publishedAt: (isProd ? { $null: false } : {}),
         user_levels: {
           levelId: { $eq: level }
         },
@@ -203,7 +203,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       },
       populate: {
         articles: {
-          fields: ['slug', 'title', 'publishedAt'],
+          fields: ['slug', 'title', 'publishedAt', 'order'],
           populate: {
             user_levels:{
               fields: ['levelId']

@@ -180,7 +180,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
 
     const entity = await strapi.db.query('api::article.article').findOne({
       where: {
-        publishedAt: (isProd ? { $null: false } : null),
+        publishedAt: (isProd ? { $null: false } : {}),
         slug: { $eqi: slug },
         locale: { $eqi: language },
         user_levels: {
@@ -227,7 +227,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           }
         },
         filters: {
-          publishedAt: (isProd ? { $null: false } : null),
+          publishedAt: (isProd ? { $null: false } : {}),
           title: { $containsi: s },
           user_levels: {
             levelId: { $eq: level }
@@ -237,7 +237,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           }
         },
         sort: {
-          publishedAt: 'desc'
+          order: 'asc'
         }
       });
   
@@ -248,7 +248,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     const entities = await strapi.db.query('api::article.article').findMany({
       where: {
         locale: language,
-        publishedAt: (isProd ? { $null: false } : null),
+        publishedAt: (isProd ? { $null: false } : {}),
         user_levels: {
           levelId: { $eq: level }
         },
@@ -256,6 +256,9 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           name: { $eqi: market }
         },
         title: { $containsi: s },
+      },
+      sort: {
+        order: 'asc'
       }
     });
 
@@ -272,7 +275,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     if(language === "en") {
       const entities = await strapi.entityService.findMany('api::article.article', {
         filters: {
-          publishedAt: (isProd ? { $null: false } : null),
+          publishedAt: (isProd ? { $null: false } : {}),
           title: { $containsi: s },
           user_levels: {
             levelId: { $eq: level }
@@ -282,7 +285,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           }
         },
         sort: {
-          publishedAt: 'desc'
+          order: 'asc'
         }
       });
   
@@ -301,7 +304,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     const entities = await strapi.db.query('api::article.article').findMany({
       where: {
         locale: language,
-        publishedAt: (isProd ? { $null: false } : null),
+        publishedAt: (isProd ? { $null: false } : {}),
         user_levels: {
           levelId: { $eq: level }
         },
@@ -309,6 +312,9 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           name: { $eqi: market }
         },
         title: { $containsi: s },
+      },
+      sort: {
+        order: 'asc'
       }
     });
 
