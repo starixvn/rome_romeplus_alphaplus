@@ -46,7 +46,7 @@ function appendIcon(img, adminUrl) {
       var height = img.height;
       var name = selectedFile.name;
 
-      var html = '<image src="' + adminUrl + '/api/images/get/' + name + '" style="display: inline-block; vertical-align: baseline; width:' + width + 'px; height:' + height + 'px;" />';
+      var html = '<image src="' + adminUrl + '/api/images/get/' + name + '" style="top: -4px; position: relative; width:' + width + 'px; height:' + height + 'px;" />';
       tinyMCE.execCommand('mceInsertContent', false, html);
 }
 

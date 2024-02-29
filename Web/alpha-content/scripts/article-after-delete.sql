@@ -1,5 +1,5 @@
 USE alpha_centraldoc;
-DROP TRIGGER article_after_delete
+DROP TRIGGER IF EXISTS article_after_delete
 
 
 USE alpha_centraldoc;

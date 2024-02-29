@@ -1,5 +1,5 @@
 USE alpha_centraldoc;
-DROP TRIGGER article_after_update;
+DROP TRIGGER IF EXISTS article_after_update;
 
 USE alpha_centraldoc;
 DELIMITER $$
