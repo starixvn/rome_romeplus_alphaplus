@@ -175,11 +175,12 @@ export default factories.createCoreController('api::article.article', ({ strapi 
   },
 
   async getBySlug(ctx) {
-    const { slug, language, market, level } = ctx.params;
+    const { slug, language, market, level, env } = ctx.params;
+    const isProd = env === "PROD";
 
     const entity = await strapi.db.query('api::article.article').findOne({
       where: {
-        publishedAt: { $null: false },
+        publishedAt: (isProd ? { $null: false } : null),
         slug: { $eqi: slug },
         locale: { $eqi: language },
         user_levels: {
@@ -207,7 +208,8 @@ export default factories.createCoreController('api::article.article', ({ strapi 
   },
 
   async search(ctx) {
-    const { keyword, language, market, level } = ctx.params;
+    const { keyword, language, market, level, env } = ctx.params;
+    const isProd = env === "PROD";
 
     const s = keyword.substring(1);
 
@@ -225,7 +227,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           }
         },
         filters: {
-          publishedAt: { $null: false },
+          publishedAt: (isProd ? { $null: false } : null),
           title: { $containsi: s },
           user_levels: {
             levelId: { $eq: level }
@@ -243,61 +245,34 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       return output; 
     }
 
-    const entities = await strapi.entityService.findMany('api::article.article', {
-      filters: {
-        publishedAt: { $null: false },
-        title: { $containsi: s },
+    const entities = await strapi.db.query('api::article.article').findMany({
+      where: {
+        locale: language,
+        publishedAt: (isProd ? { $null: false } : null),
         user_levels: {
           levelId: { $eq: level }
         },
         markets: {
           name: { $eqi: market }
-        }
-      },
-      populate: 'localizations'
+        },
+        title: { $containsi: s },
+      }
     });
 
-    const uppercaseLanguage = language.toUpperCase();
-    const uppercaseKeyword = s.toUpperCase();
-    const result = [];
-    const existingArticles = {};
-
-    for(var i = 0; i<entities.length; i++) {
-      const e = entities[i];
-      const localization = e.localizations?.find(l => 
-        l.locale.toUpperCase() === uppercaseLanguage && 
-        l.title.toUpperCase().indexOf(uppercaseKeyword) !== -1);
-      if(localization && !existingArticles[localization.id]) {
-        const artilceByLocale = await strapi.entityService.findOne('api::article.article', localization.id, {
-          populate: {
-            categories: {
-              fields: ['name', 'slug', 'shortName']
-            },
-            user_levels:{
-              fields: ['name', 'levelId']
-            },
-            markets: {
-              fields: ['name']
-            }
-          }
-        });  
-        result.push(await this.sanitizeOutput(artilceByLocale, ctx));
-        existingArticles[localization.id] = true;
-      }
-    }
-
+    const result = await this.sanitizeOutput(entities, ctx) as [any];
     return result.sort((a, b) => a.publishedAt - b.publishedAt); 
   },
 
   async suggest(ctx) {
-    const { keyword, language, market, level } = ctx.params;
+    const { keyword, language, market, level, env } = ctx.params;
+    const isProd = env === "PROD";
 
     const s = keyword;
 
     if(language === "en") {
       const entities = await strapi.entityService.findMany('api::article.article', {
         filters: {
-          publishedAt: { $null: false },
+          publishedAt: (isProd ? { $null: false } : null),
           title: { $containsi: s },
           user_levels: {
             levelId: { $eq: level }
@@ -323,37 +298,27 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       return result;
     }
 
-    const entities = await strapi.entityService.findMany('api::article.article', {
-      filters: {
-        publishedAt: { $null: false },
-        title: { $containsi: s },
+    const entities = await strapi.db.query('api::article.article').findMany({
+      where: {
+        locale: language,
+        publishedAt: (isProd ? { $null: false } : null),
         user_levels: {
           levelId: { $eq: level }
         },
         markets: {
           name: { $eqi: market }
-        }
-      },
-      populate: 'localizations'
+        },
+        title: { $containsi: s },
+      }
     });
 
-    const uppercaseLanguage = language.toUpperCase();
-    const uppercaseKeyword = s.toUpperCase();
     const result = [];
-    const existingArticles = {};
-
     for(var i = 0; i<entities.length; i++) {
       const e = entities[i];
-      const localization = e.localizations?.find(l => 
-        l.locale.toUpperCase() === uppercaseLanguage && 
-        l.title.toUpperCase().indexOf(uppercaseKeyword) !== -1);
-      if(localization && !existingArticles[localization.id]) {
-        result.push({
-          Id: localization.slug,
-          Value: localization.title
-        });
-        existingArticles[localization.id] = true;
-      }
+      result.push({
+        Id: e.slug,
+        Value: e.title
+      });
     }
 
     return result;

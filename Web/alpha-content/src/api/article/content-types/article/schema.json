@@ -89,6 +89,17 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::user-level.user-level"
+    },
+    "infoInEnglish": {
+      "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }

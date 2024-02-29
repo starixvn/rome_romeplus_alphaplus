@@ -885,6 +885,15 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'oneToMany',
       'api::user-level.user-level'
     >;
+    infoInEnglish: Attribute.String &
+      Attribute.SetPluginOptions<{
+        versions: {
+          versioned: true;
+        };
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

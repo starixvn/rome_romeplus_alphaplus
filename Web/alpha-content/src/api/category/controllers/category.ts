@@ -4,16 +4,16 @@
 
 import { factories } from '@strapi/strapi'
 
-function isValid(model, market, level) {
-  return model.publishedAt != null 
+function isValid(model, market, level, isProd) {
+  return (isProd || model.publishedAt != null)
     && model.user_levels?.some(l => l.levelId == level)
     && model.markets?.some(m => m.name.toUpperCase() == market.toUpperCase());
 }
 
-function filterCategoriesHasData(categories, market, level) {
+function filterCategoriesHasData(categories, market, level, isProd) {
   categories.forEach(element => {
     if(element.articles) { 
-      element.articles = element.articles.filter(a  => isValid(a, market,level));
+      element.articles = element.articles.filter(a  => isValid(a, market,level, isProd));
     }
   });
 
@@ -63,12 +63,13 @@ export default factories.createCoreController('api::category.category', ({ strap
 
   async findMany(ctx) {
     try {
-      const { language, market, level } = ctx.params;
+      const { language, market, level, env } = ctx.params;
+      const isProd = env === "PROD";
 
       if(language === 'en') {
         const entities = await strapi.entityService.findMany('api::category.category', {
           filters: {
-            publishedAt: { $null: false },
+            publishedAt: (isProd ? { $null: false } : null),
             user_levels: (level =='0' ? {} : { levelId: { $eq: level } }),
             markets: {
               name: { $eqi: market }
@@ -96,59 +97,43 @@ export default factories.createCoreController('api::category.category', ({ strap
         });  
   
         const output = await this.sanitizeOutput(entities, ctx);
-        return filterCategoriesHasData(output, market, level);
+        return filterCategoriesHasData(output, market, level, isProd);
       }
       
-      const entities = await strapi.entityService.findMany('api::category.category', {
-        filters: {
-          publishedAt: { $null: false },
+      const entities = await strapi.db.query('api::category.category').findMany({
+        where: {
+          locale: language,
+          publishedAt: (isProd ? { $null: false } : null),
           user_levels: {
             levelId: { $eq: level }
           },
           markets: {
             name: { $eqi: market }
-          }
+          },
         },
-        populate: 'localizations'
-      });  
-
-
-      const uppercaseLanguage = language.toUpperCase();
-      const result = [];
-      const existingCategories = {};
-
-      for(var i = 0; i<entities.length; i++) {
-        const e = entities[i];
-        const localization = e.localizations?.find(l => l.locale.toUpperCase() === uppercaseLanguage);
-        if(localization && !existingCategories[localization.id]) {
-          const categoryByLocale = await strapi.entityService.findOne('api::category.category', localization.id, {
-              populate: {
-                articles: {
-                  fields: ['slug', 'title', 'publishedAt'],
-                  populate: {
-                    user_levels:{
-                      fields: ['levelId']
-                    },
-                    markets: {
-                      fields: ['name']
-                    }
-                  }
-                },
-                markets: {
-                  fields: ['name', 'slug'],
-                },
-                user_levels: {
-                  fields: ['levelId'],
-                }
+        populate: {
+          articles: {
+            fields: ['slug', 'title', 'publishedAt'],
+            populate: {
+              user_levels:{
+                fields: ['levelId']
+              },
+              markets: {
+                fields: ['name']
               }
-            });  
-
-          result.push(await this.sanitizeOutput(categoryByLocale, ctx));
-          existingCategories[localization.id] = true;
+            }
+          },
+          markets: {
+            fields: ['name', 'slug'],
+          },
+          user_levels: {
+            fields: ['levelId'],
+          }
         }
-      }
+      });
 
-      return filterCategoriesHasData(result, market, level);
+      const result = await this.sanitizeOutput(entities, ctx) as [any];
+      return filterCategoriesHasData(result, market, level, isProd);
     } catch(e) {
       console.log(e);
     }
@@ -158,11 +143,13 @@ export default factories.createCoreController('api::category.category', ({ strap
 
       
   async getBySlug(ctx) {
-    const { slug, language, market, level } = ctx.params;
+    const { slug, language, market, level, env } = ctx.params;
+    const isProd = env === "PROD";
+
     if(language === 'en') {
       const entities = await strapi.entityService.findMany('api::category.category', {
         filters: {
-          publishedAt: { $null: false },
+          publishedAt: (isProd ? { $null: false } : null),
           slug: { $eqi: slug },
           user_levels: {
             levelId: { $eq: level }
@@ -198,66 +185,55 @@ export default factories.createCoreController('api::category.category', ({ strap
         return null;
       }
       
-      const result = filterCategoriesHasData(output, market, level);
+      const result = filterCategoriesHasData(output, market, level, isProd);
       return result[0];
     }
 
-    const entities = await strapi.entityService.findMany('api::category.category', {
-      filters: {
-        publishedAt: { $null: false },
+    const entities = await strapi.db.query('api::category.category').findMany({
+      where: {
+        locale: language,
+        publishedAt: (isProd ? { $null: false } : null),
         user_levels: {
           levelId: { $eq: level }
         },
         markets: {
           name: { $eqi: market }
-        }
+        },
+        slug: { $eqi: slug },
       },
-      populate: 'localizations'
-    });  
-
-
-    const uppercaseLanguage = language.toUpperCase();
-    const uppercaseSlug = slug.toUpperCase();
-    const result = [];
-    const existingCategories = {};
-
-    for(var i = 0; i<entities.length; i++) {
-      const e = entities[i];
-      const localization = e.localizations?.find(l => l.locale.toUpperCase() === uppercaseLanguage && l.slug.toUpperCase() === uppercaseSlug);
-      if(localization && !existingCategories[localization.id]) {
-        const categoryByLocale = await strapi.entityService.findOne('api::category.category', localization.id, {
-            populate: {
-              articles: {
-                fields: ['slug', 'title', 'publishedAt'],
-                populate: {
-                  user_levels:{
-                    fields: ['levelId']
-                  },
-                  markets: {
-                    fields: ['name']
-                  }
-                }
-              },
-              markets: {
-                fields: ['name', 'slug'],
-              },
-              user_levels: {
-                fields: ['levelId'],
-              }
+      populate: {
+        articles: {
+          fields: ['slug', 'title', 'publishedAt'],
+          populate: {
+            user_levels:{
+              fields: ['levelId']
+            },
+            markets: {
+              fields: ['name']
             }
-          });  
-
-        result.push(await this.sanitizeOutput(categoryByLocale, ctx));
-        existingCategories[localization.id] = true;
+          }
+        },
+        markets: {
+          fields: ['name', 'slug'],
+        },
+        user_levels: {
+          fields: ['levelId'],
+        }
       }
-    }
+    });
 
-    if(result.length === 0) 
+    if(entities.length === 0) 
     {
       return null;
     }
 
-    filterCategoriesHasData(result, market, level);
+    const result = await this.sanitizeOutput(entities, ctx) as [any];
+    filterCategoriesHasData(result, market, level, isProd);
+    if(!result.length) 
+    {
+      return null;
+    }
+
     return result[0];
   },
 }));

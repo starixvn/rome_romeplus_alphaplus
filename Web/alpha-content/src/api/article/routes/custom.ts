@@ -22,17 +22,17 @@ export default {
     },
     {
       method: 'GET',
-      path: '/articles/search/:language/:market/:level/:keyword',
+      path: '/articles/search/:language/:market/:level/:env/:keyword',
       handler: 'article.search',
     },
     {
       method: 'GET',
-      path: '/articles/get/:slug/:language/:market/:level',
+      path: '/articles/get/:slug/:language/:market/:level/:env',
       handler: 'article.getBySlug',
     },
     {
       method: 'GET',
-      path: '/articles/suggest/:language/:market/:level/:keyword',
+      path: '/articles/suggest/:language/:market/:level/:env/:keyword',
       handler: 'article.suggest',
     }
   ]

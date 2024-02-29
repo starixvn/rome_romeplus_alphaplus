@@ -11,5 +11,8 @@ BEGIN
 	  SET new.slug = REPLACE(LOWER(new.title), ' ', '-');
 	  SET new.slug = REPLACE(LOWER(new.slug), '/', '-');
   END IF;
+  IF (new.info_in_english is null) THEN
+	  SET new.info_in_english = CONCAT("[", new.locale, "] ", new.name);
+  END IF;
 END$$   
 DELIMITER ; 
