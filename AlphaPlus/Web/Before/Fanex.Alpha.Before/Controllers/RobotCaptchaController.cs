@@ -44,7 +44,7 @@ public class RobotCaptchaController : Controller
         {
             var message = $"{Labels.invalidsession} / {Labels.inputCaptchaTooLong}";
 
-            return Redirect($"~/?r={HttpUtility.UrlEncode(message, CancellationToken cancellation)}");
+            return Redirect($"~/?r={HttpUtility.UrlEncode(message)}");
         }
 
         if (IsIgnoreRobotCaptcha())

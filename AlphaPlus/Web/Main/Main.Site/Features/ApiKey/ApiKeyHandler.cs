@@ -38,7 +38,7 @@ namespace AlphaPlus.Main.Site.Features.ApiKey
         public Task<Result> Handle(UpdateApiKeyCommand request, CancellationToken cancellationToken)
         {
             var result = apiKeyService.UpdateApiKey(request.ApiKey, request.CustId, request.ApiName, request.Scopes, request.IP, request.Language, request.ExpirationDate);
-            return Task.FromResult(new Result(result.Result.Code, result.Result.message, CancellationToken cancellation));
+            return Task.FromResult(new Result(result.Result.Code, result.Result.Message));
         }
 
     }

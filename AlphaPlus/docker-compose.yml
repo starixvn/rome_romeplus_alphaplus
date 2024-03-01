@@ -1,16 +1,16 @@
 version: '3.4'
 
 services:
-    settings-site:
-        image: ${REGISTRY:-alphaplus}/settings.site:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: Web/Settings/Settings.Site/Dockerfile
-        restart: always
-        develop:
-            watch:
-                - action: rebuild
-            path: .
+    # settings-site:
+    #     image: ${REGISTRY:-alphaplus}/settings.site:${PLATFORM:-linux}-${TAG:-latest}
+    #     build:
+    #         context: .
+    #         dockerfile: Web/Settings/Settings.Site/Dockerfile
+    #     restart: always
+    #     develop:
+    #         watch:
+    #             - action: rebuild
+    #         path: .
 
     tickets-api:
         image: ${REGISTRY:-alphaplus}/tickets.api:${PLATFORM:-linux}-${TAG:-latest}

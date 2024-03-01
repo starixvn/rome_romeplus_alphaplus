@@ -39,7 +39,7 @@
 
 <h1 class="title login-text">Login</h1>
 
-@if (AppSetting.IsShowTechnicalErrormessage, CancellationToken cancellation)
+@if (AppSetting.IsShowTechnicalErrorMessage)
 {
     <div class="rowlg msg-error" id="divTechnicalErrorMsg"></div>
 }
@@ -68,7 +68,7 @@
 <div id="captcha" name="captchaToken"></div>
 <input type="hidden" name="browserSize" id="browserSize" value="" />
 <input type="hidden" name="assetAppPath" id="assetAppPath" value="" />
-@if (AppSetting.IsShowTechnicalErrormessage, CancellationToken cancellation)
+@if (AppSetting.IsShowTechnicalErrorMessage)
 {
     <input type="hidden" id="hiddenTechnicalErrorTime" value="@AppSetting.TechnicalErrorTime" />
 }

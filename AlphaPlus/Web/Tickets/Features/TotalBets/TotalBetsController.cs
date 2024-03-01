@@ -13,34 +13,34 @@ public class TotalBetsController : BaseController
     public TotalBetsController(ITotalBetsService totalBetsService)
         => this.totalBetsService = totalBetsService;
 
-    public Task<IActionResult> HDPOULive(GetTotalBetsRequest message, CancellationToken cancellation)
-        => TotalBetsView<HDPOULive>(nameof(HDPOULive), message, CancellationToken cancellation);
+    public Task<IActionResult> HDPOULive(GetTotalBetsRequest message)
+        => TotalBetsView<HDPOULive>(nameof(HDPOULive), message);
 
-    public Task<IActionResult> MoneyLine(GetTotalBetsRequest message, CancellationToken cancellation)
-        => TotalBetsView<MoneyLine>(nameof(MoneyLine), message, CancellationToken cancellation);
+    public Task<IActionResult> MoneyLine(GetTotalBetsRequest message)
+        => TotalBetsView<MoneyLine>(nameof(MoneyLine), message);
 
-    public Task<IActionResult> OE1X2DND(GetTotalBetsRequest message, CancellationToken cancellation)
-        => TotalBetsView<OE1X2DND>(nameof(OE1X2DND), message, CancellationToken cancellation);
+    public Task<IActionResult> OE1X2DND(GetTotalBetsRequest message)
+        => TotalBetsView<OE1X2DND>(nameof(OE1X2DND), message);
 
-    public Task<IActionResult> TotalGoal(GetTotalBetsRequest message, CancellationToken cancellation)
-        => TotalBetsView<TotalGoal>(nameof(TotalGoal), message, CancellationToken cancellation);
+    public Task<IActionResult> TotalGoal(GetTotalBetsRequest message)
+        => TotalBetsView<TotalGoal>(nameof(TotalGoal), message);
 
-    public Task<IActionResult> Outright(GetTotalBetsRequest message, CancellationToken cancellation)
-        => TotalBetsView<Outright>(nameof(Outright), message, CancellationToken cancellation);
+    public Task<IActionResult> Outright(GetTotalBetsRequest message)
+        => TotalBetsView<Outright>(nameof(Outright), message);
 
-    public Task<IActionResult> HTFT(GetTotalBetsRequest message, CancellationToken cancellation)
-        => TotalBetsView<HalfTimeFullTime>(nameof(HTFT), message, CancellationToken cancellation);
+    public Task<IActionResult> HTFT(GetTotalBetsRequest message)
+        => TotalBetsView<HalfTimeFullTime>(nameof(HTFT), message);
 
-    public Task<IActionResult> FGLG(GetTotalBetsRequest message, CancellationToken cancellation)
-       => TotalBetsView<FirstGoalLastGoal>(nameof(FGLG), message, CancellationToken cancellation);
+    public Task<IActionResult> FGLG(GetTotalBetsRequest message)
+       => TotalBetsView<FirstGoalLastGoal>(nameof(FGLG), message);
 
-    public Task<IActionResult> HomeDrawAwayNoBet(GetTotalBetsRequest message, CancellationToken cancellation)
-       => TotalBetsView<HomeDrawAwayNoBet>(nameof(HomeDrawAwayNoBet), message, CancellationToken cancellation);
+    public Task<IActionResult> HomeDrawAwayNoBet(GetTotalBetsRequest message)
+       => TotalBetsView<HomeDrawAwayNoBet>(nameof(HomeDrawAwayNoBet), message);
 
-    public Task<IActionResult> NumberGame(GetTotalBetsRequest message, CancellationToken cancellation)
-       => TotalBetsView<NumberGame>(nameof(NumberGame), message, CancellationToken cancellation);
+    public Task<IActionResult> NumberGame(GetTotalBetsRequest message)
+       => TotalBetsView<NumberGame>(nameof(NumberGame), message);
 
-    private async Task<IActionResult> TotalBetsView<T>(string action, GetTotalBetsRequest message, CancellationToken cancellation)
+    private async Task<IActionResult> TotalBetsView<T>(string action, GetTotalBetsRequest message)
     {
         var totalBets = await totalBetsService.GetTotalBets<T>(
             action,

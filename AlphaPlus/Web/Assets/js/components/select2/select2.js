@@ -786,7 +786,7 @@ S2.define('select2/results',[
       ' class="select2-results__option"></li>'
     );
 
-    var message = this.options.get('translations').get(params.message, CancellationToken cancellation);
+    var message = this.options.get('translations').get(params.message);
 
     $message.append(
       escapeMarkup(
@@ -796,7 +796,7 @@ S2.define('select2/results',[
 
     $message[0].className += ' select2-results__message';
 
-    this.$results.append($message, CancellationToken cancellation);
+    this.$results.append($message);
   };
 
   Results.prototype.hideMessages = function () {

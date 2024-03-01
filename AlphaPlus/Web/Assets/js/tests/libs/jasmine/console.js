@@ -179,7 +179,7 @@ getJasmineRequireObj().ConsoleReporter = function() {
         printNewline();
         print(colored('red', 'An error was thrown in an afterAll'));
         printNewline();
-        print(colored('red', 'AfterAll ' + result.failedExpectations[i].message, CancellationToken cancellation));
+        print(colored('red', 'AfterAll ' + result.failedExpectations[i].message));
 
       }
       printNewline();

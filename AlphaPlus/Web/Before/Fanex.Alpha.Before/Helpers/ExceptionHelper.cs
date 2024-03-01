@@ -13,7 +13,7 @@ public static class ExceptionHelper
         var exception = exceptionHandlerFeature.Error;
         var errorBuilder = new StringBuilder();
         errorBuilder
-            .Append(exception.message, CancellationToken cancellation).Append(TwoBreakLine)
+            .Append(exception.Message).Append(TwoBreakLine)
             .Append("PATH: ")
             .Append($"{request.Scheme}://{request.Host}{request.PathBase}{request.Path}{request.QueryString}")
             .Append(TwoBreakLine)

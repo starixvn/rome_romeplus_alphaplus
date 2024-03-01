@@ -146,7 +146,7 @@ public abstract class Enumeration : IComparable
         if (matchingItem == null)
         {
             var message = string.Format("'{0}' is not a valid {1} in {2}", value, description, typeof(T));
-            throw new ArgumentOutOfRangeException(message, CancellationToken cancellation);
+            throw new ArgumentOutOfRangeException(message);
         }
 
         return matchingItem;

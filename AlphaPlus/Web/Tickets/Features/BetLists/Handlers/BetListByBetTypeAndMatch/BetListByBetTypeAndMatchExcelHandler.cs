@@ -39,7 +39,7 @@ public class BetListByBetTypeAndMatchExcelHandler :
 
     public async Task<ExcelFileViewModel> Handle(BetListByBetTypeAndMatchExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = BetListByBetTypeAndMatchHandler.CreateRunningBetListByBetTypeAndMatchParam(message, CancellationToken cancellation);
+        var param = BetListByBetTypeAndMatchHandler.CreateRunningBetListByBetTypeAndMatchParam(message);
         var betListData = await runningBetListByBetTypeAndMatchService.GetBetList(param);
 
         var viewModel = new BetListByBetTypeAndMatchViewModel(message, betListData, null, TicketHelper);

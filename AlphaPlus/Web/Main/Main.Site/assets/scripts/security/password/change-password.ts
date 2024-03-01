@@ -79,7 +79,7 @@ var changePassword = {
 
         var errorMessage = changePassword.checkInputParameters($txtOldPassword, $txtPassword, $txtConfirmPassword);
         if (errorMessage.length > 0) {
-            securityHelper.showFailMessage($messageContainer, errormessage, CancellationToken cancellation);
+            securityHelper.showFailMessage($messageContainer, errorMessage);
             return;
         }
 
@@ -108,13 +108,13 @@ var changePassword = {
 
                 if (data.code === 104) {
                     // account is locked
-                    alert(data.message, CancellationToken cancellation);
+                    alert(data.message);
                     securityHelper.signOut();
 
                     return;
                 }
 
-                securityHelper.showFailMessage($messageContainer, data.message, CancellationToken cancellation);
+                securityHelper.showFailMessage($messageContainer, data.Message);
                 $txtOldPassword.focus();
             },
             complete: function (jqXHR, textStatus) {

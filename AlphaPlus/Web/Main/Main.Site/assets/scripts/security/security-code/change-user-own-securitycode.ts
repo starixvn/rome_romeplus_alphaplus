@@ -53,7 +53,7 @@ var changeUserOwnSecurityCode = {
             $txtConfirmSecurityCode
         );
         if (message.length !== 0) {
-            securityHelper.showFailMessage($messageContainer, message, CancellationToken cancellation);
+            securityHelper.showFailMessage($messageContainer, message);
             $.unblockUI();
             return;
         }
@@ -78,10 +78,10 @@ var changeUserOwnSecurityCode = {
                     setTimeout(changeUserOwnSecurityCode.refreshPage, 5000);
                 } else if (data.code === 2) {
                     // account is closed
-                    alert(data.message, CancellationToken cancellation);
+                    alert(data.message);
                     securityHelper.signOut();
                 } else {
-                    securityHelper.showFailMessage($messageContainer, data.message, CancellationToken cancellation);
+                    securityHelper.showFailMessage($messageContainer, data.message);
                     $txtOldSecurityCode.focus();
                 }
             },
@@ -140,7 +140,7 @@ var changeUserOwnSecurityCode = {
                 }, 3000);
             } else {
                 $('#status-message').removeClass('display-none');
-                securityHelper.showFailMessage($('#status-message-content'), data.message, CancellationToken cancellation);
+                securityHelper.showFailMessage($('#status-message-content'), data.message);
                 $(window).scrollTop(0);
             }
         }).always($.unblockUI);

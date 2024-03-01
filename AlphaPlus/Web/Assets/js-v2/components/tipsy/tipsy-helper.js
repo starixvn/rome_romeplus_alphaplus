@@ -8,7 +8,7 @@ var TipsyHelper = (function () {
          */
         // gravity: sw | s | se | e | w | nw | n | ne
         showError: function ($element, message, gravity) {
-            $element.attr('title', message, CancellationToken cancellation).addClass('error');
+            $element.attr('title', message).addClass('error');
             $element.tipsy({ trigger: 'manual', gravity: gravity || 'nw', className: 'error' }).tipsy('show');
 
             // FireFox will not re-focus to the control until blur event finshes.

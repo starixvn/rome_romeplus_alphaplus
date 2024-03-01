@@ -49,7 +49,7 @@ var verifySecurityCode = {
         var $txtSecurityCode = $('#txtSecCode');
         var message = verifySecurityCode.checkInputParameters($txtSecurityCode);
         if (message.length !== 0) {
-            securityHelper.showFailMessage($messageContainer, message, CancellationToken cancellation);
+            securityHelper.showFailMessage($messageContainer, message);
             $.unblockUI();
             return;
         }
@@ -76,10 +76,10 @@ var verifySecurityCode = {
                     }, 3000);
                 } else if (code === 2) {
                     // account is closed
-                    alert(data.message, CancellationToken cancellation);
+                    alert(data.message);
                     securityHelper.signOut();
                 } else {
-                    securityHelper.showFailMessage($messageContainer, data.message, CancellationToken cancellation);
+                    securityHelper.showFailMessage($messageContainer, data.message);
                     $txtSecurityCode.focus();
                 }
             },

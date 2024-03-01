@@ -25,6 +25,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IRequestAnalyst, RequestAnalyst>();
         services.AddSingleton<IBrowserHelper, BrowserHelper>();
         services.AddSingleton<IRequestContext, RequestContext>();
+        services.TryAddSingleton<INicknameChecker, NicknameChecker>();
         services.AddSingleton<IAuthorizationService, AuthorizationService>();
 
         return services.Configure<AuthorizationOptions>(configuration.GetSection(AuthorizationOptions.Authorization));

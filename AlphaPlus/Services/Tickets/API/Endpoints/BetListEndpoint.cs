@@ -15,10 +15,10 @@
 
 //         betList.MapGet(
 //             "/{custId}/running",
-//             ([AsParameters] RunningBetListParam message, IBetListRepository repository) => repository.GetBetListRunningByDate(message, CancellationToken cancellation));
+//             ([AsParameters] RunningBetListParam message, IBetListRepository repository) => repository.GetBetListRunningByDate(message));
 
 //         betList.MapGet(
 //             "/{custId}/ByDate",
-//             ([AsParameters] RunningBetListParam message, IBetListRepository repository) => repository.GetBetListAllByDate(message, CancellationToken cancellation));
+//             ([AsParameters] RunningBetListParam message, IBetListRepository repository) => repository.GetBetListAllByDate(message));
 //     }
 // }

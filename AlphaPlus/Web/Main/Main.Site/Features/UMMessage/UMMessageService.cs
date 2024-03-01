@@ -57,15 +57,15 @@ namespace AlphaPlus.Main.Site.Features.UMMessage
                 switch (message.FunctionType)
                 {
                     case UMFunctionType.LockEdit:
-                        yield return BuildCustomerSettingsMessage(message, CancellationToken cancellation);
+                        yield return BuildCustomerSettingsMessage(message);
                         break;
 
                     case UMFunctionType.NewAccount:
-                        yield return BuildUMPatternFromTo(Resources.UMNewAccountPattern, message, CancellationToken cancellation);
+                        yield return BuildUMPatternFromTo(Resources.UMNewAccountPattern, message);
                         break;
 
                     case UMFunctionType.Transfer:
-                        yield return BuildUMPatternFromTo(Resources.UMTransferPattern, message, CancellationToken cancellation);
+                        yield return BuildUMPatternFromTo(Resources.UMTransferPattern, message);
                         break;
 
                     default:
@@ -74,7 +74,7 @@ namespace AlphaPlus.Main.Site.Features.UMMessage
             }
         }
 
-        private UMMessageDTO BuildCustomerSettingsMessage(UMMessageItem message, CancellationToken cancellation)
+        private UMMessageDTO BuildCustomerSettingsMessage(UMMessageItem message)
         {
             var builder = new StringBuilder(
                 string.Format(Resources.UMCustomerSettingsPattern, message.BeginTime.ToLongDateWithSlash(), message.EndTime.ToLongDateWithSlash()));
@@ -95,7 +95,7 @@ namespace AlphaPlus.Main.Site.Features.UMMessage
             return productId == 0 ? Resources.AllProducts : GetProductName(productId);
         }
 
-        private static UMMessageDTO BuildUMPatternFromTo(string pattern, UMMessageItem message, CancellationToken cancellation)
+        private static UMMessageDTO BuildUMPatternFromTo(string pattern, UMMessageItem message)
             => new(
                 BitConverter.ToInt64(message.Time_Stamp, 0),
                 string.Format(

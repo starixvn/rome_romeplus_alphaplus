@@ -30,7 +30,7 @@ public class HomeController : Controller
             }
             else
             {
-                viewModel = new(false, exception.message, CancellationToken cancellation);
+                viewModel = new(false, exception.Message);
                 await logger.ErrorAsync(await ExceptionHelper.BuildError(HttpContext.Request, exception, exceptionHandlerFeature.Path));
             }
         }

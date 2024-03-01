@@ -7,7 +7,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 {
     public interface IEncryptUrlHelper
     {
-        void WriteLoginLogs(int superId, string message, CancellationToken cancellation);
+        void WriteLoginLogs(int superId, string message);
 
         string BuildAfterURL(HttpContext httpContext);
 
@@ -28,12 +28,12 @@ namespace Fanex.Alpha.Before.Services.SignIn
         public const string UTMS = "__utms";
         private const string SecretKey = "!@#$";
 
-        public void WriteLoginLogs(int superId, string message, CancellationToken cancellation)
+        public void WriteLoginLogs(int superId, string message)
         {
             var superIds = AppSetting.GetValue<int[]>("Robot:TrackLogSuperIds") ?? Array.Empty<int>();
             if (superIds.Any(id => id == superId))
             {
-                Logging.Logger.Log.Warn(message, CancellationToken cancellation);
+                Logging.Logger.Log.Warn(message);
             }
         }
 

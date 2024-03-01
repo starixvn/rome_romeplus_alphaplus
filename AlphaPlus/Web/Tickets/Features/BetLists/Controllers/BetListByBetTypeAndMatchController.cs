@@ -11,9 +11,9 @@ public class BetListByBetTypeAndMatchController : BetListBaseController
     {
     }
 
-    public Task<IActionResult> Index(BetListByBetTypeAndMatchQuery message, CancellationToken cancellation)
-        => View<BetListByBetTypeAndMatchViewModel>(message, CancellationToken cancellation);
+    public Task<IActionResult> Index(BetListByBetTypeAndMatchQuery message)
+        => View<BetListByBetTypeAndMatchViewModel>(message);
 
-    public Task<FileContentResult> Excel(BetListByBetTypeAndMatchExcelQuery message, CancellationToken cancellation)
-        => ExcelView(message, CancellationToken cancellation);
+    public Task<FileContentResult> Excel(BetListByBetTypeAndMatchExcelQuery message)
+        => ExcelView(message);
 }

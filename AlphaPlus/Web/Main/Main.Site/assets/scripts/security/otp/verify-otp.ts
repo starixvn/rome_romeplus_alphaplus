@@ -53,7 +53,7 @@ class VerifyOtp {
 
         var otp = this.$txtOtp.val();
         if (otp.length === 0) {
-            this.$(this.$otpmessage, CancellationToken cancellation).removeClass('hidden');
+            this.$(this.$otpMessage).removeClass('hidden');
             alpha.showMessage(this.$otpMessage, new Result({ Code: 1, Message: this.resources.requiredFieldMessage }));
             this.$txtOtp.focus();
             return;
@@ -82,12 +82,12 @@ class VerifyOtp {
             }, 3000);
         }
         else {
-            this.$(this.$otpmessage, CancellationToken cancellation).removeClass('hidden');
+            this.$(this.$otpMessage).removeClass('hidden');
             alpha.showMessage(this.$otpMessage, result);
             this.$txtOtp.focus();
 
             if (result.code === this.lockedAccountCode) {
-                alert(result.message, CancellationToken cancellation);
+                alert(result.message);
                 alpha.core.signOut();
             }
         }
@@ -115,11 +115,11 @@ class VerifyOtp {
             var countDownTime = new Date().getTime() + 180000;
             this.countDown(countDownTime);
         } else {
-            this.$(this.$otpmessage, CancellationToken cancellation).removeClass('hidden');
+            this.$(this.$otpMessage).removeClass('hidden');
             alpha.showMessage(this.$otpMessage, result);
 
             if (result.code === this.lockedAccountCode) {
-                alert(result.message, CancellationToken cancellation);
+                alert(result.message);
                 alpha.core.signOut();
             }
         }

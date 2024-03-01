@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.Main.Site.Features.UMMessage
 {
-    public class UMMessageDTO(long id, string message, CancellationToken cancellation)
+    public class UMMessageDTO(long id, string message)
     {
         public long Id { get; } = id;
 

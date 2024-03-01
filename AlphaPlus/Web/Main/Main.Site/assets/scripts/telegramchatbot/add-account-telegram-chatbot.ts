@@ -74,7 +74,7 @@ class AddAccountTelegramChatBot extends BaseTelegramChatBot {
         var result = this.safelyParseJSON(data);
 
         if (result && result.IsNotAuthorized) {
-            this.topWindow.bootboxAlert(result.message, CancellationToken cancellation);
+            this.topWindow.bootboxAlert(result.Message);
             return;
         }
 

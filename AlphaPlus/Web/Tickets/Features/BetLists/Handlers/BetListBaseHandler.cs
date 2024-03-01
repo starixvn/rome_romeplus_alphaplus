@@ -55,7 +55,7 @@ public class BetListBaseHandler
 
     // protected internal static IEnumerable<ProductViewModel> BuildProductViewModels(
     //     IEnumerable<Product> products,
-    //     WinLossIndexQuery message, CancellationToken cancellation)
+    //     WinLossIndexQuery message)
     // {
     //     var productList = new List<ProductViewModel>();
 

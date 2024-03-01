@@ -9,5 +9,5 @@ public class OutstandingController(IMediator mediator) : ReportBaseController(me
     [Route("outstanding/master")]
     [Route("outstanding/agent")]
     [Route("outstanding/member")]
-    public Task<IActionResult> Index(OutstandingQuery message, CancellationToken cancellation) => View(message, CancellationToken cancellation);
+    public Task<IActionResult> Index(OutstandingQuery message) => View(message);
 }

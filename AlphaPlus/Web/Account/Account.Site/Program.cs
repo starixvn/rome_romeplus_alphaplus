@@ -11,11 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
 
+// TODO:
 builder.Services.AddControllersWithViews(options =>
 {
-    options.Filters.Add<CheckBelongingFilterAttribute>();
-    options.Filters.Add<AfterLoginFlowFilterAttribute>();
-    options.Filters.Add<ProtectedModeFilterAttribute>();
+    // options.Filters.Add<CheckBelongingFilterAttribute>();
+    // options.Filters.Add<AfterLoginFlowFilterAttribute>();
+    // options.Filters.Add<ProtectedModeFilterAttribute>();
 });
 
 builder.Services

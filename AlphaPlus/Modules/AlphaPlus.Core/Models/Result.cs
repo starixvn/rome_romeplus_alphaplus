@@ -11,7 +11,7 @@ namespace AlphaPlus.Core.Models
             Code = code;
         }
 
-        public Result(int code, string message, CancellationToken cancellation)
+        public Result(int code, string message)
         {
             Code = code;
             Message = message;

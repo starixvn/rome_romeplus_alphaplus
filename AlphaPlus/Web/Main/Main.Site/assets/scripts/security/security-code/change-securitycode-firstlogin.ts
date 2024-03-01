@@ -55,7 +55,7 @@ var changeSecurityCodeFirstLogin = {
                     securityHelper.redirectToHomePage(2000);
                 } else {
                     $('#txtSecCode').addClass('error');
-                    $('#txtSecCode-error').empty().html(data.message, CancellationToken cancellation);
+                    $('#txtSecCode-error').empty().html(data.message);
                     $txtSecurityCode.focus();
                 }
             },

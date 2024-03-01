@@ -114,7 +114,7 @@ class TelegramChatBotSetting extends BaseTelegramChatBot {
             success: (result) => {
                 if (result && result.isNotOk) {
                     if (result.isNotAuthorized) {
-                        self.topWindow.bootboxAlert(result.message, CancellationToken cancellation);
+                        self.topWindow.bootboxAlert(result.message);
                         return;
                     }
 
@@ -154,7 +154,7 @@ class TelegramChatBotSetting extends BaseTelegramChatBot {
     onUnSubscribeSuccess = (result: any) => {
         if (result && result.isNotOk) {
             if (result.isNotAuthorized) {
-                this.topWindow.bootboxAlert(result.message, CancellationToken cancellation);
+                this.topWindow.bootboxAlert(result.message);
                 return;
             }
 
@@ -195,7 +195,7 @@ class TelegramChatBotSetting extends BaseTelegramChatBot {
                 this.reloadPage();
             } else {
                 if (result.isNotAuthorized) {
-                    this.topWindow.bootboxAlert(result.message, CancellationToken cancellation);
+                    this.topWindow.bootboxAlert(result.message);
                     return;
                 }
 

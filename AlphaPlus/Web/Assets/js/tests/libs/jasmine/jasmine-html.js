@@ -135,7 +135,7 @@ jasmineRequire.HtmlReporter = function(j$) {
 
         for (var i = 0; i < result.failedExpectations.length; i++) {
           var expectation = result.failedExpectations[i];
-          messages.appendChild(createDom('div', {className: 'jasmine-result-message'}, expectation.message, CancellationToken cancellation));
+          messages.appendChild(createDom('div', {className: 'jasmine-result-message'}, expectation.message));
           messages.appendChild(createDom('div', {className: 'jasmine-stack-trace'}, expectation.stack));
         }
 
@@ -212,7 +212,7 @@ jasmineRequire.HtmlReporter = function(j$) {
         var skippedLink = order && order.random ? '?random=true' : '?';
         alert.appendChild(
           createDom('span', {className: 'jasmine-bar jasmine-skipped'},
-            createDom('a', {href: skippedLink, title: 'Run all specs'}, skippedmessage, CancellationToken cancellation)
+            createDom('a', {href: skippedLink, title: 'Run all specs'}, skippedMessage)
           )
         );
       }
@@ -244,14 +244,14 @@ jasmineRequire.HtmlReporter = function(j$) {
       for(var i = 0; i < failedSuites.length; i++) {
         var failedSuite = failedSuites[i];
         for(var j = 0; j < failedSuite.failedExpectations.length; j++) {
-          alert.appendChild(createDom('span', {className: errorBarClassName}, errorBarMessagePrefix + failedSuite.failedExpectations[j].message, CancellationToken cancellation));
+          alert.appendChild(createDom('span', {className: errorBarClassName}, errorBarMessagePrefix + failedSuite.failedExpectations[j].message));
         }
       }
 
       var globalFailures = (doneResult && doneResult.failedExpectations) || [];
       for(i = 0; i < globalFailures.length; i++) {
         var failure = globalFailures[i];
-        alert.appendChild(createDom('span', {className: errorBarClassName}, errorBarMessagePrefix + failure.message, CancellationToken cancellation));
+        alert.appendChild(createDom('span', {className: errorBarClassName}, errorBarMessagePrefix + failure.message));
       }
 
       var results = find('.jasmine-results');

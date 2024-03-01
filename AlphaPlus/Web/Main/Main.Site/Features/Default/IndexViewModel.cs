@@ -86,7 +86,7 @@ namespace AlphaPlus.Main.Site.Features.Default
             new(
                 CustId,
                 message.UserName,
-                BuildNickName(message, CancellationToken cancellation),
+                BuildNickName(message),
                 EnableSecurityCode,
                 message.ShowSearchAccount,
                 IsEnabledOtp,
@@ -126,7 +126,7 @@ namespace AlphaPlus.Main.Site.Features.Default
 
         public bool IsProtectedMode { get; }
 
-        internal static string BuildNickName(IndexQuery message, CancellationToken cancellation)
+        internal static string BuildNickName(IndexQuery message)
         {
             if (message.IsSubAcc)
             {
