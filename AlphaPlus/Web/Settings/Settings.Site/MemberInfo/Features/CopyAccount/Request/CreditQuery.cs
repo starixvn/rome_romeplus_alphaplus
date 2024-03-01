@@ -1,9 +1,9 @@
-﻿using Alpha.MemberInfo.Site.Features.CopyAccount.Models;
-using Alpha.MemberInfo.Site.Requests;
+﻿using AlphaPlus.Settings.Site.Features.CopyAccount.Models;
+using AlphaPlus.Settings.Site.Requests;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using MediatR;
 
-namespace Alpha.MemberInfo.Site.Features.CopyAccount.Request
+namespace AlphaPlus.Settings.Site.Features.CopyAccount.Request
 {
     public class CreditQuery : MemberInfoBaseQuery, IRequest<CreditInfo>
     {

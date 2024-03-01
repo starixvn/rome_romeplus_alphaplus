@@ -1,8 +1,8 @@
-﻿namespace Alpha.MemberInfo.Site.Features.DormantAccountList
+﻿namespace AlphaPlus.Settings.Site.Features.DormantAccountList
 {
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Controllers;
-    using Alpha.MemberInfo.Site.Features.DormantAccountList.Requests;
+    using AlphaPlus.Settings.Site.Controllers;
+    using AlphaPlus.Settings.Site.Features.DormantAccountList.Requests;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
 

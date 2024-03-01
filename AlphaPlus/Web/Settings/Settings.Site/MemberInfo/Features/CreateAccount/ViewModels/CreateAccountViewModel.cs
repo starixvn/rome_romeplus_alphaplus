@@ -2,7 +2,7 @@
 using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
-namespace Alpha.MemberInfo.Site.Features.CreateAccount.ViewModels
+namespace AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
 {
     public class CreateAccountViewModel
     {

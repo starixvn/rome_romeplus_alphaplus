@@ -1,9 +1,9 @@
-﻿namespace Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn
+﻿namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.MemberInfo.Site.Features.CustomerList.Requests;
-    using Alpha.MemberInfo.Site.Features.CustomerList.ViewModels;
+    using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+    using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels;
     using Alpha.Products.Core.Models;
     using Alpha.Products.Core.Services;
     using Alpha.Products.Core.Shared;

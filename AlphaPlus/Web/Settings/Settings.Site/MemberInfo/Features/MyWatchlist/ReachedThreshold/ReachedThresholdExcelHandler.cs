@@ -1,8 +1,8 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.ReachedThreshold
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold
 {
-    using Alpha.MemberInfo.Site.Features.MyWatchlist.ReachedThreshold.Requests;
-    using Alpha.MemberInfo.Site.Handlers;
-    using Alpha.MemberInfo.Site.ViewModels;
+    using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold.Requests;
+    using AlphaPlus.Settings.Site.Handlers;
+    using AlphaPlus.Settings.Site.ViewModels;
     using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;

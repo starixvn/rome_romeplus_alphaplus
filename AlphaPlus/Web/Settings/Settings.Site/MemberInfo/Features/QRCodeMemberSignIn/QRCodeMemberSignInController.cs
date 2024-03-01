@@ -1,8 +1,8 @@
-﻿namespace Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn
+﻿namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn
 {
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Controllers;
-    using Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.Requests;
+    using AlphaPlus.Settings.Site.Controllers;
+    using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
     using MediatR;

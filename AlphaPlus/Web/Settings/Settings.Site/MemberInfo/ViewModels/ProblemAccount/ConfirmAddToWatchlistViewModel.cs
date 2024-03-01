@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.ViewModels.ProblemAccount
+﻿namespace AlphaPlus.Settings.Site.ViewModels.ProblemAccount
 {
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
     using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 
-namespace Alpha.MemberInfo.Site.Helpers
+namespace AlphaPlus.Settings.Site.Helpers
 {
     public static class BackgroundColorHelper
     {

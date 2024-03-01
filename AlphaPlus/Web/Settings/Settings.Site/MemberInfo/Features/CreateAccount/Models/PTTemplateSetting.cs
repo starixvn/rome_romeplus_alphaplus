@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Alpha.MemberInfo.Site.Features.CreateAccount.Models
+namespace AlphaPlus.Settings.Site.Features.CreateAccount.Models
 {
     public class PTTemplateSetting
     {

@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.MyWatchlistAccounts.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.MyWatchlistAccounts.Requests
 {
     using System.Web.Mvc;
 

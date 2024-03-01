@@ -1,9 +1,9 @@
-﻿namespace Alpha.MemberInfo.Site.Handlers
+﻿namespace AlphaPlus.Settings.Site.Handlers
 {
     using System;
     using System.Text;
-    using Alpha.MemberInfo.Site.Requests.ProblemAccount;
-    using Alpha.MemberInfo.Site.ViewModels;
+    using AlphaPlus.Settings.Site.Requests.ProblemAccount;
+    using AlphaPlus.Settings.Site.ViewModels;
     using AlphaPlus.Settings.MemberInfo.API.Services;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;

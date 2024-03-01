@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Requests.CreditBalance
+﻿namespace AlphaPlus.Settings.Site.Requests.CreditBalance
 {
     using System;
     using System.Net;

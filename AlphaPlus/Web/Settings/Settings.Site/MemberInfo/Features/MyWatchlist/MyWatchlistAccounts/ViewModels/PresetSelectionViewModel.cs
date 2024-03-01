@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
 {
     using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc.Rendering;

@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.CustomerList.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {
-    using Alpha.MemberInfo.Site.Features.CustomerList.Requests;
+    using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.ViewModels;
     using AlphaPlus.Utilities.IP;

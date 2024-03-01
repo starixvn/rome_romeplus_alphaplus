@@ -1,7 +1,7 @@
-﻿namespace Alpha.MemberInfo.Site.Features.CustomerList
+﻿namespace AlphaPlus.Settings.Site.Features.CustomerList
 {
-    using Alpha.MemberInfo.Site.Controllers;
-    using Alpha.MemberInfo.Site.Features.CustomerList.Requests;
+    using AlphaPlus.Settings.Site.Controllers;
+    using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
     using MediatR;
     using AlphaPlus.User.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;

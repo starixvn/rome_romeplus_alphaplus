@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests
 {
-    using Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.ViewModels;
+    using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.ViewModels;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
 

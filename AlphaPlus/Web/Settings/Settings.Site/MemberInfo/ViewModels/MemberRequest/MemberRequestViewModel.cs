@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.ViewModels.MemberRequest
+﻿namespace AlphaPlus.Settings.Site.ViewModels.MemberRequest
 {
     using System.Collections.Generic;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.MemberRequests;

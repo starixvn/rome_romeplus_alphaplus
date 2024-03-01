@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.Shared
+﻿namespace AlphaPlus.Settings.Site.Features.Shared
 {
-    using Alpha.MemberInfo.Site.Features.Shared.Requests;
+    using AlphaPlus.Settings.Site.Features.Shared.Requests;
     using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
     using MediatR;

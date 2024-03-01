@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.CustomerList.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 {
-    using Alpha.MemberInfo.Site.Features.Shared.Requests;
+    using AlphaPlus.Settings.Site.Features.Shared.Requests;
     using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
 

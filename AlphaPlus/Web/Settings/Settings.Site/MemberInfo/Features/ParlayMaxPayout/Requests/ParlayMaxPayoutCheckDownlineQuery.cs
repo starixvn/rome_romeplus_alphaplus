@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.ParlayMaxPayout.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.ParlayMaxPayout.Requests
 {
-    using Alpha.MemberInfo.Site.Requests;
+    using AlphaPlus.Settings.Site.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
 

@@ -1,4 +1,4 @@
-namespace Alpha.MemberInfo.Site.Features.CreateAccount
+namespace AlphaPlus.Settings.Site.Features.CreateAccount
 {
     using System.Linq;
     using System.Threading.Tasks;

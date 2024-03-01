@@ -1,11 +1,11 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.ReachedThreshold.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Alpha.MemberInfo.Site.Features.MyWatchlist.ReachedThreshold.Requests;
-    using Alpha.MemberInfo.Site.ViewModels.Components;
+    using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold.Requests;
+    using AlphaPlus.Settings.Site.ViewModels.Components;
     using AlphaPlus.Core.Helpers;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;

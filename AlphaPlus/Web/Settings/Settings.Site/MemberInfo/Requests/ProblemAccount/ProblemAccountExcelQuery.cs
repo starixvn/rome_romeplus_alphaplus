@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Requests.ProblemAccount
+﻿namespace AlphaPlus.Settings.Site.Requests.ProblemAccount
 {
-    using Alpha.MemberInfo.Site.ViewModels;
+    using AlphaPlus.Settings.Site.ViewModels;
     using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;

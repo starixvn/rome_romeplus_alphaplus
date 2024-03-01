@@ -1,5 +1,5 @@
 ﻿
-namespace Alpha.MemberInfo.Site.Requests.ProblemAccount
+namespace AlphaPlus.Settings.Site.Requests.ProblemAccount
 {
     using System.Collections.Generic;
     using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;

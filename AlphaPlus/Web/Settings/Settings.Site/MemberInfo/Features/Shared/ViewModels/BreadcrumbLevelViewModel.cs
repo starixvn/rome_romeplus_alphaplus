@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.Shared.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.Shared.ViewModels
 {
-    using Alpha.MemberInfo.Site.Helpers;
+    using AlphaPlus.Settings.Site.Helpers;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

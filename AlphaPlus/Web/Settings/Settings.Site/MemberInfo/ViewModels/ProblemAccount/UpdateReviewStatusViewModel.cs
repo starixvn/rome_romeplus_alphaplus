@@ -1,9 +1,9 @@
-﻿namespace Alpha.MemberInfo.Site.ViewModels.ProblemAccount
+﻿namespace AlphaPlus.Settings.Site.ViewModels.ProblemAccount
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.MemberInfo.Site.Requests.ProblemAccount;
+    using AlphaPlus.Settings.Site.Requests.ProblemAccount;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;

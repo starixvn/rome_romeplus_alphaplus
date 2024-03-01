@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.ParlayMaxPayout
+﻿namespace AlphaPlus.Settings.Site.Features.ParlayMaxPayout
 {
     using AlphaPlus.Settings.MemberInfo.API.Features.ParlayMaxPayout;
     using AlphaPlus.Settings.MemberInfo.API.Services;

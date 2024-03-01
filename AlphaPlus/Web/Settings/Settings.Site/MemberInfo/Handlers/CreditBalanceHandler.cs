@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Handlers
+﻿namespace AlphaPlus.Settings.Site.Handlers
 {
     using System.Threading.Tasks;
     using AlphaPlus.Settings.MemberInfo.API.Services;

@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds.Requests
 {
-    using Alpha.MemberInfo.Site.Features.MyWatchlist.MyWatchlistAccounts.Requests;
+    using AlphaPlus.Settings.Site.Features.MyWatchlist.MyWatchlistAccounts.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
 

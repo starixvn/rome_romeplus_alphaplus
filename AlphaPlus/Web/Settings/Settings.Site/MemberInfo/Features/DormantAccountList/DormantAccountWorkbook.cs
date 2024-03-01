@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.DormantAccountList
+﻿namespace AlphaPlus.Settings.Site.Features.DormantAccountList
 {
     using System;
     using System.Collections.Generic;

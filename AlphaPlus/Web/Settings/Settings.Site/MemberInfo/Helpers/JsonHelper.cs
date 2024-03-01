@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Helpers
+﻿namespace AlphaPlus.Settings.Site.Helpers
 {
     using System;
     using Newtonsoft.Json;

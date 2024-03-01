@@ -1,5 +1,5 @@
-﻿using Alpha.MemberInfo.Site.Features.CreateAccount.Requests;
-using Alpha.MemberInfo.Site.Features.CreateAccount.ViewModels;
+﻿using AlphaPlus.Settings.Site.Features.CreateAccount.Requests;
+using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using Sunplus.Agent.Utilities;
@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 
-namespace Alpha.MemberInfo.Site.Features.CreateAccount
+namespace AlphaPlus.Settings.Site.Features.CreateAccount
 {
     public class CreateAccountController : BaseController
     {

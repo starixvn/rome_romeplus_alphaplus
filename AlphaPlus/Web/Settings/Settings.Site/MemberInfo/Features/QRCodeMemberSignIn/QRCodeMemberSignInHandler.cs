@@ -1,10 +1,10 @@
-﻿namespace Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn
+﻿namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn
 {
     using System;
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.Helpers;
-    using Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.Requests;
-    using Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.ViewModels;
+    using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Helpers;
+    using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests;
+    using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.ViewModels;
     using Alpha.Products.Core.Services;
     using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
     using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn.Criteria;

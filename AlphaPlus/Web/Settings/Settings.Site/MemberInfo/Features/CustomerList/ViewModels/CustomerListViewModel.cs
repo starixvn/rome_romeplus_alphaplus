@@ -1,10 +1,10 @@
-﻿namespace Alpha.MemberInfo.Site.Features.CustomerList.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Resources;
-    using Alpha.MemberInfo.Site.Features.CustomerList.Requests;
-    using Alpha.MemberInfo.Site.Helpers;
+    using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+    using AlphaPlus.Settings.Site.Helpers;
     using Alpha.Products.Core.Services;
     using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.CustomerListResources;

@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.Shared
+﻿namespace AlphaPlus.Settings.Site.Features.Shared
 {
-    using Alpha.MemberInfo.Site.Features.Shared.Requests;
+    using AlphaPlus.Settings.Site.Features.Shared.Requests;
     using AlphaPlus.Core;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;

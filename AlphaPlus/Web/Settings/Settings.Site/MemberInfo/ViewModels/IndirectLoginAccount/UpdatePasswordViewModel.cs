@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.ViewModels.IndirectLoginAccount
+﻿namespace AlphaPlus.Settings.Site.ViewModels.IndirectLoginAccount
 {
     using AlphaPlus.Core.Helpers;
 

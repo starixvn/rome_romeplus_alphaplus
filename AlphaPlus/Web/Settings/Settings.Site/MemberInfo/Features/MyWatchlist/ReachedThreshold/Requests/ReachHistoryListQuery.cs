@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.ReachedThreshold.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold.Requests
 {
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;

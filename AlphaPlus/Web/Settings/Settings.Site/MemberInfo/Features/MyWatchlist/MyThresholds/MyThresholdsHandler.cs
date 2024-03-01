@@ -1,10 +1,10 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds.Requests;
-    using Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds.ViewModels;
-    using Alpha.MemberInfo.Site.Features.MyWatchlist.MyWatchlistAccounts.ViewModels;
+    using AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds.Requests;
+    using AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds.ViewModels;
+    using AlphaPlus.Settings.Site.Features.MyWatchlist.MyWatchlistAccounts.ViewModels;
     using AlphaPlus.Core.Helpers;
     using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyThresholds.Params;

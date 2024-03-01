@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Handlers.MemberRequest
+﻿namespace AlphaPlus.Settings.Site.Handlers.MemberRequest
 {
     using System.Collections.Generic;
     using System.Linq;

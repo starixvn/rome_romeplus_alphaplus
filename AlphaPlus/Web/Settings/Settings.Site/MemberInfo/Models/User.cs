@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Models
+﻿namespace AlphaPlus.Settings.Site.Models
 {
     using System;
     using System.Collections.Generic;

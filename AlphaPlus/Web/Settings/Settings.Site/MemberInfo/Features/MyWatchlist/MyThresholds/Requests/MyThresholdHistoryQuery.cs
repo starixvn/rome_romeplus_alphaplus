@@ -1,8 +1,8 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds.Requests
 {
     using System;
     using System.Collections.Generic;
-    using Alpha.MemberInfo.Site.Requests;
+    using AlphaPlus.Settings.Site.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;

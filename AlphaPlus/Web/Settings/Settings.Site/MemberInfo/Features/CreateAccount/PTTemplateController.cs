@@ -1,5 +1,5 @@
-﻿using Alpha.MemberInfo.Site.Features.CreateAccount.Requests;
-using Alpha.MemberInfo.Site.Features.CreateAccount.ViewModels;
+﻿using AlphaPlus.Settings.Site.Features.CreateAccount.Requests;
+using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels;
 using AlphaPlus.Core;
 using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Alpha.MemberInfo.Site.Features.CreateAccount
+namespace AlphaPlus.Settings.Site.Features.CreateAccount
 {
     public class PTTemplateController : BaseController
     {

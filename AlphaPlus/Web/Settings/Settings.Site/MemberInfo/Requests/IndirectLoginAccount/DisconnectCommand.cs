@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Requests.IndirectLoginAccount
+﻿namespace AlphaPlus.Settings.Site.Requests.IndirectLoginAccount
 {
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;

@@ -1,9 +1,9 @@
-﻿namespace Alpha.MemberInfo.Site.Controllers
+﻿namespace AlphaPlus.Settings.Site.Controllers
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Requests;
-    using Alpha.MemberInfo.Site.ViewModels;
+    using AlphaPlus.Settings.Site.Requests;
+    using AlphaPlus.Settings.Site.ViewModels;
     using AlphaPlus.Core;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;

@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.ReachedThreshold.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold.ViewModels
 {
     using System.Collections.Generic;
     using System.Web.Mvc;

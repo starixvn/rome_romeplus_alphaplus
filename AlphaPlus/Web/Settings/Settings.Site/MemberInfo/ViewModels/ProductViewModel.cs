@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.ViewModels
+﻿namespace AlphaPlus.Settings.Site.ViewModels
 {
     using System.Web.Mvc;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.MemberRequests;

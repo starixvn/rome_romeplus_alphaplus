@@ -1,5 +1,5 @@
 ﻿
-namespace Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.Requests
+namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests
 {
     using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;

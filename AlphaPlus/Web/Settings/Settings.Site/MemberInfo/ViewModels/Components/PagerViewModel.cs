@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.ViewModels.Components
+﻿namespace AlphaPlus.Settings.Site.ViewModels.Components
 {
     public class PagerViewModel
     {

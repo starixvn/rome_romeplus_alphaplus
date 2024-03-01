@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Controllers
+﻿namespace AlphaPlus.Settings.Site.Controllers
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;

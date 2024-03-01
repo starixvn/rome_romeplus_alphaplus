@@ -1,7 +1,7 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds.Requests
 {
     using System;
-    using Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds.ViewModels;
+    using AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds.ViewModels;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using Fanex.Common.Extensions;
     using MediatR;

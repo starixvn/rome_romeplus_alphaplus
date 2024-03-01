@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests
 {
-    using Alpha.MemberInfo.Site.Requests;
+    using AlphaPlus.Settings.Site.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
     public class QRCodeBaseQuery : MemberInfoBaseQuery

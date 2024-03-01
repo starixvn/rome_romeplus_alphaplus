@@ -1,12 +1,12 @@
-﻿using Alpha.MemberInfo.Site.Controllers;
-using Alpha.MemberInfo.Site.Features.CopyAccount.Request;
+﻿using AlphaPlus.Settings.Site.Controllers;
+using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
 using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace Alpha.MemberInfo.Site.Features.CopyAccount
+namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
     public class CopyAccountController : SiteBaseController
     {

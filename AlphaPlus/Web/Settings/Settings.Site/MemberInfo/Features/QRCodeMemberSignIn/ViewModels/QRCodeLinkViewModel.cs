@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.ViewModels
 {
     public class QRCodeLinkViewModel
     {

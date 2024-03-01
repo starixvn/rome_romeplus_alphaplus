@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.CustomerList.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 {
     using System.Collections.Generic;
     using AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels.Base;

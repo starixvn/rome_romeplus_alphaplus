@@ -1,10 +1,10 @@
-﻿using Alpha.MemberInfo.Site.Requests;
-using Alpha.MemberInfo.Site.Features.CopyAccount.ViewModels;
+﻿using AlphaPlus.Settings.Site.Requests;
+using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
 using MediatR;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 
-namespace Alpha.MemberInfo.Site.Features.CopyAccount.Request
+namespace AlphaPlus.Settings.Site.Features.CopyAccount.Request
 {
     public class CopyAccountCommand : MemberInfoBaseQuery, IRequest<CopyAccountResponse>
     {

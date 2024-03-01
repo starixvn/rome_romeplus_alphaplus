@@ -1,6 +1,6 @@
-﻿using Alpha.MemberInfo.Site.Features.CreateAccount.Models;
+﻿using AlphaPlus.Settings.Site.Features.CreateAccount.Models;
 
-namespace Alpha.MemberInfo.Site.Features.CreateAccount.Requests
+namespace AlphaPlus.Settings.Site.Features.CreateAccount.Requests
 {
     public class CreateAccountRequest
     {

@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Tests.Constants
+﻿namespace AlphaPlus.Settings.Site.Tests.Constants
 {
     public static class LanguageCode
     {

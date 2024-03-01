@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Requests
+﻿namespace AlphaPlus.Settings.Site.Requests
 {
     using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;

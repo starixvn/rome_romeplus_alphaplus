@@ -1,6 +1,6 @@
-﻿using Alpha.MemberInfo.Site.Features.CopyAccount.Models;
-using Alpha.MemberInfo.Site.Features.CopyAccount.Request;
-using Alpha.MemberInfo.Site.Features.CopyAccount.ViewModels;
+﻿using AlphaPlus.Settings.Site.Features.CopyAccount.Models;
+using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
+using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
 using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
@@ -9,7 +9,7 @@ using Fanex.Cryptography.Aes;
 using MediatR;
 using Sunplus.Agent.Utilities;
 
-namespace Alpha.MemberInfo.Site.Features.CopyAccount
+namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
     public class CopyAccountHandler :
         IRequestHandler<CopyAccountQuery, CopyAccountViewModel>,
@@ -18,7 +18,7 @@ namespace Alpha.MemberInfo.Site.Features.CopyAccount
         IRequestHandler<CheckUsernameQuery, Result>,
         IRequestHandler<CheckExistedCustomerQuery, bool>
     {
-        private const string HashKeySessionKey = "Alpha.MemberInfo.Site.Features.CopyAccount.CopyAccountHandler.PasswordHash";
+        private const string HashKeySessionKey = "AlphaPlus.Settings.Site.Features.CopyAccount.CopyAccountHandler.PasswordHash";
 
         private readonly Encryptor encryptor;
         private readonly IAesService aes;

@@ -1,8 +1,8 @@
-﻿namespace Alpha.MemberInfo.Site.Features.DormantAccountList.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.DormantAccountList.Requests
 {
     using System;
-    using Alpha.MemberInfo.Site.Features.DormantAccountList.ViewModels;
-    using Alpha.MemberInfo.Site.Requests;
+    using AlphaPlus.Settings.Site.Features.DormantAccountList.ViewModels;
+    using AlphaPlus.Settings.Site.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
 

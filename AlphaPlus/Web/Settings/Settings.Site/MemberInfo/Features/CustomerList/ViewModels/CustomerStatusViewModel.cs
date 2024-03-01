@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.CustomerList.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {
     using AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels.Base;
     using AlphaPlus.Settings.MemberInfo.API.Status.ViewModels.Base;

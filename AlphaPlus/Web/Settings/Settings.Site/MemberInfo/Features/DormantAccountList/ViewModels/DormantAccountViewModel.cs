@@ -1,9 +1,9 @@
-﻿namespace Alpha.MemberInfo.Site.Features.DormantAccountList.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.DormantAccountList.ViewModels
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Alpha.MemberInfo.Site.Features.DormantAccountList.Requests;
+    using AlphaPlus.Settings.Site.Features.DormantAccountList.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
     using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;

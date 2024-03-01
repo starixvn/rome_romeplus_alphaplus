@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.ViewModels.WinLossLimit
+﻿namespace AlphaPlus.Settings.Site.ViewModels.WinLossLimit
 {
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;

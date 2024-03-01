@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.ViewModels
+﻿namespace AlphaPlus.Settings.Site.ViewModels
 {
     using System.IO;
     using System.Linq;

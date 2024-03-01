@@ -1,9 +1,9 @@
-﻿namespace Alpha.MemberInfo.Site.Handlers
+﻿namespace AlphaPlus.Settings.Site.Handlers
 {
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Helpers;
-    using Alpha.MemberInfo.Site.Requests.IndirectLoginAccount;
-    using Alpha.MemberInfo.Site.ViewModels.IndirectLoginAccount;
+    using AlphaPlus.Settings.Site.Helpers;
+    using AlphaPlus.Settings.Site.Requests.IndirectLoginAccount;
+    using AlphaPlus.Settings.Site.ViewModels.IndirectLoginAccount;
     using AlphaPlus.Utilities.IP;
     using MediatR;
     using Sunplus.Agent.Utilities;
@@ -22,7 +22,7 @@
         IRequestHandler<DisconnectCommand, Result>,
         IRequestHandler<RedirectQuery, string>
     {
-        private const string HashKeySessionKey = "Alpha.MemberInfo.Site.Handlers.IndirectLoginAccountHandler.PasswordHash";
+        private const string HashKeySessionKey = "AlphaPlus.Settings.Site.Handlers.IndirectLoginAccountHandler.PasswordHash";
 
         private readonly IndirectLoginAccountService service;
         private readonly SessionManager sessionManager;

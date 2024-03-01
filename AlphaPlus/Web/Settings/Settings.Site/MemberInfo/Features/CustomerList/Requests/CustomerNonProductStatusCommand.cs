@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.CustomerList.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 {
     using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;

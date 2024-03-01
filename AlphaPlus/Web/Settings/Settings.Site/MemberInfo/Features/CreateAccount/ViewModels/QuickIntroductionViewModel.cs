@@ -1,4 +1,4 @@
-namespace Alpha.MemberInfo.Site.Features.CreateAccount.ViewModels
+namespace AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
 {
     public class QuickIntroductionViewModel
     {

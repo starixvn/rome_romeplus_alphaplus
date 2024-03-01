@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Requests.MemberRequest
+﻿namespace AlphaPlus.Settings.Site.Requests.MemberRequest
 {
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;

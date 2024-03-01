@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.ViewModels.CreditBalance
+﻿namespace AlphaPlus.Settings.Site.ViewModels.CreditBalance
 {
     using System;
     using System.Collections.Generic;

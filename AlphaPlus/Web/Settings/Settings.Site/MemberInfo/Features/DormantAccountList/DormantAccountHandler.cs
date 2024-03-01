@@ -1,11 +1,11 @@
-﻿namespace Alpha.MemberInfo.Site.Features.DormantAccountList
+﻿namespace AlphaPlus.Settings.Site.Features.DormantAccountList
 {
     using System;
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Features.DormantAccountList.Requests;
-    using Alpha.MemberInfo.Site.Features.DormantAccountList.ViewModels;
-    using Alpha.MemberInfo.Site.Handlers;
-    using Alpha.MemberInfo.Site.ViewModels;
+    using AlphaPlus.Settings.Site.Features.DormantAccountList.Requests;
+    using AlphaPlus.Settings.Site.Features.DormantAccountList.ViewModels;
+    using AlphaPlus.Settings.Site.Handlers;
+    using AlphaPlus.Settings.Site.ViewModels;
     using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;

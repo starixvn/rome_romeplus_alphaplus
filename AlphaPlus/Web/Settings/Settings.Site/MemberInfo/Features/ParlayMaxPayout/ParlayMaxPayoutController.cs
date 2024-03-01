@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.ParlayMaxPayout
+﻿namespace AlphaPlus.Settings.Site.Features.ParlayMaxPayout
 {
     using Controllers;
     using MediatR;

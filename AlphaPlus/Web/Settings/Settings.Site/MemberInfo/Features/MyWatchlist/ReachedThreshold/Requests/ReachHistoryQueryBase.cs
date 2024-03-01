@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.ReachedThreshold.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold.Requests
 {
-    using Alpha.MemberInfo.Site.Requests;
+    using AlphaPlus.Settings.Site.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using Fanex.Common.Extensions;
     using System;

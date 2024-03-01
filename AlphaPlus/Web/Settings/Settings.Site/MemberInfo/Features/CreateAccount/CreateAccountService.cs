@@ -1,9 +1,9 @@
-﻿using Alpha.MemberInfo.Site.Features.CreateAccount.Models;
+﻿using AlphaPlus.Settings.Site.Features.CreateAccount.Models;
 using Newtonsoft.Json.Linq;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 
-namespace Alpha.MemberInfo.Site.Features.CreateAccount
+namespace AlphaPlus.Settings.Site.Features.CreateAccount
 {
     public interface ICreateAccountService : ICustomerService
     {

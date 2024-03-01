@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.CreateAccount.Models
+﻿namespace AlphaPlus.Settings.Site.Features.CreateAccount.Models
 {
     public class GeneralInfo
     {

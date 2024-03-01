@@ -1,9 +1,9 @@
 ﻿using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
-using Alpha.MemberInfo.Site.Features.CopyAccount.Request;
+using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
 using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
-namespace Alpha.MemberInfo.Site.Features.CopyAccount.ViewModels
+namespace AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
 {
     public class CopyAccountViewModel
     {

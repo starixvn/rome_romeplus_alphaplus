@@ -1,7 +1,7 @@
-﻿namespace Alpha.MemberInfo.Site.Controllers
+﻿namespace AlphaPlus.Settings.Site.Controllers
 {
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Requests.IndirectLoginAccount;
+    using AlphaPlus.Settings.Site.Requests.IndirectLoginAccount;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
 

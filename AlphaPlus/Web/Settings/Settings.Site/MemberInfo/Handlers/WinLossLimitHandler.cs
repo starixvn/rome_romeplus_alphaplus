@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Handlers
+﻿namespace AlphaPlus.Settings.Site.Handlers
 {
     using System.Linq;
     using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;

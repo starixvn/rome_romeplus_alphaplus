@@ -1,6 +1,6 @@
-﻿namespace Alpha.MemberInfo.Site.Features.CustomerList.Requests
+﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 {
-    using Alpha.MemberInfo.Site.Features.CustomerList.ViewModels;
+    using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
 

@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Requests.ProblemAccount
+﻿namespace AlphaPlus.Settings.Site.Requests.ProblemAccount
 {
     using System;
     using System.Web.Mvc;

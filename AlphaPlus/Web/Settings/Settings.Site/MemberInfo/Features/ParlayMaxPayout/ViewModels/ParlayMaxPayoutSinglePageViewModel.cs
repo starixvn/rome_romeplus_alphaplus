@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Features.ParlayMaxPayout.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.ParlayMaxPayout.ViewModels
 {
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.ParlayMaxPayout.Models;

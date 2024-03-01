@@ -1,4 +1,4 @@
-﻿namespace Alpha.MemberInfo.Site.Requests.WinLossLimit
+﻿namespace AlphaPlus.Settings.Site.Requests.WinLossLimit
 {
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;

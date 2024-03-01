@@ -1,6 +1,6 @@
-﻿using Alpha.MemberInfo.Site.Features.CustomerList.Requests;
+﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 
-namespace Alpha.MemberInfo.Site.Features.CustomerList.ViewModels
+namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {
     public class MultipleDoubleCommViewModel
     {

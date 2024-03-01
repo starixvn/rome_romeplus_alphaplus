@@ -1,9 +1,9 @@
-﻿namespace Alpha.MemberInfo.Site.Handlers
+﻿namespace AlphaPlus.Settings.Site.Handlers
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Requests.ProblemAccount;
-    using Alpha.MemberInfo.Site.ViewModels.ProblemAccount;
+    using AlphaPlus.Settings.Site.Requests.ProblemAccount;
+    using AlphaPlus.Settings.Site.ViewModels.ProblemAccount;
     using AlphaPlus.Core.Helpers;
     using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
     using AlphaPlus.Settings.MemberInfo.API.Services;

@@ -1,9 +1,9 @@
-﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds
+﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds
 {
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Controllers;
-    using Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds.Requests;
-    using Alpha.MemberInfo.Site.Features.MyWatchlist.MyThresholds.ViewModels;
+    using AlphaPlus.Settings.Site.Controllers;
+    using AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds.Requests;
+    using AlphaPlus.Settings.Site.Features.MyWatchlist.MyThresholds.ViewModels;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
 

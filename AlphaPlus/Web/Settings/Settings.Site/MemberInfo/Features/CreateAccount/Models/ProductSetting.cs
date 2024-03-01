@@ -1,4 +1,4 @@
-namespace Alpha.MemberInfo.Site.Features.CreateAccount.Models
+namespace AlphaPlus.Settings.Site.Features.CreateAccount.Models
 {
     using System.Collections.Generic;
     public class ProductSetting

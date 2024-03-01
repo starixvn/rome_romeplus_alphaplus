@@ -1,11 +1,11 @@
-﻿using Alpha.MemberInfo.Site.Features.CopyAccount.Models;
-using Alpha.MemberInfo.Site.Features.CopyAccount.Request;
-using Alpha.MemberInfo.Site.Features.CopyAccount.ViewModels;
+﻿using AlphaPlus.Settings.Site.Features.CopyAccount.Models;
+using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
+using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
 using Newtonsoft.Json;
 using System.Text;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 
-namespace Alpha.MemberInfo.Site.Features.CopyAccount
+namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
     public interface ICopyAccountService : ICustomerService
     {

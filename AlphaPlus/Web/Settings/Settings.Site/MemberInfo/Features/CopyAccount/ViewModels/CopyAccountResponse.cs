@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Alpha.MemberInfo.Site.Features.CopyAccount.ViewModels
+namespace AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
 {
     public class CopyAccountResponse
     {

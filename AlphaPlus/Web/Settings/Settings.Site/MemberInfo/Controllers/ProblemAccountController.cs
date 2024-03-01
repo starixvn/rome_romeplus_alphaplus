@@ -1,7 +1,7 @@
-﻿namespace Alpha.MemberInfo.Site.Controllers
+﻿namespace AlphaPlus.Settings.Site.Controllers
 {
     using System.Threading.Tasks;
-    using Alpha.MemberInfo.Site.Requests.ProblemAccount;
+    using AlphaPlus.Settings.Site.Requests.ProblemAccount;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
 
