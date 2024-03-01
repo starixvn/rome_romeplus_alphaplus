@@ -37,5 +37,6 @@
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
     <ProjectReference Include="..\..\..\Services\Settings\MemberInfo\MemberInfo.Domain\MemberInfo.Domain.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
+    <ProjectReference Include="..\..\..\Services\Settings\MemberInfo\MemberInfo.API\MemberInfo.API.csproj" />
   </ItemGroup>
 </Project>
