@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+    <Function Name="Account">
+        <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    </Function>
+</Functions>

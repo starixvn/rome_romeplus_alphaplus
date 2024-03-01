@@ -2,11 +2,15 @@ using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Services;
+using AlphaPlus.RequestInfo;
+using Fanex.Caching;
+using Fanex.Data.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using StackExchange.Redis;
 
 namespace AlphaPlus.Core.Extensions;
@@ -15,6 +19,8 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddAlphaPlusCore(this IServiceCollection services, IConfiguration configuration)
     {
+        services.TryAddSingleton<ICacheService, CacheService>();
+        services.TryAddSingleton<IDynamicRepository, DynamicRepository>();
         services.AddSingleton<IUserSession, UserSessionExt>();
         services.AddSingleton<IRequestAnalyst, RequestAnalyst>();
         services.AddSingleton<IBrowserHelper, BrowserHelper>();

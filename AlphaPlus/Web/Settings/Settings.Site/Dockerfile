@@ -7,8 +7,7 @@ RUN npm install -g yarn gulp-cli
 COPY . ./src
 WORKDIR /src/Web/Settings/Settings.Site
 RUN yarn && yarn build
-RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
-    dotnet publish --use-current-runtime --self-contained -o /app
+RUN dotnet publish --no-restore -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS development
 COPY . ./src
