@@ -37,7 +37,7 @@ namespace AlphaPlus.Main.Site.Features.CustomerProfile
             return viewModel;
         }
 
-        private static string BuildNickName(BriefProfileQuery message)
+        private static string BuildNickName(BriefProfileQuery message, CancellationToken cancellation)
             => message.IsInternal
                 ? $"{Resources.admin} {HttpUtility.HtmlEncode(message.AdminName)}"
                 : HttpUtility.HtmlEncode(message.NickName);

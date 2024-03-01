@@ -1,0 +1,138 @@
+﻿@import "../../../../assets/styles/abstracts/_variables-dark.scss";
+
+.box-settings {
+    margin-top: 10px;
+}
+
+.show-alert-message {
+    background: $multiple-alert-message-bgcolor;
+    border: 1px solid $multiple-alert-border-color;
+    padding: 10px 2px;
+    max-height: 200px;
+    overflow: auto;
+    margin-bottom: 15px;
+
+    .name {
+        font-weight: bold;
+        margin-left: 10px;
+    }
+
+    .msg {
+        border: none;
+        margin: 0;
+    }
+
+    .msg-success, .msg-error {
+        background: none;
+    }
+}
+
+.tblRpt {
+    width: 100%;
+
+    thead tr th {
+        height: 36px;
+    }
+
+    input[type="text"] {
+        height: 100%;
+        width: 90%;
+    }
+
+    .icon-edit, .icon-bin, .icon-check, .icon-close {
+        cursor: pointer;
+    }
+
+    .icon-check {
+        color: $icon-check-color;
+    }
+
+    .icon-close {
+        color: $icon-close-color;
+    }
+
+    .icon-check, .icon-close {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .action {
+        text-align: center;
+    }
+
+    .winning-threshold, .losing-threshold {
+        text-align: right;
+    }
+}
+
+.note {
+    line-height: 2;
+}
+
+.form-group {
+    margin: 10px 0 20px;
+    padding-bottom: 3px;
+
+    label {
+        color: $text-color;
+        font-size: $font-size;
+    }
+
+    .lbl-threshold, .txt-threshold {
+        width: 160px;
+    }
+
+    .ckb-unlimited {
+        display: inline-block;
+        margin: 0 5px 0 40px;
+    }
+}
+
+.txt-usernames {
+    background-color: transparent;
+    border: 1px solid #292929;
+    resize: none;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.multiselect-selected-text {
+    text-transform: none;
+}
+
+.multiselect-container.dropdown-menu {
+    margin-top: 2px;
+}
+
+.btn-submit {
+    width: 90px;
+}
+
+.box-settings {
+    .btn-submit {
+        margin-top: 10px;
+        width: auto;
+    }
+}
+.button-group {
+    text-align: right;
+}
+.flex-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height : 95vh;
+}
+
+@media screen and (max-device-width: 767px) {
+    .button-group {
+        .btn-cancel {
+            height: 45px;
+        }
+    }
+    .flex-settings {
+        padding-top : 8px;
+        display: unset;
+        height: auto;
+    }
+}

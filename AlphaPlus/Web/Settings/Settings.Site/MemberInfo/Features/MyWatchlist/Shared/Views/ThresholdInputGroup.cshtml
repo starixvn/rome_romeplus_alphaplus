@@ -1,0 +1,37 @@
+﻿@* @model ThresholdViewModel
+
+<div class="form-group">
+    <label class="lbl-threshold" for="winningThreshold">@Resources.WinningThreshold</label>
+    <input class="txt-threshold text-right"
+           type="text"
+           id="winningThreshold"
+           maxlength="18"
+           autocomplete="off"
+           value="@(FormatThreshold(Model.WinningThreshold))"
+           @(Model.WinningThreshold == null ? "disabled" : string.Empty) />
+    <input id="winning-unlimited" class="ckb-unlimited" type="checkbox" @(Model.WinningThreshold == null ? "checked" : string.Empty) />
+    <label class="lbl-unlimited" for="winning-unlimited">@Resources.Unlimited</label>
+</div>
+
+<div class="form-group">
+    <label class="lbl-threshold" for="losingThreshold">@Resources.LosingThreshold</label>
+    <input class="txt-threshold text-right"
+           type="text"
+           id="losingThreshold"
+           maxlength="18"
+           autocomplete="off"
+           value="@(FormatThreshold(Model.LosingThreshold))"
+           @(Model.LosingThreshold == null ? "disabled" : string.Empty) />
+    <input id="losing-unlimited" class="ckb-unlimited" type="checkbox" @(Model.LosingThreshold == null ? "checked" : string.Empty) />
+    <label for="losing-unlimited" class="lbl-unlimited">@Resources.Unlimited</label>
+</div>
+
+<input type="hidden" id="must-enter-threshold-or-check-error" value="@Resources.MustEnterThresholdOrCheckError" />
+
+@helper FormatThreshold(decimal? number)
+{
+    if (number.HasValue)
+    {
+        @HtmlHelpers.FormatDecimal(number.Value);
+    }
+} *@

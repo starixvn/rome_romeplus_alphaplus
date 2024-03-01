@@ -1,0 +1,26 @@
+﻿namespace Alpha.MemberInfo.Site.Features.Shared.Requests
+{
+    using Alpha.MemberInfo.Site.Requests;
+    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
+    using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using MediatR;
+    using System.Collections.Generic;
+
+    public class UserNameSuggestionQuery : MemberInfoBaseQuery, IRequest<IEnumerable<UsernameSuggestion>>
+    {
+        public UserNameSuggestionQuery(IUser viewer) : base(viewer)
+        {
+            DirectDownlines = false;
+        }
+
+        public string SuggestionQuery { get; set; }
+
+        public bool DirectDownlines { get; set; }
+
+        public bool IsAccInfo { get; set; } = true;
+
+        public override bool IsValid() =>
+            base.IsValid() &&
+            !string.IsNullOrEmpty(SuggestionQuery);
+    }
+}

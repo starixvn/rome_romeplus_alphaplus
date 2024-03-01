@@ -114,7 +114,7 @@ namespace AlphaPlus.Main.Site.Features.SecurityCode
                 HashKey = HashKey,
                 CustRoleId = message.RoleId,
                 Username = message.UserName,
-                AlternateUsername = BuildAlternateUsername(message),
+                AlternateUsername = BuildAlternateUsername(message, CancellationToken cancellation),
                 UsernameShower = BuildUsernameShower(message.IsSubAcc, message.SubUserName, message.NickName, message.UserName),
                 IsDefaultAvatar = string.IsNullOrEmpty(profile.ImageBase64String),
                 EmbedImage = profile.ImageBase64String
@@ -247,11 +247,11 @@ namespace AlphaPlus.Main.Site.Features.SecurityCode
             var result = new CustomResult();
             if (message.CustId.HasValue && message.CustId.Value > 0)
             {
-                result = await ResetDownlineSecurityCode(message);
+                result = await ResetDownlineSecurityCode(message, CancellationToken cancellation);
             }
             else if (isResetSubAccount)
             {
-                result = await ResetSubAccountSecurityCode(message);
+                result = await ResetSubAccountSecurityCode(message, CancellationToken cancellation);
             }
 
             return result;
@@ -373,7 +373,7 @@ namespace AlphaPlus.Main.Site.Features.SecurityCode
             return string.IsNullOrWhiteSpace(nickName) ? username : nickName;
         }
 
-        private static string BuildAlternateUsername(ForceChangeSecurityCodeQuery message)
+        private static string BuildAlternateUsername(ForceChangeSecurityCodeQuery message, CancellationToken cancellation)
         {
             if (message.IsSubAcc)
             {

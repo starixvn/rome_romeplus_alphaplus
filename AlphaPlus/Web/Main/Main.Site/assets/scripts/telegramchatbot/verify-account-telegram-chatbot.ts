@@ -149,7 +149,7 @@ class VerifyAccountTelegramChatbot extends BaseTelegramChatBot {
                 this.reloadPage();
             } else {
                 if (result.isNotAuthorized) {
-                    this.topWindow.bootboxAlert(result.Message);
+                    this.topWindow.bootboxAlert(result.message, CancellationToken cancellation);
                     return;
                 }
 
@@ -202,7 +202,7 @@ class VerifyAccountTelegramChatbot extends BaseTelegramChatBot {
     onResendSuccess = (data: any) => {
         if (data) {
             if (data.IsNotAuthorized) {
-                this.topWindow.bootboxAlert(data.Message);
+                this.topWindow.bootboxAlert(data.message, CancellationToken cancellation);
                 return;
             }
 

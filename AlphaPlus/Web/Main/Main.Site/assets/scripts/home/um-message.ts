@@ -59,9 +59,9 @@
     private getUMMessagesSuccessfully(data) {
         if (data.length) {
             const umMessage = this.extractUMMessage(data);
-            this.$umMessagePopupBody.html(umMessage.message)
+            this.$umMessagePopupBody.html(umMessage.message, CancellationToken cancellation)
 
-            if (umMessage.hasNewMessage) {
+            if (umMessage.hasNewmessage, CancellationToken cancellation) {
                 this.getDontShowAgainLocalStorage() || this.$umMessagePopup.modal("show");
                 this.$umMessageBox.removeClass("hide");
             }
@@ -82,7 +82,7 @@
             const datum = data[i];
             idArray.push(datum.Id);
             messageArray.push('<li class="um-message-item">- ');
-            messageArray.push(datum.Message);
+            messageArray.push(datum.message, CancellationToken cancellation);
             messageArray.push("</li>");
 
             if (this.umMessageData.indexOf(datum.Id) === -1) {

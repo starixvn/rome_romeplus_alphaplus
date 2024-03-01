@@ -32,7 +32,7 @@ public class BetListByBetTypeAndMatchHandler :
 
     public async Task<BetListByBetTypeAndMatchViewModel> Handle(BetListByBetTypeAndMatchQuery message, CancellationToken cancellationToken)
     {
-        var param = CreateRunningBetListByBetTypeAndMatchParam(message);
+        var param = CreateRunningBetListByBetTypeAndMatchParam(message, CancellationToken cancellation);
 
         var betListData = await runningBetListByBetTypeAndMatchService.GetBetList(param);
         var supportScoreMapBetTypeIds = betListData.Total == 0
@@ -49,7 +49,7 @@ public class BetListByBetTypeAndMatchHandler :
             supportScoreMapBetTypeIds);
     }
 
-    protected internal static RunningBetListByBetTypeAndMatchParam CreateRunningBetListByBetTypeAndMatchParam(BetListByBetTypeAndMatchQuery message)
+    protected internal static RunningBetListByBetTypeAndMatchParam CreateRunningBetListByBetTypeAndMatchParam(BetListByBetTypeAndMatchQuery message, CancellationToken cancellation)
         => new RunningBetListByBetTypeAndMatchParam(
             message.MatchId,
             message.ViewerId,

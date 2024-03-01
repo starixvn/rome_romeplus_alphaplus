@@ -8,13 +8,13 @@ public interface IForecastService
 {
     Task<IEnumerable<League>> GetRunningLeagues(byte custLevel, int custId, string betTypes, string language);
 
-    Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastRequest message);
+    Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastRequest message, CancellationToken cancellation);
 
-    Task<AH> GetAH(GetAHRequest message);
+    Task<AH> GetAH(GetAHRequest message, CancellationToken cancellation);
 
-    Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastRequest message);
+    Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastRequest message, CancellationToken cancellation);
 
-    Task<IEnumerable<Forecast1X2>> Get1X2(GetForecast1X2ByMatchRequest message);
+    Task<IEnumerable<Forecast1X2>> Get1X2(GetForecast1X2ByMatchRequest message, CancellationToken cancellation);
 }
 
 public class ForecastService : ServiceBase, IForecastService
@@ -38,7 +38,7 @@ public class ForecastService : ServiceBase, IForecastService
         return GetFromJson<IEnumerable<League>>($"{ForecastUrl}/runningleagues{queryString}");
     }
 
-    public Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastRequest message)
+    public Task<IEnumerable<ForecastHDPOULive>> GetHDPOULive(GetForecastRequest message, CancellationToken cancellation)
     {
         var queryString = QueryString.Create(new[]
         {
@@ -51,7 +51,7 @@ public class ForecastService : ServiceBase, IForecastService
         return GetFromJson<IEnumerable<ForecastHDPOULive>>($"{ForecastUrl}/hdpoulive{queryString}");
     }
 
-    public Task<AH> GetAH(GetAHRequest message)
+    public Task<AH> GetAH(GetAHRequest message, CancellationToken cancellation)
     {
         var queryString = QueryString.Create(new[]
         {
@@ -66,7 +66,7 @@ public class ForecastService : ServiceBase, IForecastService
         return GetFromJson<AH>($"{ForecastUrl}/ah{queryString}");
     }
 
-    public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastRequest message)
+    public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecastRequest message, CancellationToken cancellation)
     {
         var queryString = QueryString.Create(new[]
         {
@@ -79,7 +79,7 @@ public class ForecastService : ServiceBase, IForecastService
         return GetFromJson<IEnumerable<Forecast1X2>>($"{ForecastUrl}/1x2{queryString}");
     }
 
-    public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecast1X2ByMatchRequest message)
+    public Task<IEnumerable<Forecast1X2>> Get1X2(GetForecast1X2ByMatchRequest message, CancellationToken cancellation)
     {
         var queryString = QueryString.Create(new[]
         {

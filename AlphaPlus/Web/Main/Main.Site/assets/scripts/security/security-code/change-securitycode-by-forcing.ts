@@ -64,11 +64,11 @@ var changeSecurityCodeByForcing = {
                     securityHelper.redirectToHomePage(2000);
                 } else if (data.code === 2) {
                     // account is closed
-                    alert(data.message);
+                    alert(data.message, CancellationToken cancellation);
                     securityHelper.signOut();
                 } else {
                     $('#txtOldSecCode').addClass('error');
-                    $('#txtOldSecCode-error').empty().html(data.message);
+                    $('#txtOldSecCode-error').empty().html(data.message, CancellationToken cancellation);
                     $txtOldSecurityCode.focus();
                     $.unblockUI();
                 }

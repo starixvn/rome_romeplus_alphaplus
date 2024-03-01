@@ -1,0 +1,101 @@
+﻿namespace Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn
+{
+    using System;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web.Mvc;
+    using Alpha.Captcha.Mvc;
+    using Alpha.MemberInfo.AppResources;
+    using Alpha.MemberInfo.Configurations;
+    using Alpha.MemberInfo.Features.QRCodeMemberSignIn.Models;
+    using Alpha.MemberInfo.Site.Controllers;
+    using Alpha.MemberInfo.Site.Features.QRCodeMemberSignIn.Requests;
+    using Alpha.Web.Filters;
+    using MediatR;
+<<<<<<< HEAD
+=======
+    using AlphaPlus.User.Models;
+>>>>>>> 4bba0910 (feat: upgrade NetStandard2 packages)
+
+    public class QRCodeMemberSignInController : SiteBaseController
+    {
+        private const string IndexPath = "~/Features/QRCodeMemberSignIn/Views/Index.cshtml";
+        private const string ShowQRCodePath = "~/Features/QRCodeMemberSignIn/Views/ShowQRCode.cshtml";
+        private const string NotAuthorizedPath = "~/Features/QRCodeMemberSignIn/Views/_NotAuthorized.cshtml";
+
+        private readonly int ErrorCodeDefault = 998;
+
+        public QRCodeMemberSignInController(IMediator mediator)
+            : base(mediator)
+        {
+        }
+
+        [HttpGet]
+        public ActionResult Index(QRCodeMemberSignInRequest message, CancellationToken cancellation)
+            => View(message, IndexPath);
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateAccount(CreateAccountByQRCodeRequest message, CancellationToken cancellation)
+        {
+            if (message != null && !message.IsValid())
+            {
+                return Json(new ResultCreateMemberQRCode
+                {
+                    ErrCode = ErrorCodeDefault,
+                    ErrMsg = message.IsInternal ? Lang.NotAuthorized : Resources.UsernameIsInvalid
+                });
+            }
+
+            var result = await mediator.Send(message, CancellationToken cancellation).ConfigureAwait(false);
+
+            if (result.Success)
+            {
+                return Json(new
+                {
+                    result.ErrCode,
+                    result.ErrMsg,
+                    result.CustIdCopyFrom,
+                    result.RawPassword,
+                    SearchAccountId = result.CustId,
+                    SearchAccountName = message?.Username,
+                    message?.FirstName,
+                    message?.Credit,
+                    message?.CreditMin,
+                    message?.CreditMax,
+                    message?.ShowPageTitle,
+                    CreateMode = true
+                });
+            }
+            else
+            {
+                ModelState.AddModelError("DBErrors", result.ErrMsg);
+                return Json(result);
+            }
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult GetMemberCreditAndStatus(GetMemberCreditAndStatusRequest message, CancellationToken cancellation)
+            => Json(mediator.Send(message, CancellationToken cancellation));
+
+        [HttpGet]
+        public ActionResult ShowQRCode(ShowQRCodeRequest message, CancellationToken cancellation)
+        {
+            if (message != null && !message.IsValid())
+            {
+                return View(message.IsInternal ? NotAuthorizedPath : InvalidPageViewPath);
+            }
+
+            var viewModel = mediator.Send(message, CancellationToken cancellation);
+            return View(viewModel == null ? InvalidPageViewPath : ShowQRCodePath, viewModel);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult GenerateQrCode(GenerateQRCodeRequest message, CancellationToken cancellation)
+            => Json(mediator.Send(message, CancellationToken cancellation));
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult CheckExistedCustomer(CheckExistedCustomerRequest message, CancellationToken cancellation)
+           => Json(mediator.Send(message, CancellationToken cancellation));
+    }
+}

@@ -1,0 +1,31 @@
+﻿@* @model ThresholdViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.MyThresholdsSettings;
+}
+
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/Bundles/my-watchlist-settings")
+    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/Bundles/my-watchlist-settings-media")
+}
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyThresholds/Bundles/my-thresholds-settings")
+}
+
+<div class="box-settings">
+    <div id="alert-message"></div>
+    <p class="note">@Resources.MyThresholdSettingsNote</p>
+    @using (Html.BeginForm("UpdateSettings", "MyThresholds", FormMethod.Post, new { id = "form-settings" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Partial("~/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model)
+        <p class="note">@Resources.ThresholdSettingsNote</p>
+        <button type="submit" class="btn-submit">@Resources.Update</button>
+    }
+</div>
+
+@Html.Hidden("old-winning-threshold", Model.WinningThreshold)
+@Html.Hidden("old-losing-threshold", Model.LosingThreshold)
+@Html.Hidden("must-enter-threshold-or-check-error", Resources.MustEnterThresholdOrCheckError)
+@Html.Hidden("no-change-to-update-error", Resources.NoChangeToUpdateError) *@

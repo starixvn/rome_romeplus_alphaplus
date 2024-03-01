@@ -30,7 +30,7 @@ namespace AlphaPlus.Main.Site.Features.Nickname
             };
 
             var result = message.IsValid()
-                ? await mediator.Send(message)
+                ? await mediator.Send(message, CancellationToken cancellation)
                 : Result.CreateErrorResult(Security.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
             return result.IsSuccessful

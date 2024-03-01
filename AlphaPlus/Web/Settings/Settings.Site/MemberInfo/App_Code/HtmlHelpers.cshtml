@@ -1,0 +1,43 @@
+﻿@* @using Alpha.MemberInfo.AppResources;
+
+@helper FormatNumber(decimal value)
+{
+    @value.ToString($"#,##0.00")
+}
+
+@helper FormatNumber(int value)
+{
+    @value.ToString($"#,##0")
+}
+
+@helper RenderNumberCell(decimal cellValue, string cellClass = "")
+{
+    <td class="@(cellValue < 0 ? "negative-value" : string.Empty) @cellClass">
+        @FormatNumber(cellValue)
+    </td>
+}
+
+@helper FormatDecimal(decimal value, bool showRedColorForNegativeValue = false)
+{
+
+    if (showRedColorForNegativeValue && value < 0)
+    {
+        <span class="negative-value">@value.ToString("#,##0.##")</span>
+    }
+    else
+    {
+        @value.ToString("#,##0.##")
+    }
+}
+
+@helper FormatThreshold(decimal? number)
+{
+    if (number.HasValue)
+    {
+        @HtmlHelpers.FormatDecimal(number.Value);
+    }
+    else
+    {
+        @Resources.Unlimited;
+    }
+} *@

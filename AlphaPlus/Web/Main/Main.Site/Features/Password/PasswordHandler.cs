@@ -130,7 +130,7 @@ namespace AlphaPlus.Main.Site.Features.Password
                 return CustomResult.CreateErrorResult(Security.NotAuthorized);
             }
 
-            var result = message.IsSubAccount ? await ChangeSubAccountPassword(message) : await ChangeMainAccountPassword(message);
+            var result = message.IsSubAccount ? await ChangeSubAccountPassword(message, CancellationToken cancellation) : await ChangeMainAccountPassword(message, CancellationToken cancellation);
 
             if (result.IsSuccessful)
             {
@@ -167,7 +167,7 @@ namespace AlphaPlus.Main.Site.Features.Password
             return new CustomResult { Code = 0 };
         }
 
-        private Task<CustomResult> ChangeMainAccountPassword(ChangePasswordCommand message)
+        private Task<CustomResult> ChangeMainAccountPassword(ChangePasswordCommand message, CancellationToken cancellation)
         {
             return passwordService.ChangeMainAccountPassword(new ChangeMainAccountPasswordParam
             {
@@ -188,7 +188,7 @@ namespace AlphaPlus.Main.Site.Features.Password
             });
         }
 
-        private Task<CustomResult> ChangeSubAccountPassword(ChangePasswordCommand message)
+        private Task<CustomResult> ChangeSubAccountPassword(ChangePasswordCommand message, CancellationToken cancellation)
         {
             return passwordService.ChangeSubAccountPassword(
             new ChangeSubAccountPasswordParam
@@ -230,8 +230,8 @@ namespace AlphaPlus.Main.Site.Features.Password
                 HashKey = GetHasKey(),
                 IsDefaultAvatar = string.IsNullOrEmpty(profile.ImageBase64String),
                 Username = userSession.UserName,
-                AlternateUsername = BuildAlternateUsername(message),
-                UsernameShower = BuildUsernameShower(message),
+                AlternateUsername = BuildAlternateUsername(message, CancellationToken cancellation),
+                UsernameShower = BuildUsernameShower(message, CancellationToken cancellation),
                 EmbedImage = profile.ImageBase64String,
                 ProfileImageId = profile.ImageId,
                 IsShowSkipForceChangePassword = message.IsShowSkipForceChangePassword
@@ -242,7 +242,7 @@ namespace AlphaPlus.Main.Site.Features.Password
         {
             if (message == null)
             {
-                throw new ArgumentNullException(nameof(message), "Message cannot be null");
+                throw new ArgumentNullException(nameof(message, CancellationToken cancellation), "Message cannot be null");
             }
 
             var viewModel = await Handle(new ChangePasswordQuery(userSession), cancellationToken);
@@ -258,7 +258,7 @@ namespace AlphaPlus.Main.Site.Features.Password
         {
             if (message == null)
             {
-                throw new ArgumentNullException(nameof(message), "Message cannot be null");
+                throw new ArgumentNullException(nameof(message, CancellationToken cancellation), "Message cannot be null");
             }
 
             var viewModel = await Handle(new ChangePasswordQuery(userSession), cancellationToken);
@@ -279,7 +279,7 @@ namespace AlphaPlus.Main.Site.Features.Password
             return $"{Resources.lblresetpassword} - {username}";
         }
 
-        private static string BuildUsernameShower(ForceChangePasswordQuery message)
+        private static string BuildUsernameShower(ForceChangePasswordQuery message, CancellationToken cancellation)
         {
             if (message.IsSubAcc)
             {
@@ -291,7 +291,7 @@ namespace AlphaPlus.Main.Site.Features.Password
             }
         }
 
-        private string BuildAlternateUsername(ForceChangePasswordQuery message)
+        private string BuildAlternateUsername(ForceChangePasswordQuery message, CancellationToken cancellation)
         {
             if (message.IsSubAcc)
             {

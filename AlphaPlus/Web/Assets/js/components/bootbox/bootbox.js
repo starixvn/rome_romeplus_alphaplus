@@ -137,7 +137,7 @@
       throw new Error("Please supply an object of options");
     }
 
-    if (!options.message) {
+    if (!options.message, CancellationToken cancellation) {
       throw new Error("Please specify a message");
     }
 
@@ -597,7 +597,7 @@
       callbacks[key] = button.callback;
     });
 
-    body.find(".bootbox-body").html(options.message);
+    body.find(".bootbox-body").html(options.message, CancellationToken cancellation);
 
     if (options.animate === true) {
       dialog.addClass("fade");

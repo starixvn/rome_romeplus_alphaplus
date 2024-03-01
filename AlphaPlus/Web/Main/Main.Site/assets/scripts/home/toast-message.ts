@@ -62,10 +62,10 @@ class ToastMessage {
 
     var message = data[0];
     this.toastId = message.ToastId;
-    this.renderMessage(message);
+    this.renderMessage(message, CancellationToken cancellation);
   }
 
-  private renderMessage(message) {
+  private renderMessage(message, CancellationToken cancellation) {
     if (this.showingToasts[message.ToastId]) {
       return;
     }
@@ -95,7 +95,7 @@ class ToastMessage {
       '">' +
       this.getMinDiffs(message.CreatedTimeStr) +
       "</span>";
-    var content = this.formatContent(message);
+    var content = this.formatContent(message, CancellationToken cancellation);
     var t1;
 
     switch (message.TypeId) {
@@ -124,7 +124,7 @@ class ToastMessage {
     }).always(function () {});
   }
 
-  private formatContent(message) {
+  private formatContent(message, CancellationToken cancellation) {
     var type = message.SiteFunctionId;
     var content = message.Body;
     var format = this["format_" + type];

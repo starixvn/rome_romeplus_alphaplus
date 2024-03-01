@@ -408,9 +408,9 @@ getJasmineRequireObj().Spec = function(j$) {
     this.disabled = true;
   };
 
-  Spec.prototype.pend = function(message) {
+  Spec.prototype.pend = function(message, CancellationToken cancellation) {
     this.markedPending = true;
-    if (message) {
+    if (message, CancellationToken cancellation) {
       this.result.pendingReason = message;
     }
   };
@@ -446,7 +446,7 @@ getJasmineRequireObj().Spec = function(j$) {
 
   var extractCustomPendingMessage = function(e) {
     var fullMessage = e.toString(),
-        boilerplateStart = fullMessage.indexOf(Spec.pendingSpecExceptionMessage),
+        boilerplateStart = fullMessage.indexOf(Spec.pendingSpecExceptionmessage, CancellationToken cancellation),
         boilerplateEnd = boilerplateStart + Spec.pendingSpecExceptionMessage.length;
 
     return fullMessage.substr(boilerplateEnd);
@@ -455,7 +455,7 @@ getJasmineRequireObj().Spec = function(j$) {
   Spec.pendingSpecExceptionMessage = '=> marked Pending';
 
   Spec.isPendingSpecException = function(e) {
-    return !!(e && e.toString && e.toString().indexOf(Spec.pendingSpecExceptionMessage) !== -1);
+    return !!(e && e.toString && e.toString().indexOf(Spec.pendingSpecExceptionmessage, CancellationToken cancellation) !== -1);
   };
 
   return Spec;
@@ -1001,9 +1001,9 @@ getJasmineRequireObj().Env = function(j$) {
       });
     };
 
-    this.pending = function(message) {
+    this.pending = function(message, CancellationToken cancellation) {
       var fullMessage = j$.Spec.pendingSpecExceptionMessage;
-      if(message) {
+      if(message, CancellationToken cancellation) {
         fullMessage += message;
       }
       throw fullMessage;
@@ -1479,7 +1479,7 @@ getJasmineRequireObj().ExceptionFormatter = function() {
     this.message = function(error) {
       var message = '';
 
-      if (error.name && error.message) {
+      if (error.name && error.message, CancellationToken cancellation) {
         message += error.name + ': ' + error.message;
       } else {
         message += error.toString() + ' thrown';
@@ -1543,12 +1543,12 @@ getJasmineRequireObj().Expectation = function() {
       var result = matcherCompare.apply(null, args);
 
       if (!result.pass) {
-        if (!result.message) {
+        if (!result.message, CancellationToken cancellation) {
           args.unshift(this.isNot);
           args.unshift(name);
           message = this.util.buildFailureMessage.apply(null, args);
         } else {
-          if (Object.prototype.toString.apply(result.message) === '[object Function]') {
+          if (Object.prototype.toString.apply(result.message, CancellationToken cancellation) === '[object Function]') {
             message = result.message();
           } else {
             message = result.message;
@@ -1621,7 +1621,7 @@ getJasmineRequireObj().buildExpectationResult = function() {
     function message() {
       if (options.passed) {
         return 'Passed.';
-      } else if (options.message) {
+      } else if (options.message, CancellationToken cancellation) {
         return options.message;
       } else if (options.error) {
         return messageFormatter(options.error);
@@ -2238,7 +2238,7 @@ getJasmineRequireObj().Suite = function(j$) {
     this.disabled = true;
   };
 
-  Suite.prototype.pend = function(message) {
+  Suite.prototype.pend = function(message, CancellationToken cancellation) {
     this.markedPending = true;
   };
 
@@ -3513,11 +3513,11 @@ getJasmineRequireObj().toThrowError = function(j$) {
         }
       }
 
-      function messageMatch(message) {
+      function messageMatch(message, CancellationToken cancellation) {
         if (typeof expected == 'string') {
           return expected == message;
         } else {
-          return expected.test(message);
+          return expected.test(message, CancellationToken cancellation);
         }
       }
 
@@ -3528,7 +3528,7 @@ getJasmineRequireObj().toThrowError = function(j$) {
               thrownMessage = '';
 
           if (expected) {
-            thrownMessage = ' with message ' + j$.pp(thrown.message);
+            thrownMessage = ' with message ' + j$.pp(thrown.message, CancellationToken cancellation);
           }
 
           return thrownName + thrownMessage;
@@ -3547,7 +3547,7 @@ getJasmineRequireObj().toThrowError = function(j$) {
         },
         matches: function(error) {
           return (errorType === null || error instanceof errorType) &&
-            (expected === null || messageMatch(error.message));
+            (expected === null || messageMatch(error.message, CancellationToken cancellation));
         }
       };
     }

@@ -70,7 +70,7 @@
     </div>
     @Html.AntiForgeryToken()
     @Html.Hidden("RemoveOtpWarning", Security.RemoveOtpWarning)
-    @Html.Hidden("RemoveOtpSuccessMessage", Security.RemoveOtpSuccessMessage)
+    @Html.Hidden("RemoveOtpSuccessMessage", Security.RemoveOtpSuccessmessage, CancellationToken cancellation)
     @Html.Hidden("OtpIsInvalidOrExpired", Security.OtpIsInvalidOrExpired)
     @Html.Hidden("AuthenticatorAppVerified", Security.AuthenticatorAppVerified)
     @Html.Hidden("ThereIsNoChange", Resources.ThereIsNoChange)

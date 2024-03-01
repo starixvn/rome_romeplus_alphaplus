@@ -39,7 +39,7 @@ public class OutstandingHandler(
             outstandings,
             validUserSelectedProductIds,
             BuildProductSelectListItems(validUserSelectedProductIds, products),
-            BuildBreadcrumbLevel(message),
+            BuildBreadcrumbLevel(message, CancellationToken cancellation),
             isOnlyMobile);
     }
 }

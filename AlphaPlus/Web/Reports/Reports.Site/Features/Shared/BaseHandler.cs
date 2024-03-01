@@ -33,7 +33,7 @@ public class BaseHandler
         return productList;
     }
 
-    protected internal IEnumerable<Breadcrumb> BuildBreadcrumbLevel(BaseQuery message)
+    protected internal IEnumerable<Breadcrumb> BuildBreadcrumbLevel(BaseQuery message, CancellationToken cancellation)
     {
         var breadcrumbLevel = new List<Breadcrumb>();
 

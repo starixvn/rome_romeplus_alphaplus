@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.Params
-{
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
+namespace AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.Params
+{
     public class CustomerListParam
     {
         public CustomerListParam(

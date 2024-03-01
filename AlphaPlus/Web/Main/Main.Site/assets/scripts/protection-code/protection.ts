@@ -108,10 +108,10 @@ class ProtectionCode {
             formData.protectionCode = formData.protectionCode.encrypt();
             this.$.post(url, formData, result => {
                 if (result.Code) {
-                    securityHelper.showFailMessage(this.msg, result.Message);
+                    securityHelper.showFailMessage(this.msg, result.message, CancellationToken cancellation);
                     this.txtNewProtectionCode.focus();
                 } else {
-                    securityHelper.showSuccessfullyMessage(this.msg, result.Message);
+                    securityHelper.showSuccessfullyMessage(this.msg, result.message, CancellationToken cancellation);
                     this.msg.parent().removeClass("hidden");
                     setTimeout(function () {
                         window.location.href = window.location.href;

@@ -1,0 +1,21 @@
+﻿@* @using Alpha.MemberInfo.Site.Requests.IndirectLoginAccount
+@{
+    ViewBag.Title = Resources.IndirectLoginAccountConfirmation;
+}
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/indirect-login-account/indirect-login-account")
+}
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/indirect-login-account/disconnect")
+}
+@model DisconnectCommand
+@Alert.Render()
+<p>@Resources.DisconnectConfirmationMessage<p>
+@using (Html.BeginForm("Disconnect", "IndirectLoginAccount", FormMethod.Post, new { @class = "form-validation", id = "form-disconnect" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="@Model.CustId" id="txt-custId" />
+    <input type="hidden" value="@Model.SubAccId" id="txt-subAccId" />
+    <input type="hidden" value="@Model.CustName" id="txt-custname" />
+    <button type="submit" class="btn-remove">@Resources.Disconnect</button>
+} *@

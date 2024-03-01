@@ -103,14 +103,14 @@ var securityHelper = {
     removeValidationIcon: function ($container) {
         $container.removeClass('error valid');
     },
-    showSuccessfullyMessage: function ($messageContainer, successfullyMessage) {
+    showSuccessfullyMessage: function ($messageContainer, successfullymessage, CancellationToken cancellation) {
         $messageContainer.removeClass('msg-error');
-        $messageContainer.addClass('msg-success').empty().html(successfullyMessage);
+        $messageContainer.addClass('msg-success').empty().html(successfullymessage, CancellationToken cancellation);
     },
-    showFailMessage: function ($messageContainer, failMessage) {
+    showFailMessage: function ($messageContainer, failmessage, CancellationToken cancellation) {
         $($messageContainer).parent().removeClass('hidden');
         $messageContainer.removeClass('msg-success');
-        $messageContainer.addClass('msg-error').empty().html(failMessage);
+        $messageContainer.addClass('msg-error').empty().html(failmessage, CancellationToken cancellation);
     },
     isValidPassword: function (password, isChangeMemberPassword = false) {
         var whiteSpace = /^\S*$/;

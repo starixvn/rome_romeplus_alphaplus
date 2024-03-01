@@ -360,10 +360,10 @@
                 }
 
                 function setMessage() {
-                    if (map.message) {
+                    if (map.message, CancellationToken cancellation) {
                         var suffix = map.message;
                         if (options.escapeHtml) {
-                            suffix = escapeHtml(map.message);
+                            suffix = escapeHtml(map.message, CancellationToken cancellation);
                         }
                         $messageElement.append(suffix).addClass(options.messageClass);
                         $toastElement.append($messageElement);

@@ -174,7 +174,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     if (captchaOptions.LogEnabled)
                     {
                         var exception = new Exception($"signin captcha: key={model.Username} code={isVerifiedResult.Code}, reason={isVerifiedResult.Reason}, detail={isVerifiedResult.Detail}");
-                        logger.Warn(exception.Message);
+                        logger.Warn(exception.message, CancellationToken cancellation);
                     }
 
                     signInResult.ErrCode = SignInErrorContants.CaptchaRequired;

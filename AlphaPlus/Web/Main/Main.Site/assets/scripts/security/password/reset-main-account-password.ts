@@ -46,7 +46,7 @@ var resetMainAccountPassword = {
         var $txtConfirmSecurityCode = $('#confirmPassword');
         var message = resetMainAccountPassword.checkInputParameters($txtSecurityCode, $txtConfirmSecurityCode);
         if (message.length !== 0) {
-            securityHelper.showFailMessage($messageContainer, message);
+            securityHelper.showFailMessage($messageContainer, message, CancellationToken cancellation);
             $.unblockUI();
             return;
         }
@@ -63,7 +63,7 @@ var resetMainAccountPassword = {
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
                 if (data.code !== 0) {
-                    securityHelper.showFailMessage($messageContainer, data.message);
+                    securityHelper.showFailMessage($messageContainer, data.message, CancellationToken cancellation);
                     $txtSecurityCode.focus();
                 } else {
                     securityHelper.showSuccessfullyMessage(

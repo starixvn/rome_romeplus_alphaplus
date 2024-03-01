@@ -11,7 +11,7 @@ internal static class ExceptionHelper
     {
         var errorBuilder = new StringBuilder();
         errorBuilder
-            .Append(exception.Message).Append(TwoBreakLine)
+            .Append(exception.message, CancellationToken cancellation).Append(TwoBreakLine)
             .Append("PATH: ")
             .Append($"{request.Scheme}://{request.Host}{request.PathBase}{request.Path}{request.QueryString}")
             .Append(TwoBreakLine)

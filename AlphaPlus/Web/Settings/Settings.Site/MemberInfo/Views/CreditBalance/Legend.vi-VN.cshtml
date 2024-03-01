@@ -1,0 +1,74 @@
+﻿@* @{
+    Layout = null;
+}
+@using Alpha.MemberInfo.Site.ViewModels.CreditBalance
+
+@model CreditBalanceViewModel
+
+<div class="modal fade message-modal" id="report-legend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="@Resources.ConditionToClearCredit"><span aria-hidden="true"></span></button>
+                <h4 class="modal-title">@Resources.ConditionToClearCredit</h4>
+            </div>
+            <div class="modal-body">
+                <div id="msg-content">
+                    @if (Model.CustLevel.IsAgentLevel())
+                    {
+                        if (!string.IsNullOrWhiteSpace(Model.TransferCondition))
+                        {
+                            <p>- @Model.TransferCondition</p>
+                        }
+                        if (Model.IsViewingMemberList)
+                        {
+                            <p>- @Resources.CreditBalanceNote</p>
+                        }
+                        <p>- Bao gồm các Member chưa đăng nhập sau khi được tạo bởi Agent trong hơn 14 ngày.</p>
+                    }
+                    else
+                    {
+                        <span>
+                            Hạn mức được cấp của các cấp dưới sẽ bị tự động xóa trong các trường hợp sau đây:
+                        </span>
+                        if (Model.CustLevel.IsSuperLevel())
+                        {
+                            if (Model.IsViewingMemberList)
+                            {
+                                <p>- @Resources.CreditBalanceNote</p>
+                            }
+                            <ul class="list-msg">
+                                <li>
+                                    Đối với Master/Agent không có cấp dưới:
+                                    <p>- Bao gồm các Master/Agent chưa đăng nhập sau khi được tạo bởi cấp trên trực thuộc trong hơn 7 ngày.</p>
+                                </li>
+                                <li>
+                                    Đối với Member:
+                                    <p>- Bao gồm các Member chưa đăng nhập sau khi được tạo bởi Agent trong hơn 14 ngày.</p>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            if (Model.IsViewingMemberList)
+                            {
+                                <p>- @Resources.CreditBalanceNote</p>
+                            }
+                            <ul class="list-msg">
+                                <li>
+                                    Đối với Agent không có cấp dưới:
+                                    <p>- Bao gồm các Agent chưa đăng nhập sau khi được tạo bởi Master trong hơn 7 ngày.</p>
+                                </li>
+                                <li>
+                                    Đối với Member:
+                                    <p>- Bất kỳ Member chưa đăng nhập sau khi được tạo bởi Agent trong hơn 14 ngày.</p>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ *@

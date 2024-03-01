@@ -1,0 +1,17 @@
+﻿@* @model ParlayMaxPayoutSinglePageViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/ParlayMaxPayout/Bundles/parlay-max-payout")
+}
+
+<div id="header_main" class="pmp-page-title">@Model.SubTitle</div>
+
+@Html.Partial(Model.ParlayMaxPayoutSettingPartialViewPath, Model)
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/ParlayMaxPayout/Bundles/parlay-max-payout")
+} *@

@@ -1,0 +1,176 @@
+﻿@* @using Alpha.MemberInfo.Extensions
+@using Alpha.MemberInfo.Site.ViewModels.Components
+@using Alpha.MemberInfo.Features.DormantAccountList.Models;
+
+@model DormantAccountViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = @Resources.DormantAccountList;
+}
+
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/DormantAccountList/Bundles/dormant-account-list")
+}
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/DormantAccountList/Bundles/dormant-account-list")
+}
+
+<div class="page-title">
+    <span class="pull-left">@Resources.DormantAccountList</span>
+    &nbsp;<span class="icon icon-information-outline" data-toggle="modal" data-backdrop="false" data-target="#popup-archiveProcess" id="icon-archiveProcess"></span>
+</div>
+
+@using (Html.BeginForm("Index", "DormantAccount", FormMethod.Get, new { @class = "form-inline filter", role = "form", id = "form-filter" }))
+{
+    <div class="form-group">
+        <label for="txt-username">@Resources.Username</label>
+        <input type="text"
+               id="txt-username"
+               name="Username"
+               autocomplete="off"
+               value="@Model.Message.Username"
+               placeholder="@Resources.Username" />
+    </div>
+    <div class="form-group">
+        <label>@Resources.Level</label>
+        @Html.DropDownList("LevelId", Model.Levels)
+    </div>
+    <div class="form-group">
+        <label>@Resources.Status</label>
+        @Html.DropDownList("StatusId", Model.Status)
+    </div>
+    <div class="form-group">
+        <button id="btn-submit" type="submit" class="btn-submit">@Resources.Submit</button>
+        <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
+    </div>
+}
+
+@using (Html.BeginForm("Excel", "DormantAccount", FormMethod.Get, new { @class = "hide", role = "form", id = "export-excel-form" }))
+{
+    <input type="hidden" name="Username" value="@Model.Message.Username" />
+    <input type="hidden" name="LevelId" value="@Model.Message.LevelId" />
+    <input type="hidden" name="StatusId" value="@Model.Message.StatusId" />
+}
+
+<div class="tbl-container">
+    <table id="tbl-report" class="tblRpt tblRpt-bordered alternative-row-table tblRpt-hover">
+        <thead>
+            @if (Model.IsShowDateTimeColumn)
+            {
+                <tr>
+                    <th rowspan="2">@Resources.Username</th>
+                    <th rowspan="2">@Resources.Level</th>
+                    <th rowspan="2">@Resources.Status</th>
+                    <th rowspan="2">@Resources.ArchiveStage</th>
+                    <th rowspan="2">@Resources.ToBeClearedGivenCredit</th>
+                    <th rowspan="2">@Resources.ClearedGivenCredit</th>
+                    <th rowspan="2">@Resources.YesterdayBalance</th>
+                    <th rowspan="2">@Resources.LastLogin</th>
+                    <th colspan="4">@Resources.ArchiveDate</th>
+                </tr>
+                <tr>
+                    <th>@Resources.Closed</th>
+                    <th>@Resources.Disabled</th>
+                    <th>@Resources.DeletedSettings</th>
+                    <th>@Resources.DeletedAccount</th>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <th>@Resources.Username</th>
+                    <th>@Resources.Level</th>
+                    <th>@Resources.Status</th>
+                    <th>@Resources.ArchiveStage</th>
+                    <th>@Resources.ToBeClearedGivenCredit</th>
+                    <th>@Resources.ClearedGivenCredit</th>
+                    <th>@Resources.YesterdayBalance</th>
+                </tr>
+            }
+        </thead>
+        <tbody>
+            @if (Model.Report.TotalAccount != null)
+            {
+                @RenderRow(Model.Report.TotalAccount);
+            }
+
+            @if (Model.Report.HasData)
+            {
+                foreach (var item in Model.Report.DormantAccounts)
+                {
+                    @RenderRow(item);
+                }
+            }
+            else
+            {
+                @NoInformation.Render(12)
+            }
+        </tbody>
+    </table>
+    @if (Model.Report.HasData)
+    {
+        <div>
+            @Pager.Render(new PagerViewModel(Model.Message.PageIndex, Model.Message.PageSize, Model.Report.TotalItems))
+        </div>
+    }
+</div>
+
+<div class="modal fade message-modal in" id="popup-archiveProcess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                <h4 class="modal-title">@Resources.DormantAccountArchiveProcess</h4>
+            </div>
+            <div class="modal-body">
+                @{ Html.RenderPartial($"~/Features/DormantAccountList/Views/ArchiveProcess_{Model.GetArchiveProcessViewLang()}.cshtml"); }
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="closed-tooltip-title" value="@Resources.DormantAccountClosedTooltip" />
+
+@helper RenderRow(DormantAccount item)
+{
+    var isRedDateTime = item.IsRedDateTime;
+    var classCSS = item.IsSummaryRow ? "tbl-footer" : string.Empty;
+    <tr class = "@classCSS">
+        <td>@item.Username</td>
+        <td class="text-center">@item.RoleName</td>
+        <td class="text-center">
+            @if (item.IsWarningTicket)
+            {
+                <div data-toggle="tooltip"><span class="text-danger">@item.Status</span></div>
+            }
+            else
+            {
+                @:@item.Status
+            }
+        </td>
+        <td class="text-center">@item.ArchiveStage</td>
+        <td class="text-right">
+            @if (item.ToBeClearedGivenCredit.HasValue)
+            {
+                @HtmlHelpers.FormatNumber(item.ToBeClearedGivenCredit.Value)
+            }
+        </td>
+        <td class="text-right">
+            @if (item.ClearedGivenCredit.HasValue)
+            {
+                @HtmlHelpers.FormatNumber(item.ClearedGivenCredit.Value)
+            }
+        </td>
+        <td class="text-right">@HtmlHelpers.FormatNumber(item.YesterdayBalance)</td>
+        @if (Model.IsShowDateTimeColumn)
+        {
+            <td class="text-center @(isRedDateTime ? "text-danger" : string.Empty)">@item.LastLogged.ToLongDateTime12h()</td>
+            <td class="text-center @(isRedDateTime ? "text-danger" : string.Empty)">@item.ClosedDate.ToLongDateTime12h()</td>
+            <td class="text-center @(isRedDateTime ? "text-danger" : string.Empty)">@item.DisabledDate.ToLongDateTime12h()</td>
+            <td class="text-center @(isRedDateTime ? "text-danger" : string.Empty)">@item.SettingDeletedDate.ToLongDateTime12h()</td>
+            <td class="text-center @(isRedDateTime ? "text-danger" : string.Empty)">@item.AccountDeletedDate.ToLongDateTime12h()</td>
+        }
+    </tr>
+} *@

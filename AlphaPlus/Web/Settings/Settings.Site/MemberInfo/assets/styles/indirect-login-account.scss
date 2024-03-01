@@ -1,0 +1,72 @@
+﻿html, body {
+    height: auto;
+}
+
+.content-page {
+    width: 750px;
+
+    .list-button {
+        margin: 10px 0;
+        text-align: right;
+
+        .btn-submit {
+            margin-right: 0;
+        }
+    }
+
+    .tblRpt {
+        .icon-indirect-login {
+            color: #333;
+
+            &:before {
+                content: "\e913";
+            }
+
+            &:hover, &:focus {
+                text-decoration: none;
+            }
+        }
+
+        .icon-indirect-login.disabled {
+            color: #aaa;
+            cursor: not-allowed;
+        }
+
+        .icon-disconnect {
+            font-size: 20px;
+            font-weight: bold;
+
+            &:before {
+                content: "\e92c";
+                color: #fe0000;
+            }
+        }
+    }
+}
+
+.form-validation {
+    .form-group {
+        margin: 0;
+        padding: 16px 0 0 0;
+
+        label {
+            color: #333;
+            font-size: inherit;
+            font-weight: normal;
+            margin-bottom: 4px;
+        }
+
+        input[type='text'], input[type='password'] {
+            width: 100%;
+        }
+
+        input[type="checkbox"] {
+            display: inline-block;
+        }
+    }
+}
+
+p {
+    margin: 0;
+    padding: 16px 0 0 0;
+}

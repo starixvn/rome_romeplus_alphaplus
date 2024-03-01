@@ -367,7 +367,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
                 SetOtpStatusToSession(enabled);
             }
 
-            return new Result(result.Code, result.Message);
+            return new Result(result.Code, result.message, CancellationToken cancellation);
         }
 
         private static void SetOtpStatusToSession(bool isEnabledOtp)

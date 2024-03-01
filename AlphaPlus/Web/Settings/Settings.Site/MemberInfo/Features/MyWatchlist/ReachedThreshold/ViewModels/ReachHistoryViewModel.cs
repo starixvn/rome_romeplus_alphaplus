@@ -1,0 +1,19 @@
+﻿namespace Alpha.MemberInfo.Site.Features.MyWatchlist.ReachedThreshold.ViewModels
+{
+    using System.Collections.Generic;
+    using Alpha.MemberInfo.Site.Features.MyWatchlist.ReachedThreshold.Requests;
+    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+
+    public class ReachHistoryViewModel
+    {
+        public ReachHistoryViewModel(ReachHistoryQuery message, IEnumerable<ReachHistoryModel> reachHistories)
+        {
+            ReachHistories = reachHistories;
+            ReachHistoryQuery = message;
+        }
+
+        public IEnumerable<ReachHistoryModel> ReachHistories { get; }
+
+        public ReachHistoryQuery ReachHistoryQuery { get; }
+    }
+}

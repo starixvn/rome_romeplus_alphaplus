@@ -28,7 +28,7 @@ namespace AlphaPlus.Main.Site.Features.NetworkSpeed
             return Task.FromResult(default(Unit));
         }
 
-        public NetworkSpeedViewModel Handle(NetworkSpeedQuery message)
+        public NetworkSpeedViewModel Handle(NetworkSpeedQuery message, CancellationToken cancellation)
             => new(IsNeedToCalculateUserConnectionSpeed(message.CustId));
 
         private static bool IsNeedToCalculateUserConnectionSpeed(int custId)
@@ -58,7 +58,7 @@ namespace AlphaPlus.Main.Site.Features.NetworkSpeed
                                 // .AddSection("server info", () => WebInfoGetters.GetRequestHeader(request.Headers))
                                 .ToString();
 
-            return logger.InfoAsync(logMessage);
+            return logger.InfoAsync(logmessage, CancellationToken cancellation);
         }
 
 

@@ -1,0 +1,73 @@
+﻿{
+  "Framework": "jasmine",
+  "EnableCodeCoverage": "true",
+  "Compile": {
+    "Mode": "External",
+    "Extensions": [ ".ts" ]
+  },
+  "CodeCoverageExcludes": [
+    "*\\libs\\*"
+  ],
+  "CodeCoverageIgnores": [
+    "*\\tests\\*"
+  ],
+
+  "CodeCoverageExecutionMode": "Manual",
+  "References": [
+    { "Path": "libs/jquery/jquery-1.11.3.js" },
+    { "Path": "libs/jasmine.js" },
+    { "Path": "libs/jasmine-jquery.js" },
+    { "Path": "libs/jquery/blockUI.js" },
+    { "Path": "libs/jquery/stickytableheaders.js" },
+    { "Path": "libs/bootstrap/button.js" },
+    { "Path": "libs/bootstrap/dropdown.js" },
+    { "Path": "libs/bootstrap/modal.js" },
+    { "Path": "libs/bootstrap/multiselect.js" },
+    { "Path": "libs/bootstrap/typeahead.js" },
+    { "Path": "libs/pagination/jquery.draggable.js" },
+    { "Path": "libs/pagination/jquery.resizable.js" },
+    { "Path": "libs/pagination/jquery.parser.js" },
+    { "Path": "libs/pagination/jquery.linkbutton.js" },
+    { "Path": "libs/pagination/jquery.pagination.js" },
+    { "Path": "libs/jquery/stickytableheaders.js" },
+    { "Path": "libs/jquery/stickytableheaders.js" },
+
+    { "Path": "../components/single-selection-dropdown.ts" },
+    { "Path": "../components/productmultiselection.ts" },
+    { "Path": "../member-requests/member-requests.ts" },
+    { "Path": "../components/pager.ts" },
+    { "Path": "../win-loss-limit/win-loss-limit.ts" },
+    { "Path": "../credit-balance/columns-control.ts" },
+    { "Path": "../credit-balance/credit-balance.ts" },
+    { "Path": "../components/alert.ts" },
+    { "Path": "../aes.js" },
+    { "Path": "../encryptor.ts" },
+    { "Path": "../indirect-login-account/disconnect.ts" },
+    { "Path": "../indirect-login-account/manage-account.ts" },
+    { "Path": "../indirect-login-account/base-account.ts" },
+    { "Path": "../indirect-login-account/new-account.ts" },
+    { "Path": "../indirect-login-account/update-account.ts" }
+  ],
+  "Tests": [
+    {
+      "Path": "apps/components",
+      "Excludes": [ "**.js.map", "**.js", "**-template.ts" ]
+    },
+    {
+      "Path": "apps/credit-balance",
+      "Excludes": [ "**.js.map", "**.js", "**-template.ts" ]
+    },
+    {
+      "Path": "apps/member-requests",
+      "Excludes": [ "**.js.map", "**.js", "**-template.ts" ]
+    },
+    {
+      "Path": "apps/win-loss-limit",
+      "Excludes": [ "**.js.map", "**.js", "**-template.ts" ]
+    },
+    {
+      "Path": "apps/indirect-login-account",
+      "Excludes": [ "**.js.map", "**.js", "**-template.ts" ]
+    }
+  ]
+}

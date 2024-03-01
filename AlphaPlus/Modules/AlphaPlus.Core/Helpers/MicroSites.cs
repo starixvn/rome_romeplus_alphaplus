@@ -30,7 +30,7 @@ public static class MicroSites
         => AppPathHelper.GetAppPath(AppSettings.BetListsAppPath, virtualPath);
 
     public static string MemberInfoUrl(string virtualPath = "~/")
-        => AppPathHelper.GetAppPath(AppSettings.MemberInfoAppPath, virtualPath);
+        => AppPathHelper.GetAppPath("/settings", virtualPath);
 
     public static string MessageUrl(string virtualPath = "~/")
         => AppPathHelper.GetAppPath(AppSettings.MessageAppPath, virtualPath);

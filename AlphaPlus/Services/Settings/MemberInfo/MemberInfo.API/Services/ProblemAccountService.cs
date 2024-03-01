@@ -2,12 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.API.Criteria.ProblemAccount;
     using AlphaPlus.Settings.MemberInfo.Domain.Params.ProblemAccount;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
     using Fanex.Data.Repository;
+    using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
     public interface IProblemAccountService
     {

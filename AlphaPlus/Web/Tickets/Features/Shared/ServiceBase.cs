@@ -31,5 +31,5 @@ public class ServiceBase
     private static Exception BuildException(APIError apiError)
         => apiError.Code == PartialUMException.ErrorCode
         ? new PartialUMException(apiError.StartTime, apiError.EndTime)
-        : new Exception(apiError.Message);
+        : new Exception(apiError.message, CancellationToken cancellation);
 }

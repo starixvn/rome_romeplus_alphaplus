@@ -107,10 +107,10 @@
         }
     };
 
-    appendMessageToPopup = (message) => {
+    appendMessageToPopup = (message, CancellationToken cancellation) => {
         this.domElements.contentMessage.append('<p class="not-shown-message"></p>');
 
-        this.domElements.contentMessage.find('p:last').html(message);
+        this.domElements.contentMessage.find('p:last').html(message, CancellationToken cancellation);
     };
 
     applyScroller = () => {
@@ -176,8 +176,8 @@
     };
 
     protected registerEvents = () => {
-        this.domElements.privateMessage.on('click', this.viewLiveMessage);
-        this.domElements.publicMessage.on('click', this.viewLiveMessage);
+        this.domElements.privateMessage.on('click', this.viewLivemessage, CancellationToken cancellation);
+        this.domElements.publicMessage.on('click', this.viewLivemessage, CancellationToken cancellation);
     };
 }
 

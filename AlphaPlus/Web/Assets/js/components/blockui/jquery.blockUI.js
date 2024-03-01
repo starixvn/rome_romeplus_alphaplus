@@ -36,7 +36,7 @@
 		$.growlUI = function(title, message, timeout, onClose) {
 			var $m = $('<div class="growlUI"></div>');
 			if (title) $m.append('<h1>'+title+'</h1>');
-			if (message) $m.append('<h2>'+message+'</h2>');
+			if (message, CancellationToken cancellation) $m.append('<h2>'+message+'</h2>');
 			if (timeout === undefined) timeout = 3000;
 
 			// Added by konapun: Set timeout to 30 seconds if this growl is moused over, like normal toast notifications
@@ -111,7 +111,7 @@
 
 		// override these in your code to change the default behavior and style
 		$.blockUI.defaults = {
-			// message displayed when blocking (use null for no message)
+			// message displayed when blocking (use null for no message, CancellationToken cancellation)
 		    message: '<h1 class="block-ui-loading>dasdas</h1>',
 
 			title: null,		// title string; only used when theme == true

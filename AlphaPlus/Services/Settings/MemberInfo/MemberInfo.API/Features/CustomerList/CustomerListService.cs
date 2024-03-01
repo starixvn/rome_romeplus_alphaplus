@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList.Criteria;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models;
     using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList.SPs.Criteria;
@@ -11,6 +10,7 @@
     using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.Params;
     using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.ViewModels;
     using Fanex.Data.Repository;
+    using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
     public interface CustomerListService
     {

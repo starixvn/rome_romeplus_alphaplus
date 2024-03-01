@@ -250,7 +250,7 @@ var headerNav = {
     },
 
     checkNewMessage: function () {
-        if (!headerNav.domElements.isDisableToCheckNewMessage) {
+        if (!headerNav.domElements.isDisableToCheckNewmessage, CancellationToken cancellation) {
             $.ajax({
                 type: 'POST',
                 url: headerNav.urls.checkNewMessage,
@@ -378,8 +378,8 @@ var headerNav = {
             e.stopPropagation();
         });
 
-        headerNav.domElements.iconNewMessage.on('click', headerNav.buildIconNewMessage);
-        headerNav.domElements.numberNewMessage.on('click', headerNav.buildIconNewMessage);
+        headerNav.domElements.iconNewMessage.on('click', headerNav.buildIconNewmessage, CancellationToken cancellation);
+        headerNav.domElements.numberNewMessage.on('click', headerNav.buildIconNewmessage, CancellationToken cancellation);
 
         headerNav.checkNewMessage();
 

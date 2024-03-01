@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.API.Services
 {
-    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Params;
     using Criteria;
     using Fanex.Data.Repository;

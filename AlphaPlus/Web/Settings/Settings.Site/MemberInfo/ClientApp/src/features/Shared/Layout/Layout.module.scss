@@ -1,0 +1,13 @@
+.layout {
+  border: none;
+  background: none;
+  padding: 2px;
+  width: 1030px;
+  position: relative;
+  > div {
+    position: relative;
+    &:hover {
+      z-index: 50;
+    }
+  }
+}

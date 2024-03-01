@@ -1,0 +1,67 @@
+﻿@import './_mixins.scss';
+
+* {
+    font-size: 13px !important;
+}
+
+#qrCodeMemberSignInForm {
+    width: 500px;
+
+    .form-group {
+        display: block;
+        padding-top: 15px;
+
+        label {
+            color: black !important;
+            display: block;
+        }
+
+        input[type='text'], .captcha-input {
+            width: 200px !important;
+        }
+
+        #credit-range {
+            padding-top: 5px;
+
+            span {
+                font-weight: bold;
+            }
+        }
+
+        .suggestion {
+            padding: 8px 10px;
+        }
+
+        button {
+            height: 30px;
+        }
+
+        .icon-check, .icon-close {
+            font-size: 18px !important;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .icon-check {
+            color: #52a220;
+        }
+
+        .icon-close {
+            color: #fe0000;
+        }
+
+        .easy-autocomplete {
+            display: inline-block;
+        }
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    * {
+        font-size: calculateScale(13px) !important;
+    }
+
+    #qrCodeMemberSignInForm {
+        width: 100% !important;
+    }
+}

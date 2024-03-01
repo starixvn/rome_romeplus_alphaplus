@@ -8,7 +8,7 @@
         {
         }
 
-        public NamedResult(string name, int code, string message)
+        public NamedResult(string name, int code, string message, CancellationToken cancellation)
         {
             Name = name;
             Code = code;

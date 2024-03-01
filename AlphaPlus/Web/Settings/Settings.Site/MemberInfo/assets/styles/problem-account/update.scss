@@ -1,0 +1,120 @@
+﻿body {
+    padding-bottom: 48px;
+}
+
+.content-page {
+    padding: 0px 0px;
+}
+
+.review-content {
+    margin-bottom: 10px;
+}
+
+.list-button {
+    position: fixed;
+    right: 20px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 10px 0px 0px;
+
+    [class^='btn'] {
+        float: right;
+        min-width: 80px;
+        line-height: 30px;
+    }
+
+    .btn-cancel {
+        margin-right: 20px;
+    }
+
+    .btn-submit {
+        margin-right: 0;
+    }
+}
+
+.review-options {
+    display: block;
+    padding: 4px 0;
+    font-weight: normal;
+    font-size: 14px;
+    color: #333333;
+}
+
+.total {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.more-content {
+    display: inline;
+
+    span {
+        display: none;
+    }
+}
+
+.less-content {
+    display: inline;
+}
+
+.less-link {
+    color: #337ab7;
+}
+
+.less-link:hover {
+    color: #337ab7;
+}
+
+.more-link {
+    color: #337ab7;
+}
+
+.more-link:hover {
+    color: #337ab7;
+}
+
+.form-horizontal {
+    label {
+        text-align: left;
+    }
+
+    margin-top: 10px;
+}
+
+.message-container {
+    display: table;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+@media screen and (max-device-width: 767px) {
+
+    .list-button {
+        padding: 20px 16px;
+
+        .btn-cancel {
+            height: 45px;
+            margin-bottom: 16px;
+        }
+
+        .btn-submit {
+            height: 45px;
+            width: auto;
+        }
+    }
+
+    .total {
+        font-size: 21px;
+    }
+
+    .review-options{
+        font-size: 18px;
+    }
+
+    body {
+        font-size: 18px;
+        padding-bottom: 90px;
+    }
+}

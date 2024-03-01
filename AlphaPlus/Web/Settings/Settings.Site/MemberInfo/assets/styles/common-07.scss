@@ -1,0 +1,43 @@
+﻿@import "abstracts/_mixins.scss";
+
+.dataTables_wrapper {
+    .top {
+        height: calculateScale(32px);
+        margin-bottom: calculateScale(6px);
+        line-height: calculateScale(24px);
+    }
+
+    .dataTables_length {
+        top: -3px;
+        select {
+            height: calculateScale(32px);
+        }
+    }
+
+    .dataTables_paginate {
+        top: -2px;
+        text-align: left;
+
+        .paginate_input {
+            font-size: calculateScale(16px);
+            height: calculateScale(32px);
+        }
+
+        .paginate_button {
+            font-size: calculateScale(20px);
+        }
+    }
+
+    .bottom {
+        .dataTables_paginate {
+            width: 100%;
+            padding-top: 8px;
+        }
+    }
+}
+
+.multi-double-comm {
+    label {
+        font-size: calculateScale(13px);
+    }
+}

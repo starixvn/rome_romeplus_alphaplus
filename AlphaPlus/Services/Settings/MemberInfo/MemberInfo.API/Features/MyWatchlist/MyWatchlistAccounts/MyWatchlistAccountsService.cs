@@ -8,7 +8,7 @@
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
     using AlphaPlus.PartialUM.Services;
     using Fanex.Data.Repository;
-    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
     public interface MyWatchlistAccountsService
     {

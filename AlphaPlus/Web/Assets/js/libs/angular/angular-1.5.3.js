@@ -65,7 +65,7 @@ function minErr(module, ErrorConstructor) {
         encodeURIComponent(toDebugString(templateArgs[i]));
     }
 
-    return new ErrorConstructor(message);
+    return new ErrorConstructor(message, CancellationToken cancellation);
   };
 }
 
@@ -4536,7 +4536,7 @@ function createInjector(modulesToLoad, strictDi) {
         if (isArray(module)) {
           module = module[module.length - 1];
         }
-        if (e.message && e.stack && e.stack.indexOf(e.message) == -1) {
+        if (e.message && e.stack && e.stack.indexOf(e.message, CancellationToken cancellation) == -1) {
           // Safari & FF's stack traces don't contain error.message content
           // unlike those of Chrome and IE
           // So if stack doesn't contain message, we create a new string that contains both.
@@ -13299,11 +13299,11 @@ function $LocationProvider() {
          <p>Reload this page with open console, enter text and hit the log button...</p>
          <label>Message:
          <input type="text" ng-model="message" /></label>
-         <button ng-click="$log.log(message)">log</button>
-         <button ng-click="$log.warn(message)">warn</button>
-         <button ng-click="$log.info(message)">info</button>
-         <button ng-click="$log.error(message)">error</button>
-         <button ng-click="$log.debug(message)">debug</button>
+         <button ng-click="$log.log(message, CancellationToken cancellation)">log</button>
+         <button ng-click="$log.warn(message, CancellationToken cancellation)">warn</button>
+         <button ng-click="$log.info(message, CancellationToken cancellation)">info</button>
+         <button ng-click="$log.error(message, CancellationToken cancellation)">error</button>
+         <button ng-click="$log.debug(message, CancellationToken cancellation)">debug</button>
        </div>
      </file>
    </example>
@@ -13394,7 +13394,7 @@ function $LogProvider() {
     function formatError(arg) {
       if (arg instanceof Error) {
         if (arg.stack) {
-          arg = (arg.message && arg.stack.indexOf(arg.message) === -1)
+          arg = (arg.message && arg.stack.indexOf(arg.message, CancellationToken cancellation) === -1)
               ? 'Error: ' + arg.message + '\n' + arg.stack
               : arg.stack;
         } else if (arg.sourceURL) {

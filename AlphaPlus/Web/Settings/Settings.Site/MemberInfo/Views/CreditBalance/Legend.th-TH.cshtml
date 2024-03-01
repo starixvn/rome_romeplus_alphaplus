@@ -1,0 +1,72 @@
+﻿@* @{
+    Layout = null;
+}
+@using Alpha.MemberInfo.Site.ViewModels.CreditBalance
+
+@model CreditBalanceViewModel
+
+<div class="modal fade message-modal" id="report-legend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="@Resources.ConditionToClearCredit"><span aria-hidden="true"></span></button>
+                <h4 class="modal-title">@Resources.ConditionToClearCredit</h4>
+            </div>
+            <div class="modal-body">
+                <div id="msg-content">
+                    @if (Model.CustLevel.IsAgentLevel())
+                    {
+                        if (!string.IsNullOrWhiteSpace(Model.TransferCondition))
+                        {
+                            <p>- @Model.TransferCondition</p>
+                        }
+                        if (Model.IsViewingMemberList)
+                        {
+                            <p>- @Resources.CreditBalanceNote</p>
+                        }
+                        <p>- สมาชิกใดก็ตามที่ไม่ได้ลงชื่อเข้าใช้งานมากกว่า 14 วันหลังจากที่เอเจนต์ได้สร้างบัญชีให้</p>
+                    }
+                    else
+                    {
+                        <span>เครดิตที่ได้รับสำหรับดาวน์ไลน์จะถูกล้างโดยอัตโนมัติ หากตรงตามเงื่อนไขดังต่อไปนี้</span>
+                        if (Model.CustLevel.IsSuperLevel())
+                        {
+                            if (Model.IsViewingMemberList)
+                            {
+                                <p>- @Resources.CreditBalanceNote</p>
+                            }
+                            <ul class="list-msg">
+                                <li>
+                                    สำหรับระดับมาสเตอร์/เอเจนต์ที่ไม่มีดาวน์ไลน์:
+                                    <p>- มาสเตอร์/เอเจนต์ใดก็ตามที่ไม่ได้ลงชื่อเข้าใช้งานมากกว่า 7 วันหลังจากที่อัพไลน์ได้สร้างบัญชีให้โดยตรง</p>
+                                </li>
+                                <li>
+                                    สำหรับสมาชิก:
+                                    <p>- สมาชิกใดก็ตามที่ไม่ได้ลงชื่อเข้าใช้งานมากกว่า 14 วันหลังจากที่เอเจนต์ได้สร้างบัญชีให้</p>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            if (Model.IsViewingMemberList)
+                            {
+                                <p>- @Resources.CreditBalanceNote</p>
+                            }
+                            <ul class="list-msg">
+                                <li>
+                                    สำหรับเอเจนต์ที่ไม่มีดาวน์ไลน์：
+                                    <p>- เอเจนต์ใดก็ตามที่ไม่ได้ลงชื่อเข้าใช้งานมากกว่า 7 วันหลังจากที่มาสเตอร์ได้สร้างบัญชีให้</p>
+                                </li>
+                                <li>
+                                    สำหรับสมาชิก:
+                                    <p>- สมาชิกใดก็ตามที่ไม่ได้ลงชื่อเข้าใช้งานมากกว่า 14 วันหลังจากที่เอเจนต์ได้สร้างบัญชีให้</p>
+                                </li>
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ *@

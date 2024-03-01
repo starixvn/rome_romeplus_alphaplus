@@ -20,7 +20,7 @@ namespace Fanex.Alpha.Before.Services
                 message += $" - Item Count: {(result as IEnumerable<object>).Count()}";
             }
 
-            Logger.Log.Info(message);
+            Logger.Log.Info(message, CancellationToken cancellation);
             return result;
         }
     }

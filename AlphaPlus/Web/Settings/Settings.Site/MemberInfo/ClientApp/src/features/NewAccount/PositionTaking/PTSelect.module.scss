@@ -1,0 +1,6 @@
+.pt-select {
+  &.invalid {
+    border: 1px solid var(--border-input-error) !important;
+    background-color: var(--bg-input-error);
+  }
+}

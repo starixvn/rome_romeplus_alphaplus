@@ -1,0 +1,132 @@
+﻿@import "columns-control-dark";
+
+.note {
+    color: #FF4F50;
+}
+
+.filter {
+    margin: 15px 0;
+
+    .form-group .btn-group {
+        float: unset;
+    }
+
+    label {
+        font-size: 100%;
+    }
+
+    p {
+        margin: 0 0 15px;
+    }
+
+    .typeahead {
+        width: 200px;
+
+        li {
+            &.active {
+                background-color: #ddd;
+            }
+
+            a {
+                padding: 7px 10px;
+            }
+        }
+    }
+
+    ::-webkit-input-placeholder {
+        font-style: italic;
+        color: #666;
+    }
+
+    ::-moz-placeholder {
+        font-style: italic;
+        color: #666;
+    }
+}
+
+#creditBalanceForm {
+    .multiselect-selected-text {
+        text-transform: none;
+        color: #cbcbcb;
+    }
+
+    .caret {
+        border-top-color: #cbcbcb;
+    }
+
+    .multiselect-container.dropdown-menu label.radio {
+        display: block;
+    }
+}
+
+#tbl-container {
+    position: relative;
+}
+
+#tbl-report {
+    width: 100%;
+
+    .link {
+        color: #41A4FF;
+        text-decoration: none;
+
+        &:focus {
+            color: #045ace;
+        }
+
+        &:hover {
+            color: #f60;
+        }
+    }
+
+    .text-sm {
+        font-size: 8pt;
+    }
+}
+
+// report-legend
+#report-legend, #product-pt-list-popup {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    @include box-shadow-multiple(none);
+
+    .modal-dialog {
+        width: 700px;
+        margin: 0;
+        padding: 10px 0;
+
+        @media only screen and (max-device-width : 767px) {
+            width: 90%;
+        }
+
+        @media only screen and (max-device-width : 767px) and (orientation: landscape) {
+            width: 70%;
+        }
+
+        .modal-body {
+            padding-bottom: 0;
+        }
+
+        #msg-content {
+            padding: 12px 0;
+        }
+
+        .list-msg {
+            line-height: 28px;
+            margin-bottom: 0;
+        }
+
+        ul {
+            list-style-type: circle;
+
+            li {
+                margin-left: 30px;
+
+                p {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}

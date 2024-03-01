@@ -1,0 +1,29 @@
+.product {
+  border-top: 0;
+  margin-bottom: 10px;
+}
+
+.content-product {
+  padding: 10px 10px 0;
+  border: 1px solid var(--border-color);
+  background: var(--bg-body-tab);
+  border-top: 0;
+}
+
+.btn {
+  padding: 10px 0;
+
+  button {
+    color: var(--color-btn);
+    font-weight: bold;
+    padding: 5px 15px;
+    min-width: 100px;
+    background-color: var(--bg-btn-create);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--bg-btn-create-hover);
+    }
+  }
+}

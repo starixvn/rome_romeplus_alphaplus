@@ -19,23 +19,23 @@ public class BetListBaseController : BaseController
     private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
         => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
 
-    protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message)
-        => View(await mediator.Send(message));
+    protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message, CancellationToken cancellation)
+        => View(await mediator.Send(message, CancellationToken cancellation));
 
-    protected async Task<IActionResult> View<TResponse>(string viewName, IRequest<TResponse> message)
-        => View(viewName, await mediator.Send(message));
+    protected async Task<IActionResult> View<TResponse>(string viewName, IRequest<TResponse> message, CancellationToken cancellation)
+        => View(viewName, await mediator.Send(message, CancellationToken cancellation));
 
-    protected async Task<IActionResult> PartialView<TResponse>(IRequest<TResponse> message)
-        => PartialView(await mediator.Send(message));
+    protected async Task<IActionResult> PartialView<TResponse>(IRequest<TResponse> message, CancellationToken cancellation)
+        => PartialView(await mediator.Send(message, CancellationToken cancellation));
 
-    protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
-        => GetExcelContent(await mediator.Send(message));
+    protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message, CancellationToken cancellation)
+        => GetExcelContent(await mediator.Send(message, CancellationToken cancellation));
 
     protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
-        => View(viewName, await mediator.Send(message));
+        => View(viewName, await mediator.Send(message, CancellationToken cancellation));
 
-    protected async Task<IActionResult> Json<TResponse>(IRequest<TResponse> message)
-        => Json(await mediator.Send(message));
+    protected async Task<IActionResult> Json<TResponse>(IRequest<TResponse> message, CancellationToken cancellation)
+        => Json(await mediator.Send(message, CancellationToken cancellation));
 
     protected Result ForbiddenResult()
         => Result.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);

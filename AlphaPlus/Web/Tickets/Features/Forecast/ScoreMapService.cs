@@ -15,7 +15,7 @@ public interface IScoreMapService
 
     Task<IEnumerable<Match>> GetMatches(int custId, int leagueId, string language);
 
-    Task<IEnumerable<ScoreMapResult>> GetResults(GetScoreMapResultRequest message);
+    Task<IEnumerable<ScoreMapResult>> GetResults(GetScoreMapResultRequest message, CancellationToken cancellation);
 }
 
 public class ScoreMapService : ServiceBase, IScoreMapService
@@ -83,7 +83,7 @@ public class ScoreMapService : ServiceBase, IScoreMapService
         return GetFromJson<IEnumerable<Match>>($"{ScoreMapUrl}/matches{queryString}");
     }
 
-    public async Task<IEnumerable<ScoreMapResult>> GetResults(GetScoreMapResultRequest message)
+    public async Task<IEnumerable<ScoreMapResult>> GetResults(GetScoreMapResultRequest message, CancellationToken cancellation)
     {
         var betTypes = await GetBetTypes(message.Language, message.SiteName);
         var liveBetTypes = BuildFollowedBetTypes(message.LiveBetTypes, betTypes[0]).Join();

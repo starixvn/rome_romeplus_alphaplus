@@ -51,19 +51,19 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
             var bot = await GetTelegramBotAsync();
             var username = message.IsSubAcc ? message.SubUserName : message.Username;
             var result = await settingService.LinkAsync(bot.BotId, message.CustId, message.SubAccId, message.OTP, username, message.IP);
-            return new Result(result.Code, result.Message);
+            return new Result(result.Code, result.message, CancellationToken cancellation);
         }
 
         public async Task<Result> Handle(ResendOTPCommand message, CancellationToken cancellationToken)
         {
             var result = await settingService.ResendOtpAsync(message.CustId, message.SubAccId);
-            return new Result(result.Code, result.Message);
+            return new Result(result.Code, result.message, CancellationToken cancellation);
         }
 
         public async Task<Result> Handle(UnsubscribeCommand message, CancellationToken cancellationToken)
         {
             var result = await settingService.UnlinkAsync(message.CustId, message.SubAccId, message.IP);
-            return new Result(result.Code, result.Message);
+            return new Result(result.Code, result.message, CancellationToken cancellation);
         }
 
         public async Task<Result> Handle(UpdateFunctionCommand message, CancellationToken cancellationToken)
@@ -87,7 +87,7 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
                 Type = message.Type
             };
             var result = await settingService.UpdateUserFunction(custBotMessenger.UserId, bot.BotId, function, message.CustId, message.IP);
-            return new Result(result.Code, result.Message);
+            return new Result(result.Code, result.message, CancellationToken cancellation);
         }
 
         public async Task<Result> Handle(UpdateLanguageCommand message, CancellationToken cancellationToken)
@@ -110,7 +110,7 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
                 message.CustId,
                 message.IP);
 
-            return new Result(result.Code, result.Message);
+            return new Result(result.Code, result.message, CancellationToken cancellation);
         }
 
         private async Task<Tuple<TelegramBot.Client.Models.BotEntity, TelegramBot.Client.Models.CustBotMessenger>> GetTelegramBotAndCustMessengerAsync(int custId, int subAccId, string language)

@@ -1,0 +1,24 @@
+﻿@* @model GlobalThresholdModel
+<p class="note">
+    <span class="star"></span>@Resources.GlobalWinningThreshold:
+    <span class="red">
+        @if (Model != null)
+        {
+            @HtmlHelpers.FormatThreshold(Model.WinningThreshold)
+        }
+        else
+        {
+            @Resources.Unlimited
+        }
+    </span>; @Resources.GlobalLosingThreshold:
+    <span class="red">
+        @if (Model != null)
+        {
+            @HtmlHelpers.FormatThreshold(Model.LosingThreshold)
+        }
+        else
+        {
+            @Resources.Unlimited
+        }
+    </span>
+</p> *@

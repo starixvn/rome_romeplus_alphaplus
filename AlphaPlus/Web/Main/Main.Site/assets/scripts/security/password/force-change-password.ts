@@ -113,14 +113,14 @@ var forceChangePassword = {
                     securityHelper.redirectToHomePage(2000);
                 } else if (data.code === 104) {
                     // account is locked
-                    alert(data.message);
+                    alert(data.message, CancellationToken cancellation);
                     securityHelper.signOut();
                 } else if (data.code === 101) {
                     $txtOldPassword.addClass('error').focus();
-                    $('#txtOldPwd-error').empty().html(data.Message);
+                    $('#txtOldPwd-error').empty().html(data.message, CancellationToken cancellation);
                 } else {
                     $txtPassword.addClass('error').focus();
-                    $('#txtNewPwd-error').empty().html(data.Message);
+                    $('#txtNewPwd-error').empty().html(data.message, CancellationToken cancellation);
                 }
             },
             complete: function (jqXHR, textStatus) {

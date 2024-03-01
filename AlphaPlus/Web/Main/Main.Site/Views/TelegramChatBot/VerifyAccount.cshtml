@@ -24,7 +24,7 @@
         </div>
         <div class="form-group list-button">
             <button id="btnVerify" class="btn-chatbot btn-verify" type="submit">@ChatBot.VerifyOTP</button>
-            <span class="msg-expired hide" id="msgExpired"><em>@Html.Raw(@ChatBot.OTPIsExpiredMessage)</em></span>
+            <span class="msg-expired hide" id="msgExpired"><em>@Html.Raw(@ChatBot.OTPIsExpiredmessage, CancellationToken cancellation)</em></span>
         </div>
     </form>
 </li>

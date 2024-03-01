@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.API.Criteria.IndirectLoginAccount;
     using AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
@@ -13,6 +12,7 @@
     using Fanex.Data.Repository;
     using RSACryptoPad;
     using Sunplus.Agent.Utilities;
+    using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
     public interface IndirectLoginAccountService
     {

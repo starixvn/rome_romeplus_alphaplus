@@ -1,0 +1,22 @@
+@* @{
+    Layout = "~/Features/CreateAccount/Views/_Layout.cshtml";
+}
+
+<div class="pt-template">
+    <input type="hidden" id="productSettingInfoUrl" value="@MicroSites.MemberInfoUrl("~/ProductSettingInfo")" />
+    <div id="root" style="height:100%"></div>
+</div>
+
+@section Scripts{
+    @if (AppSettings.DevelopmentEnvironment)
+    {
+        <!-- if development -->
+        <script type="module" src="http://localhost:5173/src/pages/productSettingInfo.tsx"></script>
+    }
+    else
+    {
+        <!-- if production -->
+        <link rel="stylesheet" href="~/ClientApp/dist/assets/productSettingInfo-19dc73f6.css" />
+        <script type="module" src="~/ClientApp/dist/assets/productSettingInfo-619bace5.js"></script>
+    }
+} *@

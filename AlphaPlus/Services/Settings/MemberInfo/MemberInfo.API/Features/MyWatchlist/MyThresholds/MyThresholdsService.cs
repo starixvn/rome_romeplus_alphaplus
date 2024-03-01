@@ -9,10 +9,10 @@
     using AlphaPlus.PartialUM.Services;
     using Fanex.Data.Repository;
     using Fanex.Logging.Extensions.Web;
-    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+    using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
     public interface MyThresholdsService
     {

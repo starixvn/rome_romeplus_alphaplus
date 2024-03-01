@@ -53,7 +53,7 @@ namespace Fanex.Alpha.Before.Services.FPS
             }
             catch (Exception ex)
             {
-                logger.Warn(ex.Message);
+                logger.Warn(ex.message, CancellationToken cancellation);
                 return 0;
             }
         }
