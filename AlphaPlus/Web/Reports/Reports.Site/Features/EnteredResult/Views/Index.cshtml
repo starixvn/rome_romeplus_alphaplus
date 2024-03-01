@@ -1,0 +1,115 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Reports.Features.EnteredResult
+@using AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.EnteredResult
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Entered Results";
+
+    void RenderEnteredResult(EnteredResultEntity enteredResult)
+    {
+        if (enteredResult == null)
+        {
+            <td>0</td>
+            <td>0</td>
+        }
+        else
+        {
+            <td>@enteredResult.Entered</td>
+            <td>@enteredResult.NonEntered</td>
+        }
+    }
+
+    var reportTitle = new PageHeaderViewModel(
+    Title: Model.Title,
+    HasStackIcon: false,
+    HasHideFilterIcon: true,
+    IsStackMode: false,
+    IsFilterVisible: true,
+    BreadcrumbLevelViewModel: new BreadcrumbLevelViewModel(),
+    TotalEnteredResults: Model.TotalEnteredResults);
+
+    DateTime today, yesterday;
+    var totalRecords = Model.ReportData.Count();
+    var hasData = totalRecords > 0;
+    if (hasData)
+    {
+        today = Model.TotalEnteredResults.EnteredResultToday.EventDate;
+        yesterday = Model.TotalEnteredResults.EnteredResultYesterday.EventDate;
+    }
+    else
+    {
+        today = DateTime.Today;
+        yesterday = today.Yesterday();
+    }
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/enteredresult/enteredresult.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/enteredresult/enteredresult.js" asp-append-version="true"></script>
+}
+@model EnteredResultViewModel
+<report-title model="reportTitle" />
+<form method="get" class="form-inline filter" role="form" id="report-form" asp-controller="WinLoss" asp-action="Index">
+    <daterange-picker model="Model.DateRangePickerViewModel" />
+    <input type="hidden" id="IsHistoricReport" name="IsHistoricReport" value="False" />
+    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible" value="True" />
+    @* <input type="hidden" id="IsStackMode" name="IsStackMode" value="False" />
+    <input type="hidden" id="SortPropertyName" name="SortPropertyName" value="CustName" />
+    <input type="hidden" id="IsDescendingSort" name="IsDescendingSort" value="False" /> *@
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"></a>
+    </div>
+    <a id="historic-report" href="javascript:;"></a>
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter" id="tbl-enteredresult-report"
+    data-totalrecords="@totalRecords">
+    <thead>
+        <tr>
+            <th>@Resources.Date</th>
+            <th colspan="2">@yesterday.ToShortDateWithSlash()</th>
+            <th colspan="2">@today.ToShortDateWithSlash()</th>
+        </tr>
+        <tr class="thead-row2">
+            <th class="sorting" data-colindex="0">@Resources.Results</th>
+            <th class="sorting width-17per" data-colindex="1">@Resources.Entered</th>
+            <th class="sorting width-17per" data-colindex="2">@Resources.NonEntered</th>
+            <th class="sorting width-17per" data-colindex="3">@Resources.Entered</th>
+            <th class="sorting width-17per" data-colindex="4">@Resources.NonEntered</th>
+        </tr>
+        @if (hasData)
+        {
+            <tr class="total-row">
+                <td class="text-left">@Resources.Total</td>
+                @{
+                    RenderEnteredResult(Model.TotalEnteredResults.EnteredResultYesterday);
+                    RenderEnteredResult(Model.TotalEnteredResults.EnteredResultToday);
+                }
+            </tr>
+        }
+    </thead>
+    @if (hasData)
+    {
+        <tbody>
+            @foreach (var enteredResult in Model.ReportData)
+            {
+                <tr>
+                    <td class="text-left col-first">@enteredResult.SportName</td>
+                    @{
+                        RenderEnteredResult(enteredResult.EnteredResultYesterday);
+                        RenderEnteredResult(enteredResult.EnteredResultToday);
+                    }
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+        <no-information colspan="5" />
+    }
+</table>

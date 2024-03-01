@@ -1,4 +1,5 @@
 using AlphaPlus.Reports.Features.Shared.Criteria;
+using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;
@@ -42,7 +43,7 @@ public class ReportDateService(IDynamicRepository repository, ICacheService cach
         var balanceUpDayAndMoveBetsDay = await GetBalanceUpDayAndMoveBetsDay();
         var eventDates = new[]
         {
-            balanceUpDayAndMoveBetsDay.BalanceUpDay.AddDays(-1),
+            balanceUpDayAndMoveBetsDay.BalanceUpDay.Yesterday(),
             balanceUpDayAndMoveBetsDay.MoveBetsDay
         };
 

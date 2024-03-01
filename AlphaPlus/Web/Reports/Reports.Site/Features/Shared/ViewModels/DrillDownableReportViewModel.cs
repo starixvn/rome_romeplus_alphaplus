@@ -7,20 +7,20 @@ public abstract class DrillDownableReportViewModel<T> where T : class
 {
     protected DrillDownableReportViewModel(
         UserLevel custLevel,
-        IEnumerable<Breadcrumb> breadcrumbs,
+        IEnumerable<Breadcrumb> breadcrumbLevel,
         string defaultBetListPath = null)
     {
         CustLevel = custLevel;
-        Breadcrumbs = breadcrumbs;
-        BreadcrumbsJson = JsonHelper.ToJsonFunc(breadcrumbs);
+        BreadcrumbLevel = breadcrumbLevel;
+        BreadcrumbLevelJson = JsonHelper.ToJsonFunc(breadcrumbLevel);
         BetListPath = defaultBetListPath;
     }
 
     public UserLevel CustLevel { get; }
 
-    public IEnumerable<Breadcrumb> Breadcrumbs { get; }
+    public IEnumerable<Breadcrumb> BreadcrumbLevel { get; }
 
-    public string BreadcrumbsJson { get; }
+    public string BreadcrumbLevelJson { get; }
 
     protected string BetListPath { get; set; }
 
@@ -38,7 +38,7 @@ public abstract class DrillDownableReportViewModel<T> where T : class
             queryParams.Concat(
             [
                 KeyValuePair.Create("CustLevelId", CustLevel.GetDirectDownlineLevel().Value.ToString()),
-                KeyValuePair.Create("BreadcrumbLevelJson", BreadcrumbsJson)
+                KeyValuePair.Create("BreadcrumbLevelJson", BreadcrumbLevelJson)
             ]));
     }
 

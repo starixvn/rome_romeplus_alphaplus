@@ -20,8 +20,10 @@
     <ProjectReference Include="..\..\..\Services\Reports\AlphaPlus.Reports\AlphaPlus.Reports.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Fanex.Common" Version="1.1.1.1" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="1.0.0.3" />
   </ItemGroup>
 </Project>

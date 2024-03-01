@@ -14,8 +14,7 @@ public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingMode
     public OutstandingViewModel(
         OutstandingQuery query,
         IEnumerable<OutstandingModel> outstandingDataSource,
-        IEnumerable<int> selectedProductIds,
-        IEnumerable<SelectListItem> products,
+        ProductMultiSelectionViewModel productViewModel,
         IEnumerable<Breadcrumb> breadcrumbs,
         bool isMobile) : base(query.CustLevel, breadcrumbs)
     {
@@ -26,7 +25,7 @@ public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingMode
             DisplayOutstandingLevels.Add(Enumeration.FromValue<UserLevel>(level));
         }
 
-        ProductViewModel = new ProductViewModel(products, string.Join(',', selectedProductIds), string.Empty);
+        ProductMultiSelectionViewModel = productViewModel;
 
         OutstandingDatasource = outstandingDataSource;
         CanSort = OutstandingDatasource.Count() > 1;
@@ -47,7 +46,7 @@ public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingMode
 
     public int NumberOfOutstandingColumn => DisplayOutstandingLevels.Count;
 
-    public ProductViewModel ProductViewModel { get; }
+    public ProductMultiSelectionViewModel ProductMultiSelectionViewModel { get; }
 
     public IEnumerable<OutstandingModel> OutstandingDatasource { get; }
 
@@ -72,7 +71,7 @@ public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingMode
         => [
             KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
             KeyValuePair.Create(nameof(model.CustName), model.CustName),
-            KeyValuePair.Create(nameof(ProductViewModel.UserSelectedProductIds), ProductViewModel.UserSelectedProductIds),
+            KeyValuePair.Create(nameof(ProductMultiSelectionViewModel.UserSelectedProductIds), ProductMultiSelectionViewModel.UserSelectedProductIds),
             KeyValuePair.Create(nameof(SortPropertyName), SortPropertyName),
             KeyValuePair.Create(nameof(IsDescendingSort), IsDescendingSort.ToString()),
             KeyValuePair.Create(nameof(IsFilterVisible), IsFilterVisible.ToString())
@@ -83,7 +82,7 @@ public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingMode
             KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
             KeyValuePair.Create(nameof(model.CustName), model.CustName),
             KeyValuePair.Create("GetAll", "True"),
-            KeyValuePair.Create("ProductIds", ProductViewModel.UserSelectedProductIds)];
+            KeyValuePair.Create("ProductIds", ProductMultiSelectionViewModel.UserSelectedProductIds)];
 
     private string GetSortedProperty(string sortedProperty)
     {

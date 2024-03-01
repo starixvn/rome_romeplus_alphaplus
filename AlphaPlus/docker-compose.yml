@@ -76,3 +76,10 @@ services:
             - 5100:80
         depends_on:
             - main
+
+    reports-site:
+        image: ${REGISTRY:-alphaplus}/reports.site:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/Reports/Reports.Site/Dockerfile
+        restart: always

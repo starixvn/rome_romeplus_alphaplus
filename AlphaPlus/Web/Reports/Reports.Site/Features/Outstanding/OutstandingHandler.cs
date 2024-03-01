@@ -16,29 +16,24 @@ public class OutstandingHandler(
 
     public async Task<OutstandingViewModel> Handle(OutstandingQuery message, CancellationToken cancellationToken)
     {
-        var validUserSelectedProductIds = productService.FilterProductIds(
-            message.Site,
-            message.CurrencyId,
-            message.UserSelectedProductIds.ToListInt(),
-            DateTime.Now).Where(id => id != SabaPromotionProductId);
-
+        var products = productService
+            .GetOfferedProducts(message.Site, message.CurrencyId, DateTime.Today)
+            .Where(p => p.Id != SabaPromotionProductId);
+        var productViewModel = BuildProductMultiSelectionViewModel(products, message.UserSelectedProductIds, message.Language);
         var param = new OutstandingParam(
             message.ViewerLevel,
             message.CustLevel,
             message.CustId,
-            string.Join(',', validUserSelectedProductIds),
+            productViewModel.UserSelectedProductIds,
             message.AutoFollowBetIsDummyAgent,
             message.Site);
-
         var outstandings = await outstandingService.GetOutstanding(param);
-        var products = productService.GetAllOfferedProducts(message.Site, message.CurrencyId, DateTime.Now).Where(p => p.Id != SabaPromotionProductId);
         var isOnlyMobile = browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
 
         return new OutstandingViewModel(
             message,
             outstandings,
-            validUserSelectedProductIds,
-            BuildProductSelectListItems(validUserSelectedProductIds, products),
+            productViewModel,
             BuildBreadcrumbLevel(message),
             isOnlyMobile);
     }

@@ -1,36 +1,39 @@
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Reports.Site.Features.Shared;
 
 public class BaseHandler
 {
-    protected internal static IEnumerable<SelectListItem> BuildProductSelectListItems(
-        IEnumerable<int> userSelectedProductIds,
-        IEnumerable<Product> products)
+    protected internal static ProductMultiSelectionViewModel BuildProductMultiSelectionViewModel(
+        IEnumerable<Product> offeredProducts,
+        string userSelectedProductIds,
+        string language)
     {
-        List<SelectListItem> productList = new();
+        var products = new List<SelectListItem>();
+        var selectedProductIds = userSelectedProductIds.ToListInt();
 
-        if (products?.Any() == true)
+        if (offeredProducts.Any())
         {
-            var groupProducts = products.GroupBy(product => product.TypeName);
-            foreach (var group in groupProducts)
+            var groupOfferedProducts = offeredProducts.GroupBy(product => product.TypeName);
+            foreach (var productList in groupOfferedProducts)
             {
-                productList.AddRange(group.Select(product => new SelectListItem(
+                products.AddRange(productList.Select(product => new SelectListItem(
                     product.DisplayName,
                     product.Id.ToString(),
-                    userSelectedProductIds.Contains(product.Id)
+                    selectedProductIds.Contains(product.Id)
                 )
                 {
-                    Group = string.IsNullOrWhiteSpace(group.Key)
+                    Group = string.IsNullOrWhiteSpace(productList.Key)
                         ? null
-                        : new SelectListGroup { Name = group.Key }
+                        : new SelectListGroup { Name = productList.Key }
                 }));
             }
         }
 
-        return productList;
+        return new ProductMultiSelectionViewModel(products, string.Join(',', selectedProductIds), language);
     }
 
     protected internal IEnumerable<Breadcrumb> BuildBreadcrumbLevel(BaseQuery message)

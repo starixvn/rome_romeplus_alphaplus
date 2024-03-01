@@ -1,0 +1,51 @@
+[
+    {
+        "outputFileName": "wwwroot/bundles/default.css",
+        "inputFiles": [
+            "assets/styles/reports.css",
+            "assets/styles/report-legend.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/outstanding/outstanding-mobile-calculate-07.css",
+        "inputFiles": [
+            "assets/styles/report-mobile-calculate-07.css",
+            "assets/styles/outstanding/outstanding-mobile-calculate-07.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/outstanding/outstanding.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/base-report-new.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/outstanding/outstanding.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/enteredresult/enteredresult.css",
+        "inputFiles": [
+            "assets/styles/enteredresult/enteredresult.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/enteredresult/enteredresult-mobile-calculate-07.css",
+        "inputFiles": [
+            "assets/styles/report-mobile-calculate-07.css",
+            "assets/styles/datepicker-mobile-07.css",
+            "assets/styles/result-winloss-mobile-07.css",
+            "assets/styles/enteredresult/enteredresult-mobile-calculate-07.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/enteredresult/enteredresult.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/enteredresult/enteredresult.js"
+        ]
+    }
+]

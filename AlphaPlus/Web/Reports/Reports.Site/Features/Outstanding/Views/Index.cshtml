@@ -1,0 +1,54 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@using System.Text.Json
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.Outstanding
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Outstanding Report";
+
+    var length = Model.DisplayOutstandingLevels.Count;
+    var existedData = Model.OutstandingDatasource.Any();
+
+    var breadcrumb = new BreadcrumbLevelViewModel(
+    breadcrumbLevel: null/*Model.BreadcrumbLevel*/,
+    breadcrumbLevelJson: null/*Model.BreadcrumbLevelJson*/,
+    requestQuery: Context.Request.QueryString.ToString());
+    var reportTitle = new PageHeaderViewModel(
+    Title: Model.Title,
+    HasStackIcon: false,
+    HasHideFilterIcon: true,
+    IsStackMode: false,
+    IsFilterVisible: Model.IsFilterVisible,
+    BreadcrumbLevelViewModel: breadcrumb);
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
+    <link rel="stylesheet" media="screen and (max-device-width: 767px)"
+        href="~/bundles/outstanding/outstanding-mobile-calculate-07.css" asp-append-version="true" />
+}
+@section Scripts {
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
+    <script src="~/bundles/outstanding/outstanding.js" asp-append-version="true"></script>
+}
+@model OutstandingViewModel
+<report-title model="reportTitle" />
+<form class="form-inline filter form-report @(Model.IsFilterVisible ? string.Empty:"hide")" role="form"
+    id="report-form">
+    <product model="@Model.ProductMultiSelectionViewModel" />
+    @Html.Hidden("SortPropertyName", Model.SortPropertyName)
+    @Html.Hidden("IsDescendingSort", Model.IsDescendingSort)
+    @Html.Hidden("IsFilterVisible", Model.IsFilterVisible)
+    @Html.Hidden("CustId", Model.Query.CustId)
+    @Html.Hidden("CustName", Model.Query.CustName)
+    @Html.Hidden("CustLevelId", Model.CustLevel.Value)
+    @Html.Hidden("BreadcrumbLevelJson", Model.BreadcrumbLevelJson)
+    @Html.Hidden("CanSort", Model.CanSort)
+    <div class="form-group last-group">
+        <input type="submit" value="@Resources.Submit" class="btn-submit" />
+    </div>
+</form>
+<input type="hidden" id="hidden-displayOutstandingLevels"
+    value="@JsonSerializer.Serialize(Model.DisplayOutstandingLevels)" />

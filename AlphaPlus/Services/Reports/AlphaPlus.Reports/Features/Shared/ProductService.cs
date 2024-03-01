@@ -8,14 +8,6 @@ namespace AlphaPlus.Reports.Features.Shared;
 
 public interface IProductService
 {
-    IEnumerable<Product> GetProgressiveJackpotProduct(string site, int currencyId, IEnumerable<int> progressiveJackpotproductIds);
-
-    IEnumerable<Product> GetAllOfferedProducts(string site, int currencyId, DateTime? minReportDate = null);
-
-    IEnumerable<Product> FilterProducts(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null);
-
-    IEnumerable<int> FilterProductIds(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null);
-
     bool CanViewProduct(string site, int currencyId, int productId, DateTime? minReportDate = null);
 
     IEnumerable<string> GetProductNames(IEnumerable<int> productIds);
@@ -23,6 +15,14 @@ public interface IProductService
     string ConcatProductNames(string productIds);
 
     string ConcatProductNames(IEnumerable<int> productIds, IDictionary<int, string> replacedProductNames);
+
+    IEnumerable<Product> GetProgressiveJackpotProduct(string site, int currencyId, IEnumerable<int> progressiveJackpotproductIds);
+
+    IEnumerable<int> FilterProductIds(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null);
+
+    IEnumerable<Product> FilterProducts(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null);
+
+    IEnumerable<Product> GetOfferedProducts(string site, int currencyId, DateTime? minReportDate = null);
 }
 
 public class ProductService(
@@ -34,26 +34,6 @@ public class ProductService(
 {
     private const int CustProductsCacheTimeInMinutes = 5;
     private const string ProductsCacheKey = "AlphaPlus.Reports.Products";
-
-    public IEnumerable<Product> GetProgressiveJackpotProduct(string site, int currencyId, IEnumerable<int> progressiveJackpotproductIds)
-        => FilterProducts(site, currencyId, progressiveJackpotproductIds);
-
-    public IEnumerable<Product> GetAllOfferedProducts(
-        string site,
-        int currencyId,
-        DateTime? minReportDate = null) => GetOfferedProducts(site, currencyId, minReportDate);
-
-    public IEnumerable<Product> FilterProducts(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null)
-        => GetOfferedProducts(site, currencyId, minReportDate).Where(product => productIds.Contains(product.Id));
-
-    public IEnumerable<int> FilterProductIds(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null)
-    {
-        var products = productIds.Any()
-            ? GetOfferedProducts(site, currencyId, minReportDate)
-            : FilterProducts(site, currencyId, productIds, minReportDate);
-
-        return products.Select(product => product.Id);
-    }
 
     public bool CanViewProduct(string site, int currencyId, int productId, DateTime? minReportDate = null)
         => FilterProducts(site, currencyId, [productId], minReportDate).Any();
@@ -79,7 +59,22 @@ public class ProductService(
         ? string.Empty
         : string.Join(", ", productIds.Select(id => replacedProductNames.TryGetValue(id, out var name) ? name : cacheRefService.GetProductName(id)));
 
-    private IEnumerable<Product> GetOfferedProducts(string site, int currencyId, DateTime? minReportDate)
+    public IEnumerable<Product> GetProgressiveJackpotProduct(string site, int currencyId, IEnumerable<int> progressiveJackpotproductIds)
+        => FilterProducts(site, currencyId, progressiveJackpotproductIds);
+
+    public IEnumerable<int> FilterProductIds(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null)
+    {
+        var products = productIds.Any()
+            ? FilterProducts(site, currencyId, productIds, minReportDate)
+            : GetOfferedProducts(site, currencyId, minReportDate);
+
+        return products.Select(product => product.Id);
+    }
+
+    public IEnumerable<Product> FilterProducts(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null)
+        => GetOfferedProducts(site, currencyId, minReportDate).Where(product => productIds.Contains(product.Id));
+
+    public IEnumerable<Product> GetOfferedProducts(string site, int currencyId, DateTime? minReportDate)
     {
         var products = cacheService.GetOrSet(
             $"{ProductsCacheKey}-{site}-{currencyId}-{LanguageCode}",

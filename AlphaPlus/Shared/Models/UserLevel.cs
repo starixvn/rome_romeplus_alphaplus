@@ -23,6 +23,8 @@ public class UserLevel : Enumeration
 
     public bool IsAgentLevel() => this == Agent;
 
+    public bool IsNotAgentLevel() => !IsAgentLevel();
+
     public bool IsMemberLevel() => this == Member;
 
     public bool IsNotMemberLevel() => !IsMemberLevel();

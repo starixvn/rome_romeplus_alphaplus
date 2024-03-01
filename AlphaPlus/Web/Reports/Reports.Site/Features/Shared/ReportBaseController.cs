@@ -1,5 +1,6 @@
 using AlphaPlus.Core;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,4 +18,16 @@ public abstract class ReportBaseController(IMediator mediator) : BaseController
             ? View(await mediator.Send(message))
             : View(InvalidViewName);
     }
+
+    protected async Task<IActionResult> ExcelView(IRequest<ExcelFileViewModel> message)
+    {
+        var baseQuery = message as BaseQuery;
+
+        return baseQuery != null && baseQuery.IsValid()
+            ? GetExcelContent(await mediator.Send(message))
+            : GetExcelContent(new ExcelFileViewModel(InvalidViewName, []));
+    }
+
+    private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
+        => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
 }

@@ -6,9 +6,9 @@
     <siteMapNode resourceKey="agentOutstanding" url="/outstanding/agentnew" roles="Master"></siteMapNode>
     <siteMapNode resourceKey="masterOutstanding" url="/outstanding/masternew" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="memberWinLoss" url="/enteredresult/member" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="agentwinloss" url="/enteredresult/agent" roles="Master"></siteMapNode>
-    <siteMapNode resourceKey="masterwinloss" url="/enteredresult/master" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="memberWinLoss" url="/reports/enteredresult/member" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="agentwinloss" url="/reports/enteredresult/agent" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="masterwinloss" url="/reports/enteredresult/master" roles="Super"></siteMapNode>
 
     <siteMapNode resourceKey="memberwinlossdetail" url="/winlossdetail/member" roles="Agent" byPassProtectedMode="true"></siteMapNode>
     <siteMapNode resourceKey="agentwinlostdetail" url="/winlossdetail/agent" roles="Master" byPassProtectedMode="true"></siteMapNode>
