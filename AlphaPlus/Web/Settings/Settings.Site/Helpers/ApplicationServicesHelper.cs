@@ -14,6 +14,7 @@ using AlphaPlus.Settings.MemberInfo.API.Features.ParlayMaxPayout;
 using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.API.Services;
+using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
@@ -105,6 +106,10 @@ namespace AlphaPlus.Settings.Site.Helpers
 
             services
                 .AddScoped<IndirectLoginAccountService, IndirectLoginAccountServiceImpl>();
+
+            services
+                .AddScoped<IWinlossService, WinlossService>()
+                .AddScoped<CreditBalanceService, CreditBalanceServiceImpl>();
 
             services
                 .AddSharedSession(configuration)
