@@ -17,6 +17,7 @@ using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
+using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
 using AlphaPlus.Settings.Site.Features.CreateAccount;
 using AlphaPlus.Settings.Site.Features.DormantAccountList;
@@ -110,6 +111,9 @@ namespace AlphaPlus.Settings.Site.Helpers
             services
                 .AddScoped<IWinlossService, WinlossService>()
                 .AddScoped<CreditBalanceService, CreditBalanceServiceImpl>();
+
+            services
+                .AddScoped<WinLossLimitService, WinLossLimitServiceImpl>();
 
             services
                 .AddSharedSession(configuration)

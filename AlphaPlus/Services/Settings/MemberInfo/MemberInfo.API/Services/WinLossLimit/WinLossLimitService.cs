@@ -28,10 +28,10 @@
 
         public WinLossLimitServiceImpl(
             IDynamicRepository dynamicRepository,
-            Func<int, string> getProductName)
+            CacheRefService cacheRefService)
         {
             this.dynamicRepository = dynamicRepository;
-            this.getProductName = getProductName;
+            this.getProductName = cacheRefService.GetProductName;
         }
 
         public IEnumerable<WinLossLimitGroupProductModel> GetWinLossLimitProducts(int custId)
