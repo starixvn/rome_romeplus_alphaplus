@@ -10,6 +10,7 @@ using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
+using AlphaPlus.Settings.MemberInfo.API.Features.ParlayMaxPayout;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
@@ -74,6 +75,11 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddScoped<ReachedThresholdService, ReachedThresholdServiceImpl>()
                 .AddScoped<MyWatchlistAccountsService, MyWatchlistAccountsServiceImpl>()
                 .AddScoped<MyThresholdsService, MyThresholdsServiceImpl>();
+
+            services
+                .AddSingleton<CacheRefService, CacheRefServiceImpl>()
+                .AddSingleton<CheckUMService, CheckUMServiceImpl>()
+                .AddScoped<ParlayMaxPayoutService, ParlayMaxPayoutServiceImpl>();
 
             services
                 .AddSharedSession(configuration)

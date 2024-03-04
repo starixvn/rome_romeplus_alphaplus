@@ -1,0 +1,42 @@
+﻿@mixin content-space($height: 30px, $lineHeight: 30px) {
+    height: $height;
+    line-height: $lineHeight;
+}
+
+@mixin -ms-setting-control-cell($className, $settingName, $column, $row, $noCheckBoxRow: false) {
+    &.#{$className}.soccer-parlay-#{$settingName} {
+        -ms-grid-column: $column;
+        -ms-grid-row: $row;
+    }
+
+    &.#{$className}.mixed-sports-parlay-#{$settingName} {
+        -ms-grid-column: $column;
+
+        @if $noCheckBoxRow {
+            -ms-grid-row: $row + 1;
+        }
+        @else {
+            -ms-grid-row: $row + 2;
+        }
+    }
+}
+
+@mixin -ms-setting-control($noCheckBoxRow: false) {
+    @include -ms-setting-control-cell("ctrl-input", "SingleMatchParlay", 2, 2, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-max-setting", "SingleMatchParlay", 3, 2, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-input", "Combo2", 4, 2, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-max-setting", "Combo2", 5, 2, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-input", "Combo35", 6, 2, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-max-setting", "Combo35", 7, 2, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-input", "ComboOver6", 8, 2, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-max-setting", "ComboOver6", 9, 2, $noCheckBoxRow);
+
+    @include -ms-setting-control-cell("ctrl-checkbox", "SingleMatchParlay", 2, 3, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-checkbox-label", "SingleMatchParlay", 3, 3, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-checkbox", "Combo2", 4, 3, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-checkbox-label", "Combo2", 5, 3, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-checkbox", "Combo35", 6, 3, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-checkbox-label", "Combo35", 7, 3, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-checkbox", "ComboOver6", 8, 3, $noCheckBoxRow);
+    @include -ms-setting-control-cell("ctrl-checkbox-label", "ComboOver6", 9, 3, $noCheckBoxRow);
+}

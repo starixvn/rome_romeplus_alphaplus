@@ -1,0 +1,253 @@
+﻿@import "_mixins.scss";
+@import "_variables-dark.scss";
+@import url($icon-alpha-fonts);
+
+body {
+    max-height: 90%;
+}
+
+.user-list-box {
+    @include content-space(auto, 30px);
+    background-color: $content-bg-color;
+    border: $border-value;
+    width: $max-width;
+    padding: 0 8px;
+    max-height: 125px;
+    overflow-y: scroll;
+}
+
+.pmp-page-title {
+    @include content-space(40px, 40px);
+    border-bottom: $border-value;
+    color: #EDEDED;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.pmp-container {
+    margin: 20px 0;
+    width: $max-width;
+    position: relative;
+
+    .pmp-heading {
+        @include content-space();
+        background-color: #383838;
+        color: #EDEDED;
+        font-weight: bold;
+        padding: 0 8px;
+    }
+
+    .pmp-content {
+        background-color: $content-bg-color;
+        border-bottom: $border-value;
+        border-right: $border-value;
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 163px 127px 81px 127px 81px 127px 81px 127px 81px;
+        grid-template-columns: 163px repeat(8, 1fr);
+
+        .pmp-setting-name {
+            @include content-space();
+            border-left: $border-value;
+            border-top: $border-value;
+            font-weight: bold;
+            text-align: center;
+
+            &.single-match-parlay {
+                -ms-grid-column: 2;
+                -ms-grid-column-span: 2;
+                grid-column: 2/4;
+            }
+
+            &.combo-2 {
+                -ms-grid-column: 4;
+                -ms-grid-column-span: 2;
+                grid-column: 4/6;
+            }
+
+            &.combo-35 {
+                -ms-grid-column: 6;
+                -ms-grid-column-span: 2;
+                grid-column: 6/8;
+            }
+
+            &.combo-6-plus {
+                -ms-grid-column: 8;
+                -ms-grid-column-span: 2;
+                grid-column: 8/10;
+            }
+        }
+
+        .pmp-sport-name {
+            @include content-space(60px, 60px);
+            border-left: $border-value;
+            border-top: $border-value;
+            padding: 0 8px;
+            text-align: left;
+
+            &.no-checkbox-row {
+                -ms-grid-row-span: 1 !important;
+                grid-row: unset !important;
+                @include content-space(40px, 40px);
+
+                ~ .pmp-setting-control {
+                    @include content-space(40px, 31px);
+                }
+            }
+
+            &.soccer-parlay {
+                -ms-grid-row: 2;
+                -ms-grid-row-span: 2;
+                grid-row: 2/4;
+
+                &.no-checkbox-row ~ .mixed-sports-parlay:not(.no-checkbox-row) {
+                    -ms-grid-row: 3 !important;
+                    -ms-grid-row-span: 2 !important;
+                    grid-row: 3/5 !important;
+
+                    ~ .pmp-setting-control {
+                        @include content-space();
+                        @include -ms-setting-control(true);
+                    }
+                }
+            }
+
+            &.mixed-sports-parlay {
+                -ms-grid-row: 4;
+                -ms-grid-row-span: 2;
+                grid-row: 4/6;
+            }
+
+            .sport-type-name {
+                display: -ms-flexbox;
+                display: flex;
+
+                .sport-type-name-ctrl {
+                    align-self: center;
+                    margin-top: -5px;
+                    width: 23px;
+                }
+
+                .sport-type-name-text {
+                    width: calc(100% - 23px);
+                }
+            }
+        }
+
+        .pmp-setting-control {
+            @include content-space();
+            padding: 3px;
+
+            @include -ms-setting-control();
+
+            &.ctrl-input {
+                border-left: $border-value;
+                border-top: $border-value;
+
+                .tb-setting {
+                    border: 1px solid #474747;
+                    box-shadow: none;
+                    background: #313131;
+
+                    &:disabled {
+                        background-color: #2B2B2B !important;
+                        color: #464646;
+                        border: 1px solid #474747 !important;
+                        -webkit-text-fill-color: #464646 !important;
+                    }
+                }
+            }
+
+            &.ctrl-max-setting {
+                border-top: $border-value;
+            }
+
+            &.ctrl-checkbox {
+                border-left: $border-value;
+                width: 30px;
+
+                .cb-setting {
+                    height: 24px;
+                    margin: 0;
+                }
+            }
+
+            &.ctrl-checkbox-label {
+                margin-left: -105px;
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    .pmp-footer {
+        margin: 8px 0;
+    }
+}
+
+.message-container {
+    margin: 8px 0;
+
+    .message {
+        line-height: 20px;
+        margin: 3px 0;
+        padding: 8px;
+        text-align: left;
+        vertical-align: middle;
+
+        &.message-error {
+            background-color: $msg-error-bg;
+            border: 1px solid $msg-error-border;
+            color: $msg-error-color;
+
+            &:before {
+                content: '\e93e';
+            }
+        }
+
+        &.message-success {
+            background-color: $msg-success-bg;
+            border: 1px solid $msg-success-border;
+            color: $msg-success-color;
+
+            &:before {
+                content: '\e93b';
+            }
+        }
+
+        &.message-icon {
+            &:before {
+                font: {
+                    family: Iconalpha;
+                    size: 24px;
+                }
+
+                float: left;
+                margin-right: 4px;
+            }
+        }
+    }
+}
+
+%hint {
+    border: 1px solid #9f9f9f;
+    background-color: #2e2e2e;
+    color: #ededed;
+    border-radius: 2px;
+}
+
+.hint {
+    @extend %hint;
+    position: absolute;
+    height: 30px;
+    padding: 8px;
+    line-height: 14px;
+
+    .hint-pointer {
+        @extend %hint;
+        height: 14px;
+        width: 14px;
+        transform: rotate( 45deg );
+        border-top: none;
+        border-left: none;
+    }
+}
