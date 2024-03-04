@@ -1,6 +1,10 @@
+using Alpha.SecurityCode.Services;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.RequestInfo;
+using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
+using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
 using AlphaPlus.Settings.Site.Features.CreateAccount;
 using AlphaPlus.Settings.Site.SubAccount.Services;
@@ -31,6 +35,17 @@ namespace AlphaPlus.Settings.Site.Helpers
 
             services
                 .AddHttpClient<ICreateAccountService, CreateAccountService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
+
+            services
+                .AddSingleton<SecurityCodeChecker, SecurityCodeCheckerImpl>()
+                .AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>()
+                .AddSingleton<IPService, IPServiceImpl>()
+                .AddSingleton<RequestInfo.IPHelper, IPHelperImpl>()
+                .AddSingleton<RequestInfo.IPHelper, IPHelperImpl>()
+                .AddSingleton<IBrowserHelper, BrowserHelper>()
+                .AddSingleton<IDeviceHelper, DeviceHelper>()
+                .AddScoped<CustomerListService, CustomerListServiceImpl>()
+                .AddScoped<TransferService, TransferServiceImpl>();
 
             services
                 .AddSharedSession(configuration)
