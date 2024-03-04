@@ -21,6 +21,7 @@ using AlphaPlus.Settings.Site.Features.DormantAccountList;
 using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold;
 using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Helpers;
+using AlphaPlus.Settings.Site.Handlers;
 using AlphaPlus.Settings.Site.SubAccount.Services;
 using Fanex.Caching;
 using Fanex.Cryptography.Aes;
@@ -96,6 +97,10 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<IRestClient>((provider) => new RestClient(qrCodeMemberLoginApi))
                 .AddSingleton<Alpha.CopyAccount.Services.ICopyAccountService, Alpha.CopyAccount.Services.CopyAccountService>()
                 .AddScoped<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>();
+
+            services
+                .AddSingleton<ProblemAccountWorkbook, ProblemAccountWorkbookImpl>()
+                .AddScoped<IProblemAccountService, ProblemAccountService>();
 
             services
                 .AddSharedSession(configuration)
