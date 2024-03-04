@@ -3,10 +3,12 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList;
+using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
 using AlphaPlus.Settings.Site.Features.CreateAccount;
+using AlphaPlus.Settings.Site.Features.DormantAccountList;
 using AlphaPlus.Settings.Site.SubAccount.Services;
 using Fanex.Cryptography.Aes;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -46,6 +48,10 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<IDeviceHelper, DeviceHelper>()
                 .AddScoped<CustomerListService, CustomerListServiceImpl>()
                 .AddScoped<TransferService, TransferServiceImpl>();
+
+            services
+                .AddSingleton<DormantAccountWorkbook, DormantAccountWorkbookImpl>()
+                .AddScoped<DormantAccountService, DormantAccountServiceImpl>();
 
             services
                 .AddSharedSession(configuration)
