@@ -1,0 +1,137 @@
+﻿<Functions>
+  <Function Name="Check Belonging in DBCUST">
+    <Setting Key="Age_CustomerSelCheckBelonging_DBCUST" SpName="Age_CustomerSelCheckBelonging" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Transfer">
+    <Setting Key="Acc_CustomerSelTransferOption" SpName="Acc_CustomerSelTransferOption" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Credit/Balance">
+    <Setting Key="Age_CustomerSelCreditBalClosedReason_Ag" SpName="Age_CustomerSelCreditBalClosedReason_Ag" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelCreditBalClosedReason_MAg" SpName="Age_CustomerSelCreditBalClosedReason_MAg" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelCreditBalClosedReason_SAg" SpName="Age_CustomerSelCreditBalClosedReason_SAg" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Win Loss Limit">
+    <Setting Key="Age_CustomerSelMAgentList" SpName="Age_CustomerSelMAgentList" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelAgentList" SpName="Age_CustomerSelAgentList" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelCustWinlimit" SpName="Age_CustomerSelCustWinlimit" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelByPlayerId" SpName="Age_CustomerSelByPlayerId" DbName="DBCust.CustDB.BODBDownlineNetView" />
+  </Function>
+  <Function Name="Problem Account">
+    <Setting Key="Age_ProblemAccount_CustomerList" SpName="Age_ProblemAccount_CustomerList" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="numberOfDownline" ObjectProperty="Count" />
+    </Setting>
+    <Setting Key="Age_ProblemAccount_ReviewStatusUpd" SpName="Age_ProblemAccount_ReviewStatusUpd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Create Member By QR Code">
+    <Setting Key="Age_CustomerInsMember_Ag_CreditStatusSel" SpName="Age_CustomerInsMember_Ag_CreditStatusSel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="RefCredit" ObjectProperty="Credit" />
+      <Mapping DataField="MaxCredit_Mem" ObjectProperty="CreditMax" />
+      <Mapping DataField="MinCredit_Mem" ObjectProperty="CreditMin" />
+    </Setting>
+    <Setting Key="Acc_CustomerSelEditCustomer" SpName="Acc_CustomerSelEditCustomer" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+
+    <Setting Key="Acc_CustomerInsMember_Ag" SpName="Acc_CustomerInsMember_Ag" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelSuggestUsername" SpName="Age_CustomerSelSuggestUsername" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustomerSelCheckEnable" SpName="Acc_CustomerSelCheckEnable" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustomerSelRnGStatus" SpName="Acc_CustomerSelRnGStatus" DbName="DBCust.CustDB.BODBDownlineNetView" />
+    <Setting Key="ResetMainAccountPassword" SpName="Age_CustomerUpdPwd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CheckQRFirstLogin" SpName="Age_CheckQRFirstLogin" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerCheckExists" SpName="Age_CustomerCheckExists" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Indirect Login Account">
+    <Setting Key="Age_CustomerIndirectLoginAccountSel" SpName="Age_CustomerIndirectLoginAccountSel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="CustIDInDirect" ObjectProperty="CustId" />
+      <Mapping DataField="SubAccIDIndirect" ObjectProperty="SubAccId" />
+      <Mapping DataField="roleid" ObjectProperty="Level" />
+    </Setting>
+    <Setting Key="Age_CustomerIndirectLoginAccountIns" SpName="Age_CustomerIndirectLoginAccountIns" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerIndirectLoginAccountDel" SpName="Age_CustomerIndirectLoginAccountDel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerIndirectLoginAccountPwdCheck" SpName="Age_CustomerIndirectLoginAccountPwdCheck" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Indirect Login Account">
+    <Setting Key="Age_CustomerSelBySAg" SpName="Age_CustomerSelBySAg" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="IsAllowAutoTransfer" ObjectProperty="AutoTransfer" />
+    </Setting>
+    <Setting Key="Age_CustomerSelByMAg" SpName="Age_CustomerSelByMAg" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="IsAllowAutoTransfer" ObjectProperty="AutoTransfer" />
+    </Setting>
+    <Setting Key="Age_CustomerSelByAg" SpName="Age_CustomerSelByAg" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="IsAllowAutoTransfer" ObjectProperty="AutoTransfer" />
+    </Setting>
+  </Function>
+
+  <Function Name="Customer List">
+    <Setting Key="Acc_CustomerUpdClosed" SpName="Acc_CustomerUpdClosed" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustomerUpdSuspended" SpName="Acc_CustomerUpdSuspended" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustomerUpdMaster_DisableAutoMPT" SpName="Acc_CustomerUpdMaster_DisableAutoMPT" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDisableOutright" SpName="Acc_CustomerUpdDisableOutright" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDoubleCommLosing" SpName="Acc_CustomerUpdDoubleCommLosing" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Dormant Account List">
+    <Setting Key="Acc_DormantAccountList_Sel" SpName="Acc_DormantAccountList_Sel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Parlay Max Payout">
+    <Setting Key="Acc_CustSetting_MaxPayoutSelect" SpName="Acc_CustSetting_MaxPayoutSelect" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="SportType" ObjectProperty="SportTypeId" />
+      <Mapping DataField="BetType" ObjectProperty="BetTypeId" />
+      <Mapping DataField="Combo2" ObjectProperty="Combo2" />
+      <Mapping DataField="Combo35" ObjectProperty="Combo35" />
+      <Mapping DataField="ComboOver6" ObjectProperty="ComboOver6" />
+      <Mapping DataField="SingleMatchParlay" ObjectProperty="SingleMatchParlay" />
+      <Mapping DataField="Upline_SingleMatchParlay" ObjectProperty="UplineSingleMatchParlay" />
+      <Mapping DataField="Upline_Combo2" ObjectProperty="UplineCombo2" />
+      <Mapping DataField="Upline_Combo35" ObjectProperty="UplineCombo35" />
+      <Mapping DataField="Upline_ComboOver6" ObjectProperty="UplineComboOver6" />
+      <Mapping DataField="SingleMatchParlay_IsAllowUnlimit" ObjectProperty="IsAllowUnlimitSingleMatchParlay" />
+      <Mapping DataField="Combo2_IsAllowUnlimit" ObjectProperty="IsAllowUnlimitCombo2" />
+      <Mapping DataField="Combo35_IsAllowUnlimit" ObjectProperty="IsAllowUnlimitCombo35" />
+      <Mapping DataField="ComboOver6_IsAllowUnlimit" ObjectProperty="IsAllowUnlimitComboOver6" />
+    </Setting>
+    <Setting Key="Acc_CustSetting_MaxPayoutUpd" SpName="Acc_CustSetting_MaxPayoutUpd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CustSetting_MaxPayoutCheckDownline" SpName="Acc_CustSetting_MaxPayoutCheckDownline" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+
+  <Function Name="UM On Product">
+    <Setting Key="Acc_CheckUM" SpName="Acc_CheckUM" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+
+  <Function Name="My Monitor Accounts">
+    <Setting Key="Acc_WLMonitored_Player_ReachList_Sel" SpName="Acc_WLMonitored_Player_ReachList_Sel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Player_WatchList_Sel" SpName="Acc_WLMonitored_Player_WatchList_Sel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Personal_Multiple_Ins" SpName="Acc_WLMonitored_Personal_Multiple_Ins" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0">
+      <Mapping DataField="Username" ObjectProperty="Name" />
+      <Mapping DataField="ErrCode" ObjectProperty="Code" />
+      <Mapping DataField="ErrMsg" ObjectProperty="Message" />
+    </Setting>
+    <Setting Key="Acc_WLMonitored_Personal_Upd" SpName="Acc_WLMonitored_Personal_Upd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Personal_Del" SpName="Acc_WLMonitored_Personal_Del" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Global_Adjust" SpName="Acc_WLMonitored_Global_Adjust" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Global_Sel" SpName="Acc_WLMonitored_Global_Sel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Preset_Sel" SpName="Acc_WLMonitored_Preset_Sel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Preset_Ins" SpName="Acc_WLMonitored_Preset_Ins" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Preset_Upd" SpName="Acc_WLMonitored_Preset_Upd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Preset_Del" SpName="Acc_WLMonitored_Preset_Del" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_SMA_Sel" SpName="Acc_WLMonitored_SMA_Sel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_SMA_Adjust" SpName="Acc_WLMonitored_SMA_Adjust" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_WLMonitored_CheckExistSettingByCust" SpName="Acc_WLMonitored_CheckExistSettingByCust" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Partial UM">
+    <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Create Account">
+    <Setting Key="Acc_LiteMode_CustSetting_ProductListInfoSel" SpName="Acc_LiteMode_CustSetting_ProductListInfoSel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+  </Function>
+  <Function Name="Sub Account">
+        <Setting Key="Age_CustSubSel" SpName="Age_CustSubSel" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+        <Setting Key="Age_CustSubSelInfo" SpName="Age_CustSubSelInfo" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+        <Setting Key="Age_CustSubIns" SpName="Age_CustSubIns" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+        <Setting Key="Age_CustSubPwdUpd" SpName="Age_CustSubPwdUpd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+        <Setting Key="Age_CustSubPwdUpd2" SpName="Age_CustSubPwdUpd2" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+        <Setting Key="Age_CustSubUpdInfo" SpName="Age_CustSubUpdInfo" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+        <Setting Key="Age_CustSubUpdPageAccess" SpName="Age_CustSubUpdPageAccess" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+        <Setting Key="Age_CustSubInsNickname" SpName="Age_CustSubInsNickname" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+        <Setting Key="Age_CustSubUpdNicknameLoginOnly" SpName="Age_CustSubUpdNicknameLoginOnly" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    </Function>
+</Functions>

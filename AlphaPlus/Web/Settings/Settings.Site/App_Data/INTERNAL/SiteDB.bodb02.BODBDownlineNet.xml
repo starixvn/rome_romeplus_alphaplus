@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="Credit/Balance">
+    <Setting Key="SiteDB_Age_CustomerSelCreditBalNetPosition_Ag" SpName="Age_CustomerSelCreditBalNetPosition_Ag" DbName="SiteDB.bodb02.BODBDownlineNetView" />
+  </Function>
+</Functions>

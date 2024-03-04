@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions SiteId="105" SiteName="Alpha">
+  <Function Name="Win Loss Limit">
+    <Setting Key="SiteDB_Age_CustomerSelWinlimitInfo" SpName="Age_CustomerSelWinlimitInfo" DbName="SiteDB.CustDB.BODBDownlineNetView" />
+  </Function>
+</Functions>
