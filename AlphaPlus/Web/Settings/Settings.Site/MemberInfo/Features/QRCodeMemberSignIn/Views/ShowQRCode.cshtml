@@ -1,0 +1,85 @@
+﻿@* @model ShowQRCodeViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.CreateMode ? Resources.CreateMemberWithQRCode : Resources.FirstLoginQRCode;
+}
+
+@section Styles {
+    @StaticResources.RenderStyles("~/Features/QRCodeMemberSignIn/Bundles/show-qr-code")
+}
+
+@if (Model.ShowPageTitle)
+{
+    <div class="page-title">
+        <span class="pull-left">@ViewBag.Title</span>
+    </div>
+}
+	<div id="show-qr-code">
+		@if (Model.CreateMode)
+		{
+			<div id="message" class="msg msg-success">
+				<span id="message-content" className="col-xs-12">@Resources.ThisAccountHasBeenSuccessfullyCreated</span>
+			</div>
+		}
+		<div class="form-group">
+			@Resources.Domain
+		</div>
+		<div class="form-group">
+			<select id="domains" name="domains">
+				@foreach (var domain in Model.Domains)
+				{
+					<option value="@domain"> @domain</option>
+				}
+			</select>
+		</div>
+		<div class="form-group">
+			@Resources.PleaseShowThisQRCodeToYourMember
+		</div>
+		<div class="form-group">
+			<img id="qr-code-image" alt="QRcode" src="@Model.QRCodeImage" />
+		</div>
+		<div class="form-group infomation">
+			@Resources.AccountInformation
+		</div>
+		<div class="form-group">
+			<div class="first-column">@Resources.Username:</div>
+			<div class="username-label">@Model.SearchAccountName</div>
+			<div id="btn-copy-link">
+				<span class="icon-link"></span>
+				<div class="copy-link">@Resources.CopyLink</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="first-column">@Resources.Password:</div>
+			<div id="username-label">@Model.RawPassword</div>
+		</div>
+		<div class="form-group">
+			<div class="first-column">@Resources.Credit:</div>
+			<div id="credit-label">@String.Format("{0:#,##0.##}", Model.Credit)</div>
+		</div>
+		<div class="form-group">
+			<div class="first-column">@Resources.FirstName:</div>
+			<div id="first-name-label">@Model.FirstName</div>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn-submit" id="btn-update-information">@Resources.UpdateInformation</button>
+			<button type="submit" class="btn-submit" id="btn-update-credit">@Resources.UpdateCredit</button>
+		</div>
+
+		@Html.HiddenFor(m => m.QRCodeLink)
+		@Html.HiddenFor(m => m.UpdateInformationUrl)
+		@Html.HiddenFor(m => m.UpdateCreditUrl)
+		@Html.HiddenFor(m => m.SearchAccountId)
+		@Html.HiddenFor(m => m.CreateMode)
+		@Html.HiddenFor(m => m.SearchAccountName)
+		<input type="hidden" name="update-credit-text" id="update-credit-text" value="@Resources.UpdateCredit" />
+		<input type="hidden" name="update-infor-text" id="update-infor-text" value="@Resources.UpdateInformation" />
+		<input type="hidden" name="cannot-generate-message" id="cannot-generate-message" value="@Resources.CannotGenerateMessage" />
+		@Html.AntiForgeryToken()
+	</div>
+
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
+    @StaticResources.RenderScripts("~/Features/QRCodeMemberSignIn/Bundles/show-qr-code")
+} *@

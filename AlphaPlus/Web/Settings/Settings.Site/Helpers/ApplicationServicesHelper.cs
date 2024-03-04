@@ -11,6 +11,7 @@ using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
 using AlphaPlus.Settings.MemberInfo.API.Features.ParlayMaxPayout;
+using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
@@ -18,10 +19,13 @@ using AlphaPlus.Settings.Site.Features.CopyAccount;
 using AlphaPlus.Settings.Site.Features.CreateAccount;
 using AlphaPlus.Settings.Site.Features.DormantAccountList;
 using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold;
+using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn;
+using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Helpers;
 using AlphaPlus.Settings.Site.SubAccount.Services;
 using Fanex.Caching;
 using Fanex.Cryptography.Aes;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using RestSharp;
 using Sunplus.Agent.Utilities;
 
 namespace AlphaPlus.Settings.Site.Helpers
@@ -31,6 +35,9 @@ namespace AlphaPlus.Settings.Site.Helpers
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             var customerSettingApiUrl = new Uri(configuration.GetValue<string>("CustomerSettingApi"));
+            var qrCodeMemberLoginApi = new Uri(configuration.GetValue<string>("QRCodeMemberLogin:Api"));
+            var qrCodeMemberLoginConfig = configuration.GetValue<string>("QRCodeMemberLogin:Config");
+
             services
                 .AddFanexDataWithSqlServer(configuration)
                 .AddFanexLogging(configuration)
@@ -80,6 +87,15 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<CacheRefService, CacheRefServiceImpl>()
                 .AddSingleton<CheckUMService, CheckUMServiceImpl>()
                 .AddScoped<ParlayMaxPayoutService, ParlayMaxPayoutServiceImpl>();
+
+            services
+                .AddSingleton<QrCodeAdapter, QrCodeAdapterImpl>()
+                .AddScoped<PasswordService, PasswordServiceImpl>()
+                .AddScoped<CheckBelongingService, CheckBelongingServiceImpl>()
+                .AddSingleton<QRCodeLoginConfigsHelper>((provider) => new QRCodeLoginConfigsHelperImpl(qrCodeMemberLoginConfig))
+                .AddSingleton<IRestClient>((provider) => new RestClient(qrCodeMemberLoginApi))
+                .AddSingleton<Alpha.CopyAccount.Services.ICopyAccountService, Alpha.CopyAccount.Services.CopyAccountService>()
+                .AddScoped<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>();
 
             services
                 .AddSharedSession(configuration)
