@@ -22,13 +22,13 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
 
         private readonly Encryptor encryptor;
         private readonly IAesService aes;
-        private readonly SessionManager sessionManager;
+        private readonly ISessionManager sessionManager;
         private readonly ICopyAccountService copyAccountService;
 
         public CopyAccountHandler(
             Encryptor encryptor,
             IAesService aes,
-            SessionManager sessionManager,
+            ISessionManager sessionManager,
             ICopyAccountService copyAccountService)
         {
             this.encryptor = encryptor;

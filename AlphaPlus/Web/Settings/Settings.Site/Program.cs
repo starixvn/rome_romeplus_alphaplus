@@ -1,7 +1,5 @@
 using MediatR;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using AlphaPlus.Settings.Site.SubAccount.Services;
-using AlphaPlus.Core.Extensions;
+using AlphaPlus.Settings.Site.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,18 +8,7 @@ builder.Services.AddMediatR(typeof(Program).Assembly);
 
 var configuration = builder.Configuration;
 builder.Services
-    .AddFanexDataWithSqlServer(configuration)
-    .AddFanexLogging(configuration)
-    .AddRemotingRef(configuration)
-    .AddHttpClient<ISubAccountService, SubAccountService>
-        (httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CustomerSettingApi")));
-
-builder.Services
-    .AddSharedSession(configuration)
-    .AddHttpContextAccessor()
-    .AddAuthorization()
-    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddSharedCookie();
+    .RegisterApplicationServices(configuration);
 
 builder.Services
     .AddControllersWithViews()
