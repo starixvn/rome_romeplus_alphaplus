@@ -1,10 +1,11 @@
+using AlphaPlus.Core;
 using AlphaPlus.Settings.Site.SubAccount.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Settings.Site.SubAccount.Controllers
 {
-    public class SubAccountController : Controller
+    public class SubAccountController : BaseController
     {
         private readonly IMediator mediator;
 

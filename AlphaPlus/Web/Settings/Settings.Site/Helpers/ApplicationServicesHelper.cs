@@ -47,7 +47,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddFanexLogging(configuration)
                 .AddRemotingRef(configuration)
                 .AddHttpClient<ISubAccountService, SubAccountService>
-                    (httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CustomerSettingApi")));
+                    (httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
             services
                 .AddSingleton<IAesService, AesService>()
