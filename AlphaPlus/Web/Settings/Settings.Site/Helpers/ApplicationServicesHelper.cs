@@ -14,6 +14,7 @@ using AlphaPlus.Settings.MemberInfo.API.Features.ParlayMaxPayout;
 using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.API.Services;
+using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
 using AlphaPlus.Settings.Site.Features.CreateAccount;
@@ -101,6 +102,9 @@ namespace AlphaPlus.Settings.Site.Helpers
             services
                 .AddSingleton<ProblemAccountWorkbook, ProblemAccountWorkbookImpl>()
                 .AddScoped<IProblemAccountService, ProblemAccountService>();
+
+            services
+                .AddScoped<IndirectLoginAccountService, IndirectLoginAccountServiceImpl>();
 
             services
                 .AddSharedSession(configuration)
