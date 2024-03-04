@@ -2,6 +2,7 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
+using AlphaPlus.Settings.Site.Features.CreateAccount;
 using AlphaPlus.Settings.Site.SubAccount.Services;
 using Fanex.Cryptography.Aes;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -13,6 +14,7 @@ namespace AlphaPlus.Settings.Site.Helpers
     {
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
+            var customerSettingApiUrl = new Uri(configuration.GetValue<string>("CustomerSettingApi"));
             services
                 .AddFanexDataWithSqlServer(configuration)
                 .AddFanexLogging(configuration)
@@ -25,7 +27,10 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<ISessionManager, SessionManager>()
                 .AddScoped<Encryptor, EncryptorImpl>()
                 .AddScoped<UsernameSuggestionService, UsernameSuggestionServiceImpl>()
-                .AddHttpClient<ICopyAccountService, CopyAccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("CustomerSettingApi")));
+                .AddHttpClient<ICopyAccountService, CopyAccountService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
+
+            services
+                .AddHttpClient<ICreateAccountService, CreateAccountService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
             services
                 .AddSharedSession(configuration)
