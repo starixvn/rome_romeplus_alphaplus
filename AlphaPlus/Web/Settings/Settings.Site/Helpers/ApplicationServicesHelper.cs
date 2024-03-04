@@ -1,15 +1,24 @@
 using Alpha.SecurityCode.Services;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.PartialUM.Configurations;
+using AlphaPlus.PartialUM.DataAccess;
+using AlphaPlus.PartialUM.Services;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList;
 using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
+using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
 using AlphaPlus.Settings.Site.Features.CreateAccount;
 using AlphaPlus.Settings.Site.Features.DormantAccountList;
+using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold;
 using AlphaPlus.Settings.Site.SubAccount.Services;
+using Fanex.Caching;
 using Fanex.Cryptography.Aes;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Sunplus.Agent.Utilities;
@@ -54,6 +63,19 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddScoped<DormantAccountService, DormantAccountServiceImpl>();
 
             services
+                .Configure<PartialUMOptions>(configuration.GetSection(nameof(PartialUMOptions)))
+                .AddSingleton(GetPartialUMConfig(configuration))
+                .AddSingleton<ICacheService, CacheService>()
+                .AddSingleton<IPartialUMDataAccess, PartialUMDataAccess>()
+                .AddSingleton<IPartialUMService, PartialUMService>();
+
+            services
+                .AddSingleton<ReachedThresholdWorkbook, ReachedThresholdWorkbookImpl>()
+                .AddScoped<ReachedThresholdService, ReachedThresholdServiceImpl>()
+                .AddScoped<MyWatchlistAccountsService, MyWatchlistAccountsServiceImpl>()
+                .AddScoped<MyThresholdsService, MyThresholdsServiceImpl>();
+
+            services
                 .AddSharedSession(configuration)
                 .AddHttpContextAccessor()
                 .AddAuthorization()
@@ -62,6 +84,28 @@ namespace AlphaPlus.Settings.Site.Helpers
 
 
             return services;
+        }
+
+        private static Dictionary<string, IList<string>> GetPartialUMConfig(IConfiguration configuration)
+        {
+            var partialUMConfig = new Dictionary<string, IList<string>>(StringComparer.OrdinalIgnoreCase);
+            var partialUMArray = configuration.GetSection("PartialUMOptions:PartialUM").Get<UMConfig[]>();
+
+            foreach (var partialUM in partialUMArray)
+            {
+                foreach (var key in partialUM.SettingKeys)
+                {
+                    if (!partialUMConfig.TryGetValue(key, out var functionNames))
+                    {
+                        functionNames = new List<string>();
+                        partialUMConfig[key] = functionNames;
+                    }
+
+                    functionNames.Add(partialUM.FunctionName);
+                }
+            }
+
+            return partialUMConfig;
         }
     }
 }
