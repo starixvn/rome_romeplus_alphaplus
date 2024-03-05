@@ -2,7 +2,6 @@ namespace AlphaPlus.Core.Models;
 
 public class UserPermission
 {
-
     protected static IUserSession CurrentUserSession
     {
         get
@@ -37,4 +36,7 @@ public class UserPermission
             _ => IsEnableProduct(productId) && IsSyncedProduct(productId),
         };
     }
+
+    public static bool IsShowOrNotExistProduct(int product)
+        => IsEnableProduct(product) || !CurrentUserSession.HasProperty("HIDEPRODUCT_" + product);
 }

@@ -4,33 +4,33 @@ public class ProgressiveContributionEntity
 {
     public int ProductId { get; set; }
 
-    public int BetTypeId { get; set; }
+    public int BetType { get; set; }
 
     public string BetTypeName { get; set; }
 
     public decimal Turnover { get; set; }
 
-    public decimal ContributionAmount { get; set; }
+    public decimal Contribution { get; set; }
 
-    public decimal AgentContribution { get; set; }
+    public decimal ContributionAgent { get; set; }
 
-    public decimal MasterContribution { get; set; }
+    public decimal ContributionMaster { get; set; }
 
-    public decimal SuperContribution { get; set; }
+    public decimal ContributionSuper { get; set; }
 
     public decimal CompanyContribution
     {
-        get => -(SuperContribution + MasterContribution + AgentContribution);
+        get => -(ContributionSuper + ContributionMaster + ContributionAgent);
         set => _ = value;
     }
 
     public static ProgressiveContributionEntity operator +(ProgressiveContributionEntity model1, ProgressiveContributionEntity model2)
     {
         model1.Turnover += model2.Turnover;
-        model1.ContributionAmount += model2.ContributionAmount;
-        model1.AgentContribution += model2.AgentContribution;
-        model1.MasterContribution += model2.MasterContribution;
-        model1.SuperContribution += model2.SuperContribution;
+        model1.Contribution += model2.Contribution;
+        model1.ContributionAgent += model2.ContributionAgent;
+        model1.ContributionMaster += model2.ContributionMaster;
+        model1.ContributionSuper += model2.ContributionSuper;
         model1.CompanyContribution += model2.CompanyContribution;
 
         return model1;

@@ -16,44 +16,44 @@
     void RenderProgressiveContribution(ProgressiveContributionEntity data)
     {
         <td class="col-turnover">@data.Turnover.FormatNumber()</td>
-        <td class="col-contribution">data.ContributionAmount.FormatNumber(4)</td>
+        <td class="col-contribution">@data.Contribution.FormatNumber4()</td>
         if (Model.IsStackMode)
         {
             if (isSuperLevel)
             {
-                RenderStackContributionNumberCell(UserLevel.Super, data.SuperContribution, data.MasterContribution,
-                data.AgentContribution);
+                RenderStackContributionNumberCell(UserLevel.Super, data.ContributionSuper, data.ContributionMaster,
+                data.ContributionAgent);
             }
             else if (isMasterLevel)
             {
-                RenderStackContributionNumberCell(UserLevel.Master, data.MasterContribution, data.AgentContribution);
+                RenderStackContributionNumberCell(UserLevel.Master, data.ContributionMaster, data.ContributionAgent);
             }
             else
             {
-                RenderContributionNumberCell(UserLevel.Agent, data.AgentContribution);
+                RenderContributionNumberCell(UserLevel.Agent, data.ContributionAgent);
             }
         }
         else
         {
             if (isSuperLevel)
             {
-                RenderContributionNumberCell(UserLevel.Super, data.SuperContribution);
+                RenderContributionNumberCell(UserLevel.Super, data.ContributionSuper);
             }
 
             if (isMasterOrSuperLevel)
             {
-                RenderContributionNumberCell(UserLevel.Master, data.MasterContribution);
+                RenderContributionNumberCell(UserLevel.Master, data.ContributionMaster);
             }
 
-            RenderContributionNumberCell(UserLevel.Agent, data.AgentContribution);
+            RenderContributionNumberCell(UserLevel.Agent, data.ContributionAgent);
         }
 
-        <td class="col-company">data.CompanyContribution.FormatNumber(4)</td>
+        <td class="col-company">@data.CompanyContribution.FormatNumber4()</td>
     }
     void RenderContributionNumberCell(UserLevel level, decimal value)
     {
         <td class="hidden-stack-mode col-@level.DisplayName.ToLower()-contribution-share">
-            @value.FormatNumber(4)
+            @value.FormatNumber4()
         </td>
     }
     void RenderStackContributionNumberCell(UserLevel level, params decimal[] cellValues)
@@ -62,7 +62,7 @@
             <ul>
                 @foreach (var cellValue in cellValues)
                 {
-                    <li>@cellValue.FormatNumber(4)</li>
+                    <li>@cellValue.FormatNumber4()</li>
                 }
             </ul>
         </td>
@@ -73,7 +73,7 @@
     HasStackIcon: isMasterOrSuperLevel,
     HasHideFilterIcon: true,
     IsStackMode: Model.IsStackMode,
-    IsFilterVisible: true,
+    IsFilterVisible: Model.IsFilterVisible,
     BreadcrumbLevelViewModel: new BreadcrumbLevelViewModel());
 }
 @section Styles {
@@ -84,12 +84,15 @@
 }
 @model ProgressiveContributionViewModel
 <report-title model="reportTitle" />
-<form method="get" class="form-inline filter" role="form" id="report-form" asp-action="Index">
-    <input type="hidden" id="IsStackMode" name="IsStackMode" value="@Model.IsStackMode" />
-    <input type="hidden" id="IsHistoricReport" name="IsHistoricReport" value="@Model.IsHistoricReport" />
+<form method="get" class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-action="Index">
+    <input type="hidden" asp-for="IsFilterVisible" />
+    <input type="hidden" asp-for="IsStackMode" />
+    <input type="hidden" asp-for="IsHistoricReport" />
     <product model="Model.ProductViewModel" />
     @if (Model.IsHistoricReport)
     {
+        <month-picker model="Model.MonthPickerViewModel" />
         <div class="form-group">
             <input type="submit" value="@Resources.Submit" class="btn-submit" />
         </div>
@@ -102,11 +105,15 @@
         <span id="icon-information" class="icon-information-outline"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"></a>
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel" asp-route-FromDate="Model.FromDate"
+            asp-route-ToDate="Model.ToDate"
+            asp-route-UserSelectedProductIds="Model.ProductViewModel.UserSelectedProductIds"
+            asp-route-IsHistoricReport="Model.IsHistoricReport"></a>
     </div>
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
-        <a id="historic-report" data-is-historic-report="@Model.IsHistoricReport.ToString().ToLower()" href="#">ABC</a>
+        <a href="javascript:;" id="historic-report"
+            data-is-historic-report="@Model.IsHistoricReport.ToString().ToLower()">@Model.ViewActionMessage</a>
     </div>
 </form>
 <table
@@ -188,3 +195,6 @@
         <no-information colspan="Model.ReportColumnsCount" />
     }
 </table>
+<input type="hidden" id="LoadLegendURL" value="@Url.Action("ProgressiveContribution", "Legends")" />
+<input type="hidden" asp-for="IsSetDefaultStackMode" />
+<input type="hidden" id="IsAgentLevel" asp-for="ViewerLevel" value="@Model.ViewerLevel.IsAgentLevel()" />

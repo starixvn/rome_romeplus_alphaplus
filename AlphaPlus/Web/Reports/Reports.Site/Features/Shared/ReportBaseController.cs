@@ -10,12 +10,12 @@ public abstract class ReportBaseController(IMediator mediator) : BaseController
 {
     private const string InvalidViewName = "InvalidReport";
 
-    protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message)
+    protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message, string viewName = null)
     {
         var baseQuery = message as BaseQuery;
 
         return baseQuery != null && baseQuery.IsValid()
-            ? View(await mediator.Send(message))
+            ? View(viewName, await mediator.Send(message))
             : View(InvalidViewName);
     }
 

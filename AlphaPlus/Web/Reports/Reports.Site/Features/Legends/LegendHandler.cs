@@ -38,7 +38,7 @@ public class LegendHandler(ILengendService lengendService) :
             Resources.ContributionAmountRoundNote
         };
 
-        var note = await lengendService.GetOfferedProductsNeedDelayTimeToSummarizeData(
+        var note = await GetOfferedProductsNeedDelayTimeToSummarizeData(
             message.Site,
             message.CurrencyId,
             message.MinDate,

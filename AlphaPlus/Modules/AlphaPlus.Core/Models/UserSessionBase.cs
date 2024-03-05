@@ -477,6 +477,11 @@ public class UserSessionBase : IUserSession, IDisposable
         AlphaContext.Current.Session.Set(propertyName, value);
     }
 
+    public bool HasProperty(string propertyName)
+    {
+        return AlphaContext.Current.Session.Get<object>(propertyName) != null;
+    }
+
     public void Dispose()
     {
         Type type = GetType();

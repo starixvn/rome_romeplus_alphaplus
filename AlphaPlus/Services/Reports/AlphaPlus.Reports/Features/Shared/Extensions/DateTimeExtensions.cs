@@ -29,6 +29,9 @@ public static class DateTimeExtensions
     public static DateTime FirstDayOf3YearsAgo(this DateTime dateTime)
         => dateTime.AddYears(-3).FirstDayOfYears();
 
+    public static DateTime LastDayOfYear(this DateTime dateTime)
+        => new DateTime(dateTime.Year, 12, 31);
+
     public static DateTime GetGreaterDate(this DateTime fromDate, DateTime limitedDate)
         => fromDate < limitedDate ? limitedDate : fromDate;
 }

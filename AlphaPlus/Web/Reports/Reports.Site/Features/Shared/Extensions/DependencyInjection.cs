@@ -8,7 +8,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         => services
-        .AddSingleton<Func<int, bool>>(_ => UserPermission.HasPermissionOnProduct)
+        .AddSingleton<Func<int, bool>>(_ => UserPermission.IsShowOrNotExistProduct)
         .AddReportsServices(configuration)
         .AddSingleton<IEnteredResultWorkbook, EnteredResultWorkbook>();
 }

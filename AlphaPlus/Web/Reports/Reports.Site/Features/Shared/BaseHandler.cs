@@ -1,3 +1,4 @@
+using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
@@ -7,36 +8,44 @@ namespace AlphaPlus.Reports.Site.Features.Shared;
 
 public class BaseHandler
 {
-    protected internal static ProductMultiSelectionViewModel BuildProductMultiSelectionViewModel(
+    protected static ProductMultiSelectionViewModel BuildProductMultiSelectionViewModel(
         IEnumerable<Product> offeredProducts,
         string userSelectedProductIds,
         string language)
     {
         var products = new List<SelectListItem>();
-        var selectedProductIds = userSelectedProductIds.ToListInt();
+        var selectedProductIds = new List<int>();
+
+        var isSelectedAll = string.IsNullOrWhiteSpace(userSelectedProductIds);
+        var userSelectedProductIdsList = isSelectedAll ? [] : userSelectedProductIds.ToListInt();
 
         if (offeredProducts.Any())
         {
             var groupOfferedProducts = offeredProducts.GroupBy(product => product.TypeName);
             foreach (var productList in groupOfferedProducts)
             {
-                products.AddRange(productList.Select(product => new SelectListItem(
-                    product.DisplayName,
-                    product.Id.ToString(),
-                    selectedProductIds.Contains(product.Id)
-                )
+                foreach (var product in productList)
                 {
-                    Group = string.IsNullOrWhiteSpace(productList.Key)
-                        ? null
-                        : new SelectListGroup { Name = productList.Key }
-                }));
+                    var isSelected = isSelectedAll || userSelectedProductIdsList.Contains(product.Id);
+                    products.Add(new SelectListItem(product.DisplayName, product.Id.ToString(), isSelected)
+                    {
+                        Group = string.IsNullOrWhiteSpace(productList.Key)
+                            ? null
+                            : new SelectListGroup { Name = productList.Key }
+                    });
+
+                    if (isSelected)
+                    {
+                        selectedProductIds.Add(product.Id);
+                    }
+                }
             }
         }
 
-        return new ProductMultiSelectionViewModel(products, string.Join(',', selectedProductIds), language);
+        return new ProductMultiSelectionViewModel(products, selectedProductIds.JoinWithComma(), language);
     }
 
-    protected internal IEnumerable<Breadcrumb> BuildBreadcrumbLevel(BaseQuery message)
+    protected IEnumerable<Breadcrumb> BuildBreadcrumbLevel(BaseQuery message)
     {
         var breadcrumbLevel = new List<Breadcrumb>();
 

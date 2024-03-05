@@ -14,6 +14,8 @@ public class ProgressiveContributionViewModel(
 
     public string Title => Resources.ProgressiveGamesContribution;
 
+    public bool IsFilterVisible => message.IsFilterVisible;
+
     public bool IsStackMode => message.IsStackMode;
 
     public bool IsSetDefaultStackMode => message.IsSetDefaultStackMode;
@@ -29,7 +31,7 @@ public class ProgressiveContributionViewModel(
             message.FromDate,
             message.ToDate,
             message.UserSelectedDateRangeOption,
-            isSupportHistoricReport: message.IsSupportHistoricReport,
+            isSupportHistoricReport: true,
             isHistoricReport: message.IsHistoricReport);
 
     public MonthPickerViewModel MonthPickerViewModel
@@ -41,6 +43,8 @@ public class ProgressiveContributionViewModel(
                 ? Resources.CanOnlyViewDataAfterTimeHistoryReport
                 : Resources.CanOnlyViewDataAfterTimeCurrentReport,
             message.MinDate.ToShortDateWithSlash());
+
+    public string ViewActionMessage => IsHistoricReport ? Resources.BackToCurrentReport : string.Empty;
 
     public IEnumerable<ProgressiveContributionModel> ReportData { get; } = reportData;
 

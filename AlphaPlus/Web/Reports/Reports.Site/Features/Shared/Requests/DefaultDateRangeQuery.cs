@@ -4,24 +4,9 @@ namespace AlphaPlus.Reports.Site.Features.Shared.Requests;
 
 public class DefaultDateRangeQuery : BaseQuery
 {
-    public DefaultDateRangeQuery(
-        DateTime? fromDate = null,
-        DateTime? toDate = null,
-        bool isSupportHistoricReport = true,
-        bool isHistoricReport = false,
-        DateTime? minDate = null) : base()
-    {
-        var today = DateTime.Today;
-        FromDate = fromDate ?? today.Yesterday();
-        ToDate = toDate ?? today;
-        IsSupportHistoricReport = isSupportHistoricReport;
-        IsHistoricReport = isSupportHistoricReport && isHistoricReport;
-        MinDate = minDate ?? (isHistoricReport ? today.FirstDayOf3YearsAgo() : today.FirstDayOf3MonthsAgo());
-    }
+    public DateTime FromDate { get; set; } = DateTime.MinValue;
 
-    public DateTime FromDate { get; set; }
-
-    public DateTime ToDate { get; set; }
+    public DateTime ToDate { get; set; } = DateTime.Today;
 
     public int UserSelectedDateRangeOption { get; set; }
 
@@ -32,7 +17,23 @@ public class DefaultDateRangeQuery : BaseQuery
     public override bool IsValid() => base.IsValid() && CheckDateRangeConstraint();
 
     public bool CheckDateRangeConstraint()
-        => FromDate <= ToDate
-        && FromDate >= MinDate
-        && (!IsHistoricReport || FromDate.IsSameMonthWith(ToDate));
+    {
+        //// TODO: Side effect here
+        AssignFromDateValue();
+
+        return FromDate <= ToDate
+            && FromDate >= MinDate
+            && (!IsHistoricReport || FromDate.IsSameMonthWith(ToDate));
+    }
+
+    private void AssignFromDateValue()
+    {
+        var today = DateTime.Today;
+        if (FromDate == DateTime.MinValue)
+        {
+            FromDate = IsHistoricReport ? today.FirstDayOfMonth() : today;
+        }
+
+        MinDate = IsHistoricReport ? today.FirstDayOf3YearsAgo() : today.FirstDayOf3MonthsAgo();
+    }
 }

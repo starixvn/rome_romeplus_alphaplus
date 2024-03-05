@@ -7,6 +7,8 @@ public class ProgressiveContributionQuery : DefaultDateRangeQuery, IRequest<Prog
 {
     public string UserSelectedProductIds { get; set; }
 
+    public bool IsFilterVisible { get; set; } = true;
+
     public bool IsStackMode { get; set; }
 
     public bool IsSetDefaultStackMode => string.IsNullOrWhiteSpace(UserSelectedProductIds);

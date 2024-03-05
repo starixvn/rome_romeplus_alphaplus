@@ -28,7 +28,7 @@ public class ProductTagHelper : TagHelper
         var groupProducts = Model.Products.GroupBy(p => p.Group?.Name);
         foreach (var group in groupProducts)
         {
-            if (group == null)
+            if (group.Key == null)
             {
                 foreach (var product in group)
                 {
@@ -52,6 +52,10 @@ public class ProductTagHelper : TagHelper
                 sb.Append("</optgroup>");
             }
         }
+
+        sb
+            .Append("</select>")
+            .Append($"<input type=\"hidden\" name=\"UserSelectedProductIds\" id=\"product-ids\" value=\"{Model.UserSelectedProductIds}\" />");
 
         output.Content.SetHtmlContent(sb.ToString());
     }

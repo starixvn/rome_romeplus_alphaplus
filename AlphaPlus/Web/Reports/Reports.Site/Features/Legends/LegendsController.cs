@@ -8,5 +8,6 @@ public class LegendsController(IMediator mediator) : ReportBaseController(mediat
 {
     public Task<IActionResult> Index(LegendQuery message) => View(message);
 
-    public Task<IActionResult> ProgressiveContribution(ProgressiveContributionLegendQuery message) => View(message);
+    public Task<IActionResult> ProgressiveContribution(ProgressiveContributionLegendQuery message)
+        => View(message, nameof(Index));
 }

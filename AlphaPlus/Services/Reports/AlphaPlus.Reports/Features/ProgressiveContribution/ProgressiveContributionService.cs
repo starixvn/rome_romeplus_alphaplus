@@ -30,7 +30,7 @@ public class ProgressiveContributionService(
                 foreach (var item in contribution)
                 {
                     total += item;
-                    item.BetTypeName = cacheRefService.GetBetTypeName(item.BetTypeId);
+                    item.BetTypeName = cacheRefService.GetBetTypeName(item.BetType);
                 }
 
                 grandTotal += total;
