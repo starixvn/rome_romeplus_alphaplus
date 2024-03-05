@@ -1,8 +1,9 @@
 ﻿namespace AlphaPlus.Settings.Site.Requests
 {
-    using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using AlphaPlus.Settings.Site.Models;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -10,18 +11,22 @@
     {
         protected readonly IUser viewer;
 
+        protected MemberInfoBaseQuery() : this(null)
+        {
+        }
+
         protected MemberInfoBaseQuery(IUser viewer)
         {
-            this.viewer = viewer;
+            this.viewer = viewer ?? new User(UserSession.Current);
 
             // Default data, if query string had data, then get from query string.
-            UserId = viewer.LoggedInUserId;
-            CustId = viewer.Id;
-            CustName = viewer.Name;
-            Site = viewer.Site;
-            CustLevelId = viewer.LevelId;
-            SubAccId = viewer.SubAccId;
-            SubUsername = viewer.SubAccName;
+            UserId = this.viewer.LoggedInUserId;
+            CustId = this.viewer.Id;
+            CustName = this.viewer.Name;
+            Site = this.viewer.Site;
+            CustLevelId = this.viewer.LevelId;
+            SubAccId = this.viewer.SubAccId;
+            SubUsername = this.viewer.SubAccName;
             BreadcrumbLevel = Enumerable.Empty<CustInfo>();
         }
 
@@ -41,7 +46,7 @@
 
         public byte CustLevelId { get; set; }
 
-        public virtual UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
+        public virtual MemberInfo.Domain.Models.UserLevel CustLevel => MemberInfo.Domain.Enumerations.Enumeration.FromValue<MemberInfo.Domain.Models.UserLevel>(CustLevelId);
 
         public int ViewerId => viewer.Id;
 
@@ -53,7 +58,7 @@
 
         public byte ViewerLevelId => viewer.LevelId;
 
-        public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
+        public virtual MemberInfo.Domain.Models.UserLevel ActorLevel => MemberInfo.Domain.Enumerations.Enumeration.FromValue<MemberInfo.Domain.Models.UserLevel>(ViewerLevelId);
 
         public string Language => viewer.Language;
 

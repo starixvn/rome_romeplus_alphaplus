@@ -30,7 +30,7 @@
 
         bool IsEnabledJackpot { get; }
 
-        IList<int> EnableJackpotProductIds { get; }
+        IEnumerable<int> EnableJackpotProductIds { get; }
 
         bool GetHideProduct(int productId);
 

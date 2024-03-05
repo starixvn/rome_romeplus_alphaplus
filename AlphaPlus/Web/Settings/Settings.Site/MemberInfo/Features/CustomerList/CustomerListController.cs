@@ -11,8 +11,8 @@
 
     public class CustomerListController : SiteBaseController
     {
-        private const string IndexPath = "~/Features/CustomerList/Views/Index.cshtml";
-        private const string MultipleDoubleCommPath = "~/Features/CustomerList/Views/MultipeDoubleComm.cshtml";
+        private const string IndexPath = "~/MemberInfo/Features/CustomerList/Views/Index.cshtml";
+        private const string MultipleDoubleCommPath = "~/MemberInfo/Features/CustomerList/Views/MultipeDoubleComm.cshtml";
         private readonly Result ErrorDefault = Result.CreateErrorResult(Lang.NotAuthorized);
         private readonly TransferService transferService;
         private readonly IUser viewer;

@@ -3,14 +3,21 @@
     using System;
     using AlphaPlus.Settings.Site.Features.Shared.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using AlphaPlus.Settings.Site.Models;
+    using AlphaPlus.Core.Models;
 
     public class FetchDownlinesListRequesBase : BaseRequest
     {
+        public FetchDownlinesListRequesBase() : this(null)
+        {
+        }
+
         public FetchDownlinesListRequesBase(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             DoubleComm = 2;
             AllowAutoTransfer = 2;
-            LimitedDateToShowInfo = viewer.LimitedDateToShowInfo != default(DateTime);
+            LimitedDateToShowInfo = viewer.LimitedDateToShowInfo != default;
             IsShowMyanmarOdds = viewer.IsShowMyanmarOdds;
             CanViewReports = viewer.CanViewReports;
         }

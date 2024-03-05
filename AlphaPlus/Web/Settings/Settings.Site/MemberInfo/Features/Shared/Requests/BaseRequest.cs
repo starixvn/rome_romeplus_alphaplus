@@ -5,6 +5,8 @@
 
     public class BaseRequest : MemberInfoBaseQuery
     {
+        public BaseRequest() : this(null){}
+
         public BaseRequest(IUser viewer) : base(viewer)
         {
         }

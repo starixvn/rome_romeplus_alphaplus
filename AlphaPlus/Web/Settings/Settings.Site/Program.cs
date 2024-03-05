@@ -1,5 +1,6 @@
 using MediatR;
 using AlphaPlus.Settings.Site.Helpers;
+using AlphaPlus.Core.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
+AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
+
 app.UsePathBase("/settings");
 app.MapHealthChecks("/health");
 app.UseStaticFiles();
@@ -39,6 +43,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

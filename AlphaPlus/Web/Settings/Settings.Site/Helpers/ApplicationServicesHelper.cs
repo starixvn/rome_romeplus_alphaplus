@@ -1,6 +1,7 @@
 using Alpha.SecurityCode.Services;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 using AlphaPlus.PartialUM.Configurations;
 using AlphaPlus.PartialUM.DataAccess;
 using AlphaPlus.PartialUM.Services;
@@ -18,6 +19,7 @@ using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
 using AlphaPlus.Settings.Site.Features.CreateAccount;
 using AlphaPlus.Settings.Site.Features.DormantAccountList;
@@ -28,6 +30,8 @@ using AlphaPlus.Settings.Site.Handlers;
 using AlphaPlus.Settings.Site.SubAccount.Services;
 using Fanex.Caching;
 using Fanex.Cryptography.Aes;
+using Fanex.Data;
+using Fanex.Data.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using RestSharp;
 using Sunplus.Agent.Utilities;
@@ -43,9 +47,10 @@ namespace AlphaPlus.Settings.Site.Helpers
             var qrCodeMemberLoginConfig = configuration.GetValue<string>("QRCodeMemberLogin:Config");
 
             services
-                .AddFanexDataWithSqlServer(configuration)
+                .AddFanexData(configuration)
                 .AddFanexLogging(configuration)
                 .AddRemotingRef(configuration)
+                .AddSingleton<IDynamicRepository, DynamicRepository>()
                 .AddHttpClient<ISubAccountService, SubAccountService>
                     (httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
@@ -67,6 +72,8 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<RequestInfo.IPHelper, IPHelperImpl>()
                 .AddSingleton<IBrowserHelper, BrowserHelper>()
                 .AddSingleton<IDeviceHelper, DeviceHelper>()
+                .AddScoped<IUserSession, UserSessionExt>()
+                .AddScoped<IUser, Models.User>()
                 .AddScoped<CustomerListService, CustomerListServiceImpl>()
                 .AddScoped<TransferService, TransferServiceImpl>();
 
@@ -117,11 +124,10 @@ namespace AlphaPlus.Settings.Site.Helpers
 
             services
                 .AddSharedSession(configuration)
-                .AddHttpContextAccessor()
                 .AddAuthorization()
+                .AddHttpContextAccessor()
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddSharedCookie();
-
 
             return services;
         }

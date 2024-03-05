@@ -26,7 +26,7 @@
 
         public static bool IsSupportPT3DecimalSites => SupportPT3DecimalSites.Contains(SiteLabel, StringComparer.InvariantCultureIgnoreCase);
 
-        public static string GetConfigValue(string configName) => AppSettings.GetConfigValue(configName);
+        public static string GetConfigValue(string configName) => Core.Configurations.ConfigurationManager.GetValue<string>(configName);
 
         public static void Verify()
         {

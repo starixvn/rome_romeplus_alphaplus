@@ -17,9 +17,10 @@
 
         private readonly IUserSession userSession;
 
+        public User() : this(null){}
         public User(IUserSession userSession)
         {
-            this.userSession = userSession;
+            this.userSession = userSession ?? new UserSessionExt();
         }
 
         public int LoggedInUserId => userSession.UserId;
@@ -46,14 +47,14 @@
 
         public bool IsEnabledJackpot => EnableJackpotProductIds.Any();
 
-        public IList<int> EnableJackpotProductIds => GetEnableProductsForGame(Jackpot);
+        public IEnumerable<int> EnableJackpotProductIds => GetEnableProductsForGame(Jackpot);
 
         public bool GetHideProduct(int productId) => userSession.GetHideProduct(productId);
 
         public bool GetSyncedProduct(int productId) => userSession.GetSyncedProduct(productId);
 
-        internal virtual IList<int> GetEnableProductsForGame(string gameName)
-            => AlphaContext.Current.Session.Get<IList<int>>(AlphaContext.Current.Session.Id + GameEnableSessionKey + gameName);
+        internal virtual IEnumerable<int> GetEnableProductsForGame(string gameName)
+            => AlphaContext.Current.Session.Get<IList<int>>(AlphaContext.Current.Session.Id + GameEnableSessionKey + gameName) ?? Enumerable.Empty<int>();
 
         public bool GetDisabledProduct(int productId) => userSession.GetDisabledProduct(productId);
 
