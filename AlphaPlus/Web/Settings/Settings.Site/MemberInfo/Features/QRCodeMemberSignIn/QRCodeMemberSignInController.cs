@@ -22,8 +22,8 @@
         }
 
         [HttpGet]
-        public ActionResult Index(QRCodeMemberSignInRequest message, CancellationToken cancellation)
-            => View(message, IndexPath);
+        public async Task<ActionResult> Index(QRCodeMemberSignInRequest message, CancellationToken cancellation)
+            => await View(message, IndexPath);
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAccount(CreateAccountByQRCodeRequest message, CancellationToken cancellation)
@@ -69,23 +69,23 @@
             => Json(await mediator.Send(message));
 
         [HttpGet]
-        public ActionResult ShowQRCode(ShowQRCodeRequest message)
+        public async Task<ActionResult> ShowQRCode(ShowQRCodeRequest message)
         {
             if (message != null && !message.IsValid())
             {
                 return View(message.IsInternal ? NotAuthorizedPath : InvalidPageViewPath);
             }
 
-            var viewModel = mediator.Send(message);
+            var viewModel = await mediator.Send(message);
             return View(viewModel == null ? InvalidPageViewPath : ShowQRCodePath, viewModel);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult GenerateQrCode(GenerateQRCodeRequest message)
-            => Json(mediator.Send(message));
+        public async Task<ActionResult> GenerateQrCode(GenerateQRCodeRequest message)
+            => Json(await mediator.Send(message));
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult CheckExistedCustomer(CheckExistedCustomerRequest message)
-           => Json(mediator.Send(message));
+        public async Task<ActionResult> CheckExistedCustomer(CheckExistedCustomerRequest message)
+           => Json(await mediator.Send(message));
     }
 }

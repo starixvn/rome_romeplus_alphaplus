@@ -55,7 +55,7 @@
         internal CustomerListHandler(
             CustomerListService customerListService,
             GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel> settingMultipleViewModelFactory,
-            GenericViewModelFactory<ISearchAccountInfoRequest, AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels.Base.ISettingItemViewModel> settingViewModelFactory,
+            GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory,
             GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory,
             IPService ipService,
             SecurityCodeChecker securityCodeChecker,
@@ -68,7 +68,7 @@
                 SimpleServiceLocator.GetService<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>>();
 
             this.settingViewModelFactory = settingViewModelFactory ??
-                SimpleServiceLocator.GetService<GenericViewModelFactory<ISearchAccountInfoRequest, AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels.Base.ISettingItemViewModel>>();
+                SimpleServiceLocator.GetService<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>();
 
             this.statusViewModelFactory = statusViewModelFactory ??
                  SimpleServiceLocator.GetService<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>();

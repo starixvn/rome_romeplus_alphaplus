@@ -14,23 +14,23 @@
         {
         }
 
-        public ActionResult EditSingle(ParlayMaxPayoutSingleSelectQuery message)
-            => View(message, editSinglePath);
+        public async Task<ActionResult> EditSingle(ParlayMaxPayoutSingleSelectQuery message)
+            => await View(message, editSinglePath);
 
         [HttpPost]
-        public ActionResult EditMultiple(ParlayMaxPayoutMultipleSelectQuery message)
-            => View(message, editMultiplePath);
+        public async Task<ActionResult> EditMultiple(ParlayMaxPayoutMultipleSelectQuery message)
+            => await View(message, editMultiplePath);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult UpdateSingle(ParlayMaxPayoutUpdateSingleQuery message)
-            => Json(message);
+        public async Task<ActionResult> UpdateSingle(ParlayMaxPayoutUpdateSingleQuery message)
+            => await Json(message);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult UpdateMultiple(ParlayMaxPayoutUpdateMultipleQuery message)
-            => Json(message);
+        public async Task<ActionResult> UpdateMultiple(ParlayMaxPayoutUpdateMultipleQuery message)
+            => await Json(message);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult CheckDownline(ParlayMaxPayoutCheckDownlineQuery message)
-            => Json(message);
+        public async Task<ActionResult> CheckDownline(ParlayMaxPayoutCheckDownlineQuery message)
+            => await Json(message);
     }
 }

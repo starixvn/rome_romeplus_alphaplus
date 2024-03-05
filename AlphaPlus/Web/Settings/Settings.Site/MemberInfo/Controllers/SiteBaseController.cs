@@ -24,19 +24,19 @@
             this.mediator = mediator;
         }
 
-        protected ActionResult View<TResponse>(IRequest<TResponse> message, string viewName)
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
             => (message as MemberInfoBaseQuery).IsValid()
-                ? View(viewName, mediator.Send(message))
+                ? View(viewName, await mediator.Send(message))
                 : View(InvalidPageViewPath);
 
-        protected FileContentResult ExcelView(IRequest<ExcelFileViewModel> message)
+        protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
             => (message as MemberInfoBaseQuery).IsValid()
-                ? GetExcelContent(mediator.Send(message).Result)
+                ? GetExcelContent(await mediator.Send(message))
                 : GetExcelContent(new ExcelFileViewModel(InvalidExcelFileName, new byte[] { }));
 
-        protected ActionResult Json<TResponse>(IRequest<TResponse> message)
+        protected async Task<ActionResult> Json<TResponse>(IRequest<TResponse> message)
             => (message as MemberInfoBaseQuery).IsValid() ? 
-                Json(mediator.Send(message)) :
+                Json(await mediator.Send(message)) :
                 Json(Result.CreateErrorResult(Lang.NotAuthorized, BadRequestErrorCode));
 
         private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)

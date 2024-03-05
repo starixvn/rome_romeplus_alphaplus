@@ -31,15 +31,15 @@
         [Route("CustomerList/agent")]
         [Route("CustomerList/member")]
         [HttpGet]
-        public ActionResult Index(CustomerListRequest message)
+        public async Task<ActionResult> Index(CustomerListRequest message)
         {
             message.SupportAutoTransfer = transferService.IsEnableAutoTransfer(viewer,AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
             message.AutoTransferAffect = transferService.IsAutoTransferAffect(viewer, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
-            return View(message, IndexPath);
+            return await View(message, IndexPath);
         }
 
         [HttpPost]
-        public ActionResult GetCustomerListData(FetchDownlinesListRequest message)
+        public async Task<ActionResult> GetCustomerListData(FetchDownlinesListRequest message)
         {
             if (!message.IsValid())
             {
@@ -61,10 +61,10 @@
 
             message.SupportAutoTransfer = transferService.IsEnableAutoTransfer(viewer, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
             message.AutoTransferAffect = transferService.IsAutoTransferAffect(viewer, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
-            return Json(mediator.Send(message));
+            return Json(await mediator.Send(message));
         }
 
-        public ActionResult GetCustomerAllStatus(CustomerStatusQuery message)
+        public async Task<ActionResult> GetCustomerAllStatus(CustomerStatusQuery message)
         {
             if (!message.IsValid())
             {
@@ -73,11 +73,11 @@
 
             message.SupportAutoTransfer = transferService.IsEnableAutoTransfer(viewer, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
             message.AutoTransferAffect = transferService.IsAutoTransferAffect(viewer, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
-            return Json(mediator.Send(message));
+            return Json(await mediator.Send(message));
         }
 
         [HttpPost]
-        public ActionResult MultipleEditPopup(CustomerStatusMultipleQuery message)
+        public async Task<ActionResult> MultipleEditPopup(CustomerStatusMultipleQuery message)
         {
             if (!message.IsValid())
             {
@@ -86,11 +86,11 @@
 
             message.SupportAutoTransfer = transferService.IsEnableAutoTransfer(viewer, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
             message.AutoTransferAffect = transferService.IsAutoTransferAffect(viewer, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
-            return Json(mediator.Send(message));
+            return Json(await mediator.Send(message));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult UpdateCustomerStatus(CustomerNonProductStatusCommand command)
+        public async Task<ActionResult> UpdateCustomerStatus(CustomerNonProductStatusCommand command)
         {
             if (!command.IsValid())
             {
@@ -100,21 +100,21 @@
             command.SupportAutoTransfer = transferService.IsEnableAutoTransfer(viewer, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
             command.AutoTransferAffect = transferService.IsAutoTransferAffect(viewer, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
 
-            return Json(mediator.Send(command));
+            return Json(await mediator.Send(command));
         }
 
-        public ActionResult MultipleDoubleComm(MultipleDoubleCommRequest message)
-            => View(message, MultipleDoubleCommPath);
+        public async Task<ActionResult> MultipleDoubleComm(MultipleDoubleCommRequest message)
+            => await View(message, MultipleDoubleCommPath);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult UpdateMultipleDoubleComm(UpdateMultipleDoubleCommCommand command)
+        public async Task<ActionResult> UpdateMultipleDoubleComm(UpdateMultipleDoubleCommCommand command)
         {
             if (!command.IsValid())
             {
                 return Json(ErrorDefault);
             }
 
-            return Json(mediator.Send(command));
+            return Json(await mediator.Send(command));
         }
     }
 }

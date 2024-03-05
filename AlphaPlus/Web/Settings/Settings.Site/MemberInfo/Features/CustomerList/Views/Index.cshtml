@@ -1,10 +1,16 @@
-﻿@* @using Newtonsoft.Json
-@using Alpha.MemberInfo.Configurations;
-@using Alpha.MemberInfo.Features.CustomerList.AppResources.ProductResources
-@model CustomerListViewModel
+﻿@using Newtonsoft.Json
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.CustomerListResources
+@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources
+@using AlphaPlus.Settings.Site.Features.Shared.ViewModels
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.MemberInfo.API.AppResources
+
+@model AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.CustomerListViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Customer List";
 
     var commissionGroupClass = Model.IsMobileView || (Model.SearchAccountLevel.IsAgentLevel() && Model.Language.Equals("th-TH")) ? "none" : "desktop";
@@ -15,8 +21,8 @@
 
 @section Styles {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
-    @StaticResources.RenderStylesWithDarkMode("~/Features/CustomerList/Bundles/customer-list")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/CustomerList/Bundles/customer-list-07")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/CustomerList/Bundles/customer-list")
+    @StaticResources.RenderStylesWithMedia(767, "~/MemberInfo/Features/CustomerList/Bundles/customer-list-07")
 }
 
 <div class="customer-list">
@@ -29,9 +35,41 @@
             </span>
         }
 
-        @if (!string.IsNullOrWhiteSpace(Request.Url.Query))
+        @if (!string.IsNullOrWhiteSpace(AlphaContext.Current.Request.QueryString.ToString()))
         {
-            @Breadcrumb.Render(new BreadcrumbLevelViewModel(Model.BreadcrumbLevel, Model.BreadcrumbLevelJson), Request.Url.Query, null)
+            var viewModel = new BreadcrumbLevelViewModel(Model.BreadcrumbLevel, Model.BreadcrumbLevelJson);
+            var linkLength = viewModel.BreadcrumbLevel != null ? viewModel.BreadcrumbLevel.Count() : 0;
+            var linkIndex = 0;
+            var lastLinkIndex = linkLength - 1;
+
+            if (linkLength > 0)
+            {
+                <div class="breadcrumb-container">
+                    <ul class="breadcrumb">
+                        @foreach (var custinfo in Model.BreadcrumbLevel)
+                        {
+                            // TODO: Last customer just need to render by text, not link, will refactor soon
+                            if (linkIndex == lastLinkIndex)
+                            {
+                                <li>
+                                    @(custinfo.CustName)
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a class="breadcrumb-link"
+                                    href="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.QueryString.ToString(), null, linkIndex))">
+                                        @(custinfo.CustName)
+                                    </a>
+                                </li>
+                            }
+
+                            linkIndex++;
+                        }
+                    </ul>
+                </div>
+            }
         }
     </div>
 
@@ -185,11 +223,66 @@
             <tr class="thead-row2">
                 @if (Model.SearchAccountLevel.IsAgentLevel())
                 {
-                    @RenderMemberHeader(commissionGroupClass)
+                    <th class="header commission startGroup @commissionGroupClass">
+                        @CustomerListResources.AComm1
+                    </th>
+                    <th class="header commission @commissionGroupClass">
+                        @CustomerListResources.AComm2
+                    </th>
+                    <th class="header commission @commissionGroupClass">
+                        @CustomerListResources.AComm3
+                    </th>
+                    if (Model.IsShowMyanmarOdds)
+                    {
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.AccountMyanmarOdds
+                        </th>
+                    }
+                    <th class="header commission @commissionGroupClass">
+                        @CustomerListResources.PComm1
+                    </th>
+                    <th class="header commission @commissionGroupClass">
+                        @CustomerListResources.PComm2
+                    </th>
+                    <th class="header commission @commissionGroupClass @(Model.IsShowMyanmarOdds ? string.Empty : "endGroup") ">
+                        @CustomerListResources.PComm3
+                    </th>
+                    if (Model.IsShowMyanmarOdds)
+                    {
+                        <th class="header commission @commissionGroupClass" @(Model.IsShowMyanmarOdds ? "endGroup" : string.Empty)>
+                            @CustomerListResources.PlayerMyanmarOdds
+                        </th>
+                    }
                 }
                 else
                 {
-                    @RenderMasterAgentHeader(commissionGroupClass)
+                    <th class="header @commissionGroupClass commission startGroup">
+                        @CustomerListResources.GroupA
+                    </th>
+                    if (!Model.IsShowMyanmarOdds)
+                    {
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupB
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupC
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupD
+                        </th>
+                    }
+                    <th class="header @commissionGroupClass commission">
+                        @CustomerListResources.Group1X2
+                    </th>
+                    <th class="header @commissionGroupClass commission @(Model.IsShowMyanmarOdds ? string.Empty : "endGroup") ">
+                        @CustomerListResources.Other
+                    </th>
+                    if (Model.IsShowMyanmarOdds)
+                    {
+                        <th class="header @commissionGroupClass commission @(Model.IsShowMyanmarOdds ? "endGroup" : string.Empty) ">
+                            @CustomerListResources.MyanmarOdds
+                        </th>
+                    }
                 }
             </tr>
         </thead>
@@ -248,7 +341,7 @@
     <input type="hidden" id="showEditMultiple" value='@(Model.HideEditMultiple ? "false" : "true")'>
     <input type="hidden" id="isMobileView" value='@(Model.IsMobileView ? "true" : "false")'>
     <input type="hidden" id="breadcrumbLevelJson" value='@Model.BreadcrumbLevelJson'>
-    <input type="hidden" id="oldMainUrl" value='@MicroSites.OldMainUrl()'>
+    <input type="hidden" id="oldMainUrl" value='@MicroSites.Settings()'>
     <input type="hidden" id="reportsUrl" value='@MicroSites.ReportsUrl()'>
     <input type="hidden" id="memberInfoUrl" value='@MicroSites.MemberInfoUrl()'>
     <input type="hidden" id="limitedDateToShowInfo" value='@(Model.LimitedDateToShowInfo ? "true" : "false")'>
@@ -282,71 +375,6 @@
         var customerListData = @Html.Raw(JsonConvert.SerializeObject(Model.CustomerListPagingViewModel, Formatting.None));
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/data-table")
-    @StaticResources.RenderScripts("~/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
-    @StaticResources.RenderScripts("~/Features/CustomerList/Bundles/customer-list")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/CustomerList/Bundles/customer-list")
 }
-
-@helper RenderMasterAgentHeader(string commissionGroupClass)
-{
-    <th class="header @commissionGroupClass commission startGroup">
-        @CustomerListResources.GroupA
-    </th>
-    if (!Model.IsShowMyanmarOdds)
-    {
-        <th class="header @commissionGroupClass commission">
-            @CustomerListResources.GroupB
-        </th>
-        <th class="header @commissionGroupClass commission">
-            @CustomerListResources.GroupC
-        </th>
-        <th class="header @commissionGroupClass commission">
-            @CustomerListResources.GroupD
-        </th>
-    }
-    <th class="header @commissionGroupClass commission">
-        @CustomerListResources.Group1X2
-    </th>
-    <th class="header @commissionGroupClass commission @(Model.IsShowMyanmarOdds ? string.Empty : "endGroup") ">
-        @CustomerListResources.Other
-    </th>
-    if (Model.IsShowMyanmarOdds)
-    {
-        <th class="header @commissionGroupClass commission @(Model.IsShowMyanmarOdds ? "endGroup" : string.Empty) ">
-            @CustomerListResources.MyanmarOdds
-        </th>
-    }
-}
-
-@helper RenderMemberHeader(string commissionGroupClass)
-{
-    <th class="header commission startGroup @commissionGroupClass">
-        @CustomerListResources.AComm1
-    </th>
-    <th class="header commission @commissionGroupClass">
-        @CustomerListResources.AComm2
-    </th>
-    <th class="header commission @commissionGroupClass">
-        @CustomerListResources.AComm3
-    </th>
-    if (Model.IsShowMyanmarOdds)
-    {
-        <th class="header commission @commissionGroupClass">
-            @CustomerListResources.AccountMyanmarOdds
-        </th>
-    }
-    <th class="header commission @commissionGroupClass">
-        @CustomerListResources.PComm1
-    </th>
-    <th class="header commission @commissionGroupClass">
-        @CustomerListResources.PComm2
-    </th>
-    <th class="header commission @commissionGroupClass @(Model.IsShowMyanmarOdds ? string.Empty : "endGroup") ">
-        @CustomerListResources.PComm3
-    </th>
-    if (Model.IsShowMyanmarOdds)
-    {
-        <th class="header commission @commissionGroupClass" @(Model.IsShowMyanmarOdds ? "endGroup" : string.Empty)>
-            @CustomerListResources.PlayerMyanmarOdds
-        </th>
-    }
-} *@

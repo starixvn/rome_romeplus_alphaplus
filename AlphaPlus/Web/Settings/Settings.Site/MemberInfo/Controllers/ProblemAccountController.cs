@@ -16,22 +16,22 @@
         public async Task<ActionResult> ConfirmAddToWatchlist(ConfirmAddToWatchlistQuery message)
             => await ViewAsync(message, ConfirmAddToWatchlistPath);
 
-        public ActionResult Index(IndexRequest message)
-            => View(message, "Index");
+        public async Task<ActionResult> Index(IndexRequest message)
+            => await View(message, "Index");
 
         [HttpGet]
-        public ActionResult Update(UpdateProblemAccountRequest message)
-            => View(message, "Update");
+        public async Task<ActionResult> Update(UpdateProblemAccountRequest message)
+            => await View(message, "Update");
         
 
-        public ActionResult GetProblemAccounts(GetProblemAccountRequest message)
-            => Json(message);
+        public async Task<ActionResult> GetProblemAccounts(GetProblemAccountRequest message)
+            => await Json(message);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult UpdateCommand(UpdateProblemAccountCommand message)
-            => Json(message);
+        public async Task<ActionResult> UpdateCommand(UpdateProblemAccountCommand message)
+            => await Json(message);
 
-        public ActionResult Excel(ProblemAccountExcelQuery message)
-            => ExcelView(message);
+        public async Task<ActionResult> Excel(ProblemAccountExcelQuery message)
+            => await ExcelView(message);
     }
 }

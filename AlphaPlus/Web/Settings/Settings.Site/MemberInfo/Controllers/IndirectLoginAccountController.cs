@@ -25,8 +25,8 @@
         public async Task<ActionResult> ValidateAccount(ValidateAccountQuery message)
             => await JsonAsync(message);
 
-        public ActionResult UpdatePassword(UpdatePasswordQuery message)
-            => View(message, "~/Views/IndirectLoginAccount/UpdatePassword.cshtml");
+        public async Task<ActionResult> UpdatePassword(UpdatePasswordQuery message)
+            => await View(message, "~/Views/IndirectLoginAccount/UpdatePassword.cshtml");
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> UpdatePassword(UpdatePasswordCommand message)
