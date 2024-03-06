@@ -1,7 +1,6 @@
 ﻿namespace AlphaPlus.Settings.Site.Requests.ProblemAccount
 {
     using System;
-    using System.Web.Mvc;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
@@ -23,12 +22,10 @@
 
         public int UplineId { get; set; }
 
-        [AllowHtml]
         public string UplineName { get; set; }
 
         public byte SearchRoleId { get; set; }
 
-        [AllowHtml]
         public string UserName { get; set; }
     }
 }

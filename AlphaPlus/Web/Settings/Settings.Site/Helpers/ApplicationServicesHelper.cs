@@ -2,7 +2,7 @@ using System.Resources;
 using Alpha.Products.Core.Configuration;
 using Alpha.Products.Core.Services;
 using Alpha.Products.Core.ViewModels;
-using Alpha.SecurityCode.Services;
+using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
@@ -49,6 +49,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using RestSharp;
 using Sunplus.Agent.Utilities;
 using MediatR;
+using AlphaPlus.SecurityCode.Web;
+using AlphaPlus.SecurityCode.Configurations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -64,6 +67,10 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddHealthChecks();
                 
             services
+                .Configure<JsonOptions>(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                })
                 .AddControllersWithViews()
                 .AddRazorOptions(options =>
                 {
@@ -92,17 +99,21 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddHttpClient<ICreateAccountService, CreateAccountService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
             SimpleServiceLocator.Instance
+                .Register<IRemotingRefService>(new RemotingRefService())
+                .Register<Func<int, string>>(new CacheRefServiceImpl(SimpleServiceLocator.GetService<IRemotingRefService>()).GetProductName)
+                .Register<Func<string, string>>(ProductResources.ResourceManager.GetString)
+                .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl)
+                .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert)
                 .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), AppDomain.CurrentDomain.BaseDirectory + "/ProductConfigs/ProductConfiguration.json"))
                 .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
                 .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
-                .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>>(new SettingMultipleViewModelFactory())
-                // .Register<Func<int, string>>(new CacheRefServiceImpl(provider.GetRequiredService<IRemotingRefService>()).GetProductName)
-                .Register<Func<string, string>>(ProductResources.ResourceManager.GetString)
-                .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl)
-                .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert);
+                .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>>(new SettingMultipleViewModelFactory());
 
             services
-                .AddSingleton<SecurityCodeChecker, SecurityCodeCheckerImpl>()
+                .AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>()
+                .AddSingleton<ISecurityCodeHttpContext, SecurityCodeHttpContext>()
+                .AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>()
+                .Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode))
                 .AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>()
                 .AddSingleton<IPService, IPServiceImpl>()
                 .AddSingleton<RequestInfo.IPHelper, IPHelperImpl>()

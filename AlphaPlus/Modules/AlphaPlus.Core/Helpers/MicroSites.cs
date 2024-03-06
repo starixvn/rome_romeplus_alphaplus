@@ -1,5 +1,3 @@
-using AlphaPlus.Core.Configurations;
-
 namespace AlphaPlus.Core.Helpers;
 
 public static class MicroSites
@@ -14,7 +12,8 @@ public static class MicroSites
         { "ExTotalBetsForecast", ExTotalBetsForecastUrl},
         { "HowToUse", HowToUseUrl},
         { "AccountInfo", AccountInfoUrl},
-        { "ViewLog", ViewLogUrl }
+        { "ViewLog", ViewLogUrl },
+        { "OldMain", OldMainUrl}
     };
 
     public static string GetMicroSiteUrl(string microSiteName, string virtualPath)
@@ -24,32 +23,35 @@ public static class MicroSites
         => AppPathHelper.GetAppPath("/main", virtualPath);
 
     public static string ReportsUrl(string virtualPath = "~/")
-        => AppPathHelper.GetAppPath(AppSettings.ReportsAppPath, virtualPath);
+        => AppPathHelper.GetAppPath("/reports", virtualPath);
 
     public static string BetListsUrl(string virtualPath = "~/")
-        => AppPathHelper.GetAppPath(AppSettings.BetListsAppPath, virtualPath);
+        => AppPathHelper.GetAppPath("/tickets", virtualPath);
 
     public static string MemberInfoUrl(string virtualPath = "~/")
         => AppPathHelper.GetAppPath("/settings", virtualPath);
 
     public static string MessageUrl(string virtualPath = "~/")
-        => AppPathHelper.GetAppPath(AppSettings.MessageAppPath, virtualPath);
+        => AppPathHelper.GetAppPath("/features", virtualPath);
 
     public static string ExTotalBetsForecastUrl(string virtualPath = "~/")
-        => AppPathHelper.GetAppPath(AppSettings.ExTotalBetsForecastAppPath, virtualPath);
+        => AppPathHelper.GetAppPath("/tickets", virtualPath);
 
     public static string HowToUseUrl(string virtualPath = "~/")
-        => AppPathHelper.GetAppPath(AppSettings.HowToUseAppPath, virtualPath);
+        => AppPathHelper.GetAppPath("/features", virtualPath);
 
     public static string AccountInfoUrl(string virtualPath = "~/")
         => AppPathHelper.GetAppPath("/account", virtualPath);
 
     public static string TransferUrl(string virtualPath = "~/")
-        => AppPathHelper.GetAppPath(AppSettings.TransferAppPath, virtualPath);
+        => AppPathHelper.GetAppPath("/settings", virtualPath);
 
     public static string ViewLogUrl(string virtualPath = "~/")
-        => AppPathHelper.GetAppPath(AppSettings.ViewLogsAppPath, virtualPath);
+        => AppPathHelper.GetAppPath("/settings", virtualPath);
 
     public static string Settings(string virtualPath = "~/")
+        => AppPathHelper.GetAppPath("/settings", virtualPath);
+
+    public static string OldMainUrl(string virtualPath = "~/")
         => AppPathHelper.GetAppPath("/settings", virtualPath);
 }

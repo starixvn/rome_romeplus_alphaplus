@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.Site.ViewModels.Components
 {
     using System.Collections.Generic;
-    using System.Web.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class ReviewedStatusSelectionViewModel
     {

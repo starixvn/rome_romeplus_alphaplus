@@ -6,6 +6,7 @@
 
     public class CustomerStatusQuery : CustomerStatusQueryBase, IRequest<CustomerStatusViewModel>
     {
+        public CustomerStatusQuery() : this(null){}
         public CustomerStatusQuery(IUser viewer) : base(viewer)
         {
         }

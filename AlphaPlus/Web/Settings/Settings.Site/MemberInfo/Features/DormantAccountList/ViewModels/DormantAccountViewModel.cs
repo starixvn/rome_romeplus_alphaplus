@@ -2,13 +2,13 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
     using AlphaPlus.Settings.Site.Features.DormantAccountList.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
     using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class DormantAccountViewModel
     {

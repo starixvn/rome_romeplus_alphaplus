@@ -13,7 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Alpha.Products.Core" Version="1.0.1.6-netcore01" />
-    <PackageReference Include="Alpha.SecurityCode" Version="4.0.0" />
     <PackageReference Include="Sunplus.Agent.Utilities" Version="4.0.0" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
     <PackageReference Include="Gma.QrCodeNet.Encoding" Version="2.0.0" />
@@ -39,5 +38,6 @@
     <ProjectReference Include="..\..\..\Services\Settings\MemberInfo\MemberInfo.Domain\MemberInfo.Domain.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
     <ProjectReference Include="..\..\..\Services\Settings\MemberInfo\MemberInfo.API\MemberInfo.API.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
   </ItemGroup>
 </Project>

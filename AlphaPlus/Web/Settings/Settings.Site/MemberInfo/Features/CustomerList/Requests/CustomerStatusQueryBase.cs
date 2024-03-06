@@ -3,15 +3,17 @@
     using AlphaPlus.Settings.Site.Features.Shared.Requests;
     using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using AlphaPlus.Settings.Site.Models;
 
     public class CustomerStatusQueryBase : BaseRequest
     {
         private readonly IUser viewer;
 
+        public CustomerStatusQueryBase() : this(null){}
         public CustomerStatusQueryBase(IUser viewer)
             : base(viewer)
         {
-            this.viewer = viewer;
+            this.viewer = viewer ?? new User(UserSession.Current);
         }
 
         public virtual int SearchAccountId { get; set; }

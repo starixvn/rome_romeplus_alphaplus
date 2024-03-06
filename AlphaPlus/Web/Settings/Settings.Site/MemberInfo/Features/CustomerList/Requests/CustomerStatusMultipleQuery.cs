@@ -8,6 +8,7 @@
 
     public class CustomerStatusMultipleQuery : CustomerStatusQueryBase, IRequest<IEnumerable<ISettingItemMultipleViewModel>>
     {
+        public CustomerStatusMultipleQuery() : this(null) {}
         public CustomerStatusMultipleQuery(IUser viewer) : base(viewer)
         {
         }

@@ -17,7 +17,7 @@
     using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.Params;
-    using Alpha.SecurityCode.Services;
+    using AlphaPlus.SecurityCode.Services;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models;
     using AlphaPlus.Settings.MemberInfo.API.Requests;
@@ -37,14 +37,14 @@
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel> settingMultipleViewModelFactory;
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory;
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory;
-        private readonly SecurityCodeChecker securityCodeChecker;
+        private readonly ISecurityCodeChecker securityCodeChecker;
         private readonly IBrowserHelper browserHelper;
         private readonly IPService ipService;
         private readonly TransferService transferService;
 
         public CustomerListHandler(
             CustomerListService customerListService,
-            SecurityCodeChecker securityCodeChecker,
+            ISecurityCodeChecker securityCodeChecker,
             IPService ipService,
             IBrowserHelper browserHelper,
             TransferService transferService)
@@ -58,7 +58,7 @@
             GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel> settingViewModelFactory,
             GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel> statusViewModelFactory,
             IPService ipService,
-            SecurityCodeChecker securityCodeChecker,
+            ISecurityCodeChecker securityCodeChecker,
             IBrowserHelper browserHelper,
             TransferService transferService)
         {

@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold.ViewModels
 {
     using System.Collections.Generic;
-    using System.Web.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class StatusSelectionViewModel
     {

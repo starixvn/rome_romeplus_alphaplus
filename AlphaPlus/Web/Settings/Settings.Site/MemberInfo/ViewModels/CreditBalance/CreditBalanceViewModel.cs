@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
     using AlphaPlus.Core.Helpers;
     using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Requests.CreditBalance;
     using Sunplus.Agent.Utilities;
 
