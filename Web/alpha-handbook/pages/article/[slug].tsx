@@ -97,13 +97,13 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
         ''
       )}
 
-      <div className="mt-10 text-center">
+      <div className="mt-10  ">
         <PageTitle>
           <span>{title}</span>
         </PageTitle>
       </div>
-      <p>{publishedAt}</p>
-      <div className="mt-10 article-content" dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="top-info"><div className="item-info"><span className="icon-calendar"></span>{publishedAt}</div></div>
+      <div className="article-content" dangerouslySetInnerHTML={{ __html: content }} />
 
       <div className="mt-20 flex flex-wrap">
         {categories.data.map((tag) => (
