@@ -48,6 +48,7 @@ using Fanex.RemotingRef;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using RestSharp;
 using Sunplus.Agent.Utilities;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -60,6 +61,19 @@ namespace AlphaPlus.Settings.Site.Helpers
             var qrCodeMemberLoginConfig = configuration.GetValue<string>("QRCodeMemberLogin:Config");
 
             services
+                .AddHealthChecks();
+                
+            services
+                .AddControllersWithViews()
+                .AddRazorOptions(options =>
+                {
+                    options.ViewLocationFormats.Clear();
+                    options.ViewLocationFormats.Add("/{1}/Views/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+                });
+            
+            services
+                .AddMediatR(typeof(Program).Assembly)
                 .AddFanexData(configuration)
                 .AddFanexLogging(configuration)
                 .AddRemotingRef(configuration)
