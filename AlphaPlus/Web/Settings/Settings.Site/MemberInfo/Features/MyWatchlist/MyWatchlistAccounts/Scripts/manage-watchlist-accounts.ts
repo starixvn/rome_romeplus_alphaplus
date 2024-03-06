@@ -138,7 +138,7 @@ class ManageWatchlistAccounts extends ThresholdInputsBase {
         }
 
         if (result.Code === 1) {
-            this.alert.showError(result.message, CancellationToken cancellation);
+            this.alert.showError(result.message);
             return;
         }
 

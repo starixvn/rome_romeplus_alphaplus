@@ -76,7 +76,7 @@ class MemberRequests {
         var isDisable = this.convertAttributeToBool(selectedProduct.data("disabled"));
 
         if (isDisable) {
-            this.$msgWarning.html(this.disabledProductWarningmessage, CancellationToken cancellation).removeClass("hide");
+            this.$msgWarning.html(this.disabledProductWarningMessage).removeClass("hide");
             this.$msgInfo.addClass("hide");
             return;
         }

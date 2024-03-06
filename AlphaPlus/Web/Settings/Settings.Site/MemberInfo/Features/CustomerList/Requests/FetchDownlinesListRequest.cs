@@ -6,6 +6,7 @@
 
     public class FetchDownlinesListRequest : FetchDownlinesListRequesBase, IRequest<CustomerListPagingViewModel>
     {
+        public FetchDownlinesListRequest() : this(null){}
         public FetchDownlinesListRequest(IUser viewer) : base(viewer)
         {
         }

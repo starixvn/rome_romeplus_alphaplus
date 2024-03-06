@@ -217,7 +217,7 @@ class CopyAccount {
 
     addTooltipError = ($errorContainer: JQuery, message: string) => {
         $errorContainer.parent().addClass("error-input");
-        $errorContainer.html(message, CancellationToken cancellation);
+        $errorContainer.html(message);
         $errorContainer.removeClass("hidden");
     }
 
@@ -321,7 +321,7 @@ class CopyAccount {
             success: (data) => {
                 var result = this.safelyParseJSON(data);
                 if (result && result.IsNotOk) {
-                    this.showErrorMessage(result.message, CancellationToken cancellation);
+                    this.showErrorMessage(result.message);
                 } else {
                     this.$result.append(data);
                     this.$result.removeClass("hidden");
@@ -417,7 +417,7 @@ class CopyAccount {
                         this.removeTooltipError(this.$sourceAccountErrMsg);
                         this.inValidSourceAccount = false;
                     } else {
-                        this.addTooltipError(this.$sourceAccountErrMsg, result.message, CancellationToken cancellation);
+                        this.addTooltipError(this.$sourceAccountErrMsg, result.message);
                         this.$creditRange.addClass("hidden");
                         this.inValidSourceAccount = true;
                     }
@@ -483,9 +483,9 @@ class CopyAccount {
         };
     }
 
-    showErrorMessage = (message, CancellationToken cancellation) => {
+    showErrorMessage = (message) => {
         this.$messageContainer.removeClass('hidden').addClass('msg msg-error');
-        this.$messageContent.html(message, CancellationToken cancellation);
+        this.$messageContent.html(message);
     }
 
     validatePassword = () => {

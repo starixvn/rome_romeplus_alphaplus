@@ -23,10 +23,10 @@ class MyThresholdsSettings extends ThresholdInputsBase {
 
     private handleOnSuccess(result) {
         if (result.IsSuccessful) {
-            this.alert.showSuccess(result.message, CancellationToken cancellation);
+            this.alert.showSuccess(result.message);
             SiteHelper.closePopupAndReloadMainFrame();
         } else {
-            this.alert.showError(result.message, CancellationToken cancellation);
+            this.alert.showError(result.message);
         }
     }
 }

@@ -148,7 +148,7 @@ class CreditBalance {
                 });
         };
 
-        const typeaheadOptions: TypeaheadOptions = {
+        const typeaheadOptions: any = {
             minLength: 2,
             items: 10,
             name: "UserName",

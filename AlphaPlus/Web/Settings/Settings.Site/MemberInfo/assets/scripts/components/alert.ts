@@ -18,7 +18,7 @@ class Alert {
     public showSuccess(message: string) {
         this.divAlertMessage
             .addClass("msg msg-success")
-            .html(message, CancellationToken cancellation);
+            .html(message);
         this.divAlert.removeClass("hidden");
     }
 
@@ -32,7 +32,7 @@ class Alert {
     public show(code: number, message: string) {
         this.divAlertMessage
             .addClass("msg " + (code ? "msg-error" : "msg-success"))
-            .html(message, CancellationToken cancellation);
+            .html(message);
         this.divAlert.removeClass("hidden");
     }
 

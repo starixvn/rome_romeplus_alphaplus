@@ -2,7 +2,7 @@
 
 class BaseList {
     $: JQueryStatic;
-    topWindow: Window;
+    topWindow: any;
     reviewStatusComponent: SingleSelectionDropdownComponent;
     problemAccountPopup: ProblemAccountPopup;
     dateRangePickerComponent: DateRangePickerComponent;
@@ -37,7 +37,7 @@ class BaseList {
 
     constructor(
         $: JQueryStatic,
-        topWindow: Window,
+        topWindow: any,
         levelId: number,
         levelName: string,
         dateRangePickerComponent: DateRangePickerComponent,

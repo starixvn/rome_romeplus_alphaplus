@@ -151,7 +151,7 @@ class EditSettingPopup {
                     { usernames, custIds },
                     result => {
                         if (result && result.Code === 1) {
-                            this.topWindow.bootboxAlert(result.message, CancellationToken cancellation);
+                            this.topWindow.bootboxAlert(result.message);
                             return;
                         }
 

@@ -84,6 +84,22 @@ class CustomerList {
     }
 }
 
+$(() => {
+    $.ajaxSetup({
+        beforeSend: function (xhr) {
+            var antiXSRFToken = document.getElementsByName('__RequestVerificationToken');
+            if (antiXSRFToken.length > 0) {
+                xhr.setRequestHeader('RequestVerificationToken', (<HTMLInputElement>antiXSRFToken[0]).value);
+            }
+        },
+        error: function (xhr) {
+            if (xhr.status === 401 || xhr.status === 403) {
+                top.window.alpha.core.signOut();
+            }
+        }
+    });
+});
+
 $(function () {
     const viewModel = new CustomerListViewModel(
         parseInt($('#uplineRoleId').val()),

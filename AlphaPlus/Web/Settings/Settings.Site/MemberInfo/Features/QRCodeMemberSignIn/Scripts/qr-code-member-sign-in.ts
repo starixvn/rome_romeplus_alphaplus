@@ -136,9 +136,9 @@ class QRCodeMemberSignIn {
         });
     }
 
-    showErrorMessage = (message, CancellationToken cancellation) => {
+    showErrorMessage = (message) => {
         this.$messageContainer.removeClass('hidden').addClass('msg msg-error');
-        this.$messageContent.html(message, CancellationToken cancellation);
+        this.$messageContent.html(message);
     }
 
     checkingLocalStorage = () => {
@@ -280,7 +280,7 @@ class QRCodeMemberSignIn {
             }, 300);
         });
 
-        this.$usernameCopyFrom.on('input', this.checkErrorAndShowmessage, CancellationToken cancellation);
+        this.$usernameCopyFrom.on('input', this.checkErrorAndShowMessage);
     }
 
     checkErrorAndShowMessage = () => {
@@ -291,18 +291,18 @@ class QRCodeMemberSignIn {
             this.$submitBtn.prop('disabled', true);
         }
 
-        if (this.showCreateFromUnopenedMemberMessage && this.cannotCreateClosedMemberQRCodemessage, CancellationToken cancellation) {
-            this.showErrorMessage(this.cannotCreateClosedMemberQRCodemessage, CancellationToken cancellation);
+        if (this.showCreateFromUnopenedMemberMessage && this.cannotCreateClosedMemberQRCodeMessage) {
+            this.showErrorMessage(this.cannotCreateClosedMemberQRCodeMessage);
             return true;
         }
 
-        if (this.inValidCustomerCopyFrom && this.memberAccountInvalidmessage, CancellationToken cancellation) {
-            this.showErrorMessage(this.memberAccountInvalidmessage, CancellationToken cancellation);
+        if (this.inValidCustomerCopyFrom && this.memberAccountInvalidMessage) {
+            this.showErrorMessage(this.memberAccountInvalidMessage);
             return true;
         }
 
-        if (this.invalidCredit && this.givenCreditMustBeBetweenMinMaxmessage, CancellationToken cancellation) {
-            this.showErrorMessage(this.givenCreditMustBeBetweenMinMaxmessage, CancellationToken cancellation);
+        if (this.invalidCredit && this.givenCreditMustBeBetweenMinMaxMessage) {
+            this.showErrorMessage(this.givenCreditMustBeBetweenMinMaxMessage);
             return true;
         }
 

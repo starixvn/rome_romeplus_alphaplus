@@ -12,7 +12,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Alpha.Products.Core" Version="1.0.1.6-netcore01" />
+    <PackageReference Include="Alpha.Products.Core" Version="1.0.1.5" />
     <PackageReference Include="Sunplus.Agent.Utilities" Version="4.0.0" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
     <PackageReference Include="Gma.QrCodeNet.Encoding" Version="2.0.0" />

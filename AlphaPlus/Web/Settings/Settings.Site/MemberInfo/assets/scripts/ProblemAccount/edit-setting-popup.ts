@@ -81,7 +81,7 @@ class ProblemAccountPopup {
                             this.indexManager.memberList.reloadPage();
                             return;
                         }
-                        this.topWindow.bootboxAlert(result.message, CancellationToken cancellation);
+                        this.topWindow.bootboxAlert(result.message);
                     });
             }
         );

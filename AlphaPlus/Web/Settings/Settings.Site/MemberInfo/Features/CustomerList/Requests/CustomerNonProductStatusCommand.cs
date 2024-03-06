@@ -1,16 +1,19 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 {
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using AlphaPlus.Settings.Site.Models;
     using MediatR;
 
-    public class CustomerNonProductStatusCommand : CustomerStatusQueryBase, IRequest<Result>
+    public class CustomerNonProductStatusCommand : CustomerStatusQueryBase, IRequest<Settings.MemberInfo.Domain.Models.Result>
     {
         private readonly IUser viewer;
 
+        public CustomerNonProductStatusCommand() : this(null){}
         public CustomerNonProductStatusCommand(IUser viewer) : base(viewer)
         {
-            this.viewer = viewer;
+            this.viewer = viewer ?? new User(UserSession.Current);
         }
 
 

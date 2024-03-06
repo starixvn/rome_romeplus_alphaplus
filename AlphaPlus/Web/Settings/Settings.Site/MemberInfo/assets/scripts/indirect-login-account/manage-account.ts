@@ -57,7 +57,7 @@ class ManageAccount {
                     } else if (data.Code === 5001) {
                         self.topWindow.popupManager.open(self.rootURL + "UpdatePassword?" + queryString, undefined, 530, 280);
                     } else {
-                        self.topWindow.bootboxAlert(data.message, CancellationToken cancellation);
+                        self.topWindow.bootboxAlert(data.message);
                     }
                 },
                 complete: self.$.unblockUI

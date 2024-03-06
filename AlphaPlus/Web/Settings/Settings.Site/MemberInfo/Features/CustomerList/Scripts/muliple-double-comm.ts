@@ -17,9 +17,9 @@
         this.$('.btn-submit').click(event => this.submitEvent(event));
     };
 
-    showErrorMessage = (message, CancellationToken cancellation) => {
+    showErrorMessage = (message) => {
         this.$messageContainer.removeClass('hidden').addClass('msg msg-error');
-        this.$messageContent.html(message, CancellationToken cancellation);
+        this.$messageContent.html(message);
     }
 
     reloadFrame = () => {

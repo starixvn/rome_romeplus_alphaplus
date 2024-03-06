@@ -6,6 +6,7 @@
         "sourceMap": true,
         "target": "es5"
     },
-    "include": ["./assets/scripts/**/*"],
+    "include": ["./**/*"],
+    "exclude": ["./**/*/tests/**/*", "./**/*/typings/**/*", "./**/*/ClientApp/**/*", "./node_modules/**/*"],
     "compileOnSave": true
 }

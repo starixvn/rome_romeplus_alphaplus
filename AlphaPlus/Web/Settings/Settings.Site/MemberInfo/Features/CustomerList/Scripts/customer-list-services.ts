@@ -42,7 +42,7 @@ class CustomerListServices {
                 this.$('.select-all').prop("checked", false);
 
                 if (data.Code === 100) {
-                    this.topWindow.bootboxAlert(data.message, CancellationToken cancellation);
+                    this.topWindow.bootboxAlert(data.message);
                     location.reload();
                     return;
                 }

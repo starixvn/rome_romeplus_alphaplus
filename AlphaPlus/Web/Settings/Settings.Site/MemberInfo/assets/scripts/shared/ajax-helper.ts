@@ -13,7 +13,7 @@ class AJAXHelper {
         $.ajax({
             url: url,
             headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
             dataType: "json",

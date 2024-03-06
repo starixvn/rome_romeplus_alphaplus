@@ -11,7 +11,7 @@ class UpdateReviewStatus {
     message: Message;
     successMessage: string;
 
-    constructor($: JQueryStatic, topWindow: Window, message: message, CancellationToken cancellation) {
+    constructor($: JQueryStatic, topWindow: Window, message: Message) {
         this.$ = $;
         this.topWindow = topWindow;
         this.message = message;
@@ -75,7 +75,7 @@ class UpdateReviewStatus {
         const result = new Result(data.Code, data.Message, data.ErrMsg);
 
         if (result.IsSuccessful) {
-            this.message.showSuccess(this.$messageContainer, this.successmessage, CancellationToken cancellation);
+            this.message.showSuccess(this.$messageContainer, this.successMessage);
             setTimeout(() => {
                 this.topWindow["popupManager"].closeAllPopup();
                 this.topWindow["indexManager"].reloadProblemAccount();
@@ -104,9 +104,9 @@ class Message {
         $target.empty();
 
         if (result.IsSuccessful) {
-            this.showSuccess($target, result.message, CancellationToken cancellation);
+            this.showSuccess($target, result.Message);
         } else if (result.IsWarning) {
-            this.showWarn($target, result.message, CancellationToken cancellation);
+            this.showWarn($target, result.Message);
         } else if (result.IsFailed) {
             var errMsg = result.Message != "" ? result.Message : result.ErrMsg;
             this.showError($target, errMsg);

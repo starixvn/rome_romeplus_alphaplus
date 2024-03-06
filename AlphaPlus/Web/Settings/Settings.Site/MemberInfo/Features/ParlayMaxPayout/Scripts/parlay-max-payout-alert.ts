@@ -35,7 +35,7 @@ class AlertService {
     }
 
     public showHint(el: HTMLElement, message: string): void {
-        this.$divHintText.text(message, CancellationToken cancellation);
+        this.$divHintText.text(message);
         this.$divHint.css("display", "block");
 
         this.adjustHintPosition(el);
@@ -69,7 +69,7 @@ class AlertService {
     }
 
     public showMessage(message: string, isError: boolean = false): void {
-        this.$divMessageText.html(message, CancellationToken cancellation);
+        this.$divMessageText.html(message);
         this.$divMessageText.addClass(isError ? "message-error" : "message-success");
         this.$divMessageContainer.css("display", "block");
     }

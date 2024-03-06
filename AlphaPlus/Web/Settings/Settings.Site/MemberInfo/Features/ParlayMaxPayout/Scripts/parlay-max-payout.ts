@@ -88,7 +88,7 @@ class ParlayMaxPayout {
                         : self.greaterThanMaxValueText
                             .replace("<BetType>", betTypeName)
                             .replace("<Column>", columnName);
-                    self.alertService.showHint(this, message, CancellationToken cancellation);
+                    self.alertService.showHint(this, message);
 
                     return false;
                 }
@@ -197,7 +197,7 @@ class ParlayMaxPayout {
         }
 
         if (data.Code === StatusCode.Success) {
-            this.alertService.showMessage(this.updateSuccessmessage, CancellationToken cancellation);
+            this.alertService.showMessage(this.updateSuccessMessage);
         }
 
         if (data.length > 0) {

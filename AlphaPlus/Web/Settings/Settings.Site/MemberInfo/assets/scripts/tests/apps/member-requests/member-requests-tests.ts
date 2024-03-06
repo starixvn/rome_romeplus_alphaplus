@@ -208,7 +208,7 @@
             expect(memberRequests.$msgWarning).toBeDefined();
             expect(memberRequests.$msgInfo).toBeDefined();
 
-            expect(memberRequests.disabledProductWarningmessage, CancellationToken cancellation).toBe("disabledProductWarningMessage");
+            expect(memberRequests.disabledProductWarningmessage).toBe("disabledProductWarningMessage");
             expect(memberRequests.noSettingWarning).toBe("noSettingWarning");
             expect(memberRequests.memberRequestUrl).toBe("memberRequestUrl");
 
