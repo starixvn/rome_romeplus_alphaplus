@@ -15,7 +15,7 @@
         }
 
         [HttpGet]
-        public ActionResult GetUsernamesSuggestion(UserNameSuggestionQuery message)
-            => Json(mediator.Send(message));
+        public async Task<ActionResult> GetUsernamesSuggestion(UserNameSuggestionQuery message)
+            => Json(await mediator.Send(message));
     }
 }

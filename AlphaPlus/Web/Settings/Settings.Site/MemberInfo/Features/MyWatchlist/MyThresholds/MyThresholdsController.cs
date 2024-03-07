@@ -17,18 +17,18 @@
         {
         }
 
-        public Task<ActionResult> Index(MyThresholdIndexPageQuery message)
-            => ViewAsync<MyThresholdIndexPageViewModel>(message, IndexPath);
+        public async Task<ActionResult> Index(MyThresholdIndexPageQuery message)
+            => await ViewAsync<MyThresholdIndexPageViewModel>(message, IndexPath);
 
         [HttpPost]
-        public Task<ActionResult> GetHistory(MyThresholdHistoryQuery message)
-            => JsonAsync(message);
+        public async Task<ActionResult> GetHistory(MyThresholdHistoryQuery message)
+            => await JsonAsync(message);
 
-        public Task<ActionResult> Settings(MyThresholdQuery message)
-            => ViewAsync(message, SettingsPath);
+        public async Task<ActionResult> Settings(MyThresholdQuery message)
+            => await ViewAsync(message, SettingsPath);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public Task<ActionResult> UpdateSettings(MyThresholdCommand message)
-            => JsonAsync(message);
+        public async Task<ActionResult> UpdateSettings(MyThresholdCommand message)
+            => await JsonAsync(message);
     }
 }

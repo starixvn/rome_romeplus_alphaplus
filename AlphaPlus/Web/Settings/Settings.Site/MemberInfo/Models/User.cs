@@ -80,7 +80,7 @@
 
         public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
 
-        public bool IsShowMyanmarOdds => true;
+        public bool IsShowMyanmarOdds => userSession.IsMyanmarOdds;
 
         public bool CanViewReports => userSession.SubPageAccess.ViewReports;
 

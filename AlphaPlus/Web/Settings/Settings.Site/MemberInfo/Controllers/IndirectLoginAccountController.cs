@@ -15,8 +15,8 @@
         public async Task<ActionResult> Index(ManageAccountQuery message)
             => await ViewAsync(message);
 
-        public ActionResult NewAccount(NewAccountQuery message)
-            => View(mediator.Send(message));
+        public async Task<ActionResult> NewAccount(NewAccountQuery message)
+            => View(await mediator.Send(message));
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> NewAccount(NewAccountCommand message)
