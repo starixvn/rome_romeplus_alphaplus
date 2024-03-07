@@ -5,6 +5,8 @@
 
     public class DisconnectCommand : MemberInfoBaseQuery, IRequest<Result>
     {
+        public DisconnectCommand() : this(null){}
+        
         public DisconnectCommand(IUser viewer) : base(viewer)
         {
         }

@@ -8,6 +8,8 @@
 
     public class MyThresholdIndexPageQuery : MyThresholdHistoryQuery, IRequest<MyThresholdIndexPageViewModel>
     {
+        public MyThresholdIndexPageQuery() : this(null){}
+        
         public MyThresholdIndexPageQuery(IUser viewer) : base(viewer)
         {
             CurrentDate = DateTime.Today;

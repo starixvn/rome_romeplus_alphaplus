@@ -5,6 +5,8 @@
 
     public class QRCodeBaseQuery : MemberInfoBaseQuery
     {
+        public QRCodeBaseQuery() : this(null){}
+        
         public QRCodeBaseQuery(IUser viewer) : base(viewer)
         {
         }

@@ -5,6 +5,8 @@
 
     public class UpdateProblemAccountCommand : MemberInfoBaseQuery, IRequest<Result>
     {
+        public UpdateProblemAccountCommand() : this(null){}
+        
         public UpdateProblemAccountCommand(IUser viewer) : base(viewer)
         {
         }

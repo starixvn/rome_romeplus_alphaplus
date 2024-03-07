@@ -6,6 +6,8 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount.Request
 {
     public class CheckUsernameQuery : MemberInfoBaseQuery, IRequest<Result>
     {
+        public CheckUsernameQuery() : this(null){}
+
         public CheckUsernameQuery(IUser viewer) 
             : base(viewer)
         {

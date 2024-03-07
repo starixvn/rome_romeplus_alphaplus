@@ -8,6 +8,8 @@
 
     public class DeleteMultiplePersonalThresholdCommand : MemberInfoBaseQuery, IRequest<IEnumerable<NamedResult>>
     {
+        public DeleteMultiplePersonalThresholdCommand() : this(null){}
+        
         public DeleteMultiplePersonalThresholdCommand(IUser viewer) : base(viewer)
         {
         }

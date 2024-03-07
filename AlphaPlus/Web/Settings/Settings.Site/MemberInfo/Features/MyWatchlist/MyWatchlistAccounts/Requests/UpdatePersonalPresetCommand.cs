@@ -6,6 +6,8 @@
 
     public class UpdatePersonalPresetCommand : MemberInfoBaseQuery, IRequest<Result>
     {
+        public UpdatePersonalPresetCommand() : this(null){}
+        
         public UpdatePersonalPresetCommand(IUser viewer) : base(viewer)
         {
         }

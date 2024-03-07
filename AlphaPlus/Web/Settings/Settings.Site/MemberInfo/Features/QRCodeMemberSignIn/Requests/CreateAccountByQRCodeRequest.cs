@@ -1,16 +1,21 @@
 ﻿
 namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests
 {
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using AlphaPlus.Settings.Site.Models;
     using MediatR;
 
     public class CreateAccountByQRCodeRequest :
         QRCodeBaseQuery,
         IRequest<ResultCreateMemberQRCode>
     {
+        public CreateAccountByQRCodeRequest() : this(null){}
+
         public CreateAccountByQRCodeRequest(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             SiteDBGroupIp = viewer.SiteDBGroupIp;
         }
 

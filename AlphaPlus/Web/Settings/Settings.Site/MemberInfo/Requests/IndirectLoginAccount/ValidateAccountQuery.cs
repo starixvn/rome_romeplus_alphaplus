@@ -5,6 +5,8 @@
 
     public class ValidateAccountQuery : MemberInfoBaseQuery, IRequest<Result>
     {
+        public ValidateAccountQuery() : this(null){}
+        
         public ValidateAccountQuery(IUser viewer) : base(viewer)
         {
         }

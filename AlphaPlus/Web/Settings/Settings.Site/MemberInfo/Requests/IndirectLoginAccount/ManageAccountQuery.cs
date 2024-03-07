@@ -6,7 +6,8 @@
 
     public class ManageAccountQuery : MemberInfoBaseQuery, IRequest<ManageAccountViewModel>
     {
-
+        public ManageAccountQuery() : this(null){}
+        
         public ManageAccountQuery(IUser viewer) : base(viewer)
         {
         }

@@ -7,6 +7,8 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount.Request
 {
     public class CreditQuery : MemberInfoBaseQuery, IRequest<CreditInfo>
     {
+        public CreditQuery() : this(null){}
+        
         public CreditQuery(IUser viewer) 
             : base(viewer)
         {

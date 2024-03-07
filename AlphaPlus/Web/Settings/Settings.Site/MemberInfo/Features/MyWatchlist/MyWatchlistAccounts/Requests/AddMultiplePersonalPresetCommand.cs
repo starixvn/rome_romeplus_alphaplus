@@ -8,6 +8,8 @@
 
     public class AddMultiplePersonalPresetCommand : MemberInfoBaseQuery, IRequest<IEnumerable<NamedResult>>
     {
+        public AddMultiplePersonalPresetCommand() : this(null){}
+        
         public AddMultiplePersonalPresetCommand(IUser viewer) : base(viewer)
         {
         }

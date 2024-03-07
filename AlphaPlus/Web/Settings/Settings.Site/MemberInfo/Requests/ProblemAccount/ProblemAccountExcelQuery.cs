@@ -7,6 +7,8 @@
 
     public class ProblemAccountExcelQuery: ProblemAccountRequestBase, IRequest<ExcelFileViewModel>
     {
+        public ProblemAccountExcelQuery() : this(null){}
+        
         public ProblemAccountExcelQuery(IUser viewer)
             : base(viewer)
         {

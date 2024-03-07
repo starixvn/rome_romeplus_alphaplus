@@ -8,6 +8,8 @@
         QRCodeBaseQuery,
         IRequest<QRCodeMemberSignInViewModel>
     {
+        public QRCodeMemberSignInRequest() : this(null){}
+        
         public QRCodeMemberSignInRequest(IUser viewer) : base(viewer)
         {
         }

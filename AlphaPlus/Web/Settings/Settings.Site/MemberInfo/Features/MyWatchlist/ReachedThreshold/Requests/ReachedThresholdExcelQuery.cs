@@ -6,6 +6,8 @@
 
     public class ReachedThresholdExcelQuery : ReachedThresholdQueryBase, IRequest<ExcelFileViewModel>
     {
+        public ReachedThresholdExcelQuery() : this(null){}
+        
         public ReachedThresholdExcelQuery(IUser viewer) : base(viewer)
         {
         }

@@ -3,13 +3,18 @@ using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
 using MediatR;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+using AlphaPlus.Settings.Site.Models;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount.Request
 {
     public class CopyAccountCommand : MemberInfoBaseQuery, IRequest<CopyAccountResponse>
     {
+        public CopyAccountCommand() : this(null){}
+        
         public CopyAccountCommand(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             SiteDBGroupIp = viewer.SiteDBGroupIp;
         }
 

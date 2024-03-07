@@ -6,6 +6,8 @@
 
     public class ProblemAccountRequestBase : MemberInfoBaseQuery
     {
+        public ProblemAccountRequestBase() : this(null){}
+        
         public ProblemAccountRequestBase(IUser viewer) : base(viewer)
         {
             FromDate = DateTime.Now.AddDays(-13);

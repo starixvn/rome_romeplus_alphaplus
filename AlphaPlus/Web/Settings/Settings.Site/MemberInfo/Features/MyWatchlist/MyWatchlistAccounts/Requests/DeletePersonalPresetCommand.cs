@@ -6,6 +6,8 @@
 
     public class DeletePersonalPresetCommand : MemberInfoBaseQuery, IRequest<Result>
     {
+        public DeletePersonalPresetCommand() : this(null){}
+        
         public DeletePersonalPresetCommand(IUser viewer) : base(viewer)
         {
         }

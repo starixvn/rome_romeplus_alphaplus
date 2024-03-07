@@ -6,6 +6,8 @@
 
     public class GenerateQRCodeRequest : QRCodeBaseQuery, IRequest<QRCodeLinkViewModel>
     {
+        public GenerateQRCodeRequest() : this(null){}
+        
         public GenerateQRCodeRequest(IUser viewer) : base(viewer)
         {
         }

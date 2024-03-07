@@ -8,6 +8,8 @@
 
     public class PersonalPresetQuery : MemberInfoBaseQuery, IRequest<IEnumerable<PersonalPresetModel>>
     {
+        public PersonalPresetQuery() : this(null){}
+        
         public PersonalPresetQuery(IUser viewer) : base(viewer)
         {
         }

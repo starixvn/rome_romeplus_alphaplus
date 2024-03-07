@@ -6,6 +6,8 @@
 
     public class IndexRequest : ProblemAccountRequestBase, IRequest<ProblemAccountReportViewModel>
     {
+        public IndexRequest() : this(null){}
+        
         public IndexRequest(IUser viewer) : base(viewer)
         {
         }

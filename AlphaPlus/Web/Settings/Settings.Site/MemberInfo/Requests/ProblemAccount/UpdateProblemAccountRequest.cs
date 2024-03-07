@@ -6,6 +6,8 @@
 
     public class UpdateProblemAccountRequest : MemberInfoBaseQuery, IRequest<UpdateReviewStatusViewModel>
     {
+        public UpdateProblemAccountRequest() : this(null){}
+        
         public UpdateProblemAccountRequest(IUser viewer):base(viewer)
         {            
         }

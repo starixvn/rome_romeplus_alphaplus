@@ -7,6 +7,8 @@
 
     public class MyThresholdQuery : MemberInfoBaseQuery, IRequest<ThresholdViewModel>
     {
+        public MyThresholdQuery() : this(null){}
+        
         public MyThresholdQuery(IUser viewer) : base(viewer)
         {
         }

@@ -6,6 +6,8 @@
 
     public class UpdatePasswordQuery : MemberInfoBaseQuery, IRequest<UpdatePasswordViewModel>
     {
+        public UpdatePasswordQuery() : this(null){}
+        
         public UpdatePasswordQuery(IUser viewer) : base(viewer)
         {
         }

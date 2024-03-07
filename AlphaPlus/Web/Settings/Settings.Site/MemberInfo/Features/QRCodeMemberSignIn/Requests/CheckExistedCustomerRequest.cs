@@ -5,6 +5,8 @@
 
     public class CheckExistedCustomerRequest : QRCodeBaseQuery, IRequest<bool>
     {
+        public CheckExistedCustomerRequest() : this(null){}
+        
         public CheckExistedCustomerRequest(IUser viewer) : base(viewer)
         {
         }

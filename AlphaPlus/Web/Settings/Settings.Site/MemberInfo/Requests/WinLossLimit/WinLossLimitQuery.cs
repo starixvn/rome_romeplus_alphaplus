@@ -6,6 +6,8 @@
 
     public class WinLossLimitQuery : MemberInfoBaseQuery, IRequest<WinLossLimitViewModel>
     {
+        public WinLossLimitQuery() : this(null){}
+        
         public WinLossLimitQuery(IUser viewer) : base(viewer)
         {
             PageSize = 100;

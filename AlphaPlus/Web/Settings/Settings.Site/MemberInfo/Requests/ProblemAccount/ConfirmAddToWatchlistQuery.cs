@@ -7,6 +7,8 @@
 
     public class ConfirmAddToWatchlistQuery : MemberInfoBaseQuery, IRequest<ConfirmAddToWatchlistViewModel>
     {
+        public ConfirmAddToWatchlistQuery() : this(null){}
+        
         public ConfirmAddToWatchlistQuery(IUser viewer) : base(viewer)
         {
         }

@@ -8,6 +8,8 @@
 
     public class ParlayMaxPayoutMultipleSelectQuery : MemberInfoBaseQuery, IRequest<ParlayMaxPayoutMultiplePageViewModel>
     {
+        public ParlayMaxPayoutMultipleSelectQuery() : this(null){}
+        
         public ParlayMaxPayoutMultipleSelectQuery(IUser viewer) : base(viewer)
         {
         }

@@ -6,6 +6,8 @@
 
     public class NewAccountCommand : MemberInfoBaseQuery, IRequest<Result>
     {
+        public NewAccountCommand() : this(null){}
+        
         public NewAccountCommand(IUser viewer) : base(viewer)
         {
         }

@@ -8,6 +8,8 @@
 
     public class AddPersonalThresholdCommand : MemberInfoBaseQuery, IRequest<IEnumerable<NamedResult>>
     {
+        public AddPersonalThresholdCommand() : this(null){}
+        
         public AddPersonalThresholdCommand(IUser viewer) : base(viewer)
         {
         }

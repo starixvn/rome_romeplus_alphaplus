@@ -2,9 +2,10 @@
 {
     using System;
     using System.Net;
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using AlphaPlus.Settings.Site.Models;
     using MediatR;
     using ViewModels.CreditBalance;
 
@@ -17,12 +18,15 @@
         private int pageIndex;
         private int pageSize;
 
+        public CreditBalanceQuery() : this(null){}
+
         public CreditBalanceQuery(IUser user)
         {
+            user = user ?? new User(UserSession.Current);
             LoggedInUserId = user.LoggedInUserId;
             SubAccId = user.SubAccId;
             ActorId = user.Id;
-            ActorLevel = Enumeration.FromValue<UserLevel>(user.LevelId);
+            ActorLevel = Settings.MemberInfo.Domain.Enumerations.Enumeration.FromValue<Settings.MemberInfo.Domain.Models.UserLevel>(user.LevelId);
             CanUpdateAccount = user.CanUpdateAccount;
             IsAllowedTotalBalanceTransfer = user.IsAllowedTotalBalanceTransfer;
             CanTransfer = user.CanTransfer;
@@ -59,8 +63,8 @@
             }
         }
 
-        public UserLevel CustLevel
-            => Enumeration.FromValue<UserLevel>(CustLevelId);
+        public Settings.MemberInfo.Domain.Models.UserLevel CustLevel
+            => Settings.MemberInfo.Domain.Enumerations.Enumeration.FromValue<Settings.MemberInfo.Domain.Models.UserLevel>(CustLevelId);
 
         public string UserName
         {
@@ -116,7 +120,7 @@
 
         public int ActorId { get; }
 
-        public UserLevel ActorLevel { get; }
+        public Settings.MemberInfo.Domain.Models.UserLevel ActorLevel { get; }
 
         public bool CanUpdateAccount { get; }
 

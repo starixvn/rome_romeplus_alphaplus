@@ -6,6 +6,8 @@
 
     public class GetMemberCreditAndStatusRequest : QRCodeBaseQuery, IRequest<CreditAndStatusModel>
     {
+        public GetMemberCreditAndStatusRequest() : this(null){}
+        
         public GetMemberCreditAndStatusRequest(IUser viewer) : base(viewer)
         {
         }

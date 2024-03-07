@@ -7,6 +7,8 @@
 
     public class ManageWatchlistAccountsQuery : MemberInfoBaseQuery, IRequest<ManageWatchlistAccountsViewModel>
     {
+        public ManageWatchlistAccountsQuery() : this(null){}
+        
         public ManageWatchlistAccountsQuery(IUser viewer) : base(viewer)
         {
         }

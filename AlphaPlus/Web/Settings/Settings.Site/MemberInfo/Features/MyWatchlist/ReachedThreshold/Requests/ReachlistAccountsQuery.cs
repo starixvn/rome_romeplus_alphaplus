@@ -6,6 +6,8 @@
 
     public class ReachlistAccountsQuery : ReachedThresholdQueryBase, IRequest<ReachedThresholdPagingViewModel>
     {
+        public ReachlistAccountsQuery() : this(null){}
+        
         public ReachlistAccountsQuery(IUser viewer) : base(viewer)
         {
         }

@@ -8,6 +8,8 @@
 
     public class UserNameSuggestionQuery : MemberInfoBaseQuery, IRequest<IEnumerable<UsernameSuggestion>>
     {
+        public UserNameSuggestionQuery() : this(null){}
+        
         public UserNameSuggestionQuery(IUser viewer) : base(viewer)
         {
             DirectDownlines = false;

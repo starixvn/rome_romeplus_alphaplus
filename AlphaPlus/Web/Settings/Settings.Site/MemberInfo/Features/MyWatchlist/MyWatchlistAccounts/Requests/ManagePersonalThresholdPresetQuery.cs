@@ -7,6 +7,8 @@
 
     public class ManagePersonalThresholdPresetQuery : MemberInfoBaseQuery, IRequest<ManagePersonalThresholdPresetViewModel>
     {
+        public ManagePersonalThresholdPresetQuery() : this(null){}
+        
         public ManagePersonalThresholdPresetQuery(IUser viewer) : base(viewer)
         {
         }

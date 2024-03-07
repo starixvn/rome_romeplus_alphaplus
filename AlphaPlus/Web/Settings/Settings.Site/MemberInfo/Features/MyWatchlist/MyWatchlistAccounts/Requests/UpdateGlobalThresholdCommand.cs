@@ -6,6 +6,8 @@
 
     public class UpdateGlobalThresholdCommand : MemberInfoBaseQuery, IRequest<Result>
     {
+        public UpdateGlobalThresholdCommand() : this(null){}
+        
         public UpdateGlobalThresholdCommand(IUser viewer) : base(viewer)
         {
         }

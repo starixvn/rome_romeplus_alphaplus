@@ -8,6 +8,8 @@
         MemberInfoBaseQuery,
         IRequest<ProductsViewModel>
     {
+        public ProductQuery() : this(null){}
+        
         public ProductQuery(IUser viewer) : base(viewer)
         {
         }

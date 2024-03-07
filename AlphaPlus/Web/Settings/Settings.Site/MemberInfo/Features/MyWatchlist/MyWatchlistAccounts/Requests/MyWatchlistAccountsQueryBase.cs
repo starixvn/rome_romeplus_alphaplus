@@ -3,11 +3,16 @@
     using AlphaPlus.Settings.Site.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using System;
+    using AlphaPlus.Settings.Site.Models;
+    using AlphaPlus.Core.Models;
 
     public class MyWatchlistAccountsQueryBase : MemberInfoBaseQuery
     {
+        public MyWatchlistAccountsQueryBase() : this(null){}
+
         public MyWatchlistAccountsQueryBase(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             IsShowLastLoginColumn = viewer.LimitedDateToShowInfo == default(DateTime);
         }
 

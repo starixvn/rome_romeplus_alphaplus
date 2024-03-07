@@ -7,6 +7,8 @@
 
     public class ManageGlobalThresholdQuery : MemberInfoBaseQuery, IRequest<ManageGlobalThresholdViewModel>
     {
+        public ManageGlobalThresholdQuery() : this(null){}
+        
         public ManageGlobalThresholdQuery(IUser viewer) : base(viewer)
         {
         }

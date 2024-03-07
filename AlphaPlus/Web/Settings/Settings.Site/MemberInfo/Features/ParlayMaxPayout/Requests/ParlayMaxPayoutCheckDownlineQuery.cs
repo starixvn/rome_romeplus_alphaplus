@@ -6,6 +6,8 @@
 
     public class ParlayMaxPayoutCheckDownlineQuery : MemberInfoBaseQuery, IRequest<Result>
     {
+        public ParlayMaxPayoutCheckDownlineQuery() : this(null){}
+        
         public ParlayMaxPayoutCheckDownlineQuery(IUser viewer) : base(viewer)
         {
         }

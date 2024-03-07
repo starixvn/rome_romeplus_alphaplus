@@ -7,6 +7,8 @@
 
     public class ReachHistoryListQuery : ReachHistoryQueryBase, IRequest<IEnumerable<ReachHistoryModel>>
     {
+        public ReachHistoryListQuery() : this(null){}
+        
         public ReachHistoryListQuery(IUser viewer) : base(viewer)
         {
         }

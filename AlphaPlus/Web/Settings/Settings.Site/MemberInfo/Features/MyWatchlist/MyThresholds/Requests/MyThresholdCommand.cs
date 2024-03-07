@@ -6,6 +6,8 @@
 
     public class MyThresholdCommand : UpdateGlobalThresholdCommand, IRequest<Result>
     {
+        public MyThresholdCommand() : this(null){}
+        
         public MyThresholdCommand(IUser viewer) : base(viewer)
         {
         }

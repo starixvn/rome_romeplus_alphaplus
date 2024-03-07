@@ -8,6 +8,8 @@
         QRCodeBaseQuery,
         IRequest<ShowQRCodeViewModel>
     {
+        public ShowQRCodeRequest() : this(null){}
+        
         public ShowQRCodeRequest(IUser viewer) : base(viewer)
         {
         }

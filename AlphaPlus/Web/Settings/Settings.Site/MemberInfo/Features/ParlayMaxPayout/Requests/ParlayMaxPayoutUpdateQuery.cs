@@ -4,11 +4,16 @@
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
     using System.Collections.Generic;
+    using AlphaPlus.Settings.Site.Models;
+    using AlphaPlus.Core.Models;
 
     public class ParlayMaxPayoutUpdateBaseQuery : MemberInfoBaseQuery
     {
+        public ParlayMaxPayoutUpdateBaseQuery() : this(null){}
+
         public ParlayMaxPayoutUpdateBaseQuery(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             UserId = viewer.Id;
         }
 
@@ -28,7 +33,7 @@
     }
 
     public class ParlayMaxPayoutUpdateSingleQuery :
-        ParlayMaxPayoutUpdateBaseQuery, IRequest<Result>
+        ParlayMaxPayoutUpdateBaseQuery, IRequest<Settings.MemberInfo.Domain.Models.Result>
     {
         public ParlayMaxPayoutUpdateSingleQuery(IUser viewer) : base(viewer)
         {
@@ -46,7 +51,7 @@
     }
 
     public class ParlayMaxPayoutUpdateMultipleQuery :
-        ParlayMaxPayoutUpdateBaseQuery, IRequest<IEnumerable<Result>>
+        ParlayMaxPayoutUpdateBaseQuery, IRequest<IEnumerable<Settings.MemberInfo.Domain.Models.Result>>
     {
         public ParlayMaxPayoutUpdateMultipleQuery(IUser viewer) : base(viewer)
         {

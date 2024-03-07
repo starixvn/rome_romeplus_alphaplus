@@ -8,6 +8,8 @@
 
     public class UpdateMultiplePersonalThresholdCommand : MemberInfoBaseQuery, IRequest<IEnumerable<NamedResult>>
     {
+        public UpdateMultiplePersonalThresholdCommand() : this(null){}
+        
         public UpdateMultiplePersonalThresholdCommand(IUser viewer) : base(viewer)
         {
         }

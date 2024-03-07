@@ -5,11 +5,16 @@
     using AlphaPlus.Settings.Site.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
+    using AlphaPlus.Settings.Site.Models;
+    using AlphaPlus.Core.Models;
 
     public class DormantAccountQuery : MemberInfoBaseQuery, IRequest<DormantAccountViewModel>
     {
+        public DormantAccountQuery() : this(null){}
+        
         public DormantAccountQuery(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
         }
 

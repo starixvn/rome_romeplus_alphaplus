@@ -7,6 +7,8 @@
 
     public class ParlayMaxPayoutSingleSelectQuery : MemberInfoBaseQuery, IRequest<ParlayMaxPayoutSinglePageViewModel>
     {
+        public ParlayMaxPayoutSingleSelectQuery() : this(null){}
+        
         public ParlayMaxPayoutSingleSelectQuery(IUser viewer) : base(viewer)
         {
         }

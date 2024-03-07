@@ -6,6 +6,8 @@
 
     public class WatchlistAccountsQuery : MyWatchlistAccountsQueryBase, IRequest<MyWatchlistAccountsPagingViewModel>
     {
+        public WatchlistAccountsQuery() : this(null){}
+        
         public WatchlistAccountsQuery(IUser viewer) : base(viewer)
         {
         }

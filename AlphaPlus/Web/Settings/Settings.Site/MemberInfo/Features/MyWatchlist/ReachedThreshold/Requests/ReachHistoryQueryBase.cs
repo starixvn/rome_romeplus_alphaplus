@@ -4,11 +4,16 @@
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using Fanex.Common.Extensions;
     using System;
+    using AlphaPlus.Settings.Site.Models;
+    using AlphaPlus.Core.Models;
 
     public class ReachHistoryQueryBase : MemberInfoBaseQuery
     {
+        public ReachHistoryQueryBase() : this(null){}
+
         public ReachHistoryQueryBase(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
         }
 

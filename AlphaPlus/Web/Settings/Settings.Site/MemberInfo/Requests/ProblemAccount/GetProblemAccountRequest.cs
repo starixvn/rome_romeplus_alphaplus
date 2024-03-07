@@ -9,6 +9,8 @@ namespace AlphaPlus.Settings.Site.Requests.ProblemAccount
 
     public class GetProblemAccountRequest : ProblemAccountRequestBase, IRequest<IEnumerable<ProblemAccountModel>>
     {
+        public GetProblemAccountRequest() : this(null){}
+        
         public GetProblemAccountRequest(IUser viewer) : base(viewer)
         {
         }

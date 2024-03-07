@@ -8,6 +8,8 @@
         MemberInfoBaseQuery,
         IRequest<MemberRequestViewModel>
     {
+        public MemberRequestsQuery() : this(null){}
+        
         public MemberRequestsQuery(IUser viewer) : base(viewer)
         {
         }

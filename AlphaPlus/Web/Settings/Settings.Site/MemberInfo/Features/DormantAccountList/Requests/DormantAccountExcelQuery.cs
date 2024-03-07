@@ -6,6 +6,8 @@
 
     public class DormantAccountExcelQuery : DormantAccountQuery, IRequest<ExcelFileViewModel>
     {
+        public DormantAccountExcelQuery() : this(null){}
+        
         public DormantAccountExcelQuery(IUser viewer) : base(viewer)
         {
         }
