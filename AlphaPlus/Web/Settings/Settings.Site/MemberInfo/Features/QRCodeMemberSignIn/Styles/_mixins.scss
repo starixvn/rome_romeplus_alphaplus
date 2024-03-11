@@ -1,5 +1,6 @@
 // Calculate sizes when <meta name="viewport"> tag set scale = 0.7
+@use "sass:math";
 
 @function calculateScale($num, $scale: 0.7) {
-    @return $num / $scale;
+    @return math.div($num, $scale);
 }

@@ -1,4 +1,6 @@
-﻿@mixin box-shadow-multiple($string) {
+﻿@use "sass:math";
+
+@mixin box-shadow-multiple($string) {
     @include css3-prefix('box-shadow', $string);
 }
 
@@ -23,11 +25,11 @@
 
 // Calculate sizes when <meta name="viewport"> tag set scale = 0.7
 @function calculateScale($num, $scale: 0.7) {
-    @return $num / $scale;
+    @return math.div($num, $scale);
 }
 
 @function calculateScaleRatio($num, $ratio, $scale: 0.7) {
-    @return ($num / $scale) * $ratio;
+    @return math.div($num, $scale) * $ratio;
 }
 
 @mixin scaleHighResolutions($ratio) {

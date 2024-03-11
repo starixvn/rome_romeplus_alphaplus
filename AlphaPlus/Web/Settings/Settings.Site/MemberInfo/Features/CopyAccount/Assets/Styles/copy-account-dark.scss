@@ -1,5 +1,7 @@
-﻿@function calculateScale($num, $scale: 0.7) {
-    @return $num / $scale;
+﻿@use "sass:math";
+
+@function calculateScale($num, $scale: 0.7) {
+    @return math.div($num, $scale);
 }
 
 
