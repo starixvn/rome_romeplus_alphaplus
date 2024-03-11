@@ -6,13 +6,13 @@
     using AlphaPlus.Settings.Site.Models;
     using AlphaPlus.Core.Models;
 
-    public class FetchDownlinesListRequesBase : BaseRequest
+    public class FetchDownlinesListRequestBase : BaseRequest
     {
-        public FetchDownlinesListRequesBase() : this(null)
+        public FetchDownlinesListRequestBase() : this(null)
         {
         }
 
-        public FetchDownlinesListRequesBase(IUser viewer) : base(viewer)
+        public FetchDownlinesListRequestBase(IUser viewer) : base(viewer)
         {
             viewer = viewer ?? new User(UserSession.Current);
             DoubleComm = 2;

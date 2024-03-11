@@ -6,7 +6,7 @@
     using AlphaPlus.Settings.Site.Models;
     using AlphaPlus.Core.Models;
 
-    public class CustomerListRequest : FetchDownlinesListRequesBase, IRequest<CustomerListViewModel>
+    public class CustomerListRequest : FetchDownlinesListRequestBase, IRequest<CustomerListViewModel>
     {
         public CustomerListRequest() : this(null)
         {
