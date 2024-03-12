@@ -62,7 +62,7 @@ abstract class BaseAccount {
         this.$.ajax({
             type: "POST",
             url: url,
-            beforeSend: xhr => xhr.setRequestHeader("__RequestVerificationToken", this.requestVerificationToken),
+            beforeSend: xhr => xhr.setRequestHeader("RequestVerificationToken", this.requestVerificationToken),
             data: formData,
             dataType: "json",
             success: data => {

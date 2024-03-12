@@ -10,7 +10,7 @@ class AJAXHelper {
         return $.ajax({
             url: url,
             headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
             type: "POST",
@@ -52,7 +52,7 @@ class AJAXHelper {
         return $.ajax({
             url: url,
             headers: {
-                __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
             type: "GET",

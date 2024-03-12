@@ -39,7 +39,7 @@ class ParlayMaxPayoutService {
             dataType: "json",
             type,
             headers: {
-                __RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
+                RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
             data: params,

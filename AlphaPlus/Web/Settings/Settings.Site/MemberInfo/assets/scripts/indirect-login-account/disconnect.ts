@@ -30,7 +30,7 @@ class Disconnect {
         this.$.ajax({
             type: "POST",
             url: url,
-            beforeSend: xhr => xhr.setRequestHeader("__RequestVerificationToken", this.$('input[name="__RequestVerificationToken"]').val()),
+            beforeSend: xhr => xhr.setRequestHeader("RequestVerificationToken", this.$('input[name="__RequestVerificationToken"]').val()),
             data: {
                 custId: this.$("#txt-custId").val(),
                 subAccId: this.$("#txt-subAccId").val(),

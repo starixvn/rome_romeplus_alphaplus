@@ -62,7 +62,7 @@ class UpdateReviewStatus {
         var token = this.$("input[name=\"__RequestVerificationToken\"").val();
         this.$.ajax({
             type: "POST",
-            beforeSend: xhr => xhr.setRequestHeader("__RequestVerificationToken", token),
+            beforeSend: xhr => xhr.setRequestHeader("RequestVerificationToken", token),
             url: this.$formUpdateReviewStatus.attr("action"),
             data: this.getParams(),
             dataType: "json",
