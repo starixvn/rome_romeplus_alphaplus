@@ -433,14 +433,17 @@ export default factories.createCoreController('api::article.article', ({ strapi 
 
     // published_at
     let command;
-    const locales = await strapi.db.connection.raw(`SELECT DISTINCT locale FROM alpha_centraldoc.articles`);
+    const resultMessages = ['Done!'];
+    let afftectedRows;
+
+    const locales = await strapi.db.connection.raw(`SELECT DISTINCT locale FROM articles`);
     if(locales.length) {
       const rows = locales[0];
       for(var i=0; i<rows.length; i++) {
         const r = rows[i];
         let result =  await strapi.db.connection.raw(
           `SELECT DISTINCT a.vuid FROM articles a, environments e, articles_environment_links ae\
-           WHERE a.locale='${r.locale}' AND e.name='PROD' AND ae.article_id = a.id AND ae.environment_id = e.id\
+            WHERE a.locale='${r.locale}' AND e.name='PROD' AND ae.article_id = a.id AND ae.environment_id = e.id\
             AND NOT EXISTS(SELECT b.id FROM articles b WHERE b.vuid=a.vuid AND b.locale=a.locale AND b.published_at IS NOT NULL)`
         );
 
@@ -449,27 +452,45 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           for(var j=0; j<as.length; j++) {
             const a = as[j];
             const latest = await strapi.db.connection.raw(
-              `SELECT a.vuid, MAX(a.version_number) as max_version  FROM alpha_centraldoc.articles a, environments e, articles_environment_links ae\
+              `SELECT a.vuid, MAX(a.version_number) as max_version  FROM articles a, environments e, articles_environment_links ae\
                   WHERE a.vuid='${a.vuid}' AND locale='${ r.locale}' AND e.name='PROD' AND ae.article_id = a.id AND ae.environment_id = e.id`
             );
 
-            command = `UPDATE alpha_centraldoc.articles SET published_at=updated_at\
-              WHERE locale='${r.locale}' AND vuid='${a.vuid}' AND version_number=${latest[0][0].max_version}`;
-            await strapi.db.connection.raw(command);
+            afftectedRows =  await strapi.db.connection.raw(
+              `SELECT title, id FROM articles\
+                WHERE locale='${r.locale}' AND vuid='${a.vuid}' AND version_number=${latest[0][0].max_version}`);
+            if(afftectedRows.length && afftectedRows[0].length) {
+              const ars = afftectedRows[0];
+              for(var k=0; k<ars.length; k++) {
+                const ar = ars[k];
+                resultMessages.push(`SET BACK published_at for Article ${ar.title}, ${r.locale}, ${ar.id}`);
+                command = `UPDATE articles SET published_at=updated_at WHERE id=${ar.id}`;
+                await strapi.db.connection.raw(command);
+              }
+            }
           }
         }
       }
     }
 
-
     // is_visible_in_list_view
-    await strapi.db.connection.raw(
-      "UPDATE alpha_centraldoc.articles SET is_visible_in_list_view=0 WHERE locale <> 'en' AND is_visible_in_list_view = 1"
-    );
+    afftectedRows =  await strapi.db.connection.raw(
+      `SELECT b.title, b.id, b.locale FROM articles b\
+        WHERE b.locale <> 'en' AND b.is_visible_in_list_view = 0 AND NOT EXISTS (
+          SELECT a.vuid FROM articles a WHERE a.vuid = b.vuid AND a.locale=b.locale AND a.version_number > b.version_number
+        )`);
+    if(afftectedRows.length && afftectedRows[0].length) {
+      const ars = afftectedRows[0];
+      for(var k=0; k<ars.length; k++) {
+        const ar = ars[k];
+        resultMessages.push(`SET is_visible_in_list_view=1 for Article ${ar.title}, ${ar.locale}, ${ar.id}`);
+        await strapi.db.connection.raw(`UPDATE articles SET is_visible_in_list_view=1 WHERE id=${ar.id}`);
+      }
+    }
 
     let entities = await strapi.db.connection.raw(
-      `SELECT DISTINCT b.vuid FROM alpha_centraldoc.articles b WHERE b.locale='en' AND NOT EXISTS (
-        SELECT a.vuid FROM alpha_centraldoc.articles a WHERE a.vuid = b.vuid AND a.locale='en' AND a.is_visible_in_list_view=1
+      `SELECT DISTINCT b.vuid FROM articles b WHERE b.locale='en' AND NOT EXISTS (
+        SELECT a.vuid FROM articles a WHERE a.vuid = b.vuid AND a.locale='en' AND a.is_visible_in_list_view=1
       )`
     );
 
@@ -477,19 +498,42 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       const rows = entities[0];
       for(var i=0; i<rows.length; i++) {
         var ent = rows[i];
-        command = "UPDATE alpha_centraldoc.articles SET is_visible_in_list_view=1 WHERE published_at IS NOT NULL AND locale='en' AND vuid='" + ent.vuid + "'";
+
+        afftectedRows =  await strapi.db.connection.raw(
+          `SELECT title, id, locale FROM articles WHERE published_at IS NOT NULL AND locale='en' AND vuid='${ent.vuid}'`);
+        if(afftectedRows.length && afftectedRows[0].length) {
+          const ars = afftectedRows[0];
+          for(var k=0; k<ars.length; k++) {
+            const ar = ars[k];
+            resultMessages.push(`SET is_visible_in_list_view=1 for Article ${ar.title}, ${ar.locale}, ${ar.id}`);
+          }
+        }
+
+        command = "UPDATE articles SET is_visible_in_list_view=1 WHERE published_at IS NOT NULL AND locale='en' AND vuid='" + ent.vuid + "'";
         let result =  await strapi.db.connection.raw(command);
+
         if(result[0].affectedRows == 0) {
           const latest = await strapi.db.connection.raw(
-            "SELECT vuid, MAX(version_number) as max_version  FROM alpha_centraldoc.articles WHERE vuid = '" + ent.vuid + "' AND locale='en'"
+            "SELECT vuid, MAX(version_number) as max_version  FROM articles WHERE vuid = '" + ent.vuid + "' AND locale='en'"
           );
-          command = `UPDATE alpha_centraldoc.articles SET is_visible_in_list_view=1\
+
+          afftectedRows =  await strapi.db.connection.raw(
+            `SELECT title, id, locale FROM articles WHERE locale='en' AND vuid='${ent.vuid}' AND version_number=${latest[0][0].max_version}`);
+          if(afftectedRows.length && afftectedRows[0].length) {
+            const ars = afftectedRows[0];
+            for(var k=0; k<ars.length; k++) {
+              const ar = ars[k];
+              resultMessages.push(`SET is_visible_in_list_view=1 for Article ${ar.title}, ${ar.locale}, ${ar.id}`);
+            }
+          }
+
+          command = `UPDATE articles SET is_visible_in_list_view=1\
             WHERE locale='en' AND vuid='${ent.vuid}' AND version_number=${latest[0][0].max_version}`;
           await strapi.db.connection.raw(command);
         }
       }
     }
 
-    return "Done Correcting!";
+    return resultMessages.join('\r\n');
   },
  }));

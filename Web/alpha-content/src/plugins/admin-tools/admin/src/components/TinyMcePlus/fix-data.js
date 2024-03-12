@@ -11,7 +11,7 @@ async function fixData() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        console.log("Done");
+        alert(this.responseText);
         location.reload(true);
       }
   };
