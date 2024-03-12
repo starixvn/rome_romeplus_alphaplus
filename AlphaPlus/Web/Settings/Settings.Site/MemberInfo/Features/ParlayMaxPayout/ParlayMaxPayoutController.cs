@@ -7,8 +7,8 @@
 
     public class ParlayMaxPayoutController : SiteBaseController
     {
-        private const string editSinglePath = "~/Features/ParlayMaxPayout/Views/EditSingle.cshtml";
-        private const string editMultiplePath = "~/Features/ParlayMaxPayout/Views/EditMultiple.cshtml";
+        private const string editSinglePath = "~/MemberInfo/Features/ParlayMaxPayout/Views/EditSingle.cshtml";
+        private const string editMultiplePath = "~/MemberInfo/Features/ParlayMaxPayout/Views/EditMultiple.cshtml";
 
         public ParlayMaxPayoutController(IMediator mediator) : base(mediator)
         {

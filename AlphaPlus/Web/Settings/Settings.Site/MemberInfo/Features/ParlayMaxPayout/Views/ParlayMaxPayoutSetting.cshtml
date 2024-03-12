@@ -1,4 +1,7 @@
-﻿@* @using Alpha.MemberInfo.Features.CustomerList.AppResources.ProductResources
+﻿@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources
+@using AlphaPlus.Settings.Site.Features.ParlayMaxPayout.ViewModels
+@using AlphaPlus.Core.Helpers
+
 @model ParlayMaxPayoutBasePageViewModel
 
 <div id="pmp-container" class="pmp-container">
@@ -14,7 +17,172 @@
         <div class="pmp-setting-name combo-35">@Model.Combo35FieldText</div>
         <div class="pmp-setting-name combo-6-plus">@Model.ComboOver6FieldText</div>
 
-        @RenderParlayMaxPayoutSetting(Model.Data)
+        @{
+            var data = Model.Data;
+            foreach (var item in data)
+            {
+                var className = Model.GetClassName(item.SportTypeId);
+                var willRenderCheckBoxRow = item.IsAllowUnlimitCombo2 || item.IsAllowUnlimitCombo35 || item.IsAllowUnlimitComboOver6 || item.IsAllowUnlimitSingleMatchParlay;
+
+                <div class="pmp-sport-name sport-name @className @(willRenderCheckBoxRow ? string.Empty : "no-checkbox-row")"
+                    data-bettypeid="@item.BetTypeId"
+                    data-bettypename="@item.BetTypeName"
+                    data-sporttypeid="@item.SportTypeId">
+                    @if (Model.IsMultiple)
+                    {
+                        <div class="sport-type-name">
+                            <div class="sport-type-name-ctrl">
+                                <input type="checkbox"
+                                    class="cb-sporttypename"
+                                    data-sporttypeid="@item.SportTypeId" />
+                            </div>
+                            <div class="sport-type-name-text">
+                                @item.SportTypeName
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        @item.SportTypeName
+                    }
+                </div>
+
+                var singleMatchParlayName = "SingleMatchParlay";
+                var combo2Name = "Combo2";
+                var combo35Name = "Combo35";
+                var comboOver6Name = "ComboOver6";
+
+                var unlimited = "Unlimited";
+                className = Model.GetClassName(item.SportTypeId);
+
+                <div class="pmp-setting-control ctrl-input @className-@singleMatchParlayName">
+                    <input type="text"
+                        maxlength="14"
+                        id="@singleMatchParlayName@item.SportTypeId"
+                        class="tb-setting"
+                        data-columnname="@singleMatchParlayName"
+                        data-sporttypeid="@item.SportTypeId"
+                        data-settingname="@singleMatchParlayName"
+                        data-currentvalue="@item.SingleMatchParlay"
+                        data-maxvalue="@item.UplineSingleMatchParlay"
+                        data-cachedvalue="@(item.SingleMatchParlay == unlimited ? "0" : item.SingleMatchParlay)"
+                        value="@item.SingleMatchParlay"
+                        @(Model.IsMultiple || item.SingleMatchParlay == unlimited ? "disabled" : string.Empty) />
+                </div>
+                <div class="pmp-setting-control ctrl-max-setting @className-@singleMatchParlayName">@(item.UplineSingleMatchParlay == unlimited ? string.Empty : $"<= {item.UplineSingleMatchParlay}")</div>
+
+                <div class="pmp-setting-control ctrl-input @className-@combo2Name">
+                    <input type="text"
+                        maxlength="14"
+                        id="@combo2Name@item.SportTypeId"
+                        class="tb-setting"
+                        data-columnname="@combo2Name"
+                        data-sporttypeid="@item.SportTypeId"
+                        data-settingname="@combo2Name"
+                        data-currentvalue="@item.Combo2"
+                        data-maxvalue="@item.UplineCombo2"
+                        data-cachedvalue="@(item.Combo2 == unlimited ? "0" : item.Combo2)"
+                        value="@item.Combo2"
+                        @(Model.IsMultiple || item.Combo2 == unlimited ? "disabled" : string.Empty) />
+                </div>
+                <div class="pmp-setting-control ctrl-max-setting @className-@combo2Name">@(item.UplineCombo2 == unlimited ? string.Empty : $"<= {item.UplineCombo2}")</div>
+
+                <div class="pmp-setting-control ctrl-input @className-@combo35Name">
+                    <input type="text"
+                        maxlength="14"
+                        id="@combo35Name@item.SportTypeId"
+                        class="tb-setting"
+                        data-columnname="@combo35Name"
+                        data-sporttypeid="@item.SportTypeId"
+                        data-settingname="@combo35Name"
+                        data-currentvalue="@item.Combo35"
+                        data-maxvalue="@item.UplineCombo35"
+                        data-cachedvalue="@(item.Combo35 == unlimited ? "0" : item.Combo35)"
+                        value="@item.Combo35"
+                        @(Model.IsMultiple || item.Combo35 == unlimited ? "disabled" : string.Empty) />
+                </div>
+                <div class="pmp-setting-control ctrl-max-setting @className-@combo35Name">@(item.UplineCombo35 == unlimited ? string.Empty : $"<= {item.UplineCombo35}")</div>
+
+                <div class="pmp-setting-control ctrl-input @className-@comboOver6Name">
+                    <input type="text"
+                        maxlength="14"
+                        id="@comboOver6Name@item.SportTypeId"
+                        class="tb-setting"
+                        data-columnname="@comboOver6Name"
+                        data-sporttypeid="@item.SportTypeId"
+                        data-settingname="@comboOver6Name"
+                        data-currentvalue="@item.ComboOver6"
+                        data-maxvalue="@item.UplineComboOver6"
+                        data-cachedvalue="@(item.ComboOver6 == unlimited ? "0" : item.ComboOver6)"
+                        value="@item.ComboOver6"
+                        @(Model.IsMultiple || item.ComboOver6 == unlimited ? "disabled" : string.Empty) />
+                </div>
+                <div class="pmp-setting-control ctrl-max-setting @className-@comboOver6Name">@(item.UplineComboOver6 == unlimited ? string.Empty : $"<= {item.UplineComboOver6}")</div>
+                
+                if (willRenderCheckBoxRow)
+                {
+                    <div class="pmp-setting-control ctrl-checkbox @className-@singleMatchParlayName">
+                        @if (item.IsAllowUnlimitSingleMatchParlay)
+                        {
+                            <input type="checkbox"
+                                class="cb-setting"
+                                data-sporttypeid="@item.SportTypeId"
+                                data-tbsettingid="@singleMatchParlayName@item.SportTypeId"
+                                @(item.SingleMatchParlay == unlimited ? "checked" : string.Empty)
+                                @(Model.IsMultiple ? "disabled" : string.Empty) />
+                        }
+                    </div>
+                    <div class="pmp-setting-control ctrl-checkbox-label @className-@singleMatchParlayName">
+                        @(item.IsAllowUnlimitSingleMatchParlay ? unlimited : string.Empty)
+                    </div>
+
+                    <div class="pmp-setting-control ctrl-checkbox @className-@combo2Name">
+                        @if (item.IsAllowUnlimitCombo2)
+                        {
+                            <input type="checkbox"
+                                class="cb-setting"
+                                data-sporttypeid="@item.SportTypeId"
+                                data-tbsettingid="@combo2Name@item.SportTypeId"
+                                @(item.Combo2 == unlimited ? "checked" : string.Empty)
+                                @(Model.IsMultiple ? "disabled" : string.Empty) />
+                        }
+                    </div>
+                    <div class="pmp-setting-control ctrl-checkbox-label @className-@combo2Name">
+                        @(item.IsAllowUnlimitCombo2 ? unlimited : string.Empty)
+                    </div>
+
+                    <div class="pmp-setting-control ctrl-checkbox @className-@combo35Name">
+                        @if (item.IsAllowUnlimitCombo35)
+                        {
+                            <input type="checkbox"
+                                class="cb-setting"
+                                data-sporttypeid="@item.SportTypeId"
+                                data-tbsettingid="@combo35Name@item.SportTypeId"
+                                @(item.Combo35 == unlimited ? "checked" : string.Empty)
+                                @(Model.IsMultiple ? "disabled" : string.Empty) />
+                        }
+                    </div>
+                    <div class="pmp-setting-control ctrl-checkbox-label @className-@combo35Name">
+                        @(item.IsAllowUnlimitCombo35 ? unlimited : string.Empty)
+                    </div>
+
+                    <div class="pmp-setting-control ctrl-checkbox @className-@comboOver6Name">
+                        @if (item.IsAllowUnlimitComboOver6)
+                        {
+                            <input type="checkbox"
+                                class="cb-setting"
+                                data-sporttypeid="@item.SportTypeId"
+                                data-tbsettingid="@comboOver6Name@item.SportTypeId"
+                                @(item.ComboOver6 == unlimited ? "checked" : string.Empty)
+                                @(Model.IsMultiple ? "disabled" : string.Empty) />
+                        }
+                    </div>
+                    <div class="pmp-setting-control ctrl-checkbox-label @className-@comboOver6Name">
+                        @(item.IsAllowUnlimitComboOver6 ? unlimited : string.Empty)
+                    </div>
+                }
+            }
+        }
     </div>
     <div class="pmp-footer">
         <button id="btn-submit" type="button" class="btn-submit">@ProductResources.Update</button>
@@ -26,118 +194,14 @@
     </div>
 
     @Html.AntiForgeryToken()
-    @RenderHiddenFields()
-</div>
-
-@helper RenderHiddenFields()
-{
     <input id="tb-updatesuccess-msg" type="hidden" value="@Model.UpdateSuccessfullyText" />
-    <input id="tb-updateurl" type="hidden" value="@Response.ApplyAppPathModifier(Model.UpdateUrl)" />
+    <input id="tb-updateurl" type="hidden" value="@Model.UpdateUrl" />
     <input id="tb-custidlist" type="hidden" value="@Model.CustIdList" />
     <input id="tb-custnamelist" type="hidden" value="@Model.CustNameList" />
     <input id="tb-invalidvalue-msg" type="hidden" value="@Model.InvalidMaxPayoutValueText" />
     <input id="tb-gtmaxvalue-msg" type="hidden" value="@Model.GreaterThanMaxValueText" />
     <input id="tb-hasnochange-msg" type="hidden" value="@Model.HasNoChangeText" />
     <input id="tb-notauthorized-msg" type="hidden" value="@Model.NotAuthorizedText" />
-    <input id="tb-checkdownlineurl" type="hidden" value="@Response.ApplyAppPathModifier(Model.CheckDownlineUrl)" />
+    <input id="tb-checkdownlineurl" type="hidden" value="@Model.CheckDownlineUrl" />
     <input id="tb-ismultiple" type="hidden" value="@(Model.IsMultiple ? 1 : 0)" />
-}
-
-@helper RenderParlayMaxPayoutSetting(IEnumerable<ParlayMaxPayoutViewModel> data)
-{
-    foreach (var item in data)
-    {
-        @RenderParlayMaxPayoutSettingRow(item)
-    }
-}
-
-@helper RenderParlayMaxPayoutSettingRow(ParlayMaxPayoutViewModel item)
-{
-    var className = Model.GetClassName(item.SportTypeId);
-    var willRenderCheckBoxRow = item.IsAllowUnlimitCombo2 || item.IsAllowUnlimitCombo35 || item.IsAllowUnlimitComboOver6 || item.IsAllowUnlimitSingleMatchParlay;
-
-    <div class="pmp-sport-name sport-name @className @(willRenderCheckBoxRow ? string.Empty : "no-checkbox-row")"
-         data-bettypeid="@item.BetTypeId"
-         data-bettypename="@item.BetTypeName"
-         data-sporttypeid="@item.SportTypeId">
-        @if (Model.IsMultiple)
-        {
-            <div class="sport-type-name">
-                <div class="sport-type-name-ctrl">
-                    <input type="checkbox"
-                           class="cb-sporttypename"
-                           data-sporttypeid="@item.SportTypeId" />
-                </div>
-                <div class="sport-type-name-text">
-                    @item.SportTypeName
-                </div>
-            </div>
-        }
-        else
-        {
-            @item.SportTypeName
-        }
-    </div>
-
-    var singleMatchParlayName = "SingleMatchParlay";
-    var combo2Name = "Combo2";
-    var combo35Name = "Combo35";
-    var comboOver6Name = "ComboOver6";
-
-    @RenderInputControl(item.SportTypeId, singleMatchParlayName, item.SingleMatchParlay, item.UplineSingleMatchParlay, Model.SingleMatchParlayFieldText, Model.IsMultiple)
-    @RenderInputControl(item.SportTypeId, combo2Name, item.Combo2, item.UplineCombo2, Model.Combo2FieldText, Model.IsMultiple)
-    @RenderInputControl(item.SportTypeId, combo35Name, item.Combo35, item.UplineCombo35, Model.Combo35FieldText, Model.IsMultiple)
-    @RenderInputControl(item.SportTypeId, comboOver6Name, item.ComboOver6, item.UplineComboOver6, Model.ComboOver6FieldText, Model.IsMultiple)
-
-    if (willRenderCheckBoxRow)
-    {
-        @RenderCheckBoxControl(item.SportTypeId, singleMatchParlayName, item.SingleMatchParlay, item.IsAllowUnlimitSingleMatchParlay, Model.IsMultiple)
-        @RenderCheckBoxControl(item.SportTypeId, combo2Name, item.Combo2, item.IsAllowUnlimitCombo2, Model.IsMultiple)
-        @RenderCheckBoxControl(item.SportTypeId, combo35Name, item.Combo35, item.IsAllowUnlimitCombo35, Model.IsMultiple)
-        @RenderCheckBoxControl(item.SportTypeId, comboOver6Name, item.ComboOver6, item.IsAllowUnlimitComboOver6, Model.IsMultiple)
-    }
-}
-
-@helper RenderInputControl(byte sportTypeId, string settingName, string value, string maxValue, string columnName, bool isMultiple)
-{
-    var unlimited = "Unlimited";
-    var className = Model.GetClassName(sportTypeId);
-
-    <div class="pmp-setting-control ctrl-input @className-@settingName">
-        <input type="text"
-               maxlength="14"
-               id="@settingName@sportTypeId"
-               class="tb-setting"
-               data-columnname="@columnName"
-               data-sporttypeid="@sportTypeId"
-               data-settingname="@settingName"
-               data-currentvalue="@value"
-               data-maxvalue="@maxValue"
-               data-cachedvalue="@(value == unlimited ? "0" : value)"
-               value="@value"
-               @(isMultiple || value == unlimited ? "disabled" : string.Empty) />
-    </div>
-    <div class="pmp-setting-control ctrl-max-setting @className-@settingName">@(maxValue == unlimited ? string.Empty : $"<= {maxValue}")</div>
-}
-
-@helper RenderCheckBoxControl(byte sportTypeId, string settingName, string value, bool isAllowUnlimit, bool isMultiple)
-{
-    var unlimited = "Unlimited";
-    var className = Model.GetClassName(sportTypeId);
-
-    <div class="pmp-setting-control ctrl-checkbox @className-@settingName">
-        @if (isAllowUnlimit)
-        {
-            <input type="checkbox"
-                   class="cb-setting"
-                   data-sporttypeid="@sportTypeId"
-                   data-tbsettingid="@settingName@sportTypeId"
-                   @(value == unlimited ? "checked" : string.Empty)
-                   @(isMultiple ? "disabled" : string.Empty) />
-        }
-    </div>
-    <div class="pmp-setting-control ctrl-checkbox-label @className-@settingName">
-        @(isAllowUnlimit ? unlimited : string.Empty)
-    </div>
-
-} *@
+</div>

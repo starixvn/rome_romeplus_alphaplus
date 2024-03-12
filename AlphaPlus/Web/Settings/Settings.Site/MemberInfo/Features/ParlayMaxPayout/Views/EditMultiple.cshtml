@@ -1,17 +1,19 @@
-﻿@* @model ParlayMaxPayoutMultiplePageViewModel
+﻿@using AlphaPlus.Settings.Site.Features.ParlayMaxPayout.ViewModels
+@using AlphaPlus.Core.Helpers
+@model ParlayMaxPayoutMultiplePageViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/Features/ParlayMaxPayout/Bundles/parlay-max-payout")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/ParlayMaxPayout/Bundles/parlay-max-payout")
 }
 
 <div class="user-list-box">@Model.SubTitle</div>
 
-@Html.Partial(Model.ParlayMaxPayoutSettingPartialViewPath, Model)
+@await Html.PartialAsync(Model.ParlayMaxPayoutSettingPartialViewPath, Model)
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/Features/ParlayMaxPayout/Bundles/parlay-max-payout")
-} *@
+    @StaticResources.RenderScripts("~/MemberInfo/Features/ParlayMaxPayout/Bundles/parlay-max-payout")
+}

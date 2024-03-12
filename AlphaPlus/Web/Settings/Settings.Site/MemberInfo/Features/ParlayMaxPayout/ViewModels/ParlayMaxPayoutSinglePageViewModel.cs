@@ -16,7 +16,7 @@
             this.message = message;
         }
 
-        public override string UpdateUrl => "~/ParlayMaxPayout/UpdateSingle";
+        public override string UpdateUrl => "UpdateSingle";
 
         public override string CustIdList => message.CustId.ToString();
 

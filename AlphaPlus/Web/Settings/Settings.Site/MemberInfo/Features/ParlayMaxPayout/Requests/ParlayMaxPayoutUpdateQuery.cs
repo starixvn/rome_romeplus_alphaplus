@@ -9,7 +9,7 @@
 
     public class ParlayMaxPayoutUpdateBaseQuery : MemberInfoBaseQuery
     {
-        public ParlayMaxPayoutUpdateBaseQuery() : this(null){}
+        public ParlayMaxPayoutUpdateBaseQuery() : this(null) { }
 
         public ParlayMaxPayoutUpdateBaseQuery(IUser viewer) : base(viewer)
         {
@@ -35,6 +35,8 @@
     public class ParlayMaxPayoutUpdateSingleQuery :
         ParlayMaxPayoutUpdateBaseQuery, IRequest<Settings.MemberInfo.Domain.Models.Result>
     {
+        public ParlayMaxPayoutUpdateSingleQuery() : this(null) { }
+
         public ParlayMaxPayoutUpdateSingleQuery(IUser viewer) : base(viewer)
         {
         }
@@ -53,6 +55,8 @@
     public class ParlayMaxPayoutUpdateMultipleQuery :
         ParlayMaxPayoutUpdateBaseQuery, IRequest<IEnumerable<Settings.MemberInfo.Domain.Models.Result>>
     {
+        public ParlayMaxPayoutUpdateMultipleQuery() : this(null) { }
+
         public ParlayMaxPayoutUpdateMultipleQuery(IUser viewer) : base(viewer)
         {
         }

@@ -16,7 +16,7 @@
             };
 
         private const string parlayMaxPayoutSettingPartialViewPath
-            = "~/Features/ParlayMaxPayout/Views/ParlayMaxPayoutSetting.cshtml";
+            = "~/MemberInfo/Features/ParlayMaxPayout/Views/ParlayMaxPayoutSetting.cshtml";
 
         private readonly IEnumerable<ParlayMaxPayoutModel> data;
 
@@ -37,7 +37,7 @@
             ParlayMaxPayoutSettingPartialViewPath = parlayMaxPayoutSettingPartialViewPath;
         }
 
-        public string CheckDownlineUrl { get; } = "~/ParlayMaxPayout/CheckDownline";
+        public string CheckDownlineUrl { get; } = "CheckDownline";
 
         public virtual bool IsMultiple { get; }
 

@@ -18,7 +18,7 @@
 
         public override bool IsMultiple => true;
 
-        public override string UpdateUrl => "~/ParlayMaxPayout/UpdateMultiple";
+        public override string UpdateUrl => "UpdateMultiple";
 
         public override string CustIdList => message.CustIds;
 
