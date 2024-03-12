@@ -23,6 +23,7 @@
     using AlphaPlus.Settings.MemberInfo.API.Requests;
     using AlphaPlus.Settings.MemberInfo.API.Status.ViewModels.Base;
     using AlphaPlus.Settings.MemberInfo.API;
+    using Newtonsoft.Json;
 
     public class CustomerListHandler :
         IRequestHandler<CustomerListRequest, CustomerListViewModel>,
@@ -81,6 +82,10 @@
 
         public  async Task<CustomerListViewModel> Handle(CustomerListRequest message, CancellationToken cancellation)
         {
+            message.BreadcrumbLevel = !string.IsNullOrWhiteSpace(AlphaContext.Current.Request.Query["BreadcrumbLevelJson"]) ?
+                JsonConvert.DeserializeObject<IEnumerable<CustInfo>>(AlphaContext.Current.Request.Query["BreadcrumbLevelJson"]) : 
+                    Enumerable.Empty<CustInfo>();
+
             var breadcrumbLevel = new List<CustInfo>();
 
             if (message.BreadcrumbLevel != null && message.BreadcrumbLevel.Any())

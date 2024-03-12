@@ -6,7 +6,7 @@
     using AlphaPlus.Settings.Site.Models;
     using AlphaPlus.Core.Models;
 
-    public class MultipleDoubleCommRequest : FetchDownlinesListRequesBase, IRequest<MultipleDoubleCommViewModel>
+    public class MultipleDoubleCommRequest : FetchDownlinesListRequestBase, IRequest<MultipleDoubleCommViewModel>
     {
         private readonly IUser viewer;
 

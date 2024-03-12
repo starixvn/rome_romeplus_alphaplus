@@ -4,7 +4,7 @@
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
 
-    public class FetchDownlinesListRequest : FetchDownlinesListRequesBase, IRequest<CustomerListPagingViewModel>
+    public class FetchDownlinesListRequest : FetchDownlinesListRequestBase, IRequest<CustomerListPagingViewModel>
     {
         public FetchDownlinesListRequest() : this(null){}
         public FetchDownlinesListRequest(IUser viewer) : base(viewer)
