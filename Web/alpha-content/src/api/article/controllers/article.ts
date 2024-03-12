@@ -6,6 +6,10 @@ import { factories } from '@strapi/strapi'
 import qs from "qs";
 import {isValidToken}  from '../../security';
 
+function escapeMySQLString(s) {
+  return s.replace(/%/g, '\\%').replace(/_/g, '\\_');
+}
+
 export default factories.createCoreController('api::article.article', ({ strapi }) => ({
   async findOne(ctx) {
     const { id } = ctx.params;
@@ -67,7 +71,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
 
     return this.transformResponse(results);
   },
-  async findDemo (ctx) {
+  async findAllDemo (ctx) {
     try {
       const entities = await strapi.entityService.findMany('api::article.article', {
         filters: {
@@ -92,6 +96,41 @@ export default factories.createCoreController('api::article.article', ({ strapi 
 
       const output = await this.sanitizeOutput(entities, ctx);
 
+      return this.transformResponse(output);
+    } catch(e) {
+      console.log(e);
+    }
+
+    return {data: []};
+  },
+  async findDemo (ctx) {
+    try {
+      const urlParamsObject = qs.parse(ctx.querystring);
+      const { slug } = ctx.params;
+
+      const entity = await strapi.db.query('api::article.article').findOne({
+        where: urlParamsObject.id ? {  id: urlParamsObject.id  } : { slug: slug, publishedAt: { $null: false }}
+      });  
+
+      if(entity == null) {
+        return {};
+      }
+
+      const article = await strapi.entityService.findOne('api::article.article', entity.id, {
+        populate: {
+          categories: {
+            fields: ['name', 'slug', 'shortName']
+          },
+          user_levels:{
+            fields: ['name', 'levelId']
+          },
+          markets: {
+            fields: ['name']
+          }
+        }
+      });
+
+      const output = await this.sanitizeOutput(article, ctx);
       return this.transformResponse(output);
     } catch(e) {
       console.log(e);
@@ -174,6 +213,38 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     return deleted;
   },
 
+  async getBySlugEN(ctx) {
+    const { slug, market, level, env } = ctx.params;
+    const isProd = env === "PROD";
+
+    const entity = await strapi.db.query('api::article.article').findOne({
+      where: {
+        publishedAt: (isProd ? { $null: false } : {}),
+        slug: { $eqi: slug },
+        user_levels: {
+          levelId: { $eq: level }
+        },
+        markets: {
+          name: { $eqi: market }
+        }
+      },
+      populate: {
+        categories: {
+          fields: ['name', 'slug', 'shortName']
+        }
+      },
+      user_levels:{
+        fields: ['name', 'levelId']
+      },
+      markets: {
+        fields: ['name']
+      }
+    });
+
+    const output = await this.sanitizeOutput(entity, ctx);
+    return output;
+  },
+
   async getBySlug(ctx) {
     const { slug, language, market, level, env } = ctx.params;
     const isProd = env === "PROD";
@@ -203,10 +274,48 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       }
     });
 
+    if(entity == null) {
+      return await this.getBySlugEN(ctx, null);
+    }
+
     const output = await this.sanitizeOutput(entity, ctx);
     return output;
   },
+  async searchEN(ctx) {
+    const { keyword, language, market, level, env } = ctx.params;
+    const isProd = env === "PROD";
 
+    const s = keyword.substring(1);
+    const entities = await strapi.entityService.findMany('api::article.article', {
+      populate: {
+        categories: {
+          fields: ['name', 'slug', 'shortName']
+        },
+        user_levels:{
+          fields: ['name', 'levelId']
+        },
+        markets: {
+          fields: ['name']
+        }
+      },
+      filters: {
+        publishedAt: (isProd ? { $null: false } : {}),
+        $or: [{title: { $containsi: escapeMySQLString(s) }}, {summary: { $containsi: escapeMySQLString(s) }}],
+        user_levels: {
+          levelId: { $eq: level }
+        },
+        markets: {
+          name: { $eqi: market }
+        }
+      },
+      sort: {
+        order: 'asc'
+      }
+    });
+
+    const output = await this.sanitizeOutput(entities, ctx);
+    return output; 
+  },
   async search(ctx) {
     const { keyword, language, market, level, env } = ctx.params;
     const isProd = env === "PROD";
@@ -214,35 +323,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     const s = keyword.substring(1);
 
     if(language === "en") {
-      const entities = await strapi.entityService.findMany('api::article.article', {
-        populate: {
-          categories: {
-            fields: ['name', 'slug', 'shortName']
-          },
-          user_levels:{
-            fields: ['name', 'levelId']
-          },
-          markets: {
-            fields: ['name']
-          }
-        },
-        filters: {
-          publishedAt: (isProd ? { $null: false } : {}),
-          title: { $containsi: s },
-          user_levels: {
-            levelId: { $eq: level }
-          },
-          markets: {
-            name: { $eqi: market }
-          }
-        },
-        sort: {
-          order: 'asc'
-        }
-      });
-  
-      const output = await this.sanitizeOutput(entities, ctx);
-      return output; 
+     return await this.searchEN(ctx, null);
     }
 
     const entities = await strapi.db.query('api::article.article').findMany({
@@ -262,10 +343,46 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       }
     });
 
-    const result = await this.sanitizeOutput(entities, ctx) as [any];
-    return result.sort((a, b) => a.publishedAt - b.publishedAt); 
+    const result = await this.sanitizeOutput(entities, ctx) as [];
+    if(result.length == 0) {
+      return await this.searchEN(ctx, null);
+    }
+
+    return result.sort((a: any, b: any) => a.publishedAt - b.publishedAt); 
   },
 
+  async suggestEN(ctx) {
+    const { keyword, language, market, level, env } = ctx.params;
+    const isProd = env === "PROD";
+
+    const s = keyword;
+    const entities = await strapi.entityService.findMany('api::article.article', {
+      filters: {
+        publishedAt: (isProd ? { $null: false } : {}),
+        $or: [{title: { $containsi: escapeMySQLString(s) }}, {summary: { $containsi: escapeMySQLString(s) }}],
+        user_levels: {
+          levelId: { $eq: level }
+        },
+        markets: {
+          name: { $eqi: market }
+        }
+      },
+      sort: {
+        order: 'asc'
+      }
+    });
+
+    const output = await this.sanitizeOutput(entities, ctx) as [any];
+    const result = [];
+    output.forEach(e => {
+      result.push({
+        Id: e.slug,
+        Value: e.title
+      });
+    });
+
+    return result;
+  },
   async suggest(ctx) {
     const { keyword, language, market, level, env } = ctx.params;
     const isProd = env === "PROD";
@@ -273,32 +390,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     const s = keyword;
 
     if(language === "en") {
-      const entities = await strapi.entityService.findMany('api::article.article', {
-        filters: {
-          publishedAt: (isProd ? { $null: false } : {}),
-          title: { $containsi: s },
-          user_levels: {
-            levelId: { $eq: level }
-          },
-          markets: {
-            name: { $eqi: market }
-          }
-        },
-        sort: {
-          order: 'asc'
-        }
-      });
-  
-      const output = await this.sanitizeOutput(entities, ctx) as [any];
-      const result = [];
-      output.forEach(e => {
-        result.push({
-          Id: e.slug,
-          Value: e.title
-        });
-      });
-  
-      return result;
+      return await this.suggestEN(ctx, null);
     }
 
     const entities = await strapi.db.query('api::article.article').findMany({
@@ -327,6 +419,77 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       });
     }
 
+    if(result.length == 0) {
+      return await this.suggestEN(ctx, null);
+    }
+
     return result;
+  },
+
+  async fixData(ctx) {
+    const { token } = JSON.parse(ctx.request.body);
+    var isValid = isValidToken(token);
+    if(!isValid) { return "Expired Token!"; }
+
+    // published_at
+    let command;
+    const locales = await strapi.db.connection.raw(`SELECT DISTINCT locale FROM alpha_centraldoc.articles`);
+    if(locales.length) {
+      const rows = locales[0];
+      for(var i=0; i<rows.length; i++) {
+        const r = rows[i];
+        let result =  await strapi.db.connection.raw(
+          `SELECT DISTINCT a.vuid FROM articles a, environments e, articles_environment_links ae\
+           WHERE a.locale='${r.locale}' AND e.name='PROD' AND ae.article_id = a.id AND ae.environment_id = e.id\
+            AND NOT EXISTS(SELECT b.id FROM articles b WHERE b.vuid=a.vuid AND b.locale=a.locale AND b.published_at IS NOT NULL)`
+        );
+
+        if(result.length && result[0].length) {
+          const as = result[0];
+          for(var j=0; j<as.length; j++) {
+            const a = as[j];
+            const latest = await strapi.db.connection.raw(
+              `SELECT a.vuid, MAX(a.version_number) as max_version  FROM alpha_centraldoc.articles a, environments e, articles_environment_links ae\
+                  WHERE a.vuid='${a.vuid}' AND locale='${ r.locale}' AND e.name='PROD' AND ae.article_id = a.id AND ae.environment_id = e.id`
+            );
+
+            command = `UPDATE alpha_centraldoc.articles SET published_at=updated_at\
+              WHERE locale='${r.locale}' AND vuid='${a.vuid}' AND version_number=${latest[0][0].max_version}`;
+            await strapi.db.connection.raw(command);
+          }
+        }
+      }
+    }
+
+
+    // is_visible_in_list_view
+    await strapi.db.connection.raw(
+      "UPDATE alpha_centraldoc.articles SET is_visible_in_list_view=0 WHERE locale <> 'en' AND is_visible_in_list_view = 1"
+    );
+
+    let entities = await strapi.db.connection.raw(
+      `SELECT DISTINCT b.vuid FROM alpha_centraldoc.articles b WHERE b.locale='en' AND NOT EXISTS (
+        SELECT a.vuid FROM alpha_centraldoc.articles a WHERE a.vuid = b.vuid AND a.locale='en' AND a.is_visible_in_list_view=1
+      )`
+    );
+
+    if(entities.length) {
+      const rows = entities[0];
+      for(var i=0; i<rows.length; i++) {
+        var ent = rows[i];
+        command = "UPDATE alpha_centraldoc.articles SET is_visible_in_list_view=1 WHERE published_at IS NOT NULL AND locale='en' AND vuid='" + ent.vuid + "'";
+        let result =  await strapi.db.connection.raw(command);
+        if(result[0].affectedRows == 0) {
+          const latest = await strapi.db.connection.raw(
+            "SELECT vuid, MAX(version_number) as max_version  FROM alpha_centraldoc.articles WHERE vuid = '" + ent.vuid + "' AND locale='en'"
+          );
+          command = `UPDATE alpha_centraldoc.articles SET is_visible_in_list_view=1\
+            WHERE locale='en' AND vuid='${ent.vuid}' AND version_number=${latest[0][0].max_version}`;
+          await strapi.db.connection.raw(command);
+        }
+      }
+    }
+
+    return "Done Correcting!";
   },
  }));

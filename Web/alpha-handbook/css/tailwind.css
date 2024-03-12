@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url(./iconhandbook/style.css);
+@import url(./roboto/roboto.css);
 
 .remark-code-title {
   @apply rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200;
@@ -167,11 +168,11 @@ html.lightbox-loading * {
 
 
 body {  
-  font-family: Roboto, Tofu;
+  font-family: Roboto, Arial, sans-serif;
 }
 
 .body-en, .body-vi-VN {
-  font-family: Roboto, Tofu;
+  font-family: Roboto, Arial, sans-serif;
 }
 
 .body-th-TH, .body-zh-Hans, .body-zh-Hant  {
@@ -197,7 +198,15 @@ img {
   display: inline-block; 
   background-size: 100% 100%;
 }
-
+.article-body:not(.body-en) .title-page{
+	font-weight: bold;
+}
+.article-body:not(.body-en) h1, .article-body:not(.body-en) h2, .article-body:not(.body-en) h3, .article-body:not(.body-en) h4, .article-body:not(.body-en) h5, .article-body:not(.body-en) h6{
+	font-weight: bold;
+}
+.article-body:not(.body-en) .box-note .box-title{
+	font-weight: bold;
+}
 .article-body {
   overflow: auto;
   max-width: 840px;
@@ -293,6 +302,7 @@ img {
 }
  .article-content ul, .article-content ol {
 	 margin-bottom: 12px;
+	 padding: 0;
 }
  .article-content ul ul, .article-content ol ul, .article-content ul ol, .article-content ol ol {
 	 margin-bottom: 0;
@@ -473,18 +483,20 @@ img {
  .box-caution b, .box-caution strong {
 	 color: #a75000;
 }
- .tooltip-handbook {
-	 position: relative;
-	 z-index: 2;
+.article-content .tooltip-handbook {
+	position: relative;
+	z-index: 2;
+	display: inline-block;
+    margin-bottom: 0;
 }
- .tooltip-handbook:hover {
+.article-content .tooltip-handbook:hover {
 	 z-index: 5;
 }
- .tooltip-handbook:hover:after, .tooltip-handbook:hover .data-tooltip-handbook {
+.article-content .tooltip-handbook:hover:after,.article-content .tooltip-handbook:hover .data-tooltip-handbook {
 	 opacity: 1;
 	 visibility: visible;
 }
- .tooltip-handbook:after {
+.article-content .tooltip-handbook:after {
 	 position: absolute;
 	 content: '';
 	 width: 0px;
@@ -500,7 +512,7 @@ img {
 	 pointer-events: none;
 	 visibility: hidden;
 }
- .tooltip-handbook .data-tooltip-handbook {
+.article-content .tooltip-handbook .data-tooltip-handbook {
 	 position: absolute;
 	 top: calc(100% + 5px);
 	 left: 0;

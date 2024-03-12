@@ -60,133 +60,142 @@ export default factories.createCoreController('api::category.category', ({ strap
 
     return [];
   },
+  async findManyEN(ctx) {
+    const { market, level, env } = ctx.params;
+    const isProd = env === "PROD";
+    const entities = await strapi.entityService.findMany('api::category.category', {
+      filters: {
+        publishedAt: (isProd ? { $null: false } : {}),
+        user_levels: (level =='0' ? {} : { levelId: { $eq: level } }),
+        markets: {
+          name: { $eqi: market }
+        }
+      },
+      populate: {
+        articles: {
+          fields: ['slug', 'title', 'publishedAt', 'order'],
+          populate: {
+            user_levels:{
+              fields: ['levelId']
+            },
+            markets: {
+              fields: ['name']
+            }
+          }
+        },
+        markets: {
+          fields: ['name', 'slug'],
+        },
+        user_levels: {
+          fields: ['levelId'],
+        }
+      }
+    });  
+
+    const output = await this.sanitizeOutput(entities, ctx);
+    return filterCategoriesHasData(output, market, level, isProd);
+  },
 
   async findMany(ctx) {
-    try {
-      const { language, market, level, env } = ctx.params;
-      const isProd = env === "PROD";
+    const { language, market, level, env } = ctx.params;
+    const isProd = env === "PROD";
 
-      if(language === 'en') {
-        const entities = await strapi.entityService.findMany('api::category.category', {
-          filters: {
-            publishedAt: (isProd ? { $null: false } : {}),
-            user_levels: (level =='0' ? {} : { levelId: { $eq: level } }),
-            markets: {
-              name: { $eqi: market }
-            }
-          },
-          populate: {
-            articles: {
-              fields: ['slug', 'title', 'publishedAt', 'order'],
-              populate: {
-                user_levels:{
-                  fields: ['levelId']
-                },
-                markets: {
-                  fields: ['name']
-                }
-              }
-            },
-            markets: {
-              fields: ['name', 'slug'],
-            },
-            user_levels: {
-              fields: ['levelId'],
-            }
-          }
-        });  
-  
-        const output = await this.sanitizeOutput(entities, ctx);
-        return filterCategoriesHasData(output, market, level, isProd);
-      }
-      
-      const entities = await strapi.db.query('api::category.category').findMany({
-        where: {
-          locale: language,
-          publishedAt: (isProd ? { $null: false } : {}),
-          user_levels: {
-            levelId: { $eq: level }
-          },
-          markets: {
-            name: { $eqi: market }
-          },
+    if(language === 'en') {
+      return await this.findManyEN(ctx, null);
+    }
+    
+    const entities = await strapi.db.query('api::category.category').findMany({
+      where: {
+        locale: language,
+        publishedAt: (isProd ? { $null: false } : {}),
+        user_levels: {
+          levelId: { $eq: level }
         },
-        populate: {
-          articles: {
-            fields: ['slug', 'title', 'publishedAt', 'order'],
-            populate: {
-              user_levels:{
-                fields: ['levelId']
-              },
-              markets: {
-                fields: ['name']
-              }
+        markets: {
+          name: { $eqi: market }
+        },
+      },
+      populate: {
+        articles: {
+          fields: ['slug', 'title', 'publishedAt', 'order'],
+          populate: {
+            user_levels:{
+              fields: ['levelId']
+            },
+            markets: {
+              fields: ['name']
             }
-          },
-          markets: {
-            fields: ['name', 'slug'],
-          },
-          user_levels: {
-            fields: ['levelId'],
           }
+        },
+        markets: {
+          fields: ['name', 'slug'],
+        },
+        user_levels: {
+          fields: ['levelId'],
         }
-      });
+      }
+    });
 
-      const result = await this.sanitizeOutput(entities, ctx) as [any];
-      return filterCategoriesHasData(result, market, level, isProd);
-    } catch(e) {
-      console.log(e);
+    const result = await this.sanitizeOutput(entities, ctx) as [any];
+    const categories = filterCategoriesHasData(result, market, level, isProd);
+    if(categories.length === 0) {
+      return await this.findManyEN(ctx, null);
     }
 
-    return [];
+    return categories;
   },
 
       
+  async getBySlugEN(ctx) {
+    const { slug, language, market, level, env } = ctx.params;
+    const isProd = env === "PROD";
+    const entities = await strapi.entityService.findMany('api::category.category', {
+      filters: {
+        publishedAt: (isProd ? { $null: false } : {}),
+        slug: { $eqi: slug },
+        user_levels: {
+          levelId: { $eq: level }
+        },
+        markets: {
+          name: { $eqi: market }
+        }
+      },
+      populate:{
+        articles: {
+          fields: ['slug', 'title', 'publishedAt', 'order'],
+          populate: {
+            user_levels:{
+              fields: ['levelId']
+            },
+            markets: {
+              fields: ['name']
+            }
+          }
+        },
+        markets: {
+          fields: ['name', 'slug'],
+        },
+        user_levels: {
+          fields: ['levelId'],
+        }
+      }
+    });  
+
+    const output = await this.sanitizeOutput(entities, ctx) as [any];
+    if(!output.length) 
+    {
+      return null;
+    }
+    
+    const result = filterCategoriesHasData(output, market, level, isProd);
+    return result[0];
+  },
   async getBySlug(ctx) {
     const { slug, language, market, level, env } = ctx.params;
     const isProd = env === "PROD";
 
     if(language === 'en') {
-      const entities = await strapi.entityService.findMany('api::category.category', {
-        filters: {
-          publishedAt: (isProd ? { $null: false } : {}),
-          slug: { $eqi: slug },
-          user_levels: {
-            levelId: { $eq: level }
-          },
-          markets: {
-            name: { $eqi: market }
-          }
-        },
-        populate:{
-          articles: {
-            fields: ['slug', 'title', 'publishedAt', 'order'],
-            populate: {
-              user_levels:{
-                fields: ['levelId']
-              },
-              markets: {
-                fields: ['name']
-              }
-            }
-          },
-          markets: {
-            fields: ['name', 'slug'],
-          },
-          user_levels: {
-            fields: ['levelId'],
-          }
-        }
-      });  
-
-      const output = await this.sanitizeOutput(entities, ctx) as [any];
-      if(!output.length) 
-      {
-        return null;
-      }
-      
-      const result = filterCategoriesHasData(output, market, level, isProd);
-      return result[0];
+     return await this.getBySlugEN(ctx, null);
     }
 
     const entities = await strapi.db.query('api::category.category').findMany({
@@ -224,14 +233,14 @@ export default factories.createCoreController('api::category.category', ({ strap
 
     if(entities.length === 0) 
     {
-      return null;
+      return await this.getBySlugEN(ctx, null);
     }
 
     const result = await this.sanitizeOutput(entities, ctx) as [any];
     filterCategoriesHasData(result, market, level, isProd);
     if(!result.length) 
     {
-      return null;
+      return await this.getBySlugEN(ctx, null);
     }
 
     return result[0];

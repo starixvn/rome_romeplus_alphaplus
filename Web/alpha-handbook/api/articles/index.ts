@@ -22,7 +22,7 @@ export async function getArticles() {
 }
 
 export async function getArticle(slug: string, id: string) {
-    const url = `${path}/${slug}`;
+    const url = `${path}/latest/demo/${slug}`;
     const urlParamsObject = {
         id,
         populate: {

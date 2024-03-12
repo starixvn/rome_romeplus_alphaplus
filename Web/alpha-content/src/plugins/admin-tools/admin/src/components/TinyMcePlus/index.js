@@ -11,6 +11,8 @@ import { getUploadImageButton, uploadImage } from './upload-image';
 import { getCleanUnpublishedButton, cleanUnpublished } from './clean-unpublished';
 import { getUpdateImageButton, updateImage } from './update-image';
 import { getUploadIconButton, uploadIcon } from './upload-icon';
+import { correctDropdownLocales } from './multi-languages';
+import { getFixDataButton, fixData } from './fix-data';
 
 var addedCss = false;
 function showTinyMcePlusInfo() {
@@ -56,6 +58,7 @@ function addCustomedButtons(initialData, demoUrl, slug) {
   + (supportDemo ? getDemoButton() : "")
   + getAutoSaveButton()
   + getCleanUnpublishedButton()
+  + getFixDataButton()
   ;
 
   t.append(r.firstChild);
@@ -74,6 +77,7 @@ function addCustomedButtons(initialData, demoUrl, slug) {
   document.getElementById('btn-upload-image').onclick = () => { uploadImage(adminUrl); };
   document.getElementById('btn-update-image').onclick = () => { updateImage(adminUrl); };
   document.getElementById('btn-upload-icon').onclick = () => { uploadIcon(adminUrl); };
+  document.getElementById('btn-fix-data').onclick = () => { fixData(); };
   cleanUpEditor();
 }
 
@@ -86,6 +90,7 @@ const TinyMcePlus = () => {
   const { slug, initialData } = useCMEditViewDataManager();
   var demoUrl = HANDBOOK_DEMO_URL;
 
+  correctDropdownLocales(initialData, slug);
   if (!configs.showTinyMCE.some(c => c === slug)) {
     return null;
   }

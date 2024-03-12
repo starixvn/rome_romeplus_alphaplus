@@ -3,6 +3,11 @@ export default {
     { // Path defined with a URL parameter
       method: 'GET',
       path: '/articles/latest/demo',
+      handler: 'article.findAllDemo',
+    },
+    { // Path defined with a URL parameter
+      method: 'GET',
+      path: '/articles/latest/demo/:slug',
       handler: 'article.findDemo',
     },
     { // Path defined with a URL parameter
@@ -34,6 +39,11 @@ export default {
       method: 'GET',
       path: '/articles/suggest/:language/:market/:level/:env/:keyword',
       handler: 'article.suggest',
+    },
+    {
+      method: 'PUT',
+      path: '/articles/fix-data/all',
+      handler: 'article.fixData',
     }
   ]
 }

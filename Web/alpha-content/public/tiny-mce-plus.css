@@ -175,6 +175,12 @@ input[type=file]::file-selector-button:hover,
 }
 
 
+.tox-icon.icon-fix-data {
+    width: 24px; 
+    height: 24px;
+    background-image: url('./imgs/fix-data.png');
+    background-size: 100% 100%;
+}
 
 
 

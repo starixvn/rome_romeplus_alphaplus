@@ -12,7 +12,7 @@ export function LayoutWrapper({ children }) {
     <div className="px-4">
       <MobileNav navShow={navShow} onToggleNav={onToggleNav} />
       <Header onToggleNav={onToggleNav} />
-      <div className="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-5xl xl:px-0">
+      <div className="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-6xl xl:px-0">
         <div className="flex">
            {children} 
            

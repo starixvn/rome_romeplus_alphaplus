@@ -9,9 +9,7 @@ export function Header({ onToggleNav }: { onToggleNav: () => void }) {
   let router = useRouter()
   return (
     <header
-      className="supports-backdrop-blur:bg-white/95 sticky top-0 z-40 overflow-x-hidden bg-white/75
-    py-3 backdrop-blur dark:bg-dark/75"
-    >
+      className="sticky top-0 z-40 overflow-x-hidden py-3">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-3 xl:max-w-5xl xl:px-0">
         <div className="flex items-center justify-center">
           <Link href="/" aria-label="Kaveh's Blog">
