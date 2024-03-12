@@ -51,7 +51,6 @@ using Sunplus.Agent.Utilities;
 using MediatR;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.SecurityCode.Configurations;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -67,11 +66,11 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddHealthChecks();
                 
             services
-                .Configure<JsonOptions>(options =>
-                {
-                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                })
                 .AddControllersWithViews()
+                .AddNewtonsoftJson(option => 
+                {
+                    option.UseMemberCasing();
+                })
                 .AddRazorOptions(options =>
                 {
                     options.ViewLocationFormats.Clear();
