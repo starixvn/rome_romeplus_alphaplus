@@ -107,6 +107,24 @@
         ]
     },
     {
+        "outputFileName": "wwwroot/bundles/bonusdetail/bonusdetail.css",
+        "inputFiles": [
+            "assets/styles/bonusdetail/bonus-detail.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/bonusdetail/bonusdetail.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/pager.js",
+            "assets/scripts/bonusdetail/confirm-payment.js",
+            "assets/scripts/bonusdetail/bonus-detail.js"
+        ]
+    },
+    {
         "outputFileName": "wwwroot/bundles/betcredittracking/betcredithistory.css",
         "inputFiles": [
             "assets/styles/betcredittracking/bet-credit-history.css"
@@ -138,6 +156,16 @@
             "assets/scripts/components/pager.js",
             "assets/scripts/components/monthpicker.js",
             "assets/scripts/betcredittracking/move-statement-history.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/ipmatching/ipmatching.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/ipmatching/ip-matching.js"
         ]
     }
 ]

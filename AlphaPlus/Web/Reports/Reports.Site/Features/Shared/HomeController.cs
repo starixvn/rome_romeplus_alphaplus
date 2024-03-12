@@ -32,4 +32,6 @@ public class HomeController(Fanex.Logging.ILogger logger) : Controller
 
         return View(viewModel);
     }
+
+    public IActionResult InvalidReport() => View();
 }

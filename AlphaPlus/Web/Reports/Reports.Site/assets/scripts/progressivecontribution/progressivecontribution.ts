@@ -5,7 +5,6 @@
 /// <reference path="../components/tooltip.ts" />
 
 class ProgressiveContributionView extends BaseReport {
-    $: JQueryStatic;
     dateRangePickerComponent: DateRangePickerComponent;
     monthPickerComponent: MonthPickerComponent;
     productMultiSelectionComponent: ProductMultiSelectionComponent;
@@ -19,7 +18,6 @@ class ProgressiveContributionView extends BaseReport {
 
     $isHistoricReport: JQuery;
     $isSetDefaultStackMode: JQuery;
-    $isFilterVisible: JQuery;
     $isStackMode: JQuery;
     $isAgentLevel: JQuery;
 
@@ -40,7 +38,6 @@ class ProgressiveContributionView extends BaseReport {
     ) {
         super($, linkBuilderComponent);
 
-        this.$ = $;
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.monthPickerComponent = monthPickerComponent;
         this.productMultiSelectionComponent = productMultiSelectionComponent;
@@ -97,7 +94,6 @@ class ProgressiveContributionView extends BaseReport {
 
     cacheDOMElements = () => {
         this.$isSetDefaultStackMode = this.$('#IsSetDefaultStackMode');
-        this.$isFilterVisible = this.$('#IsFilterVisible');
         this.$isStackMode = this.$('#IsStackMode');
         this.$isHistoricReport = this.$('#IsHistoricReport');
         this.$isAgentLevel = this.$('#IsAgentLevel');

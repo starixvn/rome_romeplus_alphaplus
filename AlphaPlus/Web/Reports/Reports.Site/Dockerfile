@@ -10,6 +10,7 @@ WORKDIR /src
 COPY "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
 COPY "Services/Reports/AlphaPlus.Reports/AlphaPlus.Reports.csproj" "Services/Reports/AlphaPlus.Reports/AlphaPlus.Reports.csproj"
 
+COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
 COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
 COPY "Web/Reports/Reports.Site/Reports.Site.csproj" "Web/Reports/Reports.Site/Reports.Site.csproj"
@@ -22,6 +23,7 @@ RUN dotnet restore "Web/Reports/Reports.Site/Reports.Site.csproj" -v n
 COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
 COPY "Services/Reports/AlphaPlus.Reports" "Services/Reports/AlphaPlus.Reports"
 
+COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
 COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
 COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
 

@@ -11,6 +11,8 @@ using AlphaPlus.Reports.Features.Statement;
 using AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
 using AlphaPlus.Reports.Features.BetCreditTracking.MoveStatementHistory;
 using AlphaPlus.Reports.Features.CommissionByBetType;
+using AlphaPlus.Reports.Features.BonusDetail;
+using AlphaPlus.Reports.Features.IPMatching;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
@@ -32,8 +34,10 @@ public static class DependencyInjection
             .AddSingleton<ICommissionByBetTypeService, CommissionByBetTypeService>()
             .AddSingleton<IStatementService, StatementService>()
             .AddSingleton<IProgressiveContributionService, ProgressiveContributionService>()
+            .AddSingleton<IBonusDetailService, BonusDetailService>()
             .AddSingleton<IBetCreditHistoryService, BetCreditHistoryService>()
-            .AddSingleton<IMoveStatementHistoryService, MoveStatementHistoryService>();
+            .AddSingleton<IMoveStatementHistoryService, MoveStatementHistoryService>()
+            .AddSingleton<IIPMatchingService, IPMatchingService>();
 
         var serviceProvider = services.BuildServiceProvider();
         ReportDateService.Instance = serviceProvider.GetRequiredService<IReportDateService>();

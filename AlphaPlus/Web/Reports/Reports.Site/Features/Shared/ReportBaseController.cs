@@ -9,6 +9,7 @@ namespace AlphaPlus.Reports.Site.Features.Shared;
 public abstract class ReportBaseController(IMediator mediator) : BaseController
 {
     private const string InvalidViewName = "InvalidReport";
+    protected readonly IMediator mediator = mediator;
 
     protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message, string viewName = null)
     {

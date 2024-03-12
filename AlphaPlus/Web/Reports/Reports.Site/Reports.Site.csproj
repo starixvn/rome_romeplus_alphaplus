@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
     <ProjectReference Include="..\..\..\Services\Reports\AlphaPlus.Reports\AlphaPlus.Reports.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Common" Version="1.1.1.1" />

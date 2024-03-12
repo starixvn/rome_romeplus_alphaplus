@@ -1,0 +1,129 @@
+﻿interface JQuery {
+    datepicker(options: any): JQuery;
+}
+
+class ConfirmPayment {
+    private $: JQueryStatic;
+    private reloadFormCallback: Function;
+    private $popupConfirmPayment: JQuery;
+    private $formConfirmPayment: JQuery;
+    private $hiddenCustId: JQuery;
+    private $hiddenTransId: JQuery;
+    private $paymentDatePicker: JQuery;
+    private $labelToMember: JQuery;
+    private $labelAmount: JQuery;
+    private $labelBonusDetailRefNo: JQuery;
+    private $buttonConfirmPayment: JQuery;
+
+    constructor($: JQueryStatic, reloadFormCallback: Function, $popupConfirmPayment: JQuery) {
+        this.$ = $;
+        this.reloadFormCallback = reloadFormCallback;
+        this.$popupConfirmPayment = $popupConfirmPayment;
+    }
+
+    public init() {
+        this.cacheElements();
+        this.bindEvents();
+    }
+
+    private cacheElements() {
+        this.$formConfirmPayment = this.$popupConfirmPayment.find('#form-confirmPayment');
+        this.$hiddenCustId = this.$formConfirmPayment.find('#hidden-custId');
+        this.$hiddenTransId = this.$formConfirmPayment.find('#hidden-transId');
+        this.$paymentDatePicker = this.$formConfirmPayment.find('#payment-date');
+        this.$paymentDatePicker.datepicker({
+            allowInputToggle: true,
+            maxDate: this.$paymentDatePicker.val(),
+            widgetPositioning: {
+                horizontal: 'left',
+                vertical: 'bottom'
+            }
+        });
+        this.$labelToMember = this.$formConfirmPayment.find('#lbl-toMember');
+        this.$labelAmount = this.$formConfirmPayment.find('#lbl-amount');
+        this.$labelBonusDetailRefNo = this.$formConfirmPayment.find('#lbl-bonusDetailRefNo');
+        this.$buttonConfirmPayment = this.$formConfirmPayment.find('#btn-confirmPayment');
+    }
+
+    private bindEvents() {
+        const self = this;
+        this.$('.icon-payment').click(function () {
+            self.assignConfirmPaymentFormData(self.$(this));
+            self.$popupConfirmPayment.modal({ show: true, backdrop: false });
+        });
+
+        this.$formConfirmPayment.submit(function (e) {
+            e.preventDefault();
+            self.confirmPaymentPost();
+        });
+
+        this.$popupConfirmPayment.draggable({
+            handle: '.modal-header'
+        });
+    }
+
+    private confirmPaymentPost() {
+        this.$.blockUI();
+        this.$buttonConfirmPayment.prop('disabled', true);
+        this.$.ajax({
+            type: this.$formConfirmPayment.attr('method'),
+            url: this.$formConfirmPayment.attr('action'),
+            beforeSend: (xhr) =>
+                xhr.setRequestHeader(
+                    '__RequestVerificationToken',
+                    this.$formConfirmPayment.find('input[name="__RequestVerificationToken"]').val()
+                ),
+            data: this.$formConfirmPayment.serialize(),
+            dataType: 'json',
+            success: this.confirmPaymentPostSuccess,
+            complete: this.$.unblockUI
+        });
+    }
+
+    confirmPaymentPostSuccess = (data) => {
+        if (data.ErrCode) {
+            this.showError(data.ErrMsg);
+            this.$buttonConfirmPayment.prop('disabled', false);
+        } else {
+            if (data.IsOk) {
+                this.showSuccess(data.Message);
+                setTimeout(() => {
+                    this.$popupConfirmPayment.modal('hide');
+                    this.reloadFormCallback();
+                }, 3000);
+            } else {
+                this.showError(data.ErrMsg);
+                this.$buttonConfirmPayment.prop('disabled', false);
+            }
+        }
+    };
+
+    private assignConfirmPaymentFormData(iconPayment: JQuery) {
+        this.hideAlert();
+        const transId = iconPayment.data('transid');
+        const paymentDate = iconPayment.data('createddate');
+
+        this.$hiddenCustId.val(iconPayment.data('custid'));
+        this.$hiddenTransId.val(transId);
+        this.$paymentDatePicker.val(paymentDate);
+        this.$paymentDatePicker.data('DateTimePicker').minDate(paymentDate);
+        this.$labelToMember.text(iconPayment.data('username'));
+        this.$labelAmount.text(iconPayment.data('amount'));
+        this.$labelBonusDetailRefNo.text(transId);
+    }
+
+    private showSuccess(message: string) {
+        this.$('#alert-message-content').addClass('msg msg-success').html(message);
+        this.$('#alert-message').removeClass('hide');
+    }
+
+    private showError(error: string) {
+        this.$('#alert-message-content').addClass('msg msg-error').html(error);
+        this.$('#alert-message').removeClass('hide');
+    }
+
+    private hideAlert() {
+        this.$('#alert-message').addClass('hide');
+        this.$('#alert-message-content').html('').removeClass();
+    }
+}

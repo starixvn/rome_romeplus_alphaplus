@@ -1,5 +1,3 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
-
 namespace AlphaPlus.Reports.Features.Statement;
 
 public class StatementModel
