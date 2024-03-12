@@ -1,7 +1,12 @@
-﻿@* @model MultipleDoubleCommViewModel
+﻿@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.CustomerListResources
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
+@using AlphaPlus.Core.Helpers
+
+@model MultipleDoubleCommViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Multiple Double Comm";
 }
 
@@ -30,5 +35,5 @@
 </div>
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/Features/CustomerList/Bundles/muliple-double-comm")
-} *@
+    @StaticResources.RenderScripts("~/MemberInfo/Features/CustomerList/Bundles/muliple-double-comm")
+}
