@@ -1,0 +1,103 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Statement";
+
+    void RenderNegativeNumberCell(decimal? cellValue)
+    {
+        <span class="@(cellValue.HasValue && cellValue.Value < 0 ? "format-negative" : string.Empty)">
+            @(cellValue.HasValue ? cellValue.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
+        </span>
+    }
+    void RenderNumberCell(decimal? cellValue)
+    {
+        <span>
+            @(cellValue.HasValue ? cellValue.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
+        </span>
+    }
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/statement/statement.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/statement/sma-statement.js" asp-append-version="true"></script>
+}
+@model SMAStatementViewModel
+<report-title model="Model.PageHeader" />
+<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-action="SMAStatement">
+    <daterange-picker model="Model.DateRangePicker" />
+    <div class="form-group">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="SMAStatementExcel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    <div class="note">
+        <span class="star">*</span>@Model.ViewDataInstructionMessage
+    </div>
+    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
+        value="@Model.PageHeader.IsFilterVisible.ToString()" />
+    <input type="hidden" asp-for="CustId" />
+    <input type="hidden" asp-for="CustName" />
+    <input type="hidden" asp-for="CustLevelId" />
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
+    <thead>
+        <tr>
+            <th>@Resources.Date</th>
+            <th>@Resources.OpeningBalance</th>
+            <th>@Resources.Turnover</th>
+            <th>@Resources.WinLoss</th>
+            <th>@Resources.Commission</th>
+            <th>@Resources.TransferAmt</th>
+            <th>@Resources.AccumulatedTotal</th>
+        </tr>
+    </thead>
+    @if (Model.Pager.TotalRecords > 0)
+    {
+        StatementModel prevStatement = null;
+        <tbody>
+            @foreach (var data in Model.ReportData)
+            {
+                var winLossDateString = data.WinLossDate.ToShortDateWithSlash();
+                <tr class="hide">
+                    <td class="text-center">@winLossDateString</td>
+                    <td class="@(data.IsNotedBalance(prevStatement) ? "note-opening-balance" : string.Empty)">
+                        @{
+                            RenderNegativeNumberCell(data.OpeningBalance);
+                        }
+                    </td>
+                    <td>@{
+                            RenderNumberCell(data.Turnover);
+                        }</td>
+                    <td>@{
+                            RenderNegativeNumberCell(data.WinLoss);
+                        }</td>
+                    <td>@{
+                            RenderNegativeNumberCell(data.Commission);
+                        }</td>
+                    <td>
+                        <span
+                            class="@(data.TransferAmount.HasValue ? "column-transfer-amount" : string.Empty) @(data.TransferAmount.HasValue && data.TransferAmount.Value < 0 ? "format-negative" : string.Empty)"
+                            data-transfer-date="@winLossDateString">@(data.TransferAmount.HasValue ?
+                    data.TransferAmount.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
+                        </span>
+                    </td>
+                    <td>@{
+                            RenderNegativeNumberCell(data.ClosingBalance);
+                        }</td>
+                </tr>
+                prevStatement = data;
+            }
+        </tbody>
+    }
+    else
+    {
+        <no-information colspan="7" />
+    }
+</table>
+<pager model="Model.Pager" />
+<partial name="_StatementPopup.cshtml" model="Model.CustName" />
+<a class="hide" id="LoadLegendURL" asp-action="SMAReportLegend"></a>
+<a class="hide" id="StatementDetailsURL" asp-action="StatementDetails"></a>

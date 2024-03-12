@@ -1,4 +1,5 @@
 using AlphaPlus.Reports.Features.Shared.Criteria;
+using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;
@@ -52,12 +53,12 @@ public class ProductService(
     }
 
     public string ConcatProductNames(string productIds)
-        => string.Join(", ", GetProductNames(productIds.ToListInt()));
+        => GetProductNames(productIds.ToListInt()).JoinWithComma(", ");
 
     public string ConcatProductNames(IEnumerable<int> productIds, IDictionary<int, string> replacedProductNames)
         => productIds == null
         ? string.Empty
-        : string.Join(", ", productIds.Select(id => replacedProductNames.TryGetValue(id, out var name) ? name : cacheRefService.GetProductName(id)));
+        : productIds.Select(id => replacedProductNames.TryGetValue(id, out var name) ? name : cacheRefService.GetProductName(id)).JoinWithComma(", ");
 
     public IEnumerable<Product> GetProgressiveJackpotProduct(string site, int currencyId, IEnumerable<int> progressiveJackpotproductIds)
         => FilterProducts(site, currencyId, progressiveJackpotproductIds);

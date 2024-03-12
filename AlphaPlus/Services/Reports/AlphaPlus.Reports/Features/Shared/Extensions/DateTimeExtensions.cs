@@ -4,6 +4,7 @@ public static class DateTimeExtensions
 {
     private const string MMDDWithSlash = "MM/dd";
     private const string ShortDateWithSlash = "MM/dd/yyyy";
+    private const string LongDate24HourWithSlash = "MM/dd/yyyy HH:mm:ss";
 
     public static string ToMMDDWithSlash(this DateTime dateTime)
         => dateTime.ToString(MMDDWithSlash);
@@ -11,8 +12,14 @@ public static class DateTimeExtensions
     public static string ToShortDateWithSlash(this DateTime dateTime)
         => dateTime.ToString(ShortDateWithSlash);
 
+    public static string ToLongDate24HourWithSlash(this DateTime dateTime)
+        => dateTime.ToString(LongDate24HourWithSlash);
+
     public static DateTime Yesterday(this DateTime dateTime)
         => dateTime.AddDays(-1);
+
+    public static DateTime OneWeekAgo(this DateTime dateTime)
+        => dateTime.AddDays(-7);
 
     public static DateTime FirstDayOfMonth(this DateTime dateTime)
         => new DateTime(dateTime.Year, dateTime.Month, 1);

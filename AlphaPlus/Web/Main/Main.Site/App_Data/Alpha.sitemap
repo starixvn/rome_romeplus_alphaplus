@@ -35,13 +35,13 @@
     <siteMapNode resourceKey="commissionByBettype" url="/commissionbybettype/master" roles="Super" byPassProtectedMode="true"></siteMapNode>
 
     <siteMapNode menuItemType="ConsolidatedReportMenuItem" resourceKey="consolidatedreport" url="/consolidation/consolidationbyusername"></siteMapNode>
-    <siteMapNode resourceKey="statement" url="/Statement/SMAStatement"></siteMapNode>
+    <siteMapNode resourceKey="statement" url="/reports/statement/smastatement"></siteMapNode>
 
     <siteMapNode resourceKey="result" url="~/Normal" appPath="ResultSiteVirtualPath" byPassProtectedMode="true"></siteMapNode>
 
-    <siteMapNode menuItemType="ProgressiveContributionMenuItem" resourceKey="ProgressiveGamesContribution" url="/progressivecontribution/index"></siteMapNode>
+    <siteMapNode menuItemType="ProgressiveContributionMenuItem" resourceKey="ProgressiveGamesContribution" url="/reports/progressivecontribution/index"></siteMapNode>
     <siteMapNode menuItemType="BonusDetailMenuItem" resourceKey="BonusDetail" url="/bonusdetail/index"></siteMapNode>
-    <siteMapNode resourceKey="BetCreditTracking" url="/betcredithistory/index" isHiddenInMobile="true"></siteMapNode>
+    <siteMapNode resourceKey="BetCreditTracking" url="/reports/betcredittracking/betcredithistory" isHiddenInMobile="true"></siteMapNode>
   </siteMapNode>
   <!--/Report-->
   <!--MemberInfo-->

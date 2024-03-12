@@ -13,7 +13,6 @@ class ProgressiveContributionView extends BaseReport {
 
     $historicReport: JQuery;
     $buttonProduct: JQuery;
-    $excelIcon: JQuery;
     $switchModeIcon: JQuery;
     $fromDate: JQuery;
     $toDate: JQuery;
@@ -57,7 +56,6 @@ class ProgressiveContributionView extends BaseReport {
         this.bindFilter();
         this.$tableReport.stickyTableHeaders();
         this.registerEvents();
-        this.initHelp();
     };
 
     checkReady = () => {
@@ -98,8 +96,6 @@ class ProgressiveContributionView extends BaseReport {
     };
 
     cacheDOMElements = () => {
-        this.cacheElements();
-
         this.$isSetDefaultStackMode = this.$('#IsSetDefaultStackMode');
         this.$isFilterVisible = this.$('#IsFilterVisible');
         this.$isStackMode = this.$('#IsStackMode');
@@ -112,22 +108,14 @@ class ProgressiveContributionView extends BaseReport {
         this.$fromDate = this.$('#from-date');
         this.$toDate = this.$('#to-date');
 
-        this.$excelIcon = this.$('#icon-excel');
         this.$switchModeIcon = this.$('.icon-switchmode');
     };
 
     public registerEvents() {
-        super.registerEvents();
-
-        this.$excelIcon.on('click', this.onExportExcel);
         this.$reportForm.submit(this.onSubmitReport);
         this.$historicReport.on('click', this.onSubmitHistoricReport);
         this.$switchModeIcon.on('click', this.onSwitchMode);
     }
-
-    onExportExcel = () => {
-        this.$exportExcelForm.submit();
-    };
 
     onSubmitReport = (e: any) => {
         this.$.blockUI();
@@ -156,8 +144,7 @@ class ProgressiveContributionView extends BaseReport {
 
     onSwitchMode = () => {
         this.$.blockUI();
-        let tableReport = this.$tableReport;
-        let isStackMode = tableReport.hasClass('stack-mode');
+        let isStackMode = this.$tableReport.hasClass('stack-mode');
 
         this.setCssBySwitchMode(isStackMode);
 
@@ -186,11 +173,10 @@ class ProgressiveContributionView extends BaseReport {
 
     getParams = () => {
         let selectedProducts = this.productMultiSelectionComponent.getSelectedItems();
-        let tableReport = this.$tableReport;
 
         return {
             IsAnyProductSelected: selectedProducts.length > 0,
-            IsStackMode: tableReport.hasClass('stack-mode'),
+            IsStackMode: this.$tableReport.hasClass('stack-mode'),
             IsHistoricReport: this.isHistoricReport,
             IsFilterVisible: !this.$reportForm.is(':hidden')
         };

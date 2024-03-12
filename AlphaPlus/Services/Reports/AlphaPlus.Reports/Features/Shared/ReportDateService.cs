@@ -27,6 +27,8 @@ public class ReportDateService(IDynamicRepository repository, ICacheService cach
 
     private const string BalanceUpDayAndMoveBetsDayCacheKey = "AlphaPlus.Reports.BalanceUpDayAndMoveBetsDay";
 
+    public static IReportDateService Instance { get; internal set; }
+
     public Task<BalanceUpDayAndMoveBetsDay> GetBalanceUpDayAndMoveBetsDay()
         => cacheService.GetOrSetAsync(
             BalanceUpDayAndMoveBetsDayCacheKey,

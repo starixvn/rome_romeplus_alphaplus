@@ -21,7 +21,7 @@ public class ReportTitleTagHelper : TagHelper
         AppendEnteredSportResult(sb);
         sb.Append($"<div class=\"text-title pull-left\" style=\"clear:both\">{Model.Title}</div>");
 
-        var breadcrumbViewModel = Model.BreadcrumbLevelViewModel;
+        var breadcrumbViewModel = Model.BreadcrumbLevel;
         if (breadcrumbViewModel != null && breadcrumbViewModel.BreadcrumbLevel.Any())
         {
             var breadcrumbTagHelper = new BreadcrumbTagHelper

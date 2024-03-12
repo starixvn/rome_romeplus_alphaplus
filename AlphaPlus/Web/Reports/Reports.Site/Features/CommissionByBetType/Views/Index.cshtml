@@ -1,0 +1,112 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Reports.Features.CommissionByBetType
+@using AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.CommissionByBetType
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Commission By Bet Type";
+    void RenderCellValue(CommissionByBetTypeModel commission)
+    {
+        <td>@commission.Comm1.FormatNumber()</td>
+        <td>@commission.Comm2.FormatNumber()</td>
+        <td>@commission.Comm3.FormatNumber()</td>
+        if (Model.IsShowMyanmarOdds)
+        {
+            <td>@commission.MyanmarOddsComm.FormatNumber()</td>
+        }
+        <td>@commission.CasinoComm.FormatNumber()</td>
+    }
+
+    var sortIndex = 4;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/progressivecontribution/progressivecontribution.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/progressivecontribution/progressivecontribution.js" asp-append-version="true"></script>
+}
+@model CommissionByBetTypeViewModel
+<report-title model="Model.PageHeader" />
+<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-action="@Model.CustLevel.DisplayName.ToLowerInvariant()">
+    <daterange-picker model="Model.DateRangePicker" />
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"></a>
+    </div>
+    <div class="note">
+        <span class="star">*</span>@Model.ViewDataInstructionMessage
+    </div>
+    <input type="hidden" id="IsFilterVisible" asp-for="PageHeader" value="@Model.PageHeader.IsFilterVisible" />
+    <input type="hidden" asp-for="IsDescendingSort" />
+    <input type="hidden" asp-for="SortPropertyName" />
+    <input type="hidden" asp-for="CustId" />
+    <input type="hidden" asp-for="CustName" />
+    <input type="hidden" id="CustLevelId" asp-for="CustLevel" value="@Model.CustLevel.Value" />
+    <input type="hidden" asp-for="BreadcrumbLevelJson" />
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-small-width" id="tbl-report"
+    data-totalrecords="@Model.ReportData.Count()" data-sortedcolumn="@Model.SortPropertyName"
+    data-descendingsort="@Model.IsDescendingSort">
+    <thead class="tableFloatingHeaderOriginal">
+        <tr>
+            <th class="sorting" data-colindex="0" data-sortedname="@CommissionByBetTypeViewModel.SortByCustName">
+                @Resources.Username</th>
+            <th class="sorting" data-colindex="1" data-sortedname="@CommissionByBetTypeViewModel.SortByComm1">
+                @Resources.Commission1</th>
+            <th class="sorting" data-colindex="2" data-sortedname="@CommissionByBetTypeViewModel.SortByComm2">
+                @Resources.Commission2</th>
+            <th class="sorting" data-colindex="3" data-sortedname="@CommissionByBetTypeViewModel.SortByComm3">
+                @Resources.Commission3</th>
+            @if (Model.IsShowMyanmarOdds)
+            {
+                <th class="sorting" data-colindex="@sortIndex++"
+                    data-sortedname="@CommissionByBetTypeViewModel.SortByMyanmarOddsComm">@Resources.SymbolMyanmarOdds</th>
+            }
+            <th class="sorting" data-colindex="@sortIndex"
+                data-sortedname="@CommissionByBetTypeViewModel.SortByCasinoComm">@Resources.Gaming</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.Any())
+    {
+        <tbody>
+            @foreach (var commission in Model.ReportData)
+            {
+                <tr>
+                    @if (Model.CustLevel.IsAgentLevel())
+                    {
+                        <td class="text-left">@commission.CustName</td>
+                    }
+                    else
+                    {
+                        <td data-islink="true" class="text-left">
+                            <a class="downline-link"
+                                href="@Model.BuildDrillDownLink(commission, string.Empty)">@commission.CustName</a>
+                        </td>
+                    }
+                    @{
+                        RenderCellValue(commission);
+                    }
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="tbl-footer">
+                <td class="text-left">@Resources.Total</td>
+                @{
+                    RenderCellValue(Model.Total);
+                }
+            </tr>
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="@(Model.IsShowMyanmarOdds ? 7 : 6)" />
+    }
+</table>

@@ -34,7 +34,7 @@ public class OutstandingHandler(
             message,
             outstandings,
             productViewModel,
-            BuildBreadcrumbLevel(message),
+            BuildBreadcrumbs(message),
             isOnlyMobile);
     }
 }

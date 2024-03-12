@@ -6,8 +6,6 @@ namespace AlphaPlus.Reports.Site.Features.Shared.Requests;
 public class BaseQuery
 {
     private const string CustomerDatelimit = "CustomerDateLimit";
-    private const string Jackpot = "Jackpot";
-    private const string GameEnable = "GameEnable_";
 
     public BaseQuery() : this(new UserSessionExt())
     {
@@ -18,6 +16,8 @@ public class BaseQuery
         Viewer = viewer;
         ViewerId = viewer.CustId;
         ViewerLevelId = viewer.RoleId;
+        ViewerLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
+
         Site = viewer.Site;
         CurrencyId = viewer.CurrencyId;
         Language = viewer.Language;
@@ -26,6 +26,7 @@ public class BaseQuery
         CustId = ViewerId;
         CustName = viewer.UserName;
         CustLevelId = ViewerLevelId;
+        CustLevel = Enumeration.FromValue<UserLevel>(CustLevelId);
     }
 
     protected IUserSession Viewer { get; }
@@ -34,11 +35,11 @@ public class BaseQuery
 
     public byte ViewerLevelId { get; }
 
-    public UserLevel ViewerLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
+    public UserLevel ViewerLevel { get; }
 
     public string Site { get; }
 
-    public int CurrencyId { get; set; }
+    public int CurrencyId { get; }
 
     public string Language { get; }
 
@@ -50,17 +51,15 @@ public class BaseQuery
 
     public byte CustLevelId { get; set; }
 
-    public UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
+    public UserLevel CustLevel { get; }
 
-    public IEnumerable<Breadcrumb> BreadcrumbLevel { get; set; } = Enumerable.Empty<Breadcrumb>();
+    public IEnumerable<Breadcrumb> BreadcrumbLevel { get; set; } = [];
 
-    public DateTime MinDate { get; protected set; }
-
-    public bool IsEnabledJackpot => EnableJackpotProductIds.Any();
-
-    public IList<int> EnableJackpotProductIds => GetEnableProductsForGame(Jackpot);
+    public DateTime MinDate { get; protected set; } = DateTime.MinValue;
 
     public bool IsPostBack { get; set; }
+
+    public bool IsFilterVisible { get; set; } = true;
 
     public virtual bool IsValid()
        => CustId > 0
@@ -69,7 +68,4 @@ public class BaseQuery
        && ViewerId > 0
        && ViewerLevel.IsEqualOrUplineOf(CustLevel)
        && !string.IsNullOrWhiteSpace(Language);
-
-    private IList<int> GetEnableProductsForGame(string gameName)
-        => Viewer.GetProperty<IList<int>>(GameEnable + gameName) ?? [];
 }

@@ -10,22 +10,24 @@ public class ProgressiveContributionViewModel(
     ProgressiveContributionEntity total,
     ProductMultiSelectionViewModel productViewModel)
 {
-    public UserLevel ViewerLevel => message.ViewerLevel;
+    public UserLevel CustLevel { get; } = message.ViewerLevel;
 
-    public string Title => Resources.ProgressiveGamesContribution;
+    public bool IsHistoricReport { get; } = message.IsHistoricReport;
 
-    public bool IsFilterVisible => message.IsFilterVisible;
+    public bool IsSetDefaultStackMode { get; } = message.IsSetDefaultStackMode;
 
-    public bool IsStackMode => message.IsStackMode;
-
-    public bool IsSetDefaultStackMode => message.IsSetDefaultStackMode;
-
-    public bool IsHistoricReport => message.IsHistoricReport;
+    public PageHeaderViewModel PageHeader { get; }
+        = new PageHeaderViewModel(
+            Resources.ProgressiveGamesContribution,
+            HasStackIcon: message.ViewerLevel.IsMasterOrSuperLevel(),
+            HasHideFilterIcon: true,
+            IsStackMode: message.IsStackMode,
+            IsFilterVisible: message.IsFilterVisible);
 
     public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 
-    public DateRangePickerViewModel DateRangePickerViewModel
-        => new DateRangePickerViewModel(
+    public DateRangePickerViewModel DateRangePicker { get; }
+        = new DateRangePickerViewModel(
             message.MinDate,
             DateTime.MaxValue,
             message.FromDate,
@@ -34,12 +36,12 @@ public class ProgressiveContributionViewModel(
             isSupportHistoricReport: true,
             isHistoricReport: message.IsHistoricReport);
 
-    public MonthPickerViewModel MonthPickerViewModel
-        => new MonthPickerViewModel(message.MinDate, message.FromDate, message.ToDate);
+    public MonthPickerViewModel MonthPicker { get; }
+        = new MonthPickerViewModel(message.MinDate, message.FromDate, message.ToDate);
 
     public string ViewDataInstructionMessage
         => string.Format(
-            message.IsHistoricReport
+            IsHistoricReport
                 ? Resources.CanOnlyViewDataAfterTimeHistoryReport
                 : Resources.CanOnlyViewDataAfterTimeCurrentReport,
             message.MinDate.ToShortDateWithSlash());
@@ -54,4 +56,12 @@ public class ProgressiveContributionViewModel(
 
     public int ReportColumnsCount
         => message.ViewerLevel.IsSuperLevel() ? 8 : message.ViewerLevel.IsMasterLevel() ? 7 : 6;
+
+    public IDictionary<string, string> GetExcelParams() => new Dictionary<string, string>
+    {
+        [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
+        [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate,
+        [nameof(ProductViewModel.UserSelectedProductIds)] = ProductViewModel.UserSelectedProductIds,
+        [nameof(IsHistoricReport)] = IsHistoricReport.ToString()
+    };
 }

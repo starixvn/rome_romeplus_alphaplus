@@ -10,4 +10,7 @@ public static class NumberExtensions
 
     public static string FormatNumber4(this decimal number)
         => number.ToString("N4");
+
+    public static string FormatNullableNumber(this decimal? number)
+        => number.HasValue ? number.Value.FormatNumber() : string.Empty;
 }

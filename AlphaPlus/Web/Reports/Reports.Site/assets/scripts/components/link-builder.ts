@@ -20,12 +20,11 @@ class LinkBuilderComponent {
     };
 
     updateParam = (name: string, value: string) => {
-        const me = this;
         this.options.linkClasses.forEach((className: string) => {
             const $linkClass = this.$(className);
 
-            $linkClass.each((index: number, element: Element) => {
-                const $link = me.$(element);
+            $linkClass.each((_, element: Element) => {
+                const $link = this.$(element);
                 let currentUrl = $link.attr('href');
                 currentUrl = alphaReports.replaceQueryStringValue(currentUrl, name, value);
 

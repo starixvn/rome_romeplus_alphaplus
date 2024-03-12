@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "_Layout";
+    var transferDate = Model.TransferDate.ToShortDateWithSlash();
+    ViewData["Title"] = $"Transfer Details ({Model.CustName}): {transferDate}";
+
+    void RenderNegativeNumberCell(decimal? cellValue)
+    {
+        <span class="@(cellValue.HasValue && cellValue.Value < 0 ? "format-negative" : string.Empty)">
+            @(cellValue.HasValue ? cellValue.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
+        </span>
+    }
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/statement/statement.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/statement/statement-details.js" asp-append-version="true"></script>
+}
+@model StatementDetailViewModel
+<form class="form-inline filter statement-details-filter" role="form" id="report-form">
+    <div class="form-group statement-detail-title">
+        @Resources.TransferDetails (@Model.CustName): @transferDate
+        <a class="icon-excel statement-details-excel" title="@Resources.ExportToExcel" asp-action="StatementDetailExcel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tbl-report-statement-detail width-100per"
+    id="tbl-report">
+    <thead>
+        <tr>
+            <th>@Resources.Date</th>
+            <th>@Resources.Remark</th>
+            <th>@Resources.Amount</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.Any())
+    {
+        <tbody>
+            @foreach (var data in Model.ReportData)
+            {
+                <tr>
+                    <td class="text-center">
+                        @Html.Raw(data.TransDate.ToString("dddd<br/>MM/dd/yyyy<br/>hh:mm:ss tt"))
+                    </td>
+                    <td class="text-left">
+                        @data.TransType
+                        <br />
+                        @data.TransDesc
+                    </td>
+                    <td>@{
+                            RenderNegativeNumberCell(data.Amount);
+                        }</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="tbl-footer">
+                <td colspan="2">@Resources.Total</td>
+                <td>@{
+                        RenderNegativeNumberCell(Model.Total.Amount);
+                    }</td>
+            </tr>
+        </tfoot>
+    }
+    else
+    {
+        <no-information colspan="3" />
+    }
+</table>

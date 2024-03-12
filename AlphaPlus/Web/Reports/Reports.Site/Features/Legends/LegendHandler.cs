@@ -5,8 +5,7 @@ using MediatR;
 namespace AlphaPlus.Reports.Site.Features.Legends;
 
 public class LegendHandler(ILengendService lengendService) :
-    IRequestHandler<LegendQuery, LegendViewModel>,
-    IRequestHandler<ProgressiveContributionLegendQuery, LegendViewModel>
+    IRequestHandler<LegendQuery, LegendViewModel>
 {
     public async Task<LegendViewModel> Handle(LegendQuery message, CancellationToken cancellationToken)
     {
@@ -29,26 +28,6 @@ public class LegendHandler(ILengendService lengendService) :
         }
 
         return new LegendViewModel(legends, message.IsMobileFriendly);
-    }
-
-    public async Task<LegendViewModel> Handle(ProgressiveContributionLegendQuery message, CancellationToken cancellationToken)
-    {
-        var legends = new List<string>
-        {
-            Resources.ContributionAmountRoundNote
-        };
-
-        var note = await GetOfferedProductsNeedDelayTimeToSummarizeData(
-            message.Site,
-            message.CurrencyId,
-            message.MinDate,
-            message.EnableJackpotProductIds);
-        if (!string.IsNullOrWhiteSpace(note))
-        {
-            legends.Add(note);
-        }
-
-        return new LegendViewModel(legends);
     }
 
     private async Task<string> GetOfferedProductsNeedDelayTimeToSummarizeData(

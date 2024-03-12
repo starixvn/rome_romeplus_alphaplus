@@ -1,0 +1,55 @@
+using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Reports.Features.Statement;
+using AlphaPlus.Reports.Site.Features.Shared;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
+using ONEbook.SpreadSheets;
+using static ONEbook.SpreadSheets.Column;
+
+namespace AlphaPlus.Reports.Site.Features.Statement;
+
+public interface IStatementDetailWorkbook
+{
+    ExcelFileViewModel BuildExcelFile(
+        StatementDetailExcelQuery message,
+        IEnumerable<StatementDetailModel> reportData,
+        StatementDetailModel total);
+}
+
+public class StatementDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
+    ReportNpoiWorkbook<StatementDetailModel>(webHostEnvironment),
+    IStatementDetailWorkbook
+{
+    private Mapper<StatementDetailModel> BodyRowMapper
+        => new Mapper<StatementDetailModel>()
+            .Map(A, statement => statement.TransDate.ToString("dddd\r\nMM/dd/yyyy\r\nhh:mm:ss tt"))
+            .Map(B, statement => $"{statement.TransType}\r\n{statement.TransDesc}")
+            .Map(C, statement => (object)statement.Amount ?? Resources.Symbol_NoDataNumber);
+
+    private Mapper<StatementDetailModel> FooterRowMapper
+        => new Mapper<StatementDetailModel>()
+            .Map(A, statement => Resources.Total)
+            .Map(C, statement => (object)statement.Amount ?? Resources.Symbol_NoDataNumber);
+
+    public ExcelFileViewModel BuildExcelFile(
+        StatementDetailExcelQuery message,
+        IEnumerable<StatementDetailModel> reportData,
+        StatementDetailModel total)
+    {
+        var transferDate = message.TransferDate.ToShortDateWithSlash();
+
+        var fileContent = UseTemplate(new TemplateInfo(
+                GetExcelTemplatePath("StatementDetails"),
+                noInfomationText: Resources.NoInformationIsAvailable,
+                bodyStartIndex: 3,
+                bodyEndIndex: 4,
+                footerEndIndex: 5))
+            .Title($"{Resources.TransferDetails} ({message.CustName}): {transferDate})")
+            .Header(Resources.ResourceManager.GetString)
+            .Body(reportData, BodyRowMapper)
+            .Footer(total, FooterRowMapper)
+            .Sheet(Resources.DefaultSheetName)
+            .ExportToBytes();
+
+        return new ExcelFileViewModel($"{Resources.TransferDetails}-{message.CustName}-{transferDate})", fileContent);
+    }
+}

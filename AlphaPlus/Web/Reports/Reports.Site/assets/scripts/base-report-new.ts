@@ -8,7 +8,7 @@ class BaseReportNew {
     $iconInformationContainer: JQuery;
     $isDescendingSort: JQuery;
     $isFilterVisible: JQuery;
-    $loadLegendURL: JQuery;
+    reportLegendUrl: string;
     $pageTitle: JQuery;
     $reportForm: JQuery;
     $reportLegend: JQuery;
@@ -48,17 +48,21 @@ class BaseReportNew {
     }
 
     initHelp = () => {
-        this.$loadLegendURL = this.$('#LoadLegendURL');
-        this.$iconInformation = this.$('.icon-information');
-        this.$iconInformationContainer = this.$('.icon-information-container');
-        this.loadLegend();
-        this.$iconInformation.on('click', this.showLegend);
+        const $loadLegendURL = this.$('#LoadLegendURL');
+        if ($loadLegendURL.length) {
+            this.reportLegendUrl = $loadLegendURL.attr('href');
+            $loadLegendURL.remove();
+            this.$iconInformation = this.$('.icon-information');
+            this.$iconInformationContainer = this.$('.icon-information-container');
+            this.loadLegend();
+            this.$iconInformation.on('click', this.showLegend);
+        }
     };
 
     loadLegend = () => {
         this.$.ajax({
             method: 'GET',
-            url: this.$loadLegendURL.val(),
+            url: this.reportLegendUrl,
             cache: false,
             data: {},
             success: this.renderLegend,

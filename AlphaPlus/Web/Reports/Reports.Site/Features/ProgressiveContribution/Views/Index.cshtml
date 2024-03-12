@@ -9,15 +9,15 @@
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Progressive Games Contribution";
-    var isSuperLevel = Model.ViewerLevel.IsSuperLevel();
-    var isMasterLevel = Model.ViewerLevel.IsMasterLevel();
-    var isMasterOrSuperLevel = Model.ViewerLevel.IsMasterOrSuperLevel();
+    var isSuperLevel = Model.CustLevel.IsSuperLevel();
+    var isMasterLevel = Model.CustLevel.IsMasterLevel();
+    var isMasterOrSuperLevel = Model.CustLevel.IsMasterOrSuperLevel();
 
     void RenderProgressiveContribution(ProgressiveContributionEntity data)
     {
         <td class="col-turnover">@data.Turnover.FormatNumber()</td>
         <td class="col-contribution">@data.Contribution.FormatNumber4()</td>
-        if (Model.IsStackMode)
+        if (Model.PageHeader.IsStackMode)
         {
             if (isSuperLevel)
             {
@@ -67,14 +67,6 @@
             </ul>
         </td>
     }
-
-    var reportTitle = new PageHeaderViewModel(
-    Title: Model.Title,
-    HasStackIcon: isMasterOrSuperLevel,
-    HasHideFilterIcon: true,
-    IsStackMode: Model.IsStackMode,
-    IsFilterVisible: Model.IsFilterVisible,
-    BreadcrumbLevelViewModel: new BreadcrumbLevelViewModel());
 }
 @section Styles {
     <link rel="stylesheet" href="~/bundles/progressivecontribution/progressivecontribution.css" asp-append-version="true" />
@@ -83,41 +75,40 @@
     <script src="~/bundles/progressivecontribution/progressivecontribution.js" asp-append-version="true"></script>
 }
 @model ProgressiveContributionViewModel
-<report-title model="reportTitle" />
-<form method="get" class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form"
+<report-title model="Model.PageHeader" />
+<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form" asp-action="Index">
-    <input type="hidden" asp-for="IsFilterVisible" />
-    <input type="hidden" asp-for="IsStackMode" />
-    <input type="hidden" asp-for="IsHistoricReport" />
     <product model="Model.ProductViewModel" />
     @if (Model.IsHistoricReport)
     {
-        <month-picker model="Model.MonthPickerViewModel" />
+        <month-picker model="Model.MonthPicker" />
         <div class="form-group">
             <input type="submit" value="@Resources.Submit" class="btn-submit" />
         </div>
     }
     else
     {
-        <daterange-picker model="Model.DateRangePickerViewModel" />
+        <daterange-picker model="Model.DateRangePicker" />
     }
-    <div id="icon-information-container" class="form-group">
+    <div class="form-group hide">
         <span id="icon-information" class="icon-information-outline"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel" asp-route-FromDate="Model.FromDate"
-            asp-route-ToDate="Model.ToDate"
-            asp-route-UserSelectedProductIds="Model.ProductViewModel.UserSelectedProductIds"
-            asp-route-IsHistoricReport="Model.IsHistoricReport"></a>
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
         <a href="javascript:;" id="historic-report"
             data-is-historic-report="@Model.IsHistoricReport.ToString().ToLower()">@Model.ViewActionMessage</a>
     </div>
+    <input type="hidden" id="CustLevelId" asp-for="CustLevel" value="@Model.CustLevel.Value" />
+    <input type="hidden" id="IsFilterVisible" asp-for="PageHeader" value="@Model.PageHeader.IsFilterVisible" />
+    <input type="hidden" id="IsStackMode" asp-for="PageHeader" value="@Model.PageHeader.IsStackMode" />
+    <input type="hidden" asp-for="IsHistoricReport" />
 </form>
 <table
-    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-progressive-contribution width-100per@(Model.IsStackMode ? " stack-mode" : string.Empty)"
+    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-progressive-contribution width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
     <thead>
         <tr>
@@ -167,17 +158,14 @@
                         RenderProgressiveContribution(data.Total);
                     }
                 </tr>
-                if (data.ProgressiveContributions.Any())
+                foreach (var item in data.ProgressiveContributions)
                 {
-                    foreach (var item in data.ProgressiveContributions)
-                    {
-                        <tr class="bet-type-row">
-                            <td class="text-left col-username">@item.BetTypeName</td>
-                            @{
-                                RenderProgressiveContribution(item);
-                            }
-                        </tr>
-                    }
+                    <tr class="bet-type-row">
+                        <td class="text-left col-username">@item.BetTypeName</td>
+                        @{
+                            RenderProgressiveContribution(item);
+                        }
+                    </tr>
                 }
             }
         </tbody>
@@ -195,6 +183,7 @@
         <no-information colspan="Model.ReportColumnsCount" />
     }
 </table>
-<input type="hidden" id="LoadLegendURL" value="@Url.Action("ProgressiveContribution", "Legends")" />
+<a class="hide" id="LoadLegendURL" asp-action="Legend"></a>
 <input type="hidden" asp-for="IsSetDefaultStackMode" />
-<input type="hidden" id="IsAgentLevel" asp-for="ViewerLevel" value="@Model.ViewerLevel.IsAgentLevel()" />
+<input type="hidden" id="IsAgentLevel" asp-for="CustLevel" value="@Model.CustLevel.IsAgentLevel()" />
+<input type="hidden" id="CustLevelId" asp-for="CustLevel" value="@Model.CustLevel.Value" />

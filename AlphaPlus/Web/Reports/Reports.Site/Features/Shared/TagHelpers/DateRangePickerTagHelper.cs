@@ -1,5 +1,4 @@
 using System.Text;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -21,9 +20,9 @@ public class DateRangePickerTagHelper : TagHelper
         var sb = new StringBuilder();
         sb
             .Append("<div id=\"daterange-picker\" class=\"daterange-picker\" ")
-            .Append($"data-currentdate=\"{DateTime.Today}\" ")
-            .Append($"data-mindate=\"{Model.MinDate.ToShortDateWithSlash()}\" ")
-            .Append($"data-maxdate=\"{Model.MaxDate.ToShortDateWithSlash()}\"></div>");
+            .Append($"data-currentdate=\"{Model.Today}\" ")
+            .Append($"data-mindate=\"{Model.MinDate}\" ")
+            .Append($"data-maxdate=\"{Model.MaxDate}\"></div>");
         sb
             .Append("<div class=\"form-group from-date-box\">")
             .Append($"<label>{FromLabel ?? Resources.From}</label>")
@@ -31,7 +30,7 @@ public class DateRangePickerTagHelper : TagHelper
             .Append("<div id=\"from-date-container\" class=\"input-group date fromdate\">")
             .Append("<input type=\"text\" id=\"from-date\" name=\"FromDate\" readonly=\"readonly\" autocomplete=\"off\" ")
             .Append("class=\"ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control\" ")
-            .Append($"value=\"{Model.FromDate.ToShortDateWithSlash()}\"/>")
+            .Append($"value=\"{Model.FromDate}\"/>")
             .Append("<span class=\"input-group-addon\"><span class=\"icon-calendar\" id=\"fdate_trigger\"></span></span>")
             .Append("</div></div></div>");
         sb
@@ -41,7 +40,7 @@ public class DateRangePickerTagHelper : TagHelper
             .Append("<div id=\"to-date-container\" class=\"input-group date todate\">")
             .Append("<input type=\"text\" id=\"to-date\" name=\"ToDate\" readonly=\"readonly\" autocomplete=\"off\" ")
             .Append("class=\"ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control\" ")
-            .Append($"value=\"{Model.ToDate.ToShortDateWithSlash()}\"/>")
+            .Append($"value=\"{Model.ToDate}\"/>")
             .Append("<span class=\"input-group-addon\"><span class=\"icon-calendar\" id=\"tdate_trigger\"></span></span>")
             .Append("</div></div></div>");
 

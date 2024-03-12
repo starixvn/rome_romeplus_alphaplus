@@ -4,15 +4,15 @@ namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 
 public record PageHeaderViewModel(
     string Title,
-    bool HasStackIcon,
-    bool HasHideFilterIcon,
-    bool IsStackMode,
-    bool IsFilterVisible,
+    bool HasStackIcon = false,
+    bool HasHideFilterIcon = true,
+    bool IsStackMode = false,
+    bool IsFilterVisible = true,
     // IEnumerable<Breadcrumb> BreadcrumbLevel = null,
     // string BreadcrumbLevelJson = null,
     // IEnumerable<string> BreadcrumbParamByLevel = null,
     // string RequestQuery = null,
-    BreadcrumbLevelViewModel BreadcrumbLevelViewModel = null,
+    BreadcrumbLevelViewModel BreadcrumbLevel = null,
     EnteredResultSport TotalEnteredResults = null,
     bool HasNewFeatureNote = false)
 {

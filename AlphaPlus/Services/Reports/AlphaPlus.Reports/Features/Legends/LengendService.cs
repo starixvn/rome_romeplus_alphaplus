@@ -1,4 +1,5 @@
 using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Shared.Extensions;
 using Fanex.Caching;
 using Fanex.Data.Repository;
 
@@ -36,7 +37,7 @@ public class LengendService(
 
         var productIds = productService.FilterProductIds(site, currencyId, productIdsNeedDelayTimeToSummarizeData.ToList(), minReportDate);
 
-        return string.Join(", ", productService.GetProductNames(productIds));
+        return productService.GetProductNames(productIds).JoinWithComma(", ");
     }
 
     private Task<IEnumerable<int>> GetProductsNeedDelayTimeToSummarizeData()

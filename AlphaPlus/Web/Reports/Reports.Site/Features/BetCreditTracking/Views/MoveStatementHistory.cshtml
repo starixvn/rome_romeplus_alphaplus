@@ -1,0 +1,175 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Move Statement History";
+    async Task BuildMoveStatementHistory(MoveStatementHistoryByMember item)
+    {
+        <tr class="member-row">
+            <td class="text-left">@item.MemberRow.Username</td>
+            <td></td>
+            <td></td>
+            <td>@item.MemberRow.MemberWinLoss.FormatNumber()</td>
+            <td>@item.MemberRow.MemberComm.FormatNumber()</td>
+            <td>@item.MemberRow.MemberTotal.FormatNumber()</td>
+        </tr>
+        foreach (var row in item.RefNoRow)
+        {
+            <tr class="@(row.IsMultipleMoved ? "red" : string.Empty)">
+                <td>
+                    <div class="refno">
+                        @if (Model.CanViewBetList)
+                        {
+                            <a asp-area="tickets" asp-controller="MoveStatementHistory" asp-action="Index"
+                                asp-route-CustId="@row.CustId" asp-route-Username="@row.Username"
+                                asp-route-TransId="@row.TransId">@row.TransId</a>
+                        }
+                        else
+                        {
+                            @row.TransId
+                        }
+                    </div>
+                </td>
+                <td>@row.OldEventDate.ToShortDateWithSlash()</td>
+                <td>@row.NewEventDate.ToShortDateWithSlash()</td>
+                <td>@row.MemberWinLoss.FormatNumber()</td>
+                <td>@row.MemberComm.FormatNumber()</td>
+                <td class="total">@row.MemberTotal.FormatNumber()</td>
+            </tr>
+        }
+    }
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/site-reports/tab-{Model.CustLevel.DisplayName.ToLowerInvariant()}")
+    <link rel="stylesheet" href="~/bundles/betcredittracking/movestatementhistory.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/betcredittracking/movestatementhistory.js" asp-append-version="true"></script>
+}
+@model MoveStatementHistoryViewModel
+<div class="page-title@(Model.IsFilterVisible ? string.Empty : " hide-filter")">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation">
+            <a asp-action="BetCreditHistory">@Resources.BetCreditHistory</a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.MoveStatementHistory</a>
+        </li>
+        <li>
+            <a href="javascript:;" target="_blank"><span class="icon icon-information-outline"></span></a>
+        </li>
+    </ul>
+    <div class="list-icon">
+        <ul>
+            <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter"
+                    title="@Resources.HideFilter"></span></li>
+            <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter"
+                    title="@Resources.ShowFilter"></span></li>
+        </ul>
+    </div>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="moveStatementHistory">
+        <form method="get" class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form"
+            id="report-form" asp-action="MoveStatementHistory">
+            <div class="form-group">
+                <label asp-for="Member">@Resources.Member</label>
+                <input type="text" style="width: 200px;" autocomplete="off" placeholder="@Resources.Username"
+                    asp-for="Member" />
+            </div>
+            <month-picker model="Model.MonthPicker" />
+            <div class="form-group"><input type="submit" value="@Resources.Submit" class="btn-submit" />
+            </div>
+            <div class="form-group">
+                <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="MoveStatementHistoryExcel"
+                    asp-all-route-data="Model.GetExcelParams()"></a>
+            </div>
+            <div class="note-box">
+                <p class="note"><span class="star">*</span>@Model.ViewDataInstructionMessage</p>
+                <p class="note" style="margin-left: 14px;">@Resources.MoveStatementHistoryNote</p>
+                @if (Model.IsShowDuplicatedTicketMessage)
+                {
+                    <p class="note red" style="margin-left: 14px;">@Resources.DuplicatedTicketMessage</p>
+                }
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <div id="msg-error" class="msg msg-error">@Model.ErrorMessage</div>
+            }
+            <input type="hidden" asp-for="IsFilterVisible" />
+            <input type="hidden" asp-for="IsMainReport" />
+        </form>
+        @if (Model.IsMainReport)
+        {
+            var summary = Model.Summary;
+            <div class="list-total-statement">
+                <div class="item">
+                    <div class="title-total">@Resources.TotalMembers</div>
+                    <div class="text-total">@summary.TotalMembers</div>
+                </div>
+                <div class="item">
+                    <div class="title-total">@Resources.TotalWinLoss</div>
+                    <div class="text-total">@summary.MemberWinLoss.FormatNumber()</div>
+                </div>
+                <div class="item">
+                    <div class="title-total">@Resources.TotalCommission</div>
+                    <div class="text-total">@summary.MemberComm.FormatNumber()</div>
+                </div>
+                <div class="item">
+                    <div class="title-total">@Resources.SumOfMemberTotal</div>
+                    <div class="text-total">@summary.MemberTotal.FormatNumber()</div>
+                </div>
+                <div class="item last-item">
+                    <span class="title-total" data-title="@Resources.DataOutsideDateRange">
+                        @Resources.VarianceFromSelectedDate
+                    </span>
+                    <div class="text-total">
+                        <a href="javascript:;" id="detail-link">@summary.Variance.FormatNumber()</a>
+                    </div>
+                </div>
+            </div>
+        }
+        <div>
+            @if (!Model.IsMainReport)
+            {
+                <div class="breadcrumb-table">
+                    <div class="breadcrumb-container">
+                        <ul class="breadcrumb" id="breadcrumb">
+                            <li>
+                                <a href="javascript:;" id="back-link" class="upline-link">@Resources.MainReport</a>
+                            </li>
+                            <li>@Resources.VarianceFromSelectedDate</li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            @if (Model.ReportData != null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tbl-small-width" id="tbl-report">
+                    <thead>
+                        <tr>
+                            <th>@Resources.MemberRefNo</th>
+                            <th>@Resources.OldEventDate</th>
+                            <th>@Resources.NewEventDate</th>
+                            <th>@Resources.MemberWinLossNew</th>
+                            <th>@Resources.MemberCommNew</th>
+                            <th>@Resources.MemberTotalNew</th>
+                        </tr>
+                    </thead>
+                    @if (Model.ReportData.Any())
+                    {
+                        <tbody>
+                            @foreach (var record in Model.ReportData)
+                            {
+                                await BuildMoveStatementHistory(record);
+                            }
+                        </tbody>
+                    }
+                    else
+                    {
+                        <no-information colspan="6" />
+                    }
+                </table>
+            }
+        </div>
+    </div>
+</div>
+<pager model="Model.Pager" />

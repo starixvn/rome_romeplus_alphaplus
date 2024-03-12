@@ -45,25 +45,25 @@ public class BaseHandler
         return new ProductMultiSelectionViewModel(products, selectedProductIds.JoinWithComma(), language);
     }
 
-    protected IEnumerable<Breadcrumb> BuildBreadcrumbLevel(BaseQuery message)
+    protected IEnumerable<Breadcrumb> BuildBreadcrumbs(BaseQuery message)
     {
-        var breadcrumbLevel = new List<Breadcrumb>();
+        var breadcrumbs = new List<Breadcrumb>();
 
         if (message.BreadcrumbLevel?.Any() == true)
         {
-            foreach (var breadcrumb in message.BreadcrumbLevel)
+            foreach (var item in message.BreadcrumbLevel)
             {
-                if (breadcrumb.CustLevelId == message.CustLevelId)
+                if (item.CustLevelId == message.CustLevelId)
                 {
                     break;
                 }
 
-                breadcrumbLevel.Add(breadcrumb);
+                breadcrumbs.Add(item);
             }
         }
 
-        breadcrumbLevel.Add(new Breadcrumb(message.CustId, message.CustName, message.CustLevelId));
+        breadcrumbs.Add(new Breadcrumb(message.CustId, message.CustName, message.CustLevelId));
 
-        return breadcrumbLevel;
+        return breadcrumbs;
     }
 }
