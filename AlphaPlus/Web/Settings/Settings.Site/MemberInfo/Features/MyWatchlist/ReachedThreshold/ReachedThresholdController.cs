@@ -10,8 +10,8 @@
 
     public class ReachedThresholdController : SiteBaseController
     {
-        private const string IndexPath = "~/Features/MyWatchlist/ReachedThreshold/Views/Index.cshtml";
-        private const string ReachHistoryPath = "~/Features/MyWatchlist/ReachedThreshold/Views/ReachHistory.cshtml";
+        private const string IndexPath = "~/MemberInfo/Features/MyWatchlist/ReachedThreshold/Views/Index.cshtml";
+        private const string ReachHistoryPath = "~/MemberInfo/Features/MyWatchlist/ReachedThreshold/Views/ReachHistory.cshtml";
 
         public ReachedThresholdController(IMediator mediator)
             : base(mediator)

@@ -10,11 +10,11 @@
 }
 
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/Features/DormantAccountList/bundles/dormant-account-list")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list")
 }
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/Features/DormantAccountList/bundles/dormant-account-list")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list")
 }
 
 <div class="page-title">
@@ -125,7 +125,7 @@
                 <h4 class="modal-title">@Resources.DormantAccountArchiveProcess</h4>
             </div>
             <div class="modal-body">
-                @{ Html.RenderPartial($"~/Features/DormantAccountList/Views/ArchiveProcess_{Model.GetArchiveProcessViewLang()}.cshtml"); }
+                @{ Html.RenderPartial($"~/MemberInfo/Features/DormantAccountList/Views/ArchiveProcess_{Model.GetArchiveProcessViewLang()}.cshtml"); }
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
 {
     public class PTTemplateController : BaseController
     {
-        private const string PTTemplatePath = "~/Features/CreateAccount/Views/PTTemplate.cshtml";
+        private const string PTTemplatePath = "~/MemberInfo/Features/CreateAccount/Views/PTTemplate.cshtml";
 
         private readonly IUser viewer;
         private readonly ICreateAccountService createAccountService;

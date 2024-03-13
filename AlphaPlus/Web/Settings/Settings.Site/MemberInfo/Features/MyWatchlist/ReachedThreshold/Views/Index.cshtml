@@ -12,8 +12,8 @@
         $"/bundles/site-memberinfo/tab-{Model.CustLevel.ToLowerInvariant()}",
         "/bundles/site-memberinfo/daterangepicker",
         "/bundles/site-asset/data-table")
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/bundles/my-watchlist")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/bundles/my-watchlist-media")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist")
+    @StaticResources.RenderStylesWithMedia(767, "~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-media")
 }
 
 @section Scripts {
@@ -23,8 +23,8 @@
 
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/daterangepicker")
-    @StaticResources.RenderScripts("~/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
-    @StaticResources.RenderScripts("~/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold")
 }
 
 <div class="reached-threshold">
@@ -38,7 +38,7 @@
         <li role="presentation">
             @Html.ActionLink(Resources.MyThresholds, "Index", "MyThresholds")
         </li>
-        @Html.Partial("~/Features/MyWatchlist/Shared/Views/InfoUserGuideTabs.cshtml", Model.UserGuideLink)
+        @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/InfoUserGuideTabs.cshtml", Model.UserGuideLink)
     </ul>
 
     @using (Html.BeginForm("GetReachlistThreshold", "ReachedThreshold", FormMethod.Post, new { @class = "form-inline filter form-report", id = "report-form" }))
@@ -64,7 +64,7 @@
         </div>
     }
 
-    @Html.Partial("~/Features/MyWatchlist/Shared/Views/GlobalThresholdsNote.cshtml", Model.GlobalThresholdModel, new ViewDataDictionary())
+    @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/GlobalThresholdsNote.cshtml", Model.GlobalThresholdModel, new ViewDataDictionary())
 
     <table id="tblRpt" class="hidden tblRpt tblRpt-bordered tblRpt-hover display nowrap" style="width: 100%">
         <thead>
@@ -121,7 +121,7 @@
     @Html.Hidden("LimitType")
 </form>
 
-@Html.Partial("~/Features/MyWatchlist/Shared/Views/InformationLegend.cshtml")
+@Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/InformationLegend.cshtml")
 @Html.AntiForgeryToken()
 
 <input type="hidden" id="search-account-id" value="@Model.SearchAccountId" />

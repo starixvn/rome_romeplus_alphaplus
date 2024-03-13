@@ -10,8 +10,8 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
     public class CopyAccountController : SiteBaseController
     {
-        private const string IndexPath = "~/Features/CopyAccount/Views/Index.cshtml";
-        private const string ResultPath = "~/Features/CopyAccount/Views/_CopyResult.cshtml";
+        private const string IndexPath = "~/MemberInfo/Features/CopyAccount/Views/Index.cshtml";
+        private const string ResultPath = "~/MemberInfo/Features/CopyAccount/Views/_CopyResult.cshtml";
 
         public CopyAccountController(IMediator mediator)
             : base(mediator)

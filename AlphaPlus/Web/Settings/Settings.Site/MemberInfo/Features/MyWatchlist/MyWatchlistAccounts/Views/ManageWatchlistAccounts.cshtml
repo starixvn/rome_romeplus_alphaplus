@@ -6,12 +6,12 @@
 }
 
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
+    @StaticResources.RenderStylesWithMedia(767, "~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
 }
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-watchlist-accounts")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-watchlist-accounts")
 }
 
 <div class="box-settings">
@@ -48,7 +48,7 @@
 
     @if (Model.IsEditWatchlistAccountsPopup)
     {
-        @Html.Partial("~/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
+        @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
         <button class="btn-submit" id="btn-update">@Resources.Update</button>
     }
     else

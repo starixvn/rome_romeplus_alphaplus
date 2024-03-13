@@ -10,9 +10,9 @@
 
     public class QRCodeMemberSignInController : SiteBaseController
     {
-        private const string IndexPath = "~/Features/QRCodeMemberSignIn/Views/Index.cshtml";
-        private const string ShowQRCodePath = "~/Features/QRCodeMemberSignIn/Views/ShowQRCode.cshtml";
-        private const string NotAuthorizedPath = "~/Features/QRCodeMemberSignIn/Views/_NotAuthorized.cshtml";
+        private const string IndexPath = "~/MemberInfo/Features/QRCodeMemberSignIn/Views/Index.cshtml";
+        private const string ShowQRCodePath = "~/MemberInfo/Features/QRCodeMemberSignIn/Views/ShowQRCode.cshtml";
+        private const string NotAuthorizedPath = "~/MemberInfo/Features/QRCodeMemberSignIn/Views/_NotAuthorized.cshtml";
 
         private readonly int ErrorCodeDefault = 998;
 

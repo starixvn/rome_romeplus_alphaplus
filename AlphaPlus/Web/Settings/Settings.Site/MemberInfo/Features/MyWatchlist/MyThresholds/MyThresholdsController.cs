@@ -9,8 +9,8 @@
 
     public class MyThresholdsController : SiteBaseController
     {
-        private const string IndexPath = "~/Features/MyWatchlist/MyThresholds/Views/Index.cshtml";
-        private const string SettingsPath = "~/Features/MyWatchlist/MyThresholds/Views/Settings.cshtml";
+        private const string IndexPath = "~/MemberInfo/Features/MyWatchlist/MyThresholds/Views/Index.cshtml";
+        private const string SettingsPath = "~/MemberInfo/Features/MyWatchlist/MyThresholds/Views/Settings.cshtml";
 
         public MyThresholdsController(IMediator mediator)
             : base(mediator)

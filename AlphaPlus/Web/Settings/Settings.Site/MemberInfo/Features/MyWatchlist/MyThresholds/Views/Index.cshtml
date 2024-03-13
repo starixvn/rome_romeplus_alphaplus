@@ -11,8 +11,8 @@
         $"/bundles/site-memberinfo/tab-{Model.CustLevel.DisplayName.ToLowerInvariant()}",
         "/bundles/site-memberinfo/daterangepicker",
         "/bundles/site-asset/data-table")
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/bundles/my-watchlist")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/bundles/my-watchlist-media")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist")
+    @StaticResources.RenderStylesWithMedia(767, "~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-media")
 }
 
 @section Scripts {
@@ -21,7 +21,7 @@
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/daterangepicker")
-    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyThresholds/bundles/my-thresholds")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds")
 }
 
 <div class="my-thresholds">
@@ -37,7 +37,7 @@
             <li role="presentation" class="active">
                 <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.MyThresholds</a>
             </li>
-            @Html.Partial("~/Features/MyWatchlist/Shared/Views/InfoUserGuideTabs.cshtml", Model.UserGuideLink)
+            @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/InfoUserGuideTabs.cshtml", Model.UserGuideLink)
         </ul>
     }
     else
@@ -117,7 +117,7 @@
     </div>
 </div>
 @{
-    Html.RenderPartial("~/Features/MyWatchlist/Shared/Views/InformationLegend.cshtml");
+    Html.RenderPartial("~/MemberInfo/Features/MyWatchlist/Shared/Views/InformationLegend.cshtml");
     @Html.Hidden("my-thresholds-url", MicroSites.MemberInfoUrl("~/MyThresholds"));
     @Html.Hidden("is-mobile", Model.IsMobile ? 1 : 0);
     @Html.Hidden("no-info", Resources.NoInformationIsAvailable);

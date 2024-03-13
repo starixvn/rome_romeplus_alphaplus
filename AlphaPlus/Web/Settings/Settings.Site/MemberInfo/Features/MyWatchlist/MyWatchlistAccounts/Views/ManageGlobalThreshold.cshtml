@@ -6,19 +6,19 @@
 }
 
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
+    @StaticResources.RenderStylesWithMedia(767, "~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
 }
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-global-threshold")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-global-threshold")
 }
 
 <div class="box-settings">
     <div id="alert-message"></div>
     <p class="note">@Resources.GlobalThresholdSettingsNote</p>
     <p>@Resources.GlobalThresholdWillBeAppliedForMembers</p>
-    @Html.Partial("~/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
+    @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
     <p class="note">@Resources.ThresholdSettingsNote</p>
     <button class="btn-submit" id="btn-update">@Resources.Update</button>
 </div>

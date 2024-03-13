@@ -10,10 +10,10 @@
 
     public class MyWatchlistAccountsController : SiteBaseController
     {
-        private const string IndexPath = "~/Features/MyWatchlist/MyWatchlistAccounts/Views/Index.cshtml";
-        private const string ManageWatchlistAccountsPath = "~/Features/MyWatchlist/MyWatchlistAccounts/Views/ManageWatchlistAccounts.cshtml";
-        private const string ManageGlobalThresholdPath = "~/Features/MyWatchlist/MyWatchlistAccounts/Views/ManageGlobalThreshold.cshtml";
-        private const string ManagePersonalThresholdPresetPath = "~/Features/MyWatchlist/MyWatchlistAccounts/Views/ManagePersonalThresholdPreset.cshtml";
+        private const string IndexPath = "~/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Views/Index.cshtml";
+        private const string ManageWatchlistAccountsPath = "~/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Views/ManageWatchlistAccounts.cshtml";
+        private const string ManageGlobalThresholdPath = "~/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Views/ManageGlobalThreshold.cshtml";
+        private const string ManagePersonalThresholdPresetPath = "~/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Views/ManagePersonalThresholdPreset.cshtml";
 
         public MyWatchlistAccountsController(IMediator mediator)
             : base(mediator)

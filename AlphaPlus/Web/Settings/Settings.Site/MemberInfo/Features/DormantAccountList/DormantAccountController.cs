@@ -14,7 +14,7 @@
         }
 
         public async Task<ActionResult> Index(DormantAccountQuery message)
-            => await ViewAsync(message, "~/Features/DormantAccountList/Views/Index.cshtml");
+            => await ViewAsync(message, "~/MemberInfo/Features/DormantAccountList/Views/Index.cshtml");
 
         [HttpGet]
         public async Task<ActionResult> Excel(DormantAccountExcelQuery message)

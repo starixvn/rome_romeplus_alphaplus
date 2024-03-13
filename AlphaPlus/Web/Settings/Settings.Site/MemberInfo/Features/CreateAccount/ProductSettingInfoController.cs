@@ -16,7 +16,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
         private readonly CacheRefService refService;
 
         private const string ProductSettingInformationViewPath =
-            "~/Features/CreateAccount/Views/ProductSettingInfo.cshtml";
+            "~/MemberInfo/Features/CreateAccount/Views/ProductSettingInfo.cshtml";
         
         private const int RNGGameGroupdId = 2;
         private const int LiveRNGCasinoGroupdId = 3;

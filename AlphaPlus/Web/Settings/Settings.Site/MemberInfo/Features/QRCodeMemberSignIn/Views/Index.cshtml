@@ -15,7 +15,7 @@
 @section Styles {
     @Html.Stylesheet()
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.CustLevel}")
-    @StaticResources.RenderStylesWithDarkMode("~/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in")
 }
 
 <div class="page-title">
@@ -108,6 +108,6 @@ else
 
     @section Scripts {
         @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
-        @StaticResources.RenderScripts("~/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in")
+        @StaticResources.RenderScripts("~/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in")
     }
 } *@

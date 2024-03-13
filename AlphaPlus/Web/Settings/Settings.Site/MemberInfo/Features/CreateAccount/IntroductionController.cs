@@ -8,7 +8,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
     public class IntroductionController : BaseController
     {
         private readonly IUser viewer;
-        private const string QuickIntroductionPath = "~/Features/CreateAccount/Views/QuickIntroduction.cshtml";
+        private const string QuickIntroductionPath = "~/MemberInfo/Features/CreateAccount/Views/QuickIntroduction.cshtml";
 
         public IntroductionController(IUser viewer)
         {

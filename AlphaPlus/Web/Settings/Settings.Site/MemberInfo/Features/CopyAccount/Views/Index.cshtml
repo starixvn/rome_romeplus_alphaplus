@@ -9,7 +9,7 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
-    @StaticResources.RenderStylesWithDarkMode("~/Features/CopyAccount/bundles/copy-account")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/CopyAccount/bundles/copy-account")
 }
 
 <div class="page-title">
@@ -178,5 +178,5 @@
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/copy-account")
-    @StaticResources.RenderScripts("~/Features/CopyAccount/bundles/copy-account")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/CopyAccount/bundles/copy-account")
 } *@

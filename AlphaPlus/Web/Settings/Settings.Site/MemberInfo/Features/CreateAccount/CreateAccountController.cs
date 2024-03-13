@@ -16,7 +16,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
     public class CreateAccountController : BaseController
     {
         private const string HashKeySessionKey = "lpha.MemberInfo.Site.Features.CreateAccount.CreateAccountController.PasswordHash";
-        private const string IndexPath = "~/Features/CreateAccount/Views/Index.cshtml";
+        private const string IndexPath = "~/MemberInfo/Features/CreateAccount/Views/Index.cshtml";
 
         private readonly IUser viewer;
         private readonly Encryptor encryptor;

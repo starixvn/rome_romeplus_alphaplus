@@ -422,7 +422,7 @@ class CustomerListDataTable {
         }, actionName = item.RoleId === CustomerLevel.Member ? 'MemberStatement' : 'SMAStatement';
 
         const reportDomain = this.topWindow.menuBar.domElements.reportDomain || this.viewModel.ReportsUrl.substr(0, this.viewModel.ReportsUrl.length - 1);
-        const viewStatementLink = `${reportDomain}Statement/${actionName}?${this.$.param(queryString)}`;
+        const viewStatementLink = `${reportDomain}/Statement/${actionName}?${this.$.param(queryString)}`;
         return `<a data-url='${viewStatementLink}' title='${this.$('#statementTooltipText').val()}' class='icon-statement' />`;
     }
 

@@ -5,12 +5,12 @@
 }
 
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
+    @StaticResources.RenderStylesWithMedia(767, "~/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
 }
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyThresholds/bundles/my-thresholds-settings")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds-settings")
 }
 
 <div class="box-settings">
@@ -19,7 +19,7 @@
     @using (Html.BeginForm("UpdateSettings", "MyThresholds", FormMethod.Post, new { id = "form-settings" }))
     {
         @Html.AntiForgeryToken()
-        @Html.Partial("~/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model)
+        @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model)
         <p class="note">@Resources.ThresholdSettingsNote</p>
         <button type="submit" class="btn-submit">@Resources.Update</button>
     }
