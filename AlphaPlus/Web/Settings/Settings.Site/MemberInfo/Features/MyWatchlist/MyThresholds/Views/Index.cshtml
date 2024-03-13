@@ -11,8 +11,8 @@
         $"/bundles/site-memberinfo/tab-{Model.CustLevel.DisplayName.ToLowerInvariant()}",
         "/bundles/site-memberinfo/daterangepicker",
         "/bundles/site-asset/data-table")
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/Bundles/my-watchlist")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/Bundles/my-watchlist-media")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/bundles/my-watchlist")
+    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/bundles/my-watchlist-media")
 }
 
 @section Scripts {
@@ -21,7 +21,7 @@
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/daterangepicker")
-    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyThresholds/Bundles/my-thresholds")
+    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyThresholds/bundles/my-thresholds")
 }
 
 <div class="my-thresholds">

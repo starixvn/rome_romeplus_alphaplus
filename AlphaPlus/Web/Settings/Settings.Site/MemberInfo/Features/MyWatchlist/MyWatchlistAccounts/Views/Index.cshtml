@@ -10,8 +10,8 @@
     @StaticResources.AssetStyles.RenderWithDarkMode(
         "/bundles/site-asset/data-table",
         $"/bundles/site-memberinfo/tab-{Model.CustLevel.ToLowerInvariant()}")
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/Bundles/my-watchlist")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/Bundles/my-watchlist-media")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MyWatchlist/Shared/bundles/my-watchlist")
+    @StaticResources.RenderStylesWithMedia(767, "~/Features/MyWatchlist/Shared/bundles/my-watchlist-media")
 }
 
 @section Scripts {
@@ -21,7 +21,7 @@
 
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
     @StaticResources.RenderScripts("~/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
-    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyWatchlistAccounts/Bundles/my-watchlist-accounts")
+    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyWatchlistAccounts/bundles/my-watchlist-accounts")
 }
 
 <div class="my-watchlist-accounts">

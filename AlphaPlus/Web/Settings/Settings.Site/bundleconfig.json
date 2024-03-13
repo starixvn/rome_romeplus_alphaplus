@@ -104,7 +104,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/Bundles/qr-code-member-sign-in.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in.js",
     "inputFiles": [
       "MemberInfo/Features/QRCodeMemberSignIn/Scripts/qr-code-member-sign-in.js",
       "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js"
@@ -118,14 +118,14 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/Bundles/show-qr-code.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/bundles/show-qr-code.js",
     "inputFiles": [
       "MemberInfo/Features/QRCodeMemberSignIn/Scripts/show-qr-code.js",
       "MemberInfo/Features/QRCodeMemberSignIn/Scripts/ClipboardPolyfill/clipboard-polyfill.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/Bundles/show-qr-code.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/bundles/show-qr-code.css",
     "inputFiles": [
       "MemberInfo/Features/QRCodeMemberSignIn/Styles/show-qr-code.css"
     ]
@@ -172,13 +172,13 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/DormantAccountList/Bundles/dormant-account-list.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list.css",
     "inputFiles": [
       "MemberInfo/Features/DormantAccountList/Styles/dormant-account-list.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/DormantAccountList/Bundles/dormant-account-list.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "MemberInfo/assets/scripts/components/pager.js",
@@ -186,7 +186,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/Bundles/customer-list.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/bundles/customer-list.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "MemberInfo/Features/CustomerList/Scripts/customer-list-popup.js",
@@ -201,7 +201,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/Bundles/customer-list.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/bundles/customer-list.css",
     "inputFiles": [
       "MemberInfo/assets/styles/common.css",
       "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
@@ -209,26 +209,26 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/Bundles/customer-list-07.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/bundles/customer-list-07.css",
     "inputFiles": [
       "MemberInfo/assets/styles/common-07.css",
       "MemberInfo/Features/CustomerList/Styles/customer-list-07.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/Bundles/muliple-double-comm.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/bundles/muliple-double-comm.js",
     "inputFiles": [
       "MemberInfo/Features/CustomerList/Scripts/muliple-double-comm.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/ParlayMaxPayout/Bundles/parlay-max-payout.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout.css",
     "inputFiles": [
       "MemberInfo/Features/ParlayMaxPayout/Styles/parlay-max-payout.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/ParlayMaxPayout/Bundles/parlay-max-payout.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout.js",
     "inputFiles": [
       "MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-helper.js",
       "MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-alert.js",
@@ -237,7 +237,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/Bundles/my-watchlist.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist.css",
     "inputFiles": [
       "MemberInfo/assets/styles/common.css",
       "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
@@ -245,13 +245,13 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/Bundles/my-watchlist-media.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-media.css",
     "inputFiles": [
       "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-media.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/ReachedThreshold/Bundles/reached-threshold.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/components/daterangepicker.js",
       "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
@@ -264,13 +264,13 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/ReachedThreshold/Bundles/reached-threshold-datatable.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold-datatable.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/shared/ajax-helper.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/ReachedThreshold/Bundles/reach-history.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reach-history.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/shared/datatable-helper.js",
       "MemberInfo/assets/scripts/shared/ajax-helper.js",
@@ -278,20 +278,20 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/Bundles/my-watchlist-settings.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings.css",
     "inputFiles": [
       "MemberInfo/assets/styles/common.css",
       "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-settings.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/Bundles/my-watchlist-settings-media.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media.css",
     "inputFiles": [
       "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-settings-media.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Bundles/my-watchlist-accounts.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/my-watchlist-accounts.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/shared/datatable-helper.js",
       "MemberInfo/assets/scripts/shared/ajax-helper.js",
@@ -303,7 +303,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Bundles/manage-presets.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-presets.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/shared/site-helper.js",
       "MemberInfo/assets/scripts/shared/ajax-helper.js",
@@ -312,7 +312,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Bundles/manage-global-threshold.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-global-threshold.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/shared/site-helper.js",
       "MemberInfo/assets/scripts/shared/ajax-helper.js",
@@ -322,7 +322,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Bundles/manage-watchlist-accounts.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-watchlist-accounts.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "MemberInfo/assets/scripts/shared/site-helper.js",
@@ -333,7 +333,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyThresholds/Bundles/my-thresholds.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/components/daterangepicker.js",
       "MemberInfo/assets/scripts/shared/datatable-helper.js",
@@ -343,7 +343,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyThresholds/Bundles/my-thresholds-settings.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds-settings.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/shared/site-helper.js",
       "MemberInfo/assets/scripts/shared/ajax-helper.js",
@@ -360,7 +360,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CopyAccount/Bundles/copy-account.js",
+    "outputFileName": "wwwroot/MemberInfo/Features/CopyAccount/bundles/copy-account.js",
     "inputFiles": [
       "MemberInfo/assets/scripts/aes.js",
       "MemberInfo/assets/scripts/encryptor.js",
@@ -432,13 +432,13 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/DormantAccountList/Bundles/dormant-account-list-dark.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list-dark.css",
     "inputFiles": [
       "MemberInfo/Features/DormantAccountList/Styles/dormant-account-list-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/Bundles/customer-list-dark.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/CustomerList/bundles/customer-list-dark.css",
     "inputFiles": [
       "MemberInfo/assets/styles/common-dark.css",
       "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
@@ -446,13 +446,13 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/ParlayMaxPayout/Bundles/parlay-max-payout-dark.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout-dark.css",
     "inputFiles": [
       "MemberInfo/Features/ParlayMaxPayout/Styles/parlay-max-payout-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/Bundles/my-watchlist-dark.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-dark.css",
     "inputFiles": [
       "MemberInfo/assets/styles/common-dark.css",
       "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
@@ -460,7 +460,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/Bundles/my-watchlist-settings-dark.css",
+    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-dark.css",
     "inputFiles": [
       "MemberInfo/assets/styles/common-dark.css",
       "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-settings-dark.css"

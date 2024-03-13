@@ -8,7 +8,7 @@
 }
 
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/ParlayMaxPayout/Bundles/parlay-max-payout")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout")
 }
 
 <div id="header_main" class="pmp-page-title">@Model.SubTitle</div>
@@ -16,5 +16,5 @@
 @await Html.PartialAsync(Model.ParlayMaxPayoutSettingPartialViewPath, Model)
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/MemberInfo/Features/ParlayMaxPayout/Bundles/parlay-max-payout")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout")
 }
