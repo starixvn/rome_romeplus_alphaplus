@@ -33,10 +33,10 @@
             <th>@Resources.Amount</th>
         </tr>
     </thead>
-    @if (Model.ReportData.Any())
+    @if (Model.ReportData.HasData)
     {
         <tbody>
-            @foreach (var data in Model.ReportData)
+            @foreach (var data in Model.ReportData.DataSource)
             {
                 <tr>
                     <td class="text-center">
@@ -57,7 +57,7 @@
             <tr class="tbl-footer">
                 <td colspan="2">@Resources.Total</td>
                 <td>@{
-                        RenderNegativeNumberCell(Model.Total.Amount);
+                        RenderNegativeNumberCell(Model.ReportData.Total.Amount);
                     }</td>
             </tr>
         </tfoot>

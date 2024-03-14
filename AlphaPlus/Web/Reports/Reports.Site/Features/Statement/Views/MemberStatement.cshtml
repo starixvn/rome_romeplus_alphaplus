@@ -1,6 +1,6 @@
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Daily Statement";
+    ViewData["Title"] = Model.PageHeader.Title;
 
     void RenderNegativeNumberCell(decimal? cellValue, string cssClass = "")
     {
@@ -27,8 +27,7 @@
 }
 @model MemberStatementViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form" asp-action="MemberStatement">
+<form method="get" class="form-inline filter" role="form" id="report-form" asp-action="MemberStatement">
     <div class="form-group">
         <select id="dropdown-report-type">
             <option value="1" selected="selected">@Resources.DailyStatement</option>
@@ -47,8 +46,6 @@
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>
-    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
-        value="@Model.PageHeader.IsFilterVisible.ToString()" />
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" asp-for="CustLevelId" />

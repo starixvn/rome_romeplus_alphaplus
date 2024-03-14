@@ -195,7 +195,7 @@ class AlphaReports {
         return indexed_array;
     }
 
-    setCurrentUrl(queryString: string) {
+    updateQueryString(queryString: string) {
         try {
             window.history.replaceState({}, '', `${window.location.href.split('?')[0]}?${queryString}`);
         } catch {}

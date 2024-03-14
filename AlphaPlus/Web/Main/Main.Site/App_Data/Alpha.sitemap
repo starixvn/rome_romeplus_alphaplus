@@ -30,18 +30,18 @@
 
     <siteMapNode resourceKey="superWinLossDetailByPT" url="/SuperWinLossDetailByPT/Index" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="commissionByBettype" url="/commissionbybettype/member" roles="Agent" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="commissionByBettype" url="/commissionbybettype/agent" roles="Master" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="commissionByBettype" url="/commissionbybettype/master" roles="Super" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="commissionByBettype" url="/reports/CommissionbyBetType/member" roles="Agent" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="commissionByBettype" url="/reports/CommissionbyBetType/agent" roles="Master" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="commissionByBettype" url="/reports/CommissionbyBetType/master" roles="Super" byPassProtectedMode="true"></siteMapNode>
 
     <siteMapNode menuItemType="ConsolidatedReportMenuItem" resourceKey="consolidatedreport" url="/consolidation/consolidationbyusername"></siteMapNode>
-    <siteMapNode resourceKey="statement" url="/reports/statement/smastatement"></siteMapNode>
+    <siteMapNode resourceKey="statement" url="/reports/Statement/SMAStatement"></siteMapNode>
 
     <siteMapNode resourceKey="result" url="~/Normal" appPath="ResultSiteVirtualPath" byPassProtectedMode="true"></siteMapNode>
 
-    <siteMapNode menuItemType="ProgressiveContributionMenuItem" resourceKey="ProgressiveGamesContribution" url="/reports/progressivecontribution/index"></siteMapNode>
-    <siteMapNode menuItemType="BonusDetailMenuItem" resourceKey="BonusDetail" url="/bonusdetail/index"></siteMapNode>
-    <siteMapNode resourceKey="BetCreditTracking" url="/reports/betcredittracking/betcredithistory" isHiddenInMobile="true"></siteMapNode>
+    <siteMapNode menuItemType="ProgressiveContributionMenuItem" resourceKey="ProgressiveGamesContribution" url="/reports/ProgressiveContribution/Index"></siteMapNode>
+    <siteMapNode menuItemType="BonusDetailMenuItem" resourceKey="BonusDetail" url="/reports/BonusDetail/Index"></siteMapNode>
+    <siteMapNode resourceKey="BetCreditTracking" url="/reports/BetCreditTracking/BetCreditHistory" isHiddenInMobile="true"></siteMapNode>
   </siteMapNode>
   <!--/Report-->
   <!--MemberInfo-->
@@ -97,8 +97,8 @@
   </siteMapNode>
 
   <siteMapNode resourceKey="BetStatistics" menuItemType="BetStatisticsMenuItem" functionType="[E]" roles="Super">
-    <siteMapNode resourceKey="IPMatching" url="/RiskAnalysisIPMatching" roles="Super"></siteMapNode>
-    <siteMapNode resourceKey="BetChoiceMatching" url="/BetChoiceMatching" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="IPMatching" url="/reports/IPMatching/Index" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="BetChoiceMatching" url="/reports/BetChoiceMatching/Index" roles="Super"></siteMapNode>
   </siteMapNode>
 
   <siteMapNode resourceKey="transfer" menuItemType="TransferMenuItem" functionType="[C]" roles="Super">

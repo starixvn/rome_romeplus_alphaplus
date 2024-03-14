@@ -1,5 +1,6 @@
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Statement;
@@ -8,7 +9,7 @@ public interface IStatementService
 {
     Task<IEnumerable<StatementModel>> GetStatements(GetStatementParam param);
 
-    Task<(IEnumerable<StatementDetailModel>, StatementDetailModel)> StatementDetails(int custId, DateTime transferDate);
+    Task<ReportData<StatementDetailModel>> StatementDetails(int custId, DateTime transferDate);
 }
 
 public class StatementService(
@@ -41,7 +42,7 @@ public class StatementService(
         return statements;
     }
 
-    public async Task<(IEnumerable<StatementDetailModel>, StatementDetailModel)> StatementDetails(int custId, DateTime transferDate)
+    public async Task<ReportData<StatementDetailModel>> StatementDetails(int custId, DateTime transferDate)
     {
         var balanceUpDay = await reportDateService.GetBalanceUpDay();
 
@@ -51,6 +52,6 @@ public class StatementService(
             transferDate >= balanceUpDay ? string.Empty : ReportDateService.WarehouseSPSuffix));
         var totalAmount = statements.Sum(s => s.Amount ?? 0);
 
-        return (statements, new StatementDetailModel { Amount = totalAmount });
+        return new ReportData<StatementDetailModel>(statements, new StatementDetailModel { Amount = totalAmount });
     }
 }

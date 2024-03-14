@@ -10,6 +10,8 @@ public class ProgressiveContributionViewModel(
     ProgressiveContributionEntity total,
     ProductMultiSelectionViewModel productViewModel)
 {
+    public int CustId { get; } = message.ViewerId;
+
     public UserLevel CustLevel { get; } = message.ViewerLevel;
 
     public bool IsHistoricReport { get; } = message.IsHistoricReport;

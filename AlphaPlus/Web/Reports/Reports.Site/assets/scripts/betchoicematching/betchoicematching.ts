@@ -388,7 +388,7 @@ class BetChoiceMatching {
                 this.data = data;
                 this.groupIPs(data.IPs);
                 this.filterAndRender();
-                alphaReports.setCurrentUrl(this.queryParam);
+                alphaReports.updateQueryString(this.queryParam);
             })
             .fail((jqXHR) => {
                 const jsonData = JSON.parse(jqXHR.responseText);

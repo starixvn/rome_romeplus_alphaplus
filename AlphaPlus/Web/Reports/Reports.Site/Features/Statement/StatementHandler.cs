@@ -2,7 +2,6 @@ using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Statement;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
-using ONEbook.SpreadSheets;
 
 namespace AlphaPlus.Reports.Site.Features.Statement;
 
@@ -35,16 +34,16 @@ public class StatementHandler(
 
     public async Task<StatementDetailViewModel> Handle(StatementDetailsQuery message, CancellationToken cancellationToken)
     {
-        var (statements, total) = await statementService.StatementDetails(message.CustId, message.TransferDate);
+        var reportData = await statementService.StatementDetails(message.CustId, message.TransferDate);
 
-        return new StatementDetailViewModel(message, statements, total);
+        return new StatementDetailViewModel(message, reportData);
     }
 
     public async Task<ExcelFileViewModel> Handle(StatementDetailExcelQuery message, CancellationToken cancellationToken)
     {
-        var (statements, total) = await statementService.StatementDetails(message.CustId, message.TransferDate);
+        var reportData = await statementService.StatementDetails(message.CustId, message.TransferDate);
 
-        return statementDetailWorkbook.BuildExcelFile(message, statements, total);
+        return statementDetailWorkbook.BuildExcelFile(message, reportData);
     }
 
     public async Task<MemberStatementViewModel> Handle(MemberStatementQuery message, CancellationToken cancellationToken)

@@ -4,35 +4,31 @@ using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 
 namespace AlphaPlus.Reports.Site.Features.Statement;
 
-public class SMAStatementViewModel
+public class SMAStatementViewModel(SMAStatementQuery message, IEnumerable<StatementModel> statements, string title = null)
 {
-    public SMAStatementViewModel(SMAStatementQuery message, IEnumerable<StatementModel> statements, string title = null)
-    {
-        CustId = message.CustId;
-        CustName = message.CustName;
-        CustLevelId = message.CustLevelId;
-        PageHeader = new PageHeaderViewModel(Title: title ?? Resources.Statement, IsFilterVisible: message.IsFilterVisible);
-        DateRangePicker = new DateRangePickerViewModel(message.MinDate, DateTime.MaxValue, message.FromDate, message.ToDate, message.UserSelectedDateRangeOption);
-        ViewDataInstructionMessage = string.Format(Resources.CanOnlyViewDataAfterTimeHistoryReport, message.MinDate.ToShortDateWithSlash());
-        ReportData = statements;
-        Pager = new PagerViewModel(message.PageIndex, message.PageSize, statements.Count());
-    }
+    public int CustId { get; } = message.CustId;
 
-    public int CustId { get; }
+    public string CustName { get; } = message.CustName;
 
-    public string CustName { get; }
+    public byte CustLevelId { get; } = message.CustLevelId;
 
-    public byte CustLevelId { get; }
-
-    public PageHeaderViewModel PageHeader { get; }
+    public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(Title: title ?? Resources.Statement);
 
     public DateRangePickerViewModel DateRangePicker { get; }
+        = new DateRangePickerViewModel(
+            message.MinDate,
+            DateTime.MaxValue,
+            message.FromDate,
+            message.ToDate,
+            message.UserSelectedDateRangeOption);
 
     public string ViewDataInstructionMessage { get; }
+        = string.Format(Resources.CanOnlyViewDataAfterTimeHistoryReport, message.MinDate.ToShortDateWithSlash());
 
-    public IEnumerable<StatementModel> ReportData { get; }
+    public IEnumerable<StatementModel> ReportData { get; } = statements;
 
     public PagerViewModel Pager { get; }
+        = new PagerViewModel(message.PageIndex, message.PageSize, statements.Count());
 
     public IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>

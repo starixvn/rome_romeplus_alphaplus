@@ -1,4 +1,5 @@
 using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.Statement;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
@@ -9,10 +10,7 @@ namespace AlphaPlus.Reports.Site.Features.Statement;
 
 public interface IStatementDetailWorkbook
 {
-    ExcelFileViewModel BuildExcelFile(
-        StatementDetailExcelQuery message,
-        IEnumerable<StatementDetailModel> reportData,
-        StatementDetailModel total);
+    ExcelFileViewModel BuildExcelFile(StatementDetailExcelQuery message, ReportData<StatementDetailModel> reportData);
 }
 
 public class StatementDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
@@ -30,10 +28,7 @@ public class StatementDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
             .Map(A, statement => Resources.Total)
             .Map(C, statement => (object)statement.Amount ?? Resources.Symbol_NoDataNumber);
 
-    public ExcelFileViewModel BuildExcelFile(
-        StatementDetailExcelQuery message,
-        IEnumerable<StatementDetailModel> reportData,
-        StatementDetailModel total)
+    public ExcelFileViewModel BuildExcelFile(StatementDetailExcelQuery message, ReportData<StatementDetailModel> reportData)
     {
         var transferDate = message.TransferDate.ToShortDateWithSlash();
 
@@ -45,8 +40,8 @@ public class StatementDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
                 footerEndIndex: 5))
             .Title($"{Resources.TransferDetails} ({message.CustName}): {transferDate})")
             .Header(Resources.ResourceManager.GetString)
-            .Body(reportData, BodyRowMapper)
-            .Footer(total, FooterRowMapper)
+            .Body(reportData.DataSource, BodyRowMapper)
+            .Footer(reportData.Total, FooterRowMapper)
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 

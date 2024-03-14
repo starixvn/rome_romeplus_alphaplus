@@ -9,8 +9,6 @@ public class BetCreditHistoryViewModel(BetCreditHistoryQuery message, BetCreditH
 
     public long? RefNo { get; } = message.RefNo;
 
-    public bool IsFilterVisible { get; } = message.IsFilterVisible;
-
     public string ErrorMessage { get; } = model?.ErrorMessage;
 
     public UserLevel CustLevel { get; } = message.ViewerLevel;

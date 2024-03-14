@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "_Layout";
-    ViewData["Title"] = "Bet Credit History";
+    ViewData["Title"] = Resources.BetCreditHistory;
     void BuildBetCreditHistory(BetCreditHistoryEntity item)
     {
         <tr class="@(item.BetCredit == null ? "highlight-row" : string.Empty)">
@@ -28,7 +28,7 @@
     <script src="~/bundles/betcredittracking/betcredithistory.js" asp-append-version="true"></script>
 }
 @model BetCreditHistoryViewModel
-<div class="page-title@(Model.IsFilterVisible ? string.Empty : " hide-filter")">
+<div class="page-title">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
             <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.BetCreditHistory</a>
@@ -51,7 +51,7 @@
 </div>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="betCreditHistory">
-        <form method="get" class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form"
+        <form method="get" class="form-inline filter" role="form"
             id="report-form" asp-action="BetCreditHistorySearch">
             <div class="form-group">
                 <label asp-for="Member">@Resources.Member <span style="color: #E54748;">*</span></label>
@@ -70,7 +70,6 @@
             <div id="validation-msg-error"
                 class="msg msg-error@(string.IsNullOrWhiteSpace(Model.ErrorMessage) ? " hide" : string.Empty)">
                 @Model.ErrorMessage</div>
-            <input type="hidden" asp-for="IsFilterVisible" />
         </form>
         @if (Model.ReportData != null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
         {

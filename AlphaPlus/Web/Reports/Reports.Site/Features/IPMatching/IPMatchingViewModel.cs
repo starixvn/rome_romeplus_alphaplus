@@ -8,18 +8,19 @@ namespace AlphaPlus.Reports.Site.Features.IPMatching;
 
 public class IPMatchingViewModel(IPMatchingQuery message, ReportData<IPMatchingModel> reportData)
 {
-    public string Date { get; } = message.Date.ToShortDateWithSlash();
-
     public string Today { get; } = DateTime.Today.ToShortDateWithSlash();
 
     public string MinDate { get; } = message.MinDate.ToShortDateWithSlash();
 
-    public PageHeaderViewModel PageHeader { get; }
-        = new PageHeaderViewModel(Resources.IPMatching, IsFilterVisible: message.IsFilterVisible);
+    public string Date { get; } = message.Date.ToShortDateWithSlash();
+
+    public int MemberCount { get; } = message.MemberCount;
+
+    public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(Resources.IPMatching);
 
     public IEnumerable<SelectListItem> MemberCounts
         => new int[] { 2, 3, 4, 5, 8, 10, 15, 20, 30, 50, 100 }
-        .Select(item => new SelectListItem($">= {item}", item.ToString(), item == message.MemberCount));
+        .Select(item => new SelectListItem($">= {item}", item.ToString()));
 
     public ReportData<IPMatchingModel> ReportData { get; } = reportData;
 
@@ -27,6 +28,6 @@ public class IPMatchingViewModel(IPMatchingQuery message, ReportData<IPMatchingM
         => new Dictionary<string, string>
         {
             [nameof(Date)] = Date,
-            [nameof(message.MemberCount)] = message.MemberCount.ToString()
+            [nameof(MemberCount)] = MemberCount.ToString()
         };
 }
