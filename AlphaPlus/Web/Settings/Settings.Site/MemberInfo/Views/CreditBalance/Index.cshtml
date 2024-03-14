@@ -134,14 +134,14 @@
         }
         else
         {
-            Html.Raw(NoInformation.Render(15));
+            @NoInformation.Render(15)
         }
         @if (pagedCreditBalances.ShowPager)
         {
             <tfoot>
                 <tr>
                     <td colspan="15">
-                        @Html.Raw(Pager.Render(new PagerViewModel(pagedCreditBalances.PageIndex, pagedCreditBalances.PageSize, pagedCreditBalances.TotalItems)))
+                        @Pager.Render(new PagerViewModel(pagedCreditBalances.PageIndex, pagedCreditBalances.PageSize, pagedCreditBalances.TotalItems))
                     </td>
                 </tr>
             </tfoot>

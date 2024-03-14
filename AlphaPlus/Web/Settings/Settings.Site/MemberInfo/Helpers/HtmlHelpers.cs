@@ -1,37 +1,38 @@
 using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
 using AlphaPlus.Settings.Site.ViewModels.Components;
+using Microsoft.AspNetCore.Html;
 
 namespace AlphaPlus.Settings.Site.MemberInfo.Helpers;
 
 public static class Pager
 {
-    public static string Render(PagerViewModel model)
+    public static IHtmlContent Render(PagerViewModel model)
     {
         if (model?.TotalRecords > 0)
         {
-            return @"<div id='report-pager' " + @"
+            return new HtmlString(@"<div id='report-pager' " + @"
                 data-labelpage='" + Resources.Page + @"'
                 data-labelof='" + Resources.Of + @"'
                 data-labeldisplayitems='" + Resources.Pager_DisplayItems + @"'
                 data-pageindex='" + model.PageIndex + @"'
                 data-pagesize='" + model.PageSize + @"'
                 data-totalrecords='" + model.TotalRecords + @"'>
-            </div>";
+            </div>");
         }
 
-        return string.Empty;
+        return HtmlString.Empty;
     }
 }
 
 public static class NoInformation
 {
-    public static string Render(int colspan)
+    public static IHtmlContent Render(int colspan)
     {
-        return @"<tbody>
+        return new HtmlString(@"<tbody>
             <tr>
                 <td colspan='" + colspan + "' align='center'>" + Resources.NoInformationIsAvailable + @"</td>
             </tr>
-        </tbody>";
+        </tbody>");
     }
 }
 
