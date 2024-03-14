@@ -109,7 +109,7 @@ class CreditBalance {
         });
 
         this.$(".iplink").click(function () {
-            self.topWindow.popupManager.openByRelativeUrl("_IPInfo/IpInfo.aspx?ip=" + this.text, "", 400, 400);
+            self.topWindow.popupManager.open("/main/IpInfo?ip=" + this.text, "", 400, 400);
         });
 
         this.$iconInformation.on("click", this.showLegend);
@@ -132,16 +132,16 @@ class CreditBalance {
     };
 
     registerAutoSuggestion = () => {
-        const autoSuggestionUrl: string = this.$("#OldMainRootPath").val() + "_GlobalResources/Handlers/QueryUserName.ashx";
+        const autoSuggestionUrl: string = this.$("#OldMainRootPath").val() + "UserNameSuggestion/GetUsernamesSuggestion";
         const custId: number = this.$("#autoSuggestionCustId").val();
         const $userNameInput: JQuery = this.$(".typeahead");
 
         const getSuggestions: any = (query: string, process: any) => {
             return this.$.get(
                 autoSuggestionUrl,
-                { custid: custId, isdir: 1, query: query },
+                { custid: custId, DirectDownlines: true, SuggestionQuery: query },
                 (data: any) => {
-                    const suggestions: any = eval("(" + data + ")").suggestions;
+                    const suggestions: any = data;
                     return !suggestions || !suggestions.length
                         ? process(["Not found"])
                         : process(suggestions);
@@ -155,12 +155,12 @@ class CreditBalance {
             autoSelect: false,
             delay: 200,
             source: getSuggestions,
-            displayText: (item: any) => item[0] + "#" + item[1] + " " + item[2],
+            displayText: (item: any) => item.UserName + "#" + item.FirstName + " " + item.LastName,
             highlighter: (displayText: string) => {
                 const parts: string[] = displayText.split("#");
                 return parts[0] + "<br/>" + parts[1];
             },
-            afterSelect: (item: any) => $userNameInput.val(item[0])
+            afterSelect: (item: any) => $userNameInput.val(item.UserName)
         };
 
         $userNameInput

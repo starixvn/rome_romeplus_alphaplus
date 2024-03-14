@@ -30,6 +30,6 @@ app.UseMiddleware<RequestCultureMiddleware>();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=SubAccount}/{action=Index}/{id?}/{custId=1176070}");
+    pattern: "{controller=SubAccount}/{action=Index}/{id?}");
 
 app.Run();

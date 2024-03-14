@@ -20,7 +20,7 @@
         public User() : this(null){}
         public User(IUserSession userSession)
         {
-            this.userSession = userSession ?? new UserSessionExt();
+            this.userSession = userSession ?? UserSession.Current;
         }
 
         public int LoggedInUserId => userSession.UserId;

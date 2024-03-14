@@ -76,6 +76,10 @@ namespace AlphaPlus.Settings.Site.Helpers
                     options.ViewLocationFormats.Clear();
                     options.ViewLocationFormats.Add("/{1}/Views/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/MemberInfo/Views/Shared/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/MemberInfo/Views/{1}/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/MemberInfo/Features/Shared/Views/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/MemberInfo/Features/{1}/Views/{0}.cshtml");
                 });
             
             services
