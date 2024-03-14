@@ -8,7 +8,7 @@
 @using AlphaPlus.Reports.Site.Features.IPMatching
 @{
     Layout = "_Layout";
-    ViewData["Title"] = Resources.IPMatching;
+    ViewData["Title"] = Model.PageHeader.Title;
 
     async Task RenderRow(IPMatchingModel data, bool isTotalRow)
     {
@@ -16,7 +16,7 @@
             <td data-islink="true" class="text-left col-username">
                 @if (isTotalRow)
                 {
-                    @data.IP
+                    @Resources.Total
                 }
                 else
                 {
@@ -51,8 +51,8 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="txt">@Resources.MemberCount</label>
-        <select id="dropdown-statuses" name="MemberCount" asp-items="Model.MemberCounts"></select>
+        <label>@Resources.MemberCount</label>
+        <select name="MemberCount" asp-items="Model.MemberCounts"></select>
     </div>
     <div class="form-group">
         <input type="submit" value="@Resources.Submit" class="btn-submit" />
@@ -65,8 +65,7 @@
         <span class="star">*</span>@Resources.IPMatchingNote
     </div>
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report"
-    data-totalrecords="@Model.ReportData.Count()">
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
     <thead>
         <tr>
             <th>@Resources.IP</th>
@@ -78,17 +77,17 @@
             <th>@Resources.Company</th>
         </tr>
     </thead>
-    @if (Model.ReportData.Any())
+    @if (Model.ReportData.HasData)
     {
         <tbody>
-            @foreach (var data in Model.ReportData)
+            @foreach (var data in Model.ReportData.DataSource)
             {
                 await RenderRow(data, false);
             }
         </tbody>
         <tfoot>
             @{
-                await RenderRow(Model.Total, true);
+                await RenderRow(Model.ReportData.Total, true);
             }
         </tfoot>
     }
@@ -98,4 +97,4 @@
     }
 </table>
 <input type="hidden" asp-for="MinDate" />
-<input type="hidden" id="Today" value="@DateTime.Today.ToShortDateWithSlash()" />
+<input type="hidden" asp-for="Today" />

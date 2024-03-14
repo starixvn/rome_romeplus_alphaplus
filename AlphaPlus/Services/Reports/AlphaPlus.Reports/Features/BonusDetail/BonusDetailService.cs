@@ -143,7 +143,7 @@ public class BonusDetailService(IDynamicRepository repository) : IBonusDetailSer
             totalAmount += bonus.TotalAmount;
         });
 
-        return new PagedReportData<GroupBonus>(bonusList, param.PageIndex, param.PageSize, totalRecords, new GroupBonus(totalAmount));
+        return new PagedReportData<GroupBonus>(bonusList, new GroupBonus(totalAmount), param.PageIndex, param.PageSize, totalRecords);
     }
 
     public async Task<Result> ConfirmPayment(ConfirmPaymentParam param)

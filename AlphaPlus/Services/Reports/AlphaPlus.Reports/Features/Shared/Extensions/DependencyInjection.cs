@@ -13,6 +13,8 @@ using AlphaPlus.Reports.Features.BetCreditTracking.MoveStatementHistory;
 using AlphaPlus.Reports.Features.CommissionByBetType;
 using AlphaPlus.Reports.Features.BonusDetail;
 using AlphaPlus.Reports.Features.IPMatching;
+using AlphaPlus.Reports.Features.BetChoiceMatching;
+using AlphaPlus.Utilities.IP;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
@@ -22,12 +24,14 @@ public static class DependencyInjection
     {
         services
             .Configure<AppSettings>(configuration)
+            .AddSingleton<IPService, IPServiceImpl>()
             .AddSingleton<IAutoFollowBetService, AutoFollowBetService>()
             .AddSingleton<ICacheRefService, CacheRefService>()
             .AddSingleton<IPartialUMDataAccess, PartialUMDataAccess>()
             .AddPartialUM(configuration)
             .AddSingleton<IProductService, ProductService>()
             .AddSingleton<IReportDateService, ReportDateService>()
+            .AddSingleton<ILeagueService, LeagueService>()
             .AddSingleton<ILengendService, LengendService>()
             .AddSingleton<IOutstandingService, OutstandingService>()
             .AddSingleton<IEnteredResultService, EnteredResultService>()
@@ -37,7 +41,8 @@ public static class DependencyInjection
             .AddSingleton<IBonusDetailService, BonusDetailService>()
             .AddSingleton<IBetCreditHistoryService, BetCreditHistoryService>()
             .AddSingleton<IMoveStatementHistoryService, MoveStatementHistoryService>()
-            .AddSingleton<IIPMatchingService, IPMatchingService>();
+            .AddSingleton<IIPMatchingService, IPMatchingService>()
+            .AddSingleton<IBetChoiceMatchingService, BetChoiceMatchingService>();
 
         var serviceProvider = services.BuildServiceProvider();
         ReportDateService.Instance = serviceProvider.GetRequiredService<IReportDateService>();

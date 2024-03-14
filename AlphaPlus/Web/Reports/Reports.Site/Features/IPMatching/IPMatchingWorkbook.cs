@@ -1,5 +1,6 @@
 using AlphaPlus.Reports.Features.IPMatching;
 using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using ONEbook.SpreadSheets;
@@ -9,10 +10,7 @@ namespace AlphaPlus.Reports.Site.Features.IPMatching;
 
 public interface IIPMatchingWorkbook
 {
-    ExcelFileViewModel BuildExcelFile(
-        IPMatchingQuery message,
-        IEnumerable<IPMatchingModel> reportData,
-        IPMatchingModel total);
+    ExcelFileViewModel BuildExcelFile(IPMatchingQuery message, ReportData<IPMatchingModel> reportData);
 }
 
 public class IPMatchingWorkbook(IWebHostEnvironment webHostEnvironment) :
@@ -29,12 +27,10 @@ public class IPMatchingWorkbook(IWebHostEnvironment webHostEnvironment) :
         .Map(F, data => data.SuperWinLoss)
         .Map(G, data => data.Company);
 
-    public ExcelFileViewModel BuildExcelFile(
-        IPMatchingQuery message,
-        IEnumerable<IPMatchingModel> reportData,
-        IPMatchingModel total)
+    public ExcelFileViewModel BuildExcelFile(IPMatchingQuery message, ReportData<IPMatchingModel> reportData)
     {
         var dateString = message.Date.ToShortDateWithSlash();
+        reportData.Total.IP = Resources.Total;
 
         var fileContent = UseTemplate(new TemplateInfo(
                 GetExcelTemplatePath("Super"),
@@ -44,8 +40,8 @@ public class IPMatchingWorkbook(IWebHostEnvironment webHostEnvironment) :
                 footerEndIndex: 5))
             .Title($"{Resources.IPMatching} {dateString} - {Resources.MemberCount}: >= {message.MemberCount}")
             .Header(Resources.ResourceManager.GetString)
-            .Body(reportData, rowMapper)
-            .Footer(total, rowMapper)
+            .Body(reportData.DataSource, rowMapper)
+            .Footer(reportData.Total, rowMapper)
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 

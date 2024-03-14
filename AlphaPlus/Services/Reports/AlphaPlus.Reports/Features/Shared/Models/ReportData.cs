@@ -1,12 +1,22 @@
 namespace AlphaPlus.Reports.Features.Shared.Models;
 
-public class ReportData<T>(IEnumerable<T> dataSource, T totalData) where T : class
+public class ReportData<T> where T : class
 {
-    public IEnumerable<T> DataSource { get; } = dataSource ?? [];
+    public ReportData(IEnumerable<T> dataSource, T total)
+    {
+        DataSource = dataSource ?? [];
+        Total = total;
 
-    public T TotalData { get; } = totalData;
+        var dataSourceLength = DataSource.Count();
+        HasData = dataSourceLength > 0;
+        MoreThanOne = dataSourceLength > 1;
+    }
 
-    public virtual bool Any() => DataSource.Any();
+    public IEnumerable<T> DataSource { get; }
 
-    public virtual bool MoreThanOne() => DataSource.Count() > 1;
+    public T Total { get; }
+
+    public virtual bool HasData { get; }
+
+    public virtual bool MoreThanOne { get; }
 }

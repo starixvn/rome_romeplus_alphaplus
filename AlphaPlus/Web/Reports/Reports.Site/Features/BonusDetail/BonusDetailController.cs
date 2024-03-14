@@ -17,14 +17,7 @@ public class BonusDetailController(
     public Task<IActionResult> Index(BonusDetailQuery message) => View(message);
 
     [HttpPost]
-    public async Task<ActionResult> ConfirmPayment(ConfirmPaymentCommand message)
-    {
-        var result = message.IsValid()
-            ? await mediator.Send(message)
-            : new Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized);
-
-        return Json(result);
-    }
+    public Task<IActionResult> ConfirmPayment(ConfirmPaymentCommand message) => Json(message);
 
     public override void OnActionExecuting(ActionExecutingContext context)
     {

@@ -19,5 +19,5 @@ public class IPMatchingQuery : BaseQuery, IRequest<IPMatchingViewModel>
     public bool IsAdminCanViewVNIP { get; }
 
     public override bool IsValid()
-        => base.IsValid() && MinDate <= Date && ViewerLevel.IsSuperLevel();
+        => ViewerLevel.IsSuperLevel() && MinDate <= Date && base.IsValid();
 }

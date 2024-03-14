@@ -245,7 +245,7 @@
             <th>@Resources.PaymentDate</th>
         </tr>
     </thead>
-    @if (Model.ReportData.Any())
+    @if (Model.ReportData.HasData)
     {
         <tbody>
             @if (Model.ViewerLevel.IsSuperLevel())
@@ -265,18 +265,18 @@
             <tr class="tbl-footer">
                 <td class="text-left">@Resources.Total</td>
                 <td></td>
-                <td>@Model.ReportData.TotalData.TotalAmount.FormatNumber()</td>
+                <td>@Model.ReportData.Total.TotalAmount.FormatNumber()</td>
                 <td></td>
-                <td>@Model.ReportData.TotalData.TotalAmount.FormatNumber()</td>
+                <td>@Model.ReportData.Total.TotalAmount.FormatNumber()</td>
                 @if (Model.ViewerLevel.IsSuperLevel())
                 {
                     <td></td>
-                    <td>@Model.ReportData.TotalData.TotalAmount.FormatNumber()</td>
+                    <td>@Model.ReportData.Total.TotalAmount.FormatNumber()</td>
                 }
                 @if (Model.ViewerLevel.IsMasterOrSuperLevel())
                 {
                     <td></td>
-                    <td>@Model.ReportData.TotalData.TotalAmount.FormatNumber()</td>
+                    <td>@Model.ReportData.Total.TotalAmount.FormatNumber()</td>
                 }
                 <td></td>
                 <td></td>

@@ -167,5 +167,19 @@
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/ipmatching/ip-matching.js"
         ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/betchoicematching/betchoicematching.css",
+        "inputFiles": [
+            "assets/styles/betchoicematching/betchoicematching.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/betchoicematching/betchoicematching.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/simple-tooltip.js",
+            "assets/scripts/betchoicematching/betchoicematching.js"
+        ]
     }
 ]

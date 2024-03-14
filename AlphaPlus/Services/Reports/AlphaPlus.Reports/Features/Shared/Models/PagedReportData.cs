@@ -2,18 +2,18 @@ namespace AlphaPlus.Reports.Features.Shared.Models;
 
 public class PagedReportData<T>(
     IEnumerable<T> dataSource,
-    int currentPageIndex,
+    T total,
+    int pageIndex,
     int pageSize,
-    int totalRecords,
-    T totalData) : ReportData<T>(dataSource, totalData) where T : class
+    int totalRecords) : ReportData<T>(dataSource, total) where T : class
 {
-    public int CurrentPageIndex { get; } = currentPageIndex;
+    public int PageIndex { get; } = pageIndex;
 
     public int PageSize { get; } = pageSize;
 
     public int TotalRecords { get; } = totalRecords;
 
-    public override bool Any() => TotalRecords > 0;
+    public new bool HasData { get; } = totalRecords > 0;
 
-    public override bool MoreThanOne() => TotalRecords > 1;
+    public new bool MoreThanOne => TotalRecords > 1;
 }

@@ -6,5 +6,9 @@ public class AppSettings
 
     public byte SettingStatus { get; init; }
 
+    public string SiteLabel { get; init; }
+
     public string[] AllowedSitesToViewBonusDetail { get; init; }
+
+    public bool IsSiteLabel777 => SiteLabel.Equals("777");
 }

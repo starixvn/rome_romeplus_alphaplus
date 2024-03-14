@@ -26,7 +26,7 @@ public class BonusDetailViewModel(BonusDetailQuery message, PagedReportData<Grou
     public PagedReportData<GroupBonus> ReportData { get; } = reportData;
 
     public PagerViewModel Pager { get; }
-        = new PagerViewModel(reportData.CurrentPageIndex, reportData.PageSize, reportData.TotalRecords);
+        = new PagerViewModel(reportData.PageIndex, reportData.PageSize, reportData.TotalRecords);
 
     public IEnumerable<SelectListItem> BonusStatus
         => [

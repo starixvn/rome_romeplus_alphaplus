@@ -1,4 +1,6 @@
+using System.Net;
 using AlphaPlus.Core;
+using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
@@ -18,6 +20,17 @@ public abstract class ReportBaseController(IMediator mediator) : BaseController
         return baseQuery != null && baseQuery.IsValid()
             ? View(viewName, await mediator.Send(message))
             : View(InvalidViewName);
+    }
+
+    protected async Task<IActionResult> Json<TResponse>(IRequest<TResponse> message)
+    {
+        var baseQuery = message as BaseQuery;
+        if (baseQuery != null && baseQuery.IsValid())
+        {
+            return Json(await mediator.Send(message));
+        }
+
+        return Json(new Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized));
     }
 
     protected async Task<IActionResult> ExcelView(IRequest<ExcelFileViewModel> message)

@@ -19,7 +19,7 @@ AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
 builder.Services
     .Configure<JsonOptions>(options =>
     {
-        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     })
     .AddControllersWithViews()
