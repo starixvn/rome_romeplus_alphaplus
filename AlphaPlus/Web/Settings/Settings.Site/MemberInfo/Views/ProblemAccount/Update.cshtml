@@ -1,10 +1,11 @@
-﻿@* @using AlphaPlus.Settings.Site.ViewModels.ProblemAccount;
+﻿@using AlphaPlus.Settings.Site.ViewModels.ProblemAccount
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Core.Helpers
 @{
-    /**/
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
 }
 @section Styles{
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/problem-account/update")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/assets/bundles/problem-account/update")
 }
 @model UpdateReviewStatusViewModel
 <div class="content-page">
@@ -64,5 +65,5 @@
 @Html.Hidden("SuccessMessage", Resources.UpdateSuccessfully)
 @Html.AntiForgeryToken()
 @section Scripts{
-    @StaticResources.RenderScripts("~/assets/bundles/problem-account/update")
-} *@
+    @StaticResources.RenderScripts("~/MemberInfo/assets/bundles/problem-account/update")
+}

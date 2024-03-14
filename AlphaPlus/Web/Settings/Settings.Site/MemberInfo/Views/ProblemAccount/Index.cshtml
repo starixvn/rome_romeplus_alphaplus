@@ -1,7 +1,13 @@
-﻿@* @using AlphaPlus.Settings.Site.ViewModels.ProblemAccount
-@using Alpha.MemberInfo.Models;
-@using Alpha.MemberInfo.Extensions;
-@using Alpha.MemberInfo.Features.CustomerList.AppResources.ProductResources
+﻿@using AlphaPlus.Settings.Site.ViewModels.ProblemAccount
+@using AlphaPlus.Settings.MemberInfo.Domain.Models
+@using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Core.Helpers
+
+@{
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
+}
 
 @model ProblemAccountReportViewModel
 @{
@@ -9,7 +15,7 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-memberinfo/problem-account-{Model.Query.CustLevel.DisplayName}")
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/problem-account/index")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/assets/bundles/problem-account/index")
 }
 
 <div class="page-title">
@@ -20,28 +26,28 @@
         <ul id="nav-tabs" class="nav nav-tabs" role="tablist">
             @if (Model.Query.CustLevel.IsSuperLevel())
             {
-                @RenderTab(UserLevel.Master, Resources.Master)
+                RenderTab(UserLevel.Master, Resources.Master);
             }
 
             @if (Model.Query.CustLevel.IsMasterOrSuperLevel())
             {
-                @RenderTab(UserLevel.Agent, Resources.Agent)
+                RenderTab(UserLevel.Agent, Resources.Agent);
             }
 
-            @RenderTab(UserLevel.Member, Resources.Member)
+            @{RenderTab(UserLevel.Member, Resources.Member);}
         </ul>
         <div class="tab-content">
             @if (Model.Query.CustLevel.IsSuperLevel())
             {
-                @RenderContent(UserLevel.Master)
+                RenderContent(UserLevel.Master);
             }
 
             @if (Model.Query.CustLevel.IsMasterOrSuperLevel())
             {
-                @RenderContent(UserLevel.Agent)
+                RenderContent(UserLevel.Agent);
             }
 
-            @RenderContent(UserLevel.Member)
+            @{RenderContent(UserLevel.Member);}
             <div class="shadow" id="shadow">
                 <div class="output" id="output"></div>
             </div>
@@ -81,7 +87,7 @@
 @Html.Hidden("suspendAccountsText", Resources.SuspendAccount)
 @Html.Hidden("addToMyWatchlistText", Resources.AddToMyWatchlist)
 @Html.Hidden("suspended-text", Resources.Suspended)
-@Html.Hidden("changeStatusToSuspendText", @ProductResources.ConfirmSuspendedViewModelInCaseSuspendedMembermessage, CancellationToken cancellation)
+@Html.Hidden("changeStatusToSuspendText", @ProductResources.ConfirmSuspendedViewModelInCaseSuspendedMemberMessage)
 @Html.Hidden("text-locked", Resources.Locked)
 
 @Html.Hidden("memberInfoUrl", @MicroSites.MemberInfoUrl())
@@ -106,20 +112,25 @@
 
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-memberinfo/problem-account")
-    @StaticResources.RenderScripts("~/assets/bundles/problem-account/index")
+    @StaticResources.RenderScripts("~/MemberInfo/assets/bundles/problem-account/index")
 }
 
-@helper RenderContent(UserLevel level)
+@functions
 {
+    void RenderContent(UserLevel level)
+    {
     <div id="@($"tab{level.DisplayName}")" class="tab-pane fade @(IsActiveTab(level) ? "in active" : string.Empty)" role="tabpanel">
-        @RenderFilter(level)
-        @RenderCheckAll(level)
-        @RenderContainer(level)
+        @{RenderFilter(level);}
+        @{RenderCheckAll(level);}
+        @{RenderContainer(level);}
     </div>
+    }
 }
 
-@helper RenderFilter(UserLevel level)
+@functions
 {
+    void RenderFilter(UserLevel level)
+    {
     var levelName = level.DisplayName.ToLower();
     <div class="filter">
         <div id="@($"form-{levelName}")" class="form-inline demo-form-inline filter" role="form">
@@ -209,59 +220,69 @@
             </div>
         </div>
     </div>
-}
-
-@helper RenderCheckAll(UserLevel level)
-{
-    if (Model.Query.CustLevel.IsNotAgentLevel())
-    {
-        <div class="checkall-section">
-            <button type="button" class="btn-submit" data-placement="right" title="@Resources.MarkMultipleAsReviewed" id="btn-markReviewed-@level.DisplayName.ToLower()" disabled>@Resources.MarkAsReviewed</button>
-        </div>
     }
 }
-@helper RenderContainer(UserLevel level)
-{
-    var levelName = level.DisplayName.ToLower();
-    var columns = new[]
-    {
-        new { Text = "#", ClassName = string.Empty, Show = true },
-        new { Text = $"<input type='checkbox' class='select-all' id='select-all-{levelName}'/>", ClassName = string.Empty, Show = Model.CanUpdateAccount },
-        new { Text = "<div class='edit-multiple icon-table-edit' id='edit-multiple' data-url='' title='"+@Resources.EditMutipleSetting+"'>", ClassName = string.Empty, Show = Model.Query.CustLevel.IsAgentLevel() && Model.CanUpdateAccount },
-        new { Text = Resources.Username, ClassName = string.Empty, Show = true },
-        new { Text = Resources.Nickname, ClassName = string.Empty, Show = Model.Query.CustLevel.GetDirectDownLineLevel().Is(level) },
-        new { Text = Resources.FirstName, ClassName = string.Empty, Show = true },
-        new { Text = Resources.LastName, ClassName = string.Empty, Show = true },
-        new { Text = Resources.Status, ClassName = string.Empty, Show = true },
-        new { Text = Resources.DateNotified, ClassName = string.Empty, Show = true },
-        new { Text = level.IsMasterLevel()?Resources.ProblemAgentAccounts:Resources.ProblemMemberAccounts, ClassName = string.Empty, Show = !level.IsMemberLevel() },
-        new { Text = Resources.ReviewStatus, ClassName = string.Empty, Show = true }
-    };
 
-<div id="@($"container-{levelName}")">
-    <table id="@($"tbl-{levelName}")" class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover @($"level-{levelName}")">
-        <thead>
-            <tr>
-                @foreach (var column in columns)
-                {
-                    if (column.Show)
+@functions
+{
+    void RenderCheckAll(UserLevel level)
+    {
+        if (Model.Query.CustLevel.IsNotAgentLevel())
+        {
+            <div class="checkall-section">
+                <button type="button" class="btn-submit" data-placement="right" title="@Resources.MarkMultipleAsReviewed" id="btn-markReviewed-@level.DisplayName.ToLower()" disabled>@Resources.MarkAsReviewed</button>
+            </div>
+        }
+    }
+}
+@functions
+{
+    void RenderContainer(UserLevel level)
+    {
+        var levelName = level.DisplayName.ToLower();
+        var columns = new[]
+        {
+            new { Text = "#", ClassName = string.Empty, Show = true },
+            new { Text = $"<input type='checkbox' class='select-all' id='select-all-{levelName}'/>", ClassName = string.Empty, Show = Model.CanUpdateAccount },
+            new { Text = "<div class='edit-multiple icon-table-edit' id='edit-multiple' data-url='' title='"+@Resources.EditMutipleSetting+"'>", ClassName = string.Empty, Show = Model.Query.CustLevel.IsAgentLevel() && Model.CanUpdateAccount },
+            new { Text = Resources.Username, ClassName = string.Empty, Show = true },
+            new { Text = Resources.Nickname, ClassName = string.Empty, Show = Model.Query.CustLevel.GetDirectDownLineLevel().Is(level) },
+            new { Text = Resources.FirstName, ClassName = string.Empty, Show = true },
+            new { Text = Resources.LastName, ClassName = string.Empty, Show = true },
+            new { Text = Resources.Status, ClassName = string.Empty, Show = true },
+            new { Text = Resources.DateNotified, ClassName = string.Empty, Show = true },
+            new { Text = level.IsMasterLevel()?Resources.ProblemAgentAccounts:Resources.ProblemMemberAccounts, ClassName = string.Empty, Show = !level.IsMemberLevel() },
+            new { Text = Resources.ReviewStatus, ClassName = string.Empty, Show = true }
+        };
+
+    <div id="@($"container-{levelName}")">
+        <table id="@($"tbl-{levelName}")" class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover @($"level-{levelName}")">
+            <thead>
+                <tr>
+                    @foreach (var column in columns)
                     {
-                        <th class="@column.ClassName">@Html.Raw(column.Text)</th>
+                        if (column.Show)
+                        {
+                            <th class="@column.ClassName">@Html.Raw(column.Text)</th>
+                        }
                     }
-                }
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot></tfoot>
-    </table>
-</div>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+}
 }
 
-@helper RenderTab(UserLevel level, string displayName)
+@functions
 {
-    <li @(IsActiveTab(level) ? "class=active" : string.Empty) role="presentation">
-        <a id="@($"tab{level.Value}")" data-toggle="tab" href="@($"#tab{level.DisplayName}")">@displayName</a>
-    </li>
+    void RenderTab(UserLevel level, string displayName)
+    {
+        <li @(IsActiveTab(level) ? "class=active" : string.Empty) role="presentation">
+            <a id="@($"tab{level.Value}")" data-toggle="tab" href="@($"#tab{level.DisplayName}")">@displayName</a>
+        </li>
+    }
 }
 
 @functions{
@@ -269,4 +290,4 @@
     {
         return Model.Query.SearchRoleId == userLevel.Value;
     }
-} *@
+}
