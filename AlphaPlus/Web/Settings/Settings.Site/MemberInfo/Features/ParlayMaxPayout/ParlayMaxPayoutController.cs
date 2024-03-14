@@ -22,15 +22,15 @@
             => await View(message, editMultiplePath);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> UpdateSingle(ParlayMaxPayoutUpdateSingleQuery message)
+        public async Task<ActionResult> UpdateSingle([FromBody]ParlayMaxPayoutUpdateSingleQuery message)
             => await Json(message);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> UpdateMultiple(ParlayMaxPayoutUpdateMultipleQuery message)
+        public async Task<ActionResult> UpdateMultiple([FromBody]ParlayMaxPayoutUpdateMultipleQuery message)
             => await Json(message);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> CheckDownline(ParlayMaxPayoutCheckDownlineQuery message)
+        public async Task<ActionResult> CheckDownline([FromBody]ParlayMaxPayoutCheckDownlineQuery message)
             => await Json(message);
     }
 }
