@@ -1,6 +1,10 @@
-﻿@* @model ThresholdViewModel
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
+
+@model ThresholdViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.MyThresholdsSettings;
 }
 
@@ -19,7 +23,7 @@
     @using (Html.BeginForm("UpdateSettings", "MyThresholds", FormMethod.Post, new { id = "form-settings" }))
     {
         @Html.AntiForgeryToken()
-        @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model)
+        @await Html.PartialAsync("~/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model)
         <p class="note">@Resources.ThresholdSettingsNote</p>
         <button type="submit" class="btn-submit">@Resources.Update</button>
     }
@@ -28,4 +32,4 @@
 @Html.Hidden("old-winning-threshold", Model.WinningThreshold)
 @Html.Hidden("old-losing-threshold", Model.LosingThreshold)
 @Html.Hidden("must-enter-threshold-or-check-error", Resources.MustEnterThresholdOrCheckError)
-@Html.Hidden("no-change-to-update-error", Resources.NoChangeToUpdateError) *@
+@Html.Hidden("no-change-to-update-error", Resources.NoChangeToUpdateError)

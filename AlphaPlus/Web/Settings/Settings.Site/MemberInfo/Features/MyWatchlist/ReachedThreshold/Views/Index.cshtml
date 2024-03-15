@@ -1,9 +1,13 @@
-﻿@* @using Newtonsoft.Json
-@using Alpha.MemberInfo.Features.CustomerList.AppResources.ProductResources
+﻿@using Newtonsoft.Json
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold.ViewModels
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources
 @model ReachedThresholdViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.ReachedThreshold;
 }
 
@@ -38,7 +42,7 @@
         <li role="presentation">
             @Html.ActionLink(Resources.MyThresholds, "Index", "MyThresholds")
         </li>
-        @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/InfoUserGuideTabs.cshtml", Model.UserGuideLink)
+        @await Html.PartialAsync("~/MemberInfo/Features/MyWatchlist/Shared/Views/InfoUserGuideTabs.cshtml", Model.UserGuideLink)
     </ul>
 
     @using (Html.BeginForm("GetReachlistThreshold", "ReachedThreshold", FormMethod.Post, new { @class = "form-inline filter form-report", id = "report-form" }))
@@ -47,7 +51,7 @@
             <label>@Resources.Username</label>
             <input type="text" class="txt-search" id="txt-username" placeholder="@Resources.Username" />
         </div>
-        @DateRangePicker.Render(Model.DateRangePickerViewModel)
+        @await Html.PartialAsync("~/MemberInfo/App_Code/Components/DateRangePicker.cshtml", Model.DateRangePickerViewModel)
         <div class="form-group">
             <label for="status-dropdown">@Resources.Status</label>
             @Html.DropDownList("status-dropdown", Model.StatusOptions, new { id = "status-dropdown" })
@@ -64,7 +68,7 @@
         </div>
     }
 
-    @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/GlobalThresholdsNote.cshtml", Model.GlobalThresholdModel, new ViewDataDictionary())
+    @await Html.PartialAsync("~/MemberInfo/Features/MyWatchlist/Shared/Views/GlobalThresholdsNote.cshtml", Model.GlobalThresholdModel)
 
     <table id="tblRpt" class="hidden tblRpt tblRpt-bordered tblRpt-hover display nowrap" style="width: 100%">
         <thead>
@@ -121,7 +125,7 @@
     @Html.Hidden("LimitType")
 </form>
 
-@Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/InformationLegend.cshtml")
+@await Html.PartialAsync("~/MemberInfo/Features/MyWatchlist/Shared/Views/InformationLegend.cshtml")
 @Html.AntiForgeryToken()
 
 <input type="hidden" id="search-account-id" value="@Model.SearchAccountId" />
@@ -136,4 +140,4 @@
 <input type="hidden" id="text-locked" value="@Resources.Locked" />
 <input type="hidden" id="text-confirm-suspend-member" value="@ProductResources.ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" />
 <input type="hidden" id="suspended-text" value="@Resources.Suspended" />
-<input type="hidden" id="can-update-account" value="@(Model.CanUpdateAccount ? "true" : "false")" /> *@
+<input type="hidden" id="can-update-account" value="@(Model.CanUpdateAccount ? "true" : "false")" />

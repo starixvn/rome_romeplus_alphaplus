@@ -1,8 +1,13 @@
-﻿@* @using Newtonsoft.Json
+﻿@using Newtonsoft.Json
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold.ViewModels
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources
 @model ReachHistoryViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles {
@@ -46,4 +51,4 @@
 <input type="hidden" id="to-date" value="@Model.ReachHistoryQuery.ToDate" />
 <input type="hidden" id="limit-type" value="@Model.ReachHistoryQuery.LimitType" />
 <input type="hidden" id="no-info" value="@Resources.NoInformationIsAvailable" />
-<input type="hidden" id="reach-history-url" value="@Url.Action("GetReachHistoryList")" /> *@
+<input type="hidden" id="reach-history-url" value="@Url.Action("GetReachHistoryList")" />

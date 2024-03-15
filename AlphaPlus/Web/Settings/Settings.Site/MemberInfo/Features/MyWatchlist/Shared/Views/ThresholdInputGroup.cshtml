@@ -1,4 +1,7 @@
-﻿@* @model ThresholdViewModel
+﻿@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
+
+@model ThresholdViewModel
 
 <div class="form-group">
     <label class="lbl-threshold" for="winningThreshold">@Resources.WinningThreshold</label>
@@ -7,7 +10,7 @@
            id="winningThreshold"
            maxlength="18"
            autocomplete="off"
-           value="@(FormatThreshold(Model.WinningThreshold))"
+           value="@Html.Raw(FormatThreshold(Model.WinningThreshold))"
            @(Model.WinningThreshold == null ? "disabled" : string.Empty) />
     <input id="winning-unlimited" class="ckb-unlimited" type="checkbox" @(Model.WinningThreshold == null ? "checked" : string.Empty) />
     <label class="lbl-unlimited" for="winning-unlimited">@Resources.Unlimited</label>
@@ -20,7 +23,7 @@
            id="losingThreshold"
            maxlength="18"
            autocomplete="off"
-           value="@(FormatThreshold(Model.LosingThreshold))"
+           value="@Html.Raw(FormatThreshold(Model.LosingThreshold))"
            @(Model.LosingThreshold == null ? "disabled" : string.Empty) />
     <input id="losing-unlimited" class="ckb-unlimited" type="checkbox" @(Model.LosingThreshold == null ? "checked" : string.Empty) />
     <label for="losing-unlimited" class="lbl-unlimited">@Resources.Unlimited</label>
@@ -28,10 +31,15 @@
 
 <input type="hidden" id="must-enter-threshold-or-check-error" value="@Resources.MustEnterThresholdOrCheckError" />
 
-@helper FormatThreshold(decimal? number)
+@functions
 {
-    if (number.HasValue)
+    string FormatThreshold(decimal? number)
     {
-        @HtmlHelpers.FormatDecimal(number.Value);
+        if (number.HasValue)
+        {
+            return AlphaPlus.Settings.Site.MemberInfo.Helpers.HtmlHelpers.FormatDecimal(number.Value);
+        }
+
+        return "0.00";
     }
-} *@
+}

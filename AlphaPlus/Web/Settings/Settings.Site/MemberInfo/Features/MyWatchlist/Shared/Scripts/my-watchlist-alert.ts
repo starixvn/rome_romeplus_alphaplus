@@ -29,7 +29,7 @@ class MyWatchlistAlert {
             html.push(item.Name);
             html.push('</div>');
             html.push(`<div class="msg msg-${item.Code ? 'error' : 'success'}">`);
-            html.push(item.message);
+            html.push(item.Message);
             html.push('</div>');
             html.push('</div>');
         });

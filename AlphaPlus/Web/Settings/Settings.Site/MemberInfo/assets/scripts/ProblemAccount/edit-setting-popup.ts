@@ -81,7 +81,7 @@ class ProblemAccountPopup {
                             this.indexManager.memberList.reloadPage();
                             return;
                         }
-                        this.topWindow.bootboxAlert(result.message);
+                        this.topWindow.bootboxAlert(result.Message);
                     });
             }
         );

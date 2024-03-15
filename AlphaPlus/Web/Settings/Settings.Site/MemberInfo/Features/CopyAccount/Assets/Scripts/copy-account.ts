@@ -321,7 +321,7 @@ class CopyAccount {
             success: (data) => {
                 var result = this.safelyParseJSON(data);
                 if (result && result.IsNotOk) {
-                    this.showErrorMessage(result.message);
+                    this.showErrorMessage(result.Message);
                 } else {
                     this.$result.append(data);
                     this.$result.removeClass("hidden");
@@ -417,7 +417,7 @@ class CopyAccount {
                         this.removeTooltipError(this.$sourceAccountErrMsg);
                         this.inValidSourceAccount = false;
                     } else {
-                        this.addTooltipError(this.$sourceAccountErrMsg, result.message);
+                        this.addTooltipError(this.$sourceAccountErrMsg, result.Message);
                         this.$creditRange.addClass("hidden");
                         this.inValidSourceAccount = true;
                     }

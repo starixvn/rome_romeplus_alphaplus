@@ -88,7 +88,7 @@ class ManagePresets {
                         this.reloadAfterSuccess(this.reloadTimeout);
                         break;
                     case 1:
-                        this.alert.showError(result.message);
+                        this.alert.showError(result.Message);
                         break;
                     case 103:
                         this.alert.showError(this.$("#preset-is-no-longer-exists").val());
@@ -127,7 +127,7 @@ class ManagePresets {
                             this.alert.showSuccess(this.$("#remove-successfully").val());
                             this.reloadAfterSuccess(this.removeReloadTimeout);
                         } else if (result.Code === 1) {
-                            this.alert.showError(result.message);
+                            this.alert.showError(result.Message);
                         }
                 });
             });
@@ -184,7 +184,7 @@ class ManagePresets {
                 if (!result) return;
 
                 if (result && result.Code === 1) {
-                    this.alert.showError(result.message);
+                    this.alert.showError(result.Message);
                     return;
                 }
 

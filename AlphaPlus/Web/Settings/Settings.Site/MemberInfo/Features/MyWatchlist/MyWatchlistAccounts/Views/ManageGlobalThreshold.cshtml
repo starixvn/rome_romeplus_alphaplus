@@ -1,7 +1,10 @@
-﻿@* @model ManageGlobalThresholdViewModel
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
+@model ManageGlobalThresholdViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.GlobalThresholdSettings;
 }
 
@@ -18,7 +21,7 @@
     <div id="alert-message"></div>
     <p class="note">@Resources.GlobalThresholdSettingsNote</p>
     <p>@Resources.GlobalThresholdWillBeAppliedForMembers</p>
-    @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
+    @await Html.PartialAsync("~/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
     <p class="note">@Resources.ThresholdSettingsNote</p>
     <button class="btn-submit" id="btn-update">@Resources.Update</button>
 </div>
@@ -28,4 +31,4 @@
 <input type="hidden" id="old-winning-threshold" value="@Model.Threshold.WinningThreshold" />
 <input type="hidden" id="old-losing-threshold" value="@Model.Threshold.LosingThreshold" />
 <input type="hidden" id="no-change-to-update-error" value="@Resources.NoChangeToUpdateError" />
-<input type="hidden" id="update-successfully" value="@Resources.WatchlistUpdateSuccessfully" /> *@
+<input type="hidden" id="update-successfully" value="@Resources.WatchlistUpdateSuccessfully" />

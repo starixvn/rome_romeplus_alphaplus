@@ -1,7 +1,11 @@
-﻿@* @model ManageWatchlistAccountsViewModel
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
+@model ManageWatchlistAccountsViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Model.IsEditWatchlistAccountsPopup ? "Edit Watchlist Account" : Resources.AddMembersToWatchlist;
 }
 
@@ -48,7 +52,7 @@
 
     @if (Model.IsEditWatchlistAccountsPopup)
     {
-        @Html.Partial("~/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
+        @await Html.PartialAsync("~/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
         <button class="btn-submit" id="btn-update">@Resources.Update</button>
     }
     else
@@ -92,4 +96,4 @@
 else
 {
     <input type="hidden" id="must-enter-threshold-or-check-error" value="@Resources.MustEnterThresholdOrCheckError" />
-} *@
+}

@@ -214,7 +214,7 @@ class ReachedThresholdDataTable {
                         return;
                     }
 
-                    this.topWindow.bootboxAlert(result.message);
+                    this.topWindow.bootboxAlert(result.Message);
                 });
             });
     }

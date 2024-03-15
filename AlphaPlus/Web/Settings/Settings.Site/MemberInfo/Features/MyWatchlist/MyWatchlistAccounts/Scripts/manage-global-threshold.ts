@@ -26,7 +26,7 @@ class ManageGlobalThreshold extends ThresholdInputsBase {
                         this.alert.showSuccess(this.$("#update-successfully").val());
                         SiteHelper.closePopupAndReloadMainFrame();
                     } else if (result.Code === 1) {
-                        this.alert.showError(result.message);
+                        this.alert.showError(result.Message);
                     }
             });
         }
