@@ -18,7 +18,7 @@
         IRequestHandler<AddPersonalThresholdCommand, IEnumerable<NamedResult>>,
         IRequestHandler<UpdateMultiplePersonalThresholdCommand, IEnumerable<NamedResult>>,
         IRequestHandler<DeleteMultiplePersonalThresholdCommand, IEnumerable<NamedResult>>,
-        // IRequestHandler<UpdateGlobalThresholdCommand, Result>, //TODO
+        IRequestHandler<UpdateGlobalThresholdCommand, Result>,
         IRequestHandler<AddMultiplePersonalPresetCommand, IEnumerable<NamedResult>>,
         IRequestHandler<UpdatePersonalPresetCommand, Result>,
         IRequestHandler<DeletePersonalPresetCommand, Result>,
