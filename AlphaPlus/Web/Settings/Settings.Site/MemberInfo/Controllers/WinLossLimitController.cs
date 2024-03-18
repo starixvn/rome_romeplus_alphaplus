@@ -12,6 +12,6 @@
         }
 
         public async Task<ActionResult> Index(WinLossLimitQuery message)
-            => await View(message, "~/Views/WinLossLimit/Index.cshtml");
+            => await View(message, "~/MemberInfo/Views/WinLossLimit/Index.cshtml");
     }
 }

@@ -1,10 +1,19 @@
-﻿@* @using AlphaPlus.Settings.Site.Helpers
+﻿@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Settings.Site.ViewModels.WinLossLimit
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
+@using AlphaPlus.Settings.Site.ViewModels.Components
+@using AlphaPlus.Settings.MemberInfo.Domain.Models
+@using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@using AlphaPlus.Settings.Site.Helpers
+
 @model WinLossLimitViewModel
 @{
     ViewBag.Title = "Member Win/Loss Limit";
 }
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/win-loss-limit")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/assets/bundles/win-loss-limit")
 }
 <div class="page-title">
     <span class="pull-left">@Resources.MemberWinLossLimit</span>
@@ -199,5 +208,5 @@
     @Html.Hidden("AgentId", Model.AgentId)
 </form>
 @section Scripts {
-    @StaticResources.RenderScripts("~/assets/bundles/win-loss-limit/win-loss-limit")
-} *@
+    @StaticResources.RenderScripts("~/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit")
+}

@@ -13,10 +13,10 @@
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-memberinfo/default")
     @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/assets/bundles/default")
     @RenderSection("Styles", required: false)
-    @* @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagScript() *@
+    @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagScript()
 </head>
 <body>
-    @* @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagNoScript() *@
+    @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-memberinfo/default")
