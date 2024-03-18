@@ -7,6 +7,7 @@ RUN npm install -g yarn gulp-cli
 COPY . ./src
 WORKDIR /src/Web/Settings/Settings.Site
 RUN yarn && yarn build
+RUN dotnet restore
 RUN dotnet publish -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS development
