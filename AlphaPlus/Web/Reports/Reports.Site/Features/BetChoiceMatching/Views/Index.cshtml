@@ -40,7 +40,8 @@
 }
 @model BetChoiceMatchingViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter" role="form" id="report-form" asp-action="Query">
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-action="Query">
     <div class="form-group">
         <label class="txt">@Resources.eventdate</label>
         <div class="control date">
@@ -62,6 +63,8 @@
     <div class="form-group">
         <a href="javascript:;" class="icon-excel" title="@Resources.ExportToExcel" id="icon-excel"></a>
     </div>
+    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
+        value="@Model.PageHeader.IsFilterVisible.ToString()" />
 </form>
 <table class="tblRpt tblRpt-bordered tblRpt-hover width-100per hide" id="tbl-report">
     <thead class="tableFloatingHeaderOriginal">

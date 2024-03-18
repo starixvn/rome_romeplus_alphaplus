@@ -14,7 +14,6 @@ class BaseReport {
     $tableReport: JQuery;
     $isFilterVisible: JQuery;
 
-    reportLegendUrl: string;
     $reportLegend: JQuery;
     $iconInformation: JQuery;
 
@@ -32,11 +31,51 @@ class BaseReport {
         this.$isFilterVisible = this.$('#IsFilterVisible');
 
         // register event
+        this.initBaseReportLegend();
         this.$('.icon-filter').click(this.onClickIconFilter);
-        this.initBaseHelp();
+        this.$reportForm.submit((e) => this.onSubmitReport(e));
 
         this.$tableReport.stickyTableHeaders();
     }
+
+    private initBaseReportLegend() {
+        const $loadLegendURL = this.$('#LoadLegendURL');
+        if ($loadLegendURL.length) {
+            const reportLegendUrl = $loadLegendURL.attr('href');
+            $loadLegendURL.remove();
+
+            this.$iconInformation = this.$('#icon-information').click(this.showLegend);
+            this.$.ajax({
+                method: 'GET',
+                url: reportLegendUrl,
+                cache: false,
+                success: this.renderLegend,
+                complete: this.$.unblockUI
+            });
+        }
+    }
+
+    private showLegend = () => {
+        this.$reportLegend.modal({ show: true, backdrop: false });
+        const iconHelpPosition = this.$iconInformation.position();
+        this.$reportLegend.css({
+            bottom: 'auto',
+            top: this.$('.entered-non-entered').length > 0 ? iconHelpPosition.top + 90 : iconHelpPosition.top + 60
+        });
+    };
+
+    private renderLegend = (html: string) => {
+        this.$reportLegend && this.$reportLegend.remove();
+        this.$('body').append(html);
+
+        if (this.$.trim(html) === '') {
+            this.$iconInformation.parent().remove();
+        } else {
+            this.$iconInformation.parent().removeClass('hide');
+        }
+
+        this.$reportLegend = this.$('#report-legend');
+    };
 
     private onClickIconFilter = () => {
         const filter = this.$reportForm;
@@ -59,47 +98,10 @@ class BaseReport {
     //     this.linkBuilderComponent.updateParam(paramName, paramValue);
     // }
 
-    private initBaseHelp() {
-        const $loadLegendURL = this.$('#LoadLegendURL');
-        if ($loadLegendURL.length) {
-            this.reportLegendUrl = $loadLegendURL.attr('href');
-            $loadLegendURL.remove();
-
-            this.$iconInformation = this.$('#icon-information');
-            this.$iconInformation.click(this.showLegend);
-            this.loadLegend();
-        }
+    public onSubmitReport(e) {
+        this.$.blockUI();
+        alphaReports.screenSmallThan768() && this.$isFilterVisible.val('False');
     }
 
-    private showLegend = () => {
-        this.$reportLegend.modal({ show: true, backdrop: false });
-        const iconHelpPosition = this.$iconInformation.position();
-        this.$reportLegend.css({
-            bottom: 'auto',
-            top: this.$('.entered-non-entered').length > 0 ? iconHelpPosition.top + 90 : iconHelpPosition.top + 60
-        });
-    };
-
-    private loadLegend() {
-        this.$.ajax({
-            method: 'GET',
-            url: this.reportLegendUrl,
-            cache: false,
-            success: this.renderLegend,
-            complete: this.$.unblockUI
-        });
-    }
-
-    private renderLegend = (html: string) => {
-        this.$reportLegend && this.$reportLegend.remove();
-        this.$('body').append(html);
-
-        if (this.$.trim(html) === '') {
-            this.$iconInformation.parent().remove();
-        } else {
-            this.$iconInformation.parent().removeClass('hide');
-        }
-
-        this.$reportLegend = this.$('#report-legend');
-    };
+    public isStackMode = () => this.$tableReport.hasClass('stack-mode');
 }

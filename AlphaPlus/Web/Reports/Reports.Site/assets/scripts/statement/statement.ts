@@ -53,19 +53,12 @@ class StatementView extends BaseReport {
     }
 
     registerEvents() {
-        this.$reportForm.submit(this.onSubmitReport);
-
         this.statementDetailView = new StatementDetailView(this.$, this.popupStatementDetails);
         this.$('.column-transfer-amount').on('click', (e) =>
             this.loadStatementDetail(this.$(e.target).data('transfer-date'))
         );
         this.popupStatementDetails.draggable({ handle: '.modal-header' });
     }
-
-    onSubmitReport = () => {
-        this.$isFilterVisible.val(String(alphaReports.screenSmallThan768() ? false : !this.$reportForm.is(':hidden')));
-        this.$.blockUI();
-    };
 
     loadStatementDetail = (transferDate: string) => {
         const param = {

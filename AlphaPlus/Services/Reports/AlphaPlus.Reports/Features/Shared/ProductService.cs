@@ -9,15 +9,11 @@ namespace AlphaPlus.Reports.Features.Shared;
 
 public interface IProductService
 {
-    bool CanViewProduct(string site, int currencyId, int productId, DateTime? minReportDate = null);
+    //bool CanViewProduct(string site, int currencyId, int productId, DateTime? minReportDate = null);
 
-    IEnumerable<string> GetProductNames(IEnumerable<int> productIds);
+    string ConcatProductNames(IEnumerable<int> productIds);
 
-    string ConcatProductNames(string productIds);
-
-    string ConcatProductNames(IEnumerable<int> productIds, IDictionary<int, string> replacedProductNames);
-
-    IEnumerable<Product> GetProgressiveJackpotProduct(string site, int currencyId, IEnumerable<int> progressiveJackpotproductIds);
+    //string ConcatProductNames(IEnumerable<int> productIds, IDictionary<int, string> replacedProductNames);
 
     IEnumerable<int> FilterProductIds(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null);
 
@@ -39,29 +35,13 @@ public class ProductService(
     public bool CanViewProduct(string site, int currencyId, int productId, DateTime? minReportDate = null)
         => FilterProducts(site, currencyId, [productId], minReportDate).Any();
 
-    public IEnumerable<string> GetProductNames(IEnumerable<int> productIds)
-    {
-        if (productIds == null)
-        {
-            yield break;
-        }
-
-        foreach (var id in productIds)
-        {
-            yield return cacheRefService.GetProductName(id);
-        }
-    }
-
-    public string ConcatProductNames(string productIds)
-        => GetProductNames(productIds.ToListInt()).JoinWithComma(", ");
+    public string ConcatProductNames(IEnumerable<int> productIds)
+        => productIds.Select(id => cacheRefService.GetProductName(id)).JoinWithComma(", ");
 
     public string ConcatProductNames(IEnumerable<int> productIds, IDictionary<int, string> replacedProductNames)
         => productIds == null
         ? string.Empty
         : productIds.Select(id => replacedProductNames.TryGetValue(id, out var name) ? name : cacheRefService.GetProductName(id)).JoinWithComma(", ");
-
-    public IEnumerable<Product> GetProgressiveJackpotProduct(string site, int currencyId, IEnumerable<int> progressiveJackpotproductIds)
-        => FilterProducts(site, currencyId, progressiveJackpotproductIds);
 
     public IEnumerable<int> FilterProductIds(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null)
     {

@@ -16,7 +16,8 @@ public class IPMatchingViewModel(IPMatchingQuery message, ReportData<IPMatchingM
 
     public int MemberCount { get; } = message.MemberCount;
 
-    public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(Resources.IPMatching);
+    public PageHeaderViewModel PageHeader { get; }
+        = new PageHeaderViewModel(Resources.IPMatching, IsFilterVisible: message.IsFilterVisible);
 
     public IEnumerable<SelectListItem> MemberCounts
         => new int[] { 2, 3, 4, 5, 8, 10, 15, 20, 30, 50, 100 }

@@ -27,7 +27,8 @@
 }
 @model MemberStatementViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter" role="form" id="report-form" asp-action="MemberStatement">
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-action="MemberStatement">
     <div class="form-group">
         <select id="dropdown-report-type">
             <option value="1" selected="selected">@Resources.DailyStatement</option>
@@ -50,6 +51,8 @@
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" asp-for="CustLevelId" />
     <input type="hidden" asp-for="ProductIds" />
+    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
+        value="@Model.PageHeader.IsFilterVisible.ToString()" />
 </form>
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
     <thead>

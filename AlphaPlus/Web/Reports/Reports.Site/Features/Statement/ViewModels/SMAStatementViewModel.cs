@@ -12,7 +12,8 @@ public class SMAStatementViewModel(SMAStatementQuery message, IEnumerable<Statem
 
     public byte CustLevelId { get; } = message.CustLevelId;
 
-    public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(Title: title ?? Resources.Statement);
+    public PageHeaderViewModel PageHeader { get; }
+        = new PageHeaderViewModel(Title: title ?? Resources.Statement, IsFilterVisible: message.IsFilterVisible);
 
     public DateRangePickerViewModel DateRangePicker { get; }
         = new DateRangePickerViewModel(

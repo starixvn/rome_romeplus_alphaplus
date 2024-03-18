@@ -108,27 +108,22 @@ class ProgressiveContributionView extends BaseReport {
     };
 
     public registerEvents() {
-        this.$reportForm.submit(this.onSubmitReport);
         this.$historicReport.on('click', this.onSubmitHistoricReport);
         this.$switchModeIcon.on('click', this.onSwitchMode);
     }
 
     onSubmitReport = (e: any) => {
-        this.$.blockUI();
+        const selectedProducts = this.productMultiSelectionComponent.getSelectedItems();
 
-        let params = this.getParams();
-
-        if (!params.IsAnyProductSelected) {
+        if (selectedProducts.length === 0) {
             this.$buttonProduct.addClass('error');
-            this.$.unblockUI();
             e.preventDefault();
-
             return;
         }
 
-        this.$isFilterVisible.val(String(alphaReports.screenSmallThan768() ? false : params.IsFilterVisible));
-        this.$isHistoricReport.val(String(params.IsHistoricReport));
-        this.$isStackMode.val(String(params.IsStackMode));
+        this.$isHistoricReport.val(String(this.isHistoricReport));
+        this.$isStackMode.val(String(this.isStackMode()));
+        super.onSubmitReport(e);
     };
 
     onSubmitHistoricReport = () => {
@@ -140,8 +135,7 @@ class ProgressiveContributionView extends BaseReport {
 
     onSwitchMode = () => {
         this.$.blockUI();
-        let isStackMode = this.$tableReport.hasClass('stack-mode');
-
+        const isStackMode = this.isStackMode();
         this.setCssBySwitchMode(isStackMode);
 
         if (this.isFirstSwitchMode) {
@@ -165,17 +159,6 @@ class ProgressiveContributionView extends BaseReport {
 
         this.isFirstSwitchMode = false;
         this.$.unblockUI();
-    };
-
-    getParams = () => {
-        let selectedProducts = this.productMultiSelectionComponent.getSelectedItems();
-
-        return {
-            IsAnyProductSelected: selectedProducts.length > 0,
-            IsStackMode: this.$tableReport.hasClass('stack-mode'),
-            IsHistoricReport: this.isHistoricReport,
-            IsFilterVisible: !this.$reportForm.is(':hidden')
-        };
     };
 
     setCssBySwitchMode = (isSwitchToNormalMode: boolean) => {

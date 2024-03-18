@@ -76,7 +76,7 @@
 }
 @model ProgressiveContributionViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form" asp-action="Index">
     <product model="Model.ProductViewModel" />
     @if (Model.IsHistoricReport)

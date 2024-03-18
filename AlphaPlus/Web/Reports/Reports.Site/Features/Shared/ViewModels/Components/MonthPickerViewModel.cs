@@ -9,7 +9,7 @@ public record MonthPickerViewModel(DateTime MinDate, DateTime FromDate, DateTime
 
     public DateTime MaxDate => IsViewNextYear ? Today.AddYears(1).LastDayOfYear() : Today;
 
-    public string MonthNames => new[]
+    public string MonthNames { get; } = new[]
     {
         January, February, March, April, May, June, July, August, September, October, November, December
     }.JoinWithComma();

@@ -48,7 +48,6 @@
     }
 
     public bindEvents() {
-        this.$reportForm.submit(this.onSubmitReport);
         $('.btn-submit').click(this.resetPaging());
         $('.range-option').click(this.resetPaging());
 
@@ -75,26 +74,20 @@
     };
 
     onSubmitReport = (event: any) => {
-        this.$.blockUI();
-
         if (!this.validateUsername()) {
             this.showValidationMsgError(this.resources.usernameIsRequired);
-            this.$.unblockUI();
             event.preventDefault();
-
             return;
         }
 
         if (!this.validateRefNo()) {
             this.showValidationMsgError(this.resources.invalidRefNo);
-            this.$.unblockUI();
             event.preventDefault();
-
             return;
         }
 
         this.hideValidationMsgError();
-        return true;
+        super.onSubmitReport(event);
     };
 
     validateUsername = () => this.$.trim(this.$txtMember.val()).length !== 0;

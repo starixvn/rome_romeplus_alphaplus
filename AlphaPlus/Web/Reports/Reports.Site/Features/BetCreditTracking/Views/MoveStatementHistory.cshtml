@@ -68,8 +68,8 @@
 </div>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="moveStatementHistory">
-        <form method="get" class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form"
-            id="report-form" asp-action="MoveStatementHistory">
+        <form class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form"
+            asp-action="MoveStatementHistory">
             <div class="form-group">
                 <label asp-for="Member">@Resources.Member</label>
                 <input type="text" style="width: 200px;" autocomplete="off" placeholder="@Resources.Username"

@@ -1,22 +1,23 @@
 public static class StringExtensions
 {
-    private static readonly char[] SplitSeparator = [','];
-
-    public static IEnumerable<int> ToListInt(this string value)
+    public static IEnumerable<int> ToListInt(this string value, char separator = ',')
     {
-        var arrayString = ToList(value);
+        var arrayInt = new List<int>();
+        var arrayString = ToList(value, separator);
 
         foreach (var item in arrayString)
         {
             if (int.TryParse(item, out var number))
             {
-                yield return number;
+                arrayInt.Add(number);
             }
         }
+
+        return arrayInt;
     }
 
-    public static string[] ToList(this string value)
+    public static string[] ToList(this string value, char separator = ',')
         => string.IsNullOrWhiteSpace(value)
         ? Array.Empty<string>()
-        : value.Split(SplitSeparator, StringSplitOptions.RemoveEmptyEntries);
+        : value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 }

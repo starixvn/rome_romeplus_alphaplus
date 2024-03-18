@@ -3,7 +3,6 @@ using AlphaPlus.Reports.Features.ProgressiveContribution;
 using AlphaPlus.Reports.Site.Features.Shared;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
-using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 
 namespace AlphaPlus.Reports.Site.Features.ProgressiveContribution;
@@ -13,14 +12,13 @@ public interface IProgressiveContributionWookbook
     ExcelFileViewModel BuildExcelFile(
         ProgressiveContributionExcelQuery message,
         IEnumerable<ProgressiveContributionModel> reportData,
-        ProgressiveContributionEntity total);
+        ProgressiveContributionEntity total,
+        string productNames);
 }
 
-public class ProgressiveContributionWookbook(
-    IWebHostEnvironment webHostEnvironment,
-    IProductService productService) :
-        ReportNpoiWorkbook<ProgressiveContributionEntity>(webHostEnvironment),
-        IProgressiveContributionWookbook
+public class ProgressiveContributionWookbook(IWebHostEnvironment webHostEnvironment) :
+    ReportNpoiWorkbook<ProgressiveContributionEntity>(webHostEnvironment),
+    IProgressiveContributionWookbook
 {
     private IEnumerable<ProgressiveContributionModel> reportData;
     private Mapper<ProgressiveContributionEntity> rowMapper;
@@ -30,7 +28,8 @@ public class ProgressiveContributionWookbook(
     public ExcelFileViewModel BuildExcelFile(
         ProgressiveContributionExcelQuery message,
         IEnumerable<ProgressiveContributionModel> reportData,
-        ProgressiveContributionEntity total)
+        ProgressiveContributionEntity total,
+        string productNames)
     {
         this.reportData = reportData;
         rowMapper = GetRowMapper(message.ViewerLevel);
@@ -43,7 +42,7 @@ public class ProgressiveContributionWookbook(
                 GetExcelTemplatePath(message.ViewerLevel.GetDirectDownlineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyEndIndex: 6))
-            .Title(GetTitle(fromDate, toDate, message.UserSelectedProductIds))
+            .Title(GetTitle(fromDate, toDate, productNames))
             .Header(key => key.Equals(betTypeName) ? $"{Resources.Product}/{Resources.BetType}" : Resources.ResourceManager.GetString(key))
             .Footer(total, rowMapper)
             .Sheet(Resources.DefaultSheetName)
@@ -86,9 +85,9 @@ public class ProgressiveContributionWookbook(
         return mapper;
     }
 
-    private string GetTitle(string fromDate, string toDate, string userSelectedProductIds)
+    private string GetTitle(string fromDate, string toDate, string productNames)
         => $"{Resources.ProgressiveGamesContribution} {fromDate} --> {toDate}" +
-            $" {Resources.of2} {productService.ConcatProductNames(userSelectedProductIds)}";
+            $" {Resources.of2} {productNames}";
 
     protected override Sheet LoadTemplateSheet()
     {

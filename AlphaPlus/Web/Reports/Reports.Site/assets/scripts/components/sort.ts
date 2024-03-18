@@ -17,10 +17,7 @@ class SortOption {
 
 class SortComponent {
     $: JQueryStatic;
-    $sortContainer: JQuery;
     linkBuilderComponent: LinkBuilderComponent;
-    $reportForm: JQuery;
-
     options = new SortOption();
 
     constructor($: JQueryStatic, linkBuilderComponent: LinkBuilderComponent) {
@@ -30,10 +27,8 @@ class SortComponent {
 
     render = (options: SortOption = new SortOption()) => {
         this.options = <SortOption>this.$.extend({}, this.options, options);
-        this.$sortContainer = this.options.sortContainer;
-        this.$reportForm = this.options.reportForm;
-
-        const sortColumns = this.$sortContainer.find('[data-sortedname]');
+        const $sortContainer = this.options.sortContainer;
+        const sortColumns = $sortContainer.find('[data-sortedname]');
 
         if (!this.options.canSort) {
             sortColumns.removeAttr('data-sortedname').removeClass('sorting');
@@ -43,8 +38,8 @@ class SortComponent {
         const self = this;
 
         if (!this.options.hasAllDataOnClient) {
-            this.$sortContainer
-                .find("[data-sortedname='" + this.$sortContainer.data('sortedcolumn') + "']")
+            $sortContainer
+                .find(`[data-sortedname="${$sortContainer.data('sortedcolumn')}"]`)
                 .addClass(this.getSortClassWhenSortOnServer());
 
             sortColumns.off('click.sortcomponent').on('click.sortcomponent', function () {
@@ -54,21 +49,21 @@ class SortComponent {
             });
         }
 
-        this.bindTableSorter(this.$sortContainer.data('sortedcolumn'));
+        this.bindTableSorter($sortContainer.data('sortedcolumn'));
 
         return sortColumns;
     };
 
     getSortClassWhenSortOnServer = () => {
-        const isDecendingSort =
-            this.$sortContainer.data('descendingsort').toString() === '1' ||
-            this.$sortContainer.data('descendingsort').toLowerCase() === 'true';
+        const $sortContainer = this.options.sortContainer;
+        const descendingSort = $sortContainer.data('descendingsort').toString();
 
-        return isDecendingSort ? 'sorting-desc' : 'sorting-asc';
+        return descendingSort === '1' || descendingSort.toLowerCase() === 'true' ? 'sorting-desc' : 'sorting-asc';
     };
 
     onSort = (sortedColumnName: string, isDecendingSort: boolean) => {
-        this.$sortContainer.data('descendingsort', isDecendingSort ? '1' : '0').data('sortedcolumn', sortedColumnName);
+        const $sortContainer = this.options.sortContainer;
+        $sortContainer.data('descendingsort', isDecendingSort ? '1' : '0').data('sortedcolumn', sortedColumnName);
 
         if (this.options.afterSortFunction && typeof this.options.afterSortFunction === 'function') {
             this.options.afterSortFunction();
@@ -76,11 +71,12 @@ class SortComponent {
     };
 
     getSortInfo = () => {
+        const $sortContainer = this.options.sortContainer;
         return {
-            sortPropertyName: this.$sortContainer.data('sortedcolumn'),
+            sortPropertyName: $sortContainer.data('sortedcolumn'),
             isDescendingSort:
-                this.$sortContainer.data('descendingsort').toString() === '1' ||
-                this.$sortContainer.data('descendingsort').toString().toLowerCase() === 'true'
+                $sortContainer.data('descendingsort').toString() === '1' ||
+                $sortContainer.data('descendingsort').toString().toLowerCase() === 'true'
         };
     };
 
@@ -90,31 +86,30 @@ class SortComponent {
         }
 
         const self = this;
-
-        const disabledSortColumns = this.$sortContainer.find("th[data-disabledsort='true']");
+        const $sortContainer = this.options.sortContainer;
+        const disabledSortColumns = $sortContainer.find("th[data-disabledsort='true']");
         disabledSortColumns.each(function () {
             self.options.headers[this.cellIndex] = { sorter: false };
         });
 
         let sortList = [];
         if (sortedColumnName && sortedColumnName !== '') {
-            let sortedColumnHeader = this.$sortContainer.find(
+            let sortedColumnHeader = $sortContainer.find(
                 "[data-sortedname='" +
                     sortedColumnName +
                     "']" +
-                    (this.$sortContainer.hasClass('stack-mode')
+                    ($sortContainer.hasClass('stack-mode')
                         ? ":not([class*='hidden-stack-mode'])"
                         : ":not([class*='col-combine'])")
             )[0];
-            let isDescendingSort =
-                this.$sortContainer.data('descendingsort').toString() === '1' ||
-                this.$sortContainer.data('descendingsort').toString().toLowerCase() === 'true';
+            const descendingSort = $sortContainer.data('descendingsort').toString();
+            const isDescendingSort = descendingSort === '1' || descendingSort.toLowerCase() === 'true';
 
             sortList = [[this.$(sortedColumnHeader).data('colindex'), isDescendingSort ? 1 : 0]];
         }
 
         try {
-            this.$sortContainer.tablesorter({
+            $sortContainer.tablesorter({
                 defaultParser: 1,
                 headers: this.options.headers,
                 sortList: sortList,
@@ -124,13 +119,13 @@ class SortComponent {
             console.log(e);
         }
 
-        this.$sortContainer.off('sortEnd').on('sortEnd', () => {
-            let $sortedcolumn = this.$sortContainer.find(
+        $sortContainer.off('sortEnd').on('sortEnd', () => {
+            let $sortedcolumn = $sortContainer.find(
                 'thead.tableFloatingHeaderOriginal th.sorting.sorting-asc:visible' +
                     ',thead.tableFloatingHeaderOriginal th.sorting.sorting-desc:visible'
             );
 
-            const modeFilterClass = this.$sortContainer.hasClass('stack-mode')
+            const modeFilterClass = $sortContainer.hasClass('stack-mode')
                 ? '.hidden-stack-mode'
                 : '.visible-stack-mode';
             $sortedcolumn = $sortedcolumn.not(modeFilterClass);
@@ -176,9 +171,10 @@ class SortComponent {
 
             alphaReports.correctEvenRowClass(this.options.sortContainer);
         } else {
-            this.$reportForm.trigger('submit');
+            this.options.reportForm.trigger('submit');
         }
     };
+
     mapSortedColumnToStackMode = (sortedColumn: string, stackColumnGroups: string[][]) => {
         for (let i = 0, groupsLength = stackColumnGroups.length; i < groupsLength; i++) {
             const stackColumnGroup = stackColumnGroups[i];

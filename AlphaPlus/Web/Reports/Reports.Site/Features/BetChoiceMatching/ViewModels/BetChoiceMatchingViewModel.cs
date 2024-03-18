@@ -14,7 +14,8 @@ public class BetChoiceMatchingViewModel(BetChoiceMatchingQuery message, DateTime
 
     public int BetCount { get; } = message.BetCount;
 
-    public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(Resources.BetChoiceMatching);
+    public PageHeaderViewModel PageHeader { get; }
+        = new PageHeaderViewModel(Resources.BetChoiceMatching, IsFilterVisible: message.IsFilterVisible);
 
     public IEnumerable<SelectListItem> BetCounts
         => new int[] { 2, 3, 4, 5, 8, 10, 15, 20, 30, 50, 100 }

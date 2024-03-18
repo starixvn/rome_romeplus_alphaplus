@@ -6,6 +6,7 @@ using AlphaPlus.Reports.Site.Features.EnteredResult;
 using AlphaPlus.Reports.Site.Features.IPMatching;
 using AlphaPlus.Reports.Site.Features.ProgressiveContribution;
 using AlphaPlus.Reports.Site.Features.Statement;
+using AlphaPlus.Reports.Site.Features.WinLossAnalysis;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
@@ -21,6 +22,7 @@ public static class DependencyInjection
         .AddSingleton<Func<int, bool>>(_ => UserPermission.IsShowOrNotExistProduct)
         .AddReportsServices(configuration)
         //.AddTransient<IEnteredResultWorkbook, EnteredResultWorkbook>()
+        .AddTransient<IWinLossAnalysisWorkbook, WinLossAnalysisWorkbook>()
         .AddTransient<ISMAStatementWorkbook, SMAStatementWorkbook>()
         .AddTransient<IStatementDetailWorkbook, StatementDetailWorkbook>()
         .AddTransient<IMemberStatementWorkbook, MemberStatementWorkbook>()

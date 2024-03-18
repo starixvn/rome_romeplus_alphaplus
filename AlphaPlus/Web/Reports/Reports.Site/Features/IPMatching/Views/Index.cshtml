@@ -38,7 +38,8 @@
 }
 @model IPMatchingViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter" role="form" id="report-form" asp-action="Index">
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-action="Index">
     <div class="form-group">
         <label class="txt">@Resources.Date</label>
         <div class="control date">
@@ -64,6 +65,8 @@
     <div class="note">
         <span class="star">*</span>@Resources.IPMatchingNote
     </div>
+    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
+        value="@Model.PageHeader.IsFilterVisible.ToString()" />
 </form>
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
     <thead>

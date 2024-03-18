@@ -23,7 +23,8 @@
 }
 @model SMAStatementViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter" role="form" id="report-form" asp-action="SMAStatement">
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-action="SMAStatement">
     <daterange-picker model="Model.DateRangePicker" />
     <div class="form-group">
         <span id="icon-information" class="icon-information-outline"></span>
@@ -38,6 +39,8 @@
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" asp-for="CustLevelId" />
+    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
+        value="@Model.PageHeader.IsFilterVisible.ToString()" />
 </form>
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
     <thead>
