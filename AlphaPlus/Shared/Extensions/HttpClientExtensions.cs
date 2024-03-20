@@ -24,7 +24,7 @@ public static class HttpClientExtensions
 
     public static async Task<string> PostAsStringAsync(this HttpClient httpClient, string requestUri, object payload = null)
     {
-        using var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+        using var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
         using var response = await httpClient.PostAsync(requestUri, content).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadAsStringAsync();

@@ -8,6 +8,8 @@
     var userguideLink = AppSettings.IsSiteLabel789y ?
         MicroSites.MessageUrl("~/StaticMessage/Guide?id=179159") :
         MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=179159");
+
+    var userSession = AlphaPlus.Core.Models.UserSession.Current;
 }
 
 @section Styles {
@@ -37,7 +39,7 @@
         <span class="bage-new">@Resources.lblNew</span>
     </li>
 </ul>
-@Html.ActionLink("QuickIntroduction", "Introduction")
+@await Html.PartialAsync("~/MemberInfo/Features/CreateAccount/Views/QuickIntroduction.cshtml", new QuickIntroductionViewModel(userSession.UserName, userSession.Language))
 @if (Model.IsLimitNewDownline)
 {
     <div class="tab-content">
