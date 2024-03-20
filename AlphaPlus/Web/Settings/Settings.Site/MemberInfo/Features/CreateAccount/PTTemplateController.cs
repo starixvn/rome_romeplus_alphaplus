@@ -34,7 +34,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
             => Content(await createAccountService.GetPTTemplates(viewer.Id));
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CreatePTTemplateRequest request)
+        public async Task<ActionResult> Create([FromBody]CreatePTTemplateRequest request)
         {
             if (viewer.IsInternal)
             {
@@ -52,7 +52,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(EditPTTemplateRequest request)
+        public async Task<ActionResult> Edit([FromBody]EditPTTemplateRequest request)
         {
             if (viewer.IsInternal)
             {
