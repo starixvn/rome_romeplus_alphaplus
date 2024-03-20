@@ -1,4 +1,7 @@
-﻿@* @model CopyAccountResponse
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
+@model CopyAccountResponse
 <p class="msg msg-success msg-result">@string.Format(Resources.CreateCustomerSuccessMessage,Model.Usernames.Count())</p>
 <div class="form-row">
     <label>@Resources.Usernames:</label>
@@ -24,4 +27,4 @@
 
 <div class="result-submit">
     <a href="@Url.Action("Index","CopyAccount")" class="btn-submit" id="btnCreateMore">@Resources.CreateMore</a>
-</div> *@
+</div>

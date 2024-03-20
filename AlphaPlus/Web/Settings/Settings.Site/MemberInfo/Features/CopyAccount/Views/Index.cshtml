@@ -1,8 +1,12 @@
-﻿@* @model CopyAccountViewModel
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+@model CopyAccountViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.SearchAndCopy;
-    var errorMessageClass = string.IsNullOrEmpty(Model.Errormessage, CancellationToken cancellation) ? "hidden" : "msg msg-error";
+    var errorMessageClass = string.IsNullOrEmpty(Model.ErrorMessage) ? "hidden" : "msg msg-error";
     var userguideLink = AppSettings.IsSiteLabel789y ?
         MicroSites.MessageUrl("~/StaticMessage/Guide?id=179159") :
         MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=179159");
@@ -143,7 +147,7 @@
                                             <input type="text" name="MemberMaxCredit" id="MemberMaxCredit" value="0" maxlength="14" />
                                             <span id="icon-message-member-max-credit"> </span>
                                             <div id="member-max-credit-range" class="hidden">
-                                                <span id="member-credit-min-label"></span> <=  @Resources.MemberMaxCredit <= <span id="member-credit-max-label"></span>
+                                                <span id="member-credit-min-label"></span> &lt;=  @Resources.MemberMaxCredit &lt;= <span id="member-credit-max-label"></span>
                                             </div>
                                             <div id="memberMaxCreditErrMsg" class="error-input-text hidden"></div>
                                         </div>
@@ -179,4 +183,4 @@
     @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/copy-account")
     @StaticResources.RenderScripts("~/MemberInfo/Features/CopyAccount/bundles/copy-account")
-} *@
+}
