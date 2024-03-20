@@ -1,6 +1,8 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@{
     ViewBag.Title = Lang.NotAuthorized;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles {
@@ -9,4 +11,4 @@
 
 <div id="message" class="msg msg-error">
     <span id="message-content" classname="col-xs-12">@Lang.NotAuthorized</span>
-</div> *@
+</div>

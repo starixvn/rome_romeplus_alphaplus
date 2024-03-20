@@ -22,11 +22,11 @@
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index(QRCodeMemberSignInRequest message, CancellationToken cancellation)
+        public async Task<ActionResult> Index(QRCodeMemberSignInRequest message)
             => await View(message, IndexPath);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAccount(CreateAccountByQRCodeRequest message, CancellationToken cancellation)
+        public async Task<ActionResult> CreateAccount(CreateAccountByQRCodeRequest message)
         {
             if (message != null && !message.IsValid())
             {
@@ -59,7 +59,7 @@
             }
             else
             {
-                ModelState.AddModelError("DBErrors", result.ErrMsg);
+                ModelState.AddModelError("DBErrors", result.ErrMsg ?? string.Empty);
                 return Json(result);
             }
         }

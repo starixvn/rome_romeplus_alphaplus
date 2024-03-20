@@ -13,7 +13,7 @@
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public abstract class SiteBaseController : BaseController
     {
-        protected const string InvalidPageViewPath = "~/Views/Shared/InvalidPage.cshtml";
+        protected const string InvalidPageViewPath = "~/MemberInfo/Views/Shared/InvalidPage.cshtml";
         private const string InvalidExcelFileName = "Invalid";
         protected const int BadRequestErrorCode = 999;
 

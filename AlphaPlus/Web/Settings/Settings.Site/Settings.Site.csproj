@@ -12,11 +12,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AlphaPlus.Configurations" Version="1.1.0-netcore02" />
     <PackageReference Include="Alpha.Products.Core" Version="1.0.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.2" />
     <PackageReference Include="Sunplus.Agent.Utilities" Version="4.0.0" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
-    <PackageReference Include="Gma.QrCodeNet.Encoding" Version="2.0.0" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
     <PackageReference Include="ONEbook.Common.Auth" Version="2.0.0" />
     <PackageReference Include="ONEbook.SpreadSheets" Version="1.0.0.1" />
     <PackageReference Include="ONEbook.SpreadSheets.NPOI" Version="1.0.0.3" />

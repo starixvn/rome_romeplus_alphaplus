@@ -51,6 +51,8 @@ using Sunplus.Agent.Utilities;
 using MediatR;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.SecurityCode.Configurations;
+using RestSharp.Authenticators;
+using Alpha.CopyAccount.Authentications;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -60,7 +62,8 @@ namespace AlphaPlus.Settings.Site.Helpers
         {
             var customerSettingApiUrl = new Uri(configuration.GetValue<string>("CustomerSettingApi"));
             var qrCodeMemberLoginApi = new Uri(configuration.GetValue<string>("QRCodeMemberLogin:Api"));
-            var qrCodeMemberLoginConfig = configuration.GetValue<string>("QRCodeMemberLogin:Config");
+            var qrCodeMemberLoginKey = configuration.GetValue<string>("QRCodeMemberLogin:Key");
+            var qrCodeMemberLoginConfig = AppDomain.CurrentDomain.BaseDirectory + "/QRCodeMemberSiteLoginConfigs/QRCodeMemberSiteLoginConfig.json";
 
             services
                 .AddHealthChecks();
@@ -110,7 +113,8 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), AppDomain.CurrentDomain.BaseDirectory + "/ProductConfigs/ProductConfiguration.json"))
                 .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
                 .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
-                .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>>(new SettingMultipleViewModelFactory());
+                .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>>(new SettingMultipleViewModelFactory())
+                .Register<QRCodeLoginConfigsHelper>(new QRCodeLoginConfigsHelperImpl(qrCodeMemberLoginConfig));
 
             services
                 .AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>()
@@ -154,10 +158,9 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<QrCodeAdapter, QrCodeAdapterImpl>()
                 .AddScoped<PasswordService, PasswordServiceImpl>()
                 .AddScoped<CheckBelongingService, CheckBelongingServiceImpl>()
-                .AddSingleton<QRCodeLoginConfigsHelper>((provider) => new QRCodeLoginConfigsHelperImpl(qrCodeMemberLoginConfig))
-                .AddSingleton<IRestClient>((provider) => new RestClient(qrCodeMemberLoginApi))
-                .AddSingleton<Alpha.CopyAccount.Services.ICopyAccountService, Alpha.CopyAccount.Services.CopyAccountService>()
-                .AddScoped<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>();
+                .AddSingleton<IRestClient>((provider) => new RestClient { Authenticator = new HmacAuthenticator(qrCodeMemberLoginKey), BaseUrl = qrCodeMemberLoginApi})
+                .AddSingleton<Alpha.CopyAccount.Services.ICopyAccountService>((provider) => new Alpha.CopyAccount.Services.CopyAccountService(provider.GetRequiredService<IRestClient>()))
+                .AddSingleton<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>();
 
             services
                 .AddSingleton<ProblemAccountWorkbook, ProblemAccountWorkbookImpl>()

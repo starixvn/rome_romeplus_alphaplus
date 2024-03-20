@@ -1,7 +1,12 @@
-﻿@* @model ShowQRCodeViewModel
+﻿@using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+@using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.ViewModels;
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+@using AlphaPlus.Core.Helpers;
+
+@model ShowQRCodeViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Model.CreateMode ? Resources.CreateMemberWithQRCode : Resources.FirstLoginQRCode;
 }
 
@@ -82,4 +87,4 @@
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
     @StaticResources.RenderScripts("~/MemberInfo/Features/QRCodeMemberSignIn/bundles/show-qr-code")
-} *@
+}
