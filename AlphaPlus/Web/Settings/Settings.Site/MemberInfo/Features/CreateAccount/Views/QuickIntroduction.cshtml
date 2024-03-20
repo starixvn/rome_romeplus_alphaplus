@@ -1,23 +1,27 @@
-@* @{
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+@using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
+@{
     Layout = null;
-    var dataThem = AlphaPlus.User.Models.UserSession.Current.DarkModeName == "" ? "light" : "dark";
-    var language = AlphaPlus.User.Models.UserSession.Current.Language;
-    var roleId = AlphaPlus.User.Models.UserSession.Current.RoleId;
-    var defaultEnUs = $"~/assets/styles/images/createAccount/default/en-Us/{dataThem}/";
+    var dataThem = AlphaPlus.Core.Models.UserSession.Current.DarkModeName == "" ? "light" : "dark";
+    var language = AlphaPlus.Core.Models.UserSession.Current.Language;
+    var roleId = AlphaPlus.Core.Models.UserSession.Current.RoleId;
+    var defaultEnUs = $"~/MemberInfo/assets/styles/images/createAccount/default/en-Us/{dataThem}/";
     var img1 = $"{defaultEnUs}lv{roleId}.img1.png";
     var img2 = $"{defaultEnUs}lv{roleId}.img2.png";
     var img3 = $"{defaultEnUs}lv{roleId}.img3.png";
 
-    var folder = $"~/assets/styles/images/createAccount/default/{language}/{dataThem}/";
+    var folder = $"~/MemberInfo/assets/styles/images/createAccount/default/{language}/{dataThem}/";
     
     var is789y = AppSettings.IsSiteLabel789y;
 
     if (is789y)
     {
-        folder = $"~/assets/styles/images/createAccount/site789y/{language}/{dataThem}/";
+        folder = $"~/MemberInfo/assets/styles/images/createAccount/site789y/{language}/{dataThem}/";
     }
     
-    var isExistsImgOfLang = File.Exists(Server.MapPath($"{folder}lv{roleId}.img1.png"));
+    var isExistsImgOfLang = File.Exists($"{folder}lv{roleId}.img1.png");
     if (isExistsImgOfLang)
     {
         img1 = $"{folder}lv{roleId}.img1.png";
@@ -124,4 +128,4 @@
     </div>
 </div>
 @Html.Hidden("ActorUsername", Model.ActorUsername)
-@Html.Hidden("PageOf", @Resources.PageOf) *@
+@Html.Hidden("PageOf", @Resources.PageOf)

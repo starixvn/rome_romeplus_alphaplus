@@ -1,4 +1,8 @@
-@* @{
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+@using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
+@{
     Layout = "~/MemberInfo/Features/CreateAccount/Views/_Layout.cshtml";
 }
 
@@ -16,7 +20,7 @@
     else
     {
         <!-- if production -->
-        <link rel="stylesheet" href="~/ClientApp/dist/assets/productSettingInfo-19dc73f6.css" />
-        <script type="module" src="~/ClientApp/dist/assets/productSettingInfo-619bace5.js"></script>
+        <link rel="stylesheet" href="~/MemberInfo/ClientApp/dist/assets/productSettingInfo-19dc73f6.css" />
+        <script type="module" src="~/MemberInfo/ClientApp/dist/assets/productSettingInfo-619bace5.js"></script>
     }
-} *@
+}

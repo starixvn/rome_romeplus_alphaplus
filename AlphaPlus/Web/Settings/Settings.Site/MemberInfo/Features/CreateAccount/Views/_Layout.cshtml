@@ -1,4 +1,7 @@
-﻿@* <!DOCTYPE html>
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -7,7 +10,7 @@
     <title>@(ViewBag.Title ?? "Alpha - Member Information")</title>
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-memberinfo/default")
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/default")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/assets/bundles/default")
     @RenderSection("Styles", required: false)
 </head>
 <body style="height:100%">
@@ -22,11 +25,11 @@
     {
         <!-- if production -->
 
-        <link rel="stylesheet" href="~/ClientApp/dist/assets/index-1ea51596.css" />
-        <script type="module" src="~/ClientApp/dist/assets/index-4db67b07.js"></script>
-        <link rel="stylesheet" href="~/ClientApp/dist/assets/PTSelect-07858f5e.css" />
-        <script type="module" src="~/ClientApp/dist/assets/PTSelect-f2d1cf29.js"></script>
+        <link rel="stylesheet" href="~/MemberInfo/ClientApp/dist/assets/index-1ea51596.css" />
+        <script type="module" src="~/MemberInfo/ClientApp/dist/assets/index-4db67b07.js"></script>
+        <link rel="stylesheet" href="~/MemberInfo/ClientApp/dist/assets/PTSelect-07858f5e.css" />
+        <script type="module" src="~/MemberInfo/ClientApp/dist/assets/PTSelect-f2d1cf29.js"></script>
     }
     @RenderSection("Scripts", required: false)
 </body>
-</html> *@
+</html>

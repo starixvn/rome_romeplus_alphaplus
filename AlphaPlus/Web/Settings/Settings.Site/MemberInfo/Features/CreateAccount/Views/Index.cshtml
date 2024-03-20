@@ -1,4 +1,8 @@
-﻿@* @model CreateAccountViewModel
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+@using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
+@model CreateAccountViewModel
 @{
     Layout = "~/MemberInfo/Features/CreateAccount/Views/_Layout.cshtml";
     var userguideLink = AppSettings.IsSiteLabel789y ?
@@ -33,7 +37,7 @@
         <span class="bage-new">@Resources.lblNew</span>
     </li>
 </ul>
-@Html.Action("QuickIntroduction", "Introduction")
+@Html.ActionLink("QuickIntroduction", "Introduction")
 @if (Model.IsLimitNewDownline)
 {
     <div class="tab-content">
@@ -58,10 +62,10 @@ else
         else
         {
             <!-- if production -->
-            <link rel="stylesheet" href="~/ClientApp/dist/assets/createAccount-7aaa218c.css" />
-            <script type="module" src="~/ClientApp/dist/assets/createAccount-179a7f97.js"></script>
+            <link rel="stylesheet" href="~/MemberInfo/ClientApp/dist/assets/createAccount-7aaa218c.css" />
+            <script type="module" src="~/MemberInfo/ClientApp/dist/assets/createAccount-179a7f97.js"></script>
         }
     }
 }
 @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
-@StaticResources.RenderScripts("~/MemberInfo/Features/CreateAccount/bundles/create-account") *@
+@StaticResources.RenderScripts("~/MemberInfo/Features/CreateAccount/bundles/create-account")

@@ -384,7 +384,7 @@ class CopyAccount {
             headers: this.getHeadersForPostRequest(),
             data: { custName: username },
             dataType: 'json',
-            url: "CopyAccount/CheckExistedCustomer",
+            url: "CopyAccount/CheckExistedCopyCustomer",
             success: (result) => {
                 this.invalidUsername = result;
                 const iconClass = result ? 'icon-close' : 'icon-check';

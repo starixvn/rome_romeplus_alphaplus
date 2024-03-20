@@ -15,7 +15,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
 {
     public class CreateAccountController : BaseController
     {
-        private const string HashKeySessionKey = "lpha.MemberInfo.Site.Features.CreateAccount.CreateAccountController.PasswordHash";
+        private const string HashKeySessionKey = "AlphaPlus.MemberInfo.Site.Features.CreateAccount.CreateAccountController.PasswordHash";
         private const string IndexPath = "~/MemberInfo/Features/CreateAccount/Views/Index.cshtml";
 
         private readonly IUser viewer;
@@ -58,7 +58,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Index(CreateAccountRequest request)
+        public async Task<ActionResult> Index([FromBody]CreateAccountRequest request)
         {
             if (viewer.IsInternal)
             {

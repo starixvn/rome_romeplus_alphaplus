@@ -1,4 +1,8 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+@using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
+@{
     Layout = "~/MemberInfo/Features/CreateAccount/Views/_Layout.cshtml";
 }
 @model PTTemplateViewModel
@@ -19,7 +23,7 @@
     else
     {
         <!-- if production -->
-        <link rel="stylesheet" href="~/ClientApp/dist/assets/ptTemplate-5f025410.css" />
-        <script type="module" src="~/ClientApp/dist/assets/ptTemplate-326b7662.js"></script>
+        <link rel="stylesheet" href="~/MemberInfo/ClientApp/dist/assets/ptTemplate-5f025410.css" />
+        <script type="module" src="~/MemberInfo/ClientApp/dist/assets/ptTemplate-326b7662.js"></script>
     }
-} *@
+}
