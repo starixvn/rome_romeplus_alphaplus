@@ -39,7 +39,7 @@ public static class DependencyInjection
             .AddSingleton<IOutstandingService, OutstandingService>()
             .AddSingleton<IEnteredResultService, EnteredResultService>()
             .AddSingleton<IMatchWinLossDetailService, MatchWinLossDetailService>()
-            .AddSingleton<IWinLossAnalysisService, IWinLossAnalysisService>()
+            .AddSingleton<IWinLossAnalysisService, WinLossAnalysisService>()
             .AddSingleton<IWinLossAnalysisChartService, WinLossAnalysisChartService>()
             .AddSingleton<ICommissionByBetTypeService, CommissionByBetTypeService>()
             .AddSingleton<IStatementService, StatementService>()
