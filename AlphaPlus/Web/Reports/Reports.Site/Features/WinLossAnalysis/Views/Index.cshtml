@@ -26,11 +26,11 @@
                 RenderStackNetWinLoss(UserLevel.Agent, data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
                 if (isMasterOrSuperLevel)
                 {
-                    RenderStackNetWinLoss(UserLevel.Master, data.MAgWinLoss.Value, data.MAgComm.Value, data.MAgTotal);
+                    RenderStackNetWinLoss(UserLevel.Master, data.MAgWinLoss, data.MAgComm, data.MAgTotal);
                 }
                 if (isSuperLevel)
                 {
-                    RenderStackNetWinLoss(UserLevel.Super, data.SAgWinLoss.Value, data.SAgComm.Value, data.SAgTotal, "altercol");
+                    RenderStackNetWinLoss(UserLevel.Super, data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
                 }
             }
             else
@@ -39,11 +39,11 @@
                 RenderNetWinLoss(UserLevel.Agent, data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
                 if (isMasterOrSuperLevel)
                 {
-                    RenderNetWinLoss(UserLevel.Master, data.MAgWinLoss.Value, data.MAgComm.Value, data.MAgTotal);
+                    RenderNetWinLoss(UserLevel.Master, data.MAgWinLoss, data.MAgComm, data.MAgTotal);
                 }
                 if (isSuperLevel)
                 {
-                    RenderNetWinLoss(UserLevel.Super, data.SAgWinLoss.Value, data.SAgComm.Value, data.SAgTotal, "altercol");
+                    RenderNetWinLoss(UserLevel.Super, data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
                 }
             }
             <td class="col-company">@data.Company.FormatNumber()</td>
@@ -79,7 +79,7 @@
 }
 @model WinLossAnalysisViewModel
 <report-title model="Model.PageHeader" />
-<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form" asp-action="Index">
     <product model="@Model.ProductViewModel" />
     <daterange-picker model="@Model.DateRangePicker" />
@@ -99,8 +99,8 @@
         {
             <span>
                 <input type="radio" name="ReportTypeId" value="@item.Value" @(item.Selected ? "checked" : string.Empty)
-                    id="rdo@item.Value" />
-                <label for="rdo@item.Value">@item.Text</label>
+                    id="rdo_@item.Value" />
+                <label for="rdo_@item.Value">@item.Text</label>
             </span>
         }
     </div>
@@ -218,7 +218,7 @@
         <no-information colspan="@(isSuperLevel ? 16 : Model.CustLevel.IsMasterLevel() ? 13 : 10)" />
     }
 </table>
-<a class="hide" id="LoadLegendURL" asp-action="Index" asp-controller="ReportLegend"
+<a class="hide" id="LoadLegendURL" asp-action="Index" asp-controller="Legends"
     asp-route-MinDate="@Model.DateRangePicker.MinDate"></a>
 <input type="hidden" asp-for="IsSetDefaultStackMode" />
 <input type="hidden" asp-for="ReportTypeId" />

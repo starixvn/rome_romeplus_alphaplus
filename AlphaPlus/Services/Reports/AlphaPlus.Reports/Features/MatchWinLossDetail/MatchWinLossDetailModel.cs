@@ -26,7 +26,7 @@ public class MatchWinLossDetailModel : NetWinLoss
 
     public byte LeagueType { get; set; }
 
-    public string Race { get; set; }
+    public int Race { get; set; }
 
     public string MatchCode { get; set; }
 

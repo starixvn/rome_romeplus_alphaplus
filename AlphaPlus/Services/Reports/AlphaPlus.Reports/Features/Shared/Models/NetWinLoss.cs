@@ -24,23 +24,23 @@ public abstract class NetWinLoss
         private set => _ = value;
     }
 
-    public decimal? MAgWinLoss { get; set; }
+    public decimal MAgWinLoss { get; set; }
 
-    public decimal? MAgComm { get; set; }
+    public decimal MAgComm { get; set; }
 
     public decimal MAgTotal
     {
-        get => MAgWinLoss ?? 0 + MAgComm ?? 0;
+        get => MAgWinLoss + MAgComm;
         private set => _ = value;
     }
 
-    public decimal? SAgWinLoss { get; set; }
+    public decimal SAgWinLoss { get; set; }
 
-    public decimal? SAgComm { get; set; }
+    public decimal SAgComm { get; set; }
 
     public decimal SAgTotal
     {
-        get => SAgWinLoss ?? 0 + SAgComm ?? 0;
+        get => SAgWinLoss + SAgComm;
         private set => _ = value;
     }
 

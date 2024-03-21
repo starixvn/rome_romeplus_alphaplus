@@ -6,7 +6,6 @@
 
 class WinLossAnalysisView extends BaseReport {
     $multiSelectButton: JQuery;
-    $isStackMode: JQuery;
     $reportTypeId: JQuery;
     $switchModeIcon: JQuery;
     $isDescendingSort: JQuery;
@@ -55,7 +54,6 @@ class WinLossAnalysisView extends BaseReport {
     checkReady = () => this.$('#IsSetDefaultStackMode').length > 0;
 
     cacheDOMElements() {
-        this.$isStackMode = this.$('#IsStackMode');
         this.$switchModeIcon = this.$('.icon-switchmode');
         this.$reportTypeId = this.$('#ReportTypeId');
         this.$isDescendingSort = this.$('#IsDescendingSort');
@@ -81,7 +79,7 @@ class WinLossAnalysisView extends BaseReport {
     }
 
     bindSorting() {
-        const canSort = this.$tableReport.data('cansort');
+        const canSort = this.$tableReport.data('cansort').toLowerCase() === 'true';
         this.sortComponent.render(
             new SortOption(this.$tableReport, canSort, true, undefined, { 0: { sorter: this.getSorterName() } })
         );
@@ -103,43 +101,30 @@ class WinLossAnalysisView extends BaseReport {
         this.$switchModeIcon.on('click', this.onSwitchModeEvent);
 
         const self = this;
-        this.$(':radio[name=reportType]').change(function () {
+        this.$(':radio[name=ReportTypeId]').change(function () {
             self.onSubmitReport(this.form);
             self.$reportForm.submit();
         });
     }
 
     onSubmitReport = (e: any) => {
-        var params = this.getParams();
-        if (!params.IsAnyProductSelected) {
+        const selectedProducts = this.productMultiSelectionComponent.getSelectedItems();
+        if (!selectedProducts.length) {
             this.showValidateProductError();
             e.preventDefault();
             return;
         }
 
-        this.$sortPropertyName.val(this.getSortPropertyName(this.$sortPropertyName.val()));
-        this.$isDescendingSort.val(String(params.IsDescendingSort));
+        const sortInfo = this.sortComponent.getSortInfo();
+        this.$sortPropertyName.val(sortInfo.sortPropertyName);
+        this.$isDescendingSort.val(sortInfo.isDescendingSort.toString());
         super.onSubmitReport(e);
     };
-
-    getParams() {
-        const selectedProducts = this.productMultiSelectionComponent.getSelectedItems();
-        const sortInfo = this.sortComponent.getSortInfo();
-
-        return {
-            IsAnyProductSelected: selectedProducts.length > 0,
-            SortPropertyName: sortInfo.sortPropertyName,
-            IsDescendingSort: sortInfo.isDescendingSort
-        };
-    }
 
     showValidateProductError() {
         this.$multiSelectButton.addClass('error');
         this.productMultiSelectionComponent.addClassToExcludeProductLabels('error');
     }
-
-    getSortPropertyName = (sortPropertyName: string) =>
-        this.$reportTypeId.val() === 3 && sortPropertyName === 'ReportTypeName' ? '' : sortPropertyName;
 
     renderAtFirstSwitchMode = (isSwitchToNormalMode: boolean) =>
         isSwitchToNormalMode ? this.splitColumns() : this.combineColumns();
@@ -152,7 +137,6 @@ class WinLossAnalysisView extends BaseReport {
             this.isFirstSwitchMode = false;
         }
         this.sortComponent.bindTableSorter(this.getSortedColumnName());
-        this.$isStackMode.val(String(isStackMode));
     };
 
     setStackMode = () => {

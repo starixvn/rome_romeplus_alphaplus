@@ -9,10 +9,11 @@ class BaseReport {
     $: JQueryStatic;
     linkBuilderComponent: LinkBuilderComponent;
 
-    $reportForm: JQuery;
     $pageTitle: JQuery;
+    $reportForm: JQuery;
     $tableReport: JQuery;
     $isFilterVisible: JQuery;
+    $isStackMode: JQuery;
 
     $reportLegend: JQuery;
     $iconInformation: JQuery;
@@ -25,10 +26,11 @@ class BaseReport {
 
     private initBaseReport() {
         // cache elements
-        this.$reportForm = this.$('#report-form');
         this.$pageTitle = this.$('.page-title');
+        this.$reportForm = this.$('#report-form');
         this.$tableReport = this.$('#tbl-report');
         this.$isFilterVisible = this.$('#IsFilterVisible');
+        this.$isStackMode = this.$('#IsStackMode');
 
         // register event
         this.initBaseReportLegend();
@@ -84,11 +86,9 @@ class BaseReport {
         if (currentHideState) {
             this.$pageTitle.removeClass('hide-filter');
             this.$reportForm.removeClass('hide');
-            this.$isFilterVisible.val('true');
         } else {
             this.$pageTitle.addClass('hide-filter');
             this.$reportForm.addClass('hide');
-            this.$isFilterVisible.val('false');
         }
 
         //this.replaceHrefParam('IsFilterVisible', currentHideState);
@@ -98,10 +98,12 @@ class BaseReport {
     //     this.linkBuilderComponent.updateParam(paramName, paramValue);
     // }
 
-    public onSubmitReport(e) {
+    protected onSubmitReport(e) {
         this.$.blockUI();
-        alphaReports.screenSmallThan768() && this.$isFilterVisible.val('False');
+        const isFilterVisibleValue = !this.$reportForm.hasClass('hide') && !alphaReports.screenSmallThan768();
+        this.$isFilterVisible.val(isFilterVisibleValue.toString());
+        this.$isStackMode.length && this.$isStackMode.val(this.isStackMode().toString());
     }
 
-    public isStackMode = () => this.$tableReport.hasClass('stack-mode');
+    protected isStackMode = () => this.$tableReport.hasClass('stack-mode');
 }

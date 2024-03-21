@@ -28,7 +28,7 @@ class SortComponent {
     render = (options: SortOption = new SortOption()) => {
         this.options = <SortOption>this.$.extend({}, this.options, options);
         const $sortContainer = this.options.sortContainer;
-        const sortColumns = $sortContainer.find('[data-sortedname]');
+        const sortColumns = $sortContainer.find('.sorting');
 
         if (!this.options.canSort) {
             sortColumns.removeAttr('data-sortedname').removeClass('sorting');
@@ -72,11 +72,10 @@ class SortComponent {
 
     getSortInfo = () => {
         const $sortContainer = this.options.sortContainer;
+        const descendingSort = $sortContainer.data('descendingsort').toString();
         return {
             sortPropertyName: $sortContainer.data('sortedcolumn'),
-            isDescendingSort:
-                $sortContainer.data('descendingsort').toString() === '1' ||
-                $sortContainer.data('descendingsort').toString().toLowerCase() === 'true'
+            isDescendingSort: descendingSort === '1' || descendingSort.toLowerCase() === 'true'
         };
     };
 

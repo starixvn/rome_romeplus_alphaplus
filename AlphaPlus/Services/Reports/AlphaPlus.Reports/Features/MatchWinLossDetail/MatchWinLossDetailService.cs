@@ -1,7 +1,5 @@
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Constants;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;
@@ -12,12 +10,15 @@ public interface IMatchWinLossDetailService
 {
     Task<IEnumerable<int>> GetProducts();
 
-    Task<IEnumerable<MatchWinLossDetailModel>> GetMatchWinLossDetail(MatchWinLossDetailParam param);
+    Task<IEnumerable<League>> GetLeagues(GetLeaguesParam param);
+
+    Task<ReportData<MatchWinLossDetailModel>> GetMatchWinLossDetail(MatchWinLossDetailParam param);
 }
 
 public class MatchWinLossDetailService(
     IDynamicRepository repository,
     ICacheService cacheService,
+    ILeagueService leagueService,
     IReportDateService reportDateService,
     IPartialUMService partialUMService) : IMatchWinLossDetailService
 {
@@ -34,7 +35,27 @@ public class MatchWinLossDetailService(
         },
         new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CacheInMinutes)));
 
-    public async Task<IEnumerable<MatchWinLossDetailModel>> GetMatchWinLossDetail(MatchWinLossDetailParam param)
+    public async Task<IEnumerable<League>> GetLeagues(GetLeaguesParam param)
+    {
+        var moveBetsDay = await reportDateService.GetMoveBetsDay();
+        var leagues = await repository.FetchAsync<League>(new GetLeaguesCriteria(
+            param.CustId,
+            param.ProductIds,
+            param.FromDate,
+            param.ToDate,
+            moveBetsDay,
+            param.Language,
+            param.IsShowAll));
+
+        foreach (var item in leagues)
+        {
+            item.Name = leagueService.GetLeagueName(item.LeagueId, item.LeagueType, item.LeagueGroupId);
+        }
+
+        return leagues;
+    }
+
+    public async Task<ReportData<MatchWinLossDetailModel>> GetMatchWinLossDetail(MatchWinLossDetailParam param)
     {
         var moveBetsDay = await reportDateService.GetMoveBetsDay();
         var criteria = new MatchWinLossDetailCriteria(
@@ -43,30 +64,29 @@ public class MatchWinLossDetailService(
             param.ToDate,
             moveBetsDay,
             param.ProductIds,
-            BuildLeagueIds(param.Leagues).JoinWithComma(),
+            param.LeagueIds,
             param.ViewerLevel);
 
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        return await repository.FetchAsync<MatchWinLossDetailModel>(criteria);
-    }
+        var total = new MatchWinLossDetailModel();
+        var rawdata = await repository.FetchAsync<MatchWinLossDetailModel>(criteria);
 
-    private static IEnumerable<int> BuildLeagueIds(IEnumerable<string> leagues)
-    {
-        const int ValidLeagueArrayLength = 2;
+        BetTypeWinLossModel mixParlay = null;
+        BetTypeWinLossModel systemParlay = null;
+        BetTypeWinLossModel parlayMatchWinLossDetail = null;
 
-        foreach (var item in leagues)
+        foreach (var item in rawdata)
         {
-            var leagueArray = item.Split('_');
-            if (leagueArray.Length == ValidLeagueArrayLength)
+            if (item.IsParlay
+            && (item.BetType == BetTypeConstants.MixParlay || item.BetType == BetTypeConstants.MixParlayBetRadarVirtualSports))
             {
-                if (int.TryParse(leagueArray[0], out var leagueId)
-                && int.TryParse(leagueArray[1], out var leagueType)
-                && leagueType == LeagueType.Self)
-                {
-                    yield return leagueId;
-                }
+                //mixParlay = new BetTypeWinLossModel(mixParlayData, cacheRefService.GetBetType(mixParlayData.BetType));
             }
+
+            total += item;
         }
+
+        return new ReportData<MatchWinLossDetailModel>(rawdata, total);
     }
 }

@@ -14,7 +14,7 @@ public class WinLossAnalysisQuery : DefaultDateRangeQuery, IRequest<WinLossAnaly
 
     public bool IsStackMode { get; set; }
 
-    public string SortPropertyName { get; set; }
+    public string SortPropertyName { get; set; } = nameof(WinLossAnalysisModel.RollupKey);
 
     public bool IsDescendingSort { get; set; }
 

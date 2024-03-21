@@ -49,7 +49,7 @@
         ]
     },
     {
-        "outputFileName": "assets/bundles/winlossanalysis/winlossanalysis.js",
+        "outputFileName": "wwwroot/bundles/winlossanalysis/winlossanalysis.js",
         "inputFiles": [
             "assets/scripts/core.js",
             "assets/scripts/components/daterangepicker.js",

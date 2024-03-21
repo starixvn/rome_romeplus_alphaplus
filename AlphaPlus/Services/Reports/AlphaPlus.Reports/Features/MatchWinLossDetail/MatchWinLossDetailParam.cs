@@ -6,5 +6,5 @@ public record MatchWinLossDetailParam(
     DateTime FromDate,
     DateTime ToDate,
     string ProductIds,
-    IEnumerable<string> Leagues,
+    string LeagueIds,
     string SiteName);
