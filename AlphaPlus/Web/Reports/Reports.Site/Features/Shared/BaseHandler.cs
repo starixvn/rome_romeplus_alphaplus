@@ -35,7 +35,7 @@ public class BaseHandler(IProductService productService)
             : new ProductMultiSelectionViewModel([], string.Empty, message.Language);
     }
 
-    private static ProductMultiSelectionViewModel BuildProductViewModel(
+    protected static ProductMultiSelectionViewModel BuildProductViewModel(
         IEnumerable<Product> offeredProducts,
         string userSelectedProductIds,
         string language)

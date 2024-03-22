@@ -6,8 +6,6 @@ interface Window {
 }
 
 class OutstandingViewNew extends BaseReportNew {
-    $: JQueryStatic;
-
     productMultiSelectionComponent: ProductMultiSelectionComponent;
     linkBuilderComponent: LinkBuilderComponent;
     $buttonProduct: JQuery;
@@ -25,7 +23,7 @@ class OutstandingViewNew extends BaseReportNew {
     init = () => {
         super.init();
 
-        this.displayOutstandingLevels = JSON.parse(this.$('#hidden-displayOutstandingLevels').val());
+        this.displayOutstandingLevels = JSON.parse(this.$('#DisplayOutstandingLevelsJson').val());
         this.productMultiSelectionComponent.render();
         this.$buttonProduct = this.$('#dropdown-product').parent().find('.multiselect.btn');
 
@@ -33,6 +31,7 @@ class OutstandingViewNew extends BaseReportNew {
         this.registerEvents();
         this.initHelp();
         this.initDataTable();
+        this.registerDrilldownableEvents();
     };
 
     registerEvents = () => {
@@ -109,14 +108,9 @@ class OutstandingViewNew extends BaseReportNew {
         };
     };
 
-    showValidateProductError = () => {
-        this.$buttonProduct.addClass('error');
-    };
+    showValidateProductError = () => this.$buttonProduct.addClass('error');
 }
 
 $(function () {
-    const linkBuilderComponent = new LinkBuilderComponent($);
-    const outstandingViewNew = new OutstandingViewNew($, new ProductMultiSelectionComponent($), linkBuilderComponent);
-
-    outstandingViewNew.init();
+    new OutstandingViewNew($, new ProductMultiSelectionComponent($), new LinkBuilderComponent($)).init();
 });

@@ -5,15 +5,13 @@ public class PagedReportData<T>(
     T total,
     int pageIndex,
     int pageSize,
-    int totalRecords) : ReportData<T>(dataSource, total) where T : class
+    int totalRecords) : ReportData<T>(dataSource, total, totalRecords) where T : class
 {
     public int PageIndex { get; } = pageIndex;
 
     public int PageSize { get; } = pageSize;
 
-    public int TotalRecords { get; } = totalRecords;
-
     public new bool HasData { get; } = totalRecords > 0;
 
-    public new bool MoreThanOne => TotalRecords > 1;
+    public new bool MoreThanOne { get; } = totalRecords > 1;
 }

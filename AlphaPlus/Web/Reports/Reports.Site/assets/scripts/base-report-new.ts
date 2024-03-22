@@ -155,9 +155,8 @@ class BaseReportNew {
         this.$reportForm.addClass('hide');
     };
 
-    replaceHrefParam = (paramName: string, paramValue: any) => {
+    replaceHrefParam = (paramName: string, paramValue: any) =>
         this.linkBuilderComponent.updateParam(paramName, paramValue);
-    };
 
     initDataTable(options = {}) {
         const tableOptions = this.getTableOptions();
@@ -266,4 +265,21 @@ class BaseReportNew {
         this.$('tbody').append(this.$('tr.tbl-footer'));
         this.$tableReport.removeClass('hidden');
     };
+
+    registerDrilldownableEvents() {
+        const handleDrilldownable = ($element) => {
+            const $custLevelId = this.$('#CustLevelId');
+            let custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
+
+            $custLevelId.val(custLevelIdValue);
+            this.$('#CustId').val($element.data('custid'));
+            this.$('#CustName').val($element.data('custname'));
+
+            this.$reportForm.submit();
+        };
+
+        this.$pageTitle.find('.breadcrumb-link').click((e) => handleDrilldownable(this.$(e.target)));
+
+        this.$tableReport.find('.downline-link').click((e) => handleDrilldownable(this.$(e.target)));
+    }
 }

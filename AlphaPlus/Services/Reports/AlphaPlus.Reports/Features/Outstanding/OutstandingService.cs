@@ -7,7 +7,7 @@ namespace AlphaPlus.Reports.Features.Outstanding;
 
 public interface IOutstandingService
 {
-    Task<IEnumerable<OutstandingModel>> GetOutstanding(OutstandingParam param);
+    Task<ReportData<OutstandingModel>> GetOutstanding(OutstandingParam param);
 }
 
 public class OutstandingService(
@@ -15,14 +15,21 @@ public class OutstandingService(
     IPartialUMService partialUMService,
     IAutoFollowBetService autoFollowBetService) : IOutstandingService
 {
-    public async Task<IEnumerable<OutstandingModel>> GetOutstanding(OutstandingParam param)
+    public async Task<ReportData<OutstandingModel>> GetOutstanding(OutstandingParam param)
     {
         var criteria = new OutstandingCriteria(param.CustLevel, param.CustId, param.ProductIds);
-        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.Site);
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        return param.AutoFollowBetIsDummyAgent
+        var total = new OutstandingModel();
+        var rawdata = param.AutoFollowBetIsDummyAgent
             ? await GetOutstanding(param.ProductIds, param.CustId)
             : await repository.FetchAsync<OutstandingModel>(criteria);
+        foreach (var item in rawdata)
+        {
+            total += item;
+        }
+
+        return new ReportData<OutstandingModel>(rawdata, total);
     }
 
     private async Task<IEnumerable<OutstandingModel>> GetOutstanding(string productIds, int custId)

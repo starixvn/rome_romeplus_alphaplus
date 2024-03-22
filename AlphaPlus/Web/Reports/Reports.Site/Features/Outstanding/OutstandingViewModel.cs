@@ -1,58 +1,55 @@
 using AlphaPlus.Reports.Features.Outstanding;
-using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Models;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
+using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Reports.Site.Features.Outstanding;
 
 public class OutstandingViewModel
 {
-    private const string CustNamePropertyName = nameof(OutstandingModel.CustName);
-
     public OutstandingViewModel(
-        OutstandingQuery query,
-        IEnumerable<OutstandingModel> outstandingDataSource,
+        OutstandingQuery message,
+        ReportData<OutstandingModel> reportData,
         ProductMultiSelectionViewModel productViewModel,
-        IEnumerable<Breadcrumb> breadcrumbs,
+        BreadcrumbViewModel breadcrumbLevel,
         bool isMobile)
     {
-        Query = query;
-        ReportLevel = Query.CustLevel.GetDirectDownlineLevel();
-        for (var level = (byte)(ReportLevel.Value + 1); level <= Query.ViewerLevel.Value; level++)
-        {
-            DisplayOutstandingLevels.Add(Enumeration.FromValue<UserLevel>(level));
-        }
-
-        ProductMultiSelectionViewModel = productViewModel;
-
-        OutstandingDatasource = outstandingDataSource;
-        CanSort = OutstandingDatasource.Count() > 1;
-        SortPropertyName = CanSort ? GetSortedProperty(query.SortPropertyName) : DefaultVariables.SortPropertyName;
-        IsDescendingSort = CanSort && query.IsDescendingSort;
-
-        //BetListPath = "/tickets/RunningBetList/Index";
+        CustId = message.CustId;
+        CustName = message.CustName;
+        CustLevel = message.CustLevel;
+        ReportLevel = CustLevel.GetDirectDownlineLevel();
+        PageHeader = new PageHeaderViewModel(
+            Title: ReportLevel.IsMasterLevel()
+                ? Resources.MasterOutstanding
+                : ReportLevel.IsAgentLevel() ? Resources.AgentOutstanding : Resources.MemberOutstanding,
+            IsFilterVisible: message.IsFilterVisible,
+            BreadcrumbLevel: breadcrumbLevel);
+        ProductViewModel = productViewModel;
+        ReportData = reportData;
+        SortPropertyName = message.SortPropertyName;
+        IsDescendingSort = message.IsDescendingSort;
         IsMobileView = isMobile;
+        DisplayOutstandingLevels = GetDisplayOutstandingLevels(CustLevel.Value, message.ViewerLevelId).ToList();
+        DisplayOutstandingLevelsJson = JsonHelper.ToJson(DisplayOutstandingLevels);
     }
 
-    public OutstandingQuery Query { get; }
+    public int CustId { get; }
+
+    public string CustName { get; }
+
+    public UserLevel CustLevel { get; }
 
     public UserLevel ReportLevel { get; }
 
-    public bool IsFilterVisible => Query.IsFilterVisible;
+    public PageHeaderViewModel PageHeader { get; }
 
-    public List<UserLevel> DisplayOutstandingLevels { get; } = new();
+    public ProductMultiSelectionViewModel ProductViewModel { get; }
 
-    public int NumberOfOutstandingColumn => DisplayOutstandingLevels.Count;
+    public ReportData<OutstandingModel> ReportData { get; }
 
-    public ProductMultiSelectionViewModel ProductMultiSelectionViewModel { get; }
+    public IList<UserLevel> DisplayOutstandingLevels { get; }
 
-    public IEnumerable<OutstandingModel> OutstandingDatasource { get; }
-
-    public OutstandingModel Total => OutstandingModel.GetAccumulatedData(OutstandingDatasource);
-
-    public bool CanSort { get; }
+    public string DisplayOutstandingLevelsJson { get; }
 
     public string SortPropertyName { get; }
 
@@ -60,12 +57,15 @@ public class OutstandingViewModel
 
     public bool IsMobileView { get; }
 
-    public string Title
-        => ReportLevel.IsMasterLevel()
-        ? Resources.MasterOutstanding
-        : ReportLevel.IsAgentLevel()
-            ? Resources.AgentOutstanding
-            : Resources.MemberOutstanding;
+    private IEnumerable<UserLevel> GetDisplayOutstandingLevels(byte custLevel, byte viewerLevel)
+    {
+        yield return UserLevel.Member;
+
+        for (var level = custLevel; level <= viewerLevel; level++)
+        {
+            yield return Enumeration.FromValue<UserLevel>(level);
+        }
+    }
 
     // protected override IEnumerable<KeyValuePair<string, string>> GetDownlineLinkQueryParams(OutstandingModel model)
     //     => [
@@ -84,20 +84,20 @@ public class OutstandingViewModel
     //         KeyValuePair.Create("GetAll", "True"),
     //         KeyValuePair.Create("ProductIds", ProductMultiSelectionViewModel.UserSelectedProductIds)];
 
-    private string GetSortedProperty(string sortedProperty)
-    {
-        if (string.IsNullOrWhiteSpace(sortedProperty))
-        {
-            return DefaultVariables.SortPropertyName;
-        }
+    // private string GetSortedProperty(string sortedProperty)
+    // {
+    //     if (string.IsNullOrWhiteSpace(sortedProperty))
+    //     {
+    //         return DefaultVariables.SortPropertyName;
+    //     }
 
-        var sortableColumns = DisplayOutstandingLevels
-            .Select(level => (level.DisplayName + "Outstanding").ToUpperInvariant())
-            .Concat([CustNamePropertyName])
-            .ToList();
+    //     var sortableColumns = DisplayOutstandingLevels
+    //         .Select(level => (level.DisplayName + "Outstanding").ToUpperInvariant())
+    //         .Concat([CustNamePropertyName])
+    //         .ToList();
 
-        return sortableColumns.Contains(sortedProperty.ToUpperInvariant())
-            ? sortedProperty
-            : DefaultVariables.SortPropertyName;
-    }
+    //     return sortableColumns.Contains(sortedProperty.ToUpperInvariant())
+    //         ? sortedProperty
+    //         : DefaultVariables.SortPropertyName;
+    // }
 }
