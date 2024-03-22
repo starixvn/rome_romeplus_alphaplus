@@ -7,7 +7,7 @@
 
     public class ProblemAccountController : SiteBaseController
     {
-        private const string ConfirmAddToWatchlistPath = "~/Views/ProblemAccount/ConfirmAddToWatchlist.cshtml";
+        private const string ConfirmAddToWatchlistPath = "~/MemberInfo/Views/ProblemAccount/ConfirmAddToWatchlist.cshtml";
 
         public ProblemAccountController(IMediator mediator) : base(mediator)
         {
