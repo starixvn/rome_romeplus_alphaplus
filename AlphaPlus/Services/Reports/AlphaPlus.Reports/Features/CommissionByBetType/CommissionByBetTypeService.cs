@@ -1,12 +1,13 @@
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.CommissionByBetType;
 
 public interface ICommissionByBetTypeService
 {
-    Task<IEnumerable<CommissionByBetTypeModel>> GetCommissionByBetTypes(CommissionByBetTypeParam param);
+    Task<ReportData<CommissionByBetTypeModel>> GetCommissionByBetTypes(CommissionByBetTypeParam param);
 }
 
 public class CommissionByBetTypeService(
@@ -14,7 +15,7 @@ public class CommissionByBetTypeService(
     IPartialUMService partialUMService,
     IReportDateService reportDateService) : ICommissionByBetTypeService
 {
-    public async Task<IEnumerable<CommissionByBetTypeModel>> GetCommissionByBetTypes(CommissionByBetTypeParam param)
+    public async Task<ReportData<CommissionByBetTypeModel>> GetCommissionByBetTypes(CommissionByBetTypeParam param)
     {
         var moveBetsDay = await reportDateService.GetMoveBetsDay();
         var criteria = new CommissionByBetTypeCriteria(
@@ -25,6 +26,13 @@ public class CommissionByBetTypeService(
             moveBetsDay);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        return await repository.FetchAsync<CommissionByBetTypeModel>(criteria);
+        var total = new CommissionByBetTypeModel();
+        var rawdata = await repository.FetchAsync<CommissionByBetTypeModel>(criteria);
+        foreach (var item in rawdata)
+        {
+            total += item;
+        }
+
+        return new ReportData<CommissionByBetTypeModel>(rawdata, total);
     }
 }

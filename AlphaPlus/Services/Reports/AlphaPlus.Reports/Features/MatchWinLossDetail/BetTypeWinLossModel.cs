@@ -14,6 +14,12 @@ public class BetTypeWinLossModel : NetWinLoss
         Race = winloss.Race;
         MemberWinLoss = winloss.MemberWinLoss;
         MemberComm = winloss.MemberComm;
+        AgWinLoss = winloss.AgWinLoss;
+        AgComm = winloss.AgComm;
+        MAgWinLoss = winloss.MAgWinLoss;
+        MAgComm = winloss.MAgComm;
+        SAgWinLoss = winloss.SAgWinLoss;
+        SAgComm = winloss.SAgComm;
     }
 
     public int Id { get; }

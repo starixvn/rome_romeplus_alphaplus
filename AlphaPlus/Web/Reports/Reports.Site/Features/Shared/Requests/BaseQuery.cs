@@ -26,7 +26,6 @@ public class BaseQuery
         CustId = ViewerId;
         CustName = viewer.UserName;
         CustLevelId = ViewerLevelId;
-        CustLevel = Enumeration.FromValue<UserLevel>(CustLevelId);
     }
 
     protected IUserSession Viewer { get; }
@@ -51,9 +50,9 @@ public class BaseQuery
 
     public byte CustLevelId { get; set; }
 
-    public UserLevel CustLevel { get; }
+    public UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
 
-    public IEnumerable<Breadcrumb> BreadcrumbLevel { get; set; } = [];
+    public string BreadcrumbsJson { get; set; }
 
     public DateTime MinDate { get; protected set; } = DateTime.MinValue;
 
@@ -63,9 +62,7 @@ public class BaseQuery
 
     public virtual bool IsValid()
        => CustId > 0
-       && CustLevelId > 0
-       && !string.IsNullOrWhiteSpace(CustName)
+       && CustLevel.IsNotMemberLevel()
        && ViewerId > 0
-       && ViewerLevel.IsEqualOrUplineOf(CustLevel)
-       && !string.IsNullOrWhiteSpace(Language);
+       && ViewerLevel.IsEqualOrUplineOf(CustLevel);
 }

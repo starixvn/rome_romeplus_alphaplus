@@ -1,6 +1,7 @@
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -85,13 +86,13 @@ public class BaseHandler(IProductService productService)
         return allProducts.Select(product => product.Id).ToList();
     }
 
-    protected IEnumerable<Breadcrumb> BuildBreadcrumbs(BaseQuery message)
+    protected static BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
     {
         var breadcrumbs = new List<Breadcrumb>();
 
-        if (message.BreadcrumbLevel?.Any() == true)
+        if (JsonHelper.TryParse<Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList))
         {
-            foreach (var item in message.BreadcrumbLevel)
+            foreach (var item in breadcrumbList)
             {
                 if (item.CustLevelId == message.CustLevelId)
                 {
@@ -104,6 +105,6 @@ public class BaseHandler(IProductService productService)
 
         breadcrumbs.Add(new Breadcrumb(message.CustId, message.CustName, message.CustLevelId));
 
-        return breadcrumbs;
+        return new BreadcrumbViewModel(breadcrumbs, JsonHelper.ToJson(breadcrumbs));
     }
 }

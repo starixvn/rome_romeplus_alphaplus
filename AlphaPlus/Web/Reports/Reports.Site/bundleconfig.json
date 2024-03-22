@@ -75,6 +75,17 @@
         ]
     },
     {
+        "outputFileName": "wwwroot/bundles/commissionbybettype/commissionbybettype.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/commissionbybettype/commissionbybettype.js"
+        ]
+    },
+    {
         "outputFileName": "wwwroot/bundles/statement/statement.css",
         "inputFiles": [
             "assets/styles/statement/statement.css"

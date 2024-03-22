@@ -21,21 +21,50 @@ public class ReportTitleTagHelper : TagHelper
         AppendEnteredSportResult(sb);
         sb.Append($"<div class=\"text-title pull-left\" style=\"clear:both\">{Model.Title}</div>");
 
-        var breadcrumbViewModel = Model.BreadcrumbLevel;
-        if (breadcrumbViewModel != null && breadcrumbViewModel.BreadcrumbLevel.Any())
-        {
-            var breadcrumbTagHelper = new BreadcrumbTagHelper
-            {
-                Model = breadcrumbViewModel
-            };
-
-            breadcrumbTagHelper.Process(context, output);
-        }
-
+        AppendBreadcrumbLevel(sb);
         AppendActionIcons(sb);
         AppendNewFeatureNote(sb);
 
         output.Content.SetHtmlContent(sb.ToString());
+    }
+
+    private void AppendBreadcrumbLevel(StringBuilder sb)
+    {
+        var breadcrumbs = Model.BreadcrumbLevel?.Breadcrumbs;
+
+        if (breadcrumbs != null)
+        {
+            var linkLength = breadcrumbs.Count();
+
+            if (linkLength > 1)
+            {
+                sb.Append("<ul class=\"breadcrumb\">");
+
+                var linkIndex = 0;
+                var lastLinkIndex = linkLength - 1;
+                foreach (var item in breadcrumbs)
+                {
+                    if (linkIndex == lastLinkIndex)
+                    {
+                        sb.Append("<li>").Append(item.CustName).Append("</li>");
+                    }
+                    else
+                    {
+                        sb
+                            .Append("<li><a class=\"breadcrumb-link\" href=\"javascript:;\" ")
+                            .Append($"data-custid=\"{item.CustId}\" ")
+                            .Append($"data-custname=\"{item.CustName}\" ")
+                            .Append($"data-custlevelid=\"{item.CustLevelId}\">")
+                            .Append(item.CustName)
+                            .Append("</a></li>");
+                    }
+
+                    linkIndex++;
+                }
+
+                sb.Append("</ul>");
+            }
+        }
     }
 
     private void AppendEnteredSportResult(StringBuilder sb)

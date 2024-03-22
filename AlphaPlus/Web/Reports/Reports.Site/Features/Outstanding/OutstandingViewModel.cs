@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Reports.Site.Features.Outstanding;
 
-public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingModel>
+public class OutstandingViewModel
 {
     private const string CustNamePropertyName = nameof(OutstandingModel.CustName);
 
@@ -16,7 +16,7 @@ public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingMode
         IEnumerable<OutstandingModel> outstandingDataSource,
         ProductMultiSelectionViewModel productViewModel,
         IEnumerable<Breadcrumb> breadcrumbs,
-        bool isMobile) : base(query.CustLevel, breadcrumbs)
+        bool isMobile)
     {
         Query = query;
         ReportLevel = Query.CustLevel.GetDirectDownlineLevel();
@@ -32,7 +32,7 @@ public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingMode
         SortPropertyName = CanSort ? GetSortedProperty(query.SortPropertyName) : DefaultVariables.SortPropertyName;
         IsDescendingSort = CanSort && query.IsDescendingSort;
 
-        BetListPath = "/tickets/RunningBetList/Index";
+        //BetListPath = "/tickets/RunningBetList/Index";
         IsMobileView = isMobile;
     }
 
@@ -67,22 +67,22 @@ public class OutstandingViewModel : DrillDownableReportViewModel<OutstandingMode
             ? Resources.AgentOutstanding
             : Resources.MemberOutstanding;
 
-    protected override IEnumerable<KeyValuePair<string, string>> GetDownlineLinkQueryParams(OutstandingModel model)
-        => [
-            KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
-            KeyValuePair.Create(nameof(model.CustName), model.CustName),
-            KeyValuePair.Create(nameof(ProductMultiSelectionViewModel.UserSelectedProductIds), ProductMultiSelectionViewModel.UserSelectedProductIds),
-            KeyValuePair.Create(nameof(SortPropertyName), SortPropertyName),
-            KeyValuePair.Create(nameof(IsDescendingSort), IsDescendingSort.ToString()),
-            KeyValuePair.Create(nameof(IsFilterVisible), IsFilterVisible.ToString())
-        ];
+    // protected override IEnumerable<KeyValuePair<string, string>> GetDownlineLinkQueryParams(OutstandingModel model)
+    //     => [
+    //         KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
+    //         KeyValuePair.Create(nameof(model.CustName), model.CustName),
+    //         KeyValuePair.Create(nameof(ProductMultiSelectionViewModel.UserSelectedProductIds), ProductMultiSelectionViewModel.UserSelectedProductIds),
+    //         KeyValuePair.Create(nameof(SortPropertyName), SortPropertyName),
+    //         KeyValuePair.Create(nameof(IsDescendingSort), IsDescendingSort.ToString()),
+    //         KeyValuePair.Create(nameof(IsFilterVisible), IsFilterVisible.ToString())
+    //     ];
 
-    protected override IEnumerable<KeyValuePair<string, string>> GetBetListLinkQueryParams(OutstandingModel model)
-        => [
-            KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
-            KeyValuePair.Create(nameof(model.CustName), model.CustName),
-            KeyValuePair.Create("GetAll", "True"),
-            KeyValuePair.Create("ProductIds", ProductMultiSelectionViewModel.UserSelectedProductIds)];
+    // protected override IEnumerable<KeyValuePair<string, string>> GetBetListLinkQueryParams(OutstandingModel model)
+    //     => [
+    //         KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
+    //         KeyValuePair.Create(nameof(model.CustName), model.CustName),
+    //         KeyValuePair.Create("GetAll", "True"),
+    //         KeyValuePair.Create("ProductIds", ProductMultiSelectionViewModel.UserSelectedProductIds)];
 
     private string GetSortedProperty(string sortedProperty)
     {

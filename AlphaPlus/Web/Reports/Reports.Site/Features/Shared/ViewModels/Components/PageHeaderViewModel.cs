@@ -8,15 +8,9 @@ public record PageHeaderViewModel(
     bool HasHideFilterIcon = true,
     bool IsStackMode = false,
     bool IsFilterVisible = true,
-    // IEnumerable<Breadcrumb> BreadcrumbLevel = null,
-    // string BreadcrumbLevelJson = null,
-    // IEnumerable<string> BreadcrumbParamByLevel = null,
-    // string RequestQuery = null,
-    BreadcrumbLevelViewModel BreadcrumbLevel = null,
+    BreadcrumbViewModel BreadcrumbLevel = null,
     EnteredResultSport TotalEnteredResults = null,
     bool HasNewFeatureNote = false)
 {
     public bool IsShowActionIcons { get; } = HasStackIcon || HasHideFilterIcon;
-
-    //public BreadcrumbLevelViewModel BreadcrumbLevelViewModel { get; } = new BreadcrumbLevelViewModel(BreadcrumbLevel, BreadcrumbLevelJson, BreadcrumbParamByLevel, RequestQuery);
 }

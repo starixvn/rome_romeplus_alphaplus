@@ -20,6 +20,7 @@ public class MatchWinLossDetailService(
     ICacheService cacheService,
     ILeagueService leagueService,
     IReportDateService reportDateService,
+    ICacheRefService cacheRefService,
     IPartialUMService partialUMService) : IMatchWinLossDetailService
 {
     private const int CacheInMinutes = 5;
@@ -74,14 +75,26 @@ public class MatchWinLossDetailService(
 
         BetTypeWinLossModel mixParlay = null;
         BetTypeWinLossModel systemParlay = null;
-        BetTypeWinLossModel parlayMatchWinLossDetail = null;
+        var parlayMatchWinLossDetail = new List<BetTypeWinLossModel>();
 
         foreach (var item in rawdata)
         {
-            if (item.IsParlay
-            && (item.BetType == BetTypeConstants.MixParlay || item.BetType == BetTypeConstants.MixParlayBetRadarVirtualSports))
+            if (item.IsParlay)
             {
-                //mixParlay = new BetTypeWinLossModel(mixParlayData, cacheRefService.GetBetType(mixParlayData.BetType));
+                if (item.BetType == BetTypeConstants.MixParlay || item.BetType == BetTypeConstants.MixParlayBetRadarVirtualSports)
+                {
+                    mixParlay = new BetTypeWinLossModel(item, cacheRefService.GetBetTypeName(item.BetType));
+                }
+
+                if (item.BetType == BetTypeConstants.CombineMixParlay)
+                {
+                    systemParlay = new BetTypeWinLossModel(item, cacheRefService.GetBetTypeName(item.BetType));
+                }
+
+                if (IsParlayMatchWinLossDetail(item.BetType))
+                {
+                    parlayMatchWinLossDetail.Add(new BetTypeWinLossModel(item, cacheRefService.GetBetTypeName(item.BetType)));
+                }
             }
 
             total += item;
@@ -89,4 +102,8 @@ public class MatchWinLossDetailService(
 
         return new ReportData<MatchWinLossDetailModel>(rawdata, total);
     }
+
+    private static bool IsParlayMatchWinLossDetail(int betType)
+        => (BetTypeConstants.LeapGamingMin <= betType && betType <= BetTypeConstants.LeapGamingMax) ||
+            (BetTypeConstants.Happy5LinkedGamesMin <= betType && betType <= BetTypeConstants.Happy5LinkedGamesMax);
 }

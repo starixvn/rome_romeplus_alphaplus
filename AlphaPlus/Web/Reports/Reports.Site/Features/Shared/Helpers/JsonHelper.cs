@@ -4,21 +4,24 @@ namespace AlphaPlus.Reports.Site.Features.Shared.Helpers;
 
 public static class JsonHelper
 {
-    [ThreadStatic]
-    private static Func<object, string> toJsonFunc;
-
-    public static Func<object, string> ToJsonFunc
+    public static bool TryParse<T>(string json, out T value)
     {
-        get
+        if (!string.IsNullOrWhiteSpace(json))
         {
-            toJsonFunc ??= ToJson;
-            return toJsonFunc;
+            try
+            {
+                var jsonDocument = JsonDocument.Parse(json);
+                value = JsonSerializer.Deserialize<T>(jsonDocument);
+                return true;
+            }
+            catch (Exception)
+            {
+            }
         }
-        set
-        {
-            toJsonFunc = value;
-        }
+
+        value = default;
+        return false;
     }
 
-    internal static string ToJson(object data) => JsonSerializer.Serialize(data).Replace("\"", "'");
+    public static string ToJson(object data) => JsonSerializer.Serialize(data);
 }

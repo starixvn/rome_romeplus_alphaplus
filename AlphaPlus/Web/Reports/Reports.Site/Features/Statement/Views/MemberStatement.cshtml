@@ -27,7 +27,7 @@
 }
 @model MemberStatementViewModel
 <report-title model="Model.PageHeader" />
-<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form" asp-action="MemberStatement">
     <div class="form-group">
         <select id="dropdown-report-type">

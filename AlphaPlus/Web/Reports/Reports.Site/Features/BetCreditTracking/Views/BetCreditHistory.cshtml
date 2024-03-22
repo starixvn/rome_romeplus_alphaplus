@@ -51,8 +51,8 @@
 </div>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="betCreditHistory">
-        <form class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form"
-            asp-action="BetCreditHistorySearch">
+        <form method="get" class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form"
+            id="report-form" asp-action="BetCreditHistorySearch">
             <div class="form-group">
                 <label asp-for="Member">@Resources.Member <span style="color: #E54748;">*</span></label>
                 <input type="text" style="width: 200px;" autocomplete="off" placeholder="@Resources.Username"

@@ -1,5 +1,5 @@
+using AlphaPlus.Reports.Features.CommissionByBetType;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
 
@@ -13,7 +13,7 @@ public class CommissionByBetTypeQuery : DefaultDateRangeQuery, IRequest<Commissi
         IsShowMyanmarOdds = Viewer.IsMyanmarOdds;
     }
 
-    public string SortPropertyName { get; set; } = DefaultVariables.SortPropertyName;
+    public string SortPropertyName { get; set; } = nameof(CommissionByBetTypeModel.CustName);
 
     public bool IsDescendingSort { get; set; }
 

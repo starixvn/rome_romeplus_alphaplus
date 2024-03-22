@@ -2,6 +2,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Site.Features.BetChoiceMatching;
 using AlphaPlus.Reports.Site.Features.BetCreditTracking;
+using AlphaPlus.Reports.Site.Features.CommissionByBetType;
 using AlphaPlus.Reports.Site.Features.EnteredResult;
 using AlphaPlus.Reports.Site.Features.IPMatching;
 using AlphaPlus.Reports.Site.Features.ProgressiveContribution;
@@ -23,6 +24,7 @@ public static class DependencyInjection
         .AddReportsServices(configuration)
         //.AddTransient<IEnteredResultWorkbook, EnteredResultWorkbook>()
         .AddTransient<IWinLossAnalysisWorkbook, WinLossAnalysisWorkbook>()
+        .AddTransient<ICommissionByBetTypeWorkbook, CommissionByBetTypeWorkbook>()
         .AddTransient<ISMAStatementWorkbook, SMAStatementWorkbook>()
         .AddTransient<IStatementDetailWorkbook, StatementDetailWorkbook>()
         .AddTransient<IMemberStatementWorkbook, MemberStatementWorkbook>()

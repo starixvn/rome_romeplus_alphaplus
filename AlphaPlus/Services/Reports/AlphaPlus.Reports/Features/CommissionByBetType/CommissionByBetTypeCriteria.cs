@@ -29,7 +29,5 @@ public class CommissionByBetTypeCriteria(
             : "Age_Rpt_CommByBettype_Master";
 
     public override bool IsValid()
-        => !CustLevel.IsMemberLevel()
-        && CustId > 0
-        && FromDate <= ToDate;
+        => !CustLevel.IsMemberLevel() && CustId > 0 && FromDate <= ToDate;
 }

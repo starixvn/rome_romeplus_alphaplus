@@ -23,71 +23,66 @@
 
     var sortIndex = 4;
 }
-@section Styles {
-    <link rel="stylesheet" href="~/bundles/progressivecontribution/progressivecontribution.css" asp-append-version="true" />
-}
 @section Scripts {
-    <script src="~/bundles/progressivecontribution/progressivecontribution.js" asp-append-version="true"></script>
+    <script src="~/bundles/commissionbybettype/commissionbybettype.js" asp-append-version="true"></script>
 }
 @model CommissionByBetTypeViewModel
 <report-title model="Model.PageHeader" />
 <form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form" asp-action="@Model.CustLevel.DisplayName.ToLowerInvariant()">
+    id="report-form" asp-action="Index">
     <daterange-picker model="Model.DateRangePicker" />
     <div class="form-group hide">
         <span id="icon-information" class="icon-information-outline"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"></a>
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="@Model.GetExcelParams()"></a>
     </div>
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>
-    <input type="hidden" id="IsFilterVisible" asp-for="PageHeader" value="@Model.PageHeader.IsFilterVisible" />
+    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
+        value="@Model.PageHeader.IsFilterVisible.ToString()" />
     <input type="hidden" asp-for="IsDescendingSort" />
     <input type="hidden" asp-for="SortPropertyName" />
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
-    <input type="hidden" id="CustLevelId" asp-for="CustLevel" value="@Model.CustLevel.Value" />
-    <input type="hidden" asp-for="BreadcrumbLevelJson" />
+    <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
+    <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
 </form>
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-small-width" id="tbl-report"
-    data-totalrecords="@Model.ReportData.Count()" data-sortedcolumn="@Model.SortPropertyName"
+    data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
     data-descendingsort="@Model.IsDescendingSort">
     <thead class="tableFloatingHeaderOriginal">
         <tr>
-            <th class="sorting" data-colindex="0" data-sortedname="@CommissionByBetTypeViewModel.SortByCustName">
-                @Resources.Username</th>
-            <th class="sorting" data-colindex="1" data-sortedname="@CommissionByBetTypeViewModel.SortByComm1">
-                @Resources.Commission1</th>
-            <th class="sorting" data-colindex="2" data-sortedname="@CommissionByBetTypeViewModel.SortByComm2">
-                @Resources.Commission2</th>
-            <th class="sorting" data-colindex="3" data-sortedname="@CommissionByBetTypeViewModel.SortByComm3">
-                @Resources.Commission3</th>
+            <th class="sorting" data-colindex="0" data-sortedname="CustName">@Resources.Username</th>
+            <th class="sorting" data-colindex="1" data-sortedname="Comm1">@Resources.Commission1</th>
+            <th class="sorting" data-colindex="2" data-sortedname="Comm2">@Resources.Commission2</th>
+            <th class="sorting" data-colindex="3" data-sortedname="Comm3">@Resources.Commission3</th>
             @if (Model.IsShowMyanmarOdds)
             {
-                <th class="sorting" data-colindex="@sortIndex++"
-                    data-sortedname="@CommissionByBetTypeViewModel.SortByMyanmarOddsComm">@Resources.SymbolMyanmarOdds</th>
+                <th class="sorting" data-colindex="@sortIndex++" data-sortedname="MyanmarOddsComm">
+                    @Resources.SymbolMyanmarOdds</th>
             }
-            <th class="sorting" data-colindex="@sortIndex"
-                data-sortedname="@CommissionByBetTypeViewModel.SortByCasinoComm">@Resources.Gaming</th>
+            <th class="sorting" data-colindex="@sortIndex" data-sortedname="CasinoComm">@Resources.Gaming</th>
         </tr>
     </thead>
-    @if (Model.ReportData.Any())
+    @if (Model.ReportData.HasData)
     {
+        var isAgentLevel = Model.CustLevel.IsAgentLevel();
         <tbody>
-            @foreach (var commission in Model.ReportData)
+            @foreach (var commission in Model.ReportData.DataSource)
             {
                 <tr>
-                    @if (Model.CustLevel.IsAgentLevel())
+                    @if (isAgentLevel)
                     {
                         <td class="text-left">@commission.CustName</td>
                     }
                     else
                     {
                         <td data-islink="true" class="text-left">
-                            <a class="downline-link"
-                                href="@Model.BuildDrillDownLink(commission, string.Empty)">@commission.CustName</a>
+                            <a href="javascript:;" class="downline-link" data-custid="@commission.CustId"
+                                data-custname="@commission.CustName">@commission.CustName</a>
                         </td>
                     }
                     @{
@@ -100,7 +95,7 @@
             <tr class="tbl-footer">
                 <td class="text-left">@Resources.Total</td>
                 @{
-                    RenderCellValue(Model.Total);
+                    RenderCellValue(Model.ReportData.Total);
                 }
             </tr>
         </tfoot>
@@ -110,3 +105,5 @@
         <no-information colspan="@(Model.IsShowMyanmarOdds ? 7 : 6)" />
     }
 </table>
+<a class="hide" id="LoadLegendURL" asp-action="Index" asp-controller="Legends"
+    asp-route-MinDate="@Model.DateRangePicker.MinDate"></a>

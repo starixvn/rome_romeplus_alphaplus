@@ -24,15 +24,7 @@
         }
     }
 
-    var reportTitle = new PageHeaderViewModel(
-    Title: Model.Title,
-    HasStackIcon: false,
-    HasHideFilterIcon: true,
-    IsStackMode: false,
-    IsFilterVisible: true,
-    BreadcrumbLevel: new BreadcrumbLevelViewModel(),
-    TotalEnteredResults: Model.TotalEnteredResults);
-
+    var reportTitle = new PageHeaderViewModel(Title: Model.Title, TotalEnteredResults: Model.TotalEnteredResults);
     DateTime today, yesterday;
     var totalRecords = Model.ReportData.Count();
     var hasData = totalRecords > 0;

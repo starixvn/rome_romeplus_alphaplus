@@ -8,8 +8,7 @@ namespace AlphaPlus.Reports.Site.Features.CommissionByBetType;
 [AllowProtectedMode]
 public class CommissionByBetTypeController(IMediator mediator) : ReportBaseController(mediator)
 {
-    [Route("commissionbybettype/master")]
-    [Route("commissionbybettype/agent")]
-    [Route("commissionbybettype/member")]
     public Task<IActionResult> Index(CommissionByBetTypeQuery message) => View(message);
+
+    public Task<IActionResult> Excel(CommissionByBetTypeExcelQuery message) => ExcelView(message);
 }

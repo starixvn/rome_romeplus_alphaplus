@@ -106,4 +106,21 @@ class BaseReport {
     }
 
     protected isStackMode = () => this.$tableReport.hasClass('stack-mode');
+
+    protected registerDrilldownableEvents() {
+        const handleDrilldownable = ($element) => {
+            const $custLevelId = this.$('#CustLevelId');
+            let custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
+
+            $custLevelId.val(custLevelIdValue);
+            this.$('#CustId').val($element.data('custid'));
+            this.$('#CustName').val($element.data('custname'));
+
+            this.$reportForm.submit();
+        };
+
+        this.$pageTitle.find('.breadcrumb-link').click((e) => handleDrilldownable(this.$(e.target)));
+
+        this.$tableReport.find('.downline-link').click((e) => handleDrilldownable(this.$(e.target)));
+    }
 }
