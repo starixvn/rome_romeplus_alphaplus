@@ -13,7 +13,7 @@ public class ProgressiveContributionQuery : DefaultDateRangeQuery, IRequest<Prog
         IsEnabledJackpot = EnableJackpotProductIds.Any();
     }
 
-    public string UserSelectedProductIds { get; set; }
+    public string UserSelectedProductIds { get; set; } = "*";
 
     public bool IsStackMode { get; set; }
 

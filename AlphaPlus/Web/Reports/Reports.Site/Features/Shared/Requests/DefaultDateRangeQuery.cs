@@ -21,8 +21,8 @@ public class DefaultDateRangeQuery : BaseQuery
         //// TODO: Side effect here
         AssignFromDateValue();
 
-        return FromDate <= ToDate
-            && FromDate >= MinDate
+        return MinDate <= FromDate
+            && FromDate <= ToDate
             && (!IsHistoricReport || FromDate.IsSameMonthWith(ToDate));
     }
 

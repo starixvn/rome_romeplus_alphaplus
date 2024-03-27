@@ -10,7 +10,7 @@ public class OutstandingQuery : BaseQuery, IRequest<OutstandingViewModel>
 
     private const string AutoFollowBetIsDummyAgentSessionKey = "AutoFollowBetIsDummyAgent";
 
-    public string UserSelectedProductIds { get; set; }
+    public string UserSelectedProductIds { get; set; } = "*";
 
     public string SortPropertyName { get; set; } = nameof(OutstandingModel.CustName);
 

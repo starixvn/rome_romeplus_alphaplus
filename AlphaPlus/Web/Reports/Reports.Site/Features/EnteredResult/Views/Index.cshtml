@@ -24,20 +24,8 @@
         }
     }
 
-    var reportTitle = new PageHeaderViewModel(Title: Model.Title, TotalEnteredResults: Model.TotalEnteredResults);
-    DateTime today, yesterday;
-    var totalRecords = Model.ReportData.Count();
-    var hasData = totalRecords > 0;
-    if (hasData)
-    {
-        today = Model.TotalEnteredResults.EnteredResultToday.EventDate;
-        yesterday = Model.TotalEnteredResults.EnteredResultYesterday.EventDate;
-    }
-    else
-    {
-        today = DateTime.Today;
-        yesterday = today.Yesterday();
-    }
+    var today = DateTime.Today;
+    var yesterday = today.Yesterday();
 }
 @section Styles {
     <link rel="stylesheet" href="~/bundles/enteredresult/enteredresult.css" asp-append-version="true" />
@@ -46,21 +34,18 @@
     <script src="~/bundles/enteredresult/enteredresult.js" asp-append-version="true"></script>
 }
 @model EnteredResultViewModel
-<report-title model="reportTitle" />
-<form method="get" class="form-inline filter" role="form" id="report-form" asp-controller="WinLoss" asp-action="Index">
-    <daterange-picker model="Model.DateRangePickerViewModel" />
+<report-title model="Model.PageHeader" />
+<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form" asp-controller="WinLoss" asp-action="Index">
+    <daterange-picker model="Model.DateRangePicker" />
     <input type="hidden" id="IsHistoricReport" name="IsHistoricReport" value="False" />
-    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible" value="True" />
-    @* <input type="hidden" id="IsStackMode" name="IsStackMode" value="False" />
-    <input type="hidden" id="SortPropertyName" name="SortPropertyName" value="CustName" />
-    <input type="hidden" id="IsDescendingSort" name="IsDescendingSort" value="False" /> *@
     <div class="form-group">
         <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"></a>
     </div>
     <a id="historic-report" href="javascript:;"></a>
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter" id="tbl-enteredresult-report"
-    data-totalrecords="@totalRecords">
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-small-width" id="tbl-report"
+    data-cansort="@Model.ReportData.MoreThanOne">
     <thead>
         <tr>
             <th>@Resources.Date</th>
@@ -74,21 +59,21 @@
             <th class="sorting width-17per" data-colindex="3">@Resources.Entered</th>
             <th class="sorting width-17per" data-colindex="4">@Resources.NonEntered</th>
         </tr>
-        @if (hasData)
+        @if (Model.ReportData.HasData)
         {
             <tr class="total-row">
                 <td class="text-left">@Resources.Total</td>
                 @{
-                    RenderEnteredResult(Model.TotalEnteredResults.EnteredResultYesterday);
-                    RenderEnteredResult(Model.TotalEnteredResults.EnteredResultToday);
+                    RenderEnteredResult(Model.ReportData.Total.EnteredResultYesterday);
+                    RenderEnteredResult(Model.ReportData.Total.EnteredResultToday);
                 }
             </tr>
         }
     </thead>
-    @if (hasData)
+    @if (Model.ReportData.HasData)
     {
         <tbody>
-            @foreach (var enteredResult in Model.ReportData)
+            @foreach (var enteredResult in Model.ReportData.DataSource)
             {
                 <tr>
                     <td class="text-left col-first">@enteredResult.SportName</td>

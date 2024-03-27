@@ -5,14 +5,16 @@ using AlphaPlus.Reports.Features.WinLossAnalysis;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossAnalysis;
 
 public class WinLossAnalysisHandler(
     IProductService productService,
+    IOptions<AppSettings> options,
     IWinLossAnalysisService winLossAnalysisService,
     IWinLossAnalysisWorkbook workbook) :
-        BaseHandler(productService),
+        BaseHandler(productService, options),
         IRequestHandler<WinLossAnalysisQuery, WinLossAnalysisViewModel>,
         IRequestHandler<WinLossAnalysisExcelQuery, ExcelFileViewModel>
 {

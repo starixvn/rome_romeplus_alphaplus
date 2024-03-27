@@ -4,25 +4,24 @@
 /// <reference path="../components/productmultiselection.ts" />
 
 class WinLossAnalysisChartView extends BaseReport {
-    $multiSelectButton: JQuery;
     $msgError: JQuery;
 
     monthRangePickerComponent: MonthRangePickerComponent;
-    productMultiSelectionComponent: ProductMultiSelectionComponent;
+    productComponent: ProductMultiSelectionComponent;
     reportTooltip: ReportTooltip;
     dualAxisChartComponent: DualAxisChartComponent;
 
     constructor(
         $: JQueryStatic,
         monthRangePickerComponent: MonthRangePickerComponent,
-        productMultiSelectionComponent: ProductMultiSelectionComponent,
+        productComponent: ProductMultiSelectionComponent,
         reportTooltip: ReportTooltip,
         linkBuilderComponent: LinkBuilderComponent,
         dualAxesChartComponent: DualAxisChartComponent
     ) {
         super($, linkBuilderComponent);
         this.monthRangePickerComponent = monthRangePickerComponent;
-        this.productMultiSelectionComponent = productMultiSelectionComponent;
+        this.productComponent = productComponent;
         this.reportTooltip = reportTooltip;
         this.dualAxisChartComponent = dualAxesChartComponent;
     }
@@ -33,50 +32,34 @@ class WinLossAnalysisChartView extends BaseReport {
     }
 
     initComponents() {
-        this.productMultiSelectionComponent.render();
-        this.$multiSelectButton = this.$('#dropdown-product').parent().find('.multiselect.btn');
+        this.productComponent.render();
         this.monthRangePickerComponent.render();
         this.dualAxisChartComponent.render(new DualAxisChartOption(this.$('#IsDarkMode').val() === 'True'));
     }
 
-    onSubmitReport = (e: any) => {
+    onSubmitReport = (event: any) => {
         let isValid = true;
-        const params = this.getParams();
-        if (!params.IsAnyProductSelected) {
-            this.showValidationProductError();
+        if (!this.productComponent.validateProductIds()) {
             isValid = false;
         }
 
-        if (!params.IsLeast3MonthToChart) {
+        if (!this.monthRangePickerComponent.isLeast3Month()) {
             this.showValidationMonthRangeError();
             isValid = false;
         }
 
         if (!isValid) {
-            e.preventDefault();
+            event.preventDefault();
             return;
         }
 
         this.hideValidationMonthRangeError();
-        super.onSubmitReport(e);
-    };
-
-    showValidationProductError = () => {
-        this.$multiSelectButton.addClass('error');
-        this.productMultiSelectionComponent.addClassToExcludeProductLabels('error');
+        super.onSubmitReport(event);
     };
 
     showValidationMonthRangeError = () => this.$msgError.removeClass('hide');
+
     hideValidationMonthRangeError = () => this.$msgError.addClass('hide');
-
-    getParams() {
-        const selectedProducts = this.productMultiSelectionComponent.getSelectedItems();
-
-        return {
-            IsAnyProductSelected: selectedProducts.length > 0,
-            IsLeast3MonthToChart: this.monthRangePickerComponent.isLeast3Month()
-        };
-    }
 }
 
 declare let Chart: any;

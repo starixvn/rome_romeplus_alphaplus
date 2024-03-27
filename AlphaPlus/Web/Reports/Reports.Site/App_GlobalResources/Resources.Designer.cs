@@ -3720,5 +3720,38 @@ namespace AlphaPlus.Reports.Site
                 return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Dormant Accounts.
+        /// </summary>
+        public static string DormantAccounts
+        {
+            get
+            {
+                return ResourceManager.GetString("DormantAccounts", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Dormant accounts' information has been collected and summarized; specific details of individual dormant accounts can no longer be viewed.
+        /// </summary>
+        public static string DormantAccountsNote
+        {
+            get
+            {
+                return ResourceManager.GetString("DormantAccountsNote", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Summary of dormant accounts.
+        /// </summary>
+        public static string SummaryOfDormantAccounts
+        {
+            get
+            {
+                return ResourceManager.GetString("SummaryOfDormantAccounts", resourceCulture);
+            }
+        }
     }
 }

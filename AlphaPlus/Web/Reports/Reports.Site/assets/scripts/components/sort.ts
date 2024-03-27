@@ -4,113 +4,92 @@ interface JQuery {
     tablesorter(option: any): void;
 }
 
+interface SortInfo {
+    sortPropertyName: string;
+    descendingSort: number;
+}
+
 class SortOption {
     constructor(
         public sortContainer: any = null,
         public canSort: boolean = true,
         public hasAllDataOnClient: boolean = false,
         public afterSortFunction: any = null,
-        public headers: any = null,
-        public reportForm: JQuery = null
+        public headers: any = null //public reportForm: JQuery = null
     ) {}
 }
 
 class SortComponent {
     $: JQueryStatic;
     linkBuilderComponent: LinkBuilderComponent;
-    options = new SortOption();
+    //options: SortOption;
+    $tableReport: JQuery;
+    headers: any;
+    canSort = false;
 
     constructor($: JQueryStatic, linkBuilderComponent: LinkBuilderComponent) {
         this.$ = $;
         this.linkBuilderComponent = linkBuilderComponent;
     }
 
-    render = (options: SortOption = new SortOption()) => {
-        this.options = <SortOption>this.$.extend({}, this.options, options);
-        const $sortContainer = this.options.sortContainer;
-        const sortColumns = $sortContainer.find('.sorting');
+    //render = (options: SortOption = new SortOption()) => {
+    initSort = ($tableReport: JQuery, headers: any) => {
+        //this.options = <SortOption>this.$.extend({}, this.options, options);
+        this.$tableReport = $tableReport;
+        this.headers = headers;
+        this.canSort = this.$tableReport.data('cansort').toLowerCase() === 'true';
+        const sortColumns = this.$tableReport.find('.sorting');
 
-        if (!this.options.canSort) {
-            sortColumns.removeAttr('data-sortedname').removeClass('sorting');
+        if (!this.canSort) {
+            sortColumns.removeClass('sorting').removeAttr('data-sortedname');
             return;
         }
 
-        const self = this;
+        // if (!this.options.hasAllDataOnClient) {
+        //     $sortContainer
+        //         .find(`[data-sortedname="${$sortContainer.data('sortedcolumn')}"]`)
+        //         .addClass(this.getSortClassWhenSortOnServer());
 
-        if (!this.options.hasAllDataOnClient) {
-            $sortContainer
-                .find(`[data-sortedname="${$sortContainer.data('sortedcolumn')}"]`)
-                .addClass(this.getSortClassWhenSortOnServer());
+        //     sortColumns.off('click.sortcomponent').on('click.sortcomponent', function () {
+        //         const $sortColumn = self.$(this);
 
-            sortColumns.off('click.sortcomponent').on('click.sortcomponent', function () {
-                const $sortColumn = self.$(this);
+        //         self.onSort($sortColumn.data('sortedname'), self.getSortClassWhenSortOnServer() === 'sorting-asc');
+        //     });
+        // }
 
-                self.onSort($sortColumn.data('sortedname'), self.getSortClassWhenSortOnServer() === 'sorting-asc');
-            });
-        }
-
-        this.bindTableSorter($sortContainer.data('sortedcolumn'));
-
-        return sortColumns;
+        this.bindTableSorter(this.$tableReport.data('sortedcolumn'));
     };
 
-    getSortClassWhenSortOnServer = () => {
-        const $sortContainer = this.options.sortContainer;
-        const descendingSort = $sortContainer.data('descendingsort').toString();
+    // getSortClassWhenSortOnServer = () => {
+    //     const $sortContainer = this.options.sortContainer;
+    //     const descendingSort = $sortContainer.data('descendingsort').toString();
 
-        return descendingSort === '1' || descendingSort.toLowerCase() === 'true' ? 'sorting-desc' : 'sorting-asc';
-    };
-
-    onSort = (sortedColumnName: string, isDecendingSort: boolean) => {
-        const $sortContainer = this.options.sortContainer;
-        $sortContainer.data('descendingsort', isDecendingSort ? '1' : '0').data('sortedcolumn', sortedColumnName);
-
-        if (this.options.afterSortFunction && typeof this.options.afterSortFunction === 'function') {
-            this.options.afterSortFunction();
-        }
-    };
-
-    getSortInfo = () => {
-        const $sortContainer = this.options.sortContainer;
-        const descendingSort = $sortContainer.data('descendingsort').toString();
-        return {
-            sortPropertyName: $sortContainer.data('sortedcolumn'),
-            isDescendingSort: descendingSort === '1' || descendingSort.toLowerCase() === 'true'
-        };
-    };
+    //     return descendingSort === '1' || descendingSort.toLowerCase() === 'true' ? 'sorting-desc' : 'sorting-asc';
+    // };
 
     bindTableSorter = (sortedColumnName: string) => {
-        if (!this.options.canSort || !this.options.hasAllDataOnClient) {
+        if (!this.canSort) {
             return;
         }
 
-        const self = this;
-        const $sortContainer = this.options.sortContainer;
-        const disabledSortColumns = $sortContainer.find("th[data-disabledsort='true']");
-        disabledSortColumns.each(function () {
-            self.options.headers[this.cellIndex] = { sorter: false };
-        });
-
         let sortList = [];
-        if (sortedColumnName && sortedColumnName !== '') {
-            let sortedColumnHeader = $sortContainer.find(
+        if (sortedColumnName) {
+            const sortedColumnHeader = this.$tableReport.find(
                 "[data-sortedname='" +
                     sortedColumnName +
                     "']" +
-                    ($sortContainer.hasClass('stack-mode')
+                    (this.$tableReport.hasClass('stack-mode')
                         ? ":not([class*='hidden-stack-mode'])"
                         : ":not([class*='col-combine'])")
             )[0];
-            const descendingSort = $sortContainer.data('descendingsort').toString();
-            const isDescendingSort = descendingSort === '1' || descendingSort.toLowerCase() === 'true';
-
-            sortList = [[this.$(sortedColumnHeader).data('colindex'), isDescendingSort ? 1 : 0]];
+            const descendingSort = this.$tableReport.data('descendingsort');
+            sortList = [[this.$(sortedColumnHeader).data('colindex'), descendingSort]];
         }
 
         try {
-            $sortContainer.tablesorter({
+            this.$tableReport.tablesorter({
                 defaultParser: 1,
-                headers: this.options.headers,
+                headers: this.headers,
                 sortList: sortList,
                 textExtraction: this.textExtraction
             });
@@ -118,13 +97,13 @@ class SortComponent {
             console.log(e);
         }
 
-        $sortContainer.off('sortEnd').on('sortEnd', () => {
-            let $sortedcolumn = $sortContainer.find(
+        this.$tableReport.off('sortEnd').on('sortEnd', () => {
+            let $sortedcolumn = this.$tableReport.find(
                 'thead.tableFloatingHeaderOriginal th.sorting.sorting-asc:visible' +
                     ',thead.tableFloatingHeaderOriginal th.sorting.sorting-desc:visible'
             );
 
-            const modeFilterClass = $sortContainer.hasClass('stack-mode')
+            const modeFilterClass = this.$tableReport.hasClass('stack-mode')
                 ? '.hidden-stack-mode'
                 : '.visible-stack-mode';
             $sortedcolumn = $sortedcolumn.not(modeFilterClass);
@@ -132,10 +111,13 @@ class SortComponent {
             if ($sortedcolumn.length === 1) {
                 this.onSort($sortedcolumn.attr('data-sortedname'), $sortedcolumn.hasClass('sorting-desc'));
             }
+
+            const dormantAccountsRow = this.$tableReport.find('.dormant-accounts-mark');
+            dormantAccountsRow.length && this.$tableReport.append(dormantAccountsRow);
         });
     };
 
-    textExtraction = (node: any) => {
+    private textExtraction = (node: any) => {
         const $node = this.$(node);
 
         if ($node.data('islink')) {
@@ -151,41 +133,56 @@ class SortComponent {
         return html;
     };
 
-    afterSort = () => {
-        const this$ = this.$;
-        if (this.options.hasAllDataOnClient) {
-            let sortedColumn = this$('.sorting-asc:visible');
-            const direction = !sortedColumn.length;
-            if (sortedColumn.length === 0) {
-                sortedColumn = this$('.sorting-desc');
-            }
+    private onSort = (sortedColumnName: string, isDecendingSort: boolean) => {
+        this.$tableReport.data('descendingsort', isDecendingSort ? 1 : 0).data('sortedcolumn', sortedColumnName);
 
-            const sortedColumnName = sortedColumn.data('sortedname');
-
-            this.linkBuilderComponent.updateParam(
-                'SortPropertyName',
-                sortedColumnName || sortedColumn.parent().data('sortedname')
-            );
-            this.linkBuilderComponent.updateParam('IsDescendingSort', direction.toString());
-
-            alphaReports.correctEvenRowClass(this.options.sortContainer);
-        } else {
-            this.options.reportForm.trigger('submit');
-        }
+        // if (this.options.afterSortFunction && typeof this.options.afterSortFunction === 'function') {
+        //     this.options.afterSortFunction();
+        // }
     };
 
-    mapSortedColumnToStackMode = (sortedColumn: string, stackColumnGroups: string[][]) => {
-        for (let i = 0, groupsLength = stackColumnGroups.length; i < groupsLength; i++) {
-            const stackColumnGroup = stackColumnGroups[i];
-            const firstColum = stackColumnGroup[0];
-
-            for (let j = 0, groupLength = stackColumnGroup.length; j < groupLength; j++) {
-                if (sortedColumn.toLowerCase() === stackColumnGroup[j].toLowerCase()) {
-                    return firstColum;
-                }
-            }
-        }
-
-        return sortedColumn;
+    getSortInfo = (): SortInfo => {
+        return {
+            sortPropertyName: this.$tableReport.data('sortedcolumn'),
+            descendingSort: this.$tableReport.data('descendingsort')
+        };
     };
+
+    // afterSort = () => {
+    //     const this$ = this.$;
+    //     if (this.options.hasAllDataOnClient) {
+    //         let sortedColumn = this$('.sorting-asc:visible');
+    //         const direction = !sortedColumn.length;
+    //         if (sortedColumn.length === 0) {
+    //             sortedColumn = this$('.sorting-desc');
+    //         }
+
+    //         const sortedColumnName = sortedColumn.data('sortedname');
+
+    //         this.linkBuilderComponent.updateParam(
+    //             'SortPropertyName',
+    //             sortedColumnName || sortedColumn.parent().data('sortedname')
+    //         );
+    //         this.linkBuilderComponent.updateParam('IsDescendingSort', direction.toString());
+
+    //         alphaReports.correctEvenRowClass(this.options.sortContainer);
+    //     } else {
+    //         this.options.reportForm.trigger('submit');
+    //     }
+    // };
+
+    // mapSortedColumnToStackMode = (sortedColumn: string, stackColumnGroups: string[][]) => {
+    //     for (let i = 0, groupsLength = stackColumnGroups.length; i < groupsLength; i++) {
+    //         const stackColumnGroup = stackColumnGroups[i];
+    //         const firstColum = stackColumnGroup[0];
+
+    //         for (let j = 0, groupLength = stackColumnGroup.length; j < groupLength; j++) {
+    //             if (sortedColumn.toLowerCase() === stackColumnGroup[j].toLowerCase()) {
+    //                 return firstColum;
+    //             }
+    //         }
+    //     }
+
+    //     return sortedColumn;
+    // };
 }

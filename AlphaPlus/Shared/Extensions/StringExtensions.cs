@@ -18,6 +18,6 @@ public static class StringExtensions
 
     public static string[] ToList(this string value, char separator = ',')
         => string.IsNullOrWhiteSpace(value)
-        ? Array.Empty<string>()
+        ? []
         : value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 }

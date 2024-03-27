@@ -38,7 +38,8 @@ public class ProgressiveContributionWookbook(IWebHostEnvironment webHostEnvironm
         var toDate = message.ToDate.ToShortDateWithSlash();
         const string betTypeName = nameof(ProgressiveContributionEntity.BetTypeName);
 
-        var fileContent = UseTemplate(new TemplateInfo(
+        var fileContent = UseTemplate(
+            new TemplateInfo(
                 GetExcelTemplatePath(message.ViewerLevel.GetDirectDownlineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyEndIndex: 6))

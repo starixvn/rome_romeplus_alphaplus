@@ -45,14 +45,14 @@
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
     <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
-    <input type="hidden" asp-for="SortPropertyName" />
-    <input type="hidden" asp-for="IsDescendingSort" />
+    @* <input type="hidden" asp-for="SortPropertyName" />
+    <input type="hidden" asp-for="DescendingSort" /> *@
     <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
         value="@Model.PageHeader.IsFilterVisible.ToString()" />
 </form>
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-small-width" id="tbl-report"
     data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
-    data-descendingsort="@Model.IsDescendingSort">
+    data-descendingsort="@Model.DescendingSort">
     <thead class="tableFloatingHeaderOriginal">
         <tr>
             <th class="sorting" data-colindex="0" data-sortedname="CustName">@Resources.Username</th>

@@ -17,7 +17,7 @@ public class WinLossAnalysisViewModel(
 
     public string SortPropertyName { get; } = message.SortPropertyName;
 
-    public bool IsDescendingSort { get; } = message.IsDescendingSort;
+    public byte DescendingSort { get; } = message.DescendingSort;
 
     public bool IsSetDefaultStackMode { get; } = message.IsSetDefaultStackMode;
 

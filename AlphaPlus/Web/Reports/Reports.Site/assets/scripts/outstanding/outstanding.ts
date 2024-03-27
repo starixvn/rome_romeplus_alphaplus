@@ -6,26 +6,24 @@ interface Window {
 }
 
 class OutstandingViewNew extends BaseReportNew {
-    productMultiSelectionComponent: ProductMultiSelectionComponent;
+    productComponent: ProductMultiSelectionComponent;
     linkBuilderComponent: LinkBuilderComponent;
-    $buttonProduct: JQuery;
     displayOutstandingLevels: any;
 
     constructor(
         $: JQueryStatic,
-        productMultiSelectionComponent: ProductMultiSelectionComponent,
+        productComponent: ProductMultiSelectionComponent,
         linkBuilderComponent: LinkBuilderComponent
     ) {
         super($, linkBuilderComponent);
-        this.productMultiSelectionComponent = productMultiSelectionComponent;
+        this.productComponent = productComponent;
     }
 
     init = () => {
         super.init();
 
         this.displayOutstandingLevels = JSON.parse(this.$('#DisplayOutstandingLevelsJson').val());
-        this.productMultiSelectionComponent.render();
-        this.$buttonProduct = this.$('#dropdown-product').parent().find('.multiselect.btn');
+        this.productComponent.render();
 
         this.linkBuilderComponent.render();
         this.registerEvents();
@@ -78,9 +76,7 @@ class OutstandingViewNew extends BaseReportNew {
     onSubmitReport = (e: any) => {
         this.$.blockUI();
 
-        const params = this.getParams();
-        if (!params.IsAnyProductSelected) {
-            this.showValidateProductError();
+        if (!this.productComponent.validateProductIds()) {
             this.$.unblockUI();
             e.preventDefault();
 
@@ -96,19 +92,8 @@ class OutstandingViewNew extends BaseReportNew {
         this.$sortPropertyName.val(columnSortName);
         this.$isDescendingSort.val(isDescendingSort ? 'True' : 'False');
 
-        this.$isFilterVisible.val(String(alphaReports.screenSmallThan768() ? false : params.IsFilterVisible));
+        this.$isFilterVisible.val(String(alphaReports.screenSmallThan768() ? false : !this.$reportForm.is(':hidden')));
     };
-
-    getParams = () => {
-        const selectedProducts = this.productMultiSelectionComponent.getSelectedItems();
-
-        return {
-            IsAnyProductSelected: selectedProducts.length > 0,
-            IsFilterVisible: !this.$reportForm.is(':hidden')
-        };
-    };
-
-    showValidateProductError = () => this.$buttonProduct.addClass('error');
 }
 
 $(function () {

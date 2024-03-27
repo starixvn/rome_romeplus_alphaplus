@@ -11,10 +11,10 @@ using Microsoft.Extensions.Options;
 namespace AlphaPlus.Reports.Site.Features.MatchWinLossDetail;
 
 public class MatchWinLossDetailHandler(
-    IOptions<AppSettings> options,
     IProductService productService,
+    IOptions<AppSettings> options,
     IMatchWinLossDetailService matchWinLossDetailService) :
-        BaseHandler(productService),
+        BaseHandler(productService, options),
         IRequestHandler<GetLeaguesQuery, LeaguesViewModel>,
         IRequestHandler<MatchWinLossDetailQuery, MatchWinLossDetailViewModel>
 {
@@ -26,7 +26,7 @@ public class MatchWinLossDetailHandler(
             message.FromDate,
             message.ToDate,
             message.LanguageKey,
-            options.Value.LocalTest);
+            appSettings.LocalTest);
 
         return BuildLeaguesViewModel(param, string.Empty, true);
     }
@@ -35,8 +35,11 @@ public class MatchWinLossDetailHandler(
     {
         var fromDate = message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo);
 
-        var offeredProducts = await matchWinLossDetailService.GetProducts();
-        var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds, offeredProducts);
+        var offeredProductIds = (await matchWinLossDetailService.GetProducts()).ToList();
+        var productViewModel = BuildProductViewModel(
+            message,
+            message.UserSelectedProductIds,
+            GetProducts(message).Where(p => offeredProductIds.Contains(p.Id)));
 
         var leagueParam = new GetLeaguesParam(
             message.ViewerId,

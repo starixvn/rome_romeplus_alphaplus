@@ -10,13 +10,13 @@ public class WinLossAnalysisQuery : DefaultDateRangeQuery, IRequest<WinLossAnaly
     public WinLossAnalysisQuery() : base()
         => MinDate = DateTime.Today.AddMonths(-18).FirstDayOfMonth();
 
-    public string UserSelectedProductIds { get; set; }
+    public string UserSelectedProductIds { get; set; } = "*";
 
     public bool IsStackMode { get; set; }
 
     public string SortPropertyName { get; set; } = nameof(WinLossAnalysisModel.RollupKey);
 
-    public bool IsDescendingSort { get; set; }
+    public byte DescendingSort { get; set; }
 
     public int ReportTypeId { get; set; } = WinLossAnalysisConstants.Daily;
 

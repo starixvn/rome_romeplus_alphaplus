@@ -32,9 +32,11 @@ public class WinLossAnalysisWorkbook(IWebHostEnvironment webHostEnvironment) :
         var fromDate = message.FromDate.ToShortDateWithSlash();
         var toDate = message.ToDate.ToShortDateWithSlash();
 
-        var fileContent = UseTemplate(new TemplateInfo(
-            GetExcelTemplatePath(message.ViewerLevel.GetDirectDownlineLevel().DisplayName),
-                noInfomationText: Resources.NoInformationIsAvailable))
+        var fileContent = UseTemplate(
+            new TemplateInfo(
+                GetExcelTemplatePath(
+                    message.ViewerLevel.GetDirectDownlineLevel().DisplayName),
+                    noInfomationText: Resources.NoInformationIsAvailable))
             .Title($"{reportTitle} {fromDate} --> {toDate} {Resources.of}: {productNames}")
             .Header(key => key.Equals("ReportTypeName") ? reportTypeName : Resources.ResourceManager.GetString(key))
             .Body(reportData.DataSource, GetRowMapper(message.ViewerLevel))

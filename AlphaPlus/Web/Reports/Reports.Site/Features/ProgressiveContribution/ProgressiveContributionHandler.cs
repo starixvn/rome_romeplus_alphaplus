@@ -2,26 +2,32 @@ using AlphaPlus.Reports.Features.Legends;
 using AlphaPlus.Reports.Features.ProgressiveContribution;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Legends;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Site.Features.ProgressiveContribution;
 
 public class ProgressiveContributionHandler(
     IProductService productService,
+    IOptions<AppSettings> options,
     IProgressiveContributionService progressiveContributionService,
     IProgressiveContributionWookbook wookbook,
     ILengendService lengendService) :
-        BaseHandler(productService),
+        BaseHandler(productService, options),
         IRequestHandler<ProgressiveContributionQuery, ProgressiveContributionViewModel>,
         IRequestHandler<ProgressiveContributionExcelQuery, ExcelFileViewModel>,
         IRequestHandler<ProgressiveContributionLegendQuery, LegendViewModel>
 {
     public async Task<ProgressiveContributionViewModel> Handle(ProgressiveContributionQuery message, CancellationToken cancellationToken)
     {
-        var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds, message.EnableJackpotProductIds);
+        var productViewModel = BuildProductViewModel(
+            message,
+            message.UserSelectedProductIds,
+            GetProducts(message).Where(p => message.EnableJackpotProductIds.Contains(p.Id)));
         var (progressiveContributions, total) = await GetProgressiveContributions(message, productViewModel.UserSelectedProductIds);
 
         return new ProgressiveContributionViewModel(
@@ -61,8 +67,13 @@ public class ProgressiveContributionHandler(
             Resources.ContributionAmountRoundNote
         };
 
-        var productNames = await lengendService.GetOfferedProductsNeedDelayTimeToSummarizeData(
-            message.Site, message.CurrencyId, message.MinDate, message.EnableJackpotProductIds);
+        var productParam = new GetProductsParam(
+            message.Site,
+            message.CurrencyId,
+            appSettings.SettingStatus,
+            message.Language,
+            message.MinDate);
+        var productNames = await lengendService.GetOfferedProductsNeedDelayTimeToSummarizeData(productParam, message.EnableJackpotProductIds);
         if (!string.IsNullOrWhiteSpace(productNames))
         {
             legends.Add(string.Format(Resources.DelayIssueLegend, productNames));

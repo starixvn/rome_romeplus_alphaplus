@@ -1,32 +1,35 @@
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Reports.Features.Outstanding;
 using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
 using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Site.Features.Outstanding;
 
 public class OutstandingHandler(
     IProductService productService,
+    IOptions<AppSettings> options,
     IOutstandingService outstandingService,
-    IBrowserHelper browserHelper) : BaseHandler(productService), IRequestHandler<OutstandingQuery, OutstandingViewModel>
+    IBrowserHelper browserHelper) :
+        BaseHandler(productService, options),
+        IRequestHandler<OutstandingQuery, OutstandingViewModel>
 {
     // Always hide Saba Promotion in Product List
     private readonly int SabaPromotionProductId = 37;
 
     public async Task<OutstandingViewModel> Handle(OutstandingQuery message, CancellationToken cancellationToken)
     {
-        var products = productService
-            .GetOfferedProducts(message.Site, message.CurrencyId, message.MinDate)
-            .Where(p => p.Id != SabaPromotionProductId);
-        var productViewModel = BuildProductViewModel(products, message.UserSelectedProductIds, message.Language);
-        var param = new OutstandingParam(
+        var products = GetProducts(message).Where(p => p.Id != SabaPromotionProductId);
+        var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds, products);
+        var outstandingParam = new OutstandingParam(
             message.CustLevel,
             message.CustId,
             productViewModel.UserSelectedProductIds,
             message.AutoFollowBetIsDummyAgent,
             message.Site);
-        var reportData = await outstandingService.GetOutstanding(param);
+        var reportData = await outstandingService.GetOutstanding(outstandingParam);
         var isOnlyMobile = browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
 
         return new OutstandingViewModel(

@@ -33,7 +33,8 @@ public class SMAStatementWorkbook(IWebHostEnvironment webHostEnvironment) :
         var fromDateString = fromDate.ToShortDateWithSlash();
         var toDateString = toDate.ToShortDateWithSlash();
 
-        var fileContent = UseTemplate(new TemplateInfo(
+        var fileContent = UseTemplate(
+            new TemplateInfo(
                 GetExcelTemplatePath(custLevel.IsMemberLevel() ? "Member" : "SMA"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3))

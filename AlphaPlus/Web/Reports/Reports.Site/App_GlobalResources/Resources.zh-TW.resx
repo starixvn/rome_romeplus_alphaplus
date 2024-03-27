@@ -363,6 +363,12 @@
   <data name="DoNotShowAgain" xml:space="preserve">
     <value>不再顯示</value>
   </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value>不活躍帳號</value>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value>- 不活躍帳號的資訊已經收集並總結；已經無法再查看個別不活躍帳號的詳細資訊。</value>
+  </data>
   <data name="DuplicatedTicketMessage" xml:space="preserve">
     <value>多次更改賽事日期的注單將重複並以紅色突出顯示。</value>
   </data>
@@ -463,7 +469,7 @@
     <value>由於以四個小數點凈值，每個級別的總傭金數值可能不同。</value>
   </data>
   <data name="GrossCommRoundingNote" xml:space="preserve">
-    <value>佣金值可能與理論值略有不同（總佣金 * 佔成數），因為是通過子注單的佣金值 (四個小數點淨值) 相加以計算。</value>
+    <value>- 佣金值可能與理論值略有不同（總佣金 * 佔成數），因為是通過子注單的佣金值 (四個小數點淨值) 相加以計算。</value>
   </data>
   <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
     <value>選定日期之間，每一天的期末余額</value>
@@ -841,7 +847,7 @@
     <value/>
   </data>
   <data name="SabaSportsNote" xml:space="preserve">
-    <value>沙巴體育的專屬報表僅從 {0} 開始提供。&#xD;
+    <value>沙巴體育的專屬報表僅從 {0} 開始提供。&#xD;&#xD;
  在{0}之前，體育博彩報表和沙巴體育報表的數據是結合的。</value>
   </data>
   <data name="SearchColumns" xml:space="preserve">
@@ -906,6 +912,9 @@
   </data>
   <data name="SumOfMemberTotal" xml:space="preserve">
     <value>總和</value>
+  </data>
+  <data name="SummaryOfDormantAccounts" xml:space="preserve">
+    <value>不活躍帳號摘要</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>超級</value>

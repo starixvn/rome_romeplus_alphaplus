@@ -1,46 +1,61 @@
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Legends;
 using MediatR;
+using AlphaPlus.Reports.Features.Shared.Models;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Reports.Site.Features.Shared.Requests;
 
 namespace AlphaPlus.Reports.Site.Features.Legends;
 
-public class LegendHandler(ILengendService lengendService) :
-    IRequestHandler<LegendQuery, LegendViewModel>
+public class LegendHandler(ILengendService lengendService, IOptions<AppSettings> options) :
+    IRequestHandler<LegendQuery, LegendViewModel>,
+    IRequestHandler<WinLossLegendQuery, LegendViewModel>
 {
-    public async Task<LegendViewModel> Handle(LegendQuery message, CancellationToken cancellationToken)
+    public async Task<LegendViewModel> Handle(WinLossLegendQuery message, CancellationToken cancellationToken)
     {
         var legends = new List<string>();
-        if (message.IsSupportHistoricReport && !message.IsHistoricReport)
+        if (!message.IsHistoricReport)
         {
             legends.Add(string.Format(
                 $"- {Resources.CanOnlyViewDataAfterTimeCurrentReport}", message.MinDate.ToShortDateWithSlash()));
         }
 
-        var note = await GetOfferedProductsNeedDelayTimeToSummarizeData(message.Site, message.CurrencyId, message.MinDate);
-        if (!string.IsNullOrWhiteSpace(note))
+        await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
+        legends.Add(GetGrossCommNotes(message.ViewerLevel));
+        legends.Add(Resources.GrossCommRoundingNote);
+        if (message.ShowDormantAccountsNote)
         {
-            legends.Add(note);
+            legends.Add(Resources.DormantAccountsNote);
         }
 
-        if (message.IsShowGrossComm)
-        {
-            legends.Add(GetGrossCommNotes(message.ViewerLevel));
-        }
-
-        return new LegendViewModel(legends, message.IsMobileFriendly);
+        return new LegendViewModel(legends);
     }
 
-    private async Task<string> GetOfferedProductsNeedDelayTimeToSummarizeData(
-        string site,
-        int currencyId,
-        DateTime minDate,
+    public async Task<LegendViewModel> Handle(LegendQuery message, CancellationToken cancellationToken)
+    {
+        var legends = new List<string>();
+        await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
+
+        return new LegendViewModel(legends);
+    }
+
+    private async Task AddOfferedProductsNeedDelayTimeToSummarizeData(
+        IList<string> legends,
+        BaseQuery message,
         IEnumerable<int> enableJackpotProductIds = null)
     {
-        var productNames = await lengendService.GetOfferedProductsNeedDelayTimeToSummarizeData(site, currencyId, minDate, enableJackpotProductIds);
+        var productParam = new GetProductsParam(
+            message.Site,
+            message.CurrencyId,
+            options.Value.SettingStatus,
+            message.Language,
+            message.MinDate);
+        var productNames = await lengendService.GetOfferedProductsNeedDelayTimeToSummarizeData(productParam, enableJackpotProductIds);
 
-        return string.IsNullOrWhiteSpace(productNames)
-            ? string.Empty
-            : string.Format(Resources.DelayIssueLegend, productNames);
+        if (!string.IsNullOrWhiteSpace(productNames))
+        {
+            legends.Add(string.Format(Resources.DelayIssueLegend, productNames));
+        }
     }
 
     private static string GetGrossCommNotes(UserLevel viewerLevel)

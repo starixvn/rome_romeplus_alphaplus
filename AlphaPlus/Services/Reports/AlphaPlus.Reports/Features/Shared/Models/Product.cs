@@ -4,11 +4,9 @@ public class Product
 {
     public int Id { get; init; }
 
-    public string Name { get; init; }
+    public string Name { get; set; }
 
     public DateTime? EndOfSupportDate { get; init; }
-
-    public string DisplayName { get; set; }
 
     public int Type { get; init; }
 

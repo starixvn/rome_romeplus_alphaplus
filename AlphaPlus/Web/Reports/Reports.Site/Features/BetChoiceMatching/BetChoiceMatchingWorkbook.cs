@@ -21,7 +21,6 @@ public interface IBetChoiceMatchingWorkbook
 
 public class BetChoiceMatchingWorkbook : ReportNpoiWorkbook<BetChoiceMatchingEventModel>, IBetChoiceMatchingWorkbook
 {
-    private readonly IWebHostEnvironment webHostEnvironment;
     private readonly IBetListExcelBuilder excelBuilder;
     private readonly ITicketHelper ticketHelper;
     private IEnumerable<BetChoiceMatchingEventModel> reportData;
@@ -57,7 +56,8 @@ public class BetChoiceMatchingWorkbook : ReportNpoiWorkbook<BetChoiceMatchingEve
     {
         this.reportData = reportData;
 
-        var fileContent = UseTemplate(new TemplateInfo(
+        var fileContent = UseTemplate(
+            new TemplateInfo(
                 GetExcelTemplatePath("Super"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3))

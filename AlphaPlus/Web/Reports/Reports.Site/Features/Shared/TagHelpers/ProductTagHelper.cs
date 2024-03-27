@@ -11,41 +11,45 @@ public class ProductTagHelper : TagHelper
 
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
-        output.TagName = "div";
+        output.TagName = null;
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.Attributes.Add("class", "form-group product-multiselect-container");
 
         var sb = new StringBuilder();
+        AddProductDropdown(sb);
+        AddProductDetailDropdown(sb);
+
+        output.Content.SetHtmlContent(sb.ToString());
+    }
+
+    private void AddProductDropdown(StringBuilder sb)
+    {
         sb
+            .Append("<div class=\"form-group product-multiselect-container\">")
             .Append("<select id=\"dropdown-product\" ")
-            .Append($"data-has-any-product=\"{Model.Products.Any()}\" ")
-            .Append($"data-label-select-products=\"{Resources.SelectProducts}\" ")
+            .Append($"data-hasdata=\"{Model.Products.Any()}\" ")
+            .Append($"data-label-selectproducts=\"{Resources.SelectProducts}\" ")
             .Append($"data-label-selected=\"{Resources.Selected}\" ")
-            .Append($"data-label-all-products=\"{Resources.AllProducts}\" ")
-            .Append($"data-label-there-is-no-product=\"{Resources.ThereIsNoProduct}\" ")
+            .Append($"data-label-allproducts=\"{Resources.AllProducts}\" ")
+            .Append($"data-label-nodata=\"{Resources.ThereIsNoProduct}\" ")
             .Append($"data-language=\"{Model.Language}\" multiple=\"multiple\" class=\"select-multiple\">");
 
-        var groupProducts = Model.Products.GroupBy(p => p.Group?.Name);
-        foreach (var group in groupProducts)
+        foreach (var product in Model.Products)
         {
-            if (group.Key == null)
+            if (product.Products == null)
             {
-                foreach (var product in group)
-                {
-                    sb
-                        .Append($"<option value=\"{product.Value}\"{(product.Selected ? " selected=\"selected\"" : string.Empty)}>")
-                        .Append(product.Text)
-                        .Append("</option>");
-                }
+                sb
+                   .Append($"<option value=\"{product.Id}\"{(product.Checked ? " selected=\"selected\"" : string.Empty)}>")
+                   .Append(product.Name)
+                   .Append("</option>");
             }
             else
             {
-                sb.Append($"<optgroup label=\"{group.Key}\">");
-                foreach (var product in group)
+                sb.Append($"<optgroup label=\"{product.Name}\">");
+                foreach (var subProduct in product.Products)
                 {
                     sb
-                        .Append($"<option value=\"{product.Value}\"{(product.Selected ? " selected=\"selected\"" : string.Empty)} data-isnested=\"1\">")
-                        .Append(product.Text)
+                        .Append($"<option value=\"{subProduct.Id}\"{(subProduct.Checked ? " selected=\"selected\"" : string.Empty)} data-isnested=\"1\">")
+                        .Append(subProduct.Name)
                         .Append("</option>");
                 }
 
@@ -55,8 +59,36 @@ public class ProductTagHelper : TagHelper
 
         sb
             .Append("</select>")
-            .Append($"<input type=\"hidden\" name=\"UserSelectedProductIds\" id=\"product-ids\" value=\"{Model.UserSelectedProductIds}\" />");
+            .Append($"<input type=\"hidden\" name=\"UserSelectedProductIds\" id=\"product-ids\" value=\"{Model.UserSelectedProductIds}\" />")
+            .Append("</div>");
+    }
 
-        output.Content.SetHtmlContent(sb.ToString());
+    private void AddProductDetailDropdown(StringBuilder sb)
+    {
+        if (Model.ProductDetails?.Any() == true)
+        {
+            var isDisabled = string.IsNullOrWhiteSpace(Model.UserSelectedResourceIds);
+            sb
+                .Append("<div class=\"form-group product-detail-multiselect-container\">")
+                .Append("<select id=\"dropdown-product-detail\" ")
+                .Append($"data-hasdata=\"{Model.ProductDetails.Any()}\" ")
+                .Append($"data-label-selectnone=\"{Resources.SelectNone}\" ")
+                .Append($"data-label-selected=\"{Resources.Selected}\" ")
+                .Append($"data-label-selectall=\"{Resources.SelectAll}\" ")
+                .Append($"data-language=\"{Model.Language}\" multiple=\"multiple\" class=\"select-multiple\" {(isDisabled ? "disabled=disabled" : string.Empty)}>");
+            foreach (var product in Model.ProductDetails)
+            {
+                sb
+                    .Append($"<option value=\"{product.Id}\" {(product.Checked ? "selected=selected" : "disabled=disabled")} ")
+                    .Append($"data-productid=\"{product.ProductId}\">")
+                    .Append(product.Name)
+                    .Append("</option>");
+            }
+
+            sb
+                .Append("</select>")
+                .Append($"<input type=\"hidden\" name=\"UserSelectedResourceIds\" id=\"resource-ids\" value=\"{Model.UserSelectedResourceIds}\" />")
+                .Append("</div>");
+        }
     }
 }

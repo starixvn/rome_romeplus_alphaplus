@@ -34,7 +34,7 @@ public class CommissionByBetTypeViewModel(
     public string ViewDataInstructionMessage
         => string.Format(Resources.CanOnlyViewDataAfterTimeHistoryReport, DateRangePicker.MinDate);
 
-    public bool IsDescendingSort { get; } = message.IsDescendingSort;
+    public byte DescendingSort { get; } = message.DescendingSort;
 
     public string SortPropertyName { get; } = message.SortPropertyName;
 

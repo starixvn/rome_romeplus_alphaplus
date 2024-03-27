@@ -5,14 +5,16 @@ using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Site.Features.CommissionByBetType;
 
 public class CommissionByBetTypeHandler(
     IProductService productService,
+    IOptions<AppSettings> options,
     ICommissionByBetTypeService commissionByBetTypeService,
     ICommissionByBetTypeWorkbook workbook) :
-        BaseHandler(productService),
+        BaseHandler(productService, options),
         IRequestHandler<CommissionByBetTypeQuery, CommissionByBetTypeViewModel>,
         IRequestHandler<CommissionByBetTypeExcelQuery, ExcelFileViewModel>
 {

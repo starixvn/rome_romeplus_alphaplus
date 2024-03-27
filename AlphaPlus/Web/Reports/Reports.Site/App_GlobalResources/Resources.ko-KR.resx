@@ -363,6 +363,12 @@
   <data name="DoNotShowAgain" xml:space="preserve">
     <value>이 페이지를 다시 표시하지않습니다.</value>
   </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value/>
+  </data>
   <data name="DuplicatedTicketMessage" xml:space="preserve">
     <value/>
   </data>

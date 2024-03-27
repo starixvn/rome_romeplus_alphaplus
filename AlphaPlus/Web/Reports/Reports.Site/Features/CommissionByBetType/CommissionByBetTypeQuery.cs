@@ -15,7 +15,7 @@ public class CommissionByBetTypeQuery : DefaultDateRangeQuery, IRequest<Commissi
 
     public string SortPropertyName { get; set; } = nameof(CommissionByBetTypeModel.CustName);
 
-    public bool IsDescendingSort { get; set; }
+    public byte DescendingSort { get; set; }
 
     public bool IsShowMyanmarOdds { get; }
 }

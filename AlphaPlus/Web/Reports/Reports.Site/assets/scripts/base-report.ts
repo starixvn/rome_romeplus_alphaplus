@@ -12,8 +12,6 @@ class BaseReport {
     $pageTitle: JQuery;
     $reportForm: JQuery;
     $tableReport: JQuery;
-    $isFilterVisible: JQuery;
-    $isStackMode: JQuery;
 
     $reportLegend: JQuery;
     $iconInformation: JQuery;
@@ -29,13 +27,11 @@ class BaseReport {
         this.$pageTitle = this.$('.page-title');
         this.$reportForm = this.$('#report-form');
         this.$tableReport = this.$('#tbl-report');
-        this.$isFilterVisible = this.$('#IsFilterVisible');
-        this.$isStackMode = this.$('#IsStackMode');
 
         // register event
         this.initBaseReportLegend();
         this.$('.icon-filter').click(this.onClickIconFilter);
-        this.$reportForm.submit((e) => this.onSubmitReport(e));
+        this.$reportForm.submit((event) => this.onSubmitReport(event));
 
         this.$tableReport.stickyTableHeaders();
     }
@@ -98,14 +94,34 @@ class BaseReport {
     //     this.linkBuilderComponent.updateParam(paramName, paramValue);
     // }
 
-    protected onSubmitReport(e) {
-        this.$.blockUI();
+    protected onSubmitReport(event, hasStackIcon: boolean = undefined, sortInfo: SortInfo = undefined) {
         const isFilterVisibleValue = !this.$reportForm.hasClass('hide') && !alphaReports.screenSmallThan768();
-        this.$isFilterVisible.val(isFilterVisibleValue.toString());
-        this.$isStackMode.length && this.$isStackMode.val(this.isStackMode().toString());
+        let html = `<input type="hidden" name="IsFilterVisible" value="${isFilterVisibleValue}" />`;
+
+        if (typeof hasStackIcon !== 'undefined') {
+            html += `<input type="hidden" name="IsStackMode" value="${this.isStackMode()}" />`;
+        }
+
+        if (typeof sortInfo !== 'undefined') {
+            html +=
+                `<input type="hidden" name="SortPropertyName" value="${sortInfo.sortPropertyName}" />` +
+                `<input type="hidden" name="DescendingSort" value="${sortInfo.descendingSort}" />`;
+        }
+
+        this.$reportForm.append(html);
     }
 
     protected isStackMode = () => this.$tableReport.hasClass('stack-mode');
+
+    protected registerHistoricReportEvent() {
+        this.$('#historic-report').click((e) => {
+            const isHistoricReport = this.$(e.target).data('is-historic-report');
+            this.$('#from-date').val('');
+            this.$('#to-date').val('');
+            this.$('#IsHistoricReport').val(isHistoricReport ? 'false' : 'true');
+            this.$reportForm.submit();
+        });
+    }
 
     protected registerDrilldownableEvents() {
         const handleDrilldownable = ($element) => {

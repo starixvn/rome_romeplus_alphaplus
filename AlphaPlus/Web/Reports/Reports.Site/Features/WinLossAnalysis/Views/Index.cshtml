@@ -108,12 +108,12 @@
     <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
         value="@Model.PageHeader.IsFilterVisible.ToString()" />
     <input type="hidden" asp-for="SortPropertyName" />
-    <input type="hidden" asp-for="IsDescendingSort" />
+    <input type="hidden" asp-for="DescendingSort" />
 </form>
 <table
     class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per @(Model.PageHeader.IsStackMode ? "stack-mode" : string.Empty)"
     id="tbl-report" data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
-    data-descendingsort="@Model.IsDescendingSort">
+    data-descendingsort="@Model.DescendingSort">
     <thead>
         <tr>
             <th class="sorting" rowspan="2" data-sortedname="RollupKey" data-colindex="0">

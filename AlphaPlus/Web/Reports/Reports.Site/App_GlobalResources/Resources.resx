@@ -363,6 +363,12 @@
   <data name="DoNotShowAgain" xml:space="preserve">
     <value>Do not show again</value>
   </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value>Dormant Accounts</value>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value>- Dormant accounts' information has been collected and summarized; specific details of individual dormant accounts can no longer be viewed.</value>
+  </data>
   <data name="DuplicatedTicketMessage" xml:space="preserve">
     <value>Tickets which have event date changed multiple times will be displayed duplicated and highlighted in red.</value>
   </data>
@@ -463,7 +469,7 @@
     <value>Gross Comm values may differ at each level due to rounding to 4 decimal places.</value>
   </data>
   <data name="GrossCommRoundingNote" xml:space="preserve">
-    <value>The commission value may differ slightly from the theoretical value (Gross Comm * Position Taking), as it is calculated by summing the commission values (rounded to 4 decimal places) of the sub-tickets.</value>
+    <value>- The commission value may differ slightly from the theoretical value (Gross Comm * Position Taking), as it is calculated by summing the commission values (rounded to 4 decimal places) of the sub-tickets.</value>
   </data>
   <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
     <value>member closing balance of each day within selected date range.</value>
@@ -905,6 +911,9 @@
   </data>
   <data name="SumOfMemberTotal" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="SummaryOfDormantAccounts" xml:space="preserve">
+    <value>Summary of dormant accounts.</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>

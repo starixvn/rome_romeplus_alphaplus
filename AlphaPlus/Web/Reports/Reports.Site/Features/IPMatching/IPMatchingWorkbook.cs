@@ -32,7 +32,8 @@ public class IPMatchingWorkbook(IWebHostEnvironment webHostEnvironment) :
         var dateString = message.Date.ToShortDateWithSlash();
         reportData.Total.IP = Resources.Total;
 
-        var fileContent = UseTemplate(new TemplateInfo(
+        var fileContent = UseTemplate(
+            new TemplateInfo(
                 GetExcelTemplatePath("Super"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3,

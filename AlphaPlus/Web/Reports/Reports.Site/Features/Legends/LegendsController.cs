@@ -7,4 +7,7 @@ namespace AlphaPlus.Reports.Site.Features.Legends;
 public class LegendsController(IMediator mediator) : ReportBaseController(mediator)
 {
     public Task<IActionResult> Index(LegendQuery message) => View(message);
+
+    public Task<IActionResult> WinLoss(WinLossLegendQuery message)
+        => View(message, "~/Features/Legends/Views/Index.cshtml");
 }

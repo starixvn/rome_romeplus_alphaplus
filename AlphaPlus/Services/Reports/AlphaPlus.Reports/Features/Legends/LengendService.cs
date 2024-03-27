@@ -1,4 +1,5 @@
 using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;
 
@@ -7,10 +8,8 @@ namespace AlphaPlus.Reports.Features.Legends;
 public interface ILengendService
 {
     Task<string> GetOfferedProductsNeedDelayTimeToSummarizeData(
-        string site,
-        int currencyId,
-        DateTime? minReportDate = null,
-        IEnumerable<int> filteredProductIds = null);
+        GetProductsParam productsParam,
+        IEnumerable<int> offeredProductIds = null);
 }
 
 public class LengendService(
@@ -22,19 +21,21 @@ public class LengendService(
     private const string CacheKey = "AlphaPlus.Reports.Legends.ProductsNeedDelayTimeToSummarizeData";
 
     public async Task<string> GetOfferedProductsNeedDelayTimeToSummarizeData(
-        string site,
-        int currencyId,
-        DateTime? minReportDate = null,
-        IEnumerable<int> filteredProductIds = null)
+        GetProductsParam productsParam,
+        IEnumerable<int> offeredProductIds = null)
     {
         var productIdsNeedDelayTimeToSummarizeData = await GetProductsNeedDelayTimeToSummarizeData();
 
-        if (filteredProductIds != null)
+        if (offeredProductIds != null)
         {
-            productIdsNeedDelayTimeToSummarizeData = productIdsNeedDelayTimeToSummarizeData.Where(productId => filteredProductIds.Contains(productId));
+            productIdsNeedDelayTimeToSummarizeData = productIdsNeedDelayTimeToSummarizeData
+                .Where(productId => offeredProductIds.Contains(productId))
+                .ToList();
         }
 
-        var productIds = productService.FilterProductIds(site, currencyId, productIdsNeedDelayTimeToSummarizeData.ToList(), minReportDate);
+        var productIds = productService.GetProducts(productsParam)
+            .Where(product => productIdsNeedDelayTimeToSummarizeData.Contains(product.Id))
+            .Select(product => product.Id);
 
         return productService.ConcatProductNames(productIds);
     }

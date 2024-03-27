@@ -18,6 +18,9 @@ using AlphaPlus.Utilities.IP;
 using AlphaPlus.Reports.Features.WinLossAnalysisChart;
 using AlphaPlus.Reports.Features.WinLossAnalysis;
 using AlphaPlus.Reports.Features.MatchWinLossDetail;
+using AlphaPlus.Reports.Features.WinLoss;
+using AlphaPlus.Reports.Features.WinLossDetail;
+using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
@@ -38,9 +41,12 @@ public static class DependencyInjection
             .AddSingleton<ILengendService, LengendService>()
             .AddSingleton<IOutstandingService, OutstandingService>()
             .AddSingleton<IEnteredResultService, EnteredResultService>()
+            .AddSingleton<IWinLossService, WinLossService>()
+            .AddSingleton<IWinLossDetailService, WinLossDetailService>()
             .AddSingleton<IMatchWinLossDetailService, MatchWinLossDetailService>()
             .AddSingleton<IWinLossAnalysisService, WinLossAnalysisService>()
             .AddSingleton<IWinLossAnalysisChartService, WinLossAnalysisChartService>()
+            .AddSingleton<ISuperWinLossDetailByPTService, SuperWinLossDetailByPTService>()
             .AddSingleton<ICommissionByBetTypeService, CommissionByBetTypeService>()
             .AddSingleton<IStatementService, StatementService>()
             .AddSingleton<IProgressiveContributionService, ProgressiveContributionService>()

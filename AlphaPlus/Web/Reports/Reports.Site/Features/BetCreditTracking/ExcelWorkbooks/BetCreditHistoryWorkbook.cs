@@ -23,7 +23,8 @@ public class BetCreditHistoryWorkbook(IWebHostEnvironment webHostEnvironment)
         var fromDate = message.FromDate.ToShortDateWithSlash();
         var toDate = message.ToDate.ToShortDateWithSlash();
 
-        var fileContent = UseTemplate(new TemplateInfo(
+        var fileContent = UseTemplate(
+            new TemplateInfo(
                 GetExcelTemplatePath("BetCreditHistory"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3))

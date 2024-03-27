@@ -5,18 +5,15 @@
 /// <reference path="../components/sort.ts" />
 
 class WinLossAnalysisView extends BaseReport {
-    $multiSelectButton: JQuery;
     $reportTypeId: JQuery;
     $switchModeIcon: JQuery;
-    $isDescendingSort: JQuery;
-    $sortPropertyName: JQuery;
     $isSetDefaultStackMode: JQuery;
 
     isFirstSwitchMode = true;
     levels = ['member', 'agent', 'master', 'super'];
 
     dateRangePickerComponent: DateRangePickerComponent;
-    productMultiSelectionComponent: ProductMultiSelectionComponent;
+    productComponent: ProductMultiSelectionComponent;
     sortComponent: SortComponent;
     reportTooltip: ReportTooltip;
     linkBuilderComponent: LinkBuilderComponent;
@@ -24,14 +21,14 @@ class WinLossAnalysisView extends BaseReport {
     constructor(
         $: JQueryStatic,
         dateRangePickerComponent: DateRangePickerComponent,
-        productMultiSelectionComponent: ProductMultiSelectionComponent,
+        productComponent: ProductMultiSelectionComponent,
         sortComponent: SortComponent,
         reportTooltip: ReportTooltip,
         linkBuilderComponent: LinkBuilderComponent
     ) {
         super($, linkBuilderComponent);
         this.dateRangePickerComponent = dateRangePickerComponent;
-        this.productMultiSelectionComponent = productMultiSelectionComponent;
+        this.productComponent = productComponent;
         this.sortComponent = sortComponent;
         this.reportTooltip = reportTooltip;
     }
@@ -45,7 +42,8 @@ class WinLossAnalysisView extends BaseReport {
 
         this.cacheDOMElements();
         this.bindFilter();
-        this.bindSorting();
+        this.sortComponent.initSort(this.$tableReport, { 0: { sorter: this.getSorterName() } });
+
         this.registerEvents();
 
         this.$.unblockUI();
@@ -56,14 +54,11 @@ class WinLossAnalysisView extends BaseReport {
     cacheDOMElements() {
         this.$switchModeIcon = this.$('.icon-switchmode');
         this.$reportTypeId = this.$('#ReportTypeId');
-        this.$isDescendingSort = this.$('#IsDescendingSort');
-        this.$sortPropertyName = this.$('#SortPropertyName');
         this.$isSetDefaultStackMode = this.$('#IsSetDefaultStackMode');
     }
 
     bindFilter() {
-        this.productMultiSelectionComponent.render();
-        this.$multiSelectButton = this.$('#dropdown-product').parent().find('.multiselect.btn');
+        this.productComponent.render();
 
         if (
             this.$isSetDefaultStackMode.val().toString().toLowerCase() === 'true' &&
@@ -76,13 +71,6 @@ class WinLossAnalysisView extends BaseReport {
         }
 
         this.dateRangePickerComponent.render();
-    }
-
-    bindSorting() {
-        const canSort = this.$tableReport.data('cansort').toLowerCase() === 'true';
-        this.sortComponent.render(
-            new SortOption(this.$tableReport, canSort, true, undefined, { 0: { sorter: this.getSorterName() } })
-        );
     }
 
     getSorterName = () => {
@@ -107,24 +95,14 @@ class WinLossAnalysisView extends BaseReport {
         });
     }
 
-    onSubmitReport = (e: any) => {
-        const selectedProducts = this.productMultiSelectionComponent.getSelectedItems();
-        if (!selectedProducts.length) {
-            this.showValidateProductError();
-            e.preventDefault();
+    onSubmitReport = (event: any) => {
+        if (!this.productComponent.validateProductIds()) {
+            event.preventDefault();
             return;
         }
 
-        const sortInfo = this.sortComponent.getSortInfo();
-        this.$sortPropertyName.val(sortInfo.sortPropertyName);
-        this.$isDescendingSort.val(sortInfo.isDescendingSort.toString());
-        super.onSubmitReport(e);
+        super.onSubmitReport(event, undefined, this.sortComponent.getSortInfo());
     };
-
-    showValidateProductError() {
-        this.$multiSelectButton.addClass('error');
-        this.productMultiSelectionComponent.addClassToExcludeProductLabels('error');
-    }
 
     renderAtFirstSwitchMode = (isSwitchToNormalMode: boolean) =>
         isSwitchToNormalMode ? this.splitColumns() : this.combineColumns();

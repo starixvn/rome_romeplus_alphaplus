@@ -12,7 +12,7 @@ public class MatchWinLossDetailQuery : DefaultDateRangeQuery, IRequest<MatchWinL
         LanguageKey = Viewer.LangKey;
     }
 
-    public string UserSelectedProductIds { get; set; }
+    public string UserSelectedProductIds { get; set; } = "*";
 
     public string UserSelectedLeagueIds { get; set; }
 

@@ -32,7 +32,8 @@ public class StatementDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
     {
         var transferDate = message.TransferDate.ToShortDateWithSlash();
 
-        var fileContent = UseTemplate(new TemplateInfo(
+        var fileContent = UseTemplate(
+            new TemplateInfo(
                 GetExcelTemplatePath("StatementDetails"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3,

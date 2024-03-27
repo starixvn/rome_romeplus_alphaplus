@@ -1,3 +1,5 @@
+using System.Text;
+using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Criteria;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
@@ -9,17 +11,13 @@ namespace AlphaPlus.Reports.Features.Shared;
 
 public interface IProductService
 {
-    //bool CanViewProduct(string site, int currencyId, int productId, DateTime? minReportDate = null);
-
     string ConcatProductNames(IEnumerable<int> productIds);
 
-    //string ConcatProductNames(IEnumerable<int> productIds, IDictionary<int, string> replacedProductNames);
+    IEnumerable<Product> GetProducts(GetProductsParam param);
 
-    IEnumerable<int> FilterProductIds(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null);
+    IEnumerable<ProductDetail> GetProductDetails(int custId, IEnumerable<Product> products);
 
-    IEnumerable<Product> FilterProducts(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null);
-
-    IEnumerable<Product> GetOfferedProducts(string site, int currencyId, DateTime? minReportDate = null);
+    string BuildProductDetailXml(ProductDetail productDetail);
 }
 
 public class ProductService(
@@ -31,45 +29,28 @@ public class ProductService(
 {
     private const int CustProductsCacheTimeInMinutes = 5;
     private const string ProductsCacheKey = "AlphaPlus.Reports.Products";
-
-    public bool CanViewProduct(string site, int currencyId, int productId, DateTime? minReportDate = null)
-        => FilterProducts(site, currencyId, [productId], minReportDate).Any();
+    private const int ProductDetailsCacheInMinutes = 60 * 24; // 1 day
+    private const string ProductDetailsCacheKey = "AlphaPlus.Reports.ProductDetails";
+    private const int CustProductDetailsCacheInMinutes = 5;
 
     public string ConcatProductNames(IEnumerable<int> productIds)
-        => productIds.Select(id => cacheRefService.GetProductName(id)).JoinWithComma(", ");
+        => productIds.Select(cacheRefService.GetProductName).JoinWithComma(", ");
 
-    public string ConcatProductNames(IEnumerable<int> productIds, IDictionary<int, string> replacedProductNames)
-        => productIds == null
-        ? string.Empty
-        : productIds.Select(id => replacedProductNames.TryGetValue(id, out var name) ? name : cacheRefService.GetProductName(id)).JoinWithComma(", ");
-
-    public IEnumerable<int> FilterProductIds(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null)
-    {
-        var products = productIds.Any()
-            ? FilterProducts(site, currencyId, productIds, minReportDate)
-            : GetOfferedProducts(site, currencyId, minReportDate);
-
-        return products.Select(product => product.Id);
-    }
-
-    public IEnumerable<Product> FilterProducts(string site, int currencyId, IEnumerable<int> productIds, DateTime? minReportDate = null)
-        => GetOfferedProducts(site, currencyId, minReportDate).Where(product => productIds.Contains(product.Id));
-
-    public IEnumerable<Product> GetOfferedProducts(string site, int currencyId, DateTime? minReportDate)
+    public IEnumerable<Product> GetProducts(GetProductsParam param)
     {
         var products = cacheService.GetOrSet(
-            $"{ProductsCacheKey}-{site}-{currencyId}-{LanguageCode}",
-            () => repository.Fetch<Product>(new GetProductsCriteria(site, currencyId, options.Value.SettingStatus))
+            $"{ProductsCacheKey}-{param.SiteName}-{param.CurrencyId}-{param.Language}",
+            () => repository.Fetch<Product>(new GetProductsCriteria(param.SiteName, param.CurrencyId, param.SettingStatus))
                 .Where(product => !product.IsHide)
                 .Select(product =>
                 {
-                    product.DisplayName = cacheRefService.GetProductName(product.Id);
+                    product.Name = cacheRefService.GetProductName(product.Id);
                     product.TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type);
                     return product;
                 }).ToList(),
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
-        return products.Where(i => canViewProduct(i.Id) && IsRemainSupportProduct(i, minReportDate));
+        return products.Where(i => canViewProduct(i.Id) && IsRemainSupportProduct(i, param.MinReportDate));
     }
 
     private static bool IsRemainSupportProduct(Product product, DateTime? minReportDate)
@@ -77,5 +58,73 @@ public class ProductService(
         || !product.EndOfSupportDate.HasValue
         || minReportDate.Value <= product.EndOfSupportDate.Value;
 
-    private static string LanguageCode => Thread.CurrentThread.CurrentCulture.Name;
+    public IEnumerable<ProductDetail> GetProductDetails(int custId, IEnumerable<Product> products)
+        => cacheService.GetOrSet(
+            $"{ProductDetailsCacheKey}-{custId}",
+            () =>
+            {
+                var productSupportDetail = products
+                    .Where(product => options.Value.ProductOfferProductDetail.Contains(product.Id))
+                    .Select(product => product.Id)
+                    .ToList();
+
+                return GetAllProductDetails()
+                    .Where(p => productSupportDetail.Contains(p.ProductId) && SportsbookSupportDetail(p))
+                    .Select(product =>
+                    {
+                        product.DisplayName = GetProductDetailName(product.RefId, product.ResourceId);
+                        return product;
+                    });
+            },
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
+
+    private string GetProductDetailName(string refId, int resourceId)
+    {
+        string productDetailName = null;
+
+        if (options.Value.IsSiteLabel777 && ProductDetaiIdConstants.SportsbookDetailFor777Site.Contains(resourceId))
+        {
+            productDetailName = cacheRefService.GetResourceDataByRefIdAndResourceId($"{refId}_Saba", resourceId);
+        }
+
+        return string.IsNullOrWhiteSpace(productDetailName)
+            ? cacheRefService.GetResourceDataByRefIdAndResourceId(refId, resourceId)
+            : productDetailName;
+    }
+
+    private bool SportsbookSupportDetail(ProductDetail detail)
+    {
+        if (options.Value.IsSiteLabel777 && detail.ProductId == ProductIdConstants.Sportsbook)
+        {
+            return ProductDetaiIdConstants.SportsbookDetailFor777Site.Contains(detail.ResourceId);
+        }
+
+        return true;
+    }
+
+    private IEnumerable<ProductDetail> GetAllProductDetails()
+        => cacheService.GetOrSet(
+            ProductDetailsCacheKey,
+            () => repository.Fetch<ProductDetail>(new GetProductsDetailCriteria()).OrderBy(product => product.ProductId).ThenBy(product => product.Order),
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductDetailsCacheInMinutes)));
+
+    public string BuildProductDetailXml(ProductDetail productDetail)
+    {
+        var xml = new StringBuilder();
+        foreach (var leagueId in productDetail.LeagueGroupIds)
+        {
+            foreach (var typeId in productDetail.TicketTypeIds)
+            {
+                xml.AppendFormat(
+                    "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
+                    productDetail.ProductId,
+                    productDetail.SportType,
+                    productDetail.BetType,
+                    leagueId,
+                    typeId);
+            }
+        }
+
+        return xml.ToString();
+    }
 }

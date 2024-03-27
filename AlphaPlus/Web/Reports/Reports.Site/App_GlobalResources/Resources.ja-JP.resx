@@ -363,6 +363,12 @@
   <data name="DoNotShowAgain" xml:space="preserve">
     <value/>
   </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value/>
+  </data>
   <data name="DuplicatedTicketMessage" xml:space="preserve">
     <value/>
   </data>
@@ -1105,7 +1111,7 @@
     <value>受付番号</value>
   </data>
   <data name="transtime" xml:space="preserve">
-    <value>取り引き時間&#xD;
+    <value>取り引き時間&#xD;&#xD;
 </value>
   </data>
   <data name="under" xml:space="preserve">

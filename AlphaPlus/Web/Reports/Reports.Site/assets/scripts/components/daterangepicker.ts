@@ -60,8 +60,7 @@ class DateRangePickerComponent {
 
                 if (this.isCompleteInitDateRangePicker && selectValue !== this.quickChooseType.specificDates) {
                     if (selectValue === this.quickChooseType.olderThan3Months) {
-                        this.$reportForm.find('input[id=IsHistoricReport]').val('true');
-                        this.$reportForm.find('a[id=historic-report]').trigger('click');
+                        this.$reportForm.find('#historic-report').trigger('click');
                     } else {
                         this.$reportForm.submit();
                     }

@@ -72,21 +72,24 @@ public class ReportTitleTagHelper : TagHelper
         var total = Model.TotalEnteredResults;
         if (total != null)
         {
+            var today = DateTime.Today;
+            var yesterday = today.Yesterday();
+
             sb.Append("<div class=\"entered-non-entered\">");
             if (total.EnteredResultYesterday.NonEntered > 0)
             {
-                AppendNonEnteredSportResult(sb, total.EnteredResultYesterday.EventDate, total.EnteredResultYesterday.NonEntered);
+                AppendNonEnteredSportResult(sb, yesterday, total.EnteredResultYesterday.NonEntered);
             }
             else
             {
                 sb
                     .Append("<div class=\"icon-entered\">")
-                    .Append($"<div class=\"text\">{total.EnteredResultYesterday.EventDate.ToMMDDWithSlash()}: {Resources.Entered}</div>")
+                    .Append($"<div class=\"text\">{yesterday.ToMMDDWithSlash()}: {Resources.Entered}</div>")
                     .Append("<div class=\"icon-check-circle\"></div>")
                     .Append("</div>");
             }
 
-            AppendNonEnteredSportResult(sb, total.EnteredResultToday.EventDate, total.EnteredResultToday.NonEntered);
+            AppendNonEnteredSportResult(sb, today, total.EnteredResultToday.NonEntered);
             sb.Append("</div>");
         }
     }

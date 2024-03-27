@@ -6,6 +6,7 @@ using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using BetListNPOI.HSSF.UserModel;
 using BetListNPOI.SS.UserModel;
 using ONEbook.SpreadSheets;
+using static ONEbook.SpreadSheets.Column;
 
 namespace AlphaPlus.Reports.Site.Features.CommissionByBetType;
 
@@ -26,7 +27,8 @@ public class CommissionByBetTypeWorkbook(IWebHostEnvironment webHostEnvironment)
         var fromDate = message.FromDate.ToShortDateWithSlash();
         var toDate = message.ToDate.ToShortDateWithSlash();
 
-        var fileContent = UseTemplate(new TemplateInfo(
+        var fileContent = UseTemplate(
+            new TemplateInfo(
                 GetExcelTemplatePath(message.CustLevel.GetDirectDownlineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3,
@@ -43,12 +45,12 @@ public class CommissionByBetTypeWorkbook(IWebHostEnvironment webHostEnvironment)
 
     private static Mapper<CommissionByBetTypeModel> GetRowMapper(bool isTotal = false)
         => new Mapper<CommissionByBetTypeModel>()
-            .Map(Column.A, commission => isTotal ? Resources.Total : commission.CustName)
-            .Map(Column.B, commission => commission.Comm1)
-            .Map(Column.C, commission => commission.Comm2)
-            .Map(Column.D, commission => commission.Comm3)
-            .Map(Column.E, commission => commission.MyanmarOddsComm)
-            .Map(Column.F, commission => commission.CasinoComm);
+            .Map(A, commission => isTotal ? Resources.Total : commission.CustName)
+            .Map(B, commission => commission.Comm1)
+            .Map(C, commission => commission.Comm2)
+            .Map(D, commission => commission.Comm3)
+            .Map(E, commission => commission.MyanmarOddsComm)
+            .Map(F, commission => commission.CasinoComm);
 
     protected override void FillBody(Sheet sheet)
     {
@@ -60,7 +62,7 @@ public class CommissionByBetTypeWorkbook(IWebHostEnvironment webHostEnvironment)
     protected override void FillNoInfoRow(Sheet sheet)
     {
         var rowIndex = TemplateInfo.BodyStartIndex;
-        var colIndex = Column.GetColIndex(TemplateInfo.ColumnStartName);
+        var colIndex = GetColIndex(TemplateInfo.ColumnStartName);
 
         var lastColumnIndex = sheet.OddRowTemplate.LastCellIndex - 1 - (!isShowMyanmarOdds ? 1 : 0);
 

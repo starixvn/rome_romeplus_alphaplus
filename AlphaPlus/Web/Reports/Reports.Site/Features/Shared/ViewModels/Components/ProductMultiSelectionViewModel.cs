@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
-
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 
 public record ProductMultiSelectionViewModel(
-    IEnumerable<SelectListItem> Products,
+    IEnumerable<ProductGroupViewModel> Products,
     string UserSelectedProductIds,
-    string Language);
+    string Language,
+    IEnumerable<ProductDetailViewModel> ProductDetails = null,
+    string UserSelectedResourceIds = null);

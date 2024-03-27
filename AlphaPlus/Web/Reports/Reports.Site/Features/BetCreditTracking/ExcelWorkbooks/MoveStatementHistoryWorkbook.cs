@@ -39,7 +39,8 @@ public class MoveStatementHistoryWorkbook(IWebHostEnvironment webHostEnvironment
         var toDate = message.ToDate.ToShortDateWithSlash();
         this.reportData = reportData;
 
-        var fileContent = UseTemplate(new TemplateInfo(
+        var fileContent = UseTemplate(
+            new TemplateInfo(
                 GetExcelTemplatePath("MoveStatementHistory"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3))

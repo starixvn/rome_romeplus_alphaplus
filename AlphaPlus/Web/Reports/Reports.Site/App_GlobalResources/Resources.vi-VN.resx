@@ -363,6 +363,12 @@
   <data name="DoNotShowAgain" xml:space="preserve">
     <value>Không hiển thị lại</value>
   </data>
+  <data name="DormantAccounts" xml:space="preserve">
+    <value>Tài Khoản Không Hoạt Động</value>
+  </data>
+  <data name="DormantAccountsNote" xml:space="preserve">
+    <value>- Thông tin của các tài khoản không hoạt động đã được thu thập và tổng hợp; việc xem thông tin chi tiết từng tài khoản không còn khả dụng.</value>
+  </data>
   <data name="DuplicatedTicketMessage" xml:space="preserve">
     <value>Vé cược nào có ngày diễn ra bị thay đổi nhiều lần sẽ được hiển thị lại và tô đỏ.</value>
   </data>
@@ -463,7 +469,7 @@
     <value>Giá trị Tổng Hoa Hồng có thể khác nhau ở mỗi cấp do làm tròn đến 4 chữ số thập phân.</value>
   </data>
   <data name="GrossCommRoundingNote" xml:space="preserve">
-    <value>Giá trị hoa hồng có thể chênh lệch nhỏ so với giá trị trên lý thuyết (Hoa Hồng * Position Taking), do được tính bằng tổng giá trị hoa hồng (làm tròn đến 4 chữ số thập phân) của các vé cược phụ.</value>
+    <value>- Giá trị hoa hồng có thể chênh lệch nhỏ so với giá trị trên lý thuyết (Hoa Hồng * Position Taking), do được tính bằng tổng giá trị hoa hồng (làm tròn đến 4 chữ số thập phân) của các vé cược phụ.</value>
   </data>
   <data name="Guidelines_AccumulatedTotal_Member" xml:space="preserve">
     <value>số dư tính đến cuối ngày.</value>
@@ -526,7 +532,7 @@
     <value>IP</value>
   </data>
   <data name="IPMatching" xml:space="preserve">
-    <value>IP trùng lặp&#xD;
+    <value>IP trùng lặp&#xD;&#xD;
 </value>
   </data>
   <data name="IPMatchingNote" xml:space="preserve">
@@ -906,6 +912,9 @@
   </data>
   <data name="SumOfMemberTotal" xml:space="preserve">
     <value>Tổng Số Dư</value>
+  </data>
+  <data name="SummaryOfDormantAccounts" xml:space="preserve">
+    <value>Tổng hợp tài khoản không hoạt động</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value/>

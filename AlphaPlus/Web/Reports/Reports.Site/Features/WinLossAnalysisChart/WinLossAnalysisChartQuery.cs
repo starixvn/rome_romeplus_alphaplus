@@ -27,7 +27,7 @@ public class WinLossAnalysisChartQuery : DefaultDateRangeQuery, IRequest<WinLoss
         DarkModeName = Viewer.DarkModeName;
     }
 
-    public string UserSelectedProductIds { get; set; }
+    public string UserSelectedProductIds { get; set; } = "*";
 
     public string CurrencyName { get; }
 

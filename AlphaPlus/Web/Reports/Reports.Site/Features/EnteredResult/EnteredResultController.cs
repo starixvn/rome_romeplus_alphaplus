@@ -6,9 +6,6 @@ namespace AlphaPlus.Reports.Site.Features.EnteredResult;
 
 public class EnteredResultController(IMediator mediator) : ReportBaseController(mediator)
 {
-    [Route("enteredresult/master")]
-    [Route("enteredresult/agent")]
-    [Route("enteredresult/member")]
     public Task<IActionResult> Index(EnteredResultQuery message) => View(message);
 
     public Task<IActionResult> Excel(EnteredResultExcelQuery message) => ExcelView(message);
