@@ -20,7 +20,6 @@ class MemberStatementView extends StatementView {
     windowLocation: any;
 
     constructor(
-        $: JQueryStatic,
         dateRangePickerComponent: DateRangePickerComponent,
         pagerComponent: ClientPagerComponent,
         topWindow: any,
@@ -28,14 +27,14 @@ class MemberStatementView extends StatementView {
         windowLocation: any,
         linkBuilderComponent: LinkBuilderComponent
     ) {
-        super($, dateRangePickerComponent, pagerComponent, topWindow, linkBuilderComponent);
+        super(dateRangePickerComponent, pagerComponent, topWindow, linkBuilderComponent);
 
         this.reportTypeComponent = reportTypeComponent;
         this.windowLocation = windowLocation;
     }
 
     public init() {
-        this.$.blockUI();
+        $.blockUI();
 
         super.init();
 
@@ -46,10 +45,10 @@ class MemberStatementView extends StatementView {
         );
         this.reportTypeComponent.render(reportTypeComponentOption);
 
-        this.betListUrl = this.$('#BetListUrl').val();
-        this.betListTitle = this.$('#BetListTitle').val();
+        this.betListUrl = $('#BetListUrl').val();
+        this.betListTitle = $('#BetListTitle').val();
 
-        this.$.unblockUI();
+        $.unblockUI();
     }
 
     public registerEvents() {
@@ -58,16 +57,16 @@ class MemberStatementView extends StatementView {
         const self = this;
 
         this.$tableReport.find('.col-void-amount').click(function () {
-            self.viewBetList(self.$(this), self.transactionType.VoidCancelled);
+            self.viewBetList($(this), self.transactionType.VoidCancelled);
         });
         this.$tableReport.find('.col-outstanding').click(function () {
-            self.viewBetList(self.$(this), self.transactionType.Outstanding);
+            self.viewBetList($(this), self.transactionType.Outstanding);
         });
         this.$tableReport.find('.col-win-loss').click(function () {
-            self.viewBetList(self.$(this), self.transactionType.WinLoss);
+            self.viewBetList($(this), self.transactionType.WinLoss);
         });
         this.$tableReport.find('.col-grand-prize').click(function () {
-            self.viewBetList(self.$(this), self.transactionType.GrandPrize);
+            self.viewBetList($(this), self.transactionType.GrandPrize);
         });
     }
 
@@ -84,19 +83,18 @@ class MemberStatementView extends StatementView {
             TransType: transactionType
         };
 
-        var url = `${this.betListUrl}?${this.$.param(param)}`;
+        var url = `${this.betListUrl}?${$.param(param)}`;
         this.topWindow.popupManager.open(url, this.betListTitle, 900);
     };
 }
 
 $(function () {
     new MemberStatementView(
-        $,
-        new DateRangePickerComponent($),
-        new ClientPagerComponent($),
+        new DateRangePickerComponent(),
+        new ClientPagerComponent(),
         window.top,
-        new SingleSelectionDropdownComponent($),
+        new SingleSelectionDropdownComponent(),
         window.location,
-        new LinkBuilderComponent($)
+        new LinkBuilderComponent()
     ).init();
 });

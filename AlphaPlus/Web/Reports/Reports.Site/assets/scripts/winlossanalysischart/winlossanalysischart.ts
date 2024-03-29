@@ -6,20 +6,19 @@
 class WinLossAnalysisChartView extends BaseReport {
     $msgError: JQuery;
 
-    monthRangePickerComponent: MonthRangePickerComponent;
     productComponent: ProductMultiSelectionComponent;
+    monthRangePickerComponent: MonthRangePickerComponent;
     reportTooltip: ReportTooltip;
     dualAxisChartComponent: DualAxisChartComponent;
 
     constructor(
-        $: JQueryStatic,
-        monthRangePickerComponent: MonthRangePickerComponent,
         productComponent: ProductMultiSelectionComponent,
+        monthRangePickerComponent: MonthRangePickerComponent,
         reportTooltip: ReportTooltip,
         linkBuilderComponent: LinkBuilderComponent,
         dualAxesChartComponent: DualAxisChartComponent
     ) {
-        super($, linkBuilderComponent);
+        super(linkBuilderComponent);
         this.monthRangePickerComponent = monthRangePickerComponent;
         this.productComponent = productComponent;
         this.reportTooltip = reportTooltip;
@@ -27,14 +26,14 @@ class WinLossAnalysisChartView extends BaseReport {
     }
 
     init() {
-        this.$msgError = this.$('#msg-error');
+        this.$msgError = $('#msg-error');
         this.initComponents();
     }
 
     initComponents() {
         this.productComponent.render();
         this.monthRangePickerComponent.render();
-        this.dualAxisChartComponent.render(new DualAxisChartOption(this.$('#IsDarkMode').val() === 'True'));
+        this.dualAxisChartComponent.render(new DualAxisChartOption($('#IsDarkMode').val() === 'True'));
     }
 
     onSubmitReport = (event: any) => {
@@ -65,11 +64,10 @@ class WinLossAnalysisChartView extends BaseReport {
 declare let Chart: any;
 $(function () {
     new WinLossAnalysisChartView(
-        $,
-        new MonthRangePickerComponent($),
-        new ProductMultiSelectionComponent($),
-        new ReportTooltip($),
-        new LinkBuilderComponent($),
-        new DualAxisChartComponent($, Chart)
+        new ProductMultiSelectionComponent(),
+        new MonthRangePickerComponent(),
+        new ReportTooltip(),
+        new LinkBuilderComponent(),
+        new DualAxisChartComponent(Chart)
     ).init();
 });

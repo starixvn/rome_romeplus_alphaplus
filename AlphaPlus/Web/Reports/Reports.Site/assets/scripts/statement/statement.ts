@@ -18,13 +18,12 @@ class StatementView extends BaseReport {
     statementDetailView: StatementDetailView;
 
     constructor(
-        $: JQueryStatic,
         dateRangePickerComponent: DateRangePickerComponent,
         pagerComponent: ClientPagerComponent,
         topWindow: any,
         linkBuilderComponent: LinkBuilderComponent
     ) {
-        super($, linkBuilderComponent);
+        super(linkBuilderComponent);
 
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.pagerComponent = pagerComponent;
@@ -42,21 +41,19 @@ class StatementView extends BaseReport {
     }
 
     cacheElements() {
-        this.custId = this.$('#CustId').val();
-        this.custName = this.$('#CustName').val();
-        const $tmpStatementDetailsURL = this.$('#StatementDetailsURL');
+        this.custId = $('#CustId').val();
+        this.custName = $('#CustName').val();
+        const $tmpStatementDetailsURL = $('#StatementDetailsURL');
         this.statementDetailsURL = $tmpStatementDetailsURL.attr('href');
         $tmpStatementDetailsURL.remove();
 
-        this.popupStatementDetails = this.$('#popup-statement-details');
+        this.popupStatementDetails = $('#popup-statement-details');
         this.popupBodyStatementDetails = this.popupStatementDetails.find('.modal-body');
     }
 
     registerEvents() {
-        this.statementDetailView = new StatementDetailView(this.$, this.popupStatementDetails);
-        this.$('.column-transfer-amount').on('click', (e) =>
-            this.loadStatementDetail(this.$(e.target).data('transfer-date'))
-        );
+        this.statementDetailView = new StatementDetailView(this.popupStatementDetails);
+        $('.column-transfer-amount').on('click', (e) => this.loadStatementDetail($(e.target).data('transfer-date')));
         this.popupStatementDetails.draggable({ handle: '.modal-header' });
     }
 
@@ -66,7 +63,7 @@ class StatementView extends BaseReport {
             CustName: this.custName,
             TransferDate: transferDate
         };
-        const url = `${this.statementDetailsURL}?${this.$.param(param)}`;
+        const url = `${this.statementDetailsURL}?${$.param(param)}`;
         const title = `Transfer Details (${this.custName})`;
         this.topWindow.popupManager.open(url, title, 900);
     };

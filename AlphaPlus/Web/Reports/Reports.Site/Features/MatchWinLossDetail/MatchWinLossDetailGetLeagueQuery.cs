@@ -3,7 +3,7 @@ using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.MatchWinLossDetail;
 
-public class GetLeaguesQuery : BaseQuery, IRequest<LeaguesViewModel>
+public class MatchWinLossDetailGetLeagueQuery : BaseQuery, IRequest<LeagueViewModel>
 {
     public DateTime FromDate { get; set; }
 

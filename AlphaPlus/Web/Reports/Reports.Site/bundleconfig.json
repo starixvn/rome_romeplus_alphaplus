@@ -64,6 +64,25 @@
         ]
     },
     {
+        "outputFileName": "wwwroot/bundles/matchwinlossdetail/matchwinlossdetail.css",
+        "inputFiles": [
+            "assets/styles/matchwinlossdetail/matchwinlossdetail.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/matchwinlossdetail/matchwinlossdetail.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/league-multiselection.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/matchwinlossdetail/matchwinlossdetail.js"
+        ]
+    },
+    {
         "outputFileName": "wwwroot/bundles/winlossanalysis/winlossanalysis.js",
         "inputFiles": [
             "assets/scripts/core.js",

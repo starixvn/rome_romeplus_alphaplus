@@ -3,23 +3,22 @@
     pagerComponent: PagerComponent;
 
     constructor(
-        $: JQueryStatic,
         monthPickerComponent: MonthPickerComponent,
         pagerComponent: PagerComponent,
         linkBuilderComponent: LinkBuilderComponent
     ) {
-        super($, linkBuilderComponent);
+        super(linkBuilderComponent);
         this.monthPickerComponent = monthPickerComponent;
         this.pagerComponent = pagerComponent;
     }
 
     public init() {
-        this.$.blockUI();
+        $.blockUI();
 
         this.initComponents();
         this.bindEvents();
 
-        this.$.unblockUI();
+        $.unblockUI();
     }
 
     public initComponents() {
@@ -30,26 +29,26 @@
     }
 
     public bindEvents() {
-        this.$reportForm.submit(() => this.$.blockUI());
+        this.$reportForm.submit(() => $.blockUI());
 
-        this.$('.btn-submit').click(() => {
-            this.$('#IsMainReport').val('true');
-            this.$('#PageIndex').val('');
-            this.$('#PageSize').val('');
+        $('.btn-submit').click(() => {
+            $('#IsMainReport').val('true');
+            $('#PageIndex').val('');
+            $('#PageSize').val('');
         });
 
-        this.$('#back-link').click(() => {
-            this.$('#IsMainReport').val('true');
+        $('#back-link').click(() => {
+            $('#IsMainReport').val('true');
             this.$reportForm.submit();
         });
 
-        this.$('#detail-link').click(() => {
-            this.$('#IsMainReport').val('false');
+        $('#detail-link').click(() => {
+            $('#IsMainReport').val('false');
             this.$reportForm.submit();
         });
     }
 }
 
 $(function () {
-    new MoveStatementHistory($, new MonthPickerComponent($), new PagerComponent($), new LinkBuilderComponent($)).init();
+    new MoveStatementHistory(new MonthPickerComponent(), new PagerComponent(), new LinkBuilderComponent()).init();
 });

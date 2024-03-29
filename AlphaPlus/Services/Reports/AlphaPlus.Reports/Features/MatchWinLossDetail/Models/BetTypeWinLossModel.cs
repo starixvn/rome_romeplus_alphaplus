@@ -4,7 +4,11 @@ namespace AlphaPlus.Reports.Features.MatchWinLossDetail;
 
 public class BetTypeWinLossModel : NetWinLoss
 {
-    public BetTypeWinLossModel(MatchWinLossDetailModel winloss, string betTypeName)
+    public BetTypeWinLossModel(MatchWinLossDetailEntity winloss) : this(winloss, null)
+    {
+    }
+
+    public BetTypeWinLossModel(MatchWinLossDetailEntity winloss, string betTypeName)
     {
         Id = winloss.BetType;
         Name = betTypeName;
@@ -20,6 +24,7 @@ public class BetTypeWinLossModel : NetWinLoss
         MAgComm = winloss.MAgComm;
         SAgWinLoss = winloss.SAgWinLoss;
         SAgComm = winloss.SAgComm;
+        CompanyComm = winloss.CompanyComm;
     }
 
     public int Id { get; }
@@ -27,6 +32,8 @@ public class BetTypeWinLossModel : NetWinLoss
     public string Name { get; }
 
     public decimal GrossComm { get; }
+
+    public decimal CompanyComm { get; }
 
     public bool IsLive { get; }
 

@@ -10,19 +10,15 @@ class OutstandingViewNew extends BaseReportNew {
     linkBuilderComponent: LinkBuilderComponent;
     displayOutstandingLevels: any;
 
-    constructor(
-        $: JQueryStatic,
-        productComponent: ProductMultiSelectionComponent,
-        linkBuilderComponent: LinkBuilderComponent
-    ) {
-        super($, linkBuilderComponent);
+    constructor(productComponent: ProductMultiSelectionComponent, linkBuilderComponent: LinkBuilderComponent) {
+        super(linkBuilderComponent);
         this.productComponent = productComponent;
     }
 
-    init = () => {
+    init() {
         super.init();
 
-        this.displayOutstandingLevels = JSON.parse(this.$('#DisplayOutstandingLevelsJson').val());
+        this.displayOutstandingLevels = JSON.parse($('#DisplayOutstandingLevelsJson').val());
         this.productComponent.render();
 
         this.linkBuilderComponent.render();
@@ -30,7 +26,7 @@ class OutstandingViewNew extends BaseReportNew {
         this.initHelp();
         this.initDataTable();
         this.registerDrilldownableEvents();
-    };
+    }
 
     registerEvents = () => {
         super.registerEvents();
@@ -39,11 +35,9 @@ class OutstandingViewNew extends BaseReportNew {
 
     initDataTable = () => {
         let colunmSortIndex = 0;
-        this.$.each(this.displayOutstandingLevels, (key, value) => {
-            if (
-                this.$(this.$sortPropertyName).val().toLowerCase() === `${value.DisplayName}Outstanding`.toLowerCase()
-            ) {
-                colunmSortIndex = key + 1;
+        this.displayOutstandingLevels.forEach((element, index) => {
+            if ($(this.$sortPropertyName).val().toLowerCase() === `${element.DisplayName}Outstanding`.toLowerCase()) {
+                colunmSortIndex = index + 1;
                 return;
             }
         });
@@ -74,10 +68,10 @@ class OutstandingViewNew extends BaseReportNew {
     };
 
     onSubmitReport = (e: any) => {
-        this.$.blockUI();
+        $.blockUI();
 
         if (!this.productComponent.validateProductIds()) {
-            this.$.unblockUI();
+            $.unblockUI();
             e.preventDefault();
 
             return;
@@ -97,5 +91,5 @@ class OutstandingViewNew extends BaseReportNew {
 }
 
 $(function () {
-    new OutstandingViewNew($, new ProductMultiSelectionComponent($), new LinkBuilderComponent($)).init();
+    new OutstandingViewNew(new ProductMultiSelectionComponent(), new LinkBuilderComponent()).init();
 });

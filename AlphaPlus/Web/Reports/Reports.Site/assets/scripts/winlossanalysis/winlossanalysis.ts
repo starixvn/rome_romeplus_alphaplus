@@ -8,37 +8,30 @@ class WinLossAnalysisView extends BaseReport {
     $reportTypeId: JQuery;
     $switchModeIcon: JQuery;
     $isSetDefaultStackMode: JQuery;
-
     isFirstSwitchMode = true;
-    levels = ['member', 'agent', 'master', 'super'];
 
-    dateRangePickerComponent: DateRangePickerComponent;
     productComponent: ProductMultiSelectionComponent;
+    dateRangePickerComponent: DateRangePickerComponent;
     sortComponent: SortComponent;
     reportTooltip: ReportTooltip;
     linkBuilderComponent: LinkBuilderComponent;
 
     constructor(
-        $: JQueryStatic,
-        dateRangePickerComponent: DateRangePickerComponent,
         productComponent: ProductMultiSelectionComponent,
+        dateRangePickerComponent: DateRangePickerComponent,
         sortComponent: SortComponent,
         reportTooltip: ReportTooltip,
         linkBuilderComponent: LinkBuilderComponent
     ) {
-        super($, linkBuilderComponent);
+        super(linkBuilderComponent);
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.productComponent = productComponent;
         this.sortComponent = sortComponent;
         this.reportTooltip = reportTooltip;
     }
 
-    init = () => {
-        if (!this.checkReady()) {
-            return;
-        }
-
-        this.$.blockUI();
+    init() {
+        $.blockUI();
 
         this.cacheDOMElements();
         this.bindFilter();
@@ -46,15 +39,17 @@ class WinLossAnalysisView extends BaseReport {
 
         this.registerEvents();
 
-        this.$.unblockUI();
-    };
+        // remove style="visibility:hidden"
+        // TableSorter cannot run with style="display:none"
+        this.$tableReport.removeAttr('style');
 
-    checkReady = () => this.$('#IsSetDefaultStackMode').length > 0;
+        $.unblockUI();
+    }
 
     cacheDOMElements() {
-        this.$switchModeIcon = this.$('.icon-switchmode');
-        this.$reportTypeId = this.$('#ReportTypeId');
-        this.$isSetDefaultStackMode = this.$('#IsSetDefaultStackMode');
+        this.$switchModeIcon = $('.icon-switchmode');
+        this.$reportTypeId = $('#ReportTypeId');
+        this.$isSetDefaultStackMode = $('#IsSetDefaultStackMode');
     }
 
     bindFilter() {
@@ -65,9 +60,7 @@ class WinLossAnalysisView extends BaseReport {
             alphaReports.screenSmallThan768()
         ) {
             this.setStackMode();
-            this.reportTooltip.show(
-                new ReportTooltipOption('icon-normal-column', parseInt(this.$('#CustId').val(), 0))
-            );
+            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winlossanalysis'));
         }
 
         this.dateRangePickerComponent.render();
@@ -89,7 +82,7 @@ class WinLossAnalysisView extends BaseReport {
         this.$switchModeIcon.on('click', this.onSwitchModeEvent);
 
         const self = this;
-        this.$(':radio[name=ReportTypeId]').change(function () {
+        $(':radio[name=ReportTypeId]').change(function () {
             self.onSubmitReport(this.form);
             self.$reportForm.submit();
         });
@@ -118,11 +111,11 @@ class WinLossAnalysisView extends BaseReport {
     };
 
     setStackMode = () => {
-        this.$.blockUI();
+        $.blockUI();
         this.setCssBySwitchMode(false);
         this.renderAtFirstSwitchMode(false);
         this.isFirstSwitchMode = false;
-        this.$.unblockUI();
+        $.unblockUI();
     };
 
     setCssBySwitchMode = (isSwitchToNormalMode: boolean) => {
@@ -142,10 +135,9 @@ class WinLossAnalysisView extends BaseReport {
     };
 
     combineColumns = () => {
-        const this$ = this.$;
         this.levels.forEach(function (level, index) {
             const cellCss = `col-${level}-winloss-combined${index % 2 ? ' altercol' : ''}`;
-            alphaReports.combineConsecutiveCells(this$(`td.col-${level}-winloss`), 3, cellCss);
+            alphaReports.combineConsecutiveCells($(`td.col-${level}-winloss`), 3, cellCss);
         });
     };
 
@@ -176,13 +168,12 @@ class WinLossAnalysisView extends BaseReport {
 }
 
 $(function () {
-    const linkBuilderComponent = new LinkBuilderComponent($);
+    const linkBuilderComponent = new LinkBuilderComponent();
     new WinLossAnalysisView(
-        $,
-        new DateRangePickerComponent($),
-        new ProductMultiSelectionComponent($),
-        new SortComponent($, linkBuilderComponent),
-        new ReportTooltip($),
+        new ProductMultiSelectionComponent(),
+        new DateRangePickerComponent(),
+        new SortComponent(linkBuilderComponent),
+        new ReportTooltip(),
         linkBuilderComponent
     ).init();
 });

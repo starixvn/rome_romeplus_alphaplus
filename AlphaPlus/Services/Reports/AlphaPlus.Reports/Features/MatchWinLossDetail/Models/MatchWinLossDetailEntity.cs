@@ -2,7 +2,7 @@ using AlphaPlus.Reports.Features.Shared.Models;
 
 namespace AlphaPlus.Reports.Features.MatchWinLossDetail;
 
-public class MatchWinLossDetailModel : NetWinLoss
+public class MatchWinLossDetailEntity : NetWinLoss
 {
     private static readonly int[] ParlayBetGroupIds = [3, 4];
 
@@ -36,9 +36,16 @@ public class MatchWinLossDetailModel : NetWinLoss
 
     public decimal GrossComm { get; set; }
 
-    public static MatchWinLossDetailModel operator +(MatchWinLossDetailModel model1, MatchWinLossDetailModel model2)
+    public decimal CompanyComm
+    {
+        get => -(MemberComm + AgComm + MAgComm + SAgComm);
+        private set => _ = value;
+    }
+
+    public static MatchWinLossDetailEntity operator +(MatchWinLossDetailEntity model1, MatchWinLossDetailEntity model2)
     {
         model1.GrossComm += model2.GrossComm;
+        model1.CompanyComm += model2.CompanyComm;
         model1.Add(model2);
 
         return model1;

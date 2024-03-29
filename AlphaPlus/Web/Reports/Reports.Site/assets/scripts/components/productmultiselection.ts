@@ -5,7 +5,6 @@ interface JQuery {
 }
 
 class ProductMultiSelectionComponent {
-    $: JQueryStatic;
     $dropdownProduct: JQuery;
     $hiddenProductIdsInput: JQuery;
     $multiSelectButtonProduct: JQuery;
@@ -15,10 +14,7 @@ class ProductMultiSelectionComponent {
     $multiSelectButtonProductDetail: JQuery;
 
     isReady = false;
-
-    constructor($: JQueryStatic) {
-        this.$ = $;
-    }
+    numberDisplayed: 1;
 
     render() {
         this.renderProductDetailDropdown();
@@ -29,15 +25,15 @@ class ProductMultiSelectionComponent {
     /****** Product Dropdown ******/
     private renderProductDropdown() {
         const dropdownProductId = 'dropdown-product';
-        this.$dropdownProduct = this.$('#' + dropdownProductId);
+        this.$dropdownProduct = $('#' + dropdownProductId);
         const hasData = this.$dropdownProduct.data('hasdata');
 
         const productsInputId = 'product-ids';
-        this.$hiddenProductIdsInput = this.$('#' + productsInputId);
+        this.$hiddenProductIdsInput = $('#' + productsInputId);
 
         this.$dropdownProduct.multiselect({
             maxHeight: 300,
-            numberDisplayed: alphaReports.numberDisplayedProductsOnFilter,
+            numberDisplayed: this.numberDisplayed,
             nonSelectedText: hasData
                 ? this.$dropdownProduct.data('label-selectproducts')
                 : this.$dropdownProduct.data('label-nodata'),
@@ -58,7 +54,7 @@ class ProductMultiSelectionComponent {
     }
 
     private optionClass(element: HTMLElement) {
-        if (this.$(element).data('isnested') === 1) {
+        if ($(element).data('isnested') === 1) {
             return 'multiselect-nested-item';
         }
     }
@@ -76,7 +72,7 @@ class ProductMultiSelectionComponent {
         }
     }
 
-    validateProductIds = () => {
+    validateProductIds = (): boolean => {
         const isValid = this.$dropdownProduct.find('option:selected').length > 0;
         isValid
             ? this.$multiSelectButtonProduct.removeClass('error')
@@ -85,23 +81,23 @@ class ProductMultiSelectionComponent {
         return isValid;
     };
 
-    getProductIds = () => this.getSelectedItems(this.$dropdownProduct);
+    getProductIds = (): string => this.getSelectedItems(this.$dropdownProduct);
 
     /****** End of Product Dropdown ******/
 
     /****** Product Details Dropdown ******/
     private renderProductDetailDropdown() {
         const productDetailDropdownId = 'dropdown-product-detail';
-        this.$dropdownProductDetail = this.$('#' + productDetailDropdownId);
+        this.$dropdownProductDetail = $('#' + productDetailDropdownId);
 
         if (this.$dropdownProductDetail.length) {
             const resourcesInputId = 'resource-ids';
-            this.$hiddenProductDetailIdsInput = this.$('#' + resourcesInputId);
+            this.$hiddenProductDetailIdsInput = $('#' + resourcesInputId);
             const selectAllText = this.$dropdownProductDetail.data('label-selectall');
 
             this.$dropdownProductDetail.multiselect({
                 maxHeight: 300,
-                numberDisplayed: alphaReports.numberDisplayedProductsOnFilter,
+                numberDisplayed: this.numberDisplayed,
                 nonSelectedText: this.$dropdownProductDetail.data('label-selectnone'),
                 nSelectedText: ` ${this.$dropdownProductDetail.data('label-selected')}`,
                 allSelectedText: selectAllText,
@@ -117,7 +113,7 @@ class ProductMultiSelectionComponent {
     }
 
     private onChangeProductDetail() {
-        this.$hiddenProductDetailIdsInput.val(this.getProductDetailIds());
+        this.isReady && this.$hiddenProductDetailIdsInput.val(this.getProductDetailIds());
     }
 
     private disableProductDetailDropdown(checked: boolean) {
@@ -148,7 +144,7 @@ class ProductMultiSelectionComponent {
         let isEnableProductDetailDropdown = false;
         this.$dropdownProduct.find('option:selected').each((_, item) => {
             const filterOptions = this.$dropdownProductDetail.find(
-                `option:disabled[data-productid="${this.$(item).val()}"]`
+                `option:disabled[data-productid="${$(item).val()}"]`
             );
             if (filterOptions.length) {
                 filterOptions.prop('disabled', false);
@@ -159,12 +155,12 @@ class ProductMultiSelectionComponent {
         isEnableProductDetailDropdown && this.$dropdownProductDetail.multiselect('refresh');
     }
 
-    getProductDetailIds = () => this.getSelectedItems(this.$dropdownProductDetail);
+    getProductDetailIds = (): string => this.getSelectedItems(this.$dropdownProductDetail);
     /****** End of Product Details Dropdown ******/
 
     private getSelectedItems($dropdown: JQuery) {
         const selected = [];
-        $dropdown.find('option:selected').each((_, item) => selected.push(this.$(item).val()));
+        $dropdown.find('option:selected').each((_, item) => selected.push($(item).val()));
 
         return selected.join(',');
     }

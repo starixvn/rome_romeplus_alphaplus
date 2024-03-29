@@ -9,8 +9,18 @@ namespace AlphaPlus.Reports.Site.Features.Legends;
 
 public class LegendHandler(ILengendService lengendService, IOptions<AppSettings> options) :
     IRequestHandler<LegendQuery, LegendViewModel>,
-    IRequestHandler<WinLossLegendQuery, LegendViewModel>
+    IRequestHandler<WinLossLegendQuery, LegendViewModel>,
+    IRequestHandler<MatchWinLossDetailLegendQuery, LegendViewModel>
 {
+
+    public Task<LegendViewModel> Handle(MatchWinLossDetailLegendQuery message, CancellationToken cancellationToken)
+    {
+        var legends = new List<string>(GetGrossCommNotesByUserLevel(message.ViewerLevel));
+        var viewModel = new LegendViewModel([$"- {Resources.GrossComm}: <ul class=\"gross-comm\">{string.Join(string.Empty, legends)}</ul>"]);
+
+        return Task.FromResult(viewModel);
+    }
+
     public async Task<LegendViewModel> Handle(WinLossLegendQuery message, CancellationToken cancellationToken)
     {
         var legends = new List<string>();

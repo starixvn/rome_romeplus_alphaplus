@@ -1,36 +1,33 @@
 ﻿class WinLossView extends BaseReport {
-    isAgentLevel: boolean;
-
-    isFirstSwitchMode = true;
-    levels = ['member', 'agent', 'master', 'super'];
-
     productComponent: ProductMultiSelectionComponent;
     dateRangePickerComponent: DateRangePickerComponent;
+    monthPickerComponent: MonthPickerComponent;
     sortComponent: SortComponent;
     reportTooltip: ReportTooltip;
-    monthPickerComponent: MonthPickerComponent;
+
+    isAgentLevel: boolean;
+    isFirstSwitchMode = true;
 
     constructor(
-        $: JQueryStatic,
-        dateRangePickerComponent: DateRangePickerComponent,
         productComponent: ProductMultiSelectionComponent,
+        dateRangePickerComponent: DateRangePickerComponent,
+        monthPickerComponent: MonthPickerComponent,
         sortComponent: SortComponent,
-        reportTooltip: ReportTooltip,
-        monthPickerComponent: MonthPickerComponent
+        reportTooltip: ReportTooltip
     ) {
-        super($, new LinkBuilderComponent($));
+        super(new LinkBuilderComponent());
 
-        this.dateRangePickerComponent = dateRangePickerComponent;
         this.productComponent = productComponent;
+        this.dateRangePickerComponent = dateRangePickerComponent;
+        this.monthPickerComponent = monthPickerComponent;
         this.sortComponent = sortComponent;
         this.reportTooltip = reportTooltip;
-        this.monthPickerComponent = monthPickerComponent;
     }
 
     init() {
-        this.$.blockUI();
+        $.blockUI();
 
-        this.isAgentLevel = this.$('#IsAgentLevel').val().toLowerCase() === 'true';
+        this.isAgentLevel = $('#IsAgentLevel').val().toLowerCase() === 'true';
         this.initComponents();
         this.registerEvents();
 
@@ -38,20 +35,18 @@
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');
 
-        this.$.unblockUI();
+        $.unblockUI();
     }
 
     initComponents() {
-        if (this.$('#IsSetDefaultStackMode').val().toLowerCase() === 'true' && alphaReports.screenSmallThan768()) {
+        if ($('#IsSetDefaultStackMode').val().toLowerCase() === 'true' && alphaReports.screenSmallThan768()) {
             this.setStackMode();
-            this.reportTooltip.show(
-                new ReportTooltipOption('icon-normal-column', parseInt(this.$('#CustId').val(), 0))
-            );
+            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winloss'));
         }
 
         this.productComponent.render();
 
-        if (this.$('#IsHistoricReport').val().toLowerCase() === 'true') {
+        if ($('#IsHistoricReport').val().toLowerCase() === 'true') {
             this.monthPickerComponent.render();
         } else {
             this.dateRangePickerComponent.render();
@@ -61,7 +56,7 @@
     }
 
     registerEvents() {
-        this.$('.icon-switchmode').click(this.onSwitchMode);
+        $('.icon-switchmode').click(this.onSwitchMode);
         super.registerHistoricReportEvent();
         super.registerDrilldownableEvents();
     }
@@ -121,11 +116,11 @@
     }
 
     combineToTurnOverColumnAgentLevel() {
-        alphaReports.combineConsecutiveCells(this.$('td.col-turnover'), 2, 'text-right col-turnover-combined');
+        alphaReports.combineConsecutiveCells($('td.col-turnover'), 2, 'text-right col-turnover-combined');
     }
 
     combineToTurnOverColumnSuperMasterLevel() {
-        alphaReports.combineConsecutiveCells(this.$('td.col-turnover'), 3, 'text-right col-turnover-combined');
+        alphaReports.combineConsecutiveCells($('td.col-turnover'), 3, 'text-right col-turnover-combined');
     }
 
     combineToWinLossColumn(level: string, index: number) {
@@ -137,7 +132,7 @@
             cellCss = cellCss + (index % 2 ? ' altercol' : '');
         }
 
-        alphaReports.combineConsecutiveCells(this.$('td.col-' + level + '-winloss'), 3, cellCss);
+        alphaReports.combineConsecutiveCells($('td.col-' + level + '-winloss'), 3, cellCss);
     }
 
     getSortedColumnName() {
@@ -172,11 +167,10 @@
 
 $(function () {
     new WinLossView(
-        $,
-        new DateRangePickerComponent($),
-        new ProductMultiSelectionComponent($),
-        new SortComponent($, new LinkBuilderComponent($)),
-        new ReportTooltip($),
-        new MonthPickerComponent($)
+        new ProductMultiSelectionComponent(),
+        new DateRangePickerComponent(),
+        new MonthPickerComponent(),
+        new SortComponent(new LinkBuilderComponent()),
+        new ReportTooltip()
     ).init();
 });

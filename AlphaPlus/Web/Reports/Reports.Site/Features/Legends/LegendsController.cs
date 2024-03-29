@@ -9,5 +9,8 @@ public class LegendsController(IMediator mediator) : ReportBaseController(mediat
     public Task<IActionResult> Index(LegendQuery message) => View(message);
 
     public Task<IActionResult> WinLoss(WinLossLegendQuery message)
-        => View(message, "~/Features/Legends/Views/Index.cshtml");
+        => View(message, nameof(Index));
+
+    public Task<IActionResult> MatchWinLossDetail(MatchWinLossDetailLegendQuery message)
+        => View(message, nameof(Index));
 }

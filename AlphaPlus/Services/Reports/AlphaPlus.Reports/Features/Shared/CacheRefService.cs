@@ -16,6 +16,8 @@ public interface ICacheRefService
 
     string GetTeamName(int teamId);
 
+    string GetTeamName3rd(int team3rdId);
+
     string GetOddsTypeName(string oddsTypeId);
 
     string GetProductName(int productId);
@@ -44,6 +46,9 @@ public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRef
 
     public string GetTeamName(int teamId)
         => remotingRefService.GetTeamName(teamId.ToString(), LanguageCode);
+
+    public string GetTeamName3rd(int team3rdId)
+        => remotingRefService.GetTeamName3rd(team3rdId.ToString(), LanguageCode);
 
     public string GetOddsTypeName(string oddsTypeId)
         => remotingRefService.GetOddsTypeName(oddsTypeId, LanguageCode);

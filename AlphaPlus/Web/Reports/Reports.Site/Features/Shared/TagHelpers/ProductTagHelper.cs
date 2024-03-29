@@ -26,7 +26,7 @@ public class ProductTagHelper : TagHelper
         sb
             .Append("<div class=\"form-group product-multiselect-container\">")
             .Append("<select id=\"dropdown-product\" ")
-            .Append($"data-hasdata=\"{Model.Products.Any()}\" ")
+            .Append($"data-hasdata=\"{Model.Products.Any().ToString().ToLowerInvariant()}\" ")
             .Append($"data-label-selectproducts=\"{Resources.SelectProducts}\" ")
             .Append($"data-label-selected=\"{Resources.Selected}\" ")
             .Append($"data-label-allproducts=\"{Resources.AllProducts}\" ")
@@ -71,7 +71,7 @@ public class ProductTagHelper : TagHelper
             sb
                 .Append("<div class=\"form-group product-detail-multiselect-container\">")
                 .Append("<select id=\"dropdown-product-detail\" ")
-                .Append($"data-hasdata=\"{Model.ProductDetails.Any()}\" ")
+                .Append($"data-hasdata=\"true\" ")
                 .Append($"data-label-selectnone=\"{Resources.SelectNone}\" ")
                 .Append($"data-label-selected=\"{Resources.Selected}\" ")
                 .Append($"data-label-selectall=\"{Resources.SelectAll}\" ")

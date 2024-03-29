@@ -8,11 +8,10 @@
 $(function () {
     $.blockUI();
     new StatementView(
-        $,
-        new DateRangePickerComponent($),
-        new ClientPagerComponent($),
+        new DateRangePickerComponent(),
+        new ClientPagerComponent(),
         window.top,
-        new LinkBuilderComponent($)
+        new LinkBuilderComponent()
     ).init();
     $.unblockUI();
 });

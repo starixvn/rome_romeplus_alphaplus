@@ -11,7 +11,6 @@ public class GetLeaguesCriteria(
     string language,
     bool isShowAll) : CriteriaBase
 {
-
     public int CustId { get; } = custId;
 
     public string ProductIds { get; } = productIds;

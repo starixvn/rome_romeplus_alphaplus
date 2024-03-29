@@ -1,8 +1,6 @@
 ﻿/// <reference path="components/link-builder.ts" />
 
 class BaseReportNew {
-    $: JQueryStatic;
-
     $filterIcon: JQuery;
     $iconInformation: JQuery;
     $iconInformationContainer: JQuery;
@@ -22,8 +20,7 @@ class BaseReportNew {
     currentHideState: boolean;
     isClickedCollapseExpandAll = false;
 
-    constructor($: JQueryStatic, linkBuilderComponent: LinkBuilderComponent) {
-        this.$ = $;
+    constructor(linkBuilderComponent: LinkBuilderComponent) {
         this.linkBuilderComponent = linkBuilderComponent;
     }
 
@@ -32,14 +29,14 @@ class BaseReportNew {
     }
 
     cacheDOMElements() {
-        this.$filterIcon = this.$('.icon-filter');
-        this.$isDescendingSort = this.$('#IsDescendingSort');
-        this.$isFilterVisible = this.$('#IsFilterVisible');
-        this.$pageTitle = this.$('.page-title');
-        this.$reportForm = this.$('#report-form');
-        this.$sortPropertyName = this.$('#SortPropertyName');
-        this.$submitButton = this.$('.btn-submit');
-        this.$tableReport = this.$('#tbl-report');
+        this.$filterIcon = $('.icon-filter');
+        this.$isDescendingSort = $('#IsDescendingSort');
+        this.$isFilterVisible = $('#IsFilterVisible');
+        this.$pageTitle = $('.page-title');
+        this.$reportForm = $('#report-form');
+        this.$sortPropertyName = $('#SortPropertyName');
+        this.$submitButton = $('.btn-submit');
+        this.$tableReport = $('#tbl-report');
         this.canSort = parseInt(this.$tableReport.data('totalrecords'), 0) > 1;
     }
 
@@ -48,25 +45,25 @@ class BaseReportNew {
     }
 
     initHelp = () => {
-        const $loadLegendURL = this.$('#LoadLegendURL');
+        const $loadLegendURL = $('#LoadLegendURL');
         if ($loadLegendURL.length) {
             this.reportLegendUrl = $loadLegendURL.attr('href');
             $loadLegendURL.remove();
-            this.$iconInformation = this.$('.icon-information');
-            this.$iconInformationContainer = this.$('.icon-information-container');
+            this.$iconInformation = $('.icon-information');
+            this.$iconInformationContainer = $('.icon-information-container');
             this.loadLegend();
             this.$iconInformation.on('click', this.showLegend);
         }
     };
 
     loadLegend = () => {
-        this.$.ajax({
+        $.ajax({
             method: 'GET',
             url: this.reportLegendUrl,
             cache: false,
             data: {},
             success: this.renderLegend,
-            complete: this.$.unblockUI
+            complete: $.unblockUI
         });
     };
 
@@ -75,15 +72,15 @@ class BaseReportNew {
             this.$reportLegend.remove();
         }
 
-        this.$('body').append(html);
+        $('body').append(html);
 
-        if (this.$.trim(html) === '') {
-            this.$iconInformationContainer.remove();
+        if ($.trim(html) === '') {
+            this.$iconInformationContainer.parent().remove();
         } else {
-            this.$iconInformationContainer.removeClass('hide');
+            this.$iconInformationContainer.parent().removeClass('hide');
         }
 
-        this.$reportLegend = this.$('#report-legend');
+        this.$reportLegend = $('#report-legend');
     };
 
     showLegend = () => {
@@ -91,7 +88,7 @@ class BaseReportNew {
         const iconHelpPosition = this.$iconInformation.position();
         this.$reportLegend.css({
             bottom: 'auto',
-            top: this.$('.entered-non-entered').length > 0 ? iconHelpPosition.top + 90 : iconHelpPosition.top + 60
+            top: $('.entered-non-entered').length > 0 ? iconHelpPosition.top + 90 : iconHelpPosition.top + 60
         });
     };
 
@@ -99,14 +96,14 @@ class BaseReportNew {
 
     triggerRedrawTable() {
         this.doAdjustHeader();
-        this.$('tbody tr.parent').each((index, element) => this.onClickDetailControl(element));
+        $('tbody tr.parent').each((_, element) => this.onClickDetailControl(element));
     }
 
     doAdjustHeader = () => {
         this.$dataTable.fixedHeader.adjust();
 
-        const scrollTo = this.$('.fixedHeader-floating thead').length > 0 ? this.$(document).height() : 0;
-        this.$(window).scrollTop(scrollTo);
+        const scrollTo = $('.fixedHeader-floating thead').length > 0 ? $(document).height() : 0;
+        $(window).scrollTop(scrollTo);
     };
 
     onClickFooterRow = (parentRow, childRow) => {
@@ -118,8 +115,8 @@ class BaseReportNew {
         }
 
         setTimeout(() => {
-            const scrollTo = this.$(document).height();
-            this.$(window).scrollTop(scrollTo + 15);
+            const scrollTo = $(document).height();
+            $(window).scrollTop(scrollTo + 15);
         }, 100);
     };
 
@@ -132,8 +129,8 @@ class BaseReportNew {
     };
 
     onClickDetailControl(element) {
-        const parentRow = this.$(element).closest('tr');
-        const childRow = this.$(parentRow).next();
+        const parentRow = $(element).closest('tr');
+        const childRow = $(parentRow).next();
         parentRow.hasClass('tbl-footer')
             ? this.onClickFooterRow(parentRow, childRow)
             : this.onClickBodyRow(parentRow, childRow);
@@ -160,7 +157,7 @@ class BaseReportNew {
 
     initDataTable(options = {}) {
         const tableOptions = this.getTableOptions();
-        this.$.extend(tableOptions, options);
+        $.extend(tableOptions, options);
 
         this.$dataTable = this.$tableReport.DataTable(tableOptions);
 
@@ -174,25 +171,25 @@ class BaseReportNew {
     }
 
     private collapseExpandAll = (element) => {
-        this.$.blockUI();
+        $.blockUI();
         this.isClickedCollapseExpandAll = true;
         setTimeout(() => {
-            const targetParent = this.$(element).parent();
+            const targetParent = $(element).parent();
 
             if (targetParent.hasClass('parent')) {
                 targetParent.removeClass('parent');
-                this.triggerClickDetailWhenSwitchAll(this.$('tbody tr.parent'));
+                this.triggerClickDetailWhenSwitchAll($('tbody tr.parent'));
             } else {
                 targetParent.addClass('parent');
-                this.triggerClickDetailWhenSwitchAll(this.$('tbody tr').not('.parent'));
+                this.triggerClickDetailWhenSwitchAll($('tbody tr').not('.parent'));
             }
 
-            this.$.unblockUI();
+            $.unblockUI();
         }, 100);
     };
 
     private triggerClickDetailWhenSwitchAll = (controlArray) => {
-        controlArray.each((index, detailButton) => this.$(detailButton).find('.control').click());
+        controlArray.each((_, detailButton) => $(detailButton).find('.control').click());
         this.$dataTable.fixedHeader.adjust();
     };
 
@@ -202,7 +199,7 @@ class BaseReportNew {
         return {
             language: {
                 processing: '',
-                emptyTable: this.$('#NoInformationIsAvailable').val()
+                emptyTable: $('#NoInformationIsAvailable').val()
             },
             responsive: {
                 details: {
@@ -213,7 +210,7 @@ class BaseReportNew {
                             .cells(rowIdx, ':hidden')
                             .eq(0)
                             .map(function (cell) {
-                                const header = self.$(api.column(cell.column).header());
+                                const header = $(api.column(cell.column).header());
                                 const idx = api.cell(cell).index();
 
                                 if (header.hasClass('control') || header.hasClass('never')) {
@@ -259,27 +256,27 @@ class BaseReportNew {
         `<span class="dtr-title">${headerText}</span> ` +
         `<span class="dtr-data">${cellData}</span></li>`;
 
-    renderDetail = (rowIdx: any, data: any) => (data ? this.$(`<ul data-dtr-index="${rowIdx}"/>`).append(data) : false);
+    renderDetail = (rowIdx: any, data: any) => (data ? $(`<ul data-dtr-index="${rowIdx}"/>`).append(data) : false);
 
     drawCallback = () => {
-        this.$('tbody').append(this.$('tr.tbl-footer'));
+        $('tbody').append($('tr.tbl-footer'));
         this.$tableReport.removeClass('hidden');
     };
 
     registerDrilldownableEvents() {
         const handleDrilldownable = ($element) => {
-            const $custLevelId = this.$('#CustLevelId');
+            const $custLevelId = $('#CustLevelId');
             let custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
 
             $custLevelId.val(custLevelIdValue);
-            this.$('#CustId').val($element.data('custid'));
-            this.$('#CustName').val($element.data('custname'));
+            $('#CustId').val($element.data('custid'));
+            $('#CustName').val($element.data('custname'));
 
             this.$reportForm.submit();
         };
 
-        this.$pageTitle.find('.breadcrumb-link').click((e) => handleDrilldownable(this.$(e.target)));
+        this.$pageTitle.find('.breadcrumb-link').click((e) => handleDrilldownable($(e.target)));
 
-        this.$tableReport.find('.downline-link').click((e) => handleDrilldownable(this.$(e.target)));
+        this.$tableReport.find('.downline-link').click((e) => handleDrilldownable($(e.target)));
     }
 }

@@ -13,21 +13,16 @@ class SingleSelectionDropdownOption {
 }
 
 class SingleSelectionDropdownComponent {
-    $: JQueryStatic;
     options = new SingleSelectionDropdownOption();
     $dropdown: JQuery;
     $hiddenInput: JQuery;
     selectedValue: string;
 
-    constructor($: JQueryStatic) {
-        this.$ = $;
-    }
-
     render = (options: SingleSelectionDropdownOption = new SingleSelectionDropdownOption()) => {
-        this.options = <SingleSelectionDropdownOption>this.$.extend({}, this.options, options);
+        this.options = <SingleSelectionDropdownOption>$.extend({}, this.options, options);
 
-        this.$dropdown = this.$('#' + this.options.dropdownId);
-        this.$hiddenInput = this.$('#' + this.options.inputId);
+        this.$dropdown = $('#' + this.options.dropdownId);
+        this.$hiddenInput = $('#' + this.options.inputId);
         this.selectedValue = this.getSelectedItem();
 
         this.$dropdown.multiselect({

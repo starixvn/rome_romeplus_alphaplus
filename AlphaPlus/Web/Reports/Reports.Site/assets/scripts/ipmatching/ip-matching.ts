@@ -8,22 +8,22 @@ class DatePickerOption {
 }
 
 class IPMatchingView extends BaseReport {
-    constructor($: JQueryStatic, linkBuilderComponent: LinkBuilderComponent) {
-        super($, linkBuilderComponent);
+    constructor(linkBuilderComponent: LinkBuilderComponent) {
+        super(linkBuilderComponent);
     }
 
     init() {
-        this.$.blockUI();
+        $.blockUI();
 
-        const options = new DatePickerOption(this.$('#MinDate').val(), true);
-        this.$('#dpkContainer').datepicker(options).data('DateTimePicker').maxDate(this.$('#Today').val());
+        const options = new DatePickerOption($('#MinDate').val(), true);
+        $('#dpkContainer').datepicker(options).data('DateTimePicker').maxDate($('#Today').val());
 
-        this.$('.view-bet-list').click(() => this.$.blockUI());
+        $('.view-bet-list').click(() => $.blockUI());
 
-        this.$.unblockUI();
+        $.unblockUI();
     }
 }
 
 $(function () {
-    new IPMatchingView($, new LinkBuilderComponent($)).init();
+    new IPMatchingView(new LinkBuilderComponent()).init();
 });

@@ -15,7 +15,6 @@ class PagerOption {
 }
 
 class PagerComponent {
-    $: JQueryStatic;
     $pageIndex: JQuery;
     $pageSize: JQuery;
     $reportForm: JQuery;
@@ -26,22 +25,18 @@ class PagerComponent {
 
     pageList: number[] = [1000, 2000, 3000, 5000];
 
-    constructor($: JQueryStatic) {
-        this.$ = $;
-    }
-
     render = (options: PagerOption = new PagerOption()) => {
-        const pagerOption = <PagerOption>this.$.extend({}, this.options, options);
-        const pager = this.$('#' + pagerOption.pagerId);
+        const pagerOption = <PagerOption>$.extend({}, this.options, options);
+        const pager = $('#' + pagerOption.pagerId);
 
-        this.$reportForm = this.$('#' + this.options.formId);
+        this.$reportForm = $('#' + this.options.formId);
         this.totalRecords = pager.data('totalrecords');
         this.pageSize = pager.data('pagesize');
         this.pageIndex = pager.data('pageindex');
-        this.$pageIndex = this.$(
+        this.$pageIndex = $(
             `<input type="hidden" id="${pagerOption.pageIndexId}" name="${pagerOption.pageIndexId}" value="${this.pageIndex}" />`
         );
-        this.$pageSize = this.$(
+        this.$pageSize = $(
             `<input type="hidden" id="${pagerOption.pageSizeId}" name="${pagerOption.pageSizeId}" value="${this.pageSize}" />`
         );
 

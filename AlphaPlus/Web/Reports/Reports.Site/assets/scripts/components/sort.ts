@@ -9,32 +9,17 @@ interface SortInfo {
     descendingSort: number;
 }
 
-class SortOption {
-    constructor(
-        public sortContainer: any = null,
-        public canSort: boolean = true,
-        public hasAllDataOnClient: boolean = false,
-        public afterSortFunction: any = null,
-        public headers: any = null //public reportForm: JQuery = null
-    ) {}
-}
-
 class SortComponent {
-    $: JQueryStatic;
     linkBuilderComponent: LinkBuilderComponent;
-    //options: SortOption;
     $tableReport: JQuery;
     headers: any;
     canSort = false;
 
-    constructor($: JQueryStatic, linkBuilderComponent: LinkBuilderComponent) {
-        this.$ = $;
+    constructor(linkBuilderComponent: LinkBuilderComponent) {
         this.linkBuilderComponent = linkBuilderComponent;
     }
 
-    //render = (options: SortOption = new SortOption()) => {
     initSort = ($tableReport: JQuery, headers: any) => {
-        //this.options = <SortOption>this.$.extend({}, this.options, options);
         this.$tableReport = $tableReport;
         this.headers = headers;
         this.canSort = this.$tableReport.data('cansort').toLowerCase() === 'true';
@@ -83,7 +68,7 @@ class SortComponent {
                         : ":not([class*='col-combine'])")
             )[0];
             const descendingSort = this.$tableReport.data('descendingsort');
-            sortList = [[this.$(sortedColumnHeader).data('colindex'), descendingSort]];
+            sortList = [[$(sortedColumnHeader).data('colindex'), descendingSort]];
         }
 
         try {
@@ -118,7 +103,7 @@ class SortComponent {
     };
 
     private textExtraction = (node: any) => {
-        const $node = this.$(node);
+        const $node = $(node);
 
         if ($node.data('islink')) {
             return $node.find('a').html();

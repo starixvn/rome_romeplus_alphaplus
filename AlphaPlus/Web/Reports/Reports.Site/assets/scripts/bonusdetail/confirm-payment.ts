@@ -3,7 +3,6 @@
 }
 
 class ConfirmPayment {
-    private $: JQueryStatic;
     private reloadFormCallback: Function;
     private $popupConfirmPayment: JQuery;
     private $formConfirmPayment: JQuery;
@@ -15,8 +14,7 @@ class ConfirmPayment {
     private $labelBonusDetailRefNo: JQuery;
     private $buttonConfirmPayment: JQuery;
 
-    constructor($: JQueryStatic, reloadFormCallback: Function, $popupConfirmPayment: JQuery) {
-        this.$ = $;
+    constructor(reloadFormCallback: Function, $popupConfirmPayment: JQuery) {
         this.reloadFormCallback = reloadFormCallback;
         this.$popupConfirmPayment = $popupConfirmPayment;
     }
@@ -47,8 +45,8 @@ class ConfirmPayment {
 
     private bindEvents() {
         const self = this;
-        this.$('.icon-payment').click(function () {
-            self.assignConfirmPaymentFormData(self.$(this));
+        $('.icon-payment').click(function () {
+            self.assignConfirmPaymentFormData($(this));
             self.$popupConfirmPayment.modal({ show: true, backdrop: false });
         });
 
@@ -63,9 +61,9 @@ class ConfirmPayment {
     }
 
     private confirmPaymentPost() {
-        this.$.blockUI();
+        $.blockUI();
         this.$buttonConfirmPayment.prop('disabled', true);
-        this.$.ajax({
+        $.ajax({
             type: this.$formConfirmPayment.attr('method'),
             url: this.$formConfirmPayment.attr('action'),
             beforeSend: (xhr) =>
@@ -76,7 +74,7 @@ class ConfirmPayment {
             data: this.$formConfirmPayment.serialize(),
             dataType: 'json',
             success: this.confirmPaymentPostSuccess,
-            complete: this.$.unblockUI
+            complete: $.unblockUI
         });
     }
 
@@ -113,17 +111,17 @@ class ConfirmPayment {
     }
 
     private showSuccess(message: string) {
-        this.$('#alert-message-content').addClass('msg msg-success').html(message);
-        this.$('#alert-message').removeClass('hide');
+        $('#alert-message-content').addClass('msg msg-success').html(message);
+        $('#alert-message').removeClass('hide');
     }
 
     private showError(error: string) {
-        this.$('#alert-message-content').addClass('msg msg-error').html(error);
-        this.$('#alert-message').removeClass('hide');
+        $('#alert-message-content').addClass('msg msg-error').html(error);
+        $('#alert-message').removeClass('hide');
     }
 
     private hideAlert() {
-        this.$('#alert-message').addClass('hide');
-        this.$('#alert-message-content').html('').removeClass();
+        $('#alert-message').addClass('hide');
+        $('#alert-message-content').html('').removeClass();
     }
 }

@@ -16,6 +16,8 @@ public static class BetTypeConstants
     public const int DrawNoBet = 25;
     public const int CombineMixParlay = 29;
     public const int BetBuilder = 38;
+    public const int NumberGameMin = 81;
+    public const int NumberGameMax = 120;
     public const int HomeNoBet = 121;
     public const int AwayNoBet = 122;
     public const int DrawNoDraw = 123;
@@ -24,6 +26,8 @@ public static class BetTypeConstants
     public const int VirtualHorseRacing_Win = 1231;
     public const int VirtualHorseRacing_Place = 1232;
     public const int VirtualHorseRacing_WinPlace = 1233;
+    public const int VirtualHorseRacing_Forecast = 1237;
+    public const int VirtualHorseRacing_Tricast = 1238;
 
     public const int JackpotContribution = 2198;
     public const int JackpotContribution_Mobile = 2398;
@@ -33,6 +37,8 @@ public static class BetTypeConstants
 
     public const int Happy5LinkedGamesMin = 3601;
     public const int Happy5LinkedGamesMax = 3610;
+    public const int Happy5Min = 8101;
+    public const int Happy5Max = 8120;
 
     public const int LeapGamingMin = 5301;
     public const int LeapGamingMax = 5399;
@@ -45,4 +51,15 @@ public static class BetTypeConstants
         || JackpotContribution_Tablet == betType
         || PPJackpotContribution == betType
         || SGJackpotContribution == betType;
+
+    public static bool IsNumberGame(int betType) => NumberGameMin <= betType && betType <= NumberGameMax;
+
+    public static bool IsHappy5(int betType) => Happy5Min <= betType && betType <= Happy5Max;
+
+    public static bool IsVirtualHorseRacing(int betType)
+        => betType == VirtualHorseRacing_Win
+        || betType == VirtualHorseRacing_Place
+        || betType == VirtualHorseRacing_WinPlace
+        || betType == VirtualHorseRacing_Forecast
+        || betType == VirtualHorseRacing_Tricast;
 }

@@ -23,9 +23,9 @@ class AlphaReports {
     }
 
     format = {
-        monthFormat: 'MMMM - yyyy',
-        shortDateWithSlash_DatePicker: 'MM/DD/YYYY',
-        shortDateWithSlash_MonthPicker: 'MM/dd/yyyy',
+        //monthFormat: 'MMMM - yyyy',
+        //shortDateWithSlash_DatePicker: 'MM/DD/YYYY',
+        //shortDateWithSlash_MonthPicker: 'MM/dd/yyyy',
         monthDayWithSlash: 'MM/DD',
         dayMonthName: 'DD MMM',
         day: 'DD'
@@ -41,8 +41,8 @@ class AlphaReports {
         enter: 13
     };
 
-    numberDisplayedProductsOnFilter = 1;
-    maxTimesToShowTooltip = 5;
+    //numberDisplayedProductsOnFilter = 1;
+    //maxTimesToShowTooltip = 5;
     isLocalStorageEnabled = true;
 
     screenSmallThan768() {

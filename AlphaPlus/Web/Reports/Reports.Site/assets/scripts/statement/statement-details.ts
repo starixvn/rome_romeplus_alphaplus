@@ -1,9 +1,7 @@
 ﻿class StatementDetailView {
-    $: JQueryStatic;
     $popup: JQuery;
 
-    constructor($: JQueryStatic, $popup: JQuery) {
-        this.$ = $;
+    constructor($popup: JQuery) {
         this.$popup = $popup;
     }
 
@@ -13,5 +11,5 @@
 }
 
 $(function () {
-    new StatementDetailView($, $(document)).init();
+    new StatementDetailView($(document)).init();
 });

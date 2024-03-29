@@ -19,19 +19,17 @@ class ChartStyles {
 }
 
 class DualAxisChartComponent {
-    $: JQueryStatic;
     chart: any;
 
     options = new DualAxisChartOption();
     currencyName: string;
 
-    constructor($: JQueryStatic, chart: any) {
-        this.$ = $;
+    constructor(chart: any) {
         this.chart = chart;
     }
 
     render = (options: DualAxisChartOption = new DualAxisChartOption()) => {
-        let chartOptions = <DualAxisChartOption>this.$.extend({}, this.options, options);
+        let chartOptions = <DualAxisChartOption>$.extend({}, this.options, options);
         let chartStyles: ChartStyles = new ChartStyles('#418cf0', '#000'),
             xAxesGridLines: any = {},
             yAxesGridLines: any = { drawOnChartArea: false };
@@ -47,7 +45,7 @@ class DualAxisChartComponent {
         this.chart.defaults.global.defaultFontSize = chartStyles.defaultFontSize;
         this.chart.defaults.global.defaultFontStyle = chartStyles.defaultFontStyle;
 
-        let chartContainer: any = this.$('#' + chartOptions.selectorId);
+        let chartContainer: any = $('#' + chartOptions.selectorId);
         let chartContext = chartContainer[0].getContext('2d');
 
         let labels = chartContainer.data('labels').split(',');

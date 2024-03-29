@@ -7,24 +7,18 @@
 }
 
 class LinkBuilderComponent {
-    $: JQueryStatic;
-
     options = new LinkBuilderOption();
 
-    constructor($: JQueryStatic) {
-        this.$ = $;
-    }
-
     render = (options: LinkBuilderOption = new LinkBuilderOption()) => {
-        this.options = this.$.extend({}, this.options, options);
+        this.options = $.extend({}, this.options, options);
     };
 
     updateParam = (name: string, value: string) => {
         this.options.linkClasses.forEach((className: string) => {
-            const $linkClass = this.$(className);
+            const $linkClass = $(className);
 
-            $linkClass.each((_, element: Element) => {
-                const $link = this.$(element);
+            $linkClass.each(function (_, element: Element) {
+                const $link = $(element);
                 let currentUrl = $link.attr('href');
                 currentUrl = alphaReports.replaceQueryStringValue(currentUrl, name, value);
 

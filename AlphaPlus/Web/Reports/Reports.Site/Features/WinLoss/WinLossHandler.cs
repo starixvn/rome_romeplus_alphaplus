@@ -6,6 +6,7 @@ using AlphaPlus.Reports.Features.WinLoss;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Site.Features.WinLoss;
@@ -42,11 +43,10 @@ public class WinLossHandler(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds);
+        var reportData = await GetWinLoss(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml);
+        var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 
-        return workbook.BuildExcelFile(
-            message,
-            await GetWinLoss(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml),
-            productService.ConcatProductNames(validUserSelectedProductIds));
+        return workbook.BuildExcelFile(message, reportData, productNames);
     }
 
     private Task<ReportData<WinLossModel>> GetWinLoss(

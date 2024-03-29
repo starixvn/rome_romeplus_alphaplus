@@ -15,20 +15,21 @@ public class MatchWinLossDetailHandler(
     IOptions<AppSettings> options,
     IMatchWinLossDetailService matchWinLossDetailService) :
         BaseHandler(productService, options),
-        IRequestHandler<GetLeaguesQuery, LeaguesViewModel>,
+        IRequestHandler<MatchWinLossDetailGetLeagueQuery, LeagueViewModel>,
         IRequestHandler<MatchWinLossDetailQuery, MatchWinLossDetailViewModel>
 {
-    public Task<LeaguesViewModel> Handle(GetLeaguesQuery message, CancellationToken cancellationToken)
+    public Task<LeagueViewModel> Handle(MatchWinLossDetailGetLeagueQuery message, CancellationToken cancellationToken)
     {
         var param = new GetLeaguesParam(
             message.ViewerId,
             message.Products,
             message.FromDate,
             message.ToDate,
+            message.Language,
             message.LanguageKey,
             appSettings.LocalTest);
 
-        return BuildLeaguesViewModel(param, string.Empty, true);
+        return BuildLeagueViewModel(param, string.Empty, true);
     }
 
     public async Task<MatchWinLossDetailViewModel> Handle(MatchWinLossDetailQuery message, CancellationToken cancellationToken)
@@ -46,9 +47,10 @@ public class MatchWinLossDetailHandler(
             productViewModel.UserSelectedProductIds,
             fromDate,
             message.ToDate,
+            message.Language,
             message.LanguageKey,
             options.Value.LocalTest);
-        var leaguesViewModel = await BuildLeaguesViewModel(leagueParam, message.UserSelectedLeagueIds, message.IsUserSelectsAllLeagues);
+        var leagueViewModel = await BuildLeagueViewModel(leagueParam, message.UserSelectedLeagueIds, message.IsUserSelectsAllLeagues);
 
         var param = new MatchWinLossDetailParam(
             message.ViewerId,
@@ -56,24 +58,14 @@ public class MatchWinLossDetailHandler(
             fromDate,
             message.ToDate,
             productViewModel.UserSelectedProductIds,
-            BuildLeagueIds(leaguesViewModel.UserSelectedLeagueIds).JoinWithComma(),
+            BuildLeagueIds(leagueViewModel.UserSelectedLeagueIds).JoinWithComma(),
             message.Site);
         var reportData = await matchWinLossDetailService.GetMatchWinLossDetail(param);
 
-        throw new NotImplementedException();
+        return new MatchWinLossDetailViewModel(message, productViewModel, leagueViewModel, reportData);
     }
 
-    // private BetTypeWinLossViewModel GetMixParlay(IEnumerable<MatchWinLossDetailModel> reportData)
-    // {
-    //     var mixParlayData = reportData.FirstOrDefault(data => data.IsParlay &&
-    //         (data.BetType == BetTypeIdConstants.MixParlay || data.BetType == BetTypeIdConstants.MixParlayBetRadarVirtualSports));
-
-    //     return mixParlayData == null
-    //         ? null
-    //         : new BetTypeWinLossViewModel(mixParlayData, cacheRefService.GetBetType(mixParlayData.BetType));
-    // }
-
-    private async Task<LeaguesViewModel> BuildLeaguesViewModel(
+    private async Task<LeagueViewModel> BuildLeagueViewModel(
         GetLeaguesParam param,
         string userSelectedLeagueIds = "",
         bool isUserSelectsAllLeagues = false)
@@ -95,10 +87,14 @@ public class MatchWinLossDetailHandler(
             }
         }
 
-        return new LeaguesViewModel(
+        var validUserSelectedLeagueIdsCount = validUserSelectedLeagueIds.Count;
+        var isSelectedAllLeagues = isUserSelectsAllLeagues || (validUserSelectedLeagueIdsCount > 0 && validUserSelectedLeagueIdsCount == leagues.Count);
+
+        return new LeagueViewModel(
             leagues,
-            validUserSelectedLeagueIds,
-            isUserSelectsAllLeagues || validUserSelectedLeagueIds.Count == leagues.Count);
+            isSelectedAllLeagues ? [] : validUserSelectedLeagueIds,
+            isSelectedAllLeagues,
+            param.Language);
     }
 
     private static IEnumerable<int> BuildLeagueIds(IEnumerable<string> leagues)

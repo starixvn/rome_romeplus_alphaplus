@@ -38,11 +38,11 @@
 <form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form" asp-controller="WinLoss" asp-action="Index">
     <daterange-picker model="Model.DateRangePicker" />
-    <input type="hidden" id="IsHistoricReport" name="IsHistoricReport" value="False" />
+    <input type="hidden" id="IsHistoricReport" name="IsHistoricReport" />
     <div class="form-group">
         <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"></a>
     </div>
-    <a id="historic-report" href="javascript:;"></a>
+    <a href="javascript:;" id="historic-report" data-is-historic-report="false"></a>
 </form>
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-small-width" id="tbl-report"
     data-cansort="@Model.ReportData.MoreThanOne">

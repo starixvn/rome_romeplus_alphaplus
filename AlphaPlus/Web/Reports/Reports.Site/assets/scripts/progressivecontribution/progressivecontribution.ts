@@ -22,49 +22,38 @@ class ProgressiveContributionView extends BaseReport {
 
     isHistoricReport = false;
     isFirstSwitchMode = true;
-    levels = ['member', 'agent', 'master', 'super'];
 
     constructor(
-        $: JQueryStatic,
+        productComponent: ProductMultiSelectionComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         monthPickerComponent: MonthPickerComponent,
-        productComponent: ProductMultiSelectionComponent,
         reportTooltip: ReportTooltip,
         linkBuilderComponent: LinkBuilderComponent
     ) {
-        super($, linkBuilderComponent);
+        super(linkBuilderComponent);
 
+        this.productComponent = productComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.monthPickerComponent = monthPickerComponent;
-        this.productComponent = productComponent;
         this.reportTooltip = reportTooltip;
     }
 
     init() {
-        if (!this.checkReady()) {
-            return;
-        }
-
         this.cacheDOMElements();
         this.bindFilter();
-        this.$tableReport.stickyTableHeaders();
         this.registerEvents();
     }
 
-    checkReady() {
-        return this.$('#dropdown-product').length > 0;
-    }
-
     cacheDOMElements = () => {
-        this.$isSetDefaultStackMode = this.$('#IsSetDefaultStackMode');
-        this.$isHistoricReport = this.$('#IsHistoricReport');
-        this.$isAgentLevel = this.$('#IsAgentLevel');
+        this.$isSetDefaultStackMode = $('#IsSetDefaultStackMode');
+        this.$isHistoricReport = $('#IsHistoricReport');
+        this.$isAgentLevel = $('#IsAgentLevel');
 
-        this.$custId = this.$('#CustId');
-        this.$custLevelId = this.$('#CustLevelId');
-        this.$historicReport = this.$('#historic-report');
+        this.$custId = $('#CustId');
+        this.$custLevelId = $('#CustLevelId');
+        this.$historicReport = $('#historic-report');
 
-        this.$switchModeIcon = this.$('.icon-switchmode');
+        this.$switchModeIcon = $('.icon-switchmode');
     };
 
     bindFilter = () => {
@@ -75,7 +64,7 @@ class ProgressiveContributionView extends BaseReport {
             alphaReports.screenSmallThan768()
         ) {
             this.setStackMode();
-            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', parseInt(this.$custId.val(), 0)));
+            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'progressivegamescontribution'));
         }
 
         this.isHistoricReport = this.$isHistoricReport.val().toLocaleLowerCase() === 'true';
@@ -105,7 +94,7 @@ class ProgressiveContributionView extends BaseReport {
     };
 
     onSwitchMode = () => {
-        this.$.blockUI();
+        $.blockUI();
         const isStackMode = this.isStackMode();
         this.setCssBySwitchMode(isStackMode);
 
@@ -114,7 +103,7 @@ class ProgressiveContributionView extends BaseReport {
             this.isFirstSwitchMode = false;
         }
 
-        this.$.unblockUI();
+        $.unblockUI();
     };
 
     setStackMode = () => {
@@ -123,13 +112,13 @@ class ProgressiveContributionView extends BaseReport {
             return;
         }
 
-        this.$.blockUI();
+        $.blockUI();
 
         this.setCssBySwitchMode(false);
         this.renderAtFirstSwitchMode(false);
 
         this.isFirstSwitchMode = false;
-        this.$.unblockUI();
+        $.unblockUI();
     };
 
     setCssBySwitchMode = (isSwitchToNormalMode: boolean) => {
@@ -150,7 +139,7 @@ class ProgressiveContributionView extends BaseReport {
             alphaReports.splitCell('col-' + level + '-contribution-share', '', '');
         } else {
             alphaReports.combineConsecutiveCells(
-                this.$('td.col-' + level + '-contribution-share'),
+                $('td.col-' + level + '-contribution-share'),
                 custLevelId - 1,
                 'text-right col-' + level + '-contribution-share-combined'
             );
@@ -158,15 +147,12 @@ class ProgressiveContributionView extends BaseReport {
     };
 }
 
-$(() => {
-    const progressiveContributionView = new ProgressiveContributionView(
-        $,
-        new DateRangePickerComponent($),
-        new MonthPickerComponent($),
-        new ProductMultiSelectionComponent($),
-        new ReportTooltip($),
-        new LinkBuilderComponent($)
-    );
-
-    progressiveContributionView.init();
+$(function () {
+    new ProgressiveContributionView(
+        new ProductMultiSelectionComponent(),
+        new DateRangePickerComponent(),
+        new MonthPickerComponent(),
+        new ReportTooltip(),
+        new LinkBuilderComponent()
+    ).init();
 });

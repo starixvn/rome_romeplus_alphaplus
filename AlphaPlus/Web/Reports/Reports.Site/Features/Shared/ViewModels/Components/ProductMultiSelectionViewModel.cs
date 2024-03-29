@@ -1,8 +1,10 @@
+using AlphaPlus.Reports.Features.Shared.Models;
+
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 
 public record ProductMultiSelectionViewModel(
-    IEnumerable<ProductGroupViewModel> Products,
+    IEnumerable<ProductGroupDTO> Products,
     string UserSelectedProductIds,
     string Language,
-    IEnumerable<ProductDetailViewModel> ProductDetails = null,
+    IEnumerable<ProductDetailDTO> ProductDetails = null,
     string UserSelectedResourceIds = null);

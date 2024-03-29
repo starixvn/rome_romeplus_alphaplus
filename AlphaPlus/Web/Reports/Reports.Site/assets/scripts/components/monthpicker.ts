@@ -14,25 +14,18 @@ class MonthPickerOption {
 }
 
 class MonthPickerComponent {
-    $: JQueryStatic;
     $fromDate: JQuery;
     $toDate: JQuery;
     $dropdownMonth: JQuery;
 
     options = new MonthPickerOption();
 
-    constructor($: JQueryStatic) {
-        this.$ = $;
-    }
-
     render = (options: MonthPickerOption = new MonthPickerOption()) => {
-        var pickerOptions = this.$.extend({}, this.options, options);
-
-        var dropdownMonth = this.$('#' + pickerOptions.selectorId);
-
+        var pickerOptions = $.extend({}, this.options, options);
+        var dropdownMonth = $('#' + pickerOptions.selectorId);
         var maxDate = dropdownMonth.data('maxdate');
-        this.$fromDate = this.$('#from-date');
-        this.$toDate = this.$('#to-date');
+        this.$fromDate = $('#from-date');
+        this.$toDate = $('#to-date');
 
         dropdownMonth.monPickr({
             longMonthsInYear: dropdownMonth.data('longmonths-inyear').split(','),
@@ -44,7 +37,7 @@ class MonthPickerComponent {
             toDay: dropdownMonth.data('todate'),
 
             showDateRange: true,
-            monthFormat: alphaReports.format.monthFormat,
+            monthFormat: 'MMMM - yyyy',
             fromDayId: 'ddl-fromday',
             toDayId: 'ddl-today',
             fromDayLabel: '',
@@ -63,9 +56,7 @@ class MonthPickerComponent {
     };
 
     onChange = () => {
-        this.$fromDate.val(
-            this.$dropdownMonth.monPickr('getFromDate', alphaReports.format.shortDateWithSlash_MonthPicker)
-        );
-        this.$toDate.val(this.$dropdownMonth.monPickr('getToDate', alphaReports.format.shortDateWithSlash_MonthPicker));
+        this.$fromDate.val(this.$dropdownMonth.monPickr('getFromDate', 'MM/dd/yyyy'));
+        this.$toDate.val(this.$dropdownMonth.monPickr('getToDate', 'MM/dd/yyyy'));
     };
 }

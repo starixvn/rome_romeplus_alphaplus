@@ -16,7 +16,6 @@ class ClientPagerOption {
 }
 
 class ClientPagerComponent {
-    $: JQueryStatic;
     $pageIndex: JQuery;
     $pageSize: JQuery;
     $reportForm: JQuery;
@@ -32,24 +31,20 @@ class ClientPagerComponent {
 
     options = new ClientPagerOption();
 
-    constructor($: JQueryStatic) {
-        this.$ = $;
-    }
-
     render = (options: ClientPagerOption = new ClientPagerOption()) => {
-        const pagerOption = <ClientPagerOption>this.$.extend({}, this.options, options);
-        const pager = this.$('#' + pagerOption.pagerId);
+        const pagerOption = <ClientPagerOption>$.extend({}, this.options, options);
+        const pager = $('#' + pagerOption.pagerId);
 
-        this.$reportForm = this.$('#' + this.options.formId);
-        this.$bodyRows = this.$('#' + this.options.tableReportId + ' > tbody > tr');
+        this.$reportForm = $('#' + this.options.formId);
+        this.$bodyRows = $('#' + this.options.tableReportId + ' > tbody > tr');
 
         this.totalRecords = parseInt(pager.data('totalrecords'), 0);
         this.pageSize = parseInt(pager.data('pagesize'), 0);
         this.pageIndex = parseInt(pager.data('pageindex'), 0);
-        this.$pageIndex = this.$(
+        this.$pageIndex = $(
             `<input type="hidden" id="${pagerOption.pageIndexId}" name="${pagerOption.pageIndexId}" value="${this.pageIndex}" />`
         );
-        this.$pageSize = this.$(
+        this.$pageSize = $(
             `<input type="hidden" id="${pagerOption.pageSizeId}" name="${pagerOption.pageSizeId}" value="${this.pageSize}" />`
         );
 
@@ -97,7 +92,7 @@ class ClientPagerComponent {
 
         this.$bodyRows.addClass('hide');
         for (let i = startIndex; i < endIndex && i < this.totalRecords; i++) {
-            this.$(this.$bodyRows[i]).removeClass('hide');
+            $(this.$bodyRows[i]).removeClass('hide');
         }
     };
 }

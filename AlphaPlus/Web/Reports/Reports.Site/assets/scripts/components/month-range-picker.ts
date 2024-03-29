@@ -13,7 +13,6 @@ class MonthRangePickerOption {
 }
 
 class MonthRangePickerComponent {
-    $: JQueryStatic;
     $fromDate: JQuery;
     $toDate: JQuery;
     $dropdownFromMonth: JQuery;
@@ -21,21 +20,17 @@ class MonthRangePickerComponent {
 
     options = new MonthRangePickerOption();
 
-    constructor($: JQueryStatic) {
-        this.$ = $;
-    }
-
     render = (options: MonthRangePickerOption = new MonthRangePickerOption()) => {
-        this.options = this.$.extend({}, this.options, options);
-        this.$fromDate = this.$('#from-date');
-        this.$toDate = this.$('#to-date');
+        this.options = $.extend({}, this.options, options);
+        this.$fromDate = $('#from-date');
+        this.$toDate = $('#to-date');
 
         this.$dropdownFromMonth = this.renderDropdown(this.options.fromSelectorId);
         this.$dropdownToMonth = this.renderDropdown(this.options.toSelectorId);
     };
 
     renderDropdown = (dropdownId: string) => {
-        const dropdownMonth = this.$('#' + dropdownId);
+        const dropdownMonth = $('#' + dropdownId);
         const maxDate = dropdownMonth.data('maxdate');
 
         dropdownMonth.monPickr({
@@ -46,7 +41,7 @@ class MonthRangePickerComponent {
             today: new Date(dropdownMonth.data('currentdate')),
 
             showDateRange: false,
-            monthFormat: alphaReports.format.monthFormat,
+            monthFormat: 'MMMM - yyyy',
             fromDayId: 'ddl-fromday',
             toDayId: 'ddl-today',
             fromDayLabel: '',
@@ -62,12 +57,8 @@ class MonthRangePickerComponent {
     logMessage = (msg: string) => console.warn(msg);
 
     onChange = () => {
-        this.$fromDate.val(
-            this.$dropdownFromMonth.monPickr('getFromDate', alphaReports.format.shortDateWithSlash_MonthPicker)
-        );
-        this.$toDate.val(
-            this.$dropdownToMonth.monPickr('getToDate', alphaReports.format.shortDateWithSlash_MonthPicker)
-        );
+        this.$fromDate.val(this.$dropdownFromMonth.monPickr('getFromDate', 'MM/dd/yyyy'));
+        this.$toDate.val(this.$dropdownToMonth.monPickr('getToDate', 'MM/dd/yyyy'));
     };
 
     isLeast3Month = () => {

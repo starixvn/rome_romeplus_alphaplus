@@ -6,4 +6,5 @@ public record GetLeaguesParam(
     DateTime FromDate,
     DateTime ToDate,
     string Language,
+    string LanguageKey,
     bool IsShowAll);

@@ -17,13 +17,13 @@ class SimpleTooltip {
     private $tooltipBody: JQuery;
     private hideCallback: () => void;
 
-    constructor(private $: JQueryStatic, private $target: JQuery, option = defaultOption) {
-        this.option = this.$.extend({}, defaultOption, option);
+    constructor(private $target: JQuery, option = defaultOption) {
+        this.option = $.extend({}, defaultOption, option);
     }
 
     render = (html: string) => {
         if (!this.$tooltip) {
-            this.$tooltip = this.$(
+            this.$tooltip = $(
                 `<div class="simple-tooltip ${this.option.tooltipClass}">
                     <div class="tooltip-header">
                         <button type="button" class="icon icon-close close"></button>

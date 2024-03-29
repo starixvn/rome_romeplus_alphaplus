@@ -6,7 +6,6 @@ interface JQueryStatic {
 }
 
 class BaseReport {
-    $: JQueryStatic;
     linkBuilderComponent: LinkBuilderComponent;
 
     $pageTitle: JQuery;
@@ -16,39 +15,40 @@ class BaseReport {
     $reportLegend: JQuery;
     $iconInformation: JQuery;
 
-    constructor($: JQueryStatic, linkBuilderComponent: LinkBuilderComponent) {
-        this.$ = $;
+    levels = ['member', 'agent', 'master', 'super'];
+
+    constructor(linkBuilderComponent: LinkBuilderComponent) {
         this.linkBuilderComponent = linkBuilderComponent;
         this.initBaseReport();
     }
 
     private initBaseReport() {
         // cache elements
-        this.$pageTitle = this.$('.page-title');
-        this.$reportForm = this.$('#report-form');
-        this.$tableReport = this.$('#tbl-report');
+        this.$pageTitle = $('.page-title');
+        this.$reportForm = $('#report-form');
+        this.$tableReport = $('#tbl-report');
 
         // register event
         this.initBaseReportLegend();
-        this.$('.icon-filter').click(this.onClickIconFilter);
+        $('.icon-filter').click(this.onClickIconFilter);
         this.$reportForm.submit((event) => this.onSubmitReport(event));
 
         this.$tableReport.stickyTableHeaders();
     }
 
     private initBaseReportLegend() {
-        const $loadLegendURL = this.$('#LoadLegendURL');
+        const $loadLegendURL = $('#LoadLegendURL');
         if ($loadLegendURL.length) {
             const reportLegendUrl = $loadLegendURL.attr('href');
             $loadLegendURL.remove();
 
-            this.$iconInformation = this.$('#icon-information').click(this.showLegend);
-            this.$.ajax({
+            this.$iconInformation = $('#icon-information').click(this.showLegend);
+            $.ajax({
                 method: 'GET',
                 url: reportLegendUrl,
                 cache: false,
                 success: this.renderLegend,
-                complete: this.$.unblockUI
+                complete: $.unblockUI
             });
         }
     }
@@ -58,21 +58,21 @@ class BaseReport {
         const iconHelpPosition = this.$iconInformation.position();
         this.$reportLegend.css({
             bottom: 'auto',
-            top: this.$('.entered-non-entered').length > 0 ? iconHelpPosition.top + 90 : iconHelpPosition.top + 60
+            top: $('.entered-non-entered').length > 0 ? iconHelpPosition.top + 90 : iconHelpPosition.top + 60
         });
     };
 
     private renderLegend = (html: string) => {
         this.$reportLegend && this.$reportLegend.remove();
-        this.$('body').append(html);
+        $('body').append(html);
 
-        if (this.$.trim(html) === '') {
+        if ($.trim(html) === '') {
             this.$iconInformation.parent().remove();
         } else {
             this.$iconInformation.parent().removeClass('hide');
         }
 
-        this.$reportLegend = this.$('#report-legend');
+        this.$reportLegend = $('#report-legend');
     };
 
     private onClickIconFilter = () => {
@@ -114,29 +114,29 @@ class BaseReport {
     protected isStackMode = () => this.$tableReport.hasClass('stack-mode');
 
     protected registerHistoricReportEvent() {
-        this.$('#historic-report').click((e) => {
-            const isHistoricReport = this.$(e.target).data('is-historic-report');
-            this.$('#from-date').val('');
-            this.$('#to-date').val('');
-            this.$('#IsHistoricReport').val(isHistoricReport ? 'false' : 'true');
+        $('#historic-report').click((e) => {
+            const isHistoricReport = $(e.target).data('is-historic-report');
+            $('#from-date').val('');
+            $('#to-date').val('');
+            $('#IsHistoricReport').val(isHistoricReport ? 'false' : 'true');
             this.$reportForm.submit();
         });
     }
 
     protected registerDrilldownableEvents() {
         const handleDrilldownable = ($element) => {
-            const $custLevelId = this.$('#CustLevelId');
+            const $custLevelId = $('#CustLevelId');
             let custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
 
             $custLevelId.val(custLevelIdValue);
-            this.$('#CustId').val($element.data('custid'));
-            this.$('#CustName').val($element.data('custname'));
+            $('#CustId').val($element.data('custid'));
+            $('#CustName').val($element.data('custname'));
 
             this.$reportForm.submit();
         };
 
-        this.$pageTitle.find('.breadcrumb-link').click((e) => handleDrilldownable(this.$(e.target)));
+        this.$pageTitle.find('.breadcrumb-link').click((e) => handleDrilldownable($(e.target)));
 
-        this.$tableReport.find('.downline-link').click((e) => handleDrilldownable(this.$(e.target)));
+        this.$tableReport.find('.downline-link').click((e) => handleDrilldownable($(e.target)));
     }
 }

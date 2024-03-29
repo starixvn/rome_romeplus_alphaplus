@@ -19,8 +19,6 @@ class DateRangePickerOption {
 }
 
 class DateRangePickerComponent {
-    $: JQueryStatic;
-
     options = new DateRangePickerOption();
     quickChooseType = {
         specificDates: 7,
@@ -29,22 +27,18 @@ class DateRangePickerComponent {
     isCompleteInitDateRangePicker = false;
     $reportForm: JQuery;
 
-    constructor($: JQueryStatic) {
-        this.$ = $;
-    }
-
     render = (options: DateRangePickerOption = new DateRangePickerOption()) => {
-        this.options = this.$.extend({}, this.options, options);
+        this.options = $.extend({}, this.options, options);
 
-        const dateRangePicker = this.$('#' + this.options.selectorId);
+        const dateRangePicker = $('#' + this.options.selectorId);
         const currentDate = dateRangePicker.data('currentdate');
         const minDate = dateRangePicker.data('mindate');
         const maxDate = dateRangePicker.data('maxdate');
-        this.$reportForm = this.$('#' + this.options.reportFormId);
+        this.$reportForm = $('#' + this.options.reportFormId);
 
         dateRangePicker.nexDatePicker({
             datePickerFormat: {
-                dateFormat: alphaReports.format.shortDateWithSlash_DatePicker
+                dateFormat: 'MM/DD/YYYY'
             },
             selectedItem: dateRangePicker.data('selecteddaterange'),
             minDate: new Date(minDate),

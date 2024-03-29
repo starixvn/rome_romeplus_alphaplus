@@ -248,13 +248,11 @@ interface UplinesModel {
 }
 
 class BetChoiceUplines {
-    $: JQueryStatic;
     uplinesLink: string;
     uplinesCache: { [custId: number]: UplinesModel } = {};
 
-    constructor($: JQueryStatic) {
-        this.$ = $;
-        const $hiddenUplineLink = this.$('#hidden-uplineLink');
+    constructor() {
+        const $hiddenUplineLink = $('#hidden-uplineLink');
         this.uplinesLink = $hiddenUplineLink.attr('href');
         $hiddenUplineLink.remove();
     }
@@ -265,7 +263,7 @@ class BetChoiceUplines {
             return;
         }
 
-        this.$.get(`${this.uplinesLink}?custId=${custId}`)
+        $.get(`${this.uplinesLink}?custId=${custId}`)
             .done((data: UplinesModel) => {
                 this.uplinesCache[custId] = data;
                 callback(data);
@@ -287,7 +285,6 @@ class BetChoiceUplines {
 }
 
 class BetChoiceMatching {
-    $: JQueryStatic;
     $pageTitle: JQuery;
     $reportForm: JQuery;
     $filterIcon: JQuery;
@@ -308,35 +305,31 @@ class BetChoiceMatching {
     activeIPTooltip: SimpleTooltip;
     queryIPGroup: QueryIPGroup = {};
 
-    constructor($: JQueryStatic) {
-        this.$ = $;
-    }
-
     init = () => {
-        this.$.blockUI();
+        $.blockUI();
         this.cacheElements();
         this.registerEvents();
-        this.$.unblockUI();
+        $.unblockUI();
         this.submitOnLoad();
         this.$table.stickyTableHeaders();
     };
 
     cacheElements = () => {
-        this.$pageTitle = this.$('.page-title');
-        this.$reportForm = this.$('#report-form');
-        this.$filterIcon = this.$('.icon-filter');
-        this.$excelIcon = this.$('#icon-excel');
-        this.$betCount = this.$('#BetCount');
-        this.$datePicker = this.$('#dpkContainer');
-        this.$table = this.$('#tbl-report');
+        this.$pageTitle = $('.page-title');
+        this.$reportForm = $('#report-form');
+        this.$filterIcon = $('.icon-filter');
+        this.$excelIcon = $('#icon-excel');
+        this.$betCount = $('#BetCount');
+        this.$datePicker = $('#dpkContainer');
+        this.$table = $('#tbl-report');
         this.$tableTbody = this.$table.find('tbody');
         this.$tableTfoot = this.$table.find('tfoot');
         const $noinfoRow = this.$table.find('#noinfo-row');
         this.noinfoRowHtml = $noinfoRow.prop('outerHTML');
-        this.betChoiceUplines = new BetChoiceUplines(this.$);
-        this.usernameFilterForm = new UsernameFilterForm(this.$);
-        this.stakeFilterForm = new StakeFilterForm(this.$);
-        this.memberWinLossFilterForm = new MemberWinLossFilterForm(this.$);
+        this.betChoiceUplines = new BetChoiceUplines();
+        this.usernameFilterForm = new UsernameFilterForm();
+        this.stakeFilterForm = new StakeFilterForm();
+        this.memberWinLossFilterForm = new MemberWinLossFilterForm();
     };
 
     registerEvents = () => {
@@ -345,9 +338,9 @@ class BetChoiceMatching {
         this.$reportForm.submit(this.onSubmitReport);
         const options = {
             allowInputToggle: true,
-            minDate: new Date(this.$('#MinDate').val())
+            minDate: new Date($('#MinDate').val())
         };
-        this.$datePicker.datepicker(options).data('DateTimePicker').maxDate(this.$('#Today').val());
+        this.$datePicker.datepicker(options).data('DateTimePicker').maxDate($('#Today').val());
         this.usernameFilterForm.subscribeSubmit(this.filterAndRender);
         this.stakeFilterForm.subscribeSubmit(this.filterAndRender);
         this.memberWinLossFilterForm.subscribeSubmit(this.filterAndRender);
@@ -376,14 +369,14 @@ class BetChoiceMatching {
 
     onSubmitReport = (e: JQueryEventObject) => {
         e.preventDefault();
-        this.$.blockUI();
+        $.blockUI();
         this.removeFilterCriteria();
         this.hideColumnFilterIcons();
         this.hideColumnFilterTooltips();
         this.$table.hide();
         this.queryParam = this.$reportForm.serialize();
         const queryUrl = this.$reportForm.attr('action');
-        this.$.get(`${queryUrl}?${this.queryParam}`)
+        $.get(`${queryUrl}?${this.queryParam}`)
             .done((data: QueryModel) => {
                 this.data = data;
                 this.groupIPs(data.IPs);
@@ -393,16 +386,16 @@ class BetChoiceMatching {
             .fail((jqXHR) => {
                 const jsonData = JSON.parse(jqXHR.responseText);
                 if (jsonData.UMFrom && jsonData.UMTo) {
-                    const cookielessSiteMainUrl = this.$('#CookielessSiteMainUrl');
+                    const cookielessSiteMainUrl = $('#CookielessSiteMainUrl');
                     const siteMainUrl = cookielessSiteMainUrl.length
                         ? cookielessSiteMainUrl.val()
                         : top['alpha'].urls.mainRootPath;
-                    location.href = `${siteMainUrl}partialum/index?${this.$.param(jsonData)}`;
+                    location.href = `${siteMainUrl}partialum/index?${$.param(jsonData)}`;
                 }
             })
             .always(() => {
                 this.$table.show();
-                this.$.unblockUI();
+                $.unblockUI();
             });
     };
 
@@ -425,7 +418,7 @@ class BetChoiceMatching {
     onExportExcel = () => {
         const memberWinLossFilterFormCriteria = this.memberWinLossFilterForm.getCriteria();
         const excelUrl = [
-            this.$('#hidden-excelLink').attr('href'),
+            $('#hidden-excelLink').attr('href'),
             '?',
             this.queryParam,
             '&Username=',
@@ -587,10 +580,10 @@ class BetChoiceMatching {
         }
 
         const tooltipDataKey = 'simpleTooltip';
-        const $target = this.$(e.target);
+        const $target = $(e.target);
         let uplinesTooltip: SimpleTooltip = $target.data(tooltipDataKey);
         if (!uplinesTooltip) {
-            uplinesTooltip = new SimpleTooltip(this.$, $target, {
+            uplinesTooltip = new SimpleTooltip($target, {
                 title: betMatchingResources.Upline
             });
             $target.data(tooltipDataKey, uplinesTooltip);
@@ -614,10 +607,10 @@ class BetChoiceMatching {
         }
 
         const tooltipDataKey = 'simpleTooltip';
-        const $target = this.$(e.target);
+        const $target = $(e.target);
         let ipTooltip: SimpleTooltip = $target.data(tooltipDataKey);
         if (!ipTooltip) {
-            ipTooltip = new SimpleTooltip(this.$, $target, {
+            ipTooltip = new SimpleTooltip($target, {
                 title: betMatchingResources.IP_used_by,
                 direction: 'right',
                 tooltipClass: 'ip-tooltip'
@@ -674,14 +667,9 @@ abstract class BaseFilterForm<T> {
     private listener: () => void;
     static tooltips: SimpleTooltip[] = [];
 
-    constructor(
-        protected $: JQueryStatic,
-        iconFilterClassname: string,
-        tooltipOption: SimpleTooltipOption,
-        tooltipContent: string
-    ) {
+    constructor(iconFilterClassname: string, tooltipOption: SimpleTooltipOption, tooltipContent: string) {
         this.$filterIcon = $(iconFilterClassname);
-        this.simpleTooltip = new SimpleTooltip($, this.$filterIcon, tooltipOption);
+        this.simpleTooltip = new SimpleTooltip(this.$filterIcon, tooltipOption);
         this.simpleTooltip.render(tooltipContent);
         this.simpleTooltip.hide();
         BaseFilterForm.tooltips.push(this.simpleTooltip);
@@ -791,9 +779,8 @@ class UsernameFilterForm extends BaseFilterForm<UsernameFilterCriteria> {
 
     $textareaUsername: JQuery;
 
-    constructor($: JQueryStatic) {
+    constructor() {
         super(
-            $,
             UsernameFilterForm.iconFilterClassname,
             UsernameFilterForm.tooltipOption,
             UsernameFilterForm.tooltipContent
@@ -803,11 +790,11 @@ class UsernameFilterForm extends BaseFilterForm<UsernameFilterCriteria> {
     }
 
     textareaLostFocus = () => {
-        let username = this.$.trim(this.$textareaUsername.val()).replace(/(?:\r\n|\r|\n)/g, ',');
+        let username = $.trim(this.$textareaUsername.val()).replace(/(?:\r\n|\r|\n)/g, ',');
         const usernames = username.split(',');
         const newUsernames = [];
         usernames.forEach((x) => {
-            const trimmed = this.$.trim(x);
+            const trimmed = $.trim(x);
             if (trimmed) {
                 newUsernames.push(trimmed);
             }
@@ -818,7 +805,7 @@ class UsernameFilterForm extends BaseFilterForm<UsernameFilterCriteria> {
 
     getCriteria(): UsernameFilterCriteria {
         return {
-            Username: this.$.trim(this.$textareaUsername.val())
+            Username: $.trim(this.$textareaUsername.val())
         };
     }
 
@@ -877,8 +864,8 @@ class StakeFilterForm extends BaseFilterForm<StakeFilterCriteria> {
 
     $inputTotalStake: JQuery;
 
-    constructor($: JQueryStatic) {
-        super($, StakeFilterForm.iconFilterClassname, StakeFilterForm.tooltipOption, StakeFilterForm.tooltipContent);
+    constructor() {
+        super(StakeFilterForm.iconFilterClassname, StakeFilterForm.tooltipOption, StakeFilterForm.tooltipContent);
         this.$inputTotalStake = this.$form.find('input');
         this.$inputTotalStake.cleave({
             numeral: true,
@@ -946,9 +933,8 @@ class MemberWinLossFilterForm extends BaseFilterForm<MemberWinLossFilterCriteria
     $selectOperator: JQuery;
     $inputMemberWinLoss: JQuery;
 
-    constructor($: JQueryStatic) {
+    constructor() {
         super(
-            $,
             MemberWinLossFilterForm.iconFilterClassname,
             MemberWinLossFilterForm.tooltipOption,
             MemberWinLossFilterForm.tooltipContent
@@ -1001,5 +987,5 @@ class MemberWinLossFilterForm extends BaseFilterForm<MemberWinLossFilterCriteria
 }
 
 $(function () {
-    new BetChoiceMatching($).init();
+    new BetChoiceMatching().init();
 });
