@@ -1,5 +1,9 @@
-﻿@* @using AlphaPlus.Settings.Site.ViewModels.IndirectLoginAccount
-@using Alpha.MemberInfo.Configurations;
+﻿@using AlphaPlus.Settings.Site.ViewModels.IndirectLoginAccount
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
+
 @{
     ViewBag.Title = Resources.IndirectLoginAccount;
 
@@ -9,10 +13,10 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-totalbetsforecast/default")
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/indirect-login-account/indirect-login-account")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/assets/bundles/indirect-login-account/indirect-login-account")
 }
 @section Scripts {
-    @StaticResources.RenderScripts("~/assets/bundles/indirect-login-account/manage-account")
+    @StaticResources.RenderScripts("~/MemberInfo/assets/bundles/indirect-login-account/manage-account")
 }
 @model ManageAccountViewModel
 <div class="page-title">
@@ -68,4 +72,4 @@
     </table>
 </div>
 <input type="hidden" value="@Model.RootURL" id="txt-rootURL" />
-@Html.Partial("~/Views/IndirectLoginAccount/Introduction/QuickIntroduction.cshtml") *@
+@await Html.PartialAsync("~/MemberInfo/Views/IndirectLoginAccount/Introduction/QuickIntroduction.cshtml")

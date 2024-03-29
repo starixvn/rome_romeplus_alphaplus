@@ -1,10 +1,11 @@
-﻿@* @using AlphaPlus.Settings.Site.ViewModels.Components;
+﻿@using AlphaPlus.Settings.Site.ViewModels.Components
 
-@helper Render(ProductMultiSelectionViewModel model)
+@model ProductMultiSelectionViewModel
+
 {
     <div class="form-group">
         <select id="dropdown-product">
-            @foreach (var product in model.Products)
+            @foreach (var product in Model.Products)
             {
                 <option value="@product.Value"
                         data-productname="@product.Text"
@@ -15,6 +16,6 @@
                         @(product.Selected ? " selected=\"selected\"" : string.Empty)>@product.Text</option>
             }
         </select>
-        <input type="hidden" name="UserSelectedProductId" id="UserSelectedProductId" value="@model.UserSelectedProductIds" />
+        <input type="hidden" name="UserSelectedProductId" id="UserSelectedProductId" value="@Model.UserSelectedProductIds" />
     </div>
-} *@
+}

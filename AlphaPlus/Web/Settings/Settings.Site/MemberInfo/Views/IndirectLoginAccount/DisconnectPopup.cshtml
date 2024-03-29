@@ -1,12 +1,15 @@
-﻿@* @using AlphaPlus.Settings.Site.Requests.IndirectLoginAccount
+﻿@using AlphaPlus.Settings.Site.Requests.IndirectLoginAccount
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
 @{
     ViewBag.Title = Resources.IndirectLoginAccountConfirmation;
 }
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/indirect-login-account/indirect-login-account")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/assets/bundles/indirect-login-account/indirect-login-account")
 }
 @section Scripts {
-    @StaticResources.RenderScripts("~/assets/bundles/indirect-login-account/disconnect")
+    @StaticResources.RenderScripts("~/MemberInfo/assets/bundles/indirect-login-account/disconnect")
 }
 @model DisconnectCommand
 @Alert.Render()
@@ -18,4 +21,4 @@
     <input type="hidden" value="@Model.SubAccId" id="txt-subAccId" />
     <input type="hidden" value="@Model.CustName" id="txt-custname" />
     <button type="submit" class="btn-remove">@Resources.Disconnect</button>
-} *@
+}

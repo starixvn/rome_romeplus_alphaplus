@@ -111,7 +111,8 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
 
         private static bool IsAllowedIndirectLogin(int srecommend)
         {
-            var allowSuperIds = AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string[]>("IndirectLogin:AllowSuperIds", []);
+            var allowSuperIds = Core.Configurations.ConfigurationManager.GetValue<string>("IndirectLogin:AllowSuperIds")
+                .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
             return allowSuperIds.Contains("*") || allowSuperIds.Contains(srecommend.ToString());
         }

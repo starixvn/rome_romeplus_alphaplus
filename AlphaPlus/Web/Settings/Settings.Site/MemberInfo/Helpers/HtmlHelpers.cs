@@ -1,8 +1,61 @@
 using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Settings.Site.Features.Shared.ViewModels;
 using AlphaPlus.Settings.Site.ViewModels.Components;
 using Microsoft.AspNetCore.Html;
 
 namespace AlphaPlus.Settings.Site.MemberInfo.Helpers;
+
+public static class Breadcrumb
+{
+    public static IHtmlContent Render(BreadcrumbLevelViewModel viewModel, string currentRequestUrl, IEnumerable<string> breadcrumbParamByLevel)
+    {
+        var linkLength = viewModel.BreadcrumbLevel != null ? viewModel.BreadcrumbLevel.Count() : 0;
+        var linkIndex = 0;
+        var lastLinkIndex = linkLength - 1;
+
+        if (linkLength > 0)
+        {
+            var breadcrumb = @"<div class='breadcrumb-container'>
+                    <ul class='breadcrumb'>";
+
+            foreach (var custinfo in viewModel.BreadcrumbLevel)
+            {
+                if (linkIndex == lastLinkIndex)
+                {
+                    breadcrumb += "<li>" + custinfo.CustName + "</li>";
+                }
+                else
+                {
+                    breadcrumb += @"
+                        <li>
+                            <a class='breadcrumb-link' 
+                             href='" + viewModel.BuildBreadcrumbLink(custinfo, currentRequestUrl, breadcrumbParamByLevel, linkIndex) + "'>"
+                                + custinfo.CustName +
+                            "</a>" +
+                        "</li>";
+                }
+
+                linkIndex++;
+            }
+
+            breadcrumb += "</ul></div>";
+
+            return new HtmlString(breadcrumb);
+        }
+
+        return HtmlString.Empty;
+    }
+}
+
+public static class Alert{
+    public static IHtmlContent Render()
+    {
+        return new HtmlString(
+            @"<div id='alert-message' class='msg-content hidden'>
+                <div id='alert-message-content'></div>
+            </div>");
+    }
+}
 
 public static class Pager
 {

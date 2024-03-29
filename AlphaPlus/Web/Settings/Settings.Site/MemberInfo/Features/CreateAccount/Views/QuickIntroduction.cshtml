@@ -12,21 +12,21 @@
     var img2 = $"{defaultEnUs}lv{roleId}.img2.png";
     var img3 = $"{defaultEnUs}lv{roleId}.img3.png";
 
-    var folder = $"~/MemberInfo/assets/styles/images/createAccount/default/{language}/{dataThem}/";
+    var folder = $"/MemberInfo/assets/styles/images/createAccount/default/{language}/{dataThem}/";
     
     var is789y = AppSettings.IsSiteLabel789y;
 
     if (is789y)
     {
-        folder = $"~/MemberInfo/assets/styles/images/createAccount/site789y/{language}/{dataThem}/";
+        folder = $"/MemberInfo/assets/styles/images/createAccount/site789y/{language}/{dataThem}/";
     }
     
-    var isExistsImgOfLang = File.Exists($"{folder}lv{roleId}.img1.png");
+    var isExistsImgOfLang = File.Exists($"/app/wwwroot{folder}lv{roleId}.img1.png");
     if (isExistsImgOfLang)
     {
-        img1 = $"{folder}lv{roleId}.img1.png";
-        img2 = $"{folder}lv{roleId}.img2.png";
-        img3 = $"{folder}lv{roleId}.img3.png";
+        img1 = $"~/{folder}lv{roleId}.img1.png";
+        img2 = $"~/{folder}lv{roleId}.img2.png";
+        img3 = $"~/{folder}lv{roleId}.img3.png";
     }
 
 }

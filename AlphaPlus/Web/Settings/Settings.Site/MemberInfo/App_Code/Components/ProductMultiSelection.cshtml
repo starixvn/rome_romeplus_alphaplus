@@ -1,20 +1,21 @@
-﻿@* @using Alpha.MemberInfo.AppResources;
+﻿@using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
 @using AlphaPlus.Settings.Site.ViewModels.Components;
-@helper Render(ProductMultiSelectionViewModel model)
-{
+@model ProductMultiSelectionViewModel
+
+@{
     <div class="form-group">
         <select id="dropdown-product"
-                data-has-any-product="@model.Products.Any()"
+                data-has-any-product="@Model.Products.Any()"
                 data-label-select-products="@Resources.SelectProducts"
                 data-label-selected="@Resources.Selected"
                 data-label-all-products="@Resources.AllProducts"
                 data-label-there-is-no-product="@Resources.ThereIsNoProduct"
                 multiple="multiple" class="select-multiple">
-            @foreach (var product in model.Products)
+            @foreach (var product in Model.Products)
             {
                 <option value="@product.Value" @(product.Selected ? " selected=\"selected\"" : string.Empty)>@product.Text</option>
             }
         </select>
-        <input type="hidden" name="UserSelectedProductIds" id="product-ids" value="@model.UserSelectedProductIds" />
+        <input type="hidden" name="UserSelectedProductIds" id="product-ids" value="@Model.UserSelectedProductIds" />
     </div>
-} *@
+}

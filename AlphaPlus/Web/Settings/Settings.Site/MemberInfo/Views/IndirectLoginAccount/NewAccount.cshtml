@@ -1,11 +1,15 @@
-﻿@* @{
+﻿@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
+
+@{
     ViewBag.Title = Resources.NewIndirectLoginAccount;
 }
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/indirect-login-account/indirect-login-account")
+    @StaticResources.RenderStylesWithDarkMode("~/MemberInfo/assets/bundles/indirect-login-account/indirect-login-account")
 }
 @section Scripts {
-    @StaticResources.RenderScripts("~/assets/bundles/indirect-login-account/new-account")
+    @StaticResources.RenderScripts("~/MemberInfo/assets/bundles/indirect-login-account/new-account")
 }
 @model string
 @Alert.Render()
@@ -30,4 +34,4 @@
 }
 <input type="hidden" value="@Model" id="txt-hashkey" />
 <input type="hidden" value="@Resources.RequiredPasswordError" id="txt-requiredPasswordError" />
-<input type="hidden" value="@Resources.RequiredYourDownlineUsernameOrNicknameError" id="txt-requiredYourDownlineUsernameOrNicknameError" /> *@
+<input type="hidden" value="@Resources.RequiredYourDownlineUsernameOrNicknameError" id="txt-requiredYourDownlineUsernameOrNicknameError" />
