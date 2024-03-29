@@ -19,7 +19,7 @@
 
         public string BrowserSize { get; set; }
 
-        public string IBCPKey => "~/IbcKeys/ibcpkey.snk";
+        public string IBCPKey => "~/MemberInfo/IbcKeys/ibcpkey.snk";
 
         public HttpRequest Request
             => AlphaContext.Current.Request;
