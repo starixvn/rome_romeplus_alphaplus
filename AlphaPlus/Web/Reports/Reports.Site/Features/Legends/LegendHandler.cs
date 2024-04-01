@@ -3,7 +3,6 @@ using AlphaPlus.Reports.Features.Legends;
 using MediatR;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Microsoft.Extensions.Options;
-using AlphaPlus.Reports.Site.Features.Shared.Requests;
 
 namespace AlphaPlus.Reports.Site.Features.Legends;
 
@@ -12,7 +11,6 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
     IRequestHandler<WinLossLegendQuery, LegendViewModel>,
     IRequestHandler<MatchWinLossDetailLegendQuery, LegendViewModel>
 {
-
     public Task<LegendViewModel> Handle(MatchWinLossDetailLegendQuery message, CancellationToken cancellationToken)
     {
         var legends = new List<string>(GetGrossCommNotesByUserLevel(message.ViewerLevel));
@@ -24,7 +22,7 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
     public async Task<LegendViewModel> Handle(WinLossLegendQuery message, CancellationToken cancellationToken)
     {
         var legends = new List<string>();
-        if (!message.IsHistoricReport)
+        if (!message.IsHistoricReport && message.MinDate != DateTime.MinValue)
         {
             legends.Add(string.Format(
                 $"- {Resources.CanOnlyViewDataAfterTimeCurrentReport}", message.MinDate.ToShortDateWithSlash()));
@@ -51,7 +49,7 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
 
     private async Task AddOfferedProductsNeedDelayTimeToSummarizeData(
         IList<string> legends,
-        BaseQuery message,
+        LegendQuery message,
         IEnumerable<int> enableJackpotProductIds = null)
     {
         var productParam = new GetProductsParam(

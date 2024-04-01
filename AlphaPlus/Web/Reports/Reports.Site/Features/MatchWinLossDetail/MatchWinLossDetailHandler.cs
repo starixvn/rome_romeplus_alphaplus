@@ -4,6 +4,7 @@ using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
@@ -13,10 +14,12 @@ namespace AlphaPlus.Reports.Site.Features.MatchWinLossDetail;
 public class MatchWinLossDetailHandler(
     IProductService productService,
     IOptions<AppSettings> options,
-    IMatchWinLossDetailService matchWinLossDetailService) :
+    IMatchWinLossDetailService matchWinLossDetailService,
+    IMatchWinLossDetailWorkbook workbook) :
         BaseHandler(productService, options),
         IRequestHandler<MatchWinLossDetailGetLeagueQuery, LeagueViewModel>,
-        IRequestHandler<MatchWinLossDetailQuery, MatchWinLossDetailViewModel>
+        IRequestHandler<MatchWinLossDetailQuery, MatchWinLossDetailViewModel>,
+        IRequestHandler<MatchWinLossDetailExcelQuery, ExcelFileViewModel>
 {
     public Task<LeagueViewModel> Handle(MatchWinLossDetailGetLeagueQuery message, CancellationToken cancellationToken)
     {
@@ -65,6 +68,40 @@ public class MatchWinLossDetailHandler(
         return new MatchWinLossDetailViewModel(message, productViewModel, leagueViewModel, reportData);
     }
 
+    public async Task<ExcelFileViewModel> Handle(MatchWinLossDetailExcelQuery message, CancellationToken cancellationToken)
+    {
+        var fromDate = message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo);
+        var productIds = FilterProductIds(
+            message,
+            message.UserSelectedProductIds,
+            (await matchWinLossDetailService.GetProducts()).ToList());
+        var productIdsString = productIds.JoinWithComma();
+
+        var leagueParam = new GetLeaguesParam(
+            message.ViewerId,
+            productIdsString,
+            fromDate,
+            message.ToDate,
+            message.Language,
+            message.LanguageKey,
+            options.Value.LocalTest);
+
+        var leagueIds = message.IsUserSelectsAllLeagues
+            ? string.Empty
+            : BuildLeagueIds(await FilterLeagueIds(leagueParam, message.UserSelectedLeagueIds)).JoinWithComma();
+        var param = new MatchWinLossDetailParam(
+            message.ViewerId,
+            message.ViewerLevel,
+            fromDate,
+            message.ToDate,
+            productIdsString,
+            leagueIds,
+            message.Site);
+        var reportData = await matchWinLossDetailService.GetMatchWinLossDetail(param);
+
+        return workbook.BuildExcelFile(message, reportData, productService.ConcatProductNames(productIds));
+    }
+
     private async Task<LeagueViewModel> BuildLeagueViewModel(
         GetLeaguesParam param,
         string userSelectedLeagueIds = "",
@@ -95,6 +132,15 @@ public class MatchWinLossDetailHandler(
             isSelectedAllLeagues ? [] : validUserSelectedLeagueIds,
             isSelectedAllLeagues,
             param.Language);
+    }
+
+    private async Task<IEnumerable<string>> FilterLeagueIds(GetLeaguesParam param, string userSelectedLeagueIds)
+    {
+        var userSelectedLeagueIdList = userSelectedLeagueIds.ToList();
+
+        return (await matchWinLossDetailService.GetLeagues(param))
+            .Where(l => userSelectedLeagueIdList.Contains(l.Id))
+            .Select(l => l.Id);
     }
 
     private static IEnumerable<int> BuildLeagueIds(IEnumerable<string> leagues)

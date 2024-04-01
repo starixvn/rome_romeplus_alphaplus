@@ -18,6 +18,9 @@ public static class BetTypeConstants
     public const int BetBuilder = 38;
     public const int NumberGameMin = 81;
     public const int NumberGameMax = 120;
+    public const int N_Over_Under = 85;
+    public const int N_Odd_Even = 86;
+    public const int NumberWheel = 90;
     public const int HomeNoBet = 121;
     public const int AwayNoBet = 122;
     public const int DrawNoDraw = 123;

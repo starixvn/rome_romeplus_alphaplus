@@ -1,16 +1,12 @@
-using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.MatchWinLossDetail;
 
-public class MatchWinLossDetailQuery : DefaultDateRangeQuery, IRequest<MatchWinLossDetailViewModel>
+public class MatchWinLossDetailQuery : BalanceUpDateRangeQuery, IRequest<MatchWinLossDetailViewModel>
 {
     public MatchWinLossDetailQuery() : base()
-    {
-        MinDate = ReportDateService.Instance.GetBalanceUpDay().GetAwaiter().GetResult();
-        LanguageKey = Viewer.LangKey;
-    }
+        => LanguageKey = Viewer.LangKey;
 
     public string UserSelectedProductIds { get; set; } = "*";
 

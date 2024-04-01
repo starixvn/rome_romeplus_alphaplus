@@ -6,11 +6,12 @@ namespace AlphaPlus.Reports.Site.Features.Legends;
 
 public class LegendsController(IMediator mediator) : ReportBaseController(mediator)
 {
-    public Task<IActionResult> Index(LegendQuery message) => View(message);
+    public async Task<IActionResult> Index(LegendQuery message)
+        => View(await mediator.Send(message));
 
-    public Task<IActionResult> WinLoss(WinLossLegendQuery message)
-        => View(message, nameof(Index));
+    public async Task<IActionResult> WinLoss(WinLossLegendQuery message)
+        => View(nameof(Index), await mediator.Send(message));
 
-    public Task<IActionResult> MatchWinLossDetail(MatchWinLossDetailLegendQuery message)
-        => View(message, nameof(Index));
+    public async Task<IActionResult> MatchWinLossDetail(MatchWinLossDetailLegendQuery message)
+        => View(nameof(Index), await mediator.Send(message));
 }

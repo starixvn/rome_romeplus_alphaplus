@@ -16,7 +16,6 @@ class MatchWinLossDetailView extends BaseReport {
     loadLeagueURL: string;
 
     isFirstSwitchMode = true;
-    isLoading = true;
 
     constructor(
         productComponent: ProductMultiSelectionComponent,
@@ -47,8 +46,6 @@ class MatchWinLossDetailView extends BaseReport {
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'matchwinlossdetail'));
         }
 
-        this.isLoading = false;
-
         $.unblockUI();
     }
 
@@ -69,7 +66,7 @@ class MatchWinLossDetailView extends BaseReport {
     }
 
     initComponent() {
-        this.productComponent.render();
+        this.productComponent.render(this.showButtonLoadLeague);
         this.dateRangePickerComponent.render(
             new DateRangePickerOption('daterange-picker', 'report-form', this.showButtonLoadLeague)
         );
@@ -83,14 +80,12 @@ class MatchWinLossDetailView extends BaseReport {
     }
 
     onSubmitReport = (event: any) => {
-        this.isLoading = true;
-
         if (!this.productComponent.validateProductIds()) {
             event.preventDefault();
             return;
         }
 
-        if (!this.leagueComponent.validateLeagueIds()) {
+        if (this.$buttonLoadLeague.hasClass('hide') && !this.leagueComponent.validateLeagueIds()) {
             event.preventDefault();
             return;
         }
@@ -186,10 +181,6 @@ class MatchWinLossDetailView extends BaseReport {
     };
 
     showButtonLoadLeague = () => {
-        if (this.isLoading) {
-            return;
-        }
-
         this.$userSelectedLeagueIds.val('');
         this.$buttonLoadLeague.removeClass('hide');
         this.$leagueContainer.find('> .btn-group:not(.btn-loadleague-container)').addClass('hide');

@@ -1,8 +1,35 @@
-using AlphaPlus.Reports.Site.Features.Shared.Requests;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Reports.Features.Shared.Extensions;
 using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.Legends;
 
-public class LegendQuery : DefaultDateRangeQuery, IRequest<LegendViewModel>
+public class LegendQuery : IRequest<LegendViewModel>
 {
+    public LegendQuery() : this(new UserSessionExt())
+    {
+    }
+
+    protected LegendQuery(IUserSession viewer)
+    {
+        ViewerLevel = Enumeration.FromValue<UserLevel>(viewer.RoleId);
+        Site = viewer.Site;
+        CurrencyId = viewer.CurrencyId;
+        Language = viewer.Language;
+        MinDate = IsHistoricReport
+            ? DateTime.Today.FirstDayOf3YearsAgo()
+            : DateTime.Today.FirstDayOf3MonthsAgo();
+    }
+
+    public UserLevel ViewerLevel { get; }
+
+    public string Site { get; }
+
+    public int CurrencyId { get; }
+
+    public string Language { get; }
+
+    public DateTime MinDate { get; set; }
+
+    public bool IsHistoricReport { get; set; }
 }

@@ -16,7 +16,10 @@ class ProductMultiSelectionComponent {
     isReady = false;
     numberDisplayed: 1;
 
-    render() {
+    onChangeProductCallback: Function;
+
+    render(onChangeProduct: Function = null) {
+        this.onChangeProductCallback = onChangeProduct;
         this.renderProductDetailDropdown();
         this.renderProductDropdown();
         this.isReady = true;
@@ -69,6 +72,8 @@ class ProductMultiSelectionComponent {
                     ? this.disableProductDetailDropdown(option)
                     : this.disableProductDetailItem(checked, option.context.value);
             }
+
+            this.onChangeProductCallback && this.onChangeProductCallback();
         }
     }
 

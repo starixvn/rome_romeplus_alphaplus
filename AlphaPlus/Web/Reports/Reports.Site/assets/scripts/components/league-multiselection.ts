@@ -53,6 +53,10 @@ class LeagueMultiSelectionComponent {
     }
 
     validateLeagueIds = (): boolean => {
+        if (this.$isUserSelectsAllLeagues.val().toLowerCase() === 'true') {
+            return true;
+        }
+
         const isValid = this.$dropdownLeague.find('option:selected').length > 0;
         isValid ? this.$multiSelectButton.removeClass('error') : this.$multiSelectButton.addClass('error');
 

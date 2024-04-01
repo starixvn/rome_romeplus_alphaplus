@@ -52,11 +52,11 @@
                 {
                     RenderStackNetWinLoss(UserLevel.Super, data.WinLoss, data.Comm, data.Total, "altercol");
                 }
-                if (isMasterLevel)
+                else if (isMasterLevel)
                 {
                     RenderStackNetWinLoss(UserLevel.Master, data.WinLoss, data.Comm, data.Total, "altercol");
                 }
-                if (isAgentLevel)
+                else
                 {
                     RenderStackNetWinLoss(UserLevel.Member, data.MemberWinLoss, data.MemberComm, data.MemberTotal);
                     RenderStackNetWinLoss(UserLevel.Agent, data.WinLoss, data.Comm, data.Total, "altercol");
@@ -71,12 +71,12 @@
                     <td class="hidden-stack-mode bold col-cust-total">@data.DownlineTotal.FormatNumber()</td>
                     RenderNetWinLoss(UserLevel.Super, data.WinLoss, data.Comm, data.Total, "altercol");
                 }
-                if (isMasterLevel)
+                else if (isMasterLevel)
                 {
                     <td class="hidden-stack-mode bold col-cust-total">@data.DownlineTotal.FormatNumber()</td>
                     RenderNetWinLoss(UserLevel.Master, data.WinLoss, data.Comm, data.Total, "altercol");
                 }
-                if (isAgentLevel)
+                else
                 {
                     RenderNetWinLoss(UserLevel.Member, data.MemberWinLoss, data.MemberComm, data.MemberTotal);
                     RenderNetWinLoss(UserLevel.Agent, data.WinLoss, data.Comm, data.Total, "altercol");
@@ -269,6 +269,7 @@
     }
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends"
+    asp-route-MinDate="@(Model.DateRangePicker != null ? Model.DateRangePicker.MinDate : string.Empty)"
     asp-route-IsHistoricReport="@Model.IsHistoricReport" asp-route-ShowDormantAccountsNote="True"></a>
 <input type="hidden" asp-for="IsSetDefaultStackMode" />
 <input type="hidden" id="IsAgentLevel" value="@isAgentLevel.ToString()" />

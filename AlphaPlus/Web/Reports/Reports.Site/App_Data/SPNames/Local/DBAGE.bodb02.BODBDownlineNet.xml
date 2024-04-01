@@ -61,19 +61,16 @@
     <Setting Key="Age_Rpt_WinLossByProduct_Member" SpName="Age_Rpt_WinLossByProduct_Member" DbName="DBAGE.bodb02.BODBDownlineNet">
       <Mapping DataField="AgWinLoss" ObjectProperty="WinLoss" />
       <Mapping DataField="AgComm" ObjectProperty="Comm" />
-      <Mapping DataField="NumberOfTickets" ObjectProperty="BetCount" />
     </Setting>
     <Setting Key="Age_Rpt_WinLossByProduct_Agent" SpName="Age_Rpt_WinLossByProduct_Agent" DbName="DBAGE.bodb02.BODBDownlineNet">
       <Mapping DataField="AgTotal" ObjectProperty="DownlineTotal" />
       <Mapping DataField="MAgWinLoss" ObjectProperty="WinLoss" />
       <Mapping DataField="MAgComm" ObjectProperty="Comm" />
-      <Mapping DataField="NumberOfTickets" ObjectProperty="BetCount" />
     </Setting>
     <Setting Key="Age_Rpt_WinLossByProduct_Master" SpName="Age_Rpt_WinLossByProduct_Master" DbName="DBAGE.bodb02.BODBDownlineNet">
       <Mapping DataField="MAgTotal" ObjectProperty="DownlineTotal" />
       <Mapping DataField="SAgWinLoss" ObjectProperty="WinLoss" />
       <Mapping DataField="SAgComm" ObjectProperty="Comm" />
-      <Mapping DataField="NumberOfTickets" ObjectProperty="BetCount" />
     </Setting>
   </Function>
   <Function Name="Win Loss Analysis">
