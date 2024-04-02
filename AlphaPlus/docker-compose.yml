@@ -72,6 +72,7 @@ services:
 
     proxy:
         build: proxy
+        restart: always
         ports:
             - 5100:80
         depends_on:
