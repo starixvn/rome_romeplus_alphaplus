@@ -29,7 +29,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
         }
 
         public Task<string> GetCustomerInfo(int custId, byte roleId, string language)
-            => httpClient.PostAsStringAsync($"api/customer/query",
+            => httpClient.PutAsStringAsync($"api/customer",
                 new
                 {
                     UplineCustId = custId,
@@ -41,10 +41,10 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
             => httpClient.GetStringAsync($"api/customer/{custId}/pt-templates");
 
         public Task<string> GetPTSettings(int custId, byte roleId, string site, int currency, string language)
-            => httpClient.PostAsStringAsync("api/customer/pt-settings", new { custId, roleId, site, currency, language });
+            => httpClient.GetStringAsync($"api/customer/pt-settings?CustId={custId}&RoleId={roleId}&Site={site}&Currency={currency}&Language={language}&SystemId={AppSettings.SystemId}");
 
         public Task<string> CreatePTTemplate(int custId, string templateName, bool isDefault, IEnumerable<PTTemplateSetting> settings, int subAccId, string language, string ip)
-            => httpClient.PostAsStringAsync("api/customer/pt-templates", new
+            => httpClient.PutAsStringAsync("api/customer/pt-templates", new
             {
                 custId,
                 templateName,
@@ -79,7 +79,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
 
         public Task<string> CreateAccount(int creatorId, int subAccId, string ip, string language, string uiBehavior, GeneralInfo generalInfo, string productGroups)
         {
-            return httpClient.PostAsStringAsync("api/customer/create", new
+            return httpClient.PostAsStringAsync("api/customer", new
             {
                 context = new { creatorId, subAccId, ip, systemId = AppSettings.SystemId, language, uiBehavior = JObject.Parse(uiBehavior) },
                 settings = new { generalInfo, productGroups = JArray.Parse(productGroups) }
