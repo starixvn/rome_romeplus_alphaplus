@@ -22,37 +22,37 @@
             <td>@data.Turnover.FormatNumber()</td>
             @if (Model.PageHeader.IsStackMode)
             {
-                RenderStackNetWinLoss(UserLevel.Member, data.MemberWinLoss, data.MemberComm, data.MemberTotal);
-                RenderStackNetWinLoss(UserLevel.Agent, data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
+                RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderStackNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
                 if (isMasterOrSuperLevel)
                 {
-                    RenderStackNetWinLoss(UserLevel.Master, data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+                    RenderStackNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
                 }
                 if (isSuperLevel)
                 {
-                    RenderStackNetWinLoss(UserLevel.Super, data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
+                    RenderStackNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
                 }
             }
             else
             {
-                RenderNetWinLoss(UserLevel.Member, data.MemberWinLoss, data.MemberComm, data.MemberTotal);
-                RenderNetWinLoss(UserLevel.Agent, data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
+                RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
                 if (isMasterOrSuperLevel)
                 {
-                    RenderNetWinLoss(UserLevel.Master, data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+                    RenderNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
                 }
                 if (isSuperLevel)
                 {
-                    RenderNetWinLoss(UserLevel.Super, data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
+                    RenderNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
                 }
             }
             <td class="col-company">@data.Company.FormatNumber()</td>
         </tr>
     }
 
-    void RenderStackNetWinLoss(UserLevel level, decimal winloss, decimal comm, decimal total, string className = "")
+    void RenderStackNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string className = "")
     {
-        <td class="visible-stack-mode combinedcell col-@level.DisplayName.ToLower()-winloss-combined @className">
+        <td class="visible-stack-mode combinedcell col-@level-winloss-combined @className">
             <ul>
                 <li>@winloss.FormatNumber()</li>
                 <li>@comm.FormatNumber()</li>
@@ -61,9 +61,9 @@
         </td>
     }
 
-    void RenderNetWinLoss(UserLevel level, decimal winloss, decimal comm, decimal total, string className = "")
+    void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string className = "")
     {
-        <td class="hidden-stack-mode col-@level.DisplayName.ToLower()-winloss @className">
+        <td class="hidden-stack-mode col-@level-winloss @className">
             @winloss.FormatNumber()
         </td>
         <td class="hidden-stack-mode @className">

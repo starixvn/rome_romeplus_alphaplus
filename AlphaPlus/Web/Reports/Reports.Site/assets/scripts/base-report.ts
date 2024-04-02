@@ -78,17 +78,20 @@ class BaseReport {
     private onClickIconFilter = () => {
         const filter = this.$reportForm;
         const currentHideState = filter.hasClass('hide');
-
-        if (currentHideState) {
-            this.$pageTitle.removeClass('hide-filter');
-            this.$reportForm.removeClass('hide');
-        } else {
-            this.$pageTitle.addClass('hide-filter');
-            this.$reportForm.addClass('hide');
-        }
+        currentHideState ? this.showFilter() : this.hideFilter();
 
         //this.replaceHrefParam('IsFilterVisible', currentHideState);
     };
+
+    private showFilter() {
+        this.$pageTitle.removeClass('hide-filter');
+        this.$reportForm.removeClass('hide');
+    }
+
+    protected hideFilter() {
+        this.$pageTitle.addClass('hide-filter');
+        this.$reportForm.addClass('hide');
+    }
 
     // private replaceHrefParam(paramName: string, paramValue: any) {
     //     this.linkBuilderComponent.updateParam(paramName, paramValue);

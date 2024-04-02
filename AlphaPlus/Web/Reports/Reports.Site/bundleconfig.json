@@ -121,6 +121,19 @@
         ]
     },
     {
+        "outputFileName": "wwwroot/bundles/superwinlossdetailbypt/superwinlossdetailbypt.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/superwinlossdetailbypt/superwinlossdetailbypt.js"
+        ]
+    },
+    {
         "outputFileName": "wwwroot/bundles/commissionbybettype/commissionbybettype.js",
         "inputFiles": [
             "assets/scripts/core.js",

@@ -5,7 +5,6 @@
 
 class WinLossByProductView extends BaseReport {
     isAgentLevel: boolean;
-    $switchModeIcon: JQuery;
     isFirstSwitchMode = true;
 
     productComponent: ProductMultiSelectionComponent;
@@ -28,16 +27,11 @@ class WinLossByProductView extends BaseReport {
     init() {
         $.blockUI();
 
-        this.cacheDOMElements();
+        this.isAgentLevel = $('#IsAgentLevel').val().toLowerCase() === 'true';
         this.initComponents();
         this.registerEvents();
 
         $.unblockUI();
-    }
-
-    cacheDOMElements() {
-        this.isAgentLevel = $('#IsAgentLevel').val().toLowerCase() === 'true';
-        this.$switchModeIcon = $('.icon-switchmode');
     }
 
     initComponents() {
@@ -48,18 +42,18 @@ class WinLossByProductView extends BaseReport {
             alphaReports.screenSmallThan768()
         ) {
             this.setCssBySwitchMode(false);
-
             this.combineColumns(this.isAgentLevel);
             this.isFirstSwitchMode = false;
-
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winlossbyproduct'));
+
+            this.hideFilter();
         }
 
         this.dateRangePickerComponent.render();
     }
 
     public registerEvents() {
-        this.$switchModeIcon.on('click', this.onSwitchModeEvent);
+        $('.icon-switchmode').on('click', this.onSwitchMode);
 
         const self = this;
         $('.product-row').on('click', function () {
@@ -70,7 +64,7 @@ class WinLossByProductView extends BaseReport {
         });
     }
 
-    onSwitchModeEvent = () => {
+    onSwitchMode = () => {
         const isStackMode = this.isStackMode();
         this.setCssBySwitchMode(isStackMode);
 

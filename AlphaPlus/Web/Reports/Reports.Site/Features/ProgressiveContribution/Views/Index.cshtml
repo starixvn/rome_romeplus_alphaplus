@@ -21,44 +21,44 @@
         {
             if (isSuperLevel)
             {
-                RenderStackContributionNumberCell(UserLevel.Super, data.ContributionSuper, data.ContributionMaster,
+                RenderStackContributionNumberCell("super", data.ContributionSuper, data.ContributionMaster,
                 data.ContributionAgent);
             }
             else if (isMasterLevel)
             {
-                RenderStackContributionNumberCell(UserLevel.Master, data.ContributionMaster, data.ContributionAgent);
+                RenderStackContributionNumberCell("master", data.ContributionMaster, data.ContributionAgent);
             }
             else
             {
-                RenderContributionNumberCell(UserLevel.Agent, data.ContributionAgent);
+                RenderContributionNumberCell("agent", data.ContributionAgent);
             }
         }
         else
         {
             if (isSuperLevel)
             {
-                RenderContributionNumberCell(UserLevel.Super, data.ContributionSuper);
+                RenderContributionNumberCell("super", data.ContributionSuper);
             }
 
             if (isMasterOrSuperLevel)
             {
-                RenderContributionNumberCell(UserLevel.Master, data.ContributionMaster);
+                RenderContributionNumberCell("master", data.ContributionMaster);
             }
 
-            RenderContributionNumberCell(UserLevel.Agent, data.ContributionAgent);
+            RenderContributionNumberCell("agent", data.ContributionAgent);
         }
 
         <td class="col-company">@data.CompanyContribution.FormatNumber4()</td>
     }
-    void RenderContributionNumberCell(UserLevel level, decimal value)
+    void RenderContributionNumberCell(string level, decimal value)
     {
-        <td class="hidden-stack-mode col-@level.DisplayName.ToLower()-contribution-share">
+        <td class="hidden-stack-mode col-@level-contribution-share">
             @value.FormatNumber4()
         </td>
     }
-    void RenderStackContributionNumberCell(UserLevel level, params decimal[] cellValues)
+    void RenderStackContributionNumberCell(string level, params decimal[] cellValues)
     {
-        <td class="visible-stack-mode combinedcell col-@level.DisplayName.ToLower()-contribution-share-combined">
+        <td class="visible-stack-mode combinedcell col-@level-contribution-share-combined">
             <ul>
                 @foreach (var cellValue in cellValues)
                 {

@@ -10,17 +10,8 @@ class ProgressiveContributionView extends BaseReport {
     productComponent: ProductMultiSelectionComponent;
     reportTooltip: ReportTooltip;
 
-    $historicReport: JQuery;
-    $switchModeIcon: JQuery;
-
-    $isHistoricReport: JQuery;
-    $isSetDefaultStackMode: JQuery;
-    $isAgentLevel: JQuery;
-
-    $custId: JQuery;
-    $custLevelId: JQuery;
-
-    isHistoricReport = false;
+    isAgentLevel: boolean;
+    custLevelId: number;
     isFirstSwitchMode = true;
 
     constructor(
@@ -40,58 +31,39 @@ class ProgressiveContributionView extends BaseReport {
 
     init() {
         this.cacheDOMElements();
-        this.bindFilter();
+        this.initComponents();
         this.registerEvents();
     }
 
-    cacheDOMElements = () => {
-        this.$isSetDefaultStackMode = $('#IsSetDefaultStackMode');
-        this.$isHistoricReport = $('#IsHistoricReport');
-        this.$isAgentLevel = $('#IsAgentLevel');
+    cacheDOMElements() {
+        this.isAgentLevel = $('#IsAgentLevel').val().toLowerCase() === 'true';
+        this.custLevelId = +$('#CustLevelId').val();
+    }
 
-        this.$custId = $('#CustId');
-        this.$custLevelId = $('#CustLevelId');
-        this.$historicReport = $('#historic-report');
-
-        this.$switchModeIcon = $('.icon-switchmode');
-    };
-
-    bindFilter = () => {
-        this.productComponent.render();
-
+    initComponents() {
         if (
-            this.$isSetDefaultStackMode.val().toString().toLowerCase() === 'true' &&
+            $('#IsSetDefaultStackMode').val().toString().toLowerCase() === 'true' &&
             alphaReports.screenSmallThan768()
         ) {
             this.setStackMode();
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'progressivegamescontribution'));
+
+            this.hideFilter();
         }
 
-        this.isHistoricReport = this.$isHistoricReport.val().toLocaleLowerCase() === 'true';
-        if (this.isHistoricReport) {
+        this.productComponent.render();
+        const isHistoricReport = $('#IsHistoricReport').val().toLocaleLowerCase() === 'true';
+        if (isHistoricReport) {
             this.monthPickerComponent.render();
         } else {
             this.dateRangePickerComponent.render();
         }
-    };
-
-    public registerEvents() {
-        super.registerHistoricReportEvent();
-        this.$switchModeIcon.on('click', this.onSwitchMode);
     }
 
-    onSubmitReport = (event: any) => {
-        if (!this.productComponent.validateProductIds()) {
-            event.preventDefault();
-            return;
-        }
-
-        super.onSubmitReport(event, true);
-    };
-
-    onSubmitHistoricReport = () => {
-        this.isHistoricReport = !this.$historicReport.data('is-historic-report');
-    };
+    public registerEvents() {
+        $('.icon-switchmode').on('click', this.onSwitchMode);
+        super.registerHistoricReportEvent();
+    }
 
     onSwitchMode = () => {
         $.blockUI();
@@ -107,8 +79,7 @@ class ProgressiveContributionView extends BaseReport {
     };
 
     setStackMode = () => {
-        let isAgentLevel = this.$isAgentLevel.val().toLocaleLowerCase() === 'true';
-        if (isAgentLevel) {
+        if (this.isAgentLevel) {
             return;
         }
 
@@ -132,18 +103,26 @@ class ProgressiveContributionView extends BaseReport {
     };
 
     renderAtFirstSwitchMode = (isSwitchToNormalMode: boolean) => {
-        let custLevelId = parseInt(this.$custLevelId.val());
-        let level = this.levels[custLevelId - 1];
+        const level = this.levels[this.custLevelId - 1];
 
         if (isSwitchToNormalMode) {
-            alphaReports.splitCell('col-' + level + '-contribution-share', '', '');
+            alphaReports.splitCell(`col-${level}-contribution-share`, '', '');
         } else {
             alphaReports.combineConsecutiveCells(
-                $('td.col-' + level + '-contribution-share'),
-                custLevelId - 1,
-                'text-right col-' + level + '-contribution-share-combined'
+                $(`td.col-${level}-contribution-share`),
+                this.custLevelId - 1,
+                `text-right col-${level}-contribution-share-combined`
             );
         }
+    };
+
+    onSubmitReport = (event: any) => {
+        if (!this.productComponent.validateProductIds()) {
+            event.preventDefault();
+            return;
+        }
+
+        super.onSubmitReport(event, true);
     };
 }
 

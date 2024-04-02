@@ -6,7 +6,6 @@
 
 class WinLossAnalysisView extends BaseReport {
     $reportTypeId: JQuery;
-    $switchModeIcon: JQuery;
     $isSetDefaultStackMode: JQuery;
     isFirstSwitchMode = true;
 
@@ -24,6 +23,7 @@ class WinLossAnalysisView extends BaseReport {
         linkBuilderComponent: LinkBuilderComponent
     ) {
         super(linkBuilderComponent);
+
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.productComponent = productComponent;
         this.sortComponent = sortComponent;
@@ -34,9 +34,7 @@ class WinLossAnalysisView extends BaseReport {
         $.blockUI();
 
         this.cacheDOMElements();
-        this.bindFilter();
-        this.sortComponent.initSort(this.$tableReport, { 0: { sorter: this.getSorterName() } });
-
+        this.initComponents();
         this.registerEvents();
 
         // remove style="visibility:hidden"
@@ -47,14 +45,11 @@ class WinLossAnalysisView extends BaseReport {
     }
 
     cacheDOMElements() {
-        this.$switchModeIcon = $('.icon-switchmode');
         this.$reportTypeId = $('#ReportTypeId');
         this.$isSetDefaultStackMode = $('#IsSetDefaultStackMode');
     }
 
-    bindFilter() {
-        this.productComponent.render();
-
+    initComponents() {
         if (
             this.$isSetDefaultStackMode.val().toString().toLowerCase() === 'true' &&
             alphaReports.screenSmallThan768()
@@ -63,7 +58,9 @@ class WinLossAnalysisView extends BaseReport {
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winlossanalysis'));
         }
 
+        this.productComponent.render();
         this.dateRangePickerComponent.render();
+        this.sortComponent.initSort(this.$tableReport, { 0: { sorter: this.getSorterName() } });
     }
 
     getSorterName = () => {
@@ -79,7 +76,7 @@ class WinLossAnalysisView extends BaseReport {
 
     public registerEvents() {
         this.$reportForm.submit(this.onSubmitReport);
-        this.$switchModeIcon.on('click', this.onSwitchModeEvent);
+        $('.icon-switchmode').on('click', this.onSwitchMode);
 
         const self = this;
         $(':radio[name=ReportTypeId]').change(function () {
@@ -100,7 +97,7 @@ class WinLossAnalysisView extends BaseReport {
     renderAtFirstSwitchMode = (isSwitchToNormalMode: boolean) =>
         isSwitchToNormalMode ? this.splitColumns() : this.combineColumns();
 
-    onSwitchModeEvent = () => {
+    onSwitchMode = () => {
         const isStackMode = this.isStackMode();
         this.setCssBySwitchMode(isStackMode);
         if (this.isFirstSwitchMode) {

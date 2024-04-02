@@ -12,6 +12,9 @@ public class LegendsController(IMediator mediator) : ReportBaseController(mediat
     public async Task<IActionResult> WinLoss(WinLossLegendQuery message)
         => View(nameof(Index), await mediator.Send(message));
 
+    public async Task<IActionResult> WinLossDetail(WinLossDetailLegendQuery message)
+    => View(nameof(Index), await mediator.Send(message));
+
     public async Task<IActionResult> MatchWinLossDetail(MatchWinLossDetailLegendQuery message)
         => View(nameof(Index), await mediator.Send(message));
 }

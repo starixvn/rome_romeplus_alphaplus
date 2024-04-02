@@ -16,7 +16,7 @@ public class SuperWinLossDetailByPTModel(
             const decimal percentage = 100.0m;
             decimal superPTPercentage = SuperPT * percentage;
 
-            return $"{superPTPercentage.FormatNumber()}%";
+            return $"{superPTPercentage.ToString("N1")}%";
         }
     }
 

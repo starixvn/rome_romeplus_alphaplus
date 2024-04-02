@@ -134,6 +134,10 @@
     <Setting Key="Age_Rpt_WinLossDetailByPT_Super" SpName="Age_Rpt_WinLossDetailByPT_Super" DbName="DBAGE.bodb02.BODBDownlineNet">
       <Mapping DataField="TurnoverNoDraw" ObjectProperty="NetTurnover" />
       <Mapping DataField="PlayerComm" ObjectProperty="MemberComm" />
+      <Mapping DataField="MemberWinLost" ObjectProperty="MemberWinLoss" />
+      <Mapping DataField="AgWinLost" ObjectProperty="AgWinLoss" />
+      <Mapping DataField="MAgWinLost" ObjectProperty="MAgWinLoss" />
+      <Mapping DataField="SAgWinLost" ObjectProperty="SAgWinLoss" />
     </Setting>
   </Function>
 </Functions>

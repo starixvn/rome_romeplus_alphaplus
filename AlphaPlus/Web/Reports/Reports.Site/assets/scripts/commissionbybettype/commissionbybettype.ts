@@ -20,7 +20,6 @@ class CommissionByBettype extends BaseReport {
         $.blockUI();
 
         super.registerDrilldownableEvents();
-
         this.dateRangePicker.render();
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
 
@@ -31,9 +30,7 @@ class CommissionByBettype extends BaseReport {
         $.unblockUI();
     }
 
-    onSubmitReport(event) {
-        super.onSubmitReport(event, undefined, this.sortComponent.getSortInfo());
-    }
+    onSubmitReport = (event) => super.onSubmitReport(event, undefined, this.sortComponent.getSortInfo());
 }
 
 $(function () {

@@ -13,15 +13,17 @@ class SortComponent {
     linkBuilderComponent: LinkBuilderComponent;
     $tableReport: JQuery;
     headers: any;
+    afterSortFunction: Function;
     canSort = false;
 
     constructor(linkBuilderComponent: LinkBuilderComponent) {
         this.linkBuilderComponent = linkBuilderComponent;
     }
 
-    initSort = ($tableReport: JQuery, headers: any) => {
+    initSort = ($tableReport: JQuery, headers: any, afterSortFunction: Function = undefined) => {
         this.$tableReport = $tableReport;
         this.headers = headers;
+        this.afterSortFunction = afterSortFunction;
         this.canSort = this.$tableReport.data('cansort').toLowerCase() === 'true';
         const sortColumns = this.$tableReport.find('.sorting');
 
@@ -121,9 +123,7 @@ class SortComponent {
     private onSort = (sortedColumnName: string, isDecendingSort: boolean) => {
         this.$tableReport.data('descendingsort', isDecendingSort ? 1 : 0).data('sortedcolumn', sortedColumnName);
 
-        // if (this.options.afterSortFunction && typeof this.options.afterSortFunction === 'function') {
-        //     this.options.afterSortFunction();
-        // }
+        this.afterSortFunction && this.afterSortFunction();
     };
 
     getSortInfo = (): SortInfo => {

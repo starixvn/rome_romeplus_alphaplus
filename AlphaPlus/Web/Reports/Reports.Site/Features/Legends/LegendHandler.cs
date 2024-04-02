@@ -9,14 +9,15 @@ namespace AlphaPlus.Reports.Site.Features.Legends;
 public class LegendHandler(ILengendService lengendService, IOptions<AppSettings> options) :
     IRequestHandler<LegendQuery, LegendViewModel>,
     IRequestHandler<WinLossLegendQuery, LegendViewModel>,
+    IRequestHandler<WinLossDetailLegendQuery, LegendViewModel>,
     IRequestHandler<MatchWinLossDetailLegendQuery, LegendViewModel>
 {
-    public Task<LegendViewModel> Handle(MatchWinLossDetailLegendQuery message, CancellationToken cancellationToken)
+    public async Task<LegendViewModel> Handle(LegendQuery message, CancellationToken cancellationToken)
     {
-        var legends = new List<string>(GetGrossCommNotesByUserLevel(message.ViewerLevel));
-        var viewModel = new LegendViewModel([$"- {Resources.GrossComm}: <ul class=\"gross-comm\">{string.Join(string.Empty, legends)}</ul>"]);
+        var legends = new List<string>();
+        await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
 
-        return Task.FromResult(viewModel);
+        return new LegendViewModel(legends);
     }
 
     public async Task<LegendViewModel> Handle(WinLossLegendQuery message, CancellationToken cancellationToken)
@@ -39,12 +40,48 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
         return new LegendViewModel(legends);
     }
 
-    public async Task<LegendViewModel> Handle(LegendQuery message, CancellationToken cancellationToken)
+    public async Task<LegendViewModel> Handle(WinLossDetailLegendQuery message, CancellationToken cancellationToken)
     {
-        var legends = new List<string>();
+        var legends = new List<string>
+        {
+            Resources.Tooltip_NetTurnover
+        };
+
+        var productParam = new GetProductsParam(
+            message.Site,
+            message.CurrencyId,
+            options.Value.SettingStatus,
+            message.Language,
+            message.MinDate);
+        var productNames = lengendService.GetProductNamesForLiveCasinoTooltip(productParam);
+        if (!string.IsNullOrWhiteSpace(productNames))
+        {
+            legends.Add(string.Format(Resources.Tooltip_NetTurnover_livecasino, productNames));
+        }
+
+        productNames = lengendService.GetProductNamesForRNGCasinoTooltip(productParam);
+        if (!string.IsNullOrWhiteSpace(productNames))
+        {
+            legends.Add(string.Format(Resources.Tooltip_NetTurnover_RNGCasino, productNames));
+        }
+
         await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
+        legends.Add(GetGrossCommNotes(message.ViewerLevel));
+        legends.Add(Resources.GrossCommRoundingNote);
+        // if (message.ShowDormantAccountsNote)
+        // {
+        //     legends.Add(Resources.DormantAccountsNote);
+        // }
 
         return new LegendViewModel(legends);
+    }
+
+    public Task<LegendViewModel> Handle(MatchWinLossDetailLegendQuery message, CancellationToken cancellationToken)
+    {
+        var legends = new List<string>(GetGrossCommNotesByUserLevel(message.ViewerLevel));
+        var viewModel = new LegendViewModel([$"- {Resources.GrossComm}: <ul class=\"gross-comm\">{string.Join(string.Empty, legends)}</ul>"]);
+
+        return Task.FromResult(viewModel);
     }
 
     private async Task AddOfferedProductsNeedDelayTimeToSummarizeData(

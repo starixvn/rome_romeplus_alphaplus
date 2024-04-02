@@ -6,7 +6,7 @@ namespace AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 
 public interface ISuperWinLossDetailByPTService
 {
-    Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity)> GetSuperWinLossDetailByPT(SuperWinLossDetailByPTParam param);
+    Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity, IEnumerable<SuperPTModel>)> GetSuperWinLossDetailByPT(SuperWinLossDetailByPTParam param);
 }
 
 public class SuperWinLossDetailByPTService(
@@ -15,7 +15,7 @@ public class SuperWinLossDetailByPTService(
     ICacheRefService cacheRefService,
     IPartialUMService partialUMService) : ISuperWinLossDetailByPTService
 {
-    public async Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity)> GetSuperWinLossDetailByPT(SuperWinLossDetailByPTParam param)
+    public async Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity, IEnumerable<SuperPTModel>)> GetSuperWinLossDetailByPT(SuperWinLossDetailByPTParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
         var criteria = new SuperWinLossDetailByPTCriteria(
@@ -64,7 +64,7 @@ public class SuperWinLossDetailByPTService(
         .OrderByDescending(wl => wl.SuperPT)
         .ToList();
 
-        return (reportData, grandTotal);
+        return (reportData, grandTotal, ptList);
     }
 
     private Task<IEnumerable<SuperPTModel>> GetSuperPT(int superId, byte settingStatus)
