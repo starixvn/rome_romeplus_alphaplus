@@ -24,18 +24,14 @@ public class MatchWinLossDetailService(
     ICacheRefService cacheRefService,
     IPartialUMService partialUMService) : IMatchWinLossDetailService
 {
-    private const int CacheInMinutes = 5;
-    private const string CacheKey = "AlphaPlus.Reports.MatchWinLossDetail.Products";
+    private const int ProductsCacheInMinutes = 5;
+    private const string ProductsCacheKey = "AlphaPlus.Reports.MatchWinLossDetail.Products";
 
     public Task<IEnumerable<int>> GetProducts()
         => cacheService.GetOrSetAsync(
-        CacheKey,
-        async () =>
-        {
-            var products = await repository.FetchAsync<Product>(new ProductsForMatchWinLossDetailCriteria());
-            return products.Select(p => p.Id);
-        },
-        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CacheInMinutes)));
+        ProductsCacheKey,
+        async () => (await repository.FetchAsync<Product>(new ProductsForMatchWinLossDetailCriteria())).Select(p => p.Id),
+        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheInMinutes)));
 
     public async Task<IEnumerable<League>> GetLeagues(GetLeaguesParam param)
     {
@@ -77,8 +73,8 @@ public class MatchWinLossDetailService(
 
     private MatchWinLossDetailReport BuildMatchWinLossDetailReport(IEnumerable<MatchWinLossDetailEntity> rawdata)
     {
-        BetTypeWinLossModel mixParlay = null;
-        BetTypeWinLossModel systemParlay = null;
+        MatchWinLossDetailEntity mixParlayTotal = null;
+        MatchWinLossDetailEntity systemParlay = null;
         var parlayMatchWinLossDetails = new List<BetTypeWinLossModel>();
         var normalMatchWinLossDetails = new Dictionary<string, IList<MatchWinLossDetailEntity>>();
 
@@ -89,14 +85,28 @@ public class MatchWinLossDetailService(
         {
             if (item.IsParlay)
             {
-                if (item.BetType == BetTypeConstants.MixParlay || item.BetType == BetTypeConstants.MixParlayBetRadarVirtualSports)
+                if (BetTypeConstants.IsMixParlay(item.BetType))
                 {
-                    mixParlay = new BetTypeWinLossModel(item, cacheRefService.GetBetTypeName(item.BetType));
+                    if (mixParlayTotal == null)
+                    {
+                        mixParlayTotal = item;
+                    }
+                    else
+                    {
+                        mixParlayTotal += item;
+                    }
                 }
 
                 if (item.BetType == BetTypeConstants.CombineMixParlay)
                 {
-                    systemParlay = new BetTypeWinLossModel(item, cacheRefService.GetBetTypeName(item.BetType));
+                    if (systemParlay == null)
+                    {
+                        systemParlay = item;
+                    }
+                    else
+                    {
+                        systemParlay += item;
+                    }
                 }
 
                 if (IsParlayMatchWinLossDetail(item.BetType))
@@ -122,10 +132,10 @@ public class MatchWinLossDetailService(
 
         return new MatchWinLossDetailReport(
             rawdata.Any(),
-            BuildMatchWinLossDetailModel(normalMatchWinLossDetails).ToList(),
+            BuildNormalMatchWinLossDetails(normalMatchWinLossDetails).ToList(),
             new BetTypeWinLossModel(normalMatchesTotal),
-            mixParlay,
-            systemParlay,
+            BuildMixParlayOrSystemParlay(mixParlayTotal),
+            BuildMixParlayOrSystemParlay(systemParlay),
             parlayMatchWinLossDetails,
             new BetTypeWinLossModel(grandTotal));
     }
@@ -156,7 +166,13 @@ public class MatchWinLossDetailService(
         return $"{leagueName}_MatchId{data.MatchId}";
     }
 
-    private IEnumerable<MatchWinLossDetailModel> BuildMatchWinLossDetailModel(
+    private BetTypeWinLossModel BuildMixParlayOrSystemParlay(MatchWinLossDetailEntity entity)
+        => entity == null
+            ? null
+            : new BetTypeWinLossModel(entity, cacheRefService.GetBetTypeName(entity.BetType));
+
+
+    private IEnumerable<MatchWinLossDetailModel> BuildNormalMatchWinLossDetails(
         IDictionary<string, IList<MatchWinLossDetailEntity>> normalMatchWinLossDetails)
     {
         foreach (var (_, normalMatches) in normalMatchWinLossDetails)

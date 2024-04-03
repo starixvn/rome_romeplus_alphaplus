@@ -25,6 +25,7 @@ public static class BetTypeConstants
     public const int AwayNoBet = 122;
     public const int DrawNoDraw = 123;
     public const int MixParlayBetRadarVirtualSports = 2799;
+    public const int MixParlayEdgeGamingVirtualSports = 10449;
 
     public const int VirtualHorseRacing_Win = 1231;
     public const int VirtualHorseRacing_Place = 1232;
@@ -65,4 +66,9 @@ public static class BetTypeConstants
         || betType == VirtualHorseRacing_WinPlace
         || betType == VirtualHorseRacing_Forecast
         || betType == VirtualHorseRacing_Tricast;
+
+    public static bool IsMixParlay(int betType)
+        => betType == MixParlay
+        || betType == MixParlayBetRadarVirtualSports
+        || betType == MixParlayEdgeGamingVirtualSports;
 }

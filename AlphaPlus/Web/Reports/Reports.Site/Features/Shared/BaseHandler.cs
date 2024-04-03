@@ -17,9 +17,10 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     protected (ProductMultiSelectionViewModel, string) BuildProductViewModel(
         BaseQuery message,
         string userSelectedProductIds,
-        string userSelectedResourceIds)
+        string userSelectedResourceIds,
+        IEnumerable<Product> offeredProducts = null)
     {
-        var allProducts = GetProducts(message);
+        var allProducts = offeredProducts ?? GetProducts(message);
 
         var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = BuildProductDetailViewModel(
             message.ViewerId,

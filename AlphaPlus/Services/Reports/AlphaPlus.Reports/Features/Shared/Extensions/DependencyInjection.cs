@@ -22,6 +22,7 @@ using AlphaPlus.Reports.Features.WinLoss;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 using AlphaPlus.Reports.Features.WinLossByProduct;
+using AlphaPlus.Reports.Features.Consolidation;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
@@ -50,6 +51,7 @@ public static class DependencyInjection
             .AddSingleton<IWinLossByProductService, WinLossByProductService>()
             .AddSingleton<ISuperWinLossDetailByPTService, SuperWinLossDetailByPTService>()
             .AddSingleton<ICommissionByBetTypeService, CommissionByBetTypeService>()
+            .AddSingleton<IConsolidationService, ConsolidationService>()
             .AddSingleton<IStatementService, StatementService>()
             .AddSingleton<IProgressiveContributionService, ProgressiveContributionService>()
             .AddSingleton<IBonusDetailService, BonusDetailService>()

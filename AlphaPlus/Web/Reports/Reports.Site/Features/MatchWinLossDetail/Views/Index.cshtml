@@ -23,15 +23,15 @@
                     <li>@data.GrossComm.FormatNumber()</li>
                 </ul>
             </td>
-            RenderStackNetWinLoss(UserLevel.Member, data.MemberWinLoss, data.MemberComm, data.MemberTotal);
-            RenderStackNetWinLoss(UserLevel.Agent, data.AgWinLoss, data.AgComm, data.AgTotal);
+            RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+            RenderStackNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal);
             if (isMasterOrSuperLevel)
             {
-                RenderStackNetWinLoss(UserLevel.Master, data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+                RenderStackNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
             }
             if (isSuperLevel)
             {
-                RenderStackNetWinLoss(UserLevel.Super, data.SAgWinLoss, data.SAgComm, data.SAgTotal);
+                RenderStackNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal);
             }
             <td class="visible-stack-mode combinedcell col-company-winloss-combined">
                 <ul>
@@ -44,24 +44,24 @@
         {
             <td class="hidden-stack-mode col-turnover">@data.Turnover.FormatNumber()</td>
             <td class="hidden-stack-mode">@data.GrossComm.FormatNumber()</td>
-            RenderNetWinLoss(UserLevel.Member, data.MemberWinLoss, data.MemberComm, data.MemberTotal);
-            RenderNetWinLoss(UserLevel.Agent, data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
+            RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+            RenderNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
             if (isMasterOrSuperLevel)
             {
-                RenderNetWinLoss(UserLevel.Master, data.MAgWinLoss, data.MAgComm, data.MAgTotal);
+                RenderNetWinLoss("master", data.MAgWinLoss, data.MAgComm, data.MAgTotal);
             }
             if (isSuperLevel)
             {
-                RenderNetWinLoss(UserLevel.Super, data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
+                RenderNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
             }
             <td class="hidden-stack-mode col-company-winloss">@data.CompanyComm.FormatNumber()</td>
             <td class="hidden-stack-mode">@data.Company.FormatNumber()</td>
         }
     }
 
-    void RenderNetWinLoss(UserLevel level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
+    void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
     {
-        <td class="hidden-stack-mode col-@level.DisplayName.ToLower()-winloss @highlightClass">
+        <td class="hidden-stack-mode col-@level-winloss @highlightClass">
             @winloss.FormatNumber()
         </td>
         <td class="hidden-stack-mode @highlightClass">
@@ -72,9 +72,9 @@
         </td>
     }
 
-    void RenderStackNetWinLoss(UserLevel level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
+    void RenderStackNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
     {
-        <td class="visible-stack-mode combinedcell col-@level.DisplayName.ToLowerInvariant()-winloss-combined @highlightClass">
+        <td class="visible-stack-mode combinedcell col-@level-winloss-combined @highlightClass">
             <ul>
                 <li>@winloss.FormatNumber()</li>
                 <li>@comm.FormatNumber()</li>
@@ -109,7 +109,7 @@
     </div>
 </form>
 <table
-    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    class="tblRpt tblRpt-bordered alternative-row-table tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
     <thead>
         <tr>
@@ -200,7 +200,7 @@
                     </tr>
                 }
             }
-            @if (Model.ShowTotalRow)
+            @if (Model.ReportData.ShowTotalRow)
             {
                 <tr class="tbl-footer">
                     @{

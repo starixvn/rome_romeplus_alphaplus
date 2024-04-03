@@ -6,7 +6,6 @@ using AlphaPlus.Reports.Features.WinLoss;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
-using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Site.Features.WinLoss;

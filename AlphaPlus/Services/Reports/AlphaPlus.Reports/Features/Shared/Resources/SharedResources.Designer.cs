@@ -110,5 +110,60 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
                 return ResourceManager.GetString("PreGame", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Number Game No.
+        /// </summary>
+        internal static string NumberGameNo
+        {
+            get
+            {
+                return ResourceManager.GetString("NumberGameNo", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No
+        {
+            get
+            {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Number Game.
+        /// </summary>
+        internal static string NumberGame
+        {
+            get
+            {
+                return ResourceManager.GetString("NumberGame", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Happy 5.
+        /// </summary>
+        internal static string Happy5
+        {
+            get
+            {
+                return ResourceManager.GetString("Happy5", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Sports.
+        /// </summary>
+        internal static string VirtualSports
+        {
+            get
+            {
+                return ResourceManager.GetString("VirtualSports", resourceCulture);
+            }
+        }
     }
 }

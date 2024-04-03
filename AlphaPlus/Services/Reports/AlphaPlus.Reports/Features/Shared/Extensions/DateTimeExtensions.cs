@@ -4,6 +4,7 @@ public static class DateTimeExtensions
 {
     private const string MMDDWithSlash = "MM/dd";
     private const string ShortDateWithSlash = "MM/dd/yyyy";
+    private const string LongDateWithSlash = "MM/dd/yyyy hh:mm:ss tt";
     private const string LongDate24HourWithSlash = "MM/dd/yyyy HH:mm:ss";
     private const string LongDateWithoutSecondWithSlash = "MM/dd/yyyy hh:mm tt";
     private const string ShortMonthNameAndShortYear = "MMM-yy";
@@ -16,6 +17,9 @@ public static class DateTimeExtensions
 
     public static string ToShortDateWithSlash(this DateTime dateTime)
         => dateTime.ToString(ShortDateWithSlash);
+
+    public static string ToLongDateWithSlash(this DateTime dateTime)
+        => dateTime.ToString(LongDateWithSlash);
 
     public static string ToLongDate24HourWithSlash(this DateTime dateTime)
         => dateTime.ToString(LongDate24HourWithSlash);

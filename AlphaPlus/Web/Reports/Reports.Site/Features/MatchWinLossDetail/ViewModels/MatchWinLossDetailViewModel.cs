@@ -41,9 +41,6 @@ public class MatchWinLossDetailViewModel(
         ? 17
         : message.ViewerLevel.IsMasterLevel() ? 14 : 11;
 
-    public bool ShowTotalRow => ReportData.NormalMatchWinLoss.Any();
-
-
     public IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {

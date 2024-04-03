@@ -120,10 +120,28 @@
   <data name="FT" xml:space="preserve">
     <value>全场</value>
   </data>
+  <data name="Happy5" xml:space="preserve">
+    <value>快乐5</value>
+  </data>
   <data name="LiveGame" xml:space="preserve">
     <value/>
   </data>
   <data name="Next" xml:space="preserve">
     <value>下一页</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>数字游戏</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>数字游戏编号</value>
+  </data>
+  <data name="PreGame" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>虚拟运动</value>
   </data>
 </root>

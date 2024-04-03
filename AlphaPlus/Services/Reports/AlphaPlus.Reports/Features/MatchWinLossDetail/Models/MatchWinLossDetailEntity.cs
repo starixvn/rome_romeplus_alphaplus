@@ -4,7 +4,7 @@ namespace AlphaPlus.Reports.Features.MatchWinLossDetail;
 
 public class MatchWinLossDetailEntity : NetWinLoss
 {
-    private static readonly int[] ParlayBetGroupIds = [3, 4];
+    private static readonly HashSet<int> ParlayBetGroupIds = new HashSet<int> { 3, 4 };
 
     public int BetGroup { get; set; }
 

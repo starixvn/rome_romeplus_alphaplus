@@ -120,13 +120,28 @@
   <data name="FT" xml:space="preserve">
     <value>Cả trận</value>
   </data>
+  <data name="Happy5" xml:space="preserve">
+    <value>Happy 5</value>
+  </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Trực Tiếp</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Kế tiếp</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Số</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>Number Game</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>Number Game No</value>
+  </data>
   <data name="PreGame" xml:space="preserve">
     <value>Chưa bắt đầu</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>Virtual Sports</value>
   </data>
 </root>

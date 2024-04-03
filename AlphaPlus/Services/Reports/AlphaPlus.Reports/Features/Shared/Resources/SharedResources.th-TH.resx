@@ -120,10 +120,28 @@
   <data name="FT" xml:space="preserve">
     <value>เต็มเวลา</value>
   </data>
+  <data name="Happy5" xml:space="preserve">
+    <value>Happy 5</value>
+  </data>
   <data name="LiveGame" xml:space="preserve">
     <value/>
   </data>
   <data name="Next" xml:space="preserve">
     <value>ต่อไป</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value> ลำดับที่</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>เกมหมายเลข</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>เกมหมายเลข เลขที่</value>
+  </data>
+  <data name="PreGame" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>กีฬาอนิเมชั่น</value>
   </data>
 </root>

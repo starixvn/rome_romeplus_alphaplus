@@ -6,6 +6,7 @@ public static class ProductIdConstants
     public const int NumberGame = 3;
     public const int VirtualSports = 5;
     public const int Allbet = 21;
+    public const int Cashout = 25;
     public const int SAGaming = 39;
     public const int SabaClub = 42;
     public const int SexyGaming = 45;

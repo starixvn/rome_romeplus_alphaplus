@@ -21,16 +21,13 @@ public class MatchWinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) 
     IMatchWinLossDetailWorkbook
 {
     private const int ReportSheetIndex = 1;
-    private const int RowTypeData = 1;
-    private const int RowTypeSubTotal = 2;
-    private const int RowTypeTotal = 3;
-    private const int RowTypeGrandTotal = 4;
     private UserLevel custLevel;
     MatchWinLossDetailReport reportData;
 
     private IDictionary<string, Func<BetTypeWinLossModel, object>> betTypeRowMapper;
     private IDictionary<string, Func<BetTypeWinLossModel, object>> subTotalRowMapper;
     private IDictionary<string, Func<BetTypeWinLossModel, object>> totalRowMapper;
+    private IDictionary<string, Func<BetTypeWinLossModel, object>> grandTotalRowMapper;
 
     private Row matchTitleRowTemplate;
     private Row oddRowTemplate;
@@ -52,18 +49,18 @@ public class MatchWinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) 
         custLevel = message.ViewerLevel;
         this.reportData = reportData;
 
-        betTypeRowMapper = GetRowMapper(RowTypeData, custLevel).Mappings;
-        subTotalRowMapper = GetRowMapper(RowTypeSubTotal, custLevel).Mappings;
-        totalRowMapper = GetRowMapper(RowTypeTotal, custLevel).Mappings;
+        betTypeRowMapper = GetRowMapper(custLevel).Mappings;
+        subTotalRowMapper = GetRowMapper(custLevel, Resources.SubTotal).Mappings;
+        totalRowMapper = GetRowMapper(custLevel, Resources.Total).Mappings;
+        grandTotalRowMapper = GetRowMapper(custLevel, Resources.GrandTotal).Mappings;
 
         var fileContent = UseTemplate(
             new TemplateInfo(
                 GetExcelTemplatePath(message.ViewerLevel.GetDirectDownlineLevel().DisplayName),
-                noInfomationText: Resources.NoInformationIsAvailable,
-                bodyEndIndex: 12))
+                noInfomationText: Resources.NoInformationIsAvailable))
             .Title($"{Resources.MatchWinLossDetail} {fromDate} --> {toDate} - {Resources.of}: {productNames}")
             .Header(Resources.ResourceManager.GetString)
-            .Footer(reportData.GrandTotal, GetRowMapper(RowTypeGrandTotal, custLevel))
+            .Footer(reportData.GrandTotal, null)
             .ExportToBytes();
 
         return new ExcelFileViewModel($"{Resources.MatchWinLossDetail}-{fromDate}-{toDate}", fileContent);
@@ -133,7 +130,7 @@ public class MatchWinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) 
             }
         }
 
-        if (reportData.NormalMatchWinLoss.Any() && HasParlay())
+        if (reportData.ShowTotalRow)
         {
             FillTotal(sheet, currentRowIndex++, reportData.TotalNormalMatchWinLoss);
         }
@@ -158,12 +155,11 @@ public class MatchWinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) 
 
     private void FillMatchTitle(Sheet sheet, int rowIndex, MatchWinLossDetailModel data)
     {
+        var title = $"{data.LeagueName}{(string.IsNullOrEmpty(data.MatchName) ? string.Empty : $" >> {data.MatchName}")}".ToUpper(CultureInfo.InvariantCulture);
+
         var row = sheet.GetRow(rowIndex);
         row.CopyCellsFrom(matchTitleRowTemplate);
-
-        var title = (data.LeagueName + (string.IsNullOrEmpty(data.MatchName) ? string.Empty : $" >> {data.MatchName}"))
-            .ToUpper(CultureInfo.InvariantCulture);
-        sheet.SetCellRangeValue(rowIndex, row.FirstCellIndex, rowIndex, row.LastCellIndex - 1, title);
+        sheet.SetCellValue(rowIndex, row.FirstCellIndex, title);
     }
 
     private void FillBetTypeWinLoss(Sheet sheet, int rowIndex, bool isEvenRow, BetTypeWinLossModel betTypeWinLoss)
@@ -207,7 +203,7 @@ public class MatchWinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) 
     {
         var row = sheet.GetRow(currentRowIndex);
         row.CopyCellsFrom(grandTotalRowTemplate);
-        FillCells(row, SpreadSheet.FooterRows.First(), SpreadSheet.FooterRowMapper.Mappings);
+        FillCells(row, SpreadSheet.FooterRows.First(), grandTotalRowMapper);
     }
 
     protected override void FillNoInfoRow(Sheet sheet)
@@ -225,35 +221,11 @@ public class MatchWinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) 
         sheet.GetCell(rowIndex, colIndex).SetCenterHorizontalAlignment();
     }
 
-    private bool HasParlay()
-        => reportData.MixParlay != null
-        || reportData.SystemParlay != null
-        || reportData.ParlayMatchWinLoss.Any();
-
-    private static Mapper<BetTypeWinLossModel> GetRowMapper(int rowType, UserLevel custLevel)
+    private static Mapper<BetTypeWinLossModel> GetRowMapper(UserLevel custLevel, string cellValue = null)
     {
         var mapper = new Mapper<BetTypeWinLossModel>();
-
-        switch (rowType)
-        {
-            case RowTypeData:
-                mapper.Map(A, betTypeWinLoss => betTypeWinLoss.Name);
-                break;
-
-            case RowTypeSubTotal:
-                mapper.Map(A, betTypeWinLoss => Resources.SubTotal);
-                break;
-
-            case RowTypeTotal:
-                mapper.Map(A, betTypeWinLoss => Resources.Total);
-                break;
-
-            case RowTypeGrandTotal:
-                mapper.Map(A, betTypeWinLoss => Resources.GrandTotal);
-                break;
-        }
-
         mapper
+            .Map(A, betTypeWinLoss => cellValue ?? betTypeWinLoss.Name)
             .Map(B, betTypeWinLoss => betTypeWinLoss.Turnover)
             .Map(C, betTypeWinLoss => betTypeWinLoss.GrossComm)
             .Map(D, betTypeWinLoss => betTypeWinLoss.MemberWinLoss)
