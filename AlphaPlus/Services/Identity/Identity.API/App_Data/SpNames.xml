@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Functions>
   <Function Name="Auth">
-    <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_Checkin" SpName="Age_Checkin" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_CustomerSelStatus" SpName="Acc_CustomerSelStatus" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustSetting_BetChoiceLimitCheck" SpName="Age_CustSetting_BetChoiceLimitCheck" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_Rpt_ConsolidatedGroup_isShownMenu" SpName="Age_Rpt_ConsolidatedGroup_isShownMenu" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="Acc_SiteDBConfigSel" SpName="Acc_SiteDBConfigSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_Transfer_CheckTotalBalanceTransfer" SpName="Age_Transfer_CheckTotalBalanceTransfer" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CheckOut" SpName="Age_CheckOut" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_RecheckIn" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_Checkin" SpName="Age_Checkin" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerSelStatus" SpName="Acc_CustomerSelStatus" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustSetting_BetChoiceLimitCheck" SpName="Age_CustSetting_BetChoiceLimitCheck" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_Rpt_ConsolidatedGroup_isShownMenu" SpName="Age_Rpt_ConsolidatedGroup_isShownMenu" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
+    <Setting Key="Acc_SiteDBConfigSel" SpName="Acc_SiteDBConfigSel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_Transfer_CheckTotalBalanceTransfer" SpName="Age_Transfer_CheckTotalBalanceTransfer" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
+    <Setting Key="Age_CheckOut" SpName="Age_CheckOut" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />
+    <Setting Key="Age_RecheckIn" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />
   </Function>
 
   <Function Name="Customer limit time range">
-    <Setting Key="Age_CustomerSelDateLimit" SpName="Age_CustomerSelDateLimit" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_CustomerSelDateLimit" SpName="Age_CustomerSelDateLimit" DbName="DBAGE.bodb02.wsv_alp" />
   </Function>
 
   <Function Name="Security Code">
-    <Setting Key="Age_CustomerSelSecurityFunctionInfo" SpName="Age_CustomerSelSecurityFunctionInfo" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CustomerSelSecurityFunctionInfo" SpName="Age_CustomerSelSecurityFunctionInfo" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
 
   <Function Name="Auto Follow Bet">
-    <Setting Key="NAP_Customer_FollowBetAccountDummyAgentSel" SpName="NAP_Customer_FollowBetAccountDummyAgentSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="NAP_Customer_FollowBetAccountDummyAgentSel" SpName="NAP_Customer_FollowBetAccountDummyAgentSel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
 
   <Function Name="Game Enable">
-    <Setting Key="Acc_GameLaunchSel" SpName="Acc_GameLaunchSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" TimeOut="600" />
+    <Setting Key="Acc_GameLaunchSel" SpName="Acc_GameLaunchSel" DbName="DBCust.CustDB.wsv_alp" Plain="0" TimeOut="600" />
   </Function>
 </Functions>
