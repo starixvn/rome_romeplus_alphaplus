@@ -19,10 +19,10 @@
             this.mediator = mediator;
         }
 
-        public ActionResult Index(IndexQuery indexQuery)
+        public async Task<ActionResult> Index(IndexQuery indexQuery)
         {
             indexQuery.TrackingValueTransformTemplatePath = TemplatePath;
-            var viewModel = mediator.Send(indexQuery);
+            var viewModel = await mediator.Send(indexQuery);
 
             return View(viewModel);
         }

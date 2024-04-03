@@ -11,7 +11,7 @@
     <title>@ViewBag.Title</title>
 
     @StaticResources.AssetStyles.Render($"/bundles/site-viewlogs/viewlogs-{Model.UserLevel}")
-    <link rel="stylesheet" href="@StaticResources.RenderScripts($"~/ViewLogs/assets/bundles/default")" />
+    @StaticResources.RenderScripts($"~/ViewLogs/assets/bundles/default")
     @RenderSection("Styles", required: false)
     @GoogleAnalyticHelper.GtagScript()
 </head>

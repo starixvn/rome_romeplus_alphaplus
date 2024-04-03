@@ -18,7 +18,7 @@
             this.mediator = mediator;
         }
 
-        public ActionResult Index(IndexQuery indexQuery)
+        public async Task<ActionResult> Index(IndexQuery indexQuery)
         {
             indexQuery.IsAgentViewing = UserSession.RoleId == UserLevel.Agent.Value;
             indexQuery.PreviousUsername = UserSession.UserName;
@@ -27,7 +27,7 @@
                 : indexQuery.Username;
             indexQuery.IsInternal = UserSession.IsInternal;
 
-            var viewModel = mediator.Send(indexQuery);
+            var viewModel = await mediator.Send(indexQuery);
 
             return View(viewModel);
         }
