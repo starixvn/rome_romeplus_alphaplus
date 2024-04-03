@@ -1,0 +1,10 @@
+﻿namespace AlphaPlus.Settings.Site.ViewLogs.Helpers
+{
+    public static class AppPathHelper
+    {
+        public static string GetAppPath(string appName, string virtualPath)
+        {
+            return Core.Helpers.AppPathHelper.GetAppPath(appName, virtualPath, null, null);
+        }
+    }
+}

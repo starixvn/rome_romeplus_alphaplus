@@ -1,0 +1,308 @@
+﻿@import "_mixins.scss";
+
+body {
+    background: #f4f4f4;
+    font-size: 13px;
+}
+
+$sporttype-detail-bg: #d3d6db;
+$height-td: 28px;
+
+.page-viewlog {
+    padding: 0;
+}
+
+.tab-content {
+    margin-bottom: 15px;
+    margin-top: 40px;
+}
+
+.nav.nav-tabs {
+    background: #f4f4f4;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+}
+
+.filter {
+    .form-group {
+        vertical-align: middle;
+
+        #txt-username {
+            width: 200px;
+        }
+
+        .monpickr-wrap-parent {
+            height: 28px !important;
+        }
+
+        label {
+            margin-bottom: 2px;
+        }
+    }
+
+    .warning {
+        margin-bottom: 10px;
+
+        .txt-red {
+            color: #f00;
+        }
+
+        label {
+            font-weight: normal;
+        }
+    }
+}
+
+.width-100per {
+    width: 100%;
+}
+
+.tblRpt .tblDesc tbody tr td {
+    white-space: initial;
+}
+.toggle-icon {
+    .icon-chevron-down {
+        transform: rotate(-90deg);
+    }
+}
+
+.icon-chevron-down {
+    border: 1px solid #333;
+    border-radius: 20px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    text-align: center;
+    line-height: 15px;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    font-size: 16px;
+    padding: 1px 0 0 0;
+}
+.tblRpt {
+    background: #fff;
+
+    tr > td.logid, tr > td.datetime {
+        text-align: center;
+    }
+
+    td:last-child {
+        padding: 0;
+    }
+
+    tbody td.col-action {
+        padding-left: 8px;
+        width: 25%;
+    }
+}
+
+.tblRpt .tblDesc tr:last-child .tblDesc > tbody > tr > td,
+.tblRpt .tblDesc-ex tr:last-child .tblDesc-ex > tbody > tr > td {
+    border-bottom: 1px solid #ddd;
+}
+
+.tblRpt .tblDesc, .tbl-sub-details, .tblRpt .tblDesc-ex {
+    width: 100%;
+
+    > tbody > tr > td {
+        padding: 0 8px;
+        border-bottom: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    tbody tr.ex-row td:last-child {
+        border-right: 1px solid #ddd;
+    }
+
+    tbody tr.ex-row + tr td {
+        border-top: 1px solid #ddd;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    td.colW1, td.colTitle {
+        background-color: #f3f3f3 !important;
+        text-align: left;
+        text-transform: capitalize;
+        width: 18.1818%;
+    }
+
+    td.colW2, td.colValue {
+        text-transform: capitalize;
+        width: 16.6667%;
+        text-align: center;
+    }
+
+    td[colspan="6"], td[colspan="8"] {
+        padding: 0;
+    }
+
+    .headerDetail, .headerDetailNormal {
+        font-size: 14px;
+        text-transform: capitalize;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: left;
+        background-color: #bdc0c7;
+    }
+
+    .headerDetail {
+        .icon-chevron-down{
+            margin-left: 12px;
+        }
+    }
+
+    .body-detail > td {
+        padding: 0;
+    }
+
+    tr.headerDetail, tr.headerDetailNormal {
+        td {
+            padding: 0 8px;
+            background-color: #bdc0c7 !important;
+        }
+    }
+
+    tr.headerSportTypeDetail td {
+        padding: 0 8px;
+        background: $sporttype-detail-bg !important;
+    }
+
+    tr.headerGroup td {
+        padding: 0 8px;
+        background: #A5A7AD !important;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+.tblDesc, .tblDesc-ex {
+    td.colW1, td.colTitle {
+        padding: 0 16px;
+    }
+}
+
+.tblRpt .tblDesc-ex .tblDesc-1,
+.tblRpt .tblDesc-ex .tblDesc-2 {
+    width: 100%;
+}
+
+.tblRpt td {
+    .valuechanged, .valueold {
+        display: block;
+        padding: 6px 0;
+    }
+
+    .valuechanged {
+        color: #16c763;
+        padding-bottom: 0;
+    }
+
+    .valueold {
+        padding-top: 0;
+    }
+}
+
+.headerSportTypeDetail {
+    text-transform: capitalize;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 8px;
+    font-weight: bold;
+    background: $sporttype-detail-bg;
+
+    &.border-last-item {
+        td {
+            &:last-child {
+                border-right: 1px solid #ddd !important;
+            }
+        }
+    }
+}
+
+.output {
+    @include border-radius(1px);
+    @include box-shadow-multiple('0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23)');
+    background: #fff;
+    position: absolute;
+    top: 85px;
+    width: 230px;
+    z-index: 9999;
+
+    .opOut, .opOver {
+        padding: 0 5px;
+    }
+
+    .opOver {
+        cursor: pointer;
+        background: #dedede;
+    }
+}
+
+.action-name {
+    font-weight: bold;
+    color: #b25900;
+}
+
+.username, .log-date {
+    font-style: italic;
+    color: #666;
+}
+
+.logid {
+    font-style: italic;
+    color: #404040;
+}
+
+.tblRpt .tblDesc-ex .tblDesc-1 .tblDesc-2 tbody tr:first-child:nth-last-child(1) td,
+.tblRpt .tblDesc tbody tr:first-child:nth-last-child(1) td {
+    height: 64px;
+}
+
+.tblRpt .tblDesc tbody tr:first-child:nth-last-child(2),
+.tblRpt .tblDesc tbody tr:first-child:nth-last-child(2) ~ tr {
+    td {
+        height: 32px;
+    }
+}
+
+.tblRpt > tbody > tr > td .tblDesc {
+    border-top: 1px solid #ddd;
+
+    &:first-child {
+        border-top: none;
+    }
+}
+
+.tblRpt .tblDesc-ex .tblDesc-1 .tblDesc-2 tbody tr {
+    &:first-child {
+        td {
+            border-top: none;
+        }
+    }
+
+    td {
+        border-top: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    &.ex-row td:last-child {
+        border-right: 1px solid #ddd;
+    }
+
+    &.ex-row + tr td {
+        border-top: 1px solid #ddd;
+    }
+}
