@@ -472,5 +472,57 @@
       "MemberInfo/Features/CopyAccount/Assets/Styles/copy-account-dark.css",
       "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/ViewLogs/assets/bundles/default.css",
+    "inputFiles": [
+      "ViewLogs/assets/styles/viewlog.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/ViewLogs/assets/bundles/setting.js",
+    "inputFiles": [
+      "ViewLogs/assets/scripts/old-main.js",
+      "ViewLogs/assets/scripts/core.js",
+      "ViewLogs/assets/scripts/tab/index.js",
+      "ViewLogs/assets/scripts/setting/index-view.js",
+      "ViewLogs/assets/scripts/setting/index-controller.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/ViewLogs/assets/bundles/status.js",
+    "inputFiles": [
+      "ViewLogs/assets/scripts/old-main.js",
+      "ViewLogs/assets/scripts/core.js",
+      "ViewLogs/assets/scripts/tab/index.js",
+      "ViewLogs/assets/scripts/status/index-view.js",
+      "ViewLogs/assets/scripts/status/index-controller.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/ViewLogs/assets/bundles/credit.js",
+    "inputFiles": [
+      "ViewLogs/assets/scripts/old-main.js",
+      "ViewLogs/assets/scripts/core.js",
+      "ViewLogs/assets/scripts/tab/index.js",
+      "ViewLogs/assets/scripts/credit/index-view.js",
+      "ViewLogs/assets/scripts/credit/index-controller.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/ViewLogs/assets/bundles/login.js",
+    "inputFiles": [
+      "ViewLogs/assets/scripts/old-main.js",
+      "ViewLogs/assets/scripts/core.js",
+      "ViewLogs/assets/scripts/login/index-view.js",
+      "ViewLogs/assets/scripts/tab/index.js",
+      "ViewLogs/assets/scripts/login/index-controller.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/ViewLogs/assets/bundles/default-dark.css",
+    "inputFiles": [
+      "ViewLogs/assets/styles/viewlog-dark.css"
+    ]
   }
 ]

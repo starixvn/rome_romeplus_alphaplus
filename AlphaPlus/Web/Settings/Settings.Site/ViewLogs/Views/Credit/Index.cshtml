@@ -1,7 +1,10 @@
-﻿@* @using AlphaPlus.Settings.Site.ViewLogs.Helpers.StaticResources;
+﻿@using AlphaPlus.Settings.ViewLogs.API.AppResources
+@using AlphaPlus.Settings.Site.ViewLogs.ViewModels
+@using AlphaPlus.Core.Helpers
+
 @model LogViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/ViewLogs/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.ViewLogCredit;
 }
 <div class="tab-content tb-ver2">
@@ -101,6 +104,6 @@
 
 @section Scripts
 {
-    @AssetScripts.Render("/bundles/site-viewlogs/default")
-    <script type="text/javascript" src="@ViewLogsScripts.GetAbsolutePath("~/assets/bundles/credit")"></script>
-} *@
+    @StaticResources.AssetScripts.Render("/bundles/site-viewlogs/default")
+    @StaticResources.RenderScripts("~/assets/bundles/credit")
+}

@@ -51,8 +51,15 @@ using Sunplus.Agent.Utilities;
 using MediatR;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.SecurityCode.Configurations;
-using RestSharp.Authenticators;
 using Alpha.CopyAccount.Authentications;
+using AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs;
+using AlphaPlus.Settings.ViewLogs.API.Services;
+using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
+using AlphaPlus.Settings.ViewLogs.API.DataAccesses.Impl;
+using AlphaPlus.Settings.ViewLogs.API.Services.Impl;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
+using AlphaPlus.Settings.Site.ViewLogs.Helpers;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -83,6 +90,10 @@ namespace AlphaPlus.Settings.Site.Helpers
                     options.ViewLocationFormats.Add("/MemberInfo/Views/{1}/{0}.cshtml");
                     options.ViewLocationFormats.Add("/MemberInfo/Features/Shared/Views/{0}.cshtml");
                     options.ViewLocationFormats.Add("/MemberInfo/Features/{1}/Views/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/ViewLogs/Views/Shared/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/ViewLogs/Views/{1}/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Transfer/Views/Shared/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Transfer/Views/{1}/{0}.cshtml");
                 });
             
             services
@@ -108,7 +119,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .Register<IRemotingRefService>(new RemotingRefService())
                 .Register<Func<int, string>>(new CacheRefServiceImpl(SimpleServiceLocator.GetService<IRemotingRefService>()).GetProductName)
                 .Register<Func<string, string>>(ProductResources.ResourceManager.GetString)
-                .Register<Func<string, string, string>>(MicroSites.GetMicroSiteUrl)
+                .Register<Func<string, string, string>>(Core.Helpers.MicroSites.GetMicroSiteUrl)
                 .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert)
                 .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), AppDomain.CurrentDomain.BaseDirectory + "/ProductConfigs/ProductConfiguration.json"))
                 .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
@@ -175,6 +186,19 @@ namespace AlphaPlus.Settings.Site.Helpers
 
             services
                 .AddScoped<WinLossLimitService, WinLossLimitServiceImpl>();
+
+            services
+                .AddSingleton<IDateTime, DateTimeWrap>()
+                .AddScoped<ViewLogs.Helpers.MicroSites, MicroSitesImpl>()
+                .AddScoped<LogFormatter, LogFormatterImpl>()
+                .AddScoped<LogDataAccess, LogDataAccessImpl>()
+                .AddScoped<ViewLogIPService, ViewLogIPServiceImpl>()
+                .AddScoped<RemotingRefWrapper, RemotingRefWrapperImpl>()
+                .AddScoped<Settings.ViewLogs.API.Services.CustomerService, CustomerServiceImpl>()
+                .AddKeyedScoped<LogService, CreditServiceImpl>("settingLogSvc")
+                .AddKeyedScoped<LogService, CreditServiceImpl>("statusLogSvc")
+                .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")
+                .AddKeyedScoped<LogService, CreditServiceImpl>("loginLogSvc");
 
             services
                 .AddSharedSession(configuration)

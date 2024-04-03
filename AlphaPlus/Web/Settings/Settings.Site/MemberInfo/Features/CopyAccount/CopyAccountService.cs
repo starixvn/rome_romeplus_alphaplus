@@ -50,7 +50,7 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
                 actorUsername = command.ActorUsername
             };
 
-            return await PostAsJsonAsync<CopyAccountResponse>("api/customer/copy", command.SiteDBGroupIp, payload);
+            return await PostAsJsonAsync<CopyAccountResponse>("api/customer", command.SiteDBGroupIp, payload);
         }
 
         public Task<CreditInfo> GetCreditInfo(string username)

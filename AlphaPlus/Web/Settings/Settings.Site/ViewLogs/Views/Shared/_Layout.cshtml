@@ -1,5 +1,7 @@
-﻿@* @using AlphaPlus.Settings.Site.ViewLogs.Helpers.StaticResources;
-@using AlphaPlus.Settings.Site.ViewLogs.Configurations;
+﻿@using AlphaPlus.Settings.ViewLogs.API.AppResources
+@using AlphaPlus.Settings.Site.ViewLogs.ViewModels
+@using AlphaPlus.Core.Helpers
+
 @model LogViewModel
 <!DOCTYPE html>
 <html>
@@ -8,26 +10,26 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 
-    @AssetStyles.Render($"/bundles/site-viewlogs/viewlogs-{Model.UserLevel}")
-    <link rel="stylesheet" href="@ViewLogsStyles.GetAbsolutePath($"~/assets/bundles/default")" />
+    @StaticResources.AssetStyles.Render($"/bundles/site-viewlogs/viewlogs-{Model.UserLevel}")
+    <link rel="stylesheet" href="@StaticResources.RenderScripts($"~/ViewLogs/assets/bundles/default")" />
     @RenderSection("Styles", required: false)
-    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagScript()
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 <body>
-    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagNoScript()
+    @GoogleAnalyticHelper.GtagNoScript()
     <div class="container-fluid page-viewlog">
-        @Html.Action("Index", "Tab", new { tabName = ViewContext.RouteData.Values["controller"], area = "" })
+        @Html.ActionLink("Index", "Tab", new { tabName = ViewContext.RouteData.Values["controller"], area = "" })
         @RenderBody()
-        @Html.Partial("MonthNames")
+        @await Html.PartialAsync("MonthNames")
     </div>
 
     <div class="shadow" id="shadow"></div>
     <div class="output" id="output"></div>
 
-    @Html.Hidden("indexPath", "/" + AppSettings.VirtualDirectory + ViewContext.RouteData.Values["controller"] + "/index")
+    @Html.Hidden("indexPath", "/settings/" + ViewContext.RouteData.Values["controller"] + "/index")
     @Html.Hidden("usernameAutoSuggestionPath", Model.UsernameAutoSuggestionPath)
     @Html.Hidden("viewIPInfoPath", Model.ViewIPInfoPath)
 
     @RenderSection("Scripts", required: false)
 </body>
-</html> *@
+</html>

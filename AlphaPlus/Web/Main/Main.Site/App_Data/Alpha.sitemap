@@ -124,10 +124,10 @@
   <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" url="_Transfer/Agent/MemberList.aspx?v=2&amp;adbt={0}" functionType="[C]" roles="Agent"></siteMapNode>
 
   <siteMapNode resourceKey="viewLog" menuItemType="ViewLogMenuItem" functionType="[G]">
-    <siteMapNode resourceKey="Setting" url="Setting"></siteMapNode>
-    <siteMapNode resourceKey="status" url="Status"></siteMapNode>
-    <siteMapNode resourceKey="credit" url="Credit"></siteMapNode>
-    <siteMapNode resourceKey="login" url="Login"></siteMapNode>
+    <siteMapNode resourceKey="Setting" url="/settings/Setting"></siteMapNode>
+    <siteMapNode resourceKey="status" url="/settings/Status"></siteMapNode>
+    <siteMapNode resourceKey="credit" url="/settings/Credit"></siteMapNode>
+    <siteMapNode resourceKey="login" url="/settings/Login"></siteMapNode>
   </siteMapNode>
   <siteMapNode resourceKey="announcements" byPassProtectedMode="true">
     <siteMapNode resourceKey="normal" url="MessageHistory/Index?messagetype=0" byPassAuthorization="true" byPassProtectedMode="true"></siteMapNode>
