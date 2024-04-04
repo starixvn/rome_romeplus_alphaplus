@@ -101,7 +101,7 @@
                 LanguageCode,
                 string.Empty);
             var valueFor777 = string.Empty;
-            if (true/*AppSettings.IsSiteLabel777 TODO: */)
+            if (AppSettings.IsSiteLabel777)
             {
                 valueFor777 = remotingRefService.GetResourceDataByRefIdAndResourceId(
                 "G_GT_Sport_BT_Saba",

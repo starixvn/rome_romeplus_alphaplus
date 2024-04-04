@@ -189,16 +189,18 @@ namespace AlphaPlus.Settings.Site.Helpers
 
             services
                 .AddSingleton<IDateTime, DateTimeWrap>()
+                .AddScoped<TransformService, TransformServiceImpl>()
+                .AddScoped<TrackingValueFormatter, TrackingValueFormatterImpl>()
                 .AddScoped<ViewLogs.Helpers.MicroSites, MicroSitesImpl>()
                 .AddScoped<LogFormatter, LogFormatterImpl>()
                 .AddScoped<LogDataAccess, LogDataAccessImpl>()
                 .AddScoped<ViewLogIPService, ViewLogIPServiceImpl>()
                 .AddScoped<RemotingRefWrapper, RemotingRefWrapperImpl>()
                 .AddScoped<Settings.ViewLogs.API.Services.CustomerService, CustomerServiceImpl>()
-                .AddKeyedScoped<LogService, CreditServiceImpl>("settingLogSvc")
-                .AddKeyedScoped<LogService, CreditServiceImpl>("statusLogSvc")
+                .AddKeyedScoped<LogService, SettingServiceImpl>("settingLogSvc")
+                .AddKeyedScoped<LogService, StatusServiceImpl>("statusLogSvc")
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")
-                .AddKeyedScoped<LogService, CreditServiceImpl>("loginLogSvc");
+                .AddKeyedScoped<LogService, LoginServiceImpl>("loginLogSvc");
 
             services
                 .AddSharedSession(configuration)

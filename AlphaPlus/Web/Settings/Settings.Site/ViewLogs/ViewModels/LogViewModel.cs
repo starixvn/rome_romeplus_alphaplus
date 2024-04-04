@@ -80,7 +80,7 @@
         {
             get
             {
-                return microSites.OldMainPath("~/_GlobalResources/Handlers/QueryUserName.ashx");
+                return microSites.OldMainPath("~/UserNameSuggestion/GetUsernamesSuggestion");
             }
         }
 
@@ -88,7 +88,7 @@
         {
             get
             {
-                return microSites.OldMainPath("~/_IPInfo/IpInfo.aspx");
+                return "main/IPInfo";
             }
         }
 

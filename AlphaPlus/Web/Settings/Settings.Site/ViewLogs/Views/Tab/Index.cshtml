@@ -1,19 +1,20 @@
-﻿@* @using AlphaPlus.Settings.Site.ViewLogs.ViewModels;
+﻿@using AlphaPlus.Settings.Site.ViewLogs.ViewModels;
 @using AlphaPlus.Settings.Site.ViewLogs.Constants;
 @using AlphaPlus.Settings.Site.ViewLogs.Configurations;
+@using AlphaPlus.Settings.ViewLogs.API.AppResources;
 
 @model TabViewModel
 <ul id="nav-tabs" class="nav nav-tabs" role="tablist">
     <li role="presentation" class="@(string.Equals(Model.SelectedTabName, TabType.Setting,StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">
-        <a data-tablink="/@(AppSettings.VirtualDirectory+"setting/index")" role="tab" aria-controls="@TabType.Setting" data-to data-toggle="tab" class="lnk-changetab">@Resources.Setting</a>
+        <a data-tablink="/settings/setting/index")" role="tab" aria-controls="@TabType.Setting" data-to data-toggle="tab" class="lnk-changetab">@Resources.Setting</a>
     </li>
     <li role="presentation" class="@(string.Equals(Model.SelectedTabName, TabType.Status,StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">
-        <a data-tablink="/@(AppSettings.VirtualDirectory+"status/index")" role="tab" aria-controls="@TabType.Status" data-toggle="tab" class="lnk-changetab">@Resources.Status</a>
+        <a data-tablink="/settings/status/index")" role="tab" aria-controls="@TabType.Status" data-toggle="tab" class="lnk-changetab">@Resources.Status</a>
     </li>
     <li role="presentation" class="@(string.Equals(Model.SelectedTabName, TabType.Credit,StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">
-        <a data-tablink="/@(AppSettings.VirtualDirectory+"credit/index")" role="tab" aria-controls="@TabType.Credit" data-toggle="tab" class="lnk-changetab">@Resources.Credit</a>
+        <a data-tablink="/settings/credit/index")" role="tab" aria-controls="@TabType.Credit" data-toggle="tab" class="lnk-changetab">@Resources.Credit</a>
     </li>
     <li role="presentation" class="@(string.Equals(Model.SelectedTabName, TabType.Login,StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">
-        <a data-tablink="/@(AppSettings.VirtualDirectory+"login/index")" role="tab" aria-controls="@TabType.Login" data-toggle="tab" class="lnk-changetab">@Resources.Login</a>
+        <a data-tablink="/settings/login/index")" role="tab" aria-controls="@TabType.Login" data-toggle="tab" class="lnk-changetab">@Resources.Login</a>
     </li>
-</ul> *@
+</ul>

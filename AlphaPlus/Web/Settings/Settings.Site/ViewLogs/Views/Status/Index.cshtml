@@ -1,8 +1,10 @@
-﻿@* @using AlphaPlus.Settings.Site.ViewLogs.Helpers.StaticResources;
+﻿@using AlphaPlus.Settings.ViewLogs.API.AppResources;
+@using AlphaPlus.Settings.Site.ViewLogs.ViewModels;
+@using AlphaPlus.Core.Helpers;
 
 @model LogViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/ViewLogs/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.ViewLogStatus;
 }
 <div class="tab-content tb-ver2">
@@ -85,6 +87,6 @@
 @Html.Hidden("Pager_DisplayItems", Resources.Pager_DisplayItems)
 @section Scripts
 {
-    @AssetScripts.Render("/bundles/site-viewlogs/default")
-    <script type="text/javascript" src="@ViewLogsScripts.GetAbsolutePath("~/assets/bundles/status")">></script>
-} *@
+    @StaticResources.AssetScripts.Render("/bundles/site-viewlogs/default")
+    @StaticResources.RenderScripts("~/ViewLogs/assets/bundles/status")
+}

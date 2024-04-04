@@ -8,7 +8,7 @@
 
     public class SettingController : ViewLogBaseController
     {
-        private const string TemplatePath = "/app/ViewLogs/App_Data/TrackingValueTransformTemplates";
+        private const string TemplatePath = "/app/App_Data/TrackingValueTransformTemplates";
         private readonly IMediator mediator;
 
         public SettingController(

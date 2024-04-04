@@ -89,8 +89,9 @@ var statusView = {
 
         var queryUsernameURL = alphaViewLogs.urls.queryUsername + "?" +
             $.param({
-                issub: 0,
-                ismember: 0
+                IsAccInfo: false,
+                DirectDownlines: true,
+                CustId: parseInt($("#CustId").val())
             });
 
         initAutoComplete($("#txt-username")[0], queryUsernameURL);

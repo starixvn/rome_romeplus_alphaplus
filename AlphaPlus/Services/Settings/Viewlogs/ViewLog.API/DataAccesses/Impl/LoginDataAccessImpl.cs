@@ -11,6 +11,6 @@
         }
 
         public override IEnumerable<Log> GetLogs(ICriteria criteria)
-            => dynamicRepository.Fetch<LoginLog>(criteria);
+            => dynamicRepository.Fetch<Log>(criteria);
     }
 }

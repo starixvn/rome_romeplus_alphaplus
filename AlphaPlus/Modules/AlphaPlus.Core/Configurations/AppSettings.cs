@@ -65,6 +65,8 @@ public static class AppSettings
 
     public static bool IsSiteLabel789y => SiteLabel.Equals("789y");
 
+    public static bool IsSiteLabel777 => SiteLabel.Equals("777");
+
     public static bool DisabledVietnamese => !IsSiteLabel789y;
 
     public static string SiteLabel789y => ConfigurationManager.GetValue<string>("SiteLabel789y");

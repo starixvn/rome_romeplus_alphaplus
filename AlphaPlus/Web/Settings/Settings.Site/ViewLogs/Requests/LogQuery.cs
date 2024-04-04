@@ -61,7 +61,7 @@
 
             RoleId = currentUserSession.RoleId;
             ActorId = currentUserSession.CustId;
-            // TODO IsShowMyanmarOdds = isShowMyanmarOdds ?? UserPermission.IsShowMyanmarOdds;
+            IsShowMyanmarOdds = isShowMyanmarOdds ?? currentUserSession.IsMyanmarOdds;
             HasViewLogPermission = currentUserSession.SubPageAccess != null && currentUserSession.SubPageAccess.ViewLog;
             Language = currentUserSession.Language;
             IsInternal = false;

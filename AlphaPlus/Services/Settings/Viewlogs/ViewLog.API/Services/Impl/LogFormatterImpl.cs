@@ -34,7 +34,7 @@
             this.remotingRef = remotingRef;
         }
 
-        public ResourceManager ResourceManager { get; set; }
+        public ResourceManager ResourceManager { get; set; } = TrackingValueResources.ResourceManager;
 
         /// <summary>
         /// Need be reviewed code here, AssignParams should not in formatter class
@@ -74,7 +74,7 @@
         {
             ResourceManager.IgnoreCase = true;
             var value = ResourceManager.GetString(key) ?? string.Empty;
-            if (true/*AppSettings.IsSiteLabel777 && key.Contains("Saba") TODO: */)
+            if (AppSettings.IsSiteLabel777 && key.Contains("Saba"))
             {
                 value = ResourceManager.GetString(key.Replace("Saba", "Virtual")) ?? value;
             }

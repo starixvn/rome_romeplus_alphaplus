@@ -4,6 +4,12 @@
 
     public class Log
     {
+        public string Browser { get; set; }
+
+        public string Domain { get; set; }
+
+        public string Country { get; set; }
+        
         public int ActionId { get; set; }
 
         public string ActionName { get; set; }

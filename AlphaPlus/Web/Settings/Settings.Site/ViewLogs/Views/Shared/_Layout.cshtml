@@ -10,15 +10,15 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
 
-    @StaticResources.AssetStyles.Render($"/bundles/site-viewlogs/viewlogs-{Model.UserLevel}")
-    @StaticResources.RenderScripts($"~/ViewLogs/assets/bundles/default")
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-viewlogs/viewlogs-{Model.UserLevel}")
+    @StaticResources.RenderStylesWithDarkMode($"~/ViewLogs/assets/bundles/default")
     @RenderSection("Styles", required: false)
     @GoogleAnalyticHelper.GtagScript()
 </head>
 <body>
     @GoogleAnalyticHelper.GtagNoScript()
     <div class="container-fluid page-viewlog">
-        @Html.ActionLink("Index", "Tab", new { tabName = ViewContext.RouteData.Values["controller"], area = "" })
+        @await Html.PartialAsync("~/ViewLogs/Views/Tab/Index.cshtml", new TabViewModel(ViewContext.RouteData.Values["controller"].ToString()))
         @RenderBody()
         @await Html.PartialAsync("MonthNames")
     </div>
@@ -29,6 +29,7 @@
     @Html.Hidden("indexPath", "/settings/" + ViewContext.RouteData.Values["controller"] + "/index")
     @Html.Hidden("usernameAutoSuggestionPath", Model.UsernameAutoSuggestionPath)
     @Html.Hidden("viewIPInfoPath", Model.ViewIPInfoPath)
+    @Html.Hidden("CustId", AlphaPlus.Core.Models.UserSession.Current.CustId)
 
     @RenderSection("Scripts", required: false)
 </body>
