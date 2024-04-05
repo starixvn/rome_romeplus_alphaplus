@@ -1,0 +1,20 @@
+﻿@* @model AlphaAnnouncement
+@{
+    Layout = null;
+}
+<html>
+<head>    
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/popup")
+</head>
+<body>
+    @if (Model != null)
+    {
+        <div id="popupContent" data-messageId="@Model.Id">
+            @Html.Raw(Model.Content)
+        </div>
+    }
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.RenderScripts("~/assets/bundles/popup")
+</body>
+</html> *@

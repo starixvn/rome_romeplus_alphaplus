@@ -1,0 +1,39 @@
+﻿@* @{
+    Layout = "~/Views/Feedback/_SharedLayout.cshtml";
+    var hasAreas = Model.FeedbackAreas.Any();
+}
+@model AlphaPlus.Features.Site.Messages.ViewModels.Feedback.FeedbackFunctionViewModel
+<div class="feedback-box" id="feedback-box">
+    @if (hasAreas)
+    {
+        <div class="div-greeting">@string.Format(Resources.FeedbackFunctionArea_Greeting, Model.FunctionName)</div>
+        <div class="area-rate-star">
+            @foreach (var item in Model.FeedbackAreas)
+            {
+                Html.RenderPartial("~/Views/Feedback/_RateStars.cshtml", item);
+            }
+        </div>
+        <div>@Resources.Others</div>
+        <textarea class="feedback-msg" id="feedback-msg" placeholder="@Resources.FeedbackFunctionArea_Message" maxlength="4000"></textarea>
+    }
+    else
+    {
+        <div class="div-greeting">@string.Format(Resources.FeedbackFunction_Greeting, Model.FunctionName)</div>
+        <textarea class="feedback-msg" id="feedback-msg" placeholder="@Resources.FeedbackFunction_Message" maxlength="4000" rows="4"></textarea>
+    }
+    <div class="hide message-limit msg msg-error" id="message-limit">@Resources.Feedback_MessageLimit</div>
+    <div class="div-greeting">@string.Format(Resources.FeedbackFunction_Rate, Model.FunctionName)</div>
+    @{ Html.RenderPartial("~/Views/Feedback/_RateIcons.cshtml"); }
+    <div class="hide message-result msg msg-error" id="message-result">@Resources.Feedback_NoInput</div>
+    <div class="btn-box">
+        <button type="button" class="btn-cancel" id="button-later">@Resources.Later</button>
+        <button type="submit" class="btn-submit" id="button-submit" disabled>@Resources.submit</button>
+    </div>
+</div>
+<div class="hide feedback-result msg msg-success" id="feedback-result">@Resources.Feedback_Success</div>
+<input type="hidden" id="hiddenFunctionId" value="@Model.FunctionId" />
+<input type="hidden" id="hiddenFeedbackNoInputError" value="@Resources.Feedback_NoInput" />
+<input type="hidden" id="hiddenAddFeedbackUrl" value="@MicroSites.MessageUrl("~/Feedback/Add")" />
+@section Scripts{
+    @StaticResources.RenderScripts("~/Assets/bundles/feedback/function")
+} *@

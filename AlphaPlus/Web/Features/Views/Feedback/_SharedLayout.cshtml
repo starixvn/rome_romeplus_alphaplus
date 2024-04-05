@@ -1,0 +1,29 @@
+﻿@* @{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.RenderStylesWithDarkMode("~/Assets/bundles/feedback/index")
+    @StaticResources.RenderStylesWithMediaDarkMode(767, "~/assets/bundles/feedback/feedback-mobile-calculate-07")
+    <title>@(ViewBag.Title ?? Resources.FeedbackTitle)</title>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    <![endif]-->
+    @RenderSection("Styles", required: false)
+    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagScript()
+</head>
+<body>
+    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagNoScript()
+    @RenderBody()
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @RenderSection("Scripts", required: false)
+</body>
+</html> *@

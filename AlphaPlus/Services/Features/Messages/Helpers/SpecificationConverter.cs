@@ -1,8 +1,8 @@
-﻿namespace Alpha.Messages.Client.Helpers
+﻿namespace AlphaPlus.Features.Messages.Client.Helpers
 {
     using System;
-    using Announcements.Models;
-    using Announcements.Specs;
+    using Alpha.Announcements.Models;
+    using Alpha.Announcements.Specs;
     using Newtonsoft.Json.Linq;
 
     public class SpecificationConverter : JsonCreationConverter<ISpecification<IParam>>

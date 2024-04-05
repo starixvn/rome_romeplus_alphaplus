@@ -1,0 +1,25 @@
+﻿@import '../Home/_variables.scss';
+@import '../Home/_mixins.scss';
+.div-greeting {
+    font-size: calculateScale(12px);
+}
+.msg {
+    font-size: calculateScale(13px);
+}
+.feedback-msg {
+    font-size: calculateScale(12px);
+}
+
+.rate-boxes {
+    .txt-rate {
+        font-size: calculateScale(12px);
+    }
+}
+
+.btn-box {
+    button {
+        font-size: calculateScale(13px);
+        line-height: calculateScale(25px);
+        height: calculateScale(25px);
+    }
+}

@@ -84,3 +84,10 @@ services:
             context: .
             dockerfile: Web/Reports/Reports.Site/Dockerfile
         restart: always
+
+    features-site:
+        image: ${REGISTRY:-alphaplus}/features.site:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/Features/Dockerfile
+        restart: always

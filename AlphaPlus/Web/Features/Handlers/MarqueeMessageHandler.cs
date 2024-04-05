@@ -1,0 +1,44 @@
+﻿namespace AlphaPlus.Features.Site.Messages.Handlers
+{
+    using AlphaPlus.Features.Messages.Models.Message;
+    using AlphaPlus.Features.Messages.Services;
+    using MediatR;
+    using Requests.MarqueeMessage;
+    using ViewModels;
+    using AlphaPlus.Features.Messages.Configurations;
+
+    public class MarqueeMessageHandler :
+        IRequestHandler<MarqueeMessageQuery, MarqueeMessageViewModel>
+    {
+        private readonly MarqueeMessageService messageService;
+        private readonly NewMessageService newMessageService;
+
+        public MarqueeMessageHandler(MarqueeMessageService messageService, NewMessageService newMessageService)
+        {
+            this.messageService = messageService;
+            this.newMessageService = newMessageService;
+        }
+
+        public async Task<MarqueeMessageViewModel> Handle(MarqueeMessageQuery message, CancellationToken cancellation)
+        {
+            newMessageService.MoveNewMessage(message.CustId, message.UserName, message.RoleId, message.IsAdminUser);
+
+            GeneralMarqueeMessage publicMessage;
+            GeneralMarqueeMessage privateMessage;
+
+            if (AppSettings.DisableMessages)
+            {
+                publicMessage = new GeneralMarqueeMessage();
+                privateMessage = new GeneralMarqueeMessage();
+            }
+            else
+            {
+                publicMessage = messageService.GetLatestPublicMessage(message.RoleId, message.CurrentLang, message.IsTest, message.CustomerSite);
+                privateMessage = messageService.GetLatestPrivateMessage(message.CustId, message.CurrentLang, message.IsTest);
+            }          
+
+            return new MarqueeMessageViewModel(publicMessage, privateMessage);
+        }
+        
+    }
+}

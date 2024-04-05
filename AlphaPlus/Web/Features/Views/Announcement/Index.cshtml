@@ -1,0 +1,112 @@
+﻿@* @using AlphaPlus.Features.Messages.Extensions
+
+@model AnnouncementHistoryViewModel
+
+<div class="modal fade message-modal" id="guide-note" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label=""><span aria-hidden="true"></span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="msg-content">
+                    @Html.Raw(Resources.GuideNote)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div role="tabpanel" class="tab-pane active" id="system">
+    <div class="filter">
+        @using (Html.BeginForm("Index", "Announcement", FormMethod.Get, new { id = "report-form" }))
+        {
+            <div id="daterange-picker"
+                 class="daterange-picker"
+                 data-currentdate="@Model.CurrentDate.ToShortDateWithSlash()"
+                 data-mindate="@Model.MinDate.ToShortDateWithSlash()"
+                 data-maxdate="@Model.MaxDate.ToShortDateWithSlash()">
+            </div>
+
+            <div class="form-group">
+                <label class="txt">@Resources.from</label>
+                <div class="control date">
+                    <div class="input-group date fromdate" id="from-date-container">
+                        <input type="text"
+                               id="FromDate"
+                               name="FromDate"
+                               readonly="readonly"
+                               autocomplete="off"
+                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                               value="@Model.FromDate.ToShortDateWithSlash()" />
+                        <span class="input-group-addon">
+                            <span class="icon-calendar" id="fdate_trigger"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="txt">@Resources.to</label>
+                <div class="control date">
+                    <div id="to-date-container"
+                         class="input-group date todate">
+                        <input type="text"
+                               id="ToDate"
+                               name="ToDate"
+                               readonly="readonly"
+                               autocomplete="off"
+                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                               value="@Model.ToDate.ToShortDateWithSlash()" />
+                        <span class="input-group-addon">
+                            <span class="icon-calendar" id="tdate_trigger"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group group-button">
+                <input type="submit" value="@Resources.submit" class="btn-submit" />
+            </div>
+            <div class="form-group icon">
+                <span id="icon-information" class="icon icon-information-outline"></span>
+            </div>
+        }
+    </div>
+
+    <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover">
+        <thead>
+            <tr>
+                <th class="col-order">#</th>
+                <th>@Resources.message</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Announcements.Any())
+            {
+                <tr>
+                    <td colspan="2" class="text-center">@Resources.NoInformationIsAvailable</td>
+                </tr>
+            }
+            @foreach (var message in Model.Announcements.Select((value, index) => new { index, value }))
+            {
+                <tr>
+                    <td class="col-order">@(message.index + 1)</td>
+                    <td>
+                        <div class="row-first">
+                            @message.value.ReleasedDate
+                            <span class="messageId">@message.value.Id</span>
+                            @if (message.value.IsNewAnnouncement)
+                            {
+                                <span class="badge-title">@Resources.New</span>
+                            }
+                        </div>
+                        <div class="message-content">@Html.Raw(message.value.Content)</div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts{
+    @StaticResources.RenderScripts("~/assets/bundles/announcement")
+} *@

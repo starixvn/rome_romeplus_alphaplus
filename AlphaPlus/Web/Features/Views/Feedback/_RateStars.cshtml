@@ -1,0 +1,19 @@
+﻿@* @{
+    Layout = null;
+}
+@model AlphaPlus.Features.Site.Messages.ViewModels.Feedback.FeedbackAreaViewModel
+<div class="row-rate-star">
+    <span class="title-rate">@Model.AreaName</span>
+    <div class="rate-star" data-areaid="@Model.AreaId">
+        <input type="radio" id="star5_@Model.AreaId" name="rate_@Model.AreaId" value="5" />
+        <label for="star5_@Model.AreaId">5 stars</label>
+        <input type="radio" id="star4_@Model.AreaId" name="rate_@Model.AreaId" value="4" />
+        <label for="star4_@Model.AreaId">4 stars</label>
+        <input type="radio" id="star3_@Model.AreaId" name="rate_@Model.AreaId" value="3" />
+        <label for="star3_@Model.AreaId">3 stars</label>
+        <input type="radio" id="star2_@Model.AreaId" name="rate_@Model.AreaId" value="2" />
+        <label for="star2_@Model.AreaId">2 stars</label>
+        <input type="radio" id="star1_@Model.AreaId" name="rate_@Model.AreaId" value="1" />
+        <label for="star1_@Model.AreaId">1 star</label>
+    </div>
+</div> *@

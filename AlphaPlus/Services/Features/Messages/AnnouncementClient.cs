@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Net;
     using Alpha.Announcements.Models;
-    using Alpha.Messages.Client.Helpers;
+    using AlphaPlus.Features.Messages.Client.Helpers;
     using AlphaPlus.Features.Messages.Api.Client.Requests;
     using Configurations;
     using Newtonsoft.Json;

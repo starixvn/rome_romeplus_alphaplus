@@ -1,0 +1,36 @@
+﻿@import '../Home/_variables.scss';
+
+body {
+    height: auto;
+    font-family: Roboto,Arial,Tahoma,helvetica,sans-serif;
+    font-size: 13px;
+    line-height: 22px;
+    display: inline-block;
+    color: #EDEDED;
+}
+
+a {
+    color: #045ace;
+}
+
+@media only screen and (max-device-width : $screen-device-lower768) {
+    body {
+        display: block;
+    }    
+}
+
+.message-modal {
+    width: 750px;
+
+    .modal-dialog {
+        width: 750px;
+
+        .modal-header {
+            height: 40px;
+
+            .modal-title {
+                height: 35px;
+            }
+        }
+    }
+}

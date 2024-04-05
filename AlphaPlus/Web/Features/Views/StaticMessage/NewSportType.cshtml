@@ -1,0 +1,72 @@
+﻿@* @using AlphaPlus.Features.Messages.Services
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <title>New Announcement</title>
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-reports/default")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/extendMessage")
+</head>
+<body>
+    <table class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover" id="tbl-report" style="padding: 0px;">
+        <thead class="tableFloatingHeaderOriginal">
+            <tr>
+                <th>@Lang.NewSportType</th>
+                <th>@Lang.BetType</th>
+                <th>@Lang.BetSettingFollows</th>
+                <th>@Lang.CommissionSettingFollows</th>
+                <th colspan="2">@Lang.PositionTakingSettingFollows</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="baio-bettypes-content-bg" rowspan="5">
+                    @AlphaRemotingRefService.GetSportTypeName(47)
+                    <br>
+                    @AlphaRemotingRefService.GetSportTypeName(48)
+                    <br>
+                    @AlphaRemotingRefService.GetSportTypeName(49)
+                    <br>
+                    @AlphaRemotingRefService.GetSportTypeName(51)
+                    
+                </td>
+                <td class="center">@Lang.LabelHandicapFC</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.LabelHandicapFC</td>
+            </tr>
+            <tr>
+                <td class="center">@Lang.LabelOddEven</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.LabelOddEven</td>
+            </tr>
+            <tr>
+                <td class="center">@Lang.LabelOverUnder</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.LabelAsianHDC_OU_OE</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.LabelOverUnder</td>
+            </tr>
+            <tr>
+                <td class="center">@Lang.LabelOutright</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.LabelOtherTypes</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.LabelOutright</td>
+            </tr>
+            <tr>
+                <td class="center">@Lang.moneyline</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.Label1x2</td>
+                <td class="center">@Lang.Others</td>
+                <td class="center">@Lang.moneyline</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html> *@

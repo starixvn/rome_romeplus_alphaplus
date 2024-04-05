@@ -1,0 +1,129 @@
+﻿[
+  {
+    "outputFileName": "assets/bundles/extendMessage.css",
+    "inputFiles": [
+      "assets/styles/extendMessage.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/default-message.css",
+    "inputFiles": [
+      "assets/styles/message/message.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/announcement.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/announcement/index.js",
+      "assets/scripts/components/daterangepicker.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/popup.js",
+    "inputFiles": [
+      "assets/scripts/announcement/popup.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/popup.css",
+    "inputFiles": [
+      "assets/styles/popup/index.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/message.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/message/index.js",
+      "assets/scripts/components/daterangepicker.js",
+      "assets/scripts/components/pager.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/home-mobile-calculate-07.css",
+    "inputFiles": [
+      "assets/styles/message/message-mobile-calculate-07.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/feedback/feedback-mobile-calculate-07.css",
+    "inputFiles": [
+      "assets/styles/feedback/feedback-mobile-calculate-07.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/extendMessage-dark.css",
+    "inputFiles": [
+      "assets/styles/extendMessage-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/default-message-dark.css",
+    "inputFiles": [
+      "assets/styles/message/message-dark.css"
+    ]
+  },
+
+  {
+    "outputFileName": "assets/bundles/popup-dark.css",
+    "inputFiles": [
+      "assets/styles/popup/index-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/home-mobile-calculate-07-dark.css",
+    "inputFiles": [
+      "assets/styles/message/message-mobile-calculate-07-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/feedback/index.css",
+    "inputFiles": [
+      "assets/styles/feedback/index.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/feedback/index-dark.css",
+    "inputFiles": [
+      "assets/styles/feedback/index-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/feedback/index.js",
+    "inputFiles": [
+      "assets/scripts/feedback/index.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/feedback/function.js",
+    "inputFiles": [
+      "assets/scripts/feedback/function.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/feedback/feedback-mobile-calculate-07-dark.css",
+    "inputFiles": [
+      "assets/styles/feedback/feedback-mobile-calculate-07-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/backupdomains/backupdomains.css",
+    "inputFiles": [
+      "assets/styles/backupdomains/backupdomains.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/backupdomains/backupdomains-dark.css",
+    "inputFiles": [
+      "assets/styles/backupdomains/backupdomains-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/backupdomains/backupdomains.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/backupdomains/index.js"
+    ]
+  }
+]
