@@ -1,7 +1,13 @@
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Middlewares;
+using AlphaPlus.Features.Site.Helpers;
+
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services
+    .RegisterApplicationServices(configuration);
 
 var app = builder.Build();
 
@@ -13,15 +19,21 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
+AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
+AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
+
+app.UsePathBase("/features");
+app.MapHealthChecks("/health");
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseAuthorization();
+app.UseSession();
+app.UseMiddleware<RequestCultureMiddleware>();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=NewMessage}/{action=GetNumberOfNewAnnouncement}/{id?}");
 
 app.Run();
