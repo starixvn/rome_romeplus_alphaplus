@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>沒資料顯示</value>
+  </data>
+  <data name="NewBetType" xml:space="preserve">
+    <value>新投注類別</value>
+  </data>
+  <data name="Notice_2" xml:space="preserve">
+    <value>您的上線已修改您的投注金額數值。&lt;br&gt;請務必核對您的下線的細節。</value>
+  </data>
+  <data name="Notice_1_2" xml:space="preserve">
+    <value>您的上線已修改您的最低占成及投注金額數值。&lt;br&gt;請務必核對您的下線的細節。</value>
+  </data>
+  <data name="Notice_1" xml:space="preserve">
+    <value>您的上線已修改您的最低占成。&lt;br&gt;請務必核對您的下線的細節。</value>
+  </data>
+  <data name="Notice_3" xml:space="preserve">
+    <value>您的上線已開啟“捕魚天下”予您的下線。請到您的設定頁面進行配置</value>
+  </data>
+  <data name="NewBetTypeEffectDate1" xml:space="preserve">
+    <value>足球的新投注類別將於{0}開始生效</value>
+  </data>
+  <data name="announcement" xml:space="preserve">
+    <value>通告</value>
+  </data>
+  <data name="normalAnnouncement" xml:space="preserve">
+    <value>一般公告</value>
+  </data>
+  <data name="specialAnnouncement" xml:space="preserve">
+    <value>特殊公告</value>
+  </data>
+  <data name="personalMessage" xml:space="preserve">
+    <value>個人訊息</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>從</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="highlights" xml:space="preserve">
+    <value>HIGHLIGHTS</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>更多</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="SystemUpdate" xml:space="preserve">
+    <value>系統更新</value>
+  </data>
+  <data name="systemAnnouncement" xml:space="preserve">
+    <value>系統公告</value>
+  </data>
+  <data name="system" xml:space="preserve">
+    <value>系統</value>
+  </data>
+  <data name="TelegramChatbot" xml:space="preserve">
+    <value>Telegram Chatbot指南</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>我的監控指南</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>反饋</value>
+  </data>
+  <data name="Feedback_Greeting" xml:space="preserve">
+    <value>我們很樂意聽取您的意見。您認為我們做得如何？</value>
+  </data>
+  <data name="Feedback_Message" xml:space="preserve">
+    <value>您覺得哪些功能可以改進？或者覺得還缺少哪些功能？</value>
+  </data>
+  <data name="Feedback_MessageLimit" xml:space="preserve">
+    <value>您已達到4,000個文字的限制。</value>
+  </data>
+  <data name="Feedback_Rate" xml:space="preserve">
+    <value>請評價您的體驗</value>
+  </data>
+  <data name="Terrible" xml:space="preserve">
+    <value>非常不滿意</value>
+  </data>
+  <data name="Bad" xml:space="preserve">
+    <value>不滿意</value>
+  </data>
+  <data name="Okay" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>滿意</value>
+  </data>
+  <data name="Amazing" xml:space="preserve">
+    <value>非常滿意</value>
+  </data>
+  <data name="Later" xml:space="preserve">
+    <value>稍後</value>
+  </data>
+  <data name="Feedback_Success" xml:space="preserve">
+    <value>我們很高興收到您的反饋！謝謝您的寶貴意見。</value>
+  </data>
+  <data name="Feedback_NoInput" xml:space="preserve">
+    <value>歡迎留下您寶貴的建議與評分</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>您沒有使用此功能的權限</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>編號</value>
+  </data>
+  <data name="BackupDomains" xml:space="preserve">
+    <value>後備域名</value>
+  </data>
+  <data name="CopyDomain" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>域名</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>中斷</value>
+  </data>
+  <data name="InUse" xml:space="preserve">
+    <value>正在使用</value>
+  </data>
+  <data name="normal2" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="VeryGood" xml:space="preserve">
+    <value>非常快速</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>載入中</value>
+  </data>
+  <data name="Loading_Duplicate[1]" xml:space="preserve">
+    <value>載入中</value>
+  </data>
+  <data name="Fast" xml:space="preserve">
+    <value>快速</value>
+  </data>
+  <data name="Slow" xml:space="preserve">
+    <value>緩慢</value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>協助我們改進！</value>
+  </data>
+  <data name="FeedbackFunctionArea_Greeting" xml:space="preserve">
+    <value>請在我們的功能{0}中評估您喜歡/不喜歡的地方。</value>
+  </data>
+  <data name="FeedbackFunctionArea_Message" xml:space="preserve">
+    <value>請告訴我們更多…</value>
+  </data>
+  <data name="FeedbackFunction_Greeting" xml:space="preserve">
+    <value>{0}整體表現如何？我們希望獲得您的意見。</value>
+  </data>
+  <data name="FeedbackFunction_Message" xml:space="preserve">
+    <value>哪些方面需要增進？哪些方面還欠缺？</value>
+  </data>
+  <data name="FeedbackFunction_Rate" xml:space="preserve">
+    <value>評价您使用功能{0} 的體驗</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>頁</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>之第</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>顯示 {from} 到 {to} 的 {total} 項目</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>特殊</value>
+  </data>
+  <data name="normal" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>個人</value>
+  </data>
+  <data name="GuideNote" xml:space="preserve">
+    <value>公告在默認的情況下將從您上次看到的日期顯示至今天。&lt;br&gt;
+ 一般公告和個人訊息最多顯示3 個月。</value>
+  </data>
+  <data name="FeedbackOnFunctionTitle" xml:space="preserve">
+    <value>幫助我們改進{0}</value>
+  </data>
+  <data name="AgencyDomains" xml:space="preserve">
+    <value>代理網域名</value>
+  </data>
+  <data name="MemberDomains" xml:space="preserve">
+    <value>會員網域名</value>
+  </data>
+  <data name="CopyAll" xml:space="preserve">
+    <value>複制全部</value>
+  </data>
+</root>
