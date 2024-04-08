@@ -29,14 +29,14 @@
     <PackageReference Include="Alpha.Announcements.UplineIdRule" Version="1.0.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Shared\Extensions\FanexDataExtensions.cs" Link="Extensions\FanexDataExtensions.cs" />
-    <Compile Include="..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
-    <Compile Include="..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Extensions\RemotingRefExtensions.cs" />
-    <Compile Include="..\..\Shared\Extensions\HttpClientExtensions.cs" Link="Extensions\HttpClientExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\FanexDataExtensions.cs" Link="Extensions\FanexDataExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Extensions\RemotingRefExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\HttpClientExtensions.cs" Link="Extensions\HttpClientExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
-    <ProjectReference Include="..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
-    <ProjectReference Include="..\..\Services\Features\Messages\Messages.API.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
+    <ProjectReference Include="..\..\..\Services\Features\Messages\Messages.API.csproj" />
   </ItemGroup>
 </Project>

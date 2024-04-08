@@ -89,5 +89,5 @@ services:
         image: ${REGISTRY:-alphaplus}/features.site:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/Features/Dockerfile
+            dockerfile: Web/Features/Features.Site/Dockerfile
         restart: always
