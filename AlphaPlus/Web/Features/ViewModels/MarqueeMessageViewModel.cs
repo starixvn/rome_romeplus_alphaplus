@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.ViewModels
 {
-    using AlphaPlus.Features.Messages.Models.Message;
+    using AlphaPlus.Features.Messages.API.Models.Message;
 
     public class MarqueeMessageViewModel
     {        

@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.Models.Message
+﻿namespace AlphaPlus.Features.Messages.API.Models.Message
 {
     using System;
     using AlphaPlus.Features.Messages.Utils;
-    using Messages.Constants;
+    using Messages.API.Constants;
 
     public class MessageHistory : MultiLanguague
     {
@@ -53,7 +53,7 @@
         {
             var rawContent = GetContentByKey(language);
 
-            if (MessageType == Messages.Constants.MessageType.Personal)
+            if (MessageType == API.Constants.MessageType.Personal)
             {
                 rawContent = MessageFormatter.MarkBoldText(rawContent, language);
             }

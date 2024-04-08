@@ -1,7 +1,7 @@
 ﻿// using System.ComponentModel;
 // using AlphaPlus.Core.Configurations;
 
-// namespace AlphaPlus.Features.Messages.Api.Helpers
+// namespace AlphaPlus.Features.Messages.API.Helpers
 // {
 //     public class ConfigurationHelper : IConfigurationHelper
 //     {

@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Client.Helpers
+﻿namespace AlphaPlus.Features.Messages.API.Client.Helpers
 {
     using System;
     using Newtonsoft.Json;

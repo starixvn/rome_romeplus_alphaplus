@@ -1,13 +1,15 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.Requests.Announcement
 {
     using MediatR;
-    using AlphaPlus.Features.Messages.Models.Announcement;
+    using AlphaPlus.Features.Messages.API.Models.Announcement;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.Constants;
-    using AlphaPlus.Features.Messages.Params.Announcement;
+    using AlphaPlus.Features.Messages.API.Constants;
+    using AlphaPlus.Features.Messages.API.Params.Announcement;
 
     public class PopupAnnouncementQuery : MessageHistoryBaseRequest, IRequest<AlphaAnnouncement>
     {
+        public PopupAnnouncementQuery() : this(null) {}
+        
         public PopupAnnouncementQuery(IUserSession userSession) : base(userSession)
         {            
         }

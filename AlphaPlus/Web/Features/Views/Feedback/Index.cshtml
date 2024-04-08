@@ -1,4 +1,7 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Features.Messages.API.AppResources
+
+@{
     Layout = "~/Views/Feedback/_SharedLayout.cshtml";
 }
 <div class="feedback-box">
@@ -6,7 +9,7 @@
     <textarea class="feedback-msg" placeholder="@Resources.Feedback_Message" rows="4"></textarea>
     <div class="hide message-limit msg msg-error">@Resources.Feedback_MessageLimit</div>
     <div class="div-greeting">@Resources.Feedback_Rate</div>
-    @{ Html.RenderPartial("~/Views/Feedback/_RateIcons.cshtml"); }
+    @{ await Html.RenderPartialAsync("~/Views/Feedback/_RateIcons.cshtml"); }
     <div class="hide message-result msg msg-error">@Resources.Feedback_NoInput</div>
     <div class="btn-box">
         <button type="button" class="btn-cancel" id="buttonLater">@Resources.Later</button>
@@ -18,4 +21,4 @@
 @Html.Hidden("Feedback_NoInput", Resources.Feedback_NoInput)
 @section Scripts{
     @StaticResources.RenderScripts("~/Assets/bundles/feedback/index")
-} *@
+}

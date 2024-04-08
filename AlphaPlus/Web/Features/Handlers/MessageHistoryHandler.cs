@@ -1,9 +1,9 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.Handlers
 {
     using System;
-    using AlphaPlus.Features.Messages.Models.Message;
-    using AlphaPlus.Features.Messages.Params;
-    using AlphaPlus.Features.Messages.Services;
+    using AlphaPlus.Features.Messages.API.Models.Message;
+    using AlphaPlus.Features.Messages.API.Params;
+    using AlphaPlus.Features.Messages.API.Services;
     using MediatR;
     using Requests.MessageHistory;
     using ViewModels;

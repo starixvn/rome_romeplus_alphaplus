@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Services
+﻿namespace AlphaPlus.Features.Messages.API.Services
 {
     using AlphaPlus.Features.Messages.Utils;
     using Constants;

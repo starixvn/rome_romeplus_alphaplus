@@ -4,10 +4,10 @@
     using System.Text;
     using System.Threading.Tasks;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.AppResources;
-    using AlphaPlus.Features.Messages.Models.Feedback;
-    using AlphaPlus.Features.Messages.Params.Feedback;
-    using AlphaPlus.Features.Messages.Services;
+    using AlphaPlus.Features.Messages.API.AppResources;
+    using AlphaPlus.Features.Messages.API.Models.Feedback;
+    using AlphaPlus.Features.Messages.API.Params.Feedback;
+    using AlphaPlus.Features.Messages.API.Services;
     using AlphaPlus.Features.Site.Messages.Requests.Feedback;
     using AlphaPlus.Features.Site.Messages.ViewModels.Feedback;
     using MediatR;

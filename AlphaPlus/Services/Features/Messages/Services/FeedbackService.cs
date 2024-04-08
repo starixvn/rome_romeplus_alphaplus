@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Features.Messages.Services
+﻿namespace AlphaPlus.Features.Messages.API.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using AlphaPlus.Features.Messages.Criteria.Feedback;
-    using AlphaPlus.Features.Messages.Models.Feedback;
-    using AlphaPlus.Features.Messages.Params.Feedback;
+    using AlphaPlus.Features.Messages.API.Criteria.Feedback;
+    using AlphaPlus.Features.Messages.API.Models.Feedback;
+    using AlphaPlus.Features.Messages.API.Params.Feedback;
     using Fanex.Caching;
     using Fanex.Data.Repository;
 
@@ -20,7 +20,7 @@
 
     public class FeedbackServiceImpl : FeedbackService
     {
-        private const string FeedBackOnFunctionCacheKey = "AlphaPlus.Features.Messages.Services.FeedbackService.FeedBackOnFunction_{0}";
+        private const string FeedBackOnFunctionCacheKey = "AlphaPlus.Features.Messages.API.Services.FeedbackService.FeedBackOnFunction_{0}";
         private const int FeedBackOnFunctionCacheInMinutes = 60 * 2;
 
         private readonly IDynamicRepository dynamicRepository;

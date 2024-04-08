@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Features.Messages.Configurations;
+    using AlphaPlus.Features.Messages.API.Configurations;
     using MediatR;
     using AlphaPlus.Core.Models;
     using AlphaPlus.Features.Messages.Site.Requests.PortalMessage;

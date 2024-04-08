@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Features.Messages.Services
+﻿namespace AlphaPlus.Features.Messages.API.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.Announcements.Models;
     using Alpha.Announcements.Services;
-    using AlphaPlus.Features.Messages.Api.Client.Requests;
+    using AlphaPlus.Features.Messages.API.Client.Requests;
     using Constants;
     using Criteria.Announcement;
     using Fanex.Caching;
@@ -13,8 +13,8 @@
     using Models.Announcement;
     using Params.Announcement;
     using Utils;
-    using AlphaPlus.Features.Messages.Configurations;
-    using AlphaPlus.Features.Messages.Client;
+    using AlphaPlus.Features.Messages.API.Configurations;
+    using AlphaPlus.Features.Messages.API.Client;
 
     public interface AnnouncementService
     {

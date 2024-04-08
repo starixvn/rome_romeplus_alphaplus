@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Configurations
+﻿namespace AlphaPlus.Features.Messages.API.Configurations
 {
     using System;
     using AlphaPlus.Core.Configurations;

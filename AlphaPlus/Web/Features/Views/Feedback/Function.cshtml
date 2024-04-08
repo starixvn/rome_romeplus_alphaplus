@@ -1,4 +1,7 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Features.Messages.API.AppResources
+
+@{
     Layout = "~/Views/Feedback/_SharedLayout.cshtml";
     var hasAreas = Model.FeedbackAreas.Any();
 }
@@ -10,7 +13,7 @@
         <div class="area-rate-star">
             @foreach (var item in Model.FeedbackAreas)
             {
-                Html.RenderPartial("~/Views/Feedback/_RateStars.cshtml", item);
+                await Html.RenderPartialAsync("~/Views/Feedback/_RateStars.cshtml", item);
             }
         </div>
         <div>@Resources.Others</div>
@@ -23,7 +26,7 @@
     }
     <div class="hide message-limit msg msg-error" id="message-limit">@Resources.Feedback_MessageLimit</div>
     <div class="div-greeting">@string.Format(Resources.FeedbackFunction_Rate, Model.FunctionName)</div>
-    @{ Html.RenderPartial("~/Views/Feedback/_RateIcons.cshtml"); }
+    @{ await Html.RenderPartialAsync("~/Views/Feedback/_RateIcons.cshtml"); }
     <div class="hide message-result msg msg-error" id="message-result">@Resources.Feedback_NoInput</div>
     <div class="btn-box">
         <button type="button" class="btn-cancel" id="button-later">@Resources.Later</button>
@@ -36,4 +39,4 @@
 <input type="hidden" id="hiddenAddFeedbackUrl" value="@MicroSites.MessageUrl("~/Feedback/Add")" />
 @section Scripts{
     @StaticResources.RenderScripts("~/Assets/bundles/feedback/function")
-} *@
+}

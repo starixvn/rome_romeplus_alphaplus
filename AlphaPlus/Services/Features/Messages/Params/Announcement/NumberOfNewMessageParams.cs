@@ -1,6 +1,6 @@
-﻿using AlphaPlus.Features.Messages.Models.Message;
+﻿using AlphaPlus.Features.Messages.API.Models.Message;
 
-namespace AlphaPlus.Features.Messages.Params.Announcement
+namespace AlphaPlus.Features.Messages.API.Params.Announcement
 {
     public class NumberOfNewMessageParams : BaseAnnouncementsParams
     {

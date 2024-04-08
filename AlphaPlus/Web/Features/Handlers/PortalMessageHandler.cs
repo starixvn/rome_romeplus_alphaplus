@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using AlphaPlus.Features.Messages.Services;
+    using AlphaPlus.Features.Messages.API.Services;
     using AlphaPlus.Features.Messages.Site.Requests.PortalMessage;
     using MediatR;
     using ViewModels;

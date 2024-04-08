@@ -1,8 +1,8 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.ViewModels
 {
     using System;
-    using AlphaPlus.Features.Messages.Constants;
-    using AlphaPlus.Features.Messages.Models.Message;
+    using AlphaPlus.Features.Messages.API.Constants;
+    using AlphaPlus.Features.Messages.API.Models.Message;
     using AlphaPlus.Features.Messages.Utils;
 
     public class PortalMessageWrapper

@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Models.ToastMessage
+﻿namespace AlphaPlus.Features.Messages.API.Models.ToastMessage
 {
     public class ToastContentModel
     {

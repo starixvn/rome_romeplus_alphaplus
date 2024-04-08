@@ -1,4 +1,6 @@
-﻿@* @model AlphaPlus.Features.Site.Messages.ViewModels.Components.PagerViewModel
+﻿@using AlphaPlus.Features.Messages.API.AppResources
+
+@model AlphaPlus.Features.Site.Messages.ViewModels.Components.PagerViewModel
 @if (Model.TotalRecords > 0)
 {
     <div id="pager"
@@ -10,4 +12,4 @@
          data-totalrecords="@Model.TotalRecords">
     </div>
 }
- *@
+

@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Criteria.ToastMessage
+﻿namespace AlphaPlus.Features.Messages.API.Criteria.ToastMessage
 {
     using Fanex.Data;
     using Fanex.Data.Repository;

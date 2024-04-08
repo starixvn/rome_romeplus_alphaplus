@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Extensions
+﻿namespace AlphaPlus.Features.Messages.API.Extensions
 {
     using System;
 

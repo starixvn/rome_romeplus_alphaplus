@@ -6,8 +6,11 @@
 
     public class BackupDomainsQuery : IRequest<BackupDomainsViewModel>
     {
+        public BackupDomainsQuery() : this(null) {}
+
         public BackupDomainsQuery(IUserSession userSession)
         {
+            userSession = userSession ?? UserSession.Current;
             Site = userSession.Site;
             RoleId = userSession.RoleId;
         }

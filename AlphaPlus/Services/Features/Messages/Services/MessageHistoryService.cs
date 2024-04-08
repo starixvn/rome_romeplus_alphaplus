@@ -1,10 +1,10 @@
-﻿namespace AlphaPlus.Features.Messages.Services
+﻿namespace AlphaPlus.Features.Messages.API.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Linq;
-    using AlphaPlus.Features.Messages.Models;
+    using AlphaPlus.Features.Messages.API.Models;
     using Constants;
     using Criteria.Message;
     using Fanex.Data.Repository;

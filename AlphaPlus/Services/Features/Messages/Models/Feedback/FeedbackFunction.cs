@@ -1,6 +1,6 @@
-﻿namespace AlphaPlus.Features.Messages.Models.Feedback
+﻿namespace AlphaPlus.Features.Messages.API.Models.Feedback
 {
-    using AlphaPlus.Features.Messages.Constants;
+    using AlphaPlus.Features.Messages.API.Constants;
 
     public class FeedbackFunction
     {

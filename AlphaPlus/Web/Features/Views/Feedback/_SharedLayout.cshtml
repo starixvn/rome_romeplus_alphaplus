@@ -1,4 +1,7 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Features.Messages.API.AppResources
+
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -18,12 +21,12 @@
       @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
     <![endif]-->
     @RenderSection("Styles", required: false)
-    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagScript()
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 <body>
-    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagNoScript()
+    @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @RenderSection("Scripts", required: false)
 </body>
-</html> *@
+</html>

@@ -8,13 +8,15 @@ using Fanex.Data.Repository;
 using Fanex.RemotingRef;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using MediatR;
-using AlphaPlus.Features.Messages.Services;
-using AlphaPlus.Features.Messages.Client;
+using AlphaPlus.Features.Messages.API.Services;
+using AlphaPlus.Features.Messages.API.Client;
 using RestSharp;
 using Alpha.Announcements.Services;
-using AlphaPlus.Features.Messages.Models.Announcement;
+using AlphaPlus.Features.Messages.API.Models.Announcement;
 using Alpha.Announcements.Models;
 using AlphaPlus.Features.Site.Messages.Requests.Announcement;
+using AlphaPlus.Features.Messages.API.Configurations;
+using AlphaPlus.Features.Messages.API.Client.Helpers;
 
 namespace AlphaPlus.Features.Site.Helpers
 {
@@ -76,7 +78,7 @@ namespace AlphaPlus.Features.Site.Helpers
                 .AddScoped<ProductService, ProductServiceImpl>()
                 .AddScoped<ToastMessageService, ToastMessageServiceImpl>()
                 .AddScoped<AnnouncementClient, AnnouncementClientImpl>()
-                .AddSingleton<IRestClient>(client => new RestClient())
+                .AddSingleton<IRestClient>(client => new RestClient(new Uri(AppSettings.AnnouncementApi)) { Authenticator = new HmacAuthenticator() })
                 .AddSingleton<ICacheService, CacheService>();
 
             services

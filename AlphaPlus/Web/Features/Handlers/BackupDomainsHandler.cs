@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using AlphaPlus.Features.Messages.Services;
+    using AlphaPlus.Features.Messages.API.Services;
     using AlphaPlus.Features.Site.Messages.Requests.BackupDomains;
     using AlphaPlus.Features.Site.Messages.ViewModels;
     using MediatR;

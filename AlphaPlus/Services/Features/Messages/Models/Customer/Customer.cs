@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Models.Customer
+﻿namespace AlphaPlus.Features.Messages.API.Models.Customer
 {
     using AlphaPlus.Core.Configurations;
 

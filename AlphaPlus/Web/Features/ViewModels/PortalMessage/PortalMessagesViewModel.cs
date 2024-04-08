@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AlphaPlus.Features.Messages.Constants;
+    using AlphaPlus.Features.Messages.API.Constants;
 
     public class PortalMessagesViewModel
     {

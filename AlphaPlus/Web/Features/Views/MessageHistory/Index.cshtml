@@ -1,5 +1,10 @@
-﻿@* @model MessagesHistoryViewModel
-@using AlphaPlus.Features.Messages.Extensions
+﻿@using AlphaPlus.Features.Messages.API.Extensions
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Features.Messages.API.AppResources
+@using AlphaPlus.Features.Messages.API.Constants
+
+@model AlphaPlus.Features.Site.Messages.ViewModels.MessagesHistoryViewModel
+
 
 @section Styles{
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/pagination")
@@ -26,7 +31,7 @@
     @if (Model.MessageType != MessageType.Special)
     {
         <div class="filter">
-            @using (Html.BeginForm("Messages", "MessageHistory", new { messageType = Model.MessageType }, FormMethod.Post, new { id = "report-form" }))
+            @using (Html.BeginForm("Messages", "MessageHistory", new { messageType = Model.MessageType }, FormMethod.Post, antiforgery: false, new { id = "report-form" }))
             {
                 <div id="daterange-picker"
                      class="daterange-picker"
@@ -124,7 +129,7 @@
 
     @if (Model.MessageType != MessageType.Special)
     {
-        @Html.Partial("~/Views/Components/Pager.cshtml", Model.PagerViewModel)
+        @await Html.PartialAsync("~/Views/Components/Pager.cshtml", Model.PagerViewModel)
 
     }
 </div>
@@ -132,4 +137,4 @@
 @section Scripts{
     @StaticResources.RenderScripts("~/assets/bundles/message")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
-} *@
+}

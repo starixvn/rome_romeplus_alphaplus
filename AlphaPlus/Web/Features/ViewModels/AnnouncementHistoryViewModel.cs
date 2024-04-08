@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using AlphaPlus.Features.Messages.Models.Announcement;
-    using AlphaPlus.Features.Messages.Models.Message;
+    using AlphaPlus.Features.Messages.API.Models.Announcement;
+    using AlphaPlus.Features.Messages.API.Models.Message;
 
     public class AnnouncementHistoryViewModel : MessageBase
     {
@@ -16,7 +16,7 @@
             NumberOfUnreadMessage unreadMessage) : base(messageType, roleId, fromDate, toDate, unreadMessage)
         {
             Announcements = announcements;
-            MessageType = Features.Messages.Constants.MessageType.System;
+            MessageType = Features.Messages.API.Constants.MessageType.System;
         }
 
         public IEnumerable<AlphaAnnouncement> Announcements { get; }

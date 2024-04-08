@@ -7,9 +7,9 @@
     using Requests.MessageHistory;
     using AlphaPlus.Core.Models;
     using AlphaPlus.Core.Filters;
-    using AlphaPlus.Features.Messages.Constants;
+    using AlphaPlus.Features.Messages.API.Constants;
     using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Features.Messages.Configurations;
+    using AlphaPlus.Features.Messages.API.Configurations;
 
     public class MessageHistoryController : SiteBaseController
     {
@@ -24,7 +24,7 @@
         }
 
         [AllowProtectedMode]
-        public ActionResult Index(int messageType)
+        public async Task<ActionResult> Index(int messageType)
         {
             if (IsDisableMessages(messageType))
             {
@@ -40,7 +40,7 @@
                 AppSettings.LocalTest, 1, 100);
             query.Specification = specificationParam;
 
-            return View(query);
+            return await View(query);
         }
 
         [AllowProtectedMode]

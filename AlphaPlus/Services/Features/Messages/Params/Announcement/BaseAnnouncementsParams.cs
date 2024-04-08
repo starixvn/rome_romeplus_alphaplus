@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Params.Announcement
+﻿namespace AlphaPlus.Features.Messages.API.Params.Announcement
 {
     using Alpha.Announcements.Models;
 

@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Params.Feedback
+﻿namespace AlphaPlus.Features.Messages.API.Params.Feedback
 {
     public class AddFeedbackParam
     {

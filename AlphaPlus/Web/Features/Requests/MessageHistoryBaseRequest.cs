@@ -2,16 +2,18 @@
 {
     using Alpha.Announcements.Models;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.Constants;
-    using AlphaPlus.Features.Messages.Params.Announcement;
+    using AlphaPlus.Features.Messages.API.Constants;
+    using AlphaPlus.Features.Messages.API.Params.Announcement;
 
     public class MessageHistoryBaseRequest
     {
         protected readonly IUserSession userSession;
 
+        public MessageHistoryBaseRequest() : this(null) {}
+
         public MessageHistoryBaseRequest(IUserSession userSession)
         {
-            this.userSession = userSession;
+            this.userSession = userSession ?? UserSession.Current;
         }
 
         public IParam Specification { get; set; }

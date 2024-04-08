@@ -4,10 +4,12 @@
     using MediatR;
     using ViewModels;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.Params.Announcement;
+    using AlphaPlus.Features.Messages.API.Params.Announcement;
 
     public class AnnouncementsHistoryQuery : MessageHistoryBaseRequest, IRequest<AnnouncementHistoryViewModel>
     {
+        public AnnouncementsHistoryQuery() : this(null) {}
+
         public AnnouncementsHistoryQuery(IUserSession userSession) : base(userSession)
         {
             ToDate = DateTime.Now;

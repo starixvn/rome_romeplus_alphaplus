@@ -2,12 +2,14 @@
 {
     using MediatR;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.Models.Message;
-    using AlphaPlus.Features.Messages.Constants;
-    using AlphaPlus.Features.Messages.Params.Announcement;
+    using AlphaPlus.Features.Messages.API.Models.Message;
+    using AlphaPlus.Features.Messages.API.Constants;
+    using AlphaPlus.Features.Messages.API.Params.Announcement;
 
     public class NumberOfNewMessageQuery : MessageHistoryBaseRequest, IRequest<NumberOfUnreadMessage>
     {
+        public NumberOfNewMessageQuery() : this(null) {}
+        
         public NumberOfNewMessageQuery(IUserSession userSession) : base(userSession)
         {
         }

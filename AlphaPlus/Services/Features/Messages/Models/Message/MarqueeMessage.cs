@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Models.Message
+﻿namespace AlphaPlus.Features.Messages.API.Models.Message
 {
     public class MarqueeMessage : MultiLanguague
     {

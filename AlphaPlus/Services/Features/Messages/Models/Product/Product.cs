@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Models.Product
+﻿namespace AlphaPlus.Features.Messages.API.Models.Product
 {
     public class Product
     {

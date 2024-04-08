@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlphaPlus.Features.Messages.Models
+namespace AlphaPlus.Features.Messages.API.Models
 {
     public class PagedReportData<T> where T : class
     {

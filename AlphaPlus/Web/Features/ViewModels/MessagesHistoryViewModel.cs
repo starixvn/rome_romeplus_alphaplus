@@ -1,8 +1,8 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.ViewModels
 {
     using System;
-    using AlphaPlus.Features.Messages.Models;
-    using AlphaPlus.Features.Messages.Models.Message;
+    using AlphaPlus.Features.Messages.API.Models;
+    using AlphaPlus.Features.Messages.API.Models.Message;
     using AlphaPlus.Features.Site.Messages.ViewModels.Components;
 
     public class MessagesHistoryViewModel : MessageBase

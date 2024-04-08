@@ -2,10 +2,10 @@
 {
     using System;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.Constants;
-    using AlphaPlus.Features.Messages.Models.Message;
-    using AlphaPlus.Features.Messages.Params;
-    using AlphaPlus.Features.Messages.Params.Announcement;
+    using AlphaPlus.Features.Messages.API.Constants;
+    using AlphaPlus.Features.Messages.API.Models.Message;
+    using AlphaPlus.Features.Messages.API.Params;
+    using AlphaPlus.Features.Messages.API.Params.Announcement;
     using MediatR;
     using ViewModels;
 
@@ -20,7 +20,7 @@
         {
             MessageType = messageType;
             SpecialType = MessageConstants.SpecialTypes[messageType];
-            StartDate = MessageType == Features.Messages.Constants.MessageType.Special ? new DateTime(1900, 1, 1) : startDate;
+            StartDate = MessageType == Features.Messages.API.Constants.MessageType.Special ? new DateTime(1900, 1, 1) : startDate;
             EndDate = endDate.AddDays(1).AddTicks(-1);
             IsTest = isTest;
             LimitedDateToShowInfo = userSession.GetProperty<DateTime>(SessionKey.CustomerDatelimit);

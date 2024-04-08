@@ -1,8 +1,8 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.Handlers
 {
-    using AlphaPlus.Features.Messages.Constants;
-    using AlphaPlus.Features.Messages.Params.Announcement;
-    using AlphaPlus.Features.Messages.Services;
+    using AlphaPlus.Features.Messages.API.Constants;
+    using AlphaPlus.Features.Messages.API.Params.Announcement;
+    using AlphaPlus.Features.Messages.API.Services;
     using MediatR;
     using Requests.Announcement;
     using ViewModels;

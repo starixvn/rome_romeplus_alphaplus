@@ -3,11 +3,11 @@
     using System.Collections.Generic;
     using System.Globalization;
     using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Features.Messages.Models.Announcement;
+    using AlphaPlus.Features.Messages.API.Models.Announcement;
     using AlphaPlus.Core.Filters;
     using AlphaPlus.Core;
     using AlphaPlus.Core.Models;
-    using UserLevel = Features.Messages.Models.Constants.UserLevel;
+    using UserLevel = Features.Messages.API.Models.Constants.UserLevel;
 
     [AllowProtectedMode]
     public class StaticMessageController : BaseController
@@ -67,7 +67,7 @@
 
             Response.Headers.Append("Content-Disposition", "inline; filename=" + fileDownloadName);
 
-            return base.File($"/app/Views/StaticMessage/{fileName}.pdf", "application/pdf");
+            return base.PhysicalFile($"/app/Views/StaticMessage/{fileName}.pdf", "application/pdf");
         }
 
         public ActionResult Help(string id)
@@ -89,7 +89,7 @@
 
             Response.Headers.Append("Content-Disposition", "inline; filename=" + fileDownloadName);
 
-            return base.File($"/app/Views/StaticMessage/{fileName}.pdf", "application/pdf");
+            return base.PhysicalFile($"/app/Views/StaticMessage/{fileName}.pdf", "application/pdf");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Params.ToastMessage
+﻿namespace AlphaPlus.Features.Messages.API.Params.ToastMessage
 {
     public class MarkReadMessageParams
     {

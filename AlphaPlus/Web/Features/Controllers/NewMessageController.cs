@@ -6,7 +6,7 @@
     using MediatR;
     using Requests.NewMessage;
     using AlphaPlus.Core.Filters;
-    using AlphaPlus.Features.Messages.Configurations;
+    using AlphaPlus.Features.Messages.API.Configurations;
 
     public class NewMessageController : SiteBaseController
     {

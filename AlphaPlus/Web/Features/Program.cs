@@ -25,7 +25,7 @@ AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
 
 app.UsePathBase("/features");
 app.MapHealthChecks("/health");
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions());
 
 app.UseRouting();
 app.UseAuthorization();

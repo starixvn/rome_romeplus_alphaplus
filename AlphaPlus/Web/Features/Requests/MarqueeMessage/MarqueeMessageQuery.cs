@@ -3,7 +3,7 @@
     using AlphaPlus.Core.Models;
     using MediatR;
     using ViewModels;
-    using AlphaPlus.Features.Messages.Configurations;
+    using AlphaPlus.Features.Messages.API.Configurations;
 
     public class MarqueeMessageQuery : IRequest<MarqueeMessageViewModel>
     {

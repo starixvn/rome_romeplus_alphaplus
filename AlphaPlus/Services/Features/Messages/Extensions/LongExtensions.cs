@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlphaPlus.Features.Messages.Api.Extensions
+namespace AlphaPlus.Features.Messages.API.Extensions
 {
     public static class LongExtensions
     {

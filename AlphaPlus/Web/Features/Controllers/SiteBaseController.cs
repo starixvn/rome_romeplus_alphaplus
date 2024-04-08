@@ -14,8 +14,8 @@
             this.mediator = mediator;
         }
 
-        protected ActionResult View<TResponse>(IRequest<TResponse> message)
-            => View(mediator.Send(message));
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
+            => View(await mediator.Send(message));
 
         protected async Task<ActionResult> Json<TResponse>(IRequest<TResponse> message)
             => new JsonResult(await mediator.Send(message));

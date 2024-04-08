@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.Constants
+﻿namespace AlphaPlus.Features.Messages.API.Constants
 {
     using System.Collections.Generic;
-    using AlphaPlus.Features.Messages.Configurations;
-    using AlphaPlus.Features.Messages.Models.Constants;
+    using AlphaPlus.Features.Messages.API.Configurations;
+    using AlphaPlus.Features.Messages.API.Models.Constants;
 
     public static class MessageConstants
     {

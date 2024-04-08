@@ -1,6 +1,6 @@
-﻿namespace AlphaPlus.Features.Messages.Criteria.Message
+﻿namespace AlphaPlus.Features.Messages.API.Criteria.Message
 {
-    using AlphaPlus.Features.Messages.Configurations;
+    using AlphaPlus.Features.Messages.API.Configurations;
     using Fanex.Data;
     using Fanex.Data.Repository;
 

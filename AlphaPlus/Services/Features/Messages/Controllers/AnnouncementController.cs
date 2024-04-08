@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Api.Controllers
+﻿namespace AlphaPlus.Features.Messages.API.Controllers
 {
     using System.Collections.Generic;
     using AlphaPlus.Core;

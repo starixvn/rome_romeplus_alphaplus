@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Services
+﻿namespace AlphaPlus.Features.Messages.API.Services
 {
     using System.Collections.Generic;
     using System.Globalization;

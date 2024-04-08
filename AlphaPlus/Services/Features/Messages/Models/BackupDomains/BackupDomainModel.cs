@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Models.BackupDomains
+﻿namespace AlphaPlus.Features.Messages.API.Models.BackupDomains
 {
     public class BackupDomainModel
     {

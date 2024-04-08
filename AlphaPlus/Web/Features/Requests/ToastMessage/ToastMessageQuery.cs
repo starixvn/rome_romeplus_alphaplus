@@ -2,16 +2,18 @@
 {
     using System.Collections.Generic;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.Models.ToastMessage;
+    using AlphaPlus.Features.Messages.API.Models.ToastMessage;
     using MediatR;
 
     public class ToastMessageQuery : IRequest<IEnumerable<ToastMessageModel>>
     {
         private readonly IUserSession userSession;
 
+        public ToastMessageQuery() : this(null) {}
+
         public ToastMessageQuery(IUserSession userSession)
         {
-            this.userSession = userSession;
+            this.userSession = userSession ?? UserSession.Current;
         }
 
         public int CustId => userSession.CustId;

@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Api.Client.Requests
+﻿namespace AlphaPlus.Features.Messages.API.Client.Requests
 {
     public class AnnouncementTodayRequest
     {

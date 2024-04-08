@@ -1,4 +1,4 @@
-﻿// namespace AlphaPlus.Features.Messages.Api.Filter
+﻿// namespace AlphaPlus.Features.Messages.API.Filter
 // {
 //     using System;
 //     using System.Net;

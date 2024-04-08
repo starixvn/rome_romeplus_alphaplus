@@ -6,7 +6,7 @@
     using Requests.MarqueeMessage;
     using AlphaPlus.Core.Filters;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.Models.Message;
+    using AlphaPlus.Features.Messages.API.Models.Message;
 
     public class MarqueeMessageController : SiteBaseController
     {

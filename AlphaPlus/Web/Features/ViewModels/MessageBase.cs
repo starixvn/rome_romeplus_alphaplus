@@ -1,8 +1,8 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.ViewModels
 {
     using System;
-    using AlphaPlus.Features.Messages.Models.Constants;
-    using AlphaPlus.Features.Messages.Models.Message;
+    using AlphaPlus.Features.Messages.API.Models.Constants;
+    using AlphaPlus.Features.Messages.API.Models.Message;
 
     public class MessageBase
     {

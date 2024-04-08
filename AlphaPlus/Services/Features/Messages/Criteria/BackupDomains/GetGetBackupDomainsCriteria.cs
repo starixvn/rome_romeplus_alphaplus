@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Criteria.BackupDomains
+﻿namespace AlphaPlus.Features.Messages.API.Criteria.BackupDomains
 {
     using Fanex.Data.Repository;
 

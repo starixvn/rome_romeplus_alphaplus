@@ -1,11 +1,11 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.Handlers
 {
-    using AlphaPlus.Features.Messages.Models.Message;
-    using AlphaPlus.Features.Messages.Services;
+    using AlphaPlus.Features.Messages.API.Models.Message;
+    using AlphaPlus.Features.Messages.API.Services;
     using MediatR;
     using Requests.MarqueeMessage;
     using ViewModels;
-    using AlphaPlus.Features.Messages.Configurations;
+    using AlphaPlus.Features.Messages.API.Configurations;
 
     public class MarqueeMessageHandler :
         IRequestHandler<MarqueeMessageQuery, MarqueeMessageViewModel>

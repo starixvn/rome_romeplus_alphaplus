@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Models.Constants
+﻿namespace AlphaPlus.Features.Messages.API.Models.Constants
 {
     using System.Collections.Generic;
 

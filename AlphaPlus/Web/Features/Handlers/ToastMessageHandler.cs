@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.Models.ToastMessage;
-    using AlphaPlus.Features.Messages.Params.ToastMessage;
-    using AlphaPlus.Features.Messages.Services;
+    using AlphaPlus.Features.Messages.API.Models.ToastMessage;
+    using AlphaPlus.Features.Messages.API.Params.ToastMessage;
+    using AlphaPlus.Features.Messages.API.Services;
     using AlphaPlus.Features.Site.Messages.Requests.ToastMessage;
     using MediatR;
 

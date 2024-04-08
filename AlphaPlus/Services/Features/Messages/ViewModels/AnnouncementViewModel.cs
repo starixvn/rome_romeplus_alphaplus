@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Api.ViewModels
+﻿namespace AlphaPlus.Features.Messages.API.ViewModels
 {
     public class AnnouncementViewModel
     {

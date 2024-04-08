@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Criteria.Feedback
+﻿namespace AlphaPlus.Features.Messages.API.Criteria.Feedback
 {
     using Fanex.Data.Repository;
 

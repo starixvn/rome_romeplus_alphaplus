@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Criteria.Announcement
+﻿namespace AlphaPlus.Features.Messages.API.Criteria.Announcement
 {
     using Fanex.Data.Repository;
 

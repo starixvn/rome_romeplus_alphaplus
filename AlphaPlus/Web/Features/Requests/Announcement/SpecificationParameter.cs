@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.Announcements.Models;
-    using AlphaPlus.Features.Messages.Services;
+    using AlphaPlus.Features.Messages.API.Services;
     using AlphaPlus.Core.Models;
 
     public class SpecificationParameter : IParam

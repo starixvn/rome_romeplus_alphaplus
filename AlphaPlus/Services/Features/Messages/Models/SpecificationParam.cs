@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Features.Messages.Api.Models
+﻿namespace AlphaPlus.Features.Messages.API.Models
 {
     using System.Collections.Generic;
     using Alpha.Announcements.Models;
-    using Messages.Models.Constants;
-    using Messages.Models.Customer;
+    using Messages.API.Models.Constants;
 
     public class SpecificationParam : IParam
     {
-        private readonly Customer customer;
+        private readonly Customer.Customer customer;
 
-        public SpecificationParam(Customer customer, IEnumerable<byte> offeredProductIds)
+        public SpecificationParam(Customer.Customer customer, IEnumerable<byte> offeredProductIds)
         {
             this.customer = customer;
             OfferedProductIds = offeredProductIds;

@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Api.Requests
+﻿namespace AlphaPlus.Features.Messages.API.Requests
 {
     using System.Collections.Generic;
     using MediatR;

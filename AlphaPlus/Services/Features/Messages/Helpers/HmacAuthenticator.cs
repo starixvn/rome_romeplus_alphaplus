@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Features.Messages.Client.Helpers
+﻿namespace AlphaPlus.Features.Messages.API.Client.Helpers
 {
     using System;
     using System.Net;
     using System.Net.Sockets;
     using System.Security.Cryptography;
     using System.Text;
-    using AlphaPlus.Features.Messages.Configurations;
+    using AlphaPlus.Features.Messages.API.Configurations;
     using RestSharp;
     using RestSharp.Authenticators;
     using RestSharp.Extensions.MonoHttp;

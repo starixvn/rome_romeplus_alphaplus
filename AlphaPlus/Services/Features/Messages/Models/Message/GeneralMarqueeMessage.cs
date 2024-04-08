@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Models.Message
+﻿namespace AlphaPlus.Features.Messages.API.Models.Message
 {
     public class GeneralMarqueeMessage
     {
@@ -41,10 +41,10 @@
         {
             if (isSticky)
             {
-                return Messages.Constants.MessageType.Special;
+                return API.Constants.MessageType.Special;
             }
 
-            return messageType == NormalMessageDB ? Messages.Constants.MessageType.Normal : Messages.Constants.MessageType.Personal;
+            return messageType == NormalMessageDB ? API.Constants.MessageType.Normal : API.Constants.MessageType.Personal;
         }
     }
 }

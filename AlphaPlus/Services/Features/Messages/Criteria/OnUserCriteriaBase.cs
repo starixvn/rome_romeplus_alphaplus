@@ -1,7 +1,7 @@
 ﻿using Fanex.Data.Repository;
-using AlphaPlus.Features.Messages.Configurations;
+using AlphaPlus.Features.Messages.API.Configurations;
 
-namespace AlphaPlus.Features.Messages.Criteria
+namespace AlphaPlus.Features.Messages.API.Criteria
 {
     public abstract class OnUserCriteriaBase : CriteriaBase
     {

@@ -1,6 +1,6 @@
-﻿namespace AlphaPlus.Features.Messages.Params
+﻿namespace AlphaPlus.Features.Messages.API.Params
 {
-    using AlphaPlus.Features.Messages.Constants;
+    using AlphaPlus.Features.Messages.API.Constants;
     using Announcement;
     using Alpha.Announcements.Models;
     using System;

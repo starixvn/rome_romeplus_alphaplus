@@ -1,4 +1,8 @@
-﻿@* @using AlphaPlus.Features.Messages.Configurations;
+﻿@using AlphaPlus.Features.Messages.API.Configurations
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Features.Site.Messages.ViewModels
+@using AlphaPlus.Features.Messages.API.AppResources
+
 @{
     Layout = null;
 }
@@ -20,7 +24,7 @@
     <!--[if lt IE 9]>
       @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
     <![endif]-->
-    @Alpha.Web.Helpers.GoogleAnalyticHepler.GtagScript()
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 <body>
     <div class="scroll-tabs">
@@ -35,10 +39,10 @@
     </div>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="agency">
-            @RenderDomainTable(Model.AgencyDomains, "agency")
+            @{RenderDomainTable(Model.AgencyDomains, "agency");}
         </div>
         <div role="tabpanel" class="tab-pane" id="member">
-            @RenderDomainTable(Model.MemberDomains, "member")
+            @{RenderDomainTable(Model.MemberDomains, "member");}
         </div>
     </div>
     @Html.Hidden("copyAll", Resources.CopyAll)
@@ -53,39 +57,42 @@
 </body>
 </html>
 
-@helper RenderDomainTable(IEnumerable<string> domains, string id) {
-    <table class="tblRpt tblRpt-bordered alternative-row-table tablesorter tblRpt-hover" id="tbl-@id">
-        <thead>
-            <tr>
-                <th class="col-no">#</th>
-                <th class="col-domain">@Resources.Domain</th>
-                <th class="col-copy-domain">
-                    @Resources.CopyDomain
-                    <span class="icon icon-content-copy copy-all" id="icon-copy-all-@id" title="@Resources.CopyAll"></span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (domains.Any())
-            {
-                var index = 0;
-                foreach (var item in domains)
+@functions {
+    void  RenderDomainTable(IEnumerable<string> domains, string id)
+    {
+        <table class="tblRpt tblRpt-bordered alternative-row-table tablesorter tblRpt-hover" id="tbl-@id">
+            <thead>
+                <tr>
+                    <th class="col-no">#</th>
+                    <th class="col-domain">@Resources.Domain</th>
+                    <th class="col-copy-domain">
+                        @Resources.CopyDomain
+                        <span class="icon icon-content-copy copy-all" id="icon-copy-all-@id" title="@Resources.CopyAll"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (domains.Any())
                 {
-                    <tr>
-                        <td class="center">@(++index)</td>
-                        <td class="center">
-                            <a href="javascript:;" target="_blank" class="domain-url">@item</a>
-                        </td>
-                        <td class="center" data-domain="@item">
-                            <span class="icon icon-content-copy" id="icon-content-copy-@id-@index" title="@Resources.CopyDomain"></span>
-                        </td>
-                    </tr>
+                    var index = 0;
+                    foreach (var item in domains)
+                    {
+                        <tr>
+                            <td class="center">@(++index)</td>
+                            <td class="center">
+                                <a href="javascript:;" target="_blank" class="domain-url">@item</a>
+                            </td>
+                            <td class="center" data-domain="@item">
+                                <span class="icon icon-content-copy" id="icon-content-copy-@id-@index" title="@Resources.CopyDomain"></span>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-            else
-            {
-                <tr><td colspan="3" class="center">@Resources.NoInformationIsAvailable</td></tr>
-            }
-        </tbody>
-    </table>
-} *@
+                else
+                {
+                    <tr><td colspan="3" class="center">@Resources.NoInformationIsAvailable</td></tr>
+                }
+            </tbody>
+        </table>
+    }
+}

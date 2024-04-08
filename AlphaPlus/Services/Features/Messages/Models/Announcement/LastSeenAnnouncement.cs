@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.Models.Announcement
+﻿namespace AlphaPlus.Features.Messages.API.Models.Announcement
 {
     using System;
     using System.Collections.Generic;
-    using Messages.Constants;
+    using Messages.API.Constants;
 
     public class LastSeenAnnouncement
     {

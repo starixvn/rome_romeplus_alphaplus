@@ -1,10 +1,10 @@
-﻿namespace AlphaPlus.Features.Messages.Services
+﻿namespace AlphaPlus.Features.Messages.API.Services
 {
     using System.Collections.Generic;
     using System.Linq;
-    using AlphaPlus.Features.Messages.Criteria.ToastMessage;
-    using AlphaPlus.Features.Messages.Models.ToastMessage;
-    using AlphaPlus.Features.Messages.Params.ToastMessage;
+    using AlphaPlus.Features.Messages.API.Criteria.ToastMessage;
+    using AlphaPlus.Features.Messages.API.Models.ToastMessage;
+    using AlphaPlus.Features.Messages.API.Params.ToastMessage;
     using AlphaPlus.Core.Models;
     using Fanex.Data.Repository;
 

@@ -17,16 +17,16 @@
         }
 
         [AllowProtectedMode]
-        public ActionResult Index(AnnouncementsHistoryQuery message)
+        public async Task<ActionResult> Index(AnnouncementsHistoryQuery message)
         {
             message.Specification = specificationParam;
             ViewData["IsProtectedMode"] = message.IsProtectedMode;
 
-            return View(message);
+            return await View(message);
         }
 
         [AllowProtectedMode]
-        public ActionResult Popup(PopupAnnouncementQuery message)
+        public async Task<ActionResult> Popup(PopupAnnouncementQuery message)
         {
             if (message.IsProtectedMode)
             {
@@ -35,7 +35,7 @@
 
             message.Specification = specificationParam;
 
-            return View(message);
+            return await View(message);
         }
     }
 }

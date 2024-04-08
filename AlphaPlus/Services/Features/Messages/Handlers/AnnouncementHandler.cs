@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Api.Handlers
+﻿namespace AlphaPlus.Features.Messages.API.Handlers
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +9,7 @@
     using Extensions;
     using Fanex.Logging;
     using MediatR;
-    using Messages.Models.Announcement;
+    using Messages.API.Models.Announcement;
     using Models;
     using Newtonsoft.Json;
     using Params.Announcement;

@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.Features.Messages.Criteria.Message
+﻿namespace AlphaPlus.Features.Messages.API.Criteria.Message
 {
     using System;
     using System.Collections.Generic;

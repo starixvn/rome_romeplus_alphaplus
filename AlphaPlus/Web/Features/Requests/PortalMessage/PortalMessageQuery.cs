@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Features.Messages.Site.Requests.PortalMessage
 {
     using MediatR;
-    using Messages.Constants;
+    using Messages.API.Constants;
     using AlphaPlus.Features.Site.Messages.ViewModels;
     using AlphaPlus.Core.Models;
 

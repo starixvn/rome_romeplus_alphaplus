@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.Models.Message
+﻿namespace AlphaPlus.Features.Messages.API.Models.Message
 {
     using System.Collections.Generic;
-    using AlphaPlus.Features.Messages.Constants;
+    using AlphaPlus.Features.Messages.API.Constants;
 
     public class MultiLanguague
     {
