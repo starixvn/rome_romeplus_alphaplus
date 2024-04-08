@@ -2,39 +2,39 @@
 <siteMap enableLocalization="true">
   <!--Report-->
   <siteMapNode resourceKey="reports" expand="1" menuItemType="ReportMenuItem" functionType="[E]" byPassProtectedMode="true">
-    <siteMapNode resourceKey="memberOutstanding" url="/outstanding/membernew" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="agentOutstanding" url="/outstanding/agentnew" roles="Master"></siteMapNode>
-    <siteMapNode resourceKey="masterOutstanding" url="/outstanding/masternew" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="memberOutstanding" url="/reports/outstanding/index" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="agentOutstanding" url="/reports/outstanding/index" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="masterOutstanding" url="/reports/outstanding/index" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="memberWinLoss" url="/reports/enteredresult/member" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="agentwinloss" url="/reports/enteredresult/agent" roles="Master"></siteMapNode>
-    <siteMapNode resourceKey="masterwinloss" url="/reports/enteredresult/master" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="memberWinLoss" url="/reports/enteredresult/index" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="agentwinloss" url="/reports/enteredresult/index" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="masterwinloss" url="/reports/enteredresult/index" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="memberwinlossdetail" url="/winlossdetail/member" roles="Agent" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="agentwinlostdetail" url="/winlossdetail/agent" roles="Master" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="masterwinlostdetail" url="/winlossdetail/master" roles="Super" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="memberwinlossdetail" url="/reports/winlossdetail/index" roles="Agent" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="agentwinlostdetail" url="/reports/winlossdetail/index" roles="Master" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="masterwinlostdetail" url="/reports/winlossdetail/index" roles="Super" byPassProtectedMode="true"></siteMapNode>
 
-    <siteMapNode resourceKey="matchWinLostDetail" url="/matchwinlossdetail/index"></siteMapNode>
+    <siteMapNode resourceKey="matchWinLostDetail" url="/reports/matchwinlossdetail/index"></siteMapNode>
 
-    <siteMapNode resourceKey="winlossanalysis" url="/winlossanalysis/member" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="winlossanalysis" url="/winlossanalysis/agent" roles="Master"></siteMapNode>
-    <siteMapNode resourceKey="winlossanalysis" url="/winlossanalysis/master" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="winlossanalysis" url="/reports/winlossanalysis/index" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="winlossanalysis" url="/reports/winlossanalysis/index" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="winlossanalysis" url="/reports/winlossanalysis/index" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="winLossAnalysisChart" url="/winlossanalysischart/member" roles="Agent"></siteMapNode>
-    <siteMapNode resourceKey="winLossAnalysisChart" url="/winlossanalysischart/agent" roles="Master"></siteMapNode>
-    <siteMapNode resourceKey="winLossAnalysisChart" url="/winlossanalysischart/master" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="winLossAnalysisChart" url="/reports/winlossanalysischart/index" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="winLossAnalysisChart" url="/reports/winlossanalysischart/index" roles="Master"></siteMapNode>
+    <siteMapNode resourceKey="winLossAnalysisChart" url="/reports/winlossanalysischart/index" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="winLossByProduct" url="/WinLossByProduct/member" roles="Agent" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="winLossByProduct" url="/WinLossByProduct/agent" roles="Master" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="winLossByProduct" url="/WinLossByProduct/master" roles="Super" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="winLossByProduct" url="/reports/WinLossByProduct/Index" roles="Agent" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="winLossByProduct" url="/reports/WinLossByProduct/Index" roles="Master" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="winLossByProduct" url="/reports/WinLossByProduct/Index" roles="Super" byPassProtectedMode="true"></siteMapNode>
 
-    <siteMapNode resourceKey="superWinLossDetailByPT" url="/SuperWinLossDetailByPT/Index" roles="Super"></siteMapNode>
+    <siteMapNode resourceKey="superWinLossDetailByPT" url="/reports/SuperWinLossDetailByPT/Index" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="commissionByBettype" url="/reports/CommissionbyBetType/member" roles="Agent" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="commissionByBettype" url="/reports/CommissionbyBetType/agent" roles="Master" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="commissionByBettype" url="/reports/CommissionbyBetType/master" roles="Super" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="commissionByBettype" url="/reports/CommissionbyBetType/Index" roles="Agent" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="commissionByBettype" url="/reports/CommissionbyBetType/Index" roles="Master" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="commissionByBettype" url="/reports/CommissionbyBetType/Index" roles="Super" byPassProtectedMode="true"></siteMapNode>
 
-    <siteMapNode menuItemType="ConsolidatedReportMenuItem" resourceKey="consolidatedreport" url="/consolidation/consolidationbyusername"></siteMapNode>
+    <siteMapNode menuItemType="ConsolidatedReportMenuItem" resourceKey="consolidatedreport" url="/reports/consolidation/consolidationbyusername"></siteMapNode>
     <siteMapNode resourceKey="statement" url="/reports/Statement/SMAStatement"></siteMapNode>
 
     <siteMapNode resourceKey="result" url="~/Normal" appPath="ResultSiteVirtualPath" byPassProtectedMode="true"></siteMapNode>
