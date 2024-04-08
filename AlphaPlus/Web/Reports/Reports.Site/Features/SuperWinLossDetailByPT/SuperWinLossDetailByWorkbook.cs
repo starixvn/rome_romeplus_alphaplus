@@ -90,7 +90,7 @@ public class SuperWinLossDetailByWorkbook(IWebHostEnvironment webHostEnvironment
         var row = sheet.GetRow(rowIndex);
         row.CopyCellsFrom(sheet.OddRowTemplate);
         FillCells(row, data.Total, rowMapper);
-        row.SetCellValue(row.FirstCellIndex, $"{data.SuperPTPercentage} {Resources.PT}");
+        row.SetCellValue(row.FirstCellIndex, data.SuperPTPercentage);
     }
 
     private void FillWinLossDetailByProduct(Sheet sheet, int rowIndex, SuperWinLossDetailByPTEntity item)

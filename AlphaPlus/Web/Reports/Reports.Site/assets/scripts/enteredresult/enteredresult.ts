@@ -25,9 +25,5 @@
 
 $(function () {
     const linkBuilderComponent = new LinkBuilderComponent();
-    new EnterResultView(
-        new DateRangePickerComponent(),
-        new SortComponent(linkBuilderComponent),
-        linkBuilderComponent
-    ).init();
+    new EnterResultView(new DateRangePickerComponent(), new SortComponent(), linkBuilderComponent).init();
 });

@@ -567,6 +567,9 @@
   <data name="KoreanWon" xml:space="preserve">
     <value/>
   </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>过去3个月</value>
+  </data>
   <data name="LastMonth" xml:space="preserve">
     <value>上月</value>
   </data>

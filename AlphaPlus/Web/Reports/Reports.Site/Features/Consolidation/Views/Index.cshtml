@@ -1,0 +1,140 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Reports.Features.Consolidation
+@using AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
+@using AlphaPlus.Reports.Site.Features.Consolidation
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+    var isDaily = Model.ReportType == ConsolidationReportTypeConstants.Daily;
+    var firstColumnName = isDaily ? Resources.Date : Resources.Product;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/bundles/consolidation/consolidation.css" asp-append-version="true" />
+}
+@section Scripts {
+    <script src="~/bundles/consolidation/consolidation.js" asp-append-version="true"></script>
+}
+@model ConsolidationByGroupViewModel<ConsolidationByGroup>
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
+    <product model="@Model.ProductViewModel" />
+    <div class="form-group dropdown-currencies-container">
+        <select id="dropdown-currencies" name="UserSelectedCurrencyId" asp-items="Model.Currencies"></select>
+    </div>
+    <daterange-picker model="Model.DateRangePicker" />
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    <br />
+    <partial name="ReportType" model="Model.ReportType" />
+</form>
+<table
+    class="tblRpt tblRpt-bordered tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    id="tbl-report">
+    <thead>
+        <tr>
+            <th rowspan="2" class="hidden-stack-mode">@firstColumnName</th>
+            <th class="visible-stack-mode">@firstColumnName</th>
+            <th rowspan="2" class="hidden-stack-mode">@Resources.Level</th>
+            <th class="visible-stack-mode">@Resources.Level</th>
+            <th rowspan="2" class="hidden-stack-mode">@Resources.Username</th>
+            <th class="visible-stack-mode">@Resources.Username</th>
+            <th rowspan="2" class="hidden-stack-mode">@Resources.Currency</th>
+            <th class="visible-stack-mode">@Resources.Currency</th>
+            <th rowspan="2" class="hidden-stack-mode">@Resources.Turnover</th>
+            <th class="visible-stack-mode">@Resources.Turnover</th>
+            <th rowspan="2" class="hidden-stack-mode">@Resources.GrossComm</th>
+            <th class="visible-stack-mode">@Resources.GrossComm</th>
+            <th colspan="3" class="hidden-stack-mode">@Resources.Member</th>
+            <th class="visible-stack-mode">
+                @Resources.Member<br />(@Resources.WinLossAbbr/@Resources.Comm/@Resources.Total)</th>
+            <th colspan="4" class="hidden-stack-mode">@Resources.Owner</th>
+            <th class="visible-stack-mode">
+                @Resources.Owner<br />(@Resources.TurnoverAbbr/@Resources.WinLossAbbr/@Resources.Comm/@Resources.Total)
+            </th>
+            <th rowspan="2">@Resources.Company</th>
+            <th rowspan="2">@Resources.BetCount</th>
+        </tr>
+        <tr>
+            <th class="hidden-stack-mode">@Resources.WinLoss</th>
+            <th class="hidden-stack-mode">@Resources.Comm</th>
+            <th class="hidden-stack-mode">@Resources.Total</th>
+            <th class="hidden-stack-mode">@Resources.Turnover</th>
+            <th class="hidden-stack-mode">@Resources.WinLoss</th>
+            <th class="hidden-stack-mode">@Resources.Comm</th>
+            <th class="hidden-stack-mode">@Resources.Total</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.Any())
+    {
+        <tbody>
+            @foreach (var date in Model.ReportData)
+            {
+                var isFirstRow = true;
+                foreach (var data in date.WinLoss)
+                {
+                    <tr>
+                        @if (isFirstRow)
+                        {
+                            <td class="@(isDaily ? "text-center" : "text-left")" rowspan="@date.WinLoss.Count()">@date.BreakDown</td>
+                            isFirstRow = false;
+                        }
+                        <td class="text-center">@data.CustLevelName</td>
+                        <td class="text-left">
+                            <a href="javascript:;" class="downline-link">@data.Username</a>
+                        </td>
+                        <td class="text-center">@data.CurrencyName</td>
+                        <td>@data.Turnover.FormatNumber()</td>
+                        <td>@data.GrossComm.FormatNumber()</td>
+                        @if (Model.PageHeader.IsStackMode)
+                        {
+                            <td class="visible-stack-mode combinedcell col-member-winloss-combined">
+                                <ul>
+                                    <li>@data.MemberWinLoss.FormatNumber()</li>
+                                    <li>@data.MemberComm.FormatNumber()</li>
+                                    <li>@data.MemberTotal.FormatNumber()</li>
+                                </ul>
+                            </td>
+                            <td class="visible-stack-mode combinedcell col-owner-turnover-combined">
+                                <ul>
+                                    <li>@data.OwnerTurnover.FormatNumber()</li>
+                                    <li>@data.OwnerWinLoss.FormatNumber()</li>
+                                    <li>@data.OwnerComm.FormatNumber()</li>
+                                    <li>@data.OwnerTotal.FormatNumber()</li>
+                                </ul>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="hidden-stack-mode col-member-winloss">@data.MemberWinLoss.FormatNumber()</td>
+                            <td class="hidden-stack-mode">@data.MemberComm.FormatNumber()</td>
+                            <td class="hidden-stack-mode bold">@data.MemberTotal.FormatNumber()</td>
+                            <td class="hidden-stack-mode col-owner-turnover">@data.OwnerTurnover.FormatNumber()</td>
+                            <td class="hidden-stack-mode">@data.OwnerWinLoss.FormatNumber()</td>
+                            <td class="hidden-stack-mode">@data.OwnerComm.FormatNumber()</td>
+                            <td class="hidden-stack-mode bold">@data.OwnerTotal.FormatNumber()</td>
+                        }
+                        <td>@data.Company.FormatNumber()</td>
+                        <td>@data.BetCount.FormatNumber()</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    }
+    else
+    {
+        <no-information colspan="15" />
+    }
+</table>
+<a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends"
+    asp-route-MinDate="@Model.DateRangePicker.MinDate"></a>
+<input type="hidden" asp-for="IsSetDefaultStackMode" />

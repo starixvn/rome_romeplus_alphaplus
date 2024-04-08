@@ -11,6 +11,7 @@ public static class DateTimeExtensions
     private const string ShortMonthNameAndYear = "MMM-yyyy";
 
     private const int MonthsInYear = 12;
+    private const int NumberOfWeek = 7;
 
     public static string ToMMDDWithSlash(this DateTime dateTime)
         => dateTime.ToString(MMDDWithSlash);
@@ -36,14 +37,8 @@ public static class DateTimeExtensions
     public static DateTime Yesterday(this DateTime dateTime)
         => dateTime.AddDays(-1);
 
-    public static DateTime OneWeekAgo(this DateTime dateTime)
-        => dateTime.AddDays(-7);
-
     public static DateTime FirstDayOfMonth(this DateTime dateTime)
         => new DateTime(dateTime.Year, dateTime.Month, 1);
-
-    public static DateTime FirstDayOf3MonthsAgo(this DateTime dateTime)
-        => dateTime.AddMonths(-3).FirstDayOfMonth();
 
     public static DateTime LastDayOfMonth(this DateTime dateTime)
         => new DateTime(dateTime.Year, dateTime.Month, dateTime.DaysInMonth());
@@ -57,11 +52,8 @@ public static class DateTimeExtensions
     private static int DaysInMonth(this DateTime dateTime)
         => DateTime.DaysInMonth(dateTime.Year, dateTime.Month);
 
-    public static DateTime FirstDayOfYears(this DateTime dateTime)
+    public static DateTime FirstDayOfYear(this DateTime dateTime)
         => new DateTime(dateTime.Year, 1, 1);
-
-    public static DateTime FirstDayOf3YearsAgo(this DateTime dateTime)
-        => dateTime.AddYears(-3).FirstDayOfYears();
 
     public static DateTime LastDayOfYear(this DateTime dateTime)
         => new DateTime(dateTime.Year, 12, 31);
@@ -71,4 +63,11 @@ public static class DateTimeExtensions
 
     public static DateTime GetGreaterDate(this DateTime fromDate, DateTime limitedDate)
         => fromDate < limitedDate ? limitedDate : fromDate;
+
+    public static DateTime StartOfWeek(this DateTime date, DayOfWeek startOfWeek = DayOfWeek.Monday)
+    {
+        int diff = (NumberOfWeek + (date.DayOfWeek - startOfWeek)) % NumberOfWeek;
+
+        return date.AddDays(-1 * diff);
+    }
 }

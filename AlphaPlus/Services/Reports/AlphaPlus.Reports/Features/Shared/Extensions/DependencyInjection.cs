@@ -23,6 +23,7 @@ using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 using AlphaPlus.Reports.Features.WinLossByProduct;
 using AlphaPlus.Reports.Features.Consolidation;
+using AlphaPlus.Reports.Features.Customer;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
@@ -40,6 +41,7 @@ public static class DependencyInjection
             .AddSingleton<IProductService, ProductService>()
             .AddSingleton<IReportDateService, ReportDateService>()
             .AddSingleton<ILeagueService, LeagueService>()
+            .AddSingleton<ICustomerService, CustomerService>()
             .AddSingleton<ILengendService, LengendService>()
             .AddSingleton<IOutstandingService, OutstandingService>()
             .AddSingleton<IEnteredResultService, EnteredResultService>()

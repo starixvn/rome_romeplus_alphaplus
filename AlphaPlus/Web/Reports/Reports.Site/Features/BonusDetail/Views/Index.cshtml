@@ -184,8 +184,8 @@
 }
 @model BonusDetailViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form" asp-action="Index">
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
     <div class="form-group">
         <label asp-for="Member">@Resources.Member</label>
         <input type="text" class="width-140" maxlength="50" autocomplete="off" asp-for="Member" />

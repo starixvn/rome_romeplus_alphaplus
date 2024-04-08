@@ -23,8 +23,8 @@
 }
 @model SMAStatementViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form" asp-action="SMAStatement">
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
     <daterange-picker model="Model.DateRangePicker" />
     <div class="form-group">
         <span id="icon-information" class="icon-information-outline"></span>

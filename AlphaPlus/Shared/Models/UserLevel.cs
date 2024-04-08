@@ -29,6 +29,8 @@ public class UserLevel : Enumeration
 
     public bool IsNotMemberLevel() => !IsMemberLevel();
 
+    public bool IsMemberOrAgentLevel() => IsMemberLevel() || IsAgentLevel();
+
     public UserLevel GetDirectDownlineLevel() => FromValue<UserLevel>((byte)(Value - 1));
 
     public bool IsEqualOrUplineOf(Enumeration custLevel)

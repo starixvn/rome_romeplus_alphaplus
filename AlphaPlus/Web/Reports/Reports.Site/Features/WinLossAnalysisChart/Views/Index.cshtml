@@ -16,8 +16,8 @@
 }
 @model WinLossAnalysisChartViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form" asp-action="Index">
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
     <div id="msg-error" class="msg msg-error hide">
         @Resources.Least3MonthToChart
     </div>

@@ -7,5 +7,5 @@ namespace AlphaPlus.Reports.Site.Features.EnteredResult;
 public class EnteredResultQuery : BaseQuery, IRequest<EnteredResultViewModel>
 {
     public EnteredResultQuery() : base()
-        => MinDate = DateTime.Today.FirstDayOf3MonthsAgo();
+        => MinDate = DateTime.Today.AddMonths(-3).FirstDayOfMonth();
 }

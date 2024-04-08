@@ -11,7 +11,7 @@ public class SMAStatementQuery : DefaultDateRangeQuery, IRequest<SMAStatementVie
     {
         var today = DateTime.Today;
         FromDate = today.Yesterday();
-        MinDate = today.FirstDayOf3YearsAgo();
+        MinDate = today.AddYears(-3).FirstDayOfYear();
         UserSelectedDateRangeOption = DateRangePickerViewModel.SpecificDateOptionValue;
     }
 

@@ -33,7 +33,7 @@ public class MemberStatementViewModel(MemberStatementQuery message, IEnumerable<
         var queryString = QueryString.Create(new[] {
             KeyValuePair.Create(nameof(message.CustId), message.CustId.ToString()),
             KeyValuePair.Create(nameof(message.CustName), message.CustName),
-            KeyValuePair.Create("FromDate", today.OneWeekAgo().ToShortDateWithSlash()),
+            KeyValuePair.Create("FromDate", today.AddDays(-7).ToShortDateWithSlash()),
             KeyValuePair.Create("ToDate", today.ToShortDateWithSlash()),
             KeyValuePair.Create("GetAll", "true"),
             KeyValuePair.Create(nameof(ProductIds), ProductIds)

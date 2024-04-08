@@ -93,8 +93,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     private (IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string) BuildProductDetailViewModel(
         int custId,
         IEnumerable<Product> products,
-        string userSelectedResourceIds,
-        bool isExportExcel = false)
+        string userSelectedResourceIds)
     {
         var allProductDetails = productService.GetProductDetails(custId, products);
         var isCheckedAll = "*" == userSelectedResourceIds;
@@ -117,12 +116,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
                 xml.Append(productService.BuildProductDetailXml(item));
             }
 
-            // If export excel --> no need to build ProductDetailDTO
-            if (!isExportExcel)
-            {
-                productDetails.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
-            }
-
+            productDetails.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
             allProductsSupportProductDetails.Add(item.ProductId);
         }
 
@@ -131,9 +125,13 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return (productDetails, validUserSelectedResourceIds, unselectedProductIds, $"<ROOT>{xml}</ROOT>");
     }
 
-    protected (IEnumerable<int>, string) FilterProductAndProductDetailIds(BaseQuery message, string userSelectedProductIds, string userSelectedResourceIds)
+    protected (IEnumerable<int>, string) FilterProductAndProductDetailIds(
+        BaseQuery message,
+        string userSelectedProductIds,
+        string userSelectedResourceIds,
+        IEnumerable<Product> products = null)
     {
-        var products = FilterProducts(message, userSelectedProductIds).ToList();
+        products = FilterProducts(products ?? GetProducts(message), userSelectedProductIds).ToList();
         var (unselectedProductIds, productDetailXml) = FilterProductDetailIds(message.ViewerId, products, userSelectedResourceIds);
 
         // Remove invalid ProductIds
@@ -143,23 +141,26 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     }
 
     protected IEnumerable<int> FilterProductIds(BaseQuery message, string userSelectedProductIds, IEnumerable<int> offeredProductIds = null)
-        => FilterProducts(message, userSelectedProductIds, offeredProductIds).Select(product => product.Id).ToList();
-
-    private IEnumerable<Product> FilterProducts(BaseQuery message, string userSelectedProductIds, IEnumerable<int> offeredProductIds = null)
     {
-        var allProducts = GetProducts(message);
+        var products = GetProducts(message);
+
         if (offeredProductIds != null)
         {
-            allProducts = allProducts.Where(product => offeredProductIds.Contains(product.Id));
+            products = products.Where(product => offeredProductIds.Contains(product.Id));
         }
 
+        return FilterProducts(products, userSelectedProductIds).Select(product => product.Id).ToList();
+    }
+
+    private IEnumerable<Product> FilterProducts(IEnumerable<Product> products, string userSelectedProductIds)
+    {
         if ("*" != userSelectedProductIds)
         {
             var userSelectedProductIdsList = userSelectedProductIds.ToListInt();
-            allProducts = allProducts.Where(product => userSelectedProductIdsList.Contains(product.Id));
+            products = products.Where(product => userSelectedProductIdsList.Contains(product.Id));
         }
 
-        return allProducts;
+        return products;
     }
 
     private (IEnumerable<int>, string) FilterProductDetailIds(
@@ -200,7 +201,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return productService.GetProducts(param);
     }
 
-    protected static BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
+    protected virtual BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
     {
         var breadcrumbs = new List<Breadcrumb>();
 

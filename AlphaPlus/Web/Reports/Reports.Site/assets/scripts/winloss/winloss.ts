@@ -127,12 +127,12 @@
         let cellCss = `text-right col-${level}-winloss-combined`;
 
         if (level === 'master') {
-            cellCss = cellCss + (index % 2 ? '' : ' altercol');
+            cellCss += index % 2 ? '' : ' altercol';
         } else {
-            cellCss = cellCss + (index % 2 ? ' altercol' : '');
+            cellCss += index % 2 ? ' altercol' : '';
         }
 
-        alphaReports.combineConsecutiveCells($('td.col-' + level + '-winloss'), 3, cellCss);
+        alphaReports.combineConsecutiveCells($(`td.col-${level}-winloss`), 3, cellCss);
     }
 
     getSortedColumnName() {
@@ -145,7 +145,7 @@
             return 'Turnover';
         }
 
-        if (sortedColumn === 'MemberComm' || sortedColumn === 'MembeTotal') {
+        if (sortedColumn === 'MemberComm' || sortedColumn === 'MemberTotal') {
             return 'MemberWinLoss';
         }
 
@@ -170,7 +170,7 @@ $(function () {
         new ProductMultiSelectionComponent(),
         new DateRangePickerComponent(),
         new MonthPickerComponent(),
-        new SortComponent(new LinkBuilderComponent()),
+        new SortComponent(),
         new ReportTooltip()
     ).init();
 });

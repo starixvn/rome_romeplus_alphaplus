@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
   <data name="FT" xml:space="preserve">
     <value>FT.</value>
   </data>
@@ -125,6 +128,12 @@
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
@@ -138,8 +147,14 @@
   <data name="NumberGameNo" xml:space="preserve">
     <value>Number Game No</value>
   </data>
+  <data name="PT" xml:space="preserve">
+    <value>PT</value>
+  </data>
   <data name="PreGame" xml:space="preserve">
     <value>Pre Game</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Super</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
     <value>Virtual Sports</value>

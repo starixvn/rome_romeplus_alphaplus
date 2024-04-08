@@ -92,8 +92,8 @@
 }
 @model MatchWinLossDetailViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")"
-    role="form" id="report-form" asp-action="Index">
+<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")"
+    role="form" id="report-form">
     <product model="@Model.ProductViewModel" />
     <daterange-picker model="Model.DateRangePicker" />
     <league model="@Model.LeagueViewModel" />

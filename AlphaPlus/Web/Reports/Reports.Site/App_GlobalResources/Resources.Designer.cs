@@ -3753,5 +3753,16 @@ namespace AlphaPlus.Reports.Site
                 return ResourceManager.GetString("SummaryOfDormantAccounts", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last 3 months.
+        /// </summary>
+        public static string Last3Months
+        {
+            get
+            {
+                return ResourceManager.GetString("Last3Months", resourceCulture);
+            }
+        }
     }
 }

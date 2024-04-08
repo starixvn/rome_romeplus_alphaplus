@@ -1,12 +1,13 @@
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 
 public interface ISuperWinLossDetailByPTService
 {
-    Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity, IEnumerable<SuperPTModel>)> GetSuperWinLossDetailByPT(SuperWinLossDetailByPTParam param);
+    Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity, IEnumerable<PositionTakingModel>)> GetSuperWinLossDetailByPT(SuperWinLossDetailByPTParam param);
 }
 
 public class SuperWinLossDetailByPTService(
@@ -15,7 +16,7 @@ public class SuperWinLossDetailByPTService(
     ICacheRefService cacheRefService,
     IPartialUMService partialUMService) : ISuperWinLossDetailByPTService
 {
-    public async Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity, IEnumerable<SuperPTModel>)> GetSuperWinLossDetailByPT(SuperWinLossDetailByPTParam param)
+    public async Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity, IEnumerable<PositionTakingModel>)> GetSuperWinLossDetailByPT(SuperWinLossDetailByPTParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
         var criteria = new SuperWinLossDetailByPTCriteria(
@@ -28,45 +29,46 @@ public class SuperWinLossDetailByPTService(
             param.ProductDetailsXml);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        var ptListTask = GetSuperPT(param.CustId, param.SettingStatus);
-        var winlossTask = repository.FetchAsync<SuperWinLossDetailByPTEntity>(criteria);
-        await Task.WhenAll(ptListTask, winlossTask);
-
-        var ptList = await ptListTask;
-        var rawdata = await winlossTask;
         var grandTotal = new SuperWinLossDetailByPTEntity();
+        var rawdata = await repository.FetchAsync<SuperWinLossDetailByPTEntity>(criteria);
 
-        var reportData = rawdata.Join(
-            ptList,
-            winloss => winloss.ProductId,
-            pt => pt.ProductId,
-            (winloss, pt) =>
-            {
-                winloss.SuperPT = pt.SuperPT;
-                return winloss;
-            })
-        .GroupBy(
-            winloss => winloss.SuperPT,
-            (pt, winloss) =>
-            {
-                var total = new SuperWinLossDetailByPTEntity();
-                var winlossSortedList = winloss.OrderByDescending(wl => wl.Turnover).ToList();
-                foreach (var item in winlossSortedList)
+        if (rawdata.Any())
+        {
+            var ptList = await GetSuperPT(param.CustId, param.SettingStatus);
+            var reportData = rawdata.Join(
+                ptList,
+                winloss => winloss.ProductId,
+                pt => pt.ProductId,
+                (winloss, pt) =>
                 {
-                    item.ProductName = cacheRefService.GetProductName(item.ProductId);
-                    total += item;
-                }
+                    winloss.SuperPT = pt.ValuePT;
+                    return winloss;
+                })
+            .GroupBy(
+                winloss => winloss.SuperPT,
+                (pt, winloss) =>
+                {
+                    var total = new SuperWinLossDetailByPTEntity();
+                    var winlossSortedList = winloss.OrderByDescending(wl => wl.Turnover).ToList();
+                    foreach (var item in winlossSortedList)
+                    {
+                        item.ProductName = cacheRefService.GetProductName(item.ProductId);
+                        total += item;
+                    }
 
-                grandTotal += total;
+                    grandTotal += total;
 
-                return new SuperWinLossDetailByPTModel(pt, winlossSortedList, total);
-            })
-        .OrderByDescending(wl => wl.SuperPT)
-        .ToList();
+                    return new SuperWinLossDetailByPTModel(pt, winlossSortedList, total);
+                })
+            .OrderByDescending(wl => wl.SuperPT)
+            .ToList();
 
-        return (reportData, grandTotal, ptList);
+            return (reportData, grandTotal, ptList);
+        }
+
+        return ([], grandTotal, []);
     }
 
-    private Task<IEnumerable<SuperPTModel>> GetSuperPT(int superId, byte settingStatus)
-        => repository.FetchAsync<SuperPTModel>(new SuperPTCriteria(superId.ToString(), settingStatus));
+    private Task<IEnumerable<PositionTakingModel>> GetSuperPT(int superId, byte settingStatus)
+        => repository.FetchAsync<PositionTakingModel>(new SuperPTCriteria(superId.ToString(), settingStatus));
 }

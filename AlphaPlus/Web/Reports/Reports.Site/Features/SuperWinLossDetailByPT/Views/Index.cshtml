@@ -27,7 +27,7 @@
             <td class="text-left col-username bold@(isExpanded ? " active" : string.Empty)"
                 data-sortedvalue="@winLossDetailByPT.SuperPT">
                 <span class="@(isExpanded ? "icon-arrow-down" : "icon-arrow-right")"></span>
-                @winLossDetailByPT.SuperPTPercentage @Resources.PT
+                @winLossDetailByPT.SuperPTPercentage
             </td>
             @{
                 RenderWinLossDetail(winLossDetailByPT.Total);
@@ -111,8 +111,8 @@
 }
 @model SuperWinLossDetailByPTViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")"
-    role="form" id="report-form" asp-action="Index">
+<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
     <product model="@Model.ProductViewModel" />
     <daterange-picker model="Model.DateRangePicker" />
     <div class="form-group hide">

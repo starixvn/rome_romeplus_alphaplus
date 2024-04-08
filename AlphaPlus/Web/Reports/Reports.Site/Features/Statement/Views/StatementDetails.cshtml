@@ -17,7 +17,7 @@
     <script src="~/bundles/statement/statement-details.js" asp-append-version="true"></script>
 }
 @model StatementDetailViewModel
-<form method="get" class="form-inline filter statement-details-filter" role="form" id="report-form">
+<form class="form-inline filter statement-details-filter" role="form" id="report-form">
     <div class="form-group statement-detail-title">
         @Resources.TransferDetails (@Model.CustName): @transferDate
         <a class="icon-excel statement-details-excel" title="@Resources.ExportToExcel" asp-action="StatementDetailExcel"

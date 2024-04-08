@@ -53,14 +53,28 @@
         "outputFileName": "wwwroot/bundles/winloss/winloss.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/monthpicker.js",
             "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/sort.js",
             "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/winloss/winloss.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/winlossdetail/winlossdetail.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/monthpicker.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/winlossdetail/winlossdetail.js"
         ]
     },
     {
@@ -142,6 +156,37 @@
             "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/commissionbybettype/commissionbybettype.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/consolidation/consolidation.css",
+        "inputFiles": [
+            "assets/styles/consolidation/consolidation.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/consolidation/consolidation.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/consolidation/consolidation.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/consolidation/consolidation-detail.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/daterangepicker.js",
+            "assets/scripts/components/tooltip.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/components/link-builder.js",
+            "assets/scripts/base-report.js",
+            "assets/scripts/consolidation/consolidation-detail.js"
         ]
     },
     {

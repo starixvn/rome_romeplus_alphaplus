@@ -22,6 +22,8 @@ public interface ICacheRefService
 
     string GetProductName(int productId);
 
+    string GetProductName(string productId);
+
     string GetProductDetailName(int resourceId);
 
     string GetResourceDataByRefIdAndResourceId(string refId, int resourceId);
@@ -54,15 +56,21 @@ public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRef
         => remotingRefService.GetOddsTypeName(oddsTypeId, LanguageCode);
 
     public string GetProductName(int productId)
+        => GetProductName(productId.ToString());
+
+    public string GetProductName(string productId)
         => GetResourceDataByRefIdAndResourceId("Product", productId);
 
     public string GetProductDetailName(int resourceId)
         => GetResourceDataByRefIdAndResourceId("ProductDetail", resourceId);
 
     public string GetResourceDataByRefIdAndResourceId(string refId, int resourceId)
+        => GetResourceDataByRefIdAndResourceId(refId, resourceId.ToString());
+
+    private string GetResourceDataByRefIdAndResourceId(string refId, string resourceId)
         => remotingRefService.GetResourceDataByRefIdAndResourceId(
         refId,
-        resourceId.ToString(),
+        resourceId,
         LanguageCode,
         string.Empty);
 

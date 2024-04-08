@@ -27,8 +27,8 @@
 }
 @model MemberStatementViewModel
 <report-title model="Model.PageHeader" />
-<form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form" asp-action="MemberStatement">
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
     <div class="form-group">
         <select id="dropdown-report-type">
             <option value="1" selected="selected">@Resources.DailyStatement</option>

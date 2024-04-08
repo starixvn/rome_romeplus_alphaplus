@@ -10,8 +10,6 @@ public class DefaultDateRangeQuery : BaseQuery
 
     public int UserSelectedDateRangeOption { get; set; }
 
-    public bool IsSupportHistoricReport { get; protected set; }
-
     public bool IsHistoricReport { get; set; }
 
     public override bool IsValid() => base.IsValid() && CheckDateRangeConstraint();
@@ -36,7 +34,7 @@ public class DefaultDateRangeQuery : BaseQuery
 
         if (MinDate == DateTime.MinValue)
         {
-            MinDate = IsHistoricReport ? today.FirstDayOf3YearsAgo() : today.FirstDayOf3MonthsAgo();
+            MinDate = IsHistoricReport ? today.AddYears(-3).FirstDayOfYear() : today.AddMonths(-3).FirstDayOfMonth();
         }
     }
 }

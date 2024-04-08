@@ -1,0 +1,74 @@
+﻿class UsernameAutoSuggestionOption {
+    constructor(
+        public url: string,
+        public onBlur = Function(),
+        public directDownline = false,
+        public isAccInfo = true,
+        public initialUsername = ''
+    ) {
+        this.url = url;
+        this.onBlur = onBlur;
+        this.directDownline = directDownline;
+        this.isAccInfo = isAccInfo;
+        this.initialUsername = initialUsername;
+    }
+}
+
+class UsernameAutoSuggestionComponent {
+    private $usernameInput: JQuery;
+
+    init(options: UsernameAutoSuggestionOption) {
+        this.$usernameInput = $('#txt-username-auto-suggestion');
+        const queryString = this.buildQueryString(options);
+        const urlAndQueryString = `${options.url}?${queryString}${queryString.length ? '&' : ''}`;
+
+        const typeaheadOptions = {
+            source: function (query: string, process) {
+                return $.get(`${urlAndQueryString}custname=${query}`, process);
+            },
+            items: 10,
+            minLength: 2,
+            highlighter: function (displayText: string) {
+                const parts = displayText.split('#');
+                return `${parts[0]} <br/> ${parts[1]}`;
+            },
+            displayText: function (item) {
+                const nickname = item.Username2 ? ` (${item.Username2})` : '';
+                return `${item.Username}${nickname}#${item.FirstName} ${item.LastName}`;
+            },
+            autoSelect: false,
+            afterSelect: (item) => this.$usernameInput.val(item.Username),
+            delay: 200
+        };
+
+        this.$usernameInput
+            .typeahead(typeaheadOptions)
+            .blur(() => {
+                const visible = this.$usernameInput.next('.typeahead').is(':visible');
+                !visible && options.onBlur($.trim(this.$usernameInput.val()));
+            })
+            .val(options.initialUsername);
+    }
+
+    private buildQueryString(options: UsernameAutoSuggestionOption) {
+        const queryString = [];
+
+        if (options.directDownline) {
+            queryString.push(`directdownline=${options.directDownline}`);
+        }
+
+        if (!options.isAccInfo) {
+            queryString.push(`isaccinfo=${options.isAccInfo}`);
+        }
+
+        return queryString.join('&');
+    }
+
+    getUsername() {
+        return $.trim(this.$usernameInput.val());
+    }
+
+    resetUsername() {
+        this.$usernameInput.val('');
+    }
+}

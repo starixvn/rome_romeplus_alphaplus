@@ -1,4 +1,3 @@
-using AlphaPlus.Reports.Features.Shared.Criteria;
 using Fanex.Data;
 
 namespace AlphaPlus.Reports.Features.WinLossDetail;
@@ -12,14 +11,11 @@ public class WinLossDetailCriteria(
     string productIds,
     UserLevel custLevel,
     string productDetails,
-    string username) : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
+    string username)
+        : WinLossDetailWeekDataCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds, productDetails, username)
 {
     [SpParam(Ignored = true)]
     public UserLevel CustLevel { get; } = custLevel;
-
-    public string ProductDetails { get; } = productDetails;
-
-    public string Username { get; } = username;
 
     public int PageIndex { get; } = 1;
 

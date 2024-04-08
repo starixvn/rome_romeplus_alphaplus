@@ -198,7 +198,7 @@ $(function () {
     new SuperWinLossDetailByPTView(
         new ProductMultiSelectionComponent(),
         new DateRangePickerComponent(),
-        new SortComponent(linkBuilderComponent),
+        new SortComponent(),
         new ReportTooltip(),
         linkBuilderComponent
     ).init();

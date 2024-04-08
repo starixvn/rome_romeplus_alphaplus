@@ -17,8 +17,8 @@ public class LegendQuery : IRequest<LegendViewModel>
         CurrencyId = viewer.CurrencyId;
         Language = viewer.Language;
         MinDate = IsHistoricReport
-            ? DateTime.Today.FirstDayOf3YearsAgo()
-            : DateTime.Today.FirstDayOf3MonthsAgo();
+            ? DateTime.Today.AddYears(-3).FirstDayOfYear()
+            : DateTime.Today.AddMonths(-3).FirstDayOfMonth();
     }
 
     public UserLevel ViewerLevel { get; }

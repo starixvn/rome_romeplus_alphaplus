@@ -1,7 +1,11 @@
+using AlphaPlus.Reports.Features.Shared.Resources;
+
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
 public static class NumberExtensions
 {
+    private const int Percentage = 100;
+
     public static string FormatNumber(this int number)
         => number.ToString("N0");
 
@@ -13,4 +17,11 @@ public static class NumberExtensions
 
     public static string FormatNullableNumber(this decimal? number)
         => number.HasValue ? number.Value.FormatNumber() : string.Empty;
+
+    public static string FormatPTPercentage(this decimal pt)
+    {
+        var ptPercentage = (pt * Percentage).ToString("N1");
+
+        return $"{ptPercentage}% {SharedResources.PT}";
+    }
 }

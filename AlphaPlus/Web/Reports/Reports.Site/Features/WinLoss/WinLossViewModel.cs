@@ -22,6 +22,11 @@ public class WinLossViewModel
         var (title, custLevelName, downlineLevelName) = GetTitleCustLevelName(CustLevel);
         CustLevelName = custLevelName;
         DownlineLevelName = downlineLevelName;
+        SortPropertyName = message.SortPropertyName;
+        DescendingSort = message.DescendingSort;
+        IsSetDefaultStackMode = message.IsSetDefaultStackMode;
+        FromDate = message.FromDate.ToShortDateWithSlash();
+        ToDate = message.ToDate.ToShortDateWithSlash();
         PageHeader = new PageHeaderViewModel(
             Title: title,
             HasStackIcon: true,
@@ -47,9 +52,6 @@ public class WinLossViewModel
                 isHistoricReport: IsHistoricReport);
         }
         ReportData = reportData;
-        SortPropertyName = message.SortPropertyName;
-        DescendingSort = message.DescendingSort;
-        IsSetDefaultStackMode = message.IsSetDefaultStackMode;
     }
 
     public int CustId { get; }
@@ -64,6 +66,16 @@ public class WinLossViewModel
 
     public bool IsHistoricReport { get; }
 
+    public string SortPropertyName { get; }
+
+    public byte DescendingSort { get; }
+
+    public bool IsSetDefaultStackMode { get; }
+
+    public string FromDate { get; }
+
+    public string ToDate { get; }
+
     public PageHeaderViewModel PageHeader { get; }
 
     public ProductMultiSelectionViewModel ProductViewModel { get; }
@@ -76,41 +88,18 @@ public class WinLossViewModel
 
     public ReportData<WinLossModel> ReportData { get; }
 
-    public string SortPropertyName { get; }
-
-    public byte DescendingSort { get; }
-
-    public bool IsSetDefaultStackMode { get; }
-
     public IDictionary<string, string> GetExcelParams()
-    {
-        var excelParam = new Dictionary<string, string>
+        => new Dictionary<string, string>
         {
             [nameof(CustId)] = CustId.ToString(),
             [nameof(CustName)] = CustName,
             ["CustLevelId"] = CustLevel.Value.ToString(),
             [nameof(ProductViewModel.UserSelectedProductIds)] = ProductViewModel.UserSelectedProductIds,
             [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
-            [nameof(IsHistoricReport)] = IsHistoricReport.ToString()
+            [nameof(IsHistoricReport)] = IsHistoricReport.ToString(),
+            [nameof(FromDate)] = FromDate,
+            [nameof(ToDate)] = ToDate
         };
-
-        string fromDate, toDate;
-        if (IsHistoricReport)
-        {
-            fromDate = MonthPicker.FromDate.ToShortDateWithSlash();
-            toDate = MonthPicker.ToDate.ToShortDateWithSlash();
-        }
-        else
-        {
-            fromDate = DateRangePicker.FromDate;
-            toDate = DateRangePicker.ToDate;
-        }
-
-        excelParam.Add(nameof(fromDate), fromDate);
-        excelParam.Add(nameof(toDate), toDate);
-
-        return excelParam;
-    }
 
     private static (string, string, string) GetTitleCustLevelName(UserLevel custLevel)
     {

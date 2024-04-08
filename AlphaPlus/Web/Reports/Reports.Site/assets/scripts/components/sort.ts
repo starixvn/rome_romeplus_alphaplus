@@ -10,15 +10,10 @@ interface SortInfo {
 }
 
 class SortComponent {
-    linkBuilderComponent: LinkBuilderComponent;
     $tableReport: JQuery;
     headers: any;
     afterSortFunction: Function;
     canSort = false;
-
-    constructor(linkBuilderComponent: LinkBuilderComponent) {
-        this.linkBuilderComponent = linkBuilderComponent;
-    }
 
     initSort = ($tableReport: JQuery, headers: any, afterSortFunction: Function = undefined) => {
         this.$tableReport = $tableReport;
@@ -32,27 +27,8 @@ class SortComponent {
             return;
         }
 
-        // if (!this.options.hasAllDataOnClient) {
-        //     $sortContainer
-        //         .find(`[data-sortedname="${$sortContainer.data('sortedcolumn')}"]`)
-        //         .addClass(this.getSortClassWhenSortOnServer());
-
-        //     sortColumns.off('click.sortcomponent').on('click.sortcomponent', function () {
-        //         const $sortColumn = self.$(this);
-
-        //         self.onSort($sortColumn.data('sortedname'), self.getSortClassWhenSortOnServer() === 'sorting-asc');
-        //     });
-        // }
-
         this.bindTableSorter(this.$tableReport.data('sortedcolumn'));
     };
-
-    // getSortClassWhenSortOnServer = () => {
-    //     const $sortContainer = this.options.sortContainer;
-    //     const descendingSort = $sortContainer.data('descendingsort').toString();
-
-    //     return descendingSort === '1' || descendingSort.toLowerCase() === 'true' ? 'sorting-desc' : 'sorting-asc';
-    // };
 
     bindTableSorter = (sortedColumnName: string) => {
         if (!this.canSort) {
@@ -61,13 +37,11 @@ class SortComponent {
 
         let sortList = [];
         if (sortedColumnName) {
+            const isStackMode = this.$tableReport.hasClass('stack-mode');
             const sortedColumnHeader = this.$tableReport.find(
-                "[data-sortedname='" +
-                    sortedColumnName +
-                    "']" +
-                    (this.$tableReport.hasClass('stack-mode')
-                        ? ":not([class*='hidden-stack-mode'])"
-                        : ":not([class*='col-combine'])")
+                `[data-sortedname="${sortedColumnName}"]${
+                    isStackMode ? ':not([class*="hidden-stack-mode"])' : ':not([class*="col-combine"])'
+                }`
             )[0];
             const descendingSort = this.$tableReport.data('descendingsort');
             sortList = [[$(sortedColumnHeader).data('colindex'), descendingSort]];
@@ -132,42 +106,4 @@ class SortComponent {
             descendingSort: this.$tableReport.data('descendingsort')
         };
     };
-
-    // afterSort = () => {
-    //     const this$ = this.$;
-    //     if (this.options.hasAllDataOnClient) {
-    //         let sortedColumn = this$('.sorting-asc:visible');
-    //         const direction = !sortedColumn.length;
-    //         if (sortedColumn.length === 0) {
-    //             sortedColumn = this$('.sorting-desc');
-    //         }
-
-    //         const sortedColumnName = sortedColumn.data('sortedname');
-
-    //         this.linkBuilderComponent.updateParam(
-    //             'SortPropertyName',
-    //             sortedColumnName || sortedColumn.parent().data('sortedname')
-    //         );
-    //         this.linkBuilderComponent.updateParam('IsDescendingSort', direction.toString());
-
-    //         alphaReports.correctEvenRowClass(this.options.sortContainer);
-    //     } else {
-    //         this.options.reportForm.trigger('submit');
-    //     }
-    // };
-
-    // mapSortedColumnToStackMode = (sortedColumn: string, stackColumnGroups: string[][]) => {
-    //     for (let i = 0, groupsLength = stackColumnGroups.length; i < groupsLength; i++) {
-    //         const stackColumnGroup = stackColumnGroups[i];
-    //         const firstColum = stackColumnGroup[0];
-
-    //         for (let j = 0, groupLength = stackColumnGroup.length; j < groupLength; j++) {
-    //             if (sortedColumn.toLowerCase() === stackColumnGroup[j].toLowerCase()) {
-    //                 return firstColum;
-    //             }
-    //         }
-    //     }
-
-    //     return sortedColumn;
-    // };
 }

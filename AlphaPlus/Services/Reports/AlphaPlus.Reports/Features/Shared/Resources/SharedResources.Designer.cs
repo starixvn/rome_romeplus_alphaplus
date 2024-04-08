@@ -165,5 +165,60 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
                 return ResourceManager.GetString("VirtualSports", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Super.
+        /// </summary>
+        internal static string Super
+        {
+            get
+            {
+                return ResourceManager.GetString("Super", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master.
+        /// </summary>
+        internal static string Master
+        {
+            get
+            {
+                return ResourceManager.GetString("Master", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        internal static string Agent
+        {
+            get
+            {
+                return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        internal static string Member
+        {
+            get
+            {
+                return ResourceManager.GetString("Member", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to PT.
+        /// </summary>
+        internal static string PT
+        {
+            get
+            {
+                return ResourceManager.GetString("PT", resourceCulture);
+            }
+        }
     }
 }

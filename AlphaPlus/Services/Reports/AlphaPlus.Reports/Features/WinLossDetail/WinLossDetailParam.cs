@@ -10,6 +10,4 @@ public record WinLossDetailParam(
     string ProductIds,
     string ProductDetailsXml,
     string Username,
-    string SiteName) : WinLossParam(CustId, CustLevel, FromDate, ToDate, ProductIds, ProductDetailsXml, SiteName)
-{
-}
+    string SiteName) : WinLossParam(CustId, CustLevel, FromDate, ToDate, ProductIds, ProductDetailsXml, SiteName);

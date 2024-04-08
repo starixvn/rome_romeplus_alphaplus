@@ -22,7 +22,8 @@ public class SuperWinLossDetailByPTHandler(
 {
     public async Task<SuperWinLossDetailByPTViewModel> Handle(SuperWinLossDetailByPTQuery message, CancellationToken cancellationToken)
     {
-        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
+        var products = GetProducts(message);
+        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, products);
         var (reportData, total, ptList) = await GetSuperWinLossDetailByPT(message, productViewModel.UserSelectedProductIds, productDetailXml);
         var isOnlyMobile = browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
 
@@ -31,7 +32,7 @@ public class SuperWinLossDetailByPTHandler(
             productViewModel,
             reportData,
             total,
-            BuildSuperPTProductViewModels(message, ptList).ToList(),
+            BuildSuperPTProductViewModels(products, ptList).ToList(),
             isOnlyMobile);
     }
 
@@ -47,7 +48,7 @@ public class SuperWinLossDetailByPTHandler(
         return workbook.BuildExcelFile(message, reportData, total, productNames);
     }
 
-    private Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity, IEnumerable<SuperPTModel>)> GetSuperWinLossDetailByPT(
+    private Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity, IEnumerable<PositionTakingModel>)> GetSuperWinLossDetailByPT(
         SuperWinLossDetailByPTQuery message,
         string userSelectedProductIds,
         string productDetailXml)
@@ -64,15 +65,15 @@ public class SuperWinLossDetailByPTHandler(
         return superWinLossDetailByPTService.GetSuperWinLossDetailByPT(param);
     }
 
-    private IEnumerable<SuperPTProductViewModel> BuildSuperPTProductViewModels(SuperWinLossDetailByPTQuery message, IEnumerable<SuperPTModel> ptList)
-        => GetProducts(message)
+    private IEnumerable<SuperPTProductViewModel> BuildSuperPTProductViewModels(IEnumerable<Product> products, IEnumerable<PositionTakingModel> ptList)
+        => products
             .Join(
                 ptList,
                 product => product.Id,
                 pt => pt.ProductId,
-                (product, pt) => new { pt.SuperPT, product.Name })
+                (product, pt) => new { pt.ValuePT, product.Name })
             .GroupBy(
-                ptProduct => ptProduct.SuperPT,
-                (key, ptProducts) => new SuperPTProductViewModel(key, ptProducts.Select(product => product.Name).JoinWithComma(", ")))
-            .OrderBy(vm => vm.PositionTaking);
+                ptProduct => ptProduct.ValuePT,
+                (pt, ptProducts) => new SuperPTProductViewModel(pt, ptProducts.Select(product => product.Name)))
+            .OrderBy(vm => vm.PT);
 }

@@ -567,6 +567,9 @@
   <data name="KoreanWon" xml:space="preserve">
     <value>Won</value>
   </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>Last 3 months</value>
+  </data>
   <data name="LastMonth" xml:space="preserve">
     <value>Last Month</value>
   </data>

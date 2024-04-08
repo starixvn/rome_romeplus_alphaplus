@@ -1,0 +1,22 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using AlphaPlus.Reports.Features.Consolidation
+@using AlphaPlus.Reports.Site
+@{
+    Layout = null;
+}
+@model byte
+<div class="form-group">
+    @Resources.ReportBy
+    <input type="radio" name="ReportType" value="@ConsolidationReportTypeConstants.Product" id="report-by-username"
+    @(Model == 0 ? "checked" : string.Empty) />
+    <label for="report-by-username">@Resources.Username</label>
+    <a class="hide" asp-action="ConsolidationByUsername" id="report-by-username-url"></a>
+    <input type="radio" name="ReportType" value="@ConsolidationReportTypeConstants.Daily" id="report-by-date" @(Model ==
+        ConsolidationReportTypeConstants.Daily ? " checked" : string.Empty) />
+    <label for="report-by-date">@Resources.Date</label>
+    <a class="hide" asp-action="Index" id="report-by-date-url"></a>
+    <input type="radio" name="ReportType" value="@ConsolidationReportTypeConstants.Product" id="report-by-product"
+    @(Model == ConsolidationReportTypeConstants.Product ? " checked" : string.Empty) />
+    <label for="report-by-product">@Resources.Product</label>
+    <a class="hide" asp-action="Index" id="report-by-product-url"></a>
+</div>

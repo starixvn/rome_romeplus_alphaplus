@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Agent" xml:space="preserve">
+    <value>ตัวแทน</value>
+  </data>
   <data name="FT" xml:space="preserve">
     <value>เต็มเวลา</value>
   </data>
@@ -125,6 +128,12 @@
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value/>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>ตัวแทนหลัก</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>สมาชิก</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>ต่อไป</value>
@@ -138,8 +147,14 @@
   <data name="NumberGameNo" xml:space="preserve">
     <value>เกมหมายเลข เลขที่</value>
   </data>
+  <data name="PT" xml:space="preserve">
+    <value>ค่าความเสี่ยง</value>
+  </data>
   <data name="PreGame" xml:space="preserve">
     <value/>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>สูงสุด</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
     <value>กีฬาอนิเมชั่น</value>

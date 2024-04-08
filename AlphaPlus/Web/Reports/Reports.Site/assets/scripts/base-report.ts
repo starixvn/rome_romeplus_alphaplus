@@ -129,11 +129,15 @@ class BaseReport {
     protected registerDrilldownableEvents() {
         const handleDrilldownable = ($element) => {
             const $custLevelId = $('#CustLevelId');
-            let custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
+            const custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
 
             $custLevelId.val(custLevelIdValue);
             $('#CustId').val($element.data('custid'));
             $('#CustName').val($element.data('custname'));
+            $('#product-ids').val(this.$tableReport.data('productids'));
+            $('#resource-ids').val(this.$tableReport.data('resourceids'));
+            $('#from-date').val(this.$tableReport.data('fromdate'));
+            $('#to-date').val(this.$tableReport.data('todate'));
 
             this.$reportForm.submit();
         };

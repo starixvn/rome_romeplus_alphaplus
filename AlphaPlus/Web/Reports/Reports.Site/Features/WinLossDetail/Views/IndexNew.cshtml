@@ -1,0 +1,52 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Site.Features.WinLossDetail
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageHeader.Title;
+}
+@section Scripts {
+    <script src="~/bundles/winlossdetail/winlossdetail.js" asp-append-version="true"></script>
+}
+@model WinLossDetailViewModel
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
+    <product model="@Model.ProductViewModel" />
+    @if (Model.IsHistoricReport)
+    {
+        <month-picker model="Model.MonthPicker" />
+        <div class="form-group">
+            <input type="submit" value="@Resources.Submit" class="btn-submit" />
+        </div>
+    }
+    else
+    {
+        <daterange-picker model="Model.DateRangePicker" />
+    }
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    @if (Model.IsHistoricReport)
+    {
+        <div class="note">
+            <span class="star">*</span>@Model.ViewDataInstructionMessage
+            <a href="javascript:;" id="historic-report" data-is-historic-report="true">@Resources.BackToCurrentReport</a>
+        </div>
+    }
+    else
+    {
+        <a href="javascript:;" class="hide" id="historic-report" data-is-historic-report="false"></a>
+    }
+    <input type="hidden" asp-for="CustId" />
+    <input type="hidden" asp-for="CustName" />
+    <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
+    <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
+    <input type="hidden" asp-for="IsHistoricReport" />
+</form>
+<partial name="ReportData" model="Model" />

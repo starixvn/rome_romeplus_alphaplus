@@ -1,10 +1,8 @@
 namespace AlphaPlus.Reports.Features.Consolidation;
 
-public class ConsolidationByUsername : ConsolidationEntity
+public class ConsolidationByUsername(ConsolidationEntity total, IEnumerable<ConsolidationByPT> consolidationByPTs)
 {
-    public int BreakDown { get; init; }
+    public ConsolidationEntity Total { get; } = total;
 
-    public string ProductName { get; init; }
-
-    public decimal PositionTaking { get; init; }
+    public IEnumerable<ConsolidationByPT> ConsolidationByPTs { get; } = consolidationByPTs;
 }

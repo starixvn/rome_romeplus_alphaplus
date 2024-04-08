@@ -35,9 +35,5 @@ class CommissionByBettype extends BaseReport {
 
 $(function () {
     const linkBuilderComponent = new LinkBuilderComponent();
-    new CommissionByBettype(
-        new DateRangePickerComponent(),
-        new SortComponent(linkBuilderComponent),
-        linkBuilderComponent
-    ).init();
+    new CommissionByBettype(new DateRangePickerComponent(), new SortComponent(), linkBuilderComponent).init();
 });
