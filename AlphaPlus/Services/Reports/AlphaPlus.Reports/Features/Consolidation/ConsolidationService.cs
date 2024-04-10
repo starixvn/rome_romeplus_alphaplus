@@ -76,13 +76,13 @@ public class ConsolidationService(
                       from joinRecord in joinData.DefaultIfEmpty()
                       select UpdatePTValueHandler(consolidation, joinRecord == null ? 0 : joinRecord.ValuePT);
 
-            return BuildConsolidationByUsernames(rawdata, param.Currencies);
+            return BuildConsolidationByUsername(rawdata, param.Currencies);
         }
 
         return [];
     }
 
-    private IEnumerable<ConsolidationByUsername> BuildConsolidationByUsernames(
+    private IEnumerable<ConsolidationByUsername> BuildConsolidationByUsername(
         IEnumerable<ConsolidationEntity> rawdata,
         IEnumerable<ConsolidationCurrency> currencies)
     {
@@ -147,7 +147,7 @@ public class ConsolidationService(
 
         if (rawdata.Any())
         {
-            var isDaily = param.ReportType == ConsolidationReportTypeConstants.Daily;
+            var isDaily = param.ReportType == ConsolidationReportType.ByDate;
             rawdata = SetCurrencies(rawdata, param.Currencies);
 
             return rawdata.GroupBy(
@@ -170,7 +170,7 @@ public class ConsolidationService(
             param.Currency,
             param.FromDate,
             param.ToDate,
-            param.ReportType,
+            ConsolidationReportType.MapReportType(param.ReportType),
             reportDate.BalanceUpDay,
             reportDate.MoveBetsDay,
             param.ProductIds,

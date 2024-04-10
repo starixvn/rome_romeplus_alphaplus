@@ -61,16 +61,13 @@
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
     <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
-    <input type="hidden" asp-for="SortPropertyName" />
-    <input type="hidden" asp-for="IsDescendingSort" />
-    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
-        value="@Model.PageHeader.IsFilterVisible.ToString()" />
 </form>
 <div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "60%");">
     <table
-        class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover display nowrap @(Model.ReportData.HasData ? "hidden" : string.Empty)"
+        class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover display nowrap @(Model.ReportData.HasData ? "hide" : string.Empty)"
         style="width:100%" data-totalrecords="@Model.ReportData.TotalRecords"
-        data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.IsDescendingSort" id="tbl-report">
+        data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.DescendingSort"
+        data-productids="@Model.ProductViewModel.UserSelectedProductIds" id="tbl-report">
         <thead>
             <tr>
                 <th data-priority="0"></th>

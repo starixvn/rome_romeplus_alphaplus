@@ -10,7 +10,7 @@ namespace AlphaPlus.Reports.Site.Features.Consolidation;
 public interface IConsolidationByUsernameWorkbook
 {
     ExcelFileViewModel BuildExcelFile(
-        ConsolidationByUsernameExcelQuery message,
+        ConsolidationExcelQuery message,
         IEnumerable<ConsolidationByUsername> reportData,
         string productNames,
         IEnumerable<ConsolidationCurrency> currencies);
@@ -74,7 +74,7 @@ public class ConsolidationByUsernameWorkbook(IWebHostEnvironment webHostEnvironm
         .Map(N, winLoss => winLoss.BetCount);
 
     public ExcelFileViewModel BuildExcelFile(
-        ConsolidationByUsernameExcelQuery message,
+        ConsolidationExcelQuery message,
         IEnumerable<ConsolidationByUsername> reportData,
         string productNames,
         IEnumerable<ConsolidationCurrency> currencies)

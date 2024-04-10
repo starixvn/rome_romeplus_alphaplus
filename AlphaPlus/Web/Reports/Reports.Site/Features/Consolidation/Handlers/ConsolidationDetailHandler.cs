@@ -1,3 +1,4 @@
+using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Extensions;
@@ -6,6 +7,7 @@ using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Reports.Site.Features.WinLossDetail;
 using MediatR;
@@ -17,27 +19,55 @@ public class ConsolidationDetailHandler(
     IProductService productService,
     IOptions<AppSettings> options,
     IEnteredResultService enteredResultService,
-    IWinLossDetailService winlossDetailService) :
+    IConsolidationService consolidationService,
+    IWinLossDetailService winlossDetailService,
+    IWinLossDetailWorkbook winLossDetailWorkbook) :
         BaseHandler(productService, options),
-        IRequestHandler<ConsolidationDetailQuery, ConsolidationDetailViewModel>
+        IRequestHandler<ConsolidationDetailQuery, ConsolidationDetailViewModel>,
+        IRequestHandler<ConsolidationDetailExcelQuery, ExcelFileViewModel>
 {
     public async Task<ConsolidationDetailViewModel> Handle(ConsolidationDetailQuery message, CancellationToken cancellationToken)
     {
-        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
-        var reportDataTask = GetWinLossDetail(message, productViewModel.UserSelectedProductIds, productDetailXml);
         var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
-        await Task.WhenAll(reportDataTask, enteredResultTask);
+        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus);
+        await Task.WhenAll(enteredResultTask, productsTask);
+
+        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
+        var reportData = await GetWinLossDetail(message, productViewModel.UserSelectedProductIds, productDetailXml);
 
         return new ConsolidationDetailViewModel(
             message,
             productViewModel,
             BuildBreadcrumbViewModel(message),
             await enteredResultTask,
-            await reportDataTask);
+            reportData);
+    }
+
+    public async Task<ExcelFileViewModel> Handle(ConsolidationDetailExcelQuery message, CancellationToken cancellationToken)
+    {
+        var products = await consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus);
+        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+            message,
+            message.UserSelectedProductIds,
+            message.UserSelectedResourceIds,
+            products);
+        var reportData = await GetWinLossDetail(
+            message,
+            validUserSelectedProductIds.JoinWithComma(),
+            productDetailXml);
+        var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
+
+        return winLossDetailWorkbook.BuildExcelFile(
+            message.FromDate,
+            message.ToDate,
+            message.CustName,
+            message.CustLevel,
+            reportData,
+            productNames);
     }
 
     private Task<ReportData<WinLossDetailModel>> GetWinLossDetail(
-        ConsolidationDetailQuery message,
+        ConsolidationQuery message,
         string validUserSelectedProductIds,
         string productDetailXml)
     {
@@ -58,19 +88,19 @@ public class ConsolidationDetailHandler(
     {
         var breadcrumbs = new List<Breadcrumb>
         {
-            new Breadcrumb(message.ViewerId, Resources.Consolidation, message.ViewerLevelId)
+            new Breadcrumb(message.ViewerId, Resources.Consolidation, message.ViewerLevelId, IsConsolidation: true)
         };
 
         if (JsonHelper.TryParse<Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList))
         {
-            foreach (var item in breadcrumbList)
+            for (int i = 1, max = breadcrumbList.Length; i < max; i++)
             {
-                if (item.CustLevelId == message.CustLevelId)
+                if (breadcrumbList[i].CustLevelId == message.CustLevelId)
                 {
                     break;
                 }
 
-                breadcrumbs.Add(item);
+                breadcrumbs.Add(breadcrumbList[i]);
             }
         }
 

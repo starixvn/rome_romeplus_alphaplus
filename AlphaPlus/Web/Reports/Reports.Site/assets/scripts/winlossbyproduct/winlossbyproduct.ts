@@ -14,10 +14,9 @@ class WinLossByProductView extends BaseReport {
     constructor(
         dateRangePickerComponent: DateRangePickerComponent,
         productComponent: ProductMultiSelectionComponent,
-        reportTooltip: ReportTooltip,
-        linkBuilderComponent: LinkBuilderComponent
+        reportTooltip: ReportTooltip
     ) {
-        super(linkBuilderComponent);
+        super();
 
         this.productComponent = productComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
@@ -35,8 +34,6 @@ class WinLossByProductView extends BaseReport {
     }
 
     initComponents() {
-        this.productComponent.render();
-
         if (
             $('#IsSetDefaultStackMode').val().toString().toLowerCase() === 'true' &&
             alphaReports.screenSmallThan768()
@@ -49,6 +46,7 @@ class WinLossByProductView extends BaseReport {
             this.hideFilter();
         }
 
+        this.productComponent.render();
         this.dateRangePickerComponent.render();
     }
 
@@ -198,7 +196,6 @@ $(function () {
     new WinLossByProductView(
         new DateRangePickerComponent(),
         new ProductMultiSelectionComponent(),
-        new ReportTooltip(),
-        new LinkBuilderComponent()
+        new ReportTooltip()
     ).init();
 });

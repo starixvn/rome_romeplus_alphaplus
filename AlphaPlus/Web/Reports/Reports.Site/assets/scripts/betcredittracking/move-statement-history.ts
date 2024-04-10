@@ -2,12 +2,8 @@
     monthPickerComponent: MonthPickerComponent;
     pagerComponent: PagerComponent;
 
-    constructor(
-        monthPickerComponent: MonthPickerComponent,
-        pagerComponent: PagerComponent,
-        linkBuilderComponent: LinkBuilderComponent
-    ) {
-        super(linkBuilderComponent);
+    constructor(monthPickerComponent: MonthPickerComponent, pagerComponent: PagerComponent) {
+        super();
         this.monthPickerComponent = monthPickerComponent;
         this.pagerComponent = pagerComponent;
     }
@@ -50,5 +46,5 @@
 }
 
 $(function () {
-    new MoveStatementHistory(new MonthPickerComponent(), new PagerComponent(), new LinkBuilderComponent()).init();
+    new MoveStatementHistory(new MonthPickerComponent(), new PagerComponent()).init();
 });

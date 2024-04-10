@@ -6,12 +6,8 @@ class CommissionByBettype extends BaseReport {
     dateRangePicker: DateRangePickerComponent;
     sortComponent: SortComponent;
 
-    constructor(
-        dateRangePicker: DateRangePickerComponent,
-        sortComponent: SortComponent,
-        linkBuilderComponent: LinkBuilderComponent
-    ) {
-        super(linkBuilderComponent);
+    constructor(dateRangePicker: DateRangePickerComponent, sortComponent: SortComponent) {
+        super();
         this.dateRangePicker = dateRangePicker;
         this.sortComponent = sortComponent;
     }
@@ -19,13 +15,13 @@ class CommissionByBettype extends BaseReport {
     init() {
         $.blockUI();
 
-        super.registerDrilldownableEvents();
         this.dateRangePicker.render();
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
-
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');
+
+        super.registerDrilldownableEvents();
 
         $.unblockUI();
     }
@@ -34,6 +30,5 @@ class CommissionByBettype extends BaseReport {
 }
 
 $(function () {
-    const linkBuilderComponent = new LinkBuilderComponent();
-    new CommissionByBettype(new DateRangePickerComponent(), new SortComponent(), linkBuilderComponent).init();
+    new CommissionByBettype(new DateRangePickerComponent(), new SortComponent()).init();
 });

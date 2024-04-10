@@ -3,7 +3,6 @@ using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
-public class ConsolidationByUsernameExcelQuery
-    : ConsolidationByUsernameQuery, IRequest<ExcelFileViewModel>
+public class ConsolidationExcelQuery : ConsolidationQuery, IRequest<ExcelFileViewModel>
 {
 }

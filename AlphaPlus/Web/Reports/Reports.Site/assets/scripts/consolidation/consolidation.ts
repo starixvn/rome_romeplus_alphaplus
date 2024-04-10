@@ -3,7 +3,6 @@
 /// <reference path="../components/productmultiselection.ts" />
 /// <reference path="../components/single-selection-dropdown.ts" />
 /// <reference path="../components/tooltip.ts" />
-/// <reference path="../components/link-builder.ts" />
 /// <reference path="../base-report.ts" />
 
 class ConsolidationView extends BaseReport {
@@ -19,10 +18,9 @@ class ConsolidationView extends BaseReport {
     constructor(
         productComponent: ProductMultiSelectionComponent,
         dateRangeComponent: DateRangePickerComponent,
-        reportTooltip: ReportTooltip,
-        linkBuilderComponent: LinkBuilderComponent
+        reportTooltip: ReportTooltip
     ) {
-        super(linkBuilderComponent);
+        super();
 
         this.productComponent = productComponent;
         this.dateRangeComponent = dateRangeComponent;
@@ -191,7 +189,6 @@ $(function () {
     new ConsolidationView(
         new ProductMultiSelectionComponent(),
         new DateRangePickerComponent(),
-        new ReportTooltip(),
-        new LinkBuilderComponent()
+        new ReportTooltip()
     ).init();
 });

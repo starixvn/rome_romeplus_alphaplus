@@ -1,0 +1,41 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Features.Consolidation
+@using AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Site.Features.Consolidation
+@{
+    Layout = null;
+}
+@model ConsolidationViewModel
+<report-title model="Model.PageHeader" />
+<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
+    id="report-form">
+    <product model="@Model.ProductViewModel" />
+    <div class="form-group dropdown-currencies-container">
+        <select id="dropdown-currencies" name="UserSelectedCurrencyId" asp-items="Model.Currencies"></select>
+    </div>
+    <daterange-picker model="Model.DateRangePicker" />
+    <div class="form-group hide">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+    <div class="form-group">
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+            asp-all-route-data="Model.GetExcelParams()"></a>
+    </div>
+    <br />
+    <div class="form-group">
+        @Resources.ReportBy
+        <input type="radio" name="ReportType" value="username" id="report-by-username" @(Model.ReportType == "username"
+            ? "checked" : string.Empty) />
+        <label for="report-by-username">@Resources.Username</label>
+        <a class="hide" asp-action="ConsolidationByUsername" id="report-by-username-url"></a>
+        <input type="radio" name="ReportType" value="date" id="report-by-date" @(Model.ReportType == "date" ? " checked"
+            : string.Empty) />
+        <label for="report-by-date">@Resources.Date</label>
+        <a class="hide" asp-action="ConsolidationByDate" id="report-by-date-url"></a>
+        <input type="radio" name="ReportType" value="product" id="report-by-product" @(Model.ReportType == "product" ? " checked" :
+            string.Empty) />
+        <label for="report-by-product">@Resources.Product</label>
+        <a class="hide" asp-action="ConsolidationByProduct" id="report-by-product-url"></a>
+    </div>
+</form>

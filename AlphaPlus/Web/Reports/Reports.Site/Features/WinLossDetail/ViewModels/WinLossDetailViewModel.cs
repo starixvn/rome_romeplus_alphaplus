@@ -9,14 +9,27 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
 public class WinLossDetailViewModel
 {
+    public WinLossDetailViewModel()
+    {
+    }
+
     public WinLossDetailViewModel(
         WinLossDetailQuery message,
         ProductMultiSelectionViewModel productViewModel,
         BreadcrumbViewModel breadcrumbLevel,
         EnteredResultSport totalEnteredResults,
         ReportData<WinLossDetailModel> reportData)
-            : this((ProductDetailDateRangeQuery)message, productViewModel, breadcrumbLevel, totalEnteredResults, reportData)
+            : this(message, productViewModel, reportData)
     {
+        IsHistoricReport = message.IsHistoricReport;
+        PageHeader = new PageHeaderViewModel(
+            Title: GetReportNameByLevel(message.CustLevel),
+            HasStackIcon: true,
+            IsStackMode: message.IsStackMode,
+            IsFilterVisible: message.IsFilterVisible,
+            BreadcrumbLevel: breadcrumbLevel,
+            TotalEnteredResults: totalEnteredResults,
+            HasNewFeatureNote: true);
         if (message.IsHistoricReport)
         {
             MonthPicker = new MonthPickerViewModel(message.MinDate, message.FromDate, message.ToDate);
@@ -31,7 +44,7 @@ public class WinLossDetailViewModel
                 message.ToDate,
                 message.UserSelectedDateRangeOption,
                 isSupportHistoricReport: true,
-                isHistoricReport: IsHistoricReport);
+                isHistoricReport: message.IsHistoricReport);
         }
 
         CanDrilldown = !message.IsProtectedMode || !message.CustLevel.IsAgentLevel();
@@ -40,8 +53,6 @@ public class WinLossDetailViewModel
     protected WinLossDetailViewModel(
         ProductDetailDateRangeQuery message,
         ProductMultiSelectionViewModel productViewModel,
-        BreadcrumbViewModel breadcrumbLevel,
-        EnteredResultSport totalEnteredResults,
         ReportData<WinLossDetailModel> reportData)
     {
         CustId = message.CustId;
@@ -50,13 +61,8 @@ public class WinLossDetailViewModel
         SortPropertyName = message.SortPropertyName;
         DescendingSort = message.DescendingSort;
         IsSetDefaultStackMode = message.IsSetDefaultStackMode;
-        PageHeader = new PageHeaderViewModel(
-            Title: Resources.Consolidation,
-            HasStackIcon: true,
-            IsStackMode: message.IsStackMode,
-            IsFilterVisible: message.IsFilterVisible,
-            BreadcrumbLevel: breadcrumbLevel,
-            TotalEnteredResults: totalEnteredResults);
+        FromDate = message.FromDate.ToShortDateWithSlash();
+        ToDate = message.ToDate.ToShortDateWithSlash();
         ProductViewModel = productViewModel;
         ReportData = reportData;
     }
@@ -75,9 +81,13 @@ public class WinLossDetailViewModel
 
     public bool IsHistoricReport { get; }
 
+    public string FromDate { get; }
+
+    public string ToDate { get; }
+
     public string ViewDataInstructionMessage { get; }
 
-    public PageHeaderViewModel PageHeader { get; }
+    public PageHeaderViewModel PageHeader { get; protected set; }
 
     public ProductMultiSelectionViewModel ProductViewModel { get; }
 
@@ -87,35 +97,25 @@ public class WinLossDetailViewModel
 
     public ReportData<WinLossDetailModel> ReportData { get; }
 
-    public bool CanDrilldown { get; }
+    public bool CanDrilldown { get; protected set; }
 
     public IDictionary<string, string> GetExcelParams()
-    {
-        var excelParam = new Dictionary<string, string>
+        => new Dictionary<string, string>
         {
             [nameof(CustId)] = CustId.ToString(),
             [nameof(CustName)] = CustName,
             ["CustLevelId"] = CustLevel.Value.ToString(),
             [nameof(ProductViewModel.UserSelectedProductIds)] = ProductViewModel.UserSelectedProductIds,
             [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
-            [nameof(IsHistoricReport)] = IsHistoricReport.ToString()
+            [nameof(IsHistoricReport)] = IsHistoricReport.ToString(),
+            [nameof(FromDate)] = FromDate,
+            [nameof(ToDate)] = ToDate
         };
 
-        string fromDate, toDate;
-        if (IsHistoricReport)
-        {
-            fromDate = MonthPicker.FromDate.ToShortDateWithSlash();
-            toDate = MonthPicker.ToDate.ToShortDateWithSlash();
-        }
-        else
-        {
-            fromDate = DateRangePicker.FromDate;
-            toDate = DateRangePicker.ToDate;
-        }
-
-        excelParam.Add(nameof(fromDate), fromDate);
-        excelParam.Add(nameof(toDate), toDate);
-
-        return excelParam;
-    }
+    private static string GetReportNameByLevel(UserLevel custLevel)
+        => custLevel.IsSuperLevel()
+        ? Resources.MasterWinLossDetail
+        : custLevel.IsMasterLevel()
+            ? Resources.AgentWinLossDetail
+            : Resources.MemberWinLossDetail;
 }

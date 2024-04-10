@@ -27,7 +27,7 @@ public class OutstandingViewModel
         ProductViewModel = productViewModel;
         ReportData = reportData;
         SortPropertyName = message.SortPropertyName;
-        IsDescendingSort = message.IsDescendingSort;
+        DescendingSort = message.DescendingSort;
         IsMobileView = isMobile;
         DisplayOutstandingLevels = GetDisplayOutstandingLevels(CustLevel.Value, message.ViewerLevelId).ToList();
         DisplayOutstandingLevelsJson = JsonHelper.ToJson(DisplayOutstandingLevels);
@@ -53,7 +53,7 @@ public class OutstandingViewModel
 
     public string SortPropertyName { get; }
 
-    public bool IsDescendingSort { get; }
+    public byte DescendingSort { get; }
 
     public bool IsMobileView { get; }
 
@@ -66,38 +66,4 @@ public class OutstandingViewModel
             yield return Enumeration.FromValue<UserLevel>(level);
         }
     }
-
-    // protected override IEnumerable<KeyValuePair<string, string>> GetDownlineLinkQueryParams(OutstandingModel model)
-    //     => [
-    //         KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
-    //         KeyValuePair.Create(nameof(model.CustName), model.CustName),
-    //         KeyValuePair.Create(nameof(ProductMultiSelectionViewModel.UserSelectedProductIds), ProductMultiSelectionViewModel.UserSelectedProductIds),
-    //         KeyValuePair.Create(nameof(SortPropertyName), SortPropertyName),
-    //         KeyValuePair.Create(nameof(IsDescendingSort), IsDescendingSort.ToString()),
-    //         KeyValuePair.Create(nameof(IsFilterVisible), IsFilterVisible.ToString())
-    //     ];
-
-    // protected override IEnumerable<KeyValuePair<string, string>> GetBetListLinkQueryParams(OutstandingModel model)
-    //     => [
-    //         KeyValuePair.Create(nameof(model.CustId), model.CustId.ToString()),
-    //         KeyValuePair.Create(nameof(model.CustName), model.CustName),
-    //         KeyValuePair.Create("GetAll", "True"),
-    //         KeyValuePair.Create("ProductIds", ProductMultiSelectionViewModel.UserSelectedProductIds)];
-
-    // private string GetSortedProperty(string sortedProperty)
-    // {
-    //     if (string.IsNullOrWhiteSpace(sortedProperty))
-    //     {
-    //         return DefaultVariables.SortPropertyName;
-    //     }
-
-    //     var sortableColumns = DisplayOutstandingLevels
-    //         .Select(level => (level.DisplayName + "Outstanding").ToUpperInvariant())
-    //         .Concat([CustNamePropertyName])
-    //         .ToList();
-
-    //     return sortableColumns.Contains(sortedProperty.ToUpperInvariant())
-    //         ? sortedProperty
-    //         : DefaultVariables.SortPropertyName;
-    // }
 }

@@ -15,7 +15,7 @@ public class ReportTitleTagHelper : TagHelper
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.Attributes.Add("class", $"page-title{(Model.IsStackMode ? " stack-mode" : string.Empty)}{(Model.IsFilterVisible ? string.Empty : " hide-filter")}");
+        output.Attributes.Add("class", $"page-title {(Model.IsStackMode ? " stack-mode" : string.Empty)}{(Model.IsFilterVisible ? string.Empty : " hide-filter")}");
 
         var sb = new StringBuilder();
         AppendEnteredSportResult(sb);
@@ -51,7 +51,12 @@ public class ReportTitleTagHelper : TagHelper
                     else
                     {
                         sb
-                            .Append("<li><a class=\"breadcrumb-link\" href=\"javascript:;\" ")
+                            .Append("<li><a class=\"breadcrumb-link\" href=\"javascript:;\" ");
+                        if (item.IsConsolidation)
+                        {
+                            sb.Append($"data-consolidation=\"true\" ");
+                        }
+                        sb
                             .Append($"data-custid=\"{item.CustId}\" ")
                             .Append($"data-custname=\"{item.CustName}\" ")
                             .Append($"data-custlevelid=\"{item.CustLevelId}\">")

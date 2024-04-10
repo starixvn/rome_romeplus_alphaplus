@@ -8,11 +8,13 @@ public class ConsolidationController(IMediator mediator) : ReportBaseController(
 {
     public Task<IActionResult> ConsolidationByUsername(ConsolidationByUsernameQuery message) => View(message);
 
-    public Task<IActionResult> ConsolidationByUsernameExcel(ConsolidationByUsernameExcelQuery message) => ExcelView(message);
+    public Task<IActionResult> ConsolidationByDate(ConsolidationByDateQuery message) => View(message);
 
-    public Task<IActionResult> Index(ConsolidationByGroupQuery message) => View(message);
+    public Task<IActionResult> ConsolidationByProduct(ConsolidationByProductQuery message) => View(message);
 
-    public Task<IActionResult> Excel(ConsolidationByGroupExcelQuery message) => ExcelView(message);
+    public Task<IActionResult> ConsolidationExcel(ConsolidationExcelQuery message) => ExcelView(message);
 
     public Task<IActionResult> ConsolidationDetail(ConsolidationDetailQuery message) => View(message);
+
+    public Task<IActionResult> ConsolidationDetailExcel(ConsolidationDetailExcelQuery message) => ExcelView(message);
 }

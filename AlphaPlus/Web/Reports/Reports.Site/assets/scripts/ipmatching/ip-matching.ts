@@ -8,8 +8,8 @@ class DatePickerOption {
 }
 
 class IPMatchingView extends BaseReport {
-    constructor(linkBuilderComponent: LinkBuilderComponent) {
-        super(linkBuilderComponent);
+    constructor() {
+        super();
     }
 
     init() {
@@ -25,5 +25,5 @@ class IPMatchingView extends BaseReport {
 }
 
 $(function () {
-    new IPMatchingView(new LinkBuilderComponent()).init();
+    new IPMatchingView().init();
 });

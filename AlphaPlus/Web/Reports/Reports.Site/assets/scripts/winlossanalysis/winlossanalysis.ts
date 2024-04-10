@@ -13,16 +13,14 @@ class WinLossAnalysisView extends BaseReport {
     dateRangePickerComponent: DateRangePickerComponent;
     sortComponent: SortComponent;
     reportTooltip: ReportTooltip;
-    linkBuilderComponent: LinkBuilderComponent;
 
     constructor(
         productComponent: ProductMultiSelectionComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         sortComponent: SortComponent,
-        reportTooltip: ReportTooltip,
-        linkBuilderComponent: LinkBuilderComponent
+        reportTooltip: ReportTooltip
     ) {
-        super(linkBuilderComponent);
+        super();
 
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.productComponent = productComponent;
@@ -37,10 +35,6 @@ class WinLossAnalysisView extends BaseReport {
         this.initComponents();
         this.registerEvents();
 
-        // remove style="visibility:hidden"
-        // TableSorter cannot run with style="display:none"
-        this.$tableReport.removeAttr('style');
-
         $.unblockUI();
     }
 
@@ -50,17 +44,22 @@ class WinLossAnalysisView extends BaseReport {
     }
 
     initComponents() {
+        this.productComponent.render();
+        this.dateRangePickerComponent.render();
+
         if (
             this.$isSetDefaultStackMode.val().toString().toLowerCase() === 'true' &&
             alphaReports.screenSmallThan768()
         ) {
             this.setStackMode();
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winlossanalysis'));
+            super.hideFilter();
         }
 
-        this.productComponent.render();
-        this.dateRangePickerComponent.render();
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: this.getSorterName() } });
+        // remove style="visibility:hidden"
+        // TableSorter cannot run with style="display:none"
+        this.$tableReport.removeAttr('style');
     }
 
     getSorterName = () => {
@@ -165,12 +164,10 @@ class WinLossAnalysisView extends BaseReport {
 }
 
 $(function () {
-    const linkBuilderComponent = new LinkBuilderComponent();
     new WinLossAnalysisView(
         new ProductMultiSelectionComponent(),
         new DateRangePickerComponent(),
         new SortComponent(),
-        new ReportTooltip(),
-        linkBuilderComponent
+        new ReportTooltip()
     ).init();
 });

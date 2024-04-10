@@ -23,7 +23,7 @@ class MatchWinLossDetailView extends BaseReport {
         leagueComponent: LeagueMultiSelectionComponent,
         reportTooltip: ReportTooltip
     ) {
-        super(new LinkBuilderComponent());
+        super();
 
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.productComponent = productComponent;
@@ -35,16 +35,8 @@ class MatchWinLossDetailView extends BaseReport {
         $.blockUI();
 
         this.cacheElements();
-        this.registerEvents();
         this.initComponent();
-
-        if (
-            $('#IsSetDefaultStackMode').val().toString().toLowerCase() === 'true' &&
-            alphaReports.screenSmallThan768()
-        ) {
-            this.setStackMode();
-            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'matchwinlossdetail'));
-        }
+        this.registerEvents();
 
         $.unblockUI();
     }
@@ -76,6 +68,15 @@ class MatchWinLossDetailView extends BaseReport {
         ) {
             this.leagueComponent.render();
             this.$buttonLeague = this.leagueComponent.$multiSelectButton;
+        }
+
+        if (
+            $('#IsSetDefaultStackMode').val().toString().toLowerCase() === 'true' &&
+            alphaReports.screenSmallThan768()
+        ) {
+            this.setStackMode();
+            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'matchwinlossdetail'));
+            super.hideFilter();
         }
     }
 

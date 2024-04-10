@@ -20,12 +20,34 @@
         <span id="icon-information" class="icon-information-outline"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="ConsolidationDetailExcel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
-    <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
+    <input type="hidden" id="BreadcrumbsJson" name="BreadcrumbsJson"
+        value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
+    <input type="hidden" asp-for="ConsolidationProductIds" />
+    <input type="hidden" asp-for="ConsolidationResourceIds" />
+    <input type="hidden" asp-for="UserSelectedCurrencyId" />
+    <input type="hidden" asp-for="ConsolidationFromDate" />
+    <input type="hidden" asp-for="ConsolidationToDate" />
+    <input type="hidden" asp-for="ConsolidationUserSelectedDateRangeOption" />
+    <input type="hidden" asp-for="ReportType" />
 </form>
 <partial name="~/Features/WinLossDetail/Views/ReportData.cshtml" model="Model" />
+<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends"
+    asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
+@if (Model.ReportType == "username")
+{
+    <a class="hide" id="hidden-consolidation-url" asp-action="ConsolidationByUsername"></a>
+}
+else if (Model.ReportType == "date")
+{
+    <a class="hide" id="hidden-consolidation-url" asp-action="ConsolidationByDate"></a>
+}
+else if (Model.ReportType == "product")
+{
+    <a class="hide" id="hidden-consolidation-url" asp-action="ConsolidationByProduct"></a>
+}

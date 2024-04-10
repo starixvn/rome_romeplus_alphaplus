@@ -2,7 +2,6 @@
 /// <reference path="../base-report.ts" />
 /// <reference path="../components/daterangepicker.ts" />
 /// <reference path="../components/client-pager.ts" />
-/// <reference path="../components/link-builder.ts" />
 
 class StatementView extends BaseReport {
     dateRangePickerComponent: DateRangePickerComponent;
@@ -20,10 +19,9 @@ class StatementView extends BaseReport {
     constructor(
         dateRangePickerComponent: DateRangePickerComponent,
         pagerComponent: ClientPagerComponent,
-        topWindow: any,
-        linkBuilderComponent: LinkBuilderComponent
+        topWindow: any
     ) {
-        super(linkBuilderComponent);
+        super();
 
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.pagerComponent = pagerComponent;

@@ -42,10 +42,14 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
 
     public async Task<LegendViewModel> Handle(WinLossDetailLegendQuery message, CancellationToken cancellationToken)
     {
-        var legends = new List<string>
+        var legends = new List<string>();
+        if (!message.IsHistoricReport && message.MinDate != DateTime.MinValue)
         {
-            Resources.Tooltip_NetTurnover
-        };
+            legends.Add(string.Format(
+                $"- {Resources.CanOnlyViewDataAfterTimeCurrentReport}", message.MinDate.ToShortDateWithSlash()));
+        }
+
+        legends.Add(Resources.Tooltip_NetTurnover);
 
         var productParam = new GetProductsParam(
             message.Site,
@@ -68,10 +72,10 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
         await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
         legends.Add(GetGrossCommNotes(message.ViewerLevel));
         legends.Add(Resources.GrossCommRoundingNote);
-        // if (message.ShowDormantAccountsNote)
-        // {
-        //     legends.Add(Resources.DormantAccountsNote);
-        // }
+        if (message.ShowDormantAccountsNote)
+        {
+            legends.Add(Resources.DormantAccountsNote);
+        }
 
         return new LegendViewModel(legends);
     }

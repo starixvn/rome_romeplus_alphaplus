@@ -2,12 +2,8 @@
     dateRangePickerComponent: DateRangePickerComponent;
     sortComponent: SortComponent;
 
-    constructor(
-        dateRangePickerComponent: DateRangePickerComponent,
-        sortComponent: SortComponent,
-        linkBuilderComponent: LinkBuilderComponent
-    ) {
-        super(linkBuilderComponent);
+    constructor(dateRangePickerComponent: DateRangePickerComponent, sortComponent: SortComponent) {
+        super();
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.sortComponent = sortComponent;
     }
@@ -24,6 +20,5 @@
 }
 
 $(function () {
-    const linkBuilderComponent = new LinkBuilderComponent();
-    new EnterResultView(new DateRangePickerComponent(), new SortComponent(), linkBuilderComponent).init();
+    new EnterResultView(new DateRangePickerComponent(), new SortComponent()).init();
 });

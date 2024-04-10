@@ -2,12 +2,8 @@
     private dateRangePickerComponent: DateRangePickerComponent;
     private pagerComponent: PagerComponent;
 
-    constructor(
-        dateRangePickerComponent: DateRangePickerComponent,
-        pagerComponent: PagerComponent,
-        linkBuilderComponent: LinkBuilderComponent
-    ) {
-        super(linkBuilderComponent);
+    constructor(dateRangePickerComponent: DateRangePickerComponent, pagerComponent: PagerComponent) {
+        super();
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.pagerComponent = pagerComponent;
     }
@@ -46,5 +42,5 @@
 }
 
 $(function () {
-    new BonusDetail(new DateRangePickerComponent(), new PagerComponent(), new LinkBuilderComponent()).init();
+    new BonusDetail(new DateRangePickerComponent(), new PagerComponent()).init();
 });

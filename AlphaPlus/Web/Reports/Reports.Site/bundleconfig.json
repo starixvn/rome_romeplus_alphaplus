@@ -17,9 +17,8 @@
         "outputFileName": "wwwroot/bundles/outstanding/outstanding.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/base-report-new.js",
             "assets/scripts/components/productmultiselection.js",
-            "assets/scripts/components/link-builder.js",
+            "assets/scripts/base-report.js",
             "assets/scripts/outstanding/outstanding.js"
         ]
     },
@@ -44,7 +43,6 @@
             "assets/scripts/core.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/sort.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/enteredresult/enteredresult.js"
         ]
@@ -58,7 +56,6 @@
             "assets/scripts/components/tooltip.js",
             "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/sort.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/winloss/winloss.js"
         ]
@@ -72,7 +69,6 @@
             "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/sort.js",
             "assets/scripts/components/tooltip.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/winlossdetail/winlossdetail.js"
         ]
@@ -91,7 +87,6 @@
             "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/league-multiselection.js",
             "assets/scripts/components/tooltip.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/matchwinlossdetail/matchwinlossdetail.js"
         ]
@@ -104,7 +99,6 @@
             "assets/scripts/components/tooltip.js",
             "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/sort.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/winlossanalysis/winlossanalysis.js"
         ]
@@ -117,7 +111,6 @@
             "assets/scripts/components/tooltip.js",
             "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/dual-axis-chart.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/winlossanalysischart/winlossanalysischart.js"
         ]
@@ -129,7 +122,6 @@
             "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/tooltip.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/winlossbyproduct/winlossbyproduct.js"
         ]
@@ -142,7 +134,6 @@
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/tooltip.js",
             "assets/scripts/components/sort.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/superwinlossdetailbypt/superwinlossdetailbypt.js"
         ]
@@ -153,7 +144,6 @@
             "assets/scripts/core.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/sort.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/commissionbybettype/commissionbybettype.js"
         ]
@@ -171,7 +161,6 @@
             "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/tooltip.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/consolidation/consolidation.js"
         ]
@@ -184,7 +173,6 @@
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/tooltip.js",
             "assets/scripts/components/sort.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/consolidation/consolidation-detail.js"
         ]
@@ -199,7 +187,6 @@
         "outputFileName": "wwwroot/bundles/statement/sma-statement.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/client-pager.js",
@@ -212,7 +199,6 @@
         "outputFileName": "wwwroot/bundles/statement/member-statement.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/client-pager.js",
@@ -238,7 +224,6 @@
         "outputFileName": "wwwroot/bundles/progressivecontribution/progressivecontribution.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/components/monthpicker.js",
             "assets/scripts/components/daterangepicker.js",
@@ -257,7 +242,6 @@
         "outputFileName": "wwwroot/bundles/bonusdetail/bonusdetail.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/pager.js",
@@ -275,7 +259,6 @@
         "outputFileName": "wwwroot/bundles/betcredittracking/betcredithistory.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/components/pager.js",
             "assets/scripts/components/daterangepicker.js",
@@ -292,7 +275,6 @@
         "outputFileName": "wwwroot/bundles/betcredittracking/movestatementhistory.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/components/pager.js",
             "assets/scripts/components/monthpicker.js",
@@ -303,7 +285,6 @@
         "outputFileName": "wwwroot/bundles/ipmatching/ipmatching.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/components/link-builder.js",
             "assets/scripts/base-report.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/ipmatching/ip-matching.js"

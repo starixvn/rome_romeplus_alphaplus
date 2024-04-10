@@ -9,8 +9,6 @@
 @{
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
-    var isDaily = Model.ReportType == ConsolidationReportTypeConstants.Daily;
-    var firstColumnName = isDaily ? Resources.Date : Resources.Product;
 }
 @section Styles {
     <link rel="stylesheet" href="~/bundles/consolidation/consolidation.css" asp-append-version="true" />
@@ -18,32 +16,15 @@
 @section Scripts {
     <script src="~/bundles/consolidation/consolidation.js" asp-append-version="true"></script>
 }
-@model ConsolidationByGroupViewModel<ConsolidationByGroup>
-<report-title model="Model.PageHeader" />
-<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form">
-    <product model="@Model.ProductViewModel" />
-    <div class="form-group dropdown-currencies-container">
-        <select id="dropdown-currencies" name="UserSelectedCurrencyId" asp-items="Model.Currencies"></select>
-    </div>
-    <daterange-picker model="Model.DateRangePicker" />
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
-    </div>
-    <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
-            asp-all-route-data="Model.GetExcelParams()"></a>
-    </div>
-    <br />
-    <partial name="ReportType" model="Model.ReportType" />
-</form>
+@model ConsolidationByDateViewModel
+<partial name="TitleAndFilter" model="Model" />
 <table
     class="tblRpt tblRpt-bordered tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
     <thead>
         <tr>
-            <th rowspan="2" class="hidden-stack-mode">@firstColumnName</th>
-            <th class="visible-stack-mode">@firstColumnName</th>
+            <th rowspan="2" class="hidden-stack-mode">@Resources.Date</th>
+            <th class="visible-stack-mode">@Resources.Date</th>
             <th rowspan="2" class="hidden-stack-mode">@Resources.Level</th>
             <th class="visible-stack-mode">@Resources.Level</th>
             <th rowspan="2" class="hidden-stack-mode">@Resources.Username</th>
@@ -85,12 +66,13 @@
                     <tr>
                         @if (isFirstRow)
                         {
-                            <td class="@(isDaily ? "text-center" : "text-left")" rowspan="@date.WinLoss.Count()">@date.BreakDown</td>
+                            <td class="text-center" rowspan="@date.WinLoss.Count()">@date.BreakDown</td>
                             isFirstRow = false;
                         }
                         <td class="text-center">@data.CustLevelName</td>
                         <td class="text-left">
-                            <a href="javascript:;" class="downline-link">@data.Username</a>
+                            <a class="downline-link" asp-action="ConsolidationDetail"
+                                asp-all-route-data="@Model.BuildDrillDownParams(data.CustId, data.Username, data.CustLevel, date.BreakDown)">@data.Username</a>
                         </td>
                         <td class="text-center">@data.CurrencyName</td>
                         <td>@data.Turnover.FormatNumber()</td>

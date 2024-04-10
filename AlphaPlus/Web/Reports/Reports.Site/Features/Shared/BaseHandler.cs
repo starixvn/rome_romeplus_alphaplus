@@ -18,24 +18,22 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         BaseQuery message,
         string userSelectedProductIds,
         string userSelectedResourceIds,
-        IEnumerable<Product> offeredProducts = null)
+        IEnumerable<Product> products = null)
     {
-        var allProducts = offeredProducts ?? GetProducts(message);
-
+        products = products ?? GetProducts(message);
+        var (productGroups, validUserSelectedProductIds) = BuildProductViewModel(products, userSelectedProductIds);
         var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = BuildProductDetailViewModel(
             message.ViewerId,
-            allProducts,
+            products,
+            validUserSelectedProductIds,
             userSelectedResourceIds);
-
-        if ("*" != userSelectedProductIds && unselectedProductIds.Any())
+        if (unselectedProductIds.Any())
         {
-            userSelectedProductIds = userSelectedProductIds.ToListInt().Except(unselectedProductIds).JoinWithComma();
+            validUserSelectedProductIds = validUserSelectedProductIds.Except(unselectedProductIds);
         }
 
-        var (products, validUserSelectedProductIds) = BuildProductViewModel(allProducts, userSelectedProductIds);
-
         return (new ProductMultiSelectionViewModel(
-            products,
+            productGroups,
             validUserSelectedProductIds.JoinWithComma(),
             message.Language,
             productDetails,
@@ -45,16 +43,16 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     protected ProductMultiSelectionViewModel BuildProductViewModel(
         BaseQuery message,
         string userSelectedProductIds,
-        IEnumerable<Product> offeredProducts = null)
+        IEnumerable<Product> products = null)
     {
-        offeredProducts = offeredProducts ?? GetProducts(message);
-        var (products, validUserSelectedProductIds) = BuildProductViewModel(offeredProducts, userSelectedProductIds);
+        products = products ?? GetProducts(message);
+        var (productGroups, validUserSelectedProductIds) = BuildProductViewModel(products, userSelectedProductIds);
 
-        return new ProductMultiSelectionViewModel(products, validUserSelectedProductIds.JoinWithComma(), message.Language);
+        return new ProductMultiSelectionViewModel(productGroups, validUserSelectedProductIds.JoinWithComma(), message.Language);
     }
 
     private static (IEnumerable<ProductGroupDTO>, IEnumerable<int>) BuildProductViewModel(
-        IEnumerable<Product> offeredProducts,
+        IEnumerable<Product> products,
         string userSelectedProductIds)
     {
         var productGroups = new List<ProductGroupDTO>();
@@ -63,7 +61,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var isCheckedAll = "*" == userSelectedProductIds;
         var userSelectedProductIdsList = isCheckedAll ? [] : userSelectedProductIds.ToListInt();
 
-        var offeredProductGroups = offeredProducts.GroupBy(p => new { p.Type, p.TypeName });
+        var offeredProductGroups = products.GroupBy(p => new { p.Type, p.TypeName });
         foreach (var groups in offeredProductGroups)
         {
             var subProducts = groups.Select(item =>
@@ -93,22 +91,22 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     private (IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string) BuildProductDetailViewModel(
         int custId,
         IEnumerable<Product> products,
+        IEnumerable<int> validUserSelectedProductIds,
         string userSelectedResourceIds)
     {
-        var allProductDetails = productService.GetProductDetails(custId, products);
         var isCheckedAll = "*" == userSelectedResourceIds;
         var userSelectedResourceIdsList = isCheckedAll ? [] : userSelectedResourceIds.ToListInt();
 
         var productDetails = new List<ProductDetailDTO>();
         var validUserSelectedResourceIds = new List<int>();
-        var allProductsSupportProductDetails = new HashSet<int>();
-        var selectedProductIds = new HashSet<int>();
+        var allProductsSupportProductDetails = new List<int>();
+        var selectedProductIds = new List<int>();
 
         var xml = new StringBuilder();
-
+        var allProductDetails = productService.GetProductDetails(custId, products);
         foreach (var item in allProductDetails)
         {
-            var isChecked = isCheckedAll || userSelectedResourceIdsList.Contains(item.ResourceId);
+            var isChecked = isCheckedAll || (validUserSelectedProductIds.Contains(item.ProductId) && userSelectedResourceIdsList.Contains(item.ResourceId));
             if (isChecked)
             {
                 validUserSelectedResourceIds.Add(item.ResourceId);
@@ -120,9 +118,10 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
             allProductsSupportProductDetails.Add(item.ProductId);
         }
 
+        // Get un-selected Product Ids
         var unselectedProductIds = allProductsSupportProductDetails.Except(selectedProductIds);
 
-        return (productDetails, validUserSelectedResourceIds, unselectedProductIds, $"<ROOT>{xml}</ROOT>");
+        return (productDetails, validUserSelectedResourceIds, unselectedProductIds.ToList(), $"<ROOT>{xml}</ROOT>");
     }
 
     protected (IEnumerable<int>, string) FilterProductAndProductDetailIds(
@@ -132,12 +131,15 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         IEnumerable<Product> products = null)
     {
         products = FilterProducts(products ?? GetProducts(message), userSelectedProductIds).ToList();
-        var (unselectedProductIds, productDetailXml) = FilterProductDetailIds(message.ViewerId, products, userSelectedResourceIds);
+        var (unselectedProductIds, productDetailXml) = FilterProductDetailIds(message.ViewerId, products, userSelectedProductIds, userSelectedResourceIds);
+        var productIds = products.Select(product => product.Id);
 
-        // Remove invalid ProductIds
-        var productIds = products.Select(product => product.Id).Except(unselectedProductIds).ToList();
+        if (unselectedProductIds.Any())
+        {
+            productIds = productIds.Except(unselectedProductIds);
+        }
 
-        return (productIds, productDetailXml);
+        return (productIds.ToList(), productDetailXml);
     }
 
     protected IEnumerable<int> FilterProductIds(BaseQuery message, string userSelectedProductIds, IEnumerable<int> offeredProductIds = null)
@@ -166,32 +168,39 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     private (IEnumerable<int>, string) FilterProductDetailIds(
         int custId,
         IEnumerable<Product> products,
+        string userSelectedProductIds,
         string userSelectedResourceIds)
     {
-        var productDetails = productService.GetProductDetails(custId, products);
-        var isCheckedAll = "*" == userSelectedResourceIds;
-        var userSelectedResourceIdsList = isCheckedAll ? [] : userSelectedResourceIds.ToListInt();
+        var userSelectedProductIdsList = Enumerable.Empty<int>();
+        var userSelectedResourceIdsList = Enumerable.Empty<int>();
+        var isCheckedAll = "*" == userSelectedProductIds && "*" == userSelectedResourceIds;
+        if (!isCheckedAll)
+        {
+            userSelectedProductIdsList = userSelectedProductIds.ToListInt();
+            userSelectedResourceIdsList = userSelectedResourceIds.ToListInt();
+        }
 
-        var productsSupportProductDetails = new HashSet<int>();
-        var userSelectedProductIds = new HashSet<int>();
+        var allProductsSupportProductDetails = new List<int>();
+        var selectedProductIds = new List<int>();
 
         var xml = new StringBuilder();
-
+        var productDetails = productService.GetProductDetails(custId, products);
         foreach (var item in productDetails)
         {
-            var isChecked = isCheckedAll || userSelectedResourceIdsList.Contains(item.ResourceId);
+            var isChecked = isCheckedAll || (userSelectedProductIdsList.Contains(item.ProductId) && userSelectedResourceIdsList.Contains(item.ResourceId));
             if (isChecked)
             {
-                userSelectedProductIds.Add(item.ProductId);
+                selectedProductIds.Add(item.ProductId);
                 xml.Append(productService.BuildProductDetailXml(item));
             }
 
-            productsSupportProductDetails.Add(item.ProductId);
+            allProductsSupportProductDetails.Add(item.ProductId);
         }
 
-        var unselectedProductIds = productsSupportProductDetails.Except(userSelectedProductIds);
+        // Get un-selected Product Ids
+        var unselectedProductIds = allProductsSupportProductDetails.Except(selectedProductIds);
 
-        return (unselectedProductIds, $"<ROOT>{xml}</ROOT>");
+        return (unselectedProductIds.ToList(), $"<ROOT>{xml}</ROOT>");
     }
 
     protected IEnumerable<Product> GetProducts(BaseQuery message)

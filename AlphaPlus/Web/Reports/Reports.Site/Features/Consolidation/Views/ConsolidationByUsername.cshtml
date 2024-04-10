@@ -66,25 +66,8 @@
 @section Scripts {
     <script src="~/bundles/consolidation/consolidation.js" asp-append-version="true"></script>
 }
-@model ConsolidationByUsernameViewModel<ConsolidationByUsername>
-<report-title model="Model.PageHeader" />
-<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form">
-    <product model="@Model.ProductViewModel" />
-    <div class="form-group dropdown-currencies-container">
-        <select id="dropdown-currencies" name="UserSelectedCurrencyId" asp-items="Model.Currencies"></select>
-    </div>
-    <daterange-picker model="Model.DateRangePicker" />
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
-    </div>
-    <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="ConsolidationByUsernameExcel"
-            asp-all-route-data="Model.GetExcelParams()"></a>
-    </div>
-    <br />
-    <partial name="ReportType" model="(byte)0" />
-</form>
+@model ConsolidationByUsernameViewModel
+<partial name="TitleAndFilter" model="Model" />
 <table
     class="tblRpt tblRpt-bordered tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
@@ -134,13 +117,8 @@
                     </td>
                     <td class="text-left bold">
                         <div style="position:relative">
-                            @* <a href="@Model.BuildDrillDownLink(Url.Action("ConsolidationDetail",
-                    $"{Alpha.Reports.Configurations.SiteSettings.ReportRouting}Consolidation"), "username", null, null,
-                    dataByUsername)"
-                    class="downline-link">
-                    @dataByUsername.Username
-                    </a> *@
-                            <a href="javascript:;" class="downline-link">@total.Username</a>
+                            <a class="downline-link" asp-action="ConsolidationDetail"
+                                asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
                             @if (isShowPT)
                             {
                                 <span class="view-product-pt-list" data-custid="@total.CustId" data-username="@total.Username"

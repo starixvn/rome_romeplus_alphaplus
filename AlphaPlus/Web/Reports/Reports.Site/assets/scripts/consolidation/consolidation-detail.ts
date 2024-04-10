@@ -4,7 +4,6 @@
 /// <reference path="../components/tooltip.ts" />
 /// <reference path="../components/sort.ts" />
 /// <reference path="../base-report.ts" />
-/// <reference path="../components/link-builder.ts" />
 
 class ConsolidationDetailView extends BaseReport {
     productComponent: ProductMultiSelectionComponent;
@@ -18,10 +17,9 @@ class ConsolidationDetailView extends BaseReport {
         productComponent: ProductMultiSelectionComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         reportTooltip: ReportTooltip,
-        linkBuilderComponent: LinkBuilderComponent,
         sortComponent: SortComponent
     ) {
-        super(linkBuilderComponent);
+        super();
 
         this.productComponent = productComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
@@ -34,7 +32,6 @@ class ConsolidationDetailView extends BaseReport {
 
         this.initComponents();
         this.registerEvents();
-        //this.saveConsolidationParam();
 
         $.unblockUI();
     }
@@ -43,10 +40,50 @@ class ConsolidationDetailView extends BaseReport {
         this.productComponent.render();
         this.dateRangePickerComponent.render();
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
+        // remove style="visibility:hidden"
+        // TableSorter cannot run with style="display:none"
+        this.$tableReport.removeAttr('style');
     }
 
     registerEvents() {
         $('.icon-switchmode').on('click', this.onSwitchMode);
+        super.registerDrilldownableEvents();
+
+        const consolidationLink = this.$pageTitle.find('.breadcrumb-link[data-consolidation="true"]');
+        consolidationLink.off().click(this.backToConsolidationReport);
+
+        this.$reportForm.find('.btn-submit').click(this.resetConsolidationParams);
+    }
+
+    backToConsolidationReport = () => {
+        $.blockUI();
+        const copyAndRemove = (sourceId: string, destinationId: string) => {
+            const $sourceId = $(`#${sourceId}`);
+            $(`#${destinationId}`).val($sourceId.val());
+            $sourceId.remove();
+        };
+
+        $('#CustId').remove();
+        $('#CustName').remove();
+        $('#CustLevelId').remove();
+        $('#BreadcrumbsJson').remove();
+        $('#ReportType').remove();
+        copyAndRemove('ConsolidationProductIds', 'product-ids');
+        copyAndRemove('ConsolidationResourceIds', 'resource-ids');
+        copyAndRemove('ConsolidationFromDate', 'from-date');
+        copyAndRemove('ConsolidationToDate', 'to-date');
+        copyAndRemove('ConsolidationUserSelectedDateRangeOption', 'hidden-range-option');
+        this.$reportForm.attr('action', $('#hidden-consolidation-url').attr('href')).submit();
+    };
+
+    resetConsolidationParams() {
+        const copyValue = (sourceId: string, destinationId: string) =>
+            $(`#${destinationId}`).val($(`#${sourceId}`).val());
+        copyValue('product-ids', 'ConsolidationProductIds');
+        copyValue('resource-ids', 'ConsolidationResourceIds');
+        copyValue('from-date', 'ConsolidationFromDate');
+        copyValue('to-date', 'ConsolidationToDate');
+        copyValue('hidden-range-option', 'ConsolidationUserSelectedDateRangeOption');
     }
 
     onSwitchMode = () => {
@@ -62,7 +99,6 @@ class ConsolidationDetailView extends BaseReport {
             this.$tableReport.addClass('stack-mode');
         }
 
-        //this.replaceHrefParam('IsStackMode', !isStackMode);
         if (this.isFirstSwitchMode) {
             if (isStackMode) {
                 alphaReports.splitCell('col-turnover');
@@ -95,10 +131,6 @@ class ConsolidationDetailView extends BaseReport {
         super.onSubmitReport(event, true, this.sortComponent.getSortInfo());
     };
 
-    // replaceHrefParam = (paramName: string, paramValue: any) => {
-    //     this.linkBuilderComponent.updateParam(paramName, paramValue);
-    // };
-
     getSortedColumnName = () => {
         const sortedColumn = this.$tableReport.data('sortedcolumn');
         if (!this.isStackMode()) {
@@ -127,41 +159,13 @@ class ConsolidationDetailView extends BaseReport {
 
         return sortedColumn;
     };
-
-    /*saveConsolidationParam = () => {
-        this.linkBuilderComponent.updateParam('ConsolidationFromDate', this.$consolidationFromDate.val());
-        this.linkBuilderComponent.updateParam('ConsolidationToDate', this.$consolidationToDate.val());
-        this.linkBuilderComponent.updateParam(
-            'ConsolidationUserSelectedDateRangeOption',
-            this.$consolidationUserSelectedDateRangeOption.val()
-        );
-        this.linkBuilderComponent.updateParam('ConsolidationProductIds', this.$consolidationProductIds.val());
-
-        let firstBreadcrumb = this.$('.breadcrumb > li:first-child').find('a');
-        let currentUrl = firstBreadcrumb.attr('href');
-        currentUrl = alphaReports.replaceQueryStringValue(currentUrl, 'FromDate', this.$consolidationFromDate.val());
-        currentUrl = alphaReports.replaceQueryStringValue(currentUrl, 'ToDate', this.$consolidationToDate.val());
-        currentUrl = alphaReports.replaceQueryStringValue(
-            currentUrl,
-            'UserSelectedDateRangeOption',
-            this.$consolidationUserSelectedDateRangeOption.val()
-        );
-        currentUrl = alphaReports.replaceQueryStringValue(
-            currentUrl,
-            'UserSelectedProductIds',
-            this.$consolidationProductIds.val()
-        );
-        firstBreadcrumb.attr('href', currentUrl);
-    };*/
 }
 
 $(function () {
-    const linkBuilderComponent = new LinkBuilderComponent();
     new ConsolidationDetailView(
         new ProductMultiSelectionComponent(),
         new DateRangePickerComponent(),
         new ReportTooltip(),
-        linkBuilderComponent,
         new SortComponent()
     ).init();
 });

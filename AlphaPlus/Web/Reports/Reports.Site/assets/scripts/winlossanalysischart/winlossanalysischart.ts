@@ -15,10 +15,9 @@ class WinLossAnalysisChartView extends BaseReport {
         productComponent: ProductMultiSelectionComponent,
         monthRangePickerComponent: MonthRangePickerComponent,
         reportTooltip: ReportTooltip,
-        linkBuilderComponent: LinkBuilderComponent,
         dualAxesChartComponent: DualAxisChartComponent
     ) {
-        super(linkBuilderComponent);
+        super();
         this.monthRangePickerComponent = monthRangePickerComponent;
         this.productComponent = productComponent;
         this.reportTooltip = reportTooltip;
@@ -67,7 +66,6 @@ $(function () {
         new ProductMultiSelectionComponent(),
         new MonthRangePickerComponent(),
         new ReportTooltip(),
-        new LinkBuilderComponent(),
         new DualAxisChartComponent(Chart)
     ).init();
 });

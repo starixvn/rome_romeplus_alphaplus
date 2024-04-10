@@ -5,33 +5,30 @@
 /// <reference path="../../../assets/scripts/components/pager.ts" />
 /// <reference path="../../../assets/scripts/components/productmultiselection.ts" />
 /// <reference path="../../../assets/scripts/components/sort.ts" />
-/// <reference path="../../../assets/scripts/components/link-builder.ts" />
 /// <reference path="../../../assets/scripts/components/tooltip.ts" />
 
 class WinLossDetailView extends BaseReport {
-    dateRangePickerComponent: DateRangePickerComponent;
-    pagerComponent: PagerComponent;
     productComponent: ProductMultiSelectionComponent;
-    sortComponent: SortComponent;
+    dateRangePickerComponent: DateRangePickerComponent;
     reportTooltip: ReportTooltip;
+    sortComponent: SortComponent;
     monthPickerComponent: MonthPickerComponent;
 
     isFirstSwitchMode = true;
 
     constructor(
-        dateRangePickerComponent: DateRangePickerComponent,
         productComponent: ProductMultiSelectionComponent,
-        sortComponent: SortComponent,
+        dateRangePickerComponent: DateRangePickerComponent,
         reportTooltip: ReportTooltip,
-        monthPickerComponent: MonthPickerComponent,
-        linkBuilderComponent: LinkBuilderComponent
+        sortComponent: SortComponent,
+        monthPickerComponent: MonthPickerComponent
     ) {
-        super(linkBuilderComponent);
+        super();
 
-        this.dateRangePickerComponent = dateRangePickerComponent;
         this.productComponent = productComponent;
-        this.sortComponent = sortComponent;
+        this.dateRangePickerComponent = dateRangePickerComponent;
         this.reportTooltip = reportTooltip;
+        this.sortComponent = sortComponent;
         this.monthPickerComponent = monthPickerComponent;
     }
 
@@ -41,22 +38,10 @@ class WinLossDetailView extends BaseReport {
         this.initComponents();
         this.registerEvents();
 
-        // remove style="visibility:hidden"
-        // TableSorter cannot run with style="display:none"
-        this.$tableReport.removeAttr('style');
-
         $.unblockUI();
     }
 
     initComponents() {
-        if (
-            $('#IsSetDefaultStackMode').val().toString().toLowerCase() === 'true' &&
-            alphaReports.screenSmallThan768()
-        ) {
-            this.setStackMode();
-            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winlossdetail'));
-        }
-
         this.productComponent.render();
 
         if ($('#IsHistoricReport').val().toLowerCase() === 'true') {
@@ -65,7 +50,19 @@ class WinLossDetailView extends BaseReport {
             this.dateRangePickerComponent.render();
         }
 
+        if (
+            $('#IsSetDefaultStackMode').val().toString().toLowerCase() === 'true' &&
+            alphaReports.screenSmallThan768()
+        ) {
+            this.setStackMode();
+            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winlossdetail'));
+            super.hideFilter();
+        }
+
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
+        // remove style="visibility:hidden"
+        // TableSorter cannot run with style="display:none"
+        this.$tableReport.removeAttr('style');
     }
 
     registerEvents() {
@@ -79,8 +76,6 @@ class WinLossDetailView extends BaseReport {
 
         this.$pageTitle.addClass('stack-mode');
         this.$tableReport.addClass('stack-mode');
-
-        //this.replaceHrefParam('IsStackMode', true);
 
         alphaReports.combineConsecutiveCells($('td.col-turnover'), 3, 'col-turnover-combined');
 
@@ -107,8 +102,6 @@ class WinLossDetailView extends BaseReport {
             this.$tableReport.addClass('stack-mode');
         }
 
-        //this.replaceHrefParam('IsStackMode', !isStackMode);
-
         if (this.isFirstSwitchMode) {
             if (isStackMode) {
                 alphaReports.splitCell('col-turnover');
@@ -131,26 +124,6 @@ class WinLossDetailView extends BaseReport {
         this.sortComponent.bindTableSorter(this.getSortedColumnName());
         $.unblockUI();
     };
-
-    // getParams = () => {
-    //     let selectedProducts = this.productComponent.getSelectedItems();
-    //     let sortInfo = this.sortComponent.getSortInfo();
-    //     let tableReport = this.$tableReport;
-
-    //     return {
-    //         IsAnyProductSelected: selectedProducts.length > 0,
-    //         IsAnyProductDetailSelected: this.productComponent.isAnyEnabledProductDetailSelected(),
-    //         SortPropertyName: sortInfo.sortPropertyName,
-    //         IsDescendingSort: sortInfo.isDescendingSort,
-    //         IsStackMode: tableReport.hasClass('stack-mode'),
-    //         IsHistoricReport: this.isHistoricReport,
-    //         IsFilterVisible: !this.$reportForm.is(':hidden')
-    //     };
-    // };
-
-    // replaceHrefParam = (paramName: string, paramValue: any) => {
-    //     this.linkBuilderComponent.updateParam(paramName, paramValue);
-    // };
 
     onSubmitReport = (event: any) => {
         if (!this.productComponent.validateProductIds()) {
@@ -192,13 +165,11 @@ class WinLossDetailView extends BaseReport {
 }
 
 $(function () {
-    const linkBuilderComponent = new LinkBuilderComponent();
     new WinLossDetailView(
-        new DateRangePickerComponent(),
         new ProductMultiSelectionComponent(),
-        new SortComponent(),
+        new DateRangePickerComponent(),
         new ReportTooltip(),
-        new MonthPickerComponent(),
-        linkBuilderComponent
+        new SortComponent(),
+        new MonthPickerComponent()
     ).init();
 });

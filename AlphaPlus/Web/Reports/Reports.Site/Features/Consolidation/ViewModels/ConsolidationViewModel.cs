@@ -5,14 +5,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
-public class ConsolidationViewModel<T>(
+public abstract class ConsolidationViewModel(
     ConsolidationQuery message,
     ProductMultiSelectionViewModel productViewModel,
     IEnumerable<ConsolidationCurrency> currencies,
-    EnteredResultSport totalEnteredResults,
-    IEnumerable<T> reportData)
+    EnteredResultSport totalEnteredResults)
 {
-    public byte ReportType { get; } = message.ReportType;
+    public string ReportType { get; } = message.ReportType;
 
     public bool IsSetDefaultStackMode { get; } = message.IsSetDefaultStackMode;
 
@@ -36,8 +35,6 @@ public class ConsolidationViewModel<T>(
         message.ToDate,
         message.UserSelectedDateRangeOption);
 
-    public IEnumerable<T> ReportData { get; } = reportData;
-
     public IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {
@@ -45,7 +42,21 @@ public class ConsolidationViewModel<T>(
             [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
             [nameof(message.UserSelectedCurrencyId)] = message.UserSelectedCurrencyId.ToString(),
             [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
-            [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate,
-            [nameof(ReportType)] = ReportType.ToString()
+            [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate
+        };
+
+    protected IDictionary<string, string> BuildBaseDrillDownParams(int custId, string custName, byte custLevelId)
+        => new Dictionary<string, string>
+        {
+            [nameof(custId)] = custId.ToString(),
+            [nameof(custName)] = custName,
+            [nameof(custLevelId)] = custLevelId.ToString(),
+            [nameof(ReportType)] = ReportType,
+            [nameof(message.UserSelectedCurrencyId)] = message.UserSelectedCurrencyId.ToString(),
+            ["ConsolidationProductIds"] = ProductViewModel.UserSelectedProductIds,
+            ["ConsolidationResourceIds"] = ProductViewModel.UserSelectedResourceIds,
+            ["ConsolidationFromDate"] = DateRangePicker.FromDate,
+            ["ConsolidationToDate"] = DateRangePicker.ToDate,
+            ["ConsolidationUserSelectedDateRangeOption"] = DateRangePicker.UserSelectedDateRangeOption.ToString(),
         };
 }

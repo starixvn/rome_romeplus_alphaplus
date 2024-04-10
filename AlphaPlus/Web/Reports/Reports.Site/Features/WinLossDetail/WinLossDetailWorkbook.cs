@@ -11,6 +11,14 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 public interface IWinLossDetailWorkbook
 {
     ExcelFileViewModel BuildExcelFile(WinLossDetailExcelQuery message, ReportData<WinLossDetailModel> reportData, string productNames);
+
+    ExcelFileViewModel BuildExcelFile(
+        DateTime fromDate,
+        DateTime toDate,
+        string custName,
+        UserLevel custLevel,
+        ReportData<WinLossDetailModel> reportData,
+        string productNames);
 }
 
 public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
@@ -18,24 +26,33 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
     IWinLossDetailWorkbook
 {
     public ExcelFileViewModel BuildExcelFile(WinLossDetailExcelQuery message, ReportData<WinLossDetailModel> reportData, string productNames)
+        => BuildExcelFile(message.FromDate, message.ToDate, message.CustName, message.CustLevel, reportData, productNames);
+
+    public ExcelFileViewModel BuildExcelFile(
+        DateTime fromDate,
+        DateTime toDate,
+        string custName,
+        UserLevel custLevel,
+        ReportData<WinLossDetailModel> reportData,
+        string productNames)
     {
-        var fromDate = message.FromDate.ToShortDateWithSlash();
-        var toDate = message.ToDate.ToShortDateWithSlash();
+        var fromDateString = fromDate.ToShortDateWithSlash();
+        var toDateString = toDate.ToShortDateWithSlash();
 
         var fileContent = UseTemplate(
             new TemplateInfo(
-                GetExcelTemplatePath(message.CustLevel.GetDirectDownlineLevel().DisplayName),
+                GetExcelTemplatePath(custLevel.GetDirectDownlineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 freezeRowIndex: 4,
                 freezeColumnName: B))
-            .Title($"{Resources.WinLossDetail} {fromDate} --> {toDate} - {Resources.of2}: {productNames}")
+            .Title($"{Resources.WinLossDetail} {fromDateString} --> {toDateString} - {Resources.of2}: {productNames}")
             .Header(Resources.ResourceManager.GetString)
-            .Body(reportData.DataSource, GetRowMapper(message.CustLevel))
-            .Footer(reportData.Total, GetRowMapper(message.CustLevel, true))
+            .Body(reportData.DataSource, GetRowMapper(custLevel))
+            .Footer(reportData.Total, GetRowMapper(custLevel, true))
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{Resources.WinLossDetail}-{message.CustName}-{fromDate}-{toDate}", fileContent);
+        return new ExcelFileViewModel($"{Resources.WinLossDetail}-{custName}-{fromDateString}-{toDateString}", fileContent);
     }
 
     private static Mapper<WinLossDetailModel> GetRowMapper(UserLevel custLevel, bool isTotal = false)

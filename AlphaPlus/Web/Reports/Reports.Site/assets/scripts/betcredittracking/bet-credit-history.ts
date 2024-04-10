@@ -8,12 +8,8 @@
 
     MAX_LENGTH_REFNO = 19;
 
-    constructor(
-        dateRangePickerComponent: DateRangePickerComponent,
-        pagerComponent: PagerComponent,
-        linkBuilderComponent: LinkBuilderComponent
-    ) {
-        super(linkBuilderComponent);
+    constructor(dateRangePickerComponent: DateRangePickerComponent, pagerComponent: PagerComponent) {
+        super();
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.pagerComponent = pagerComponent;
     }
@@ -107,5 +103,5 @@
 }
 
 $(function () {
-    new BetCreditHistory(new DateRangePickerComponent(), new PagerComponent(), new LinkBuilderComponent()).init();
+    new BetCreditHistory(new DateRangePickerComponent(), new PagerComponent()).init();
 });

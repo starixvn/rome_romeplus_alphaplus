@@ -1,9 +1,7 @@
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
-using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -15,74 +13,56 @@ public class ConsolidationHandler(
     IOptions<AppSettings> options,
     IEnteredResultService enteredResultService,
     IConsolidationService consolidationService,
-    IConsolidationWorkbook workbook) :
-        BaseHandler(productService, options),
-        IRequestHandler<ConsolidationByGroupQuery, ConsolidationByGroupViewModel<ConsolidationByGroup>>,
-        IRequestHandler<ConsolidationByGroupExcelQuery, ExcelFileViewModel>
+    IConsolidationByUsernameWorkbook usernameWorkbook,
+    IConsolidationWorkbook dateOrProductWorkbook) :
+        ConsolidationBaseHandler(productService, options, enteredResultService, consolidationService),
+        IRequestHandler<ConsolidationByUsernameQuery, ConsolidationByUsernameViewModel>,
+        IRequestHandler<ConsolidationByDateQuery, ConsolidationByDateViewModel>,
+        IRequestHandler<ConsolidationByProductQuery, ConsolidationByProductViewModel>,
+        IRequestHandler<ConsolidationExcelQuery, ExcelFileViewModel>
 {
-    public async Task<ConsolidationByGroupViewModel<ConsolidationByGroup>> Handle(ConsolidationByGroupQuery message, CancellationToken cancellationToken)
+    public async Task<ConsolidationByUsernameViewModel> Handle(ConsolidationByUsernameQuery message, CancellationToken cancellationToken)
     {
-        var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
-        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus);
-        var currenciesTask = consolidationService.GetCurrencies(message.ViewerId);
-        await Task.WhenAll(enteredResultTask, productsTask, currenciesTask);
+        var (productViewModel, currencies, enteredResult, reportData) = await GetConsolidationByUsername(message);
 
-        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
-        var currencies = await currenciesTask;
-        var reportData = await GetConsolidationByDateOrProduct(
-            message,
-            productViewModel.UserSelectedProductIds,
-            productDetailXml,
-            currencies);
+        return new ConsolidationByUsernameViewModel(message, productViewModel, currencies, enteredResult, reportData);
+    }
 
-        return new ConsolidationByGroupViewModel<ConsolidationByGroup>(
+    public async Task<ConsolidationByDateViewModel> Handle(ConsolidationByDateQuery message, CancellationToken cancellationToken)
+    {
+        var (productViewModel, currencies, enteredResult, reportData) = await GetConsolidationByDateOrProduct(message);
+
+        return new ConsolidationByDateViewModel(
             message,
             productViewModel,
             currencies,
-            await enteredResultTask,
+            enteredResult,
             reportData.ToList());
     }
 
-    public async Task<ExcelFileViewModel> Handle(ConsolidationByGroupExcelQuery message, CancellationToken cancellationToken)
+    public async Task<ConsolidationByProductViewModel> Handle(ConsolidationByProductQuery message, CancellationToken cancellationToken)
     {
-        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus);
-        var currenciesTask = consolidationService.GetCurrencies(message.ViewerId);
-        await Task.WhenAll(productsTask, currenciesTask);
+        var (productViewModel, currencies, enteredResult, reportData) = await GetConsolidationByDateOrProduct(message);
 
-        var currencies = await currenciesTask;
-        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+        return new ConsolidationByProductViewModel(
             message,
-            message.UserSelectedProductIds,
-            message.UserSelectedResourceIds,
-            await productsTask);
-        var reportData = await GetConsolidationByDateOrProduct(
-            message,
-            validUserSelectedProductIds.JoinWithComma(),
-            productDetailXml,
-            currencies);
-        var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
-
-        return workbook.BuildExcelFile(message, reportData, productNames, currencies);
+            productViewModel,
+            currencies,
+            enteredResult,
+            reportData.ToList());
     }
 
-    private Task<IEnumerable<ConsolidationByGroup>> GetConsolidationByDateOrProduct(
-        ConsolidationByGroupQuery message,
-        string validUserSelectedProductIds,
-        string productDetailXml,
-        IEnumerable<ConsolidationCurrency> currencies)
+    public async Task<ExcelFileViewModel> Handle(ConsolidationExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = new ConsolidationParam(
-            message.ViewerId,
-            message.UserSelectedCurrencyId,
-            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-            message.ToDate,
-            validUserSelectedProductIds,
-            productDetailXml,
-            message.ReportType,
-            appSettings.SettingStatus,
-            message.Site,
-            currencies);
+        if (message.ReportType == ConsolidationReportType.ByUsername)
+        {
+            var (consolidationByUsername, productNamesByUsername, currenciesByUsername) = await GetConsolidationByUsernameExcel(message);
 
-        return consolidationService.GetConsolidationByDateOrProduct(param);
+            return usernameWorkbook.BuildExcelFile(message, consolidationByUsername, productNamesByUsername, currenciesByUsername);
+        }
+
+        var (consolidationByDateOrProduct, productNamesByDateOrProduct, currenciesByDateOrProduct) = await GetConsolidationByDateOrProductExcel(message);
+
+        return dateOrProductWorkbook.BuildExcelFile(message, consolidationByDateOrProduct, productNamesByDateOrProduct, currenciesByDateOrProduct);
     }
 }

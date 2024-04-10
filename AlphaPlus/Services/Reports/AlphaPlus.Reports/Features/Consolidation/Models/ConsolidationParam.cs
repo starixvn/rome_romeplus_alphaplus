@@ -7,7 +7,7 @@ public record ConsolidationParam(
     DateTime ToDate,
     string ProductIds,
     string ProductDetailsXml,
-    byte ReportType,
+    string ReportType,
     byte SettingStatus,
     string SiteName,
     IEnumerable<ConsolidationCurrency> Currencies);

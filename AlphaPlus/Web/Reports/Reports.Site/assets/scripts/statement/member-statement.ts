@@ -3,7 +3,6 @@
 /// <reference path="../components/daterangepicker.ts" />
 /// <reference path="../components/client-pager.ts" />
 /// <reference path="../components/single-selection-dropdown.ts" />
-/// <reference path="../components/link-builder.ts" />
 /// <reference path="statement.ts" />
 
 class MemberStatementView extends StatementView {
@@ -24,10 +23,9 @@ class MemberStatementView extends StatementView {
         pagerComponent: ClientPagerComponent,
         topWindow: any,
         reportTypeComponent: SingleSelectionDropdownComponent,
-        windowLocation: any,
-        linkBuilderComponent: LinkBuilderComponent
+        windowLocation: any
     ) {
-        super(dateRangePickerComponent, pagerComponent, topWindow, linkBuilderComponent);
+        super(dateRangePickerComponent, pagerComponent, topWindow);
 
         this.reportTypeComponent = reportTypeComponent;
         this.windowLocation = windowLocation;
@@ -94,7 +92,6 @@ $(function () {
         new ClientPagerComponent(),
         window.top,
         new SingleSelectionDropdownComponent(),
-        window.location,
-        new LinkBuilderComponent()
+        window.location
     ).init();
 });

@@ -12,7 +12,7 @@ namespace AlphaPlus.Reports.Site.Features.Consolidation;
 public interface IConsolidationWorkbook
 {
     ExcelFileViewModel BuildExcelFile(
-        ConsolidationByGroupExcelQuery message,
+        ConsolidationExcelQuery message,
         IEnumerable<ConsolidationByGroup> reportData,
         string productNames,
         IEnumerable<ConsolidationCurrency> currencies);
@@ -23,16 +23,16 @@ public class ConsolidationWorkbook(IWebHostEnvironment webHostEnvironment) :
     IConsolidationWorkbook
 {
     public ExcelFileViewModel BuildExcelFile(
-        ConsolidationByGroupExcelQuery message,
+        ConsolidationExcelQuery message,
         IEnumerable<ConsolidationByGroup> reportData,
         string productNames,
         IEnumerable<ConsolidationCurrency> currencies)
     {
         var fromDate = message.FromDate.ToShortDateWithSlash();
         var toDate = message.ToDate.ToShortDateWithSlash();
-        var isDaily = message.ReportType == ConsolidationReportTypeConstants.Daily;
-        var templateName = isDaily ? "ConsolidationByDate" : "ConsolidationByProduct";
-        var reportTypeName = isDaily ? Resources.ConsolidationReportByDate : Resources.ConsolidationReportByProduct;
+        var byDate = message.ReportType == ConsolidationReportType.ByDate;
+        var templateName = byDate ? "ConsolidationByDate" : "ConsolidationByProduct";
+        var reportTypeName = byDate ? Resources.ConsolidationReportByDate : Resources.ConsolidationReportByProduct;
         var currencyName = message.UserSelectedCurrencyId == 0
             ? Resources.AllCurrencies
             : currencies.FirstOrDefault(c => c.Currency == message.UserSelectedCurrencyId)?.CurrencyName ?? string.Empty;

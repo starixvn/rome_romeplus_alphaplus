@@ -15,7 +15,7 @@
         sortComponent: SortComponent,
         reportTooltip: ReportTooltip
     ) {
-        super(new LinkBuilderComponent());
+        super();
 
         this.productComponent = productComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
@@ -31,19 +31,10 @@
         this.initComponents();
         this.registerEvents();
 
-        // remove style="visibility:hidden"
-        // TableSorter cannot run with style="display:none"
-        this.$tableReport.removeAttr('style');
-
         $.unblockUI();
     }
 
     initComponents() {
-        if ($('#IsSetDefaultStackMode').val().toLowerCase() === 'true' && alphaReports.screenSmallThan768()) {
-            this.setStackMode();
-            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winloss'));
-        }
-
         this.productComponent.render();
 
         if ($('#IsHistoricReport').val().toLowerCase() === 'true') {
@@ -52,7 +43,16 @@
             this.dateRangePickerComponent.render();
         }
 
+        if ($('#IsSetDefaultStackMode').val().toLowerCase() === 'true' && alphaReports.screenSmallThan768()) {
+            this.setStackMode();
+            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winloss'));
+            super.hideFilter();
+        }
+
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
+        // remove style="visibility:hidden"
+        // TableSorter cannot run with style="display:none"
+        this.$tableReport.removeAttr('style');
     }
 
     registerEvents() {

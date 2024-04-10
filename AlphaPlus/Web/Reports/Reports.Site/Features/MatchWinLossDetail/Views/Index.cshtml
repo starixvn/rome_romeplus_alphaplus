@@ -82,7 +82,6 @@
             </ul>
         </td>
     }
-
 }
 @section Styles {
     <link rel="stylesheet" href="~/bundles/matchwinlossdetail/matchwinlossdetail.css" asp-append-version="true" />
@@ -92,8 +91,7 @@
 }
 @model MatchWinLossDetailViewModel
 <report-title model="Model.PageHeader" />
-<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")"
-    role="form" id="report-form">
+<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form">
     <product model="@Model.ProductViewModel" />
     <daterange-picker model="Model.DateRangePicker" />
     <league model="@Model.LeagueViewModel" />

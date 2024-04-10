@@ -2,6 +2,7 @@
 
 interface JQuery {
     multiselect(option: any): void;
+    multiselect(method: string, value: any): void;
 }
 
 class ProductMultiSelectionComponent {
@@ -53,7 +54,10 @@ class ProductMultiSelectionComponent {
         this.$dropdownProduct.next().find('.multiselect-container li').removeClass('hidden');
         this.$multiSelectButtonProduct = this.$dropdownProduct.parent().find('.multiselect.btn');
 
-        this.$dropdownProductDetail.length && this.shouldEnableProductDetailDropdown();
+        if (this.$dropdownProductDetail.length) {
+            this.deselectInvalidProductIds();
+            this.shouldEnableProductDetailDropdown();
+        }
     }
 
     private optionClass(element: HTMLElement) {
@@ -77,6 +81,17 @@ class ProductMultiSelectionComponent {
         }
     }
 
+    private deselectInvalidProductIds() {
+        const selectedProductIds = this.getSelectedItems(this.$dropdownProduct);
+        const productIds = this.$hiddenProductIdsInput.val().split(',');
+        if (selectedProductIds.length !== productIds.length) {
+            const unselectedProductIds = selectedProductIds.filter((id) => !productIds.includes(id));
+            if (unselectedProductIds.length) {
+                this.$dropdownProduct.multiselect('deselect', unselectedProductIds);
+            }
+        }
+    }
+
     validateProductIds = (): boolean => {
         const isValid = this.$dropdownProduct.find('option:selected').length > 0;
         isValid
@@ -86,7 +101,7 @@ class ProductMultiSelectionComponent {
         return isValid;
     };
 
-    getProductIds = (): string => this.getSelectedItems(this.$dropdownProduct);
+    getProductIds = (): string => this.getSelectedItems(this.$dropdownProduct).join(',');
 
     /****** End of Product Dropdown ******/
 
@@ -160,13 +175,13 @@ class ProductMultiSelectionComponent {
         isEnableProductDetailDropdown && this.$dropdownProductDetail.multiselect('refresh');
     }
 
-    getProductDetailIds = (): string => this.getSelectedItems(this.$dropdownProductDetail);
+    getProductDetailIds = (): string => this.getSelectedItems(this.$dropdownProductDetail).join(',');
     /****** End of Product Details Dropdown ******/
 
     private getSelectedItems($dropdown: JQuery) {
         const selected = [];
         $dropdown.find('option:selected').each((_, item) => selected.push($(item).val()));
 
-        return selected.join(',');
+        return selected;
     }
 }

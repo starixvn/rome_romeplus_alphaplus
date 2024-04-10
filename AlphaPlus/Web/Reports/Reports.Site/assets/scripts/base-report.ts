@@ -1,13 +1,9 @@
-﻿/// <reference path="components/link-builder.ts" />
-
-interface JQueryStatic {
+﻿interface JQueryStatic {
     blockUI(): void;
     unblockUI(): void;
 }
 
 class BaseReport {
-    linkBuilderComponent: LinkBuilderComponent;
-
     $pageTitle: JQuery;
     $reportForm: JQuery;
     $tableReport: JQuery;
@@ -17,8 +13,7 @@ class BaseReport {
 
     levels = ['member', 'agent', 'master', 'super'];
 
-    constructor(linkBuilderComponent: LinkBuilderComponent) {
-        this.linkBuilderComponent = linkBuilderComponent;
+    constructor() {
         this.initBaseReport();
     }
 
@@ -30,7 +25,7 @@ class BaseReport {
 
         // register event
         this.initBaseReportLegend();
-        $('.icon-filter').click(this.onClickIconFilter);
+        $('.icon-filter').click(() => this.onClickIconFilter());
         this.$reportForm.submit((event) => this.onSubmitReport(event));
 
         this.$tableReport.stickyTableHeaders();
@@ -75,13 +70,10 @@ class BaseReport {
         this.$reportLegend = $('#report-legend');
     };
 
-    private onClickIconFilter = () => {
-        const filter = this.$reportForm;
-        const currentHideState = filter.hasClass('hide');
-        currentHideState ? this.showFilter() : this.hideFilter();
-
-        //this.replaceHrefParam('IsFilterVisible', currentHideState);
-    };
+    protected onClickIconFilter() {
+        const isHideFilter = this.$reportForm.hasClass('hide');
+        isHideFilter ? this.showFilter() : this.hideFilter();
+    }
 
     private showFilter() {
         this.$pageTitle.removeClass('hide-filter');
@@ -92,10 +84,6 @@ class BaseReport {
         this.$pageTitle.addClass('hide-filter');
         this.$reportForm.addClass('hide');
     }
-
-    // private replaceHrefParam(paramName: string, paramValue: any) {
-    //     this.linkBuilderComponent.updateParam(paramName, paramValue);
-    // }
 
     protected onSubmitReport(event, hasStackIcon: boolean = undefined, sortInfo: SortInfo = undefined) {
         const isFilterVisibleValue = !this.$reportForm.hasClass('hide') && !alphaReports.screenSmallThan768();
@@ -127,23 +115,27 @@ class BaseReport {
     }
 
     protected registerDrilldownableEvents() {
-        const handleDrilldownable = ($element) => {
-            const $custLevelId = $('#CustLevelId');
-            const custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
+        this.$pageTitle.find('.breadcrumb-link').click((e) => this.handleDrilldownable($(e.target)));
+        this.$tableReport.find('.downline-link').click((e) => this.handleDrilldownable($(e.target)));
+    }
 
-            $custLevelId.val(custLevelIdValue);
-            $('#CustId').val($element.data('custid'));
-            $('#CustName').val($element.data('custname'));
-            $('#product-ids').val(this.$tableReport.data('productids'));
-            $('#resource-ids').val(this.$tableReport.data('resourceids'));
-            $('#from-date').val(this.$tableReport.data('fromdate'));
-            $('#to-date').val(this.$tableReport.data('todate'));
+    private handleDrilldownable($element: JQuery) {
+        const $custLevelId = $('#CustLevelId');
+        const custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
 
-            this.$reportForm.submit();
-        };
+        $custLevelId.val(custLevelIdValue);
+        this.addParamDrilldownable('CustId', $element.data('custid'));
+        this.addParamDrilldownable('CustName', $element.data('custname'));
+        this.addParamDrilldownable('product-ids', this.$tableReport.data('productids'));
+        this.addParamDrilldownable('resource-ids', this.$tableReport.data('resourceids'));
+        this.addParamDrilldownable('from-date', this.$tableReport.data('fromdate'));
+        this.addParamDrilldownable('to-date', this.$tableReport.data('todate'));
 
-        this.$pageTitle.find('.breadcrumb-link').click((e) => handleDrilldownable($(e.target)));
+        this.$reportForm.submit();
+    }
 
-        this.$tableReport.find('.downline-link').click((e) => handleDrilldownable($(e.target)));
+    private addParamDrilldownable(hiddenFieldId: string, value: string) {
+        const $hiddenField = this.$reportForm.find(`#${hiddenFieldId}`);
+        $hiddenField.length && $hiddenField.val(value);
     }
 }

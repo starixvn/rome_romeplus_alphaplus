@@ -14,7 +14,7 @@ public class OutstandingQuery : BaseQuery, IRequest<OutstandingViewModel>
 
     public string SortPropertyName { get; set; } = nameof(OutstandingModel.CustName);
 
-    public bool IsDescendingSort { get; set; }
+    public byte DescendingSort { get; set; }
 
     public bool AutoFollowBetIsDummyAgent => Viewer.GetProperty<bool>(AutoFollowBetIsDummyAgentSessionKey);
 }

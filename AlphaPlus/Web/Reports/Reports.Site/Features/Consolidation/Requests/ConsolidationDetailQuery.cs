@@ -9,8 +9,6 @@ public class ConsolidationDetailQuery : ConsolidationQuery, IRequest<Consolidati
 
     public bool IsProtectedMode { get; }
 
-    public string DrilldownFromType { get; set; }
-
     public string ConsolidationProductIds { get; set; }
 
     public string ConsolidationResourceIds { get; set; }

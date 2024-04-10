@@ -3,9 +3,8 @@ using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
-public class ConsolidationByUsernameQuery
-    : ConsolidationQuery, IRequest<ConsolidationByUsernameViewModel<ConsolidationByUsername>>
+public class ConsolidationByUsernameQuery : ConsolidationQuery, IRequest<ConsolidationByUsernameViewModel>
 {
     public ConsolidationByUsernameQuery() : base()
-        => ReportType = ConsolidationReportTypeConstants.Product;
+        => ReportType = ConsolidationReportType.ByUsername;
 }

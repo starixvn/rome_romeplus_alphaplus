@@ -1,57 +1,189 @@
 ﻿/// <reference path="../core.ts" />
-/// <reference path="../base-report-new.ts" />
+/// <reference path="../base-report.ts" />
 
 interface Window {
     $: JQueryStatic;
 }
 
-class OutstandingViewNew extends BaseReportNew {
+class OutstandingView extends BaseReport {
     productComponent: ProductMultiSelectionComponent;
-    linkBuilderComponent: LinkBuilderComponent;
     displayOutstandingLevels: any;
+    $dataTable: JQuery;
+    isClickedCollapseExpandAll = false;
 
-    constructor(productComponent: ProductMultiSelectionComponent, linkBuilderComponent: LinkBuilderComponent) {
-        super(linkBuilderComponent);
+    constructor(productComponent: ProductMultiSelectionComponent) {
+        super();
         this.productComponent = productComponent;
     }
 
     init() {
-        super.init();
-
-        this.displayOutstandingLevels = JSON.parse($('#DisplayOutstandingLevelsJson').val());
         this.productComponent.render();
 
-        this.linkBuilderComponent.render();
-        this.registerEvents();
-        this.initHelp();
+        this.displayOutstandingLevels = JSON.parse($('#DisplayOutstandingLevelsJson').val());
         this.initDataTable();
-        this.registerDrilldownableEvents();
+
+        super.registerDrilldownableEvents();
     }
 
-    registerEvents = () => {
-        super.registerEvents();
-        this.$reportForm.submit(this.onSubmitReport);
-    };
+    initDataTable() {
+        const canSort = this.$tableReport.data('totalrecords') > 1;
+        const sortedcolumn = this.$tableReport.data('sortedcolumn').toLowerCase();
+        const isDescendingSort = this.$tableReport.data('descendingsort') === 1;
 
-    initDataTable = () => {
         let colunmSortIndex = 0;
         this.displayOutstandingLevels.forEach((element, index) => {
-            if ($(this.$sortPropertyName).val().toLowerCase() === `${element.DisplayName}Outstanding`.toLowerCase()) {
+            if (sortedcolumn === `${element.DisplayName}Outstanding`.toLowerCase()) {
                 colunmSortIndex = index + 1;
                 return;
             }
         });
 
-        super.initDataTable({
-            order: [[colunmSortIndex, JSON.parse(this.$isDescendingSort.val().toLowerCase()) ? 'desc' : 'asc']]
+        const tableOptions = this.buildTableOptions();
+        $.extend(tableOptions, {
+            ordering: canSort,
+            order: [[colunmSortIndex, isDescendingSort ? 'desc' : 'asc']]
         });
+
+        this.$dataTable = this.$tableReport.DataTable(tableOptions);
+
+        this.$tableReport
+            .find('tbody')
+            .on('click', 'td.control', (event) => this.onClickDetailControl(event.currentTarget));
+        this.$tableReport
+            .find('thead')
+            .on('click', 'th.control', (event) => this.collapseExpandAll(event.currentTarget));
+        this.$dataTable.on('draw.dt', () => this.triggerRedrawTable());
+    }
+
+    buildTableOptions() {
+        const self = this;
+        return {
+            language: {
+                processing: '',
+                emptyTable: $('#NoInformationIsAvailable').val()
+            },
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: -1,
+                    renderer: (api, rowIdx) => {
+                        const data = api
+                            .cells(rowIdx, ':hidden')
+                            .eq(0)
+                            .map(function (cell) {
+                                const header = $(api.column(cell.column).header());
+                                const idx = api.cell(cell).index();
+
+                                if (header.hasClass('control') || header.hasClass('never')) {
+                                    return '';
+                                }
+
+                                const dtPrivate = api.settings()[0];
+                                const cellData = dtPrivate.oApi._fnGetCellData(
+                                    dtPrivate,
+                                    idx.row,
+                                    idx.column,
+                                    'display'
+                                );
+
+                                return self.renderData(idx.column, header.text(), cellData);
+                            })
+                            .toArray()
+                            .join('');
+
+                        return self.renderDetail(rowIdx, data);
+                    }
+                }
+            },
+            columnDefs: [
+                {
+                    className: 'control',
+                    orderable: false,
+                    targets: -1
+                }
+            ],
+            paging: false,
+            searching: false,
+            bInfo: false,
+            fixedHeader: true,
+            processing: true,
+            drawCallback: this.drawCallback
+        };
+    }
+
+    renderData = (idxColumn: any, headerText: string, cellData: any) =>
+        `<li data-dtr-index="${idxColumn}"><span class="dtr-title">${headerText}</span><span class="dtr-data">${cellData}</span></li>`;
+
+    renderDetail = (rowIdx: any, data: any) => (data ? $(`<ul data-dtr-index="${rowIdx}"/>`).append(data) : false);
+
+    drawCallback = () => {
+        $('tbody').append($('tr.tbl-footer'));
+        this.$tableReport.removeClass('hide');
+    };
+
+    onClickDetailControl(element) {
+        const parentRow = $(element).closest('tr');
+        const childRow = $(parentRow).next();
+        parentRow.hasClass('tbl-footer')
+            ? this.onClickFooterRow(parentRow, childRow)
+            : this.onClickBodyRow(parentRow, childRow);
+    }
+
+    onClickFooterRow = (parentRow, childRow) => {
+        parentRow.hasClass('parent') ? childRow.addClass('tbl-footer') : childRow.removeClass('tbl-footer');
+
+        if (this.isClickedCollapseExpandAll) {
+            this.isClickedCollapseExpandAll = false;
+            return;
+        }
+
+        setTimeout(() => {
+            const scrollTo = $(document).height();
+            $(window).scrollTop(scrollTo + 15);
+        }, 100);
+    };
+
+    onClickBodyRow = (parentRow, childRow) => {
+        if (childRow.hasClass('child')) {
+            parentRow.hasClass('even')
+                ? childRow.removeClass('odd').addClass('even')
+                : childRow.removeClass('even').addClass('odd');
+        }
+    };
+
+    private collapseExpandAll = (element) => {
+        $.blockUI();
+        this.isClickedCollapseExpandAll = true;
+        setTimeout(() => {
+            const targetParent = $(element).parent();
+
+            if (targetParent.hasClass('parent')) {
+                targetParent.removeClass('parent');
+                this.triggerClickDetailWhenSwitchAll($('tbody tr.parent'));
+            } else {
+                targetParent.addClass('parent');
+                this.triggerClickDetailWhenSwitchAll($('tbody tr').not('.parent'));
+            }
+
+            $.unblockUI();
+        }, 100);
+    };
+
+    private triggerClickDetailWhenSwitchAll = (controlArray) => {
+        controlArray.each((_, detailButton) => $(detailButton).find('.control').click());
+        this.$dataTable.fixedHeader.adjust();
     };
 
     triggerRedrawTable = () => {
-        super.triggerRedrawTable();
+        this.doAdjustHeader();
+        $('tbody tr.parent').each((_, element) => this.onClickDetailControl(element));
+    };
 
-        this.replaceHrefParam('SortPropertyName', this.getColumnSortName());
-        this.replaceHrefParam('IsDescendingSort', this.isDescendingSort());
+    doAdjustHeader = () => {
+        this.$dataTable.fixedHeader.adjust();
+
+        const scrollTo = $('.fixedHeader-floating thead').length > 0 ? $(document).height() : 0;
+        $(window).scrollTop(scrollTo);
     };
 
     getColumnSortName = () => {
@@ -67,29 +199,21 @@ class OutstandingViewNew extends BaseReportNew {
         return 'CustName';
     };
 
-    onSubmitReport = (e: any) => {
-        $.blockUI();
+    isDescendingSort = () => this.$dataTable.order()[0][1] !== 'asc';
 
+    onSubmitReport(event: any) {
         if (!this.productComponent.validateProductIds()) {
-            $.unblockUI();
-            e.preventDefault();
-
+            event.preventDefault();
             return;
         }
 
-        const columnSortName = this.getColumnSortName();
-        const isDescendingSort = this.isDescendingSort();
-
-        this.replaceHrefParam('SortPropertyName', columnSortName);
-        this.replaceHrefParam('IsDescendingSort', isDescendingSort);
-
-        this.$sortPropertyName.val(columnSortName);
-        this.$isDescendingSort.val(isDescendingSort ? 'True' : 'False');
-
-        this.$isFilterVisible.val(String(alphaReports.screenSmallThan768() ? false : !this.$reportForm.is(':hidden')));
-    };
+        super.onSubmitReport(event, undefined, {
+            sortPropertyName: this.getColumnSortName(),
+            descendingSort: this.isDescendingSort() ? 1 : 0
+        });
+    }
 }
 
 $(function () {
-    new OutstandingViewNew(new ProductMultiSelectionComponent(), new LinkBuilderComponent()).init();
+    new OutstandingView(new ProductMultiSelectionComponent()).init();
 });

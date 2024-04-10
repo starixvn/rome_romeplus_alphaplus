@@ -18,10 +18,9 @@ class ProgressiveContributionView extends BaseReport {
         productComponent: ProductMultiSelectionComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         monthPickerComponent: MonthPickerComponent,
-        reportTooltip: ReportTooltip,
-        linkBuilderComponent: LinkBuilderComponent
+        reportTooltip: ReportTooltip
     ) {
-        super(linkBuilderComponent);
+        super();
 
         this.productComponent = productComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
@@ -131,7 +130,6 @@ $(function () {
         new ProductMultiSelectionComponent(),
         new DateRangePickerComponent(),
         new MonthPickerComponent(),
-        new ReportTooltip(),
-        new LinkBuilderComponent()
+        new ReportTooltip()
     ).init();
 });

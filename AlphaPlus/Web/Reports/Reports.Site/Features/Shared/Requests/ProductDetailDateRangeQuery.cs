@@ -8,7 +8,7 @@ public class ProductDetailDateRangeQuery : DefaultDateRangeQuery
 
     public bool IsStackMode { get; set; }
 
-    public string SortPropertyName { get; set; }
+    public string SortPropertyName { get; set; } = "CustName";
 
     public byte DescendingSort { get; set; }
 
