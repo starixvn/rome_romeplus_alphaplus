@@ -7,7 +7,6 @@
     using Requests;
     using ViewModels;
 
-    //TODO: [HmacAuthorizationFilter]
     public class AnnouncementController : BaseController
     {
         private readonly IMediator mediator;

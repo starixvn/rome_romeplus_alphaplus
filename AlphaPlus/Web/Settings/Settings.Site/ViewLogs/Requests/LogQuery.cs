@@ -156,7 +156,7 @@
             var custStatusDict = new Dictionary<string, bool>
             {
                 { "disablevirtualsports", UserPermission.IsEnableProduct(Settings.ViewLogs.API.Constants.ProductIdConstants.VirtualSports) },
-                { "44", true /*TODO UserPermission.IsShowSportsbook2*/ }
+                { "44", UserPermission.IsEnableProduct(Settings.ViewLogs.API.Constants.ProductIdConstants.Sportsbook2) }
             };
 
             foreach (var statusMapping in AppSettings.StatusMappings)
