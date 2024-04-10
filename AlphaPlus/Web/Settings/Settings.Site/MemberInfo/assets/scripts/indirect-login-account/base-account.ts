@@ -69,7 +69,7 @@ abstract class BaseAccount {
                 if (data.ErrCode) {
                     this.alert.showError(data.ErrMsg);
                 } else {
-                    this.alert.show(data.Code, data.message);
+                    this.alert.show(data.Code, data.Message);
                     data.IsOk && this.onSubmitFormSuccess();
                 }
             },

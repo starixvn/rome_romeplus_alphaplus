@@ -46,7 +46,7 @@ class Disconnect {
         if (data.ErrCode) {
             this.alert.showError(data.ErrMsg);
         } else {
-            this.alert.show(data.Code, data.message);
+            this.alert.show(data.Code, data.Message);
 
             if (data.IsOk) {
                 this.topWindow.closePopupAndReloadMainFrameAfterUpdateSuccess(3000);

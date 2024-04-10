@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Site.Requests.IndirectLoginAccount
 {
-    using AlphaPlus.Core.Helpers;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
 
@@ -15,8 +14,6 @@
         public string Password { get; set; }
 
         public string BrowserSize { get; set; }
-
-        public HttpRequest Request => AlphaContext.Current.Request;
 
         public override bool IsValid()
             => base.IsValid() && !string.IsNullOrWhiteSpace(Password) && !IsInternal && IsAllowedIndirectLogin;

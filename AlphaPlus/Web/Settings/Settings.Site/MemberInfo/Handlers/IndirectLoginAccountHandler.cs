@@ -52,7 +52,7 @@
         public async Task<Result> Handle(NewAccountCommand message, CancellationToken cancellation)
         {
             var countryCode = GetCountryCode(message.IP);
-            var requestInfo = RequestInfoHelper.GetRequestInfo(message.Request, message.IP, message.BrowserSize, countryCode);
+            var requestInfo = RequestInfoHelper.GetRequestInfo(AlphaContext.Current.Request, message.IP, message.BrowserSize, countryCode);
 
             return await service.NewAccountAsync(new NewAccountParam(
                 message.CustName,
@@ -71,7 +71,7 @@
         public async Task<Result> Handle(UpdatePasswordCommand message, CancellationToken cancellation)
         {
             var countryCode = GetCountryCode(message.IP);
-            var requestInfo = RequestInfoHelper.GetRequestInfo(message.Request, message.IP, message.BrowserSize, countryCode);
+            var requestInfo = RequestInfoHelper.GetRequestInfo(AlphaContext.Current.Request, message.IP, message.BrowserSize, countryCode);
 
             return await service.UpdatePasswordAsync(new UpdatePasswordParam(
                 message.CustId,
