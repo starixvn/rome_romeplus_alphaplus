@@ -100,6 +100,11 @@
 
     &.alternative-row-table {
         tbody {
+            tr{
+                &:nth-child(even){
+                    background-color: $table-even-bg;
+                }
+            }
             .even-row, .even {
                 background-color: $table-even-bg;
             }

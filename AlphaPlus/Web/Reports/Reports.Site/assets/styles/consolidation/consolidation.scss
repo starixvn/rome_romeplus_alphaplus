@@ -1,5 +1,21 @@
 ﻿@import '../_mixins.scss';
+:root,
+:root [data-theme='light'] {
+ 
+    --bg-username-row: #fbe0c5;
+    --bg-consolidation-pt-row: #fef7f0;
+    --bg-percent: url('../images/percent.svg') center center no-repeat;
 
+}
+:root [data-theme='dark'] {
+ 
+    --bg-username-row: #2e2c1f;
+    --bg-consolidation-pt-row: #3a3930;
+    --bg-percent: url('../images/percent-dark.svg') center center no-repeat;
+}
+.fimter{
+    padding-right: 0;
+}
 .dropdown-currencies-container {
     .multiselect .multiselect-selected-text {
         width: 110px;
@@ -16,7 +32,7 @@
     }
 
     .username-row {
-        background-color: #fbe0c5;
+        background-color: var(--bg-username-row);
         cursor: pointer;
 
         > td {
@@ -37,7 +53,7 @@
     }
 
     .consolidation-pt-row {
-        background-color: #fef7f0;
+        background-color: var(--bg-consolidation-pt-row);
 
         &:hover {
             cursor: default;
@@ -52,7 +68,7 @@
         position: absolute;
         right: 0;
         top: 4px;
-        background: url('../images/percent.svg') center center no-repeat;
+        background: var(--bg-percent);
         display: inline-block;
         width: 12px;
         height: 12px;

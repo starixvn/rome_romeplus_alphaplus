@@ -1,10 +1,23 @@
-﻿.non-entered-note {
+﻿:root,
+:root [data-theme='light'] {
+    --color-rp-win-loss: #ff4d00;
+    --color-non-entered-note1: #3333cc; 
+    --color-non-entered-note2: #ff4d00; 
+    --bg-rp-win-loss-total: #f8eb95;
+}
+:root [data-theme='dark'] {
+    --color-rp-win-loss: #ffd439;
+    --color-non-entered-note1: #3266cf; 
+    --color-non-entered-note2: #ff4D00; 
+    --bg-rp-win-loss-total: #7f3d1d;
+}
+.non-entered-note {
     font-weight: bold;
-    color: #3333cc;
+    color: var(--color-non-entered-note1);
     margin-left: 14px;
 
     span {
-        color: #ff4d00;
+        color: var(--color-non-entered-note2);
     }
 }
 
@@ -13,7 +26,7 @@ thead {
         font-weight: bold;
 
         td {
-            background-color: #f8eb95;
+            background-color: var(--bg-rp-win-loss-total);
             height: 28px;
             padding: 4px 8px;
             white-space: nowrap;
@@ -28,7 +41,7 @@ thead {
 
         td:nth-child(3),
         td:nth-child(5) {
-            color: #ff4d00;
+            color: var(--color-rp-win-loss);
         }
     }
 }

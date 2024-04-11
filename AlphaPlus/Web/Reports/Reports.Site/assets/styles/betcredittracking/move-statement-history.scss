@@ -1,5 +1,30 @@
 ﻿@import '../variables';
+:root,
+:root [data-theme='light'] {
+    --border-total-statement: #b1cbe0;
+    --bg-total-statement: #E8F4FD;
+    --bg-title-total: #BCD7EE;
+    --color-title-total: #0B599C;
+    --color-text-total: #444;
+    --border-total-statement-last: #E8BB90;
+    --bg-total-statement-last: #FDF9EE;
+    --bg-title-total-last: #F6C699;
+    --color-title-total-last: #7E3D00;
+    --color-text-total-last:  #215ACE;
+}
 
+:root [data-theme='dark'] {
+    --border-total-statement: #6B8599;
+    --bg-total-statement: #425A6D;
+    --bg-title-total: #BCD7EE;
+    --color-title-total: #0B599C;
+    --color-text-total: #ededed;
+    --border-total-statement-last: #736A53;
+    --bg-total-statement-last: #423D30;
+    --bg-title-total-last: #F6C699;
+    --color-title-total-last: #7E3D00;
+    --color-text-total-last: #41A4FF;
+}
 .page-title {
     border-bottom: none;
 
@@ -20,7 +45,7 @@
 }
 
 .member-row {
-    background-color: $high-light-row-color;
+    background-color: var(--bg-high-light-row-color);
     font-weight: bold;
 }
 
@@ -55,8 +80,8 @@
 
     .item {
         width: 160px;
-        border: 1px solid #b1cbe0;
-        background-color: #e8f4fd;
+        border: 1px solid var(--border-total-statement);
+        background-color: var(--bg-total-statement);
         border-radius: 3px;
         padding: 3px;
         margin-right: 12px;
@@ -75,9 +100,9 @@
         }
 
         .title-total {
-            background: #bcd7ee;
+            background: var(--bg-title-total);
             font-weight: bold;
-            color: #0b599c;
+            color: var(--color-title-total);
             height: 40px;
             display: flex;
             align-items: center;
@@ -121,22 +146,22 @@
         }
 
         .text-total {
-            color: #444;
+            color: var(--color-text-total);
             font-weight: bold;
             padding: 7px 0;
         }
 
         &.last-item {
-            border-color: #e8bb90;
-            background-color: #fdf9ee;
+            border-color: var(--border-total-statement-last);
+            background-color: var(--bg-total-statement-last);
 
             .title-total {
-                color: #7e3d00;
-                background: #f6c699;
+                color: var(--color-title-total-last);
+                background: var(--bg-title-total-last);
             }
 
             .text-total {
-                color: #215ace;
+                color: var(--color-text-total-last);
             }
         }
     }

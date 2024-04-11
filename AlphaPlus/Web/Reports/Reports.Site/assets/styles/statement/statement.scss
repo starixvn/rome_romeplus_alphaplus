@@ -1,4 +1,14 @@
-﻿#report-legend {
+﻿:root,
+:root [data-theme='light'] {
+ 
+    --color-statement-term: #b50000;
+
+}
+:root [data-theme='dark'] {
+ 
+    --color-statement-term: #FF4F50;
+}
+#report-legend {
     font-size: 13px;
     font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;
     line-height: 24px;
@@ -6,7 +16,7 @@
 
 .statement-term {
     font-weight: bold;
-    color: #b50000;
+    color: var(--color-statement-term);
 }
 
 .formular-accumulated-total {
@@ -65,7 +75,7 @@ body {
 
     .form-group.statement-detail-title {
         font-weight: bold;
-        color: #b50000;
+        color: var(--color-statement-term);
         line-height: 40px;
         font-size: 13px;
         border-bottom: 1px solid #cecece;

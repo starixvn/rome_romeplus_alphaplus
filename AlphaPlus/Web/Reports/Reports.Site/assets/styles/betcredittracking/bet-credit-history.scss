@@ -19,11 +19,11 @@
 }
 
 .highlight-row {
-    background: $high-light-row-color;
+    background: var(--bg-high-light-row-color);
 }
 
 .red-cell {
-    background: #ff6464;
+    background: var(--bg-red-cell);
 }
 
 .nav.nav-tabs > li:last-child.active:after,
