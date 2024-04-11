@@ -13,6 +13,7 @@ COPY "Services/Reports/AlphaPlus.Reports/AlphaPlus.Reports.csproj" "Services/Rep
 
 COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
+COPY "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
 COPY "Web/Reports/Reports.Site/Reports.Site.csproj" "Web/Reports/Reports.Site/Reports.Site.csproj"
 
 # restore NuGet packages
@@ -26,6 +27,7 @@ COPY "Services/Reports/AlphaPlus.Reports" "Services/Reports/AlphaPlus.Reports"
 
 COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
 COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
+COPY "Modules/AlphaPlus.SecurityCode" "Modules/AlphaPlus.SecurityCode"
 
 COPY "Web/Reports/Reports.Site" "Web/Reports/Reports.Site"
 COPY "Shared" "Shared"

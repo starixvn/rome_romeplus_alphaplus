@@ -10,7 +10,7 @@
     <script src="~/bundles/winlossdetail/winlossdetail.js" asp-append-version="true"></script>
 }
 @model WinLossDetailViewModel
-<report-title model="Model.PageHeader" />
+<report-title-new model="Model.PageHeader" />
 <form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form">
     <product model="@Model.ProductViewModel" />
