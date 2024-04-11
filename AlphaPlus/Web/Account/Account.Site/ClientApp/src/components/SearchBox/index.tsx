@@ -3,6 +3,7 @@ import AutoSuggest from 'react-autosuggest';
 import { useTranslation } from 'react-i18next';
 
 import { Base_URL } from '../../constants';
+import { useGlobalContext } from '../../context/global-context';
 import styles from './SearchBox.module.scss';
 
 export const getSuggestionValue = (suggestion: any) => suggestion.UserName;
@@ -21,7 +22,7 @@ export const renderSuggestion = (suggestion: any) => {
 
 export default function SearchBox() {
     const { t } = useTranslation();
-    const [username, setUsername] = useState('');
+    const { username, setUsername } = useGlobalContext();
     const [suggestions, setSuggestions] = useState([]);
 
     const onSuggestionsFetchRequested = ({ value }: { value: string }) => {
@@ -35,22 +36,34 @@ export default function SearchBox() {
     };
 
     const onChange = (e: any, { newValue }: { newValue: string }) => {
-        setUsername(newValue);
+        setUsername?.(newValue);
     };
 
     const shouldRenderSuggestions = (value: string) => {
         return value.trim().length > 2;
     };
 
+    const handleSearchClick = () => {
+        if (username) {
+            onSuggestionsClearRequested();
+        }
+    };
+
+    const handleSearchKeyPress = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === 'Enter') {
+            handleSearchClick();
+        }
+    };
+
     const inputProps = {
         type: 'search',
         className: styles['txt-search'],
         onChange: onChange,
-        // onKeyPress: this.handleSearchKeyPress,
+        onKeyPress: handleSearchKeyPress,
         placeholder: t('userNamePlaceHolder'),
         // onFocus: zoomDisable,
         // onBlur: zoomEnable,
-        value: username
+        value: username ?? ''
     };
 
     return (
@@ -65,7 +78,7 @@ export default function SearchBox() {
                 focusInputOnSuggestionClick={false}
                 inputProps={inputProps}
             />
-            <span className={styles['icon-search']} />
+            <span className={styles['icon-search']} onClick={handleSearchClick} />
         </div>
     );
 }

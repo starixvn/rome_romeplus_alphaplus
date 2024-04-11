@@ -1,3 +1,16 @@
 {
-    "userNamePlaceHolder": "Username or First/Last Name"
+    "userNamePlaceHolder": "Username or First/Last Name",
+    "accountNotFound": "Account not found!",
+    "master": "Master",
+    "agent": "Agent",
+    "customer": "Customer",
+    "viewLog": "View Log",
+    "createMemberWithQRCode": "Create Member with QR Code",
+    "ClosedByAdmin": "This account was closed by admin.",
+    "ClosedByUpline": "This account was closed by upline.",
+    "ClosedByArchive": "This account was closed by inactivity.",
+    "ThisAccountWasSuspended": "This account was suspended.",
+    "ThisAccountWasDisabled": "This account was disabled.",
+    "LockedByFalseOTPSC": "This account has been locked due to multiple failed OTP/Security Code authentication attempts.",
+    "LockedByFalsePassword": "This account has been locked due to multiple failed password attempts."
 }

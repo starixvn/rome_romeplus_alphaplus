@@ -1,0 +1,82 @@
+.no-information {
+    padding: 4px 10px 0;
+    color: $text-red-color;
+}
+
+.block-info {
+    display: table;
+    width: 100%;
+    max-height: initial;
+    transition: max-height 0.25s ease-in;
+
+    .txt-name {
+        color: $link-color;
+    }
+
+    .enabled {
+        @extend %linkColor;
+        cursor: pointer;
+    }
+
+    .icon-viewlog {
+        margin-left: 4px;
+    }
+
+    .icon-clone-account {
+        padding-left: 5px;
+        font-size: 15px;
+        position: relative;
+        top: 2px;
+    }
+    // User status for business
+    .actived,
+    .closed,
+    .suspended {
+        font-weight: bold;
+        padding: 0 2px;
+    }
+
+    .actived {
+        color: #045ace;
+    }
+
+    .suspended {
+        color: $suspended-color;
+        background-color: $suspended-bgcolor;
+        font-weight: bold;
+    }
+
+    .disabled {
+        color: $disabled-color;
+        background-color: $disabled-bgcolor;
+        font-weight: bold;
+    }
+
+    .locked-falseOTPSC,
+    .locked-falsePassword,
+    .closed-byAdmin,
+    .closed-byUpline {
+        color: $closed-color !important;
+        font-weight: bold;
+    }
+
+    .locked-falseOTPSC {
+        background-color: $closed-otpsc-bgcolor;
+    }
+
+    .locked-falsePassword {
+        background-color: $closed-pwdothers-bgcolor;
+    }
+
+    .closed-byAdmin {
+        background-color: $closed-admin-bgcolor;
+    }
+
+    .closed-byUpline {
+        background-color: $closed-upline-bgcolor;
+    }
+
+    .closed-byArchive {
+        background-color: $closed-archive-bgcolor;
+    }
+}
