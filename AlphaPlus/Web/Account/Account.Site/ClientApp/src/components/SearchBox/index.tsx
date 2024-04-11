@@ -26,7 +26,7 @@ export default function SearchBox() {
     const [suggestions, setSuggestions] = useState([]);
 
     const onSuggestionsFetchRequested = ({ value }: { value: string }) => {
-        fetch(`${Base_URL}Account/GetUsernamesSuggestion?query=${value}`)
+        fetch(`${Base_URL}Settings/UserNameSuggestion?isAccountInfo=true&query=${value}`)
             .then((response) => response.json())
             .then((data) => setSuggestions(data));
     };
