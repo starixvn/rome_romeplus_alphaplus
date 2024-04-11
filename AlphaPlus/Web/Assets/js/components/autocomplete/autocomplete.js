@@ -149,7 +149,7 @@ function getSuggestions() {
             cacheSuggestion.slice(1, maxCache - 1)
         };
 
-        requestData(url + '&SuggestionQuery=' + oldValue, lookAt, 'get');
+        requestData(url + '&Query=' + oldValue, lookAt, 'get');
     }
 }
 

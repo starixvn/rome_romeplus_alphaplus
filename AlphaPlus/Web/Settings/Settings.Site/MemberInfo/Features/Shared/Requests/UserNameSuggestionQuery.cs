@@ -15,7 +15,7 @@
             DirectDownlines = false;
         }
 
-        public string SuggestionQuery { get; set; }
+        public string Query { get; set; }
 
         public bool DirectDownlines { get; set; }
 
@@ -23,6 +23,6 @@
 
         public override bool IsValid() =>
             base.IsValid() &&
-            !string.IsNullOrEmpty(SuggestionQuery);
+            !string.IsNullOrEmpty(Query);
     }
 }

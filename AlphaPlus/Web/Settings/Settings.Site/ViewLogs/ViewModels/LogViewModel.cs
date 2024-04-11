@@ -80,7 +80,7 @@
         {
             get
             {
-                return microSites.OldMainPath("~/UserNameSuggestion/GetUsernamesSuggestion");
+                return microSites.OldMainPath("~/UserNameSuggestion");
             }
         }
 

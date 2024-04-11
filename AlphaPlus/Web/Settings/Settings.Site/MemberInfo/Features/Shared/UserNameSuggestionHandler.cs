@@ -19,7 +19,7 @@
         public async Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message, CancellationToken cancellation)
             => usernameSuggestionService.GetUsernamesSuggestion(
                 message.CustId,
-                message.SuggestionQuery,
+                message.Query,
                 message.IsInternal,
                 message.DirectDownlines,
                 message.IsAccInfo);

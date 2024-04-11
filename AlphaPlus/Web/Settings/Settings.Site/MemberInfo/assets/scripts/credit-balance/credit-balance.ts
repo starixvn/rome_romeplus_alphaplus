@@ -132,7 +132,7 @@ class CreditBalance {
     };
 
     registerAutoSuggestion = () => {
-        const autoSuggestionUrl: string = this.$("#OldMainRootPath").val() + "UserNameSuggestion/GetUsernamesSuggestion";
+        const autoSuggestionUrl: string = this.$("#OldMainRootPath").val() + "UserNameSuggestion";
         const custId: number = this.$("#autoSuggestionCustId").val();
         const $userNameInput: JQuery = this.$(".typeahead");
 

@@ -50,7 +50,7 @@ class MyWatchlistAccounts extends MyWatchlistBase {
 
     private initUsernameAutoSuggestion(baseUrl: string, searchAccountId: string) {
         this.$('#txt-username').easyAutocomplete({
-            url: phrase => `${baseUrl}UserNameSuggestion/GetUsernamesSuggestion?SuggestionQuery=${phrase}&CustId=${searchAccountId}&DirectDownlines=true&IsAccInfo=false`,
+            url: phrase => `${baseUrl}UserNameSuggestion?Query=${phrase}&CustId=${searchAccountId}&DirectDownlines=true&IsAccInfo=false`,
             getValue: 'UserName',
             requestDelay: 200,
             minCharNumber: 2,
