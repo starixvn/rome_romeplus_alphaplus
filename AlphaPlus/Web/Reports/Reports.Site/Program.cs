@@ -1,9 +1,11 @@
 using System.Text.Json.Serialization;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Reports.Site.Features.Shared.Extensions;
 using AlphaPlus.RequestInfo;
+using AlphaPlus.SecurityCode.Filters;
 using Fanex.Data;
 using Fanex.Logging;
 using MediatR;
@@ -13,6 +15,14 @@ using Microsoft.AspNetCore.Mvc;
 var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("partialum.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .AddCommandLine(args);
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
 
 // Add services to the container.
@@ -22,7 +32,13 @@ builder.Services
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     })
-    .AddControllersWithViews()
+    .AddControllersWithViews(options =>
+    {
+        options.Filters.Add<CheckBelongingFilterAttribute>();
+        options.Filters.Add<AfterLoginFlowFilterAttribute>();
+        options.Filters.Add<ProtectedModeFilterAttribute>();
+        options.Filters.Add<SecurityCodeFilterAttribute>();
+    })
     .AddRazorOptions(options =>
     {
         // The old locations are /Views/{1}/{0}.cshtml and /Views/Shared/{0}.cshtml

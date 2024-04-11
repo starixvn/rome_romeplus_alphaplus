@@ -5,7 +5,7 @@ public class SecurityCodeOptions
     public const string SecurityCode = "SecurityCode";
     public bool IsActive { get; set; }
 
-    public IEnumerable<string> Paths { get; set; }
+    public IEnumerable<string> Paths { get; set; } = [];
 
     public IEnumerable<string> BetListsPaths { get; set; } = [];
 

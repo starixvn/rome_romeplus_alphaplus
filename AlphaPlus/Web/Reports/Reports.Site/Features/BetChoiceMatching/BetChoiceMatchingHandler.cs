@@ -23,7 +23,7 @@ public class BetChoiceMatchingHandler(
     public async Task<BetChoiceMatchingJsonModel> Handle(BetChoiceMatchingJsonQuery message, CancellationToken cancellationToken)
     {
         var param = new BetChoiceMatchingParam(
-            message.CustId,
+            message.ViewerId,
             message.EventDate,
             message.BetCount,
             message.IsAdminCanViewVNIP,
@@ -81,7 +81,7 @@ public class BetChoiceMatchingHandler(
     public async Task<ExcelFileViewModel> Handle(BetChoiceMatchingExcelQuery message, CancellationToken cancellationToken)
     {
         var param = new BetChoiceMatchingExcelParam(
-            message.CustId,
+            message.ViewerId,
             message.EventDate,
             message.BetCount,
             message.IsAdminCanViewVNIP,

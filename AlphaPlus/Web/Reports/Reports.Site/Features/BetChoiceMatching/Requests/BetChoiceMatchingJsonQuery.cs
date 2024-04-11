@@ -13,6 +13,5 @@ public class BetChoiceMatchingJsonQuery : BetChoiceMatchingQuery, IRequest<BetCh
 
     public bool IsAdminCanViewVNIP { get; }
 
-    public override bool IsValid()
-        => ViewerLevel.IsSuperLevel() && MinDate <= EventDate && base.IsValid();
+    public override bool IsValid() => MinDate <= EventDate && base.IsValid();
 }

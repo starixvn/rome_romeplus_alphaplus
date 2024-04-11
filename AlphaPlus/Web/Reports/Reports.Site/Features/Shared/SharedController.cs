@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.PartialUM.Exceptions;
 using AlphaPlus.Reports.Site.Features.Shared.Models;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Reports.Site.Features.Shared;
 
+[AllowProtectedMode]
 public class SharedController(Fanex.Logging.ILogger logger) : Controller
 {
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -21,13 +23,11 @@ public class SharedController(Fanex.Logging.ILogger logger) : Controller
 
             if (exception is PartialUMException partialUMException)
             {
-                viewModel = new(true, "Partial UM");
+                return Redirect($"/main/partialum/index?umfrom={partialUMException.StartTime}&umto={partialUMException.EndTime}");
             }
-            else
-            {
-                viewModel = new(false, exception.Message);
-                await logger.ErrorAsync(await ExceptionHelper.BuildError(HttpContext.Request, exception, exceptionHandlerFeature.Path));
-            }
+
+            viewModel = new(false, exception.Message);
+            await logger.ErrorAsync(await ExceptionHelper.BuildError(HttpContext.Request, exception, exceptionHandlerFeature.Path));
         }
 
         return View(viewModel);

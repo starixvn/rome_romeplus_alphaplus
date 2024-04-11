@@ -8,6 +8,4 @@ public class BetChoiceMatchingQuery : BaseQuery, IRequest<BetChoiceMatchingViewM
     public DateTime EventDate { get; set; } = DateTime.Today;
 
     public int BetCount { get; set; } = 2;
-
-    public override bool IsValid() => ViewerLevel.IsSuperLevel() && base.IsValid();
 }

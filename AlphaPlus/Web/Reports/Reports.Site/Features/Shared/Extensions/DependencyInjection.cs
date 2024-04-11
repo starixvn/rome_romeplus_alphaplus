@@ -14,6 +14,9 @@ using AlphaPlus.Reports.Site.Features.WinLoss;
 using AlphaPlus.Reports.Site.Features.WinLossAnalysis;
 using AlphaPlus.Reports.Site.Features.WinLossByProduct;
 using AlphaPlus.Reports.Site.Features.WinLossDetail;
+using AlphaPlus.SecurityCode.Configurations;
+using AlphaPlus.SecurityCode.Services;
+using AlphaPlus.SecurityCode.Web;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
@@ -26,6 +29,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         => services
+        .AddSecurityCodeServices(configuration)
         .AddSingleton<Func<int, bool>>(_ => UserPermission.IsShowOrNotExistProduct)
         .AddReportsServices(configuration)
         .AddTransient<IEnteredResultWorkbook, EnteredResultWorkbook>()
@@ -46,7 +50,17 @@ public static class DependencyInjection
         .AddTransient<IMoveStatementHistoryWorkbook, MoveStatementHistoryWorkbook>()
         .AddTransient<IIPMatchingWorkbook, IPMatchingWorkbook>()
         .AddTransient<IBetChoiceMatchingWorkbook, BetChoiceMatchingWorkbook>()
-        // for BetList export excel
+        .AddBetListExcelServices();
+
+    private static IServiceCollection AddSecurityCodeServices(this IServiceCollection services, IConfiguration configuration)
+        => services
+        .Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode))
+        .AddSingleton<ISecurityCodeHttpContext, SecurityCodeHttpContext>()
+        .AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>()
+        .AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>();
+
+    private static IServiceCollection AddBetListExcelServices(this IServiceCollection services)
+        => services
         .AddSingleton<ICacheRef, CacheRef>()
         .AddScoped<ITicketHelper, TicketHelper>()
         .AddScoped<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>()

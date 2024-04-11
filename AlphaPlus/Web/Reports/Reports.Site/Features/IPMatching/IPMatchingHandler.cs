@@ -28,7 +28,7 @@ public class IPMatchingHandler(
     private Task<ReportData<IPMatchingModel>> GetIPMatching(IPMatchingQuery message)
     {
         var param = new IPMatchingParam(
-            message.CustId,
+            message.ViewerId,
             message.Date,
             message.MemberCount,
             message.IsAdminCanViewVNIP,

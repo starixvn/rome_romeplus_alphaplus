@@ -51,7 +51,7 @@ public class ProgressiveContributionHandler(
         string validUserSelectedProductIds)
     {
         var param = new ProgressiveContributionParam(
-            message.CustId,
+            message.ViewerId,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
             message.ToDate,
             validUserSelectedProductIds,

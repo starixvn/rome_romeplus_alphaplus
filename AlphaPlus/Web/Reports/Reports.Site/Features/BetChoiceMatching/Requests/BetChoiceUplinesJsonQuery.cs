@@ -6,5 +6,4 @@ namespace AlphaPlus.Reports.Site.Features.BetChoiceMatching;
 
 public class BetChoiceUplinesJsonQuery : BaseQuery, IRequest<BetChoiceMatchingUplinesModel>
 {
-    public override bool IsValid() => ViewerLevel.IsSuperLevel() && base.IsValid();
 }

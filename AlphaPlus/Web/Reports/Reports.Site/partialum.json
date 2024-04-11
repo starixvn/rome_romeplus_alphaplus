@@ -1,0 +1,91 @@
+{
+    "PartialUMOptions": {
+        "CacheInSeconds": 15,
+        "PartialUM": [
+            {
+                "FunctionName": "Outstandings",
+                "SettingKeys": [
+                    "Age_Rpt_Outstanding_Master",
+                    "Age_Rpt_Outstanding_Agent",
+                    "Age_Rpt_Outstanding_Member"
+                ]
+            },
+            {
+                "FunctionName": "Group Win Loss Reports",
+                "SettingKeys": [
+                    "Age_Rpt_MatchSelResultEntered",
+                    "Age_Rpt_WinLoss_Master",
+                    "Age_Rpt_WinLoss_Agent",
+                    "Age_Rpt_WinLoss_Member",
+                    "Age_Rpt_WinLossDetail_Master",
+                    "Age_Rpt_WinLossDetail_Agent",
+                    "Age_Rpt_WinLossDetail_Member",
+                    "Age_Rpt_MatchWinLossDetail_Master",
+                    "Age_Rpt_MatchWinLossDetail_Agent",
+                    "Age_Rpt_MatchWinLossDetail_Member",
+                    "Age_Rpt_ConsolidatedGroupSelCurrency",
+                    "Age_Rpt_ConsolidatedGroup",
+                    "Age_Rpt_WinLossDetailByPT_Super"
+                ]
+            },
+            {
+                "FunctionName": "Group Win Loss Analysis",
+                "SettingKeys": [
+                    "Age_Rpt_WinlossAnalysis_Master",
+                    "Age_Rpt_WinlossAnalysis_Agent",
+                    "Age_Rpt_WinlossAnalysis_Member",
+                    "Age_Chart_WinlossAnalysis_Master",
+                    "Age_Chart_WinlossAnalysis_Agent",
+                    "Age_Chart_WinlossAnalysis_Member"
+                ]
+            },
+            {
+                "FunctionName": "Win Loss by Product",
+                "SettingKeys": [
+                    "Age_Rpt_WinLossByProduct_Master",
+                    "Age_Rpt_WinLossByProduct_Agent",
+                    "Age_Rpt_WinLossByProduct_Member"
+                ]
+            },
+            {
+                "FunctionName": "Commission by Bettype",
+                "SettingKeys": [
+                    "Age_Rpt_CommByBettype_Master",
+                    "Age_Rpt_CommByBettype_Agent",
+                    "Age_Rpt_CommByBettype_Member"
+                ]
+            },
+            {
+                "FunctionName": "Progressive Games Contribution",
+                "SettingKeys": [
+                    "Age_Rpt_ProgressiveGamesContribution_Master",
+                    "Age_Rpt_ProgressiveGamesContribution_Agent",
+                    "Age_Rpt_ProgressiveGamesContribution_Member"
+                ]
+            },
+            {
+                "FunctionName": "Statement",
+                "SettingKeys": [
+                    "Statement_Report_GetList", // Acc_StatementSel
+                    "Statement_Report_GetList_14", // Acc_StatementSel_14
+                    "Statement_Report_GetList_WH" // Acc_StatementSel_Old
+                ]
+            },
+            {
+                "FunctionName": "Risk Analysis",
+                "SettingKeys": [
+                    "Age_BetStatistics_IPMatching_Master",
+                    "Age_BetStatistics_BetMatching_Master",
+                    "Age_Customer_Upline_Sel"
+                ]
+            },
+            {
+                "FunctionName": "Bet Credit Tracking",
+                "SettingKeys": [
+                    "Age_Rpt_BetCreditHistory",
+                    "Age_Rpt_StatementMovement"
+                ]
+            }
+        ]
+    }
+}

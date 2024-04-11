@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Filters;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
+[AllowProtectedMode]
 public class WinLossDetailController(IMediator mediator) : ReportBaseController(mediator)
 {
     public Task<IActionResult> Index(WinLossDetailQuery message) => View(message);

@@ -23,7 +23,7 @@ public class BonusDetailController(
 
         if (!options.Value.AllowedSitesToViewBonusDetail.Contains(UserSession.Current.Site))
         {
-            context.Result = new RedirectResult("/tickets/home/invalidreport");
+            context.Result = new RedirectResult("/reports/shared/invalidreport");
         }
     }
 }
