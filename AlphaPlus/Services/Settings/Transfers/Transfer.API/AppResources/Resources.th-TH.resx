@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>ไม่มีข้อมูล</value>
+  </data>
+  <data name="UsernamePlaceHolder" xml:space="preserve">
+    <value>ยูเซอร์เนม หรือ ชื่อ/นามสุกล</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>ชื่อผู้ใช้ระบบ</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="MemberOutstanding" xml:space="preserve">
+    <value>การเดิมพันที่ยังไม่สิ้นสุดของ สมาชิก</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>ระดับ</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>เครดิตทั้งหมด</value>
+  </data>
+  <data name="TransferSuccessfully" xml:space="preserve">
+    <value>การโอนเงินเสร็จสมบูรณ์</value>
+  </data>
+  <data name="AllowTransfer" xml:space="preserve">
+    <value>คุณได้รับอนุญาติให้ทำการโอน</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>วันศุกร์</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>วันจันทร์</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>วันเสาร์</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>วันอาทิตย์</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>วันพฤหัส</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>วันอังคาร</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>วันพุธ</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>รายวัน</value>
+  </data>
+  <data name="HintNotAvailableToTransfer" xml:space="preserve">
+    <value>มียอดเงินสดคงเหลือไม่เพียงพอที่จะโอน</value>
+  </data>
+  <data name="HintRangeTransfer" xml:space="preserve">
+    <value>You can transfer from {0} to {1}.</value>
+  </data>
+  <data name="AvailableRangeTransfer" xml:space="preserve">
+    <value>Amount to transfer must be between {0} and {1}.</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>สูงสุด</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>ตัวแทนหลัก</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>ตัวแทน</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>สมาชิก</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
+  </data>
+  <data name="TransferButton" xml:space="preserve">
+    <value>ตั้งค่าใหม่</value>
+  </data>
+  <data name="CashBalance" xml:space="preserve">
+    <value>ยอดเงินสด</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>ข้อมูล</value>
+  </data>
+  <data name="OutstandingShortcut" xml:space="preserve">
+    <value>transaction ที่ยังไม่ได้คำนวณ</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>จำนวนเงิน</value>
+  </data>
+  <data name="ConfirmTransfer" xml:space="preserve">
+    <value>คุณแน่ใจว่าคุณต้องการโอนเงิน?</value>
+  </data>
+  <data name="TransferAmountIs" xml:space="preserve">
+    <value>Transfer amount is</value>
+  </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>มูลค่าไม่ถูกต้อง</value>
+  </data>
+  <data name="MultipleTransfer" xml:space="preserve">
+    <value>การส่งยอดเงินพร้อมกัน</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="AllYesterdayBalance" xml:space="preserve">
+    <value>ยอดเงินรวมของของเมื่อวาน</value>
+  </data>
+  <data name="Status_0" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
+  <data name="Status_1" xml:space="preserve">
+    <value>เปิด</value>
+  </data>
+  <data name="Status_2" xml:space="preserve">
+    <value>ถูกระงับ</value>
+  </data>
+  <data name="Status_3" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
+  <data name="Status_4" xml:space="preserve">
+    <value>ปิดการใช้งาน</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>เมื่อวาน</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>ยอดคงเหลือเมื่อวาน</value>
+  </data>
+  <data name="MasterBalance" xml:space="preserve">
+    <value>ตัวแทนหลัก ยอดคงเหลือ</value>
+  </data>
+  <data name="YesterdayCashBalance" xml:space="preserve">
+    <value>ยอดเงินสดคงเหลือของเมื่อวาน</value>
+  </data>
+  <data name="MasterCash" xml:space="preserve">
+    <value>ตัวแทนหลัก เงินสด</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>เครดิตที่ใช้ไป</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="TransferAllAndClearCredit" xml:space="preserve">
+    <value>โอนยอดทั้งหมด และเคลียร์เครดิต</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>คำนวณ</value>
+  </data>
+  <data name="TransferAllAndClearCreditNote" xml:space="preserve">
+    <value>โอนยอดทั้งหมด และการเคลียร์เครดิตคงเป็นไปตามกฎปัจจุบัน แต่จะแยกกรณีออกไปของแต่ละขั้น</value>
+  </data>
+  <data name="DataChangedWarning" xml:space="preserve">
+    <value>ระบบมีการเปลี่ยนข้อมูลบางส่วนในระหว่างการคำนวณ. กรุณาตรวจสอบตัวเลขที่ได้ระบายสีไว้ให้ยังด้านล่างนี้</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>ขั้นตอน</value>
+  </data>
+  <data name="TransferableAmount" xml:space="preserve">
+    <value>จำนวนยอดที่สามารถโอนได้</value>
+  </data>
+  <data name="ClearableCredit" xml:space="preserve">
+    <value>เคลียร์เครดิต</value>
+  </data>
+  <data name="TransferStep_Super_Member" xml:space="preserve">
+    <value>สมาชิกไปยังเอเยนต์</value>
+  </data>
+  <data name="TransferStep_Super_Agent" xml:space="preserve">
+    <value>เอเยนต์ ไปยัง {0}</value>
+  </data>
+  <data name="TransferStep_Super_Master" xml:space="preserve">
+    <value>{0} ไปยัง บัญชีคุณ</value>
+  </data>
+  <data name="ClearCreditStep_Super_Member" xml:space="preserve">
+    <value>{0} สมาชิก</value>
+  </data>
+  <data name="ClearCreditStep_Super_Agent" xml:space="preserve">
+    <value>{0} เอเยนต์</value>
+  </data>
+  <data name="ClearCreditStep_Super_Master" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="TransferAllSuccess" xml:space="preserve">
+    <value>โอนเงินทั้งหมดเรียบร้อยแล้ว</value>
+  </data>
+  <data name="ClearCreditSuccess" xml:space="preserve">
+    <value>เคลียเครดิตเรียบร้อยแล้ว</value>
+  </data>
+  <data name="TransferStep_Master_Agent" xml:space="preserve">
+    <value>{0} ไปยัง บัญชีคุณ</value>
+  </data>
+  <data name="ClearCreditStep_Master_Member" xml:space="preserve">
+    <value>สมาชิกทั้งหมด</value>
+  </data>
+  <data name="ClearCreditStep_Master_Agent" xml:space="preserve">
+    <value>ตัวแทน {0}</value>
+  </data>
+  <data name="TransferredAmount" xml:space="preserve">
+    <value>จำนวนเงินที่โอน</value>
+  </data>
+  <data name="ClearedCredit" xml:space="preserve">
+    <value>เครดิตหักล้างแล้ว</value>
+  </data>
+  <data name="TransferAll_ClearCredit_Errors" xml:space="preserve">
+    <value>การโอนเครดิตทั้งหมดและล้างเครดิตไม่สำเร็จเนื่องจาก เหตุผลดังต่อไปนี้ (s):</value>
+  </data>
+  <data name="Transfer_all" xml:space="preserve">
+    <value>โอนทั้งหมด</value>
+  </data>
+  <data name="TransferAllUnsuccessfully" xml:space="preserve">
+    <value>โอนเงินทั้งหมดไม่สำเร็จ กรุณาลองใหม่อีกครั้ง.</value>
+  </data>
+  <data name="TransferAll" xml:space="preserve">
+    <value>โอนทั้งหมด</value>
+  </data>
+  <data name="ClearCreditConfirm" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการโอนเครดิตทั้งหมดและล้างเครดิต？</value>
+  </data>
+  <data name="TransferAllConfirm" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการโอนเครดิตทั้งหมด？</value>
+  </data>
+  <data name="ClearCredit" xml:space="preserve">
+    <value>ล้างเครดิต</value>
+  </data>
+  <data name="Clear_credit" xml:space="preserve">
+    <value>ล้างเครดิต</value>
+  </data>
+  <data name="ClearCreditUnsuccessfully" xml:space="preserve">
+    <value>ล้างเครดิตไม่สำเร็จ กรุณาลองใหม่อีกครั้ง.</value>
+  </data>
+  <data name="TransferStep_Master_Member" xml:space="preserve">
+    <value>ไปสมาชิก {0}</value>
+  </data>
+  <data name="TransferToDownlineHistory" xml:space="preserve">
+    <value>Transfer To Downline History</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>วันนี้</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>สัปดาห์ล่าสุด</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>เดือนล่าสุด</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>ตั้งแต่เดือนครั้งสุดท้าย</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>วันที่เฉพาะเจาะจง</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>สัปดาห์นี้</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>เดือนนี้</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>ถึง</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>จาก</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>ส่งออกไปที่โปรแกรมเอกเซล</value>
+  </data>
+  <data name="CanViewReportDataFrom" xml:space="preserve">
+    <value>You can view the report data from {0}.</value>
+  </data>
+  <data name="ActionDate" xml:space="preserve">
+    <value>Action Date</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>New Balance</value>
+  </data>
+  <data name="OldBalance" xml:space="preserve">
+    <value>Old Balance</value>
+  </data>
+  <data name="TransferAmount" xml:space="preserve">
+    <value>จำนวนเงินที่โอน</value>
+  </data>
+  <data name="TransferType" xml:space="preserve">
+    <value>Transfer Type</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Withdrawal</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>ของ</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>หน้า</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>ขนาดหน้า</value>
+  </data>
+  <data name="showhidecolumnAd" xml:space="preserve">
+    <value>คลิกขวาที่ด้านบนเพื่อแสดง / ซ่อนคอลัมน์.</value>
+  </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>อัพไลน์ของคุณได้ปิดการใช้งานระบบ โอนยอดคงเหลือทั้งวัน ของคุณ ข้อมูลในหน้านี้จะรีเฟรชเพื่อแสดงผลใหม่โดยอัตโนมัติ</value>
+  </data>
+  <data name="confirmCancelJob" xml:space="preserve">
+    <value>คุณต้องการยกเลิกการทำรายการโอนอัตโนมัติสำหรับบัญชีนี้หรือไม่</value>
+  </data>
+  <data name="confirmTurnOnAutoTransfer" xml:space="preserve">
+    <value>&lt;b&gt;คุณต้องการเปิดใช้งานระบบโอนอัตโนมัติสำหรับบัญชีนี้หรือไม่: {0}?&lt;/b&gt;</value>
+  </data>
+  <data name="confirmTurnOffAutoTransfer" xml:space="preserve">
+    <value>&lt;b&gt;คุณต้องการปิดใช้งานระบบโอนอัตโนมัติสำหรับบัญชีนี้หรือไม่: {0}?&lt;/b&gt;</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>ยูเซอร์เนม หรือ ชื่อ/นามสุกล</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>แสดง {from} ถึง {to} จาก {total} รายการ</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>เลือกทั้งหมด</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>เลือก</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>ไม่เลือก</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>เปิด</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>รอ</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>กำลังดำเนินการ</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>เสร็จสมบูรณ์</value>
+  </data>
+  <data name="First_LastName" xml:space="preserve">
+    <value>ชื่อนามสกุล</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>ค้นหา</value>
+  </data>
+  <data name="AutoTransfer_InfoSettingTime" xml:space="preserve">
+    <value>ระบบโอนอัตโนมัติมีกำหนดจะดำเนินการ ณ เวลา 12:00 น. (GMT+8) ซึ่งยอดคงเหลือเมื่อวานจะถูกเคลีย</value>
+  </data>
+  <data name="AutoTransfer_InfoCannotTransfer" xml:space="preserve">
+    <value>เพื่อให้มั่นใจในความถูกต้องของข้อมูลในระหว่างกระบวนการโอนอัตโนมัติ คุณไม่สามารถดำเนินการโอนไปยังดาวน์ไลน์ของคุณที่ได้เปิดใช้งานระบบโอนอัตโนมัติได้</value>
+  </data>
+  <data name="AutoTransfer_InfoAffectTime2" xml:space="preserve">
+    <value>ถ้าคุณเปิดการใช้งานโอนเงินอัตโนมัติในขณะที่ระบบกำลังดำเนินการอยู่  การโอนอัตโนมัติจะเริ่มต้นใช้งานในรอบการทำงานครั้งถัดไปตามเงื่อนไขที่คุณกำหนดไว้</value>
+  </data>
+  <data name="AutoTransfer_InfoAffectTime" xml:space="preserve">
+    <value>เมื่อเปิดใช้งานแล้ว ยอดคงเหลือเมื่อวานจะถูกเคลียเวลา &lt;span&gt;12:00 น. (GMT+8)&lt;/span&gt; ตามเงื่อนไขการโอนของคุณ &lt;b&gt;({0})&lt;/b&gt;</value>
+  </data>
+  <data name="CompletedTime" xml:space="preserve">
+    <value>เวลาสิ้นสุด</value>
+  </data>
+  <data name="AutoTransferMonitoring" xml:space="preserve">
+    <value>ตรวจสถานะการโอนอัตโนมัติ</value>
+  </data>
+  <data name="AutoTransferHistory" xml:space="preserve">
+    <value>ประวัติการโอนอัตโนมัติ</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>ใหม่</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>ล้มเหลว</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccess" xml:space="preserve">
+    <value>การโอนอัตโนมัติได้รับการอัปเดตสำหรับบัญชีเหล่านี้เรียบร้อยแล้ว</value>
+  </data>
+  <data name="AutoTransfer" xml:space="preserve">
+    <value>โอนอัตโนมัติ</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>เหตุผล</value>
+  </data>
+  <data name="pendingTransfer3rd" xml:space="preserve">
+    <value>บุคคลที่สามรอการถ่ายโอน</value>
+  </data>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning" xml:space="preserve">
+    <value>การโอนอัตโนมัติได้รับการเปิดใช้งานสำหรับบัญชีเหล่านี้ อย่างไรก็ตาม กระบวนการนี้กำลังเกิดขึ้น และบัญชีเหล่านี้จะถูกจัดคิวสำหรับการโอนอัตโนมัติตามเวลาที่กำหนดครั้งถัดไปตามกำหนดการโอนอัตโนมัติ.</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOn" xml:space="preserve">
+    <value>เปิดใช้งานการโอนอัตโนมัติสำหรับบัญชี {0} เรียบร้อยแล้ว</value>
+  </data>
+  <data name="AutoTransfer_Error_103_Multiple" xml:space="preserve">
+    <value>ขณะนี้ระบบโอนอัตโนมัติกำลังดำเนินการอยู่ จึงไม่สามารถปิดการใช้งานสำหรับบัญชีเหล่านี้ได้ กรุณาลองใหม่เมื่อระบบทำงานเสร็จ</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOff" xml:space="preserve">
+    <value>การโอนอัตโนมัติสำหรับบัญชี {0} ถูกปิดใช้งานเรียบร้อยแล้ว</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>อยู่ระหว่างการดำเนินการ</value>
+  </data>
+  <data name="AutoTransfer_Error_103_Single" xml:space="preserve">
+    <value>ขณะนี้ระบบโอนอัตโนมัติกำลังดำเนินการอยู่ จึงไม่สามารถปิดการใช้งานสำหรับบัญชีนี้ได้ กรุณาลองใหม่เมื่อระบบทำงานเสร็จ</value>
+  </data>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning_Single" xml:space="preserve">
+    <value>การโอนอัตโนมัติสำหรับบัญชีนี้ได้เปิดใช้งานแล้ว อย่างไรก็ตาม ระบบกำลังดำเนินการอยู่ในขณะนี้ บัญชีนี้จะถูกจัดคิวสำหรับการโอนอัตโนมัติในครั้งถัดไปตามกำหนดการของการโอนอัตโนมัติ</value>
+  </data>
+  <data name="Ignored" xml:space="preserve">
+    <value>ละเว้น</value>
+  </data>
+  <data name="AutoTransferGuideline" xml:space="preserve">
+    <value>คู่มือระบบโอนอัตโนมัติ</value>
+  </data>
+  <data name="ADBTChangeError" xml:space="preserve">
+    <value>บัญชีของคุณไม่สามารถใช้ระบบโอนอัตโนมัติได้ เนื่องจากอัพไลน์ได้เปิดใช้งานระบบโอนยอดคงเหลือตลอดทั้งวันสำหรับบัญชีของคุณ  หน้าแสดงผลนี้จะรีเฟรชโดยอัตโนมัติ</value>
+  </data>
+  <data name="AutoTransfer_InfoAffectTimeSuper" xml:space="preserve">
+    <value>เมื่อเปิดใช้งานแล้ว ยอดคงเหลือเมื่อวานจะถูกเคลีย ณ เวลา &lt;span&gt;12:00 น. (GMT+8)&lt;/span&gt; </value>
+  </data>
+  <data name="AutoTransfer_CancelAllSuccess" xml:space="preserve">
+    <value>ยกเลิกกระบวนการโอนอัตโนมัติสำหรับทุกบัญชี</value>
+  </data>
+  <data name="SelectAll2" xml:space="preserve">
+    <value>เลือกทั้งหมด</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>วันอาทิตย์</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>วันเสาร์</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>วันจันทร์</value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>วันพุธ</value>
+  </data>
+  <data name="Thurs" xml:space="preserve">
+    <value>วันพฤหัส</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>วันศุกร์</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>วันอังคาร</value>
+  </data>
+  <data name="AutoTransfer_Statistic" xml:space="preserve">
+    <value>จำนวนการโอนในหมวดหมู่ "รอดำเนินการ" "กำลังประมวลผล" "ล้มเหลว" และ "ยกเลิกธุรกรรมที่ถูกระงับ" ถูกนับสำหรับดาวน์ไลน์ทั้งหมด</value>
+  </data>
+  <data name="CancelSuspendedTransactions" xml:space="preserve">
+    <value>ยกเลิกธุรกรรมที่ถูกระงับ</value>
+  </data>
+  <data name="CancelAllAutoTransferJobsConfirm" xml:space="preserve">
+    <value>คุณต้องการยกเลิกกระบวนการโอนอัตโนมัติสำหรับ {0} บัญชี?</value>
+  </data>
+  <data name="AutoTransfer_NoCancellable" xml:space="preserve">
+    <value>ไม่มีธุรกรรมที่สามารถยกเลิกได้</value>
+  </data>
+  <data name="AutoTransfer_SetSchedule" xml:space="preserve">
+    <value>คุณสามารถตั้งค่ากำหนดการโอนอัตโนมัติสำหรับดาวน์ไลน์ของคุณได้จากตัวเลือกที่มีให้ตามเงื่อนไขการโอนของคุณ</value>
+  </data>
+  <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
+    <value>เมื่อปิดใช้งานแล้ว ตารางการโอนอัตโนมัติปัจจุบันจะถูกล้าง</value>
+  </data>
+  <data name="confirmChangeAutoTransferSchedule" xml:space="preserve">
+    <value>คุณต้องการเปลี่ยนกำหนดการโอนอัตโนมัติสำหรับบัญชีนี้: {0} หรือไม่</value>
+  </data>
+  <data name="AutoTransfer_UpdateScheduleSuccess" xml:space="preserve">
+    <value>กำหนดการโอนอัตโนมัติสำหรับบัญชี {0} ได้รับการอัปเดตเรียบร้อยแล้ว</value>
+  </data>
+  <data name="confirmUpdateAutoTransfer" xml:space="preserve">
+    <value>&lt;b&gt;คุณต้องการอัปเดตการโอนอัตโนมัติสำหรับบัญชีเหล่านี้:&lt;b&gt;</value>
+  </data>
+  <data name="CancelSuspendedTransactionsTip" xml:space="preserve">
+    <value>คลิกที่นี่เพื่อยกเลิกธุรกรรมที่รอดำเนินการ/ประมวลผลทั้งหมดที่เกิน 15 นาที</value>
+  </data>
+  <data name="EditMultipleAutoTransfer" xml:space="preserve">
+    <value>แก้ไขการโอนอัตโนมัติหลายรายการ</value>
+  </data>
+  <data name="EditAutoTransferSchedule" xml:space="preserve">
+    <value>แก้ไขกำหนดการโอนอัตโนมัติ</value>
+  </data>
+  <data name="AutoTransfer_UplineConditionChanged" xml:space="preserve">
+    <value>เงื่อนไขการโอนของคุณถูกเปลี่ยนแปลงโดยอัพไลน์ สถานะ.โปรดทำการรีเฟรชหน้านี้</value>
+  </data>
+  <data name="AutoTransfer_UpdateTip" xml:space="preserve">
+    <value>เคล็ดลับ: คุณสามารถเปิดใช้งานระบบโอนอัตโนมัติสำหรับหลายบัญชีได้ใน [ข้อมูลสมาชิก &gt;&gt; รายการ {0} ] และติดตามความคืบหน้าของการดำเนินงานได้ใน [โอน &gt;&gt; การตรวจสอบการโอนอัตโนมัติ]</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>ล่าสุด</value>
+  </data>
+  <data name="AutoTransfer_HintPath_2" xml:space="preserve">
+    <value>รายชื่อลูกค้า</value>
+  </data>
+  <data name="AutoTransfer_HintPath_3" xml:space="preserve">
+    <value>รายชื่อ เอเจนต์</value>
+  </data>
+  <data name="AutoTransfer_HintPath_4" xml:space="preserve">
+    <value>รายชื่อตัวแทนหลัก</value>
+  </data>
+  <data name="AutoTransfer_Error_101_Single" xml:space="preserve">
+    <value>ไม่มีบัญชีนี้</value>
+  </data>
+  <data name="AutoTransfer_Error_101_Multiple" xml:space="preserve">
+    <value>ไม่มีบัญชีเหล่านี้:</value>
+  </data>
+  <data name="AutoTransfer_Error_102_Single" xml:space="preserve">
+    <value>บัญชีนี้ไม่ได้เป็นของดาวน์ไลน์ของคุณ</value>
+  </data>
+  <data name="AutoTransfer_Error_102_Multiple" xml:space="preserve">
+    <value>บัญชีเหล่านี้ไม่ได้เป็นของดาวน์ไลน์ของคุณ:</value>
+  </data>
+</root>

@@ -1,0 +1,63 @@
+﻿namespace AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory
+{
+    using AlphaPlus.Settings.Transfer.API.Extensions;
+    using AppResources;
+    using System;
+
+    public class TransferToDownlineHistoryModel
+    {
+        public TransferToDownlineHistoryModel()
+        {
+        }
+
+        public TransferToDownlineHistoryModel(
+            DateTime actionDate,
+            string downlineName,
+            byte transferType,
+            decimal transferAmount,
+            decimal oldBalance,
+            decimal newBalance,
+            string description)
+        {
+            ActionDate = actionDate;
+            DownlineName = downlineName;
+            TransferType = transferType;
+            TransferAmount = transferAmount;
+            OldBalance = oldBalance;
+            NewBalance = newBalance;
+            Description = description;
+        }
+
+        public DateTime ActionDate { get; set; }
+
+        public string FormattedActionDate
+            => ActionDate.ToLongDateWithSlash24HFormat();
+
+        public string DownlineName { get; set; }
+
+        public byte TransferType { get; set; }
+
+        public string TransferTypeName
+            => TransferType == 1 ? Resources.Deposit : Resources.Withdrawal;
+
+        public decimal TransferAmount { get; set; }
+
+        public string FormattedTransferAmount
+            => TransferAmount.FormatWithCommasAlwaysWithDecimalPoint();
+
+        public decimal OldBalance { get; set; }
+
+        public string FormattedOldBalance => FormatBalance(OldBalance);
+
+        public decimal NewBalance { get; set; }
+
+        public string FormattedNewBalance => FormatBalance(NewBalance);
+
+        public string Description { get; set; }
+
+        private string FormatBalance(decimal balance)
+            => TransferAmount != 0 && OldBalance == 0 && NewBalance == 0
+            ? "N/A"
+            : balance.FormatWithCommasAlwaysWithDecimalPoint();
+    }
+}

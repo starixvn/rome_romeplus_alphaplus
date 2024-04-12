@@ -42,5 +42,6 @@
     <ProjectReference Include="..\..\..\Services\Settings\MemberInfo\MemberInfo.API\MemberInfo.API.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
     <ProjectReference Include="..\..\..\Services\Settings\Viewlogs\ViewLog.API\ViewLog.API.csproj" />
+    <ProjectReference Include="..\..\..\Services\Settings\Transfers\Transfer.API\Transfer.API.csproj" />
   </ItemGroup>
 </Project>

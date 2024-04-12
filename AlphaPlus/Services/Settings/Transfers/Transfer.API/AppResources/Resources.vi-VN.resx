@@ -1,0 +1,579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>Thông tin chưa được cập nhật</value>
+  </data>
+  <data name="UsernamePlaceHolder" xml:space="preserve">
+    <value>Tên đăng nhập hoặc Tên/Họ</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="MemberOutstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý của Member</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Cấp</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>Hạn mức được cấp</value>
+  </data>
+  <data name="TransferSuccessfully" xml:space="preserve">
+    <value>Chuyển khoản thành công</value>
+  </data>
+  <data name="AllowTransfer" xml:space="preserve">
+    <value>Bạn được phép chuyển khoản vào:</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Thứ 6</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Thứ 2</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Thứ 7</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Chủ nhật</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thứ 5</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Thứ 3</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Thứ 4</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>Hằng ngày</value>
+  </data>
+  <data name="HintNotAvailableToTransfer" xml:space="preserve">
+    <value>Lượng tiền trong Số dư tài khoản không đủ để thực hiện giao dịch.</value>
+  </data>
+  <data name="HintRangeTransfer" xml:space="preserve">
+    <value>Bạn có thể chuyển khoản từ {0} đến {1}.</value>
+  </data>
+  <data name="AvailableRangeTransfer" xml:space="preserve">
+    <value>Số tiền chuyển khoản phải nằm trong khoảng {0} và {1}.</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Super</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này.</value>
+  </data>
+  <data name="TransferButton" xml:space="preserve">
+    <value>Chuyển khoản</value>
+  </data>
+  <data name="CashBalance" xml:space="preserve">
+    <value>Số dư tài khoản</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="OutstandingShortcut" xml:space="preserve">
+    <value>Giao dịch chưa xử lý</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
+  <data name="ConfirmTransfer" xml:space="preserve">
+    <value>Bạn có chắc muốn chuyển khoản?</value>
+  </data>
+  <data name="TransferAmountIs" xml:space="preserve">
+    <value>Transfer amount is</value>
+  </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>Giá trị không có thực.</value>
+  </data>
+  <data name="MultipleTransfer" xml:space="preserve">
+    <value>Chuyển khoản đồng loạt</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="AllYesterdayBalance" xml:space="preserve">
+    <value>Tất cả số dư tính đến hôm qua</value>
+  </data>
+  <data name="Status_0" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="Status_1" xml:space="preserve">
+    <value>Mở</value>
+  </data>
+  <data name="Status_2" xml:space="preserve">
+    <value>Bị đình chỉ</value>
+  </data>
+  <data name="Status_3" xml:space="preserve">
+    <value>Bị khóa</value>
+  </data>
+  <data name="Status_4" xml:space="preserve">
+    <value>Vô hiệu hóa</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Hôm qua</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>Số dư đến hết hôm qua</value>
+  </data>
+  <data name="MasterBalance" xml:space="preserve">
+    <value>Tổng tiền giao dịch của Master</value>
+  </data>
+  <data name="YesterdayCashBalance" xml:space="preserve">
+    <value>Số dư tài khoản đến hết  hôm qua</value>
+  </data>
+  <data name="MasterCash" xml:space="preserve">
+    <value>Số dư tài khoản của Master</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>Tiền chưa xử lý</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>Hạn mức tín dụng đã dùng</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Họ</value>
+  </data>
+  <data name="TransferAllAndClearCredit" xml:space="preserve">
+    <value>Tất toán và Xóa tín dụng</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Tính toán</value>
+  </data>
+  <data name="TransferAllAndClearCreditNote" xml:space="preserve">
+    <value>Chức năng "Tất toán và Xóa tín dụng" vẫn tuân theo các quy tắc hiện tại, nhưng sẽ được áp dụng cho tất cả các cấp được liệt kê</value>
+  </data>
+  <data name="DataChangedWarning" xml:space="preserve">
+    <value>Một số dữ liệu đã thay đổi trong quá trình tính toán. Vui lòng kiểm tra các số liệu được tô sáng trong các bảng bên dưới.</value>
+  </data>
+  <data name="TransferAll" xml:space="preserve">
+    <value>Tất toán</value>
+  </data>
+  <data name="ClearCredit" xml:space="preserve">
+    <value>Xóa tín dụng</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>Bước</value>
+  </data>
+  <data name="TransferableAmount" xml:space="preserve">
+    <value>Tiền có thể chuyển khoản</value>
+  </data>
+  <data name="ClearableCredit" xml:space="preserve">
+    <value>Tín dụng có thể xóa</value>
+  </data>
+  <data name="ClearCreditConfirm" xml:space="preserve">
+    <value>Bạn có chắc muốn Tất toán và Xóa tín dụng?</value>
+  </data>
+  <data name="TransferAllConfirm" xml:space="preserve">
+    <value>Bạn có chắc muốn Tất toán?</value>
+  </data>
+  <data name="TransferredAmount" xml:space="preserve">
+    <value>Tiền đã chuyển khoản</value>
+  </data>
+  <data name="ClearedCredit" xml:space="preserve">
+    <value>Tín dụng đã xóa</value>
+  </data>
+  <data name="TransferStep_Super_Member" xml:space="preserve">
+    <value>Member tới Agent</value>
+  </data>
+  <data name="TransferStep_Super_Agent" xml:space="preserve">
+    <value>Agent tới  {0}</value>
+  </data>
+  <data name="TransferStep_Super_Master" xml:space="preserve">
+    <value>{0} tới tài khoản của bạn</value>
+  </data>
+  <data name="ClearCreditStep_Super_Member" xml:space="preserve">
+    <value>Members của {0}</value>
+  </data>
+  <data name="ClearCreditStep_Super_Agent" xml:space="preserve">
+    <value>Agents của {0}</value>
+  </data>
+  <data name="ClearCreditStep_Super_Master" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="TransferAllSuccess" xml:space="preserve">
+    <value>Tất toán thành công.</value>
+  </data>
+  <data name="ClearCreditSuccess" xml:space="preserve">
+    <value>Xóa tín dụng thành công.</value>
+  </data>
+  <data name="Transfer_all" xml:space="preserve">
+    <value>Tất toán</value>
+  </data>
+  <data name="Clear_credit" xml:space="preserve">
+    <value>Xóa tín dụng</value>
+  </data>
+  <data name="TransferAllUnsuccessfully" xml:space="preserve">
+    <value>Tất toán không thành công. Vui lòng thử lại.</value>
+  </data>
+  <data name="ClearCreditUnsuccessfully" xml:space="preserve">
+    <value>Xóa tín dụng không thành công. Vui lòng thử lại.</value>
+  </data>
+  <data name="TransferStep_Master_Member" xml:space="preserve">
+    <value>Member tới {0}</value>
+  </data>
+  <data name="TransferStep_Master_Agent" xml:space="preserve">
+    <value>{0} tới tài khoản của bạn</value>
+  </data>
+  <data name="ClearCreditStep_Master_Member" xml:space="preserve">
+    <value>Tất cả Member</value>
+  </data>
+  <data name="ClearCreditStep_Master_Agent" xml:space="preserve">
+    <value>Agent {0}</value>
+  </data>
+  <data name="TransferAll_ClearCredit_Errors" xml:space="preserve">
+    <value>Không thể Tất toán và Xóa tín dụng vì những lý do sau:</value>
+  </data>
+  <data name="TransferToDownlineHistory" xml:space="preserve">
+    <value>Transfer To Downline History</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hôm nay</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Tuần trước</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Tháng trước</value>
+  </data>
+  <data name="SinceLastMonth" xml:space="preserve">
+    <value>Từ tháng trước</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>Ngày riêng biệt</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>Tuần này</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>Tháng này</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Đến</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Từ</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Xuất sang Excel</value>
+  </data>
+  <data name="CanViewReportDataFrom" xml:space="preserve">
+    <value>You can view the report data from {0}.</value>
+  </data>
+  <data name="ActionDate" xml:space="preserve">
+    <value>Action Date</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="NewBalance" xml:space="preserve">
+    <value>New Balance</value>
+  </data>
+  <data name="OldBalance" xml:space="preserve">
+    <value>Old Balance</value>
+  </data>
+  <data name="TransferAmount" xml:space="preserve">
+    <value>Transfer Amount</value>
+  </data>
+  <data name="TransferType" xml:space="preserve">
+    <value>Transfer Type</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Withdrawal</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>trên</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Số dòng</value>
+  </data>
+  <data name="showhidecolumnAd" xml:space="preserve">
+    <value>Nhấp chuột phải trên đầu cột để Ẩn/Hiện các cột.</value>
+  </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>Cấp trên đã áp giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ tự động làm mới để cập nhật các cài đặt mới.</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>Tên đăng nhập hoặc Tên/Họ</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>Hiển thị {from} đến {to} của {total}</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Chọn tất cả</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Đã chọn</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Bỏ chọn tất cả</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>Mở</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="Waiting" xml:space="preserve">
+    <value>Đang Chờ</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Kết thúc</value>
+  </data>
+  <data name="First_LastName" xml:space="preserve">
+    <value>Họ/ tên</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
+  <data name="pendingTransfer3rd" xml:space="preserve">
+    <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Chưa xử lý</value>
+  </data>
+  <data name="SelectAll2" xml:space="preserve">
+    <value>Chọn tất cả</value>
+  </data>
+  <data name="Sun" xml:space="preserve">
+    <value>Chủ nhật</value>
+  </data>
+  <data name="Sat" xml:space="preserve">
+    <value>Thứ 7</value>
+  </data>
+  <data name="Mon" xml:space="preserve">
+    <value>Thứ 2</value>
+  </data>
+  <data name="Wed" xml:space="preserve">
+    <value>Thứ 4</value>
+  </data>
+  <data name="Thurs" xml:space="preserve">
+    <value>Thứ 5</value>
+  </data>
+  <data name="Fri" xml:space="preserve">
+    <value>Thứ 6</value>
+  </data>
+  <data name="Tue" xml:space="preserve">
+    <value>Thứ 3</value>
+  </data>
+  <data name="AutoTransfer_CancelAllSuccess" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động đã hủy thành công</value>
+  </data>
+  <data name="CancelSuspendedTransactions" xml:space="preserve">
+    <value>Hủy giao dịch treo</value>
+  </data>
+  <data name="AutoTransfer_Statistic" xml:space="preserve">
+    <value>Số giao dịch trong danh mục "Chờ xử lý", "Đang xử lý", "Không thành công" và "Hủy giao dịch treo" được tính trên tất cả cấp dưới.</value>
+  </data>
+  <data name="CancelAllAutoTransferJobsConfirm" xml:space="preserve">
+    <value>Bạn có muốn hủy Chuyển Khoản Tự Động cho {0} tài khoản?</value>
+  </data>
+  <data name="AutoTransfer_NoCancellable" xml:space="preserve">
+    <value>Không có giao dịch có thể hủy.</value>
+  </data>
+  <data name="AutoTransfer_SetSchedule" xml:space="preserve">
+    <value>Bạn có thể đặt lịch Chuyển Khoản Tự Động cho cấp dưới từ các tùy chọn có sẵn dựa trên điều kiện chuyển khoản của bạn.</value>
+  </data>
+  <data name="confirmChangeAutoTransferSchedule" xml:space="preserve">
+    <value>Bạn có muốn thay đổi lịch Chuyển Khoản Tự Động cho tài khoản: {0}?</value>
+  </data>
+  <data name="AutoTransfer_UpdateScheduleSuccess" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động cho tài khoản {0} đã được cập nhật thành công.</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOff" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động cho tài khoản {0} đã được tắt thành công.</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccessOn" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động cho tài khoản {0} đã được mở thành công.</value>
+  </data>
+  <data name="confirmUpdateAutoTransfer" xml:space="preserve">
+    <value>&lt;b&gt;Bạn có muốn cập nhật Chuyển Khoản Tự Động cho các tài khoản:&lt;b&gt;</value>
+  </data>
+  <data name="AutoTransfer_UpdateSuccess" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động đã được cập nhật thành công cho các tài khoản này.</value>
+  </data>
+  <data name="AutoTransfer_InfoCannotTransfer" xml:space="preserve">
+    <value>Để đảm báo tính chính xác của dữ liệu trong quá trình Chuyển Khoản Tự Động, bạn KHÔNG THỂ chuyển khoản cho cấp dưới của bạn nếu Chuyển Khoản Tự Động của họ đang bật.</value>
+  </data>
+  <data name="CancelSuspendedTransactionsTip" xml:space="preserve">
+    <value>Nhấn vào để hủy các giao dịch đang chờ hoặc xử lý quá 15 phút.</value>
+  </data>
+  <data name="EditMultipleAutoTransfer" xml:space="preserve">
+    <value>Tùy Chỉnh Đồng Loạt Chuyển Khoản Tự Động</value>
+  </data>
+  <data name="EditAutoTransferSchedule" xml:space="preserve">
+    <value>Tùy Chỉnh Lịch Chuyển Khoản Tự Động</value>
+  </data>
+  <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
+    <value>Sau khi tắt, lịch Chuyển Khoản Tự Động hiện tại sẽ bị xóa.</value>
+  </data>
+  <data name="AutoTransfer_Error_103_Multiple" xml:space="preserve">
+    <value>Điều Kiện Chuyển Khoản của bạn đã được cấp trên thay đổi.  Vui lòng tải lại trang.</value>
+  </data>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning_Single" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động đã được bật cho tài khoản này. Tuy nhiên, do quá trình chuyển khoản tự động đang diễn ra, tài khoản này sẽ được thêm vào danh sách chờ để được xử lý vào lần sau theo lịch chuyển khoản định kỳ.</value>
+  </data>
+  <data name="AutoTransfer_MultipleAffectNextConditionWarning" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động đã được bật cho các tài khoản này. Tuy nhiên, quá trình này đang diễn ra, do đó các tài khoản này sẽ được lên lịch để thực hiện Chuyển Khoản Tự Động vào lượt tiếp theo, dựa trên lịch Chuyển Khoản Tự Động của từng tài khoản.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
+  <data name="AutoTransfer_HintPath_2" xml:space="preserve">
+    <value>Danh sách Member</value>
+  </data>
+  <data name="AutoTransfer_HintPath_3" xml:space="preserve">
+    <value>Danh sách Agent</value>
+  </data>
+  <data name="AutoTransfer_HintPath_4" xml:space="preserve">
+    <value>Danh sách Master</value>
+  </data>
+</root>
