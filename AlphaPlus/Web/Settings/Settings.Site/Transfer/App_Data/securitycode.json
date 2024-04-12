@@ -1,0 +1,16 @@
+{
+  "isActive": true,
+  "siteMainApp": "/site-main",
+  "paths": [
+    "TransferAllAndClearCredit/Index",
+    "CashBalanceTransfer/CashBalance",
+    "AutoTransfer/UpdateSingleAutoTransfer",
+    "AutoTransfer/UpdateSchedule",
+    "AutoTransfer/UpdateMultipleAutoTransfer"
+  ],
+  "sites": [
+  ],
+  "verifyingOtpPath": "Otp/VerifyOtp",
+  "verifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
+  "resetSecurityCodePath": "SecurityCode/resetSecurityCodePath"
+}

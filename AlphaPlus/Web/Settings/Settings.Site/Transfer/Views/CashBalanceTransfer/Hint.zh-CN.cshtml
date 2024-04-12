@@ -1,0 +1,46 @@
+﻿@* @{
+    Layout = "~/Views/CashBalanceTransfer/_HintLayout.cshtml";
+}
+@if (Model.IsAlldayTransfer)
+{
+    <p>以昨天余额转账</p>
+    <ul>
+        <li>昨天余额只能全数转账</li>
+        <li>只有在会员的昨天余额不为零时才能进行转账</li>
+    </ul>
+    <p>以现金余额转账</p>
+    <ul>
+        <li>负数转账：转账数额不能超过（下线现金未完成交易额）。</li>
+        <li>正数转账：转账数额不能超过您的现金余额</li>
+        <li>"现金余额" 将在转账细节中注明</li>
+    </ul>
+    <p>备注</p>
+    <ul class="ul-remark">
+        @if (!string.IsNullOrEmpty(Model.AllowTransfer))
+        {
+            <li>@Html.Raw(Model.AllowTransfer)</li>
+        }
+        <li>您可以根据自己的需要每天做无限次交易（包括昨天余额和现金余额）。</li>      
+        <li>@Resources.showhidecolumnAd</li>
+    </ul>
+}
+else
+{
+    <p>备注</p>
+    <ul class="ul-remark">
+        @if (!string.IsNullOrEmpty(Model.AllowTransfer))
+        {
+            <li>@Html.Raw(Model.AllowTransfer)</li>
+        }
+        <li>@Resources.showhidecolumnAd</li>
+    </ul>
+}
+
+@if (Model.IsEnabledAutoTransfer)
+{
+    <ul>
+        <li>@Resources.AutoTransfer_InfoSettingTime</li>
+        <li>@Resources.AutoTransfer_InfoCannotTransfer</li>
+        <li>@Resources.AutoTransfer_InfoAffectTime2</li>
+    </ul>
+} *@
