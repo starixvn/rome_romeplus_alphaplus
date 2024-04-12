@@ -3,7 +3,7 @@ interface JQuery {
     multiselect(option: object): void;
 }
 
-class SingleSelectionDropdownOption {
+class SingleSelectionDropdownOptionTransfer {
     constructor(
         public dropdownId = "dropdown-single",
         public inputId = "UserSelectedId",
@@ -11,7 +11,7 @@ class SingleSelectionDropdownOption {
     }
 }
 
-class SingleSelectionDropdownComponent {
+class SingleSelectionDropdownComponentTransfer {
     $: JQueryStatic;
     $hiddenInput: JQuery;
     $dropdown: JQuery;
@@ -19,14 +19,14 @@ class SingleSelectionDropdownComponent {
 
     selectedValue: string;
 
-    options = new SingleSelectionDropdownOption();
+    options = new SingleSelectionDropdownOptionTransfer();
 
     constructor($: JQueryStatic) {
         this.$ = $;
     }
 
-    render = (options: SingleSelectionDropdownOption = new SingleSelectionDropdownOption()) => {
-        this.options = this.$.extend({}, this.options, options) as SingleSelectionDropdownOption;
+    render = (options: SingleSelectionDropdownOptionTransfer = new SingleSelectionDropdownOptionTransfer()) => {
+        this.options = this.$.extend({}, this.options, options) as SingleSelectionDropdownOptionTransfer;
 
         const $dropdown = this.$("#" + this.options.dropdownId);
         this.$dropdown = $dropdown;

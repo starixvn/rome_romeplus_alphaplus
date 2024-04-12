@@ -3,17 +3,19 @@ declare var initAutoComplete: Function;
 interface Window {
     popupManager: {
         open: Function,
-        close: Function
-    };
+        openWithHanlder: Function,
+        close: Function,
+        closeAllPopup: Function
+    }
 }
 
-class CustomerList {
+class CustomerListTransfer {
     $: JQueryStatic;
     $username: JQuery;
     $usernameAutoSuggestionPath: JQuery;
     $output: JQuery;
     $submit: JQuery;
-    $statusComponent: SingleSelectionDropdownComponent;
+    $statusComponent: SingleSelectionDropdownComponentTransfer;
     $status: JQuery;
     $customerListForm: JQuery;
     $AllYesterdayBalance: JQuery;
@@ -25,7 +27,7 @@ class CustomerList {
 
     constructor($: JQueryStatic,
         topWindow: Window,
-        statusComponent: SingleSelectionDropdownComponent) {
+        statusComponent: SingleSelectionDropdownComponentTransfer) {
         this.$ = $;
         this.topWindow = topWindow;
         this.$statusComponent = statusComponent;
@@ -41,7 +43,7 @@ class CustomerList {
         this.$output.css("top", this.$username.offset().top + positionTop);
 
         this.$statusComponent.render(
-            new SingleSelectionDropdownOption("dropdown-status", "Status", this.changeStatus));
+            new SingleSelectionDropdownOptionTransfer("dropdown-status", "Status", this.changeStatus));
 
         this.$information.click(this.showInformation);
 
@@ -76,7 +78,7 @@ class CustomerList {
     };
 }
 
-const customerList = new CustomerList($, top, new SingleSelectionDropdownComponent($));
+const customerList = new CustomerListTransfer($, top, new SingleSelectionDropdownComponentTransfer($));
 
 $(() => {
     customerList.init();

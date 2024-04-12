@@ -3,8 +3,10 @@
 interface Window {
     popupManager: {
         open: Function,
-        close: Function
-    };
+        openWithHanlder: Function,
+        close: Function,
+        closeAllPopup: Function
+    }
 
     bootboxAlert(message: string): void;
     menu: any;

@@ -70,7 +70,7 @@
             string agIP)
         {
             string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
-            TransferCacheService transferCacheService = new TransferCacheServiceImpl(creator, creatorName, cacheService);
+            TransferCacheService transferCacheService = new TransferCacheServiceImpl(cacheService) { AdminId = creator, AdminName = creatorName };
 
             var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
             var concurrentTrasfer = transferCacheService.CacheContains(custIdCache, toCustId);

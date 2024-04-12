@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 interface Window {
-    bootboxConfirm: Function;
+    bootboxConfirm(message: string, handleElement: object, acceptCallback: Function, cancelCallback: Function): void;
     customerListNew: boolean;
 }
 

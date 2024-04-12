@@ -23,7 +23,6 @@ using AlphaPlus.Settings.MemberInfo.API.Requests;
 using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
-using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.API.Setting;
 using AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels.Base;
@@ -60,6 +59,10 @@ using AlphaPlus.Settings.ViewLogs.API.Services.Impl;
 using AlphaPlus.Settings.ViewLogs.API.Helpers;
 using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
 using AlphaPlus.Settings.Site.ViewLogs.Helpers;
+using AlphaPlus.Settings.Transfer.API.Services;
+using ONEbook.SpreadSheets;
+using ONEbook.SpreadSheets.NPOI;
+using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -141,7 +144,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddScoped<IUserSession, UserSessionExt>()
                 .AddScoped<IUser, Models.User>()
                 .AddScoped<CustomerListService, CustomerListServiceImpl>()
-                .AddScoped<TransferService, TransferServiceImpl>();
+                .AddScoped<Settings.MemberInfo.API.Services.Transfer.TransferService, Settings.MemberInfo.API.Services.Transfer.TransferServiceImpl>();
 
             services
                 .AddSingleton<DormantAccountWorkbook, DormantAccountWorkbookImpl>()
@@ -201,6 +204,16 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddKeyedScoped<LogService, StatusServiceImpl>("statusLogSvc")
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")
                 .AddKeyedScoped<LogService, LoginServiceImpl>("loginLogSvc");
+
+            services
+                .AddSingleton<Workbook<TransferToDownlineHistoryModel>, NpoiWorkbook<TransferToDownlineHistoryModel>>()
+                .AddScoped<TransferService, TransferServiceImpl>()
+                .AddScoped<AutoTransferService, AutoTransferServiceImpl>()
+                .AddScoped<CashBalanceTransferService, CashBalanceTransferServiceImpl>()
+                .AddScoped<MultipleTransferService, MultipleTransferServiceImpl>()
+                .AddScoped<TransferAllAndClearCreditService, TransferAllAndClearCreditServiceImpl>()
+                .AddScoped<TransferCacheService, TransferCacheServiceImpl>()
+                .AddScoped<TransferToDownlineHistoryService, TransferToDownlineHistoryServiceImpl>();
 
             services
                 .AddSharedSession(configuration)

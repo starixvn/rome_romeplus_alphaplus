@@ -3,7 +3,7 @@
 interface Window {
     OnPopupComplete(isReload: boolean): void;
     bootboxConfirm(message: string, handleElement: object, acceptCallback: Function, cancelCallback: Function): void;
-    closePopupAndReloadMainFrameAfterUpdateSuccess: any;
+    closePopupAndReloadMainFrameAfterUpdateSuccess: Function;
 }
 
 class UpdateAutoTransferMultiple {

@@ -22,8 +22,8 @@ class AutoTransferHistory {
     $sorters: JQuery;
     $pager: JQuery;
     $navTabs: JQuery;
-    pagerComponent: PagerComponent;
-    dateRangePickerComponent: DateRangePickerComponent;
+    pagerComponent: PagerComponentTransfer;
+    dateRangePickerComponent: DateRangePickerComponentTransfer;
     visibleColumnDropdownComponent: VisibleColumnDropdownComponent;
     autoRefreshComponent: AutoRefreshComponent;
     $statusComponent: MultipleSelectionDropdownComponent;
@@ -40,8 +40,8 @@ class AutoTransferHistory {
         $: JQueryStatic,
         topWindow: Window,
         numeral: any,
-        pageComponent: PagerComponent,
-        dateRangePickerComponent: DateRangePickerComponent,
+        pageComponent: PagerComponentTransfer,
+        dateRangePickerComponent: DateRangePickerComponentTransfer,
         visibleColumnDropdownComponent: VisibleColumnDropdownComponent,
         autoRefreshComponent: AutoRefreshComponent,
         statusComponent: MultipleSelectionDropdownComponent) {
@@ -170,7 +170,7 @@ class AutoTransferHistory {
         this.$pager.data('totalrecords', results.TotalItems);
 
         this.pagerComponent.reset();
-        this.pagerComponent.render(new PagerOption(
+        this.pagerComponent.render(new PagerOptionTransfer(
             () => {
                 var pageIndex = parseInt(this.$('#PageIndex').val(), 0);
                 var pageSize = parseInt(this.$('#PageSize').val(), 0);
@@ -186,9 +186,9 @@ class AutoTransferHistory {
 
         this.$tblMonitoring.removeClass('hide');
 
-        this.$tblMonitoring.stickyTableHeaders({
-            fixedOffset: this.$navTabs
-        });
+        this.$tblMonitoring.stickyTableHeaders(/*{
+            //TODOfixedOffset: this.$navTabs
+        }*/);
     };
     sort = (elm) => {
         var $elm = this.$(elm);
@@ -256,8 +256,8 @@ $(() => {
         $,
         window.top,
         numeral,
-        new PagerComponent($),
-        new DateRangePickerComponent($),
+        new PagerComponentTransfer($),
+        new DateRangePickerComponentTransfer($),
         new VisibleColumnDropdownComponent($),
         new AutoRefreshComponent($),
         new MultipleSelectionDropdownComponent($));

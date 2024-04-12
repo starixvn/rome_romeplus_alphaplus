@@ -43,7 +43,7 @@ class KeyboardValue {
     };
 }
 
-class Result {
+class ResultTransfer {
     Code: number;
     Message: string;
     Amount: number;
@@ -188,8 +188,8 @@ class CashBalance {
         return value.match(regExp);
     };
 
-    getValidationObject = (): Result => {
-        const validationObject = new Result();
+    getValidationObject = (): ResultTransfer => {
+        const validationObject = new ResultTransfer();
         const amountValue: string = this.$amount.val();
         const isNotNumberCode = 400;
 
@@ -225,7 +225,7 @@ class CashBalance {
         return validationObject;
     };
 
-    afterAddTransferSuccessfully = (data: Result) => {
+    afterAddTransferSuccessfully = (data: ResultTransfer) => {
         if (data.Code === 6001) {
             this.topWindow.indexManager.addCustomCookies('messageForReloadSite', data.Message);
             this.topWindow.indexManager.updateCurrentUrl("adbt=False");

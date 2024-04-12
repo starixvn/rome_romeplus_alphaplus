@@ -2,7 +2,7 @@
 
 class AlphaTransfer {
     $: JQueryStatic;
-    store: StoreJSStatic;
+    store: any;
 
     numberDisplayedSelectedOnFilter = 1;
     pager = {
@@ -10,7 +10,7 @@ class AlphaTransfer {
         pageIndex: 1
     };
 
-    constructor($: JQueryStatic, store: StoreJSStatic) {
+    constructor($: JQueryStatic, store: any) {
         this.$ = $;
         this.store = store;
     }

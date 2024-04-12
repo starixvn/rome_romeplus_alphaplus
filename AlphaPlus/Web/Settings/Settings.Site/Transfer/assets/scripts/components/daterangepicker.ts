@@ -4,7 +4,7 @@ interface JQuery {
     nexDatePicker(option: any): void;
 }
 
-class DateRangePickerOption {
+class DateRangePickerOptionTransfer {
     constructor(
         public selectorId: string = "daterange-picker",
         public filterFormId: string = "report-form",
@@ -15,10 +15,10 @@ class DateRangePickerOption {
     }
 }
 
-class DateRangePickerComponent {
+class DateRangePickerComponentTransfer {
     $: JQueryStatic;
 
-    options = new DateRangePickerOption();
+    options = new DateRangePickerOptionTransfer();
     quickChooseType = {
         specificDates: 7
     };
@@ -29,7 +29,7 @@ class DateRangePickerComponent {
         this.$ = $;
     }
 
-    render = (options: DateRangePickerOption = new DateRangePickerOption()) => {
+    render = (options: DateRangePickerOptionTransfer = new DateRangePickerOptionTransfer()) => {
         this.options = this.$.extend({}, this.options, options);
 
         let dateRangePicker = this.$("#" + this.options.selectorId);

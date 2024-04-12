@@ -12,11 +12,11 @@ class TransferToDownlineHistory extends TransferReport {
     $fromDate: JQuery;
     $toDate: JQuery;
 
-    dateRangePickerComponent: DateRangePickerComponent;
+    dateRangePickerComponent: DateRangePickerComponentTransfer;
 
     constructor(
         $: JQueryStatic,
-        dateRangePickerComponent: DateRangePickerComponent
+        dateRangePickerComponent: DateRangePickerComponentTransfer
     ) {
         super($);
 
@@ -133,6 +133,6 @@ class TransferToDownlineHistory extends TransferReport {
 $(() => {
     const transferToDownlineHistory = new TransferToDownlineHistory(
         $,
-        new DateRangePickerComponent($));
+        new DateRangePickerComponentTransfer($));
     transferToDownlineHistory.init();
 });

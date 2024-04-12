@@ -3,7 +3,7 @@ interface JQuery {
     pagination(option: any): void;
 }
 
-class PagerOption {
+class PagerOptionTransfer {
     constructor(
         public onSelectPage: () => void = null,
         public pagerId: string = "report-pager",
@@ -13,7 +13,7 @@ class PagerOption {
     }
 }
 
-class PagerComponent {
+class PagerComponentTransfer {
     $: JQueryStatic;
     $pageIndex: JQuery;
     $pageSize: JQuery;
@@ -31,9 +31,9 @@ class PagerComponent {
         this.$ = $;
     }
 
-    render = (options: PagerOption = new PagerOption()) => {
+    render = (options: PagerOptionTransfer = new PagerOptionTransfer()) => {
         let self = this;
-        let pagerOption = <PagerOption>this.$.extend({}, this.options, options);
+        let pagerOption = <PagerOptionTransfer>this.$.extend({}, this.options, options);
         let pager = this.$("#" + pagerOption.pagerId);
 
         this.$reportForm = this.$("#" + this.options.formId);

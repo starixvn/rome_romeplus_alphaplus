@@ -32,7 +32,7 @@ class AutoTransferMonitoring {
     $divCancelAll: JQuery;
     $divStatusAll: JQuery;
 
-    pagerComponent: PagerComponent;
+    pagerComponent: PagerComponentTransfer;
     visibleColumnDropdownComponent: VisibleColumnDropdownComponent;
     autoRefreshComponent: AutoRefreshComponent;
     $statusComponent: MultipleSelectionDropdownComponent;
@@ -49,7 +49,7 @@ class AutoTransferMonitoring {
         $: JQueryStatic,
         topWindow: Window,
         numeral: any,
-        pageComponent: PagerComponent,
+        pageComponent: PagerComponentTransfer,
         visibleColumnDropdownComponent: VisibleColumnDropdownComponent,
         autoRefreshComponent: AutoRefreshComponent,
         statusComponent: MultipleSelectionDropdownComponent) {
@@ -198,7 +198,7 @@ class AutoTransferMonitoring {
         this.$pager.data('totalrecords', results.TotalItems);
 
         this.pagerComponent.reset();
-        this.pagerComponent.render(new PagerOption(
+        this.pagerComponent.render(new PagerOptionTransfer(
             () => {
                 var pageIndex = parseInt(this.$('#PageIndex').val(), 0);
                 var pageSize = parseInt(this.$('#PageSize').val(), 0);
@@ -227,9 +227,9 @@ class AutoTransferMonitoring {
         this.$divStatusAll.removeClass('hide');
 
         this.$tblMonitoring.removeClass('hide');
-        this.$tblMonitoring.stickyTableHeaders({
-            fixedOffset: this.$navTabs
-        });
+        this.$tblMonitoring.stickyTableHeaders(/*{
+            //TODOfixedOffset: this.$navTabs
+        }*/);
     };
     sort = (elm) => {
         var $elm = this.$(elm);
@@ -382,7 +382,7 @@ $(() => {
         $,
         window.top,
         numeral,
-        new PagerComponent($),
+        new PagerComponentTransfer($),
         new VisibleColumnDropdownComponent($),
         new AutoRefreshComponent($),
         new MultipleSelectionDropdownComponent($));

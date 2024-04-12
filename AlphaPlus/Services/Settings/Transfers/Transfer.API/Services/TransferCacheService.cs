@@ -26,15 +26,13 @@
 
     public class TransferCacheServiceImpl : TransferCacheService
     {
-        private readonly int adminId;
-        private readonly string adminName;
+        public int AdminId {get;set;}
+        public string AdminName {get;set;}
         private readonly ICacheService cacheService;
         private static readonly object lockObject = new object();
 
-        public TransferCacheServiceImpl(int adminId, string adminName, ICacheService cacheService)
+        public TransferCacheServiceImpl(ICacheService cacheService)
         {
-            this.adminId = adminId;
-            this.adminName = adminName;
             this.cacheService = cacheService;
         }
 
@@ -135,7 +133,7 @@
             => $"[Agent Transfer Process] Redis cannot set value: {JsonConvert.SerializeObject(value)}";
 
         private string InfoMessageFormat(List<TransferCacheModel> value)
-            => $"[Agent Transfer Process - PID: {Thread.CurrentThread.ManagedThreadId}] {adminName}({adminId}) set redis value to: {JsonConvert.SerializeObject(value)}";
+            => $"[Agent Transfer Process - PID: {Thread.CurrentThread.ManagedThreadId}] {AdminName}({AdminId}) set redis value to: {JsonConvert.SerializeObject(value)}";
 
         public void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds)
         {
