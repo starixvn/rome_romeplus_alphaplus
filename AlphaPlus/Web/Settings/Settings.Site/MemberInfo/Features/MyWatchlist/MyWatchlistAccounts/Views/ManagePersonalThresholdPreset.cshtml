@@ -77,7 +77,7 @@
 }
 
 @Html.AntiForgeryToken()
-<input type="hidden" id="member-info-url" value="@MicroSites.MemberInfoUrl()">
+<input type="hidden" id="member-info-url" value="@MicroSites.SettingUrl()">
 <input type="hidden" id="no-change-to-update-error" value="@Resources.NoChangeToUpdateError" />
 <input type="hidden" id="are-you-sure-to-remove-preset" value="@Resources.AreYouSureToRemovePreset" />
 <input type="hidden" id="add-successfully" value="@Resources.AddSuccessfully" />

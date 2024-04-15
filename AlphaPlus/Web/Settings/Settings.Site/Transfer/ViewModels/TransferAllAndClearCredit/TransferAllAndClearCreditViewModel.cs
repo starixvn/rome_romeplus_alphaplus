@@ -8,6 +8,6 @@
               => outstanding.HasValue ? outstanding.Value.ToString($"#,##0.00") : "N/A";
 
         public static string UsernameAutoSuggestionPath
-            => MicroSites.OldMainUrl("~/UserNameSuggestion");
+            => MicroSites.SettingUrl("~/UserNameSuggestion");
     }
 }

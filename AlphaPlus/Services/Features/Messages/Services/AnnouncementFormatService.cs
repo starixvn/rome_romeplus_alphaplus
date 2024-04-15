@@ -29,6 +29,6 @@
             => announcements.Select(i => Format(i, message));
 
         private static string ReplaceMessageSiteTag(string content, bool isMoblie)
-            => content.Replace(MessageConstants.SiteMessageTag, isMoblie ? MicroSites.MessageUrl("~") : MicroSites.MessageUrl());
+            => content.Replace(MessageConstants.SiteMessageTag, isMoblie ? MicroSites.FeatureUrl("~") : MicroSites.FeatureUrl());
     }
 }

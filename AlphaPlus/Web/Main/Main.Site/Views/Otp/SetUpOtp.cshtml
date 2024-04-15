@@ -75,7 +75,7 @@
     @Html.Hidden("AuthenticatorAppVerified", Security.AuthenticatorAppVerified)
     @Html.Hidden("ThereIsNoChange", Resources.ThereIsNoChange)
     @Html.Hidden("ThisFieldRequired", Security.alertSecCodeEmpty)
-    @* @Html.Hidden("oldMainRootPath", MicroSites.OldMainUrl("~/")) *@
+    @* @Html.Hidden("oldMainRootPath", MicroSites.SettingUrl("~/")) *@
     @Html.Hidden("mainRootPath", MicroSites.MainUrl())
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-main/otp/otp-default")

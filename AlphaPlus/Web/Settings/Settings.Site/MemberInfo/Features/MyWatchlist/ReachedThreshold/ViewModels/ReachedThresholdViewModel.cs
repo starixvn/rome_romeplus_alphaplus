@@ -71,7 +71,7 @@
         public bool CanUpdateAccount { get; }
 
         public string UserGuideLink => AppSettings.IsSiteLabel789y ?
-            MicroSites.MessageUrl("~/StaticMessage/Guide?id=179067") :
-            MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=179067");
+            MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179067") :
+            MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179067");
     }
 }

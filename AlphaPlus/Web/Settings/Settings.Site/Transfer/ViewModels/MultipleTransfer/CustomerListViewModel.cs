@@ -48,10 +48,10 @@
         public CustomerListModel CustomerListModel { get; }
 
         public string UsernameAutoSuggestionPath
-            => MicroSites.OldMainUrl("~/UserNameSuggestion");
+            => MicroSites.SettingUrl("~/UserNameSuggestion");
 
         public string TransferInformationPath
-            => MicroSites.TransferUrl("~/cashbalancetransfer/hint");
+            => MicroSites.SettingUrl("~/cashbalancetransfer/hint");
 
         public bool CanTransferYesterday(CustomerInformation customer)
         {

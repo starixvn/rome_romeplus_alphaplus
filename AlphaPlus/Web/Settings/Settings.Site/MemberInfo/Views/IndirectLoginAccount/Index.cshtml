@@ -8,8 +8,8 @@
     ViewBag.Title = Resources.IndirectLoginAccount;
 
     var userguideLink = AppSettings.IsSiteLabel789y ?
-        MicroSites.MessageUrl("~/StaticMessage/Guide?id=132782") :
-        MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=132782");
+        MicroSites.FeatureUrl("~/StaticMessage/Guide?id=132782") :
+        MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=132782");
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-totalbetsforecast/default")

@@ -167,7 +167,7 @@ namespace AlphaPlus.Main.Site.Features.Default
 
         public bool HightLightFeaturePermission => false;
 
-        public string HightLightFeatureUrl => MicroSites.MessageUrl($"~/BackupDomains/Index");
+        public string HightLightFeatureUrl => MicroSites.FeatureUrl($"~/BackupDomains/Index");
 
         public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
     }

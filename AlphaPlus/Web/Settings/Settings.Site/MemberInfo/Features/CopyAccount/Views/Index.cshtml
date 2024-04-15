@@ -8,8 +8,8 @@
     ViewBag.Title = Resources.SearchAndCopy;
     var errorMessageClass = string.IsNullOrEmpty(Model.ErrorMessage) ? "hidden" : "msg msg-error";
     var userguideLink = AppSettings.IsSiteLabel789y ?
-        MicroSites.MessageUrl("~/StaticMessage/Guide?id=179159") :
-        MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=179159");
+        MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159") :
+        MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
@@ -25,7 +25,7 @@
         <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.SearchAndCopy</a>
     </li>
     <li role="presentation">
-        <a href="@MicroSites.OldMainUrl("~/_MemberInfo/SearchAndCopy/MasterPage.aspx")" role="tab" data-toggle="tab">@Resources.FullMode</a>
+        <a href="@MicroSites.SettingUrl("~/_MemberInfo/SearchAndCopy/MasterPage.aspx")" role="tab" data-toggle="tab">@Resources.FullMode</a>
     </li>
     @if (Model.IsCreateMember)
     {
@@ -162,10 +162,10 @@
                         @Html.Hidden("HashKey", Model.HashKey)
                         @Html.Hidden("IsCreateAgent", Model.ActorLevel.IsMasterLevel())
                         @Html.Hidden("IsCreateMember", Model.ActorLevel.IsAgentLevel())
-                        <input type="hidden" id="member-info-url" value="@MicroSites.MemberInfoUrl()" />
+                        <input type="hidden" id="member-info-url" value="@MicroSites.SettingUrl()" />
                         @Html.Hidden("InvalidMaxCreditPerAccount", Resources.InvalidMaxCreditPerAccount)
                         @Html.Hidden("InvalidMemberMaxCredit", Resources.InvalidMemberMaxCredit)
-                        @Html.Hidden("old-version-url", MicroSites.OldMainUrl("~/_MemberInfo/SearchAndCopy/MasterPage.aspx"))
+                        @Html.Hidden("old-version-url", MicroSites.SettingUrl("~/_MemberInfo/SearchAndCopy/MasterPage.aspx"))
                         @Html.Hidden("ActorUsername", Model.ActorUsername)
                         @Html.AntiForgeryToken()
                     </form>

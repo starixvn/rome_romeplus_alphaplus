@@ -30,7 +30,7 @@
         {
             get
             {
-                return mapExTotalBetsForecastPath ?? MicroSites.ExTotalBetsForecastUrl;
+                return mapExTotalBetsForecastPath ?? MicroSites.TicketUrl;
             }
 
             internal set
@@ -43,7 +43,7 @@
         {
             get
             {
-                return mapMessagesPath ?? MicroSites.MessageUrl;
+                return mapMessagesPath ?? MicroSites.FeatureUrl;
             }
 
             internal set
@@ -56,7 +56,7 @@
         {
             get
             {
-                return mapOldMainPath ?? MicroSites.OldMainUrl;
+                return mapOldMainPath ?? MicroSites.SettingUrl;
             }
 
             internal set
@@ -69,7 +69,7 @@
         {
             get
             {
-                return mapHowToUsePath ?? MicroSites.HowToUseUrl;
+                return mapHowToUsePath ?? MicroSites.FeatureUrl;
             }
 
             internal set
@@ -95,7 +95,7 @@
         {
             get
             {
-                return mapMemberInfoPath ?? MicroSites.MemberInfoUrl;
+                return mapMemberInfoPath ?? MicroSites.SettingUrl;
             }
 
             internal set

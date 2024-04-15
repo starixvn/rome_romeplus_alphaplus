@@ -49,7 +49,7 @@ namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.ViewModels
         public string ErrorMessage { get; }
 
         public string ShowQRCodeLink
-            => $"{MicroSites.MemberInfoUrl()}QRCodeMemberSignIn/ShowQRCode";
+            => $"{MicroSites.SettingUrl()}QRCodeMemberSignIn/ShowQRCode";
 
         public bool OnlyShowErrorMessage { get; }
 

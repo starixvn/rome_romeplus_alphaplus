@@ -51,7 +51,7 @@
         public int TotalColumnMember => Query.CustLevel.IsAgentLevel() && Query.CanUpdateAccount ? 10 : 8;
 
         public static string UsernameAutoSuggestionPath
-            => MicroSites.Settings("~/_GlobalResources/Handlers/QueryUserName.ashx");
+            => MicroSites.SettingUrl("~/_GlobalResources/Handlers/QueryUserName.ashx");
 
         public bool IsShowUplineUsername(byte searchRoleId)
             => Query.CustLevel.GetDirectDownLineLevel().Value != searchRoleId;

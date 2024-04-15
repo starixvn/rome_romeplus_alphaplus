@@ -35,7 +35,7 @@ namespace AlphaPlus.Main.Site.Helpers
         {
             get
             {
-                return mapExTotalBetsForecastPath ?? MicroSites.ExTotalBetsForecastUrl;
+                return mapExTotalBetsForecastPath ?? MicroSites.TicketUrl;
             }
 
             internal set
@@ -48,7 +48,7 @@ namespace AlphaPlus.Main.Site.Helpers
         {
             get
             {
-                return mapMessagesPath ?? MicroSites.MessageUrl;
+                return mapMessagesPath ?? MicroSites.FeatureUrl;
             }
 
             internal set
@@ -61,7 +61,7 @@ namespace AlphaPlus.Main.Site.Helpers
         {
             get
             {
-                return mapHowToUsePath ?? MicroSites.HowToUseUrl;
+                return mapHowToUsePath ?? MicroSites.FeatureUrl;
             }
 
             internal set
@@ -87,7 +87,7 @@ namespace AlphaPlus.Main.Site.Helpers
         {
             get
             {
-                return mapMemberInfoPath ?? MicroSites.MemberInfoUrl;
+                return mapMemberInfoPath ?? MicroSites.SettingUrl;
             }
 
             internal set
@@ -126,7 +126,7 @@ namespace AlphaPlus.Main.Site.Helpers
         {
             get
             {
-                return mapTransferPath ?? MicroSites.TransferUrl;
+                return mapTransferPath ?? MicroSites.SettingUrl;
             }
 
             internal set
@@ -137,7 +137,7 @@ namespace AlphaPlus.Main.Site.Helpers
 
         public static Func<string, string> MapBetListPath
         {
-            get => mapBetListPath ?? MicroSites.BetListsUrl;
+            get => mapBetListPath ?? MicroSites.TicketUrl;
             internal set
             {
                 mapBetListPath = value;

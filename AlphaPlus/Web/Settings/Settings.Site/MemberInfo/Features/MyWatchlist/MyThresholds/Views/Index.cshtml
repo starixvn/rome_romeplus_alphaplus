@@ -123,7 +123,7 @@
 </div>
 @{
     await Html.RenderPartialAsync("~/MemberInfo/Features/MyWatchlist/Shared/Views/InformationLegend.cshtml");
-    @Html.Hidden("my-thresholds-url", MicroSites.MemberInfoUrl("~/MyThresholds"));
+    @Html.Hidden("my-thresholds-url", MicroSites.SettingUrl("~/MyThresholds"));
     @Html.Hidden("is-mobile", Model.IsMobile ? 1 : 0);
     @Html.Hidden("no-info", Resources.NoInformationIsAvailable);
 }

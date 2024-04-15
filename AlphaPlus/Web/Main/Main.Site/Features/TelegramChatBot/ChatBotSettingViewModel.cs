@@ -46,7 +46,7 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
 
         public string HowToUseLink
             => AppSettings.IsSiteLabel789y ?
-                MicroSites.MessageUrl("~/StaticMessage/Guide?id=167819") :
-                MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=167819");
+                MicroSites.FeatureUrl("~/StaticMessage/Guide?id=167819") :
+                MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=167819");
     }
 }

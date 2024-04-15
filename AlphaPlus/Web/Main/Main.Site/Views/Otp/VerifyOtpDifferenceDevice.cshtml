@@ -38,7 +38,7 @@
     </form>
 </div>
 @Html.Hidden("requiredFieldMessage", Security.alertSecCodeEmpty)
-@* @Html.Hidden("oldMainRootPath", MicroSites.OldMainUrl("~/")) *@
+@* @Html.Hidden("oldMainRootPath", MicroSites.SettingUrl("~/")) *@
 @Html.Hidden("mainRootPath", MicroSites.MainUrl())
 @section js {
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")

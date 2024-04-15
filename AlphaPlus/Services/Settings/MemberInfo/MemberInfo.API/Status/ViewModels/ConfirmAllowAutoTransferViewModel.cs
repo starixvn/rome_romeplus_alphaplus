@@ -48,7 +48,7 @@
 
         internal override bool StatusValue => !Checked;
 
-        public override string Url => MicroSites.TransferUrl("~/autotransfer/update");
+        public override string Url => MicroSites.SettingUrl("~/autotransfer/update");
 
         internal new IDictionary<string, object> Params
         {

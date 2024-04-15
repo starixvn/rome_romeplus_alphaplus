@@ -108,7 +108,7 @@
         public string GetRunningBetListLink(CreditBalanceItem item)
             => Helpers.UrlHelper.MapBetListPath($"~/RunningBetList/Index?custId={item.CustId}&custName={item.UserName}&getAll=true");
 
-        public string OldMainRootPath => MicroSites.Settings();
+        public string OldMainRootPath => MicroSites.SettingUrl();
 
         public string GivenCreditLink => MicroSites.AccountInfoUrl($"~/SearchAccount/GivenCredit");
 

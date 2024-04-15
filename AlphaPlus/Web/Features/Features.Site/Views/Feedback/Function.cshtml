@@ -36,7 +36,7 @@
 <div class="hide feedback-result msg msg-success" id="feedback-result">@Resources.Feedback_Success</div>
 <input type="hidden" id="hiddenFunctionId" value="@Model.FunctionId" />
 <input type="hidden" id="hiddenFeedbackNoInputError" value="@Resources.Feedback_NoInput" />
-<input type="hidden" id="hiddenAddFeedbackUrl" value="@MicroSites.MessageUrl("~/Feedback/Add")" />
+<input type="hidden" id="hiddenAddFeedbackUrl" value="@MicroSites.FeatureUrl("~/Feedback/Add")" />
 @section Scripts{
     @StaticResources.RenderScripts("~/Assets/bundles/feedback/function")
 }

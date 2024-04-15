@@ -43,7 +43,7 @@
         public IEnumerable<ReachHistoryModel> MyThresholdHistory { get; }
 
         public string UserGuideLink => AppSettings.IsMBCSite
-            ? MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=179067")
-            : MicroSites.MessageUrl("~/StaticMessage/Guide?id=179067");
+            ? MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179067")
+            : MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179067");
     }
 }

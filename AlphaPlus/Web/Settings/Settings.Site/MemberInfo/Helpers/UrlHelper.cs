@@ -52,7 +52,7 @@
         {
             get
             {
-                return mapExMainPath ?? MicroSites.Settings;
+                return mapExMainPath ?? MicroSites.SettingUrl;
             }
 
             internal set
@@ -144,7 +144,7 @@
         }
 
         internal static string GetBetListPath(string virtualPath = "~/WinLoss/Index")
-            => MicroSites.BetListsUrl(virtualPath);
+            => MicroSites.TicketUrl(virtualPath);
 
         internal static string MapBetListDomain(string virtualPath = "~/")
         {

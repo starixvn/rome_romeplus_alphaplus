@@ -90,10 +90,10 @@ public class BetListBaseViewModel
     //     {
     //         if (HttpContext.Current == null)
     //         {
-    //             return MicroSites.OldMainUrl("~");
+    //             return MicroSites.SettingUrl("~");
     //         }
     //         return HttpContext.Current.Session.IsCookieless ?
-    //             $"/ex-main/(S({HttpContext.Current.Session.SessionID}))/" : MicroSites.OldMainUrl("~");
+    //             $"/ex-main/(S({HttpContext.Current.Session.SessionID}))/" : MicroSites.SettingUrl("~");
     //     }
     // }
 

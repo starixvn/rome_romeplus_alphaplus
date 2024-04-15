@@ -90,7 +90,7 @@
 @Html.Hidden("changeStatusToSuspendText", @ProductResources.ConfirmSuspendedViewModelInCaseSuspendedMemberMessage)
 @Html.Hidden("text-locked", Resources.Locked)
 
-@Html.Hidden("memberInfoUrl", @MicroSites.MemberInfoUrl())
+@Html.Hidden("memberInfoUrl", @MicroSites.SettingUrl())
 @Html.Hidden("accountInfoUrl", @MicroSites.AccountInfoUrl())
 
 <div class="modal modal-sm fade" id="edit-popup" tabindex="-1" role="dialog">

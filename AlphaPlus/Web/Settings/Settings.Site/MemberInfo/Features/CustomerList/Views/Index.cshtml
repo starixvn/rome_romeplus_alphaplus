@@ -15,8 +15,8 @@
 
     var commissionGroupClass = Model.IsMobileView || (Model.SearchAccountLevel.IsAgentLevel() && Model.Language.Equals("th-TH")) ? "none" : "desktop";
     var userguideLink = AppSettings.IsSiteLabel789y ?
-        MicroSites.MessageUrl("~/StaticMessage/Guide?id=137130") :
-        MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=137130");
+        MicroSites.FeatureUrl("~/StaticMessage/Guide?id=137130") :
+        MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=137130");
 }
 
 @section Styles {
@@ -341,9 +341,9 @@
     <input type="hidden" id="showEditMultiple" value='@(Model.HideEditMultiple ? "false" : "true")'>
     <input type="hidden" id="isMobileView" value='@(Model.IsMobileView ? "true" : "false")'>
     <input type="hidden" id="breadcrumbLevelJson" value='@Model.BreadcrumbLevelJson'>
-    <input type="hidden" id="oldMainUrl" value='@MicroSites.Settings()'>
+    <input type="hidden" id="oldMainUrl" value='@MicroSites.SettingUrl()'>
     <input type="hidden" id="reportsUrl" value='@MicroSites.ReportsUrl()'>
-    <input type="hidden" id="memberInfoUrl" value='@MicroSites.MemberInfoUrl()'>
+    <input type="hidden" id="memberInfoUrl" value='@MicroSites.SettingUrl()'>
     <input type="hidden" id="limitedDateToShowInfo" value='@(Model.LimitedDateToShowInfo ? "true" : "false")'>
     <input type="hidden" id="isShowMyanmarOdds" value='@(Model.IsShowMyanmarOdds ? "true" : "false")'>
     <input type="hidden" id="canViewReport" value='@(Model.CanViewReport ? "true" : "false")'>

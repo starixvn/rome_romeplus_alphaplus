@@ -19,6 +19,6 @@
 
         public IEnumerable<IndirectLoginAccountItem> Accounts { get; }
 
-        public string RootURL => MicroSites.Settings("~/IndirectLoginAccount/");
+        public string RootURL => MicroSites.SettingUrl("~/IndirectLoginAccount/");
     }
 }

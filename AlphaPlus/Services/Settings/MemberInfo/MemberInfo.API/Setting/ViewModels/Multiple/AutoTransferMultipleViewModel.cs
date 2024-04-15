@@ -20,7 +20,7 @@
         public override string Text => Request.GetResource("EditMultipleAutoTransferText");
 
         protected override string BaseAddress
-            => MicroSites.TransferUrl("~/AutoTransfer/UpdateMultipleAutoTransfer");
+            => MicroSites.SettingUrl("~/AutoTransfer/UpdateMultipleAutoTransfer");
 
         public override Dictionary<string, string> QueryStringParamaters
         {
