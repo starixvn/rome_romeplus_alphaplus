@@ -1,4 +1,7 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Transfer.API.AppResources
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
+@{
     Layout = null;
 }
 @using AlphaPlus.Settings.Site.Transfer.ViewModels.CashBalanceTransfer;
@@ -13,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/cash-balance-transfer")
+    @StaticResources.RenderStylesWithDarkMode("~/Transfer/assets/bundles/cash-balance-transfer")
 </head>
 <body>
     @if (Model == null)
@@ -86,7 +89,7 @@
         <input type="hidden" id="transferAmountIs" value="@Resources.TransferAmountIs" />
         <input type="hidden" id="invalidValue" value="@Resources.InvalidValue" />
         @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
-        @StaticResources.RenderScripts("~/assets/bundles/cash-balance-transfer/cash-balance")
+        @StaticResources.RenderScripts("~/Transfer/assets/bundles/cash-balance-transfer/cash-balance")
     }
 </body>
-</html> *@
+</html>

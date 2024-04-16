@@ -91,6 +91,10 @@ public static class NoInformation
 
 public static class HtmlHelpers
 {
+    public static string FormatNumber2(decimal value)
+    {
+        return value.ToString($"#,##0.##");
+    }
     public static string FormatNumber(decimal value)
     {
         return value.ToString($"#,##0.00");

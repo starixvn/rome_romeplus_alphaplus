@@ -1,5 +1,7 @@
-﻿@* @{
-    Layout = "~/Views/CashBalanceTransfer/_HintLayout.cshtml";
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Transfer.API.AppResources
+@{
+    Layout = "~/Transfer/Views/CashBalanceTransfer/_HintLayout.cshtml";
 }
 @if (Model.IsAlldayTransfer)
 {
@@ -43,4 +45,4 @@ else
         <li>@Resources.AutoTransfer_InfoCannotTransfer</li>
         <li>@Resources.AutoTransfer_InfoAffectTime2</li>
     </ul>
-} *@
+}

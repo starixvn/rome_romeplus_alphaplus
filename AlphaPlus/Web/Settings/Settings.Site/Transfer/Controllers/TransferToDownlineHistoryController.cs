@@ -9,7 +9,7 @@
 
     public class TransferToDownlineHistoryController : SiteBaseController
     {
-        private const string InvalidTransferStatusViewPath = "~/Views/Shared/InvalidTransferStatus.cshtml";
+        private const string InvalidTransferStatusViewPath = "~/Transfer/Views/Shared/InvalidTransferStatus.cshtml";
         private readonly TransferService transferService;
 
         public TransferToDownlineHistoryController(

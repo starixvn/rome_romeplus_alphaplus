@@ -10,7 +10,7 @@ namespace AlphaPlus.Settings.Site.Transfer.Controllers
     public class TransferAllClearCreditControllerBase : BaseController
     {
         protected readonly IMediator mediator;
-        protected const string InvalidPageViewPath = "~/Views/Shared/InvalidPage.cshtml";
+        protected const string InvalidPageViewPath = "~/Transfer/Views/Shared/InvalidPage.cshtml";
 
         protected TransferAllClearCreditControllerBase(IMediator mediator)
         {

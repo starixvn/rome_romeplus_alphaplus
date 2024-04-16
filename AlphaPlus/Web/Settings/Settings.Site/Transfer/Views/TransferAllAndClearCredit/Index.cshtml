@@ -1,9 +1,13 @@
-﻿@* @model CalculationViewModel
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Transfer.API.AppResources
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
+@using AlphaPlus.Settings.Site.Transfer.ViewModels.TransferAllAndClearCredit
+@model CalculationViewModel
 @{
     ViewBag.Title = "Transfer All And Clear Credit";
 }
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/transfer-all-clear-credit")
+    @StaticResources.RenderStylesWithDarkMode("~/Transfer/assets/bundles/transfer-all-clear-credit")
 }
 <div class="page-title">
     <span class="pull-left">@Resources.TransferAllAndClearCredit</span>
@@ -128,5 +132,5 @@
 
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/assets/bundles/transfer-all-clear-credit/calculation")
-} *@
+    @StaticResources.RenderScripts("~/Transfer/assets/bundles/transfer-all-clear-credit/calculation")
+}

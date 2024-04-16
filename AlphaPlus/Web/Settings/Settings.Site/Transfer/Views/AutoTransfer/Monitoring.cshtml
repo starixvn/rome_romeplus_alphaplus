@@ -1,4 +1,6 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Transfer.API.AppResources
+@{
     ViewBag.Title = "Auto Transfer Monitoring";
 }
 @using AlphaPlus.Settings.Transfer.API.Configurations;
@@ -8,7 +10,7 @@
 @section Styles {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-transfer/filter")
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/auto-transfer/monitoring")
+    @StaticResources.RenderStylesWithDarkMode("~/Transfer/assets/bundles/auto-transfer/monitoring")
 }
 
 <div class="container-fluid page-auto-transfer">
@@ -56,8 +58,8 @@
                         <option value="Ignored" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>@Resources.Ignored</option>
                     </select>
                 </div>
-                @VisibleColumnsDropdown.Render(Model.Columns)
-                @RefreshCountDown.Render(new[] { 15, 30, 45, 60, 75 })
+                @{Render(Model.Columns);}
+                @{RenderCoundown(new[] { 15, 30, 45, 60, 75 });}
                 <div class="form-group submit-box">
                     <input type="submit" class="btn-submit" id="btn-submit" value="@Resources.Submit">
                 </div>
@@ -147,5 +149,48 @@
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
     @StaticResources.AssetScripts.Render("/bundles/site-transfer/pagination")
-    @StaticResources.RenderScripts("~/assets/bundles/auto-transfer/monitoring")
-} *@
+    @StaticResources.RenderScripts("~/Transfer/assets/bundles/auto-transfer/monitoring")
+}
+@functions
+{
+     void Render(IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> columns)
+    {
+        <div class="form-group column-multiselect-container">
+            <label>@Resources.Columns</label>
+            <select id="dropdown-columns"
+                    data-has-any-product-detail="@columns.Any()"
+                    data-label-select-none="@Resources.SelectNone"
+                    data-label-selected="@Resources.Selected"
+                    data-label-all="@Resources.All"
+                    data-label-select-all="@Resources.SelectAll"
+                    data-label-search-column="@Resources.SearchColumn"
+                    multiple="multiple"
+                    class="select-multiple">
+                @foreach (var column in columns)
+                {
+                    <option value="@column.Value">@column.Text</option>
+                }
+            </select>
+        </div>
+    }
+
+    void RenderCoundown(int[] intervals)
+    {
+        <div class="form-group">
+            <div class="dropdown btn btn-default btn-countdown">
+                <span class="icon-refresh"></span>
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span id="ddlRefresh" data-norefresh="@Resources.NoRefresh">@Resources.NoRefresh</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="refresh-value" aria-labelledby="dropdownMenu2">
+                    <li><a href="javascript:void(0);" data-refresh-value="-1">@Resources.NoRefresh</a></li>
+                    @foreach (var i in intervals)
+                    {
+                        <li><a href="javascript:void(0);" data-refresh-value="@i">@i</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+}

@@ -42,7 +42,7 @@ function minJs() {
 
 function compileCss() {
     return gulp
-        .src(['assets/styles/**/*.scss', 'MemberInfo/**/*.scss', 'ViewLogs/**/*.scss'])
+        .src(['assets/styles/**/*.scss', 'MemberInfo/**/*.scss', 'ViewLogs/**/*.scss', 'Transfer/**/*.scss'])
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss([autoprefixer()]))
         .pipe(

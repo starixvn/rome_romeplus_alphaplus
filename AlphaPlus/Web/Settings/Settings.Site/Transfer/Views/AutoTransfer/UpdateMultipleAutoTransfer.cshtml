@@ -1,4 +1,6 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Transfer.API.AppResources
+@{
     ViewBag.Title = Resources.EditMultipleAutoTransfer;
 }
 
@@ -7,7 +9,7 @@
 @model UpdateMultipleAutoTransferQuery
 
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/auto-transfer/update-multiple")
+    @StaticResources.RenderStylesWithDarkMode("~/Transfer/assets/bundles/auto-transfer/update-multiple")
 }
 <div class="div-separator-top"></div>
 <div class="div-on-users @(string.IsNullOrWhiteSpace(Model.OnNames) ? "hide" : "")">
@@ -82,5 +84,5 @@
 <input type="hidden" id="OnNames" value="@((Model.OnNames ?? "").Replace(",", ", "))" />
 <input type="hidden" id="OffNames" value="@((Model.OffNames ?? "").Replace(",", ", "))" />
 @section Scripts {
-    @StaticResources.RenderScripts("~/assets/bundles/auto-transfer/update-multiple")
-} *@
+    @StaticResources.RenderScripts("~/Transfer/assets/bundles/auto-transfer/update-multiple")
+}

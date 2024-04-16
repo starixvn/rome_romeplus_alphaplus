@@ -1,5 +1,7 @@
-﻿@* @{
-    Layout = "~/Views/CashBalanceTransfer/_HintLayout.cshtml";
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Transfer.API.AppResources
+@{
+    Layout = "~/Transfer/Views/CashBalanceTransfer/_HintLayout.cshtml";
 }
 @if (Model.IsAlldayTransfer)
 {
@@ -43,4 +45,4 @@ else
         <li>To ensure the accuracy of data while auto transfer us running, you CANNOT transfer to your downline whose auto transfer option is on at the process time.</li>
         <li>If you turn ON auto transfer setting during the process time, it will take effect at the next schedule defined by your account's Transfer Condition.</li>
     </ul>
-} *@
+}

@@ -1,4 +1,6 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Transfer.API.AppResources
+@{
     ViewBag.Title = "Auto Transfer History";
 }
 @using AlphaPlus.Settings.Transfer.API.Configurations;
@@ -8,7 +10,7 @@
 @section Styles {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-transfer/filter")
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/auto-transfer/monitoring")
+    @StaticResources.RenderStylesWithDarkMode("~/Transfer/assets/bundles/auto-transfer/monitoring")
 }
 
 <div class="container-fluid page-auto-transfer">
@@ -52,8 +54,8 @@
                     </select>
                 </div>
 
-                @VisibleColumnsDropdown.Render(Model.Columns)
-                @DateRangePicker.Render(Model.DateRangePickerViewModel)
+                @{Render(Model.Columns);}
+                @await Html.PartialAsync("~/MemberInfo/App_Code/Components/DateRangePicker.cshtml", Model.DateRangePickerViewModel)
                 <div class="form-group">
                     <div class="icon icon-information-outline"></div>
                 </div>
@@ -117,5 +119,29 @@
     @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
     @StaticResources.AssetScripts.Render("/bundles/site-transfer/pagination")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-transfer/filter")
-    @StaticResources.RenderScripts("~/assets/bundles/auto-transfer/history")
-} *@
+    @StaticResources.RenderScripts("~/Transfer/assets/bundles/auto-transfer/history")
+}
+
+@functions
+{
+     void Render(IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> columns)
+    {
+        <div class="form-group column-multiselect-container">
+            <label>@Resources.Columns</label>
+            <select id="dropdown-columns"
+                    data-has-any-product-detail="@columns.Any()"
+                    data-label-select-none="@Resources.SelectNone"
+                    data-label-selected="@Resources.Selected"
+                    data-label-all="@Resources.All"
+                    data-label-select-all="@Resources.SelectAll"
+                    data-label-search-column="@Resources.SearchColumn"
+                    multiple="multiple"
+                    class="select-multiple">
+                @foreach (var column in columns)
+                {
+                    <option value="@column.Value">@column.Text</option>
+                }
+            </select>
+        </div>
+    }
+}

@@ -31,7 +31,7 @@
                 return View(InvalidPageViewPath);
             }
 
-            return View("~/Views/TransferAllAndClearCredit/Index.cshtml", mediator.Send(message));
+            return View("~/Transfer/Views/TransferAllAndClearCredit/Index.cshtml", mediator.Send(message));
         }
 
         [HttpPost, ValidateAntiForgeryToken]

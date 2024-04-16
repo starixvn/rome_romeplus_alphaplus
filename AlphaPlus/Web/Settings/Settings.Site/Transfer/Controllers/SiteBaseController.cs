@@ -10,7 +10,7 @@
     {
         protected readonly IMediator mediator;
 
-        protected const string InvalidPageViewPath = "~/Views/Shared/InvalidPage.cshtml";
+        protected const string InvalidPageViewPath = "~/Transfer/Views/Shared/InvalidPage.cshtml";
         protected const string InvalidExcelFileName = "InvalidExcelFile";
 
         protected SiteBaseController(IMediator mediator)

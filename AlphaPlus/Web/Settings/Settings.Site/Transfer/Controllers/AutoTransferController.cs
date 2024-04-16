@@ -17,7 +17,7 @@
     {
         private readonly IUserSession userSession;
         private readonly TransferService transferService;
-        private const string InvalidTransferStatusViewPath = "~/Views/AutoTransfer/ADBTChange.cshtml";
+        private const string InvalidTransferStatusViewPath = "~/Transfer/Views/AutoTransfer/ADBTChange.cshtml";
         private const int ADBTChangeCode = 108;
 
         public AutoTransferController(

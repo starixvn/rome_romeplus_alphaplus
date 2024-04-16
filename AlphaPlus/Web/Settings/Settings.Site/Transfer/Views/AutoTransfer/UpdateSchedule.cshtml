@@ -1,4 +1,6 @@
-﻿@* @{
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Transfer.API.AppResources
+@{
     ViewBag.Title = Resources.EditAutoTransferSchedule;
 }
 
@@ -7,7 +9,7 @@
 @model UpdateScheduleQuery
 
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/auto-transfer/update-schedule")
+    @StaticResources.RenderStylesWithDarkMode("~/Transfer/assets/bundles/auto-transfer/update-schedule")
 }
 
 <div id="result-msg" class="msg hide"></div>
@@ -41,5 +43,5 @@
 @Html.Hidden("CustName", Model.CustName)
 @Html.Hidden("Old_TransferOption", Model.Old_TransferOption)
 @section Scripts {
-    @StaticResources.RenderScripts("~/assets/bundles/auto-transfer/update-schedule")
-} *@
+    @StaticResources.RenderScripts("~/Transfer/assets/bundles/auto-transfer/update-schedule")
+}

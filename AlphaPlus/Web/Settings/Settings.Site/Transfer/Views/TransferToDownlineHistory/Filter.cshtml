@@ -1,4 +1,6 @@
-﻿@* @model TransferToDownlineHistoryFilterViewModel
+﻿@using AlphaPlus.Settings.Transfer.API.AppResources
+@using AlphaPlus.Settings.Site.Transfer.ViewModels.TransferToDownlineHistory
+@model TransferToDownlineHistoryFilterViewModel
 
 <form id="report-form"
       class="form-inline filter"
@@ -13,7 +15,7 @@
                class="@(string.IsNullOrWhiteSpace(Model.UserName) ? "text-italic" : "")" />
     </div>
 
-    @DateRangePicker.Render(Model.DateRangePickerViewModel)
+    @await Html.PartialAsync("~/MemberInfo/App_Data/Components/DateRangePicker.cshtml", Model.DateRangePickerViewModel)
 
     <div class="form-group">
         <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
@@ -22,4 +24,4 @@
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>
-</form> *@
+</form>

@@ -1,4 +1,7 @@
-﻿@* @model CustomerListViewModel
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Transfer.API.AppResources
+@using AlphaPlus.Settings.Site.MemberInfo.Helpers
+@model AlphaPlus.Settings.Site.Transfer.ViewModels.MultipleTransfer.CustomerListViewModel
 @{
     ViewBag.Title = "Multiple Transfer";
 }
@@ -133,5 +136,5 @@
     @Html.Hidden("TransferInformationPath", Model.TransferInformationPath)
 </div>
 @section Scripts {
-    @StaticResources.RenderScripts("~/assets/bundles/multiple-transfer/customer-list")
-} *@
+    @StaticResources.RenderScripts("~/Transfer/assets/bundles/multiple-transfer/customer-list")
+}
