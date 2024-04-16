@@ -916,7 +916,7 @@ function clearPopupSubtitle(hasSubTitle) {
 
 function closePopupAndReloadMainFrameAfterUpdateSuccess(timeOut, afterLoadMainFrameFunction) {
     var popUp = top.ageWnd.popUp[top.ageWnd.popUp.length - 1];
-    var iframes = popUp.find('#popup-iframe');
+    var iframes = popUp && popUp.find('#popup-iframe');
     var iframeSrc = iframes && iframes.length && iframes.attr('src');
 
     function blurElementToScrollIframe() {

@@ -135,4 +135,18 @@
         <Setting Key="Age_CustSubInsNickname" SpName="Age_CustSubInsNickname" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
         <Setting Key="Age_CustSubUpdNicknameLoginOnly" SpName="Age_CustSubUpdNicknameLoginOnly" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     </Function>
+    <Function Name="Transfer">
+    <Setting Key="Acc_CustomerSelTransferOption" SpName="Acc_CustomerSelTransferOption" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+  </Function>
+  <Function Name="Transfer All and Clear Credit">
+    <Setting Key="Age_ClearCredit_All_Ins" SpName="Age_ClearCredit_All_Ins" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Mapping DataField="RowId" ObjectProperty="Id" Class="ClearCreditStep" />
+      <Mapping DataField="ClearedCredit" ObjectProperty="ClearableCredit" Class="ClearCreditStep" />
+    </Setting>
+  </Function>
+  <Function Name="Auto Transfer">
+    <Setting Key="Age_ClearBalanceCust_SettingUpdate" SpName="Age_ClearBalanceCust_SettingUpdate" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_AutoTransferSchedule_Upd" SpName="Age_AutoTransferSchedule_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+  </Function>
 </Functions>
