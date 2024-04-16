@@ -1,13 +1,18 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Requests.TransferAllAndClearCredit
 {
+    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
     using MediatR;
     using Settings.Transfer.API.Models;
     using ViewModels.TransferAllAndClearCredit;
 
     public class TransferResultQuery : TransferBaseQuery, IRequest<TransferResultViewModel>
     {
+        public TransferResultQuery() : this(null) { }
+
         public TransferResultQuery(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             UserId = viewer.UserId;
             SubAccId = viewer.SubAccId;
             IP = viewer.IP;

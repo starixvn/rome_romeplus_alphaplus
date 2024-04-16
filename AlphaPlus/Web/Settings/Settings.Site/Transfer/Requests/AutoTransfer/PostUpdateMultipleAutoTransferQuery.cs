@@ -1,13 +1,18 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Requests.AutoTransfer
 {
+    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
     using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
     using MediatR;
     using Settings.Transfer.API.Models;
 
     public class PostUpdateMultipleAutoTransferQuery : IRequest<UpdateMultipleAutoTransferResultModel>
     {
+        public PostUpdateMultipleAutoTransferQuery() : this(null) { }
+
         public PostUpdateMultipleAutoTransferQuery(IUser user)
         {
+            user = user ?? new User(UserSession.Current);
             UplineId = user.Id;
             SubAccId = user.SubAccId;
             IP = user.IP;

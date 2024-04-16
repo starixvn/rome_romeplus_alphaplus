@@ -1,14 +1,20 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Requests
 {
+    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
     using Settings.Transfer.API.Models;
+    using UserLevel = Settings.Transfer.API.Models.UserLevel;
+    using Enumeration = Settings.Transfer.API.Models.Enumeration;
 
     public class TransferBaseQuery
     {
         private readonly IUser viewer;
 
+        protected TransferBaseQuery() : this(null) {}
+
         protected TransferBaseQuery(IUser viewer)
         {
-            this.viewer = viewer;
+            this.viewer = viewer ?? new User(UserSession.Current);
 
             // Default data, if query string had data, then get from query string.
             CustId = viewer.Id;

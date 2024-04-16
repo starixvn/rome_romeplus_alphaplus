@@ -2,13 +2,19 @@
 {
     using System;
     using System.Linq;
+    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
     using MediatR;
     using Settings.Transfer.API.Models;
+    using Result = Settings.Transfer.API.Models.Result;
 
     public class PostUpdateScheduleQuery : IRequest<Result>
     {
+        public PostUpdateScheduleQuery() : this(null) {}
+
         public PostUpdateScheduleQuery(IUser user)
         {
+            user = user ?? new User(UserSession.Current);
             UplineId = user.Id;
             SubAccId = user.SubAccId;
             IP = user.IP;

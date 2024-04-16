@@ -1,15 +1,19 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Requests.AutoTransfer
 {
     using System;
-    using Microsoft.AspNetCore.Mvc;
     using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
     using MediatR;
     using Settings.Transfer.API.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
+    using AlphaPlus.Core.Models;
 
     public class GetHistoryTransfersQuery : IRequest<AutoTransferMonitoringPageModel>
     {
+        public GetHistoryTransfersQuery() : this(null) {}
+
         public GetHistoryTransfersQuery(IUser user)
         {
+            user = user ?? new User(UserSession.Current);
             CustId = user.Id;
             Language = user.LanguageKey;
             LimitedDateToShowInfo = user.LimitedDateToShowInfo;

@@ -1,13 +1,18 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Requests.AutoTransfer
 {
-    using Microsoft.AspNetCore.Mvc;
     using MediatR;
-    using Settings.Transfer.API.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
+    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.Transfer.API.Models;
+    using Result = Settings.Transfer.API.Models.Result;
 
     public class CancelAllJobsQuery : IRequest<Result>
     {
+        public CancelAllJobsQuery() : this(null) {}
+
         public CancelAllJobsQuery(IUser user)
         {
+            user = user ?? new User(UserSession.Current);
             UplineId = user.Id;
             SubAccId = user.SubAccId;
             IP = user.IP;

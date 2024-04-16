@@ -6,6 +6,8 @@
 
     public class TransferToDownlineHistoryExcelQuery : TransferToDownlineHistoryBaseQuery, IRequest<ExcelFileViewModel>
     {
+        public TransferToDownlineHistoryExcelQuery() : this(null) {}
+        
         public TransferToDownlineHistoryExcelQuery(IUser viewer) : base(viewer)
         {
         }

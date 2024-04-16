@@ -6,6 +6,8 @@
 
     public class TransferToDownlineHistoryPagingQuery : TransferToDownlineHistoryBaseQuery, IRequest<TransferToDownlineHistoryPagingViewModel>
     {
+        public TransferToDownlineHistoryPagingQuery() : this(null) {}
+        
         public TransferToDownlineHistoryPagingQuery(IUser viewer) : base(viewer)
         {
         }

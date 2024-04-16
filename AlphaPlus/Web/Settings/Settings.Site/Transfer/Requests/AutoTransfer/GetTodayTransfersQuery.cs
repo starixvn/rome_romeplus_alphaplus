@@ -1,14 +1,18 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Requests.AutoTransfer
 {
-    using Microsoft.AspNetCore.Mvc;
     using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
     using MediatR;
     using Settings.Transfer.API.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
+    using AlphaPlus.Core.Models;
 
     public class GetTodayTransfersQuery : IRequest<AutoTransferMonitoringPageModel>
     {
+        public GetTodayTransfersQuery() : this(null) { }
+
         public GetTodayTransfersQuery(IUser user)
         {
+            user = user ?? new User(UserSession.Current);
             CustId = user.Id;
             Language = user.LanguageKey;
             AGIP = user.AGIP;

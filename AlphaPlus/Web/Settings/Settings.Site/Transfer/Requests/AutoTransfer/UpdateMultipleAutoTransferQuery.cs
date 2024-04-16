@@ -1,13 +1,18 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Requests.AutoTransfer
 {
     using System.Collections.Generic;
+    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
     using AlphaPlus.Settings.Transfer.API.Helpers;
     using Settings.Transfer.API.Models;
 
     public class UpdateMultipleAutoTransferQuery
     {
+        public UpdateMultipleAutoTransferQuery() : this(null) { }
+
         public UpdateMultipleAutoTransferQuery(IUser user)
         {
+            user = user ?? new User(UserSession.Current);
             Language = user.Language;
         }
 

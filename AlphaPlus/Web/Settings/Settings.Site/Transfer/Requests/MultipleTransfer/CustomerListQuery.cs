@@ -1,5 +1,7 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Requests.MultipleTransfer
 {
+    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
     using AlphaPlus.Settings.Transfer.API.Constants;
     using MediatR;
     using Settings.Transfer.API.Models;
@@ -7,8 +9,11 @@
 
     public class CustomerListQuery : TransferBaseQuery, IRequest<CustomerListViewModel>
     {
+        public CustomerListQuery() : this(null){}
+
         public CustomerListQuery(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             AllowTotalBalanceTransfer = viewer.AllowTotalBalanceTransfer;
         }
 

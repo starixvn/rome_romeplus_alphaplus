@@ -1,13 +1,18 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Requests.CashBalanceTransfer
 {
+    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
     using MediatR;
     using Settings.Transfer.API.Models;
     using ViewModels.CashBalanceTransfer;
 
     public class HintTransferQuery : IRequest<HintTransferViewModel>
     {
+        public HintTransferQuery() : this(null) {}
+
         public HintTransferQuery(IUser user)
         {
+            user = user ?? new User(UserSession.Current);
             CustId = user.Id;
             RoleId = user.LevelId;
             Language = user.Language;

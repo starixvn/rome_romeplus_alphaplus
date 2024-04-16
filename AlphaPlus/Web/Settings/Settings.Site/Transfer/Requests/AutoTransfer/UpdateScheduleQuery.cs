@@ -3,13 +3,18 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AlphaPlus.Core.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
     using AlphaPlus.Settings.Transfer.API.Helpers;
     using Settings.Transfer.API.Models;
 
     public class UpdateScheduleQuery
     {
+        public UpdateScheduleQuery() : this(null) { }
+
         public UpdateScheduleQuery(IUser user)
         {
+            user = user ?? new User(UserSession.Current);
             UplineId = user.Id;
             SubAccId = user.SubAccId;
             IP = user.IP;

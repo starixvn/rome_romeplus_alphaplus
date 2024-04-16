@@ -4,11 +4,16 @@
     using Microsoft.AspNetCore.Mvc;
     using AlphaPlus.Settings.Transfer.API.Configurations;
     using AlphaPlus.Settings.Transfer.API.Models;
+    using AlphaPlus.Settings.Site.Transfer.Models;
+    using AlphaPlus.Core.Models;
 
     public class TransferToDownlineHistoryBaseQuery : TransferBaseQuery
     {
+        public TransferToDownlineHistoryBaseQuery() : this(null) {}
+
         public TransferToDownlineHistoryBaseQuery(IUser viewer) : base(viewer)
         {
+            viewer = viewer ?? new User(UserSession.Current);
             LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
             Site = viewer.Site;
         }
