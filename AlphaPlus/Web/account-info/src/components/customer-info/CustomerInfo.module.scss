@@ -1,0 +1,90 @@
+.no-information {
+    padding: 4px 10px 0;
+    color: var(--text-red-color);
+}
+
+%linkColor {
+    color: var(--link-color);
+
+    &:hover {
+        color: var(--link-hover-color);
+    }
+}
+
+.block-info {
+    display: table;
+    width: 100%;
+    max-height: initial;
+    transition: max-height 0.25s ease-in;
+
+    .txt-name {
+        color: var(--link-color);
+    }
+
+    .enabled {
+        @extend %linkColor;
+        cursor: pointer;
+    }
+
+    .icon-viewlog {
+        margin-left: 4px;
+    }
+
+    .icon-clone-account {
+        padding-left: 5px;
+        font-size: 15px;
+        position: relative;
+        top: 2px;
+    }
+    // User status for business
+    .actived,
+    .closed,
+    .suspended {
+        font-weight: bold;
+        padding: 0 2px;
+    }
+
+    .actived {
+        color: #045ace;
+    }
+
+    .suspended {
+        color: var(--suspended-color);
+        background-color: var(--suspended-bgcolor);
+        font-weight: bold;
+    }
+
+    .disabled {
+        color: var(--disabled-color);
+        background-color: var(--disabled-bgcolor);
+        font-weight: bold;
+    }
+
+    .locked-falseOTPSC,
+    .locked-falsePassword,
+    .closed-byAdmin,
+    .closed-byUpline {
+        color: var(--closed-color) !important;
+        font-weight: bold;
+    }
+
+    .locked-falseOTPSC {
+        background-color: var(--closed-otpsc-bgcolor);
+    }
+
+    .locked-falsePassword {
+        background-color: var(--closed-pwdothers-bgcolor);
+    }
+
+    .closed-byAdmin {
+        background-color: var(--closed-admin-bgcolor);
+    }
+
+    .closed-byUpline {
+        background-color: var(--closed-upline-bgcolor);
+    }
+
+    .closed-byArchive {
+        background-color: var(--closed-archive-bgcolor);
+    }
+}

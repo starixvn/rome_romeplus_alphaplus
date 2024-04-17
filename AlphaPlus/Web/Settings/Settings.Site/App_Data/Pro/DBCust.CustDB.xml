@@ -125,17 +125,41 @@
   </Function>
 
   <Function Name="Sub Account">
-        <Setting Key="Age_CustSubSel" SpName="Age_CustSubSel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustSubSelInfo" SpName="Age_CustSubSelInfo" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustSubIns" SpName="Age_CustSubIns" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustSubPwdUpd" SpName="Age_CustSubPwdUpd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustSubPwdUpd2" SpName="Age_CustSubPwdUpd2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustSubUpdInfo" SpName="Age_CustSubUpdInfo" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustSubUpdPageAccess" SpName="Age_CustSubUpdPageAccess" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustSubInsNickname" SpName="Age_CustSubInsNickname" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustSubUpdNicknameLoginOnly" SpName="Age_CustSubUpdNicknameLoginOnly" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    </Function>
-    <Function Name="Transfer">
+    <Setting Key="Age_CustSubSel" SpName="Age_CustSubSel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustSubSelInfo" SpName="Age_CustSubSelInfo" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustSubIns" SpName="Age_CustSubIns" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustSubPwdUpd" SpName="Age_CustSubPwdUpd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustSubPwdUpd2" SpName="Age_CustSubPwdUpd2" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustSubUpdInfo" SpName="Age_CustSubUpdInfo" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustSubUpdPageAccess" SpName="Age_CustSubUpdPageAccess" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustSubInsNickname" SpName="Age_CustSubInsNickname" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustSubUpdNicknameLoginOnly" SpName="Age_CustSubUpdNicknameLoginOnly" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+  </Function>
+
+  <Function Name="Account Info">
+    <Setting Key="Age_CustomerUpdCredit_Ag" SpName="Age_CustomerUpdCredit_Ag" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustomerUpdCredit_MAg" SpName="Age_CustomerUpdCredit_MAg" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustomerUpdCredit_SAg" SpName="Age_CustomerUpdCredit_SAg" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerUpdClosed" SpName="Acc_CustomerUpdClosed" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerUpdSuspended" SpName="Acc_CustomerUpdSuspended" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerUpdMaster_DisableAutoMPT" SpName="Acc_CustomerUpdMaster_DisableAutoMPT" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDisableOutright" SpName="Acc_CustomerUpdDisableOutright" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDoubleCommLosing" SpName="Acc_CustomerUpdDoubleCommLosing" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_Customer_CreditInfo_Sel" SpName="Age_Customer_CreditInfo_Sel" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Mapping ObjectProperty="MasterCreditMin" DataField="masterCredit_Min" />
+      <Mapping ObjectProperty="MasterCreditMax" DataField="masterCredit_Max" />
+      <Mapping ObjectProperty="AgentCreditMin" DataField="agentCredit_Min" />
+      <Mapping ObjectProperty="AgentCreditMax" DataField="agentCredit_Max" />
+      <Mapping ObjectProperty="MemMaxCreditMin" DataField="memMaxCredit_Min" />
+      <Mapping ObjectProperty="MemMaxCreditMax" DataField="memMaxCredit_Max" />
+    </Setting>
+    <Setting Key="Acc_CustomerUpdAllDayBalTransfer" SpName="Acc_CustomerUpdAllDayBalTransfer" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_ClearBalanceCust_SettingUpdate_Downline" SpName="Age_ClearBalanceCust_SettingUpdate_Downline" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+  </Function>
+  <Function Name="Transfer">
     <Setting Key="Acc_CustomerSelTransferOption" SpName="Acc_CustomerSelTransferOption" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>

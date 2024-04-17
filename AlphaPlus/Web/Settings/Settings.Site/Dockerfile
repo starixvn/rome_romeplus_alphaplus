@@ -10,11 +10,6 @@ RUN yarn && yarn build
 RUN dotnet restore
 RUN dotnet publish --no-restore -o /app
 
-FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS development
-COPY . ./src
-WORKDIR /src/Web/Settings/Settings.Site
-CMD dotnet run --no-launch-profile
-
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS final
 
 # Don’t run as root

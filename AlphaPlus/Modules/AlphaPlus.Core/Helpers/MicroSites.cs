@@ -13,7 +13,8 @@ public static class MicroSites
         { "HowToUse", FeatureUrl },
         { "AccountInfo", AccountInfoUrl },
         { "ViewLog", SettingUrl },
-        { "OldMain", SettingUrl }
+        { "OldMain", SettingUrl },
+        { "Settings", SettingUrl }
     };
 
     public static string GetMicroSiteUrl(string microSiteName, string virtualPath)

@@ -26,6 +26,10 @@ public class UserLevel : Enumeration
 
     public bool IsMasterOrSuperLevel() => IsMasterLevel() || IsSuperLevel();
 
+    public bool IsDownlineOfSuperLevel() => IsMasterLevel() || IsAgentLevel() || IsMemberLevel();
+
+    public bool IsDownlineOfMasterLevel() => IsAgentLevel() || IsMemberLevel();
+
     public bool IsSuperLevel() => this == Super;
 
     public bool IsNotSuperLevel() => !IsSuperLevel();

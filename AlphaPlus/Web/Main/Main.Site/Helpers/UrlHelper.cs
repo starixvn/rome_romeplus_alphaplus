@@ -5,6 +5,9 @@ namespace AlphaPlus.Main.Site.Helpers
     public static class UrlHelper
     {
         [ThreadStatic]
+        private static Func<string, string> mapSettingsPath;
+
+        [ThreadStatic]
         private static Func<string, string> mapExTotalBetsForecastPath;
 
         [ThreadStatic]
@@ -30,6 +33,12 @@ namespace AlphaPlus.Main.Site.Helpers
 
         [ThreadStatic]
         private static Func<string, string> mapTransferPath;
+
+        public static Func<string, string> MapSettingsPath
+        {
+            get => mapSettingsPath ?? MicroSites.SettingUrl;
+            internal set => mapSettingsPath = value;
+        }
 
         public static Func<string, string> MapExTotalBetsForecastPath
         {

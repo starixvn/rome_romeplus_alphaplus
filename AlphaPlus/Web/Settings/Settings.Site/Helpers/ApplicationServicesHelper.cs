@@ -59,6 +59,7 @@ using AlphaPlus.Settings.ViewLogs.API.Services.Impl;
 using AlphaPlus.Settings.ViewLogs.API.Helpers;
 using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
 using AlphaPlus.Settings.Site.ViewLogs.Helpers;
+using AlphaPlus.Settings.Site.Features.Accounts;
 using AlphaPlus.Settings.Transfer.API.Services;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.NPOI;
@@ -70,6 +71,8 @@ namespace AlphaPlus.Settings.Site.Helpers
     {
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
+
+
             var customerSettingApiUrl = new Uri(configuration.GetValue<string>("CustomerSettingApi"));
             var qrCodeMemberLoginApi = new Uri(configuration.GetValue<string>("QRCodeMemberLogin:Api"));
             var qrCodeMemberLoginKey = configuration.GetValue<string>("QRCodeMemberLogin:Key");
@@ -77,10 +80,10 @@ namespace AlphaPlus.Settings.Site.Helpers
 
             services
                 .AddHealthChecks();
-                
+
             services
                 .AddControllersWithViews()
-                .AddNewtonsoftJson(option => 
+                .AddNewtonsoftJson(option =>
                 {
                     option.UseMemberCasing();
                 })
@@ -88,6 +91,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 {
                     options.ViewLocationFormats.Clear();
                     options.ViewLocationFormats.Add("/{1}/Views/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/{1}/Views/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
                     options.ViewLocationFormats.Add("/MemberInfo/Views/Shared/{0}.cshtml");
                     options.ViewLocationFormats.Add("/MemberInfo/Views/{1}/{0}.cshtml");
@@ -98,7 +102,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                     options.ViewLocationFormats.Add("/Transfer/Views/Shared/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Transfer/Views/{1}/{0}.cshtml");
                 });
-            
+
             services
                 .AddMediatR(typeof(Program).Assembly)
                 .AddFanexData(configuration)
@@ -172,7 +176,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<QrCodeAdapter, QrCodeAdapterImpl>()
                 .AddScoped<PasswordService, PasswordServiceImpl>()
                 .AddScoped<CheckBelongingService, CheckBelongingServiceImpl>()
-                .AddSingleton<IRestClient>((provider) => new RestClient { Authenticator = new HmacAuthenticator(qrCodeMemberLoginKey), BaseUrl = qrCodeMemberLoginApi})
+                .AddSingleton<IRestClient>((provider) => new RestClient { Authenticator = new HmacAuthenticator(qrCodeMemberLoginKey), BaseUrl = qrCodeMemberLoginApi })
                 .AddSingleton<Alpha.CopyAccount.Services.ICopyAccountService>((provider) => new Alpha.CopyAccount.Services.CopyAccountService(provider.GetRequiredService<IRestClient>()))
                 .AddSingleton<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>();
 
@@ -205,6 +209,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")
                 .AddKeyedScoped<LogService, LoginServiceImpl>("loginLogSvc");
 
+            services.AddSingleton<IAccountService, Features.Accounts.AccountService>();
             services
                 .AddSingleton<Workbook<TransferToDownlineHistoryModel>, NpoiWorkbook<TransferToDownlineHistoryModel>>()
                 .AddScoped<TransferService, TransferServiceImpl>()

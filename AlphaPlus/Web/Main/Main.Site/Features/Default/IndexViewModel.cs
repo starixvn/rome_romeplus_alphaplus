@@ -50,6 +50,8 @@ namespace AlphaPlus.Main.Site.Features.Default
 
         public string LanguageKey => message.LanguageKey;
 
+        public string SettingsRootPath => UrlHelper.MapSettingsPath("~/");
+
         public string HowToUseRootPath => UrlHelper.MapHowToUsePath("~/");
 
         public string MemberInfoRootPath => UrlHelper.MapMemberInfoPath("~/");

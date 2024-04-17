@@ -8,7 +8,7 @@
 
     public interface UsernameSuggestionService
     {
-        IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(
+        Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(
             int actorId,
             string suggestionQuery,
             bool isInternal,
@@ -25,18 +25,18 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public IEnumerable<UsernameSuggestion> GetUsernamesSuggestion(
+        public async Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(
             int actorId,
             string suggestionQuery,
             bool isInternal,
             bool directDownline,
             bool isAccInfo)
-            => dynamicRepository.Fetch<UsernameSuggestion>(
+            => (await dynamicRepository.FetchAsync<UsernameSuggestion>(
               new SelectAutoSuggestionCriteria(
                   actorId,
                   suggestionQuery,
                   isInternal,
                   directDownline,
-                  isAccInfo)).OrderBy(item => item.UserName);
+                  isAccInfo))).OrderBy(item => item.UserName);
     }
 }

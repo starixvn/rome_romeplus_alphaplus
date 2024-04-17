@@ -1,0 +1,98 @@
+﻿:root,
+:root [data-theme='light'] {
+    --font-family: Roboto, Arial, Tahoma, sans-serif;
+    --font-size: 13px;
+
+    --text-color: #333;
+    --text-red-color: #9d1c1c;
+
+    --link-color: #045ace;
+    --link-hover-color: #f60;
+
+    --border-color: #dfdfdf;
+    --border-color-dark: #cecece;
+
+    --height-normal: 28px;
+    --height-mobile: 36px;
+
+    --icon-color: #888;
+    --icon-color-dark: #333;
+    --icon-hover-color: #e38514;
+    --icon-disable-color: lighten(--icon-color, 20%);
+
+    --paging-bg: #fff;
+    --paging-item-color: #131212;
+    --paging-item-color-hover: #ff0000;
+    --paging-item-bg-hover: #ee6e73;
+    --paging-border: #666;
+
+    // Devices
+    --screen-device-lower768: 767px;
+    --screen-device-greater768: 768px;
+    --screen-device-greater1024: 1024px;
+
+    // Account status colors
+    --disabled-color: #045ace;
+    --disabled-bgcolor: #a0a97a;
+
+    --closed-color: #b50000;
+    --closed-pwdothers-bgcolor: #ccc7ba;
+    --closed-admin-bgcolor: #b3a2c7;
+    --closed-upline-bgcolor: #f79646;
+    --closed-otpsc-bgcolor: #86c5e4;
+    --closed-archive-bgcolor: #969696;
+
+    --suspended-color: #d45f12;
+    --suspended-bgcolor: #f8ded7;
+}
+
+:root [data-theme='dark'] {
+    --font-family: Roboto, Arial, Tahoma, sans-serif;
+    --font-size: 13px;
+
+    --text-color: #cbcbcb;
+    --text-red-color: #ff4f50;
+
+    --link-color: #41a4ff;
+    --link-hover-color: #f60;
+
+    --border-color: #dfdfdf;
+    --border-color-dark: #cecece;
+
+    --height-normal: 28px;
+    --height-mobile: 36px;
+
+    --icon-color: #888;
+    --icon-color-dark: #333;
+    --icon-hover-color: #e38514;
+    --icon-disable-color: lighten(--icon-color, 20%);
+
+    --paging-bg: #fff;
+    --paging-item-color: #131212;
+    --paging-item-color-hover: #ff0000;
+    --paging-item-bg-hover: #ee6e73;
+    --paging-border: #666;
+
+    // Devices
+    --screen-device-lower768: 767px;
+    --screen-device-greater768: 768px;
+    --screen-device-greater1024: 1024px;
+
+    --component-bg-color: #2b2b2b;
+    --component-color: #e7e7e7;
+    --component-border-color: #474747;
+
+    // Account status colors
+    --disabled-color: #cbcbcb;
+    --disabled-bgcolor: #4b5425;
+
+    --closed-color: #cbcbcb;
+    --closed-pwdothers-bgcolor: #6e654e;
+    --closed-admin-bgcolor: #453659;
+    --closed-upline-bgcolor: #874d1e;
+    --closed-otpsc-bgcolor: #0d3c54;
+    --closed-archive-bgcolor: #0b2945;
+
+    --suspended-color: #cbcbcb;
+    --suspended-bgcolor: #805757;
+}

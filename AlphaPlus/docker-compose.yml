@@ -7,10 +7,6 @@ services:
             context: .
             dockerfile: Web/Settings/Settings.Site/Dockerfile
         restart: always
-        develop:
-            watch:
-                - action: rebuild
-            path: .
 
     tickets-api:
         image: ${REGISTRY:-alphaplus}/tickets.api:${PLATFORM:-linux}-${TAG:-latest}
@@ -51,17 +47,6 @@ services:
         restart: always
         depends_on:
             - identity-api
-        develop:
-            watch:
-                - action: rebuild
-            path: .
-
-    account:
-        image: ${REGISTRY:-alphaplus}/account:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: Web/Account/Account.Site/Dockerfile
-        restart: always
 
     login:
         image: ${REGISTRY:-alphaplus}/login:${PLATFORM:-linux}-${TAG:-latest}

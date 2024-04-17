@@ -16,7 +16,7 @@
             this.usernameSuggestionService = usernameSuggestionService;
         }
 
-        public async Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message, CancellationToken cancellation)
+        public Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message, CancellationToken cancellation)
             => usernameSuggestionService.GetUsernamesSuggestion(
                 message.CustId,
                 message.Query,

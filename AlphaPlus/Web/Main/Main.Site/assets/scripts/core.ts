@@ -7,6 +7,10 @@ var alpha = {
             top.document.getElementById('mainRootPath') != null
                 ? (<HTMLInputElement>top.document.getElementById('mainRootPath')).value
                 : 'not found',
+        settingsRootPath:
+            top.document.getElementById('settingsRootPath') != null
+                ? (<HTMLInputElement>top.document.getElementById('settingsRootPath')).value
+                : 'not found',
         accountInfoRootPath:
             top.document.getElementById('accountInfoRootPath') != null
                 ? (<HTMLInputElement>top.document.getElementById('accountInfoRootPath')).value
