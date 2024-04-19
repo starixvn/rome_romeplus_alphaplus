@@ -74,6 +74,22 @@
         ]
     },
     {
+        "outputFileName": "wwwroot/bundles/winlossdetail/winlossdetail-new.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/sort.js",
+            "assets/scripts/components/total-entered-nonentered.js",
+            "assets/scripts/components/daterangepicker-jquery.js",
+            "assets/scripts/components/product-dropdown.js",
+            "assets/scripts/components/username-suggestion.js",
+            "assets/scripts/components/visible-column.js",
+            "assets/scripts/components/week.js",
+            "assets/scripts/components/breadcrumb-level.js",
+            "assets/scripts/winlossdetail/winlossdetail-table.js",
+            "assets/scripts/winlossdetail/winlossdetail-new.js"
+        ]
+    },
+    {
         "outputFileName": "wwwroot/bundles/matchwinlossdetail/matchwinlossdetail.css",
         "inputFiles": [
             "assets/styles/matchwinlossdetail/matchwinlossdetail.css"

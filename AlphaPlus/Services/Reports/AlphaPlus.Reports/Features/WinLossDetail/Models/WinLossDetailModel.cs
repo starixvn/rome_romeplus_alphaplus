@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using AlphaPlus.Reports.Features.Shared.Models;
 
 namespace AlphaPlus.Reports.Features.WinLossDetail;
@@ -8,8 +9,10 @@ public class WinLossDetailModel : NetWinLoss
 
     public string CustName { get; init; }
 
+    [JsonIgnore]
     public string FirstName { get; init; }
 
+    [JsonIgnore]
     public string LastName { get; init; }
 
     public string FullName
@@ -18,7 +21,7 @@ public class WinLossDetailModel : NetWinLoss
         {
             if (string.IsNullOrWhiteSpace(FirstName) && string.IsNullOrWhiteSpace(LastName))
             {
-                return string.Empty;
+                return null;
             }
 
             if (!string.IsNullOrWhiteSpace(FirstName) && !string.IsNullOrWhiteSpace(LastName))

@@ -8,7 +8,9 @@
             "CustId",
             "SearchAccountId"
         ],
-        "CustIdJsonParamNames": [],
+        "CustIdJsonParamNames": [
+            "CustId"
+        ],
         "GroupPageAccesses": [
             {
                 "RoleId": 2,

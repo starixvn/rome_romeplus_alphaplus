@@ -1,52 +1,102 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Reports.Site
+@using AlphaPlus.Reports.Site.Features.Shared.Helpers
 @using AlphaPlus.Reports.Site.Features.WinLossDetail
 @{
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
 }
-@section Scripts {
-    <script src="~/bundles/winlossdetail/winlossdetail.js" asp-append-version="true"></script>
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-reports/winlossdetail-new")
 }
-@model WinLossDetailViewModel
+@section Scripts {
+    <script type="text/javascript">
+        var viewResources = {
+            Username: '@Resources.Username',
+            FirstLastName: '@Resources.FirstLastName',
+            BetCount: '@Resources.BetCount',
+            Turnover: '@Resources.Turnover',
+            NetTurnover: '@Resources.NetTurnover',
+            GrossComm: '@Resources.GrossComm',
+            Member: '@Resources.Member',
+            Agent: '@Resources.Agent',
+        @if (Model.ViewerLevel.IsMasterOrSuperLevel())
+        {
+            @:Master: '@Resources.Master',
+        }
+        @if (Model.ViewerLevel.IsSuperLevel())
+        {
+            @:Super: '@Resources.Super',
+        }
+                    Company: '@Resources.Company',
+                    WinLoss: '@Resources.WinLoss',
+                    Comm: '@Resources.Comm',
+                    Total: '@Resources.Total',
+                    NoInformationIsAvailable: '@Resources.NoInformationIsAvailable',
+                    Total: '@Resources.Total',
+                    DormantAccounts: '@Resources.DormantAccounts'
+            };
+        var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
+        var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
+        var columnList = [
+            { value: "fullname", text: '@Resources.FirstLastName', checked: false },
+            { value: "betcount", text: '@Resources.BetCount' },
+            { value: "turnover", text: '@Resources.Turnover' },
+            { value: "netturnover", text: '@Resources.NetTurnover' },
+            { value: "grosscomm", text: '@Resources.GrossComm' },
+            { value: "pwinloss", text: '@string.Format("{0} {1}", Resources.Member, Resources.WinLoss)' },
+            { value: "pcomm", text: '@string.Format("{0} {1}", Resources.Member, Resources.Comm)' },
+            { value: "ptotal", text: '@string.Format("{0} {1}", Resources.Member, Resources.Total)' },
+            { value: "awinloss", text: '@string.Format("{0} {1}", Resources.Agent, Resources.WinLoss)' },
+            { value: "acomm", text: '@string.Format("{0} {1}", Resources.Agent, Resources.Comm)' },
+            { value: "atotal", text: '@string.Format("{0} {1}", Resources.Agent, Resources.Total)' },
+        @if (Model.ViewerLevel.IsMasterOrSuperLevel())
+        {
+            @:{ value: "mwinloss", text: '@string.Format("{0} {1}", Resources.Master, Resources.WinLoss)' },
+            @:{ value: "mcomm", text: '@string.Format("{0} {1}", Resources.Master, Resources.Comm)' },
+            @:{ value: "mtotal", text: '@string.Format("{0} {1}", Resources.Master, Resources.Total)' },
+        }
+        @if (Model.ViewerLevel.IsSuperLevel())
+        {
+            @:{ value: "swinloss", text: '@string.Format("{0} {1}", Resources.Super, Resources.WinLoss)' },
+            @:{ value: "scomm", text: '@string.Format("{0} {1}", Resources.Super, Resources.Comm)' },
+            @:{ value: "stotal", text: '@string.Format("{0} {1}", Resources.Super, Resources.Total)' },
+        }
+            { value: "company", text: '@Resources.Company' }
+        ];
+        var viewerLevelId = @Model.ViewerLevel.Value;
+        var breadcrumbLevel = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.BreadcrumbLevel))');
+        var usernameSuggestionUrl = '@MicroSites.SettingUrl("~/UserNameSuggestion")';
+    </script>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail-new")
+    <script src="~/bundles/winlossdetail/winlossdetail-new.js" asp-append-version="true"></script>
+}
+@model WinLossDetailNewViewModel
 <report-title-new model="Model.PageHeader" />
-<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form">
-    <product model="@Model.ProductViewModel" />
-    @if (Model.IsHistoricReport)
-    {
-        <month-picker model="Model.MonthPicker" />
-        <div class="form-group">
-            <input type="submit" value="@Resources.Submit" class="btn-submit" />
-        </div>
-    }
-    else
-    {
-        <daterange-picker model="Model.DateRangePicker" />
-    }
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
-    </div>
+<form method="get" class="form-inline filter" role="form" id="report-form" asp-action="GetData">
+    <daterange-picker-jquery model="@Model.DateRangePicker" />
+    <product-dropdown show-product-details="true" />
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
-            asp-all-route-data="Model.GetExcelParams()"></a>
-    </div>
-    @if (Model.IsHistoricReport)
-    {
-        <div class="note">
-            <span class="star">*</span>@Model.ViewDataInstructionMessage
-            <a href="javascript:;" id="historic-report" data-is-historic-report="true">@Resources.BackToCurrentReport</a>
+        <label class="label-form-control">@Resources.Username</label>
+        <div>
+            <input type="text" id="txt-username-suggestion" placeholder="@Resources.UsernameOrFirstLastName" autocomplete="off" />
         </div>
-    }
-    else
-    {
-        <a href="javascript:;" class="hide" id="historic-report" data-is-historic-report="false"></a>
-    }
-    <input type="hidden" asp-for="CustId" />
-    <input type="hidden" asp-for="CustName" />
-    <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
-    <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
-    <input type="hidden" asp-for="IsHistoricReport" />
+    </div>
+    <visible-column />
 </form>
-<partial name="ReportData" model="Model" />
+<div class="label-week-box" id="week-container"></div>
+<div class="breadcrumb-table">
+    <div class="breadcrumb-container">
+        <ul class="breadcrumb" id="breadcrumb-level"></ul>
+    </div>
+    <div class="list-icon">
+        <ul>
+            <li><span id="icon-copy" class="icon icon-content-copy" data-toggle="tooltip" data-placement="top" title="@Resources.Copy"></span></li>
+            <li><a id="icon-excel" class="icon icon-excel icon-excel-new" data-toggle="tooltip" data-placement="top" title="@Resources.ExportToExcel" asp-action="Excel"></a></li>
+        </ul>
+    </div>
+</div>
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per" id="tbl-report">
+</table>

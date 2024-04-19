@@ -77,9 +77,7 @@ public class ReportTitleTagHelper : TagHelper
         var total = Model.TotalEnteredResults;
         if (total != null)
         {
-            var today = DateTime.Today;
-            var yesterday = today.Yesterday();
-
+            var yesterday = total.EnteredResultYesterday.EventDateText;
             sb.Append("<div class=\"entered-non-entered\">");
             if (total.EnteredResultYesterday.NonEntered > 0)
             {
@@ -89,25 +87,23 @@ public class ReportTitleTagHelper : TagHelper
             {
                 sb
                     .Append("<div class=\"icon-entered\">")
-                    .Append($"<div class=\"text\">{yesterday.ToMMDDWithSlash()}: {Resources.Entered}</div>")
+                    .Append($"<div class=\"text\">{yesterday}: {Resources.Entered}</div>")
                     .Append("<div class=\"icon-check-circle\"></div>")
                     .Append("</div>");
             }
 
-            AppendNonEnteredSportResult(sb, today, total.EnteredResultToday.NonEntered);
+            AppendNonEnteredSportResult(sb, total.EnteredResultToday.EventDateText, total.EnteredResultToday.NonEntered);
             sb.Append("</div>");
         }
     }
 
-    private static void AppendNonEnteredSportResult(StringBuilder sb, DateTime date, int nonEntered)
-    {
-        sb
-            .Append("<div class=\"icon-non-entered\">")
-            .Append($"<div class=\"text\">{date.ToMMDDWithSlash()}: {Resources.NonEntered}</div>")
-            .Append($"<div class=\"number\">{nonEntered}</div>")
-            .Append("<div class=\"icon-clock\"></div>")
-            .Append("</div>");
-    }
+    private static void AppendNonEnteredSportResult(StringBuilder sb, string formatedDate, int nonEntered)
+        => sb
+        .Append("<div class=\"icon-non-entered\">")
+        .Append($"<div class=\"text\">{formatedDate}: {Resources.NonEntered}</div>")
+        .Append($"<div class=\"number\">{nonEntered}</div>")
+        .Append("<div class=\"icon-clock\"></div>")
+        .Append("</div>");
 
     private void AppendActionIcons(StringBuilder sb)
     {

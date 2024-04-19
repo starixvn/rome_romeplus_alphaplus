@@ -1,3 +1,4 @@
+using AlphaPlus.Reports.Features.Customer;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Extensions;
@@ -13,10 +14,11 @@ public class WinLossDetailNewHandler(
     IProductService productService,
     IOptions<AppSettings> options,
     IEnteredResultService enteredResultService,
-    IWinLossDetailService winlossDetailService) :
+    IWinLossDetailService winlossDetailService,
+    ICustomerService customerService) :
         BaseHandler(productService, options),
         IRequestHandler<WinLossDetailNewQuery, WinLossDetailNewViewModel>,
-        IRequestHandler<WinLossDetailGetDataQuery, ReportData<WinLossDetailModel>>
+        IRequestHandler<WinLossDetailGetDataQuery, WinLossDetailGetDataViewModel>
 {
     public async Task<WinLossDetailNewViewModel> Handle(WinLossDetailNewQuery message, CancellationToken cancellationToken)
     {
@@ -26,14 +28,53 @@ public class WinLossDetailNewHandler(
         return new WinLossDetailNewViewModel(message, productViewModel, enteredResult);
     }
 
-    public Task<ReportData<WinLossDetailModel>> Handle(WinLossDetailGetDataQuery message, CancellationToken cancellationToken)
+    public async Task<WinLossDetailGetDataViewModel> Handle(WinLossDetailGetDataQuery message, CancellationToken cancellationToken)
     {
-        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
-            message,
-            message.UserSelectedProductIds,
-            message.UserSelectedResourceIds);
+        var (isValidUsername, breadcrumbs) = await BuildWinLossDetailGetDataQuery(message);
+        var winlossDetailTask = Task.FromResult(new ReportData<WinLossDetailModel>(null, null, 0));
+        var weekDataTask = Task.FromResult<IEnumerable<WinLossDetailWeekModel>>(null);
 
-        return GetWinLossDetail(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml);
+        if (isValidUsername)
+        {
+            var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+                message,
+                message.UserSelectedProductIds,
+                message.UserSelectedResourceIds);
+            winlossDetailTask = GetWinLossDetail(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml);
+            if (message.GetWeekData)
+            {
+                var weekDataParam = new WinLossDetailWeekParam(
+                    message.ViewerId,
+                    message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+                    message.ToDate,
+                    validUserSelectedProductIds.JoinWithComma(),
+                    productDetailXml,
+                    string.IsNullOrWhiteSpace(message.Username) ? message.CustName : message.Username);
+                weekDataTask = winlossDetailService.GetWeekData(weekDataParam);
+            }
+        }
+        else
+        {
+            weekDataTask = Task.FromResult<IEnumerable<WinLossDetailWeekModel>>([]);
+        }
+
+        var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
+        await Task.WhenAll(enteredResultTask, winlossDetailTask, weekDataTask);
+        var weekData = await weekDataTask;
+
+        return new WinLossDetailGetDataViewModel(
+            (byte)(message.CustLevelId - 1),
+            await enteredResultTask,
+            await winlossDetailTask,
+            weekData != null
+                ? BuildWeekViewModels(
+                    weekData,
+                    message.FromDate,
+                    message.ToDate,
+                    message.WeekFromDate,
+                    message.WeekToDate)
+                : null,
+            breadcrumbs);
     }
 
     private Task<ReportData<WinLossDetailModel>> GetWinLossDetail(
@@ -52,5 +93,91 @@ public class WinLossDetailNewHandler(
             message.Site);
 
         return winlossDetailService.GetWinLossDetail(param);
+    }
+
+    private async Task<(bool, IEnumerable<Breadcrumb>)> BuildWinLossDetailGetDataQuery(WinLossDetailGetDataQuery message)
+    {
+        var isValidUsername = true;
+        IEnumerable<Breadcrumb> breadcrumbs = null;
+
+        if (!string.IsNullOrWhiteSpace(message.Username))
+        {
+            var customerLevel = await customerService.GetCustomerLevel(message.ViewerId, message.Username);
+            isValidUsername = customerLevel != null;
+
+            if (isValidUsername)
+            {
+                var breadcrumb = customerService.BuildBreadcrumb(customerLevel);
+
+                // var nickname = message.ViewerLevel.IsDirectUplineOf(customerLevel.RoleId)
+                //     ? customerLevel.Username2
+                //     : string.Empty;
+                // customerService. (
+                //     message.ViewerId,
+                //     customerLevel.Username,
+                //     customerLevel.FirstName,
+                //     customerLevel.LastName,
+                //     nickname);
+
+                message.CustId = breadcrumb.CustId;
+                message.CustName = breadcrumb.CustName;
+                message.CustLevelId = breadcrumb.CustLevelId;
+                breadcrumbs = customerService.BuildBreadcrumbs(customerLevel, message.ViewerLevel).ToList();
+            }
+            else
+            {
+                breadcrumbs = [new Breadcrumb(message.ViewerId, message.CustName, message.ViewerLevelId)];
+            }
+        }
+
+        return (isValidUsername, breadcrumbs);
+    }
+
+    private static IEnumerable<WinLossDetailWeekViewModel> BuildWeekViewModels(
+        IEnumerable<WinLossDetailWeekModel> weekData,
+        DateTime fromDate,
+        DateTime toDate,
+        DateTime? selectedFromDate = null,
+        DateTime? selectedToDate = null)
+    {
+        var weekDataHash = new HashSet<string>();
+        foreach (var item in weekData)
+        {
+            weekDataHash.Add($"{item.StartOfWeek.ToShortDateWithSlash()}-{item.EndOfWeek.ToShortDateWithSlash()}");
+        }
+
+        var weekSelections = new List<WinLossDetailWeekViewModel>();
+        var startDate = fromDate.Date;
+        var endDate = toDate.Date;
+
+        while (endDate.Subtract(startDate).TotalDays >= 0)
+        {
+            var endDateStartOfWeek = endDate.StartOfWeek();
+            var startDateOrEndDateStartOfWeek = startDate < endDateStartOfWeek ? endDateStartOfWeek : startDate;
+
+            var startDateOrEndDateStartOfWeekString = startDateOrEndDateStartOfWeek.ToShortDateWithSlash();
+            var endDateString = endDate.ToShortDateWithSlash();
+            var weekSelection = new WinLossDetailWeekViewModel(
+                startDateOrEndDateStartOfWeekString,
+                endDateString,
+                GetDisplayWeek(startDateOrEndDateStartOfWeek, endDate),
+                weekDataHash.Contains($"{startDateOrEndDateStartOfWeekString}-{endDateString}"),
+                selectedFromDate.HasValue
+                && selectedToDate.HasValue
+                && selectedFromDate.Value == startDateOrEndDateStartOfWeek
+                && selectedToDate.Value == endDate);
+            weekSelections.Add(weekSelection);
+
+            endDate = endDateStartOfWeek.AddDays(-1);
+        }
+
+        return weekSelections;
+    }
+
+    private static string GetDisplayWeek(DateTime fromDate, DateTime toDate)
+    {
+        var displayToDate = $"{toDate.ToString("dd")} {Resources.ResourceManager.GetString($"_{toDate.ToString("MMM")}")}";
+
+        return fromDate == toDate ? displayToDate : $"{fromDate.ToString("dd")} - {displayToDate}";
     }
 }

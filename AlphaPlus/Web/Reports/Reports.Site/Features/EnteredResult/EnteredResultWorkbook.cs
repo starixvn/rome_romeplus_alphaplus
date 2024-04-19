@@ -28,11 +28,21 @@ public class EnteredResultWorkbook(IWebHostEnvironment webHostEnvironment) :
 
     public ExcelFileViewModel BuildExcelFile(EnteredResultExcelQuery message, ReportData<EnteredResultSport> reportData)
     {
-        var today = DateTime.Today;
+        DateTime today, yesterday;
+        if (reportData.HasData)
+        {
+            today = reportData.Total.EnteredResultYesterday.EventDate;
+            yesterday = reportData.Total.EnteredResultToday.EventDate;
+        }
+        else
+        {
+            today = DateTime.Today;
+            yesterday = today.Yesterday();
+        }
         var resources = new Dictionary<string, string>
         {
-            ["Yesterday"] = today.Yesterday().ToShortDateWithSlash(),
-            ["Today"] = today.ToShortDateWithSlash()
+            ["Today"] = today.ToShortDateWithSlash(),
+            ["Yesterday"] = yesterday.ToShortDateWithSlash()
         };
 
         var fileContent = UseTemplate(

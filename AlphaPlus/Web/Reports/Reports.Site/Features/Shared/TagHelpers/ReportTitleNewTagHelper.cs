@@ -19,7 +19,7 @@ public class ReportTitleNewTagHelper : TagHelper
 
         var sb = new StringBuilder();
         sb
-            .Append($"<div class=\"text-title pull-left\" id=\"report-title\">${Model.Title}</div>")
+            .Append($"<div class=\"text-title pull-left\" id=\"report-title\">{Model.Title}</div>")
             .Append("<a href=\"javascript:;\"><span class=\"icon icon-information-outline icon-report-legend\" id=\"icon-report-legend\"></span></a>");
         AppendEnteredSportResult(sb);
         AppendActionIcons(sb);
@@ -32,23 +32,22 @@ public class ReportTitleNewTagHelper : TagHelper
         var total = Model.TotalEnteredResults;
         if (total != null)
         {
-            var today = DateTime.Today;
-            var yesterday = today.Yesterday();
+            var yesterday = total.EnteredResultYesterday.EventDateText;
             var hasNonEnteredYerterday = total.EnteredResultYesterday.NonEntered > 0;
 
             sb.Append("<div class=\"entered-non-entered\">");
             sb
-                .Append($"<div class=\"icon-non-entered\" id=\"total-non-entered-yesterday\"${(hasNonEnteredYerterday ? string.Empty : " style=display:none")}>")
-                .Append($"<div class=\"text\"><span class=\"event-date-yesterday\">${yesterday.ToMMDDWithSlash()}</span>: ${Resources.NonEntered}</div>")
+                .Append($"<div class=\"icon-non-entered\" id=\"total-non-entered-yesterday\"{(hasNonEnteredYerterday ? string.Empty : " style=display:none")}>")
+                .Append($"<div class=\"text\"><span class=\"event-date-yesterday\">{yesterday}</span>: {Resources.NonEntered}</div>")
                 .Append($"<div class=\"number\" id=\"total-non-entered-yesterday-number\">{total.EnteredResultYesterday.NonEntered.FormatNumber()}</div>")
                 .Append("<div class=\"icon-clock\"></div></div>");
             sb
-                .Append($"<div class=\"icon-entered\" id=\"total-entered-yesterday\"${(hasNonEnteredYerterday ? " style=display:none" : string.Empty)}>")
-                .Append($"<div class=\"text\"><span class=\"event-date-yesterday\">${yesterday.ToMMDDWithSlash()}</span>: ${Resources.Entered}</div>")
+                .Append($"<div class=\"icon-entered\" id=\"total-entered-yesterday\"{(hasNonEnteredYerterday ? " style=display:none" : string.Empty)}>")
+                .Append($"<div class=\"text\"><span class=\"event-date-yesterday\">{yesterday}</span>: {Resources.Entered}</div>")
                 .Append("<div class=\"icon-check-circle\"></div></div>");
             sb
-                .Append($"<div class=\"icon-non-entered\" id=\"total-non-entered-today\">")
-                .Append($"<div class=\"text\"><span id=\"total-non-entered-today-text\">${today.ToMMDDWithSlash()}</span>: ${Resources.NonEntered}</div>")
+                .Append("<div class=\"icon-non-entered\" id=\"total-non-entered-today\">")
+                .Append($"<div class=\"text\"><span id=\"total-non-entered-today-text\">{total.EnteredResultToday.EventDateText}</span>: {Resources.NonEntered}</div>")
                 .Append($"<div class=\"number\" id=\"total-non-entered-today-number\">{total.EnteredResultToday.NonEntered.FormatNumber()}</div>")
                 .Append("<div class=\"icon-clock\"></div></div>");
             sb.Append("</div>");

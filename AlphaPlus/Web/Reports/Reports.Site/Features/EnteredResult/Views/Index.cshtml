@@ -24,8 +24,17 @@
         }
     }
 
-    var today = DateTime.Today;
-    var yesterday = today.Yesterday();
+    DateTime today, yesterday;
+    if (Model.ReportData.HasData)
+    {
+        today = Model.ReportData.Total.EnteredResultYesterday.EventDate;
+        yesterday = Model.ReportData.Total.EnteredResultToday.EventDate;
+    }
+    else
+    {
+        today = DateTime.Today;
+        yesterday = today.Yesterday();
+    }
 }
 @section Styles {
     <link rel="stylesheet" href="~/bundles/enteredresult/enteredresult.css" asp-append-version="true" />

@@ -567,6 +567,9 @@
   <data name="KoreanWon" xml:space="preserve">
     <value>원</value>
   </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value/>
+  </data>
   <data name="LastMonth" xml:space="preserve">
     <value>마지막 달</value>
   </data>
@@ -1091,6 +1094,39 @@
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>어제</value>
+  </data>
+  <data name="_Apr" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_Aug" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_Feb" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_Jan" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_Jul" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_Jun" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_Mar" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_May" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_Nov" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_Oct" xml:space="preserve">
+    <value/>
+  </data>
+  <data name="_Sep" xml:space="preserve">
+    <value/>
   </data>
   <data name="eventdate" xml:space="preserve">
     <value>경기 날짜</value>

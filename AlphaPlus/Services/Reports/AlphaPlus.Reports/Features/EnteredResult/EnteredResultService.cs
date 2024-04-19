@@ -59,7 +59,7 @@ public class EnteredResultService(
         var totalToday = new EnteredResultEntity(today, totalEnteredToday, totalNonEnteredToday);
         var totalYesterday = new EnteredResultEntity(yesterday, totalEnteredYesterday, totalNonEnteredYesterday);
 
-        return new EnteredResultSport(0, string.Empty, totalToday, totalYesterday);
+        return new EnteredResultSport(0, null, totalToday, totalYesterday);
     }
 
     public Task<IEnumerable<EnteredResultSport>> GetEnteredResults(string siteName)

@@ -17,33 +17,12 @@ declare var store: StoreJSStatic;
 
 class AlphaReports {
     store: StoreJSStatic;
+    private defaultLocale = 'en-US';
+    private localeStringOptions = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
 
     constructor(store: StoreJSStatic) {
         this.store = store;
     }
-
-    format = {
-        //monthFormat: 'MMMM - yyyy',
-        //shortDateWithSlash_DatePicker: 'MM/DD/YYYY',
-        //shortDateWithSlash_MonthPicker: 'MM/dd/yyyy',
-        monthDayWithSlash: 'MM/DD',
-        dayMonthName: 'DD MMM',
-        day: 'DD'
-    };
-
-    sort = {
-        none: 0,
-        ascending: 1,
-        descending: -1
-    };
-
-    keyCode = {
-        enter: 13
-    };
-
-    //numberDisplayedProductsOnFilter = 1;
-    //maxTimesToShowTooltip = 5;
-    isLocalStorageEnabled = true;
 
     screenSmallThan768() {
         const currentWindowWidth = screen.width || $(window).width();
@@ -51,12 +30,12 @@ class AlphaReports {
         return currentWindowWidth < 768;
     }
 
-    screenLandscapeMode() {
-        return screen.width > screen.height || $(window).width() > $(window).height();
-    }
+    // screenLandscapeMode() {
+    //     return screen.width > screen.height || $(window).width() > $(window).height();
+    // }
 
     splitCell = (firstCell: string, cellClass: string = '', lastCellStyle: string = 'bold') => {
-        const combinedCells = $('.' + firstCell + '-combined');
+        const combinedCells = $(`.${firstCell}-combined`);
 
         combinedCells.each(function (index: number) {
             const oldValues = $(this).find('li');
@@ -145,54 +124,16 @@ class AlphaReports {
         return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
     }
 
-    replaceQueryStringValue(queryString: string, paramName: string, paramValue: any) {
-        if (typeof queryString === 'undefined' || queryString === null) {
-            return '';
-        }
-
-        const regex = new RegExp('([?&])' + paramName + '=[^&]*', 'i');
-        const newQueryString = regex.test(queryString)
-            ? queryString.replace(regex, '$1' + paramName + '=' + paramValue)
-            : queryString + (queryString.indexOf('?') >= 0 ? '&' : '?') + paramName + '=' + paramValue;
-
-        return newQueryString;
-    }
-
-    correctEvenRowClass($tableReport: JQuery) {
-        let isEvenRow = false;
-        $tableReport.find('tbody > tr').each(function () {
-            const $row = $(this);
-            if ($row.hasClass('even-row') && !isEvenRow) {
-                $row.removeClass('even-row');
-            } else if (!$row.hasClass('even-row') && isEvenRow) {
-                $row.addClass('even-row');
-            }
-
-            isEvenRow = !isEvenRow;
-        });
-    }
-
-    convertAttributeToBool(attrValue: string) {
-        return !!attrValue && attrValue.toString().toLowerCase() === 'true';
-    }
-
     formatNumber(value: number) {
-        return value.toLocaleString('en-US');
+        return (value || 0).toLocaleString(this.defaultLocale);
+    }
+
+    formatDecimal(value: number) {
+        return (value || 0).toLocaleString(this.defaultLocale, this.localeStringOptions);
     }
 
     formatCurrency(value: number) {
         return value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-    }
-
-    getFormData($form: JQuery): any {
-        const unindexed_array = $form.serializeArray();
-        const indexed_array = {};
-
-        $.map(unindexed_array, function (n, i) {
-            indexed_array[n['name']] = n['value'];
-        });
-
-        return indexed_array;
     }
 
     updateQueryString(queryString: string) {

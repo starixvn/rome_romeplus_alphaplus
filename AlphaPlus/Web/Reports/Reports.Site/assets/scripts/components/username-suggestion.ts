@@ -1,30 +1,30 @@
-﻿class UsernameAutoSuggestionOption {
+﻿class UsernameSuggestionOption {
     constructor(
         public url: string,
         public onBlur = Function(),
-        public directDownline = false,
-        public isAccInfo = true,
+        public directDownlines = false,
+        public isAccInfo = false,
         public initialUsername = ''
     ) {
         this.url = url;
         this.onBlur = onBlur;
-        this.directDownline = directDownline;
+        this.directDownlines = directDownlines;
         this.isAccInfo = isAccInfo;
         this.initialUsername = initialUsername;
     }
 }
 
-class UsernameAutoSuggestionComponent {
+class UsernameSuggestionComponent {
     private $usernameInput: JQuery;
 
-    init(options: UsernameAutoSuggestionOption) {
-        this.$usernameInput = $('#txt-username-auto-suggestion');
+    init(options: UsernameSuggestionOption) {
+        this.$usernameInput = $('#txt-username-suggestion');
         const queryString = this.buildQueryString(options);
         const urlAndQueryString = `${options.url}?${queryString}${queryString.length ? '&' : ''}`;
 
         const typeaheadOptions = {
             source: function (query: string, process) {
-                return $.get(`${urlAndQueryString}custname=${query}`, process);
+                return $.get(`${urlAndQueryString}query=${query}`, process);
             },
             items: 10,
             minLength: 2,
@@ -33,11 +33,11 @@ class UsernameAutoSuggestionComponent {
                 return `${parts[0]} <br/> ${parts[1]}`;
             },
             displayText: function (item) {
-                const nickname = item.Username2 ? ` (${item.Username2})` : '';
-                return `${item.Username}${nickname}#${item.FirstName} ${item.LastName}`;
+                const nickname = item.UserName2 ? ` (${item.UserName2})` : '';
+                return `${item.UserName}${nickname}#${item.FirstName} ${item.LastName}`;
             },
             autoSelect: false,
-            afterSelect: (item) => this.$usernameInput.val(item.Username),
+            afterSelect: (item) => this.$usernameInput.val(item.UserName),
             delay: 200
         };
 
@@ -45,23 +45,23 @@ class UsernameAutoSuggestionComponent {
             .typeahead(typeaheadOptions)
             .blur(() => {
                 const visible = this.$usernameInput.next('.typeahead').is(':visible');
-                !visible && options.onBlur($.trim(this.$usernameInput.val()));
+                !visible && options.onBlur();
             })
             .val(options.initialUsername);
     }
 
-    private buildQueryString(options: UsernameAutoSuggestionOption) {
+    private buildQueryString(options: UsernameSuggestionOption) {
         const queryString = [];
 
-        if (options.directDownline) {
-            queryString.push(`directdownline=${options.directDownline}`);
+        if (options.directDownlines) {
+            queryString.push(`directdownlines=${options.directDownlines}`);
         }
 
-        if (!options.isAccInfo) {
+        if (options.isAccInfo) {
             queryString.push(`isaccinfo=${options.isAccInfo}`);
         }
 
-        return queryString.join('&');
+        return queryString.length === 0 ? '' : queryString.join('&');
     }
 
     getUsername() {

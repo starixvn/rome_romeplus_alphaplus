@@ -17,5 +17,5 @@ public class WinLossDetailController(IMediator mediator) : ReportBaseController(
     public Task<IActionResult> IndexNew(WinLossDetailNewQuery message) => View(message);
 
     public Task<IActionResult> GetData(WinLossDetailGetDataQuery message)
-        => Json<ReportData<WinLossDetailModel>>(message);
+        => Json<WinLossDetailGetDataViewModel>(message);
 }

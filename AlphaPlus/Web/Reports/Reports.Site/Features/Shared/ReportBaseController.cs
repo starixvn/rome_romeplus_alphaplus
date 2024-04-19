@@ -1,4 +1,6 @@
 using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using AlphaPlus.Core;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
@@ -22,12 +24,18 @@ public abstract class ReportBaseController(IMediator mediator) : BaseController
             : View(InvalidViewName);
     }
 
-    protected async Task<IActionResult> Json<TResponse>(IRequest<TResponse> message)
+    protected async Task<IActionResult> Json<TResponse>(
+        IRequest<TResponse> message,
+        JsonIgnoreCondition jsonIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault)
     {
         var baseQuery = message as BaseQuery;
         if (baseQuery != null && baseQuery.IsValid())
         {
-            return Json(await mediator.Send(message));
+            return Json(await mediator.Send(message), new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = null,
+                DefaultIgnoreCondition = jsonIgnoreCondition
+            });
         }
 
         return Json(new Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized));

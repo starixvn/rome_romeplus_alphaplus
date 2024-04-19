@@ -34,7 +34,7 @@ builder.Services
     })
     .AddControllersWithViews(options =>
     {
-        options.Filters.Add<CheckBelongingFilterAttribute>();
+        //options.Filters.Add<CheckBelongingFilterAttribute>();
         options.Filters.Add<AfterLoginFlowFilterAttribute>();
         options.Filters.Add<ProtectedModeFilterAttribute>();
         options.Filters.Add<SecurityCodeFilterAttribute>();

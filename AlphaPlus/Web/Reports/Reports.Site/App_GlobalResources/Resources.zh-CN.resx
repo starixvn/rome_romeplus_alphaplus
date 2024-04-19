@@ -850,7 +850,7 @@
     <value/>
   </data>
   <data name="SabaSportsNote" xml:space="preserve">
-    <value>沙巴体育的专属报表仅從 {0} 開始提供。&#xD;&#xD;
+    <value>沙巴体育的专属报表仅從 {0} 開始提供。&#xD;&#xD;&#xD;
  在 {0} 之前，体育博彩报表和沙巴体育报表的 數據是结合的。</value>
   </data>
   <data name="SearchColumns" xml:space="preserve">
@@ -1095,6 +1095,42 @@
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>昨日赛事</value>
+  </data>
+  <data name="_Apr" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="_Aug" xml:space="preserve">
+    <value>8月</value>
+  </data>
+  <data name="_Dec" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="_Feb" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="_Jan" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="_Jul" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="_Jun" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="_Mar" xml:space="preserve">
+    <value>3月</value>
+  </data>
+  <data name="_May" xml:space="preserve">
+    <value>5月</value>
+  </data>
+  <data name="_Nov" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="_Oct" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="_Sep" xml:space="preserve">
+    <value>9月</value>
   </data>
   <data name="eventdate" xml:space="preserve">
     <value>赛事日期</value>

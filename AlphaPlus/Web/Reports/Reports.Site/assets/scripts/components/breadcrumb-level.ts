@@ -1,136 +1,79 @@
-﻿"use strict";
-class BreadcrumbLevelOption {
-    constructor(
-        public breadcrumbs = [],
-        public onClick = Function(),
-        public reportTitle: any,
-        public selectorId = "breadcrumb-level",
-        public reportTitleSelectorId = "report-title") {
-        this.breadcrumbs = breadcrumbs;
-        this.onClick = onClick;
-        this.selectorId = selectorId;
-        this.reportTitleSelectorId = reportTitleSelectorId;
-    }
-}
+﻿// class BreadcrumbLevelOption {
+//     constructor(
+//         public breadcrumbs = [],
+//         public onClick = Function(),
+//         public reportTitle: any,
+//         public selectorId = 'breadcrumb-level',
+//         public reportTitleSelectorId = 'report-title'
+//     ) {
+//         this.breadcrumbs = breadcrumbs;
+//         this.onClick = onClick;
+//         this.selectorId = selectorId;
+//         this.reportTitleSelectorId = reportTitleSelectorId;
+//     }
+// }
 
 class BreadcrumbLevelComponent {
-    private breadcrumbLevelOption: BreadcrumbLevelOption;
-    private reportTitleSelector: JQuery;
+    private $reportTitle: JQuery;
+    private $breadcrumbLevel: JQuery;
+    private breadcrumbs = [];
+    private onClick: Function;
 
-    init(options: BreadcrumbLevelOption) {
-        this.breadcrumbLevelOption = options;
-        //this.breadcrumbSelector = $("#" + options.selectorId);
-        this.reportTitleSelector = $("#" + options.reportTitleSelectorId);
+    constructor() {
+        this.$reportTitle = $('#report-title');
+        this.$breadcrumbLevel = $('#breadcrumb-level');
+    }
+
+    init(breadcrumbData, onClick: Function) {
+        this.breadcrumbs.push(breadcrumbData);
+        this.onClick = onClick;
         this.render();
     }
 
     addBreadcrumbLevel(breadcrumbData: any) {
-        this.breadcrumbLevelOption.breadcrumbs.push(breadcrumbData);
+        this.breadcrumbs.push(breadcrumbData);
         this.render();
     }
 
     removeBreadcrumbLevel(custLevelId: number) {
-        this.breadcrumbLevelOption.breadcrumbs = this.breadcrumbLevelOption.breadcrumbs.filter((item) => item.custLevelId >= custLevelId);
+        this.breadcrumbs = this.breadcrumbs.filter((item) => item.CustLevelId >= custLevelId);
+        this.render();
+    }
+
+    resetBreadcrumbLevel(breadcrumbs) {
+        this.breadcrumbs = breadcrumbs;
         this.render();
     }
 
     getBreadcrumbs() {
-        return this.breadcrumbLevelOption.breadcrumbs;
+        return this.breadcrumbs;
     }
 
-    setBreadcrumbs(breadcrumbs: any) {
-        this.breadcrumbLevelOption.breadcrumbs = breadcrumbs;
-        this.render();
-    }
-
-    public render() {
-        const breadcrumbLength = this.breadcrumbLevelOption.breadcrumbs.length;
-        const html = this.breadcrumbLevelOption.breadcrumbs.map(function (item, index) {
+    private render() {
+        const breadcrumbLength = this.breadcrumbs.length;
+        const html = this.breadcrumbs.map(function (item, index) {
             return index + 1 === breadcrumbLength
-                ? `<li>${item.custName}</li>`
-                : `<li><a class="upline-link" href="javascript:;" data-custid="${item.custId}" data-custname="${item.custName}" data-custlevelid="${item.custLevelId}">${item.custName}</a></li>`;
+                ? `<li>${item.CustName}</li>`
+                : `<li><a href="javascript:;" class="upline-link" data-custid="${item.CustId}" data-custname="${item.CustName}" data-custlevelid="${item.CustLevelId}">${item.CustName}</a></li>`;
         });
 
-        this.reportTitleSelector.text(
-            this.breadcrumbLevelOption.reportTitle[this.breadcrumbLevelOption.breadcrumbs[breadcrumbLength - 1].custLevelId]);
-        $("#" + this.breadcrumbLevelOption.selectorId)
-            .html(html.join(""))
-            .find(".upline-link").off().click((e) => {
+        // this.$reportTitle.text(
+        //     this.breadcrumbLevelOption.reportTitle[
+        //         this.breadcrumbLevelOption.breadcrumbs[breadcrumbLength - 1].custLevelId
+        //     ]
+        // );
+
+        this.$breadcrumbLevel
+            .html(html.join(''))
+            .find('.upline-link')
+            .off()
+            .click((e) => {
                 e.preventDefault();
                 const $this = $(e.target);
-                $this.addClass("active");
-                this.breadcrumbLevelOption.onClick({
-                    custId: $this.data("custid"),
-                    custName: $this.data("custname"),
-                    custLevelId: $this.data("custlevelid")
-                });
+                const custId = $this.data('custid');
+                const custName = $this.data('custname');
+                const custLevelId = $this.data('custlevelid');
+                this.onClick && this.onClick(custId, custName, custLevelId);
             });
     }
 }
-
-
-
-
-
-
-//"use strict";
-//class BreadcrumbLevelOption {
-//    constructor(
-//        public breadcrumbs = [],
-//        public onClick = Function(),
-//        public reportTitle: any,
-//        public selectorId = "breadcrumb-level",
-//        public reportTitleSelectorId = "report-title") {
-//        this.onClick = onClick;
-//        this.selectorId = selectorId;
-//        this.reportTitleSelectorId = reportTitleSelectorId;
-//    }
-//}
-
-//class BreadcrumbLevelComponent {
-//    private breadcrumbLevelOption: BreadcrumbLevelOption;
-//    private breadcrumbSelector: JQuery;
-//    private reportTitleSelector: JQuery;
-
-//    init(options: BreadcrumbLevelOption) {
-//        this.breadcrumbLevelOption = options;
-//        this.reportTitleSelector = $("#" + this.breadcrumbLevelOption.reportTitleSelectorId);
-//        this.bindEvents();
-//    }
-
-//    addBreadcrumbLevel(breadcrumbData: any) {
-//        this.breadcrumbLevelOption.breadcrumbs.push(breadcrumbData);
-//        this.bindEvents();
-//    }
-
-//    removeBreadcrumbLevel(custLevelId: number) {
-//        this.breadcrumbLevelOption.breadcrumbs = this.breadcrumbLevelOption.breadcrumbs.filter((item) => item.custLevelId >= custLevelId);
-//        this.bindEvents();
-//    }
-
-//    getBreadcrumbs() {
-//        return this.breadcrumbLevelOption.breadcrumbs;
-//    }
-
-//    setBreadcrumbs(breadcrumbs: any) {
-//        this.breadcrumbLevelOption.breadcrumbs = breadcrumbs;
-//        this.render();
-//    }
-
-//    public bindEvents() {
-//        const breadcrumbLength = this.breadcrumbLevelOption.breadcrumbs.length;
-//        this.reportTitleSelector.text(
-//            this.breadcrumbLevelOption.reportTitle[this.breadcrumbLevelOption.breadcrumbs[breadcrumbLength - 1].custLevelId]);
-//        this.breadcrumbSelector = $("#" + this.breadcrumbLevelOption.selectorId);
-//        this.breadcrumbSelector.find(".upline-link").off().click((e) => {
-//            e.preventDefault();
-//            const $this = $(e.target);
-//            $this.addClass("active");
-//            this.breadcrumbLevelOption.onClick({
-//                custId: $this.data("custid"),
-//                custName: $this.data("custname"),
-//                custLevelId: $this.data("custlevelid")
-//            });
-//        });
-//    }
-//}

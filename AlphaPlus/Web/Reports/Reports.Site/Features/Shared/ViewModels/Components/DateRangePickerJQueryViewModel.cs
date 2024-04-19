@@ -7,64 +7,44 @@ public class DateRangePickerJQueryViewModel(
     DateTime toDate,
     DateTime minDate,
     DateTime maxDate,
-    bool showShortcuts = true)
+    string language,
+    bool showShortcuts = true,
+    int[] customShortcuts = null)
 {
+    public const int TodayOptionValue = 0;
+    public const int YesterdayOptionValue = 1;
+    public const int ThisWeekOptionValue = 2;
+    public const int LastWeekOptionValue = 3;
+    public const int ThisMonthOptionValue = 4;
+    public const int LastMonthOptionValue = 5;
+    public const int SinceLastMonthOptionValue = 6;
+    public const int Last3MonthsOptionValue = 7;
+
     public string FromDate { get; } = fromDate.ToShortDateWithSlash();
 
     public string ToDate { get; } = toDate.ToShortDateWithSlash();
 
-    public DateTime MinDate { get; } = minDate;
+    public string MinDate { get; } = minDate.ToShortDateWithSlash();
 
     public string MaxDate => maxDate.ToShortDateWithSlash();
 
-    public IEnumerable<DateRangeShortcutViewModel> CustomShortcuts
-    {
-        get
-        {
-            if (!showShortcuts)
-            {
-                return [];
-            }
+    public string Language { get; } = language;
 
-            var customShortcuts = new List<DateRangeShortcutViewModel>();
+    public bool ShowShortcuts { get; } = showShortcuts;
 
-            var today = DateTime.Today;
-            var todayString = today.ToShortDateWithSlash();
-            customShortcuts.Add(new DateRangeShortcutViewModel(Resources.Today, [todayString, todayString]));
+    public int[] CustomShortcuts { get; }
+        = showShortcuts && customShortcuts == null
+            ? [
+                TodayOptionValue,
+                YesterdayOptionValue,
+                ThisWeekOptionValue,
+                LastWeekOptionValue,
+                ThisMonthOptionValue,
+                LastMonthOptionValue,
+                SinceLastMonthOptionValue,
+                Last3MonthsOptionValue
+            ]
+            : customShortcuts;
 
-            var yesterdayString = today.Yesterday().ToShortDateWithSlash();
-            customShortcuts.Add(new DateRangeShortcutViewModel(Resources.Yesterday, [yesterdayString, yesterdayString]));
-
-            var thisWeekStartDate = today.StartOfWeek();
-            customShortcuts.Add(new DateRangeShortcutViewModel(
-                Resources.ThisWeek,
-                [(thisWeekStartDate > MinDate ? thisWeekStartDate : MinDate).ToShortDateWithSlash(), todayString]));
-
-            var lastWeekStartDate = thisWeekStartDate.AddDays(-7);
-            customShortcuts.Add(new DateRangeShortcutViewModel(
-                Resources.LastWeek,
-                [(lastWeekStartDate > MinDate ? lastWeekStartDate : MinDate).ToShortDateWithSlash(), lastWeekStartDate.AddDays(6).ToShortDateWithSlash()]));
-
-            var thisMonthStartDate = today.FirstDayOfMonth();
-            customShortcuts.Add(new DateRangeShortcutViewModel(
-                Resources.ThisMonth,
-                [(thisMonthStartDate > MinDate ? thisMonthStartDate : MinDate).ToShortDateWithSlash(), todayString]));
-
-            var lastMonthStartDate = thisMonthStartDate.AddMonths(-1);
-            customShortcuts.Add(new DateRangeShortcutViewModel(
-                Resources.LastMonth,
-                [(lastMonthStartDate > MinDate ? lastMonthStartDate : MinDate).ToShortDateWithSlash(), thisMonthStartDate.AddDays(-1).ToShortDateWithSlash()]));
-
-            customShortcuts.Add(new DateRangeShortcutViewModel(
-                Resources.SinceLastMonth,
-                [(lastMonthStartDate > MinDate ? lastMonthStartDate : MinDate).ToShortDateWithSlash(), todayString]));
-
-            var last3MonthsStartDate = thisMonthStartDate.AddMonths(-3);
-            customShortcuts.Add(new DateRangeShortcutViewModel(
-                Resources.Last3Months,
-                [(last3MonthsStartDate > MinDate ? last3MonthsStartDate : MinDate).ToShortDateWithSlash(), todayString]));
-
-            return customShortcuts;
-        }
-    }
+    public string Today => DateTime.Today.ToShortDateWithSlash();
 }

@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace AlphaPlus.Reports.Features.Shared.Models;
 
 public abstract class NetWinLoss
