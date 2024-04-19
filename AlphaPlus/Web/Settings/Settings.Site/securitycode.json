@@ -17,7 +17,12 @@
             "MyThresholds",
             "CopyAccount",
             "PTTemplate",
-            "CreateAccount"
+            "CreateAccount",
+            "TransferAllAndClearCredit/Index",
+            "CashBalanceTransfer/CashBalance",
+            "AutoTransfer/UpdateSingleAutoTransfer",
+            "AutoTransfer/UpdateSchedule",
+            "AutoTransfer/UpdateMultipleAutoTransfer"
         ],
         "BetListsPaths": [],
         "StatementPaths": [],
