@@ -112,5 +112,7 @@ namespace AlphaPlus.Main.Site.Features.Default
                 _ => Resources.NoPermissionAccessPage,
             };
         }
+
+        public IActionResult Redirect() => View();
     }
 }

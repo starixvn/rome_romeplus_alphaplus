@@ -105,7 +105,7 @@ public class AccountController(
             };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-            return RedirectToAction("Index", "Default");
+            return RedirectToAction("Redirect", "Default");
         }
 
         return Ok();
