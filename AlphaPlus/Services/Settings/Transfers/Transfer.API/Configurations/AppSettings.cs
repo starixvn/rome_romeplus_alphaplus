@@ -32,7 +32,7 @@
         }
 
         public static IEnumerable<string> TransferToDownlineHistoryOfferSites
-            => GetConfigValue("TransferToDownlineHistory.OfferSites")
+            => GetConfigValue("TransferToDownlineHistory:OfferSites")
             .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
             .Select(site => site.Trim());
 

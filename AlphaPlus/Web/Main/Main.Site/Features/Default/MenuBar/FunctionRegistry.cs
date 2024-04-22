@@ -55,7 +55,8 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                     return false;
                 }
 
-                var offerClearGivenCreditSites = AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string[]>("OfferClearGivenCredit:Sites", []);
+                var offerClearGivenCreditSites = Core.Configurations.ConfigurationManager.GetValue<string>("OfferClearGivenCredit:Sites")
+                    .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
                 return offerClearGivenCreditSites.Any(s
                     => string.Equals(s, Current.Site, StringComparison.OrdinalIgnoreCase)
                     || string.Equals(s, "*", StringComparison.OrdinalIgnoreCase));
@@ -118,11 +119,13 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         }
 
         private static string[] AllowedSitesToViewBonusDetail
-            => AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string[]>("AllowedSitesToViewBonusDetail", []);
+            => Core.Configurations.ConfigurationManager.GetValue<string>("AllowedSitesToViewBonusDetail")
+                .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
         private static bool IsAllowedTransferToDownlineHistorySite(string site)
         {
-            var allowSites = AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string[]>("TransferToDownlineHistory:OfferSites", []);
+            var allowSites = AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string>("TransferToDownlineHistory:OfferSites")
+                .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
             return allowSites.Contains("*") || allowSites.Contains(site, StringComparer.OrdinalIgnoreCase);
         }
     }
