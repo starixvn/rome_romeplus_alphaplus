@@ -18,7 +18,7 @@
             this.mediator = mediator;
         }
 
-        protected ActionResult View<TResponse>(IRequest<TResponse> message)
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
         {
             var query = message as TransferBaseQuery;
             if (query == null || !query.IsValid())
@@ -26,7 +26,7 @@
                 return View(InvalidPageViewPath);
             }
 
-            return View(mediator.Send(message));
+            return View( await mediator.Send(message));
         }
 
         protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)

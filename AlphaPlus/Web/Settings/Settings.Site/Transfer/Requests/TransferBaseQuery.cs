@@ -17,9 +17,9 @@
             this.viewer = viewer ?? new User(UserSession.Current);
 
             // Default data, if query string had data, then get from query string.
-            CustId = viewer.Id;
-            CustName = viewer.Name;
-            CustLevelId = viewer.LevelId;
+            CustId = this.viewer.Id;
+            CustName = this.viewer.Name;
+            CustLevelId = this.viewer.LevelId;
         }
 
         public int CustId { get; set; }

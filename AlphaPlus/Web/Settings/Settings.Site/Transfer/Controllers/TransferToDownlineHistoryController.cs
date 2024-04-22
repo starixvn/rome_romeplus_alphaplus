@@ -19,11 +19,11 @@
             this.transferService = transferService;
         }
 
-        public ActionResult Index(TransferToDownlineHistoryQuery message)
+        public async Task<ActionResult> Index(TransferToDownlineHistoryQuery message)
         {
             if (message != null && transferService.IsAllDayBalanceTransfer(message.ViewerId))
             {
-                return View(message);
+                return await View(message);
             }
 
             return View(InvalidTransferStatusViewPath);
@@ -39,11 +39,11 @@
             return View(InvalidTransferStatusViewPath);
         }
 
-        public JsonResult GetTransferToDownlineHistoryData(TransferToDownlineHistoryPagingQuery message)
+        public async Task<JsonResult> GetTransferToDownlineHistoryData(TransferToDownlineHistoryPagingQuery message)
         {
             if (transferService.IsAllDayBalanceTransfer(message.ViewerId))
             {
-                return Json(mediator.Send(message));
+                return Json(await mediator.Send(message));
             }
 
             return Json(Result.CreateErrorResult(Resources.DisallowedAllDayBalanceTransferError, 6001));

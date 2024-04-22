@@ -12,7 +12,7 @@
         }
 
         [HttpGet]
-        public ActionResult CustomerList(CustomerListQuery message)
-            => View(mediator.Send(message));
+        public async Task<ActionResult> CustomerList(CustomerListQuery message)
+            => View(await mediator.Send(message));
     }
 }

@@ -31,14 +31,14 @@
         }
 
         [HttpGet]
-        public ActionResult UpdateSingleAutoTransfer(UpdateQuery message)
+        public async Task<ActionResult> UpdateSingleAutoTransfer(UpdateQuery message)
         {
             if (transferService.IsAllDayBalanceTransfer(userSession.CustId))
             {
                 return View(InvalidTransferStatusViewPath);
             }
 
-            return View(message);
+            return await View(message);
         }
 
         [HttpPost]

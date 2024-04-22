@@ -17,9 +17,9 @@ namespace AlphaPlus.Settings.Site.Transfer.Controllers
             this.mediator = mediator;
         }
 
-        protected ActionResult View<TResponse>(IRequest<TResponse> message)
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
         {
-            return View(mediator.Send(message));
+            return View(await mediator.Send(message));
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)

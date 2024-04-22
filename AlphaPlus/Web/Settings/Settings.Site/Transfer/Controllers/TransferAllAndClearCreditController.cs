@@ -13,36 +13,36 @@
         }
 
         [HttpGet]
-        public ActionResult Index(CalculationQuery message)
+        public async Task<ActionResult> Index(CalculationQuery message)
         {
             if (message == null || !message.IsValid())
             {
                 return View(InvalidPageViewPath);
             }
 
-            return View(mediator.Send(message));
+            return View(await mediator.Send(message));
         }
 
         [HttpGet]
-        public ActionResult TransferResult(CalculationQuery message)
+        public async Task<ActionResult> TransferResult(CalculationQuery message)
         {
             if (message == null || !message.IsValid())
             {
                 return View(InvalidPageViewPath);
             }
 
-            return View("~/Transfer/Views/TransferAllAndClearCredit/Index.cshtml", mediator.Send(message));
+            return View("~/Transfer/Views/TransferAllAndClearCredit/Index.cshtml", await mediator.Send(message));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult TransferResult(TransferResultQuery message)
+        public async Task<ActionResult> TransferResult(TransferResultQuery message)
         {
             if (message == null || !message.IsValid())
             {
                 return View(InvalidPageViewPath);
             }
 
-            return View(mediator.Send(message));
+            return View(await mediator.Send(message));
         }
     }
 }

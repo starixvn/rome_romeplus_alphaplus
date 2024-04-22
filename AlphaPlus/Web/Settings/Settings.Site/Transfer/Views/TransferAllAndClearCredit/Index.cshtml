@@ -14,7 +14,7 @@
 </div>
 
 <div id="box_header">
-    <form id="transfer-clear-credit-form" class="form-inline demo-form-inline filter" role="form" action="Index">
+    <form id="transfer-clear-credit-form" class="form-inline demo-form-inline filter" role="form" action="transferallandclearcredit/Index">
         <div class="form-group">
             <label class="lbl-username">@Model.DirectDownlineText</label>
             <input type="text" id="txt-username" name="Username" placeholder="@Resources.UsernamePlaceHolder" value="@Model.Username" class="@(string.IsNullOrWhiteSpace(Model.Username) ? "text-italic" : "")" />
@@ -107,7 +107,7 @@
             }
         </table>
         <div class="content-row">
-            <form id="transfer-result-form" class="hide" role="form" action="TransferResult" method="post">
+            <form id="transfer-result-form" class="hide" role="form" action="transferallandclearcredit/TransferResult" method="post">
                 @Html.AntiForgeryToken()
                 <input id="txt-username-transfer" type="text" name="Username" value="@Model.Username" />
                 <input id="IsClearCredit" type="text" name="IsClearCredit" value="false" />
