@@ -12,7 +12,7 @@
     {
         private readonly TransferToDownlineHistoryService transferToDownlineHistoryService;
 
-        private const string ExcelTemplateDir = "~/App_Data/ExcelTemplates/TransferToDownlineHistory/{0}.{1}";
+        private const string ExcelTemplateDir = "/app/App_Data/ExcelTemplates/TransferToDownlineHistory/{0}.{1}";
 
         protected internal Func<string, bool> IsFileExist { get; set; } = File.Exists;
 

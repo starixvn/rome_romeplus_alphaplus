@@ -27,6 +27,9 @@
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
     <PackageReference Include="MediatR" Version="11.1.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="NPOI" Version="2.2.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="Fanex.Common" Version="1.1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />

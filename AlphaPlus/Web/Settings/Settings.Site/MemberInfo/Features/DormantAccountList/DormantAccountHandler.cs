@@ -121,7 +121,7 @@
             => $"{Resources.DormantAccountList} - {DateTime.Today.ToString("MMddyyyy")}";
 
         protected override string GetExcelTemplateDir()
-            => "~/App_Data/ExcelTemplates/DormantAccountList";
+            => "/app/App_Data/ExcelTemplates/DormantAccountList";
 
         #endregion
     }
