@@ -5,11 +5,13 @@
 
     public class MarkReadMessageQuery : IRequest<Result>
     {
+        public MarkReadMessageQuery() : this(null) {}
+        
         private readonly IUserSession userSession;
 
         public MarkReadMessageQuery(IUserSession userSession)
         {
-            this.userSession = userSession;
+            this.userSession = userSession ?? UserSession.Current;
         }
 
         public int CustId => userSession.CustId;

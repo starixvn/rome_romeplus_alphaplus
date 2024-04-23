@@ -6,6 +6,8 @@
 
     public class CheckExistsFeedbackQuery : GetFunctionFeedbackQuery, IRequest<CheckExistsFeedbackViewModel>
     {
+        public CheckExistsFeedbackQuery() : this(null) {}
+        
         public CheckExistsFeedbackQuery(IUserSession userSession) : base(userSession)
         {
         }

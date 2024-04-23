@@ -6,8 +6,11 @@
 
     public class GetFunctionFeedbackQuery : IRequest<FeedbackFunctionViewModel>
     {
+        public GetFunctionFeedbackQuery() : this(null) { }
+
         public GetFunctionFeedbackQuery(IUserSession userSession)
         {
+            userSession = userSession ?? UserSession.Current;
             CustId = userSession.CustId;
             SubAccId = userSession.SubAccId;
             Language = userSession.Language;

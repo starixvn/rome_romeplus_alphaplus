@@ -9,8 +9,11 @@
     {
         private const int MaxMessageLength = 4000;
 
+        public AddFeedbackQuery() : this(null) {}
+
         public AddFeedbackQuery(IUserSession userSession)
         {
+            userSession = userSession ?? UserSession.Current;
             CustId = userSession.CustId;
             SubAccId = userSession.SubAccId;
             IsInternal = userSession.IsInternal;
