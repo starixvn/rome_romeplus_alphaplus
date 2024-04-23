@@ -77,7 +77,7 @@
         "outputFileName": "wwwroot/bundles/winlossdetail/winlossdetail-new.js",
         "inputFiles": [
             "assets/scripts/core.js",
-            "assets/scripts/components/sort.js",
+            "assets/scripts/base-report-new.js",
             "assets/scripts/components/total-entered-nonentered.js",
             "assets/scripts/components/daterangepicker-jquery.js",
             "assets/scripts/components/product-dropdown.js",

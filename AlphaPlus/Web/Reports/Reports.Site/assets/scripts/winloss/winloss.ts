@@ -49,7 +49,11 @@
             super.hideFilter();
         }
 
-        this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
+        this.sortComponent.initSort(
+            this.$tableReport,
+            { 0: { sorter: 'text' } },
+            this.sortComponent.handleDormantAccountsAfterSort
+        );
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');

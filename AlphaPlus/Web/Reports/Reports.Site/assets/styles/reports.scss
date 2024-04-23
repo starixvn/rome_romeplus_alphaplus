@@ -3,7 +3,6 @@
 
 @include keyframes-ripple;
 
-
 body {
     //background-color: transparent;
     font-size: var(--font-size);
@@ -570,7 +569,7 @@ a {
         }
     }
 
-    #txt-username {
+    #txt-username-suggestion {
         width: 190px;
 
         + .dropdown-menu {
@@ -873,7 +872,6 @@ a {
 
 // chart
 
-
 .chart-container {
     max-height: 780px;
     max-width: 1024px;
@@ -890,7 +888,7 @@ a {
 :root [data-theme='dark'] {
     .chart-container {
         border: 1px solid var(--chart-border-color);
-        background: var(--chart-bg-color)!important;
+        background: var(--chart-bg-color) !important;
         box-shadow: none;
     }
 }

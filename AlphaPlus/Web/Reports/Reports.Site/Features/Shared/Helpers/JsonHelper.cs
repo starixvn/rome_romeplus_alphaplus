@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.Helpers;
 
@@ -23,5 +24,9 @@ public static class JsonHelper
         return false;
     }
 
-    public static string ToJson(object data) => JsonSerializer.Serialize(data);
+    public static string ToJson(object data)
+        => JsonSerializer.Serialize(data, new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
+        });
 }

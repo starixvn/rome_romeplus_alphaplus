@@ -7,6 +7,8 @@
 @{
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
+    var isSuperLevel = Model.ViewerLevel.IsSuperLevel();
+    var isMasterOrSuperLevel = Model.ViewerLevel.IsMasterOrSuperLevel();
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-reports/winlossdetail-new")
@@ -22,11 +24,11 @@
             GrossComm: '@Resources.GrossComm',
             Member: '@Resources.Member',
             Agent: '@Resources.Agent',
-        @if (Model.ViewerLevel.IsMasterOrSuperLevel())
+        @if (isMasterOrSuperLevel)
         {
             @:Master: '@Resources.Master',
         }
-        @if (Model.ViewerLevel.IsSuperLevel())
+        @if (isSuperLevel)
         {
             @:Super: '@Resources.Super',
         }
@@ -36,8 +38,22 @@
                     Total: '@Resources.Total',
                     NoInformationIsAvailable: '@Resources.NoInformationIsAvailable',
                     Total: '@Resources.Total',
-                    DormantAccounts: '@Resources.DormantAccounts'
+                    DormantAccounts: '@Resources.DormantAccounts',
+                    Copy: '@Resources.Copy',
+                    Copied: '@Resources.Copied',
+                    SummaryOfDormantAccounts: '@Resources.SummaryOfDormantAccounts'
             };
+        var reportTitle = {
+            2: '@Resources.MemberWinLossDetail',
+            @if (isMasterOrSuperLevel)
+            {
+                @:3: '@Resources.AgentWinLossDetail',
+            }
+            @if (isSuperLevel)
+            {
+                @:4: '@Resources.MasterWinLossDetail'
+            }
+        };
         var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
         var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
         var columnList = [
@@ -46,47 +62,51 @@
             { value: "turnover", text: '@Resources.Turnover' },
             { value: "netturnover", text: '@Resources.NetTurnover' },
             { value: "grosscomm", text: '@Resources.GrossComm' },
-            { value: "pwinloss", text: '@string.Format("{0} {1}", Resources.Member, Resources.WinLoss)' },
-            { value: "pcomm", text: '@string.Format("{0} {1}", Resources.Member, Resources.Comm)' },
-            { value: "ptotal", text: '@string.Format("{0} {1}", Resources.Member, Resources.Total)' },
-            { value: "awinloss", text: '@string.Format("{0} {1}", Resources.Agent, Resources.WinLoss)' },
-            { value: "acomm", text: '@string.Format("{0} {1}", Resources.Agent, Resources.Comm)' },
-            { value: "atotal", text: '@string.Format("{0} {1}", Resources.Agent, Resources.Total)' },
-        @if (Model.ViewerLevel.IsMasterOrSuperLevel())
+            { value: "pwinloss", text: '@Resources.Member @Resources.WinLoss' },
+            { value: "pcomm", text: '@Resources.Member @Resources.Comm' },
+            { value: "ptotal", text: '@Resources.Member @Resources.Total' },
+            { value: "awinloss", text: '@Resources.Agent @Resources.WinLoss' },
+            { value: "acomm", text: '@Resources.Agent @Resources.Comm' },
+            { value: "atotal", text: '@Resources.Agent @Resources.Total' },
+        @if (isMasterOrSuperLevel)
         {
-            @:{ value: "mwinloss", text: '@string.Format("{0} {1}", Resources.Master, Resources.WinLoss)' },
-            @:{ value: "mcomm", text: '@string.Format("{0} {1}", Resources.Master, Resources.Comm)' },
-            @:{ value: "mtotal", text: '@string.Format("{0} {1}", Resources.Master, Resources.Total)' },
+            @:{ value: "mwinloss", text: '@Resources.Master @Resources.WinLoss' },
+            @:{ value: "mcomm", text: '@Resources.Master @Resources.Comm' },
+            @:{ value: "mtotal", text: '@Resources.Master @Resources.Total' },
         }
-        @if (Model.ViewerLevel.IsSuperLevel())
+        @if (isSuperLevel)
         {
-            @:{ value: "swinloss", text: '@string.Format("{0} {1}", Resources.Super, Resources.WinLoss)' },
-            @:{ value: "scomm", text: '@string.Format("{0} {1}", Resources.Super, Resources.Comm)' },
-            @:{ value: "stotal", text: '@string.Format("{0} {1}", Resources.Super, Resources.Total)' },
+            @:{ value: "swinloss", text: '@Resources.Super @Resources.WinLoss' },
+            @:{ value: "scomm", text: '@Resources.Super @Resources.Comm' },
+            @:{ value: "stotal", text: '@Resources.Super @Resources.Total' },
         }
             { value: "company", text: '@Resources.Company' }
         ];
-        var viewerLevelId = @Model.ViewerLevel.Value;
-        var breadcrumbLevel = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.BreadcrumbLevel))');
+        var breadcrumbLevel = $.parseJSON('@Html.Raw(Model.BreadcrumbLevel)');
+        var activeWeek = {
+            weekFromDate: '@Model.WeekFromDate',
+            weekToDate: '@Model.WeekToDate'
+        }
         var usernameSuggestionUrl = '@MicroSites.SettingUrl("~/UserNameSuggestion")';
+        var viewerLevelId = @Model.ViewerLevel.Value;
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail-new")
     <script src="~/bundles/winlossdetail/winlossdetail-new.js" asp-append-version="true"></script>
 }
 @model WinLossDetailNewViewModel
 <report-title-new model="Model.PageHeader" />
-<form method="get" class="form-inline filter" role="form" id="report-form" asp-action="GetData">
+<form class="form-inline filter" role="form" id="report-form">
     <daterange-picker-jquery model="@Model.DateRangePicker" />
     <product-dropdown show-product-details="true" />
     <div class="form-group">
         <label class="label-form-control">@Resources.Username</label>
         <div>
-            <input type="text" id="txt-username-suggestion" placeholder="@Resources.UsernameOrFirstLastName" autocomplete="off" />
+            <input type="text" id="txt-username-suggestion" placeholder="@Resources.UsernameOrFirstLastName" autocomplete="off" value="@Model.Username" />
         </div>
     </div>
     <visible-column />
+    <div class="label-week-box" id="week-container"></div>
 </form>
-<div class="label-week-box" id="week-container"></div>
 <div class="breadcrumb-table">
     <div class="breadcrumb-container">
         <ul class="breadcrumb" id="breadcrumb-level"></ul>
@@ -94,9 +114,10 @@
     <div class="list-icon">
         <ul>
             <li><span id="icon-copy" class="icon icon-content-copy" data-toggle="tooltip" data-placement="top" title="@Resources.Copy"></span></li>
-            <li><a id="icon-excel" class="icon icon-excel icon-excel-new" data-toggle="tooltip" data-placement="top" title="@Resources.ExportToExcel" asp-action="Excel"></a></li>
+            <li><a id="icon-excel" class="icon icon-excel icon-excel-new" data-toggle="tooltip" data-placement="top" title="@Resources.ExportToExcel" asp-action="ExcelNew"></a></li>
         </ul>
     </div>
 </div>
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per" id="tbl-report">
 </table>
+<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true" asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>

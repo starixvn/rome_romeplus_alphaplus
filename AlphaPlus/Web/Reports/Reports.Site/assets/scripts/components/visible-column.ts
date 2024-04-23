@@ -1,31 +1,19 @@
-﻿interface Object {
-    entries: any;
-}
-
-class VisibleColumnOption {
-    constructor(public visibleColumns, public listColumn, public onDropdownHidden = Function()) {
-        this.visibleColumns = visibleColumns;
-        this.listColumn = listColumn;
-        this.onDropdownHidden = onDropdownHidden;
-    }
-}
-
-class VisibleColumnComponent {
+﻿class VisibleColumnComponent {
     private $visibleColumn: JQuery;
 
-    render(options: VisibleColumnOption) {
+    render(visibleColumns: string, listColumn, onDropdownHidden: Function) {
         let isCheckAll = false;
         const $dropdown = $('#dropdown-visible-column');
 
         const visibleColumnObject = {};
-        if (options.visibleColumns.length) {
-            const visibleColumnArray = options.visibleColumns.split(',');
+        if (visibleColumns.length) {
+            const visibleColumnArray = visibleColumns.split(',');
             visibleColumnArray.forEach(function (item) {
                 visibleColumnObject[item] = true;
             });
-            isCheckAll = options.listColumn.length === visibleColumnArray.length;
+            isCheckAll = listColumn.length === visibleColumnArray.length;
         } else {
-            options.listColumn.forEach(function (item) {
+            listColumn.forEach(function (item) {
                 if (item.checked !== false) {
                     visibleColumnObject[item.value] = true;
                 }
@@ -34,7 +22,7 @@ class VisibleColumnComponent {
 
         this.$visibleColumn = $dropdown.fanexMultiSelect({
             selectAllText: $dropdown.data('label-selectall'),
-            selectedText: '# ' + $dropdown.data('label-selected'),
+            selectedText: $dropdown.data('label-selected'),
             noneSelectedText: $dropdown.data('label-noneselected'),
             customSelectAllText: $dropdown.data('label-all') + ' (#)',
             showFilter: true,
@@ -44,14 +32,14 @@ class VisibleColumnComponent {
             minWidth: 220,
             maxHeight: 250,
             showTooltip: false,
-            listData: options.listColumn.map(function (item) {
+            listData: listColumn.map(function (item) {
                 return {
                     value: item.value,
                     text: item.text,
                     checked: isCheckAll || visibleColumnObject.hasOwnProperty(item.value)
                 };
             }),
-            onLeave: () => options.onDropdownHidden(this.getColumns())
+            onLeave: () => onDropdownHidden && onDropdownHidden(this.getColumns())
         });
     }
 
@@ -61,9 +49,5 @@ class VisibleColumnComponent {
 
     getShowColumns() {
         return this.$visibleColumn.fanexMultiSelect('getCheckedValues');
-    }
-
-    getHideColumns() {
-        return this.$visibleColumn.fanexMultiSelect('getUncheckedValues');
     }
 }

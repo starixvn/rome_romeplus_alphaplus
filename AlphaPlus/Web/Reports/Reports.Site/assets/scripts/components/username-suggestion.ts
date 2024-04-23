@@ -3,14 +3,12 @@
         public url: string,
         public onBlur = Function(),
         public directDownlines = false,
-        public isAccInfo = false,
-        public initialUsername = ''
+        public isAccInfo = false
     ) {
         this.url = url;
         this.onBlur = onBlur;
         this.directDownlines = directDownlines;
         this.isAccInfo = isAccInfo;
-        this.initialUsername = initialUsername;
     }
 }
 
@@ -41,13 +39,10 @@ class UsernameSuggestionComponent {
             delay: 200
         };
 
-        this.$usernameInput
-            .typeahead(typeaheadOptions)
-            .blur(() => {
-                const visible = this.$usernameInput.next('.typeahead').is(':visible');
-                !visible && options.onBlur();
-            })
-            .val(options.initialUsername);
+        this.$usernameInput.typeahead(typeaheadOptions).blur(() => {
+            const visible = this.$usernameInput.next('.typeahead').is(':visible');
+            !visible && options.onBlur();
+        });
     }
 
     private buildQueryString(options: UsernameSuggestionOption) {
@@ -68,7 +63,7 @@ class UsernameSuggestionComponent {
         return $.trim(this.$usernameInput.val());
     }
 
-    resetUsername() {
+    clearUsername() {
         this.$usernameInput.val('');
     }
 }

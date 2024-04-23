@@ -1,5 +1,6 @@
 ﻿interface JQuery {
     stickyTableHeaders(): void;
+    stickyTableHeaders(method: string): void;
 }
 
 interface JQueryStatic {
@@ -140,6 +141,17 @@ class AlphaReports {
         try {
             window.history.replaceState({}, '', `${window.location.href.split('?')[0]}?${queryString}`);
         } catch {}
+    }
+
+    ajaxFail(jqXHR) {
+        if (jqXHR.status === 429) {
+            window.location.href = `${$('#main-url').val()}error/blocked`;
+        } else if (jqXHR.status === 500 && jqXHR.responseText) {
+            const responseObject = JSON.parse(jqXHR.responseText);
+            if (responseObject.UMFrom && responseObject.UMTo) {
+                window.location.href = `${$('#main-url').val()}partialum/index?${$.param(responseObject)}`;
+            }
+        }
     }
 }
 

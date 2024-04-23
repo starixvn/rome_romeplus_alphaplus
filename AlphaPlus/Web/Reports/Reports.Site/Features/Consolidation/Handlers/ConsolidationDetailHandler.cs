@@ -62,6 +62,7 @@ public class ConsolidationDetailHandler(
             message.ToDate,
             message.CustName,
             message.CustLevel,
+            false,
             reportData,
             productNames);
     }

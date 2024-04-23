@@ -43,7 +43,11 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
     public async Task<LegendViewModel> Handle(WinLossDetailLegendQuery message, CancellationToken cancellationToken)
     {
         var legends = new List<string>();
-        if (!message.IsHistoricReport && message.MinDate != DateTime.MinValue)
+        if (message.IsNew)
+        {
+            legends.Add(string.Format($"- {Resources.ReportDataCanViewNote}", message.MinDate.ToShortDateWithSlash()));
+        }
+        else if (!message.IsHistoricReport && message.MinDate != DateTime.MinValue)
         {
             legends.Add(string.Format(
                 $"- {Resources.CanOnlyViewDataAfterTimeCurrentReport}", message.MinDate.ToShortDateWithSlash()));

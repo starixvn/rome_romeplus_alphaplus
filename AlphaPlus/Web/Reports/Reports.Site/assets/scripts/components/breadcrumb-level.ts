@@ -1,52 +1,38 @@
-﻿// class BreadcrumbLevelOption {
-//     constructor(
-//         public breadcrumbs = [],
-//         public onClick = Function(),
-//         public reportTitle: any,
-//         public selectorId = 'breadcrumb-level',
-//         public reportTitleSelectorId = 'report-title'
-//     ) {
-//         this.breadcrumbs = breadcrumbs;
-//         this.onClick = onClick;
-//         this.selectorId = selectorId;
-//         this.reportTitleSelectorId = reportTitleSelectorId;
-//     }
-// }
-
-class BreadcrumbLevelComponent {
-    private $reportTitle: JQuery;
+﻿class BreadcrumbLevelComponent {
     private $breadcrumbLevel: JQuery;
     private breadcrumbs = [];
     private onClick: Function;
 
     constructor() {
-        this.$reportTitle = $('#report-title');
         this.$breadcrumbLevel = $('#breadcrumb-level');
     }
 
     init(breadcrumbData, onClick: Function) {
-        this.breadcrumbs.push(breadcrumbData);
         this.onClick = onClick;
-        this.render();
+        if (Array.isArray(breadcrumbData)) {
+            this.resetBreadcrumb(breadcrumbData);
+        } else {
+            this.addBreadcrumb(breadcrumbData);
+        }
     }
 
-    addBreadcrumbLevel(breadcrumbData: any) {
+    addBreadcrumb(breadcrumbData: any) {
         this.breadcrumbs.push(breadcrumbData);
         this.render();
     }
 
-    removeBreadcrumbLevel(custLevelId: number) {
+    removeBreadcrumb(custLevelId: number) {
         this.breadcrumbs = this.breadcrumbs.filter((item) => item.CustLevelId >= custLevelId);
         this.render();
     }
 
-    resetBreadcrumbLevel(breadcrumbs) {
+    resetBreadcrumb(breadcrumbs) {
         this.breadcrumbs = breadcrumbs;
         this.render();
     }
 
-    getBreadcrumbs() {
-        return this.breadcrumbs;
+    toStringBreadcrumb() {
+        return JSON.stringify(this.breadcrumbs);
     }
 
     private render() {
@@ -56,12 +42,6 @@ class BreadcrumbLevelComponent {
                 ? `<li>${item.CustName}</li>`
                 : `<li><a href="javascript:;" class="upline-link" data-custid="${item.CustId}" data-custname="${item.CustName}" data-custlevelid="${item.CustLevelId}">${item.CustName}</a></li>`;
         });
-
-        // this.$reportTitle.text(
-        //     this.breadcrumbLevelOption.reportTitle[
-        //         this.breadcrumbLevelOption.breadcrumbs[breadcrumbLength - 1].custLevelId
-        //     ]
-        // );
 
         this.$breadcrumbLevel
             .html(html.join(''))
@@ -73,7 +53,7 @@ class BreadcrumbLevelComponent {
                 const custId = $this.data('custid');
                 const custName = $this.data('custname');
                 const custLevelId = $this.data('custlevelid');
-                this.onClick && this.onClick(custId, custName, custLevelId);
+                this.onClick && this.onClick({ custId, custName, custLevelId });
             });
     }
 }

@@ -9,9 +9,9 @@
         const html = [];
         weeks.forEach(function (week) {
             html.push(
-                `<a href="javascript:;" class="label-week${week.IsEnable ? '' : ' disabled'}" data-fromdate="${
-                    week.FromDate
-                }" data-todate="${week.ToDate}">${week.Display}</a>`
+                `<a href="javascript:;" class="label-week${week.IsEnable ? '' : ' disabled'}${
+                    week.IsActive ? ' active' : ''
+                }" data-fromdate="${week.FromDate}" data-todate="${week.ToDate}">${week.Display}</a>`
             );
         });
 

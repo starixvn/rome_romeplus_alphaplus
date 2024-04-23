@@ -1,5 +1,7 @@
 using AlphaPlus.Reports.Features.EnteredResult;
+using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
@@ -11,7 +13,10 @@ public class WinLossDetailNewViewModel(
 {
     public UserLevel ViewerLevel { get; } = message.ViewerLevel;
 
-    public Breadcrumb BreadcrumbLevel => new Breadcrumb(message.ViewerId, message.CustName, message.ViewerLevelId);
+    public string BreadcrumbLevel
+        => string.IsNullOrWhiteSpace(message.BreadcrumbsJson)
+        ? JsonHelper.ToJson(new Breadcrumb(message.ViewerId, message.CustName, message.ViewerLevelId))
+        : message.BreadcrumbsJson;
 
     public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
         Title: GetReportNameByLevel(message.CustLevel),
@@ -26,6 +31,14 @@ public class WinLossDetailNewViewModel(
         message.MinDate,
         DateTime.Today.AddDays(1),
         message.Language);
+
+    public string Username { get; } = message.Username;
+
+    public string WeekFromDate
+        => message.WeekFromDate == null ? null : message.WeekFromDate.Value.ToShortDateWithSlash();
+
+    public string WeekToDate
+        => message.WeekToDate == null ? null : message.WeekToDate.Value.ToShortDateWithSlash();
 
     public bool CanDrilldown { get; } = !message.IsProtectedMode || !message.CustLevel.IsAgentLevel();
 

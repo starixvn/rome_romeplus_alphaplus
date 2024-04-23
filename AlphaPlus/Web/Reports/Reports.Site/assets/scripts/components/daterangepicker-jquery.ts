@@ -33,7 +33,7 @@ class DateRangePickerJQueryComponent {
             yearSelect: true
         };
         $dateRangePicker
-            .dateRangePicker($.extend(defaults, options))
+            .dateRangePicker($.extend({}, defaults, options))
             .bind('datepicker-change', (_, obj) => {
                 this.fromDate = moment(obj.date1).format(this.dateFormat);
                 this.toDate = moment(obj.date2).format(this.dateFormat);
@@ -45,7 +45,7 @@ class DateRangePickerJQueryComponent {
 
     private buildCustomShortcuts($dateRangePicker: JQuery) {
         const minDate = moment($dateRangePicker.data('mindate'), this.dateFormat);
-        const today = moment($dateRangePicker.data('currentdate'), this.dateFormat);
+        const today = moment($dateRangePicker.data('today'), this.dateFormat);
         const todayValue = today.toDate();
         const yesterday = moment(today).subtract(1, 'd');
         const yesterdayValue = yesterday.toDate();

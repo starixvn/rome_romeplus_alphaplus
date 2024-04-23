@@ -72,9 +72,6 @@ class SortComponent {
             if ($sortedcolumn.length === 1) {
                 this.onSort($sortedcolumn.attr('data-sortedname'), $sortedcolumn.hasClass('sorting-desc'));
             }
-
-            const dormantAccountsRow = this.$tableReport.find('.dormant-accounts-mark');
-            dormantAccountsRow.length && this.$tableReport.append(dormantAccountsRow);
         });
     };
 
@@ -98,6 +95,11 @@ class SortComponent {
         this.$tableReport.data('descendingsort', isDecendingSort ? 1 : 0).data('sortedcolumn', sortedColumnName);
 
         this.afterSortFunction && this.afterSortFunction();
+    };
+
+    handleDormantAccountsAfterSort = () => {
+        const dormantAccountsRow = this.$tableReport.find('.dormant-accounts-mark');
+        dormantAccountsRow.length && this.$tableReport.append(dormantAccountsRow);
     };
 
     getSortInfo = (): SortInfo => {

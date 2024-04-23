@@ -1,5 +1,4 @@
 class WinLossDetailTable {
-    private viewResources: any;
     private $tableReport: JQuery;
     private SuperLevel = 4;
     private MasterLevel = 3;
@@ -13,12 +12,11 @@ class WinLossDetailTable {
     private sortColumnName = 'username';
     private sortIndicator = 0; // asc: 0, desc: 1
 
-    constructor(viewResources) {
-        this.viewResources = viewResources;
+    constructor() {
         this.$tableReport = $('#tbl-report');
     }
 
-    renderWinLossDetail(reportData, custLevelId: number, getWinLossDetailHandler: Function) {
+    renderWinLossDetail(reportData, custLevelId: number) {
         const html = [];
         this.buildHeader(html, custLevelId);
 
@@ -34,6 +32,10 @@ class WinLossDetailTable {
 
         this.$tableReport.html(html.join(''));
         this.initTableSorter(reportData.MoreThanOne);
+    }
+
+    registerTableEvents(getWinLossDetailHandler: Function) {
+        this.$tableReport.find('[data-toggle="tooltip"]').tooltip();
         this.$tableReport
             .find('.downline-link')
             .off()
@@ -44,101 +46,101 @@ class WinLossDetailTable {
                 const custName = $this.data('custname');
                 const custLevelId = $this.data('custlevelid');
                 if (custLevelId === this.MasterLevel || custLevelId === this.AgentLevel) {
-                    getWinLossDetailHandler(custId, custName, custLevelId);
+                    getWinLossDetailHandler({ custId, custName, custLevelId });
                 } else if (custLevelId === this.MemberLevel) {
                 }
             });
     }
 
-    buildHeader(html, custLevelId: number) {
+    private buildHeader(html, custLevelId: number) {
         let index = 0;
         html.push(
             '<thead><tr>',
             `<th rowspan="2" class="sorting" data-colindex="${index++}" data-colname="username">${
-                this.viewResources.Username
+                viewResources.Username
             }</th>`,
             `<th rowspan="2" class="sorting" data-colindex="${index++}" data-colname="fullname">${
-                this.viewResources.FirstLastName
+                viewResources.FirstLastName
             }</th>`,
             `<th rowspan="2" class="sorting" data-colindex="${index++}" data-colname="betcount">${
-                this.viewResources.BetCount
+                viewResources.BetCount
             }</th>`,
             `<th rowspan="2" class="sorting" data-colindex="${index++}" data-colname="turnover">${
-                this.viewResources.Turnover
+                viewResources.Turnover
             }</th>`,
             `<th rowspan="2" class="sorting" data-colindex="${index++}" data-colname="netturnover">${
-                this.viewResources.NetTurnover
+                viewResources.NetTurnover
             }</th>`,
             `<th rowspan="2" class="sorting" data-colindex="${index++}" data-colname="grosscomm">${
-                this.viewResources.GrossComm
+                viewResources.GrossComm
             }</th>`,
-            `<th colspan="3" id="groupColumnMember">${this.viewResources.Member}</th>`,
-            `<th colspan="3" id="groupColumnAgent">${this.viewResources.Agent}</th>`
+            `<th colspan="3" id="groupColumnMember">${viewResources.Member}</th>`,
+            `<th colspan="3" id="groupColumnAgent">${viewResources.Agent}</th>`
         );
         if (custLevelId >= this.MasterLevel) {
-            html.push(`<th colspan="3" id="groupColumnMaster">${this.viewResources.Master}</th>`);
+            html.push(`<th colspan="3" id="groupColumnMaster">${viewResources.Master}</th>`);
         }
         if (custLevelId === this.SuperLevel) {
-            html.push(`<th colspan="3" id="groupColumnSuper">${this.viewResources.Super}</th>`);
+            html.push(`<th colspan="3" id="groupColumnSuper">${viewResources.Super}</th>`);
         }
         html.push(
             `<th rowspan="2" class="sorting" data-colindex="${
                 this.totalColumn.get(custLevelId) - 1
-            }" data-colname="company">${this.viewResources.Company}</th>`
+            }" data-colname="company">${viewResources.Company}</th>`
         );
         html.push('</tr><tr class="thead-row2">');
         html.push(
-            `<th class="sorting" data-colindex="${index++}" data-colname="pwinloss">${this.viewResources.WinLoss}</th>`,
-            `<th class="sorting" data-colindex="${index++}" data-colname="pcomm">${this.viewResources.Comm}</th>`,
-            `<th class="sorting" data-colindex="${index++}" data-colname="ptotal">${this.viewResources.Total}</th>`,
-            `<th class="sorting" data-colindex="${index++}" data-colname="awinloss">${this.viewResources.WinLoss}</th>`,
-            `<th class="sorting" data-colindex="${index++}" data-colname="acomm">${this.viewResources.Comm}</th>`,
-            `<th class="sorting" data-colindex="${index++}" data-colname="atotal">${this.viewResources.Total}</th>`
+            `<th class="sorting" data-colindex="${index++}" data-colname="pwinloss">${viewResources.WinLoss}</th>`,
+            `<th class="sorting" data-colindex="${index++}" data-colname="pcomm">${viewResources.Comm}</th>`,
+            `<th class="sorting" data-colindex="${index++}" data-colname="ptotal">${viewResources.Total}</th>`,
+            `<th class="sorting" data-colindex="${index++}" data-colname="awinloss">${viewResources.WinLoss}</th>`,
+            `<th class="sorting" data-colindex="${index++}" data-colname="acomm">${viewResources.Comm}</th>`,
+            `<th class="sorting" data-colindex="${index++}" data-colname="atotal">${viewResources.Total}</th>`
         );
         if (custLevelId >= this.MasterLevel) {
             html.push(
-                `<th class="sorting" data-colindex="${index++}" data-colname="mwinloss">${
-                    this.viewResources.WinLoss
-                }</th>`,
-                `<th class="sorting" data-colindex="${index++}" data-colname="mcomm">${this.viewResources.Comm}</th>`,
-                `<th class="sorting" data-colindex="${index++}" data-colname="mtotal">${this.viewResources.Total}</th>`
+                `<th class="sorting" data-colindex="${index++}" data-colname="mwinloss">${viewResources.WinLoss}</th>`,
+                `<th class="sorting" data-colindex="${index++}" data-colname="mcomm">${viewResources.Comm}</th>`,
+                `<th class="sorting" data-colindex="${index++}" data-colname="mtotal">${viewResources.Total}</th>`
             );
         }
         if (custLevelId === this.SuperLevel) {
             html.push(
-                `<th class="sorting" data-colindex="${index++}" data-colname="swinloss">${
-                    this.viewResources.WinLoss
-                }</th>`,
-                `<th class="sorting" data-colindex="${index++}" data-colname="scomm">${this.viewResources.Comm}</th>`,
-                `<th class="sorting" data-colindex="${index++}" data-colname="stotal">${this.viewResources.Total}</th>`
+                `<th class="sorting" data-colindex="${index++}" data-colname="swinloss">${viewResources.WinLoss}</th>`,
+                `<th class="sorting" data-colindex="${index++}" data-colname="scomm">${viewResources.Comm}</th>`,
+                `<th class="sorting" data-colindex="${index++}" data-colname="stotal">${viewResources.Total}</th>`
             );
         }
         html.push('</tr></thead>');
     }
 
-    buildBody(html, custLevelId: number, winloss, isTotalRow: boolean) {
+    private buildBody(html, custLevelId: number, winloss, isTotalRow: boolean) {
         const isDormantAccounts = typeof winloss.CustId === 'undefined';
         html.push(`<tr class="${isTotalRow ? 'tbl-footer' : isDormantAccounts ? 'dormant-accounts-mark' : ''}">`);
 
         if (isTotalRow) {
-            html.push(`<td class="text-left">${this.viewResources.Total}</td>`, '<td data-colname="fullname"></td>');
+            html.push(`<td class="text-left">${viewResources.Total}</td>`, '<td data-colname="fullname"></td>');
         } else {
             html.push('<td class="text-left col-username">');
             if (isDormantAccounts) {
                 html.push(
-                    `<span class="pull-left">${this.viewResources.DormantAccounts}</span>`,
-                    `<span class="icon icon-information-outline icon-dormant-accounts" data-toggle="tooltip" data-placement="right" title="${this.viewResources.SummaryOfDormantAccounts}"></span>`
+                    `<span class="pull-left">${viewResources.DormantAccounts}</span>`,
+                    `<span class="icon icon-information-outline icon-dormant-accounts" data-toggle="tooltip" data-placement="right" title="${viewResources.SummaryOfDormantAccounts}"></span>`
                 );
             } else {
                 html.push(
-                    `<a href="javascript:;" data-islink="true" data-custid="${winloss.CustId}" data-custname="${winloss.CustName}" data-custlevelid="${custLevelId}" class="downline-link">${winloss.CustName}</a>`
+                    `<a href="javascript:;" data-islink="true" data-custid="${winloss.CustId}" data-custname="${
+                        winloss.CustName
+                    }" data-custlevelid="${custLevelId - 1}" class="downline-link">${winloss.CustName}</a>`
                 );
             }
+
+            const fullName = winloss.FullName || '';
             html.push(
                 '</td>',
                 '<td class="text-left" data-colname="fullname">',
-                `<div class="fullname" data-toggle="tooltip" data-placement="bottom" title="${winloss.FullName}">`,
-                `${winloss.FullName}</div></td>`
+                `<div class="fullname" data-toggle="tooltip" data-placement="bottom" title="${fullName}">`,
+                `${fullName}</div></td>`
             );
         }
 
@@ -171,15 +173,15 @@ class WinLossDetailTable {
         html.push(`<td data-colname="company">${alphaReports.formatDecimal(winloss.Company)}</td>`);
     }
 
-    buildBodyNoData(html, custLevelId: number) {
+    private buildBodyNoData(html, custLevelId: number) {
         html.push(
             `<tbody><tr><td colspan="${this.totalColumn.get(custLevelId)}" align="center">${
-                this.viewResources.NoInformationIsAvailable
+                viewResources.NoInformationIsAvailable
             }</td></tr></tbody>`
         );
     }
 
-    initTableSorter(canSort) {
+    private initTableSorter(canSort) {
         const sortColumns = this.$tableReport.find('.sorting');
 
         if (canSort) {
@@ -213,7 +215,7 @@ class WinLossDetailTable {
         }
     }
 
-    mapSortColumnNameToIndex() {
+    private mapSortColumnNameToIndex() {
         const tableHeaderCells = this.$tableReport.find(`thead th[data-colname="${this.sortColumnName}"]`);
         if (tableHeaderCells.length) {
             return tableHeaderCells.eq(0).data('colindex');
@@ -223,5 +225,80 @@ class WinLossDetailTable {
         this.sortColumnName = 'username';
         this.sortIndicator = 0;
         return 0;
+    }
+
+    copyHtmlTable() {
+        const html = ['<table>'];
+        this.buildHtmlHeader(this.$tableReport, html);
+        this.buildHtmlBody(this.$tableReport, html);
+        this.buildHtmlFooter(this.$tableReport, html);
+        html.push('</table>');
+
+        return html.join('');
+    }
+
+    private buildHtmlHeader($tableReport: JQuery, html: string[]) {
+        html.push('<thead><tr>');
+        $tableReport.find('thead tr:first th:not(.hide)').each(function () {
+            const $this = $(this);
+            html.push('<th');
+
+            const rowspan = $this.attr('rowspan');
+            if (rowspan) {
+                html.push(` rowspan="${rowspan}"`);
+            }
+
+            const colspan = $this.attr('colspan');
+            if (colspan) {
+                html.push(` colspan="${colspan}"`);
+            }
+
+            html.push('>', this.innerText, '</th>');
+        });
+
+        html.push('</tr><tr>');
+        $tableReport.find('thead tr:last th:not(.hide)').each(function () {
+            html.push('<th>', this.innerText, '</th>');
+        });
+
+        html.push('</tr></thead>');
+    }
+
+    private buildHtmlBody($tableReport: JQuery, html: string[]) {
+        const getColumnText = function (td) {
+            let title;
+            const $td = $(td);
+            if ($td.data('colname') === 'fullname') {
+                title = $td.find('div:first').data('original-title');
+            }
+
+            return title || td.innerText;
+        };
+        html.push('<tbody>');
+
+        $tableReport.find('tbody tr').each(function () {
+            html.push('<tr>');
+            $(this)
+                .find('td:not(.hide)')
+                .each(function () {
+                    html.push('<td>', getColumnText(this), '</td>');
+                });
+            html.push('</tr>');
+        });
+
+        html.push('</tbody>');
+    }
+
+    private buildHtmlFooter($tableReport: JQuery, html: string[]) {
+        const footerRows = $tableReport.find('tfoot tr td:not(.hide)');
+
+        if (footerRows.length) {
+            html.push('<tfoot><tr>');
+            footerRows.each(function () {
+                html.push('<td>', this.innerText, '</td>');
+            });
+
+            html.push('</tr></tfoot>');
+        }
     }
 }

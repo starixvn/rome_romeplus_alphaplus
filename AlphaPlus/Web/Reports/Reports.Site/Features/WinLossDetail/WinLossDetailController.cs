@@ -18,4 +18,6 @@ public class WinLossDetailController(IMediator mediator) : ReportBaseController(
 
     public Task<IActionResult> GetData(WinLossDetailGetDataQuery message)
         => Json<WinLossDetailGetDataViewModel>(message);
+
+    public Task<IActionResult> ExcelNew(WinLossDetailExcelNewQuery message) => ExcelView(message);
 }

@@ -64,16 +64,18 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var offeredProductGroups = products.GroupBy(p => new { p.Type, p.TypeName });
         foreach (var groups in offeredProductGroups)
         {
+            var subProductsCheckedCount = 0;
             var subProducts = groups.Select(item =>
             {
                 var isChecked = isCheckedAll || userSelectedProductIdsList.Contains(item.Id);
                 if (isChecked)
                 {
+                    subProductsCheckedCount++;
                     validUserSelectedProductIds.Add(item.Id);
                 }
 
                 return new ProductGroupDTO(item.Id, item.Name, isChecked, null);
-            });
+            }).ToList();
 
             if (groups.Key.Type == 0)
             {
@@ -81,7 +83,11 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
             }
             else
             {
-                productGroups.Add(new ProductGroupDTO(groups.Key.Type, groups.Key.TypeName, false, subProducts.ToList()));
+                productGroups.Add(new ProductGroupDTO(
+                    groups.Key.Type,
+                    groups.Key.TypeName,
+                    isCheckedAll || subProductsCheckedCount == subProducts.Count,
+                    subProducts));
             }
         }
 

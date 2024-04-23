@@ -78,10 +78,10 @@
                 const checked = this.checked;
                 const subProductIds = productIdWithSubProductIds[productId];
                 if (subProductIds) {
-                    const productIdString = checked
+                    const productIdsArray = checked
                         ? self.$dropdownProduct.fanexMultiSelect('getCheckedValues')
                         : self.$dropdownProduct.fanexMultiSelect('getUncheckedValues');
-                    productIdString.split(',').forEach(function (id) {
+                    productIdsArray.forEach(function (id) {
                         self.handleOnCheckProduct(id, checked);
                     });
                 } else {
@@ -99,8 +99,8 @@
                         self.$dropdownProductDetail.fanexMultiSelect('disable', !checked);
                     }
                 } else {
-                    const productIdString = checked ? checkedValues : uncheckedValues;
-                    productIdString.split(',').forEach(function (id) {
+                    const productIdsArray = checked ? checkedValues : uncheckedValues;
+                    productIdsArray.forEach(function (id) {
                         self.handleOnCheckProduct(id, checked);
                     });
                 }
@@ -135,22 +135,13 @@
 
     getCheckedValues() {
         const productsAndResources = {
-            productIds: this.$dropdownProduct.fanexMultiSelect('getCheckedValues'),
-            resourceIds: this.$dropdownProductDetail
-                ? this.$dropdownProductDetail.fanexMultiSelect('getCheckedValues')
+            userSelectedProductIds: this.$dropdownProduct.fanexMultiSelect('getCheckedValues').join(','),
+            userSelectedResourceIds: this.$dropdownProductDetail
+                ? this.$dropdownProductDetail.fanexMultiSelect('getCheckedValues').join(',')
                 : undefined
         };
 
-        this.$dropdownProduct.fanexMultiSelect('addError', productsAndResources.productIds.length === 0);
+        this.$dropdownProduct.fanexMultiSelect('addError', productsAndResources.userSelectedProductIds.length === 0);
         return productsAndResources;
-    }
-
-    getUncheckedValues() {
-        return {
-            unselectedProductIds: this.$dropdownProduct.fanexMultiSelect('getUncheckedValues'),
-            unselectedResourceIds: this.$dropdownProductDetail
-                ? this.$dropdownProductDetail.fanexMultiSelect('getUncheckedValues')
-                : undefined
-        };
     }
 }

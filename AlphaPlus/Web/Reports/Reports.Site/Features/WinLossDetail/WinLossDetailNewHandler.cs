@@ -5,6 +5,7 @@ using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 using Microsoft.Extensions.Options;
 
@@ -14,11 +15,13 @@ public class WinLossDetailNewHandler(
     IProductService productService,
     IOptions<AppSettings> options,
     IEnteredResultService enteredResultService,
+    ICustomerService customerService,
     IWinLossDetailService winlossDetailService,
-    ICustomerService customerService) :
+    IWinLossDetailWorkbook workbook) :
         BaseHandler(productService, options),
         IRequestHandler<WinLossDetailNewQuery, WinLossDetailNewViewModel>,
-        IRequestHandler<WinLossDetailGetDataQuery, WinLossDetailGetDataViewModel>
+        IRequestHandler<WinLossDetailGetDataQuery, WinLossDetailGetDataViewModel>,
+        IRequestHandler<WinLossDetailExcelNewQuery, ExcelFileViewModel>
 {
     public async Task<WinLossDetailNewViewModel> Handle(WinLossDetailNewQuery message, CancellationToken cancellationToken)
     {
@@ -63,7 +66,7 @@ public class WinLossDetailNewHandler(
         var weekData = await weekDataTask;
 
         return new WinLossDetailGetDataViewModel(
-            (byte)(message.CustLevelId - 1),
+            message.CustLevelId,
             await enteredResultTask,
             await winlossDetailTask,
             weekData != null
@@ -85,8 +88,8 @@ public class WinLossDetailNewHandler(
         var param = new WinLossDetailParam(
             message.CustId,
             message.CustLevel,
-            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-            message.ToDate,
+            (message.WeekFromDate ?? message.FromDate).GetGreaterDate(message.LimitedDateToShowInfo),
+            message.WeekToDate ?? message.ToDate,
             validUserSelectedProductIds,
             productDetailXml,
             message.Username,
@@ -179,5 +182,17 @@ public class WinLossDetailNewHandler(
         var displayToDate = $"{toDate.ToString("dd")} {Resources.ResourceManager.GetString($"_{toDate.ToString("MMM")}")}";
 
         return fromDate == toDate ? displayToDate : $"{fromDate.ToString("dd")} - {displayToDate}";
+    }
+
+    public async Task<ExcelFileViewModel> Handle(WinLossDetailExcelNewQuery message, CancellationToken cancellationToken)
+    {
+        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+            message,
+            message.UserSelectedProductIds,
+            message.UserSelectedResourceIds);
+        var reportData = await GetWinLossDetail(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml);
+        var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
+
+        return workbook.BuildExcelFile(message, reportData, productNames);
     }
 }

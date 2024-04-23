@@ -13,8 +13,8 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 public class WinLossDetailHandler(
     IProductService productService,
     IOptions<AppSettings> options,
-    IWinLossDetailService winlossDetailService,
     IEnteredResultService enteredResultService,
+    IWinLossDetailService winlossDetailService,
     IWinLossDetailWorkbook workbook) :
         BaseHandler(productService, options),
         IRequestHandler<WinLossDetailQuery, WinLossDetailViewModel>,

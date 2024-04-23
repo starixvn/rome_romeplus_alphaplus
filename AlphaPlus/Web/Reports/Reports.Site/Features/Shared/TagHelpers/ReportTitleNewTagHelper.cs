@@ -20,7 +20,7 @@ public class ReportTitleNewTagHelper : TagHelper
         var sb = new StringBuilder();
         sb
             .Append($"<div class=\"text-title pull-left\" id=\"report-title\">{Model.Title}</div>")
-            .Append("<a href=\"javascript:;\"><span class=\"icon icon-information-outline icon-report-legend\" id=\"icon-report-legend\"></span></a>");
+            .Append("<a href=\"javascript:;\" class=\"hide\"><span class=\"icon icon-information-outline icon-report-legend\" id=\"icon-information\"></span></a>");
         AppendEnteredSportResult(sb);
         AppendActionIcons(sb);
 
