@@ -15,7 +15,7 @@
                class="@(string.IsNullOrWhiteSpace(Model.UserName) ? "text-italic" : "")" />
     </div>
 
-    @await Html.PartialAsync("~/MemberInfo/App_Code/Components/DateRangePicker.cshtml", Model.DateRangePickerViewModel)
+    @await Html.PartialAsync("~/Transfer/App_Code/Components/DateRangePicker.cshtml", Model.DateRangePickerViewModel)
 
     <div class="form-group">
         <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
