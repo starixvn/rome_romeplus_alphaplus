@@ -13,17 +13,16 @@ public class WinLossDetailNewViewModel(
 {
     public UserLevel ViewerLevel { get; } = message.ViewerLevel;
 
-    public string BreadcrumbLevel
-        => string.IsNullOrWhiteSpace(message.BreadcrumbsJson)
-        ? JsonHelper.ToJson(new Breadcrumb(message.ViewerId, message.CustName, message.ViewerLevelId))
-        : message.BreadcrumbsJson;
+    public int CustId { get; } = message.CustId;
+
+    public string CustName { get; } = message.CustName;
+
+    public byte CustLevelId { get; } = message.CustLevelId;
 
     public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
         Title: GetReportNameByLevel(message.CustLevel),
         IsFilterVisible: message.IsFilterVisible,
         TotalEnteredResults: totalEnteredResults);
-
-    public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 
     public DateRangePickerJQueryViewModel DateRangePicker { get; } = new DateRangePickerJQueryViewModel(
         message.FromDate,
@@ -32,13 +31,22 @@ public class WinLossDetailNewViewModel(
         DateTime.Today.AddDays(1),
         message.Language);
 
+    public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
+
     public string Username { get; } = message.Username;
+
+    public string VisibleColumns { get; } = message.VisibleColumns;
 
     public string WeekFromDate
         => message.WeekFromDate == null ? null : message.WeekFromDate.Value.ToShortDateWithSlash();
 
     public string WeekToDate
         => message.WeekToDate == null ? null : message.WeekToDate.Value.ToShortDateWithSlash();
+
+    public string BreadcrumbLevel
+        => string.IsNullOrWhiteSpace(message.BreadcrumbsJson)
+        ? JsonHelper.ToJson(new Breadcrumb(message.ViewerId, CustName, message.ViewerLevelId))
+        : message.BreadcrumbsJson;
 
     public bool CanDrilldown { get; } = !message.IsProtectedMode || !message.CustLevel.IsAgentLevel();
 

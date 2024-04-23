@@ -83,10 +83,14 @@
             { value: "company", text: '@Resources.Company' }
         ];
         var breadcrumbLevel = $.parseJSON('@Html.Raw(Model.BreadcrumbLevel)');
-        var activeWeek = {
+        var currentFromData = {
+            custId: @Model.CustId,
+            custName: '@Model.CustName',
+            custLevelId: @Model.CustLevelId,
             weekFromDate: '@Model.WeekFromDate',
             weekToDate: '@Model.WeekToDate'
         }
+        const visibleColumns = '@Model.VisibleColumns';
         var usernameSuggestionUrl = '@MicroSites.SettingUrl("~/UserNameSuggestion")';
         var viewerLevelId = @Model.ViewerLevel.Value;
     </script>

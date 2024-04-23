@@ -16,7 +16,7 @@ class WinLossDetailTable {
         this.$tableReport = $('#tbl-report');
     }
 
-    renderWinLossDetail(reportData, custLevelId: number) {
+    renderWinLossDetail(reportData, custLevelId: number, columns) {
         const html = [];
         this.buildHeader(html, custLevelId);
 
@@ -31,7 +31,9 @@ class WinLossDetailTable {
         }
 
         this.$tableReport.html(html.join(''));
+        this.showHideColumns(columns);
         this.initTableSorter(reportData.MoreThanOne);
+        this.stickyTableHeaders();
     }
 
     registerTableEvents(getWinLossDetailHandler: Function) {
@@ -181,6 +183,11 @@ class WinLossDetailTable {
         );
     }
 
+    private stickyTableHeaders() {
+        this.$tableReport.stickyTableHeaders('destroy');
+        this.$tableReport.stickyTableHeaders();
+    }
+
     private initTableSorter(canSort) {
         const sortColumns = this.$tableReport.find('.sorting');
 
@@ -300,5 +307,44 @@ class WinLossDetailTable {
 
             html.push('</tr></tfoot>');
         }
+    }
+
+    showHideColumns(visibleColumn) {
+        this.showHideSpecificColumn(visibleColumn, 'fullname');
+        this.showHideSpecificColumn(visibleColumn, 'betcount');
+        this.showHideSpecificColumn(visibleColumn, 'turnover');
+        this.showHideSpecificColumn(visibleColumn, 'netturnover');
+        this.showHideSpecificColumn(visibleColumn, 'grosscomm');
+        this.showHideGroupColumn(visibleColumn, 'p', 'groupColumnMember');
+        this.showHideGroupColumn(visibleColumn, 'a', 'groupColumnAgent');
+        this.showHideGroupColumn(visibleColumn, 'm', 'groupColumnMaster');
+        this.showHideGroupColumn(visibleColumn, 's', 'groupColumnSuper');
+        this.showHideSpecificColumn(visibleColumn, 'company');
+    }
+
+    private showHideGroupColumn(visibleColumn, prefix: string, groupColumnId: string) {
+        const groupColumn = this.$tableReport.find(`#${groupColumnId}`);
+        if (groupColumn.length) {
+            let colspan = 0;
+            if (this.showHideSpecificColumn(visibleColumn, `${prefix}winloss`)) {
+                colspan++;
+            }
+            if (this.showHideSpecificColumn(visibleColumn, `${prefix}comm`)) {
+                colspan++;
+            }
+            if (this.showHideSpecificColumn(visibleColumn, `${prefix}total`)) {
+                colspan++;
+            }
+
+            colspan ? groupColumn.attr('colspan', colspan).removeClass('hide') : groupColumn.addClass('hide');
+        }
+    }
+
+    private showHideSpecificColumn(visibleColumn, key: string) {
+        const matchedColumns = this.$tableReport.find(`[data-colname=${key}]`);
+        const visible = visibleColumn[key];
+        visible ? matchedColumns.removeClass('hide') : matchedColumns.addClass('hide');
+
+        return visible;
     }
 }

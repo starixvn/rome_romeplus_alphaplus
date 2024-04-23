@@ -1,10 +1,15 @@
+interface Object {
+    entries: any;
+}
+
 declare var viewResources: any;
 declare var reportTitle: any;
 declare var productList: any;
 declare var productDetailList: any;
 declare var columnList: any;
 declare var breadcrumbLevel: any;
-declare var activeWeek: any;
+declare var currentFromData: any;
+declare var visibleColumns: string;
 declare var usernameSuggestionUrl: string;
 declare var viewerLevelId: number;
 
@@ -17,7 +22,6 @@ class WinLossDetailViewNew extends BaseReportNew {
     private weekComponent: WeekComponent;
     private breadcrumbLevelComponent: BreadcrumbLevelComponent;
     private $reportTitle: JQuery;
-    private $tableReport: JQuery;
     private globalFormData: any;
     private isGettingData = false;
 
@@ -60,11 +64,9 @@ class WinLossDetailViewNew extends BaseReportNew {
                 this.getWinLossDetail();
             })
         );
-        this.visibleColumnComponent.render('', columnList, (columns) => {
-            this.showHideColumns(columns);
-            // const selectedColumnsValue = [];
-            // Object.entries(columns).forEach(([key, value]) => value && selectedColumnsValue.push(key));
-            // onDropdownHidden(selectedColumnsValue.join());
+        this.visibleColumnComponent.render(visibleColumns, columnList, (columns) => {
+            this.winLossDetailTable.showHideColumns(columns);
+            this.updateQueryString();
         });
         this.breadcrumbLevelComponent.init(breadcrumbLevel, (custInfo) => {
             this.getWinLossDetailUpOrDownline(custInfo, () => {
@@ -74,13 +76,16 @@ class WinLossDetailViewNew extends BaseReportNew {
         });
         this.cacheDOMElements();
         this.registerEvents();
-        this.globalFormData = activeWeek;
+        this.globalFormData = currentFromData;
         this.getWinLossDetail(false);
+
+        setTimeout(function () {
+            window.top['indexManager'].initFeedbackFunction(2);
+        }, 1000);
     }
 
     cacheDOMElements() {
         this.$reportTitle = $('#report-title');
-        this.$tableReport = $('#tbl-report');
     }
 
     registerEvents() {
@@ -165,7 +170,6 @@ class WinLossDetailViewNew extends BaseReportNew {
             this.getDataSuccess(json);
             callback && callback();
             this.globalFormData = queryStringObject;
-            console.dir(this.globalFormData);
             this.updateQueryString(queryString);
             this.isGettingData = false;
         }).fail((jqXHR) => {
@@ -185,10 +189,11 @@ class WinLossDetailViewNew extends BaseReportNew {
             this.$reportTitle.text(reportTitle[json.CustLevelId]);
             this.breadcrumbLevelComponent.resetBreadcrumb(json.Breadcrumbs);
         }
-        this.winLossDetailTable.renderWinLossDetail(json.ReportData, json.CustLevelId);
-        this.showHideColumns();
-        this.$tableReport.stickyTableHeaders('destroy');
-        this.$tableReport.stickyTableHeaders();
+        this.winLossDetailTable.renderWinLossDetail(
+            json.ReportData,
+            json.CustLevelId,
+            this.visibleColumnComponent.getColumns()
+        );
         json.ReportData.HasData &&
             this.winLossDetailTable.registerTableEvents((custInfo) => {
                 this.getWinLossDetailUpOrDownline(custInfo, () => {
@@ -202,9 +207,12 @@ class WinLossDetailViewNew extends BaseReportNew {
             });
     }
 
-    private updateQueryString(queryString: string) {
+    private updateQueryString(queryString: string = undefined) {
+        queryString = queryString || $.param(this.globalFormData);
+        const breadcrumbsJson = this.breadcrumbLevelComponent.toStringBreadcrumb();
+        const visibleColumns = this.visibleColumnComponent.getShowColumns().join(',');
         alphaReports.updateQueryString(
-            `${queryString}&breadcrumbsJson=${this.breadcrumbLevelComponent.toStringBreadcrumb()}`
+            `${queryString}&breadcrumbsJson=${encodeURI(breadcrumbsJson)}&visibleColumns=${visibleColumns}`
         );
     }
 
@@ -222,46 +230,6 @@ class WinLossDetailViewNew extends BaseReportNew {
     private clearUsername() {
         this.usernameSuggestionComponent.clearUsername();
         delete this.globalFormData.username;
-    }
-
-    private showHideColumns(visibleColumn = undefined) {
-        visibleColumn = visibleColumn || this.visibleColumnComponent.getColumns();
-        this.showHideSpecificColumn(visibleColumn, 'fullname');
-        this.showHideSpecificColumn(visibleColumn, 'betcount');
-        this.showHideSpecificColumn(visibleColumn, 'turnover');
-        this.showHideSpecificColumn(visibleColumn, 'netturnover');
-        this.showHideSpecificColumn(visibleColumn, 'grosscomm');
-        this.showHideGroupColumn(visibleColumn, 'p', 'groupColumnMember');
-        this.showHideGroupColumn(visibleColumn, 'a', 'groupColumnAgent');
-        this.showHideGroupColumn(visibleColumn, 'm', 'groupColumnMaster');
-        this.showHideGroupColumn(visibleColumn, 's', 'groupColumnSuper');
-        this.showHideSpecificColumn(visibleColumn, 'company');
-    }
-
-    private showHideGroupColumn(visibleColumn, prefix: string, groupColumnId: string) {
-        const groupColumn = this.$tableReport.find(`#${groupColumnId}`);
-        if (groupColumn.length) {
-            let colspan = 0;
-            if (this.showHideSpecificColumn(visibleColumn, `${prefix}winloss`)) {
-                colspan++;
-            }
-            if (this.showHideSpecificColumn(visibleColumn, `${prefix}comm`)) {
-                colspan++;
-            }
-            if (this.showHideSpecificColumn(visibleColumn, `${prefix}total`)) {
-                colspan++;
-            }
-
-            colspan ? groupColumn.attr('colspan', colspan).removeClass('hide') : groupColumn.addClass('hide');
-        }
-    }
-
-    private showHideSpecificColumn(visibleColumn, key: string) {
-        const matchedColumns = this.$tableReport.find(`[data-colname=${key}]`);
-        const visible = visibleColumn[key];
-        visible ? matchedColumns.removeClass('hide') : matchedColumns.addClass('hide');
-
-        return visible;
     }
 }
 

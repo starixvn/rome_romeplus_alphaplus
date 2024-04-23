@@ -18,6 +18,8 @@ public class WinLossDetailNewQuery : ProductDetailDateRangeQuery, IRequest<WinLo
 
     public DateTime? WeekToDate { get; set; }
 
+    public string VisibleColumns { get; set; }
+
     public bool IsProtectedMode { get; }
 
     public override bool IsValid()

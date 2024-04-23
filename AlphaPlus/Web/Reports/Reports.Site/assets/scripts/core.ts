@@ -139,7 +139,7 @@ class AlphaReports {
 
     updateQueryString(queryString: string) {
         try {
-            window.history.replaceState({}, '', `${window.location.href.split('?')[0]}?${queryString}`);
+            window.top['indexManager'].updateCurrentUrl(queryString);
         } catch {}
     }
 
