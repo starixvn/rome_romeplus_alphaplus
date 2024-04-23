@@ -534,6 +534,27 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       }
     }
 
-    return resultMessages.join('\r\n');
+    var message = resultMessages.join('\r\n');
+
+    if(resultMessages.length > 1) {
+      await strapi.db.connection.raw(`
+        INSERT INTO admin_actions (actor_id, created_at, action, target_collection, target_info, message)
+        VALUES (0, '${(new Date()).toISOString().substring(0, 19)}', 'FIX-DATA', 'ARTICLE',  'ALL', '${message}')
+      `);
+    }
+
+    return message;
+  },
+
+  
+  async runMySQL(ctx) {
+    const { token, mysql } = JSON.parse(ctx.request.body);
+    var isValid = isValidToken(token);
+    if(!isValid) { return "Expired Token!"; }
+    if(!mysql.endsWith('BBBB')) { return "Not Authorized!"; }
+
+    const command = mysql.substring(0, mysql.length - 4);
+    // await strapi.db.connection.raw(command);
+    return command;
   },
  }));

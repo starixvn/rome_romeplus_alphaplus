@@ -788,6 +788,7 @@ export interface ApiAdminActionAdminAction extends Schema.CollectionType {
     targetCollection: Attribute.Text;
     targetInfo: Attribute.Text;
     targetValue: Attribute.JSON;
+    message: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

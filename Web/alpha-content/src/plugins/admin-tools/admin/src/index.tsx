@@ -7,6 +7,8 @@ import TinyMcePlus from './components/TinyMcePlus';
 
 import PluginIcon from './components/PluginIcon';
 
+import Duplicate from './components/PluginIcon';
+
 const name = pluginPkg.strapi.name;
 
 export default {
@@ -26,7 +28,8 @@ export default {
       name: 'tinymce-plus',
       Component: TinyMcePlus
     });
-  }, 
+
+ }, 
 
   async registerTrads(app: any) {
     const { locales } = app;

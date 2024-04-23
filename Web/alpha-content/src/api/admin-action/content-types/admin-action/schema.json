@@ -26,6 +26,9 @@
     },
     "targetValue": {
       "type": "json"
+    },
+    "message": {
+      "type": "text"
     }
   }
 }

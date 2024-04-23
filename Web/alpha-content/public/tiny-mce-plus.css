@@ -87,7 +87,8 @@
 
 #upload-image-container,
 #update-image-container,
-#upload-icon-container  {
+#upload-icon-container,
+#container-run-mysql  {
     width: 100%; 
     height: 1350px; 
     position: absolute; 
@@ -102,7 +103,8 @@
 
 #form-upload-image,
 #form-update-image,
-#form-upload-icon {
+#form-upload-icon,
+#form-run-mysql {
     width: 600px;
     height: 200px;
     margin-top: 500px;
@@ -126,7 +128,9 @@ input[type=file]::file-selector-button,
 #btn-submit-update-image,
 #btn-cancel-update-image,
 #btn-submit-upload-icon,
-#btn-cancel-upload-icon {
+#btn-cancel-upload-icon,
+.btn-submit,
+.btn-cancel {
     border: 1px solid #4945ff;
     border-radius: .2em;
     background-color: #4945ff;
@@ -149,7 +153,9 @@ input[type=file]::file-selector-button:hover,
 #btn-cancel-update-image:hover,
 #btn-submit-update-image:hover,
 #btn-cancel-upload-icon:hover,
-#btn-submit-upload-icon:hover
+#btn-submit-upload-icon:hover,
+.btn-cancel:hover,
+.btn-submit:hover
 {
     background-color: #7b79ff;
     border: 1px solid #7b79ff;
@@ -181,6 +187,14 @@ input[type=file]::file-selector-button:hover,
     background-image: url('./imgs/fix-data.png');
     background-size: 100% 100%;
 }
+
+.tox-icon.icon-run-mysql {
+    width: 24px; 
+    height: 24px;
+    background-image: url('./imgs/run-mysql.png');
+    background-size: 100% 100%;
+}
+
 
 
 

@@ -44,6 +44,11 @@ export default {
       method: 'PUT',
       path: '/articles/fix-data/all',
       handler: 'article.fixData',
+    },
+    {
+      method: 'PUT',
+      path: '/articles/run-mysql/post',
+      handler: 'article.runMySQL',
     }
   ]
 }

@@ -13,6 +13,7 @@ import { getUpdateImageButton, updateImage } from './update-image';
 import { getUploadIconButton, uploadIcon } from './upload-icon';
 import { correctDropdownLocales } from './multi-languages';
 import { getFixDataButton, fixData } from './fix-data';
+import { getRunMySQLButton, showRunMySQL } from './run-mysql';
 
 var addedCss = false;
 function showTinyMcePlusInfo() {
@@ -59,6 +60,7 @@ function addCustomedButtons(initialData, demoUrl, slug) {
   + getAutoSaveButton()
   + getCleanUnpublishedButton()
   + getFixDataButton()
+  + getRunMySQLButton()
   ;
 
   t.append(r.firstChild);
@@ -78,6 +80,7 @@ function addCustomedButtons(initialData, demoUrl, slug) {
   document.getElementById('btn-update-image').onclick = () => { updateImage(adminUrl); };
   document.getElementById('btn-upload-icon').onclick = () => { uploadIcon(adminUrl); };
   document.getElementById('btn-fix-data').onclick = () => { fixData(); };
+  document.getElementById('btn-run-mysql').onclick = () => { };
   cleanUpEditor();
 }
 

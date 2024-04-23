@@ -49,7 +49,6 @@ function showVRuler() {
   vruler.style.left = "50%";
   vruler.style.top = "0px";
   
-  debugger
   ruler.style.display =  d === '' || d === 'none' ? "block" : "none";
 
   vruler.ondragstart = ondragstart;

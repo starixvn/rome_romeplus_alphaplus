@@ -1,5 +1,5 @@
 module.exports = () => ({
-  "duplicate-button": false,
+  "duplicate-button": true,
   "admin-tools": {
     enabled: true,
     resolve: "./src/plugins/admin-tools",
