@@ -16,12 +16,12 @@
 <div class="container-fluid page-auto-transfer">
     <ul id="nav-tabs" class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-            <a data-tablink="/@(AppSettings.VirtualDirectory+"autotransfer/monitoring")" role="tab" aria-controls="monitoring" data-to data-toggle="tab" class="lnk-changetab">@Resources.AutoTransferMonitoring</a>
+            <a data-tablink="@(AppSettings.VirtualDirectory+"autotransfer/monitoring")" role="tab" aria-controls="monitoring" data-to data-toggle="tab" class="lnk-changetab">@Resources.AutoTransferMonitoring</a>
         </li>
         @if (!Model.IsProtectedMode)
         {
             <li role="presentation">
-                <a id="tab-history" data-tablink="/@(AppSettings.VirtualDirectory+"autotransfer/history")" role="tab" aria-controls="history" data-toggle="tab" class="lnk-changetab">@Resources.AutoTransferHistory</a>
+                <a id="tab-history" data-tablink="@(AppSettings.VirtualDirectory+"autotransfer/history")" role="tab" aria-controls="history" data-toggle="tab" class="lnk-changetab">@Resources.AutoTransferHistory</a>
             </li>
         }
         <li class="icon-tab">

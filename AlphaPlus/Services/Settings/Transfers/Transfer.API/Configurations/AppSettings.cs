@@ -44,7 +44,7 @@
         {
             get
             {
-                return AppPathHelper.GetAppPath(GetConfigValue("VirtualDirectory"), "~/");
+                return AppPathHelper.GetAppPath("/settings", "~/");
             }
         }
 

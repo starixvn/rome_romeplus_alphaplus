@@ -121,7 +121,7 @@ class AutoTransferMonitoring {
     };
 
     viewInfo = () => {
-        var url = "/" + this.virtualDirectory + "autotransfer/hint";
+        var url = this.virtualDirectory + "autotransfer/hint";
         this.topWindow.popupManager.open(url, "", 500, 520);
     };
 

@@ -98,7 +98,7 @@ class PagerComponentTransfer {
         return result;
     };
 
-    options = new PagerOption(this.onChange);
+    options = new PagerOptionTransfer(this.onChange);
 
     reset = () => {
         if (this.$pageIndex) {
