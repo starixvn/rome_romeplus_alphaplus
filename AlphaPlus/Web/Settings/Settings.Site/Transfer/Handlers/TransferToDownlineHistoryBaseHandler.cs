@@ -12,7 +12,7 @@
     {
         private readonly TransferToDownlineHistoryService transferToDownlineHistoryService;
 
-        private const string ExcelTemplateDir = "/app/App_Data/ExcelTemplates/TransferToDownlineHistory/{0}.{1}";
+        private const string ExcelTemplateDir = "App_Data/ExcelTemplates/TransferToDownlineHistory/{0}.{1}";
 
         protected internal Func<string, bool> IsFileExist { get; set; } = File.Exists;
 
@@ -31,7 +31,7 @@
                 throw new ArgumentNullException(nameof(templateName), "Template Name cannot be null or empty!");
             }
 
-            var relativePath = string.Format(ExcelTemplateDir, templateName, fileExtension);
+            var relativePath = string.Format($"{AppDomain.CurrentDomain.BaseDirectory}/{ExcelTemplateDir}", templateName, fileExtension);
 
             var absolutePath = relativePath;
 

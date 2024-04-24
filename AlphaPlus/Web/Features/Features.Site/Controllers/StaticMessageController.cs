@@ -34,12 +34,12 @@
         public ActionResult File(string id)
         {
             string viewName = $"{id}.{UserSession.Current.Language}";
-            if (!System.IO.File.Exists($"/app/Views/StaticMessage/{viewName}.cshtml"))
+            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{viewName}.cshtml"))
             {
                 viewName = $"{id}.en-US";
             }
 
-            if (!System.IO.File.Exists($"/app/Views/StaticMessage/{viewName}.cshtml"))
+            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{viewName}.cshtml"))
             {
                 return new EmptyResult();
             }
@@ -51,12 +51,12 @@
         {
             var roleName = UserLevel.GetDisplayName(UserSession.Current.RoleId);
             string fileName = $"{id}.{roleName}.{UserSession.Current.Language}";
-            if (!System.IO.File.Exists($"/app/Views/StaticMessage/{fileName}.pdf"))
+            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf"))
             {
                 fileName = $"{id}.{roleName}.en-US";
             }
 
-            if (!System.IO.File.Exists($"/app/Views/StaticMessage/{fileName}.pdf"))
+            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf"))
             {
                 return new EmptyResult();
             }
@@ -67,18 +67,18 @@
 
             Response.Headers.Append("Content-Disposition", "inline; filename=" + fileDownloadName);
 
-            return base.PhysicalFile($"/app/Views/StaticMessage/{fileName}.pdf", "application/pdf");
+            return base.PhysicalFile($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf", "application/pdf");
         }
 
         public ActionResult Help(string id)
         {
             string fileName = $"{id}.{UserSession.Current.Language}";
-            if (!System.IO.File.Exists($"/app/Views/StaticMessage/{fileName}.pdf"))
+            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf"))
             {
                 fileName = $"{id}.en-US";
             }
 
-            if (!System.IO.File.Exists($"/app/Views/StaticMessage/{fileName}.pdf"))
+            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf"))
             {
                 return new EmptyResult();
             }
@@ -89,7 +89,7 @@
 
             Response.Headers.Append("Content-Disposition", "inline; filename=" + fileDownloadName);
 
-            return base.PhysicalFile($"/app/Views/StaticMessage/{fileName}.pdf", "application/pdf");
+            return base.PhysicalFile($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf", "application/pdf");
         }
     }
 }

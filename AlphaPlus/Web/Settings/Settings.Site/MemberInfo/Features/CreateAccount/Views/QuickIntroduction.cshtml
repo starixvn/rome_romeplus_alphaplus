@@ -21,7 +21,7 @@
         folder = $"/MemberInfo/assets/styles/images/createAccount/site789y/{language}/{dataThem}/";
     }
     
-    var isExistsImgOfLang = File.Exists($"/app/wwwroot{folder}lv{roleId}.img1.png");
+    var isExistsImgOfLang = File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/wwwroot{folder}lv{roleId}.img1.png");
     if (isExistsImgOfLang)
     {
         img1 = $"~/{folder}lv{roleId}.img1.png";

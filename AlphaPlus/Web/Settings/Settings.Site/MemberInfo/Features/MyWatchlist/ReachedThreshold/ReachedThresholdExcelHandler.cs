@@ -58,7 +58,7 @@
             return new ExcelFileViewModel(GetExcelFileName(message), fileContent);
         }
 
-        protected override string GetExcelTemplateDir() => "/app/App_Data/ExcelTemplates/ReachedThreshold";
+        protected override string GetExcelTemplateDir() => $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/ExcelTemplates/ReachedThreshold";
 
         internal Mapper<ReachlistAccountModel> GetBodyRowMapper(bool isShowLastLoginColumn)
         {

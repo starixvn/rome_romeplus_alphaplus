@@ -8,7 +8,7 @@
 
     public class SettingController : ViewLogBaseController
     {
-        private const string TemplatePath = "/app/App_Data/TrackingValueTransformTemplates";
+        private const string TemplatePath = "App_Data/TrackingValueTransformTemplates";
         private readonly IMediator mediator;
 
         public SettingController(
@@ -21,7 +21,7 @@
 
         public async Task<ActionResult> Index(IndexQuery indexQuery)
         {
-            indexQuery.TrackingValueTransformTemplatePath = TemplatePath;
+            indexQuery.TrackingValueTransformTemplatePath = $"{AppDomain.CurrentDomain.BaseDirectory}/{TemplatePath}";
 
             var viewModel = await mediator.Send(indexQuery);
 

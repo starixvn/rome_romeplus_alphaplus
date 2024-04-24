@@ -6,7 +6,7 @@
     lang = AlphaPlus.Core.Models.UserSession.Current.Language;
 
     var folder = "~/MemberInfo/assets/styles/images/";
-    var imgLang = File.Exists($"/app/wwwroot/MemberInfo/assets/styles/images/Slide2.{lang}.png") ?
+    var imgLang = File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/wwwroot/MemberInfo/assets/styles/images/Slide2.{lang}.png") ?
         lang : "en-US";
 
 

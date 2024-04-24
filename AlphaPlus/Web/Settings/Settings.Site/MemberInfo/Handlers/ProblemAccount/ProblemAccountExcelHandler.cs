@@ -45,7 +45,7 @@
             return new ExcelFileViewModel(GetExcelFileName(message), fileContent);
         }
 
-        protected override string GetExcelTemplateDir() => "/app/App_Data/ExcelTemplates/ProblemAccount";
+        protected override string GetExcelTemplateDir() => $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/ExcelTemplates/ProblemAccount";
 
         internal Mapper<ProblemAccountModel> GetBodyRowMapper(ProblemAccountExcelQuery message)
         {
