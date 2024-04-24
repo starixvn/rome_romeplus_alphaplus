@@ -10,13 +10,6 @@
     {
         private const int bodyStartIndex = 2;
         private const int bodyEndIndex = 3;
-        private Func<string, string> mapPath;
-
-        protected internal Func<string, string> MapPath
-        {
-            get { return mapPath; } // TODO
-            set { mapPath = value; }
-        }
 
         protected abstract string GetExcelTemplateDir();
 
@@ -43,14 +36,12 @@
 
             var relativePath = $"{GetExcelTemplateDir()}/{templateName}.{fileExtension}";
 
-            var absolutePath = MapPath(relativePath);
-
-            if (IsFileExist(absolutePath))
+            if (IsFileExist(relativePath))
             {
-                return absolutePath;
+                return relativePath;
             }
 
-            throw new FileNotFoundException($"Template {absolutePath} does not exist");
+            throw new FileNotFoundException($"Template {relativePath} does not exist");
         }
     }
 }

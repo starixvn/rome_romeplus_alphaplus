@@ -88,7 +88,7 @@
         {
             get
             {
-                return "main/IPInfo";
+                return "/main/IPInfo";
             }
         }
 

@@ -5,6 +5,8 @@ RUN apk add --update nodejs npm
 RUN npm install -g yarn gulp-cli
 
 COPY . ./src
+COPY ./Web/Main/Main.Site/assets/styles/Home/Images ./src/Web/Main/Main.Site/wwwroot/assets/bundles/Images
+
 WORKDIR /src/Web/Main/Main.Site
 RUN yarn && yarn build
 RUN dotnet publish --use-current-runtime --self-contained -o /app
