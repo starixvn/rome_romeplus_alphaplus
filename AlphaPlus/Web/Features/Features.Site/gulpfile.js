@@ -25,7 +25,7 @@ function getBundles(regexPattern) {
 }
 
 function clean(cb) {
-    deleteSync('wwwroot/assets/bundles/**/*');
+    //deleteSync('wwwroot/assets/bundles/**/*');
     cb();
 }
 

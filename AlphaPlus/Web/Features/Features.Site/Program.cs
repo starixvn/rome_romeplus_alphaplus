@@ -21,7 +21,6 @@ if (!app.Environment.IsDevelopment())
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
-AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
 
 app.UsePathBase("/features");
 app.MapHealthChecks("/health");

@@ -73,7 +73,7 @@ class Feedback {
             data: self.feedback,
             success: (result) => {
                 self.$.unblockUI();
-                if (result.ErrCode === 0) {
+                if (result.Code === 0) {
                     $('.feedback-box').addClass('hide');
                     $('.feedback-result').removeClass('hide');
                     setTimeout(function (): void {
@@ -83,7 +83,7 @@ class Feedback {
                     return;
                 }
 
-                $('.message-result').html(result.ErrMsg);
+                $('.message-result').html(result.Message);
                 $('.message-result').removeClass('hide');
             },
             complete: () => {

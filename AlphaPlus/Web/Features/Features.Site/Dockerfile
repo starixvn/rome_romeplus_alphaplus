@@ -5,6 +5,8 @@ RUN apk add --update nodejs npm
 RUN npm install -g yarn gulp-cli
 
 COPY . ./src
+COPY ./Web/Features/Features.Site/assets/styles/feedback/images ./src/Web/Features/Features.Site/wwwroot/assets/bundles/feedback/images
+
 WORKDIR /src/Web/Features/Features.Site
 RUN yarn && yarn build
 RUN dotnet restore

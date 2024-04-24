@@ -93,8 +93,8 @@ class FeedbackFunction {
             this.feedbackFormData.areas = this.convertObjectToArray(this.areaFormData);
         }
         this.$.post(this.$("#hiddenAddFeedbackUrl").val(), this.feedbackFormData, (result) => {
-            if (result.ErrCode) {
-                this.messageResult.html(result.ErrMsg).removeClass("hide");
+            if (result.Code) {
+                this.messageResult.html(result.Message).removeClass("hide");
             } else {
                 this.$("#feedback-box").addClass("hide");
                 this.$("#feedback-result").removeClass("hide");
