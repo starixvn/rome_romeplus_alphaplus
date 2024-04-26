@@ -8,12 +8,9 @@
 
     public class CustomerNonProductStatusCommand : CustomerStatusQueryBase, IRequest<Settings.MemberInfo.Domain.Models.Result>
     {
-        private readonly IUser viewer;
-
         public CustomerNonProductStatusCommand() : this(null){}
         public CustomerNonProductStatusCommand(IUser viewer) : base(viewer)
         {
-            this.viewer = viewer ?? new User(UserSession.Current);
         }
 
 

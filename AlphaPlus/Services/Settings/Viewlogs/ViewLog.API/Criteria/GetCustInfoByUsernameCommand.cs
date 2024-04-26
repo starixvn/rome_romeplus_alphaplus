@@ -4,7 +4,7 @@
 
     public class GetCustInfoByUsernameCommand : NonQueryCommand
     {
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         public int UplineId { get; set; }
 

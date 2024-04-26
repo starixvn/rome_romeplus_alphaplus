@@ -18,10 +18,10 @@
         private readonly ViewLogIPService ipService;
         private readonly RemotingRefWrapper remotingRef;
 
-        private Dictionary<string, bool> custStatuses;
-        private Dictionary<string, int> resourcesByProductCacheRef;
-        private Dictionary<string, int> resourcesBySportTypeCacheRef;
-        private Dictionary<string, int> resourcesByBetTypeCacheRef;
+        private Dictionary<string, bool>? custStatuses;
+        private Dictionary<string, int>? resourcesByProductCacheRef;
+        private Dictionary<string, int>? resourcesBySportTypeCacheRef;
+        private Dictionary<string, int>? resourcesByBetTypeCacheRef;
         private bool isHideNickname;
         private bool isShowMyanmarOdds;
         private const int SevenDaysIndex = 8;
@@ -67,7 +67,7 @@
 
         public bool IsVisible(string key)
         {
-            return custStatuses.ContainsKey(key) && custStatuses[key];
+            return custStatuses != null && custStatuses.ContainsKey(key) && custStatuses[key];
         }
 
         public string GetLogResource(string key)
@@ -138,10 +138,10 @@
 
                 // title: "{oldValue} --> {newValue}" or empty
                 // old value = Split()[0]
-                oldValue = codes.First().Attribute("title").Value.Split()[0];
+                oldValue = codes.First()?.Attribute("title")?.Value.Split()[0];
 
                 dayCodesWithDiff = dayCodesWithDiff.Replace(newValue, CovertCodeCondition(newValue))
-                                                   .Replace(oldValue, CovertCodeCondition(oldValue));
+                                                   .Replace(oldValue ?? string.Empty, CovertCodeCondition(oldValue ?? string.Empty));
                 return dayCodesWithDiff;
             }
 
@@ -235,9 +235,9 @@
             var lowerCaseResourceName = name.ToLower();
 
             var resourceValue = string.Empty;
-            if (custStatuses.ContainsKey(lowerCaseResourceName)
+            if (custStatuses != null && custStatuses.ContainsKey(lowerCaseResourceName)
                 && custStatuses[lowerCaseResourceName]
-                && resourcesByProductCacheRef.ContainsKey(lowerCaseResourceName))
+                && resourcesByProductCacheRef != null && resourcesByProductCacheRef.ContainsKey(lowerCaseResourceName))
             {
                 resourceValue = $"{TrackingValueResources.disabled} {GetProductName(resourcesByProductCacheRef[lowerCaseResourceName])}";
             }
@@ -251,7 +251,7 @@
             {
                 resourceValue = $"{TrackingValueResources.disabled} {GetBetTypeName(resourcesByBetTypeCacheRef[lowerCaseResourceName])}";
             }
-            else if (custStatuses.ContainsKey(lowerCaseResourceName)
+            else if (custStatuses != null && custStatuses.ContainsKey(lowerCaseResourceName)
                 && custStatuses[lowerCaseResourceName])
             {
                 resourceValue = GetLogResource(name);
@@ -395,7 +395,7 @@
         {
             if (date.Equals("NULL", StringComparison.OrdinalIgnoreCase))
             {
-                return TrackingValueResources.ResourceManager.GetString("Never");
+                return TrackingValueResources.ResourceManager.GetString("Never") ?? string.Empty;
             }
 
             return DateTimeHelper.ToLongDateWithSlash(DateTime.Parse(date));
@@ -513,8 +513,8 @@
 
                 // title: "{oldValue} --> {newValue}" or empty
                 // old value = Split()[0]
-                oldValue = codes.First().Attribute("title").Value.Split()[0];
-                return ReplaceValues(oldValue, newValue, valuesDiff, formatDiffFunc);
+                oldValue = codes.First().Attribute("title")?.Value.Split()[0];
+                return ReplaceValues(oldValue ?? string.Empty, newValue, valuesDiff, formatDiffFunc);
             }
 
             return formatDiffFunc(result);

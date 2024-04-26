@@ -8,7 +8,7 @@
     {
         IEnumerable<LogActionType> GetLogActionTypes();
 
-        string GetLogActionName(int actionId, string language);
+        string? GetLogActionName(int actionId, string language);
 
         PagingLogs<Log> GetPagingLogs(LogParam logParam);
     }

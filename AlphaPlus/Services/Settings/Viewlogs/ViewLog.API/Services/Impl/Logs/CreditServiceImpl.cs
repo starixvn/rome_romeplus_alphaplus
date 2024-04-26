@@ -54,7 +54,7 @@
             return new GetCreditLogsCriteria(
                 logParam.ActorId,
                 logParam.RoleId,
-                logParam.Username,
+                logParam.Username ?? string.Empty,
                 DateTimeHelper.GetBeginningOfDate(fromDate),
                 DateTimeHelper.GetEndingOfDate(logParam.ToDate),                
                 logParam.PageIndex,
@@ -73,7 +73,7 @@
             return new GetTotalCreditLogsCriteria(
                 logParam.ActorId,
                 logParam.RoleId,
-                logParam.Username,
+                logParam.Username ?? string.Empty,
                 DateTimeHelper.GetBeginningOfDate(fromDate),
                 DateTimeHelper.GetEndingOfDate(logParam.ToDate));
         }

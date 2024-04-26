@@ -18,7 +18,7 @@
 
         public DateTime ToDate { get; set; }
 
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         public bool HasViewLogPermission { get; set; }
 
@@ -28,7 +28,7 @@
 
         public int PageIndex { get; set; }
 
-        public string Language { get; set; }
+        public string? Language { get; set; }
 
         public bool IsShowOldValue { get; set; }
 

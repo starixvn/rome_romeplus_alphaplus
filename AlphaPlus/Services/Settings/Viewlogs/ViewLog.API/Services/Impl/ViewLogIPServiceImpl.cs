@@ -52,7 +52,7 @@
 
         private static bool IsValidIP(string ipAddress)
         {
-            IPAddress ip;
+            IPAddress? ip;
             return !string.IsNullOrWhiteSpace(ipAddress)
                 && IPAddress.TryParse(ipAddress, out ip);
         }       

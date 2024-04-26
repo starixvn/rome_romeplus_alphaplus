@@ -45,7 +45,7 @@
 
             return new GetSettingLogsCriteria(
                 logParam.CustId,
-                logParam.Username,
+                logParam.Username ?? string.Empty,
                 logParam.ActorId,
                 ((SettingParam)logParam).ActionTypeId,
                 DateTimeHelper.GetBeginningOfDate(fromDate),
@@ -75,6 +75,6 @@
 
         static private bool IsBetLimitOfRNGSlot(Log log)
             => log.ActionId == RNGSlotBetLimitActionId && 
-            (log.TrackingValue.Contains("ProductID=\"18\"") || log.TrackingValue.Contains("ProductID=\"22\""));
+            (log.TrackingValue != null && log.TrackingValue.Contains("ProductID=\"18\"") || log.TrackingValue != null && log.TrackingValue.Contains("ProductID=\"22\""));
     }
 }

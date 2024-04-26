@@ -14,14 +14,14 @@
             this.remotingRefService = remotingRefService;
         }
 
-        public string GetBetType(object betTypeId, object betId = null)
+        public string GetBetType(object betTypeId, object? betId = null)
         {
             // resourceId remove first character
-            string resourceId = string.Empty;
+            string? resourceId = string.Empty;
 
-            if (betId != null && betId.ToString().Length > 1)
+            if (betId != null && betId.ToString()?.Length > 1)
             {
-                resourceId = betId.ToString().Substring(1);
+                resourceId = betId.ToString()?.Substring(1);
             }
 
             return betTypeId == null ?

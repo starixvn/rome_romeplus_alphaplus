@@ -42,7 +42,7 @@
 
             return new GetLoginLogsCriteria(
                 logParam.CustId,
-                logParam.Username,
+                logParam.Username ?? string.Empty,
                 DateTimeHelper.GetBeginningOfDate(fromDate),
                 DateTimeHelper.GetEndingOfDate(logParam.ToDate),                
                 logParam.IsInternal ? LoginLogType.InternalAlpha : LoginLogType.Alpha,
@@ -61,7 +61,7 @@
 
             return new GetTotalLoginLogsCriteria(
                 logParam.CustId,
-                logParam.Username,
+                logParam.Username ?? string.Empty,
                 DateTimeHelper.GetBeginningOfDate(fromDate),
                 DateTimeHelper.GetEndingOfDate(logParam.ToDate),                
                 logParam.IsInternal ? LoginLogType.InternalAlpha : LoginLogType.Alpha);

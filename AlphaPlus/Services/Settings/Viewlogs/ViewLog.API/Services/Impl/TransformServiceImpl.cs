@@ -21,7 +21,7 @@
             this.cacheService = cacheService;
         }
 
-        public string TransformTrackingValue(
+        public string? TransformTrackingValue(
             string trackingValue,
             int logActionId,
             TransformParam transformParam,
@@ -59,7 +59,7 @@
             }
         }
 
-        private XslCompiledTransform GetCompiledTransformTemplate(int actionId, string trackingValueTransformTemplatePath)
+        private XslCompiledTransform? GetCompiledTransformTemplate(int actionId, string? trackingValueTransformTemplatePath)
         {
             var cacheKey = string.Format(TransformObjectCacheKey, actionId);
             var cachedCompiledTransform = cacheService.Get<XslCompiledTransform>(cacheKey);
@@ -87,7 +87,7 @@
             return compiledTransform;
         }
 
-        private string FindTemplatePathInDirectoryByActionId(int actionId, string directory)
+        private string FindTemplatePathInDirectoryByActionId(int actionId, string? directory)
         {
             if (!Directory.Exists(directory))
             {

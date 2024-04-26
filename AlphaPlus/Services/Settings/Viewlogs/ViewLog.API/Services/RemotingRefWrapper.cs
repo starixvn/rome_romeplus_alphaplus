@@ -2,7 +2,7 @@
 {
     public interface RemotingRefWrapper
     {
-        string GetBetType(object betTypeId, object betId = null);
+        string GetBetType(object betTypeId, object? betId = null);
 
         string GetBetTypeName(object bettypeId);
 

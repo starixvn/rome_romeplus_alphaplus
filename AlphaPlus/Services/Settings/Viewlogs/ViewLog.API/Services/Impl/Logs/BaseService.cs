@@ -39,7 +39,7 @@
 
         internal abstract ICriteria CreateGetTotalLogsCriteria(LogParam logParam);
 
-        public string GetLogActionName(int actionId, string language)
+        public string? GetLogActionName(int actionId, string language)
         {
             var logAction = GetLogAction(actionId);
             switch (language)
@@ -114,7 +114,7 @@
                 return pagingLogs;
             }
 
-            var downlineInfo = customerService.GetDownlineInfoByUsername(logParam.Username, logParam.UplineId);
+            var downlineInfo = customerService.GetDownlineInfoByUsername(logParam.Username ?? string.Empty, logParam.UplineId);
 
             // If search username is not belong to searcher, then return
             if (downlineInfo.CustId == 0)
@@ -172,8 +172,8 @@
 
         protected static bool IsSubAccFromLog(Log log)
             => Enum.GetValues(typeof(NicknameActions)).Cast<int>().Any(actionId => actionId == log.ActionId) 
-                && (new Regex($"(?:SubAccName=)(?<paramValue>[^&|^\\s]+)").IsMatch(log.TrackingValue)
-                    || new Regex($"(?:SubAccount=)(?<paramValue>[^&|^\\s]+)").IsMatch(log.TrackingValue));
+                && (new Regex($"(?:SubAccName=)(?<paramValue>[^&|^\\s]+)").IsMatch(log.TrackingValue ?? string.Empty)
+                    || new Regex($"(?:SubAccount=)(?<paramValue>[^&|^\\s]+)").IsMatch(log.TrackingValue ?? string.Empty));
 
         protected static string SubAccNameFromLog(Log log)
         {

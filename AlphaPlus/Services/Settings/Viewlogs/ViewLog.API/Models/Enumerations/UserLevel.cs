@@ -66,7 +66,7 @@
 
         public bool IsDirectUplineOf(Enumeration customerLevel)
         {
-            if (customerLevel == null)
+            if (customerLevel is null)
             {
                 return false;
             }
@@ -81,7 +81,7 @@
 
         public bool IsDirectDownlineOf(Enumeration uplineLevel)
         {
-            if (uplineLevel == null)
+            if (uplineLevel is null)
             {
                 return false;
             }
@@ -96,7 +96,7 @@
 
         public bool Is(Enumeration level)
         {
-            if (level != null)
+            if (level is not null)
             {
                 return this == level;
             }

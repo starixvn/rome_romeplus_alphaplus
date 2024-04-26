@@ -7,13 +7,10 @@
 
     public class CustomerStatusQueryBase : BaseRequest
     {
-        private readonly IUser viewer;
-
         public CustomerStatusQueryBase() : this(null){}
         public CustomerStatusQueryBase(IUser viewer)
             : base(viewer)
         {
-            this.viewer = viewer ?? new User(UserSession.Current);
         }
 
         public virtual int SearchAccountId { get; set; }
