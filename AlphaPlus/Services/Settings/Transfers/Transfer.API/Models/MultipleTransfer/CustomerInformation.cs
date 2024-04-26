@@ -2,7 +2,7 @@
 {
     public class CustomerInformation
     {
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         public int CustId { get; set; }
 
@@ -20,9 +20,9 @@
 
         public decimal UsedCredit { get; set; }
 
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         public bool Enabled { get; set; }
 
@@ -30,6 +30,6 @@
 
         public bool Suspended { get; set; }
 
-        public string ClosedReason { get; set; }
+        public string? ClosedReason { get; set; }
     }
 }

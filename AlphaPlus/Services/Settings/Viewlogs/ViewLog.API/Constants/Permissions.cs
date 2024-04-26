@@ -33,8 +33,8 @@
 
                 foreach (DictionaryEntry accessType in PageAccessType.AccessTypes)
                 {
-                    var key = accessType.Key.ToString();
-                    permissions.Add(key, Resources.ResourceManager.GetString("PageAccess_" + GetShortPermissionKey(key)));
+                    var key = accessType.Key?.ToString() ?? string.Empty;
+                    permissions.Add(key, Resources.ResourceManager.GetString("PageAccess_" + GetShortPermissionKey(key)) ?? string.Empty);
                 }
 
                 return permissions;

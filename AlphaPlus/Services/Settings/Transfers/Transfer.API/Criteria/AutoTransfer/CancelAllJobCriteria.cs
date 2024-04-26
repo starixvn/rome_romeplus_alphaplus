@@ -17,9 +17,9 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer
 
         public int FromCustId { get; }
 
-        public string Language { get; set; }
+        public string? Language { get; set; }
 
-        public string IP { get; set; }
+        public string? IP { get; set; }
 
         public int Creator => FromCustId;
 

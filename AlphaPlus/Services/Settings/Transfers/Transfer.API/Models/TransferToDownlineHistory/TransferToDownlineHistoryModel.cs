@@ -33,7 +33,7 @@
         public string FormattedActionDate
             => ActionDate.ToLongDateWithSlash24HFormat();
 
-        public string DownlineName { get; set; }
+        public string? DownlineName { get; set; }
 
         public byte TransferType { get; set; }
 
@@ -53,7 +53,7 @@
 
         public string FormattedNewBalance => FormatBalance(NewBalance);
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         private string FormatBalance(decimal balance)
             => TransferAmount != 0 && OldBalance == 0 && NewBalance == 0

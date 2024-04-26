@@ -12,7 +12,7 @@
     [Serializable]
     public abstract class Enumeration : IComparable
     {
-        private readonly string _displayName;
+        private readonly string _displayName = string.Empty;
         private readonly byte _value;
 
         protected Enumeration()
@@ -63,7 +63,7 @@
                 var instance = new T();
                 var locatedValue = info.GetValue(instance) as T;
 
-                if (locatedValue != null)
+                if (locatedValue is not null)
                 {
                     yield return locatedValue;
                 }
@@ -76,7 +76,7 @@
 
             foreach (var info in fields)
             {
-                object instance = Activator.CreateInstance(type);
+                object? instance = Activator.CreateInstance(type);
                 yield return info.GetValue(instance);
             }
         }
@@ -136,7 +136,7 @@
             return left.Value <= right.Value;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null)
             {
@@ -145,7 +145,7 @@
 
             var otherValue = obj as Enumeration;
 
-            if (otherValue == null)
+            if (otherValue is null)
             {
                 return false;
             }
@@ -166,7 +166,7 @@
             return DisplayName;
         }
 
-        public virtual int CompareTo(object obj)
+        public virtual int CompareTo(object? obj)
         {
             if (obj == null)
             {
@@ -193,7 +193,7 @@
         {
             var matchingItem = GetAll<T>().FirstOrDefault(predicate);
 
-            if (matchingItem == null)
+            if (matchingItem is null)
             {
                 var message = string.Format("'{0}' is not a valid {1} in {2}", value, description, typeof(T));
                 throw new ArgumentOutOfRangeException(message);

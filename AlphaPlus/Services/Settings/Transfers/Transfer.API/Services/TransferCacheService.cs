@@ -11,9 +11,9 @@
 
     public interface TransferCacheService
     {
-        List<TransferCacheModel> Get(string cacheKey);
+        List<TransferCacheModel>? Get(string cacheKey);
 
-        TransferCacheModel CacheContains(List<TransferCacheModel> listTransferCacheModel, int custId);
+        TransferCacheModel? CacheContains(List<TransferCacheModel> listTransferCacheModel, int custId);
 
         void CacheAdd(List<TransferCacheModel> listTransferCacheModel, int custId, int adminId, string adminName);
 
@@ -27,7 +27,7 @@
     public class TransferCacheServiceImpl : TransferCacheService
     {
         public int AdminId {get;set;}
-        public string AdminName {get;set;}
+        public string? AdminName {get;set;}
         private readonly ICacheService cacheService;
         private static readonly object lockObject = new object();
 
@@ -36,7 +36,7 @@
             this.cacheService = cacheService;
         }
 
-        public List<TransferCacheModel> Get(string cacheKey)
+        public List<TransferCacheModel>? Get(string cacheKey)
         {
             lock (lockObject)
             {
@@ -48,7 +48,7 @@
             }
         }
 
-        public TransferCacheModel CacheContains(List<TransferCacheModel> listTransferCacheModel, int custId)
+        public TransferCacheModel? CacheContains(List<TransferCacheModel> listTransferCacheModel, int custId)
         {
             foreach (var item in listTransferCacheModel)
             {

@@ -46,7 +46,7 @@
 
         public int ErrCode { get; set; }
 
-        public string ErrMsg { get; set; }
+        public string? ErrMsg { get; set; }
 
         public override string GetSettingKey()
             => "SiteDB_Age_Transfer_All_Ins";

@@ -6,7 +6,7 @@
     public static class JsonHelper
     {
         [ThreadStatic]
-        private static Func<object, string> toJsonFunc;
+        private static Func<object, string>? toJsonFunc;
 
         public static Func<object, string> ToJsonFunc
         {

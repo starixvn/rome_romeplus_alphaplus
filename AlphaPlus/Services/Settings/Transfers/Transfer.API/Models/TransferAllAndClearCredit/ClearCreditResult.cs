@@ -4,7 +4,7 @@
 
     public class ClearCreditResult
     {
-        public ClearCreditResult(IEnumerable<ClearCreditStep> steps, int errCode, string errMsg, IEnumerable<string> conditions)
+        public ClearCreditResult(IEnumerable<ClearCreditStep> steps, int errCode, string errMsg, IEnumerable<string?> conditions)
         {
             Steps = steps;
             ErrCode = errCode;
@@ -18,6 +18,6 @@
 
         public IEnumerable<ClearCreditStep> Steps { get; }
 
-        public IEnumerable<string> Conditions { get; }
+        public IEnumerable<string?> Conditions { get; }
     }
 }

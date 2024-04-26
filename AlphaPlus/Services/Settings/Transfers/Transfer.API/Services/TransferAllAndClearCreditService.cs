@@ -79,7 +79,7 @@
                     param.IsAllDayBalanceTransfer);
                 var (conditionSteps, transferSteps) = repository.FetchMultiple<ConditionStep, TransferStep>(criteria, param.AGIP);
 
-                transferResult = new TransferAllResult(transferSteps, criteria.ErrCode, criteria.ErrMsg, conditionSteps.Select(c => c.Content));
+                transferResult = new TransferAllResult(transferSteps, criteria.ErrCode, criteria.ErrMsg ?? string.Empty, conditionSteps.Select(c => c.Content));
             }
 
             var clearCreditResult = (skipTransfer || transferResult.IsSuccess) && param.IsClearCredit
@@ -105,7 +105,7 @@
                 BuildMemberAmountXml(totalAmts));
             var (conditionSteps, clearCreditSteps) = repository.FetchMultiple<ConditionStep, ClearCreditStep>(criteria);
 
-            return new ClearCreditResult(clearCreditSteps, criteria.ErrCode, criteria.ErrMsg, conditionSteps.Select(c => c.Content));
+            return new ClearCreditResult(clearCreditSteps, criteria.ErrCode, criteria.ErrMsg ?? string.Empty, conditionSteps.Select(c => c.Content));
         }
 
         private static string BuildMemberAmountXml(IEnumerable<TotalAmtModel> totalAmts)

@@ -28,7 +28,7 @@
 
         public int CustId { get; set; }
 
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
         public byte RoleId { get; set; }
 

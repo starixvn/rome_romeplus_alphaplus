@@ -112,34 +112,27 @@
 
             foreach (var log in pagingLogs.Logs)
             {
-                try
-                {
-                    var formattedTrackingValue = trackingValueFormatter.GetFormattedDiffTrackingValue(log, message.IsShowOldValue);
-                    var htmlTrackingValue = transformService.TransformTrackingValue(formattedTrackingValue, log.ActionId, transformParam, log.IsHideNickname);
+                var formattedTrackingValue = trackingValueFormatter.GetFormattedDiffTrackingValue(log, message.IsShowOldValue);
+                var htmlTrackingValue = transformService.TransformTrackingValue(formattedTrackingValue, log.ActionId, transformParam, log.IsHideNickname);
 
-                    if (htmlTrackingValue != null)
+                if (htmlTrackingValue != null)
+                {
+                    logItems.Add(new LogItemViewModel
                     {
-                        logItems.Add(new LogItemViewModel
-                        {
-                            ActionId = log.ActionId,
-                            ActionName = LogService.GetLogActionName(log.ActionId, message.Language),
+                        ActionId = log.ActionId,
+                        ActionName = LogService.GetLogActionName(log.ActionId, message.Language),
 
-                            ActionTypeId = log.ActionTypeId,
-                            CustId = log.CustId,
-                            CustName = log.CustName,
-                            LogDate = DateTimeHelper.ToLongDateWithSlash(log.LogDate),
-                            LogId = log.LogId,
-                            SPName = log.StoreProcedureName,
-                            UserId = log.UserId,
-                            Username = log.Username,
-                            TrackingValue = HttpUtility.HtmlDecode(htmlTrackingValue),
-                            IP = LogFormatter.FormatIP(log.IP)
-                        });
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw (ex);
+                        ActionTypeId = log.ActionTypeId,
+                        CustId = log.CustId,
+                        CustName = log.CustName,
+                        LogDate = DateTimeHelper.ToLongDateWithSlash(log.LogDate),
+                        LogId = log.LogId,
+                        SPName = log.StoreProcedureName,
+                        UserId = log.UserId,
+                        Username = log.Username,
+                        TrackingValue = HttpUtility.HtmlDecode(htmlTrackingValue),
+                        IP = LogFormatter.FormatIP(log.IP)
+                    });
                 }
             }
 

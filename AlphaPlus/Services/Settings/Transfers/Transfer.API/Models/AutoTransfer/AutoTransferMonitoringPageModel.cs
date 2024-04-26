@@ -4,7 +4,7 @@ namespace AlphaPlus.Settings.Transfer.API.Models.AutoTransfer
 {
     public class AutoTransferMonitoringPageModel
     {
-        public IEnumerable<AutoTransferMonitoringModel> Transfers { get; set; }
+        public IEnumerable<AutoTransferMonitoringModel>? Transfers { get; set; }
         public int TotalItems { get; set; }
         public int PageSize { get; set; }
         public int PageIndex { get; set; }

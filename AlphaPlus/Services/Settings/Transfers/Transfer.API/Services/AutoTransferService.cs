@@ -35,16 +35,16 @@
 
         public async Task<Result> UpdateAsync(UpdateSingleParam param)
         {
-            var isAutoJobRunning = await GetJobStatus(param.CustId, param.UplineId, param.State, param.AGIP);
+            var isAutoJobRunning = await GetJobStatus(param.CustId, param.UplineId, param.State ?? string.Empty, param.AGIP ?? string.Empty);
             var criteria = new UpdateStatusCriteria(
                 param.UplineId,
                 param.CustId,
-                TransferConditionHelper.GetAutoTransferScheduleFromDates(param.Schedule),
+                TransferConditionHelper.GetAutoTransferScheduleFromDates(param.Schedule ?? new [] { "" }),
                 isAutoJobRunning,
                 string.Equals(AutoTransferConstant.On, param.State, StringComparison.InvariantCultureIgnoreCase),
-                param.Language,
-                param.IP,
-                param.Old_TransferOption,
+                param.Language ?? string.Empty,
+                param.IP ?? string.Empty,
+                param.Old_TransferOption ?? string.Empty,
                 param.SubAccId);
 
             await repository.ExecuteAsync(criteria);
@@ -61,9 +61,9 @@
             var criteria = new GetTodayTransfersCriteria
             {
                 FromCustId = param.CustId,
-                Language = param.Language,
-                Searchname = param.Username,
-                ViewStatus = param.Status,
+                Language = param.Language ?? string.Empty,
+                Searchname = param.Username ?? string.Empty,
+                ViewStatus = param.Status ?? string.Empty,
                 SortBy = param.SortedBy,
                 SortType = param.Direction,
                 PageSize = param.PageSize,
@@ -93,9 +93,9 @@
             var criteria = new GetHistoryTransfersCriteria
             {
                 FromCustId = param.CustId,
-                Language = param.Language,
-                Searchname = param.Username,
-                ViewStatus = param.Status,
+                Language = param.Language ?? string.Empty,
+                Searchname = param.Username ?? string.Empty,
+                ViewStatus = param.Status ?? string.Empty,
                 SortBy = param.SortedBy,
                 SortType = param.Direction,
                 PageSize = param.PageSize,
@@ -121,7 +121,7 @@
         public async Task<Result> CancelJobAsync(CancelJobParam param)
         {
             var criteria = new CancelJobCriteria(
-                param.FromCustId, param.ToCustId, param.ViewStatus, param.Language, param.IP);
+                param.FromCustId, param.ToCustId, param.ViewStatus ?? string.Empty, param.Language ?? string.Empty, param.IP ?? string.Empty);
             await repository.ExecuteAsync(criteria, param.AGIP);
 
             return new Result
@@ -156,16 +156,16 @@
 
         public async Task<Result> UpdateScheduleAsync(UpdateScheduleParam param)
         {
-            var isAutoJobRunning = await GetJobStatus(param.CustId, param.UplineId, "on", param.AGIP);
+            var isAutoJobRunning = await GetJobStatus(param.CustId, param.UplineId, "on", param.AGIP ?? string.Empty);
             var criteria = new UpdateScheduleCriteria(
                 param.CustId,
-                param.CustName,
-                TransferConditionHelper.GetAutoTransferScheduleFromDates(param.Schedule),
+                param.CustName ?? string.Empty,
+                TransferConditionHelper.GetAutoTransferScheduleFromDates(param.Schedule ?? string.Empty),
                 param.UplineId,
                 param.SubAccId,
-                param.IP,
-                param.Language,
-                param.Old_TransferOption,
+                param.IP ?? string.Empty,
+                param.Language ?? string.Empty,
+                param.Old_TransferOption ?? string.Empty,
                 isAutoJobRunning);
             await repository.ExecuteAsync(criteria);
 
@@ -181,11 +181,11 @@
         public async Task<UpdateMultipleAutoTransferResultModel> UpdateMultipleAutoTransferAsync(UpdateMultipleAutoTransferParam param)
         {
             var result = new UpdateMultipleAutoTransferResultModel();
-            await UpdateMultipleAutoTransferToStatusAsync(param, param.OffStatus, param.OffIds, param.OffNames, param.OffSchedule, result);
+            await UpdateMultipleAutoTransferToStatusAsync(param, param.OffStatus ?? string.Empty, param.OffIds ?? string.Empty, param.OffNames ?? string.Empty, param.OffSchedule ?? string.Empty, result);
 
             if (string.IsNullOrWhiteSpace(result.StopMessage))
             {
-                await UpdateMultipleAutoTransferToStatusAsync(param, param.OnStatus, param.OnIds, param.OnNames, param.OnSchedule, result);
+                await UpdateMultipleAutoTransferToStatusAsync(param, param.OnStatus ?? string.Empty, param.OnIds ?? string.Empty, param.OnNames ?? string.Empty, param.OnSchedule ?? string.Empty, result);
             }
 
             return result;
@@ -213,13 +213,13 @@
                 {
                     CustId = int.Parse(id),
                     UplineId = param.UplineId,
-                    IP = param.IP,
-                    Language = param.Language,
+                    IP = param.IP ?? string.Empty,
+                    Language = param.Language ?? string.Empty,
                     State = status,
                     SubAccId = param.SubAccId,
                     Schedule = dates,
-                    Old_TransferOption = param.Old_TransferOption,
-                    AGIP = param.AGIP
+                    Old_TransferOption = param.Old_TransferOption ?? string.Empty,
+                    AGIP = param.AGIP ?? string.Empty
                 };
 
                 var singleResult = await UpdateAsync(updateSingleParam);
@@ -248,7 +248,7 @@
                     continue;
                 }
 
-                result.ErrMessages.Add(code, singleResult.Message);
+                result.ErrMessages.Add(code, singleResult.Message ?? string.Empty);
                 result.ErrCusts.Add(code, new List<string> { name });
             }
         }
