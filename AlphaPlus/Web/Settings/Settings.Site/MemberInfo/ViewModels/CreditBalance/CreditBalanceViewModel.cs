@@ -110,10 +110,10 @@
 
         public string OldMainRootPath => MicroSites.SettingUrl();
 
-        public string GivenCreditLink => MicroSites.AccountInfoUrl($"~/SearchAccount/GivenCredit");
+        public string GivenCreditLink => MicroSites.SettingUrl($"~/SearchAccount/GivenCredit");
 
         public string GetMemberBalanceInfoLink(string custName)
-            => MicroSites.AccountInfoUrl($"~/SearchAccount/GetMemberBalanceInfo?custname={custName}");
+            => MicroSites.SettingUrl($"~/SearchAccount/GetMemberBalanceInfo?custname={custName}");
 
         public EnteredSportResult EnteredSportResult { get; }
     }

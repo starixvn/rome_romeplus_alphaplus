@@ -109,7 +109,7 @@ namespace AlphaPlus.Main.Site.Helpers
         {
             get
             {
-                return mapAccountInfoPath ?? MicroSites.AccountInfoUrl;
+                return mapAccountInfoPath ?? MicroSites.SettingUrl;
             }
 
             internal set
