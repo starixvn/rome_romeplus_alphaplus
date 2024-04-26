@@ -1,7 +1,10 @@
+import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
 import { UserLevel } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
+import CustomAnchorTag from '../common/CustomAnchorTag';
+import NoInformation from '../common/NoInformation';
 import styles from './CustomerInfo.module.scss';
 import SearchAccountInfo from './search-account-info';
 import UplineInfo from './upline-info';
@@ -18,7 +21,7 @@ export default function CustomerInfo({ searchCounter }: Props) {
         return null;
     }
     if (searchCounter > 0 && customer === null) {
-        return <div className={styles['no-information']}>{t('accountNotFound')}</div>;
+        return <NoInformation text={t('accountNotFound')} />;
     }
 
     const userLevelInfoArray = [
@@ -47,15 +50,27 @@ export default function CustomerInfo({ searchCounter }: Props) {
             {userLevelInfoArray.map((userLevelInfo, index) => {
                 return (
                     userLevelInfo.Visible && (
-                        <div className="col-xs-12 row-info" key={index}>
+                        <div className={classNames('col-xs-12', 'row-info')} key={index}>
                             <div className="col-xs-4">{userLevelInfo.LevelName}</div>
-                            <div className="col-xs-8 col-right custom-col">
+                            <div className={classNames('col-xs-8', 'col-right')}>
                                 {customer?.RoleId === userLevelInfo.LevelId ? <SearchAccountInfo /> : <UplineInfo />}
                             </div>
                         </div>
                     )
                 );
             })}
+            <div
+                className={classNames('col-xs-12', 'text-center', 'row-info', styles['list-button'], {
+                    [styles['two-button']]: customer?.Buttons.length === 2,
+                    [styles['one-button']]: customer?.Buttons.length === 1
+                })}
+            >
+                {customer?.Buttons?.map((button, index) => (
+                    <CustomAnchorTag key={index} classNames="btn-default with-level" href={button.Url}>
+                        {button.Text}
+                    </CustomAnchorTag>
+                ))}
+            </div>
         </div>
     );
 }

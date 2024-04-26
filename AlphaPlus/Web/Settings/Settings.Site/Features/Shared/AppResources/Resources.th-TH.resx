@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>เปิด</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>ตัวแทน</value>
+  </data>
+  <data name="AgentList" xml:space="preserve">
+    <value>รายชื่อ เอเจนต์</value>
+  </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>เอเย่นต์ยอดคงค้าง</value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>ข้อมูลยอดเงินคงเหลือ</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>เครดิตสำหรับการวางเดิมพัน</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>รายการวางเดิมพัน</value>
+  </data>
+  <data name="BetSettingViewModelText" xml:space="preserve">
+    <value>การกำหนดการวางเดิมพัน</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="CommissionViewModelText" xml:space="preserve">
+    <value>คอมมิชชั่น</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการปิดการใช้งานฟังก์ชันแบ่งสู้อัตโนมัติของมาสเตอร์</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการเปิดการใช้งานฟังก์ชันแบ่งสู้อัตโนมัติของมาสเตอร์</value>
+  </data>
+  <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
+    <value>อนุญาตให้มีแบ่งสู้อัตโนมัติ</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าไม่อนุญาตให้ลูกค้าท่านนี้พนันเอาท์ไรท์</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าจะอนุญาตให้ลูกค้าท่านนี้มี เอาท์ไรท์</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าจะเปลียนสถานะเป็นปิดให้กับลูกค้า</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นปิดให้กับลูกค้าท่านนี้? คำเตือน : ดาวน์ไลน์ทั้งหมดจะถูกปิดลงเช่นกัน</value>
+  </data>
+  <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าต้องการเปิดบัญชีนี้</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
+    <value>ท่านแน่ใจหรือไม่ที่จะไม่อนุญาติการใช้งานรูปแบบดับเบิลคอมมิชชั่น สำหรับตั๋วต่างๆ ตั๋วที่เสียการทายผลหน้ากีฬาของลูกค้าท่านนี้? คำเตือน ลูกค้าทั้งหมดภายใต้เอเย่นต์ท่านนี้จะไม่ได้รับอนุญาติเช่นเดียวกัน</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
+    <value>ท่านแน่ใจหรือไม่ว่าต้องการปิดการใช้งานรูปแบบดับเบิลคอมมิชชั่น สำหรับตั๋วต่างๆ ตั๋วที่เสียการทายผลหน้ากีฬาของลูกค้าท่านนี้?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
+    <value>ท่านแน่ใจหรือไม่ว่าต้องการเปิดการใช้งานรูปแบบดับเบิลคอมมิชชั่นสำหรับตั๋วต่างๆ ที่เสียในการทายผลหน้ากีฬาของลูกค้าท่านนี้?</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
+    <value>ท่านแน่ใจหรือไม่ที่จะอนุญาติการใช้งานรูปแบบดับเบิลคอมมิชชั่นสำหรับตั๋วต่างๆ ที่เสียในการทายผลหน้ากีฬาของลูกค้าท่านนี้?</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ที่จะระงับบัญชีของลูกค้า? \n คำเตือน, สมาชิกทั้งหมดที่อยู่ภายใต้เอเย่นนี้จะไม่สามารถวางเดิมพันได้!</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ที่จะระงับบัญชีของลูกค้า? \n คำเตือน, สมาชิกนี้จะไม่สามารถวางเดิมพันได้!</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?  คำเตือน : ดาวน์ไลน์ทั้งหมดไม่สามารถยกเลิกการระงับการใช้งานได้</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ที่จะระงับบัญชีของลูกค้า?</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>สร้างขึ้นเมื่อ</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>ลูกค้า</value>
+  </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>รายชื่อลูกค้า</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>แฟกซ์</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>เครดิตทั้งหมด</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>รหัสของเครื่องคอมพิวเตอร์ที่ใช้</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>เข้าระบบครั้งสุดท้าย</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>transaction ครั้งล่าสุด</value>
+  </data>
+  <data name="LoginIP" xml:space="preserve">
+    <value>IP สุดท้ายที่เข้าระบบ</value>
+  </data>
+  <data name="LoginTime" xml:space="preserve">
+    <value>เวลาเข้าระบบ</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>ตัวแทนหลัก</value>
+  </data>
+  <data name="MasterOutstanding" xml:space="preserve">
+    <value>การเดิมพันที่ยังไม่สิ้นสุดของ Master</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>สมาชิก</value>
+  </data>
+  <data name="MemberList" xml:space="preserve">
+    <value>รายชื่อลูกค้า</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>เครดิตโอนเงินสูงสุดของสมาชิก</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="NetPosition" xml:space="preserve">
+    <value>สถานะเงินลงทุนสุทธิ</value>
+  </data>
+  <data name="NoDataChange" xml:space="preserve">
+    <value>ไม่มีการเปลี่ยนแปลงการอัพเดท</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>ไม่มีข้อมูล</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
+  </data>
+  <data name="NumberOrder" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="OnlineList" xml:space="preserve">
+    <value>รายชื่อผู้ออนไลน์</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>โทรศัพท์</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>ตั้งค่า</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>บัญชี</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>ที่สูงสุด ที่มีประสิทธิภาพ</value>
+  </data>
+  <data name="ThisUserIsNotOnline" xml:space="preserve">
+    <value>ยูเซอร์ไม่ได้ออนไลน์</value>
+  </data>
+  <data name="TotalAgentActiveClosed" xml:space="preserve">
+    <value>สถานะของAgent ทั้งหมด/ถูกระงับ</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>ยอดเงินรวมทั้งหมด</value>
+  </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>ยอดเงินสด</value>
+  </data>
+  <data name="TotalMemberActiveClosed" xml:space="preserve">
+    <value>สถานะของสมาชิกทั้งหมด/ถูกระงับ</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>เครดิตที่ใช้ไป</value>
+  </data>
+  <data name="UserNamePlaceHolder" xml:space="preserve">
+    <value>ยูเซอร์เนม หรือ ชื่อ/นามสุกล</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>ยอดคงเหลือเมื่อวาน</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>เงินสดเมื่อวาน</value>
+  </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>อนุญาตให้มีเอาท์ไรท์</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>ที่ถูกปิด</value>
+  </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>คอมสองเท่า</value>
+  </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>ถูกระงับ</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>ข้อมูล</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>ไม่มีข้อมูล</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>หน้า</value>
+  </data>
+  <data name="RemoveOtpViewModelText" xml:space="preserve">
+    <value>ลบ OTP</value>
+  </data>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>แก้ไขรหัส</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>Reset Security Code</value>
+  </data>
+  <data name="ShowContactInfo" xml:space="preserve">
+    <value>ข้อมูลติดต่อ</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>แบ่งสู้ สปอตร์</value>
+  </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>ตั้งค่าใหม่</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>อัปเดตสำเร็จแล้ว!</value>
+  </data>
+  <data name="GivenCreditPopupTitle" xml:space="preserve">
+    <value>อัพเดท เครดิตใหม่</value>
+  </data>
+  <data name="LoginInfo" xml:space="preserve">
+    <value>ข้อมูลการเข้าสู่ระบบ</value>
+  </data>
+  <data name="ClosedByAdmin" xml:space="preserve">
+    <value>บัญชีนี้ถูกปิดโดยระบบ</value>
+  </data>
+  <data name="LockedByFalsePassword" xml:space="preserve">
+    <value>บัญชีนี้ถูกล็อกเนื่องจากป้อนรหัสผ่านไม่ถูกต้องหลายครั้ง</value>
+  </data>
+  <data name="LockedByFalseOTPSC" xml:space="preserve">
+    <value>บัญชีนี้ถูกล็อกเนื่องจากการตรวจสอบล้มเหลวหลายครั้งของรหัสผ่านครั้งเดียว / รหัสความปลอดภัย</value>
+  </data>
+  <data name="ClosedByUpline" xml:space="preserve">
+    <value>บัญชีนี้ถูกปิดโดยอับไลน์</value>
+  </data>
+  <data name="Viewlog" xml:space="preserve">
+    <value>ดูบันทึก</value>
+  </data>
+  <data name="ThisAccountWasDisabled" xml:space="preserve">
+    <value>บัญชีนี้ได้ถูกปิดไปแล้ว</value>
+  </data>
+  <data name="ThisAccountWasSuspended" xml:space="preserve">
+    <value>บัญชีนี้ถูกระงับ</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>และ</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>ล่าสุด</value>
+  </data>
+  <data name="Agents" xml:space="preserve">
+    <value>เอเย่นต์ (เปิด/ปิด/ถูกระงับ)</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>สมาชิก (เปิด/ปิด/ถูกระงับ)</value>
+  </data>
+  <data name="AccountNotFound" xml:space="preserve">
+    <value>ไม่พบบัญชี!</value>
+  </data>
+  <data name="Nickname" xml:space="preserve">
+    <value>ชื่อเล่น</value>
+  </data>
+  <data name="OutrightDisabledUpline" xml:space="preserve">
+    <value>ต้นสายปิดการใช้งาน เดิมพัน Outright</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>กลับ</value>
+  </data>
+  <data name="Sportsbook2ViewModelText" xml:space="preserve">
+    <value>กีฬ่า 2</value>
+  </data>
+  <data name="UnuspendStatusPopupHeader" xml:space="preserve">
+    <value>ยกเลิกการระงับ &lt;username&gt;</value>
+  </data>
+  <data name="SuspendedByUplineTooltip" xml:space="preserve">
+    <value>บัญชีนี้ถูกระงับจากอัพไลน์โดยทางอ้อม</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
+    <value>โอนยอดคงเหลือทั้งวัน</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าคุณต้องการเปลี่ยนโหมดการถ่ายโอนสำหรับ{0}</value>
+  </data>
+  <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
+    <value>ตรวจสอบเพื่ออนุญาต โหมดการโอนยอดคงเหลือทั้งวัน</value>
+  </data>
+  <data name="CreateMemberWithQRCode" xml:space="preserve">
+    <value>สร้างสมาชิกด้วยคิวอาร์โค้ด</value>
+  </data>
+  <data name="FirstLoginQRCode" xml:space="preserve">
+    <value>เข้าสู่ระบบคิวอาร์โค้ดครั้งแรก</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>บุคคลที่สามรอการถ่ายโอน</value>
+  </data>
+  <data name="ClosedByArchive" xml:space="preserve">
+    <value>บัญชีนี้ถูกปิดเนื่องจากไม่มีการใช้งาน</value>
+  </data>
+  <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>อัพไลน์ของคุณได้ปิดการใช้งานระบบ โอนยอดคงเหลือทั้งวัน ของคุณ ข้อมูลในหน้านี้จะรีเฟรชเพื่อแสดงผลใหม่โดยอัตโนมัติ</value>
+  </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>แสดงน้อยลง</value>
+  </data>
+  <data name="ShowMore" xml:space="preserve">
+    <value>แสดงมากขึ้น</value>
+  </data>
+  <data name="ADBTChangeToastMessage" xml:space="preserve">
+    <value>ตอนนี้เปิดใช้งานการโอนยอดคงเหลือทั้งวันสำหรับบัญชีของคุณแล้ว ด้วยเหตุนี้ ตารางการโอนอัตโนมัติจึงถูกล้างออกไป และการกำหนดค่าการโอนอัตโนมัติที่คุณตั้งค่าไว้สำหรับดาวน์ไลน์จะถูกปิดใช้งานเพื่อให้มั่นใจในความถูกต้องของข้อมูล</value>
+  </data>
+  <data name="ADBTChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>ขณะนี้ระบบโอนอัตโนมัติกำลังดำเนินงานอยู่ กรุณารอสักครู่เพื่อให้ดำเนินการแล้วเสร็จ ก่อนลองเปลี่ยนโหมดการโอนอีกครั้ง</value>
+  </data>
+  <data name="ADBTChangeToastTitle" xml:space="preserve">
+    <value>ตั้งค่าโอนอัตโนมัติ</value>
+  </data>
+  <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
+    <value>ตอนนี้เปิดใช้งานการโอนยอดคงเหลือทั้งวันสำหรับบัญชีของคุณแล้ว ด้วยเหตุนี้ กำหนดการการโอนอัตโนมัติจึงถูกล้างออกไป และการโอนอัตโนมัติสำหรับดาวน์ไลน์จะถูกปิดใช้งานสำหรับลูกค้าต่อไปนี้: {0} รายละเอียดสามารถพบได้ในฟังก์ชั่นการโอน</value>
+  </data>
+</root>

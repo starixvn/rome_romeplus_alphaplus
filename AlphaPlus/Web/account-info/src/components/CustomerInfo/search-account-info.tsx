@@ -22,17 +22,18 @@ export default function SearchAccountInfo() {
     const { t } = useTranslation();
     const [css, setCSS] = useState('');
     const [tooltip, setTooltip] = useState('');
+    const [isTruncate, setIsTruncate] = useState(false);
 
     const { customer } = useGlobalContext();
     const username = customer?.UserName ?? '';
     const maxLength = 15;
-    const isTruncate = username.length ?? 0 > maxLength;
 
     useEffect(() => {
-        if (tooltip === '' && isTruncate) {
+        if (username.length > maxLength) {
+            setIsTruncate(true);
             setTooltip(username);
         }
-    }, [tooltip, username, isTruncate]);
+    }, [username]);
 
     useEffect(() => {
         const getStatusInfo = (customerInfo: Customer) => {
@@ -98,18 +99,20 @@ export default function SearchAccountInfo() {
         }
     }, [customer, t]);
 
-    const renderSpanContent = () => (
-        <span className={css} id="search-account-id" data-search-account-username={username}>
-            {isTruncate ? `${username.substring(0, maxLength)}...` : username}
-        </span>
-    );
+    const renderSpanContent = () => {
+        return (
+            <span className={styles[css]} id="search-account-id" data-search-account-username={username}>
+                {isTruncate ? `${username.substring(0, maxLength)}...` : username}
+            </span>
+        );
+    };
 
     const renderContent = () => {
         if (customer?.CanViewLog) {
             return (
-                <CustomAnchorTag classNames="pointer" title={t('viewLog')}>
+                <CustomAnchorTag classNames="pointer" title={t('viewLog')} href={customer.ViewLogLink}>
                     {renderSpanContent()}
-                    <span className={styles['icon-viewlog']} />
+                    <span className="icon-viewlog" />
                 </CustomAnchorTag>
             );
         }

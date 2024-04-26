@@ -10,5 +10,6 @@ declare global {
         alpha: {
             urls: { [key: string]: string };
         };
+        $: JQueryStatic;
     }
 }

@@ -1,5 +1,7 @@
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Accounts.Models;
+using AlphaPlus.Settings.Site.Features.Shared.AppResources;
 
 namespace AlphaPlus.Settings.Site.Features.Accounts.ViewModels
 {
@@ -75,55 +77,53 @@ namespace AlphaPlus.Settings.Site.Features.Accounts.ViewModels
 
         public string SuperName => DefaultStringValueIfNull(customerInfo.SuperName);
 
-        // public LoginInfoViewModel LoginInfo =>
-        //     new LoginInfoViewModel(
-        //         customerInfo.CreatDate,
-        //         customerInfo.LastLogged,
-        //         customerInfo.LastLoginIP);
+        public LoginInfoViewModel LoginInfo => new(customerInfo.CreatDate, customerInfo.LastLogged, customerInfo.LastLoginIP);
 
         public IBalanceInfoViewModel BalanceInfo { get; }
 
-        // internal Link CustomerListLink =>
-        //     new Link(SearchAccountLevel.IsMasterLevel() ? Resources.AgentList : Resources.MemberList,
-        //         $"{MemberInfoUrl}CustomerList/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}?CustId={CustId}&CustName={UserName}&CustLevelId={RoleId}");
 
-        // internal Link BetListLink =>
-        //     new Link(Resources.BetList, $"{BetListsUrl}MemberBetList/Index?CustID={CustId}&CustName={UserName}");
+        internal Link BetListLink => new(Resources.BetList, MicroSites.TicketUrl($"~/MemberBetList/Index?CustID={CustId}&CustName={UserName}"));
 
-        // internal Link StatemenLink
-        // {
-        //     get
-        //     {
-        //         var actionName = SearchAccountLevel.IsMemberLevel() ? "MemberStatement" : "SMAStatement";
-        //         var link = $"{ReportsUrl}Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
-        //         return new Link(Resources.Statement, link);
-        //     }
-        // }
+        internal Link StatemenLink
+        {
+            get
+            {
+                var actionName = SearchAccountLevel.IsMemberLevel() ? "MemberStatement" : "SMAStatement";
+                return new Link(Resources.Statement, MicroSites.ReportsUrl($"~/Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}"));
+            }
+        }
 
-        // public IEnumerable<Link> Buttons
-        // {
-        //     get
-        //     {
-        //         var buttons = new List<Link>();
+        internal Link CustomerListLink =>
+            new(SearchAccountLevel.IsMasterLevel() ? Resources.AgentList : Resources.MemberList,
+                MicroSites.SettingUrl($"`/CustomerList/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}?CustId={CustId}&CustName={UserName}&CustLevelId={RoleId}"));
 
-        //         if (!SearchAccountLevel.IsMemberLevel())
-        //         {
-        //             buttons.Add(CustomerListLink);
-        //         }
+        public IEnumerable<Link> Buttons
+        {
+            get
+            {
+                var buttons = new List<Link>();
 
-        //         if (SearchAccountLevel.IsMemberLevel() && message.CanViewReports)
-        //         {
-        //             buttons.Add(BetListLink);
-        //         }
+                if (!SearchAccountLevel.IsMemberLevel())
+                {
+                    buttons.Add(CustomerListLink);
+                }
 
-        //         if (message.CanViewReports)
-        //         {
-        //             buttons.Add(StatemenLink);
-        //         }
+                if (SearchAccountLevel.IsMemberLevel() && CanViewReports)
+                {
+                    buttons.Add(BetListLink);
+                }
 
-        //         return buttons;
-        //     }
-        // }
+                if (CanViewReports)
+                {
+                    buttons.Add(StatemenLink);
+                }
+
+                return buttons;
+            }
+        }
+
+        internal bool CanViewReports => userSession.SubPageAccess.ViewReports;
+
 
         public bool CanViewLog => userSession.SubPageAccess.ViewLog;
 

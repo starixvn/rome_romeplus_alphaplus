@@ -1,3 +1,6 @@
+import { BalanceInfo } from './balance-info';
+import Button from './button';
+
 export default interface Customer {
     CustId: number;
     RoleId: number;
@@ -20,6 +23,9 @@ export default interface Customer {
     MemberName: string;
     ShowMember: boolean;
     CanViewLog: boolean;
+    ViewLogLink: string;
     IsShowCreateMemberByQRCode: boolean;
     CreateMemberByQRCodeUrl: string;
+    Buttons: Button[];
+    BalanceInfo: BalanceInfo;
 }

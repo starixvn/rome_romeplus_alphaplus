@@ -4,12 +4,16 @@ type Props = {
     children: React.ReactNode;
     title?: string;
     classNames?: string;
-    href?: string;
+    href: string;
 };
 
-export default function CustomAnchorTag({ title = undefined, classNames = '', children }: Props) {
+// TODO: CustomAnchorTag
+export default function CustomAnchorTag({ title = undefined, classNames = '', children, href }: Props) {
     const handleOnclick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
+
+        const mainFrame = window.top?.$('#main');
+        mainFrame?.attr('src', href);
     };
 
     return (

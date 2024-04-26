@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
 import styles from './App.module.scss';
-import CustomerInfo from './components/customer-info';
+import BalanceInfo from './components/BalanceInfo';
+import ContactInfo from './components/ContactInfo';
+import CustomerInfo from './components/CustomerInfo';
 import SearchBox from './components/SearchBox';
 import { GlobalContext } from './context/global-context';
 import Customer from './models/customer';
@@ -31,6 +33,10 @@ function App() {
             <GlobalContext.Provider value={{ mobileView, username, setUsername, getCustomerInfo, customer }}>
                 <SearchBox />
                 <CustomerInfo searchCounter={searchCounter} />
+                <div className={styles['accordions']}>
+                    <ContactInfo />
+                    <BalanceInfo />
+                </div>
             </GlobalContext.Provider>
         </div>
     );

@@ -12,5 +12,21 @@
     "ThisAccountWasSuspended": "This account was suspended.",
     "ThisAccountWasDisabled": "This account was disabled.",
     "LockedByFalseOTPSC": "This account has been locked due to multiple failed OTP/Security Code authentication attempts.",
-    "LockedByFalsePassword": "This account has been locked due to multiple failed password attempts."
+    "LockedByFalsePassword": "This account has been locked due to multiple failed password attempts.",
+    "NoInformation": "No information is available",
+    "Nickname": "Nickname",
+    "Name": "Name",
+    "Phone": "Phone",
+    "Fax": "Fax",
+    "ContactInfo": "Contact Info",
+    "TotalBalance": "Total Balance",
+    "YesterdayBalance": "Yesterday Balance",
+    "PendingTransfer3rd": "3rd Party Pending Transfer",
+    "GivenCredit": "Given Credit",
+    "TotalCash": "Total Cash",
+    "YesterdayCash": "Yesterday Cash",
+    "UsedCredit": "Used Credit",
+    "NetPosition": "Net Position",
+    "BetCredit": "Bet Credit",
+    "BalanceInfo": "Balance Info"
 }

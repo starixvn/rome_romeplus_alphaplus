@@ -12,6 +12,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Shared\AppResources\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AlphaPlus.Configurations" Version="1.1.0-netcore02" />
     <PackageReference Include="Alpha.Products.Core" Version="1.0.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.2" />
