@@ -43,7 +43,7 @@
             {
                 if (!param.IsAdminCanViewVNIP)
                 {
-                    item.IPLogin = FormatIP(item.IPLogin);
+                    item.IPLogin = FormatIP(item.IPLogin ?? string.Empty);
                 }
 
                 if (closedReasons.TryGetValue(item.CustId, out var customerClosed))
@@ -63,7 +63,7 @@
 
         public async Task<PagedCreditBalance> GetCreditBalancesAsync(CreditBalanceParam param)
         {
-            GetPagedCreditBalanceCriteria criteria = null;
+            GetPagedCreditBalanceCriteria? criteria = null;
 
             if (param.CustLevel.IsSuperLevel())
             {

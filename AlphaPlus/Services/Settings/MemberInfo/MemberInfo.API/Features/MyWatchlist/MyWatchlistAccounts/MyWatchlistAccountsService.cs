@@ -57,7 +57,7 @@
                 param.IsDesc,
                 param.PageIndex,
                 param.PageSize);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
             var watchlistAccounts = await dynamicRepository.FetchAsync<WatchlistAccountModel>(criteria);
 
@@ -67,7 +67,7 @@
         public async Task<IEnumerable<PersonalPresetModel>> GetPresets(SelectPresetsParam param)
         {
             var criteria = new SelectPresetsCriteria(param.AgentId);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
             return await dynamicRepository.FetchAsync<PersonalPresetModel>(criteria);
         }
@@ -75,7 +75,7 @@
         public async Task<MultipleWatchlistAccountModel> GetMultipleWatchlistAccount(SelectMultipleWatchlistParam param)
         {
             var criteria = new SelectMultipleWatchlistCriteria(param.CustList);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
             var rawdata = await dynamicRepository.FetchMultipleAsync<WatchlistAccountModel, WatchlistAccountModel>(criteria);
             var alreadyAddedAccounts = new List<WatchlistAccountModel>();
             var newlyAddedAccounts = new List<WatchlistAccountModel>();
@@ -100,7 +100,7 @@
                 param.UserId,
                 param.SubAccId,
                 param.IP);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
             return await dynamicRepository.FetchAsync<NamedResult>(criteria);
         }
@@ -114,11 +114,11 @@
                 param.UserId,
                 param.SubAccId,
                 param.IP);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
             await dynamicRepository.ExecuteAsync(criteria);
 
-            return new NamedResult { Name = param.Username, Code = criteria.ErrCode, Message = criteria.ErrMsg };
+            return new NamedResult { Name = param.Username, Code = criteria.ErrCode, Message = criteria.ErrMsg ?? string.Empty };
         }
 
         public async Task<NamedResult> DeletePersonalThreshold(DeletePersonalThresholdParam param)
@@ -128,17 +128,17 @@
                param.UserId,
                param.SubAccId,
                param.IP);
-            partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
 
             await dynamicRepository.ExecuteAsync(command);
 
-            return new NamedResult { Name = param.Username, Code = command.ErrCode, Message = command.ErrMsg };
+            return new NamedResult { Name = param.Username, Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
         }
 
         public async Task<GlobalThresholdModel> GetGlobalThreshold(SelectGlobalThresholdParam param)
         {
             var criteria = new SelectGlobalThresholdCriteria(param.AgentId);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
             return await dynamicRepository.GetAsync<GlobalThresholdModel>(criteria);
         }
@@ -152,11 +152,11 @@
                 param.UserId,
                 param.SubAccId,
                 param.IP);
-            partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
 
             await dynamicRepository.ExecuteAsync(command);
 
-            return new Result { Code = command.ErrCode, Message = command.ErrMsg };
+            return new Result { Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
         }
 
         public async Task<NamedResult> AddPersonalPreset(AddPersonalPresetParam param)
@@ -166,11 +166,11 @@
                 param.PresetTitle,
                 param.WinningThreshold,
                 param.LosingThreshold);
-            partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
 
             await dynamicRepository.ExecuteAsync(command);
 
-            return new NamedResult { Name = param.PresetTitle, Code = command.ErrCode, Message = command.ErrMsg };
+            return new NamedResult { Name = param.PresetTitle, Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
         }
 
         public async Task<Result> UpdatePersonalPreset(UpdatePersonalPresetParam param)
@@ -184,7 +184,7 @@
 
             await dynamicRepository.ExecuteAsync(command);
 
-            return new Result { Code = command.ErrCode, Message = command.ErrMsg };
+            return new Result { Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
         }
 
         public async Task<Result> DeletePersonalPreset(DeletePersonalPresetParam param)
@@ -192,11 +192,11 @@
             var command = new DeletePersonalPresetCommand(
                 param.AgentId,
                 param.ID);
-            partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
 
             await dynamicRepository.ExecuteAsync(command);
 
-            return new Result { Code = command.ErrCode, Message = command.ErrMsg };
+            return new Result { Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
         }
     }
 }

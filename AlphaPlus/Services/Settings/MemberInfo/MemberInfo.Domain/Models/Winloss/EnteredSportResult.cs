@@ -10,8 +10,8 @@
         public EnteredSportResult(
             int sportTypeId,
             string sportName,
-            DailyEnteredSport enteredSportToday,
-            DailyEnteredSport enteredSportYesterday)
+            DailyEnteredSport? enteredSportToday,
+            DailyEnteredSport? enteredSportYesterday)
         {
             SportTypeId = sportTypeId;
             SportName = sportName;
@@ -21,10 +21,10 @@
 
         public int SportTypeId { get; }
 
-        public string SportName { get; }
+        public string SportName { get; } = string.Empty;
 
-        public DailyEnteredSport EnteredSportToday { get; }
+        public DailyEnteredSport? EnteredSportToday { get; }
 
-        public DailyEnteredSport EnteredSportYesterday { get; }
+        public DailyEnteredSport? EnteredSportYesterday { get; }
     }
 }

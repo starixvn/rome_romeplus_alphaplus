@@ -26,7 +26,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Model
 
         public decimal CreditMax { get; set; }
 
-        public string Status { get; set; }
+        public string Status { get; set; } = string.Empty;
 
         public string GivenCreditMustBeBetweenMinMaxMessage
             => string.Format(

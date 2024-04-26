@@ -13,7 +13,7 @@
             int productId,
             int type,
             int orderNo,
-            string playerId = null)
+            string? playerId = null)
         {
             BetType = betType;
             SportType = sportType;
@@ -30,13 +30,13 @@
 
         public int SportType { get; set; }
 
-        public string ProductName { get; set; }
+        public string ProductName { get; set; } = string.Empty;
 
-        public string PlayerId { get; set; }
+        public string PlayerId { get; set; } = string.Empty;
 
         public int Type { get; set; }
 
-        public string TypeName { get; set;  }
+        public string TypeName { get; set;  } = string.Empty;
 
         public int OrderNo { get; set; }
     }

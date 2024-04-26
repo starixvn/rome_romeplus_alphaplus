@@ -5,19 +5,19 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models
     public class CustomerStatusModel
     {
         public CustomerStatusModel(
-            NonProductStatusModel nonProduct,
-            NonDCSProductStatusModel nonDCSProduct,
-            IEnumerable<DCSProductStatusModel> dcsProducts)
+            NonProductStatusModel? nonProduct,
+            NonDCSProductStatusModel? nonDCSProduct,
+            IEnumerable<DCSProductStatusModel>? dcsProducts)
         {
             NonProduct = nonProduct;
             NonDCSProduct = nonDCSProduct;
             DCSProducts = dcsProducts;
         }
 
-        public NonProductStatusModel NonProduct { get; }
+        public NonProductStatusModel? NonProduct { get; }
 
-        public NonDCSProductStatusModel NonDCSProduct { get; }
+        public NonDCSProductStatusModel? NonDCSProduct { get; }
 
-        public IEnumerable<DCSProductStatusModel> DCSProducts { get; }
+        public IEnumerable<DCSProductStatusModel>? DCSProducts { get; }
     }
 }

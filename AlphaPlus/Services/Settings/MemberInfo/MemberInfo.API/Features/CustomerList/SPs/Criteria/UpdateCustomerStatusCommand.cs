@@ -50,7 +50,7 @@
 
         public int ErrCode { get; set; }
 
-        public string ErrMsg { get; set; }
+        public string? ErrMsg { get; set; }
 
         [SpParam(Ignored = true)]
         public string StatusName { get; }       

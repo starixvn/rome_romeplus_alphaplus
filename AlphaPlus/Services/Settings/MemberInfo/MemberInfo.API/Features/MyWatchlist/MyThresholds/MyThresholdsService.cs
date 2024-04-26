@@ -68,16 +68,16 @@
                 param.UserId,
                 param.SubAccId,
                 param.IP);
-            partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(command.GetSettingKey(), param.SiteName);
 
             await dynamicRepository.ExecuteAsync(command);
-            var result = new Result { Code = command.ErrCode, Message = command.ErrMsg };
+            var result = new Result { Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
 
             if (result.IsSuccessful)
             {
                 result.Message = Resources.WatchlistUpdateSuccessfully;
 
-                SyncUpdateMyThreshold(command.CustList);
+                SyncUpdateMyThreshold(command.CustList ?? string.Empty);
             }
 
             return result;

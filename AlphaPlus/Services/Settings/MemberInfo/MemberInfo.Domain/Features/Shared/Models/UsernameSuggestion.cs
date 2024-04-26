@@ -14,12 +14,12 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models
             UserName2 = username2;
         }
 
-        public string UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
-        public string UserName2 { get; set; }
+        public string UserName2 { get; set; } = string.Empty;
     }
 }

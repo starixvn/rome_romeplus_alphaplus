@@ -22,7 +22,7 @@
 
             var parameters = (NumberOfNewMessageParams)message.ConvertToParameters();
 
-            var unreadMessage = messageService.CheckNewUnreadMessage(parameters);
+            var unreadMessage = await messageService.CheckNewUnreadMessage(parameters);
 
             UpdateUnreadMessageSession(message, unreadMessage);
 

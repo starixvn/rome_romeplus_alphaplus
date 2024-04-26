@@ -50,7 +50,7 @@
             return new Result
             {
                 Code = criteria.ErrCode,
-                Message = criteria.ErrMsg
+                Message = criteria.ErrMsg ?? string.Empty
             };
         }
     }

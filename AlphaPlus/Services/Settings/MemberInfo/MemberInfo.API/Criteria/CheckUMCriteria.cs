@@ -20,13 +20,13 @@
 
         public byte FunctionType => 1;
 
-        public string Language { get; }
+        public string? Language { get; }
 
         public bool ReturnUMData => false;
 
         public int ErrCode { get; set; }
 
-        public string ErrMsg { get; set; }
+        public string? ErrMsg { get; set; }
 
         public override string GetSettingKey() => "Acc_CheckUM";
 

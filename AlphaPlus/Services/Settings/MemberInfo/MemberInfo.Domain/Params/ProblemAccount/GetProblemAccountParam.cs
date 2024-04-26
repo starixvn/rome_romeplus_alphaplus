@@ -8,11 +8,11 @@
 
         public int SubAccId { get; set; }
 
-        public string UplineUserName { get; set; }
+        public string UplineUserName { get; set; } = string.Empty;
 
         public byte SearchRoleId { get; set; }
 
-        public string SearchUserName { get; set; }
+        public string SearchUserName { get; set; } = string.Empty;
 
         public int ReviewStatusId { get; set; }
 

@@ -36,7 +36,7 @@
                 param.FromDate.GetGreaterDate(param.LimitedDateToShowInfo),
                 param.ToDate,
                 param.LimitType);
-            partialUMService.ThrowIfUM(selectReachListByAgCriteria.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(selectReachListByAgCriteria.GetSettingKey(), param.SiteName);
 
             await dynamicRepository.ExecuteAsync(selectReachListByAgCriteria);
 
@@ -63,7 +63,7 @@
                 param.LimitType,
                 param.SortType,
                 param.IsDesc);
-            partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
+            await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
             return await dynamicRepository.FetchAsync<ReachHistoryModel>(criteria);
         }

@@ -32,12 +32,12 @@
 
         public string CreatedDateString => CreatedDate.ToLongDateTime12hWithHyphen();
 
-        public string LimitTypeReach { get; set; }
+        public string? LimitTypeReach { get; set; }
 
         public string TranslatedLimitTypeReach
             => string.IsNullOrWhiteSpace(LimitTypeReach)
             ? string.Empty
-            : Resources.ResourceManager.GetString(LimitTypeReach);
+            : Resources.ResourceManager.GetString(LimitTypeReach) ?? string.Empty;
 
         public decimal WinLossAmount { get; set; }
 

@@ -6,7 +6,7 @@
 
         public int CustId { get; set; }
 
-        public string PlayerId { get; set; }
+        public string? PlayerId { get; set; }
 
         public decimal Balance { get; set; }
 
@@ -14,11 +14,11 @@
 
         public decimal DebitBalance { get; set; }
 
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
-        public string Firstname { get; set; }
+        public string? Firstname { get; set; }
 
-        public string Lastname { get; set; }
+        public string? Lastname { get; set; }
 
         public bool Enabled { get; set; }
 
@@ -110,7 +110,7 @@
             {
                 return !MaxLossLimit.HasValue || MaxLossLimit.Value == 0
                     ? (decimal?)null :
-                    -CurrentWinAnmout.Value * Percent / MaxLossLimit.Value;
+                    -CurrentWinAnmout * Percent / MaxLossLimit.Value;
             }
         }
     }

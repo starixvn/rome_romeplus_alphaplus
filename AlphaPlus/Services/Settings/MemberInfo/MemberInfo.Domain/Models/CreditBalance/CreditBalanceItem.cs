@@ -62,11 +62,11 @@
 
         public int CustId { get; set; }
 
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         public decimal Credit { get; set; }
 
@@ -84,9 +84,9 @@
 
         public DateTime? CreatedDate { get; set; }
 
-        public string IPLogin { get; set; }
+        public string? IPLogin { get; set; }
 
-        public string Status
+        public string? Status
         {
             get
             {

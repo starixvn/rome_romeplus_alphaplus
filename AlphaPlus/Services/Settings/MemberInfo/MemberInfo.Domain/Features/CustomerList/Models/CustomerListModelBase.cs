@@ -66,25 +66,25 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models
 
         public int CustId { get; set; }
 
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         public byte RoleId { get; set; }
 
-        public string UGroup { get; set; }
+        public string? UGroup { get; set; }
 
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
-        public string UserName2 { get; set; }
+        public string? UserName2 { get; set; }
 
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
-        public string MobilePhone { get; set; }
+        public string? MobilePhone { get; set; }
 
         public bool AllowOpenInfoPopup { get; set; }
 
-        public string LastLoginIP { get; set; }
+        public string? LastLoginIP { get; set; }
 
         public int Currency { get; set; }
 
@@ -94,7 +94,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models
 
         public DateTime CreateDate { get; set; }
 
-        public string CreateDateFormat { get; set; }
+        public string? CreateDateFormat { get; set; }
 
         public bool IsInternal { get; set; }
 
@@ -116,7 +116,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models
 
         public decimal Discount1x2 { get; set; }
 
-        public string Status
+        public string? Status
         {
             get
             {

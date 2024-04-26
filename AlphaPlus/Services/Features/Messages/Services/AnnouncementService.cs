@@ -19,17 +19,17 @@
 
     public interface AnnouncementService
     {
-        int GetNumberOfNewAnnouncements(BaseAnnouncementsParams announcementParams);
+        Task<int> GetNumberOfNewAnnouncements(BaseAnnouncementsParams announcementParams);
 
         void UpdateLastSeenAnnouncement(int custId, int messageType, bool isAdminUser, int subAccId);
 
-        IEnumerable<AlphaAnnouncement> GetAnnouncementsHistory(AnnouncementsHistoryParams announcementParams);
+        Task<IEnumerable<AlphaAnnouncement>> GetAnnouncementsHistory(AnnouncementsHistoryParams announcementParams);
 
-        AlphaAnnouncement? GetPopUpAnnouncements(PopupAnnouncementParams announcementParams);
+        Task<AlphaAnnouncement?> GetPopUpAnnouncements(PopupAnnouncementParams announcementParams);
 
         LastSeenAnnouncement GetLastSeenAnnouncement(int custId, int subAccId);
 
-        IEnumerable<Announcement> GetAnnouncements(DateTime fromTime, DateTime toTime);
+        Task<IEnumerable<Announcement>> GetAnnouncements(DateTime fromTime, DateTime toTime);
 
         IEnumerable<AlphaAnnouncement> GetAnnouncementsByUser(
            IEnumerable<Announcement> announcementToday,
@@ -70,26 +70,26 @@
             }
         }
 
-        public int GetNumberOfNewAnnouncements(BaseAnnouncementsParams announcementParams)
+        public async Task<int> GetNumberOfNewAnnouncements(BaseAnnouncementsParams announcementParams)
         {
             var lastSeenAnnouncement = GetLastSeenAnnouncement(announcementParams.CustId, announcementParams.SubAccId);
 
             var fromDate = GetAvailableLastSeenDate(DateTime.MinValue, lastSeenAnnouncement.LastSeenSystem);
 
-            var newAnnouncements = GetNewAnnouncements(fromDate);
+            var newAnnouncements = await GetNewAnnouncements(fromDate);
 
             var announcements = GetAnnouncementsByUser(newAnnouncements, announcementParams, lastSeenAnnouncement.LastSeenSystem).ToList();
 
             return announcements.Count(i => i.ReleasedDate >= lastSeenAnnouncement.LastSeenSystem);
         }
 
-        public IEnumerable<AlphaAnnouncement> GetAnnouncementsHistory(AnnouncementsHistoryParams announcementParams)
+        public async Task<IEnumerable<AlphaAnnouncement>> GetAnnouncementsHistory(AnnouncementsHistoryParams announcementParams)
         {
             var lastSeenAnnouncement = GetLastSeenAnnouncement(announcementParams.CustId, announcementParams.SubAccId);
 
             announcementParams.FromDate = GetAvailableLastSeenDate(announcementParams.FromDate, lastSeenAnnouncement.LastSeenSystem);
 
-            var announcementsHistory = GetAnnouncementsHistory(announcementParams.FromDate, announcementParams.ToDate);
+            var announcementsHistory = await GetAnnouncementsHistory(announcementParams.FromDate, announcementParams.ToDate);
             var announcements = GetAnnouncementsByUser(announcementsHistory, announcementParams, lastSeenAnnouncement.LastSeenSystem);
 
             UpdateLastSeenAnnouncement(announcementParams.CustId, MessageType.System, announcementParams.IsAdminUser, announcementParams.SubAccId);
@@ -97,14 +97,14 @@
             return announcements.OrderByDescending(i => i.ReleasedDate);
         }
 
-        public AlphaAnnouncement? GetPopUpAnnouncements(PopupAnnouncementParams announcementParams)
+        public async Task<AlphaAnnouncement?> GetPopUpAnnouncements(PopupAnnouncementParams announcementParams)
         {
             if (announcementParams.IsShowedPopup)
             {
                 return null;
             }
 
-            var announcementsHistory = GetAvailablePopUpAnnouncements();
+            var announcementsHistory = await GetAvailablePopUpAnnouncements();
             var announcements = GetAnnouncementsByUser(announcementsHistory, announcementParams, DateTime.Now);
 
             return announcements.OrderByDescending(i => i.ReleasedDate).FirstOrDefault();
@@ -117,8 +117,8 @@
             return lastSeen ?? new LastSeenAnnouncement(custId, SystemTime.Now, SystemTime.Now, SystemTime.Now, SystemTime.Now);
         }
 
-        public IEnumerable<Announcement> GetAnnouncements(DateTime fromTime, DateTime toTime)
-            => announcementClient.GetAnnouncementsHistory(new AnnouncementHistoryRequest(fromTime, toTime, AppSettings.Environment, string.Empty));
+        public async Task<IEnumerable<Announcement>> GetAnnouncements(DateTime fromTime, DateTime toTime)
+            => await announcementClient.GetAnnouncementsHistory(new AnnouncementHistoryRequest(fromTime, toTime, AppSettings.Environment, string.Empty));
 
         private static DateTime GetAvailableLastSeenDate(DateTime fromDate, DateTime lastSeenDate)
         {
@@ -143,33 +143,33 @@
             return fromDate;
         }
 
-        private IEnumerable<Announcement> GetNewAnnouncements(DateTime fromDate)
+        private async Task<IEnumerable<Announcement>> GetNewAnnouncements(DateTime fromDate)
         {
-            var newAnnouncements = cacheService.GetOrSet(
+            var newAnnouncements = await cacheService.GetOrSetAsync(
                  $"AlphaPlus.Features.Messages.Announcement_{fromDate}_{AppSettings.SiteLabel}",
-                 () => GetAnnouncementsHistory(fromDate, DateTime.Now),
+                 async () => await GetAnnouncementsHistory(fromDate, DateTime.Now),
                  new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(CachedSecondAnnouncement)));
 
             return newAnnouncements;
         }
 
-        private IEnumerable<Announcement> GetAvailablePopUpAnnouncements()
+        private async Task<IEnumerable<Announcement>> GetAvailablePopUpAnnouncements()
         {
             var request = new AnnouncementHistoryRequest(DateTime.Today.AddDays(-30), DateTime.Now, AppSettings.Environment, AppSettings.SiteLabel);
-            var availablePopupAnnouncements = cacheService.GetOrSet(
+            var availablePopupAnnouncements = await cacheService.GetOrSetAsync(
                 $"AlphaPlus.Features.Messages.PopupAnnouncement_{AppSettings.SiteLabel}",
-                () => announcementClient.GetAnnouncementsHistory(request)
+                async () => (await announcementClient.GetAnnouncementsHistory(request))
                 .Where(i => DateTime.Now <= i.ExpiredDate && i.IsPopup),
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(CachedSecondAnnouncement)));
 
             return availablePopupAnnouncements;
         }
 
-        private IEnumerable<Announcement> GetAnnouncementsHistory(DateTime fromDate, DateTime toDate)
+        private async Task<IEnumerable<Announcement>> GetAnnouncementsHistory(DateTime fromDate, DateTime toDate)
         {
             var request = new AnnouncementHistoryRequest(fromDate, toDate, AppSettings.Environment, AppSettings.SiteLabel);
 
-            return announcementClient.GetAnnouncementsHistory(request)
+            return (await announcementClient.GetAnnouncementsHistory(request))
                 .Where(i => i.ReleasedDate <= DateTime.Now)
                 .OrderBy(i => i.ReleasedDate);
         }

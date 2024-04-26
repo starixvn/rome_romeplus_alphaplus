@@ -21,7 +21,7 @@
 
         public byte RoleId { get; }
 
-        public string SeqName { get; set; }
+        public string? SeqName { get; set; }
 
         public override string GetSettingKey() => "Age_CustomerSelSuggestUsername";
 

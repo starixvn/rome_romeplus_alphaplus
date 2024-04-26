@@ -21,7 +21,7 @@
 
         public async Task<MarqueeMessageViewModel> Handle(MarqueeMessageQuery message, CancellationToken cancellation)
         {
-            newMessageService.MoveNewMessage(message.CustId, message.UserName, message.RoleId, message.IsAdminUser);
+            await newMessageService.MoveNewMessage(message.CustId, message.UserName, message.RoleId, message.IsAdminUser);
 
             GeneralMarqueeMessage publicMessage;
             GeneralMarqueeMessage privateMessage;

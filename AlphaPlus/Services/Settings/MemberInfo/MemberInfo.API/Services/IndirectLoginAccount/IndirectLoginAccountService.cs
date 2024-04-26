@@ -100,7 +100,7 @@
                 param.RequestInfo.Platform,
                 param.RequestInfo.CountryCode);
             await dynamicRepository.ExecuteAsync(criteria);
-            var result = new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
+            var result = new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg ?? string.Empty };
 
             if (result.IsOk)
             {
@@ -134,7 +134,7 @@
             return new Result
             {
                 Code = criteria.ErrCode,
-                Message = criteria.ErrMsg
+                Message = criteria.ErrMsg ?? string.Empty
             };
         }
 
@@ -157,7 +157,7 @@
                 param.LanguageKey,
                 param.IP);
             await dynamicRepository.ExecuteAsync(criteria);
-            var result = new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
+            var result = new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg ?? string.Empty };
 
             if (result.IsOk)
             {

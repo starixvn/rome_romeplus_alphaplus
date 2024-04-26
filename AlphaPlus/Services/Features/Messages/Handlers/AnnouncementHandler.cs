@@ -57,7 +57,7 @@
             var fromTime = message.FromTime.ToLocalTime();
             var toTime = message.ToTime.ToLocalTime();
 
-            var announcements = announcementService.GetAnnouncements(fromTime, toTime);
+            var announcements = await announcementService.GetAnnouncements(fromTime, toTime);
 
             if (announcements == null || !announcements.Any())
             {

@@ -27,9 +27,9 @@
 
         public virtual string PopupHeaderText => string.Empty;
 
-        internal virtual string SuffixMessage { get; }
+        internal virtual string? SuffixMessage { get; }
 
-        internal virtual string StatusName { get; }
+        internal virtual string? StatusName { get; }
 
         internal virtual bool StatusValue { get; }
 
@@ -39,7 +39,7 @@
                         {"SearchAccountId", SearchAccount.Id.ToString()},
                         {"SearchAccountName", SearchAccount.Username},
                         {"SearchAccountRoleId", SearchAccount.CusomerLevelValue.ToString()},
-                        {"StatusName", StatusName},
+                        {"StatusName", StatusName ?? string.Empty},
                         {"StatusValue", StatusValue}
                     };
     }

@@ -33,7 +33,7 @@
 
         internal CustomerListServiceImpl(
             IDynamicRepository dynamicRepository,
-            IDictionary<UserLevel, Func<CustomerListParam, CustomerListDTO>> fetchData)
+            IDictionary<UserLevel, Func<CustomerListParam, CustomerListDTO>>? fetchData)
         {
             this.dynamicRepository = dynamicRepository;
             this.fetchData = fetchData ??
@@ -86,7 +86,7 @@
 
         public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)
         {
-            UpdateCustomerStatusCommand command = null;
+            UpdateCustomerStatusCommand? command = null;
             switch (param.StatusName)
             {
                 case StatusNames.Closed:
@@ -164,7 +164,7 @@
 
             dynamicRepository.Execute(command);
 
-            return new Result { Code = command.ErrCode, Message = command.ErrMsg };
+            return new Result { Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
         }
 
         internal CustomerListDTO FectchMasterList(CustomerListParam param)

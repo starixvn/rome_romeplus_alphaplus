@@ -38,7 +38,7 @@
 
         public int SubAccId { get; set; }
 
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         public byte Level { get; set; }
 

@@ -30,7 +30,7 @@
             var messageParams = (MessageHistoryParams)message.ConvertToParameters();
             var messages = messageService.GetMessagesHistory(messageParams);
 
-            var numberOfUnreadMessage = newMessageService.GetNumberOfUnreadMessage(messageParams);
+            var numberOfUnreadMessage = await newMessageService.GetNumberOfUnreadMessage(messageParams);
             UpdateUnreadMessageOnSession(message, numberOfUnreadMessage);
 
             return new MessagesHistoryViewModel(

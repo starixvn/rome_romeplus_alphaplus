@@ -64,7 +64,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models
 
         public bool UplineSuspend { get; set; }
 
-        public string TransferOption { get; set; }
+        public string? TransferOption { get; set; }
 
         public bool TransferDaily =>
             !string.IsNullOrWhiteSpace(TransferOption) &&
@@ -87,6 +87,6 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models
         public bool IsProtectedMode { get; set; }
 
         public bool IsAllowAutoTransfer { get; set; }
-        public string ScheduleWeekDays { get; set; }
+        public string? ScheduleWeekDays { get; set; }
     }
 }

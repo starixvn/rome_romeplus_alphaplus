@@ -28,7 +28,7 @@
                 param.ViewerId, param.CustId, param.SubAccId, param.TransId);
             dynamicRepository.Execute(command);
 
-            return new BelongingInfo(command.IsActive, command.RoleId, command.Username);
+            return new BelongingInfo(command.IsActive, command.RoleId, command.Username ?? string.Empty);
         }
 
         public async Task<BelongingInfo> GetBelongingInfoAsync(CheckBelongingParam param)
@@ -37,7 +37,7 @@
                 param.ViewerId, param.CustId, param.SubAccId, param.TransId);
             await dynamicRepository.ExecuteAsync(command);
 
-            return new BelongingInfo(command.IsActive, command.RoleId, command.Username);
+            return new BelongingInfo(command.IsActive, command.RoleId, command.Username ?? string.Empty);
         }
     }
 }

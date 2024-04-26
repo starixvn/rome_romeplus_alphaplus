@@ -5,7 +5,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Features.Shared
 {
     public interface ICustomerService
     {
-        Task<Result> CheckAllLimitedRules(int custId, byte custLevel, string actorUsername, string language);
+        Task<Result?> CheckAllLimitedRules(int custId, byte custLevel, string actorUsername, string language);
     }
 
     public class CustomerService : ICustomerService
@@ -17,9 +17,9 @@ namespace AlphaPlus.Settings.MemberInfo.API.Features.Shared
             this.httpClient = httpClient;
         }
 
-        public Task<Result> CheckAllLimitedRules(int custId, byte custLevel, string actorUsername, string language)
+        public Task<Result?> CheckAllLimitedRules(int custId, byte custLevel, string actorUsername, string language)
         {
-            return httpClient.PostAsJsonAsync<Result>("api/rules/CheckAllLimitedRules", new { custId, custLevel, actorUsername, language });
+            return httpClient.PostAsJsonAsync<Result?>("api/rules/CheckAllLimitedRules", new { custId, custLevel, actorUsername, language });
         }
     }
 }

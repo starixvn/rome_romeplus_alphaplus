@@ -27,7 +27,7 @@
         public int CopyFromCustId { get; }
 
         public int ErrCode { get; set; }
-        public string ErrMsg { get; set; }
+        public string? ErrMsg { get; set; }
         public bool Success { get; set; }
         public int CustId { get; set; }
         public string CopyFromUsername { get; internal set; }

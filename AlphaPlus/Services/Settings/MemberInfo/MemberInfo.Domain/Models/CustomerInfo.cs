@@ -12,7 +12,7 @@
             CustId = custId;
         }
 
-        public string Username { get; set; }
+        public string Username { get; set; } = string.Empty;
 
         public int CustId { get; set; }
     }

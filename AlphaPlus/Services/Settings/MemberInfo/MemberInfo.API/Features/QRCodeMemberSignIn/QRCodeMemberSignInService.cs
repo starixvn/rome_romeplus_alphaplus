@@ -104,7 +104,7 @@
         {
             var criteria = new SelectSuggestUsernameCriteria(prefix, custId);
             dynamicRepository.Execute(criteria);
-            return criteria.SeqName;
+            return criteria.SeqName ?? string.Empty;
         }
 
         public SelectRnGStatusModel GetRnGStatus(string username)

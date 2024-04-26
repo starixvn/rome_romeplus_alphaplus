@@ -39,7 +39,9 @@
 
         public bool IsEditOnProductLevel
 #pragma warning disable S3215 // "interface" instances should not be cast to concrete types
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             => (productItem.ExtendProductProperty as SearchAccountProperties).StatusOnProductLevel;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
 #pragma warning restore S3215 // "interface" instances should not be cast to concrete types
 

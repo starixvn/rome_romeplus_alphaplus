@@ -24,7 +24,7 @@
 
         public int Sporttype { get; }
 
-        public string XMLReachList { get; set; }
+        public string? XMLReachList { get; set; }
 
         public override string GetSettingKey() => "Acc_WLMonitored_Player_ReachList_ByAg";
 

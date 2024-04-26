@@ -6,14 +6,14 @@
 
         public int SubAccId { get; set; }
 
-        public string CustomerList { get; set; }
+        public string CustomerList { get; set; } = string.Empty;
 
         public byte RoleId { get; set; }
 
         public bool IsAffectedAllDownlines { get; set; }
 
-        public string Language { get; set; }
+        public string Language { get; set; } = string.Empty;
 
-        public string LoginIp { get; set; }
+        public string LoginIp { get; set; } = string.Empty;
     }
 }

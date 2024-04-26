@@ -26,7 +26,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAcco
 
         public int ErrCode { get; set; }
 
-        public string ErrMsg { get; set; }
+        public string? ErrMsg { get; set; }
 
         public override string GetSettingKey() => "Acc_WLMonitored_Preset_Ins";
 

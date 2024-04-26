@@ -13,22 +13,22 @@
 
         public int CustId { get; set; }
 
-        public string Username2 { get; set; }
+        public string? Username2 { get; set; }
 
         public string NickName => string.IsNullOrEmpty(Username2) ? string.Empty : Username2;
 
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
 
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         public byte Status { get; set; }
 
         public string StatusNameEN
             => ProblemAccountStatusConstants.GetProblemAccountStatus(Status);
 
-        public string StatusName
+        public string? StatusName
             => Resources.ResourceManager.GetString(ProblemAccountStatusConstants.GetProblemAccountStatus(Status));
 
         public DateTime CreatedDate { get; set; }

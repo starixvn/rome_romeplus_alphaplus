@@ -54,7 +54,7 @@
 
         public int Sporttype { get; set; }
 
-        public string Username { get; set; }
+        public string Username { get; set; } = string.Empty;
 
         public DateTime LastLogged { get; set; }
 
@@ -64,13 +64,13 @@
 
         public string LastReachedDateString => LastReachedDate.ToLongDateTime12hWithHyphen();
 
-        public string LastLimitTypeReach { get; set; }
+        public string LastLimitTypeReach { get; set; } = string.Empty;
 
-        public string TranslatedLastLimitTypeReach => Resources.ResourceManager.GetString(LastLimitTypeReach);
+        public string? TranslatedLastLimitTypeReach => Resources.ResourceManager.GetString(LastLimitTypeReach);
 
-        public string Status { get; set; }
+        public string Status { get; set; } = string.Empty;
 
-        public string TranslatedStatus => Resources.ResourceManager.GetString(Status);
+        public string? TranslatedStatus => Resources.ResourceManager.GetString(Status);
 
         public bool IsOpen => Status.Equals("Open", StringComparison.OrdinalIgnoreCase);
 

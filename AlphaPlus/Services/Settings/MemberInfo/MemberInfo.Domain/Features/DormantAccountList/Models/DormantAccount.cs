@@ -25,8 +25,8 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
 
         public DormantAccount(DormantAccountEntity entity, decimal yesterdayBalance)
         {
-            Username = entity.Username;
-            RoleName = Enumeration.FromValue<UserLevel>(entity.RoleId).DisplayNameViaResource;
+            Username = entity.Username ?? string.Empty;
+            RoleName = Enumeration.FromValue<UserLevel>(entity.RoleId).DisplayNameViaResource ?? string.Empty;
             Status = GetStatus(entity.StatusId, entity.IsWarningTicket);
             ArchiveStage = GetArchiveStage(entity.StageId);
             ToBeClearedGivenCredit = entity.ToBeClearedGivenCredit;
@@ -41,13 +41,13 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
             IsSummaryRow = entity.RowNumber == 0;
         }
 
-        public string Username { get; }
+        public string Username { get; } = string.Empty;
 
-        public string RoleName { get; }
+        public string RoleName { get; } = string.Empty;
 
-        public string Status { get; }
+        public string Status { get; } = string.Empty;
 
-        public string ArchiveStage { get; }
+        public string ArchiveStage { get; } = string.Empty;
 
         public decimal? ToBeClearedGivenCredit { get; }
 

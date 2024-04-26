@@ -42,15 +42,15 @@
 
         public int Sporttype { get; set; }
 
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         public DateTime LastLogged { get; set; }
 
         public string LastLoggedString => LastLogged.ToLongDateTime12hWithHyphen();
 
-        public string Status { get; set; }
+        public string? Status { get; set; }
 
-        public string TranslatedStatus => Resources.ResourceManager.GetString(Status);
+        public string? TranslatedStatus => Resources.ResourceManager.GetString(Status ?? string.Empty);
 
         public decimal? WinningThreshold { get; set; } 
 

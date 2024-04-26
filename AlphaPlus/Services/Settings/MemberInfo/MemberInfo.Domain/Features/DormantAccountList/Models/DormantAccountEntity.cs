@@ -42,7 +42,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
 
         public int CustId { get; set; }
 
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         public byte RoleId { get; set; }
 

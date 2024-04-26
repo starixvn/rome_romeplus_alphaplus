@@ -37,7 +37,7 @@
                 param.LoginIp);
             dynamicRepository.Execute(command);
 
-            return Result.CreateErrorResult(command.ErrCode == 0 ? Resources.UpdateSuccessfully : command.ErrMsg, command.ErrCode);
+            return Result.CreateErrorResult(command.ErrCode == 0 ? Resources.UpdateSuccessfully : command.ErrMsg ?? string.Empty, command.ErrCode);
         }
 
         public IEnumerable<ProblemAccountModel> Get(GetProblemAccountParam param)

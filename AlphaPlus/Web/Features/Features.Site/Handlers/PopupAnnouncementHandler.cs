@@ -23,7 +23,7 @@
         public async Task<AlphaAnnouncement> Handle(PopupAnnouncementQuery message, CancellationToken cancellation)
         {
             var parameters = (PopupAnnouncementParams)message.ConvertToParameters();
-            var announcement = announcementService.GetPopUpAnnouncements(parameters);
+            var announcement = await announcementService.GetPopUpAnnouncements(parameters);
             UpdatePopupIsShowedOnSession(message, announcement != null);
 
             return formatAnnouncementService.Format(announcement, parameters);

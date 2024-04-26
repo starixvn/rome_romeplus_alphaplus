@@ -13,7 +13,7 @@
 
     public interface AnnouncementClient
     {
-        IEnumerable<Announcement> GetAnnouncementsHistory(AnnouncementHistoryRequest request);
+        Task<IEnumerable<Announcement>> GetAnnouncementsHistory(AnnouncementHistoryRequest request);
     }
 
     public class AnnouncementClientImpl : AnnouncementClient
@@ -28,12 +28,12 @@
             };
         }
 
-        public IEnumerable<Announcement> GetAnnouncementsHistory(AnnouncementHistoryRequest request)
+        public async Task<IEnumerable<Announcement>> GetAnnouncementsHistory(AnnouncementHistoryRequest request)
         {
             var restRequest = new RestRequest("AnnouncementApi/GetAnnouncementsHistory", Method.POST);
             restRequest.AddJsonBody(request);
 
-            IRestResponse response = restClient.Execute(restRequest);
+            IRestResponse response = await restClient.ExecuteTaskAsync(restRequest);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {

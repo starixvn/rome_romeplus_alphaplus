@@ -14,11 +14,11 @@
 
     public interface NewMessageService
     {
-        NumberOfUnreadMessage GetNumberOfUnreadMessage(BaseAnnouncementsParams announcementParams);
+        Task<NumberOfUnreadMessage> GetNumberOfUnreadMessage(BaseAnnouncementsParams announcementParams);
 
-        NumberOfUnreadMessage CheckNewUnreadMessage(NumberOfNewMessageParams announcementParams);
+        Task<NumberOfUnreadMessage> CheckNewUnreadMessage(NumberOfNewMessageParams announcementParams);
 
-        void MoveNewMessage(int custId, string custName, int levelId, bool isUserAdmin);
+        Task MoveNewMessage(int custId, string custName, int levelId, bool isUserAdmin);
     }
 
     public class NewMessageServiceImpl : NewMessageService
@@ -37,7 +37,7 @@
             this.announcementService = announcementService;
         }
 
-        public void MoveNewMessage(int custId, string custName, int levelId, bool isUserAdmin)
+        public Task MoveNewMessage(int custId, string custName, int levelId, bool isUserAdmin)
         {
             var unreadMessagesOnUser = GetUnreadMessagesOnUser(custId, levelId, isUserAdmin);
             foreach (var messageType in unreadMessagesOnUser)
@@ -47,16 +47,18 @@
 
                 UpdateMessageAsReadOnUser(custId, messageType);
             }
+
+            return Task.CompletedTask;
         }
 
-        public NumberOfUnreadMessage CheckNewUnreadMessage(NumberOfNewMessageParams announcementParams)
+        public async Task<NumberOfUnreadMessage> CheckNewUnreadMessage(NumberOfNewMessageParams announcementParams)
         {
             return announcementParams.UnreadMessage != null && announcementParams.UnreadMessage.Total >= MessageConstants.DefaultTotalMessageHistory ?
                 announcementParams.UnreadMessage :
-                GetNumberOfUnreadMessage(announcementParams);
+                await GetNumberOfUnreadMessage(announcementParams);
         }
 
-        public NumberOfUnreadMessage GetNumberOfUnreadMessage(BaseAnnouncementsParams announcementParams)
+        public async Task<NumberOfUnreadMessage> GetNumberOfUnreadMessage(BaseAnnouncementsParams announcementParams)
         {
             var numberUnreadMessage = new NumberOfUnreadMessage();
             var unreadMessage = dynamicRepository.Get<NumberOfUnreadMessage>(
@@ -70,7 +72,7 @@
 
             if (CustomerHasInitData(unreadMessage))
             {
-                var unreadAnnouncement = announcementService.GetNumberOfNewAnnouncements(announcementParams);
+                var unreadAnnouncement = await announcementService.GetNumberOfNewAnnouncements(announcementParams);
                 numberUnreadMessage = new NumberOfUnreadMessage
                 {
                     Normal = unreadMessage.Normal,
