@@ -10,6 +10,6 @@
 
         public long ToTime { get; set; }
 
-        public IEnumerable<CustomerInfo> Customers { get; set; }
+        public IEnumerable<CustomerInfo> Customers { get; set; } = Enumerable.Empty<CustomerInfo>();
     }
 }

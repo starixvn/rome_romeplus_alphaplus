@@ -2,7 +2,7 @@
 {
     public class BackupDomainModel
     {
-        public string Domain { get; set; }
+        public string Domain { get; set; } = string.Empty;
 
         public bool IsAgency { get; set; }
     }

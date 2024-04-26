@@ -20,10 +20,6 @@
     {
         private readonly IRestClient restClient;
 
-        public AnnouncementClientImpl() : this(null)
-        {
-        }
-
         public AnnouncementClientImpl(IRestClient restClient)
         {
             this.restClient = restClient ?? new RestClient(new Uri(AppSettings.AnnouncementApi))
@@ -41,9 +37,11 @@
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
+#pragma warning disable CS8603 // Possible null reference return.
                 return JsonConvert.DeserializeObject<IEnumerable<Announcement>>(
                     response.Content,
                     new SpecificationConverter());
+#pragma warning restore CS8603 // Possible null reference return.
             }
 
             return Enumerable.Empty<Announcement>();

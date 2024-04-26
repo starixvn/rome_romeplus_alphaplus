@@ -6,19 +6,19 @@
     {
         public int AreaId { get; set; }
 
-        public string AreaNameEN { get; set; }
+        public string AreaNameEN { get; set; } = string.Empty;
 
-        public string AreaNameCN3 { get; set; }
+        public string AreaNameCN3 { get; set; } = string.Empty;
 
-        public string AreaNameCS { get; set; }
+        public string AreaNameCS { get; set; } = string.Empty;
 
-        public string AreaNameCH { get; set; }
+        public string AreaNameCH { get; set; } = string.Empty;
 
-        public string AreaNameTH { get; set; }
+        public string AreaNameTH { get; set; } = string.Empty;
 
-        public string AreaNameJP { get; set; }
+        public string AreaNameJP { get; set; } = string.Empty;
 
-        public string AreaNameKO { get; set; }
+        public string AreaNameKO { get; set; } = string.Empty;
 
         public string GetAreaName(string language)
         {

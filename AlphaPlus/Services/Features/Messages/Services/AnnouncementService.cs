@@ -15,6 +15,7 @@
     using Utils;
     using AlphaPlus.Features.Messages.API.Configurations;
     using AlphaPlus.Features.Messages.API.Client;
+    using Alpha.Announcements.Specs;
 
     public interface AnnouncementService
     {
@@ -24,7 +25,7 @@
 
         IEnumerable<AlphaAnnouncement> GetAnnouncementsHistory(AnnouncementsHistoryParams announcementParams);
 
-        AlphaAnnouncement GetPopUpAnnouncements(PopupAnnouncementParams announcementParams);
+        AlphaAnnouncement? GetPopUpAnnouncements(PopupAnnouncementParams announcementParams);
 
         LastSeenAnnouncement GetLastSeenAnnouncement(int custId, int subAccId);
 
@@ -96,7 +97,7 @@
             return announcements.OrderByDescending(i => i.ReleasedDate);
         }
 
-        public AlphaAnnouncement GetPopUpAnnouncements(PopupAnnouncementParams announcementParams)
+        public AlphaAnnouncement? GetPopUpAnnouncements(PopupAnnouncementParams announcementParams)
         {
             if (announcementParams.IsShowedPopup)
             {
@@ -191,7 +192,7 @@
                         announcement.Code,
                         announcement.ReleasedDate,
                         lastSeenAnnouncement,
-                        announcement.Specifications);
+                        announcement.Specifications ?? Enumerable.Empty<ISpecification<IParam>>());
                 }
             }
         }

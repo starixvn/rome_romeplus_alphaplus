@@ -41,7 +41,7 @@
 
         public bool IsSticky { get; set; }
 
-        public string BetTransId { get; set; }
+        public string BetTransId { get; set; } = string.Empty;
 
         public int TotalMessasge { get; set; }
 

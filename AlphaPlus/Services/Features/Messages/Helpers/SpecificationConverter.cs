@@ -7,9 +7,9 @@
 
     public class SpecificationConverter : JsonCreationConverter<ISpecification<IParam>>
     {
-        protected override Type GetTargetType(Type type, JObject obj)
+        protected override Type? GetTargetType(Type type, JObject obj)
         {
-            return Type.GetType(obj.GetValue("TypeName", StringComparison.OrdinalIgnoreCase).ToString());
+            return Type.GetType(obj.GetType().Name);
         }
     }
 }

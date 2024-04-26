@@ -6,19 +6,19 @@
     {
         public int FuncId { get; set; }
 
-        public string FuncNameEN { get; set; }
+        public string FuncNameEN { get; set; } = string.Empty;
 
-        public string FuncNameCN3 { get; set; }
+        public string FuncNameCN3 { get; set; } = string.Empty;
 
-        public string FuncNameCS { get; set; }
+        public string FuncNameCS { get; set; } = string.Empty;
 
-        public string FuncNameCH { get; set; }
+        public string FuncNameCH { get; set; } = string.Empty;
 
-        public string FuncNameTH { get; set; }
+        public string FuncNameTH { get; set; } = string.Empty;
 
-        public string FuncNameJP { get; set; }
+        public string FuncNameJP { get; set; } = string.Empty;
 
-        public string FuncNameKO { get; set; }
+        public string FuncNameKO { get; set; } = string.Empty;
 
         public string GetFunctionName(string language)
         {

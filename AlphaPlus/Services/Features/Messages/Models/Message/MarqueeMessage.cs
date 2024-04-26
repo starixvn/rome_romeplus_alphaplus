@@ -31,7 +31,7 @@
 
         public int Id { get; set; }
 
-        public string BetTransId { get; set; }
+        public string BetTransId { get; set; } = string.Empty;
 
         public bool IsBatch { get; set; }
 

@@ -9,13 +9,13 @@
 
     public interface AnnouncementFormatService
     {
-        IEnumerable<AlphaAnnouncement> Format(IEnumerable<AlphaAnnouncement> announcements, BaseAnnouncementsParams message);
-        AlphaAnnouncement Format(AlphaAnnouncement announcement, BaseAnnouncementsParams message);
+        IEnumerable<AlphaAnnouncement?> Format(IEnumerable<AlphaAnnouncement> announcements, BaseAnnouncementsParams message);
+        AlphaAnnouncement? Format(AlphaAnnouncement announcement, BaseAnnouncementsParams message);
     }
 
     public class AnnouncementFormatServiceImpl : AnnouncementFormatService
     {
-        public AlphaAnnouncement Format(AlphaAnnouncement announcement, BaseAnnouncementsParams message)
+        public AlphaAnnouncement? Format(AlphaAnnouncement announcement, BaseAnnouncementsParams message)
         {
             if (announcement != null)
             {
@@ -25,7 +25,7 @@
             return announcement;
         }
 
-        public IEnumerable<AlphaAnnouncement> Format(IEnumerable<AlphaAnnouncement> announcements, BaseAnnouncementsParams message)
+        public IEnumerable<AlphaAnnouncement?> Format(IEnumerable<AlphaAnnouncement> announcements, BaseAnnouncementsParams message)
             => announcements.Select(i => Format(i, message));
 
         private static string ReplaceMessageSiteTag(string content, bool isMoblie)

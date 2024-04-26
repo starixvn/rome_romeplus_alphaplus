@@ -6,7 +6,7 @@
     {
         public int CustId { get; set; }
 
-        public string UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
         public byte RoleId { get; set; }
 
@@ -18,7 +18,7 @@
 
         public int SRecommendId { get; set; }
 
-        public string Site { get; set; }
+        public string Site { get; set; } = string.Empty;
 
         public bool IsIMBC => SiteLabel.Equals("MBC");
 
@@ -28,6 +28,6 @@
 
         public bool Enabled { get; set; }
 
-        public string SiteLabel { get; set; }
+        public string SiteLabel { get; set; } = string.Empty;
     }
 }

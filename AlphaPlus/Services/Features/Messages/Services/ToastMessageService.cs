@@ -46,7 +46,7 @@
             return new Result(criteria.ErrCode, criteria.ErrMsg);
         }
 
-        public static ToastMessageModel ProritizeMessage(IEnumerable<ToastMessageModel> messages)
+        public static ToastMessageModel? ProritizeMessage(IEnumerable<ToastMessageModel> messages)
         {
             var result = messages.OrderByDescending(m => m.CreatedTime).FirstOrDefault();
 

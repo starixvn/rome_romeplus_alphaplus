@@ -41,7 +41,7 @@
 
         public bool IsSticky { get; set; }
 
-        public string BetTransId { get; }
+        public string BetTransId { get; } = string.Empty;
 
         public bool IsRead { get; set; }
 

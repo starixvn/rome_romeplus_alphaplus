@@ -11,7 +11,7 @@
 
         public int SiteFunctionId { get; set; }
 
-        public string Content { get; set; }
+        public string Content { get; set; } = string.Empty;
 
         public DateTime CreatedTime { get; set; }
 
@@ -21,7 +21,7 @@
         {
             get
             {
-                var content = JsonConvert.DeserializeObject<ToastContentModel>(Content);
+                var content = JsonConvert.DeserializeObject<ToastContentModel>(Content) ?? new ToastContentModel();
 
                 return content.Title;
             }
@@ -31,7 +31,7 @@
         {
             get
             {
-                var content = JsonConvert.DeserializeObject<ToastContentModel>(Content);
+                var content = JsonConvert.DeserializeObject<ToastContentModel>(Content) ?? new ToastContentModel();
 
                 return content.Body;
             }

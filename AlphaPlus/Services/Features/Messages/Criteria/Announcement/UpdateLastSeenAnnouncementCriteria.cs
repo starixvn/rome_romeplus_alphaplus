@@ -15,11 +15,11 @@
 
         public int CustId { get; }
 
-        public string MessageType { get; set; }
+        public string MessageType { get; set; } = string.Empty;
 
         public int ErrCode { get; set; }
 
-        public string ErrMsg { get; set; }
+        public string ErrMsg { get; set; } = string.Empty;
 
         public override string GetSettingKey() => "Age_MsgCustReadStatus_Upd";
 

@@ -31,14 +31,14 @@
 
         public int Id { get; set; }
 
-        public string Content { get; set; }
+        public string Content { get; set; } = string.Empty;
 
-        public string Code { get; set; }
+        public string Code { get; set; } = string.Empty;
 
         public DateTime ReleasedDate { get; set; }
 
         public bool IsNewAnnouncement { get; set; }
 
-        public IEnumerable<ISpecification<IParam>> Specifications { get; set; }
+        public IEnumerable<ISpecification<IParam>> Specifications { get; set; } = Enumerable.Empty<ISpecification<IParam>>();
     }
 }

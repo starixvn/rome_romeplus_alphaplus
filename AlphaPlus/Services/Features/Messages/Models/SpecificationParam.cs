@@ -20,7 +20,7 @@
 
         public byte CurrencyId => customer.CurrencyId;
 
-        public Dictionary<string, object> DynamicParams { get; }
+        public Dictionary<string, object> DynamicParams { get; } = new Dictionary<string, object>();
 
         public bool EnableYesterdayTransfer => customer.IsAllDayBalTransfer;
 
@@ -36,15 +36,15 @@
 
         public bool IsSuper => UserLevel.IsSuper(customer.RoleId);
 
-        public string LangKey { get; }
+        public string LangKey { get; } = string.Empty;
 
-        public string Language { get; }
+        public string Language { get; } = string.Empty;
 
         public byte LevelId => customer.RoleId;
 
         public int MRecommendId => customer.MRecommendId;
 
-        public IEnumerable<byte> OfferedProductIds { get; }
+        public IEnumerable<byte> OfferedProductIds { get; } = Enumerable.Empty<byte>();
 
         public string Site => customer.Site;
 

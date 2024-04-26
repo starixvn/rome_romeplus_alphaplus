@@ -11,6 +11,6 @@
     public class SiteResourceManager : ResourceManager
     {
         public string GetString(string name, CultureInfo culture)
-            => Resources.ResourceManager.GetString(name, culture);
+            => Resources.ResourceManager.GetString(name, culture) ?? string.Empty;
     }
 }
