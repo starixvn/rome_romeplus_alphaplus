@@ -1,6 +1,8 @@
+import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
 
+import styles from './BalanceInfo.module.scss';
 import BalanceInfoRow from './BalanceInfoRow';
 
 type Props = {
@@ -16,13 +18,13 @@ export default function GivenCreditRow({ editable, givenCredit }: Props) {
 
     if (editable) {
         return (
-            <div className="row-info">
-                <div className="col">{t('GivenCredit')}</div>
-                <div id="given-credit-popup" className="col col-right" onClick={handleOpenGivenCreditPopup}>
-                    <div className="given-credit">
+            <div className={classNames('row-info', styles['row-info'])}>
+                <div className={classNames('col', styles['col'])}>{t('GivenCredit')}</div>
+                <div className={classNames('col', styles['col'], 'col-right')} onClick={handleOpenGivenCreditPopup}>
+                    <div className={styles['given-credit']}>
                         <span className="icon-border-color icon-edited" />
                         <NumericFormat
-                            className="number-link"
+                            className={styles['number-link']}
                             value={givenCredit}
                             displayType="text"
                             decimalScale={2}

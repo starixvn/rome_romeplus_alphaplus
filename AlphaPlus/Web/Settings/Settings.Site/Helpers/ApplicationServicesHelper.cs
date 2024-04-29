@@ -59,7 +59,7 @@ using AlphaPlus.Settings.ViewLogs.API.Services.Impl;
 using AlphaPlus.Settings.ViewLogs.API.Helpers;
 using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
 using AlphaPlus.Settings.Site.ViewLogs.Helpers;
-using AlphaPlus.Settings.Site.Features.Accounts;
+using AlphaPlus.Settings.Site.Features.AccountInfo;
 using AlphaPlus.Settings.Transfer.API.Services;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.NPOI;
@@ -209,7 +209,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")
                 .AddKeyedScoped<LogService, LoginServiceImpl>("loginLogSvc");
 
-            services.AddSingleton<IAccountService, Features.Accounts.AccountService>();
+            services.AddSingleton<IAccountInfoService, AccountInfoService>();
             services
                 .AddSingleton<Workbook<TransferToDownlineHistoryModel>, NpoiWorkbook<TransferToDownlineHistoryModel>>()
                 .AddScoped<TransferService, TransferServiceImpl>()

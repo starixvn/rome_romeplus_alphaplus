@@ -1,0 +1,26 @@
+// Total Downline
+.status {
+    &-active {
+        color: #045ace;
+    }
+
+    &-closed {
+        color: #fe0000;
+    }
+
+    &-suspended {
+        color: #ff6100;
+    }
+}
+
+.status-list {
+    display: table;
+    width: 100%;
+    line-height: initial;
+    padding: 10px 10px 5px;
+
+    .radio {
+        display: table-cell;
+        width: 33.3%;
+    }
+}

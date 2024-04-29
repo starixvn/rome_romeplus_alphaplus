@@ -41,4 +41,13 @@
     div[data-tooltipped] {
         line-height: 1;
     }
+
+    .number-link {
+        cursor: pointer;
+        color: var(--link-color);
+
+        &:hover {
+            color: var(--link-hover-color);
+        }
+    }
 }

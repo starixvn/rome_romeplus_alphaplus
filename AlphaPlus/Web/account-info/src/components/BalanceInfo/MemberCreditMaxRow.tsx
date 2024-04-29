@@ -1,7 +1,9 @@
+import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { Tooltip } from 'react-tippy';
 
 import CellContainNumberFormat from '../common/CellContainNumberFormat';
+import styles from './BalanceInfo.module.scss';
 
 type Props = {
     showMemberMaxCreditLimit: boolean;
@@ -31,9 +33,9 @@ export default function MemberCreditMaxRow({ showMemberMaxCreditLimit, memberMax
     };
 
     return (
-        <div className="row-info">
-            <div className="col">{t('MemberMaxCredit')}</div>
-            <div className="col col-right">{render()}</div>
+        <div className={classNames('row-info', styles['row-info'])}>
+            <div className={classNames('col', styles['col'])}>{t('MemberMaxCredit')}</div>
+            <div className={classNames('col', styles['col'], 'col-right')}>{render()}</div>
         </div>
     );
 }

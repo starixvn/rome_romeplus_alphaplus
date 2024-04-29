@@ -59,6 +59,12 @@ a,
     }
 }
 
+hr {
+    border-top-color: #ddd;
+    border-style: dashed;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
 // Customize UI for auto suggestion
 
 .react-autosuggest__suggestions-list {

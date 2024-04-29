@@ -28,5 +28,10 @@
     "UsedCredit": "Used Credit",
     "NetPosition": "Net Position",
     "BetCredit": "Bet Credit",
-    "BalanceInfo": "Balance Info"
+    "BalanceInfo": "Balance Info",
+    "MemberMaxCredit": "Member Max Credit",
+    "DownlineList": "Downline List",
+    "Agents": "Agents (Active/Closed/Suspended)",
+    "Members": "Members (Active/Closed/Suspended)",
+    "Active": "Active"
 }

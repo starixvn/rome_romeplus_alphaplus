@@ -35,7 +35,7 @@ var menuBar = {
     },
 
     urls: {
-        accountInfo: alpha.urls.settingsRootPath + 'Accounts',
+        accountInfo: alpha.urls.settingsRootPath + 'AccountInfo',
         banner: alpha.urls.mainRootPath + 'Banner/Index?type='
     },
 

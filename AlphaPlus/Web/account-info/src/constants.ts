@@ -5,7 +5,13 @@ export const UserLevel = {
     Member: 1
 };
 
+interface Params {
+    actorRoleId: number;
+    mobileView: boolean;
+}
+
 declare global {
+    const params: Params;
     interface Window {
         alpha: {
             urls: { [key: string]: string };
@@ -13,3 +19,18 @@ declare global {
         $: JQueryStatic;
     }
 }
+
+export enum BlockIds {
+    ContactInfo = 'contactInfo',
+    BalanceInfo = 'balanceInfo',
+    DownlineList = 'downlineList',
+    Status = 'status',
+    Setting = 'setting',
+    LoginInfo = 'loginInfo'
+}
+
+export const StatusIds = {
+    Active: 1,
+    Closed: 2,
+    Suspended: 3
+};

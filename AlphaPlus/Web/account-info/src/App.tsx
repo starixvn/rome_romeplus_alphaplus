@@ -4,7 +4,9 @@ import styles from './App.module.scss';
 import BalanceInfo from './components/BalanceInfo';
 import ContactInfo from './components/ContactInfo';
 import CustomerInfo from './components/CustomerInfo';
+import DownlineList from './components/DownlineList';
 import SearchBox from './components/SearchBox';
+import { BlockIds, UserLevel } from './constants';
 import { GlobalContext } from './context/global-context';
 import Customer from './models/customer';
 import SettingsService from './services/settings-service';
@@ -16,27 +18,47 @@ export const LoadCustomerInfo = {
 };
 
 function App() {
-    const [mobileView, setMobileView] = useState(false);
+    const { actorRoleId, mobileView } = params;
+    const [searchAccountRoleId, setSearchAccountRoleId] = useState(actorRoleId - 1);
     const [username, setUsername] = useState<string | undefined>('');
     const [searchCounter, setSearchCounter] = useState(0);
     const [customer, setCustomer] = useState<Customer | undefined>(undefined);
+    const [expandedBlockId, setExpandedBlockId] = useState<BlockIds | undefined>(BlockIds.BalanceInfo);
 
     const getCustomerInfo = (username: string, requestId: string = LoadCustomerInfo.ByClick) => {
         SettingsService.GetCustomerInfo(username).then((result) => {
             setSearchCounter(searchCounter + 1);
             setCustomer(result);
+            if (result) {
+                setSearchAccountRoleId(result.RoleId - 1);
+            }
         });
+    };
+
+    const handleBlockClick = (blockId: BlockIds) => {
+        if (blockId === expandedBlockId) {
+            setExpandedBlockId?.(undefined);
+        } else {
+            setExpandedBlockId?.(blockId);
+        }
     };
 
     return (
         <div className={styles.container}>
-            <GlobalContext.Provider value={{ mobileView, username, setUsername, getCustomerInfo, customer }}>
+            <GlobalContext.Provider
+                value={{ mobileView, username, setUsername, getCustomerInfo, customer, expandedBlockId }}
+            >
                 <SearchBox />
                 <CustomerInfo searchCounter={searchCounter} />
-                <div className={styles['accordions']}>
-                    <ContactInfo />
-                    <BalanceInfo />
-                </div>
+                {customer && (
+                    <div className={styles['accordions']}>
+                        <ContactInfo blockId={BlockIds.ContactInfo} onClick={handleBlockClick} />
+                        <BalanceInfo blockId={BlockIds.BalanceInfo} onClick={handleBlockClick} />
+                        {actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member && (
+                            <DownlineList blockId={BlockIds.DownlineList} onClick={handleBlockClick} />
+                        )}
+                    </div>
+                )}
             </GlobalContext.Provider>
         </div>
     );

@@ -17,7 +17,7 @@ export default function BalanceInfoRow({ title, value, hrefLink }: Props) {
                 {...{
                     value,
                     hrefLink,
-                    classNames: 'col col-right'
+                    classNames: classNames('col', styles['col'], 'col-right')
                 }}
             />
         </div>
