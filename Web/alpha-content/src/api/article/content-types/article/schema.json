@@ -4,7 +4,7 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "article",
+    "displayName": "Article",
     "description": ""
   },
   "options": {
@@ -13,6 +13,9 @@
   "pluginOptions": {
     "i18n": {
       "localized": true
+    },
+    "versions": {
+      "versioned": true
     }
   },
   "attributes": {
@@ -25,48 +28,89 @@
         }
       }
     },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    },
+    "summary": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text",
+      "required": true
+    },
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "environment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::environment.environment"
+    },
     "slug": {
       "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
         "i18n": {
           "localized": true
         }
       },
-      "type": "uid",
-      "targetField": "title"
+      "type": "string",
+      "required": false
     },
-    "image": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "type": "media",
-      "multiple": false,
+    "content": {
       "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
         "i18n": {
-          "localized": false
+          "localized": true
         }
-      }
+      },
+      "type": "richtext",
+      "required": true
     },
-    "category": {
+    "markets": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "articles"
+      "relation": "oneToMany",
+      "target": "api::market.market"
     },
-    "ckeditor_content": {
+    "user_levels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-level.user-level"
+    },
+    "infoInEnglish": {
       "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
         "i18n": {
           "localized": true
         }
       },
-      "type": "customField",
-      "options": {
-        "output": "HTML",
-        "preset": "rich"
+      "type": "string"
+    },
+    "order": {
+      "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
+        "i18n": {
+          "localized": true
+        }
       },
-      "required": true,
-      "customField": "plugin::ckeditor.CKEditor"
+      "type": "biginteger"
     }
   }
 }

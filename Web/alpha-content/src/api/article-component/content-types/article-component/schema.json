@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_components",
+  "info": {
+    "singularName": "article-component",
+    "pluralName": "article-components",
+    "displayName": "Article Component",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "content": {
+      "type": "text"
+    }
+  }
+}

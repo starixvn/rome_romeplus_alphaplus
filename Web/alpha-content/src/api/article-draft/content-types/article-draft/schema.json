@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_drafts",
+  "info": {
+    "singularName": "article-draft",
+    "pluralName": "article-drafts",
+    "displayName": "Article Draft",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "revision": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "vuid": {
+      "type": "string"
+    },
+    "version_number": {
+      "type": "biginteger"
+    }
+  }
+}

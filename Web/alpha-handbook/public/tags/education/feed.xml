@@ -1,0 +1,23 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Alpha-Handbook</title>
+      <link>https://kaveh.page//blog</link>
+      <description>Kaveh Tehrani&#39;s Blog - leaving tradfi for web3</description>
+      <language>en-us</language>
+      <managingEditor> (Kaveh)</managingEditor>
+      <webMaster> (Kaveh)</webMaster>
+      <lastBuildDate>Mon, 28 Feb 2022 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://kaveh.page//tags/education/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://kaveh.page//blog/a-love-letter-to-my-alma-mater</guid>
+    <title>A Love Letter to My Alma Mater</title>
+    <link>https://kaveh.page//blog/a-love-letter-to-my-alma-mater</link>
+    <description>My letter as the outgoing president of McGill Alumni Association of Toronto</description>
+    <pubDate>Mon, 28 Feb 2022 00:00:00 GMT</pubDate>
+    <category>education</category>
+  </item>
+
+    </channel>
+  </rss>

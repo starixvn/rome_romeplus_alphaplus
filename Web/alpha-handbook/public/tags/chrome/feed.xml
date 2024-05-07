@@ -1,0 +1,32 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Alpha-Handbook</title>
+      <link>https://kaveh.page//blog</link>
+      <description>Kaveh Tehrani&#39;s Blog - leaving tradfi for web3</description>
+      <language>en-us</language>
+      <managingEditor> (Kaveh)</managingEditor>
+      <webMaster> (Kaveh)</webMaster>
+      <lastBuildDate>Fri, 06 Oct 2023 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://kaveh.page//tags/chrome/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://kaveh.page//snippets/Fixing realtek drivers in linux</guid>
+    <title>Fixing Realtek drivers in Ubuntu</title>
+    <link>https://kaveh.page//snippets/Fixing realtek drivers in linux</link>
+    <description>Wifi drivers not working after going to sleep</description>
+    <pubDate>Fri, 06 Oct 2023 00:00:00 GMT</pubDate>
+    <category>chrome</category><category>bash</category>
+  </item>
+
+  <item>
+    <guid>https://kaveh.page//snippets/chrome-extensions-source-code</guid>
+    <title>Obtaining source code for Chrome extensions</title>
+    <link>https://kaveh.page//snippets/chrome-extensions-source-code</link>
+    <description>Download source code for any Chrome extension without installation</description>
+    <pubDate>Wed, 16 Aug 2023 00:00:00 GMT</pubDate>
+    <category>chrome</category><category>bash</category>
+  </item>
+
+    </channel>
+  </rss>

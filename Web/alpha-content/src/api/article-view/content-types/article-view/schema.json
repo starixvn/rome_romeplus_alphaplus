@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_views",
+  "info": {
+    "singularName": "article-view",
+    "pluralName": "article-views",
+    "displayName": "Article View",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "custName": {
+      "type": "string"
+    },
+    "custId": {
+      "type": "biginteger"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article.article"
+    },
+    "viewDate": {
+      "type": "datetime"
+    }
+  }
+}

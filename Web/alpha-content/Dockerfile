@@ -7,16 +7,25 @@ WORKDIR /opt/
 COPY Web/alpha-content/package.json ./
 COPY Web/alpha-content/yarn.lock ./
 RUN yarn global add node-gyp
-RUN yarn config set network-timeout 600000 -g && yarn install --production
+RUN --mount=type=cache,target=/opt/app/node_modules \
+    yarn config set network-timeout 600000 -g && yarn install --production
 ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY Web/alpha-content .
-RUN yarn build
+
+# Register TRANSFORM_CONFIG argument for transforming by environment
+ARG TRANSFORM_CONFIG
+RUN echo $TRANSFORM_CONFIG
+COPY "Web/alpha-content/.env.$TRANSFORM_CONFIG" .env
+
+RUN  yarn build
 
 # Creating final production image
 FROM hub.nexdev.net/base/node:18.16-alpine
+
 RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
+
 WORKDIR /opt/
 COPY --from=builder /opt/node_modules ./node_modules
 WORKDIR /opt/app
