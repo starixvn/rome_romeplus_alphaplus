@@ -29,8 +29,4 @@ export enum BlockIds {
     LoginInfo = 'loginInfo'
 }
 
-export const StatusIds = {
-    Active: 1,
-    Closed: 2,
-    Suspended: 3
-};
+

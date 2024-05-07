@@ -5,4 +5,6 @@ export default interface DownlineListResponse {
     DownlineList: Downline[];
     TotalDownlines: TotalDownline[];
     TotalPages: number;
+    StatusId: number;
+    PageIndex: number;
 }

@@ -11,7 +11,21 @@ const ACTIVE_ID = 1;
 const CLOSED_ID = 2;
 const SUSPENDED_ID = 3;
 
-export default function TotalDirectDownlines({ TotalActive, TotalClosed, TotalSuspended }: TotalDownline) {
+interface Props extends TotalDownline {
+    fetchDownlineListFromServer: (
+        pageIndex?: number,
+        reloadByStatus?: boolean,
+        statusId?: number,
+        totalPages?: number
+    ) => void;
+}
+
+export default function TotalDirectDownlines({
+    TotalActive,
+    TotalClosed,
+    TotalSuspended,
+    fetchDownlineListFromServer
+}: Props) {
     const { t } = useTranslation();
     const { customer } = useGlobalContext();
     const [checkedStatusId, setCheckedStatusId] = useState(ACTIVE_ID);
@@ -24,14 +38,16 @@ export default function TotalDirectDownlines({ TotalActive, TotalClosed, TotalSu
 
     const handleChange = (statusId: number) => {
         setCheckedStatusId(statusId);
+        fetchDownlineListFromServer(1, true, statusId);
     };
 
     return (
-        <>
+        <div>
             <div className="row-info bold">{customer?.RoleId === UserLevel.Master ? t('Agents') : t('Members')}</div>
             <div className={styles['status-list']}>
                 {StatusItems.map(({ id, title, className, value }) => (
                     <RadioButtonStatus
+                        key={id}
                         statusId={id}
                         title={title}
                         className={styles[className]}
@@ -41,6 +57,6 @@ export default function TotalDirectDownlines({ TotalActive, TotalClosed, TotalSu
                     />
                 ))}
             </div>
-        </>
+        </div>
     );
 }
