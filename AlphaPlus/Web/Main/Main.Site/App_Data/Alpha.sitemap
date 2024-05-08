@@ -140,7 +140,7 @@
     <siteMapNode resourceKey="MyWatchlist" url="/settings/ReachedThreshold/Index" roles="Agent"></siteMapNode>
     <siteMapNode resourceKey="MyThresholds" url="/settings/MyThresholds/Index" roles="Super,Master"></siteMapNode>
   </siteMapNode>
-  <siteMapNode resourceKey="chatbot" url="main/TelegramChatBot/Setup"></siteMapNode>
-  <siteMapNode resourceKey="SercurityCode" url="main/Otp/SetupOtp" isNew="false"></siteMapNode>
+  <siteMapNode resourceKey="chatbot" url="/main/TelegramChatBot/Setup"></siteMapNode>
+  <siteMapNode resourceKey="SercurityCode" url="/main/Otp/SetupOtp" isNew="false"></siteMapNode>
   <siteMapNode resourceKey="BackupDomains" menuItemType="MemberInfoMenuItem" functionType="[H]" url="/features/backupdomains/index" isNew="true"></siteMapNode>
 </siteMap>
