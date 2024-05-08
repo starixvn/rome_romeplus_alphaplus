@@ -46,6 +46,7 @@ class UpdateSingleAutoTransfer {
 
     cancelUpdate = () => {
         this.topWindow.popupManager.close();
+        this.topWindow.main.$("#product-popup").modal('hide');
     };
 
     acceptUpdate = () => {
