@@ -1,30 +1,28 @@
-﻿namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
-    using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels;
-    using Alpha.Products.Core.Models;
-    using Alpha.Products.Core.Services;
-    using Alpha.Products.Core.Shared;
-    using Alpha.Products.Core.ViewModels;
-    using AlphaPlus.Utilities.IP;
-    using Fanex.Common;
-    using MediatR;
-    using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList;
-    using AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels.Base;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.Params;
-    using AlphaPlus.SecurityCode.Services;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models;
-    using AlphaPlus.Settings.MemberInfo.API.Requests;
-    using AlphaPlus.Settings.MemberInfo.API.Status.ViewModels.Base;
-    using AlphaPlus.Settings.MemberInfo.API;
-    using Newtonsoft.Json;
+﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels;
+using Alpha.Products.Core.Models;
+using Alpha.Products.Core.Services;
+using Alpha.Products.Core.Shared;
+using Alpha.Products.Core.ViewModels;
+using AlphaPlus.Utilities.IP;
+using Fanex.Common;
+using MediatR;
+using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList;
+using AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels.Base;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.Params;
+using AlphaPlus.SecurityCode.Services;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models;
+using AlphaPlus.Settings.MemberInfo.API.Requests;
+using AlphaPlus.Settings.MemberInfo.API.Status.ViewModels.Base;
+using AlphaPlus.Settings.MemberInfo.API;
+using Newtonsoft.Json;
 
+namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn
+{
     public class CustomerListHandler :
         IRequestHandler<CustomerListRequest, CustomerListViewModel>,
         IRequestHandler<FetchDownlinesListRequest, CustomerListPagingViewModel>,
@@ -80,11 +78,11 @@
             this.transferService = transferService;
         }
 
-        public  async Task<CustomerListViewModel> Handle(CustomerListRequest message, CancellationToken cancellation)
+        public async Task<CustomerListViewModel> Handle(CustomerListRequest message, CancellationToken cancellation)
         {
             message.BreadcrumbLevel = !string.IsNullOrWhiteSpace(AlphaContext.Current.Request.Query["BreadcrumbLevelJson"]) ?
-                JsonConvert.DeserializeObject<IEnumerable<CustInfo>>(AlphaContext.Current.Request.Query["BreadcrumbLevelJson"]) : 
-                    Enumerable.Empty<CustInfo>();
+                JsonConvert.DeserializeObject<IEnumerable<CustInfo>>(AlphaContext.Current.Request.Query["BreadcrumbLevelJson"]) :
+                    [];
 
             var breadcrumbLevel = new List<CustInfo>();
 
@@ -133,7 +131,7 @@
                 customerListPagingViewModel: customerListPagingViewModel);
         }
 
-        public  async Task<CustomerListPagingViewModel> Handle(FetchDownlinesListRequest message, CancellationToken cancellation)
+        public async Task<CustomerListPagingViewModel> Handle(FetchDownlinesListRequest message, CancellationToken cancellation)
         {
             var param = new CustomerListParam(
                     message.ViewerId,
@@ -152,16 +150,16 @@
                     message.IsShowMyanmarOdds,
                     message.AllowAutoTransfer);
 
-            return new CustomerListPagingViewModel(customerListService.GetCustomerList(param), message, ipService);
+            return new CustomerListPagingViewModel(await customerListService.GetCustomerList(param), message, ipService);
         }
 
-        public  async Task<CustomerStatusViewModel> Handle(CustomerStatusQuery message, CancellationToken cancellation)
-            => BuildCustomerStatus(message);
+        public Task<CustomerStatusViewModel> Handle(CustomerStatusQuery message, CancellationToken cancellation)
+            => Task.FromResult(BuildCustomerStatus(message));
 
-        public  async Task<IEnumerable<ISettingItemMultipleViewModel>> Handle(CustomerStatusMultipleQuery message, CancellationToken cancellation)
-           => BuildCustomerStatusMultiple(message);
+        public Task<IEnumerable<ISettingItemMultipleViewModel>> Handle(CustomerStatusMultipleQuery message, CancellationToken cancellation)
+           => Task.FromResult(BuildCustomerStatusMultiple(message));
 
-        public  async Task<Result> Handle(CustomerNonProductStatusCommand message, CancellationToken cancellation)
+        public Task<Result> Handle(CustomerNonProductStatusCommand message, CancellationToken cancellation)
           => customerListService.UpdateCustomerStatus(
               new UpdateCustomerStatusParam(
                   message.SearchAccountId,
@@ -173,16 +171,16 @@
                   message.StatusName,
                   message.ActorName));
 
-        public  async Task<MultipleDoubleCommViewModel> Handle(MultipleDoubleCommRequest message, CancellationToken cancellation)
-           => new MultipleDoubleCommViewModel(message);
+        public Task<MultipleDoubleCommViewModel> Handle(MultipleDoubleCommRequest message, CancellationToken cancellation)
+           => Task.FromResult(new MultipleDoubleCommViewModel(message));
 
-        public  async Task<IEnumerable<Result>> Handle(UpdateMultipleDoubleCommCommand message, CancellationToken cancellation)
+        public async Task<IEnumerable<Result>> Handle(UpdateMultipleDoubleCommCommand message, CancellationToken cancellation)
         {
             var results = new List<Result>();
 
             foreach (var searchAccountId in message.SearchAccountIds.Split(','))
             {
-                results.Add(customerListService.UpdateCustomerStatus(
+                results.Add(await customerListService.UpdateCustomerStatus(
                     new UpdateCustomerStatusParam(
                       Converter.ToInt(searchAccountId),
                       message.ActorId,
@@ -214,14 +212,14 @@
                  message.SubAccountId,
                  message.UplineName,
                  message.UplineRoleId,
-                 BuildUplineProductStatus(customerStatusModel.NonDCSProduct, customerStatusModel.DCSProducts.ToList()));
+                 BuildUplineProductStatus(customerStatusModel.DCSProducts.ToList()));
 
             var searchAccount = new Customer(
                message.SearchAccountId,
                message.SubAccountId,
                message.SearchAccountName,
                message.SearchAccountRoleId,
-               BuildSearchAccountProductStatus(customerStatusModel.NonDCSProduct, customerStatusModel.DCSProducts.ToList()),
+               BuildSearchAccountProductStatus(customerStatusModel.DCSProducts.ToList()),
                upline);
 
             return new CustomerStatusViewModel(
@@ -245,27 +243,25 @@
                  message.SubAccountId,
                  message.UplineName,
                  message.UplineRoleId,
-                 BuildUplineProductStatus(customerStatusModel.NonDCSProduct, customerStatusModel.DCSProducts.ToList()));
+                 BuildUplineProductStatus(customerStatusModel.DCSProducts.ToList()));
 
             var searchAccount = new Customer(
                message.SearchAccountId,
                message.SubAccountId,
                message.SearchAccountName,
                message.SearchAccountRoleId,
-               BuildSearchAccountProductStatus(customerStatusModel.NonDCSProduct, customerStatusModel.DCSProducts.ToList()),
+               BuildSearchAccountProductStatus(customerStatusModel.DCSProducts.ToList()),
                upline);
 
             return BuildCustomerProductMultipleSettings(actor, searchAccount, message, customerStatusModel);
         }
 
         internal IEnumerable<CustomerProductStatus> BuildSearchAccountProductStatus(
-            NonDCSProductStatusModel nonDCSProduct,
             IEnumerable<DCSProductStatusModel> dcsProducts)
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
-                new CustomerProductStatus(ProductConstants.Sportsbook, true),
-                new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.DisableEsports),
+                new(ProductConstants.Sportsbook, true),
             };
 
             dcsProducts.ToList().ForEach(product =>
@@ -277,14 +273,12 @@
             return customerProductStatus;
         }
 
-        internal IEnumerable<CustomerProductStatus> BuildUplineProductStatus(
-            NonDCSProductStatusModel nonDCSProduct,
+        internal static IEnumerable<CustomerProductStatus> BuildUplineProductStatus(
             IEnumerable<DCSProductStatusModel> dcsProducts)
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
-                new CustomerProductStatus(ProductConstants.Sportsbook, true),
-                new CustomerProductStatus(ProductConstants.ESport, nonDCSProduct.UplineDisableEsports),
+                new(ProductConstants.Sportsbook, true),
             };
 
             dcsProducts.ToList().ForEach(product =>
@@ -296,14 +290,13 @@
             return customerProductStatus;
         }
 
-        internal IEnumerable<CustomerProductStatus> BuildActorProductStatus(
+        internal static IEnumerable<CustomerProductStatus> BuildActorProductStatus(
             CustomerStatusQueryBase message,
             IEnumerable<DCSProductStatusModel> dcsProducts)
         {
             var customerProductStatus = new List<CustomerProductStatus>
             {
-                new CustomerProductStatus(ProductConstants.Sportsbook, true),
-                new CustomerProductStatus(ProductConstants.ESport, message.IsDisabledESports)
+                new(ProductConstants.Sportsbook, true),
             };
 
             dcsProducts.ToList().ForEach(product =>
@@ -327,8 +320,10 @@
             CustomerStatusModel model,
             bool allowedAllDayBalTransfer)
         {
-            var request = new StatusSearchAccountRequest(actor, searchAccount);
-            request.SubPageAccess = message.SubPageAccess;
+            var request = new StatusSearchAccountRequest(actor, searchAccount)
+            {
+                SubPageAccess = message.SubPageAccess
+            };
 
             request
                 .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount)
@@ -371,8 +366,10 @@
             CustomerStatusQueryBase message,
             CustomerStatusModel model)
         {
-            var request = new SettingSearchAccountRequest(actor, searchAccount);
-            request.SubPageAccess = message.SubPageAccess;
+            var request = new SettingSearchAccountRequest(actor, searchAccount)
+            {
+                SubPageAccess = message.SubPageAccess
+            };
             request
                  .AddData(DataKey.Actor.CanEditDailyTransferOption, model.NonProduct.TransferDaily)
                  .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount)
@@ -388,10 +385,12 @@
            CustomerStatusMultipleQuery message,
            CustomerStatusModel model)
         {
-            var request = new SettingSearchAccountRequest(actor, searchAccount);
-            request.SubPageAccess = message.SubPageAccess;
-            request.SupportAutoTransfer = message.SupportAutoTransfer;
-            request.AutoTransferAffect = message.AutoTransferAffect;
+            var request = new SettingSearchAccountRequest(actor, searchAccount)
+            {
+                SubPageAccess = message.SubPageAccess,
+                SupportAutoTransfer = message.SupportAutoTransfer,
+                AutoTransferAffect = message.AutoTransferAffect
+            };
 
             request
                  .AddData(DataKey.Actor.CanEditDailyTransferOption, model.NonProduct.TransferDaily)

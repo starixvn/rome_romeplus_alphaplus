@@ -1,53 +1,37 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.CustomerList
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList.Criteria;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models;
-    using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList.SPs.Criteria;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.Params;
-    using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.ViewModels;
-    using Fanex.Data.Repository;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
+﻿using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList.Criteria;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.Models;
+using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList.SPs.Criteria;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.Params;
+using AlphaPlus.Settings.MemberInfo.Domain.Site.Features.CustomerList.ViewModels;
+using Fanex.Data.Repository;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.CustomerList
+{
     public interface CustomerListService
     {
-        CustomerListDTO GetCustomerList(CustomerListParam param);
+        Task<CustomerListDTO> GetCustomerList(CustomerListParam param);
 
         CustomerStatusModel GetCustomerStatus(int custId, byte roleId);
 
-        Result UpdateCustomerStatus(UpdateCustomerStatusParam param);
+        Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param);
     }
 
-    public class CustomerListServiceImpl : CustomerListService
+    public class CustomerListServiceImpl(IDynamicRepository dynamicRepository) : CustomerListService
     {
-        private readonly IDynamicRepository dynamicRepository;
-        private readonly IDictionary<UserLevel, Func<CustomerListParam, CustomerListDTO>> fetchData;
+        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
 
-        public CustomerListServiceImpl(IDynamicRepository dynamicRepository)
-            : this(dynamicRepository, null)
+        public Task<CustomerListDTO> GetCustomerList(CustomerListParam param)
         {
+            return param.DirectUplineCustLevel.Value switch
+            {
+                4 => FetchMasterList(param),
+                3 => FetchAgentList(param),
+                2 => FetchMemberList(param),
+                _ => Task.FromResult(new CustomerListDTO([], 0, 0)),
+            };
         }
-
-        internal CustomerListServiceImpl(
-            IDynamicRepository dynamicRepository,
-            IDictionary<UserLevel, Func<CustomerListParam, CustomerListDTO>>? fetchData)
-        {
-            this.dynamicRepository = dynamicRepository;
-            this.fetchData = fetchData ??
-                new Dictionary<UserLevel, Func<CustomerListParam, CustomerListDTO>>
-                {
-                    [UserLevel.Super] = FectchMasterList,
-                    [UserLevel.Master] = FetchAgentList,
-                    [UserLevel.Agent] = FetchMemberList
-                };
-        }
-
-        public CustomerListDTO GetCustomerList(CustomerListParam param)
-            => fetchData.ContainsKey(param.DirectUplineCustLevel) ? fetchData[param.DirectUplineCustLevel](param) :
-                new CustomerListDTO(Enumerable.Empty<CustomerListModelBase>(), 0, 0);
 
         public CustomerStatusModel GetCustomerStatus(int custId, byte roleId)
         {
@@ -84,7 +68,7 @@
             return customerStatusModel;
         }
 
-        public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)
+        public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param)
         {
             UpdateCustomerStatusCommand? command = null;
             switch (param.StatusName)
@@ -162,12 +146,12 @@
                     return new Result();
             }
 
-            dynamicRepository.Execute(command);
+            await dynamicRepository.ExecuteAsync(command);
 
             return new Result { Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
         }
 
-        internal CustomerListDTO FectchMasterList(CustomerListParam param)
+        internal async Task<CustomerListDTO> FetchMasterList(CustomerListParam param)
         {
             var criteria = new SelectMasterListCriteria(
               param.DirectUplineId,
@@ -181,12 +165,12 @@
               param.PageSize,
               param.PageIndex);
 
-            var model = dynamicRepository.Fetch<MasterListModel>(criteria);
+            var model = await dynamicRepository.FetchAsync<MasterListModel>(criteria);
 
             return new CustomerListDTO(model, criteria.TotalItems, criteria.TotalPages);
         }
 
-        internal CustomerListDTO FetchAgentList(CustomerListParam param)
+        internal async Task<CustomerListDTO> FetchAgentList(CustomerListParam param)
         {
             var criteria = new SelectAgentListCriteria(
                 param.UserId,
@@ -201,12 +185,12 @@
                 param.PageSize,
                 param.PageIndex);
 
-            var model = dynamicRepository.Fetch<AgentListModel>(criteria);
+            var model = await dynamicRepository.FetchAsync<AgentListModel>(criteria);
 
             return new CustomerListDTO(model, criteria.TotalItems, criteria.TotalPages);
         }
 
-        internal CustomerListDTO FetchMemberList(CustomerListParam param)
+        internal async Task<CustomerListDTO> FetchMemberList(CustomerListParam param)
         {
             var criteria = new SelectMemberListCriteria(
                 param.UserId,
@@ -221,7 +205,7 @@
                 param.PageSize,
                 param.PageIndex);
 
-            var model = dynamicRepository.Fetch<MemberListModel>(criteria);
+            var model = await dynamicRepository.FetchAsync<MemberListModel>(criteria);
 
             return new CustomerListDTO(model, criteria.TotalItems, criteria.TotalPages);
         }

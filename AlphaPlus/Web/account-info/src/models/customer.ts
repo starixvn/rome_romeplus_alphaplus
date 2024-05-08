@@ -1,5 +1,6 @@
 import { BalanceInfo } from './balance-info';
 import Button from './button';
+import LoginInfoModel from './login-info';
 
 export default interface Customer {
     CustId: number;
@@ -16,8 +17,12 @@ export default interface Customer {
     Suspended: boolean;
     Enabled: boolean;
     Locked: number;
+    SuperId: number;
+    SuperName: string;
+    MasterId: number;
     MasterName: string;
     ShowMaster: boolean;
+    AgentId: number;
     AgentName: string;
     ShowAgent: boolean;
     MemberName: string;
@@ -28,4 +33,5 @@ export default interface Customer {
     CreateMemberByQRCodeUrl: string;
     Buttons: Button[];
     BalanceInfo: BalanceInfo;
+    LoginInfo: LoginInfoModel;
 }

@@ -1,0 +1,33 @@
+@import '../../styles/_mixins.scss';
+
+.status-setting {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    [class^='col'] {
+        line-height: 20px;
+        margin: 6px 0;
+    }
+
+    .checkbox:hover label {
+        color: var(--link-color);
+    }
+
+    .checkbox.disabled {
+        opacity: 1;
+    }
+
+    .checkbox.disabled label:before,
+    .checkbox.disabled label:after {
+        opacity: 0.4;
+    }
+
+    .icon-ic_list {
+        @include ripple-effect-icon($top: -2px, $margin-left: -5px);
+        float: left;
+        margin-right: 8px;
+        line-height: 20px;
+        color: #67151b;
+        font-size: 15px;
+    }
+}

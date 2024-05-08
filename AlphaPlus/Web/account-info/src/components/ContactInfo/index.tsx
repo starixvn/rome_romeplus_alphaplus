@@ -5,7 +5,6 @@ import { BlockIds } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
 import AccordionItem from '../common/AccordionItem';
 import NoInformation from '../common/NoInformation';
-import { BlockProps } from '../common/type';
 
 const ContactInfoRow = ({ title, value }: { title: string; value: string }) => {
     const maxLength = 15;
@@ -24,9 +23,9 @@ const ContactInfoRow = ({ title, value }: { title: string; value: string }) => {
     );
 };
 
-export default function ContactInfo({ blockId, onClick }: BlockProps) {
+export default function ContactInfo() {
     const { t } = useTranslation();
-    const { customer, expandedBlockId } = useGlobalContext();
+    const { customer, expandedBlockId, handleBlockClick } = useGlobalContext();
 
     if (!customer) {
         return <NoInformation />;
@@ -60,7 +59,7 @@ export default function ContactInfo({ blockId, onClick }: BlockProps) {
             expanded={expandedBlockId === BlockIds.ContactInfo}
             iconClass="icon-contact-info"
             featureText={t('ContactInfo')}
-            onClick={() => onClick(blockId)}
+            onClick={() => handleBlockClick?.(BlockIds.ContactInfo)}
         >
             {contactInfoPropsArray.map(
                 ({ title, value, visible }) => visible && <ContactInfoRow title={title} value={value} />

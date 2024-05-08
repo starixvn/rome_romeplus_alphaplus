@@ -8,17 +8,13 @@
     [Serializable]
     public class UserLevel : Enumeration
     {
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Reviewed!")]
-        public static readonly UserLevel Super = new UserLevel(4, "Super");
+        public static readonly UserLevel Super = new(4, "Super");
 
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Reviewed!")]
-        public static readonly UserLevel Master = new UserLevel(3, "Master");
+        public static readonly UserLevel Master = new(3, "Master");
 
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Reviewed!")]
-        public static readonly UserLevel Agent = new UserLevel(2, "Agent");
+        public static readonly UserLevel Agent = new(2, "Agent");
 
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Reviewed!")]
-        public static readonly UserLevel Member = new UserLevel(1, "Member");
+        public static readonly UserLevel Member = new(1, "Member");
 
         public UserLevel()
         {

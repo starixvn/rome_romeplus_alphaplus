@@ -6,14 +6,13 @@ import { useGlobalContext } from '../../context/global-context';
 import DownlineListResponse from '../../models/DownlineListReponse';
 import SettingsService from '../../services/settings-service';
 import AccordionItem from '../common/AccordionItem';
-import { BlockProps } from '../common/type';
 import DownlineListContent from './DownlineListContent';
 import TotalDirectDownlines from './TotalDirectDownlines';
 import TotalIndirectDownlines from './TotalIndirectDownlines';
 
-export default function DownlineList({ blockId, onClick }: BlockProps) {
+export default function DownlineList() {
     const { t } = useTranslation();
-    const { expandedBlockId, customer } = useGlobalContext();
+    const { expandedBlockId, customer, handleBlockClick } = useGlobalContext();
     const [downlineListData, setDownlineListData] = useState<DownlineListResponse | undefined>(undefined);
 
     useEffect(() => {
@@ -43,7 +42,7 @@ export default function DownlineList({ blockId, onClick }: BlockProps) {
     };
 
     const handleClick = () => {
-        onClick(blockId);
+        handleBlockClick?.(BlockIds.DownlineList);
         if (!downlineListData && customer) {
             SettingsService.GetDownlineList(customer?.CustId, customer?.RoleId).then((data) =>
                 setDownlineListData(data)

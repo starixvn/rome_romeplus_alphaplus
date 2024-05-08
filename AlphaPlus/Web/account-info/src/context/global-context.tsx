@@ -11,6 +11,7 @@ export type GlobalContextType = {
     setCustomer: (customer: Customer) => void;
     getCustomerInfo: (username: string, requestId?: string) => void;
     expandedBlockId: BlockIds;
+    handleBlockClick: (blockId: BlockIds) => void;
 };
 
 export const GlobalContext = createContext<Partial<GlobalContextType>>({});

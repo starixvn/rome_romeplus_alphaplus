@@ -33,5 +33,11 @@
     "DownlineList": "Downline List",
     "Agents": "Agents (Active/Closed/Suspended)",
     "Members": "Members (Active/Closed/Suspended)",
-    "Active": "Active"
+    "Active": "Active",
+    "Status": "Status",
+    "Setting": "Setting",
+    "CreatedDate": "Created Date",
+    "LastLogin": "Last Login",
+    "LastTxn": "Last Txn",
+    "LoginIP": "Login IP"
 }

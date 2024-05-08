@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import Customer from '../models/customer';
+import CustomerStatus from '../models/customer-status';
 import DownlineListResponse from '../models/DownlineListReponse';
 import UsernameSuggestion from '../models/username-suggestion';
 
@@ -24,6 +25,35 @@ const SettingsService = {
         return axiosInstance
             .get<DownlineListResponse>(`AccountInfo/GetDownlineList`, {
                 params: { custId, roleId, pageIndex, statusId, totalPages }
+            })
+            .then((response) => response.data);
+    },
+    GetCustomerAllStatus: async (
+        custId: number,
+        username: string,
+        roleId: number,
+        uplineId: number,
+        uplineName: string
+    ) => {
+        const params = {
+            SearchAccountId: custId,
+            SearchAccountName: username,
+            SearchAccountRoleId: roleId,
+            UplineId: uplineId,
+            UplineName: uplineName,
+            UplineRoleId: roleId + 1
+        };
+
+        return axiosInstance
+            .get<CustomerStatus>(`CustomerList/GetCustomerAllStatus`, {
+                params
+            })
+            .then((response) => response.data);
+    },
+    GetLastTxn: async (username: string) => {
+        return axiosInstance
+            .get<string>(`AccountInfo/GetLastTxn`, {
+                params: { username }
             })
             .then((response) => response.data);
     }

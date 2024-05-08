@@ -5,7 +5,9 @@ import BalanceInfo from './components/BalanceInfo';
 import ContactInfo from './components/ContactInfo';
 import CustomerInfo from './components/CustomerInfo';
 import DownlineList from './components/DownlineList';
+import LoginInfo from './components/LoginInfo';
 import SearchBox from './components/SearchBox';
+import StatusAndSetting from './components/StatusAndSetting';
 import { BlockIds, UserLevel } from './constants';
 import { GlobalContext } from './context/global-context';
 import Customer from './models/customer';
@@ -46,17 +48,25 @@ function App() {
     return (
         <div className={styles.container}>
             <GlobalContext.Provider
-                value={{ mobileView, username, setUsername, getCustomerInfo, customer, expandedBlockId }}
+                value={{
+                    mobileView,
+                    username,
+                    setUsername,
+                    getCustomerInfo,
+                    customer,
+                    expandedBlockId,
+                    handleBlockClick
+                }}
             >
                 <SearchBox />
                 <CustomerInfo searchCounter={searchCounter} />
                 {customer && (
                     <div className={styles['accordions']}>
-                        <ContactInfo blockId={BlockIds.ContactInfo} onClick={handleBlockClick} />
-                        <BalanceInfo blockId={BlockIds.BalanceInfo} onClick={handleBlockClick} />
-                        {actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member && (
-                            <DownlineList blockId={BlockIds.DownlineList} onClick={handleBlockClick} />
-                        )}
+                        <ContactInfo />
+                        <BalanceInfo />
+                        {actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member && <DownlineList />}
+                        <StatusAndSetting />
+                        <LoginInfo />
                     </div>
                 )}
             </GlobalContext.Provider>

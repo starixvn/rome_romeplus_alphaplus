@@ -45,9 +45,9 @@ export default function DownlineListContent({
     totalPages,
     statusId
 }: Props) {
-    const { mobileView } = useGlobalContext();
+    const { mobileView, getCustomerInfo } = useGlobalContext();
     const [list, setList] = useState(chunkDownlineList([...downlineList]));
-    const loadedRowsMap: { [key: number]: number } = {};
+    const [loadedRowsMap, setLoadedRowsMap] = useState<{ [key: number]: number }>({});
     const timeoutIdMap: { [key: number]: boolean } = {};
     let currentPageIndex = 0;
 
@@ -78,6 +78,8 @@ export default function DownlineListContent({
         for (let i = startIndex; i <= stopIndex; i++) {
             loadedRowsMap[i] = loadedStatus;
         }
+
+        setLoadedRowsMap(loadedRowsMap);
     };
 
     const fectchMoreData = () => {
@@ -98,12 +100,14 @@ export default function DownlineListContent({
                 isTruncated = Username.length > maxLength,
                 displayedUsername = isTruncated ? `${Username.substring(0, maxLength)}...` : Username;
 
+            console.log(loadedRowsMap[index]);
+
             const rowContent =
                 loadedRowsMap[index] === STATUS_LOADED ? (
                     <a
                         href="#"
                         onClick={() => {
-                            // fetchCustomerInfoFromServer(Username);
+                            getCustomerInfo?.(Username);
                         }}
                     >
                         {displayedUsername}

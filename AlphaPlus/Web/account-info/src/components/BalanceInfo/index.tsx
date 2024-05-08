@@ -4,15 +4,14 @@ import { BlockIds, UserLevel } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
 import AccordionItem from '../common/AccordionItem';
 import NoInformation from '../common/NoInformation';
-import { BlockProps } from '../common/type';
 import styles from './BalanceInfo.module.scss';
 import BalanceInfoRow from './BalanceInfoRow';
 import GivenCreditRow from './GivenCreditRow';
 import MemberCreditMaxRow from './MemberCreditMaxRow';
 
-export default function BalanceInfo({ blockId, onClick }: BlockProps) {
+export default function BalanceInfo() {
     const { t } = useTranslation();
-    const { customer, expandedBlockId } = useGlobalContext();
+    const { customer, expandedBlockId, handleBlockClick } = useGlobalContext();
 
     if (!customer) {
         return <NoInformation />;
@@ -85,7 +84,7 @@ export default function BalanceInfo({ blockId, onClick }: BlockProps) {
             expanded={expandedBlockId === BlockIds.BalanceInfo}
             iconClass="icon-balance"
             featureText={t('Balance Info')}
-            onClick={() => onClick(blockId)}
+            onClick={() => handleBlockClick?.(BlockIds.BalanceInfo)}
         >
             <div className={styles['balance-info']}>
                 {contents?.map((content, index) => (
