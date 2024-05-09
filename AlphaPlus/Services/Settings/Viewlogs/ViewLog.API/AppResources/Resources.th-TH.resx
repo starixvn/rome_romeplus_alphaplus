@@ -274,7 +274,7 @@
     <value>รายละเอียด</value>
   </data>
   <data name="IP" xml:space="preserve">
-    <value>รหัสของเครื่องคอมพิวเตอร์ที่ใช้</value>
+    <value>ไอพี</value>
   </data>
   <data name="Domain" xml:space="preserve">
     <value>โดเมน</value>

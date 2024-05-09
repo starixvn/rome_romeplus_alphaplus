@@ -847,7 +847,7 @@
     <value>คือ แบ่งสู้อัตโนมัติของซุปเปอร์บนสมาชิก</value>
   </data>
   <data name="IP" xml:space="preserve">
-    <value>รหัสของเครื่องคอมพิวเตอร์ที่ใช้</value>
+    <value>ไอพี</value>
   </data>
   <data name="disableFinancialWC" xml:space="preserve">
     <value>disableFinancialWC</value>

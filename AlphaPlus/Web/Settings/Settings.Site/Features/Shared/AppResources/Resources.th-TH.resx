@@ -211,7 +211,7 @@
     <value>เครดิตทั้งหมด</value>
   </data>
   <data name="IP" xml:space="preserve">
-    <value>รหัสของเครื่องคอมพิวเตอร์ที่ใช้</value>
+    <value>ไอพี</value>
   </data>
   <data name="LastLogin" xml:space="preserve">
     <value>เข้าระบบครั้งสุดท้าย</value>
