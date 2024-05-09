@@ -6,30 +6,30 @@
     <table class="tblDesc">
       <tr>
         <xsl:choose>
-		    <xsl:when test="@wrongpasswordalert">
-			    <td class="colW1">
-				    <xsl:value-of select="xslLogFormat:GetLogResource('WrongPasswordAlert')" />
-			    </td>
-			    <td class="colW2">
-				    <xsl:value-of select="@wrongpasswordalert" />
-			    </td>
-		    </xsl:when>
-			<xsl:when test="@systemannouncement">
-				<td class="colW1">
-					<xsl:value-of select="xslLogFormat:GetLogResource('SystemAnnouncement')" />
-				</td>
-				<td class="colW2">
-					<xsl:value-of select="@systemannouncement" />
-				</td>
-			</xsl:when>
-			<xsl:when test="@mywatchlist">
-				<td class="colW1">
-					<xsl:value-of select="xslLogFormat:GetLogResource('MyWatchlist')" />
-				</td>
-				<td class="colW2">
-					<xsl:value-of select="@mywatchlist" />
-				</td>
-			</xsl:when>
+          <xsl:when test="@wrongpasswordalert">
+            <td class="colW1">
+              <xsl:value-of select="xslLogFormat:GetLogResource('WrongPasswordAlert')" />
+            </td>
+            <td class="colW2">
+              <xsl:value-of select="@wrongpasswordalert" />
+            </td>
+          </xsl:when>
+          <xsl:when test="@systemannouncement">
+            <td class="colW1">
+              <xsl:value-of select="xslLogFormat:GetLogResource('SystemAnnouncement')" />
+            </td>
+            <td class="colW2">
+              <xsl:value-of select="@systemannouncement" />
+            </td>
+          </xsl:when>
+          <xsl:when test="@mywatchlist">
+            <td class="colW1">
+              <xsl:value-of select="xslLogFormat:GetLogResource('MyWatchlist')" />
+            </td>
+            <td class="colW2">
+              <xsl:value-of select="@mywatchlist" />
+            </td>
+          </xsl:when>
           <xsl:when test="@abnormalloginalert">
             <td class="colW1">
               <xsl:value-of select="xslLogFormat:GetLogResource('AbnormalLoginAlert')" />
@@ -86,14 +86,22 @@
               <xsl:value-of select="@yesterdaywinloss" />
             </td>
           </xsl:when>
-		    <xsl:when test="@otp">
-			    <td class="colW1">
-				    <xsl:value-of select="xslLogFormat:GetLogResource('OTP')" />
-			    </td>
-			    <td class="colW2">
-				    <xsl:value-of select="@otp" />
-			    </td>
-		    </xsl:when>
+          <xsl:when test="@otp">
+            <td class="colW1">
+              <xsl:value-of select="xslLogFormat:GetLogResource('OTP')" />
+            </td>
+            <td class="colW2">
+              <xsl:value-of select="@otp" />
+            </td>
+          </xsl:when>
+          <xsl:when test="@autotransferalert">
+            <td class="colW1">
+              <xsl:value-of select="xslLogFormat:GetLogResource('AutoTransfer')" />
+            </td>
+            <td class="colW2">
+              <xsl:value-of select="@autotransferalert" />
+            </td>
+          </xsl:when>
           <xsl:otherwise>
             <td class="colW1"></td>
             <td class="colW2"></td>

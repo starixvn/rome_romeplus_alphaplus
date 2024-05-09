@@ -41,10 +41,16 @@
           <td style="text-align:center;">
             <xsl:value-of select="xslLogFormat:GetLogResource('MinPTAgent')" />
           </td>
+          <td>
+            <xsl:value-of select="xslLogFormat:GetLogResource('Updallmembers')" />
+          </td>
+          <td>
+            <xsl:value-of select="xslLogFormat:GetLogResource('newspt')" />
+          </td>
         </tr>
         <xsl:for-each select="pt[count(.|key('pt-by-sporttype',@sporttype)[1])=1]">
           <tr class="headerSportTypeDetail">
-            <td colspan="6">
+            <td colspan="8">
               <xsl:value-of select="xslLogFormat:GetSportName(@sporttype)" />
             </td>
           </tr>
@@ -67,6 +73,12 @@
               </td>
               <td class="colW2">
                 <xsl:value-of select="@agentminpt" />
+              </td>
+              <td class="colW2">
+                <xsl:value-of select="@updallmems" />
+              </td>
+              <td class="colW2">
+                <xsl:value-of select="@newmasterpt" />
               </td>
             </tr>
           </xsl:for-each>
