@@ -14,10 +14,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
         private readonly IAccountInfoService accountInfoService = accountInfoService;
         private readonly IPService ipService = ipService;
 
-        public ActionResult Index(IndexQuery message)
-        {
-            return View(new IndexViewModel(message));
-        }
+        public ActionResult Index(IndexQuery message) => View(new IndexViewModel(message));
 
         public async Task<ActionResult> GetAccount(GetAccountQuery message)
         {
@@ -68,6 +65,13 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
                 : [];
 
             return Json(new DownlineListViewModel(downlineList, totalDownlinesSummarys));
+        }
+
+        public async Task<ActionResult> GetLastTxn(GetLastTxnQuery message)
+        {
+            var lastTxn = await accountInfoService.GetLastTxn(message.Username, message.UplineId, message.IsInternal);
+
+            return Json(DateTime.MinValue == lastTxn ? string.Empty : lastTxn.ToString());
         }
 
         private static IBalanceInfoViewModel BuildBalanceInfoViewModel(

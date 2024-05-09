@@ -20,6 +20,8 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
         Task<bool> IsAllDayBalanceTransfer(int custId);
 
         Task<bool> CheckFirstLoginByQRCode(int custId);
+
+        Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal);
     }
 
     public class AccountInfoService(IDynamicRepository dynamicRepository) : IAccountInfoService
@@ -120,5 +122,13 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
 
         public async Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId)
             => await dynamicRepository.FetchAsync<TotalDownlinesSummary>(new SelectTotalDownlineSummaryCriteria(custId, roleId));
+
+        public async Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal)
+        {
+            var lastTxn = await dynamicRepository.GetAsync<DateTime?>(
+                new SelectLastTxnCriteria(username, uplineId, isInternal));
+
+            return lastTxn ?? DateTime.MinValue;
+        }
     }
 }
