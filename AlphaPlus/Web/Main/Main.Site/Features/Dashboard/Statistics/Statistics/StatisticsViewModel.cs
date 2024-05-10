@@ -29,26 +29,11 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.Statistics
             {
                 var reportSiteAppPath = UrlHelper.MapReportsPath("~/");
 
-                return $@"{reportSiteAppPath}outstanding/{GetOutstandingDefaultReportLevel(UserLevel)}";
+                return $@"{reportSiteAppPath}outstanding/index";
             }
         }
 
         public string SessionID => AlphaContext.Current.Session.Id;
-
-        internal string GetOutstandingDefaultReportLevel(UserLevel userLevel)
-        {
-            if (userLevel.IsSuperLevel())
-            {
-                return "masternew";
-            }
-
-            if (userLevel.IsMasterLevel())
-            {
-                return "agentnew";
-            }
-
-            return "membernew";
-        }
 
         private string GetOutStandingLabelByLevel(UserLevel userLevel)
         {
