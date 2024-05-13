@@ -15,6 +15,7 @@ COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/Alp
 COPY "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj" "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj"
 COPY "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
 COPY "Services/Tickets/BetLists/AlphaPlus.BetLists.csproj" "Services/Tickets/BetLists/AlphaPlus.BetLists.csproj"
+COPY "Services/Tickets/Results/AlphaPlus.Results.csproj" "Services/Tickets/Results/AlphaPlus.Results.csproj"
 
 COPY "Web/Tickets/Tickets.Site.csproj" "Web/Tickets/Tickets.Site.csproj"
 COPY "NuGet.config" "NuGet.config"
@@ -29,6 +30,7 @@ COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
 COPY "Modules/AlphaPlus.SmartPunter" "Modules/AlphaPlus.SmartPunter"
 COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
 COPY "Services/Tickets/BetLists" "Services/Tickets/BetLists"
+COPY "Services/Tickets/Results" "Services/Tickets/Results"
 
 COPY "Web/Tickets" "Web/Tickets"
 COPY "Shared" "Shared"
@@ -51,6 +53,7 @@ USER dotnetuser
 # final stage/image
 ENV COMPlus_EnableDiagnostics=0
 WORKDIR /app
+ENV ASPNETCORE_URLS=http://0.0.0.0:5000
 COPY --from=builder /app ./
 ENV TZ="America/La_Paz"
 

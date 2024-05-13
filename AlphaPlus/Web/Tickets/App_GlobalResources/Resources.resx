@@ -171,6 +171,9 @@
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Click to view Score Map Info</value>
   </data>
+  <data name="ConnectionFailedTo3rd" xml:space="preserve">
+    <value>Connect failed to {0}</value>
+  </data>
   <data name="DA" xml:space="preserve">
     <value>DA</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="DH" xml:space="preserve">
     <value>DH</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
   </data>
   <data name="DeadBall" xml:space="preserve">
     <value>Dead Ball</value>
@@ -246,6 +252,9 @@
   <data name="Forecast_Title_NotNow" xml:space="preserve">
     <value>Not now</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
   <data name="FullTime" xml:space="preserve">
     <value>Full Time</value>
   </data>
@@ -294,6 +303,9 @@
   <data name="HomeSlashAway" xml:space="preserve">
     <value>Home/Away</value>
   </data>
+  <data name="Keno" xml:space="preserve">
+    <value>RNG Keno</value>
+  </data>
   <data name="LastBall" xml:space="preserve">
     <value>Last Ball</value>
   </data>
@@ -311,6 +323,9 @@
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>Mix Parlay</value>
   </data>
   <data name="MoneyLine" xml:space="preserve">
     <value>Money Line</value>
@@ -332,6 +347,9 @@
   </data>
   <data name="NonLive" xml:space="preserve">
     <value>Non-Live</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>You are not authorized on this function.</value>
@@ -366,6 +384,9 @@
   <data name="Outright" xml:space="preserve">
     <value>Outright</value>
   </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>Outright Results</value>
+  </data>
   <data name="OverCommaEven" xml:space="preserve">
     <value>Over, Even</value>
   </data>
@@ -374,6 +395,9 @@
   </data>
   <data name="OverSlashUnder" xml:space="preserve">
     <value>Over/Under</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>We're updating this function for a better experience. Thus, this function is turned off temporarily ({0} - {1} (GMT+8)). Please try again later and sorry for the inconvenience.</value>
   </data>
   <data name="Platform_0" xml:space="preserve">
     <value>N/A</value>
@@ -402,11 +426,23 @@
   <data name="PleaseChooseAMatch" xml:space="preserve">
     <value>Please choose a match</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Please Select</value>
+  </data>
   <data name="PreGame" xml:space="preserve">
     <value>Pre Game</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="ResultLinkText" xml:space="preserve">
+    <value>Click here to open {0} results</value>
+  </data>
+  <data name="ResultPopupTitle" xml:space="preserve">
+    <value>{0} Result</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Results</value>
   </data>
   <data name="Score" xml:space="preserve">
     <value>Score</value>
@@ -438,8 +474,17 @@
   <data name="SelectedEvents" xml:space="preserve">
     <value>Selected Event(s)</value>
   </data>
+  <data name="ShowAllLeagues" xml:space="preserve">
+    <value>All Leagues</value>
+  </data>
+  <data name="ShowAllLeaguesExcelTitle" xml:space="preserve">
+    <value>Show All Leagues</value>
+  </data>
   <data name="Soccer" xml:space="preserve">
     <value>Soccer</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>Sport</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
@@ -450,11 +495,20 @@
   <data name="Subtotal_wl" xml:space="preserve">
     <value>Subtotal(winlost)</value>
   </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>System Parlay</value>
+  </data>
   <data name="Team" xml:space="preserve">
     <value>Team</value>
   </data>
+  <data name="ThereIsNoData" xml:space="preserve">
+    <value>There is no data</value>
+  </data>
   <data name="Time" xml:space="preserve">
     <value>Time</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
@@ -503,6 +557,9 @@
   </data>
   <data name="View1stOverUnderForecast" xml:space="preserve">
     <value>View 1st Over/Under Forecast</value>
+  </data>
+  <data name="ViewDataFromDate" xml:space="preserve">
+    <value>You can view the report data from {0}.</value>
   </data>
   <data name="ViewHandicapForecast" xml:space="preserve">
     <value>View Handicap Forecast</value>

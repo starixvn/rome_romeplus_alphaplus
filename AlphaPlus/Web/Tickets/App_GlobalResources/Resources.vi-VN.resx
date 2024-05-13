@@ -171,6 +171,9 @@
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Nhấn vào đây để xem Thông tin Score Map</value>
   </data>
+  <data name="ConnectionFailedTo3rd" xml:space="preserve">
+    <value>Connect failed to {0}</value>
+  </data>
   <data name="DA" xml:space="preserve">
     <value>DA</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="DH" xml:space="preserve">
     <value>DH</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Ngày</value>
   </data>
   <data name="DeadBall" xml:space="preserve">
     <value>Chưa bắt đầu</value>
@@ -246,6 +252,9 @@
   <data name="Forecast_Title_NotNow" xml:space="preserve">
     <value>Không phải bây giờ</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>Từ</value>
+  </data>
   <data name="FullTime" xml:space="preserve">
     <value>Toàn trận</value>
   </data>
@@ -294,6 +303,9 @@
   <data name="HomeSlashAway" xml:space="preserve">
     <value>Đội Nhà/Đội Khách</value>
   </data>
+  <data name="Keno" xml:space="preserve">
+    <value>RNG Keno</value>
+  </data>
   <data name="LastBall" xml:space="preserve">
     <value>Banh Cuối</value>
   </data>
@@ -311,6 +323,9 @@
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Trực tiếp</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>Cá cược tổng hợp</value>
   </data>
   <data name="MoneyLine" xml:space="preserve">
     <value/>
@@ -332,6 +347,9 @@
   </data>
   <data name="NonLive" xml:space="preserve">
     <value>Không Trực Tiếp</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Thông dụng</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>Bạn không được cho phép sử dụng chức năng này.</value>
@@ -366,6 +384,9 @@
   <data name="Outright" xml:space="preserve">
     <value>Cược Thắng</value>
   </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>Kết quả của "Cược thắng"</value>
+  </data>
   <data name="OverCommaEven" xml:space="preserve">
     <value>Tài, Chẵn</value>
   </data>
@@ -374,6 +395,9 @@
   </data>
   <data name="OverSlashUnder" xml:space="preserve">
     <value>Tài/Xỉu </value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>Chúng tôi đang nâng cấp chức năng này để có trải nghiệm tốt hơn. Do đó, chức năng này tạm gián đoạn ({0} - {1} (GMT+8)). Xin lỗi vì sự bất tiện này, vui lòng thử lại sau.</value>
   </data>
   <data name="Platform_0" xml:space="preserve">
     <value/>
@@ -402,11 +426,23 @@
   <data name="PleaseChooseAMatch" xml:space="preserve">
     <value>Vui lòng chọn một trận đấu</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Vui lòng chọn</value>
+  </data>
   <data name="PreGame" xml:space="preserve">
     <value>Chưa bắt đầu</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Làm mới</value>
+  </data>
+  <data name="ResultLinkText" xml:space="preserve">
+    <value>Nhấn vào đây để xem kết quả của {0}</value>
+  </data>
+  <data name="ResultPopupTitle" xml:space="preserve">
+    <value>Kết quả của {0}</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Kết quả</value>
   </data>
   <data name="Score" xml:space="preserve">
     <value>Tỷ số</value>
@@ -438,8 +474,17 @@
   <data name="SelectedEvents" xml:space="preserve">
     <value>Sự Kiện Đã Chọn</value>
   </data>
+  <data name="ShowAllLeagues" xml:space="preserve">
+    <value>Tất cả Giải</value>
+  </data>
+  <data name="ShowAllLeaguesExcelTitle" xml:space="preserve">
+    <value>Xem tất cả các Leagues</value>
+  </data>
   <data name="Soccer" xml:space="preserve">
     <value>Bóng Đá</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>Môn thể thao</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Xác nhận</value>
@@ -450,11 +495,20 @@
   <data name="Subtotal_wl" xml:space="preserve">
     <value>Tổng phụ (thắng thua)</value>
   </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>System Parlay</value>
+  </data>
   <data name="Team" xml:space="preserve">
     <value>Đội</value>
   </data>
+  <data name="ThereIsNoData" xml:space="preserve">
+    <value>Không có dữ liệu</value>
+  </data>
   <data name="Time" xml:space="preserve">
     <value>Thời gian</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>đến</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Tổng cộng</value>
@@ -503,6 +557,9 @@
   </data>
   <data name="View1stOverUnderForecast" xml:space="preserve">
     <value>Xem dự đoán kết quả hiệp 1 -  Tài Xỉu</value>
+  </data>
+  <data name="ViewDataFromDate" xml:space="preserve">
+    <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
   </data>
   <data name="ViewHandicapForecast" xml:space="preserve">
     <value>Xem dự đoán kết quả - Cược Chấp</value>

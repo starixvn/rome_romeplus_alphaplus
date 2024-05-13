@@ -171,6 +171,9 @@
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>點擊查看盈利預測圖資料</value>
   </data>
+  <data name="ConnectionFailedTo3rd" xml:space="preserve">
+    <value>Connect failed to {0}</value>
+  </data>
   <data name="DA" xml:space="preserve">
     <value>和客</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="DH" xml:space="preserve">
     <value>和主</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
   </data>
   <data name="DeadBall" xml:space="preserve">
     <value>非滾球</value>
@@ -246,6 +252,9 @@
   <data name="Forecast_Title_NotNow" xml:space="preserve">
     <value>不是現在</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>從</value>
+  </data>
   <data name="FullTime" xml:space="preserve">
     <value>全場</value>
   </data>
@@ -294,6 +303,9 @@
   <data name="HomeSlashAway" xml:space="preserve">
     <value>賽事</value>
   </data>
+  <data name="Keno" xml:space="preserve">
+    <value>快樂彩</value>
+  </data>
   <data name="LastBall" xml:space="preserve">
     <value>最後球</value>
   </data>
@@ -311,6 +323,9 @@
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>混合過關</value>
   </data>
   <data name="MoneyLine" xml:space="preserve">
     <value>勝負盤</value>
@@ -332,6 +347,9 @@
   </data>
   <data name="NonLive" xml:space="preserve">
     <value>非現場</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>一般</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>您沒有使用此功能的權限</value>
@@ -366,6 +384,9 @@
   <data name="Outright" xml:space="preserve">
     <value>優勝冠軍</value>
   </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>優勝冠軍賽果</value>
+  </data>
   <data name="OverCommaEven" xml:space="preserve">
     <value>大/雙</value>
   </data>
@@ -374,6 +395,9 @@
   </data>
   <data name="OverSlashUnder" xml:space="preserve">
     <value>大小盤</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>我們正在更新此功能以獲得更好的體驗。因此，此功能將暫時關閉（{0} - {1}）。請稍後再試，給您帶來不便,敬請諒解。</value>
   </data>
   <data name="Platform_0" xml:space="preserve">
     <value/>
@@ -402,11 +426,23 @@
   <data name="PleaseChooseAMatch" xml:space="preserve">
     <value>Please choose a match!</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>請選擇</value>
+  </data>
   <data name="PreGame" xml:space="preserve">
     <value>Pre Game</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>刷新</value>
+  </data>
+  <data name="ResultLinkText" xml:space="preserve">
+    <value>{0}的賽果請點擊此處</value>
+  </data>
+  <data name="ResultPopupTitle" xml:space="preserve">
+    <value>{0}結果</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>賽果</value>
   </data>
   <data name="Score" xml:space="preserve">
     <value>比分</value>
@@ -438,8 +474,17 @@
   <data name="SelectedEvents" xml:space="preserve">
     <value>選定赛事（S）</value>
   </data>
+  <data name="ShowAllLeagues" xml:space="preserve">
+    <value>所有聯賽</value>
+  </data>
+  <data name="ShowAllLeaguesExcelTitle" xml:space="preserve">
+    <value>顯示所有聯賽</value>
+  </data>
   <data name="Soccer" xml:space="preserve">
     <value>足球</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>運動</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
@@ -450,11 +495,20 @@
   <data name="Subtotal_wl" xml:space="preserve">
     <value>小計(輸贏)</value>
   </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>系統Parlay</value>
+  </data>
   <data name="Team" xml:space="preserve">
     <value>隊伍</value>
   </data>
+  <data name="ThereIsNoData" xml:space="preserve">
+    <value>沒有數據</value>
+  </data>
   <data name="Time" xml:space="preserve">
     <value>時間</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>到</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>總和</value>
@@ -503,6 +557,9 @@
   </data>
   <data name="View1stOverUnderForecast" xml:space="preserve">
     <value>瀏覽上半場大小盤預測圖</value>
+  </data>
+  <data name="ViewDataFromDate" xml:space="preserve">
+    <value>您可查看報表數據從 {0}.</value>
   </data>
   <data name="ViewHandicapForecast" xml:space="preserve">
     <value>瀏覽亞洲盤預測圖</value>

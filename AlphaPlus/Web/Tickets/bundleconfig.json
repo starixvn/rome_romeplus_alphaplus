@@ -84,5 +84,55 @@
     "inputFiles": [
       "assets/scripts/betlists/common/icon-note.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/resultcore.css",
+    "inputFiles": [
+      "assets/styles/results/fanex.result/fanex.result.css",
+      "assets/styles/results/result.css",
+      "assets/styles/results/fanex.result/Allbet/css/table_w.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/normal-result.js",
+    "inputFiles": [
+      "assets/scripts/results/normal-result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/outright-result.js",
+    "inputFiles": [
+      "assets/scripts/results/outright-result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/keno-result.js",
+    "inputFiles": [
+      "assets/scripts/results/keno-result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/lottery-result.js",
+    "inputFiles": [
+      "assets/scripts/results/lottery-result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/virtualgames-result.js",
+    "inputFiles": [
+      "assets/scripts/results/virtualgames-result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/sportslottery-result.js",
+    "inputFiles": [
+      "assets/scripts/results/sportslottery-result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/results/thirdparty-result.css",
+    "inputFiles": [
+      "assets/styles/results/thirdparty-result.css"
+    ]
   }
 ]

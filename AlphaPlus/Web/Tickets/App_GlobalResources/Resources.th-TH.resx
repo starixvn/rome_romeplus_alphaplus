@@ -171,6 +171,9 @@
   <data name="ClickToViewScoreMapInfo" xml:space="preserve">
     <value>Click to view Score Map Info</value>
   </data>
+  <data name="ConnectionFailedTo3rd" xml:space="preserve">
+    <value>Connect failed to {0}</value>
+  </data>
   <data name="DA" xml:space="preserve">
     <value>ครึ่งแรกเสมอ ครึ่งหลังทีมเยือนนำ</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="DH" xml:space="preserve">
     <value>ครึ่งแรกเสมอ ครึ่งหลังเจ้าบ้านนำ</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>วันที่</value>
   </data>
   <data name="DeadBall" xml:space="preserve">
     <value>เกมส์ไม่สด</value>
@@ -246,6 +252,9 @@
   <data name="Forecast_Title_NotNow" xml:space="preserve">
     <value>ไม่ใช่ตอนนี้</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>จาก</value>
+  </data>
   <data name="FullTime" xml:space="preserve">
     <value>เต็มเวลา</value>
   </data>
@@ -294,6 +303,9 @@
   <data name="HomeSlashAway" xml:space="preserve">
     <value>เจ้าบ้าน/ ทีมเยือน</value>
   </data>
+  <data name="Keno" xml:space="preserve">
+    <value>คีโน</value>
+  </data>
   <data name="LastBall" xml:space="preserve">
     <value>บอลสุดท้าย</value>
   </data>
@@ -311,6 +323,9 @@
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>บอลชุดผสม</value>
   </data>
   <data name="MoneyLine" xml:space="preserve">
     <value>การทายผู้เล่นหรือทีมที่จะชนะ</value>
@@ -332,6 +347,9 @@
   </data>
   <data name="NonLive" xml:space="preserve">
     <value>ไม่มีเกมสด</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>ธรรมดา</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
@@ -366,6 +384,9 @@
   <data name="Outright" xml:space="preserve">
     <value>ทายผลผู้ชนะ</value>
   </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>ทายผลผู้ชนะผล</value>
+  </data>
   <data name="OverCommaEven" xml:space="preserve">
     <value>สูง คู่</value>
   </data>
@@ -374,6 +395,9 @@
   </data>
   <data name="OverSlashUnder" xml:space="preserve">
     <value>สูง/ต่ำ</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>เรากำลังอัปเดตฟังก์ชันนี้เพื่อประสบการณ์ที่ดีขึ้น ดังนั้น ฟังก์ชันนี้จึงถูกปิดชั่วคราว ({0} - {1} (GMT+8)) โปรดลองอีกครั้งในภายหลังและขออภัยในความไม่สะดวก</value>
   </data>
   <data name="Platform_0" xml:space="preserve">
     <value/>
@@ -402,11 +426,23 @@
   <data name="PleaseChooseAMatch" xml:space="preserve">
     <value>Please choose a match</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>กรุณาเลือก</value>
+  </data>
   <data name="PreGame" xml:space="preserve">
     <value>Pre Game</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>รีเฟรช</value>
+  </data>
+  <data name="ResultLinkText" xml:space="preserve">
+    <value>คลิกที่นี่เพื่อเปิดผลลัพธ์{0}</value>
+  </data>
+  <data name="ResultPopupTitle" xml:space="preserve">
+    <value>ผลการแข่งขัน{0}</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>ผลการแข่งขัน</value>
   </data>
   <data name="Score" xml:space="preserve">
     <value>ผล</value>
@@ -438,8 +474,17 @@
   <data name="SelectedEvents" xml:space="preserve">
     <value>เลื่อกการแข่งขันต่างๆ</value>
   </data>
+  <data name="ShowAllLeagues" xml:space="preserve">
+    <value>ลีก ทั้งหมด</value>
+  </data>
+  <data name="ShowAllLeaguesExcelTitle" xml:space="preserve">
+    <value>แสดง ลีก ทั้งหมด</value>
+  </data>
   <data name="Soccer" xml:space="preserve">
     <value>ฟุตบอล</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>กีฬา</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>ตกลง</value>
@@ -450,11 +495,20 @@
   <data name="Subtotal_wl" xml:space="preserve">
     <value>ผลรวมย่อย( ชนะ แพ้ )</value>
   </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>ระบบของ Parlay</value>
+  </data>
   <data name="Team" xml:space="preserve">
     <value>ทีม</value>
   </data>
+  <data name="ThereIsNoData" xml:space="preserve">
+    <value>มี ข้อมูลไม่</value>
+  </data>
   <data name="Time" xml:space="preserve">
     <value>เวลา</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>ถึง</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>ยอดรวม</value>
@@ -503,6 +557,9 @@
   </data>
   <data name="View1stOverUnderForecast" xml:space="preserve">
     <value>การทำนายผลล่วงหน้า ครึ่งแรก มากกว่า/น้อยกว่า</value>
+  </data>
+  <data name="ViewDataFromDate" xml:space="preserve">
+    <value>ท่านสามารถดูรายงานข้อมูลได้จาก {0}.</value>
   </data>
   <data name="ViewHandicapForecast" xml:space="preserve">
     <value>การทำนายผลล่วงหน้าของ แฮนดิแคป</value>

@@ -1781,5 +1781,214 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
                 return ResourceManager.GetString("agentptcomm", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Connect failed to {0}.
+        /// </summary>
+        internal static string ConnectionFailedTo3rd
+        {
+            get
+            {
+                return ResourceManager.GetString("ConnectionFailedTo3rd", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string Date
+        {
+            get
+            {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        internal static string From
+        {
+            get
+            {
+                return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string To
+        {
+            get
+            {
+                return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to RNG Keno.
+        /// </summary>
+        internal static string Keno
+        {
+            get
+            {
+                return ResourceManager.GetString("Keno", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mix Parlay.
+        /// </summary>
+        internal static string MixParlay
+        {
+            get
+            {
+                return ResourceManager.GetString("MixParlay", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        internal static string Normal
+        {
+            get
+            {
+                return ResourceManager.GetString("Normal", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Outright Results.
+        /// </summary>
+        internal static string OutrightResults
+        {
+            get
+            {
+                return ResourceManager.GetString("OutrightResults", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to We're updating this function for a better experience. Thus, this function is turned off temporarily ({0} - {1} (GMT+8)). Please try again later and sorry for the inconvenience..
+        /// </summary>
+        internal static string PartialUMAnnouncement
+        {
+            get
+            {
+                return ResourceManager.GetString("PartialUMAnnouncement", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select.
+        /// </summary>
+        internal static string PleaseSelect
+        {
+            get
+            {
+                return ResourceManager.GetString("PleaseSelect", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to open {0} results.
+        /// </summary>
+        internal static string ResultLinkText
+        {
+            get
+            {
+                return ResourceManager.GetString("ResultLinkText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Result.
+        /// </summary>
+        internal static string ResultPopupTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("ResultPopupTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Results.
+        /// </summary>
+        internal static string Results
+        {
+            get
+            {
+                return ResourceManager.GetString("Results", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All Leagues.
+        /// </summary>
+        internal static string ShowAllLeagues
+        {
+            get
+            {
+                return ResourceManager.GetString("ShowAllLeagues", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Show All Leagues.
+        /// </summary>
+        internal static string ShowAllLeaguesExcelTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("ShowAllLeaguesExcelTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sport.
+        /// </summary>
+        internal static string Sport
+        {
+            get
+            {
+                return ResourceManager.GetString("Sport", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to System Parlay.
+        /// </summary>
+        internal static string SystemParlay
+        {
+            get
+            {
+                return ResourceManager.GetString("SystemParlay", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to There is no data.
+        /// </summary>
+        internal static string ThereIsNoData
+        {
+            get
+            {
+                return ResourceManager.GetString("ThereIsNoData", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You can view the report data from {0}.
+        /// </summary>
+        internal static string ViewDataFromDate
+        {
+            get
+            {
+                return ResourceManager.GetString("ViewDataFromDate", resourceCulture);
+            }
+        }
     }
 }

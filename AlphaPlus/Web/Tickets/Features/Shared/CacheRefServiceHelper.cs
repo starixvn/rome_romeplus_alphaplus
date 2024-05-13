@@ -2,7 +2,7 @@ using Fanex.RemotingRef;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared;
 
-public class CacheRefServiceHelper
+public static class CacheRefServiceHelper
 {
     private static IRemotingRefService remotingRefService;
 
@@ -11,6 +11,12 @@ public class CacheRefServiceHelper
 
     public static string GetLeagueName(int leagueId)
         => Instance.GetLeagueName(leagueId.ToString(), LanguageCode, string.Empty);
+
+    public static string GetLeagueName(int leagueId, int leagueGroupId)
+        => remotingRefService.GetLeagueName(leagueId.ToString(), leagueGroupId.ToString(), LanguageCode, string.Empty);
+
+    public static string GetLeague3rdName(int league3rdId)
+        => Instance.GetLeagueName3rd(league3rdId.ToString(), LanguageCode);
 
     public static string GetProductName(int productId)
         => Instance.GetResourceDataByRefIdAndResourceId(

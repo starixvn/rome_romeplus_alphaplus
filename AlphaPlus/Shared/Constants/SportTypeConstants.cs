@@ -35,7 +35,7 @@ public static class SportTypeConstants
     public const int NumberGame = 161;
     public const int Happy5 = 164;
     public const int Bitcoin = 175;
-    //public const int VirtualSports = 180;
+    public const int VirtualSports = 180;
     public const int VirtualHorsesRacing = 181;
     public const int VirtualGreyhounds = 182;
     public const int VirtualSpeedway = 183;
@@ -51,5 +51,5 @@ public static class SportTypeConstants
     public const int SAGaming = 244;
     public const int GTCasino = 242;
 
-    //public static readonly List<int> SportListUsingLeague3rd = new List<int> { Bitcoin };
+    public static readonly HashSet<int> SportListUsingLeague3rd = new HashSet<int> { Bitcoin };
 }

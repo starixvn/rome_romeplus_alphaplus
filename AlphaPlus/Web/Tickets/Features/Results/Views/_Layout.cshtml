@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "Alpha - Results")</title>
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderWithRoleAndDarkMode("/bundles/site-results/")
+    <link rel="stylesheet" href="~/bundles/results/resultcore.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body>
+    <div id="page_main">
+        <div class="container-fluid">
+            <ul class="nav nav-tabs" role="tablist">
+                @await Component.InvokeAsync("Tab", new
+                    { tabName = ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant() })
+            </ul>
+            <div class="tab-content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/ajaxSetup")
+    @StaticResources.AssetScripts.Render("/bundles/site-results/default")
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

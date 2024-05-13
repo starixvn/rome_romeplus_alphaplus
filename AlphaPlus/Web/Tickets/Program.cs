@@ -10,35 +10,35 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Fanex.Data;
+using AlphaPlus.Results.Features.Shared;
 
 var assembly = typeof(Program).Assembly;
-
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
+    //.AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("partialum.json", optional: false, reloadOnChange: true)
+    //.AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .AddCommandLine(args);
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
-builder.Services
-    .AddMediatR(assembly)
-    .AddFanexLogging(configuration)
-    .AddRemotingRef(configuration)
-    .AddFanexData(configuration)
-    .AddRequestInfo()
-    .AddAlphaPlusCore(configuration)
-    .AddSharedSession(configuration)
-    .AddBetListsServices(configuration)
-    .AddApplicationServices(configuration)
-    .AddHealthChecks();
-builder.Services
-    //.AddHttpContextAccessor()
-    .AddAuthorization()
-    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddSharedCookie();
+
+// Add services to the container.
 builder.Services
     .Configure<JsonOptions>(options =>
     {
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     })
-    .AddControllersWithViews()
+    .AddControllersWithViews(/*options =>
+    {
+        //options.Filters.Add<CheckBelongingFilterAttribute>();
+        options.Filters.Add<AfterLoginFlowFilterAttribute>();
+        options.Filters.Add<ProtectedModeFilterAttribute>();
+        options.Filters.Add<SecurityCodeFilterAttribute>();
+    }*/)
     .AddRazorOptions(options =>
     {
         // The old locations are /Views/{1}/{0}.cshtml and /Views/Shared/{0}.cshtml
@@ -50,6 +50,22 @@ builder.Services
         options.ViewLocationFormats.Add("/Features/BetLists/Views/{1}/{0}.cshtml");
         options.ViewLocationFormats.Add("/Features/BetLists/Views/Shared/{0}.cshtml");
     });
+builder.Services
+    .AddMediatR(assembly)
+    .AddFanexLogging(configuration)
+    .AddRemotingRef(configuration)
+    .AddFanexData(configuration)
+    .AddRequestInfo()
+    .AddAlphaPlusCore(configuration)
+    .AddSharedSession(configuration)
+    .AddBetListsServices(configuration)
+    .AddResultsServices(configuration)
+    .AddResultsSiteServices()
+    .AddApplicationServices(configuration)
+    .AddAuthorization()
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddSharedCookie();
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -67,6 +83,10 @@ app.MapHealthChecks("/health");
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 app.MapDefaultControllerRoute();
+app.MapControllerRoute(
+    "results",
+    "results/{controller}/{action}",
+    new { controller = "normal", action = "index" });
 
 await Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
 await app.RunAsync();

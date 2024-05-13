@@ -184,10 +184,6 @@
   {
     "outputFileName": "bundles2/site-results/default.js",
     "inputFiles": [
-      "js/libs/jquery/jquery-1.11.3.js",
-      "js/libs/bootstrap/button.js",
-      "js/libs/bootstrap/dropdown.js",
-      "js/libs/bootstrap/modal.js",
       "js/libs/moment/moment.js",
       "js/components/datetimepicker/datepicker.js",
       "js/components/datetimepicker/bootstrap-datetimepicker.js",
