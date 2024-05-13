@@ -16,9 +16,9 @@
     <PackageReference Include="Fanex.BetList.Core" Version="3.0.1.9" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Modules\Alpha.IPInfo\Alpha.IPInfo.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SmartPunter\AlphaPlus.SmartPunter.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.IPInfo\AlphaPlus.IPInfo.csproj" />
   </ItemGroup>
 </Project>

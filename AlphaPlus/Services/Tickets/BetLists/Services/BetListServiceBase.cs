@@ -1,4 +1,4 @@
-using Alpha.IPInfo.Services;
+using AlphaPlus.IPInfo.Services;
 using AlphaPlus.BetLists.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Entities;

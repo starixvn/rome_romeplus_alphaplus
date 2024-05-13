@@ -1,5 +1,5 @@
-using Alpha.IPInfo.DataAccess;
-using Alpha.IPInfo.Models;
+using AlphaPlus.IPInfo.DataAccess;
+using AlphaPlus.IPInfo.Models;
 using AlphaPlus.BetLists.Criteria.IPInfo;
 using Fanex.Data.Repository;
 

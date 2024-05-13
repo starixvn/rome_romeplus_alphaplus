@@ -10,7 +10,7 @@ COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/Alpha
 COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
 COPY "Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj" "Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj"
 
-COPY "Modules/Alpha.IPInfo/Alpha.IPInfo.csproj" "Modules/Alpha.IPInfo/Alpha.IPInfo.csproj"
+COPY "Modules/AlphaPlus.IPInfo/AlphaPlus.IPInfo.csproj" "Modules/AlphaPlus.IPInfo/AlphaPlus.IPInfo.csproj"
 COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
 COPY "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj" "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj"
 COPY "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
@@ -25,7 +25,7 @@ COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
 COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
 COPY "Services/Tickets/BetsForecast/Domain" "Services/Tickets/BetsForecast/Domain"
 
-COPY "Modules/Alpha.IPInfo" "Modules/Alpha.IPInfo"
+COPY "Modules/AlphaPlus.IPInfo" "Modules/AlphaPlus.IPInfo"
 COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
 COPY "Modules/AlphaPlus.SmartPunter" "Modules/AlphaPlus.SmartPunter"
 COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"

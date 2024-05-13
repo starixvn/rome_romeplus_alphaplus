@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{28E9123D-0441-45A9-B4B0-FC6D470532F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alpha.IPInfo", "Modules\Alpha.IPInfo\Alpha.IPInfo.csproj", "{3A46CA05-BEF1-40ED-ABE7-A3EC5145A464}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaPlus.Core", "Modules\AlphaPlus.Core\AlphaPlus.Core.csproj", "{FE88BCE4-6753-4486-A132-616D0BA1C75F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlphaPlus.Logging", "Modules\AlphaPlus.Logging\AlphaPlus.Logging.csproj", "{F177C783-B33D-46FC-BDBC-B8A8385AE638}"
@@ -93,16 +91,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transfer.API", "Services\Se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Settings.Site", "Web\Settings\Settings.Site\Settings.Site.csproj", "{3BA91AF9-F650-4922-91A8-8785C31F144A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.IPInfo", "Modules\AlphaPlus.IPInfo\AlphaPlus.IPInfo.csproj", "{C384257E-1A88-4202-8FA0-853F0A521FD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3A46CA05-BEF1-40ED-ABE7-A3EC5145A464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A46CA05-BEF1-40ED-ABE7-A3EC5145A464}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A46CA05-BEF1-40ED-ABE7-A3EC5145A464}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A46CA05-BEF1-40ED-ABE7-A3EC5145A464}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE88BCE4-6753-4486-A132-616D0BA1C75F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE88BCE4-6753-4486-A132-616D0BA1C75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE88BCE4-6753-4486-A132-616D0BA1C75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -211,12 +207,15 @@ Global
 		{3BA91AF9-F650-4922-91A8-8785C31F144A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BA91AF9-F650-4922-91A8-8785C31F144A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BA91AF9-F650-4922-91A8-8785C31F144A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C384257E-1A88-4202-8FA0-853F0A521FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C384257E-1A88-4202-8FA0-853F0A521FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C384257E-1A88-4202-8FA0-853F0A521FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C384257E-1A88-4202-8FA0-853F0A521FD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3A46CA05-BEF1-40ED-ABE7-A3EC5145A464} = {28E9123D-0441-45A9-B4B0-FC6D470532F0}
 		{FE88BCE4-6753-4486-A132-616D0BA1C75F} = {28E9123D-0441-45A9-B4B0-FC6D470532F0}
 		{F177C783-B33D-46FC-BDBC-B8A8385AE638} = {28E9123D-0441-45A9-B4B0-FC6D470532F0}
 		{F5F1ADDB-8B9A-427A-A25E-0076C53DA38D} = {28E9123D-0441-45A9-B4B0-FC6D470532F0}
@@ -258,6 +257,7 @@ Global
 		{698930E7-4FA1-4624-9BF5-8AF03ECD8442} = {C5D87BE6-D30A-4152-AAAF-82FC4D69BD50}
 		{B2DE1825-4B48-4EA0-9116-515EE9FD87CB} = {698930E7-4FA1-4624-9BF5-8AF03ECD8442}
 		{3BA91AF9-F650-4922-91A8-8785C31F144A} = {12219867-70DD-46ED-AA0E-E6C0D0CBDD16}
+		{C384257E-1A88-4202-8FA0-853F0A521FD1} = {28E9123D-0441-45A9-B4B0-FC6D470532F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2D5597F8-DF22-4C01-9363-6E6DC77BE5BD}

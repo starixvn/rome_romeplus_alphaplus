@@ -1,4 +1,4 @@
-using Alpha.IPInfo.Services;
+using AlphaPlus.IPInfo.Services;
 using AlphaPlus.BetLists.Criteria.RunningBetListByBetTypeAndMatch;
 using AlphaPlus.BetLists.Models;
 using AlphaPlus.BetLists.Params;

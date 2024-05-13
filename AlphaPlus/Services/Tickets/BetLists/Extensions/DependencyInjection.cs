@@ -1,6 +1,6 @@
-using Alpha.IPInfo.DataAccess;
-using Alpha.IPInfo.Models;
-using Alpha.IPInfo.Services;
+using AlphaPlus.IPInfo.DataAccess;
+using AlphaPlus.IPInfo.Models;
+using AlphaPlus.IPInfo.Services;
 using AlphaPlus.BetLists.DataAccesses;
 using AlphaPlus.BetLists.Services;
 using AlphaPlus.Core.Helpers;
