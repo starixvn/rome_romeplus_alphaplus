@@ -1,6 +1,7 @@
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.AccountInfo.Criteria;
 using AlphaPlus.Settings.Site.Features.AccountInfo.Models;
+using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Site.Features.AccountInfo
@@ -22,11 +23,14 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
         Task<bool> CheckFirstLoginByQRCode(int custId);
 
         Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal);
+
+        Task<IEnumerable<OnlineUser>> GetOnlineList(int custid, bool adminCanViewVNIP);
     }
 
-    public class AccountInfoService(IDynamicRepository dynamicRepository) : IAccountInfoService
+    public class AccountInfoService(IDynamicRepository dynamicRepository, IPService ipService) : IAccountInfoService
     {
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
+        private readonly IPService ipService = ipService;
 
         public Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, string agIP)
         {
@@ -129,6 +133,22 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
                 new SelectLastTxnCriteria(username, uplineId, isInternal));
 
             return lastTxn ?? DateTime.MinValue;
+        }
+
+        public async Task<IEnumerable<OnlineUser>> GetOnlineList(int custid, bool adminCanViewVNIP)
+        {
+            var onlineUsers = await dynamicRepository.FetchAsync<OnlineUser>(
+                new SelectOnlineListCriteria(custid));
+
+            if (!adminCanViewVNIP)
+            {
+                foreach (var item in onlineUsers)
+                {
+                    item.IP = ipService.IsVNIP(item.IP) ? string.Empty : item.IP;
+                }
+            }
+
+            return onlineUsers;
         }
     }
 }

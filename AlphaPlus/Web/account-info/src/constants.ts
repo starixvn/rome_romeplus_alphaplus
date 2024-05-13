@@ -17,6 +17,7 @@ declare global {
             urls: { [key: string]: string };
         };
         $: JQueryStatic;
+        ageWnd: any;
     }
 }
 
@@ -26,7 +27,6 @@ export enum BlockIds {
     DownlineList = 'downlineList',
     Status = 'status',
     Setting = 'setting',
-    LoginInfo = 'loginInfo'
+    LoginInfo = 'loginInfo',
+    OnlineList = 'onlineList'
 }
-
-

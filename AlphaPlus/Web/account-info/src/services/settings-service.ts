@@ -3,6 +3,7 @@ import axios from 'axios';
 import Customer from '../models/customer';
 import CustomerStatus from '../models/customer-status';
 import DownlineListResponse from '../models/DownlineListReponse';
+import OnlineUser from '../models/online-user';
 import UsernameSuggestion from '../models/username-suggestion';
 
 const axiosInstance = axios.create({
@@ -54,6 +55,13 @@ const SettingsService = {
         return axiosInstance
             .get<string>(`AccountInfo/GetLastTxn`, {
                 params: { username }
+            })
+            .then((response) => response.data);
+    },
+    GetOnlineList: async (custId: number) => {
+        return axiosInstance
+            .get<OnlineUser[]>('AccountInfo/GetOnlineList', {
+                params: { SearchAccountId: custId }
             })
             .then((response) => response.data);
     }

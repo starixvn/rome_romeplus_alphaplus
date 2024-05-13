@@ -74,6 +74,9 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
             return Json(DateTime.MinValue == lastTxn ? string.Empty : lastTxn.ToString());
         }
 
+        public async Task<ActionResult> GetOnlineList(OnlineListQuery message)
+        => Json(await accountInfoService.GetOnlineList(message.SearchAccountId, message.IsAdminCanViewVNIP));
+
         private static IBalanceInfoViewModel BuildBalanceInfoViewModel(
             GetAccountQuery message,
             CustomerInfoModel customerInfo,

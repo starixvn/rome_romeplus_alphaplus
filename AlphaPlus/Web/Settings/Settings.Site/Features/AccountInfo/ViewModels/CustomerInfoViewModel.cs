@@ -130,7 +130,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 
         // public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
 
-        // public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx";
+        public string ViewLoginIPLink => MicroSites.MainUrl("~/IPInfo");
 
         // public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel() && canCreateAccount && AppSettings.GetConfigValue("QRCode:Hide") != "1";
 

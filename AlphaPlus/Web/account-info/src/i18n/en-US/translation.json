@@ -39,5 +39,10 @@
     "CreatedDate": "Created Date",
     "LastLogin": "Last Login",
     "LastTxn": "Last Txn",
-    "LoginIP": "Login IP"
+    "LoginIP": "Login IP",
+    "LoginInfo": "Login Info",
+    "OnlineList": "Online List",
+    "ThisUserIsNotOnline": "This user is not online",
+    "IP": "IP",
+    "LoginTime": "Login Time"
 }

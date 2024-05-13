@@ -34,4 +34,5 @@ export default interface Customer {
     Buttons: Button[];
     BalanceInfo: BalanceInfo;
     LoginInfo: LoginInfoModel;
+    ViewLoginIPLink: string;
 }

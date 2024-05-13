@@ -19,11 +19,12 @@ function LoginInfoRow({ title, value }: { title: string; value: string }) {
 }
 
 function LoginInfoWithLinkRow({ title, value }: { title: string; value: string }) {
+    const { handleOpenIPInfo } = useGlobalContext();
     return (
         <div className={styles['group']}>
             <div className={classNames('row-info', 'bold', styles['row-info'])}>{title}:</div>
             <div className={classNames('row-info', styles['row-info'])}>
-                <span className="link" data-ip={value}>
+                <span className="link" onClick={() => handleOpenIPInfo?.(value)}>
                     {value}
                 </span>
             </div>

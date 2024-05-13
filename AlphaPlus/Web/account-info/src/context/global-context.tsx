@@ -12,6 +12,7 @@ export type GlobalContextType = {
     getCustomerInfo: (username: string, requestId?: string) => void;
     expandedBlockId: BlockIds;
     handleBlockClick: (blockId: BlockIds) => void;
+    handleOpenIPInfo: (ip: string) => void;
 };
 
 export const GlobalContext = createContext<Partial<GlobalContextType>>({});

@@ -6,6 +6,7 @@ import ContactInfo from './components/ContactInfo';
 import CustomerInfo from './components/CustomerInfo';
 import DownlineList from './components/DownlineList';
 import LoginInfo from './components/LoginInfo';
+import OnlineList from './components/OnlineList';
 import SearchBox from './components/SearchBox';
 import StatusAndSetting from './components/StatusAndSetting';
 import { BlockIds, UserLevel } from './constants';
@@ -45,6 +46,11 @@ function App() {
         }
     };
 
+    const handleOpenIPInfo = (ip: string) => {
+        const IPInfoPath = `${customer?.ViewLoginIPLink}?ip=${ip}`;
+        window.top?.ageWnd.open(IPInfoPath);
+    };
+
     return (
         <div className={styles.container}>
             <GlobalContext.Provider
@@ -55,7 +61,8 @@ function App() {
                     getCustomerInfo,
                     customer,
                     expandedBlockId,
-                    handleBlockClick
+                    handleBlockClick,
+                    handleOpenIPInfo
                 }}
             >
                 <SearchBox />
@@ -67,6 +74,7 @@ function App() {
                         {actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member && <DownlineList />}
                         <StatusAndSetting />
                         <LoginInfo />
+                        <OnlineList />
                     </div>
                 )}
             </GlobalContext.Provider>
