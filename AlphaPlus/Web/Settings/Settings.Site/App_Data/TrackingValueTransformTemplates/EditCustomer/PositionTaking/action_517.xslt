@@ -45,7 +45,7 @@
             <xsl:value-of select="xslLogFormat:GetLogResource('Updallmembers')" />
           </td>
           <td>
-            <xsl:value-of select="xslLogFormat:GetLogResource('newspt')" />
+            <xsl:value-of select="xslLogFormat:GetLogResource('newmpt')" />
           </td>
         </tr>
         <xsl:for-each select="pt[count(.|key('pt-by-sporttype',@sporttype)[1])=1]">

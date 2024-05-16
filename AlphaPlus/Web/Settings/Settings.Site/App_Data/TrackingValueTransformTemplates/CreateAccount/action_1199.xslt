@@ -33,10 +33,14 @@
           <xsl:value-of select="@disableoutright" />
         </td>
         <td class="colW1">
-          <xsl:value-of select="xslLogFormat:GetLogResource('DisabledESports')" />
+          <xsl:if test="@disable43_1">
+            <xsl:value-of select="xslLogFormat:GetLogResource('DisabledESports')" />
+          </xsl:if>
         </td>
         <td class="colW2">
-          <xsl:value-of select="@disable43_1" />
+          <xsl:if test="@disable43_1">
+            <xsl:value-of select="@disable43_1" />
+          </xsl:if>
         </td>
         <td class="colW1">
           <xsl:if test="@disablenumber">
@@ -50,7 +54,7 @@
         </td>
       </tr>
       <xsl:if test="xslLogFormat:IsVisibleKeno(@hidekeno) = 'True'">
-        <tr >
+        <tr>
           <td class="colW1">
             <xsl:value-of select="xslLogFormat:GetDisabledKenoBetTypeName('1501')" />
           </td>
@@ -70,7 +74,7 @@
             <xsl:value-of select="@disable202_1516" />
           </td>
         </tr>
-        <tr >
+        <tr>
           <td class="colW1">
             <xsl:value-of select="xslLogFormat:GetDisabledKenoBetTypeName('1517')" />
           </td>
@@ -90,7 +94,7 @@
             <xsl:value-of select="@disable202_1520" />
           </td>
         </tr>
-        <tr >
+        <tr>
           <td class="colW1">
             <xsl:value-of select="xslLogFormat:GetDisabledKenoBetTypeName('1521')" />
           </td>
@@ -110,7 +114,7 @@
             <xsl:value-of select="@disable202_1524" />
           </td>
         </tr>
-        <tr >
+        <tr>
           <td class="colW1">
             <xsl:value-of select="xslLogFormat:GetDisabledKenoBetTypeName('1525')" />
           </td>
@@ -130,7 +134,7 @@
             <xsl:value-of select="@disable202_1527" />
           </td>
         </tr>
-        <tr >
+        <tr>
           <td class="colW1">
             <xsl:value-of select="xslLogFormat:GetDisabledKenoBetTypeName('1528')" />
           </td>
@@ -151,7 +155,7 @@
           </td>
         </tr>
 
-        <tr >
+        <tr>
           <td class="colW1">
             <xsl:value-of select="xslLogFormat:GetDisabledKenoBetTypeName('1531')" />
           </td>
@@ -159,30 +163,27 @@
             <xsl:value-of select="@disable202_1531" />
           </td>
           <td class="colW1">
-
           </td>
           <td class="colW2">
-
           </td>
           <td class="colW1">
           </td>
           <td class="colW2">
           </td>
         </tr>
-
       </xsl:if>
 
       <xsl:choose>
         <xsl:when test="@disablenumber">
           <!-- Old log before migrate Number Game & RNG Keno to DCS-->
           <xsl:for-each select="@*[name() != 'disable202_1501']">
-            <xsl:value-of select="xslLogFormat:RenderCustStatus(name(), .)"/>
+            <xsl:value-of select="xslLogFormat:RenderCustStatus(name(), .)" />
           </xsl:for-each>
         </xsl:when>
         <xsl:otherwise>
           <!-- New log -->
           <xsl:for-each select="@*">
-            <xsl:value-of select="xslLogFormat:RenderCustStatus(name(), .)"/>
+            <xsl:value-of select="xslLogFormat:RenderCustStatus(name(), .)" />
           </xsl:for-each>
         </xsl:otherwise>
       </xsl:choose>

@@ -15,6 +15,7 @@
         private readonly IDictionary<string, string> FileNameMapping = new Dictionary<string, string>
         {
             ["167819"] = "TelegramChatbot",
+            ["167820"] = "TelegramChatbot",
             ["170467"] = "MyWatchlist"
         };
 

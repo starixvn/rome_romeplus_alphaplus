@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Settings.ViewLogs.API.AppResources {
+namespace Alpha.ViewLogs.AppResources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.AppResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Settings.ViewLogs.API.AppResources.TrackingValueResources", typeof(TrackingValueResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alpha.ViewLogs.AppResources.TrackingValueResources", typeof(TrackingValueResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -2248,7 +2248,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Commision.
+        ///   Looks up a localized string similar to Commission.
         /// </summary>
         public static string Commision {
             get {

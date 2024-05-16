@@ -38,41 +38,37 @@
             <td class="colW2">
               <xsl:value-of select="@fax" />
             </td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('address')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@address" />
-            </td>
-            <td class="colW1"></td><td class="colW2"></td>
-          </tr>       
-          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('credit')" /></td>
             <td class="colW2">
               <xsl:value-of select="@credit" />
             </td>
-
+            <td class="colW1"></td><td class="colW2"></td>
+          </tr>       
+          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransferOption')" /></td>
-            <td class="colW2" >
+            <td class="colW2">
               <xsl:value-of select="xslLogFormat:TransferConditionFromCode(@transferoption)" />
             </td>
+
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Language')" /></td>
-            <td class="colW2">
+            <td class="colW2" >
               <xsl:value-of select="@language" />
             </td>
-          </tr>
-          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
             <td class="colW2">
               <xsl:value-of select="@subaccname" />
             </td>
-
-
+          </tr>
+          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
             <td class="colW2">
               <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
             </td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('site')" /></td>
+            <td class="colW1"></td>
             <td class="colW2">
-              <xsl:value-of select="@site" />
+            </td>
+            <td class="colW1"></td>
+            <td class="colW2">
             </td>
           </tr>
           <xsl:choose>

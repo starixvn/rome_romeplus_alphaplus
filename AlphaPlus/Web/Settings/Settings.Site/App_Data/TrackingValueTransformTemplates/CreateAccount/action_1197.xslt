@@ -193,22 +193,24 @@
         </xsl:when>
         <xsl:otherwise>
           <!-- New log -->
-          <tr>
-            <td class="colW1">
-              <xsl:value-of select="xslLogFormat:GetLogResource('DisabledESports')" />
-            </td>
-            <td class="colW2">
-              <xsl:value-of select="@disable43_1" />
-            </td>
-            <td class="colW1">
-            </td>
-            <td class="colW2">
-            </td>
-            <td class="colW1">
-            </td>
-            <td class="colW2">
-            </td>
-          </tr>
+          <xsl:if test="@disable43_1">
+            <tr>
+              <td class="colW1">
+                <xsl:value-of select="xslLogFormat:GetLogResource('DisabledESports')" />
+              </td>
+              <td class="colW2">
+                <xsl:value-of select="@disable43_1" />
+              </td>
+              <td class="colW1">
+              </td>
+              <td class="colW2">
+              </td>
+              <td class="colW1">
+              </td>
+              <td class="colW2">
+              </td>
+            </tr>
+          </xsl:if>
 
           <xsl:for-each select="@*">
             <xsl:value-of select="xslLogFormat:RenderCustStatus(name(), .)" />

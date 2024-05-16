@@ -30,63 +30,58 @@
             </tr>
             <tr>
               <td class="colW1">
-                <xsl:value-of select="xslLogFormat:GetLogResource('address')" />
+                <xsl:value-of select="xslLogFormat:GetLogResource('phone')" />
               </td>
               <td class="colW2">
-                <xsl:value-of select="@address" />
+                <xsl:value-of select="@phone" />
               </td>
               <td class="colW1">
-                 <xsl:value-of select="xslLogFormat:GetLogResource('phone')" />              
+                 <xsl:value-of select="xslLogFormat:GetLogResource('mphone')" />              
               </td>
               <td class="colW2">
-                 <xsl:value-of select="@phone" />              
+                 <xsl:value-of select="@mphone" />              
               </td>
-              <td class="colW1">
-                <xsl:value-of select="xslLogFormat:GetLogResource('mphone')" />              
-              </td>
-              <td class="colW2">
-                <xsl:value-of select="@mphone" />
-              </td>
-            </tr>
-            <tr>
               <td class="colW1">
                 <xsl:value-of select="xslLogFormat:GetLogResource('fax')" />              
               </td>
               <td class="colW2">
-                  <xsl:value-of select="@fax" />              
-              </td>
-              <td class="colW1">
-                <xsl:value-of select="xslLogFormat:GetLogResource('site')" />
-              </td>
-              <td class="colW2">
-                <xsl:value-of select="@site" />
-              </td>
-              <td class="colW1">
-                <xsl:value-of select="xslLogFormat:GetLogResource('currency')" />
-              </td>
-              <td class="colW2">
-                <xsl:value-of select="@currency" />
+                <xsl:value-of select="@fax" />
               </td>
             </tr>
             <tr>
+              <td class="colW1">
+                <xsl:value-of select="xslLogFormat:GetLogResource('currency')" />              
+              </td>
+              <td class="colW2">
+                  <xsl:value-of select="@currency" />              
+              </td>
               <td class="colW1">
                 <xsl:value-of select="xslLogFormat:GetLogResource('credit')" />
               </td>
               <td class="colW2">
                 <xsl:value-of select="@credit" />
               </td>
-
               <td class="colW1">
                 <xsl:value-of select="xslLogFormat:GetLogResource('IP')" />
               </td>
               <td class="colW2">
                 <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
               </td>
+            </tr>
+            <tr>
               <td class="colW1">
                 <xsl:value-of select="xslLogFormat:GetLogResource('Language')" />
               </td>
               <td class="colW2">
                 <xsl:value-of select="@language" />
+              </td>
+              <td class="colW1">
+              </td>
+              <td class="colW2">
+              </td>
+              <td class="colW1">
+              </td>
+              <td class="colW2">
               </td>
             </tr>
             <xsl:choose>
