@@ -190,9 +190,14 @@ class CustomerListPopup {
             $bootstrapModalDialog.css({ width: 'inherit' });
             const width = $bootstrapModalDialog.outerWidth();
             const height = $bootstrapModalDialog.outerHeight()
+            const bodyHeight = this.$(this.topWindow.parent.frames["main"]).height();
 
             let top = this.$(element).offset().top - this.$(document).scrollTop(),
                 left = this.$(element).offset().left + this.$(element).width();
+
+            if ((bodyHeight - height) < top) {
+                top = top - height;
+            }
 
             if (this.$(window).width() - left < width) {
                 left = left - width;

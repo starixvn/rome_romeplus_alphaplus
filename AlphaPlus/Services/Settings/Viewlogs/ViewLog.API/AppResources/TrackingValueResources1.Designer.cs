@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Alpha.ViewLogs.AppResources {
+namespace AlphaPlus.Settings.ViewLogs.API.AppResources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Alpha.ViewLogs.AppResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alpha.ViewLogs.AppResources.TrackingValueResources", typeof(TrackingValueResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Settings.ViewLogs.API.AppResources.TrackingValueResources", typeof(TrackingValueResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
