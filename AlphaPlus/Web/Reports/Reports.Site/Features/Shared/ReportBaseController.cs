@@ -2,9 +2,8 @@ using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using AlphaPlus.Core;
-using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,7 +37,7 @@ public abstract class ReportBaseController(IMediator mediator) : BaseController
             });
         }
 
-        return Json(new Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized));
+        return Json(new Reports.Features.Shared.Models.Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized));
     }
 
     protected async Task<IActionResult> ExcelView(IRequest<ExcelFileViewModel> message)

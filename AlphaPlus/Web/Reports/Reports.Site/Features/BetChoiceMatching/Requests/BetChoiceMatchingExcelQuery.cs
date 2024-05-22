@@ -1,5 +1,5 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.BetChoiceMatching;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.BetChoiceMatching;

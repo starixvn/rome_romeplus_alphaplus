@@ -106,27 +106,9 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/bundles/results/keno-result.js",
+    "outputFileName": "wwwroot/bundles/results/kenolotterytablegame-result.js",
     "inputFiles": [
-      "assets/scripts/results/keno-result.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/bundles/results/lottery-result.js",
-    "inputFiles": [
-      "assets/scripts/results/lottery-result.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/bundles/results/virtualgames-result.js",
-    "inputFiles": [
-      "assets/scripts/results/virtualgames-result.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/bundles/results/sportslottery-result.js",
-    "inputFiles": [
-      "assets/scripts/results/sportslottery-result.js"
+      "assets/scripts/results/kenolotterytablegame-result.js"
     ]
   },
   {

@@ -1,8 +1,8 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.BetChoiceMatching;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using BetListNPOI.SS.UserModel;
 using BetListNPOI.SS.Util;
 using EnumsNET;

@@ -1,7 +1,7 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Site.Features.Shared;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
 

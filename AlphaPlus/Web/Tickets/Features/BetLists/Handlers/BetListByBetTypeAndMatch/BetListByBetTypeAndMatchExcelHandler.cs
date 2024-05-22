@@ -1,10 +1,10 @@
 using AlphaPlus.BetLists.Models;
 using AlphaPlus.BetLists.Services;
+using AlphaPlus.Core.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.App_GlobalResources;
 using AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetListByBetType;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetListByBetTypeAndMatch;
-using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetTypeAndMatch;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;

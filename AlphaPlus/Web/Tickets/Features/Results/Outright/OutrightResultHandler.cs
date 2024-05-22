@@ -1,4 +1,5 @@
 using System.Globalization;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Results.Features.Outright;
 using AlphaPlus.Results.Features.Shared;
 using AlphaPlus.Tickets.Site.App_GlobalResources;
@@ -20,7 +21,7 @@ public class OutrightResultHandler(
     IOutrightService outrightService,
     IResultEngineAdapter resultEngineAdatper) :
         IRequestHandler<OutrightResultQuery, OutrightResultViewModel>,
-        IRequestHandler<ExcelOutrightResultQuery, ResultExcelViewModel>
+        IRequestHandler<ExcelOutrightResultQuery, ExcelFileViewModel>
 {
     private const string ExcelTemplateDir = "App_Data/Fanex.Result/";
 
@@ -111,7 +112,7 @@ public class OutrightResultHandler(
         return (sports, leagues);
     }
 
-    public async Task<ResultExcelViewModel> Handle(ExcelOutrightResultQuery message, CancellationToken cancellationToken)
+    public async Task<ExcelFileViewModel> Handle(ExcelOutrightResultQuery message, CancellationToken cancellationToken)
     {
         string leagueName = message.LeagueId == 0
             ? Resources.ShowAllLeaguesExcelTitle
@@ -145,6 +146,6 @@ public class OutrightResultHandler(
         };
         var excelResults = resultEngineAdatper.ExcelParser(outrights.ToList(), resultSetting);
 
-        return new ResultExcelViewModel(excelResults.ToArray(), "OutrightResults.xls");
+        return new ExcelFileViewModel("OutrightResults", excelResults.ToArray());
     }
 }

@@ -1,10 +1,10 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.MatchWinLossDetail;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;

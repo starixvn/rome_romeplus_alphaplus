@@ -1,4 +1,5 @@
 using AlphaPlus.Core;
+using AlphaPlus.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,10 +13,10 @@ public abstract class ResultBaseController(IMediator mediator) : BaseController
     protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
         => View(viewName, await mediator.Send(message));
 
-    protected async Task<IActionResult> ExcelView(IRequest<ResultExcelViewModel> message)
+    protected async Task<IActionResult> ExcelView(IRequest<ExcelFileViewModel> message)
     {
         var viewModel = await mediator.Send(message);
 
-        return File(viewModel.ExcelResults, "application/vnd.ms-excel", viewModel.ExcelName);
+        return File(viewModel.Content, viewModel.ContentType, viewModel.Name);
     }
 }

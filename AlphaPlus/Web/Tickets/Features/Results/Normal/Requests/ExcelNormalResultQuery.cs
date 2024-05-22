@@ -1,8 +1,9 @@
+using AlphaPlus.Core.Models;
 using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.Normal;
 
-public class ExcelNormalResultQuery : NormalResultQuery, IRequest<ResultExcelViewModel>
+public class ExcelNormalResultQuery : NormalResultQuery, IRequest<ExcelFileViewModel>
 {
     public string TemplatePath { get; set; }
 

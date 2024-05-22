@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared;
@@ -7,7 +8,6 @@ using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Reports.Site.Features.WinLossDetail;
 using MediatR;

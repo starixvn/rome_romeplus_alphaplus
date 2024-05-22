@@ -1,7 +1,7 @@
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Reports.Site.Features.EnteredResult;
 

@@ -1,6 +1,6 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Statement;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.Statement;

@@ -1,8 +1,8 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.CommissionByBetType;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using BetListNPOI.HSSF.UserModel;
 using BetListNPOI.SS.UserModel;
 using ONEbook.SpreadSheets;

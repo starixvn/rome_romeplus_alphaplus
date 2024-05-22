@@ -1,4 +1,5 @@
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Results.Features.Shared;
 using AlphaPlus.Tickets.Site.App_GlobalResources;
 using AlphaPlus.Tickets.Site.Features.Shared;
@@ -15,7 +16,7 @@ public class NormalResultHandler(
     IResultsService resultsService,
     IResultServiceFactory resultServiceFactory) :
         IRequestHandler<NormalResultQuery, NormalResultViewModel>,
-        IRequestHandler<ExcelNormalResultQuery, ResultExcelViewModel>,
+        IRequestHandler<ExcelNormalResultQuery, ExcelFileViewModel>,
         IRequestHandler<NormalResultDetailsQuery, NormalDetailViewModel>
 {
     private const string ExcelTemplateDir = "App_Data/Fanex.Result/";
@@ -65,7 +66,7 @@ public class NormalResultHandler(
             league.Id.ToString()));
     }
 
-    public async Task<ResultExcelViewModel> Handle(ExcelNormalResultQuery message, CancellationToken cancellationToken)
+    public async Task<ExcelFileViewModel> Handle(ExcelNormalResultQuery message, CancellationToken cancellationToken)
     {
         message.TemplatePath = Path.Combine(webHostEnvironment.ContentRootPath, ExcelTemplateDir);
 
@@ -77,7 +78,7 @@ public class NormalResultHandler(
 
         var excelResults = await CreateProductResultService(message).ExportExcel(message);
 
-        return new ResultExcelViewModel(excelResults.ToArray(), "Results.xls");
+        return new ExcelFileViewModel("Results", excelResults.ToArray());
     }
 
     private IProductResultService CreateProductResultService(NormalResultQuery message)

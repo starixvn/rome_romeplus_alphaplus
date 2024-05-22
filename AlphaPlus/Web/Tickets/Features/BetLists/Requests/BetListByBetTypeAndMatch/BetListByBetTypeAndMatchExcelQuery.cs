@@ -1,4 +1,4 @@
-using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
+using AlphaPlus.Core.Models;
 using Fanex.BetList.Core.Entities;
 using MediatR;
 

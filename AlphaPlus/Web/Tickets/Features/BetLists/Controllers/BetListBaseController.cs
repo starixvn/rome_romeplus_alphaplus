@@ -2,7 +2,6 @@ using System.Net;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Tickets.Site.App_GlobalResources;
-using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

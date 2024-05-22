@@ -1,6 +1,6 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.IPMatching;
 using AlphaPlus.Reports.Features.Shared.Models;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.IPMatching;

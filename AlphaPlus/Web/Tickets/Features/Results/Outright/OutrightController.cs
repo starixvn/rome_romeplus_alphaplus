@@ -9,6 +9,5 @@ public partial class ResultsController(IMediator mediator) : ResultBaseControlle
     public Task<IActionResult> Outright(OutrightResultQuery message)
         => View(message, string.Format(ViewPath, nameof(Outright), "Index"));
 
-    public Task<IActionResult> OutrightExcel(ExcelOutrightResultQuery message)
-        => ExcelView(message);
+    public Task<IActionResult> OutrightExcel(ExcelOutrightResultQuery message) => ExcelView(message);
 }

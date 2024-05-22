@@ -8,8 +8,7 @@ public partial class ResultsController(IMediator mediator) : ResultBaseControlle
     public Task<IActionResult> Normal(NormalResultQuery message)
         => View(message, string.Format(ViewPath, nameof(Normal), "Index"));
 
-    public Task<IActionResult> NormalExcel(ExcelNormalResultQuery message)
-        => ExcelView(message);
+    public Task<IActionResult> NormalExcel(ExcelNormalResultQuery message) => ExcelView(message);
 
     public Task<IActionResult> Details(NormalResultDetailsQuery message)
         => View<NormalDetailViewModel>(message, string.Format(ViewPath, nameof(Normal), nameof(Details)));

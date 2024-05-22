@@ -3,7 +3,7 @@ using AlphaPlus.Reports.Features.ProgressiveContribution;
 using AlphaPlus.Reports.Site.Features.Shared;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
-using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Reports.Site.Features.ProgressiveContribution;
 
