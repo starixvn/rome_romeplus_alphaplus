@@ -1,0 +1,53 @@
+﻿using AlphaPlus.Products.Configurations;
+using AlphaPlus.Products.ViewModels;
+using AlphaPlus.Settings.MemberInfo.API.Services;
+using Fanex.Data.Repository;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multiple;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Products;
+using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+
+namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
+{
+    // TODO: simple first, better later
+    public class SettingMultipleViewModelFactory : GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>
+    {
+        private const int LastProductSettingItemIndex = 10000;
+        private const int ResetPasswordDisplayAfterLastProduct = 1;
+        private const int ResetSecurityDisplayAfterLastProduct = 2;
+        private const int RemoveOTPDisplayAfterLastProduct = 3;
+        private readonly AccountService accountService;
+
+        public SettingMultipleViewModelFactory(IOptions<ProductConfiguration> options)
+            : base(options)
+        {
+            accountService = new AccountServiceImpl(new DynamicRepository());
+        }
+
+        protected override IEnumerable<ISettingItemMultipleViewModel> GetNonProductViewModels(ISearchAccountInfoRequest request)
+        {
+            yield return new DoubleCommMultipleViewModel(request);
+            yield return new SuspendedMultipleViewModel(request);
+            yield return new ClosedMultipleViewModel(request);
+            yield return new ProtectedMultipleViewModel(request);
+
+            if (request.SupportAutoTransfer &&
+                (!request.IsSubAcc || request.SubPageAccess.Transfer))
+            {
+                yield return new AutoTransferMultipleViewModel(request, accountService);
+            }
+        }
+
+        protected override ISettingItemMultipleViewModel GetProductGroupViewModel(int productGroupId, ISearchAccountInfoRequest request)
+        {
+            return new ProductGroupMultipleSettingItemViewModel(request, productGroupId);
+        }
+
+
+        protected override ISettingItemMultipleViewModel GetProductViewModel(ProductItem productItem, ISearchAccountInfoRequest request)
+        {
+            return new DynamicProductMultipleViewModel(request, productItem);
+        }
+    }
+}

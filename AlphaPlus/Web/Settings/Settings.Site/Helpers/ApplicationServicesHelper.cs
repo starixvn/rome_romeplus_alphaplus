@@ -1,7 +1,4 @@
 using System.Resources;
-using Alpha.Products.Core.Configuration;
-using Alpha.Products.Core.Services;
-using Alpha.Products.Core.ViewModels;
 using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
@@ -10,8 +7,6 @@ using AlphaPlus.PartialUM.Configurations;
 using AlphaPlus.PartialUM.DataAccess;
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.RequestInfo;
-using AlphaPlus.Settings.MemberInfo.API;
-using AlphaPlus.Settings.MemberInfo.API.Features.CustomerList;
 using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
@@ -19,15 +14,10 @@ using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
 using AlphaPlus.Settings.MemberInfo.API.Features.ParlayMaxPayout;
 using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
-using AlphaPlus.Settings.MemberInfo.API.Requests;
 using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
-using AlphaPlus.Settings.MemberInfo.API.Setting;
-using AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels.Base;
-using AlphaPlus.Settings.MemberInfo.API.Status;
-using AlphaPlus.Settings.MemberInfo.API.Status.ViewModels.Base;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
@@ -64,6 +54,13 @@ using AlphaPlus.Settings.Transfer.API.Services;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.NPOI;
 using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
+using AlphaPlus.Products.ViewModels;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
+using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
+using AlphaPlus.Settings.Site.Features.CustomerList;
+using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -122,17 +119,15 @@ namespace AlphaPlus.Settings.Site.Helpers
             services
                 .AddHttpClient<ICreateAccountService, CreateAccountService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
-            SimpleServiceLocator.Instance
-                .Register<IRemotingRefService>(new RemotingRefService())
-                .Register<Func<int, string>>(new CacheRefServiceImpl(SimpleServiceLocator.GetService<IRemotingRefService>()).GetProductName)
-                .Register<Func<string, string>>(ProductResources.ResourceManager.GetString)
-                .Register<Func<string, string, string>>(Core.Helpers.MicroSites.GetMicroSiteUrl)
-                .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert)
-                .Register<IConfigurationLoader>(new SearchAccountConfigurationLoader(new ProductJsonConverter(), AppDomain.CurrentDomain.BaseDirectory + "/ProductConfigs/ProductConfiguration.json"))
-                .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
-                .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
-                .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>>(new SettingMultipleViewModelFactory())
-                .Register<QRCodeLoginConfigsHelper>(new QRCodeLoginConfigsHelperImpl(qrCodeMemberLoginConfig));
+            // SimpleServiceLocator.Instance
+            //     .Register<IRemotingRefService>(new RemotingRefService())
+            //     .Register<Func<string, string>>(ProductResources.ResourceManager.GetString)
+            //     .Register<Func<string, string, string>>(Core.Helpers.MicroSites.GetMicroSiteUrl)
+            //     .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert)
+            //     .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
+            //     .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
+            //     .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>>(new SettingMultipleViewModelFactory())
+            //     .Register<QRCodeLoginConfigsHelper>(new QRCodeLoginConfigsHelperImpl(qrCodeMemberLoginConfig));
 
             services
                 .AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>()

@@ -76,9 +76,7 @@ public class AuthorizationService(
         var subAccHasPermissionToViewUrl = true;
         if (requestContext.UserSession.SubAccId > 0)
         {
-            subAccHasPermissionToViewUrl = CheckSubAccHasPermissionToViewUrl(
-                requestContext.UserSession.SubPageAccess
-                , url);
+            subAccHasPermissionToViewUrl = CheckSubAccHasPermissionToViewUrl(requestContext.UserSession.SubPageAccess, url);
         }
 
         return HasPermissionToViewUrl(url) && subAccHasPermissionToViewUrl;

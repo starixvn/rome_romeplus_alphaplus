@@ -6,6 +6,6 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.Requests
     {
         public virtual int SearchAccountId { get; set; }
 
-        public override bool IsValid() => SearchAccountId > 0 && !SearchAccountId.Equals(userSession.CustId);
+        public override bool IsValid() => SearchAccountId > 0 && !SearchAccountId.Equals(viewer.Id);
     }
 }

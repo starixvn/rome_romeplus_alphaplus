@@ -23,13 +23,13 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
                 return ForbiddenResult();
             }
 
-            var customer = await accountInfoService.GetCustomerInfo(message.Username, message.ActorId, message.ActorRoleId);
+            var customer = await accountInfoService.GetCustomerInfo(message.Username, message.ViewerId, message.ViewerLevelId);
 
             if (customer != null)
             {
                 var balanceInfo = BuildBalanceInfoViewModel(message, customer, await accountInfoService.GetCreditInfo(customer.CustId),
                     await accountInfoService.GetBalanceInfo(customer.CustId, customer.RoleId, message.AGIP),
-                    await accountInfoService.IsAllDayBalanceTransfer(message.ActorId));
+                    await accountInfoService.IsAllDayBalanceTransfer(message.ViewerId));
 
                 var formatedIP = ipService.FormatIP(customer.LastLoginIP, message.IsAdminCanViewVNIP);
 
@@ -75,7 +75,12 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
         }
 
         public async Task<ActionResult> GetOnlineList(OnlineListQuery message)
-        => Json(await accountInfoService.GetOnlineList(message.SearchAccountId, message.IsAdminCanViewVNIP));
+            => Json(await accountInfoService.GetOnlineList(message.SearchAccountId, message.IsAdminCanViewVNIP));
+
+        public async Task<ActionResult> GivenCredit(GivenCreditQuery message)
+        {
+            return View();
+        }
 
         private static IBalanceInfoViewModel BuildBalanceInfoViewModel(
             GetAccountQuery message,

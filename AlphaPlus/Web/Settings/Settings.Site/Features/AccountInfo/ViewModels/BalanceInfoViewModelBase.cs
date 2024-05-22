@@ -57,7 +57,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 
                 var betListLink = MicroSites.TicketUrl($"~/RunningBetList/Index?CustID={customerInfo.CustId}&amp;CustName={customerInfo.UserName}&amp;GetAll=True");
 
-                var directDownlineLevelName = Enumeration.FromValue<UserLevel>((byte)(message.ActorRoleId - 1)).DisplayName;
+                var directDownlineLevelName = Enumeration.FromValue<UserLevel>((byte)(message.ViewerLevelId - 1)).DisplayName;
                 var outstandingLink = MicroSites.ReportsUrl($"~/outstanding/{directDownlineLevelName}?" +
                         $"CustId={customerInfo.CustId}&CustName={customerInfo.UserName}" +
                         $"&CustLevelId={customerInfo.RoleId}&BreadcrumbLevelJson={BreadcrumbLevelJson}");
@@ -94,12 +94,12 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 
                 return JsonSerializer.Serialize(
                     custInfos.Where(custInfo =>
-                    custInfo.CustLevelId > customerInfo.RoleId && custInfo.CustLevelId <= message.ActorRoleId))
+                    custInfo.CustLevelId > customerInfo.RoleId && custInfo.CustLevelId <= message.ViewerLevelId))
                     .Replace("\"", "'");
             }
         }
 
-        protected UserLevel ActorLevel => message.ActorLevel;
+        protected UserLevel ActorLevel => message.ViewerLevel;
 
         protected UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(customerInfo.RoleId);
     }

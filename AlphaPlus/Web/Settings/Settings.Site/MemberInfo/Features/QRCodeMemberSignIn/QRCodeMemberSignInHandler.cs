@@ -1,21 +1,18 @@
-﻿namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn
-{
-    using System;
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Helpers;
-    using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests;
-    using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.ViewModels;
-    using Alpha.Products.Core.Services;
-    using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
-    using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn.Criteria;
-    using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
-    using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Params;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
+﻿using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Helpers;
+using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests;
+using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.ViewModels;
+using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
+using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn.Criteria;
+using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
+using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Params;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
 
+namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn
+{
     public class QRCodeMemberSignInHandler :
         IRequestHandler<QRCodeMemberSignInRequest, QRCodeMemberSignInViewModel>,
         IRequestHandler<CreateAccountByQRCodeRequest, ResultCreateMemberQRCode>,
@@ -50,8 +47,7 @@
             this.qrCodeMemberSignInService = qrCodeMemberSignInService;
             this.passwordService = passwordService;
             this.checkBelongingService = checkBelongingService;
-            this.qrCodeLoginConfigsHelper = qrCodeLoginConfigsHelper ??
-                    SimpleServiceLocator.GetService<QRCodeLoginConfigsHelper>();
+            this.qrCodeLoginConfigsHelper = qrCodeLoginConfigsHelper;
         }
 
         public async Task<QRCodeMemberSignInViewModel> Handle(QRCodeMemberSignInRequest message, CancellationToken cancellation)
@@ -213,7 +209,7 @@
             return new QRCodeLinkViewModel();
         }
 
-        public  async Task<bool> Handle(CheckExistedCustomerRequest message, CancellationToken cancellation)
+        public async Task<bool> Handle(CheckExistedCustomerRequest message, CancellationToken cancellation)
             => IsValidBelongingByUsername(
                 message.CustId,
                 message.Username,

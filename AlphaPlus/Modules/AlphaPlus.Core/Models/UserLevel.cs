@@ -82,4 +82,8 @@ public class UserLevel : Enumeration
 
     private static int GapBetweenTwoLevels(byte uplineLevelValue, byte downlineLevelValue)
         => uplineLevelValue - downlineLevelValue;
+
+    public UserLevel GetDirectUplineLevel() => FromValue<UserLevel>((byte)(Value + 1));
+
+    public UserLevel GetDirectDownLineLevel() => FromValue<UserLevel>((byte)(Value - 1));
 }

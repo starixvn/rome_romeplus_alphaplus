@@ -32,7 +32,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 
         public byte RoleId => customerInfo.RoleId;
 
-        public byte ActorRoleId => message.ActorRoleId;
+        public byte ActorRoleId => message.ViewerLevelId;
 
         public string UserName => customerInfo.UserName;
 

@@ -6,7 +6,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.Requests
     {
         public string Username { get; set; }
 
-        public int UplineId => userSession.CustId;
+        public int UplineId => viewer.Id;
 
         public override bool IsValid()
             => !string.IsNullOrWhiteSpace(Username) && UplineId > 0;

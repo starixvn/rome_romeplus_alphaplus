@@ -18,6 +18,7 @@
         bool IsAllDayBalanceTransfer(int custId);
         bool IsAutoTransferAffect(IUser viewer, string offerCurrencies);
         bool IsEnableAutoTransfer(IUser viewer, string offerCurrencies);
+        bool IsAutoTransferAffect(string currency, string offerCurrencies);
     }
 
     public class TransferServiceImpl : TransferService
@@ -131,6 +132,22 @@
             }
 
             return IsAutoTransferAffect(viewer, offerCurrencies);
+        }
+
+        public bool IsAutoTransferAffect(string currency, string offerCurrencies)
+        {
+            if (string.IsNullOrWhiteSpace(offerCurrencies))
+            {
+                return false;
+            }
+
+            if (offerCurrencies == "*")
+            {
+                return true;
+            }
+
+            return offerCurrencies.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                .Any(c => string.Equals(currency, c.Trim(), StringComparison.OrdinalIgnoreCase));
         }
     }
 }

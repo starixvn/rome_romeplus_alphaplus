@@ -62,7 +62,8 @@ export default function ContactInfo() {
             onClick={() => handleBlockClick?.(BlockIds.ContactInfo)}
         >
             {contactInfoPropsArray.map(
-                ({ title, value, visible }) => visible && <ContactInfoRow title={title} value={value} />
+                ({ title, value, visible }, index) =>
+                    visible && <ContactInfoRow key={index} title={title} value={value} />
             )}
         </AccordionItem>
     );

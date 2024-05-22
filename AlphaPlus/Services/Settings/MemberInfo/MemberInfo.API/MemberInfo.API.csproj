@@ -7,7 +7,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Alpha.Products.Core" Version="1.0.1.5" />
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
     <PackageReference Include="RSACryptoPad" Version="1.0.0.0" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
@@ -22,5 +21,6 @@
     <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
     <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
     <ProjectReference Include="..\MemberInfo.Domain\MemberInfo.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Products\AlphaPlus.Products.csproj" />
   </ItemGroup>
 </Project>

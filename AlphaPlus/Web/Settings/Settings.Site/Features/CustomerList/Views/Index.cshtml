@@ -1,0 +1,384 @@
+﻿@using Newtonsoft.Json
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.CustomerListResources
+@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.CustomerList.AppResources
+
+@model AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.CustomerListViewModel
+
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+    ViewBag.Title = "Customer List";
+
+    var commissionGroupClass = Model.IsMobileView || (Model.SearchAccountLevel.IsAgentLevel() && Model.Language.Equals("th-TH")) ? "none" : "desktop";
+    var userguideLink = AppSettings.IsSiteLabel789y ?
+        MicroSites.FeatureUrl("~/StaticMessage/Guide?id=137130") :
+        MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=137130");
+}
+
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
+    @StaticResources.RenderStylesWithDarkMode("~/bundles/Features/CustomerList/bundles/customer-list")
+    @StaticResources.RenderStylesWithMedia(767, "~/bundles/Features/CustomerList/bundles/customer-list-07")
+}
+
+<div class="customer-list">
+    <div class="page-title">
+        @if (!string.IsNullOrWhiteSpace(Model.PageTitle))
+        {
+            <span class="text-title pull-left">
+                @Model.PageTitle
+                &nbsp;<a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+            </span>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(AlphaContext.Current.Request.QueryString.ToString()))
+        {
+            var viewModel = new BreadcrumbLevelViewModel(Model.BreadcrumbLevel, Model.BreadcrumbLevelJson);
+            var linkLength = viewModel.BreadcrumbLevel != null ? viewModel.BreadcrumbLevel.Count() : 0;
+            var linkIndex = 0;
+            var lastLinkIndex = linkLength - 1;
+
+            if (linkLength > 0)
+            {
+                <div class="breadcrumb-container">
+                    <ul class="breadcrumb">
+                        @foreach (var custinfo in Model.BreadcrumbLevel)
+                        {
+                            // TODO: Last customer just need to render by text, not link, will refactor soon
+                            if (linkIndex == lastLinkIndex)
+                            {
+                                <li>
+                                    @(custinfo.CustName)
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a class="breadcrumb-link"
+                                    href="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.QueryString.ToString(), null, linkIndex))">
+                                        @(custinfo.CustName)
+                                    </a>
+                                </li>
+                            }
+
+                            linkIndex++;
+                        }
+                    </ul>
+                </div>
+            }
+        }
+    </div>
+
+    <div class="form-inline filter form-report">
+        <div class="form-group username-box">
+            <label>@CustomerListResources.Username</label>
+            <input type="text" class="txt-search" id="txt-username" placeholder="@CustomerListResources.UsernamePlaceHolder" />
+        </div>
+        <div class="form-group status-box">
+            <label>@CustomerListResources.Status</label>
+            <select id="statusFilter" name="statusFilter">
+                @foreach (var option in Model.StatusOptions)
+                {
+                    <option value="@option.Value" selected="@option.Value.Equals(Model.Status)">@option.Text</option>
+                }
+            </select>
+        </div>
+        <div class="form-group comm-box">
+            <label>@CustomerListResources.DoubleComm</label>
+            <select id="dcommFilter" name="dcommFilter">
+                @foreach (var option in Model.DoubleCommOptions)
+                {
+                    <option value="@option.Value" selected="@option.Value.Equals(Model.DoubleComm)">@option.Text</option>
+                }
+            </select>
+        </div>
+        @if (Model.EnableAutoTransfer)
+        {
+            <div class="form-group comm-box">
+                <label>@CustomerListResources.AutoTransfer</label>
+                <select id="dautoTransferFilter" name="dautoTransferFilter">
+                    @foreach (var option in Model.AllowAutoTransferOptions)
+                    {
+                        <option value="@option.Value" selected="@option.Value.Equals(Model.AllowAutoTransfer)">@option.Text</option>
+                    }
+                </select>
+            </div>
+        }
+        <div class="form-group btn-box">
+            <input type="submit" value="@Resources.Submit" class="btn-submit" />
+        </div>
+    </div>
+
+    <table id="tbl-customer-list" class="hidden tblRpt tblRpt-bordered tblRpt-hover display nowrap">
+        <thead>
+            <tr>
+                @if (!Model.IsMobileView)
+                {
+                    <th></th>
+                }
+                @if (!Model.HideEditMultiple)
+                {
+                    <th></th>
+                }
+                <th></th>
+                <th></th>
+                <th></th>
+                @if (Model.CanViewReport)
+                {
+                    <th></th>
+                }
+                <th></th>
+                @if (Model.SearchAccountLevel.IsAgentLevel())
+                {
+                    <th></th>
+
+                    if (Model.IsShowMyanmarOdds)
+                    {
+                        <th></th>
+                        <th></th>
+                    }
+                }
+                else
+                {
+                    if (!Model.IsShowMyanmarOdds)
+                    {
+                        <th></th>
+                        <th></th>
+                    }
+                }
+                <th></th>
+                <th></th>
+                <th></th>
+                @if (!Model.LimitedDateToShowInfo)
+                {
+                    <th></th>
+                }
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                @if (!Model.IsMobileView)
+                {
+                    <th rowspan="2" class="header all padding-icon">
+                        @CustomerListResources.No
+                    </th>
+                }
+                @if (!Model.HideEditMultiple)
+                {
+                    <th rowspan="2" class="header all padding-icon">
+                        <input type="checkbox" class="select-all" />
+                    </th>
+                }
+                <th rowspan="2" class="header all padding-icon">
+                    @if (!Model.HideEditMultiple)
+                    {
+                        <div class="edit-multiple icon-table-edit" data-url="" title="@CustomerListResources.EditMultipleSetting" />
+                    }
+                    else
+                    {
+                        <span>@CustomerListResources.Edit</span>
+                    }
+                </th>
+                <th rowspan="2" class="header all">
+                    @CustomerListResources.Username <br />
+                    @CustomerListResources.NickName
+                </th>
+                <th rowspan="2" class="header @(Model.IsMobileView ? string.Empty : "all")">
+                    @CustomerListResources.Status
+                </th>
+                @if (Model.CanViewReport)
+                {
+                    <th rowspan="2" class="header">
+                        @CustomerListResources.Statement
+                    </th>
+                }
+                <th rowspan="2" class="header  @(Model.IsMobileView ? "none" : string.Empty)">
+                    @CustomerListResources.FirstLastName
+                </th>
+                @if (Model.SearchAccountRoleId == 2)
+                {
+                    <th rowspan="2" class="header ugroup @commissionGroupClass">
+                        @CustomerListResources.Group
+                    </th>
+                }
+                <th colspan="@Model.CommissionColSpan.ToString()" class="header @commissionGroupClass">
+                    @CustomerListResources.Commission
+                </th>
+                @if (!Model.LimitedDateToShowInfo)
+                {
+                    <th rowspan="2" class="header">
+                        @CustomerListResources.CreatedDate
+                    </th>
+                }
+                <th rowspan="2" class="header ">
+                    @CustomerListResources.LoginIP
+                </th>
+                <th rowspan="2" class="header control" style="width: 100px !important;" title="@CustomerListResources.ExpandAll">
+                </th>
+            </tr>
+            <tr class="thead-row2">
+                @if (Model.SearchAccountLevel.IsAgentLevel())
+                {
+                    <th class="header commission startGroup @commissionGroupClass">
+                        @CustomerListResources.AComm1
+                    </th>
+                    <th class="header commission @commissionGroupClass">
+                        @CustomerListResources.AComm2
+                    </th>
+                    <th class="header commission @commissionGroupClass">
+                        @CustomerListResources.AComm3
+                    </th>
+                    if (Model.IsShowMyanmarOdds)
+                    {
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.AccountMyanmarOdds
+                        </th>
+                    }
+                    <th class="header commission @commissionGroupClass">
+                        @CustomerListResources.PComm1
+                    </th>
+                    <th class="header commission @commissionGroupClass">
+                        @CustomerListResources.PComm2
+                    </th>
+                    <th class="header commission @commissionGroupClass @(Model.IsShowMyanmarOdds ? string.Empty : "endGroup") ">
+                        @CustomerListResources.PComm3
+                    </th>
+                    if (Model.IsShowMyanmarOdds)
+                    {
+                        <th class="header commission @commissionGroupClass" @(Model.IsShowMyanmarOdds ? "endGroup" : string.Empty)>
+                            @CustomerListResources.PlayerMyanmarOdds
+                        </th>
+                    }
+                }
+                else
+                {
+                    <th class="header @commissionGroupClass commission startGroup">
+                        @CustomerListResources.GroupA
+                    </th>
+                    if (!Model.IsShowMyanmarOdds)
+                    {
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupB
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupC
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupD
+                        </th>
+                    }
+                    <th class="header @commissionGroupClass commission">
+                        @CustomerListResources.Group1X2
+                    </th>
+                    <th class="header @commissionGroupClass commission @(Model.IsShowMyanmarOdds ? string.Empty : "endGroup") ">
+                        @CustomerListResources.Other
+                    </th>
+                    if (Model.IsShowMyanmarOdds)
+                    {
+                        <th class="header @commissionGroupClass commission @(Model.IsShowMyanmarOdds ? "endGroup" : string.Empty) ">
+                            @CustomerListResources.MyanmarOdds
+                        </th>
+                    }
+                }
+            </tr>
+        </thead>
+    </table>
+
+    <div class="modal modal-sm fade" id="status-popup" tabindex="-2" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @if (Model.IsMobileView)
+                {
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-edit-popup">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form target="productIframe" action="" id="productIframeForm">
+        <input type="hidden" value="" />
+        <input type="submit" class="hidden">
+    </form>
+
+    <div class="modal modal-product modal-sm fade" id="product-popup" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-product-popup">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body-product">
+                    <iFrame src="" name="productIframe" id="productIframe" style="width:100%; height:95%;"></iFrame>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.AntiForgeryToken()
+    @Html.Hidden("StatusId", Model.Status)
+    @Html.Hidden("DoubleCommId", Model.DoubleComm)
+    @Html.Hidden("AllowAutoTransfer", Model.AllowAutoTransfer)
+    @Html.Hidden("UnconfirmSettingId", Model.UnconfirmSetting)
+    @Html.Hidden("enableAllDayBalanceTransfer", Model.EnableAllDayBalanceTransfer)
+    <input type="hidden" id="searchAccountId" value="@Model.SearchAccountId">
+    <input type="hidden" id="searchAccountName" value="@Model.SearchAccountName">
+    <input type="hidden" id="searchAccountRoleId" value="@Model.SearchAccountRoleId">
+    <input type="hidden" id="uplineRoleId" value="@Model.UplineRoleId">
+    <input type="hidden" id="downlineLevelName" value="@Model.DownlineLevelName">
+    <input type="hidden" id="showEditMultiple" value='@(Model.HideEditMultiple ? "false" : "true")'>
+    <input type="hidden" id="isMobileView" value='@(Model.IsMobileView ? "true" : "false")'>
+    <input type="hidden" id="breadcrumbLevelJson" value='@Model.BreadcrumbLevelJson'>
+    <input type="hidden" id="oldMainUrl" value='@MicroSites.SettingUrl()'>
+    <input type="hidden" id="reportsUrl" value='@MicroSites.ReportsUrl()'>
+    <input type="hidden" id="memberInfoUrl" value='@MicroSites.SettingUrl()'>
+    <input type="hidden" id="limitedDateToShowInfo" value='@(Model.LimitedDateToShowInfo ? "true" : "false")'>
+    <input type="hidden" id="isShowMyanmarOdds" value='@(Model.IsShowMyanmarOdds ? "true" : "false")'>
+    <input type="hidden" id="canViewReport" value='@(Model.CanViewReport ? "true" : "false")'>
+    <input type="hidden" id="canUpdateAccount" value='@(Model.CanUpdateAccount ? "true" : "false")'>
+    <input type="hidden" id="customerListResources" value='@Model.Resources'>
+    <input type="hidden" id="arrayCustID" name="arrayCustID" value=''>
+    <input type="hidden" id="arrayUserName" name="arrayUserName" value=''>
+    <input type="hidden" id="commissionText" value='@CustomerListResources.Commission'>
+    <input type="hidden" id="unuspendStatusPopupHeader" value='@CustomerListResources.UnuspendStatusPopupHeader'>
+    <input type="hidden" id="editText" value='@CustomerListResources.Edit'>
+    <input type="hidden" id="editSettingText" value='@CustomerListResources.EditSetting'>
+    <input type="hidden" id="editMultipleSettingText" value='@CustomerListResources.EditMultipleSetting'>
+    <input type="hidden" id="editStatusText" value='@CustomerListResources.EditStatus'>
+    <input type="hidden" id="viewIPTooltipText" value='@CustomerListResources.ViewIPTooltip'>
+    <input type="hidden" id="usernameTooltipText" value='@CustomerListResources.UsernameTooltip'>
+    <input type="hidden" id="statementTooltipText" value='@CustomerListResources.StatementTooltip'>
+    <input type="hidden" id="loginIPText" value='@CustomerListResources.LoginIP'>
+    <input type="hidden" id="collapseText" value='@CustomerListResources.Collapse'>
+    <input type="hidden" id="expandText" value='@CustomerListResources.Expand'>
+    <input type="hidden" id="collapseAllText" value='@CustomerListResources.CollapseAll'>
+    <input type="hidden" id="expandAllText" value='@CustomerListResources.ExpandAll'>
+    <input type="hidden" id="unlockTooltipText" value='@CustomerListResources.UnlockTooltip'>
+    <input type="hidden" id="confirmUnlockInCaseFalseOTPSC" value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalseOTPSC'>
+    <input type="hidden" id="confirmUnlockInCaseFalsePassword" value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalsePassword'>
+    <input type="hidden" id="page" value='@CustomerListResources.Page'>
+    <input type="hidden" id="of" value='@CustomerListResources.Of'>
+    <input type="hidden" id="pageSize" value='@CustomerListResources.PageSize'>
+    <input type="hidden" id="thereIsNoData" value='@CustomerListResources.ThereIsNoData'>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var customerListData = @Html.Raw(JsonConvert.SerializeObject(Model.CustomerListPagingViewModel, Formatting.None));
+    </script>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/data-table")
+    @StaticResources.RenderScripts("~/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
+    @StaticResources.RenderScripts("~/bundles/Features/CustomerList/bundles/customer-list")
+}

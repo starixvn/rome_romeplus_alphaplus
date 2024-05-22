@@ -1,43 +1,64 @@
 using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Shared.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Shared.Requests
 {
     public abstract class BaseQuery
     {
-        protected readonly IUserSession userSession;
+        protected readonly IUser viewer;
 
         public BaseQuery() : this(null) { }
 
-        internal BaseQuery(IUserSession userSession)
+        internal BaseQuery(IUser viewer)
         {
-            this.userSession = userSession ?? new UserSessionExt();
+            this.viewer = viewer ?? new User();
+            CustId = viewer.Id;
+            CustLevelId = viewer.LevelId;
+            CustName = viewer.Name;
         }
 
-        public int ActorId => userSession.CustId;
+        public int CustId { get; set; }
 
-        public string ActorName => userSession.UserName;
+        public byte CustLevelId { get; set; }
 
-        public byte ActorRoleId => userSession.RoleId;
+        public virtual UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
 
-        public UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(userSession.RoleId);
+        public string CustName { get; set; }
 
-        public string AGIP => userSession.AGIP;
+        public int ViewerId => viewer.Id;
 
-        public bool CanViewReports => userSession.SubPageAccess.ViewReports;
+        public string ViewerUsername => string.IsNullOrWhiteSpace(viewer.SubAccName) ? viewer.Name : viewer.SubAccName;
 
-        public bool CanViewLog => userSession.SubPageAccess.ViewLog;
+        public byte ViewerLevelId => viewer.LevelId;
 
-        public bool AllowTransfer => userSession.SubPageAccess.Transfer;
+        public UserLevel ViewerLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
 
-        public bool CanUpdateAccount
-           => !userSession.IsSubAcc || (userSession.IsSubAcc && userSession.SubPageAccess.UpdateAccount);
+        public string AGIP => viewer.AGIP;
 
-        public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
+        public bool CanViewReports => viewer.CanViewReports;
 
-        public bool IsInternal => userSession.IsInternal;
+        public bool CanViewLog => viewer.SubPageAccess.ViewLog;
 
-        public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
+        public bool AllowTransfer => viewer.CanTransfer;
 
-        public virtual bool IsValid() => ActorId > 0;
+        public bool CanUpdateAccount => viewer.CanUpdateAccount;
+
+        public bool AllowedTotalBalanceTransfer => viewer.IsAllowedTotalBalanceTransfer;
+
+        public bool IsInternal => viewer.IsInternal;
+
+        public bool IsAdminCanViewVNIP => viewer.IsAdminCanViewVNIP;
+
+        public string Language => viewer.Language;
+
+        public bool IsDarkMode => !string.IsNullOrWhiteSpace(viewer.DarkModeName);
+
+        public string IP => viewer.IP;
+
+        public bool IsSubAcc => viewer.IsSubAcc;
+
+        public string Currency => viewer.Currency;
+
+        public virtual bool IsValid() => ViewerId > 0;
     }
 }

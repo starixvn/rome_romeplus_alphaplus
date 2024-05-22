@@ -5,7 +5,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 {
     public class IndexViewModel(IndexQuery message)
     {
-        public UserLevel ActorLevel { get; } = message.ActorLevel;
+        public UserLevel ActorLevel { get; } = message.ViewerLevel;
 
         public bool MobileView { get; } = message.MobileView;
     }

@@ -9,7 +9,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.Requests
         public override bool IsValid()
             => base.IsValid()
             && !string.IsNullOrWhiteSpace(Username)
-            && userSession.SubPageAccess.ViewMemberInfo
-            && !Username.Trim().Equals(ActorName, StringComparison.OrdinalIgnoreCase);
+            && viewer.SubPageAccess.ViewMemberInfo
+            && !Username.Trim().Equals(ViewerUsername, StringComparison.OrdinalIgnoreCase);
     }
 }

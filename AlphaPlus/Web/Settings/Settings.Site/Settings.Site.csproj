@@ -12,15 +12,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Shared\AppResources\Resources.Designer.cs">
+    <Compile Update="Features\Shared\AppResources\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Features\CustomerList\AppResources\Lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AlphaPlus.Configurations" Version="1.1.0-netcore02" />
-    <PackageReference Include="Alpha.Products.Core" Version="1.0.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.2" />
     <PackageReference Include="Sunplus.Agent.Utilities" Version="4.0.0" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
@@ -36,7 +39,6 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="NPOI" Version="2.2.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-    <PackageReference Include="Fanex.Common" Version="1.1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
