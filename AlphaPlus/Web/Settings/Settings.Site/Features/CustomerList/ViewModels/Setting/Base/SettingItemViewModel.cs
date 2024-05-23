@@ -45,7 +45,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base
 
         protected abstract string BaseAddress { get; }
 
-        public virtual bool Visible => Request.ActorIsEdittingDirectDownline;
+        public virtual bool Visible => Request.ActorIsEditingDirectDownline;
 
         public virtual bool AddEditTextToPopupTitle => true;
 

@@ -1,11 +1,10 @@
-﻿using AlphaPlus.Configurations;
+﻿using AlphaPlus.Core.Configurations;
 using AlphaPlus.Products.Configurations;
 using AlphaPlus.Products.ViewModels;
 using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
 using Fanex.Data.Repository;
-using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 {
@@ -14,8 +13,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
     {
         private readonly AccountService accountService;
 
-        public StatusViewModelFactory(IOptions<ProductConfiguration> options)
-            : base(options)
+        public StatusViewModelFactory(IConfiguration configuration)
+            : base(configuration)
         {
             accountService = new AccountServiceImpl(new DynamicRepository());
         }

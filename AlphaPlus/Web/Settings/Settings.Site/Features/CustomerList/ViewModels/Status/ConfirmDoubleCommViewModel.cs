@@ -13,7 +13,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
         public override bool Disabled
             => base.Disabled
                 || !Request.GetData<bool>(DataKey.SearchAccount.Upline.IsAllowedDoubleComm)
-                || Request.ActorIsNotEdittingDirectDownline;
+                || Request.ActorIsNotEditingDirectDownline;
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsAllowedDoubleComm);
 

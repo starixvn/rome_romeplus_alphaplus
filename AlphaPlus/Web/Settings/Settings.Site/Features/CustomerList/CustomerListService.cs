@@ -32,13 +32,12 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
 
         public CustomerStatusModel GetCustomerStatus(int custId, byte roleId)
         {
-            var (customerStatus, nonDCSProduct, dcsProducts)
-                = dynamicRepository.FetchMultiple<NonProductStatusModel, NonDCSProductStatusModel, DCSProductStatusModel>(
+            var (customerStatus, dcsProducts)
+                = dynamicRepository.FetchMultiple<NonProductStatusModel, DCSProductStatusModel>(
                     new SelectCustomerAllStatusModelCriteria(custId));
 
             var customerStatusModel = new CustomerStatusModel(
                 customerStatus.FirstOrDefault(),
-                nonDCSProduct.FirstOrDefault(),
                 dcsProducts
                     .GroupBy(product => product.ProductId)
                     .Select(products =>
@@ -80,6 +79,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.DisableAutoMasterPT:
                     command = new UpdateDisableAutoMPTStatusCommand(
                         param.SearchAccountId,
@@ -90,6 +90,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.DoubleComm:
                     command = new UpdateDoubleCommLosingStatusCommand(
                         param.SearchAccountId,
@@ -100,6 +101,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.DisableOutright:
                     command = new UpdateDisableOutrightStatusCommand(
                         param.SearchAccountId,
@@ -110,6 +112,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.Suspended:
                     command = new UpdateSuspendedStatusCommand(
                         param.SearchAccountId,
@@ -120,6 +123,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 case StatusNames.Unlock:
                     command = new UpdateUnlockedCommand(
                         param.SearchAccountId,
@@ -129,6 +133,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                         param.IP,
                         param.StatusName);
                     break;
+
                 case StatusNames.AllowAutoTransfer:
                     command = new UpdateAllowAutoTransferStatusCommand(
                         param.SearchAccountId,
@@ -139,13 +144,14 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                         param.StatusName,
                         param.StatusValue);
                     break;
+
                 default:
                     return new Result();
             }
 
             await dynamicRepository.ExecuteAsync(command);
 
-            return new Result { Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
+            return new Result { Code = command.ErrCode, Message = command.ErrMsg };
         }
 
         internal async Task<CustomerListDTO> FetchMasterList(CustomerListParam param)

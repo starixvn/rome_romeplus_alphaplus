@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿'use strict';
 
 class CustomerListViewModel {
     UplineRoleId: number;
@@ -14,7 +14,6 @@ class CustomerListViewModel {
     MemberInfoUrl: string;
     AccountInfoUrl: string;
     LimitedDateToShowInfo: boolean;
-    CustomerListResources: any;
     IsShowMyanmarOdds: boolean;
     CanViewReport: boolean;
     CanUpdateAccount: boolean;
@@ -37,8 +36,8 @@ class CustomerListViewModel {
         isShowMyanmarOdds: boolean,
         canViewReport: boolean,
         canUpdateAccount: boolean,
-        customerListResources: any,
-        customerListData: any) {
+        customerListData: any
+    ) {
         this.UplineRoleId = uplineRoleId;
         this.SearchAccountId = searchAccountId;
         this.SearchAccountRoleId = searchAccountRoleId;
@@ -55,7 +54,6 @@ class CustomerListViewModel {
         this.IsShowMyanmarOdds = isShowMyanmarOdds;
         this.CanViewReport = canViewReport;
         this.CanUpdateAccount = canUpdateAccount;
-        this.CustomerListResources = customerListResources;
         this.CustomerListData = customerListData;
     }
 }
@@ -114,4 +112,4 @@ const statusClasses = {
     ]
 };
 
-const buildAttributes = attrs => this.$.map(attrs, (value, key) => `${key}='${value}'`).join(' ');
+const buildAttributes = (attrs) => this.$.map(attrs, (value, key) => `${key}='${value}'`).join(' ');

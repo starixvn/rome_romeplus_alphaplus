@@ -32,9 +32,10 @@ public class BetListBaseQuery
 
         LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
         IsInternal = viewer.IsInternal;
+        Viewer = viewer;
     }
 
-    protected IUserSession Viewer { get; }
+    protected IUser Viewer { get; }
 
     public int CustId { get; set; }
 

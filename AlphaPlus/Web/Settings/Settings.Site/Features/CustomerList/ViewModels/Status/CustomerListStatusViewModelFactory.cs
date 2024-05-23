@@ -2,15 +2,14 @@
 using AlphaPlus.Products.ViewModels;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
-using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 {
     public class CustomerListStatusViewModelFactory
         : GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>
     {
-        public CustomerListStatusViewModelFactory(IOptions<ProductConfiguration> options)
-            : base(options)
+        public CustomerListStatusViewModelFactory(IConfiguration configuration)
+            : base(configuration)
         {
         }
 

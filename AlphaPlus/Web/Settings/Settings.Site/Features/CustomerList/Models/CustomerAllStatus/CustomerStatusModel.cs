@@ -2,22 +2,10 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Models
 {
     using System.Collections.Generic;
 
-    public class CustomerStatusModel
+    public class CustomerStatusModel(NonProductStatusModel nonProduct, IEnumerable<DCSProductStatusModel> dcsProducts)
     {
-        public CustomerStatusModel(
-            NonProductStatusModel nonProduct,
-            NonDCSProductStatusModel nonDCSProduct,
-            IEnumerable<DCSProductStatusModel> dcsProducts)
-        {
-            NonProduct = nonProduct;
-            NonDCSProduct = nonDCSProduct;
-            DCSProducts = dcsProducts;
-        }
+        public NonProductStatusModel NonProduct { get; } = nonProduct;
 
-        public NonProductStatusModel NonProduct { get; }
-
-        public NonDCSProductStatusModel NonDCSProduct { get; }
-
-        public IEnumerable<DCSProductStatusModel> DCSProducts { get; }
+        public IEnumerable<DCSProductStatusModel> DCSProducts { get; } = dcsProducts;
     }
 }

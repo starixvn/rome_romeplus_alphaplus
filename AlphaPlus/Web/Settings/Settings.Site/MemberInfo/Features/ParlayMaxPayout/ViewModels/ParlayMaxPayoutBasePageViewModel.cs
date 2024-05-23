@@ -1,11 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ParlayMaxPayout.ViewModels
-{
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.ParlayMaxPayout.Models;
-    using System.Collections.Generic;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.ParlayMaxPayout.Models;
+using AlphaPlus.Settings.Site.Features.Shared.AppResources.ProductResources;
 
+namespace AlphaPlus.Settings.Site.Features.ParlayMaxPayout.ViewModels
+{
     public class ParlayMaxPayoutBasePageViewModel
     {
         private readonly Dictionary<byte, string> classNameDictionary
@@ -33,7 +32,7 @@
             InvalidMaxPayoutValueText = Resources.InvalidMaxPayoutValueText;
             GreaterThanMaxValueText = Resources.GreaterThanMaxValueText;
             HasNoChangeText = ProductResources.NoDataChange;
-            NotAuthorizedText = Lang.NotAuthorized;
+            NotAuthorizedText = Settings.MemberInfo.Domain.AppResources.Lang.NotAuthorized;
             ParlayMaxPayoutSettingPartialViewPath = parlayMaxPayoutSettingPartialViewPath;
         }
 

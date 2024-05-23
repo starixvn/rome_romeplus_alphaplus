@@ -1,6 +1,7 @@
 ﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Products.Configurations;
 using AlphaPlus.Products.Models;
+using AlphaPlus.Settings.Site.Features.Shared.AppResources.ProductResources;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 {
@@ -15,19 +16,14 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
             string language,
             bool isDarkMode,
             Func<int, string> getProductGroupName,
-            Func<string, string> getResource = null,
-            Func<int, string> getProductName = null,
-            Func<string, string, string> getMicroSiteUrl = null)
+            Func<int, string> getProductName)
         {
             Actor = actor;
             SearchAccount = searchAccount;
             Language = language;
             IsDarkMode = isDarkMode;
             GetProductGroupName = getProductGroupName;
-            GetResource = getResource;
             GetProductName = getProductName;
-            GetMicroSiteUrl = getMicroSiteUrl;
-
             IsSubAcc = actor.IsSubAccount;
         }
 
@@ -44,17 +40,15 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
             && SearchAccount != null
             && Actor.IsUplineOf(SearchAccount);
 
-        public bool ActorIsEdittingDirectDownline => Actor.IsDirectUplineOf(SearchAccount);
+        public bool ActorIsEditingDirectDownline => Actor.IsDirectUplineOf(SearchAccount);
 
-        public bool ActorIsNotEdittingDirectDownline => !ActorIsEdittingDirectDownline;
+        public bool ActorIsNotEditingDirectDownline => !ActorIsEditingDirectDownline;
 
-        public Func<string, string> GetResource { get; }
+        public Func<string, string> GetResource => ProductResources.ResourceManager.GetString;
 
         public Func<int, string> GetProductGroupName { get; }
 
         public Func<int, string> GetProductName { get; }
-
-        public Func<string, string, string> GetMicroSiteUrl { get; }
 
         public abstract Func<ProductItem, bool> Predicate { get; }
 
@@ -75,15 +69,12 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
             string language,
             bool isDarkMode,
             Func<int, string> getProductGroupName,
-            Func<string, string> getResource = null,
-            Func<int, string> getProductName = null,
-            Func<string, string, string> getMicroSiteUrl = null)
-            : base(actor, searchAccount, language, isDarkMode, getProductGroupName, getResource, getProductName, getMicroSiteUrl)
+            Func<int, string> getProductName)
+            : base(actor, searchAccount, language, isDarkMode, getProductGroupName, getProductName)
         {
         }
 
-        public override Func<ProductItem, bool> Predicate
-            => config => (config.ExtendProductProperty as SearchAccountProperties).Setting;
+        public override Func<ProductItem, bool> Predicate => config => config.ExtendProductProperty.Setting;
     }
 
     public class StatusSearchAccountRequest : SearchAccountRequest
@@ -94,14 +85,11 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
             string language,
             bool isDarkMode,
             Func<int, string> getProductGroupName,
-            Func<string, string> getResource = null,
-            Func<int, string> getProductName = null,
-            Func<string, string, string> getMicroSiteUrl = null)
-            : base(actor, searchAccount, language, isDarkMode, getProductGroupName, getResource, getProductName, getMicroSiteUrl)
+            Func<int, string> getProductName)
+            : base(actor, searchAccount, language, isDarkMode, getProductGroupName, getProductName)
         {
         }
 
-        public override Func<ProductItem, bool> Predicate
-            => config => (config.ExtendProductProperty as SearchAccountProperties).Status;
+        public override Func<ProductItem, bool> Predicate => config => config.ExtendProductProperty.Status;
     }
 }

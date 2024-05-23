@@ -1,5 +1,5 @@
-﻿using AlphaPlus.Settings.Site.Features.Shared.Requests;
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Shared;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 {

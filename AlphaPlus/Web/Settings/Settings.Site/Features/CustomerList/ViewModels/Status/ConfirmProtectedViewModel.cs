@@ -12,7 +12,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 
         public override bool Visible
             => Request.GetData<bool>(DataKey.SearchAccount.IsOfferProtectedMode)
-            && Request.ActorIsEdittingDirectDownline
+            && Request.ActorIsEditingDirectDownline
             && Request.SearchAccount.IsNotMember;
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsProtectedMode);

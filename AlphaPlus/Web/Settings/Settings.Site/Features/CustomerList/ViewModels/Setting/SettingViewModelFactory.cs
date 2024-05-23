@@ -4,7 +4,6 @@ using AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Products;
-using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
 {
@@ -15,8 +14,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
         private const int ResetSecurityDisplayAfterLastProduct = 2;
         private const int RemoveOTPDisplayAfterLastProduct = 3;
 
-        public SettingViewModelFactory(IOptions<ProductConfiguration> options)
-            : base(options)
+        public SettingViewModelFactory(IConfiguration configuration)
+            : base(configuration)
         {
         }
 

@@ -1,19 +1,23 @@
-using AlphaPlus.Configurations;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Shared.Models
 {
-    public class User(IUserSession userSession) : IUser
+    public class User : IUser
     {
         private const string Jackpot = "Jackpot";
         private const string GameEnableSessionKey = "_GameEnable_";
         private const string CustomerDateLimit = "CustomerDateLimit";
 
-        private readonly IUserSession userSession = userSession ?? new UserSessionExt();
+        private readonly IUserSession userSession;
 
         public User() : this(null) { }
+
+        internal User(IUserSession userSession)
+        {
+            this.userSession = userSession ?? new UserSessionExt();
+        }
 
         public int LoggedInUserId => userSession.UserId;
 

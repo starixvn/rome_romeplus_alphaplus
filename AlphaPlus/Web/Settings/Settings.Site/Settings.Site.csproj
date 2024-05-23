@@ -12,18 +12,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Features\Shared\AppResources\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Features\CustomerList\AppResources\Lang.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.2" />
     <PackageReference Include="Sunplus.Agent.Utilities" Version="4.0.0" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />

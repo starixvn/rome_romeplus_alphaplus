@@ -22,7 +22,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
         public override bool Visible => Request.SupportAutoTransfer;
 
         public override bool Disabled
-                => base.Disabled || Request.ActorIsNotEdittingDirectDownline;
+                => base.Disabled || Request.ActorIsNotEditingDirectDownline;
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsAllowAutoTransfer);
 

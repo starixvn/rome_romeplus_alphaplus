@@ -3,6 +3,14 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .AddCommandLine(args);
+
 var configuration = builder.Configuration;
 
 builder.Services

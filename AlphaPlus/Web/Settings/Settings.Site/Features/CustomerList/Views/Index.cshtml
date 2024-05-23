@@ -3,9 +3,9 @@
 @using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 @using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 @using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.CustomerListResources
-@using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources
-@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
 @using AlphaPlus.Settings.Site.Features.CustomerList.AppResources
+@using AlphaPlus.Settings.MemberInfo.Domain.AppResources
+@using AlphaPlus.Settings.Site.Features.Shared.AppResources.ProductResources
 
 @model AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.CustomerListViewModel
 
@@ -21,8 +21,8 @@
 
 @section Styles {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
-    @StaticResources.RenderStylesWithDarkMode("~/bundles/Features/CustomerList/bundles/customer-list")
-    @StaticResources.RenderStylesWithMedia(767, "~/bundles/Features/CustomerList/bundles/customer-list-07")
+    @StaticResources.RenderStylesWithDarkMode("~/bundles/Features/CustomerList/customer-list")
+    @StaticResources.RenderStylesWithMedia(767, "~/bundles/Features/CustomerList/customer-list-07")
 }
 
 <div class="customer-list">
@@ -380,5 +380,5 @@
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/data-table")
     @StaticResources.RenderScripts("~/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
-    @StaticResources.RenderScripts("~/bundles/Features/CustomerList/bundles/customer-list")
+    @StaticResources.RenderScripts("~/bundles/Features/CustomerList/customer-list")
 }

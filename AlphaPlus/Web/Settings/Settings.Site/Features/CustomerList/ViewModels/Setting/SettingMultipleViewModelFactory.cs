@@ -2,7 +2,6 @@
 using AlphaPlus.Products.ViewModels;
 using AlphaPlus.Settings.MemberInfo.API.Services;
 using Fanex.Data.Repository;
-using Microsoft.Extensions.Options;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multiple;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Products;
@@ -19,8 +18,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
         private const int RemoveOTPDisplayAfterLastProduct = 3;
         private readonly AccountService accountService;
 
-        public SettingMultipleViewModelFactory(IOptions<ProductConfiguration> options)
-            : base(options)
+        public SettingMultipleViewModelFactory(IConfiguration configuration)
+            : base(configuration)
         {
             accountService = new AccountServiceImpl(new DynamicRepository());
         }

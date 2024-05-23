@@ -1,18 +1,18 @@
-﻿using AlphaPlus.Settings.Site.Controllers;
-using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using MediatR;
 using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Shared;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList
 {
     public class CustomerListController : SiteBaseController
     {
-        private const string IndexPath = "~/MemberInfo/Features/CustomerList/Views/Index.cshtml";
-        private const string MultipleDoubleCommPath = "~/MemberInfo/Features/CustomerList/Views/MultipleDoubleComm.cshtml";
+        private const string IndexPath = "~/Features/CustomerList/Views/Index.cshtml";
+        private const string MultipleDoubleCommPath = "~/Features/CustomerList/Views/MultipleDoubleComm.cshtml";
         private readonly Result ErrorDefault = Result.CreateErrorResult(Lang.NotAuthorized);
         private readonly TransferService transferService;
 

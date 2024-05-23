@@ -1,8 +1,6 @@
-using System.Resources;
 using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Core.Models;
 using AlphaPlus.PartialUM.Configurations;
 using AlphaPlus.PartialUM.DataAccess;
 using AlphaPlus.PartialUM.Services;
@@ -18,21 +16,17 @@ using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
-using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.ProductResources;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Settings.Site.Features.CopyAccount;
 using AlphaPlus.Settings.Site.Features.CreateAccount;
 using AlphaPlus.Settings.Site.Features.DormantAccountList;
 using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold;
-using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Helpers;
-using AlphaPlus.Settings.Site.Features.Shared.Helpers;
 using AlphaPlus.Settings.Site.Handlers;
 using AlphaPlus.Settings.Site.SubAccount.Services;
 using Fanex.Caching;
 using Fanex.Cryptography.Aes;
 using Fanex.Data;
-using Fanex.Data.Repository;
 using Fanex.RemotingRef;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using RestSharp;
@@ -61,6 +55,7 @@ using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+using AlphaPlus.Products.Configurations;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -68,9 +63,19 @@ namespace AlphaPlus.Settings.Site.Helpers
     {
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
-
-
             var customerSettingApiUrl = new Uri(configuration.GetValue<string>("CustomerSettingApi"));
+
+            services
+                .AddMediatR(typeof(Program).Assembly)
+                .AddFanexData(configuration)
+                .AddFanexLogging(configuration)
+                .AddRemotingRef(configuration)
+                .AddRequestInfo()
+                .AddAlphaPlusCore(configuration)
+                .AddSharedSession(configuration)
+                .AddHttpClient<ISubAccountService, SubAccountService>
+                    (httpClient => httpClient.BaseAddress = customerSettingApiUrl);
+
             var qrCodeMemberLoginApi = new Uri(configuration.GetValue<string>("QRCodeMemberLogin:Api"));
             var qrCodeMemberLoginKey = configuration.GetValue<string>("QRCodeMemberLogin:Key");
             var qrCodeMemberLoginConfig = AppDomain.CurrentDomain.BaseDirectory + "/QRCodeMemberSiteLoginConfigs/QRCodeMemberSiteLoginConfig.json";
@@ -101,15 +106,6 @@ namespace AlphaPlus.Settings.Site.Helpers
                 });
 
             services
-                .AddMediatR(typeof(Program).Assembly)
-                .AddFanexData(configuration)
-                .AddFanexLogging(configuration)
-                .AddRemotingRef(configuration)
-                .AddSingleton<IDynamicRepository, DynamicRepository>()
-                .AddHttpClient<ISubAccountService, SubAccountService>
-                    (httpClient => httpClient.BaseAddress = customerSettingApiUrl);
-
-            services
                 .AddSingleton<IAesService, AesService>()
                 .AddSingleton<ISessionManager, SessionManager>()
                 .AddScoped<Encryptor, EncryptorImpl>()
@@ -118,6 +114,11 @@ namespace AlphaPlus.Settings.Site.Helpers
 
             services
                 .AddHttpClient<ICreateAccountService, CreateAccountService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
+
+            services.AddSingleton<IRemotingRefService, RemotingRefService>();
+            services.AddSingleton<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>, StatusViewModelFactory>();
+            services.AddSingleton<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>, SettingViewModelFactory>();
+            services.AddSingleton<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>, SettingMultipleViewModelFactory>();
 
             // SimpleServiceLocator.Instance
             //     .Register<IRemotingRefService>(new RemotingRefService())
@@ -135,12 +136,6 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>()
                 .Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode))
                 .AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>()
-                .AddSingleton<IPService, IPServiceImpl>()
-                .AddSingleton<RequestInfo.IPHelper, IPHelperImpl>()
-                .AddSingleton<RequestInfo.IPHelper, IPHelperImpl>()
-                .AddSingleton<IBrowserHelper, BrowserHelper>()
-                .AddSingleton<IDeviceHelper, DeviceHelper>()
-                .AddScoped<IUserSession, UserSessionExt>()
                 .AddScoped<IUser, Models.User>()
                 .AddScoped<CustomerListService, CustomerListServiceImpl>()
                 .AddScoped<Settings.MemberInfo.API.Services.Transfer.TransferService, Settings.MemberInfo.API.Services.Transfer.TransferServiceImpl>();
@@ -216,9 +211,8 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddScoped<TransferToDownlineHistoryService, TransferToDownlineHistoryServiceImpl>();
 
             services
-                .AddSharedSession(configuration)
-                .AddAuthorization()
                 .AddHttpContextAccessor()
+                .AddAuthorization()
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddSharedCookie();
 

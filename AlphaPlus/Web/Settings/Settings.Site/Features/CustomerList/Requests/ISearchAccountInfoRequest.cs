@@ -7,9 +7,9 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
     {
         ICustomer SearchAccount { get; }
 
-        bool ActorIsEdittingDirectDownline { get; }
+        bool ActorIsEditingDirectDownline { get; }
 
-        bool ActorIsNotEdittingDirectDownline { get; }
+        bool ActorIsNotEditingDirectDownline { get; }
 
         bool IsSubAcc { get; }
 

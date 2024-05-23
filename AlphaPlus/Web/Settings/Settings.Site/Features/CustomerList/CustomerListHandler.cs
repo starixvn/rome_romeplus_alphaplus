@@ -9,13 +9,14 @@ using AlphaPlus.SecurityCode.Services;
 using Newtonsoft.Json;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.CustomerList.Models;
-using AlphaPlus.Settings.Site.Features.Shared.Requests;
 using AlphaPlus.Products.Models;
 using AlphaPlus.Settings.Site.Features.CustomerList.Params;
 using AlphaPlus.Products.ViewModels;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
 using AlphaPlus.Settings.MemberInfo.API.Services;
+using AlphaPlus.Settings.Site.Features.Shared;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList
 {
@@ -38,7 +39,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
         private readonly TransferService transferService;
         private readonly CacheRefService cacheRefService;
 
-        private readonly string CurrenciesOfferAutoTransfer = Configurations.ConfigurationManager.GetValue<string>("OfferAutoTransfer.Currencies");
+        private readonly string CurrenciesOfferAutoTransfer = AppSettings.GetConfigValue("OfferAutoTransfer.Currencies");
 
         public CustomerListHandler(
             CustomerListService customerListService,
@@ -255,35 +256,33 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             CustomerStatusModel model,
             bool allowedAllDayBalTransfer)
         {
-            var request = new StatusSearchAccountRequest(actor, searchAccount, message.Language, message.IsDarkMode, cacheRefService.GetProductGroupName)
+            var request = new StatusSearchAccountRequest(
+                actor,
+                searchAccount,
+                message.Language,
+                message.IsDarkMode,
+                cacheRefService.GetProductGroupName,
+                cacheRefService.GetProductName)
             {
                 SubPageAccess = message.SubPageAccess
             };
 
             request
                 .AddData(DataKey.Actor.HasUpdateAccountPermission, message.CanUpdateAccount)
-
                 .AddData(DataKey.SearchAccount.IsAllowedMasterAutoPT, !model.NonProduct.DisableAutoMPT)
-
                 .AddData(DataKey.SearchAccount.Upline.IsAllowedOutright, !model.NonProduct.UplineDisableOutright)
                 .AddData(DataKey.SearchAccount.IsAllowedOutright, !model.NonProduct.DisableOutright)
-
                 .AddData(DataKey.SearchAccount.Upline.IsClosed, model.NonProduct.UplineClosed)
                 .AddData(DataKey.SearchAccount.IsClosed, model.NonProduct.Closed)
                 .AddData(DataKey.SearchAccount.IsDirectClosed, model.NonProduct.IsDirectClosed)
-
                 .AddData(DataKey.SearchAccount.IsLockedAccess, model.NonProduct.Locked)
-
                 .AddData(DataKey.SearchAccount.IsOfferProtectedMode, message.IsOfferProtectedMode)
                 .AddData(DataKey.SearchAccount.IsProtectedMode, model.NonProduct.IsProtectedMode)
-
                 .AddData(DataKey.SearchAccount.Upline.IsAllowedDoubleComm, model.NonProduct.UplineDoubleCommLosing)
                 .AddData(DataKey.SearchAccount.IsAllowedDoubleComm, model.NonProduct.DoubleCommLosing)
-
                 .AddData(DataKey.SearchAccount.Upline.IsSuspended, model.NonProduct.UplineSuspend)
                 .AddData(DataKey.SearchAccount.IsSuspended, model.NonProduct.Suspended)
                 .AddData(DataKey.SearchAccount.IsDirectSuspend, model.NonProduct.IsDirectSuspend)
-
                 .AddData(DataKey.SearchAccount.AllowedAllDayBalTransfer, allowedAllDayBalTransfer)
                 .AddData(DataKey.SearchAccount.IsAllDayBalTransfer, model.NonProduct.IsAllDayBalTransfer)
                 .AddData(DataKey.SearchAccount.IsAllowAutoTransfer, model.NonProduct.IsAllowAutoTransfer)
@@ -301,7 +300,13 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             CustomerStatusQueryBase message,
             CustomerStatusModel model)
         {
-            var request = new StatusSearchAccountRequest(actor, searchAccount, message.Language, message.IsDarkMode, cacheRefService.GetProductGroupName)
+            var request = new SettingSearchAccountRequest(
+                actor,
+                searchAccount,
+                message.Language,
+                message.IsDarkMode,
+                cacheRefService.GetProductGroupName,
+                cacheRefService.GetProductName)
             {
                 SubPageAccess = message.SubPageAccess
             };
@@ -321,7 +326,13 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
            CustomerStatusMultipleQuery message,
            CustomerStatusModel model)
         {
-            var request = new SettingSearchAccountRequest(actor, searchAccount, message.Language, message.IsDarkMode, cacheRefService.GetProductGroupName)
+            var request = new SettingSearchAccountRequest(
+                actor,
+                searchAccount,
+                message.Language,
+                message.IsDarkMode,
+                cacheRefService.GetProductGroupName,
+                cacheRefService.GetProductName)
             {
                 SubPageAccess = message.SubPageAccess,
                 SupportAutoTransfer = IsEnableAutoTransfer(message, CurrenciesOfferAutoTransfer),

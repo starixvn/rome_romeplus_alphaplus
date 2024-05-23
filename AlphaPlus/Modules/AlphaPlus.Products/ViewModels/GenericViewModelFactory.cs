@@ -1,14 +1,15 @@
 using AlphaPlus.Products.Configurations;
 using AlphaPlus.Products.Models;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
 
 namespace AlphaPlus.Products.ViewModels
 {
-    public abstract class GenericViewModelFactory<TRequest, TView>(IOptions<ProductConfiguration> options)
+    public abstract class GenericViewModelFactory<TRequest, TView>(IConfiguration configuration)
         where TRequest : IRequest
         where TView : IViewModel
     {
-        protected readonly ProductConfiguration options = options.Value;
+        protected readonly IConfiguration configuration = configuration;
+        protected ProductConfiguration productConfiguration = configuration.GetSection("ProductConfiguration").Get<ProductConfiguration>();
 
         public IEnumerable<TView> GetViewModels(TRequest request)
            => request?.IsValid == true
@@ -62,7 +63,7 @@ namespace AlphaPlus.Products.ViewModels
         }
 
         public IEnumerable<ProductItem> GetEnabledProductItems(Func<ProductItem, bool> predicate, DateTime? currentDate = null)
-            => options.Products
+            => productConfiguration.Products
                .Where(configItem =>
                    configItem.Enabled
                    && configItem.EndSupportDate >= (currentDate ?? DateTime.Now)

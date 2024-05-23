@@ -1,7 +1,7 @@
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Shared.Models;
 
-namespace AlphaPlus.Settings.Site.Features.Shared.Requests
+namespace AlphaPlus.Settings.Site.Features.Shared
 {
     public abstract class BaseQuery
     {
@@ -12,9 +12,9 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Requests
         internal BaseQuery(IUser viewer)
         {
             this.viewer = viewer ?? new User();
-            CustId = viewer.Id;
-            CustLevelId = viewer.LevelId;
-            CustName = viewer.Name;
+            CustId = this.viewer.Id;
+            CustLevelId = this.viewer.LevelId;
+            CustName = this.viewer.Name;
         }
 
         public int CustId { get; set; }

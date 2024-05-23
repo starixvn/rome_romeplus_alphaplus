@@ -35,8 +35,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base
 
         public override bool Visible => Actor.IsDirectUplineOf(SearchAccount) && SearchAccount.CanSeeProduct(productItem.ProductId);
 
-        public bool IsEditOnProductLevel
-            => (productItem.ExtendProductProperty as SearchAccountProperties).StatusOnProductLevel;
+        public bool IsEditOnProductLevel => productItem.ExtendProductProperty.StatusOnProductLevel;
 
         public override bool Checked => SearchAccount.ProductStatusOf(productItem.ProductId).Enabled;
     }

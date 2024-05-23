@@ -121,7 +121,6 @@ $(function () {
         JSON.parse($('#isShowMyanmarOdds').val()),
         JSON.parse($('#canViewReport').val()),
         JSON.parse($('#canUpdateAccount').val()),
-        $.parseJSON($('#customerListResources').val()),
         window.customerListData
     );
 
