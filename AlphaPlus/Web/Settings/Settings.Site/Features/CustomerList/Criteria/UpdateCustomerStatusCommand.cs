@@ -1,10 +1,9 @@
-﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.Criteria
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Settings.Site.Features.CustomerList.Models;
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Settings.Site.Features.Shared.Models;
+using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Site.Features.CustomerList.Criteria
+{
     public class UpdateCustomerStatusCommand : NonQueryCommand
     {
         private static readonly IDictionary<string, string> CustomerStatusSettingKeys =

@@ -25,6 +25,8 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
 
         string IP { get; }
 
+        string LangKey { get; }
+
         bool CanUpdateAccount { get; }
 
         bool IsEnabledJackpot { get; }

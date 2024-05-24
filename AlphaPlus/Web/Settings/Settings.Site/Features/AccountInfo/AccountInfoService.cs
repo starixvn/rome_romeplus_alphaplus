@@ -1,6 +1,8 @@
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.AccountInfo.Criteria;
 using AlphaPlus.Settings.Site.Features.AccountInfo.Models;
+using AlphaPlus.Settings.Site.Features.AccountInfo.Requests;
+using AlphaPlus.Settings.Site.Features.Shared.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
 
@@ -25,6 +27,8 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
         Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal);
 
         Task<IEnumerable<OnlineUser>> GetOnlineList(int custid, bool adminCanViewVNIP);
+
+        Task<Result> UpdateCustomerStatus(CustomerNonProductStatusCommand param);
     }
 
     public class AccountInfoService(IDynamicRepository dynamicRepository, IPService ipService) : IAccountInfoService
@@ -149,6 +153,70 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
             }
 
             return onlineUsers;
+        }
+
+        public async Task<Result> UpdateCustomerStatus(CustomerNonProductStatusCommand param)
+        {
+            UpdateCustomerStatusCommand command = param.StatusName switch
+            {
+                StatusNames.Closed => new UpdateClosedStatusCommand(
+                                        param.SearchAccountId,
+                                        param.ActorId,
+                                        param.SubAccountId,
+                                        param.LangKey,
+                                        param.IP,
+                                        param.StatusName,
+                                        param.StatusValue),
+                StatusNames.DisableAutoMasterPT => new UpdateDisableAutoMPTStatusCommand(
+                                        param.SearchAccountId,
+                                        param.ActorId,
+                                        param.SubAccountId,
+                                        param.LangKey,
+                                        param.IP,
+                                        param.StatusName,
+                                        param.StatusValue),
+                StatusNames.DoubleComm => new UpdateDoubleCommLosingStatusCommand(
+                                        param.SearchAccountId,
+                                        param.ActorId,
+                                        param.SubAccountId,
+                                        param.LangKey,
+                                        param.IP,
+                                        param.StatusName,
+                                        param.StatusValue),
+                StatusNames.DisableOutright => new UpdateDisableOutrightStatusCommand(
+                                        param.SearchAccountId,
+                                        param.ActorId,
+                                        param.SubAccountId,
+                                        param.LangKey,
+                                        param.IP,
+                                        param.StatusName,
+                                        param.StatusValue),
+                StatusNames.Suspended => new UpdateSuspendedStatusCommand(
+                                        param.SearchAccountId,
+                                        param.ActorId,
+                                        param.SubAccountId,
+                                        param.LangKey,
+                                        param.IP,
+                                        param.StatusName,
+                                        param.StatusValue),
+                StatusNames.Unlock => new UpdateUnlockedCommand(
+                                        param.SearchAccountId,
+                                        param.ActorId,
+                                        param.SubAccountId,
+                                        param.LangKey,
+                                        param.IP,
+                                        param.StatusName),
+                _ => new UpdateDisableProtectedStatusCommand(
+                                        param.SearchAccountId,
+                                        param.ActorId,
+                                        param.SubAccountId,
+                                        param.LangKey,
+                                        param.IP,
+                                        param.StatusName,
+                                        param.StatusValue),
+            };
+            await dynamicRepository.ExecuteAsync(command);
+            return new Result(command.ErrCode, command.ErrMsg);
         }
     }
 }

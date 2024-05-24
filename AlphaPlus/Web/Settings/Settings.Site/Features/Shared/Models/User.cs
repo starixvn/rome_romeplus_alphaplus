@@ -97,5 +97,7 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
         public PageAccess SubPageAccess => userSession.SubPageAccess;
 
         public string AGIP => userSession.AGIP;
+
+        public string LangKey => userSession.LangKey;
     }
 }

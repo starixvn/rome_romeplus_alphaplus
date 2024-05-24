@@ -7,4 +7,8 @@ export default interface StatusItem extends SettingItem {
     ConfirmMessage: string;
     IsEditOnProductLevel: boolean;
     DisplayOrder: string;
+    IsPopup: boolean;
+    JsonParams: string;
+    PopupHeaderText: string;
+    ReloadCustomerInfo: boolean;
 }

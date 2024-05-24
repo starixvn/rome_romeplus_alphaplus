@@ -128,7 +128,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 
         public bool CanViewLog => message.CanViewLog;
 
-        // public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
+        public string ViewLogLink => MicroSites.SettingUrl($"~/setting/index?username={UserName}");
 
         public string ViewLoginIPLink => MicroSites.MainUrl("~/IPInfo");
 

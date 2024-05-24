@@ -51,6 +51,8 @@ namespace AlphaPlus.Settings.Site.Features.Shared
 
         public string Language => viewer.Language;
 
+        public string LangKey => viewer.LangKey;
+
         public bool IsDarkMode => !string.IsNullOrWhiteSpace(viewer.DarkModeName);
 
         public string IP => viewer.IP;

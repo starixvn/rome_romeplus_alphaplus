@@ -82,6 +82,10 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
             return View();
         }
 
+        [HttpPost]
+        public async Task<ActionResult> UpdateCustomerStatus(CustomerNonProductStatusCommand command)
+            => Json(await accountInfoService.UpdateCustomerStatus(command));
+
         private static IBalanceInfoViewModel BuildBalanceInfoViewModel(
             GetAccountQuery message,
             CustomerInfoModel customerInfo,

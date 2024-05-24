@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { BlockIds } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
-import SettingsService from '../../services/settings-service';
+import SettingsService, { handleError } from '../../services/settings-service';
 import AccordionItem from '../common/AccordionItem';
 import NoInformation from '../common/NoInformation';
 import styles from './LoginInfo.module.scss';
@@ -72,8 +72,11 @@ export default function LoginInfo() {
         handleBlockClick?.(BlockIds.LoginInfo);
 
         if (loginInfo && !lastTxn) {
-            // $.blockUI();
-            SettingsService.GetLastTxn(customer.UserName).then((lastTxn) => setLastTxn(lastTxn));
+            $.blockUI?.();
+            SettingsService.GetLastTxn(customer.UserName)
+                .then((lastTxn) => setLastTxn(lastTxn))
+                .catch(handleError)
+                .finally(() => $.unblockUI?.());
         }
     };
 

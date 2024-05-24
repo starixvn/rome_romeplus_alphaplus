@@ -19,10 +19,10 @@ public class SecurityCodeChecker(IOptions<SecurityCodeOptions> options) : ISecur
 
     public bool IsEnableSecurityCode()
     {
-        if (!options.IsActive)
-        {
-            return false;
-        }
+        // if (!options.IsActive)
+        // {
+        //     return false;
+        // }
 
         //// If forced change, then user have been offered security code
         if (IsForcedChangeSecurityCode())

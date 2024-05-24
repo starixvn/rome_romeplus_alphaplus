@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 import styles from './App.module.scss';
@@ -9,16 +10,10 @@ import LoginInfo from './components/LoginInfo';
 import OnlineList from './components/OnlineList';
 import SearchBox from './components/SearchBox';
 import StatusAndSetting from './components/StatusAndSetting';
-import { BlockIds, UserLevel } from './constants';
+import { BlockIds, LoadCustomerAllStatus, LoadCustomerInfo, UserLevel } from './constants';
 import { GlobalContext } from './context/global-context';
 import Customer from './models/customer';
-import SettingsService from './services/settings-service';
-
-export const LoadCustomerInfo = {
-    ByUpdateStatus: 'reload_customer_info_by_status',
-    ByUpdateGivenCredit: 'reload_customer_info_by_given_credit',
-    ByClick: 'load_customer_info_by_click'
-};
+import SettingsService, { handleError } from './services/settings-service';
 
 function App() {
     const { actorRoleId, mobileView } = params;
@@ -27,15 +22,39 @@ function App() {
     const [searchCounter, setSearchCounter] = useState(0);
     const [customer, setCustomer] = useState<Customer | undefined>(undefined);
     const [expandedBlockId, setExpandedBlockId] = useState<BlockIds | undefined>(BlockIds.BalanceInfo);
+    const [requestType, setRequestType] = useState<string>(LoadCustomerInfo.ByClick);
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
 
     const getCustomerInfo = (username: string, requestId: string = LoadCustomerInfo.ByClick) => {
-        SettingsService.GetCustomerInfo(username).then((result) => {
-            setSearchCounter(searchCounter + 1);
-            setCustomer(result);
-            if (result) {
-                setSearchAccountRoleId(result.RoleId - 1);
-            }
-        });
+        setRequestType(requestId);
+        const loadCustomerInfoByClick = requestId === LoadCustomerInfo.ByClick;
+        const resetSetting = requestId !== LoadCustomerInfo.ByUpdateStatus;
+
+        $.blockUI?.();
+        SettingsService.GetCustomerInfo(username)
+            .then((result) => {
+                if (loadCustomerInfoByClick) {
+                    source.cancel(LoadCustomerInfo.ByUpdateGivenCredit);
+                    source.cancel(LoadCustomerInfo.ByUpdateStatus);
+                    source.cancel(LoadCustomerAllStatus.ByClick);
+                    source.cancel(LoadCustomerAllStatus.ByUpdateStatus);
+                }
+
+                setSearchCounter(searchCounter + 1);
+                setCustomer(result);
+                if (result) {
+                    setSearchAccountRoleId(result.RoleId - 1);
+                } else {
+                    if (resetSetting) {
+                        setCustomer(undefined);
+                    }
+                }
+            })
+            .catch(handleError)
+            .finally(() => {
+                $.unblockUI?.();
+            });
     };
 
     const handleBlockClick = (blockId: BlockIds) => {
@@ -55,6 +74,7 @@ function App() {
         <div className={styles.container}>
             <GlobalContext.Provider
                 value={{
+                    requestType,
                     mobileView,
                     username,
                     setUsername,

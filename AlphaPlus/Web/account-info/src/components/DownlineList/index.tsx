@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { BlockIds, UserLevel } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
 import DownlineListResponse from '../../models/DownlineListReponse';
-import SettingsService from '../../services/settings-service';
+import SettingsService, { handleError } from '../../services/settings-service';
 import AccordionItem from '../common/AccordionItem';
 import DownlineListContent from './DownlineListContent';
 import TotalDirectDownlines from './TotalDirectDownlines';
@@ -21,8 +21,9 @@ export default function DownlineList() {
 
     const fetchDownlineListFromServer = (pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) => {
         if (customer?.CustId && (downlineListData === null || pageIndex > 1 || reloadByStatus)) {
-            SettingsService.GetDownlineList(customer?.CustId, customer?.RoleId, pageIndex, statusId, totalPages).then(
-                (data) => {
+            $.blockUI?.();
+            SettingsService.GetDownlineList(customer?.CustId, customer?.RoleId, pageIndex, statusId, totalPages)
+                .then((data) => {
                     data.PageIndex = pageIndex;
                     data.StatusId = statusId;
 
@@ -36,8 +37,9 @@ export default function DownlineList() {
                     // }
 
                     setDownlineListData(data);
-                }
-            );
+                })
+                .catch(handleError)
+                .finally(() => $.unblockUI?.());
         }
     };
 

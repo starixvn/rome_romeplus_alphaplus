@@ -3,6 +3,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.CustomerList.Criteria;
 using AlphaPlus.Settings.Site.Features.CustomerList.Params;
 using AlphaPlus.Settings.Site.Features.CustomerList.Models;
+using AlphaPlus.Settings.Site.Features.Shared.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList
 {

@@ -139,6 +139,15 @@ hr {
     margin-left: 4px;
 }
 
+.icon-ic_list {
+    @include ripple-effect-icon($top: -2px, $margin-left: -5px);
+    float: left;
+    margin-right: 8px;
+    line-height: 20px;
+    color: #67151b;
+    font-size: 15px;
+}
+
 .row-info {
     line-height: 30px;
     padding-left: 10px;

@@ -17,6 +17,7 @@ using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
 using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.Site.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+using AlphaPlus.Settings.Site.Features.Shared.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList
 {

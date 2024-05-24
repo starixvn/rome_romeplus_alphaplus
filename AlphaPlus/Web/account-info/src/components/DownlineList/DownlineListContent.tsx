@@ -100,8 +100,6 @@ export default function DownlineListContent({
                 isTruncated = Username.length > maxLength,
                 displayedUsername = isTruncated ? `${Username.substring(0, maxLength)}...` : Username;
 
-            console.log(loadedRowsMap[index]);
-
             const rowContent =
                 loadedRowsMap[index] === STATUS_LOADED ? (
                     <a

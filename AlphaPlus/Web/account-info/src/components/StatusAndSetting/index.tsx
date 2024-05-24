@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { BlockIds, UserLevel } from '../../constants';
+import { BlockIds, LoadCustomerAllStatus, UserLevel } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
 import SettingItem from '../../models/setting-item';
 import StatusItem from '../../models/status-item';
-import SettingsService from '../../services/settings-service';
+import SettingsService, { handleError } from '../../services/settings-service';
 import AccordionItem from '../common/AccordionItem';
 import NoInformation from '../common/NoInformation';
 import Settings from './Settings';
@@ -13,7 +13,7 @@ import Status from './Status';
 
 export default function StatusAndSetting() {
     const { t } = useTranslation();
-    const { mobileView, expandedBlockId, handleBlockClick, customer } = useGlobalContext();
+    const { mobileView, expandedBlockId, handleBlockClick, customer, requestType } = useGlobalContext();
     const [statusData, setStatusData] = useState<StatusItem[] | undefined>(undefined);
     const [settingData, setSettingData] = useState<SettingItem[] | undefined>(undefined);
 
@@ -22,26 +22,16 @@ export default function StatusAndSetting() {
         setSettingData(undefined);
     }, [customer?.CustId]);
 
-    const renderStatus = () => {
-        if (!statusData) {
-            return mobileView ? <NoInformation /> : null;
+    const blockUIWrapper = () => {
+        if ($('.ui-widget-overlay:visible').length > 0) {
+            $.blockUI?.();
         }
-
-        return <Status statusItems={statusData} />;
     };
 
-    const renderSetting = () => {
-        if (!settingData) {
-            return mobileView ? <NoInformation /> : null;
-        }
+    const getCustomerStatus = (requestId: string | undefined) => {
+        if ((!statusData || !settingData || requestId === LoadCustomerAllStatus.ByUpdateStatus) && customer) {
+            blockUIWrapper();
 
-        return <Settings settingItems={settingData} />;
-    };
-
-    const handleClick = (blockId: BlockIds) => {
-        handleBlockClick?.(blockId);
-
-        if ((!statusData || !settingData) && customer) {
             const { CustId, UserName, RoleId } = customer;
             let uplineId: number;
             let uplineName: string;
@@ -61,13 +51,36 @@ export default function StatusAndSetting() {
                     break;
             }
 
-            SettingsService.GetCustomerAllStatus(CustId, UserName, RoleId, uplineId, uplineName).then(
-                (responseData) => {
+            SettingsService.GetCustomerAllStatus(CustId, UserName, RoleId, uplineId, uplineName)
+                .then((responseData) => {
                     setStatusData(responseData.Status);
                     setSettingData(responseData.Settings);
-                }
-            );
+                })
+                .catch(handleError)
+                .finally(() => $.unblockUI?.());
         }
+    };
+
+    const handleClick = (blockId: BlockIds) => {
+        handleBlockClick?.(blockId);
+
+        getCustomerStatus(requestType);
+    };
+
+    const renderStatus = () => {
+        if (!statusData) {
+            return mobileView ? <NoInformation /> : null;
+        }
+
+        return <Status statusItems={statusData} getCustomerStatus={getCustomerStatus} />;
+    };
+
+    const renderSetting = () => {
+        if (!settingData) {
+            return mobileView ? <NoInformation /> : null;
+        }
+
+        return <Settings settingItems={settingData} />;
     };
 
     return (

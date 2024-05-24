@@ -1,4 +1,4 @@
-namespace AlphaPlus.Settings.Site.Features.CustomerList.Models
+namespace AlphaPlus.Settings.Site.Features.Shared.Models
 {
     public static class StatusNames
     {
@@ -9,5 +9,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Models
         public const string Suspended = "Suspended";
         public const string Unlock = "Unlock";
         public const string AllowAutoTransfer = "AllowAutoTransfer";
+        public const string Protected = "IsProtectionMode";
     }
 }

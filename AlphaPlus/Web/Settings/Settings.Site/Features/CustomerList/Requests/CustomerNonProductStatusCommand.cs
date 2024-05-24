@@ -1,5 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Site.Features.CustomerList.Models;
+using AlphaPlus.Settings.Site.Features.Shared.Models;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests

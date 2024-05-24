@@ -4,12 +4,29 @@ import Customer from '../models/customer';
 import CustomerStatus from '../models/customer-status';
 import DownlineListResponse from '../models/DownlineListReponse';
 import OnlineUser from '../models/online-user';
+import Result from '../models/result';
+import StatusItem from '../models/status-item';
 import UsernameSuggestion from '../models/username-suggestion';
 
 const axiosInstance = axios.create({
     baseURL: window.top?.alpha.urls['settingsRootPath'],
     timeout: 1000
 });
+
+export const handleError = (err: any) => {
+    if (axios.isCancel(err)) {
+        return undefined;
+    }
+
+    if (err.status === 403) {
+        return {
+            IsSuccess: false,
+            Message: $('#NotAuthorized').val()
+        };
+    }
+
+    throw err;
+};
 
 const SettingsService = {
     GetUsernameSuggestion: async (query: string) => {
@@ -62,6 +79,16 @@ const SettingsService = {
         return axiosInstance
             .get<OnlineUser[]>('AccountInfo/GetOnlineList', {
                 params: { SearchAccountId: custId }
+            })
+            .then((response) => response.data);
+    },
+    UpdateCustomerStatus: async (status: StatusItem) => {
+        return axiosInstance
+            .post<Result>(`AccountInfo/${status.Url}`, JSON.parse(status.JsonParams), {
+                headers: {
+                    __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
             })
             .then((response) => response.data);
     }
