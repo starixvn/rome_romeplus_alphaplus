@@ -5,7 +5,7 @@ namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
 public partial class ResultsController(IMediator mediator) : ResultBaseController(mediator)
 {
-    private const string IndexView = "~/Features/Results/ThirdParty/Views/Index.cshtml";
+    protected const string IndexView = "~/Features/Results/ThirdParty/Views/Index.cshtml";
 
     public Task<IActionResult> MaxGameResult(MaxGameResultQuery message) => View(message, IndexView);
 
@@ -62,4 +62,6 @@ public partial class ResultsController(IMediator mediator) : ResultBaseControlle
     public Task<IActionResult> WEResult(WEResultQuery message) => View(message, IndexView);
 
     public Task<IActionResult> UUSlotsResult(UUSlotsResultQuery message) => View(message, IndexView);
+
+    public ActionResult SabaxDResult(SabaxDResultQuery message) => View(IndexView, mediator.Send(message));
 }

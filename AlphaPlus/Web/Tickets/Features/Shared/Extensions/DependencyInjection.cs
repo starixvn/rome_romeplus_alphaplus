@@ -1,8 +1,8 @@
 using System.Net;
 using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using AlphaPlus.Tickets.Site.Features.Forecast;
-using AlphaPlus.Tickets.Site.Features.Results;
 using AlphaPlus.Tickets.Site.Features.Results.Normal;
+using AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Tickets.Site.Features.TotalBets;
 using Fanex.BetList.Core.Builder;
@@ -12,7 +12,10 @@ using Fanex.BetList.Core.RemotingRef;
 using Fanex.BetList.Core.TicketHelper;
 using Fanex.Result.Core.Base;
 using Fanex.Result.Core.ConfigurationHelper;
+using Fanex.Result.Core.KenoLotteryTG;
+using Fanex.Result.Core.LinkedGames;
 using Fanex.Result.Core.RemotingRef;
+using Fanex.Result.Core.SabaClub;
 using Fanex.Result.Core.SportsLottery;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
@@ -27,6 +30,7 @@ public static class DependencyInjection
             .Configure<AppSettings>(configuration)
             .AddSingleton<IUser, User>()
             .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>()
+            .AddSingleton<ICacheRefService, CacheRefService>()
             .AddBetListsCore();
 
         // https://www.milanjovanovic.tech/blog/the-right-way-to-use-httpclient-in-dotnet
@@ -96,14 +100,20 @@ public static class DependencyInjection
         .AddSingleton<IBetListExcelBuilder>(sp => sp.GetService<IBetListFactory<BetListExcelBuilder>>().CreateBuilder());
     //.AddSingleton<ComboParlayDetailWorkbook, ComboParlayDetailWorkbookImpl>();
 
-    public static IServiceCollection AddResultsSiteServices(this IServiceCollection services)
+    public static IServiceCollection AddResultsSiteServices(this IServiceCollection services, IConfiguration configuration)
     {
         ResultCoreManager.RegisterRefDataHelper(new RefDataHelper());
 
         return services
             .AddScoped<IConfigurationHelper, ConfigurationHelper>()
-            .AddScoped<ISportsLotteryResult, SportsLotteryResult>()
             .AddSingleton<IResultServiceFactory, ResultServiceFactory>()
-            .AddSingleton<IResultEngineAdapter, ResultEngineAdapter>();
+            .AddSingleton<IResultEngineAdapter, ResultEngineAdapter>()
+            .AddScoped<IKenoResult>(_ => new KenoResult(configuration.GetSection("KenoResultConfigs").Get<KenoLotteryTGConfigs>()))
+            .AddScoped<ILotteryResult>(_ => new LotteryResult(configuration.GetSection("LotteryResultConfigs").Get<KenoLotteryTGConfigs>()))
+            .AddScoped<ITableGamesResult>(_ => new TableGamesResult(configuration.GetSection("TableGameResultConfigs").Get<KenoLotteryTGConfigs>()))
+            .AddScoped<ISportsLotteryResult>(_ => new SportsLotteryResult(configuration.GetSection("SportsLotteryResultConfigs").Get<SportsLotteryConfigs>()))
+            .AddScoped<IVirtualGamesResult>(_ => new VirtualGamesResult(configuration.GetSection("VirtualGamesResultConfigs").Get<KenoLotteryTGConfigs>()))
+            .AddScoped<ILinkedGamesResult>(_ => new LinkedGamesResult(configuration.GetSection("Soccer5ResultConfigs").Get<LinkedGamesConfigs>()))
+            .AddScoped<ISabaClubResult>(_ => new SabaClubResult(configuration.GetSection("SabaClubConfigs").Get<SabaClubConfigs>()));
     }
 }

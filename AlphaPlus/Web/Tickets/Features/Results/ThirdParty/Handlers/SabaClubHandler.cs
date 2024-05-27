@@ -4,7 +4,10 @@ using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
-public class SabaClubHandler(Fanex.Logging.ILogger logger) : IRequestHandler<SabaClubResultQuery, ThirdPartyProductViewModel>
+public class SabaClubHandler(
+    Fanex.Logging.ILogger logger,
+    ICacheRefService cacheRefService,
+    ISabaClubResult sabaClubResult) : IRequestHandler<SabaClubResultQuery, ThirdPartyProductViewModel>
 {
     public async Task<ThirdPartyProductViewModel> Handle(SabaClubResultQuery message, CancellationToken cancellationToken)
     {
@@ -13,8 +16,7 @@ public class SabaClubHandler(Fanex.Logging.ILogger logger) : IRequestHandler<Sab
 
         try
         {
-            var service = new SabaClubResult();
-            result = service.GetResult(message.CustId, message.GameRoundId, message.GameId, message.SiteId, message.SportId, message.Language);
+            result = sabaClubResult.GetResult(message.CustId, message.GameRoundId, message.GameId, message.SiteId, message.SportId, message.Language);
             isSuccess = true;
         }
         catch (Exception ex)
@@ -25,7 +27,7 @@ public class SabaClubHandler(Fanex.Logging.ILogger logger) : IRequestHandler<Sab
         }
 
         return new ThirdPartyProductViewModel(
-            $"{CacheRefServiceHelper.GetSportName(message.SportId)} - {CacheRefServiceHelper.GetBetTypeName(Convert.ToInt32(message.GameId))}",
+            $"{cacheRefService.GetSportName(message.SportId)} - {cacheRefService.GetBetTypeName(Convert.ToInt32(message.GameId))}",
             result,
             isSuccess);
     }

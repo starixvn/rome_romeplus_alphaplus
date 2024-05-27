@@ -7,6 +7,8 @@ namespace AlphaPlus.Results.Features.Outright;
 public interface IOutrightService
 {
     Task<IEnumerable<OutrightDTO>> GetOutrights(OutrightParam param);
+
+    IEnumerable<OutrightDTO> FilterOutrights(IEnumerable<OutrightDTO> outrights, int sportType, int leagueId);
 }
 
 public class OutrightService(
@@ -23,10 +25,10 @@ public class OutrightService(
 
         var rawdata = await repository.FetchAsync<OutrightDTO>(criteria);
 
-        return FilterOutrights(rawdata, param.SportType, param.LeagueId);
+        return rawdata.OrderBy(outright => outright.SportType);
     }
 
-    private static IEnumerable<OutrightDTO> FilterOutrights(IEnumerable<OutrightDTO> outrights, int sportType, int leagueId)
+    public IEnumerable<OutrightDTO> FilterOutrights(IEnumerable<OutrightDTO> outrights, int sportType, int leagueId)
     {
         if (sportType != 0)
         {
@@ -38,6 +40,6 @@ public class OutrightService(
             outrights = outrights.Where(outright => outright.LeagueId == leagueId);
         }
 
-        return outrights.OrderBy(outright => outright.SportType);
+        return outrights;
     }
 }

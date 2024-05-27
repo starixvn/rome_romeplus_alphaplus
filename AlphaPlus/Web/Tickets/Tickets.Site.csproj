@@ -19,19 +19,22 @@
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
+    <PackageReference Include="Fanex.Result.Core-Bitcoin" Version="2.0.0.1" />
     <PackageReference Include="Fanex.Result.Core-LeapGaming" Version="2.0.0" />
-    <PackageReference Include="Fanex.Result.Core-Sportsbook" Version="2.0.0.7-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core-NumberGame" Version="2.0.0" />
+    <PackageReference Include="Fanex.Result.Core-Sportsbook" Version="2.0.0.7-upgrade-02" />
     <PackageReference Include="Fanex.Result.Core.AllBetCasino" Version="2.0.0.1" />
     <PackageReference Include="Fanex.Result.Core.ConfigurationHelper" Version="1.0.0" />
     <PackageReference Include="Fanex.Result.Core.GTCasino" Version="2.0.0.1" />
-    <PackageReference Include="Fanex.Result.Core.Happy5" Version="2.0.0.1" />
-    <PackageReference Include="Fanex.Result.Core.KenoLotteryTG" Version="3.0.0" />
+    <PackageReference Include="Fanex.Result.Core.Happy5" Version="2.0.0.2-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.KenoLotteryTG" Version="3.0.1-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.LinkedGames" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.0" />
+    <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SAGaming" Version="2.0.0" />
     <PackageReference Include="Fanex.Result.Core.SexyGaming" Version="2.0.0.1" />
-    <PackageReference Include="Fanex.Result.Core.SportsLottery" Version="1.0.3" />
-    <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.0" />
+    <PackageReference Include="Fanex.Result.Core.SportsLottery" Version="2.0.0-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.WM" Version="2.0.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />

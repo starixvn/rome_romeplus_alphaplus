@@ -59,7 +59,7 @@ builder.Services
     .AddSharedSession(configuration)
     .AddBetListsServices(configuration)
     .AddResultsServices(configuration)
-    .AddResultsSiteServices()
+    .AddResultsSiteServices(configuration)
     .AddApplicationServices(configuration)
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

@@ -1,4 +1,6 @@
+using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.RemotingRef;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Features.Shared;
 
@@ -24,12 +26,12 @@ public interface ICacheRefService
 
     string GetProductName(string productId);
 
-    string GetProductDetailName(int resourceId);
-
     string GetResourceDataByRefIdAndResourceId(string refId, int resourceId);
 }
 
-public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRefService
+public class CacheRefService(
+    IRemotingRefService remotingRefService,
+    IOptions<AppSettings> options) : ICacheRefService
 {
     public string GetSportName(int sportType)
         => remotingRefService.GetSportName(sportType.ToString(), LanguageCode);
@@ -59,10 +61,15 @@ public class CacheRefService(IRemotingRefService remotingRefService) : ICacheRef
         => GetProductName(productId.ToString());
 
     public string GetProductName(string productId)
-        => GetResourceDataByRefIdAndResourceId("Product", productId);
+    {
+        var productName = options.Value.IsSiteLabel777
+            ? GetResourceDataByRefIdAndResourceId("Product_Saba", productId)
+            : string.Empty;
 
-    public string GetProductDetailName(int resourceId)
-        => GetResourceDataByRefIdAndResourceId("ProductDetail", resourceId);
+        return string.IsNullOrEmpty(productName)
+            ? GetResourceDataByRefIdAndResourceId("Product", productId)
+            : productName;
+    }
 
     public string GetResourceDataByRefIdAndResourceId(string refId, int resourceId)
         => GetResourceDataByRefIdAndResourceId(refId, resourceId.ToString());

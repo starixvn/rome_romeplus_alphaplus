@@ -17,19 +17,18 @@ namespace AlphaPlus.Tickets.Site.Features.Results.Outright;
 public class OutrightResultHandler(
     IWebHostEnvironment webHostEnvironment,
     IOptions<AppSettings> options,
+    ICacheRefService cacheRefService,
     IResultsService resultsService,
     IOutrightService outrightService,
     IResultEngineAdapter resultEngineAdatper) :
         IRequestHandler<OutrightResultQuery, OutrightResultViewModel>,
         IRequestHandler<ExcelOutrightResultQuery, ExcelFileViewModel>
 {
-    private const string ExcelTemplateDir = "App_Data/Fanex.Result/";
+    private const string ExcelTemplateDir = "App_Data/ExcelTemplates/Fanex.Result/";
 
     public async Task<OutrightResultViewModel> Handle(OutrightResultQuery message, CancellationToken cancellationToken)
     {
         var balanceUpDate = await resultsService.GetBalanceUpDate();
-        var sportType = message.SportType;
-        var leagueId = message.LeagueId;
         IEnumerable<SelectListItem> sports = [];
         IEnumerable<SelectListItem> leagues = [];
         var htmlResults = string.Empty;
@@ -46,9 +45,8 @@ public class OutrightResultHandler(
 
             if (outrights.Any())
             {
-                sportType = sportType > 0 ? sportType : outrights[0].SportType;
-                leagueId = leagueId > 0 ? leagueId : outrights[0].LeagueId;
-                (sports, leagues) = GetSportsAndLeagues(outrights, sportType, leagueId);
+                message.SportType = message.SportType > 0 ? message.SportType : outrights[0].SportType;
+                (sports, leagues) = GetSportsAndLeagues(outrights, message.SportType, message.LeagueId);
 
                 var resultSetting = new ResultSetting
                 {
@@ -59,16 +57,18 @@ public class OutrightResultHandler(
                     HighlightWinnerTeam = true
                 };
 
-                htmlResults = resultEngineAdatper.HtmlParser(outrights, resultSetting);
+                htmlResults = resultEngineAdatper.HtmlParser(
+                    outrightService.FilterOutrights(outrights, message.SportType, message.LeagueId).ToList(),
+                    resultSetting);
             }
         }
 
         return new OutrightResultViewModel(
             message.FromDate,
             message.ToDate,
-            sportType,
+            message.SportType,
             sports,
-            leagueId,
+            message.LeagueId,
             leagues,
             htmlResults,
             balanceUpDate);
@@ -92,7 +92,7 @@ public class OutrightResultHandler(
             sports.Add(new SelectListItem
             {
                 Value = key.ToString(),
-                Text = CacheRefServiceHelper.GetSportName(key),
+                Text = cacheRefService.GetSportName(key),
                 Selected = matchedSportType
             });
 
@@ -103,10 +103,15 @@ public class OutrightResultHandler(
                     .Select(league => new SelectListItem
                     {
                         Value = league.ToString(),
-                        Text = CacheRefServiceHelper.GetLeagueName(league),
+                        Text = cacheRefService.GetLeagueName(league),
                         Selected = league == selectedLeagueId
                     }));
             }
+        }
+
+        if (sports.Any())
+        {
+            leagues.Insert(0, new SelectListItem(Resources.ShowAllLeagues, string.Empty));
         }
 
         return (sports, leagues);
@@ -116,13 +121,13 @@ public class OutrightResultHandler(
     {
         string leagueName = message.LeagueId == 0
             ? Resources.ShowAllLeaguesExcelTitle
-            : CacheRefServiceHelper.GetLeagueName(message.LeagueId);
+            : cacheRefService.GetLeagueName(message.LeagueId);
         var excelTitle = string.Format(
             "{0} - {1} -> {2} | {3} - {4}",
             Resources.OutrightResults.ToUpper(CultureInfo.CurrentCulture),
             message.FromDate.ToShortDateString(),
             message.ToDate.ToShortDateString(),
-            CacheRefServiceHelper.GetSportName(message.SportType),
+            cacheRefService.GetSportName(message.SportType),
             leagueName);
         var balanceUpDate = await resultsService.GetBalanceUpDate();
         var outrights = message.FromDate >= balanceUpDate
@@ -134,6 +139,7 @@ public class OutrightResultHandler(
                 message.LeagueId,
                 message.SiteName))
             : [];
+        outrights = outrightService.FilterOutrights(outrights, message.SportType, message.LeagueId);
 
         var resultSetting = new ResultSetting
         {

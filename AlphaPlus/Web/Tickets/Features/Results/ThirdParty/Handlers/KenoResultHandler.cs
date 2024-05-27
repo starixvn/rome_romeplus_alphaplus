@@ -1,12 +1,22 @@
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Tickets.Site.App_GlobalResources;
+using Fanex.Result.Core.KenoLotteryTG;
 using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
-public class KenoResultHandler(IKenoResult kenoResult, IBrowserHelper browserHelper)
-    : IRequestHandler<KenoResultQuery, KenoResultViewModel>
+public interface IKenoResult : IKenoLotteryTGResult
 {
-    public Task<KenoResultViewModel> Handle(KenoResultQuery message, CancellationToken cancellationToken)
+}
+
+public class KenoResult(KenoLotteryTGConfigs configs) : KenoLotteryTGResult(configs), IKenoResult
+{
+}
+
+public class KenoResultHandler(IKenoResult kenoResult, IBrowserHelper browserHelper)
+    : IRequestHandler<KenoResultQuery, KenoLotteryTableGameResultViewModel>
+{
+    public Task<KenoLotteryTableGameResultViewModel> Handle(KenoResultQuery message, CancellationToken cancellationToken)
     {
         var result = kenoResult.GetResult(
             message.CustId.ToString(),
@@ -14,7 +24,7 @@ public class KenoResultHandler(IKenoResult kenoResult, IBrowserHelper browserHel
             message.EventDate,
             message.RootUrl,
             message.LanguageKey);
-        var viewModel = new KenoResultViewModel(result);
+        var viewModel = new KenoLotteryTableGameResultViewModel(result, Resources.Keno);
 
         return Task.FromResult(viewModel);
     }

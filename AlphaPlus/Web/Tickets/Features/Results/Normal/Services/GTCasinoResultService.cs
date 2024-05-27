@@ -20,10 +20,19 @@ public class GTCasinoResultService(IGTCasinoResultBuilder resultBuilder = null) 
     {
         var resultDetail = new ResultDetailModel(resultBuilder.Render(
             message.TransDesc,
-            message.BetCheck,
+            ParseTranId3rd(message.BetCheck),
             message.BetTypeId.ToString(),
             message.Language));
 
         return Task.FromResult(resultDetail);
+    }
+
+    private static string ParseTranId3rd(string transId3rd)
+    {
+        const string transId3rdSeparator = "|$|";
+
+        return transId3rd == null || !transId3rd.Contains(transId3rdSeparator)
+            ? transId3rd
+            : transId3rd.Split([transId3rdSeparator], StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
     }
 }

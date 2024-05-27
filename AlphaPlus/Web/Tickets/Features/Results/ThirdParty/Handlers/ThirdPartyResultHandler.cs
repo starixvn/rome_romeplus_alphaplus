@@ -7,7 +7,7 @@ using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
-public class ThirdPartyResultHandler(IBrowserHelper browserHelper) :
+public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelper browserHelper, ICacheRefService cacheRefService) :
     IRequestHandler<MaxGameResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<SportsLotteryDetailResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<PPLiveCasinoResultQuery, ThirdPartyProductViewModel>,
@@ -35,107 +35,111 @@ public class ThirdPartyResultHandler(IBrowserHelper browserHelper) :
     IRequestHandler<JiliResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<Live22ResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<WEResultQuery, ThirdPartyProductViewModel>,
-    IRequestHandler<UUSlotsResultQuery, ThirdPartyProductViewModel>
+    IRequestHandler<UUSlotsResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<SabaxDResultQuery, ThirdPartyProductViewModel>
 {
     public Task<ThirdPartyProductViewModel> Handle(MaxGameResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("MaxGameResultConfigs"));
+        => Handle(message, "MaxGameResultConfigs", "MaxGame");
 
     public Task<ThirdPartyProductViewModel> Handle(SportsLotteryDetailResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("SportsLotteryDetailResultConfigs"));
+        => Handle(message, "SportsLotteryDetailResultConfigs", "SportsLotteryDetail");
 
     public Task<ThirdPartyProductViewModel> Handle(PPLiveCasinoResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("PPLiveCasinoResultConfigs"));
+        => Handle(message, "PPLiveCasinoResultConfigs", "PPLiveCasino");
 
     public Task<ThirdPartyProductViewModel> Handle(HabaneroResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("HabaneroResultConfigs"));
+        => Handle(message, "HabaneroResultConfigs", "Habanero");
 
     public Task<ThirdPartyProductViewModel> Handle(CGResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("CGResultConfigs"));
+        => Handle(message, "CGResultConfigs", "CG");
 
     public Task<ThirdPartyProductViewModel> Handle(VGamingResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("VGamingConfigs"));
+        => Handle(message, "VGamingConfigs", "VGaming");
 
     public Task<ThirdPartyProductViewModel> Handle(AdvantPlayResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("AdvantPlayResultConfigs"));
+        => Handle(message, "AdvantPlayResultConfigs", "AdvantPlay");
 
     public Task<ThirdPartyProductViewModel> Handle(AdvantPlayMiniResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("AdvantPlayMiniResultConfigs"));
+        => Handle(message, "AdvantPlayMiniResultConfigs", "AdvantPlayMini");
 
     public Task<ThirdPartyProductViewModel> Handle(BBINResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("BBINResultConfigs"));
+        => Handle(message, "BBINResultConfigs", "BBIN");
 
     public Task<ThirdPartyProductViewModel> Handle(RNGCasinoResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("RNGCasinoResultConfigs"));
+        => Handle(message, "RNGCasinoResultConfigs", "RNGCasino");
 
     public Task<ThirdPartyProductViewModel> Handle(MacauGamesResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("VoidbridgeResultConfigs"));
+        => Handle(message, "VoidbridgeResultConfigs", "Voidbridge");
 
     public Task<ThirdPartyProductViewModel> Handle(PPResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("PPResultConfigs"));
+        => Handle(message, "PPResultConfigs", "PP");
 
     public Task<ThirdPartyProductViewModel> Handle(SpadeGamingResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("SpadegamingResultConfigs"));
+        => Handle(message, "SpadegamingResultConfigs", "Spadegaming");
 
     public Task<ThirdPartyProductViewModel> Handle(RNGWarResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("RNGWarResultConfigs"));
+        => Handle(message, "RNGWarResultConfigs", "RNGWar");
 
     public Task<ThirdPartyProductViewModel> Handle(IONCasinoResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("IONCasinoResultConfigs"));
+       => Handle(message, "IONCasinoResultConfigs", "IONCasino");
 
     public Task<ThirdPartyProductViewModel> Handle(PGSoftResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("PGSoftResultConfigs"));
+        => Handle(message, "PGSoftResultConfigs", "PGSoft");
 
     public Task<ThirdPartyProductViewModel> Handle(JokerResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("JokerResultConfigs"));
+        => Handle(message, "JokerResultConfigs", "Joker");
 
     public Task<ThirdPartyProductViewModel> Handle(LinkedGamesResultQuery message, CancellationToken cancellationToken)
     {
-        var title = $"{CacheRefServiceHelper.GetSportName(message.SportTypeId)} - {CacheRefServiceHelper.GetBetTypeName(message.BetTypeId)}";
+        var title = $"{cacheRefService.GetSportName(message.SportTypeId)} - {cacheRefService.GetBetTypeName(message.BetTypeId)}";
         var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
         {
             IsDarkMode = message.IsDarkMode ? "1" : "0",
             Platform = browserHelper.IsMobile() ? "M" : string.Empty
         };
 
-        var result = new ThirdPartyResult("LinkedGamesResultConfigs").GetResultGET(request);
+        var result = GetThirdPartyResult("LinkedGamesResultConfigs", "LinkedGames").GetResultGET(request);
         var viewModel = new ThirdPartyProductViewModel(title, result);
 
         return Task.FromResult(viewModel);
     }
 
     public Task<ThirdPartyProductViewModel> Handle(BGResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("BGResultConfigs"));
+        => Handle(message, "BGResultConfigs", "BG");
 
     public Task<ThirdPartyProductViewModel> Handle(CardClubResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("CardClubResultConfigs"));
+        => Handle(message, "CardClubResultConfigs", "CardClub");
 
     public Task<ThirdPartyProductViewModel> Handle(FGGResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("FGGResultConfigs"));
+        => Handle(message, "FGGResultConfigs", "FGG");
 
     public Task<ThirdPartyProductViewModel> Handle(VirtualGamesDetailResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("VirtualGamesDetailResultConfigs"));
+        => Handle(message, "VirtualGamesDetailResultConfigs", "VirtualGamesDetail");
 
     public Task<ThirdPartyProductViewModel> Handle(SEALResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("SEALResultConfigs"));
+        => Handle(message, "SEALResultConfigs", "SEAL");
 
     public Task<ThirdPartyProductViewModel> Handle(MGResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("MGResultConfigs"));
+        => Handle(message, "MGResultConfigs", "MG");
 
     public Task<ThirdPartyProductViewModel> Handle(JiliResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("JiliResultConfigs"));
+        => Handle(message, "JiliResultConfigs", "Jili");
 
     public Task<ThirdPartyProductViewModel> Handle(Live22ResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("Live22ResultConfigs"));
+        => Handle(message, "Live22ResultConfigs", "Live22");
 
     public Task<ThirdPartyProductViewModel> Handle(WEResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("WEResultConfigs"));
+        => Handle(message, "WEResultConfigs", "WE");
 
     public Task<ThirdPartyProductViewModel> Handle(UUSlotsResultQuery message, CancellationToken cancellationToken)
-        => Handle(message, new ThirdPartyResult("UUSlotsResultConfigs"));
+        => Handle(message, "UUSlotsResultConfigs", "UUSlots");
 
-    private Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, IThirdPartyResult resultService)
+    public Task<ThirdPartyProductViewModel> Handle(SabaxDResultQuery message, CancellationToken cancellationToken)
+        => Handle(message, "SabaxDResultConfigs", "SabaxD");
+
+    private Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, string sectionName, string gameName)
     {
-        var productName = CacheRefServiceHelper.GetProductName(message.ProductId);
+        var productName = cacheRefService.GetProductName(message.ProductId);
         var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
         {
             IsDarkMode = message.IsDarkMode ? "1" : "0",
@@ -144,9 +148,17 @@ public class ThirdPartyResultHandler(IBrowserHelper browserHelper) :
             EndTime = message.EndTime
         };
 
-        var result = resultService.GetResultGET(request);
+        var result = GetThirdPartyResult(sectionName, gameName).GetResultGET(request);
         var viewModel = new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, productName), result);
 
         return Task.FromResult(viewModel);
+    }
+
+    private IThirdPartyResult GetThirdPartyResult(string sectionName, string gameName)
+    {
+        var configs = configuration.GetSection(sectionName).Get<ThirdPartyConfigs>();
+        configs.Name = gameName;
+
+        return new ThirdPartyResult(configs);
     }
 }

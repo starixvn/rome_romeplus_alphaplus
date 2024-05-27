@@ -80,14 +80,11 @@ public class ProductService(
 
     private string GetProductDetailName(string refId, int resourceId)
     {
-        string productDetailName = null;
+        var productDetailName = options.Value.IsSiteLabel777 && ProductDetaiIdConstants.SportsbookDetailFor777Site.Contains(resourceId)
+            ? cacheRefService.GetResourceDataByRefIdAndResourceId($"{refId}_Saba", resourceId)
+            : string.Empty;
 
-        if (options.Value.IsSiteLabel777 && ProductDetaiIdConstants.SportsbookDetailFor777Site.Contains(resourceId))
-        {
-            productDetailName = cacheRefService.GetResourceDataByRefIdAndResourceId($"{refId}_Saba", resourceId);
-        }
-
-        return string.IsNullOrWhiteSpace(productDetailName)
+        return string.IsNullOrEmpty(productDetailName)
             ? cacheRefService.GetResourceDataByRefIdAndResourceId(refId, resourceId)
             : productDetailName;
     }

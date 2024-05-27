@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Tickets.Site.Features.Results;
 
-public class TabViewComponent : ViewComponent
+public class TabViewComponent(ICacheRefService cacheRefService) : ViewComponent
 {
     public Task<IViewComponentResult> InvokeAsync(string tabName = "normal")
     {
@@ -15,7 +15,7 @@ public class TabViewComponent : ViewComponent
             UserPermission.IsEnableProduct(ProductIdConstants.VirtualGames),
             UserPermission.IsEnableProduct(ProductIdConstants.TableGames),
             UserPermission.IsEnableProduct(ProductIdConstants.SportsLottery),
-            CacheRefServiceHelper.GetProductName);
+            cacheRefService.GetProductName);
 
         return Task.FromResult((IViewComponentResult)View("~/Features/Results/Views/Tab.cshtml", viewModel));
     }
