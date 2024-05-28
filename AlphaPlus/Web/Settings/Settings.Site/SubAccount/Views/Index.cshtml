@@ -1,11 +1,12 @@
 @{
+    Layout = "~/SubAccount/Views/_Layout.cshtml";
     var index = 0;
 }
 @model IEnumerable<SubAccountViewModel>
-<div class="container">
+<div>
     <main role="main" class="pb-3">
-        <table>
-            <tr>
+        <table class="tblRpt">
+            <thead class="RptHeader">
                 <td>#</td>
                 <td>Username</td>
                 <td>Nickname</td>
@@ -22,7 +23,8 @@
                 <td>Password</td>
                 <td>Security Code</td>
                 <td>Remove OTP</td>
-            </tr>
+            </thead>
+            <tbody>
             @foreach (var subAcc in Model)
             {
                 ++index;
@@ -32,19 +34,20 @@
                     <td>@subAcc.Nickname</td>
                     <td>@subAcc.Firstname</td>
                     <td>@subAcc.Lastname</td>
-                    <td>@subAcc.CreateDate</td>
-                    <td>@subAcc.GetPermission()</td>
-                    <td>@subAcc.HasBetsForecastPermission</td>
-                    <td>@subAcc.HasReportPermission</td>
-                    <td>@subAcc.HasBetlistPermission</td>
-                    <td>@subAcc.HasTransferPermission</td>
-                    <td>@subAcc.HasViewLogPermission</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="c">@subAcc.CreateDate</td>
+                    <td class="c">@subAcc.GetPermission()</td>
+                    <td class="c"><input type="checkbox" value="[D]" @(subAcc.HasBetsForecastPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><input type="checkbox" value="[E]" @(subAcc.HasReportPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><input type="checkbox" value="[L]" @(subAcc.HasBetlistPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><input type="checkbox" value="[C]" @(subAcc.HasTransferPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><input type="checkbox" value="[G]" @(subAcc.HasViewLogPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><span class="icon-edit">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit">&nbsp;</span></td>
                 </tr>
             }
+            </tbody>
         </table>
     </main>
 </div>

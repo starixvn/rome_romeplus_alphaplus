@@ -4,6 +4,25 @@
 
 @include keyframes-ripple;
 
+table{
+    width: 100%;
+    line-height: 28px;
+}
+
+.c{
+    text-align: center;
+}
+
+.RptHeader {
+    font-weight: 400;
+    text-align: center;
+
+    td, th {
+        background-color: $table-header-bg-color;
+        color: $table-header-color;
+    }
+}
+
 // To remove the 300-350ms tap delay
 html {
   touch-action: manipulation;
