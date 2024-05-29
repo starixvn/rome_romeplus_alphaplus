@@ -5,6 +5,10 @@
 @model IEnumerable<SubAccountViewModel>
 <div>
     <main role="main" class="pb-3">
+        <div class="title-page">
+            <span class="txt-title">Sub Account</span>
+            <button class="btn-refresh btn-add">Add Sub Account</button>
+        </div>
         <table class="tblRpt">
             <thead class="RptHeader">
                 <td>#</td>
@@ -35,7 +39,7 @@
                     <td>@subAcc.Firstname</td>
                     <td>@subAcc.Lastname</td>
                     <td class="c">@subAcc.CreateDate</td>
-                    <td class="c">@subAcc.GetPermission()</td>
+                    <td class="c"><div class="pMemInfo">@subAcc.GetPermission()</div></td>
                     <td class="c"><input type="checkbox" value="[D]" @(subAcc.HasBetsForecastPermission ? "checked" : string.Empty) /></td>
                     <td class="c"><input type="checkbox" value="[E]" @(subAcc.HasReportPermission ? "checked" : string.Empty) /></td>
                     <td class="c"><input type="checkbox" value="[L]" @(subAcc.HasBetlistPermission ? "checked" : string.Empty) /></td>

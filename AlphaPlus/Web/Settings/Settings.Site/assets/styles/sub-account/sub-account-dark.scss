@@ -9,6 +9,31 @@ table{
     line-height: 28px;
 }
 
+.editBtn:before,.editBtnDisable:before,.editBtn-Disable:before,.pMemInfo:after,.pMemInfoActive:after {
+    font-family: 'Iconalpha';
+    cursor: pointer;
+    display: inline-block;
+    color: #045ace;
+}
+
+.icon-edit{
+    cursor: pointer;
+}
+
+.title-page {
+    color: #37587d;
+    font-weight: 700;
+    height: 39px;
+    line-height: 40px;
+    min-width: 650px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.txt-title {
+    line-height: 36px;
+}
+
 .c{
     text-align: center;
 }
