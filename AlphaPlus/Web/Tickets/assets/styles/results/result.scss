@@ -1,6 +1,6 @@
 ﻿@import '../mixins';
 
-$goal-icon: 'images/goal-icon.png';
+$goal-icon: '../images/goal-icon.png';
 $primary-color: #666;
 $font-size: 13px;
 $font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;
@@ -224,7 +224,7 @@ table.lucky3 {
         height: 30px;
         line-height: 31px;
         text-align: center;
-        background: url(images/lotto_ball.png) no-repeat -9px -65px;
+        background: url(../images/lotto_ball.png) no-repeat -9px -65px;
     }
 
     .lottoBall.red {
@@ -244,7 +244,7 @@ table.lucky3 {
         display: block;
         width: 9px;
         height: 19px;
-        background: url('images/icon_bets.png') no-repeat -9px -65px;
+        background: url('../images/icon_bets.png') no-repeat -9px -65px;
     }
 
     .lotto-bets .button + .button {
@@ -423,7 +423,7 @@ table {
 }
 
 .cl-detail-result .info {
-    background: url('images/info-icon.png');
+    background: url('../images/info-icon.png');
     width: 20px;
     height: 20px;
     background-size: cover;

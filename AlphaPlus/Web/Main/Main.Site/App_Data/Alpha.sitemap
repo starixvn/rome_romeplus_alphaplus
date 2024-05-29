@@ -37,7 +37,7 @@
     <siteMapNode menuItemType="ConsolidatedReportMenuItem" resourceKey="consolidatedreport" url="/reports/consolidation/consolidationbyusername"></siteMapNode>
     <siteMapNode resourceKey="statement" url="/reports/Statement/SMAStatement"></siteMapNode>
 
-    <siteMapNode resourceKey="result" url="~/Normal" appPath="ResultSiteVirtualPath" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="result" url="/tickets/results/normal" appPath="ResultSiteVirtualPath" byPassProtectedMode="true"></siteMapNode>
 
     <siteMapNode menuItemType="ProgressiveContributionMenuItem" resourceKey="ProgressiveGamesContribution" url="/reports/ProgressiveContribution/Index"></siteMapNode>
     <siteMapNode menuItemType="BonusDetailMenuItem" resourceKey="BonusDetail" url="/reports/BonusDetail/Index"></siteMapNode>

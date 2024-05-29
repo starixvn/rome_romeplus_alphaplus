@@ -8,12 +8,13 @@
         }
 
         ShowScoreMap(matchIds: string, betType: string, liveIndicator: number) {
+            const scoreMapUrl = $('#hidden-ScoreMapUrl').val();
             const params =
                 liveIndicator == 1
                     ? `matchIds=${matchIds}&liveBetTypes=${betType}&deadBetTypes=-1`
                     : `matchIds=${matchIds}&liveBetTypes=-1&deadBetTypes=${betType}`;
 
-            Common.PopupDetails.Instance(window.top).Show(`tickets/Forecast/ScoreMap?${params}`, '', 1008);
+            Common.PopupDetails.Instance(window.top).Show(`${scoreMapUrl}?${params}`, '', 1008);
         }
     }
 }

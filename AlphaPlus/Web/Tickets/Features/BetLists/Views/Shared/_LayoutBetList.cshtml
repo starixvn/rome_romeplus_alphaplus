@@ -20,6 +20,8 @@
 <body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
     @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
+    <input type="hidden" id="hidden-ScoreMapUrl"
+        value="@($"//{Context.Request.Headers["Host"]}/tickets/forecast/scoremap")" />
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/ajaxSetup")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/default")

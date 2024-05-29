@@ -99,14 +99,14 @@
     height: 20px;
     padding: 0;
     color: var(--text-modal-close);
-    background: var(--bg-modal-btn-close);
+    background: none;
     border: 0;
     border-radius: 3px;
     position: absolute;
-    top: 12px;
+    top: 7px;
     right: 12px;
     line-height: 20px;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: normal;
 }
 .modal-header {

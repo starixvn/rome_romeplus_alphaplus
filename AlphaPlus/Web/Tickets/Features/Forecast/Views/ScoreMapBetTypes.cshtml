@@ -24,7 +24,7 @@
         <tr>
             <td rowspan="2" class="even_row">
                 <input type="checkbox" id="@checkAllId" @(checkedId == null ? "checked" : string.Empty) />
-                <label title="@checkAllText" for="@checkAllId">@checkAllText</label>
+                <label class="bold" title="@checkAllText" for="@checkAllId">@checkAllText</label>
             </td>
             @for (int i = 0; i < haftBetTypeCount; i++)
             {

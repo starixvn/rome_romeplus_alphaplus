@@ -23,6 +23,7 @@ configuration
     //.AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables()
     .AddCommandLine(args);
+AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
 
 // Add services to the container.
 builder.Services

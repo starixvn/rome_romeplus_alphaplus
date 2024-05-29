@@ -64,6 +64,10 @@ class ScoreMap {
         this.bindLiveDeadBallsEvents($('#chk-allLiveBetType'), $('.live-bettype'));
         this.bindLiveDeadBallsEvents($('#chk-allDeadBetType'), $('.dead-bettype'));
         this.$btnSubmit.click(() => this.getScoreMapResults());
+        if (!this.$ddlLeague.length) {
+            this.globalFormData = this.getScoreMapResultsFormData();
+            this.bindEventsAfterRenderScoreMapSucessfully(this.$content);
+        }
     }
 
     resetUIControls() {
