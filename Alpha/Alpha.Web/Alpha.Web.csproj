@@ -4,7 +4,7 @@
     <TargetFramework>net461</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Alpha.Web</PackageId>
-    <Version>2.0.0.1</Version>
+    <Version>2.0.0.2-beta01</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>
