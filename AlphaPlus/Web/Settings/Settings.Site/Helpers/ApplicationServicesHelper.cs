@@ -24,7 +24,6 @@ using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold;
 using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Helpers;
 using AlphaPlus.Settings.Site.Handlers;
 using AlphaPlus.Settings.Site.SubAccount.Services;
-using Fanex.Caching;
 using Fanex.Cryptography.Aes;
 using Fanex.Data;
 using Fanex.RemotingRef;
@@ -56,6 +55,11 @@ using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Products.Configurations;
+using AlphaPlus.Settings.Site.Features.Shared.Services;
+using Fanex.Caching;
+using AlphaPlus.Settings.Site.Features.ProductStatus;
+using Fanex.Data.Repository;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -120,15 +124,12 @@ namespace AlphaPlus.Settings.Site.Helpers
             services.AddSingleton<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>, SettingViewModelFactory>();
             services.AddSingleton<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>, SettingMultipleViewModelFactory>();
 
-            // SimpleServiceLocator.Instance
-            //     .Register<IRemotingRefService>(new RemotingRefService())
-            //     .Register<Func<string, string>>(ProductResources.ResourceManager.GetString)
-            //     .Register<Func<string, string, string>>(Core.Helpers.MicroSites.GetMicroSiteUrl)
-            //     .Register<Func<string, ResourceManager, string>>(ResourcesJsonConverter.ToConvert)
-            //     .Register<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>>(new StatusViewModelFactory())
-            //     .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>>(new SettingViewModelFactory())
-            //     .Register<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>>(new SettingMultipleViewModelFactory())
-            //     .Register<QRCodeLoginConfigsHelper>(new QRCodeLoginConfigsHelperImpl(qrCodeMemberLoginConfig));
+            services.AddSingleton<ICacheRefService, Features.Shared.Services.CacheRefService>()
+                .AddSingleton<IProductStatusService>((provider) => new ProductStatusService(
+                    provider.GetRequiredService<Fanex.Logging.ILogger>(),
+                    provider.GetRequiredService<IDynamicRepository>(),
+                    provider.GetRequiredService<ICacheRefService>(),
+                    UserPermission.HasPermissionOnProduct));
 
             services
                 .AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>()
@@ -158,7 +159,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddScoped<MyThresholdsService, MyThresholdsServiceImpl>();
 
             services
-                .AddSingleton<CacheRefService, CacheRefServiceImpl>()
+                .AddSingleton<Settings.MemberInfo.API.Services.CacheRefService, CacheRefServiceImpl>()
                 .AddSingleton<CheckUMService, CheckUMServiceImpl>()
                 .AddScoped<ParlayMaxPayoutService, ParlayMaxPayoutServiceImpl>();
 

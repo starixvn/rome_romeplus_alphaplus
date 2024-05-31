@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,79 +26,82 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -119,332 +122,446 @@
   </resheader>
   <data name="Active" xml:space="preserve">
     <value>Mở</value>
+    <comment/>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
+    <comment/>
   </data>
   <data name="AgentList" xml:space="preserve">
     <value>Danh Sách Agent</value>
+    <comment/>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>Tiền chưa xử lý của Agent</value>
+    <comment/>
   </data>
   <data name="BalanceInfo" xml:space="preserve">
     <value>Tài Khoản</value>
+    <comment/>
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>Hạn mức khả dụng</value>
+    <comment/>
   </data>
   <data name="BetList" xml:space="preserve">
     <value>Danh sách cược</value>
+    <comment/>
   </data>
   <data name="BetSettingViewModelText" xml:space="preserve">
     <value>Giới hạn cược</value>
+    <comment/>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Hủy</value>
+    <comment/>
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>Hoa hồng</value>
+    <comment/>
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>Bạn có chắc muốn tắt tính năng Auto PT đối với Master này?</value>
+    <comment/>
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelInCaseEnabledMessage" xml:space="preserve">
     <value>Bạn có muốn cho phép Master này sử dụng chức năng Auto PT?</value>
+    <comment/>
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
     <value>Cho Auto PT</value>
+    <comment/>
   </data>
   <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>Bạn có muốn chặn thành viên này chơi "Cược thắng"?</value>
+    <comment/>
   </data>
   <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
     <value>Bạn có chắc muốn cho phép thành viên này chơi "Cược thắng"?</value>
+    <comment/>
   </data>
   <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
     <value>Bạn có chắc muốn thay đổi trạng thái "Đóng" của thành viên này không?</value>
+    <comment/>
   </data>
   <data name="ConfirmClosedViewModelInCaseClosedDownlinesMessage" xml:space="preserve">
     <value>Bạn có chắc muốn đóng thành viên này?\nKhuyến cáo: tất cả cấp dưới của tài khoản này cũng sẽ bị đóng!</value>
+    <comment/>
   </data>
   <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
     <value>Bạn có chắc muốn mở tài khoản này?</value>
+    <comment/>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>Bạn có chắc muốn khóa chức năng Nhân đôi hoa hồng với những cá cược bị thua trong Sportbooks của tài khoản này không? Cảnh báo, tất cả những thành viên cấp dưới trực thuộc tài khoản này sẽ đều bị khóa chức năng đó!</value>
+    <comment/>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMemberMessage" xml:space="preserve">
     <value>Bạn có chắc muốn tắt chức năng Nhân đôi hoa hồng đối với  những cá cược bi thua trong Sportbooks  của thành viên này không?</value>
+    <comment/>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseEnabledMemberMessage" xml:space="preserve">
     <value>Bạn có chắc muốn mở chức năng Nhân đôi hoa hồng đối với những cá cược bi thua trong Sportbooks  của thành viên này không?</value>
+    <comment/>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
     <value>Bạn có chắc muốn cho phép sử dụng chức năng Nhân đôi hoa hồng đối với những cá cược bị thua trong Sportbooks của tài khoản này không?</value>
+    <comment/>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
     <value>Bạn có chắc muốn đình chỉ thành viên này?\n Khuyến cáo, tất cả cấp dưới trực thuộc thành viên này sẽ không thể đặt cược!</value>
+    <comment/>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMemberMessage" xml:space="preserve">
     <value>Bạn có chắc muốn đình chỉ thành viên này?\n Khuyến cáo: thành viên này sẽ không thể đặt cược!</value>
+    <comment/>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMasterOrAgentMessage" xml:space="preserve">
     <value>Bạn có chắc muốn bỏ trạng thái "Đình Chỉ" cho thành viên này không? Khuyến cáo: tất cả cấp dưới trực thuộc thành viên này sẽ được bỏ trạng thái "Đình Chỉ".</value>
+    <comment/>
   </data>
   <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
     <value>Bạn có chắc muốn thay đổi trạng thái "Đình Chỉ" cho thành viên này không?</value>
+    <comment/>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>Ngày tạo</value>
+    <comment/>
   </data>
   <data name="Customer" xml:space="preserve">
     <value>Thành viên</value>
+    <comment/>
   </data>
   <data name="DownlineList" xml:space="preserve">
     <value>Thành viên</value>
+    <comment/>
   </data>
   <data name="Fax" xml:space="preserve">
     <value>Fax</value>
+    <comment/>
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>Hạn mức được cấp</value>
+    <comment/>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
+    <comment/>
   </data>
   <data name="LastLogin" xml:space="preserve">
     <value>Lần đăng nhập cuối</value>
+    <comment/>
   </data>
   <data name="LastTxn" xml:space="preserve">
     <value>Lần giao dịch cuối cùng</value>
+    <comment/>
   </data>
   <data name="LoginIP" xml:space="preserve">
     <value>IP đăng nhập</value>
+    <comment/>
   </data>
   <data name="LoginTime" xml:space="preserve">
     <value>Thời gian đăng nhập</value>
+    <comment/>
   </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
+    <comment/>
   </data>
   <data name="MasterOutstanding" xml:space="preserve">
     <value>Tiền chưa xử lý của Master</value>
+    <comment/>
   </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
+    <comment/>
   </data>
   <data name="MemberList" xml:space="preserve">
     <value>Danh Sách Member</value>
+    <comment/>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>Hạn mức tín dụng tối đa của Member</value>
+    <comment/>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Tên</value>
+    <comment/>
   </data>
   <data name="NetPosition" xml:space="preserve">
     <value>Net Position</value>
+    <comment/>
   </data>
   <data name="NoDataChange" xml:space="preserve">
     <value>Không có gì thay đổi để cập nhật.</value>
+    <comment/>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>Thông tin chưa được cập nhật</value>
+    <comment/>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>Bạn không được cho phép sử dụng chức năng này.</value>
+    <comment/>
   </data>
   <data name="NumberOrder" xml:space="preserve">
     <value>#</value>
+    <comment/>
   </data>
   <data name="OnlineList" xml:space="preserve">
     <value>Online</value>
+    <comment/>
   </data>
   <data name="Outstanding" xml:space="preserve">
     <value>Tiền chưa xử lý</value>
+    <comment/>
   </data>
   <data name="Phone" xml:space="preserve">
     <value>Điện thoại</value>
+    <comment/>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>Thiết lập</value>
+    <comment/>
   </data>
   <data name="Statement" xml:space="preserve">
     <value>Sao kê</value>
+    <comment/>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Trạng thái</value>
+    <comment/>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Xác nhận</value>
+    <comment/>
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
+    <comment/>
   </data>
   <data name="ThisUserIsNotOnline" xml:space="preserve">
     <value>Thành viên này không online</value>
+    <comment/>
   </data>
   <data name="TotalAgentActiveClosed" xml:space="preserve">
     <value>Số tài khoản Agent hiện đang: Kích hoạt/Đóng/Đình chỉ</value>
+    <comment/>
   </data>
   <data name="TotalBalance" xml:space="preserve">
     <value>Tổng số tiền giao dịch</value>
+    <comment/>
   </data>
   <data name="TotalCash" xml:space="preserve">
     <value>Tổng số dư tài khoản</value>
+    <comment/>
   </data>
   <data name="TotalMemberActiveClosed" xml:space="preserve">
     <value>Số tài khoản Member hiện đang: Kích hoạt/Đóng/Đình chỉ</value>
+    <comment/>
   </data>
   <data name="UsedCredit" xml:space="preserve">
     <value>Hạn mức tín dụng đã dùng</value>
+    <comment/>
   </data>
   <data name="UserNamePlaceHolder" xml:space="preserve">
     <value>Tên đăng nhập hoặc Tên/Họ</value>
+    <comment/>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
     <value>Số dư đến hết hôm qua</value>
+    <comment/>
   </data>
   <data name="YesterdayCash" xml:space="preserve">
     <value>Số dư tài khoản đến hết hôm qua</value>
+    <comment/>
   </data>
   <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
     <value>Cho phép Outright</value>
+    <comment/>
   </data>
   <data name="ConfirmClosedViewModelText" xml:space="preserve">
     <value>Bị đóng</value>
+    <comment/>
   </data>
   <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
     <value>Nhân đôi hoa hồng</value>
+    <comment/>
   </data>
   <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
     <value>Bị đình chỉ</value>
+    <comment/>
   </data>
   <data name="EditInfoViewModelText" xml:space="preserve">
     <value>Thông tin</value>
+    <comment/>
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>Thông tin chưa được cập nhật</value>
+    <comment/>
   </data>
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
+    <comment/>
   </data>
   <data name="RemoveOtpViewModelText" xml:space="preserve">
     <value>Xoá OTP</value>
+    <comment/>
   </data>
   <data name="ResetPasswordViewModelText" xml:space="preserve">
     <value>Đổi Mật khẩu</value>
+    <comment/>
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
     <value>Thay đổi Mã bảo mật</value>
+    <comment/>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
     <value>Thông tin liên hệ</value>
+    <comment/>
   </data>
   <data name="SportsbookMinPTViewModelText" xml:space="preserve">
     <value>PT nhỏ nhất cho Sportsbook</value>
+    <comment/>
   </data>
   <data name="TransferViewModelText" xml:space="preserve">
     <value>Chuyển khoản</value>
+    <comment/>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Đã cập nhật thành công!</value>
+    <comment/>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
     <value>Cập nhật hạn mức tín dụng</value>
+    <comment/>
   </data>
   <data name="LoginInfo" xml:space="preserve">
     <value>Thông tin đăng nhập</value>
+    <comment/>
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>Tài khoản bị đóng bởi admin.</value>
+    <comment/>
   </data>
   <data name="LockedByFalsePassword" xml:space="preserve">
     <value>Tài khoản này đã bị khóa do nhiều lần nhập sai mật khẩu.</value>
+    <comment/>
   </data>
   <data name="LockedByFalseOTPSC" xml:space="preserve">
     <value>Tài khoản này đã bị khóa do nhiều lần nhập sai Mã OTP / Mã bảo mật.</value>
+    <comment/>
   </data>
   <data name="ClosedByUpline" xml:space="preserve">
     <value>Tài khoản bị đóng bởi cấp trên.</value>
+    <comment/>
   </data>
   <data name="Viewlog" xml:space="preserve">
     <value>Nhật ký</value>
+    <comment/>
   </data>
   <data name="ThisAccountWasDisabled" xml:space="preserve">
     <value>Tài khoản bị vô hiệu hóa.</value>
+    <comment/>
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>Tài khoản này đã bị đình chỉ.</value>
+    <comment/>
   </data>
   <data name="And" xml:space="preserve">
     <value>và</value>
+    <comment/>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Cập nhật</value>
+    <comment/>
   </data>
   <data name="Agents" xml:space="preserve">
     <value>Agents (Mở/Bị đóng/Bị đình chỉ)</value>
+    <comment/>
   </data>
   <data name="Members" xml:space="preserve">
     <value>Members (Mở/Bị đóng/Bị đình chỉ)</value>
+    <comment/>
   </data>
   <data name="AccountNotFound" xml:space="preserve">
     <value>Không tìm thấy tài khoản!</value>
+    <comment/>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>Biệt danh</value>
+    <comment/>
   </data>
   <data name="OutrightDisabledUpline" xml:space="preserve">
     <value>Cấp trên đã vô hiệu hóa cược Outright</value>
+    <comment/>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Trở lại</value>
+    <comment/>
   </data>
   <data name="Sportsbook2ViewModelText" xml:space="preserve">
     <value>Sportsbook 2</value>
+    <comment/>
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>Huỷ đình chỉ &lt;username&gt;</value>
+    <comment/>
   </data>
   <data name="SuspendedByUplineTooltip" xml:space="preserve">
     <value>Tài khoản này bị gián tiếp đình chỉ bởi cấp trên</value>
+    <comment/>
   </data>
   <data name="ConfirmTransferBalanceDailyViewModelText" xml:space="preserve">
     <value>Chuyển Khoản Tổng Số Dư</value>
+    <comment/>
   </data>
   <data name="ConfirmTransferBalanceDailyViewModelMessage" xml:space="preserve">
     <value>Bạn có chắc muốn thay đổi chế độ Chuyển khoản cho tài khoản {0}?</value>
+    <comment/>
   </data>
   <data name="ConfirmTransferBalanceDailyViewModelTooltip" xml:space="preserve">
     <value>Chọn để mở chế độ Chuyển Khoản Tổng Số Dư</value>
+    <comment/>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
     <value>Tạo Member với mã QR</value>
+    <comment/>
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
     <value>ĐĂNG NHẬP LẦN ĐẦU BẰNG QR</value>
+    <comment/>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
+    <comment/>
   </data>
   <data name="ClosedByArchive" xml:space="preserve">
     <value>Tài khoản này đã bị đóng do không hoạt động.</value>
+    <comment/>
   </data>
   <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
     <value>Cấp trên đã áp giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ tự động làm mới để cập nhật các cài đặt mới.</value>
+    <comment/>
   </data>
   <data name="ShowLess" xml:space="preserve">
     <value>Ẩn bớt</value>
+    <comment/>
   </data>
   <data name="ShowMore" xml:space="preserve">
     <value>Xem thêm</value>
+    <comment/>
   </data>
   <data name="ADBTChangeToastMessage" xml:space="preserve">
     <value>Chuyển Khoản Tổng Số Dư đã bật cho tài khoản của bạn. Vì vậy, lịch Chuyển Khoản Tự Động đã bị xóa, và cài đặt Chuyển Khoản Tự Động cho cấp dưới của bạn sẽ bị tắt để đảm bảo tính chính xác của dữ liệu.</value>
+    <comment/>
   </data>
   <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
     <value>Chuyển Khoản Tổng Số Dư đã bật cho tài khoản của bạn. Vì vậy, lịch Chuyển Khoản Tự Động đã bị xóa, và Chuyển Khoản Tự Động cho cấp dưới của bạn sẽ bị tắt cho các tài khoản sau: {0}. Chi tiết có thể được tìm thấy trong chức năng Chuyển Khoản.</value>
+    <comment/>
+  </data>
+  <data name="ProductStatusWarningMessage" xml:space="preserve">
+    <value>Theo chính sách của công ty, bạn không được phép vô hiệu hoá sản phẩm cược của cấp dưới.</value>
+    <comment/>
   </data>
 </root>

@@ -14,10 +14,10 @@ using AlphaPlus.Settings.Site.Features.CustomerList.Params;
 using AlphaPlus.Products.ViewModels;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
-using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.Site.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 using AlphaPlus.Settings.Site.Features.Shared.Models;
+using AlphaPlus.Settings.Site.Features.Shared.Services;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList
 {
@@ -38,7 +38,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
         private readonly IBrowserHelper browserHelper;
         private readonly IPService ipService;
         private readonly TransferService transferService;
-        private readonly CacheRefService cacheRefService;
+        private readonly ICacheRefService cacheRefService;
 
         private readonly string CurrenciesOfferAutoTransfer = AppSettings.GetConfigValue("OfferAutoTransfer.Currencies");
 
@@ -51,7 +51,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             ISecurityCodeChecker securityCodeChecker,
             IBrowserHelper browserHelper,
             TransferService transferService,
-            CacheRefService cacheRefService)
+            ICacheRefService cacheRefService)
         {
             this.customerListService = customerListService;
             this.settingMultipleViewModelFactory = settingMultipleViewModelFactory;

@@ -173,4 +173,24 @@
     <Setting Key="Age_ClearBalanceCust_SettingUpdate" SpName="Age_ClearBalanceCust_SettingUpdate" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_AutoTransferSchedule_Upd" SpName="Age_AutoTransferSchedule_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
+  <Function Name="Product Status">
+    <Setting Key="Acc_AdminSelStatusByProductId" SpName="Acc_AdminSelStatusByProductId" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableProductStatusSelect" SpName="Acc_CustSetting_DisableProductStatusSelect" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableGameStatusSelect" SpName="Acc_CustSetting_DisableGameStatusSelect" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_UpdCSStatus_Cust" SpName="Acc_UpdCSStatus_Cust" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableGameStatusUpd" SpName="Acc_CustSetting_DisableGameStatusUpd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableNewProductStatusUpd" SpName="Acc_CustSetting_DisableNewProductStatusUpd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableProductStatus_160_Upd" SpName="Acc_CustSetting_DisableProductStatus_160_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustSetting_DisableProductStatusUpd" SpName="Acc_CustSetting_DisableProductStatusUpd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect" DbName="DBCust.CustDB.wsv_alp" />
+  </Function>
+
+  <Function Name="UM Message">
+    <Setting Key="Acc_CheckUM_MultipleCustProductStatus" SpName="Acc_CheckUM_MultipleCustProductStatus" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+  </Function>
+  <Function Name="Customer Information">
+    <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+  </Function>
 </Functions>

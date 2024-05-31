@@ -1,0 +1,44 @@
+@import '../../Shared/Styles/abstracts/variables';
+@import '../../Shared/Styles/abstracts/mixins';
+
+html,
+body {
+    height: auto;
+
+    label {
+        font-weight: normal;
+    }
+
+    .margin-top10 {
+        margin-top: 10px;
+    }
+}
+
+.tblRpt tbody td {
+    white-space: normal;
+}
+
+@media only screen and (max-device-width: $screen-device-lower768) {
+    body {
+        font-size: calculateScale($font-size);
+    }
+
+    .msg {
+        padding: calculateScale(8px) calculateScale(8px) calculateScale(8px) calculateScale(36px);
+        margin: calculateScale(12px) 0;
+    }
+
+    .tblRpt thead th,
+    .tblRpt tbody td,
+    .tblRpt tfoot td {
+        height: calculateScale(28px);
+        padding: calculateScale(4px) calculateScale(8px);
+    }
+
+    .btn-submit {
+        height: calculateScale(28px);
+        margin-right: calculateScale(8px);
+        padding-left: calculateScale(16px);
+        padding-right: calculateScale(16px);
+    }
+}

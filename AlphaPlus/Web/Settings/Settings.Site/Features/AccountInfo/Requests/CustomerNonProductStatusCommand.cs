@@ -5,7 +5,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.Requests
 {
     public class CustomerNonProductStatusCommand : BaseQuery
     {
-        public virtual int SearchAccountId { get; set; }
+        public int SearchAccountId { get; set; }
 
         public string ActorName => viewer.Name;
 

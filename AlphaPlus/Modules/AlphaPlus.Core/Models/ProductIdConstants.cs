@@ -8,6 +8,8 @@ public static class ProductIdConstants
     public const int Lottery = 28;
     public const int VirtualGames = 38;
     public const int TableGames = 40;
-    public const int LiveCasino = 41;
     public const int SportsLottery = 63;
+    public const int SabaVirtualSports = 54;
+    public const int CashOut = 25;
+    public const int RNGSlot = 18;
 }

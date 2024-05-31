@@ -1,13 +1,13 @@
 ﻿$ratio: 1.2;
 
 $font-size: 13px;
-$font-family: Roboto,Arial,Tahoma,helvetica,sans-serif;
+$font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;
 
 $white-color: #fff;
 $text-color: #333;
 $red-color: #ff0101;
 $modal-border-color: #dfdfdf;
-$winning-reach-color: #41A4FF;
+$winning-reach-color: #41a4ff;
 $losing-reach-color: #ff0101;
 $personal-threshold-button-color: #31859c;
 $global-threshold-button-color: #77933c;
@@ -21,3 +21,8 @@ $multiple-alert-border-color: #bcba7d;
 
 // dataTable
 $table-title-bgcolor: #d9d9d9;
+
+// Devices
+$screen-device-lower768: 767px;
+$screen-device-greater768: 768px;
+$screen-device-greater1024: 1024px;

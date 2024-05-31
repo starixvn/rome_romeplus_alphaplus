@@ -18,7 +18,7 @@ export default function Status({ statusItems, getCustomerStatus }: Props) {
                 }
 
                 return status.IsEditOnProductLevel ? (
-                    <ProductLevelStatus status={status} />
+                    <ProductLevelStatus status={status} getCustomerStatus={getCustomerStatus} />
                 ) : (
                     <BettypeLevelStatus status={status} />
                 );

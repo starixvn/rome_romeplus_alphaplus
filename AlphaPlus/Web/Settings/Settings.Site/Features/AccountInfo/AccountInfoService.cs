@@ -1,3 +1,4 @@
+using System.Text.Json;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.AccountInfo.Criteria;
 using AlphaPlus.Settings.Site.Features.AccountInfo.Models;
@@ -157,6 +158,8 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
 
         public async Task<Result> UpdateCustomerStatus(CustomerNonProductStatusCommand param)
         {
+            Console.WriteLine(JsonSerializer.Serialize(param));
+
             UpdateCustomerStatusCommand command = param.StatusName switch
             {
                 StatusNames.Closed => new UpdateClosedStatusCommand(
@@ -215,6 +218,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
                                         param.StatusName,
                                         param.StatusValue),
             };
+            Console.WriteLine(JsonSerializer.Serialize(command));
             await dynamicRepository.ExecuteAsync(command);
             return new Result(command.ErrCode, command.ErrMsg);
         }

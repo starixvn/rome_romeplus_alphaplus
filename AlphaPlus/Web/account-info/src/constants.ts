@@ -22,6 +22,7 @@ declare global {
         confirmPopupPopup: any;
         popupManager: any;
         bootboxAlert: any;
+        updateProductStatusPopup: any;
     }
 }
 
@@ -44,4 +45,17 @@ export const LoadCustomerInfo = {
     ByUpdateStatus: 'reload_customer_info_by_status',
     ByUpdateGivenCredit: 'reload_customer_info_by_given_credit',
     ByClick: 'load_customer_info_by_click'
+};
+
+export const ProductConstants = {
+    Sportsbook: 1,
+    RNGLottery: 44,
+    VoidBridge: 22,
+    LiveCasino: 41,
+    ProgressiveBonus: 10,
+    RNGCasino: 6,
+    ESport: 11,
+    Keno: 8,
+    VirtualSports: 5,
+    NumberGame: 3
 };

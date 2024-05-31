@@ -12,6 +12,24 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/bundles/product-status/index.css",
+    "inputFiles": [
+      "Features/ProductStatus/Styles/product-status.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/product-status/index.js",
+    "inputFiles": [
+      "Features/ProductStatus/Scripts/product-status.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/shared/settings-dark.css",
+    "inputFiles": [
+      "Features/Shared/Styles/settings-dark.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/assets/bundles/sub-account/index.js",
     "inputFiles": [
       "assets/scripts/sub-account/sub-account.js"

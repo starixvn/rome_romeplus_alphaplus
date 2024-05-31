@@ -24,3 +24,6 @@ export const resizePopupOnMobile = () => {
         modalElement.classList.add('modal-account-info');
     }
 };
+
+export const Scale = 0.7;
+export const mobileScale = (value: number) => value / Scale;

@@ -18,6 +18,11 @@ namespace AlphaPlus.Settings.Site.Features.Shared
             this.mediator = mediator;
         }
 
+        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
+            => (message as BaseQuery).IsValid()
+                ? View(await mediator.Send(message))
+                : View(InvalidPageViewPath);
+
         protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
             => (message as BaseQuery).IsValid()
                 ? View(viewName, await mediator.Send(message))
@@ -25,23 +30,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared
 
 
         protected async Task<ActionResult> Json<TResponse>(IRequest<TResponse> message)
-            => (message as BaseQuery).IsValid() ?
-                Json(await mediator.Send(message)) :
-                Json(Result.CreateErrorResult(AppResources.Resources.NotAuthorized, BadRequestErrorCode));
-
-
-        protected async Task<ActionResult> ViewAsync<TResponse>(IRequest<TResponse> message)
-            => (message as BaseQuery).IsValid()
-                ? View(await mediator.Send(message))
-                : View(InvalidPageViewPath);
-
-        protected async Task<ActionResult> ViewAsync<TResponse>(IRequest<TResponse> message, string viewName)
-            => (message as BaseQuery).IsValid()
-                ? View(viewName, await mediator.Send(message))
-                : View(InvalidPageViewPath);
-
-        protected async Task<ActionResult> JsonAsync<TResponse>(
-            IRequest<TResponse> message)
             => (message as BaseQuery).IsValid() ?
                 Json(await mediator.Send(message)) :
                 Json(Result.CreateErrorResult(AppResources.Resources.NotAuthorized, BadRequestErrorCode));

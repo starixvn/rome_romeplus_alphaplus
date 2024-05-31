@@ -11,4 +11,5 @@ export default interface StatusItem extends SettingItem {
     JsonParams: string;
     PopupHeaderText: string;
     ReloadCustomerInfo: boolean;
+    ProductId: number;
 }

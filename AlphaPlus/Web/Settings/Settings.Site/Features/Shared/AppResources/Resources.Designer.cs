@@ -1300,5 +1300,16 @@ namespace AlphaPlus.Settings.Site.Features.Shared.AppResources
                 return ResourceManager.GetString("YesterdayCash", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You are not allowed to disable this product on your downlines per company policy.
+        /// </summary>
+        public static string ProductStatusWarningMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("ProductStatusWarningMessage", resourceCulture);
+            }
+        }
     }
 }
