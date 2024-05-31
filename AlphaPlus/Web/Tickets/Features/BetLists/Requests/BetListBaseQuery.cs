@@ -14,25 +14,24 @@ public class BetListBaseQuery
 
     protected BetListBaseQuery(IUser viewer)
     {
-        viewer = viewer ?? new User(new UserSessionExt());
-        CustId = viewer.Id;
-        Site = viewer.Site;
-        CurrencyId = viewer.CurrencyId;
-        CustName = viewer.Name;
+        Viewer = viewer ?? new User(new UserSessionExt());
+        CustId = Viewer.Id;
+        Site = Viewer.Site;
+        CurrencyId = Viewer.CurrencyId;
+        CustName = Viewer.Name;
 
-        ViewerId = viewer.Id;
-        ViewerLevelId = viewer.LevelId;
+        ViewerId = Viewer.Id;
+        ViewerLevelId = Viewer.LevelId;
         ViewerLevel = _Enumeration.FromValue<_UserLevel>(ViewerLevelId);
-        ViewerIdOrViewerAdminId = viewer.IsInternal ? viewer.AdminId : viewer.Id;
-        AdminId = viewer.AdminId;
-        SubAccId = viewer.SubAccId;
-        DisplayVNIP = viewer.IsAdminCanViewVNIP;
-        Language = viewer.Language;
-        IsEnabledJackpot = viewer.IsEnabledJackpot;
+        ViewerIdOrViewerAdminId = Viewer.IsInternal ? Viewer.AdminId : Viewer.Id;
+        AdminId = Viewer.AdminId;
+        SubAccId = Viewer.SubAccId;
+        DisplayVNIP = Viewer.IsAdminCanViewVNIP;
+        Language = Viewer.Language;
+        IsEnabledJackpot = Viewer.IsEnabledJackpot;
 
-        LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
-        IsInternal = viewer.IsInternal;
-        Viewer = viewer;
+        LimitedDateToShowInfo = Viewer.LimitedDateToShowInfo;
+        IsInternal = Viewer.IsInternal;
     }
 
     protected IUser Viewer { get; }

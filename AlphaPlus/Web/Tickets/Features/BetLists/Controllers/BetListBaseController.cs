@@ -10,6 +10,7 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 public class BetListBaseController : BaseController
 {
     protected const string InvalidBetListView = "~/Features/Views/InvalidBetList.cshtml";
+    protected const string BetListView = "~/Features/BetLists/Views/{0}/{1}.cshtml";
     protected readonly IMediator mediator;
 
     protected BetListBaseController(IMediator mediator)

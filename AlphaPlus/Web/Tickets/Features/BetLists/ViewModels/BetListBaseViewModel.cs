@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.Models;
+using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Tickets.Site.App_GlobalResources;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests;
 using Fanex.BetList.Core.Builder;

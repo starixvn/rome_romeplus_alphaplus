@@ -1,5 +1,5 @@
-using AlphaPlus.BetLists.Params;
-using AlphaPlus.BetLists.Services;
+using AlphaPlus.BetLists.BetsForecast;
+using AlphaPlus.BetLists.Shared.Services;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetListByBetTypeAndMatch;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetTypeAndMatch;
@@ -10,25 +10,18 @@ using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetListByBetTypeAndMatch;
 
-public class BetListByBetTypeAndMatchHandler :
-    BetListBaseHandler,
-    IRequestHandler<BetListByBetTypeAndMatchQuery, BetListByBetTypeAndMatchViewModel>
+public class BetListByBetTypeAndMatchHandler(
+    IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService,
+    IForecastService forecastService,
+    IBetListHTMLBuilder builder,
+    ITicketHelper ticketHelper,
+    ISmartPunterBetListMonitor monitorService,
+    IPService ipService) :
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+        IRequestHandler<BetListByBetTypeAndMatchQuery, BetListByBetTypeAndMatchViewModel>
 {
-    private readonly IForecastService forecastService;
-    private readonly IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService;
-
-    public BetListByBetTypeAndMatchHandler(
-        IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService,
-        IForecastService forecastService,
-        IBetListHTMLBuilder builder,
-        ITicketHelper ticketHelper,
-        ISmartPunterBetListMonitor monitorService,
-        IPService ipService)
-        : base(builder, ticketHelper, monitorService, ipService)
-    {
-        this.forecastService = forecastService;
-        this.runningBetListByBetTypeAndMatchService = runningBetListByBetTypeAndMatchService;
-    }
+    private readonly IForecastService forecastService = forecastService;
+    private readonly IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService = runningBetListByBetTypeAndMatchService;
 
     public async Task<BetListByBetTypeAndMatchViewModel> Handle(BetListByBetTypeAndMatchQuery message, CancellationToken cancellationToken)
     {
@@ -57,6 +50,6 @@ public class BetListByBetTypeAndMatchHandler :
             message.Language,
             message.IsLive,
             message.BetTeam,
-            message.ViewerLevel,
+            message.ViewerLevelId,
             message.DisplayVNIP);
 }

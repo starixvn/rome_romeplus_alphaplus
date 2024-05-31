@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.Models;
+using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.App_GlobalResources;
 using AlphaPlus.Tickets.Site.Features.BetLists.Builders.ExcelBuilders;

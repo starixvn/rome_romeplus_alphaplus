@@ -68,17 +68,17 @@
   </siteMapNode>
   <!--/MemberInfo-->
   <siteMapNode resourceKey="BetLists" menuItemType="BetListsMenuItem" functionType="[L]">
-    <siteMapNode resourceKey="LastBets" url="/LastBets/Index" roles="Agent" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
-    <siteMapNode resourceKey="searchTickets" url="/SearchTickets/Index" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
-    <siteMapNode resourceKey="cancelledBets" url="/CancelledBet/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="LastBets" url="/tickets/LastBets/Index" roles="Agent" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
+    <siteMapNode resourceKey="searchTickets" url="/tickets/SearchTickets/Index" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
+    <siteMapNode resourceKey="cancelledBets" url="/tickets/CancelledBet/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
 
-    <siteMapNode resourceKey="correctscore" url="/correctscore/index" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="parlay" url="/CombinationMixParlay/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType13" url="/betlistbybettype/CleanSheet?bettype=13" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType24" url="/betlistbybettype/DoubleChance?bettype=24" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType26" url="/betlistbybettype/BothNoneNeitherTeamToScore?bettype=26" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType27" url="/betlistbybettype/ToWinToNil?bettype=27" useDomainConfig="Betlist:Domain"></siteMapNode>
-    <siteMapNode resourceKey="BetType28" url="/betlistbybettype/ThreeWayHandicap?bettype=28" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="correctscore" url="/tickets/correctscore/index" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="parlay" url="/tickets/CombinationMixParlay/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType13" url="/tickets/betlistbybettype/CleanSheet?bettype=13" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType24" url="/tickets/betlistbybettype/DoubleChance?bettype=24" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType26" url="/tickets/betlistbybettype/BothNoneNeitherTeamToScore?bettype=26" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType27" url="/tickets/betlistbybettype/ToWinToNil?bettype=27" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="BetType28" url="/tickets/betlistbybettype/ThreeWayHandicap?bettype=28" useDomainConfig="Betlist:Domain"></siteMapNode>
   </siteMapNode>
 
   <siteMapNode resourceKey="BetsAndForecast" menuItemType="TotalBetsMenuItem" functionType="[D]">

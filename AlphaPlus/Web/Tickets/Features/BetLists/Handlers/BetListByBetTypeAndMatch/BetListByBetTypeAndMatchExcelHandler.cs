@@ -1,5 +1,5 @@
-using AlphaPlus.BetLists.Models;
-using AlphaPlus.BetLists.Services;
+using AlphaPlus.BetLists.BetsForecast;
+using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.App_GlobalResources;
@@ -15,27 +15,20 @@ using ONEbook.SpreadSheets.BetListNPOI;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetListByBetTypeAndMatch;
 
-public class BetListByBetTypeAndMatchExcelHandler :
-    BetListByBetTypeExcelBaseHandler,
-    IRequestHandler<BetListByBetTypeAndMatchExcelQuery, ExcelFileViewModel>
+public class BetListByBetTypeAndMatchExcelHandler(
+    Workbook<TicketDto> workbook,
+    IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService,
+    IBetListHTMLBuilder builder,
+    IBetListExcelBuilder excelBuilder,
+    ITicketHelper ticketHelper,
+    ISmartPunterBetListMonitor monitorService,
+    IPService ipService,
+    IWebHostEnvironment webHostEnvironment) :
+        BetListByBetTypeExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment),
+        IRequestHandler<BetListByBetTypeAndMatchExcelQuery, ExcelFileViewModel>
 {
-    private Workbook<TicketDto> workbook;
-    private readonly IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService;
-
-    public BetListByBetTypeAndMatchExcelHandler(
-        Workbook<TicketDto> workbook,
-        IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService,
-        IBetListHTMLBuilder builder,
-        IBetListExcelBuilder excelBuilder,
-        ITicketHelper ticketHelper,
-        ISmartPunterBetListMonitor monitorService,
-        IPService ipService,
-        IWebHostEnvironment webHostEnvironment)
-        : base(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment)
-    {
-        this.workbook = workbook;
-        this.runningBetListByBetTypeAndMatchService = runningBetListByBetTypeAndMatchService;
-    }
+    private Workbook<TicketDto> workbook = workbook;
+    private readonly IRunningBetListByBetTypeAndMatchService runningBetListByBetTypeAndMatchService = runningBetListByBetTypeAndMatchService;
 
     public async Task<ExcelFileViewModel> Handle(BetListByBetTypeAndMatchExcelQuery message, CancellationToken cancellationToken)
     {

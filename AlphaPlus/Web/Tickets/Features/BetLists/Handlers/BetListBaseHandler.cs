@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.Models;
+using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;

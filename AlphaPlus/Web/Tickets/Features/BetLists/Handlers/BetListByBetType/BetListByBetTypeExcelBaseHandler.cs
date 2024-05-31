@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.Models;
+using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 using AlphaPlus.Utilities.IP;
@@ -10,19 +10,14 @@ using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetListByBetType;
 
-public class BetListByBetTypeExcelBaseHandler : BetListExcelBaseHandler
+public class BetListByBetTypeExcelBaseHandler(
+    IBetListHTMLBuilder builder,
+    IBetListExcelBuilder excelBuilder,
+    ITicketHelper ticketHelper,
+    ISmartPunterBetListMonitor monitorService,
+    IPService ipService,
+    IWebHostEnvironment webHostEnvironment) : BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment)
 {
-    public BetListByBetTypeExcelBaseHandler(
-        IBetListHTMLBuilder builder,
-        IBetListExcelBuilder excelBuilder,
-        ITicketHelper ticketHelper,
-        ISmartPunterBetListMonitor monitorService,
-        IPService ipService,
-        IWebHostEnvironment webHostEnvironment)
-        : base(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment)
-    {
-    }
-
     protected internal override Mapper<TicketDto> GetBodyRowMapper(_UserLevel viewerLevel, BetListBaseViewModel viewModel)
     {
         var ticketData = viewModel.BetListData.TicketData;

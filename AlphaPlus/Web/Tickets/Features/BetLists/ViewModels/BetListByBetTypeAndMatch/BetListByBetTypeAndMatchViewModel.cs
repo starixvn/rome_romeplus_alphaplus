@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.Models;
+using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetListByBetTypeAndMatch;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetType;
 using AlphaPlus.Tickets.Site.Features.Shared;

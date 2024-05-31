@@ -1,5 +1,5 @@
 using System.Text;
-using AlphaPlus.BetLists.Models;
+using AlphaPlus.BetLists.Shared.Models;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Razor.TagHelpers;

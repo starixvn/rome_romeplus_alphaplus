@@ -1,19 +1,20 @@
-using AlphaPlus.BetLists.Models;
+using AlphaPlus.BetLists.Shared.Models;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Utils;
+using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Blocks;
 
 public class Footer
 {
-    private static readonly IDictionary<UserLevel, int> FooterStatusColSpanByViewLevelId = new Dictionary<UserLevel, int>
+    private static readonly IDictionary<_UserLevel, int> FooterStatusColSpanByViewLevelId = new Dictionary<_UserLevel, int>
     {
-        [UserLevel.Agent] = 3,
-        [UserLevel.Master] = 4,
-        [UserLevel.Super] = 5
+        [_UserLevel.Agent] = 3,
+        [_UserLevel.Master] = 4,
+        [_UserLevel.Super] = 5
     };
 
-    public Footer(BetListData betListData, UserLevel viewerLevel, bool showMemberName, string[] excludingTicketStatus = null)
+    public Footer(BetListData betListData, _UserLevel viewerLevel, bool showMemberName, string[] excludingTicketStatus = null)
     {
         if (betListData != null)
         {

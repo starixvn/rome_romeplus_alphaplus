@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using AlphaPlus.BetLists.Extensions;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
@@ -11,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Fanex.Data;
 using AlphaPlus.Results.Features.Shared;
+using AlphaPlus.BetLists.Shared.Extensions;
 
 var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);

@@ -22,14 +22,14 @@
             <th class="col-platform">@Resources.platform</th>
         </tr>
     </thead>
-    @if (Model.BetListData.Tickets.Any())
-    {
-        <tbody>
-            @for (int i = 0; i < Model.BetListData.Total; i++)
+    <tbody>
+        @if (Model.BetListData.Tickets.Any())
+        {
+            var index = 1;
+            @foreach (var ticket in Model.BetListData.Tickets)
             {
-                var ticket = Model.BetListData.Tickets.ElementAt(i);
                 <tr id="r@(ticket.TransId)">
-                    <td class='w-order text-center'>@(i + 1)</td>
+                    <td class='w-order text-center'>@(index++)</td>
                     <td class="text-center">@ticket.UserName</td>
                     <trans builder="Model.Builder" ticket="ticket" />
                     <choice builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
@@ -51,12 +51,12 @@
                     <platform device="ticket.DeviceType" />
                 </tr>
             }
-        </tbody>
-    }
-    else
-    {
-        <no-infomation colspan="Model.TotalColumn" />
-    }
+        }
+        else
+        {
+            <no-infomation colspan="Model.TotalColumn" />
+        }
+    </tbody>
 </table>
 @* @Html.Hidden("betlist-path",
 Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))

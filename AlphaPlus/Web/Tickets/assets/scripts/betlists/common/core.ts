@@ -1,5 +1,4 @@
-﻿'use strict';
-declare var store: any;
+﻿declare var store: any;
 class AlphaCore {
     $: JQueryStatic;
     store: any;
