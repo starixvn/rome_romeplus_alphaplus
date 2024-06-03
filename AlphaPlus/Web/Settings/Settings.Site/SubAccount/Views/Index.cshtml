@@ -7,7 +7,7 @@
     <main role="main" class="pb-3">
         <div class="title-page">
             <span class="txt-title">Sub Account</span>
-            <button class="btn-refresh btn-add">Add Sub Account</button>
+            <button class="btn-refresh btn-add" id="btn-add">Add Sub Account</button>
         </div>
         <table class="tblRpt">
             <thead class="RptHeader">
@@ -45,10 +45,10 @@
                     <td class="c"><input type="checkbox" value="[L]" @(subAcc.HasBetlistPermission ? "checked" : string.Empty) /></td>
                     <td class="c"><input type="checkbox" value="[C]" @(subAcc.HasTransferPermission ? "checked" : string.Empty) /></td>
                     <td class="c"><input type="checkbox" value="[G]" @(subAcc.HasViewLogPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><span class="icon-edit">&nbsp;</span></td>
-                    <td class="c"><span class="icon-edit">&nbsp;</span></td>
-                    <td class="c"><span class="icon-edit">&nbsp;</span></td>
-                    <td class="c"><span class="icon-edit">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit" id="info" data-subaccid="@subAcc.SubAccId">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit" id="pwd" data-subaccid="@subAcc.SubAccId">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit" id="sc" data-subaccid="@subAcc.SubAccId">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit" id="otp" data-subaccid="@subAcc.SubAccId">&nbsp;</span></td>
                 </tr>
             }
             </tbody>
