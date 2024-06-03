@@ -18,7 +18,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
 
         public override string Url => BaseAddress;
 
-        public override Dictionary<string, string> QueryStringParamaters
+        public override Dictionary<string, string> QueryStringParameters
            => new Dictionary<string, string>
            {
                ["CustIds"] = Request.GetData<string>("customerIds")

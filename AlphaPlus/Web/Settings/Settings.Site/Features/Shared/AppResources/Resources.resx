@@ -572,4 +572,36 @@
     <value>You are not allowed to disable this product on your downlines per company policy.</value>
     <comment/>
   </data>
+  <data name="AddNewMaster" xml:space="preserve">
+    <value>Add New Master</value>
+    <comment/>
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
+    <value>Add New Agent</value>
+    <comment/>
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
+    <value>Add New Member</value>
+    <comment/>
+  </data>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>Search And Copy</value>
+    <comment/>
+  </data>
+  <data name="FullMode" xml:space="preserve">
+    <value>Full Mode</value>
+    <comment/>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>QR Code</value>
+    <comment/>
+  </data>
+  <data name="LiteMode" xml:space="preserve">
+    <value>Lite Mode</value>
+    <comment/>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>New</value>
+    <comment/>
+  </data>
 </root>

@@ -38,7 +38,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Produ
 
         public override string Method => DataKey.Method.POST;
 
-        public override Dictionary<string, string> QueryStringParamaters
+        public override Dictionary<string, string> QueryStringParameters
         {
             get
             {

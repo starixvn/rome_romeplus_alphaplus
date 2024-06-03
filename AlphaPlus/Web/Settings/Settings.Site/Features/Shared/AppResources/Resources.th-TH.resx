@@ -572,4 +572,36 @@
     <value>ตามนโยบายของบริษัท คุณไม่ได้อนุญาตให้ปิดใช้งานผลิตภัณฑ์ของดาวน์ไลน์</value>
     <comment/>
   </data>
+  <data name="AddNewMaster" xml:space="preserve">
+    <value>เพิ่มตัวแทนหลัก รายใหม่</value>
+    <comment/>
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
+    <value>เพิ่ม Agent </value>
+    <comment/>
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
+    <value>เพิ่มสมาชิกใหม่</value>
+    <comment/>
+  </data>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>ค้นหาและคัดลอก</value>
+    <comment/>
+  </data>
+  <data name="FullMode" xml:space="preserve">
+    <value>แบบ เต็ม</value>
+    <comment/>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>คิวอาร์โค้ด</value>
+    <comment/>
+  </data>
+  <data name="LiteMode" xml:space="preserve">
+    <value>โหมด Lite</value>
+    <comment/>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>บใหม่</value>
+    <comment/>
+  </data>
 </root>

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,79 +26,82 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -119,936 +122,1254 @@
   </resheader>
   <data name="AllProducts" xml:space="preserve">
     <value>All Products</value>
+    <comment/>
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>Bet Credit</value>
+    <comment/>
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Balance</value>
+    <comment/>
   </data>
   <data name="PlayForFunMemberRequest" xml:space="preserve">
     <value>Play For Fun - Member Request</value>
+    <comment/>
   </data>
   <data name="No" xml:space="preserve">
     <value>No.</value>
+    <comment/>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>No information is available</value>
+    <comment/>
   </data>
   <data name="Outstanding" xml:space="preserve">
     <value>Outstanding</value>
+    <comment/>
   </data>
   <data name="Selected" xml:space="preserve">
     <value>selected</value>
+    <comment/>
   </data>
   <data name="SelectProducts" xml:space="preserve">
     <value>Select Products</value>
+    <comment/>
   </data>
   <data name="ThereIsNoProduct" xml:space="preserve">
     <value>There is no product.</value>
+    <comment/>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+    <comment/>
   </data>
   <data name="DisabledProductWarning" xml:space="preserve">
     <value>This product is disabled, please contact upline to enable for you.</value>
+    <comment/>
   </data>
   <data name="Action" xml:space="preserve">
     <value>Action</value>
+    <comment/>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
+    <comment/>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
+    <comment/>
   </data>
   <data name="SettingRequiredWarning" xml:space="preserve">
     <value>To enable the product, setting configuration is required.</value>
+    <comment/>
   </data>
   <data name="NoSettingWarning" xml:space="preserve">
     <value>Product settings have not been configured for your account yet, please contact your upline.</value>
+    <comment/>
   </data>
   <data name="Sync" xml:space="preserve">
     <value>Sync</value>
+    <comment/>
   </data>
   <data name="PlayForFunGuidelines" xml:space="preserve">
     <value>Play For Fun - Guidelines</value>
+    <comment/>
   </data>
   <data name="BetSettingFollows" xml:space="preserve">
     <value>Bet Setting Follows</value>
+    <comment/>
   </data>
   <data name="CommissionSettingFollows" xml:space="preserve">
     <value>Commission Setting Follows</value>
+    <comment/>
   </data>
   <data name="NewBetType" xml:space="preserve">
     <value>New Bet Type</value>
+    <comment/>
   </data>
   <data name="PositionTakingSettingFollows" xml:space="preserve">
     <value>Position Taking Setting Follows</value>
+    <comment/>
   </data>
   <data name="NewBetTypeEffectDate" xml:space="preserve">
     <value>New bet types of Basketball with effect from {0}:</value>
+    <comment/>
   </data>
   <data name="ProgressiveJackpotGames" xml:space="preserve">
     <value>Progressive Jackpot Games</value>
+    <comment/>
   </data>
   <data name="JackpotGames" xml:space="preserve">
     <value>Jackpot Games</value>
+    <comment/>
   </data>
   <data name="TotalContributionRate" xml:space="preserve">
     <value>Total Contribution Rate</value>
+    <comment/>
   </data>
   <data name="JackpotBetStake" xml:space="preserve">
     <value>Jackpot Bet Stake</value>
+    <comment/>
   </data>
   <data name="ProgressiveJackpotHandbookDetails" xml:space="preserve">
     <value>Click here to view the details of the new jackpot game.</value>
+    <comment/>
   </data>
   <data name="ProgressiveJackpotHandbookTitle" xml:space="preserve">
     <value>Progressive Jackpot Games - Handbook</value>
+    <comment/>
   </data>
   <data name="CreditBalance" xml:space="preserve">
     <value>Credit/Balance</value>
+    <comment/>
   </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
+    <comment/>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>Closed</value>
+    <comment/>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>Disabled</value>
+    <comment/>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open</value>
+    <comment/>
   </data>
   <data name="Suspended" xml:space="preserve">
     <value>Suspended</value>
+    <comment/>
   </data>
   <data name="EnterUsername" xml:space="preserve">
     <value>Username or First/Last Name</value>
+    <comment/>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
+    <comment/>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
+    <comment/>
   </data>
   <data name="Credit" xml:space="preserve">
     <value>Credit</value>
+    <comment/>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
+    <comment/>
   </data>
   <data name="LastLogin" xml:space="preserve">
     <value>Last Login</value>
+    <comment/>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Last Name</value>
+    <comment/>
   </data>
   <data name="LoginIP" xml:space="preserve">
     <value>Login IP</value>
+    <comment/>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
     <value>Yesterday Balance</value>
+    <comment/>
   </data>
   <data name="Of" xml:space="preserve">
     <value>of</value>
+    <comment/>
   </data>
   <data name="Page" xml:space="preserve">
     <value>Page</value>
+    <comment/>
   </data>
   <data name="Pager_DisplayItems" xml:space="preserve">
     <value>Displaying {from} to {to} of {total} items</value>
+    <comment/>
   </data>
   <data name="AvailableCredit" xml:space="preserve">
     <value>Available Credit</value>
+    <comment/>
   </data>
   <data name="DontShowAgain" xml:space="preserve">
     <value>Do not show again</value>
+    <comment/>
   </data>
   <data name="ShowHideColumnHint" xml:space="preserve">
     <value>Right-click on the header to show/hide columns</value>
+    <comment/>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+    <comment/>
   </data>
   <data name="No2" xml:space="preserve">
     <value>No</value>
+    <comment/>
   </data>
   <data name="MemberWinLossLimit" xml:space="preserve">
     <value>Member Win/Loss Limit</value>
+    <comment/>
   </data>
   <data name="SelectMaster" xml:space="preserve">
     <value>Select Master</value>
+    <comment/>
   </data>
   <data name="SelectAgent" xml:space="preserve">
     <value>Select Agent</value>
+    <comment/>
   </data>
   <data name="PlayerId" xml:space="preserve">
     <value>Player ID</value>
+    <comment/>
   </data>
   <data name="UsernamePlaceHolder" xml:space="preserve">
     <value>Username or First/Last Name</value>
+    <comment/>
   </data>
   <data name="NoDataFound" xml:space="preserve">
     <value>No information is available</value>
+    <comment/>
   </data>
   <data name="AllAgent" xml:space="preserve">
     <value>All Agent</value>
+    <comment/>
   </data>
   <data name="AutoDailyResetLimit" xml:space="preserve">
     <value>Auto Daily Reset Limit</value>
+    <comment/>
   </data>
   <data name="CurrentWinLossAmount" xml:space="preserve">
     <value>Current Win Loss Amount</value>
+    <comment/>
   </data>
   <data name="MaximumWin" xml:space="preserve">
     <value>Maximum Win  (on given credit)</value>
+    <comment/>
   </data>
   <data name="CurrentWinLimit" xml:space="preserve">
     <value>Current Win Limit (%)</value>
+    <comment/>
   </data>
   <data name="CurrentLossLimit" xml:space="preserve">
     <value>Current Loss Limit (%)</value>
+    <comment/>
   </data>
   <data name="MaximumLoss" xml:space="preserve">
     <value>Maximum Loss</value>
+    <comment/>
   </data>
   <data name="RemainingBuyInAmount" xml:space="preserve">
     <value>Remaining Buy-in Amount</value>
+    <comment/>
   </data>
   <data name="Cash" xml:space="preserve">
     <value>Cash</value>
+    <comment/>
   </data>
   <data name="YesterdayCashBalance" xml:space="preserve">
     <value>Yesterday Cash Balance</value>
+    <comment/>
   </data>
   <data name="DateNotified" xml:space="preserve">
     <value>Date Notified</value>
+    <comment/>
   </data>
   <data name="ProblemMemberAccounts" xml:space="preserve">
     <value>Problem Member Accounts</value>
+    <comment/>
   </data>
   <data name="ReviewStatus" xml:space="preserve">
     <value>Review Status</value>
+    <comment/>
   </data>
   <data name="MarkAsReviewed" xml:space="preserve">
     <value>Mark as Reviewed</value>
+    <comment/>
   </data>
   <data name="Reviewed" xml:space="preserve">
     <value>Reviewed</value>
+    <comment/>
   </data>
   <data name="NotReviewed" xml:space="preserve">
     <value>Not Reviewed</value>
+    <comment/>
   </data>
   <data name="Master" xml:space="preserve">
     <value>Master</value>
+    <comment/>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>Agent</value>
+    <comment/>
   </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
+    <comment/>
   </data>
   <data name="SelectedAccounts" xml:space="preserve">
     <value>Selected account(s):</value>
+    <comment/>
   </data>
   <data name="SetReviewedForAccountOnly" xml:space="preserve">
     <value>Set to Reviewed for the selected accounts only.</value>
+    <comment/>
   </data>
   <data name="SetReviewedForDownline" xml:space="preserve">
     <value>Set to Reviewed for the selected accounts and their problem account downlines.</value>
+    <comment/>
   </data>
   <data name="RequiredMaster" xml:space="preserve">
     <value>Please input a valid master account</value>
+    <comment/>
   </data>
   <data name="RequiredAgent" xml:space="preserve">
     <value>Please input a valid agent account</value>
+    <comment/>
   </data>
   <data name="ShowAllAccounts" xml:space="preserve">
     <value>Show all {0} accounts?</value>
+    <comment/>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
+    <comment/>
   </data>
   <data name="None" xml:space="preserve">
     <value>None</value>
+    <comment/>
   </data>
   <data name="ProblemAccountList" xml:space="preserve">
     <value>Problem Account List</value>
+    <comment/>
   </data>
   <data name="To" xml:space="preserve">
     <value>To</value>
+    <comment/>
   </data>
   <data name="EnterAccount" xml:space="preserve">
     <value>Username</value>
+    <comment/>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
     <value>Export to Excel</value>
+    <comment/>
   </data>
   <data name="ProblemAgentAccounts" xml:space="preserve">
     <value>Problem Agent Accounts</value>
+    <comment/>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>Nickname</value>
+    <comment/>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
+    <comment/>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+    <comment/>
   </data>
   <data name="ExportDate" xml:space="preserve">
     <value>Export Date</value>
+    <comment/>
   </data>
   <data name="DateNotifiedFrom" xml:space="preserve">
     <value>Date Notified From</value>
+    <comment/>
   </data>
   <data name="RemainingTransferInAmount" xml:space="preserve">
     <value>Remaining Transfer-in Amount</value>
+    <comment/>
   </data>
   <data name="AccountInformation" xml:space="preserve">
     <value>Account Information</value>
+    <comment/>
   </data>
   <data name="CopyLink" xml:space="preserve">
     <value>Copy Link</value>
+    <comment/>
   </data>
   <data name="CreateAccount" xml:space="preserve">
     <value>Create Account</value>
+    <comment/>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
     <value>Create Member with QR Code</value>
+    <comment/>
   </data>
   <data name="FirstNameOptional" xml:space="preserve">
     <value>First Name (Optional)</value>
+    <comment/>
   </data>
   <data name="InputExistingMemberAccount" xml:space="preserve">
     <value>Input Existing Member account (that you want to copy the settings)</value>
+    <comment/>
   </data>
   <data name="MemberCredit" xml:space="preserve">
     <value>Member Credit</value>
+    <comment/>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>New Given Credit</value>
+    <comment/>
   </data>
   <data name="PleaseShowThisQRCodeToYourMember" xml:space="preserve">
     <value>Please show this QR code to your member</value>
+    <comment/>
   </data>
   <data name="ThisAccountHasBeenSuccessfullyCreated" xml:space="preserve">
     <value>The account has been successfully created.</value>
+    <comment/>
   </data>
   <data name="UpdateCredit" xml:space="preserve">
     <value>Update Given Credit</value>
+    <comment/>
   </data>
   <data name="UpdateInformation" xml:space="preserve">
     <value>Update Information</value>
+    <comment/>
   </data>
   <data name="GivenCreditMustBeBetweenMinMax" xml:space="preserve">
     <value>Given Credit must be between {0} and {1}.</value>
+    <comment/>
   </data>
   <data name="MemberAccountIsInvalid" xml:space="preserve">
     <value>Member account is invalid.</value>
+    <comment/>
   </data>
   <data name="UsernameIsInvalid" xml:space="preserve">
     <value>This username is not available.</value>
+    <comment/>
   </data>
   <data name="Domain" xml:space="preserve">
     <value>Domain</value>
+    <comment/>
   </data>
   <data name="PleaseInputMemberCredit" xml:space="preserve">
     <value>Please input Member credit</value>
+    <comment/>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+    <comment/>
   </data>
   <data name="FirstLoginQRCode" xml:space="preserve">
     <value>FIRST LOGIN QR CODE</value>
+    <comment/>
   </data>
   <data name="CannotCreateClosedMemberQRCode" xml:space="preserve">
     <value>You can not copy setting from closed/ suspended account.</value>
+    <comment/>
   </data>
   <data name="CannotGenerateMessage" xml:space="preserve">
     <value>You can not regenerate the QR Code cause this account is already being used by member.</value>
+    <comment/>
   </data>
   <data name="Connect" xml:space="preserve">
     <value>Connect</value>
+    <comment/>
   </data>
   <data name="ConnectToNewAccount" xml:space="preserve">
     <value>Connect To New Account</value>
+    <comment/>
   </data>
   <data name="Disconnect" xml:space="preserve">
     <value>Disconnect</value>
+    <comment/>
   </data>
   <data name="IndirectLogIn" xml:space="preserve">
     <value>Indirect Log In</value>
+    <comment/>
   </data>
   <data name="IndirectLoginAccount" xml:space="preserve">
     <value>Indirect Login Account</value>
+    <comment/>
   </data>
   <data name="IndirectLoginAccountPasswordUpdated" xml:space="preserve">
     <value>Indirect Login Account - Password Updated</value>
+    <comment/>
   </data>
   <data name="Level" xml:space="preserve">
     <value>Level</value>
+    <comment/>
   </data>
   <data name="NewIndirectLoginAccount" xml:space="preserve">
     <value>New Indirect Login Account</value>
+    <comment/>
   </data>
   <data name="ShowPassword" xml:space="preserve">
     <value>Show Password</value>
+    <comment/>
   </data>
   <data name="Super" xml:space="preserve">
     <value>Super</value>
+    <comment/>
   </data>
   <data name="DisconnectConfirmationMessage" xml:space="preserve">
     <value>The selected secondary account will be removed from the list. Do you want to proceed?</value>
+    <comment/>
   </data>
   <data name="YourDownlineUsernameOrNickname" xml:space="preserve">
     <value>Your Downline Username Or Nickname</value>
+    <comment/>
   </data>
   <data name="UpdatePasswordHint" xml:space="preserve">
     <value>The selected account's password has been updated, please input the new password.</value>
+    <comment/>
   </data>
   <data name="IndirectLoginAccountConfirmation" xml:space="preserve">
     <value>Indirect Login Account - Confirmation</value>
+    <comment/>
   </data>
   <data name="IndirectLoginAccountDisconnectSuccessfully" xml:space="preserve">
     <value>The account has been successfully disconnected.</value>
+    <comment/>
   </data>
   <data name="IndirectLoginAccountNewSuccessfully" xml:space="preserve">
     <value>The account has been successfully connected.</value>
+    <comment/>
   </data>
   <data name="RequiredPasswordError" xml:space="preserve">
     <value>Sorry, password cannot be empty.</value>
+    <comment/>
   </data>
   <data name="IndirectLoginAccountClosedOrDisabledError" xml:space="preserve">
     <value>This account is closed or disabled, please open it and try again.</value>
+    <comment/>
   </data>
   <data name="RequiredYourDownlineUsernameOrNicknameError" xml:space="preserve">
     <value>Invalid account or it is not your downline.</value>
+    <comment/>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
+    <comment/>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
     <value>Update Given Credit</value>
+    <comment/>
   </data>
   <data name="ArchiveDate" xml:space="preserve">
     <value>Archive Date</value>
+    <comment/>
   </data>
   <data name="ArchiveStage" xml:space="preserve">
     <value>Archive Stage</value>
+    <comment/>
   </data>
   <data name="ClearedGivenCredit" xml:space="preserve">
     <value>Cleared Given Credit</value>
+    <comment/>
   </data>
   <data name="DormantAccountArchiveProcess" xml:space="preserve">
     <value>Dormant Account Archive Process</value>
+    <comment/>
   </data>
   <data name="DormantAccountList" xml:space="preserve">
     <value>Dormant Account List</value>
+    <comment/>
   </data>
   <data name="DeletedSettings" xml:space="preserve">
     <value>Deleted Settings</value>
+    <comment/>
   </data>
   <data name="ToBeClearedGivenCredit" xml:space="preserve">
     <value>To Be Cleared Given Credit</value>
+    <comment/>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
+    <comment/>
   </data>
   <data name="CloseAccount" xml:space="preserve">
     <value>Close Account</value>
+    <comment/>
   </data>
   <data name="DeleteSettings" xml:space="preserve">
     <value>Delete Settings</value>
+    <comment/>
   </data>
   <data name="DisableAccount" xml:space="preserve">
     <value>Disable Account</value>
+    <comment/>
   </data>
   <data name="DormantAccountClosedTooltip" xml:space="preserve">
     <value>This line has a member logged in after Archive Closed Date. If that member places bet, this line will not be disabled.</value>
+    <comment/>
   </data>
   <data name="LockStatus" xml:space="preserve">
     <value>Lock Status</value>
+    <comment/>
   </data>
   <data name="IndirectLoginAccountLockedError" xml:space="preserve">
     <value>This account is locked, please unlock it and try again.</value>
+    <comment/>
   </data>
   <data name="DeleteAccount" xml:space="preserve">
     <value>Delete Account</value>
+    <comment/>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>Deleted</value>
+    <comment/>
   </data>
   <data name="DeletedAccount" xml:space="preserve">
     <value>Deleted Account</value>
+    <comment/>
   </data>
   <data name="ParlayMaxPayoutSubTitle" xml:space="preserve">
     <value>Parlay Max Payout {0}</value>
+    <comment/>
   </data>
   <data name="ParlayMaxPayoutSingleSubText" xml:space="preserve">
     <value>Parlay Max Payout: {0}</value>
+    <comment/>
   </data>
   <data name="ParlayMaxPayoutMultipleSubText" xml:space="preserve">
     <value>Parlay Max Payout</value>
+    <comment/>
   </data>
   <data name="SingleMatchParlay" xml:space="preserve">
     <value>Single Match Parlay</value>
+    <comment/>
   </data>
   <data name="Combo2" xml:space="preserve">
     <value>Combo 2</value>
+    <comment/>
   </data>
   <data name="Combo35" xml:space="preserve">
     <value>Combo 3-5</value>
+    <comment/>
   </data>
   <data name="ComboOver6" xml:space="preserve">
     <value>Combo 6+ &amp; System Parlay</value>
+    <comment/>
   </data>
   <data name="ParlayMaxPayoutUpdateSuccessfully" xml:space="preserve">
     <value>Update successfully</value>
+    <comment/>
   </data>
   <data name="InvalidMaxPayoutValueText" xml:space="preserve">
     <value>The value must be a positive amount.</value>
+    <comment/>
   </data>
   <data name="GreaterThanMaxValueText" xml:space="preserve">
     <value>&lt;BetType&gt;: The setting of &lt;Column&gt; is higher than the upline's.</value>
+    <comment/>
   </data>
   <data name="soccerParlay" xml:space="preserve">
     <value>Soccer Parlay</value>
+    <comment/>
   </data>
   <data name="mixsports" xml:space="preserve">
     <value>Mix Sports Parlay</value>
+    <comment/>
   </data>
   <data name="ConditionToClearCredit" xml:space="preserve">
     <value>Condition To Clear Credit</value>
+    <comment/>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>Created Date</value>
+    <comment/>
   </data>
   <data name="CreditBalanceNote" xml:space="preserve">
     <value>The Balance and Bet Credit values displayed on the report may not be up to date comparing with the values displayed on Account lnfo feature at the left panel. You can click on Bet Credit amount to view the latest value.</value>
+    <comment/>
   </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
+    <comment/>
   </data>
   <data name="AddMember" xml:space="preserve">
     <value>Add Member</value>
+    <comment/>
   </data>
   <data name="AddMembersToWatchlist" xml:space="preserve">
     <value>Add Member(s) To Watchlist</value>
+    <comment/>
   </data>
   <data name="AddRow" xml:space="preserve">
     <value>Add Row</value>
+    <comment/>
   </data>
   <data name="AddSuccessfully" xml:space="preserve">
     <value>Added successfully</value>
+    <comment/>
   </data>
   <data name="AreYouSureToRemoveAccounts" xml:space="preserve">
     <value>Are you sure you want to remove the selected account(s)?</value>
+    <comment/>
   </data>
   <data name="AreYouSureToRemovePreset" xml:space="preserve">
     <value>Are you sure you want to remove this preset?</value>
+    <comment/>
   </data>
   <data name="CanViewReportData" xml:space="preserve">
     <value>You can view the report data from {0}.</value>
+    <comment/>
   </data>
   <data name="EditMultiplePersonalThresholds" xml:space="preserve">
     <value>Edit Multiple Personal Thresholds</value>
+    <comment/>
   </data>
   <data name="EditPersonalThreshold" xml:space="preserve">
     <value>Edit Personal Threshold</value>
+    <comment/>
   </data>
   <data name="EditWatchlistAccount" xml:space="preserve">
     <value>Edit Threshold(s)</value>
+    <comment/>
   </data>
   <data name="EnterListOfMemberUsernames" xml:space="preserve">
     <value>Enter Member username(s)</value>
+    <comment/>
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
+    <comment/>
   </data>
   <data name="Global" xml:space="preserve">
     <value>Global</value>
+    <comment/>
   </data>
   <data name="GlobalLosingThreshold" xml:space="preserve">
     <value>Global Losing Threshold</value>
+    <comment/>
   </data>
   <data name="GlobalThresholds" xml:space="preserve">
     <value>Global Thresholds</value>
+    <comment/>
   </data>
   <data name="GlobalThresholdSettings" xml:space="preserve">
     <value>Global Threshold Settings</value>
+    <comment/>
   </data>
   <data name="GlobalThresholdWillBeAppliedForMembers" xml:space="preserve">
     <value>Global Threshold Settings apply to Members who are not in the watchlist.</value>
+    <comment/>
   </data>
   <data name="GlobalWinningThreshold" xml:space="preserve">
     <value>Global Winning Threshold</value>
+    <comment/>
   </data>
   <data name="InvalidAccountError" xml:space="preserve">
     <value>Invalid Account</value>
+    <comment/>
   </data>
   <data name="IsNotMemberError" xml:space="preserve">
     <value>is not a Member</value>
+    <comment/>
   </data>
   <data name="LastThresholdType" xml:space="preserve">
     <value>Last Threshold Type</value>
+    <comment/>
   </data>
   <data name="LastReach" xml:space="preserve">
     <value>Last Reach</value>
+    <comment/>
   </data>
   <data name="LastLosingThreshold" xml:space="preserve">
     <value>Last Losing Threshold</value>
+    <comment/>
   </data>
   <data name="LastWinningThreshold" xml:space="preserve">
     <value>Last Winning Threshold</value>
+    <comment/>
   </data>
   <data name="ThresholdType" xml:space="preserve">
     <value>Threshold Type</value>
+    <comment/>
   </data>
   <data name="Locked" xml:space="preserve">
     <value>Locked</value>
+    <comment/>
   </data>
   <data name="LosingThreshold" xml:space="preserve">
     <value>Losing Threshold</value>
+    <comment/>
   </data>
   <data name="PersonalThresholdPresets" xml:space="preserve">
     <value>Personal Threshold Presets</value>
+    <comment/>
   </data>
   <data name="MoreThan50UsernamesError" xml:space="preserve">
     <value>The number of Members must not exceed 50</value>
+    <comment/>
   </data>
   <data name="MustEnterPresetNameError" xml:space="preserve">
     <value>Please enter preset name</value>
+    <comment/>
   </data>
   <data name="MustEnterThresholdError" xml:space="preserve">
     <value>Please enter threshold</value>
+    <comment/>
   </data>
   <data name="MustEnterThresholdOrCheckError" xml:space="preserve">
     <value>Please enter threshold, or select Unlimited</value>
+    <comment/>
   </data>
   <data name="MustEnterUsernameError" xml:space="preserve">
     <value>Please enter Member username</value>
+    <comment/>
   </data>
   <data name="MyWatchlist" xml:space="preserve">
     <value>My Watchlist</value>
+    <comment/>
   </data>
   <data name="NoChangeToUpdateError" xml:space="preserve">
     <value>There is no change to update.</value>
+    <comment/>
   </data>
   <data name="ReachCount" xml:space="preserve">
     <value>Reach Count</value>
+    <comment/>
   </data>
   <data name="ReachHistory" xml:space="preserve">
     <value>Reach History</value>
+    <comment/>
   </data>
   <data name="NotInWatchlistAnyLongerError" xml:space="preserve">
     <value>is no longer in the watchlist</value>
+    <comment/>
   </data>
   <data name="PageSize" xml:space="preserve">
     <value>Page Size</value>
+    <comment/>
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Personal</value>
+    <comment/>
   </data>
   <data name="Preset" xml:space="preserve">
     <value>Preset</value>
+    <comment/>
   </data>
   <data name="PresetIsNoLongerExists" xml:space="preserve">
     <value>This preset no longer exists</value>
+    <comment/>
   </data>
   <data name="PresetNameIsDuplicated" xml:space="preserve">
     <value>Preset name already exists</value>
+    <comment/>
   </data>
   <data name="ReachedThreshold" xml:space="preserve">
     <value>Reached Threshold</value>
+    <comment/>
   </data>
   <data name="RemoveAccount" xml:space="preserve">
     <value>Remove Account</value>
+    <comment/>
   </data>
   <data name="RemoveMultipleAccounts" xml:space="preserve">
     <value>Remove Multiple Accounts</value>
+    <comment/>
   </data>
   <data name="RemoveSuccessfully" xml:space="preserve">
     <value>Removed successfully</value>
+    <comment/>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+    <comment/>
   </data>
   <data name="SelectPreset" xml:space="preserve">
     <value>Select preset</value>
+    <comment/>
   </data>
   <data name="SelectThresholdPreset" xml:space="preserve">
     <value>Select threshold preset or set threshold for the Members above:</value>
+    <comment/>
   </data>
   <data name="SupportsSportsbookDataOnly" xml:space="preserve">
     <value>This function is only available for Sportsbook.</value>
+    <comment/>
   </data>
   <data name="ThresholdPresetName" xml:space="preserve">
     <value>Threshold Preset Name</value>
+    <comment/>
   </data>
   <data name="Unlimited" xml:space="preserve">
     <value>Unlimited</value>
+    <comment/>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
+    <comment/>
   </data>
   <data name="WasAddedWatchlistAlreadyError" xml:space="preserve">
     <value>is already in the watchlist</value>
+    <comment/>
   </data>
   <data name="WinningLosingAmount" xml:space="preserve">
     <value>Winning/Losing Amount</value>
+    <comment/>
   </data>
   <data name="WinningThreshold" xml:space="preserve">
     <value>Winning Threshold</value>
+    <comment/>
   </data>
   <data name="MaximumMembers" xml:space="preserve">
     <value>(Maximum 50 Members, separated by comma ',')</value>
+    <comment/>
   </data>
   <data name="DateTime" xml:space="preserve">
     <value>Date Time</value>
+    <comment/>
   </data>
   <data name="AccumulatedMemberWinLossOnlyStartsCountingNote" xml:space="preserve">
     <value>Accumulated Win Loss only starts counting when a winning/losing threshold is set. It will be reset daily or when the function is off.</value>
+    <comment/>
   </data>
   <data name="PersonalThresholdPresetSettings" xml:space="preserve">
     <value>Personal Threshold Preset Settings</value>
+    <comment/>
   </data>
   <data name="WatchlistUpdateSuccessfully" xml:space="preserve">
     <value>Updated successfully</value>
+    <comment/>
   </data>
   <data name="EditMultiple" xml:space="preserve">
     <value>Edit Multiple</value>
+    <comment/>
   </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
+    <comment/>
   </data>
   <data name="AccumulatedMemberWinLossWillBeCountedNote" xml:space="preserve">
     <value>Accumulated Win Loss will be counted right after the ticket is settled. Once a ticket is already settled and accumulated, moving a yesterday un-settled event to the next business day won’t change the accumulation.</value>
+    <comment/>
   </data>
   <data name="MyThresholds" xml:space="preserve">
     <value>My Thresholds</value>
+    <comment/>
   </data>
   <data name="MyThresholdsSettings" xml:space="preserve">
     <value>My Thresholds Settings</value>
+    <comment/>
   </data>
   <data name="GlobalThresholdSettingsNote" xml:space="preserve">
     <value>Get notified when an individual Member win/loss reaches your desired winning/losing thresholds below:</value>
+    <comment/>
   </data>
   <data name="MyLosingThreshold" xml:space="preserve">
     <value>My Losing Threshold</value>
+    <comment/>
   </data>
   <data name="MyThresholdSettingsNote" xml:space="preserve">
     <value>Get notified when your win/loss (based on your own position taking on all members) reaches your desired winning/losing thresholds below:</value>
+    <comment/>
   </data>
   <data name="MyWinningThreshold" xml:space="preserve">
     <value>My Winning Threshold</value>
+    <comment/>
   </data>
   <data name="ThresholdSettingsNote" xml:space="preserve">
     <value>To disable thresholds, select the Unlimited checkbox for both Winning/Losing Thresholds.</value>
+    <comment/>
   </data>
   <data name="Entered" xml:space="preserve">
     <value>Entered</value>
+    <comment/>
   </data>
   <data name="NonEntered" xml:space="preserve">
     <value>Non-Entered</value>
+    <comment/>
   </data>
   <data name="SearchAndCopy" xml:space="preserve">
     <value>Search And Copy</value>
+    <comment/>
   </data>
   <data name="FullMode" xml:space="preserve">
     <value>Full Mode</value>
+    <comment/>
   </data>
   <data name="QRCode" xml:space="preserve">
     <value>QR Code</value>
+    <comment/>
   </data>
   <data name="CopyAccountNote" xml:space="preserve">
     <value>Note: Settings will be the same as the Source account</value>
+    <comment/>
   </data>
   <data name="NoOfAccounts" xml:space="preserve">
     <value>No. of Accounts</value>
+    <comment/>
   </data>
   <data name="AccountDetails" xml:space="preserve">
     <value>Account Details</value>
+    <comment/>
   </data>
   <data name="AccountDetailsNote" xml:space="preserve">
     <value>Choose the first available username and the remaining accounts will follow the system's suggestion.</value>
+    <comment/>
   </data>
   <data name="lblPasswordRequire" xml:space="preserve">
-    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br&gt;
-&lt;br&gt;
-  • Uppercase letter [A-Z] &lt;br&gt;
-  • Lowercase letter [a-z] &lt;br&gt;
-  • Numeric [0-9] &lt;br&gt;
-  • Special character (!,@,#,etc..)&lt;br&gt;
-&lt;br&gt;
-For example: 59D7!4$h, 493abcDE&lt;br&gt;
-Notes: your password is cAsE sEnSiTiVe&lt;br&gt;</value>
+    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:&lt;br&gt;&lt;br&gt;  • Uppercase letter [A-Z] &lt;br&gt;  • Lowercase letter [a-z] &lt;br&gt;  • Numeric [0-9] &lt;br&gt;  • Special character (!,@,#,etc..)&lt;br&gt;&lt;br&gt;For example: 59D7!4$h, 493abcDE&lt;br&gt;Notes: your password is cAsE sEnSiTiVe&lt;br&gt;</value>
+    <comment/>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>Member Max Credit</value>
+    <comment/>
   </data>
   <data name="CreateMore" xml:space="preserve">
     <value>Create more</value>
+    <comment/>
   </data>
   <data name="Usernames" xml:space="preserve">
     <value>Usernames</value>
+    <comment/>
   </data>
   <data name="CreateCustomerSuccessMessage" xml:space="preserve">
     <value>{0} accounts have been created successfully.</value>
+    <comment/>
   </data>
   <data name="UserNotExist" xml:space="preserve">
     <value>This user does not exist</value>
+    <comment/>
   </data>
   <data name="NoAccountCreatedFailed" xml:space="preserve">
     <value>{0} accounts failed to be created.</value>
+    <comment/>
   </data>
   <data name="FailureReason" xml:space="preserve">
     <value>Failure Reason</value>
+    <comment/>
   </data>
   <data name="SourceAccount" xml:space="preserve">
     <value>Source Account</value>
+    <comment/>
   </data>
   <data name="GivenCreditPerAccount" xml:space="preserve">
     <value>Given Credit per Account</value>
+    <comment/>
   </data>
   <data name="ClassicView" xml:space="preserve">
     <value>Classic view</value>
+    <comment/>
   </data>
   <data name="AvailableGivenCredit" xml:space="preserve">
     <value>Available Given Credit</value>
+    <comment/>
   </data>
   <data name="MaxCreditPerMember" xml:space="preserve">
     <value>Max Credit per Member</value>
+    <comment/>
   </data>
   <data name="InvalidMaxCreditPerAccount" xml:space="preserve">
     <value>Max Given Credit per Account: {0} or lower.</value>
+    <comment/>
   </data>
   <data name="InvalidMemberMaxCredit" xml:space="preserve">
     <value>Member Max Credit must be between 0 and {0}</value>
+    <comment/>
   </data>
   <data name="AccountWasDisabled" xml:space="preserve">
     <value>This account was disabled.</value>
+    <comment/>
   </data>
   <data name="Copied" xml:space="preserve">
     <value>Copied</value>
+    <comment/>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Copy</value>
+    <comment/>
   </data>
   <data name="lblUsername" xml:space="preserve">
     <value>Username</value>
+    <comment/>
   </data>
   <data name="pendingTransfer3rd" xml:space="preserve">
     <value>3rd Party Pending Transfer</value>
+    <comment/>
   </data>
   <data name="EditMutipleSetting" xml:space="preserve">
     <value>Edit Multiple Setting</value>
+    <comment/>
   </data>
   <data name="EditSetting" xml:space="preserve">
     <value>Edit Setting</value>
+    <comment/>
   </data>
   <data name="MarkMultipleAsReviewed" xml:space="preserve">
     <value>Mark Multiple Accounts as Reviewed</value>
+    <comment/>
   </data>
   <data name="AddMultipleToWatchlist" xml:space="preserve">
     <value>Add Multiple Accounts to My Watchlist</value>
+    <comment/>
   </data>
   <data name="AddToMyWatchlist" xml:space="preserve">
     <value>Add to My Watchlist</value>
+    <comment/>
   </data>
   <data name="AddMultipleAccountsToWatchlist" xml:space="preserve">
     <value>Add Multiple Accounts To My Watchlist</value>
+    <comment/>
   </data>
   <data name="SuspendMultipleAccounts" xml:space="preserve">
     <value>Suspend Multiple Accounts</value>
+    <comment/>
   </data>
   <data name="SetThresholds" xml:space="preserve">
     <value>Set Thresholds</value>
+    <comment/>
   </data>
   <data name="AccountsAlreadyInWatchlist" xml:space="preserve">
     <value>{0} existing account(s) on My Watchlist</value>
+    <comment/>
   </data>
   <data name="NewlyAddedAccounts" xml:space="preserve">
     <value>Newly added account(s)</value>
+    <comment/>
   </data>
   <data name="AddToWatchListConfirmThresholds" xml:space="preserve">
     <value>You are advised to set threshold for the newly added account(s) above. Click &lt;b&gt;Set Threshold&lt;/b&gt; to proceed.</value>
+    <comment/>
   </data>
   <data name="AddMultipleToWatchlistExceedMessage" xml:space="preserve">
     <value>You can only add up to 50 Members to the watchlist at a time.</value>
+    <comment/>
   </data>
   <data name="ProblemAccount" xml:space="preserve">
     <value>Problem Account</value>
+    <comment/>
   </data>
   <data name="SuspendAccount" xml:space="preserve">
     <value>Suspend Account</value>
+    <comment/>
   </data>
   <data name="ShowMore" xml:space="preserve">
     <value>Show More</value>
+    <comment/>
   </data>
   <data name="ShowLess" xml:space="preserve">
     <value>Show Less</value>
+    <comment/>
   </data>
   <data name="lblPasswordMemberRequire" xml:space="preserve">
-    <value>Password must be 6-10 characters without white-space and contain at least 1 uppercase letter, 1 lowercase letter, 1 numeric digit. (e.g. 493abcDE, 59D7!4$h)
-Notes: your password is cAsE sEnSiTiVe.</value>
+    <value>Password must be 6-10 characters without white-space and contain at least 1 uppercase letter, 1 lowercase letter, 1 numeric digit. (e.g. 493abcDE, 59D7!4$h)Notes: your password is cAsE sEnSiTiVe.</value>
+    <comment/>
   </data>
   <data name="BBINNote" xml:space="preserve">
     <value>Note: BBIN's Winning% shown as &lt;b&gt;"N/A"&lt;/b&gt; because Maximum Win Limit control is not applied to the BBIN product.</value>
+    <comment/>
   </data>
   <data name="PTTemplate" xml:space="preserve">
     <value>Position Taking Template</value>
+    <comment/>
   </data>
   <data name="AddNewMaster" xml:space="preserve">
     <value>Add New Master</value>
+    <comment/>
   </data>
   <data name="AddNewAgent" xml:space="preserve">
     <value>Add New Agent</value>
+    <comment/>
   </data>
   <data name="AddNewMember" xml:space="preserve">
     <value>Add New Member</value>
+    <comment/>
   </data>
   <data name="LiteMode" xml:space="preserve">
     <value>Lite Mode</value>
+    <comment/>
   </data>
   <data name="QuickIntro_Title" xml:space="preserve">
     <value>Let's take a quick tour of Lite Mode</value>
+    <comment/>
   </data>
   <data name="QuickIntro_Title_Content" xml:space="preserve">
     <value>Experience the fastest and most centralized account creation process.</value>
+    <comment/>
   </data>
   <data name="QuickIntro_Title_NotNow" xml:space="preserve">
-    <value>Not now
-</value>
+    <value>Not now</value>
+    <comment/>
   </data>
   <data name="QuickIntro_Title_Confirm" xml:space="preserve">
     <value>Let’s go</value>
+    <comment/>
   </data>
   <data name="QuickIntro_Popup_1" xml:space="preserve">
     <value>Let's take a tour to discover all exciting things about this feature!</value>
+    <comment/>
   </data>
   <data name="QuickIntro_Popup_2" xml:space="preserve">
     <value>It starts with a new and intuitive menu.</value>
+    <comment/>
   </data>
   <data name="QuickIntro_Popup_3" xml:space="preserve">
     <value>Enhance Position Taking configuration process with faster and centralized setup by selecting and applying PT template values to product groups.</value>
+    <comment/>
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>New</value>
+    <comment/>
   </data>
   <data name="QuickIntro_Note" xml:space="preserve">
     <value>*Please note that Lite Mode applies the same PT to all products/sports within the assigned group. If you want different values for each product/sport, switch to Full Mode instead.</value>
+    <comment/>
   </data>
   <data name="ADBTOnError" xml:space="preserve">
     <value>You cannot use Auto Transfer because upline has enabled All Day Balance Transfer for you. The page will refresh automatically.</value>
+    <comment/>
   </data>
   <data name="ADBTOffError" xml:space="preserve">
     <value>You can use Auto Transfer because upline has disabled All Day Balance Transfer for you. The page will refresh automatically.</value>
+    <comment/>
   </data>
   <data name="PageOf" xml:space="preserve">
     <value>Page {0} of {1}</value>
+    <comment/>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>Min</value>
+    <comment/>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>Max</value>
+    <comment/>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>Live</value>
+    <comment/>
+  </data>
+  <data name="creditHint" xml:space="preserve">
+    <value>Available Credit: {0}</value>
+    <comment/>
+  </data>
+  <data name="memberMaxCreditHint" xml:space="preserve">
+    <value>The Maximum Member Credit set by your upline: {0}</value>
+    <comment/>
   </data>
 </root>

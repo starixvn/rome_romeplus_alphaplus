@@ -1,0 +1,22 @@
+@model SportBookInformationViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Customer Setting Information</title>
+    <link rel="stylesheet" href="@(Model.CdnUri)sportsbook-information/index.css?version=@(Model.AssetsVersion)" />
+</head>
+
+<body>
+    <div id="root" style="height: calc(100% - 90px);"></div>
+    <script type="text/javascript">
+        const appConfig = @Html.Raw(Model.AppConfig);
+        const informationPageParams = @Html.Raw(Model.Params);
+    </script>
+    <script type="module" src="@(Model.CdnUri)sportsbook-information/index.js?version=@(Model.AssetsVersion)"></script>
+</body>
+
+</html>

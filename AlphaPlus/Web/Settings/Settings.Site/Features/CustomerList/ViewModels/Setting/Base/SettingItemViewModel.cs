@@ -30,7 +30,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base
             get
             {
                 var queryString =
-                     string.Join("&", QueryStringParamaters.Select(query => $"{query.Key}={query.Value}"));
+                     string.Join("&", QueryStringParameters.Select(query => $"{query.Key}={query.Value}"));
 
                 return $"{BaseAddress}?{queryString}";
             }
@@ -41,7 +41,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base
             ? "icon-edit Enable"
             : "icon-eye View";
 
-        public abstract Dictionary<string, string> QueryStringParamaters { get; }
+        public abstract Dictionary<string, string> QueryStringParameters { get; }
 
         protected abstract string BaseAddress { get; }
 

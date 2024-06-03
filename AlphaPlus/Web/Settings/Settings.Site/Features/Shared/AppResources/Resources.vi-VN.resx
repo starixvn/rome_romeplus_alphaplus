@@ -564,4 +564,36 @@
     <value>Theo chính sách của công ty, bạn không được phép vô hiệu hoá sản phẩm cược của cấp dưới.</value>
     <comment/>
   </data>
+  <data name="AddNewMaster" xml:space="preserve">
+    <value>Tạo thành viên Master mới</value>
+    <comment/>
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
+    <value>Tạo thành viên Agent mới</value>
+    <comment/>
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
+    <value>Tạo Member mới</value>
+    <comment/>
+  </data>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>Tìm và sao chép</value>
+    <comment/>
+  </data>
+  <data name="FullMode" xml:space="preserve">
+    <value>Thiết lập đầy đủ</value>
+    <comment/>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>Mã QR</value>
+    <comment/>
+  </data>
+  <data name="LiteMode" xml:space="preserve">
+    <value>Thiết lập rút gọn</value>
+    <comment/>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>Mới</value>
+    <comment/>
+  </data>
 </root>

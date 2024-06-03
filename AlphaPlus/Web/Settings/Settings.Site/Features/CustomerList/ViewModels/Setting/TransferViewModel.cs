@@ -13,7 +13,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels
 
         protected override string BaseAddress => ""; // TODO: $"{OldMainUrl}_MemberInfo/TransferCondition/EditTransferCondition.aspx";
 
-        public override Dictionary<string, string> QueryStringParamaters
+        public override Dictionary<string, string> QueryStringParameters
           => new()
           {
               ["custId"] = SearchAccount.Id.ToString(),

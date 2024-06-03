@@ -27,6 +27,8 @@ namespace AlphaPlus.Settings.Site.Features.Shared
 
         public int ViewerId => viewer.Id;
 
+        public int SubAccId => viewer.SubAccId;
+
         public string ViewerUsername => string.IsNullOrWhiteSpace(viewer.SubAccName) ? viewer.Name : viewer.SubAccName;
 
         public byte ViewerLevelId => viewer.LevelId;
@@ -60,6 +62,10 @@ namespace AlphaPlus.Settings.Site.Features.Shared
         public bool IsSubAcc => viewer.IsSubAcc;
 
         public string Currency => viewer.Currency;
+
+        public int CurrencyId => viewer.CurrencyId;
+
+        public string Site => viewer.Site;
 
         public virtual bool IsValid() => ViewerId > 0;
     }

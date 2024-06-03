@@ -21,7 +21,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Produ
 
         protected override string BaseAddress => $"dcs/viewcustomersetting";
 
-        public override Dictionary<string, string> QueryStringParamaters
+        public override Dictionary<string, string> QueryStringParameters
         {
             get
             {

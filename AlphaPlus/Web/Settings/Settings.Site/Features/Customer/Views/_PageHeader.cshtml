@@ -1,0 +1,36 @@
+@using AlphaPlus.Core.Configurations
+@model CreateCustomerViewModel
+@{
+    var userguideLink = AppSettings.IsSiteLabel789y ?
+    MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159") :
+    MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
+}
+<div class="page-title">
+    @Model.PageTitle
+    &nbsp;<a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+        @Html.ActionLink(Resources.SearchAndCopy, "Index", "CopyAccount")
+    </li>
+    <li role="presentation" class="active">
+        <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.FullMode</a>
+    </li>
+    @if (Model.IsCreateMember)
+    {
+        <li class="has-icon" role="presentation">
+            @Html.ActionLink(Resources.QRCode, "Index", "QRCodeMemberSignIn")
+        </li>
+    }
+    <li role="presentation" class="new-function">
+        @Html.ActionLink(Resources.LiteMode, "Index", "CreateAccount", new
+            {
+                lng = Model.Language,
+                isDarkMode =
+                 Model.IsDarkMode.ToString().ToLowerInvariant()
+            }, null)
+        <span class="bage-new">@Resources.lblNew</span>
+    </li>
+
+</ul>

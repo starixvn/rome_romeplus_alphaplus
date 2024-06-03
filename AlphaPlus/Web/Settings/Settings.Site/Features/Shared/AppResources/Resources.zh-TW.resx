@@ -573,7 +573,39 @@
     <comment/>
   </data>
   <data name="ProductStatusWarningMessage" xml:space="preserve">
-    <value>You are not allowed to disable this product on your downlines per company policy.</value>
+    <value>根據公司的政策, 您不允許禁用此產品於下線。</value>
+    <comment/>
+  </data>
+  <data name="AddNewMaster" xml:space="preserve">
+    <value>新增總代理</value>
+    <comment/>
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
+    <value>新增代理</value>
+    <comment/>
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
+    <value>增加会员</value>
+    <comment/>
+  </data>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>搜索与複製</value>
+    <comment/>
+  </data>
+  <data name="FullMode" xml:space="preserve">
+    <value>完全版</value>
+    <comment/>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>二維碼</value>
+    <comment/>
+  </data>
+  <data name="LiteMode" xml:space="preserve">
+    <value>精簡模式</value>
+    <comment/>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>新增</value>
     <comment/>
   </data>
 </root>

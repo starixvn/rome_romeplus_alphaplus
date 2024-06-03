@@ -1,0 +1,48 @@
+@model CreateCustomerViewModel
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
+    <link rel="stylesheet" href="@(Model.CdnUri)create-customer/index.css?version=@(Model.AssetsVersion)" />
+}
+
+@Html.PartialAsync("_PageHeader", Model)
+@if (Model.IsLimitNewDownline)
+{
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+            <div class="msg msg-error">
+                <span className="col-xs-12">@Model.Message</span>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+            @Html.AntiForgeryToken()
+            <input type="hidden" id="SecretKey" value="@Model.SecretKey" />
+            <div id="root"></div>
+        </div>
+    </div>
+    @section Scripts {
+    <script type="text/javascript">
+        const appConfig = @Html.Raw(Model.AppConfig);
+        const params = @Html.Raw(Model.Params);
+        window.redirectToSettingPage = (response) => {
+            const params = @Html.Raw(Model.Params);
+            const username = response.username;
+            const custId = response.custId;
+            const redirectUrl = '@MicroSites.SettingUrl()' + "MemberInfo/RedirectPT.aspx?username=" + username + "&custid=" + custId
+                + "&userId=" + @Model.ActorId + "&subAccId=" + @Model.SubAccId
+                + "&isedit=false" + "&insert=true";
+            window.location.replace(redirectUrl);
+        };
+    </script>
+    <script type="module" src="@(Model.CdnUri)create-customer/index.js?version=@(Model.AssetsVersion)"></script>
+    @StaticResources.RenderScripts("~/assets/bundles/customer/create-customer")
+    }
+}

@@ -23,7 +23,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
             }
         }
 
-        public override Dictionary<string, string> QueryStringParamaters
+        public override Dictionary<string, string> QueryStringParameters
        => new Dictionary<string, string>
        {
            ["productGroupId"] = ProductGroupId.ToString(),

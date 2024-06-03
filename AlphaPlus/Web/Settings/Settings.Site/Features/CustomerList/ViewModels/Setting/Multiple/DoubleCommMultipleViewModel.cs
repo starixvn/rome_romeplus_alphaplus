@@ -16,7 +16,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
 
         protected override string BaseAddress => MicroSites.SettingUrl("~/CustomerList/MultipleDoubleComm");
 
-        public override Dictionary<string, string> QueryStringParamaters
+        public override Dictionary<string, string> QueryStringParameters
               => new()
               {
                   ["SearchAccountIds"] = Request.GetData<string>("customerIds"),

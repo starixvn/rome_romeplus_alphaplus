@@ -14,7 +14,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
         protected override string BaseAddress => ""; // TODO:
         // $"{OldMainUrl}_AccountInfo/EditCustomerInfo.aspx";
 
-        public override Dictionary<string, string> QueryStringParamaters
+        public override Dictionary<string, string> QueryStringParameters
             => new()
             {
                 ["custId"] = SearchAccount.Id.ToString(),

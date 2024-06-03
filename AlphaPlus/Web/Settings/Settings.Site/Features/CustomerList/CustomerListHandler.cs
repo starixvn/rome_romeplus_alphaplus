@@ -185,21 +185,21 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             var customerStatusModel = customerListService.GetCustomerStatus(message.SearchAccountId, message.SearchAccountRoleId);
             var isAllDayBalTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
 
-            var actor = new Customer(
+            var actor = new Products.Models.Customer(
                message.ViewerId,
                message.SubAccountId,
                message.ViewerUsername,
                message.ViewerLevelId,
                BuildActorProductStatus(customerStatusModel.DCSProducts.ToList()));
 
-            var upline = new Customer(
+            var upline = new Products.Models.Customer(
                  message.UplineId,
                  message.SubAccountId,
                  message.UplineName,
                  message.UplineRoleId,
                  BuildUplineProductStatus(customerStatusModel.DCSProducts.ToList()));
 
-            var searchAccount = new Customer(
+            var searchAccount = new Products.Models.Customer(
                message.SearchAccountId,
                message.SubAccountId,
                message.SearchAccountName,
@@ -216,21 +216,21 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
         {
             var customerStatusModel = customerListService.GetCustomerStatus(message.SearchAccountId, message.SearchAccountRoleId);
 
-            var actor = new Customer(
+            var actor = new Products.Models.Customer(
                message.ViewerId,
                message.SubAccountId,
                message.ViewerUsername,
                message.ViewerLevelId,
                BuildActorProductStatus(customerStatusModel.DCSProducts.ToList()));
 
-            var upline = new Customer(
+            var upline = new Products.Models.Customer(
                  message.UplineId,
                  message.SubAccountId,
                  message.UplineName,
                  message.UplineRoleId,
                  BuildUplineProductStatus(customerStatusModel.DCSProducts.ToList()));
 
-            var searchAccount = new Customer(
+            var searchAccount = new Products.Models.Customer(
                message.SearchAccountId,
                message.SubAccountId,
                message.SearchAccountName,
@@ -251,8 +251,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             => dcsProducts.Select(product => new CustomerProductStatus(product.ProductId, product.IsDisabled, product.IsHidden, product.GroupId));
 
         internal IEnumerable<IStatusItemViewModel> BuildCustomerProductStatus(
-            Customer actor,
-            Customer searchAccount,
+            Products.Models.Customer actor,
+            Products.Models.Customer searchAccount,
             CustomerStatusQueryBase message,
             CustomerStatusModel model,
             bool allowedAllDayBalTransfer)
@@ -296,8 +296,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
         }
 
         internal IEnumerable<ISettingItemViewModel> BuildCustomerProductSettings(
-            Customer actor,
-            Customer searchAccount,
+            Products.Models.Customer actor,
+            Products.Models.Customer searchAccount,
             CustomerStatusQueryBase message,
             CustomerStatusModel model)
         {
@@ -322,8 +322,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
         }
 
         internal IEnumerable<ISettingItemMultipleViewModel> BuildCustomerProductMultipleSettings(
-           Customer actor,
-           Customer searchAccount,
+           Products.Models.Customer actor,
+           Products.Models.Customer searchAccount,
            CustomerStatusMultipleQuery message,
            CustomerStatusModel model)
         {

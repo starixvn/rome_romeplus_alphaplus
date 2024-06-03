@@ -1311,5 +1311,93 @@ namespace AlphaPlus.Settings.Site.Features.Shared.AppResources
                 return ResourceManager.GetString("ProductStatusWarningMessage", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Master.
+        /// </summary>
+        public static string AddNewMaster
+        {
+            get
+            {
+                return ResourceManager.GetString("AddNewMaster", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Agent.
+        /// </summary>
+        public static string AddNewAgent
+        {
+            get
+            {
+                return ResourceManager.GetString("AddNewAgent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Member.
+        /// </summary>
+        public static string AddNewMember
+        {
+            get
+            {
+                return ResourceManager.GetString("AddNewMember", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search And Copy.
+        /// </summary>
+        public static string SearchAndCopy
+        {
+            get
+            {
+                return ResourceManager.GetString("SearchAndCopy", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Full Mode.
+        /// </summary>
+        public static string FullMode
+        {
+            get
+            {
+                return ResourceManager.GetString("FullMode", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to QR Code.
+        /// </summary>
+        public static string QRCode
+        {
+            get
+            {
+                return ResourceManager.GetString("QRCode", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Lite Mode.
+        /// </summary>
+        public static string LiteMode
+        {
+            get
+            {
+                return ResourceManager.GetString("LiteMode", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string lblNew
+        {
+            get
+            {
+                return ResourceManager.GetString("lblNew", resourceCulture);
+            }
+        }
     }
 }

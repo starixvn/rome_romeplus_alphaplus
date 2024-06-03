@@ -21,7 +21,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
         protected override string BaseAddress
             => MicroSites.SettingUrl("~/AutoTransfer/UpdateMultipleAutoTransfer");
 
-        public override Dictionary<string, string> QueryStringParamaters
+        public override Dictionary<string, string> QueryStringParameters
         {
             get
             {

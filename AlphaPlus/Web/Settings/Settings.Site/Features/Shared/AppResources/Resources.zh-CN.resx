@@ -572,4 +572,36 @@
     <value>根据公司的政策, 您不允許禁用此产品于下線。</value>
     <comment/>
   </data>
+  <data name="AddNewMaster" xml:space="preserve">
+    <value>新增总代理</value>
+    <comment/>
+  </data>
+  <data name="AddNewAgent" xml:space="preserve">
+    <value>新增代理</value>
+    <comment/>
+  </data>
+  <data name="AddNewMember" xml:space="preserve">
+    <value>增加会员</value>
+    <comment/>
+  </data>
+  <data name="SearchAndCopy" xml:space="preserve">
+    <value>搜索与复制</value>
+    <comment/>
+  </data>
+  <data name="FullMode" xml:space="preserve">
+    <value>完全版</value>
+    <comment/>
+  </data>
+  <data name="QRCode" xml:space="preserve">
+    <value>二维码</value>
+    <comment/>
+  </data>
+  <data name="LiteMode" xml:space="preserve">
+    <value>精简模式</value>
+    <comment/>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>新增</value>
+    <comment/>
+  </data>
 </root>

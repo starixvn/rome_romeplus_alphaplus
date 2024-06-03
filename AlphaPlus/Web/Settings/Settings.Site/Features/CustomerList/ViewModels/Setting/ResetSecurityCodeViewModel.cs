@@ -13,7 +13,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
 
         protected override string BaseAddress => MicroSites.MainUrl("~/SecurityCode/ResetSecurityCode");
 
-        public override Dictionary<string, string> QueryStringParamaters
+        public override Dictionary<string, string> QueryStringParameters
           => new()
           {
               ["custId"] = SearchAccount.Id.ToString(),

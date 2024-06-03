@@ -1,0 +1,23 @@
+@model EditMultipleCustomersViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="@(Model.CdnUri)edit-multiple-customers/index.css?version=@(Model.AssetsVersion)" />
+}
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active">
+        @Html.AntiForgeryToken()
+        <div id="root"></div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        const appConfig = @Html.Raw(Model.AppConfig);
+        const params = @Html.Raw(Model.Params);
+    </script>
+    <script type="module" src="@(Model.CdnUri)edit-multiple-customers/index.js?version=@(Model.AssetsVersion)"></script>
+    @StaticResources.RenderScripts("~/assets/bundles/customer/create-customer")
+}
