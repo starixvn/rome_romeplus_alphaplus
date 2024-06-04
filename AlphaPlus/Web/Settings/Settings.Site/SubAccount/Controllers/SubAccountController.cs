@@ -24,34 +24,45 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
             return View(await mediator.Send(subAccountRequest));
         }
 
-        [HttpPost]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(AddSubAccountRequest subAccountRequest)
+        {
+            return Json(await mediator.Send(subAccountRequest));
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateSubAccountInfo(UpdateSubAccountInfoRequest subAccountRequest)
         {
-            return View(await mediator.Send(subAccountRequest));
+            return Json(await mediator.Send(subAccountRequest));
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateSubAccountPassword(UpdateSubAccountPasswordRequest subAccountRequest)
         {
-            return View(await mediator.Send(subAccountRequest));
+            return Json(await mediator.Send(subAccountRequest));
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest subAccountRequest)
         {
-            return View(await mediator.Send(subAccountRequest));
+            return Json(await mediator.Send(subAccountRequest));
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateSubAccountSecurityCode(UpdateSubAccountInfoRequest subAccountRequest)
         {
-            return View(await mediator.Send(subAccountRequest));
+            return Json(await mediator.Send(subAccountRequest));
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveSubAccountOtp(RemoveSubAccountOtpRequest subAccountRequest)
         {
-            return View(await mediator.Send(subAccountRequest));
+            return Json(await mediator.Send(subAccountRequest));
         }
     }
 }

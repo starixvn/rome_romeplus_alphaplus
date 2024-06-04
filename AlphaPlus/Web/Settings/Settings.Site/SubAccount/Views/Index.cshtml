@@ -46,9 +46,9 @@
                     <td class="c"><input type="checkbox" value="[C]" @(subAcc.HasTransferPermission ? "checked" : string.Empty) /></td>
                     <td class="c"><input type="checkbox" value="[G]" @(subAcc.HasViewLogPermission ? "checked" : string.Empty) /></td>
                     <td class="c"><span class="icon-edit info" data-subaccid="@subAcc.SubAccId">&nbsp;</span></td>
-                    <td class="c"><span class="icon-edit pwd" data-subaccid="@subAcc.SubAccId">&nbsp;</span></td>
-                    <td class="c"><span class="icon-edit sc" data-subaccid="@subAcc.SubAccId">&nbsp;</span></td>
-                    <td class="c"><span class="icon-edit otp" data-subaccid="@subAcc.SubAccId">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit pwd" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit sc" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                    <td class="c"><span class="icon-edit otp" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
                 </tr>
             }
             </tbody>

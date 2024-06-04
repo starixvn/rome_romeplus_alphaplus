@@ -23,6 +23,21 @@ class SubAccount {
             var subAccId = this.$(item.currentTarget).data("subaccid");
             this.Edit(subAccId);
         });
+        this.$(".pwd").click((item) => {
+            var subAccId = this.$(item.currentTarget).data("subaccid");
+            var username = this.$(item.currentTarget).data("username");
+            this.ResetPassword(subAccId, username);
+        });
+        this.$(".sc").click((item) => {
+            var subAccId = this.$(item.currentTarget).data("subaccid");
+            var username = this.$(item.currentTarget).data("username");
+            this.ResetSecurityCode(subAccId, username);
+        });
+        this.$(".otp").click((item) => {
+            var subAccId = this.$(item.currentTarget).data("subaccid");
+            var username = this.$(item.currentTarget).data("username");
+            this.RemoveOtp(subAccId, username);
+        });
     };
 
     Add = () => {
@@ -31,6 +46,18 @@ class SubAccount {
 
     Edit = (subAccId: number) => {
         this.topWindow.popupManager.open("/settings/SubAccount/Get?subAccId=" + subAccId, "Edit Sub Account", 600, 450);
+    };
+
+    ResetPassword = (subAccId: number, username: string) => {
+        this.topWindow.popupManager.open("/main/Password/ResetSubAccountPassword?subAccountId=" + subAccId + "&Username=" + username, "Edit Sub Account", 600, 450);
+    };
+
+    ResetSecurityCode = (subAccId: number, username: string) => {
+        this.topWindow.popupManager.open("/main/SecurityCode/ResetSecurityCode?subAccId=" + subAccId + "&Username=" + username, "Edit Sub Account", 600, 450);
+    };
+
+    RemoveOtp = (subAccId: number, username: string) => {
+        this.topWindow.popupManager.open("/main/Otp/ResetOtp?subAccountId=" + subAccId + "&Username=" + username, "Edit Sub Account", 600, 450);
     };
 }
 

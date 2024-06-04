@@ -1,0 +1,30 @@
+@model SubAccountViewModel
+<div class="container">
+    <main role="main" class="pb-3">
+        <table>
+            <tr>
+                <td>Username</td>
+                <td>Nickname</td>
+                <td>Firstname</td>
+                <td>Lastname</td>
+                <td>Created Date</td>
+            </tr>
+            @if (Model.SubAccId != 0)
+            {
+                <tr>
+                    <td>@Model.Username</td>
+                    <td>@Model.Nickname</td>
+                    <td>@Model.Firstname</td>
+                    <td>@Model.Lastname</td>
+                    <td>@Model.CreateDate</td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5">There is no information is available.</td>
+                </tr>
+            }
+        </table>
+    </main>
+</div>
