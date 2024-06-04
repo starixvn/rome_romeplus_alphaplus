@@ -25,14 +25,14 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly int systemId;
         private readonly IMemoryCache memoryCache;
         private readonly Encryptor encryptor;
-        private readonly SessionManager sessionManager;
+        private readonly ISessionManager sessionManager;
         private readonly IAesService aesService;
         private readonly ICustomerService customerService;
 
         public CustomerController(
             IMemoryCache memoryCache,
             Encryptor encryptor,
-            SessionManager sessionManager,
+            ISessionManager sessionManager,
             IAesService aesService,
             CustomerClientConfiguration clientConfiguration,
             ICustomerService customerService)

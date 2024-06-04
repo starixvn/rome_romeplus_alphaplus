@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="@(Model.CdnUri)create-customer/index.css?version=@(Model.AssetsVersion)" />
 }
 
-@Html.PartialAsync("_PageHeader", Model)
+@await Html.PartialAsync("_PageHeader", Model)
 @if (Model.IsLimitNewDownline)
 {
     <div class="tab-content">
@@ -42,7 +42,20 @@ else
             window.location.replace(redirectUrl);
         };
     </script>
-    <script type="module" src="@(Model.CdnUri)create-customer/index.js?version=@(Model.AssetsVersion)"></script>
-    @StaticResources.RenderScripts("~/assets/bundles/customer/create-customer")
+    <environment names="Production">
+        <script type="module" src="@(Model.CdnUri)create-customer/index.js?version=@(Model.AssetsVersion)"></script>
+    </environment>
+    <environment names="Development">
+        <script type="module">
+            import RefreshRuntime from "http://localhost:4201/@@react-refresh";
+            RefreshRuntime.injectIntoGlobalHook(window);
+            window.$RefreshReg$ = () => { };
+            window.$RefreshSig$ = () => (type) => type;
+            window.__vite_plugin_react_preamble_installed__ = true;
+        </script>
+        <script type="module" src=@("http://localhost:4201/@vite/client")></script>
+        <script type="module" src="http://localhost:4201/src/main.tsx"></script>
+    </environment>
+
     }
 }

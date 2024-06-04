@@ -6,6 +6,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/bundles/shared/settings.js",
+    "inputFiles": [
+      "Features/Shared/Scripts/aes.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/bundles/shared/settings-dark.css",
     "inputFiles": [
       "Features/Shared/Styles/settings-dark.css"

@@ -60,6 +60,7 @@ using Fanex.Caching;
 using AlphaPlus.Settings.Site.Features.ProductStatus;
 using Fanex.Data.Repository;
 using AlphaPlus.Core.Models;
+using Fanex.Customer.Client.Configurations;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -130,6 +131,9 @@ namespace AlphaPlus.Settings.Site.Helpers
                     provider.GetRequiredService<IDynamicRepository>(),
                     provider.GetRequiredService<ICacheRefService>(),
                     UserPermission.HasPermissionOnProduct));
+
+            services.AddSingleton(new CustomerClientConfiguration().Initialize(configuration));
+            services.AddSingleton<Fanex.Customer.Client.Services.ICustomerService, Fanex.Customer.Client.Services.CustomerService>();
 
             services
                 .AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>()

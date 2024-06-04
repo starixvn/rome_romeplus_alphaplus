@@ -1,6 +1,6 @@
 @model EditMultipleCustomersViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
 
 @section Styles {
@@ -18,6 +18,18 @@
         const appConfig = @Html.Raw(Model.AppConfig);
         const params = @Html.Raw(Model.Params);
     </script>
-    <script type="module" src="@(Model.CdnUri)edit-multiple-customers/index.js?version=@(Model.AssetsVersion)"></script>
-    @StaticResources.RenderScripts("~/assets/bundles/customer/create-customer")
+    <environment include="Production">
+        <script type="module" src="@(Model.CdnUri)edit-multiple-customers/index.js?version=@(Model.AssetsVersion)"></script>
+    </environment>
+    <environment include="Development">
+        <script type="module">
+            import RefreshRuntime from "http://localhost:4202/@@react-refresh";
+            RefreshRuntime.injectIntoGlobalHook(window);
+            window.$RefreshReg$ = () => { };
+            window.$RefreshSig$ = () => (type) => type;
+            window.__vite_plugin_react_preamble_installed__ = true;
+        </script>
+        <script type="module" src=@("http://localhost:4202/@vite/client")></script>
+        <script type="module" src="http://localhost:4203/src/main.tsx"></script>
+    </environment>
 }
