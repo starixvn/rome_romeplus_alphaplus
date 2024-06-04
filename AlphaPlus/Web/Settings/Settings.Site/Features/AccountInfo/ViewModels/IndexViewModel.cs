@@ -8,5 +8,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
         public UserLevel ActorLevel { get; } = message.ViewerLevel;
 
         public bool MobileView { get; } = message.MobileView;
+
+        public string ActorName { get; } = message.ViewerUsername;
     }
 }

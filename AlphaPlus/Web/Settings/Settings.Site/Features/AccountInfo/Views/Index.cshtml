@@ -16,7 +16,7 @@
 <body>
     <div id="root"></div>
     <script type="text/javascript">
-        const params = { actorRoleId: @Model.ActorLevel.Value, mobileView: JSON.parse('@Model.MobileView'.toLowerCase()) };
+        const params = { actorName: @Model.ActorName, actorRoleId: @Model.ActorLevel.Value, mobileView: JSON.parse('@Model.MobileView'.toLowerCase()) };
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     <script type="module">

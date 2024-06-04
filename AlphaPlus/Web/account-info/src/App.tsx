@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './App.module.scss';
 import BalanceInfo from './components/BalanceInfo';
@@ -16,7 +16,7 @@ import Customer from './models/customer';
 import SettingsService, { handleError } from './services/settings-service';
 
 function App() {
-    const { actorRoleId, mobileView } = params;
+    const { actorName, actorRoleId, mobileView } = params;
     const [searchAccountRoleId, setSearchAccountRoleId] = useState(actorRoleId - 1);
     const [username, setUsername] = useState<string | undefined>('');
     const [searchCounter, setSearchCounter] = useState(0);
@@ -25,6 +25,7 @@ function App() {
     const [requestType, setRequestType] = useState<string>(LoadCustomerInfo.ByClick);
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
+    const lastSearchUsernameCacheKey = `${actorName}-lastSearchUsername`;
 
     const getCustomerInfo = (username: string, requestId: string = LoadCustomerInfo.ByClick) => {
         setRequestType(requestId);
@@ -45,10 +46,12 @@ function App() {
                 setCustomer(result);
                 if (result) {
                     setSearchAccountRoleId(result.RoleId - 1);
+                    localStorage.setItem(lastSearchUsernameCacheKey, username);
                 } else {
                     if (resetSetting) {
                         setCustomer(undefined);
                     }
+                    localStorage.removeItem(lastSearchUsernameCacheKey);
                 }
             })
             .catch(handleError)
@@ -56,6 +59,14 @@ function App() {
                 $.unblockUI?.();
             });
     };
+
+    useEffect(() => {
+        const lastSearchUsername = localStorage.getItem(lastSearchUsernameCacheKey);
+        if (lastSearchUsername) {
+            setUsername(lastSearchUsername);
+            getCustomerInfo(lastSearchUsername);
+        }
+    }, [username, actorName, lastSearchUsernameCacheKey]);
 
     const handleBlockClick = (blockId: BlockIds) => {
         if (blockId === expandedBlockId) {

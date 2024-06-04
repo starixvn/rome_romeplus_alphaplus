@@ -6,6 +6,7 @@ export const UserLevel = {
 };
 
 interface Params {
+    actorName: string;
     actorRoleId: number;
     mobileView: boolean;
 }
