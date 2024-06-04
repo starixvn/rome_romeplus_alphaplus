@@ -19,7 +19,7 @@ class SubAccount {
 
     Init = () => {
         this.$("#btn-add").click(() => { this.Add(); });
-        this.$("#info").click((item) => {
+        this.$(".info").click((item) => {
             var subAccId = this.$(item.currentTarget).data("subaccid");
             this.Edit(subAccId);
         });
