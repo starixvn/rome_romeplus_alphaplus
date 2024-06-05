@@ -1,5 +1,6 @@
 "use strict";
 interface Window {
+    clearPopupSubtitle: Function,
     popupManager: {
         open: Function,
         openWithHanlder: Function,
@@ -41,23 +42,25 @@ class SubAccount {
     };
 
     Add = () => {
-        this.topWindow.popupManager.open("/settings/SubAccount/Add", "Add Sub Account", 600, 450);
+        this.topWindow.popupManager.open("/settings/SubAccount/Add", "Add Sub Account", 734, 536);
     };
 
     Edit = (subAccId: number) => {
-        this.topWindow.popupManager.open("/settings/SubAccount/Get?subAccId=" + subAccId, "Edit Sub Account", 600, 450);
+        this.topWindow.popupManager.open("/settings/SubAccount/Get?subAccId=" + subAccId, "Edit Sub Account", 734, 536);
     };
 
     ResetPassword = (subAccId: number, username: string) => {
-        this.topWindow.popupManager.open("/main/Password/ResetSubAccountPassword?subAccountId=" + subAccId + "&Username=" + username, "Edit Sub Account", 600, 450);
+        this.topWindow.popupManager.open("/main/Password/ResetSubAccountPassword?subAccountId=" + subAccId + "&Username=" + username, "", 734, 536);
     };
 
     ResetSecurityCode = (subAccId: number, username: string) => {
-        this.topWindow.popupManager.open("/main/SecurityCode/ResetSecurityCode?subAccId=" + subAccId + "&Username=" + username, "Edit Sub Account", 600, 450);
+        this.topWindow.popupManager.open("/main/SecurityCode/ResetSecurityCode?subAccId=" + subAccId + "&Username=" + username, "", 734, 536);
+        this.topWindow.clearPopupSubtitle(true);
     };
 
     RemoveOtp = (subAccId: number, username: string) => {
-        this.topWindow.popupManager.open("/main/Otp/ResetOtp?subAccountId=" + subAccId + "&Username=" + username, "Edit Sub Account", 600, 450);
+        this.topWindow.popupManager.open("/main/Otp/ResetOtp?subAccountId=" + subAccId + "&Username=" + username, "", 734, 536);
+        this.topWindow.clearPopupSubtitle(true);
     };
 }
 

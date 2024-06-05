@@ -12,13 +12,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
 
         public Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest);
 
-        public Task<Result> UpdateSubAccountPassword(UpdateSubAccountPasswordRequest updateSubAccountPasswordRequest);
-
         public Task<Result> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest updateSubAccountPageAccessRequest);
-
-        public Task<Result> UpdateSubAccountSecurityCode(UpdateSubAccountSecurityCodeRequest updateSubAccountSecurityCodeRequest);
-
-        public Task<Result> RemoveSubAccountOtp(RemoveSubAccountOtpRequest removeSubAccountOtpRequest);
 
         public Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest);
     }
@@ -60,11 +54,6 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
             return await httpClient.GetFromJsonAsync<IEnumerable<SubAccountViewModel>>($"{subAccountApiGroup}/index{queryString}");
         }
 
-        public async Task<Result> RemoveSubAccountOtp(RemoveSubAccountOtpRequest removeSubAccountOtpRequest)
-        {
-            return await httpClient.PostAsJsonAsync<Result>($"api/customer/otp/remove", removeSubAccountOtpRequest);;
-        }
-
         public async Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest)
         {
             return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/update-info", updateSubAccountInfoRequest);
@@ -73,16 +62,6 @@ namespace AlphaPlus.Settings.Site.SubAccount.Services
         public async Task<Result> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest updateSubAccountPageAccessRequest)
         {
             return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/update-pageaccess", updateSubAccountPageAccessRequest);;
-        }
-
-        public async Task<Result> UpdateSubAccountPassword(UpdateSubAccountPasswordRequest updateSubAccountPasswordRequest)
-        {
-            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/password/reset", updateSubAccountPasswordRequest);;
-        }
-
-        public async Task<Result> UpdateSubAccountSecurityCode(UpdateSubAccountSecurityCodeRequest updateSubAccountSecurityCodeRequest)
-        {
-            return await httpClient.PostAsJsonAsync<Result>($"api/security-code/verify", updateSubAccountSecurityCodeRequest);;
         }
     }
 }

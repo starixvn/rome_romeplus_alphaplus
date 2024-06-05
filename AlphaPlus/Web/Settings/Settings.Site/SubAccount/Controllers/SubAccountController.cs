@@ -42,25 +42,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateSubAccountPassword(UpdateSubAccountPasswordRequest subAccountRequest)
-        {
-            return Json(await mediator.Send(subAccountRequest));
-        }
-
-        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest subAccountRequest)
-        {
-            return Json(await mediator.Send(subAccountRequest));
-        }
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateSubAccountSecurityCode(UpdateSubAccountInfoRequest subAccountRequest)
-        {
-            return Json(await mediator.Send(subAccountRequest));
-        }
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveSubAccountOtp(RemoveSubAccountOtpRequest subAccountRequest)
         {
             return Json(await mediator.Send(subAccountRequest));
         }
