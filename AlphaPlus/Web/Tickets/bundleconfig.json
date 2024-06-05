@@ -130,5 +130,11 @@
       "assets/scripts/betlists/common/icon-note.js",
       "assets/scripts/betlists/search-tickets/search-tickets.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/parlay-detail.css",
+    "inputFiles": [
+      "assets/styles/betlists/parlay-detail.css"
+    ]
   }
 ]

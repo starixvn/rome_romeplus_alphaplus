@@ -1,0 +1,16 @@
+@{
+    Layout = null;
+    var index = 1;
+    var total = Model.BetListData.Total;
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Parlay.MixParlayViewModel
+@foreach (var ticket in Model.BetListData.Tickets)
+{
+    <div class="ticket-list">
+        @Html.Raw(Model.Builder.BuildChoice(ticket, Model.TicketHelper, null, Model.CanViewScoreMap(ticket)))
+    </div>
+    if (total != index++)
+    {
+        <div class="line"></div>
+    }
+}

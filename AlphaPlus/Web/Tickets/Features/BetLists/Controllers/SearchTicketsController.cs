@@ -11,5 +11,5 @@ public class SearchTicketsController(IMediator mediator) : BetListBaseController
         => View(new SearchTicketsViewModel(message, null, null, null));
 
     public Task<IActionResult> BetData(SearchTicketsQuery message)
-        => View(string.Format(BetListView, "Shared", "WinLossTableNew"), message);
+        => View(message, string.Format(BetListView, "Shared", "WinLossTableNew"));
 }

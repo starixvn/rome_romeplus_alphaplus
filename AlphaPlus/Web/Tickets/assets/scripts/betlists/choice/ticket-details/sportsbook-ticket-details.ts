@@ -3,18 +3,17 @@
         private static instance: SportsbookTicketDetails;
 
         public static get Instance(): SportsbookTicketDetails {
-            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new SportsbookTicketDetails() : this.instance;
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new SportsbookTicketDetails()
+                : this.instance;
             return this.instance;
         }
 
         public ShowSingleMatchParlayDetail = (transId: string, custId: string, status: string, transIndex: string) => {
-            const params = "&TransactionId=" + transId
-                + "&CustomerId=" + custId
-                + "&Status=" + status;
-
-            const url = Common.AppPath.BetListAppPath() + 'BetBuilder/ViewDetail?' + params;
+            const params = `TransactionId=${transId}&CustomerId=${custId}&Status=${status}`;
+            const url = `${Common.AppPath.TicketsAppPath}BetBuilder/ViewDetail?${params}`;
             this.showSingleMatchParlyTickets(transId, url, transIndex);
-        }
+        };
 
         private showSingleMatchParlyTickets = (transId: string, url: string, transIndex: string) => {
             const ticketsContent: JQuery = $('#divEvent_' + transId + transIndex);
@@ -29,51 +28,46 @@
                         ticketsContent.show();
                     },
                     success: (responseHtml) => {
-                        ticketsContent.html(responseHtml);                        
-                    },
-                }
+                        ticketsContent.html(responseHtml);
+                    }
+                };
 
                 $.ajax(getSingleMatchParlaySetting);
-            }
-            else {
+            } else {
                 if (ticketsContent.is(':visible')) {
                     ticketsContent.hide();
-                }
-                else {
-                    ticketsContent.show();                    
+                } else {
+                    ticketsContent.show();
                 }
             }
-        }
+        };
     }
 
     export class ParlayTicketDetails extends BaseTicketDetails {
         private static instance: ParlayTicketDetails;
 
         public static get Instance(): ParlayTicketDetails {
-            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new ParlayTicketDetails() : this.instance;
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new ParlayTicketDetails()
+                : this.instance;
             return this.instance;
         }
 
         public ShowComboParlayDetails = (refNo: string, winlostDate: Date, custId: string, betTeam: string) => {
-            const params = '?refno=' + refNo
-                + '&winlostdate=' + winlostDate               
-                + '&custid=' + custId
-                + '&betteam=' + betTeam;
-
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'Parlay/ComboParlayDetail' + params, "", 800, 438);
-        }
+            const url = `${Common.AppPath.TicketsAppPath}Parlay/ComboParlayDetail`;
+            const params = `?refno=${refNo}&winlostdate=${winlostDate}&custid=${custId}&betteam=${betTeam}`;
+            Common.PopupDetails.Instance(window.top).Show(url + params, '', 800, 438);
+        };
 
         public ShowMixParlayTickets = (transId: string, refNo: string, custId: number) => {
-            const params = '?transid=' + transId + '&custId=' + custId;
-            const url = Common.AppPath.BetListAppPath() + 'Parlay/MixParlay' + params;
+            const url = `${Common.AppPath.TicketsAppPath}Parlay/MixParlay?transid=${transId}&custId=${custId}`;
             this.showComboMixParlayTickets(transId, '', url);
-        }
+        };
 
         public ShowComboParlayOldTickets = (transId: string, transIndex: string, refNo: string, custId: string) => {
-            const params = '?transid=' + transId + '&custId=' + custId;
-            const url = Common.AppPath.BetListAppPath() + 'Parlay/ComboParlay' + params;
+            const url = `${Common.AppPath.TicketsAppPath}Parlay/ComboParlay?transid=${transId}&custId=${custId}`;
             this.showComboMixParlayTickets(transId, transIndex, url);
-        }
+        };
 
         public ShowComboParlayNewTickets = (
             transId: string,
@@ -83,17 +77,25 @@
             handicap2: string,
             betCheck: string,
             betTeam: string,
-            custId: string) => {
-            const params = '?transid=' + transId
-                + '&handicap1=' + handicap1
-                + '&handicap2=' + handicap2
-                + '&betcheck=' + betCheck
-                + '&betteam=' + betTeam
-                + '&custId=' + custId;
-
-            const url = Common.AppPath.BetListAppPath() + 'Parlay/ComboParlay' + params;
+            custId: string
+        ) => {
+            const params = [
+                'transid=',
+                transId,
+                '&handicap1=',
+                handicap1,
+                '&handicap2=',
+                handicap2,
+                '&betcheck=',
+                betCheck,
+                '&betteam=',
+                betTeam,
+                '&custId=',
+                custId
+            ];
+            const url = `${Common.AppPath.TicketsAppPath}Parlay/ComboParlay?${params.join('')}`;
             this.showComboMixParlayTickets(transId, transIndex, url);
-        }
+        };
 
         private showComboMixParlayTickets = (transId: string, transIndex: string, url: string) => {
             const ticketsContent: JQuery = $('#divEvent_' + transId + transIndex);
@@ -111,52 +113,50 @@
                     },
                     success: (responseHtml) => {
                         ticketsContent.html(responseHtml);
-                        if (ticketsContent.find(".offer-name-list").length) {
+                        if (ticketsContent.find('.offer-name-list').length) {
                             comboOfferName.hide();
                             if (maxPayoutDiv.length) {
                                 maxPayoutDiv.hide();
-                                ticketsContent.find(".max-payout").each(function () {
+                                ticketsContent.find('.max-payout').each(function () {
                                     $(this).show();
                                 });
                             }
                         }
-                    },
-                }
+                    }
+                };
 
                 $.ajax(getComboMixParlaySetting);
-            }
-            else {
+            } else {
                 if (ticketsContent.is(':visible')) {
                     ticketsContent.hide();
                     comboOfferName.show();
                     maxPayoutDiv.show();
-                }
-                else {
+                } else {
                     ticketsContent.show();
-                    if (ticketsContent.find(".offer-name-list").length) {
+                    if (ticketsContent.find('.offer-name-list').length) {
                         comboOfferName.hide();
                         maxPayoutDiv.hide();
                     }
                 }
             }
-        }        
+        };
     }
 
     export class CashOutHistoryDetails extends BaseTicketDetails {
         private static instance: CashOutHistoryDetails;
 
         public static get Instance(): CashOutHistoryDetails {
-            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new CashOutHistoryDetails() : this.instance;
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new CashOutHistoryDetails()
+                : this.instance;
             return this.instance;
         }
 
         public ViewNewCashOutHistory = (transId: string, custId: string, winlostDate: Date) => {
-            const params = '?transid=' + transId
-                + '&winlostdate=' + winlostDate
-                + '&custid=' + custId;
-
-            Common.PopupDetails.Instance(window.top).Show(Common.AppPath.BetListAppPath() + 'CashOutHistory/Index' + params, "", 600, 438);
-        }
+            const url = `${Common.AppPath.TicketsAppPath}CashOutHistory/Index`;
+            const params = `?transid=${transId}&winlostdate=${winlostDate}&custid=${custId}`;
+            Common.PopupDetails.Instance(window.top).Show(url + params, '', 600, 438);
+        };
     }
 }
 
@@ -164,13 +164,14 @@ let showMP: Function;
 let showCombMPDetail: Function;
 let showCombMP: Function;
 let showNewCombMP: Function;
-let showSingleMatchParlayDetail: Function
-let ViewNewCashOutHistory: Function
+let showSingleMatchParlayDetail: Function;
+let ViewNewCashOutHistory: Function;
 $(document).ready(() => {
     showMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowMixParlayTickets;
     showCombMPDetail = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayDetails;
     showCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets;
     showNewCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayNewTickets;
-    showSingleMatchParlayDetail = BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowSingleMatchParlayDetail;
+    showSingleMatchParlayDetail =
+        BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowSingleMatchParlayDetail;
     ViewNewCashOutHistory = BetList.Choice.TicketDetails.CashOutHistoryDetails.Instance.ViewNewCashOutHistory;
-})
+});

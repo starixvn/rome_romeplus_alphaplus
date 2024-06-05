@@ -1,0 +1,40 @@
+using AlphaPlus.BetLists.Running;
+using AlphaPlus.BetLists.Shared.Models;
+using AlphaPlus.BetLists.Shared.Services;
+using AlphaPlus.SmartPunter.Services;
+using AlphaPlus.Tickets.Site.Features.BetLists.Requests.CombinationMixParlay;
+using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CombinationMixParlay;
+using AlphaPlus.Utilities.IP;
+using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Entities;
+using MediatR;
+
+namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.CombinationMixParlay;
+
+public class CombinationMixParlayHandler(
+    IRunningBetListByBetTypeService runningBetListByBetTypeService,
+    IForecastService forecastService,
+    IBetListHTMLBuilder builder,
+    ITicketHelper ticketHelper,
+    ISmartPunterBetListMonitor monitorService,
+    IPService ipService) :
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+        IRequestHandler<CombinationMixParlayQuery, CombinationMixParlayViewModel>
+{
+    private readonly IForecastService forecastService = forecastService;
+    private readonly IRunningBetListByBetTypeService runningBetListByBetTypeService = runningBetListByBetTypeService;
+
+    public async Task<CombinationMixParlayViewModel> Handle(CombinationMixParlayQuery message, CancellationToken cancellationToken)
+    {
+        var param = new RunningBetListByBetTypeParam(message.ViewerId, message.ViewerLevelId, message.BetType, message.DisplayVNIP, message.Site);
+
+        var tickets = await runningBetListByBetTypeService.GetBetList(param);
+        var supportScoreMapBetTypeIds = tickets.Any()
+            ? await forecastService.GetBetTypeIdsSupportScoreMap()
+            : [];
+
+        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
+
+        return new CombinationMixParlayViewModel(message, new BetListData(tickets, null), Builder, TicketHelper, supportScoreMapBetTypeIds);
+    }
+}

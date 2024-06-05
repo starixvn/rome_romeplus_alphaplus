@@ -8,7 +8,7 @@
         }
 
         ShowScoreMap(matchIds: string, betType: string, liveIndicator: number) {
-            const scoreMapUrl = $('#hidden-ScoreMapUrl').val();
+            const scoreMapUrl = `${Common.AppPath.TicketsAppPath}forecast/scoremap`;
             const params =
                 liveIndicator == 1
                     ? `matchIds=${matchIds}&liveBetTypes=${betType}&deadBetTypes=-1`

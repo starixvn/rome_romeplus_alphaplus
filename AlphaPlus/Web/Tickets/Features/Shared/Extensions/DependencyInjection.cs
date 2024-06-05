@@ -1,4 +1,5 @@
 using System.Net;
+using AlphaPlus.Tickets.Site.Features.BetLists.Handlers.Parlay;
 using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using AlphaPlus.Tickets.Site.Features.Forecast;
 using AlphaPlus.Tickets.Site.Features.Results.Normal;
@@ -97,8 +98,8 @@ public static class DependencyInjection
         .AddSingleton<IBetListFactory<BetListHTMLBuilder>, BetListHTMLFactory>()
         .AddSingleton<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>()
         .AddSingleton<IBetListHTMLBuilder>(sp => sp.GetService<IBetListFactory<BetListHTMLBuilder>>().CreateBuilder())
-        .AddSingleton<IBetListExcelBuilder>(sp => sp.GetService<IBetListFactory<BetListExcelBuilder>>().CreateBuilder());
-    //.AddSingleton<ComboParlayDetailWorkbook, ComboParlayDetailWorkbookImpl>();
+        .AddSingleton<IBetListExcelBuilder>(sp => sp.GetService<IBetListFactory<BetListExcelBuilder>>().CreateBuilder())
+        .AddSingleton<IComboParlayDetailWorkbook, ComboParlayDetailWorkbook>();
 
     public static IServiceCollection AddResultsSiteServices(this IServiceCollection services, IConfiguration configuration)
     {

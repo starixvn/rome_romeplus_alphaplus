@@ -106,10 +106,10 @@ public class ScoreMapService : ServiceBase, IScoreMapService
 
     private static IEnumerable<string> BuildFollowedBetTypes(string ids, IEnumerable<ScoreMapBetType> betTypes)
     {
-        if (!string.IsNullOrWhiteSpace(ids))
+        if (!string.IsNullOrWhiteSpace(ids) && ids != "-1")
         {
             var arrayIds = ids.ToListInt();
-            var betTypeHash = betTypes.ToDictionary(kvp => kvp.BetType, kvp => kvp.FollowedBetTypes);
+            var betTypeHash = BuildFollowedBetTypes(betTypes);
 
             foreach (var item in arrayIds)
             {
@@ -119,6 +119,23 @@ public class ScoreMapService : ServiceBase, IScoreMapService
                 }
             }
         }
+    }
+
+    private static IDictionary<int, string> BuildFollowedBetTypes(IEnumerable<ScoreMapBetType> betTypes)
+    {
+        var betTypeHash = new Dictionary<int, string>();
+
+        foreach (var item in betTypes)
+        {
+            var followedBetTypeIds = item.FollowedBetTypes.ToListInt();
+
+            foreach (var id in followedBetTypeIds)
+            {
+                betTypeHash[id] = item.FollowedBetTypes;
+            }
+        }
+
+        return betTypeHash;
     }
 
     private static IEnumerable<ScoreMapResult> BuildResults(IEnumerable<ScoreMapResultDTO> rawdata)

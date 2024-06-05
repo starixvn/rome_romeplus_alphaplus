@@ -3,6 +3,7 @@ public static class BetTypeConstants
     public const int Handicap = 1;
     public const int OddEven = 2;
     public const int OverUnder = 3;
+    public const int CorrectScore = 4;
     public const int _1X2 = 5;
     public const int _1stHandicap = 7;
     public const int _1stOverUnder = 8;

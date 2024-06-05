@@ -3,6 +3,7 @@ using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Entities;
 using Fanex.Data.Repository;
 using AlphaPlus.BetLists.Shared.Models;
+using AlphaPlus.BetLists.Shared.Criteria;
 
 namespace AlphaPlus.BetLists.Shared.Services;
 
@@ -57,5 +58,44 @@ public class BetListServiceBase(
         }
 
         return new Dictionary<string, string>();
+    }
+
+    protected async Task UpdateOddsMixParlay(IEnumerable<TicketDto> tickets)
+    {
+        var transIds = GetMixParlayMissingOddsTransIds(tickets);
+
+        if (!string.IsNullOrWhiteSpace(transIds))
+        {
+            var oddsMixParlay = await GetOddsMixParlay(transIds);
+
+            foreach (var ticket in tickets)
+            {
+                if (oddsMixParlay.TryGetValue(ticket.TransId, out var oddsItem))
+                {
+                    ticket.Odds = oddsItem.Odds;
+                    ticket.MasterOdds = oddsItem.MasterOdds;
+                }
+            }
+        }
+    }
+
+    private static string GetMixParlayMissingOddsTransIds(IEnumerable<TicketDto> tickets)
+    {
+        var ticketsMissingOdds = tickets.Where(i => i.BetTypeId == BetTypeConstants.CombineMixParlay && i.BetTeam == "1" && i.Odds == 0);
+
+        return string.Join(',', ticketsMissingOdds.Select(i => i.TransId));
+    }
+
+    private async Task<IDictionary<long, OddsMixParlayModel>> GetOddsMixParlay(string transIds)
+    {
+        var oddsMixParlay = new Dictionary<long, OddsMixParlayModel>();
+        var rawdata = await repository.FetchAsync<OddsMixParlayModel>(new GetOddsOfMixParlayCriteria(transIds));
+
+        foreach (var item in rawdata)
+        {
+            oddsMixParlay[item.TransId] = item;
+        }
+
+        return oddsMixParlay;
     }
 }

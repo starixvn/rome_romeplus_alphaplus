@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = Model.Title;
+}
+@section Scripts {
+    <script src="~/bundles/betlists/icon-note.js" asp-append-version="true"></script>
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CombinationMixParlay.CombinationMixParlayViewModel
+<div class="bl_title">
+    <div class="box">
+        <div>@Model.Title</div>
+        <div>
+            <partial name="IconInformation" model="new List<string>() { Resources.ipnote }" />
+        </div>
+        <div class="push">
+            <div class="bl-export-excel">
+                <a asp-action="Excel" class="icon icon-excel" title="@Resources.ExportToExcel"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="TableWithoutWinLoss" model="Model" />

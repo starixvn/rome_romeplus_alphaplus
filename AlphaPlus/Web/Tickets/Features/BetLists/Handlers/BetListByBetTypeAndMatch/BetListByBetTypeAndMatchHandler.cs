@@ -29,7 +29,7 @@ public class BetListByBetTypeAndMatchHandler(
 
         var betListData = await runningBetListByBetTypeAndMatchService.GetBetList(param);
         var supportScoreMapBetTypeIds = betListData.Total == 0
-            ? Enumerable.Empty<int>()
+            ? []
             : await forecastService.GetBetTypeIdsSupportScoreMap();
 
         WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);

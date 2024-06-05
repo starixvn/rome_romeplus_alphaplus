@@ -3,14 +3,12 @@
         private static instance: PopupDetails;
         private topWindow: any;
         private mainDomain: string;
-        private betlistUrl: string;
 
         public static Instance(topWindow: any): PopupDetails {
             this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new PopupDetails() : this.instance;
             this.instance.topWindow = topWindow;
 
             this.instance.mainDomain = $('#MainDomain').val();
-            this.instance.betlistUrl = $('#BetListUrl').val();
 
             return this.instance;
         }
@@ -84,7 +82,9 @@
                         width: width,
                         height: height,
                         options: options,
-                        url: (this.IsCallingOtherSites(url) ? $('#MainDomain').val() : this.betlistUrl) + url
+                        url:
+                            (this.IsCallingOtherSites(url) ? $('#MainDomain').val() : Common.AppPath.TicketsAppPath) +
+                            url
                     },
                     this.mainDomain
                 );

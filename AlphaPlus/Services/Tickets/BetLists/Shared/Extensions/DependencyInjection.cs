@@ -12,6 +12,9 @@ using AlphaPlus.BetLists.Shared.Services;
 using AlphaPlus.BetLists.Shared.DataAccesses;
 using AlphaPlus.BetLists.BetsForecast;
 using AlphaPlus.BetLists.SearchTickets;
+using AlphaPlus.BetLists.CorrectScore;
+using AlphaPlus.BetLists.Running;
+using AlphaPlus.BetLists.Parlay;
 
 namespace AlphaPlus.BetLists.Shared.Extensions;
 
@@ -33,6 +36,9 @@ public static class DependencyInjection
             .AddSingleton<IForecastService, ForecastService>()
             .AddSingleton<IReportDateService, ReportDateService>()
             .AddSingleton<ISearchTicketsService, SearchTicketsService>()
+            .AddSingleton<ICorrectScoreService, CorrectScoreService>()
+            .AddSingleton<IParlayService, ParlayService>()
+            .AddSingleton<IRunningBetListByBetTypeService, RunningBetListByBetTypeService>()
             .AddSingleton<IRunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchService>();
 
         var serviceProvider = services.BuildServiceProvider();
