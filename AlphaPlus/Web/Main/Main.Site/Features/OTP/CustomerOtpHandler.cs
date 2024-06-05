@@ -293,13 +293,12 @@ namespace AlphaPlus.Main.Site.Features.OTP
                 return false;
             }
 
-            if (isResetOtp
-                && (userSession.IsSubAcc && !userSession.SubPageAccess.UpdateAccount))
+            if (isResetOtp && userSession.IsSubAcc && !userSession.SubPageAccess.UpdateAccount)
             {
                 return false;
             }
 
-            if (isResetSubAccount && !user.IsAdminCanUpdateSubAccount)
+            if (isResetSubAccount && userSession.IsInternal && !user.IsAdminCanUpdateSubAccount)
             {
                 return false;
             }

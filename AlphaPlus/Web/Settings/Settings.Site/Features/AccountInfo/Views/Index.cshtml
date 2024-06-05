@@ -8,10 +8,10 @@
     <title>@(ViewBag.Title ?? "Alpha - Account Info")</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
-    <link rel="stylesheet" href="http://localhost:5102/main.css?version=@(Model.AssetsVersion)" />
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-accountinfo/index")
+    <link rel="stylesheet" href="http://localhost:5102/main.css?version=@(Model.AssetsVersion)" />
 </head>
 
 <body>

@@ -315,13 +315,12 @@ namespace AlphaPlus.Main.Site.Features.Password
                 return false;
             }
 
-            if (isResetPassword
-                && (userSession.IsSubAcc && !userSession.SubPageAccess.UpdateAccount))
+            if (isResetPassword && userSession.IsSubAcc && !userSession.SubPageAccess.UpdateAccount)
             {
                 return false;
             }
 
-            if (isResetSubAccount && !user.IsAdminCanUpdateSubAccount)
+            if (isResetSubAccount && userSession.IsInternal && !user.IsAdminCanUpdateSubAccount)
             {
                 return false;
             }
