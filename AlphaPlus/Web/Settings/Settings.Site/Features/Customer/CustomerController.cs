@@ -19,7 +19,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 {
     public class CustomerController : BaseController
     {
-        private const string DCSStaticSessionKey = "DCSStaicAppPathSessionKey";
+        private const string DCSStaticSessionKey = "DCSStaticAppPathSessionKey";
         private const string HashKeySessionKey = "Alpha.MemberInfo.Site.Controllers.CustomerController.PasswordHash";
         private const string AssetsVersionCacheKey = "Customer:AssetsVersion";
         private readonly int systemId;

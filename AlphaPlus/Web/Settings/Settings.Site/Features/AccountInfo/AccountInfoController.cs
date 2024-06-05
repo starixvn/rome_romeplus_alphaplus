@@ -6,15 +6,30 @@ using AlphaPlus.Settings.Site.Features.AccountInfo.Requests;
 using AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels;
 using AlphaPlus.Utilities.IP;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Settings.Site.Features.AccountInfo
 {
-    public class AccountInfoController(IAccountInfoService accountInfoService, IPService ipService) : BaseController
+    public class AccountInfoController(IAccountInfoService accountInfoService, IPService ipService, IMemoryCache memoryCache) : BaseController
     {
+        private const string AssetsVersionCacheKey = "AccountInfo:AssetsVersion";
         private readonly IAccountInfoService accountInfoService = accountInfoService;
         private readonly IPService ipService = ipService;
+        private readonly IMemoryCache memoryCache = memoryCache;
 
-        public ActionResult Index(IndexQuery message) => View(new IndexViewModel(message));
+        private string GetAssetsVersion()
+        {
+            if (!memoryCache.TryGetValue(AssetsVersionCacheKey, out string version))
+            {
+                version = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
+                var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromHours(4));
+                memoryCache.Set(AssetsVersionCacheKey, version, cacheEntryOptions);
+            }
+
+            return version;
+        }
+
+        public ActionResult Index(IndexQuery message) => View(new IndexViewModel(message, GetAssetsVersion()));
 
         public async Task<ActionResult> GetAccount(GetAccountQuery message)
         {

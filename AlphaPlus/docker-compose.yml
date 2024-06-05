@@ -38,6 +38,13 @@ services:
             dockerfile: Web/assets/Dockerfile
         restart: always
 
+    account-info:
+        image: ${REGISTRY:-alphaplus}/account-info:${PLATFORM:-linux}-${TAG:-latest}
+        build:
+            context: .
+            dockerfile: Web/account-info/Dockerfile
+        restart: always
+
     main:
         image: ${REGISTRY:-alphaplus}/main:${PLATFORM:-linux}-${TAG:-latest}
         build:

@@ -31,6 +31,10 @@ services:
         ports:
             - '5101:8080'
 
+    account-info:
+        ports:
+            - '5102:8080'
+
     main:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development

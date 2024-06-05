@@ -12,9 +12,13 @@ export default defineConfig({
     },
     plugins: [react()],
     build: {
-        manifest: true,
         rollupOptions: {
-            input: '/src/main.tsx'
+            input: '/src/main.tsx',
+            output: {
+                entryFileNames: '[name].js',
+                chunkFileNames: '[name].js',
+                assetFileNames: '[name].[ext]'
+            }
         }
     }
 });
