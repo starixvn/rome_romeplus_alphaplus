@@ -24,6 +24,7 @@ declare global {
         popupManager: any;
         bootboxAlert: any;
         updateProductStatusPopup: any;
+        updateGivenCreditPopup: any;
     }
 }
 

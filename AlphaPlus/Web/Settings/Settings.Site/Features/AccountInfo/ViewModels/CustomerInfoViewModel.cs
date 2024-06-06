@@ -145,7 +145,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
         //         $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
         //         $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}" : string.Empty;
 
-        internal string DefaultStringValueIfNull(string value)
+        internal static string DefaultStringValueIfNull(string value)
         {
             return string.IsNullOrEmpty(value) ? string.Empty : value;
         }

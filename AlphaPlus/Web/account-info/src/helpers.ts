@@ -27,3 +27,9 @@ export const resizePopupOnMobile = () => {
 
 export const Scale = 0.7;
 export const mobileScale = (value: number) => value / Scale;
+
+export const formatNumber = (value: number) => {
+    const number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(value);
+
+    return number;
+};

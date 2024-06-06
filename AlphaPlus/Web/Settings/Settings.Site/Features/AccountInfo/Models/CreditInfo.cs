@@ -49,5 +49,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.Models
         public decimal MemMaxCreditMin { get; set; }
 
         public decimal MemMaxCreditMax { get; set; }
+
+        public decimal AvailableCredit { get; set; }
     }
 }

@@ -94,7 +94,18 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
 
         public async Task<ActionResult> GivenCredit(GivenCreditQuery message)
         {
-            return View();
+            decimal memberCreditMin = 0;
+            if (Enumeration.FromValue<UserLevel>(message.SearchAccountRoleId).IsMemberLevel())
+            {
+                var balanceInfo = (MemberBalanceInfoModel)await accountInfoService.GetBalanceInfo(message.SearchAccountId, message.SearchAccountRoleId, message.AGIP);
+
+                memberCreditMin = Math.Max(0, balanceInfo.CustomerOutstanding - balanceInfo.CustomerCash + balanceInfo.PendingTransfer3rd);
+            }
+
+            return View(new GivenCreditViewModel(
+                message,
+                await accountInfoService.GetCreditInfo(message.SearchAccountId),
+                memberCreditMin));
         }
 
         [HttpPost]
