@@ -6,7 +6,13 @@ using Fanex.BetList.Core.Entities;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetType;
 
-public class BetListByBetTypeViewModel : BetListBaseViewModel
+public class BetListByBetTypeViewModel(
+    BetListByBetTypeQuery message,
+    BetListData betListData,
+    IBetListHTMLBuilder builder,
+    ITicketHelper ticketHelper,
+    HashSet<int> supportScoreMapBetTypeIds = null)
+        : BetListBaseViewModel(message, betListData, builder, ticketHelper, true)
 {
     private readonly IDictionary<int, string> BetTypes = new Dictionary<int, string>
     {
@@ -17,31 +23,17 @@ public class BetListByBetTypeViewModel : BetListBaseViewModel
         [28] = "ThreeWayHandicap"
     };
 
-    public BetListByBetTypeViewModel(
-        BetListByBetTypeQuery query,
-        BetListData betListData,
-        IBetListHTMLBuilder builder,
-        ITicketHelper ticketHelper,
-        IEnumerable<int> supportScoreMapBetTypeIds = null)
-        : base(query, betListData, builder, ticketHelper, true)
-    {
-        SupportScoreMapBetTypeIds = supportScoreMapBetTypeIds;
-        Title = CacheRefServiceHelper.GetBetTypeName(query.BetType).ToUpperInvariant();
-        BetType = query.BetType;
-    }
+    public int BetType { get; } = message.BetType;
 
-    public int BetType { get; }
+    public bool AllowToViewSuperPT => ViewerLevel.IsSuperLevel();
 
-    public IEnumerable<int> SupportScoreMapBetTypeIds { get; }
+    public bool AllowToViewMasterPT => ViewerLevel.IsMasterOrSuperLevel();
 
-    public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
-
-    public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
+    protected override string GetTitle() => CacheRefServiceHelper.GetBetTypeName(BetType);
 
     public override bool CanViewScoreMap(ITicket ticket)
-        => SupportScoreMapBetTypeIds != null
-        && SupportScoreMapBetTypeIds.Contains(ticket.BetTypeId);
+        => supportScoreMapBetTypeIds?.Contains(ticket.BetTypeId) == true;
 
     public string FuncName
-        => BetTypes.Keys.Any(key => key == BetType) ? BetTypes[BetType] : string.Empty;
+        => BetTypes.TryGetValue(BetType, out var functionName) ? functionName : string.Empty;
 }

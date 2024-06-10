@@ -37,8 +37,8 @@ public class ComboParlayDetailViewModel
         if (allowInitializingData)
         {
             ComboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(comboParlayDetailData.ComboParlayDetails
-                    .OrderBy(i => statusOrder[i.Status?.ToLowerInvariant() ?? string.Empty])
-                    .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
+                .OrderBy(i => statusOrder[i.Status?.ToLowerInvariant() ?? string.Empty])
+                .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
             ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate).OrderBy(i => i.Key);
 
             OutStanding = ConvertByBetType.Stake(comboParlayDetailData.Outstanding);

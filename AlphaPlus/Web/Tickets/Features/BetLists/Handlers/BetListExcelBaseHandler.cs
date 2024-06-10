@@ -4,7 +4,6 @@ using AlphaPlus.Tickets.Site.App_GlobalResources;
 using AlphaPlus.Tickets.Site.Features.BetLists.Builders.ExcelBuilders;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Blocks;
-using AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
 using AlphaPlus.Utilities.IP;
 using BetListNPOI.SS.UserModel;
 using Fanex.BetList.Core.Builder;
@@ -192,7 +191,7 @@ public class BetListExcelBaseHandler : BetListBaseHandler
             platformColId = J;
         }
 
-        mapper.Map(platformColId, ticket => BuildPlatform(PlatformHelper.GetPlatform(ticket.DeviceType)));
+        mapper.Map(platformColId, ticket => BuildPlatform(ticket.Platform));
     }
 
     protected internal virtual Mapper<TicketDto> GetFooterRowMapper(Footer footer)

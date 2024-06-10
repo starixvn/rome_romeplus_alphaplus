@@ -1,0 +1,19 @@
+@{
+    Layout = null;
+}
+@model Fanex.BetDetails.BetBuilder.ViewModels.BetBuilderDetailViewModel
+@if (Model.Details.Any())
+{
+    <div class="betbuilder">
+        @foreach (var detail in Model.Details)
+        {
+            <div>
+                @detail.SelectionName
+                @if (Model.IsSettled && !string.IsNullOrEmpty(detail.Result))
+                {
+                    <span class="sport"> - @detail.Result</span>
+                }
+            </div>
+        }
+    </div>
+}

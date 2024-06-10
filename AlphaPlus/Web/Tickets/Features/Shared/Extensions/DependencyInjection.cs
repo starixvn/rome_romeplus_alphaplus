@@ -1,4 +1,5 @@
 using System.Net;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Tickets.Site.Features.BetLists.Handlers.Parlay;
 using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using AlphaPlus.Tickets.Site.Features.Forecast;
@@ -6,6 +7,7 @@ using AlphaPlus.Tickets.Site.Features.Results.Normal;
 using AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Tickets.Site.Features.TotalBets;
+using Fanex.BetDetails.BetBuilder.Services;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
@@ -32,6 +34,7 @@ public static class DependencyInjection
             .AddSingleton<IUser, User>()
             .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>()
             .AddSingleton<ICacheRefService, CacheRefService>()
+            .AddSingleton<IEncryption, Encryption>()
             .AddBetListsCore();
 
         // https://www.milanjovanovic.tech/blog/the-right-way-to-use-httpclient-in-dotnet
@@ -99,6 +102,7 @@ public static class DependencyInjection
         .AddSingleton<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>()
         .AddSingleton<IBetListHTMLBuilder>(sp => sp.GetService<IBetListFactory<BetListHTMLBuilder>>().CreateBuilder())
         .AddSingleton<IBetListExcelBuilder>(sp => sp.GetService<IBetListFactory<BetListExcelBuilder>>().CreateBuilder())
+        //.AddSingleton<IBetBuilderService, BetBuilderService>()
         .AddSingleton<IComboParlayDetailWorkbook, ComboParlayDetailWorkbook>();
 
     public static IServiceCollection AddResultsSiteServices(this IServiceCollection services, IConfiguration configuration)

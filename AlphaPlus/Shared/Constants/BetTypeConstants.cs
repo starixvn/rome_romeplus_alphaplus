@@ -1,5 +1,6 @@
 public static class BetTypeConstants
 {
+    public const int AllBetTypes = 0;
     public const int Handicap = 1;
     public const int OddEven = 2;
     public const int OverUnder = 3;
@@ -47,6 +48,8 @@ public static class BetTypeConstants
 
     public const int LeapGamingMin = 5301;
     public const int LeapGamingMax = 5399;
+
+    public const int OtherBetTypes = 19001;
 
     public static bool IsOutright(int betType) => betType == Outright;
 

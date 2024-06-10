@@ -11,7 +11,7 @@ public class CorrectScoreViewModel(
     BetListData betListData,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
-    IEnumerable<int> supportScoreMapBetTypeIds = null)
+    HashSet<int> supportScoreMapBetTypeIds = null)
         : BetListByBetTypeViewModel(message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
 {
 }

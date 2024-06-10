@@ -19,9 +19,9 @@ public class WinLossViewModel(
     bool showFooter = false,
     bool showOrder = false) : BetListBaseViewModel(message, betListData, builder, ticketHelper, showMemberName)
 {
-    public bool AllowToViewSuperPT => baseQuery.ViewerLevel.IsSuperLevel();
+    public bool AllowToViewSuperPT => ViewerLevel.IsSuperLevel();
 
-    public bool AllowToViewMasterPT => baseQuery.ViewerLevel.IsMasterOrSuperLevel();
+    public bool AllowToViewMasterPT => ViewerLevel.IsMasterOrSuperLevel();
 
     public bool ShowContributionAmountRoundNote { get; } = showContributionAmountRoundNote;
 

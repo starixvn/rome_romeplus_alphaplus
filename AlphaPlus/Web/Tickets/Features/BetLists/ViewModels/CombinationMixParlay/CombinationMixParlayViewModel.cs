@@ -7,14 +7,13 @@ using Fanex.BetList.Core.Entities;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CombinationMixParlay;
 
-public class CombinationMixParlayViewModel : BetListByBetTypeViewModel
+public class CombinationMixParlayViewModel(
+    CombinationMixParlayQuery message,
+    BetListData betListData,
+    IBetListHTMLBuilder builder,
+    ITicketHelper ticketHelper,
+    HashSet<int> supportScoreMapBetTypeIds = null)
+        : BetListByBetTypeViewModel(message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
 {
-    public CombinationMixParlayViewModel(
-        CombinationMixParlayQuery message,
-        BetListData betListData,
-        IBetListHTMLBuilder builder,
-        ITicketHelper ticketHelper,
-        IEnumerable<int> supportScoreMapBetTypeIds = null)
-            : base(message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
-        => Title = Resources.parlay;
+    protected override string GetTitle() => Resources.parlay;
 }

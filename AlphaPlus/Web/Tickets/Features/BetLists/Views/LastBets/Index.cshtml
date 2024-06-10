@@ -1,0 +1,84 @@
+@{
+    ViewData["Title"] = Model.Title;
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ViewerLevel.DisplayName}")
+    <link rel="stylesheet" href="~/bundles/betlists/last-bets.css" asp-append-version="true" />
+}
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/last-bets")
+    <script src="~/bundles/betlists/last-bets.js" asp-append-version="true"></script>
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets.LastBetsViewModel
+<div class="bl_title">
+    <div class="box">
+        <div>@Model.Title</div>
+        <div>
+            <partial name="IconInformation" model="@new List<string> { Resources.ipnote }" />
+        </div>
+    </div>
+    <p class="note_title"><span class="require">*</span>&nbsp;&nbsp;@Resources.NewViewTakesOverNote</p>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation"
+        class="tab-report-type@(Model.BetType == BetTypeConstants.AllBetTypes ? " active" : string.Empty)">
+        <a asp-route-bettype="@BetTypeConstants.AllBetTypes"
+            asp-route-pagesize="@Model.PageSize">@Resources.AllBetTypes</a>
+    </li>
+    <li role="presentation"
+        class="tab-report-type@(Model.BetType == BetTypeConstants.Handicap ? " active" : string.Empty)">
+        <a asp-route-bettype="@BetTypeConstants.Handicap" asp-route-pagesize="@Model.PageSize">@Resources.Handicap</a>
+    </li>
+    <li role="presentation"
+        class="tab-report-type@(Model.BetType == BetTypeConstants.OverUnder ? " active" : string.Empty)">
+        <a asp-route-bettype="@BetTypeConstants.OverUnder" asp-route-pagesize="@Model.PageSize">@Resources.OverUnder</a>
+    </li>
+    <li role="presentation"
+        class="tab-report-type@(Model.BetType == BetTypeConstants.OtherBetTypes ? " active" : string.Empty)">
+        <a asp-route-bettype="@BetTypeConstants.OtherBetTypes"
+            asp-route-pagesize="@Model.PageSize">@Resources.OtherBetTypes</a>
+    </li>
+</ul>
+<div class="space-between">
+    <div class="page-section">
+        <span>@Resources.Last</span>
+        <ul class="page-size-container">
+            @foreach (var item in Model.PageSizes)
+            {
+                <li class="page-size@(Model.PageSize == item ? " active" : string.Empty)">@item</li>
+            }
+        </ul>
+        <div class="btn-turn-off-on">
+            <div class="dropdown btn btn-default btn-countdown">
+                <span class="icon-refresh"></span>
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span id="ddlRefresh">@Resources.Off.ToUpperInvariant()</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="refresh-value" aria-labelledby="dropdownMenu2">
+                    <li><a href="javascript:;" data-refresh-value="0">@Resources.Off.ToUpperInvariant()</a></li>
+                    @foreach (var second in Model.AutoRefreshSeconds)
+                    {
+                        <li><a href="javascript:;" data-refresh-value="@second">@second</a></li>
+                    }
+                </ul>
+            </div>
+            <span>@Resources.AutoRefresh</span>
+        </div>
+        <span id="loading-icon" class="loading-icon"></span>
+    </div>
+    <div class="switch-version">
+        <a asp-action="" asp-controller="" class="btn-switch-version" target="main">
+            <span class="icon-swap-horizontal"></span>
+            <span class="text">@Resources.NewView</span>
+        </a>
+    </div>
+</div>
+<div id="msg-error" class="msg msg-error hide">@Resources.FunctionTurnOffError</div>
+<div id="bet-list-table-container"></div>
+<input type="hidden" id="bet-type" value="@Model.BetType" />
+<a class="hide" id="get-bets-url" asp-action="BetsData"></a>
+<input type="hidden" id="last-trans-id-cache-key" value="@Model.LastTransIdCacheKey" />
+<input type="hidden" id="latest-trans-id-cache-key" value="@Model.LatestTransIdCacheKey" />
+<input type="hidden" id="reset-last-trans-id" value="@Model.ResetLastTransId.ToString()" />

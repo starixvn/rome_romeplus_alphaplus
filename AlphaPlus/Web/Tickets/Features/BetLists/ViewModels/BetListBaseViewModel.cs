@@ -7,68 +7,57 @@ using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 
-public class BetListBaseViewModel
+public class BetListBaseViewModel(
+    BetListBaseQuery message,
+    BetListData betListData,
+    IBetListHTMLBuilder builder,
+    ITicketHelper ticketHelper,
+    bool showMemberName = false)
 {
-    private static readonly IDictionary<_UserLevel, int> TotalColumnByViewLevelId = new Dictionary<_UserLevel, int>
+    private static readonly Dictionary<_UserLevel, int> TotalColumnByViewLevelId = new Dictionary<_UserLevel, int>
     {
         [_UserLevel.Agent] = 9,
         [_UserLevel.Master] = 10,
         [_UserLevel.Super] = 11
     };
 
-    protected readonly BetListBaseQuery baseQuery;
+    protected readonly BetListBaseQuery BaseQuery = message;
 
-    protected BetListBaseViewModel(
-        BetListBaseQuery query,
-        BetListData betListData,
-        IBetListHTMLBuilder builder,
-        ITicketHelper ticketHelper,
-        bool showMemberName = false)
-    {
-        baseQuery = query;
-        CustName = query.CustName;
-        FromDate = query.FromDate;
-        ToDate = query.ToDate;
-        BetListData = betListData;
-        Builder = builder;
-        TicketHelper = ticketHelper;
-        ProductsId = baseQuery.ProductIds;
-        ResourceIds = baseQuery.ResourceIds;
-        BetListType = baseQuery.Type;
-        CustId = baseQuery.CustId;
-        IsHistoricReport = baseQuery.IsHistoricReport;
-        ViewerIdOrViewerAdminId = baseQuery.ViewerIdOrViewerAdminId;
-        ViewerLevelId = baseQuery.ViewerLevelId;
-        ViewerLevel = baseQuery.ViewerLevel;
-        DisplayVNIP = baseQuery.DisplayVNIP;
-        Title = GetTitle(query).ToUpperInvariant();
-        TotalColumn = TotalColumnByViewLevelId[ViewerLevel] + (showMemberName ? 1 : 0);
-        ShowMemberName = showMemberName;
-    }
+    public BetListData BetListData { get; } = betListData;
 
-    public string CustName { get; }
+    public IBetListHTMLBuilder Builder { get; } = builder;
 
-    public int CustId { get; }
+    public ITicketHelper TicketHelper { get; } = ticketHelper;
 
-    public DateTime FromDate { get; }
+    public bool ShowMemberName { get; } = showMemberName;
 
-    public DateTime ToDate { get; }
+    public int CustId { get; } = message.CustId;
 
-    public BetListData BetListData { get; }
+    public string CustName { get; } = message.CustName;
 
-    public IBetListHTMLBuilder Builder { get; }
+    public byte ViewerLevelId { get; } = message.ViewerLevelId;
 
-    public ITicketHelper TicketHelper { get; }
+    public _UserLevel ViewerLevel { get; } = message.ViewerLevel;
 
-    public bool DisplayVNIP { get; }
+    public int ViewerIdOrViewerAdminId { get; } = message.ViewerIdOrViewerAdminId;
 
-    public string ProductsId { get; }
+    public bool DisplayVNIP { get; } = message.DisplayVNIP;
 
-    public string ResourceIds { get; }
+    public string Title => GetTitle();
 
-    public string BetListType { get; }
+    public int TotalColumn => TotalColumnByViewLevelId[ViewerLevel] + (ShowMemberName ? 1 : 0);
 
-    public bool IsHistoricReport { get; }
+    public DateTime FromDate { get; } = message.FromDate;
+
+    public DateTime ToDate { get; } = message.ToDate;
+
+    public string ProductsId { get; } = message.ProductIds;
+
+    public string ResourceIds { get; } = message.ResourceIds;
+
+    public string BetListType { get; } = message.Type;
+
+    public bool IsHistoricReport { get; } = message.IsHistoricReport;
 
     // public string ResultsPath
     // {
@@ -112,25 +101,13 @@ public class BetListBaseViewModel
 
     // public string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~");
 
-    public int ViewerIdOrViewerAdminId { get; }
-
-    public byte ViewerLevelId { get; }
-
-    public _UserLevel ViewerLevel { get; }
-
-    public string Title { get; protected set; }
-
-    public int TotalColumn { get; }
-
-    public bool ShowMemberName { get; }
-
-    public string GetTitle(BetListBaseQuery query)
-        => HasDateParam(query)
-        ? $"{Resources.memberBetList} {query.FromDate.ToShortDateString()} --> {query.ToDate.ToShortDateString()} - {query.CustName}"
+    protected virtual string GetTitle()
+        => HasDateParam()
+        ? $"{Resources.memberBetList} {BaseQuery.FromDate.ToShortDateString()} --> {BaseQuery.ToDate.ToShortDateString()} - {BaseQuery.CustName}"
         : Resources.memberBetList;
 
-    public bool HasDateParam(BetListBaseQuery query)
-        => query.FromDate != DateTime.MinValue && query.ToDate != DateTime.MinValue;
+    private bool HasDateParam()
+        => BaseQuery.FromDate != DateTime.MinValue && BaseQuery.ToDate != DateTime.MinValue;
 
     // TODO: will implement here
     public virtual bool CanViewScoreMap(ITicket ticket) => false;

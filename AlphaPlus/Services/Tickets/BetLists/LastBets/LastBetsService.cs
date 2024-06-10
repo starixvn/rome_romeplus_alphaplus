@@ -1,0 +1,153 @@
+using AlphaPlus.BetLists.Shared.Models;
+using AlphaPlus.BetLists.Shared.Services;
+using AlphaPlus.IPInfo.Services;
+using AlphaPlus.PartialUM.Services;
+using AlphaPlus.Utilities.IP;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+
+namespace AlphaPlus.BetLists.LastBets;
+
+public interface ILastBetsService
+{
+    Task<IEnumerable<TicketDto>> GetBetList(GetLastBetsParam param);
+
+    Task<IEnumerable<TicketDto>> GetBetList(
+        ICriteria criteria,
+        bool displayVNIP,
+        string siteName,
+        int cacheTimeInMinutes);
+}
+
+public class LastBetsService(
+    IPartialUMService partialUMService,
+    ICacheService cacheService,
+    IDynamicRepository repository,
+    IIPInfoService ipInfoService,
+    IPService ipService) : BetListServiceBase(repository, ipInfoService, ipService), ILastBetsService
+{
+    private const string RunningMatchesCacheKey = "AlphaPlus.BetLists.LastBets.RunningMatches";
+    private const string RunningOutrightMatchesCacheKey = "AlphaPlus.BetLists.LastBets.RunningOutrightMatches";
+    private const string RunningOtherMatchesCacheKey = "AlphaPlus.BetLists.LastBets.RunningOtherMatches";
+
+    private readonly IPartialUMService partialUMService = partialUMService;
+    private readonly ICacheService cacheService = cacheService;
+
+    public Task<IEnumerable<TicketDto>> GetBetList(GetLastBetsParam param)
+    {
+        var criteria = new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize);
+
+        return GetBetList(criteria, param.DisplayVNIP, param.SiteName, param.RunningMatchCacheTime);
+    }
+
+    public async Task<IEnumerable<TicketDto>> GetBetList(
+        ICriteria criteria,
+        bool displayVNIP,
+        string siteName,
+        int cacheTimeInMinutes)
+    {
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), siteName);
+        var tickets = await repository.FetchAsync<TicketDto>(criteria);
+
+        if (tickets.Any())
+        {
+            var outrightMatchesTask = GetRunningOutrightMatches(cacheTimeInMinutes);
+            var otherMatchesTask = GetRunningOtherMatches(cacheTimeInMinutes);
+            await Task.WhenAll(outrightMatchesTask, otherMatchesTask);
+
+            var outrightMatches = await outrightMatchesTask;
+            var otherMatches = await otherMatchesTask;
+
+            foreach (var ticket in tickets)
+            {
+                var matches = BetTypeConstants.IsOutright(ticket.BetTypeId) ? outrightMatches : otherMatches;
+                if (!matches.TryGetValue(ticket.MatchId, out var matchInfo))
+                {
+                    matchInfo = await GetMatchInfo(ticket.MatchId, cacheTimeInMinutes);
+                }
+
+                AssignMatchInfoToTicket(ticket, matchInfo);
+            }
+
+            await AssignCountry(tickets, displayVNIP);
+            await UpdateOddsMixParlay(tickets);
+        }
+
+        return tickets;
+    }
+
+    private async Task<IDictionary<int, MatchInfo>> GetRunningOutrightMatches(int cacheTimeInMinutes)
+        => await cacheService.GetOrSetAsync(
+        RunningOutrightMatchesCacheKey,
+        async () =>
+        {
+            var matches = await repository.FetchAsync<MatchInfo>(new GetRunningOutrightMatchCriteria());
+            return BuildHashTableMatches(matches);
+        },
+        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeInMinutes)));
+
+    private async Task<IDictionary<int, MatchInfo>> GetRunningOtherMatches(int cacheTimeInMinutes)
+        => await cacheService.GetOrSetAsync(
+        RunningOtherMatchesCacheKey,
+        async () =>
+        {
+            var matches = await repository.FetchAsync<MatchInfo>(new GetRunningOtherMatchCriteria());
+            return BuildHashTableMatches(matches);
+        },
+        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeInMinutes)));
+
+    private static IDictionary<int, MatchInfo> BuildHashTableMatches(IEnumerable<MatchInfo> matches)
+    {
+        var matchHashTable = new Dictionary<int, MatchInfo>();
+
+        foreach (var item in matches)
+        {
+            matchHashTable[item.MatchId] = item;
+        }
+
+        return matchHashTable;
+    }
+
+    private async Task<MatchInfo> GetMatchInfo(int matchId, int cacheTimeInMinutes)
+    {
+        var cachedKey = $"{RunningMatchesCacheKey}_{matchId}";
+        var matchInfo = await cacheService.GetAsync<MatchInfo>(cachedKey);
+
+        if (matchInfo == null && !IsDummyMatch(matchId))
+        {
+            matchInfo = await repository.GetAsync<MatchInfo>(new GetMatchInfoByIdCriteria(matchId));
+
+            if (matchInfo != null)
+            {
+                cacheService.Set(
+                    cachedKey,
+                    matchInfo,
+                    new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(cacheTimeInMinutes)));
+            }
+        }
+
+        return matchInfo;
+    }
+
+    private static bool IsDummyMatch(int matchId) => matchId <= 999;
+
+    private static void AssignMatchInfoToTicket(TicketDto ticket, MatchInfo matchInfo)
+    {
+        if (matchInfo != null)
+        {
+            ticket.MatchCode = matchInfo.MatchCode;
+            ticket.SportTypeId = matchInfo.SportType;
+            ticket.LeagueId = matchInfo.LeagueId;
+            ticket.LeagueGroupId = matchInfo.LeagueGroupId;
+            ticket.HomeId = matchInfo.HomeId;
+            ticket.AwayId = matchInfo.AwayId;
+            ticket.Race = matchInfo.Race;
+            ticket.ShowTime = matchInfo.ShowTime;
+            ticket.IsNeutral = matchInfo.IsNeutral;
+            ticket.EventStatus = matchInfo.BetStatus;
+            ticket.SettlementStatus = matchInfo.SettlementStatus;
+            ticket.EventDate = matchInfo.EventDate;
+            ticket.MatchStatus = matchInfo.Status;
+        }
+    }
+}

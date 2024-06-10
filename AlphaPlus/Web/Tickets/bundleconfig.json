@@ -118,6 +118,19 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/bundles/betlists/last-bets.css",
+    "inputFiles": [
+      "assets/styles/betlists/last-bets.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/last-bets.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/last-bets/last-bets.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/bundles/betlists/search-tickets.css",
     "inputFiles": [
       "assets/styles/betlists/search-tickets/search-tickets.css"

@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = Model.Title;
+}
+@section Scripts {
+    <script src="~/bundles/betlists/icon-note.js" asp-append-version="true"></script>
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.MoveStatementHistory.MoveStatementHistoryViewModel
+<div class="bl_title">
+    <div class="box">
+        <div>@Model.Title</div>
+        <div>
+            <partial name="IconInformation" model="new List<string>() { Resources.ipnote }" />
+        </div>
+    </div>
+</div>
+<table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
+    <thead>
+        <tr>
+            <th class="col-number">#</th>
+            @if (Model.ShowMemberName)
+            {
+                <th class="col-member">@Resources.member</th>
+            }
+            <th class="col-transtime">@Resources.transtime</th>
+            <th>@Resources.choice</th>
+            <th class="col-odds">@Resources.odds</th>
+            <th class="col-stake">@Resources.stake</th>
+            <th class="col-winloss">@Resources.lblWinLoss</th>
+            <th class="col-status">@Resources.status</th>
+            @if (Model.AllowToViewSuperPT)
+            {
+                <th class="col-pt">@Resources.superPT/ @Resources.lblComm</th>
+            }
+            @if (Model.AllowToViewMasterPT)
+            {
+                <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
+            }
+            <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
+            <th class="col-platform">@Resources.platform</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.BetListData.Total > 0)
+        {
+            var index = 1;
+            @foreach (var ticket in Model.BetListData.Tickets)
+            {
+                <tr id="r@(ticket.TransId)">
+                    <td class="w-order text-center">@(index++)</td>
+                    @if (Model.ShowMemberName)
+                    {
+                        <td class="text-center">@ticket.UserName</td>
+                    }
+                    <trans builder="Model.Builder" ticket="ticket" />
+                    <choice builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
+                        ticket-data="Model.BetListData.TicketData" is-show-score-map="Model.CanViewScoreMap(ticket)" />
+                    <odds builder="Model.Builder" ticket="ticket" ticket-data="Model.BetListData.TicketData"
+                        get-cache-property-by-id="Model.TicketHelper.GetOddsTypeNameById" />
+                    <stake builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper" />
+                    <winloss ticket="ticket" />
+                    <status builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
+                        ticket-data="Model.BetListData.TicketData" is-show-vn-ip="Model.DisplayVNIP" />
+                    @if (Model.AllowToViewSuperPT)
+                    {
+                        <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Super" />
+                    }
+                    @if (Model.AllowToViewMasterPT)
+                    {
+                        <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Master" />
+                    }
+                    <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Agent" />
+                    <platform value="ticket.Platform" />
+                </tr>
+            }
+        }
+        else
+        {
+            <no-infomation colspan="Model.TotalColumn" hastbody="false" />
+        }
+    </tbody>
+</table>

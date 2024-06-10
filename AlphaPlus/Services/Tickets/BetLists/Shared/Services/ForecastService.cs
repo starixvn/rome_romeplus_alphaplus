@@ -7,29 +7,24 @@ namespace AlphaPlus.BetLists.Shared.Services;
 
 public interface IForecastService
 {
-    Task<IEnumerable<int>> GetBetTypeIdsSupportScoreMap();
+    Task<HashSet<int>> GetBetTypeIdsSupportScoreMap();
 }
 
-public class ForecastService : IForecastService
+public class ForecastService(IDynamicRepository repository, ICacheService cacheService) : IForecastService
 {
     private const int CacheTimeInHours = 2;
     private const string CacheKey = "AlphaPlus.BetLists.Services.ForecastService.ScoreMapBetTypes";
-    private readonly IDynamicRepository repository;
-    private readonly ICacheService cacheService;
 
-    public ForecastService(IDynamicRepository repository, ICacheService cacheService)
-        => (this.repository, this.cacheService) = (repository, cacheService);
+    private readonly IDynamicRepository repository = repository;
+    private readonly ICacheService cacheService = cacheService;
 
-    public async Task<IEnumerable<int>> GetBetTypeIdsSupportScoreMap()
-        => (await GetScoreMaps())
-        .Select(s => s.FirstId.ToListInt())
-        .SelectMany(x => x)
-        .Distinct()
-        .ToList();
-
-    private Task<IEnumerable<ScoreMap>> GetScoreMaps()
-        => cacheService.GetOrSetAsync(
+    public async Task<HashSet<int>> GetBetTypeIdsSupportScoreMap()
+        => await cacheService.GetOrSetAsync(
         CacheKey,
-        () => repository.FetchAsync<ScoreMap>(new GetScoreMapBetTypesCriteria()),
+        async () =>
+        {
+            var scoreMaps = await repository.FetchAsync<ScoreMap>(new GetScoreMapBetTypesCriteria());
+            return new HashSet<int>(scoreMaps.Select(s => s.FirstId.ToListInt()).SelectMany(x => x));
+        },
         new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromHours(CacheTimeInHours)));
 }

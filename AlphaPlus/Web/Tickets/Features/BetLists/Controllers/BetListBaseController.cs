@@ -9,7 +9,7 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 
 public class BetListBaseController(IMediator mediator) : BaseController
 {
-    protected const string InvalidBetListView = "~/Features/Views/InvalidBetList.cshtml";
+    protected const string InvalidBetListView = "~/Features/Shared/Views/Invalid.cshtml";
     protected const string BetListView = "~/Features/BetLists/Views/{0}/{1}.cshtml";
     protected readonly IMediator mediator = mediator;
 
@@ -37,4 +37,7 @@ public class BetListBaseController(IMediator mediator) : BaseController
 
     // protected Result BadRequestResult()
     //     => Result.CreateErrorResult(Resources.BadRequest, (int)HttpStatusCode.BadRequest);
+
+    protected static string GetViewPath(string controllerName, string actionName)
+        => $"~/Features/BetLists/Views/{controllerName}/{actionName}.cshtml";
 }

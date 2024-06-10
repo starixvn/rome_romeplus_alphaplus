@@ -7,4 +7,10 @@ public class AppSettings
     public string SiteLabel { get; init; }
 
     public bool IsSiteLabel777 => SiteLabel.Equals("777");
+
+    public bool EnableBetsListMonitoring { get; init; }
+
+    public int[] UsersAlwaysAllowAccessBetsListMonitoring { get; init; }
+
+    public int RunningMatchCacheTime { get; init; }
 }

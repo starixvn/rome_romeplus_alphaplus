@@ -70,7 +70,7 @@ builder.Services.AddHealthChecks();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 app
-    .UseExceptionHandler("/Home/Error")
+    .UseExceptionHandler("/Shared/Error")
     .UsePathBase("/tickets")
     .UseRouting()
     .UseDefaultFiles()

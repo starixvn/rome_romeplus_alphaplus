@@ -15,6 +15,13 @@ using AlphaPlus.BetLists.SearchTickets;
 using AlphaPlus.BetLists.CorrectScore;
 using AlphaPlus.BetLists.Running;
 using AlphaPlus.BetLists.Parlay;
+using AlphaPlus.BetLists.DailyStatement;
+using AlphaPlus.BetLists.CancelledBets;
+using AlphaPlus.BetLists.MoveStatementHistory;
+using AlphaPlus.BetLists.CashOutHistory;
+using AlphaPlus.BetLists.CasinoDetails;
+using AlphaPlus.BetLists.LastBets;
+using AlphaPlus.BetLists.RiskAnalysisIPMatching;
 
 namespace AlphaPlus.BetLists.Shared.Extensions;
 
@@ -35,11 +42,18 @@ public static class DependencyInjection
                 IPHelper.GetClientIP))
             .AddSingleton<IForecastService, ForecastService>()
             .AddSingleton<IReportDateService, ReportDateService>()
+            .AddSingleton<ILastBetsService, LastBetsService>()
             .AddSingleton<ISearchTicketsService, SearchTicketsService>()
+            .AddSingleton<ICancelledBetService, CancelledBetService>()
             .AddSingleton<ICorrectScoreService, CorrectScoreService>()
             .AddSingleton<IParlayService, ParlayService>()
             .AddSingleton<IRunningBetListByBetTypeService, RunningBetListByBetTypeService>()
-            .AddSingleton<IRunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchService>();
+            .AddSingleton<IRunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchService>()
+            .AddSingleton<IDailyStatementService, DailyStatementService>()
+            .AddSingleton<IMoveStatementHistoryService, MoveStatementHistoryService>()
+            .AddSingleton<IRiskAnalysisIPMatchingService, RiskAnalysisIPMatchingService>()
+            .AddSingleton<ICashOutHistoryService, CashOutHistoryService>()
+            .AddSingleton<ICasinoDetailsService, CasinoDetailsService>();
 
         var serviceProvider = services.BuildServiceProvider();
         ReportDateService.Instance = serviceProvider.GetRequiredService<IReportDateService>();

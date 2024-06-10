@@ -26,7 +26,7 @@
         @if (Model.BetListData.Tickets.Any())
         {
             var index = 1;
-            @foreach (var ticket in Model.BetListData.Tickets)
+            foreach (var ticket in Model.BetListData.Tickets)
             {
                 <tr id="r@(ticket.TransId)">
                     <td class='w-order text-center'>@(index++)</td>
@@ -48,13 +48,13 @@
                         <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Master" />
                     }
                     <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Agent" />
-                    <platform device="ticket.DeviceType" />
+                    <platform value="ticket.Platform" />
                 </tr>
             }
         }
         else
         {
-            <no-infomation colspan="Model.TotalColumn" />
+            <no-infomation colspan="Model.TotalColumn" hastbody="false" />
         }
     </tbody>
 </table>

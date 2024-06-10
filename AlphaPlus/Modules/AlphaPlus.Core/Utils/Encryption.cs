@@ -10,6 +10,8 @@ public interface IEncryption
 
     string CfsEnCode(string codeStr);
 
+    string CfsEnCode(string codeStr, int number);
+
     string RandomString(int length);
 
     string RandomString(int length, bool noZeroO);
@@ -35,9 +37,11 @@ public class Encryption : IEncryption
         return h.ToString();
     }
 
-    public string CfsEnCode(string codeStr)
+    public string CfsEnCode(string codeStr) => CfsEnCode(codeStr, 30);
+
+    public string CfsEnCode(string codeStr, int number)
     {
-        var num = 30;
+        var num = number < 6 ? 6 : number;
         var num2 = num - codeStr.Length;
         if (num2 > 1)
         {

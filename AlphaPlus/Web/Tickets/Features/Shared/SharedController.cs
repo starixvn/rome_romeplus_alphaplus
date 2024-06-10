@@ -6,12 +6,9 @@ using AlphaPlus.PartialUM.Exceptions;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared;
 
-public class HomeController : Controller
+public class SharedController(Fanex.Logging.ILogger logger) : Controller
 {
-    private readonly Fanex.Logging.ILogger logger;
-
-    public HomeController(Fanex.Logging.ILogger logger)
-        => this.logger = logger;
+    private readonly Fanex.Logging.ILogger logger = logger;
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> Error()
@@ -35,6 +32,8 @@ public class HomeController : Controller
             }
         }
 
-        return View(viewModel);
+        return View("~/Features/Shared/Views/Error.cshtml", viewModel);
     }
+
+    public IActionResult Invalid() => View("~/Features/Shared/Views/Invalid.cshtml");
 }

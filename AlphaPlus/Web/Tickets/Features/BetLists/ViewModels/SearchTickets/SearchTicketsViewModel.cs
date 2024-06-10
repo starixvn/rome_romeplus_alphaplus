@@ -8,19 +8,14 @@ using Fanex.BetList.Core.Entities;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.SearchTickets;
 
-public class SearchTicketsViewModel : WinLossViewModel
+public class SearchTicketsViewModel(
+    SearchTicketsQuery message,
+    BetListData betListData,
+    IBetListHTMLBuilder builder,
+    ITicketHelper ticketHelper) : WinLossViewModel(message, betListData, builder, ticketHelper, message.IsEnabledJackpot, false, true)
 {
-    public SearchTicketsViewModel(
-        SearchTicketsQuery query,
-        BetListData betListData,
-        IBetListHTMLBuilder builder,
-        ITicketHelper ticketHelper) : base(query, betListData, builder, ticketHelper, query.IsEnabledJackpot, false, true)
-    {
-        ViewDataInstructionMessage = string.Format(
-            Resources.CanOnlyViewDataAfterTimeHistoryReportWithFormat,
-            query.MinDate.ToShortDateWithSlash());
-        Title = Resources.SearchTickets;
-    }
+    protected override string GetTitle() => Resources.SearchTickets;
 
-    public string ViewDataInstructionMessage { get; }
+    public string ViewDataInstructionMessage
+        => string.Format(Resources.CanOnlyViewDataAfterTimeHistoryReportWithFormat, message.MinDate.ToShortDateWithSlash());
 }

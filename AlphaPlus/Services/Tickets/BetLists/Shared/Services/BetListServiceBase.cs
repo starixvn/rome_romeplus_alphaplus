@@ -24,7 +24,7 @@ public class BetListServiceBase(
         return new BetListData(tickets, ticketData);
     }
 
-    protected async Task AssignCountry(IEnumerable<ITicket> tickets, bool displayVNIP)
+    protected async Task AssignCountry(IEnumerable<TicketDto> tickets, bool displayVNIP)
     {
         if (tickets.Any())
         {
@@ -40,7 +40,7 @@ public class BetListServiceBase(
                 if (!string.IsNullOrWhiteSpace(item.IP)
                     && countryDictionary.TryGetValue(item.IP.Trim(), out country))
                 {
-                    ((TicketDto)item).Country = country;
+                    item.Country = country;
                 }
             }
         }

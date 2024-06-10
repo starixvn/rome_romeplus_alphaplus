@@ -18,7 +18,8 @@ public class BetListByBetTypeHandler(
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
     IPService ipService) :
-        BetListBaseHandler(builder, ticketHelper, monitorService, ipService), IRequestHandler<BetListByBetTypeQuery, BetListByBetTypeViewModel>
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+        IRequestHandler<BetListByBetTypeQuery, BetListByBetTypeViewModel>
 {
     private readonly IForecastService forecastService = forecastService;
     private readonly IRunningBetListByBetTypeService runningBetListByBetTypeService = runningBetListByBetTypeService;
