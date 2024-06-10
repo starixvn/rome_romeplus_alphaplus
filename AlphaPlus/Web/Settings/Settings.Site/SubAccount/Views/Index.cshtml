@@ -39,13 +39,13 @@
                     <td>@subAcc.Firstname</td>
                     <td>@subAcc.Lastname</td>
                     <td class="c">@subAcc.CreateDate</td>
-                    <td class="c"><div class="pMemInfo">@subAcc.GetPermission()</div></td>
-                    <td class="c"><input type="checkbox" value="[D]" @(subAcc.HasBetsForecastPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><input type="checkbox" value="[E]" @(subAcc.HasReportPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><input type="checkbox" value="[L]" @(subAcc.HasBetlistPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><input type="checkbox" value="[C]" @(subAcc.HasTransferPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><input type="checkbox" value="[G]" @(subAcc.HasViewLogPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><span class="icon-edit info" data-subaccid="@subAcc.SubAccId">&nbsp;</span></td>
+                    <td class="c"><div class="pMemInfo" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission">@subAcc.GetPermission()</div></td>
+                    <td class="c"><input id="@(subAcc.SubAccId + "-D")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetsForecastPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><input id="@(subAcc.SubAccId + "-E")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasReportPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><input id="@(subAcc.SubAccId + "-L")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetlistPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><input id="@(subAcc.SubAccId + "-C")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasTransferPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><input id="@(subAcc.SubAccId + "-G")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasViewLogPermission ? "checked" : string.Empty) /></td>
+                    <td class="c"><span class="icon-edit info" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
                     <td class="c"><span class="icon-edit pwd" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
                     <td class="c"><span class="icon-edit sc" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
                     <td class="c"><span class="icon-edit otp" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
@@ -53,5 +53,6 @@
             }
             </tbody>
         </table>
+        @Html.AntiForgeryToken()
     </main>
 </div>

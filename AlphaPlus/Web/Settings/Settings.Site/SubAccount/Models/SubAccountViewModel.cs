@@ -13,6 +13,15 @@ namespace AlphaPlus.Settings.Site.SubAccount.Models
             [G]: View Log
             [L]: Bet Lists
         */
+
+        private const string CreatePermission = "[A][B][H]";
+
+        private const string UpdatePermission = "[B][H]";
+
+        private const string ViewPermission = "[H]";
+
+        private const string NonePermission = "";
+
         public int SubAccId { get; set; }
 
         public string Username { get; set; }
@@ -50,6 +59,10 @@ namespace AlphaPlus.Settings.Site.SubAccount.Models
         public bool HasViewLogPermission => HasFullPermission || PageAccess.Contains("[G]", StringComparison.InvariantCultureIgnoreCase);
 
         public bool HasTransferPermission => HasFullPermission || PageAccess.Contains("[C]", StringComparison.InvariantCultureIgnoreCase);
+
+        public string MemberInfoPermission => HasCreateAccountPermission ? CreatePermission :
+            HasUpdatePermission ? UpdatePermission :
+            HasViewMemberInfoPermission ? ViewPermission : NonePermission;
 
         public string GetPermission() => HasCreateAccountPermission ? "Full Control" :
             HasUpdatePermission ? "Update" :
