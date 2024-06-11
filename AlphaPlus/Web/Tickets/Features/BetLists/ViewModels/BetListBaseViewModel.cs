@@ -1,4 +1,5 @@
 using AlphaPlus.BetLists.Shared.Models;
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Tickets.Site.App_GlobalResources;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests;
 using Fanex.BetList.Core.Builder;
@@ -103,10 +104,10 @@ public class BetListBaseViewModel(
 
     protected virtual string GetTitle()
         => HasDateParam()
-        ? $"{Resources.memberBetList} {BaseQuery.FromDate.ToShortDateString()} --> {BaseQuery.ToDate.ToShortDateString()} - {BaseQuery.CustName}"
+        ? $"{Resources.memberBetList} {BaseQuery.FromDate.ToShortDateWithSlash()} --> {BaseQuery.ToDate.ToShortDateWithSlash()} - {BaseQuery.CustName}"
         : Resources.memberBetList;
 
-    private bool HasDateParam()
+    protected bool HasDateParam()
         => BaseQuery.FromDate != DateTime.MinValue && BaseQuery.ToDate != DateTime.MinValue;
 
     // TODO: will implement here

@@ -29,7 +29,6 @@ public class BetListBaseQuery
         DisplayVNIP = Viewer.IsAdminCanViewVNIP;
         Language = Viewer.Language;
         IsEnabledJackpot = Viewer.IsEnabledJackpot;
-        //LimitedDateToShowInfo = Viewer.LimitedDateToShowInfo;
     }
 
     protected IUser Viewer { get; }
@@ -61,8 +60,6 @@ public class BetListBaseQuery
     public string Language { get; }
 
     public bool IsEnabledJackpot { get; }
-
-    //public DateTime LimitedDateToShowInfo { get; }
 
     public DateTime FromDate { get; set; }
 

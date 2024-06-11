@@ -22,6 +22,8 @@ using AlphaPlus.BetLists.CashOutHistory;
 using AlphaPlus.BetLists.CasinoDetails;
 using AlphaPlus.BetLists.LastBets;
 using AlphaPlus.BetLists.RiskAnalysisIPMatching;
+using AlphaPlus.BetLists.WinLossByMatch;
+using AlphaPlus.BetLists.ParlayWinLossByMatch;
 
 namespace AlphaPlus.BetLists.Shared.Extensions;
 
@@ -49,6 +51,8 @@ public static class DependencyInjection
             .AddSingleton<IParlayService, ParlayService>()
             .AddSingleton<IRunningBetListByBetTypeService, RunningBetListByBetTypeService>()
             .AddSingleton<IRunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchService>()
+            .AddSingleton<IWinLossByMatchService, WinLossByMatchService>()
+            .AddSingleton<IParlayWinLossByMatchService, ParlayWinLossByMatchService>()
             .AddSingleton<IDailyStatementService, DailyStatementService>()
             .AddSingleton<IMoveStatementHistoryService, MoveStatementHistoryService>()
             .AddSingleton<IRiskAnalysisIPMatchingService, RiskAnalysisIPMatchingService>()

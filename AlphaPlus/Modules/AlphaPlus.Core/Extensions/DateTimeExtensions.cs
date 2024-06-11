@@ -6,4 +6,7 @@ public static class DateTimeExtensions
 
     public static string ToShortDateWithSlash(this DateTime dateTime)
         => dateTime.ToString(ShortDateWithSlash);
+
+    public static DateTime GetGreaterDate(this DateTime fromDate, DateTime limitedDate)
+        => fromDate < limitedDate ? limitedDate : fromDate;
 }
