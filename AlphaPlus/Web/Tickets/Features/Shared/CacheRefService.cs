@@ -6,6 +6,8 @@ namespace AlphaPlus.Tickets.Site.Features.Shared;
 
 public interface ICacheRefService
 {
+    string[] GetBetBuilderSelectionNames(int[] selectionIds);
+
     string GetSportName(int sportTypeId);
 
     string GetBetTypeName(int betTypeId);
@@ -23,6 +25,9 @@ public class CacheRefService(
     IRemotingRefService remotingRefService,
     IOptions<AppSettings> options) : ICacheRefService
 {
+    public string[] GetBetBuilderSelectionNames(int[] selectionIds)
+        => remotingRefService.GetBetBuilderSelectionNames(selectionIds, LanguageCode);
+
     public string GetSportName(int sportTypeId)
         => remotingRefService.GetSportName(sportTypeId.ToString(), LanguageCode);
 

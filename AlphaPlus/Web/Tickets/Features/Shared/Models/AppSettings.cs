@@ -13,4 +13,6 @@ public class AppSettings
     public int[] UsersAlwaysAllowAccessBetsListMonitoring { get; init; }
 
     public int RunningMatchCacheTime { get; init; }
+
+    public int[] MonitoringBetsBetTypes { get; init; }
 }

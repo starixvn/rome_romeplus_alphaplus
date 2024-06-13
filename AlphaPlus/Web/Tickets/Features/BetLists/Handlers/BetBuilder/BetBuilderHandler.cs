@@ -1,25 +1,37 @@
-// using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetBuilder;
-// using Fanex.BetDetails.BetBuilder.Criteria;
-// using Fanex.BetDetails.BetBuilder.Services;
-// using Fanex.BetDetails.BetBuilder.ViewModels;
-// using MediatR;
+using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.BetLists.BetBuilder;
+using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetBuilder;
+using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetBuilder;
+using AlphaPlus.Tickets.Site.Features.Shared;
+using MediatR;
 
-// namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetBuilder;
+namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetBuilder;
 
-// public class BetBuilderHandler(IBetBuilderService betBuilderService)
-//     : IRequestHandler<BetBuilderDetailQuery, BetBuilderDetailViewModel>
-// {
-//     private readonly IBetBuilderService betBuilderService = betBuilderService;
+public class BetBuilderHandler(
+    IBetBuilderService betBuilderService,
+    ICacheRefService cacheRefService)
+    : IRequestHandler<BetBuilderDetailQuery, BetBuilderDetailViewModel>
+{
+    private readonly IBetBuilderService betBuilderService = betBuilderService;
 
-//     public Task<BetBuilderDetailViewModel> Handle(BetBuilderDetailQuery message, CancellationToken cancellationToken)
-//     {
-//         var viewModel = betBuilderService.GetBetListDetail(new GetBetBuilderDetailParameter
-//         {
-//             CustomerId = message.CustomerId,
-//             TransactionId = message.TransactionId,
-//             Status = message.Status
-//         });
+    public async Task<BetBuilderDetailViewModel> Handle(BetBuilderDetailQuery message, CancellationToken cancellationToken)
+    {
+        var details = await betBuilderService.GetBetList(message.CustomerId, message.TransactionId);
 
-//         return Task.FromResult(viewModel);
-//     }
-// }
+        return new BetBuilderDetailViewModel(BuildBetBuilderDetailModel(details), message.Status);
+    }
+
+    private IEnumerable<BetBuilderDetailModel> BuildBetBuilderDetailModel(IEnumerable<BetBuilderDetailModel> details)
+    {
+        foreach (var item in details)
+        {
+            var names = cacheRefService.GetBetBuilderSelectionNames([item.SelectionType]);
+            item.SelectionName = names != null && names.Length == 1 ? names[0] : item.SelectionType.ToString();
+            item.Result = string.IsNullOrWhiteSpace(item.Result)
+                ? item.Result
+                : Resources.ResourceManager.GetString(item.Result.ToLowerInvariant());
+
+            yield return item;
+        }
+    }
+}

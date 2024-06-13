@@ -5,7 +5,7 @@ namespace AlphaPlus.BetLists.Shared.Models;
 public class BetListData(
     IEnumerable<TicketDto> tickets,
     IEnumerable<ITicketData> ticketData,
-    BetlistOutputParams betlistOutputParams = null)
+    BetListOutputParams outputParams = null)
 {
     public IEnumerable<TicketDto> Tickets { get; } = tickets ?? Enumerable.Empty<TicketDto>();
 
@@ -13,5 +13,5 @@ public class BetListData(
 
     public int Total => Tickets.Count();
 
-    public BetlistOutputParams BetlistOutputParams { get; } = betlistOutputParams ?? new BetlistOutputParams();
+    public BetListOutputParams OutputParams { get; set; } = outputParams ?? new BetListOutputParams();
 }

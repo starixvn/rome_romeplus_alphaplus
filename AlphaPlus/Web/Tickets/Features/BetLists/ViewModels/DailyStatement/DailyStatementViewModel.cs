@@ -25,10 +25,6 @@ public class DailyStatementViewModel(
         BetStatus.Pending
     };
 
-    public DateTime WinLossDate { get; } = message.WinLossDate;
-
-    public int TransType { get; } = message.TransType;
-
     public Footer Footer { get; } = new Footer(betListData, message.ViewerLevel, false, ExcludedTicketStatus);
 
     public bool ShowContributionAmountRoundNote { get; } = message.IsEnabledJackpot;
@@ -38,4 +34,13 @@ public class DailyStatementViewModel(
     public override bool CanViewScoreMap(ITicket ticket)
         => ticket.Status.Equals(BetStatus.Running, StringComparison.OrdinalIgnoreCase)
         && supportScoreMapBetTypeIds?.Contains(ticket.BetTypeId) == true;
+
+    public IDictionary<string, string> GetExcelParams()
+        => new Dictionary<string, string>
+        {
+            [nameof(CustId)] = CustId.ToString(),
+            [nameof(CustName)] = CustName,
+            [nameof(message.WinLossDate)] = message.WinLossDate.ToShortDateWithSlash(),
+            [nameof(message.TransType)] = message.TransType.ToString()
+        };
 }

@@ -1,3 +1,4 @@
+using System.Data.SqlTypes;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.CashOutHistory;
@@ -14,5 +15,5 @@ public class GetCashOutHistoryCriteria(long transId, long custId, DateTime winlo
 
     public override string GetSettingKey() => "Acc_BetList_CashOut_History";
 
-    public override bool IsValid() => TransId > 0 && CustId > 0;
+    public override bool IsValid() => TransId > 0 && CustId > 0 && WinLostDate > SqlDateTime.MinValue.Value;
 }

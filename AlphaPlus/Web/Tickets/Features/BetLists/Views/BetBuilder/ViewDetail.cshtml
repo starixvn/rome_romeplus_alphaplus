@@ -1,7 +1,7 @@
 @{
     Layout = null;
 }
-@model Fanex.BetDetails.BetBuilder.ViewModels.BetBuilderDetailViewModel
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetBuilder.BetBuilderDetailViewModel;
 @if (Model.Details.Any())
 {
     <div class="betbuilder">
@@ -9,7 +9,7 @@
         {
             <div>
                 @detail.SelectionName
-                @if (Model.IsSettled && !string.IsNullOrEmpty(detail.Result))
+                @if (Model.IsSettled && !string.IsNullOrWhiteSpace(detail.Result))
                 {
                     <span class="sport"> - @detail.Result</span>
                 }

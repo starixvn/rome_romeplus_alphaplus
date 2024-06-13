@@ -20,10 +20,8 @@
         </div>
         <div class="push">
             <div class="bl-export-excel">
-                <a asp-action="Excel" class="icon icon-excel" title="@Resources.ExportToExcel"
-                    asp-route-custid="@Model.CustId" asp-route-custname="@Model.CustName"
-                    asp-route-winlossdate="@Model.WinLossDate.ToShortDateWithSlash()"
-                    asp-route-transtype="@Model.TransType"></a>
+                <a asp-action="Excel" asp-all-route-data="@Model.GetExcelParams()" class="icon icon-excel"
+                    title="@Resources.ExportToExcel"></a>
             </div>
         </div>
     </div>

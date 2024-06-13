@@ -15,9 +15,10 @@ public class WinLossViewModel(
     bool isGroupHeadline = false,
     bool showMemberName = false,
     string[] excludingTicketStatus = null,
-    BetlistOutputParams betlistOutputParams = null,
+    BetListOutputParams outputParams = null,
     bool showFooter = false,
-    bool showOrder = false) : BetListBaseViewModel(message, betListData, builder, ticketHelper, showMemberName)
+    bool showOrder = false,
+    int startIndex = 1) : BetListBaseViewModel(message, betListData, builder, ticketHelper, showMemberName)
 {
     public bool AllowToViewSuperPT => ViewerLevel.IsSuperLevel();
 
@@ -27,11 +28,11 @@ public class WinLossViewModel(
 
     public bool IsGroupHeadline { get; } = isGroupHeadline;
 
-    public Footer Footer { get; } = new Footer(betListData, message.ViewerLevel, showMemberName, excludingTicketStatus);
+    public Footer Footer { get; } = showFooter ? new Footer(betListData, message.ViewerLevel, showMemberName, excludingTicketStatus) : null;
 
-    public BetlistOutputParams BetlistOutputParams { get; } = betlistOutputParams ?? new BetlistOutputParams();
-
-    public bool ShowFooter { get; } = showFooter;
+    public BetListOutputParams OutputParams { get; } = outputParams ?? new BetListOutputParams();
 
     public bool ShowOrder { get; } = showOrder;
+
+    public int StartIndex { get; } = startIndex;
 }

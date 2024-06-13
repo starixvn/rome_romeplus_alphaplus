@@ -14,8 +14,8 @@
         </div>
         <div class="push">
             <div class="bl-export-excel">
-                <a class="icon icon-excel" title="@Resources.ExportToExcel" asp-action="Excel" asp-route-ip="@Model.IP"
-                    asp-route-date="@Model.Date"></a>
+                <a asp-action="Excel" asp-route-ip="@Model.IP" asp-route-date="@Model.Date" class="icon icon-excel"
+                    title="@Resources.ExportToExcel"></a>
             </div>
         </div>
     </div>

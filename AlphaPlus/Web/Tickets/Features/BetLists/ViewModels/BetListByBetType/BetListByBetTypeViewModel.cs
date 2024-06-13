@@ -1,6 +1,6 @@
+using AlphaPlus.BetLists.Shared.Helpers;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetListByBetType;
-using AlphaPlus.Tickets.Site.Features.Shared;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 

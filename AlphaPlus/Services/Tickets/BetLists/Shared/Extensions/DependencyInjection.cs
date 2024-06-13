@@ -24,6 +24,11 @@ using AlphaPlus.BetLists.LastBets;
 using AlphaPlus.BetLists.RiskAnalysisIPMatching;
 using AlphaPlus.BetLists.WinLossByMatch;
 using AlphaPlus.BetLists.ParlayWinLossByMatch;
+using AlphaPlus.BetLists.WinLoss;
+using AlphaPlus.BetLists.JackpotDetails;
+using AlphaPlus.BetLists.BetBuilder;
+using AlphaPlus.BetLists.Shared.Helpers;
+using Fanex.RemotingRef;
 
 namespace AlphaPlus.BetLists.Shared.Extensions;
 
@@ -44,23 +49,29 @@ public static class DependencyInjection
                 IPHelper.GetClientIP))
             .AddSingleton<IForecastService, ForecastService>()
             .AddSingleton<IReportDateService, ReportDateService>()
+            //.AddSingleton<IProductService, ProductService>()
             .AddSingleton<ILastBetsService, LastBetsService>()
+            .AddSingleton<IMonitoringBetsService, MonitoringBetsService>()
             .AddSingleton<ISearchTicketsService, SearchTicketsService>()
             .AddSingleton<ICancelledBetService, CancelledBetService>()
             .AddSingleton<ICorrectScoreService, CorrectScoreService>()
             .AddSingleton<IParlayService, ParlayService>()
             .AddSingleton<IRunningBetListByBetTypeService, RunningBetListByBetTypeService>()
             .AddSingleton<IRunningBetListByBetTypeAndMatchService, RunningBetListByBetTypeAndMatchService>()
+            .AddSingleton<IWinLossService, WinLossService>()
             .AddSingleton<IWinLossByMatchService, WinLossByMatchService>()
             .AddSingleton<IParlayWinLossByMatchService, ParlayWinLossByMatchService>()
             .AddSingleton<IDailyStatementService, DailyStatementService>()
             .AddSingleton<IMoveStatementHistoryService, MoveStatementHistoryService>()
             .AddSingleton<IRiskAnalysisIPMatchingService, RiskAnalysisIPMatchingService>()
+            .AddSingleton<IBetBuilderService, BetBuilderService>()
+            .AddSingleton<IJackpotDetailsService, JackpotDetailsService>()
             .AddSingleton<ICashOutHistoryService, CashOutHistoryService>()
             .AddSingleton<ICasinoDetailsService, CasinoDetailsService>();
 
         var serviceProvider = services.BuildServiceProvider();
         ReportDateService.Instance = serviceProvider.GetRequiredService<IReportDateService>();
+        CacheRefServiceHelper.Instance = serviceProvider.GetRequiredService<IRemotingRefService>();
 
         return services;
     }

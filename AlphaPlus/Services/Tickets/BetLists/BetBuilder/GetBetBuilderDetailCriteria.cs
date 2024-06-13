@@ -1,26 +1,14 @@
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Threading.Tasks;
-// using Fanex.Data.Repository;
+using Fanex.Data.Repository;
 
-// namespace AlphaPlus.BetLists.BetBuilder;
+namespace AlphaPlus.BetLists.BetBuilder;
 
-// public class GetBetBuilderDetailCriteria : CriteriaBase
-// {
-//     public GetBetBuilderDetailCriteria(IGetBetBuilderDetailParameter commandData)
-//     {
-//         Criteria = commandData;
-//     }
+public class GetBetBuilderDetailCriteria(int custId, long transId) : CriteriaBase
+{
+    public long CustId { get; } = custId;
 
-//     [SpParam(Ignored = true)]
-//     private IGetBetBuilderDetailParameter Criteria { get; set; }
+    public long TransId { get; } = transId;
 
-//     public long CustId => Criteria.CustomerId;
+    public override string GetSettingKey() => "Acc_BetList_BetBuilder_Detail";
 
-//     public long TransId => Criteria.TransactionId;
-
-//     public override string GetSettingKey() => "Acc_BetList_BetBuilder_Detail";
-
-//     public override bool IsValid() => Criteria.IsValid();
-// }
+    public override bool IsValid() => CustId > 0 && TransId > 0;
+}

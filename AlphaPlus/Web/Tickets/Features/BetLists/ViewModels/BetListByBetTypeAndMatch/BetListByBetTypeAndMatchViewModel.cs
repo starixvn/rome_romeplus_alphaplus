@@ -1,7 +1,7 @@
+using AlphaPlus.BetLists.Shared.Helpers;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetListByBetTypeAndMatch;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetType;
-using AlphaPlus.Tickets.Site.Features.Shared;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 
@@ -29,4 +29,13 @@ public class BetListByBetTypeAndMatchViewModel(
         : LeagueId == 0
             ? CacheRefServiceHelper.GetBetTypeName(message.BetType)
             : $"{CacheRefServiceHelper.GetLeagueName(LeagueId)} {CacheRefServiceHelper.GetBetTypeName(message.BetType)}";
+
+    public IDictionary<string, string> GetExcelParams()
+        => new Dictionary<string, string>
+        {
+            [nameof(message.MatchId)] = message.MatchId.ToString(),
+            [nameof(message.BetType)] = message.BetType.ToString(),
+            [nameof(message.IsLive)] = message.IsLive.ToString(),
+            [nameof(message.BetTeam)] = message.BetTeam
+        };
 }

@@ -4,8 +4,7 @@
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.WinLoss.WinLossViewModel
 <div class="scrollable">
-    <table
-        class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist tblRpt-freeze-header"
+    <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tblRpt-hover tbl-betlist tblRpt-freeze-header"
         id="tbl-betlist">
         <thead>
             <tr>
@@ -35,11 +34,11 @@
         <tbody>
             @if (Model.BetListData.Tickets.Any())
             {
-                var index = 1;
+                var index = Model.StartIndex;
                 foreach (var ticket in Model.BetListData.Tickets)
                 {
                     <tr id="r@(ticket.TransId)">
-                        <td class='w-order text-center'>@(index++)</td>
+                        <td class="w-order text-center">@(index++)</td>
                         @if (Model.ShowMemberName)
                         {
                             <td class="text-center">@ticket.UserName</td>
@@ -68,9 +67,12 @@
                         <platform value="@ticket.Platform" />
                     </tr>
                 }
-                <footer subtotal-colspan="@Model.Footer.SubTotalColSpan" status-colspan="@Model.Footer.StatusColSpan"
-                    subtotal-winloss="@Model.Footer.SubTotalWinLoss" subtotal-commission="@Model.Footer.SubTotalCommission"
-                    total="@Model.Footer.Total" />
+                if (Model.Footer != null)
+                {
+                    <footer subtotal-colspan="@Model.Footer.SubTotalColSpan" status-colspan="@Model.Footer.StatusColSpan"
+                        subtotal-winloss="@Model.Footer.SubTotalWinLoss" subtotal-commission="@Model.Footer.SubTotalCommission"
+                        total="@Model.Footer.Total" />
+                }
             }
             else
             {

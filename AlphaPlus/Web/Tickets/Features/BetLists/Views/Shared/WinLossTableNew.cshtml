@@ -41,7 +41,7 @@
                     <tr id="r@(ticket.TransId)">
                         @if (Model.ShowOrder)
                         {
-                            <td class='w-order text-center'>@(index++)</td>
+                            <td class="w-order text-center">@(index++)</td>
                         }
                         @if (Model.ShowMemberName)
                         {
@@ -71,7 +71,7 @@
                         <platform value="@ticket.Platform" />
                     </tr>
                 }
-                if (Model.ShowFooter)
+                if (Model.Footer != null)
                 {
                     <footer subtotal-colspan="@Model.Footer.SubTotalColSpan" status-colspan="@Model.Footer.StatusColSpan"
                         subtotal-winloss="@Model.Footer.SubTotalWinLoss" subtotal-commission="@Model.Footer.SubTotalCommission"

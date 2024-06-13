@@ -1,7 +1,11 @@
-namespace AlphaPlus.BetLists.Helpers;
+using AlphaPlus.BetLists.AppResources;
+
+namespace AlphaPlus.BetLists.Shared.Helpers;
 
 public static class BetTypeHelper
 {
+    public const int MonitoringBetsOthers = -1;
+
     private static readonly int[] JackpotContributionBetType =
     {
         BetTypeConstants.JackpotContribution,
@@ -29,4 +33,9 @@ public static class BetTypeHelper
     public static bool IsHorseRacing(int betType) => HorseRacingBetType.Contains(betType);
 
     public static bool IsJackpotContribution(int betType) => JackpotContributionBetType.Contains(betType);
+
+    public static string GetBetTypeName(int betTypeId)
+        => betTypeId == MonitoringBetsOthers
+        ? Resources.Others
+        : CacheRefServiceHelper.GetBetTypeName(betTypeId);
 }

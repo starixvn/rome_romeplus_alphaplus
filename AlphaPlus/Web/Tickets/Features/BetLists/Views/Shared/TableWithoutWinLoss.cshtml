@@ -29,7 +29,7 @@
             foreach (var ticket in Model.BetListData.Tickets)
             {
                 <tr id="r@(ticket.TransId)">
-                    <td class='w-order text-center'>@(index++)</td>
+                    <td class="w-order text-center">@(index++)</td>
                     <td class="text-center">@ticket.UserName</td>
                     <trans builder="Model.Builder" ticket="ticket" />
                     <choice builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"

@@ -1,4 +1,4 @@
-using Fanex.BetDetails.BetBuilder.ViewModels;
+using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetBuilder;
 using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetBuilder;

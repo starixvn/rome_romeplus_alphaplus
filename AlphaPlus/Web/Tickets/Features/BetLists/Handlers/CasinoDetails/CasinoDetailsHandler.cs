@@ -3,6 +3,7 @@ using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.CasinoDetails;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CasinoDetails;
+using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
@@ -31,15 +32,12 @@ public class CasinoDetailsHandler(
             message.PageIndex,
             message.PageSize,
             message.DisplayVNIP);
-        var betlistData = await casinoDetailsService.GetBetList(param);
+        var pagedBetListData = await casinoDetailsService.GetBetList(param);
 
         return new CasinoDetailsViewModel(
             message,
-            new PagedReportData<BetListData>(
-                [new BetListData(betlistData.DataSource, null)],
-                betlistData.PageIndex,
-                betlistData.PageSize,
-                betlistData.TotalRecords),
+            new BetListData(pagedBetListData.DataSource, null),
+            new PagerViewModel(pagedBetListData.PageIndex, pagedBetListData.PageSize, pagedBetListData.TotalRecords),
             Builder,
             TicketHelper);
     }

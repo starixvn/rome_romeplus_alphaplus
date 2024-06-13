@@ -1,3 +1,4 @@
+using System.Data.SqlTypes;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.CancelledBets;
@@ -38,6 +39,7 @@ public class GetCancelledBetCriteria(
     public override bool IsValid()
         => CustId > 0
         && FromDate <= ToDate
+        && FromDate > SqlDateTime.MinValue.Value
         && !string.IsNullOrWhiteSpace(ProductIds)
         && !string.IsNullOrWhiteSpace(StatusIdList);
 }

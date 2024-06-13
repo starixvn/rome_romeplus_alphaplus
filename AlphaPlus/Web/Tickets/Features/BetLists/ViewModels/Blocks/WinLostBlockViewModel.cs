@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.Helpers;
+using AlphaPlus.BetLists.Shared.Helpers;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Utils;
 
