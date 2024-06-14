@@ -1,30 +1,42 @@
 @model SubAccountViewModel
+@{
+    Layout = "~/SubAccount/Views/_Layout.cshtml";
+}
 <div class="container">
     <main role="main" class="pb-3">
-        <table>
-            <tr>
-                <td>Username</td>
-                <td>Nickname</td>
-                <td>Firstname</td>
-                <td>Lastname</td>
-                <td>Created Date</td>
-            </tr>
+        <table class="tblPop width-100per">
             @if (Model.SubAccId != 0)
             {
                 <tr>
-                    <td>@Model.Username</td>
-                    <td>@Model.Nickname</td>
-                    <td>@Model.Firstname</td>
-                    <td>@Model.Lastname</td>
-                    <td>@Model.CreateDate</td>
+                    <td>Username</td>
+                    <td><input disabled type="text" value="@Model.Username" /></td>
+                </tr>
+                <tr>
+                    <td>Firstname</td>
+                    <td><input type="text" value="@Model.Firstname" /></td>
+                </tr>
+                <tr>
+                    <td>Lastname</td>
+                    <td><input type="text" value="@Model.Lastname" /></td>
+                </tr>
+                <tr>
+                    <td>Status-Closed</td>
+                    <td><input id="chkClosed" type="checkbox" @(Model.Closed ? "checked" : string.Empty) /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" id="btnEdit" class="btnSubmit" value="Submit ">
+                        <input type="button" id="btn-reset" class="btn btn-reset" value="Reset">
+                    </td>
                 </tr>
             }
             else
             {
                 <tr>
-                    <td colspan="5">There is no information is available.</td>
+                    <td colspan="2">There is no information is available.</td>
                 </tr>
             }
         </table>
+        @Html.AntiForgeryToken()
     </main>
 </div>

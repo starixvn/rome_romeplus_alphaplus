@@ -72,7 +72,7 @@ class SubAccount {
     };
 
     Edit = (subAccId: number) => {
-        this.topWindow.popupManager.open("/settings/SubAccount/Get?subAccId=" + subAccId, "Edit Sub Account", 734, 536);
+        this.topWindow.popupManager.open("/settings/SubAccount/Get?subAccId=" + subAccId, "Edit Sub Account", 468, 368);
     };
 
     ResetPassword = (subAccId: number, username: string) => {
