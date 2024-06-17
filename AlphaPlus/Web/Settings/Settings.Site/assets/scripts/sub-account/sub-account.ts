@@ -164,12 +164,17 @@ class SubAccount {
             position: 'absolute'
         });
         var timerId = setTimeout(() => {
-            //popup.hide(100);
-            console.log('aa');
+            popup.hide(100);
         }, 2000);
 
         popup.on('mouseover', () => {
             clearTimeout(timerId);
+        });
+
+        popup.on('mouseout', () => {
+            timerId = setTimeout(() => {
+                popup.hide(100);
+            }, 100);
         });
     };
 }
