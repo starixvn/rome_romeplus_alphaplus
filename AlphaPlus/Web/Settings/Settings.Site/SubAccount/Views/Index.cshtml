@@ -9,7 +9,9 @@
     <main role="main" class="pb-3">
         <div class="title-page">
             <span class="txt-title">Sub Account</span>
-            <button  @(hasnotPerm ? "disabled" : string.Empty) class="btn-refresh btn-add @(hasnotPerm ? "btn-add-disable" : string.Empty)" id="btn-add">Add Sub Account</button>
+            <button @(hasnotPerm ? "disabled" : string.Empty)
+                class="btn-refresh btn-add @(hasnotPerm ? "btn-add-disable" : string.Empty)" id="btn-add">Add Sub
+                Account</button>
         </div>
         <table class="tblRpt">
             <thead class="RptHeader">
@@ -31,30 +33,69 @@
                 <td>Remove OTP</td>
             </thead>
             <tbody>
-            @foreach (var subAcc in Model)
-            {
-                ++index;
-                <tr>
-                    <td>@index</td>
-                    <td>@subAcc.Username</td>
-                    <td>@subAcc.Nickname</td>
-                    <td>@subAcc.Firstname</td>
-                    <td>@subAcc.Lastname</td>
-                    <td class="c">@subAcc.CreateDate</td>
-                    <td class="c"><div class="@(hasnotPerm ? string.Empty : "pMemInfo")" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission">@subAcc.GetPermission()</div></td>
-                    <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-D")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetsForecastPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-E")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasReportPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-L")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetlistPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-C")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasTransferPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-G")" type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId" data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasViewLogPermission ? "checked" : string.Empty) /></td>
-                    <td class="c"><span class="icon-edit info @(hasnotPerm ? "editBtn-Disable" : string.Empty)" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
-                    <td class="c"><span class="icon-edit pwd @(hasnotPerm ? "editBtn-Disable" : string.Empty)" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
-                    <td class="c"><span class="icon-edit sc @(hasnotPerm ? "editBtn-Disable" : string.Empty)" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
-                    <td class="c"><span class="icon-edit otp @(hasnotPerm ? "editBtn-Disable" : string.Empty)" data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
-                </tr>
-            }
+                @foreach (var subAcc in Model)
+                {
+                    ++index;
+                    <tr>
+                        <td>@index</td>
+                        <td>@subAcc.Username</td>
+                        <td>@subAcc.Nickname</td>
+                        <td>@subAcc.Firstname</td>
+                        <td>@subAcc.Lastname</td>
+                        <td class="c">@subAcc.CreateDate</td>
+                        <td class="c">
+                            <div class="@(hasnotPerm ? string.Empty : "pMemInfo")" data-subaccid="@subAcc.SubAccId"
+                                data-pageaccess="@subAcc.MemberInfoPermission" >@subAcc.GetPermission()</div>
+                        </td>
+                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-D")"
+                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetsForecastPermission ?
+                            "checked" : string.Empty) /></td>
+                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-E")"
+                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasReportPermission ? "checked" :
+                            string.Empty) /></td>
+                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-L")"
+                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetlistPermission ? "checked" :
+                            string.Empty) /></td>
+                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-C")"
+                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasTransferPermission ? "checked" :
+                            string.Empty) /></td>
+                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-G")"
+                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasViewLogPermission ? "checked" :
+                            string.Empty) /></td>
+                        <td class="c"><span class="icon-edit info @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                        <td class="c"><span class="icon-edit pwd @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                        <td class="c"><span class="icon-edit sc @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                        <td class="c"><span class="icon-edit otp @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                    </tr>
+                }
             </tbody>
         </table>
         @Html.AntiForgeryToken()
+        <ul id="Popup" class="divMenuPopup" style="display: none;">
+            <li class="group">
+                <input type="radio" name="rdPermission" id="pNone" data-pageaccess="">
+                <label for="pNone">None</label>
+            </li>
+            <li class="group">
+                <input type="radio" name="rdPermission" id="pView" data-pageaccess="[H]">
+                <label for="pView">View</label>
+            </li>
+            <li class="group">
+                <input type="radio" name="rdPermission" id="pUpdateView" data-pageaccess="[B][H]">
+                <label for="pUpdateView">Update</label>
+            </li>
+            <li class="group"><input type="radio" name="rdPermission" id="pFullControl" data-pageaccess="[A][B][H]">
+                <label for="pFullControl">Full Control</label>
+            </li>
+        </ul>
     </main>
 </div>
