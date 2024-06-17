@@ -1,9 +1,9 @@
-class MonitoringBetsView {
+class LastBetsNewView {
     private iconSaveFilter: JQuery;
     private dropdownFilter: JQuery;
     private dropdownMostRecentTicket: JQuery;
     private autoRefreshComponent: AutoRefreshComponent;
-    private monitoringBetsCopyHtml: MonitoringBetsCopyHtml;
+    private lastBetsCopyHtml: LastBetsCopyHtml;
     private saveFilterView: SaveFilterView;
 
     $msgError: JQuery;
@@ -17,11 +17,11 @@ class MonitoringBetsView {
 
     constructor(
         autoRefreshComponent: AutoRefreshComponent,
-        monitoringBetsCopyHtml: MonitoringBetsCopyHtml,
+        lastBetsCopyHtml: LastBetsCopyHtml,
         saveFilter: SaveFilterView
     ) {
         this.autoRefreshComponent = autoRefreshComponent;
-        this.monitoringBetsCopyHtml = monitoringBetsCopyHtml;
+        this.lastBetsCopyHtml = lastBetsCopyHtml;
         this.saveFilterView = saveFilter;
     }
 
@@ -34,7 +34,7 @@ class MonitoringBetsView {
         );
         this.setTransId($('#last-trans-id').val(), $('#latest-trans-id').val());
 
-        this.monitoringBetsCopyHtml.init();
+        this.lastBetsCopyHtml.init();
         this.saveFilterView.init(this.iconSaveFilter, () => this.getSelectedFilterParams());
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
 
@@ -228,9 +228,5 @@ class MonitoringBetsView {
 }
 
 $(function () {
-    new MonitoringBetsView(
-        new AutoRefreshComponent(),
-        new MonitoringBetsCopyHtml(Clipboard),
-        new SaveFilterView()
-    ).init();
+    new LastBetsNewView(new AutoRefreshComponent(), new LastBetsCopyHtml(Clipboard), new SaveFilterView()).init();
 });

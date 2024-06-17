@@ -1,4 +1,4 @@
-class MonitoringBetsCopyHtml {
+class LastBetsCopyHtml {
     private clipboard: any;
 
     constructor(clipboard: any) {

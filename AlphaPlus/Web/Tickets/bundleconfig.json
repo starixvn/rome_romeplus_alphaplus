@@ -199,8 +199,8 @@
       "assets/scripts/components/autorefresh.js",
       "assets/scripts/components/inline-message.js",
       "assets/scripts/betlists/monitoring-bets/save-filter.js",
-      "assets/scripts/betlists/monitoring-bets/monitoring-bets-copyhtml.js",
-      "assets/scripts/betlists/monitoring-bets/monitoring-bets.js"
+      "assets/scripts/betlists/last-bets/last-bets-copyhtml.js",
+      "assets/scripts/betlists/last-bets/last-bets-new.js"
     ]
   }
 ]
