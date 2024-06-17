@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.Parlay;
 
-public class GetComboParlayDetailCriteria(
+internal class GetComboParlayDetailCriteria(
     long refNo,
     int custId,
     DateTime balanceUpDate,

@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.WinLoss;
 
-public abstract class GetBetListWinLossByDateBaseCriteria(
+internal abstract class GetBetListWinLossByDateBaseCriteria(
     int custId,
     string productIds,
     string productDetails,

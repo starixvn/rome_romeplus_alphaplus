@@ -1,6 +1,6 @@
 namespace AlphaPlus.BetLists.WinLoss;
 
-public class GetBetListWinLossByDateCriteria(
+internal class GetBetListWinLossByDateCriteria(
     int custId,
     string productIds,
     string productDetails,

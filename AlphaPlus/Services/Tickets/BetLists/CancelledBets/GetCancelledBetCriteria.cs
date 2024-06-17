@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.CancelledBets;
 
-public class GetCancelledBetCriteria(
+internal class GetCancelledBetCriteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,

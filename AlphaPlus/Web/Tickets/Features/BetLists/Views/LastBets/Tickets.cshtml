@@ -1,0 +1,38 @@
+@{
+    Layout = null;
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListBaseViewModel
+@if (Model.BetListData?.Tickets.Any() == true)
+{
+    var index = 1;
+    foreach (var ticket in Model.BetListData.Tickets)
+    {
+        <tr id="r@(ticket.TransId)" class="@(ticket.IsHighlight ? "row-highlight" : string.Empty)">
+            <td class="w-order">@(index++)</td>
+            <td class="trans-block text-center">@ticket.TransId</td>
+            <td class="trans-block text-center nonbreak">@ticket.TransDate.ToString()</td>
+            <td>
+                <div class="line-username">
+                    <span>@ticket.UserName</span>
+                    @if (ticket.IsInWatchlist)
+                    {
+                        <span class="icon-mywatchlist" data-toggle="tooltip" data-placement="bottom"
+                            title="@Resources.MonitoredMember"></span>
+                    }
+                </div>
+            </td>
+            <td class="text-center">@ticket.BetType</td>
+            <choice builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
+                ticket-data="Model.BetListData.TicketData" is-show-score-map="Model.CanViewScoreMap(ticket)" />
+            <odds builder="Model.Builder" ticket="ticket" ticket-data="Model.BetListData.TicketData"
+                get-cache-property-by-id="Model.TicketHelper.GetOddsTypeNameById" />
+            <stake builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper" />
+            <lastbets-status ticket="ticket" ticket-helper="Model.TicketHelper" is-show-vn-ip="Model.DisplayVNIP" />
+            <platform value="@ticket.Platform" />
+        </tr>
+    }
+}
+else
+{
+    <no-infomation colspan="Model.TotalColumn" hastbody="false" />
+}

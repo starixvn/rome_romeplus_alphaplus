@@ -12,11 +12,7 @@ public interface ILastBetsService
 {
     Task<IEnumerable<TicketDto>> GetBetList(GetLastBetsParam param);
 
-    Task<IEnumerable<TicketDto>> GetBetList(
-        ICriteria criteria,
-        bool displayVNIP,
-        string siteName,
-        int cacheTimeInMinutes);
+    Task<IEnumerable<TicketDto>> GetBetListNew(GetLastBetsNewParam param);
 }
 
 public class LastBetsService(
@@ -40,7 +36,23 @@ public class LastBetsService(
         return GetBetList(criteria, param.DisplayVNIP, param.SiteName, param.RunningMatchCacheTime);
     }
 
-    public async Task<IEnumerable<TicketDto>> GetBetList(
+    public Task<IEnumerable<TicketDto>> GetBetListNew(GetLastBetsNewParam param)
+    {
+        var criteria = new GetLastBetsNewCriteria(
+            param.CustId,
+            param.TransId,
+            param.MemberList,
+            param.SportTypeList,
+            param.LeagueList,
+            param.BetTypeList,
+            param.LiveIndicator,
+            param.MinStake,
+            param.LimitRowCount);
+
+        return GetBetList(criteria, param.DisplayVNIP, param.SiteName, param.RunningMatchCacheTime);
+    }
+
+    private async Task<IEnumerable<TicketDto>> GetBetList(
         ICriteria criteria,
         bool displayVNIP,
         string siteName,

@@ -149,5 +149,58 @@
     "inputFiles": [
       "assets/styles/betlists/parlay-detail.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/filter-configuration.css",
+    "inputFiles": [
+      "assets/styles/components/treeview.css",
+      "assets/styles/components/username-tagsinput.css",
+      "assets/styles/betlists/monitoring-bets/filter-configuration.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/filter-configuration.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/ajax-helper.js",
+      "assets/scripts/components/inline-message.js",
+      "assets/scripts/components/dropdown-list.js",
+      "assets/scripts/components/sportleaguematch-treeview.js",
+      "assets/scripts/components/username-tagsinput.js",
+      "assets/scripts/betlists/monitoring-bets/filter-configuration.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/manage-filters.css",
+    "inputFiles": [
+      "assets/styles/betlists/monitoring-bets/manage-filters.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/manage-filters.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/ajax-helper.js",
+      "assets/scripts/components/inline-message.js",
+      "assets/scripts/betlists/monitoring-bets/save-filter.js",
+      "assets/scripts/betlists/monitoring-bets/manage-filters.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/last-bets-new.css",
+    "inputFiles": [
+      "assets/styles/components/autorefresh.css",
+      "assets/styles/betlists/monitoring-bets/monitoring-bets.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/last-bets-new.js",
+    "inputFiles": [
+      "assets/scripts/betlists/common/ajax-helper.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/components/autorefresh.js",
+      "assets/scripts/components/inline-message.js",
+      "assets/scripts/betlists/monitoring-bets/save-filter.js",
+      "assets/scripts/betlists/monitoring-bets/monitoring-bets-copyhtml.js",
+      "assets/scripts/betlists/monitoring-bets/monitoring-bets.js"
+    ]
   }
 ]

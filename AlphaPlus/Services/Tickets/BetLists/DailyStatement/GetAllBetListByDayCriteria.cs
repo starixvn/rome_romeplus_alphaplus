@@ -1,6 +1,6 @@
 namespace AlphaPlus.BetLists.DailyStatement;
 
-public class GetAllBetListByDayCriteria(
+internal class GetAllBetListByDayCriteria(
     int custId,
     DateTime winlossDate,
     DateTime moveBetsDay,

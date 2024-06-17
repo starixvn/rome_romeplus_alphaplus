@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.SearchTickets;
 
-public class SearchTicketsCriteria(
+internal class SearchTicketsCriteria(
     long refNo,
     int uplineId,
     byte roleId,

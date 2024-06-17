@@ -1,4 +1,8 @@
 ﻿class AJAXHelper {
+    static buildURL(url: string) {
+        return `${$('#hidden-TicketBaseUrl').val()}${url}`;
+    }
+
     static getJSONWithoutBlockUI(url: string, onSuccess) {
         $.getJSON(url, onSuccess).fail((jqXHR) => this.handleOnFail(jqXHR));
     }

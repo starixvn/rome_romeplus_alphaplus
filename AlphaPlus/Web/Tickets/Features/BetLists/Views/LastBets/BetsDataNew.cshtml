@@ -1,0 +1,9 @@
+@{
+    Layout = null;
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets.LastBetsDataNewViewModel
+<partial name="Tickets" model="Model" />
+<input type="hidden" id="last-trans-id" value="@Model.LastTransId.ToString()" />
+<input type="hidden" id="latest-trans-id" value="@Model.LatestTransId.ToString()" />
+<input type="hidden" id="new-last-trans-id-by-filter" value="@Model.LastTransIdCacheKeyByFilter.ToString()" />
+<input type="hidden" id="new-latest-trans-id-by-filter" value="@Model.LatestTransIdCacheKeyByFilter.ToString()" />

@@ -1,7 +1,7 @@
 ﻿interface Window {
     indexManager: {
         updateCurrentUrl(url: string): void;
-        initFeedbackFunction(id: number): void;
+        initFeedbackFunction(id: number, width?: number, height?: number): void;
     };
 }
 

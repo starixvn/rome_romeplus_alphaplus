@@ -29,14 +29,14 @@ public class BetListBaseController(IMediator mediator) : BaseController
         return File(viewModel.Content, viewModel.ContentType, viewModel.Name);
     }
 
-    // protected async Task<IActionResult> Json<TResponse>(IRequest<TResponse> message)
-    //     => Json(await mediator.Send(message));
+    protected async Task<IActionResult> JsonData<TResponse>(IRequest<TResponse> message)
+        => Json(await mediator.Send(message));
 
-    // protected Result ForbiddenResult()
-    //     => Result.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
+    protected IActionResult JsonForbidden()
+        => Json(new Result((int)HttpStatusCode.Forbidden, AlphaPlus.BetLists.AppResources.Resources.NotAuthorized));
 
-    // protected Result BadRequestResult()
-    //     => Result.CreateErrorResult(Resources.BadRequest, (int)HttpStatusCode.BadRequest);
+    protected IActionResult JsonBadRequest()
+        => Json(new Result((int)HttpStatusCode.BadRequest, AlphaPlus.BetLists.AppResources.Resources.BadRequest));
 
     protected static string GetViewPath(string controllerName, string actionName)
         => $"~/Features/BetLists/Views/{controllerName}/{actionName}.cshtml";

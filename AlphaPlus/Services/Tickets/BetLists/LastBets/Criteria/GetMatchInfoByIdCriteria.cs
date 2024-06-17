@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.LastBets;
 
-public class GetMatchInfoByIdCriteria(int matchId) : CriteriaBase
+internal class GetMatchInfoByIdCriteria(int matchId) : CriteriaBase
 {
     public int MatchId { get; } = matchId;
 

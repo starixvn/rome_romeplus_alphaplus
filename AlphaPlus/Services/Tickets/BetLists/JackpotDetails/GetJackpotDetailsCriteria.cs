@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.JackpotDetails;
 
-public class GetJackpotDetailsCriteria(
+internal class GetJackpotDetailsCriteria(
     long transId,
     int custId,
     int betType,

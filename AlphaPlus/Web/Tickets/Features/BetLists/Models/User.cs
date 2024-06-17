@@ -1,3 +1,4 @@
+using AlphaPlus.BetLists.LastBets;
 using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Models;
@@ -35,6 +36,10 @@ public interface IUser
     bool AutoFollowBetIsDummyAgent { get; }
 
     string IP { get; }
+
+    AddFilterParam GetUnsavedFilter(int custId, int subAccId);
+
+    void SetUnsavedFilter(int custId, int subAccId, AddFilterParam value);
 }
 
 public class User(IUserSession userSession) : IUser
@@ -43,6 +48,7 @@ public class User(IUserSession userSession) : IUser
     private const string Jackpot = "Jackpot";
     private const string CustomerDatelimit = "CustomerDateLimit";
     private const string GameEnable = "GameEnable_";
+    private const string LastBetsMonitoringUnsavedFilter = "LastBetsMonitoringUnsavedFilter_{0}_{1}";
 
     public int Id => userSession.CustId;
 
@@ -88,4 +94,13 @@ public class User(IUserSession userSession) : IUser
         => userSession.GetProperty<IList<int>>(GameEnable + gameName);
 
     public string IP => userSession.UserLoginIp;
+
+    public AddFilterParam GetUnsavedFilter(int custId, int subAccId)
+        => userSession.GetProperty<AddFilterParam>(UnsavedFilterSessionKey(custId, subAccId));
+
+    public void SetUnsavedFilter(int custId, int subAccId, AddFilterParam value)
+        => userSession.SetProperty(UnsavedFilterSessionKey(custId, subAccId), value);
+
+    private static string UnsavedFilterSessionKey(int custId, int subAccId)
+        => string.Format(LastBetsMonitoringUnsavedFilter, custId, subAccId);
 }

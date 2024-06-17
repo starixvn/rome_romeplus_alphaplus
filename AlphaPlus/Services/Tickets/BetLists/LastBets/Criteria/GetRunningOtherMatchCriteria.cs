@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.LastBets;
 
-public class GetRunningOtherMatchCriteria : CriteriaBase
+internal class GetRunningOtherMatchCriteria : CriteriaBase
 {
     public int MatchId { get; } = 0;
 

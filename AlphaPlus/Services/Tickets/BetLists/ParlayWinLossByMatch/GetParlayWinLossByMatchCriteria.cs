@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.ParlayWinLossByMatch;
 
-public class GetParlayWinLossByMatchCriteria(
+internal class GetParlayWinLossByMatchCriteria(
     int custId,
     int betType,
     DateTime fromDate,

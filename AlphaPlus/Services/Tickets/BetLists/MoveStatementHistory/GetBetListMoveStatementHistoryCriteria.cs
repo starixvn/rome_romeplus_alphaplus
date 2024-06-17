@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.MoveStatementHistory;
 
-public class GetBetListMoveStatementHistoryCriteria(int custId, long transId) : CriteriaBase
+internal class GetBetListMoveStatementHistoryCriteria(int custId, long transId) : CriteriaBase
 {
     public int CustId { get; } = custId;
 

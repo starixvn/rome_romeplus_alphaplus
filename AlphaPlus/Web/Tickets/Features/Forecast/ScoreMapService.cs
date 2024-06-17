@@ -86,8 +86,8 @@ public class ScoreMapService : ServiceBase, IScoreMapService
     public async Task<IEnumerable<ScoreMapResult>> GetResults(GetScoreMapResultRequest message)
     {
         var betTypes = await GetBetTypes(message.Language, message.SiteName);
-        var liveBetTypes = BuildFollowedBetTypes(message.LiveBetTypes, betTypes[0]).Join();
-        var deadBetTypes = BuildFollowedBetTypes(message.DeadBetTypes, betTypes[1]).Join();
+        var liveBetTypes = BuildFollowedBetTypes(message.LiveBetTypes, betTypes[0]).JoinWithComma();
+        var deadBetTypes = BuildFollowedBetTypes(message.DeadBetTypes, betTypes[1]).JoinWithComma();
 
         var queryString = QueryString.Create(new[]
         {

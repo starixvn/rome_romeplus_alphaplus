@@ -3,9 +3,13 @@ namespace AlphaPlus.Core.Extensions;
 public static class DateTimeExtensions
 {
     private const string ShortDateWithSlash = "MM/dd/yyyy";
+    private const string LongDateTimeWithSlash = "MM/dd/yyyy hh:mm:ss tt";
 
     public static string ToShortDateWithSlash(this DateTime dateTime)
         => dateTime.ToString(ShortDateWithSlash);
+
+    public static string ToLongDateTimeWithSlash(this DateTime dateTime)
+        => dateTime.ToString(LongDateTimeWithSlash);
 
     public static DateTime GetGreaterDate(this DateTime fromDate, DateTime limitedDate)
         => fromDate < limitedDate ? limitedDate : fromDate;

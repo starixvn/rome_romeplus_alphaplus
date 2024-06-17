@@ -1,0 +1,149 @@
+@{
+    ViewData["Title"] = Resources.FilterConfiguration;
+    async Task RenderButtonGroup()
+    {
+        if (Model.ShowWelcomePopup)
+        {
+            <input type="button" class="button-cancel" value="@Resources.Back" disabled />
+        }
+        else
+        {
+            <a class="button-cancel" asp-action="Index" asp-route-filtername="@Model.FilterName"
+                asp-route-limitrowcount="@Model.LimitRowCount" asp-route-autostart="@Model.AutoStart">@Resources.Back</a>
+        }
+        <input type="button" class="button-apply apply" value="@Resources.Apply" />
+        <input type="button" class="button-save save" value="@Resources.SaveFilter" />
+    }
+}
+@section Styles {
+    @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-betlists/monitoring-bets")
+    <link rel="stylesheet" href="~/bundles/betlists/filter-configuration.css" asp-append-version="true" />
+}
+@section Scripts {
+    @StaticResources.AssetScripts.RenderCommon("/bundles-v2/site-betlists/monitoring-bets")
+    <script src="~/bundles/betlists/filter-configuration.js" asp-append-version="true"></script>
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets.FilterConfigurationViewModel
+<div class="bl_title">@Resources.FilterConfiguration</div>
+<div class="filter-config">
+    <div id="inline-message" class="msg hide"></div>
+    <div class="block-btn top">@{
+            await RenderButtonGroup();
+        }</div>
+    <div class="block-config border-bottom">
+        <div class="ttl-config">@Resources.FilterByTickets</div>
+        <div class="list-item">
+            <div class="item">
+                <label>@Resources.BetType</label>
+                <div class="inner">
+                    <select id="ddl-bettype" asp-items="Model.BetTypes" multiple="multiple"
+                        data-label-select="@Resources.SelectBettype" data-label-selected="@Resources.Selected"
+                        data-label-all="@Resources.AllBetTypes" data-label-selectall="@Resources.SelectAll"></select>
+                </div>
+            </div>
+            <div class="item">
+                <label for="txt-stake">@Resources.stake</label>
+                <div class="inner stake">
+                    <span>>=</span>
+                    <input type="text" id="txt-stake" value="0" autocomplete="off" maxlength="11" />
+                </div>
+            </div>
+            <div class="item">
+                <label>@Resources.LiveStatus</label>
+                <div class="inner"><select id="ddl-live-status" asp-items="Model.LiveStatus"></select></div>
+            </div>
+        </div>
+    </div>
+    <div class="block-config border-bottom">
+        <div class="ttl-config">@Resources.FilterBySports</div>
+        <div class="list-box">
+            <div class="box">
+                <label for="rdo-all-sports">
+                    @Resources.AllSports
+                    <input type="radio" name="filterbysports" id="rdo-all-sports" checked />
+                    <span class="overlay"></span>
+                </label>
+                <p>@Resources.FilterConfigurationAllSportsContent</p>
+                <p>@Resources.FilterConfigurationAllSportsContent2</p>
+            </div>
+            <div class="box">
+                <label for="rdo-specific-sports">
+                    @Resources.SpecificSports
+                    <input type="radio" name="filterbysports" id="rdo-specific-sports" />
+                    <span class="overlay"></span>
+                </label>
+                <p>@Resources.FilterConfigurationSpecificSportsContent</p>
+                <p>@Resources.FilterConfigurationSpecificSportsContent2</p>
+            </div>
+        </div>
+        <div class="hide" id="sports-container">
+            <div class="list-item all-sport">
+                <div class="item">
+                    <label>@Resources.SportGroup</label>
+                    <div class="inner"><select id="ddl-sport-group" asp-items="Model.SportGroups"></select></div>
+                </div>
+            </div>
+            <div id="sportleaguematch-treeview"></div>
+        </div>
+    </div>
+    <div class="block-config">
+        <div class="ttl-config">@Resources.FilterByMembers</div>
+        <div class="list-box">
+            <div class="box">
+                <label for="rdo-all-members">
+                    @Resources.AllMembers
+                    <input type="radio" name="filterbymembers" id="rdo-all-members" checked />
+                    <span class="overlay"></span>
+                </label>
+                <p>@Resources.FilterConfigurationAllMembersContent</p>
+                <p>@Resources.FilterConfigurationAllMembersContent2</p>
+            </div>
+            <div class="box">
+                <label for="rdo-specific-members">
+                    @Resources.SpecificMembers
+                    <input type="radio" name="filterbymembers" id="rdo-specific-members" />
+                    <span class="overlay"></span>
+                </label>
+                <p>@Resources.FilterConfigurationSpecificMembersContent</p>
+            </div>
+        </div>
+        <div class="hide" id="members-container">
+            <p class="text">@Resources.EnterMembers</p>
+            <div class="tagsinput" id="username_tagsinput">
+                <span class="tag-limit" id="username_taglimit"></span>
+                <input type="text" class="tag-add" id="username_input" autocomplete="off"
+                    placeholder="@Resources.UsernameTagsInputPlaceHolder" />
+                <div class="tags-box" id="username_tags"></div>
+            </div>
+            <p class="text">@Resources.SelectMembers</p>
+            <div class="my-watchlist" id="my-watchlist-members"></div>
+        </div>
+    </div>
+    <div class="block-btn">@{
+            await RenderButtonGroup();
+        }</div>
+    @if (Model.ShowWelcomePopup)
+    {
+        <partial name="WelcomePopup" />
+    }
+    <partial name="SaveFilterConfirmPopup" model="true" />
+</div>
+<input type="hidden" id="hidden-BetTypesRequiredError" value="@Resources.FilterConfigurationBetTypesRequiredError" />
+<input type="hidden" id="hidden-StakeRequiredError" value="@Resources.FilterConfigurationStakeRequiredError" />
+<input type="hidden" id="hidden-SportsRequiredError" value="@Resources.FilterConfigurationSportsRequiredError" />
+<input type="hidden" id="hidden-FilterByMembersRequiredError"
+    value="@Resources.FilterConfigurationFilterByMembersRequiredError" />
+<input type="hidden" id="hidden-UnsavedFilter" value="@Resources.UnsavedFilter" />
+<input type="hidden" id="hidden-SelectAll" value="@Resources.SelectAll" />
+<input type="hidden" id="hidden-SearchSportLeague" value="@Resources.SearchSportLeague" />
+<input type="hidden" id="hidden-SportLeagueNotFound" value="@Resources.SportLeagueNotFound" />
+<input type="hidden" id="hidden-ExpandAll" value="@Resources.ExpandAll" />
+<input type="hidden" id="hidden-SelectedOnly" value="@Resources.SelectedOnly" />
+<input type="hidden" id="hidden-SearchMemberUsername" value="@Resources.SearchMemberUsernameOrNickname" />
+<input type="hidden" id="hidden-MemberUsernameNotFound" value="@Resources.MemberNotFound" />
+<input type="hidden" id="hidden-AllIncludedNewlyAddedMembers" value="@Resources.AllIncludedNewlyAddedMembers" />
+<input type="hidden" id="hidden-NoInformationIsAvailable" value="@Resources.NoInformationIsAvailable" />
+<input type="hidden" id="hidden-MaxNoUsernames" value="@Resources.MaxNoUsernames" />
+<input type="hidden" id="hidden-UsernameAlreadyExists" value="@Resources.MemberAlreadyExists" />
+<input type="hidden" id="hidden-UsernameSuggestionUrl" value="@MicroSites.SettingUrl("~/usernamesuggestion/index")" />

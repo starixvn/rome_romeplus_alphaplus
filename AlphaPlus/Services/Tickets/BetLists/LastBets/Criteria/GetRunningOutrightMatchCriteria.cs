@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.LastBets;
 
-public class GetRunningOutrightMatchCriteria : CriteriaBase
+internal class GetRunningOutrightMatchCriteria : CriteriaBase
 {
     public bool IsVSRacing { get; } = false;
 

@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.CorrectScore;
 
-public class GetRunningCorrectScoreCriteria(int custId, UserLevel custLevel) : CriteriaBase
+internal class GetRunningCorrectScoreCriteria(int custId, UserLevel custLevel) : CriteriaBase
 {
     public int CustId { get; } = custId;
 

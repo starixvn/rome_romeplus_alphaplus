@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.WinLossByMatch;
 
-public class GetWinLossRacingCriteria(
+internal class GetWinLossRacingCriteria(
     int custId,
     int betType,
     string race,

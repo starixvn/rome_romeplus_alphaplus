@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.RiskAnalysisIPMatching;
 
-public class GetRiskAnalysisIPMatchingCriteria(
+internal class GetRiskAnalysisIPMatchingCriteria(
     int custId,
     string ip,
     DateTime date,

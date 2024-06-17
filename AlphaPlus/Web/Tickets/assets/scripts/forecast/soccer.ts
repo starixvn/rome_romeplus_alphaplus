@@ -8,7 +8,7 @@ interface JQueryStatic {
 
 interface JQuery {
     select2(): void;
-    select2(options): void;
+    select2(options): JQuery;
     select2(method: string, options): void;
 }
 

@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.Parlay;
 
-public class GetParlayBetListCriteria(long transId, int custId) : CriteriaBase
+internal class GetParlayBetListCriteria(long transId, int custId) : CriteriaBase
 {
     public long TransId { get; } = transId;
 

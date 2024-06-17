@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.LastBets;
 
-public class GetLastBetsCriteria(
+internal class GetLastBetsCriteria(
     int betType,
     int custId,
     long transId,

@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.CashOutHistory;
 
-public class GetCashOutHistoryCriteria(long transId, long custId, DateTime winlossDate, DateTime balanceUpDay) : CriteriaBase
+internal class GetCashOutHistoryCriteria(long transId, long custId, DateTime winlossDate, DateTime balanceUpDay) : CriteriaBase
 {
     public long TransId { get; } = transId;
 

@@ -4,6 +4,6 @@ public static class EnumerableExtensions
 {
     private const char JoinSeparator = ',';
 
-    public static string Join<T>(this IEnumerable<T> array)
+    public static string JoinWithComma<T>(this IEnumerable<T> array)
         => array == null ? string.Empty : string.Join(JoinSeparator, array);
 }

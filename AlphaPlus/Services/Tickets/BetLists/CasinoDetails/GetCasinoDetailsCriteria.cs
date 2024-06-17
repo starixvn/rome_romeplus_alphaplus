@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.CasinoDetails;
 
-public class GetCasinoDetailsCriteria(
+internal class GetCasinoDetailsCriteria(
     long refNo,
     int custId,
     byte transType,

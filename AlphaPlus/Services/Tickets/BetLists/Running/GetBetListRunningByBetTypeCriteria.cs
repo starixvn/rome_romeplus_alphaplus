@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.Running;
 
-public class GetBetListRunningByBetTypeCriteria(int custId, int betType, UserLevel custLevel) : CriteriaBase
+internal class GetBetListRunningByBetTypeCriteria(int custId, int betType, UserLevel custLevel) : CriteriaBase
 {
     public int CustId { get; } = custId;
 

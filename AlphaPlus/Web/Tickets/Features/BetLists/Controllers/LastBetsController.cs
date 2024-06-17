@@ -1,4 +1,4 @@
-using AlphaPlus.Core.Models;
+using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
@@ -12,9 +12,10 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 public class LastBetsController(
     IMediator mediator,
     IOptions<AppSettings> options,
-    IUserSession userSession) : BetListBaseController(mediator)
+    IUser user) : BetListBaseController(mediator)
 {
     private readonly AppSettings appSettings = options.Value;
+    private readonly IUser user = user;
 
     public Task<IActionResult> Index(LastBetsQuery message)
         => View(message, GetViewPath("LastBets", nameof(Index)));
@@ -22,11 +23,18 @@ public class LastBetsController(
     public Task<IActionResult> BetsData(GetLastBetsDataQuery message)
         => View<LastBetsDataViewModel>(message, GetViewPath("LastBets", nameof(BetsData)));
 
+    public Task<IActionResult> IndexNew(LastBetsNewQuery message)
+        => View(message, GetViewPath("LastBets", nameof(IndexNew)));
+
+    [HttpPost]
+    public Task<IActionResult> BetsDataNew(GetLastBetsDataNewQuery message)
+        => View(message, GetViewPath("LastBets", nameof(BetsDataNew)));
+
     public override void OnActionExecuting(ActionExecutingContext context)
     {
-        if (userSession.IsInternal
+        if (user.IsInternal
         || appSettings.EnableBetsListMonitoring
-        || appSettings.UsersAlwaysAllowAccessBetsListMonitoring.Contains(userSession.CustId))
+        || appSettings.UsersAlwaysAllowAccessBetsListMonitoring.Contains(user.Id))
         {
             base.OnActionExecuting(context);
         }

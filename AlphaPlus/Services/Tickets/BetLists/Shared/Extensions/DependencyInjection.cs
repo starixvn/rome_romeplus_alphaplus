@@ -51,7 +51,7 @@ public static class DependencyInjection
             .AddSingleton<IReportDateService, ReportDateService>()
             //.AddSingleton<IProductService, ProductService>()
             .AddSingleton<ILastBetsService, LastBetsService>()
-            .AddSingleton<IMonitoringBetsService, MonitoringBetsService>()
+            .AddSingleton<IFilterBetsService, FilterBetsService>()
             .AddSingleton<ISearchTicketsService, SearchTicketsService>()
             .AddSingleton<ICancelledBetService, CancelledBetService>()
             .AddSingleton<ICorrectScoreService, CorrectScoreService>()
