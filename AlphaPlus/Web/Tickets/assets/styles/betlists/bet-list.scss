@@ -1,17 +1,6 @@
 ﻿@import '../mixins';
 @import '../variables';
 
-body {
-    background-color: transparent;
-    font-size: $font-size;
-    font-family: $font-family;
-    line-height: 20px;
-}
-
-a {
-    text-decoration: none;
-}
-
 .space-between {
     display: flex;
     justify-content: space-between;
@@ -23,9 +12,9 @@ a {
 
         .btn-switch-version {
             text-decoration: none !important;
-            background: #d3dfec;
-            color: #0b599c;
-            border-color: #d3dfec;
+            background: var(--bl-bt-switch-view-bg);
+            color: var(--bl-bt-switch-view-color);
+            border-color: var(--bl-bt-switch-view-border-color);
             padding: 6px 12px;
             align-items: center;
             font-weight: 500;
@@ -38,29 +27,30 @@ a {
 }
 .tbl-betlist {
     border-collapse: collapse;
-    background-color: #fff;
-    font-size: $font-size;
+    background-color: var(--bl-tb-bg);
+    font-size: var(--bl-font-size);
     text-align: left;
     width: 100%;
+    border: solid 1px var(--bl-tb-border-color);
 
     th,
     td {
-        height: $height-normal;
+        height: 28px;
         padding: 4px 8px;
-        border: solid 1px $table-border-color;
+        border: solid 1px var(--bl-tb-border-color);
         white-space: nowrap;
         @include box-sizing;
     }
 
     th {
         font-weight: normal;
-        color: $table-header-color;
-        background: $table-header-bg-color;
+        color: var(--bl-tb-border-color);
+        background: var(--bl-tb-header-bg-color);
         text-align: center;
     }
 
     td {
-        color: $text-color;
+        color: var(--bl-text-color);
         vertical-align: middle;
         text-align: right;
 
@@ -75,11 +65,11 @@ a {
 
     tbody {
         tr:hover td {
-            background-color: $table-td-hover-color;
+            background-color: var(--bl-tb-td-hover-color);
         }
 
         tr#tr_footer:hover td {
-            background-color: #e8dfca;
+            background-color: var(--bl-tb-footer-bg-color);
         }
 
         tr {
@@ -122,11 +112,11 @@ a {
 }
 
 .bl_title {
-    color: #9d1c1c;
+    color: var(--bl-title-color);
     font-weight: bold;
     text-transform: uppercase;
     line-height: 40px;
-    border-bottom: 1px solid #cecece;
+    border-bottom: 1px solid var(--bl-title-border-color);
     margin-bottom: 12px;
     position: relative;
 
@@ -143,17 +133,17 @@ a {
         top: 0;
         left: 0;
         width: 100%;
-        background: #fff;
+        background: var(--bl-title-bg-fixed);
         margin-bottom: 0;
     }
 
     .note_title {
         text-transform: none;
-        color: $text-color;
+        color: var(--bl-note-title-color);
         line-height: 1.3;
         font-weight: normal;
         .require {
-            color: #fe0000;
+            color: var(--bl-note-title-color-require);
         }
     }
 }
@@ -161,7 +151,7 @@ a {
 .line {
     margin-top: 5px;
     margin-bottom: 5px;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid #dfdfdf;
     width: 100%;
     overflow: hidden;
     text-align: left;
@@ -169,19 +159,19 @@ a {
 
 .bl_underdog,
 .underdog {
-    color: #01122b;
+    color: var(--bl-tb-underdog);
     font-weight: bold !important;
 }
 
 .bl_favorite,
 .favorite {
     font-weight: bold !important;
-    color: $text-red-color-light;
+    color: var(--bl-tb-favorite);
 }
 
 .bl_num,
 .handicap .odds {
-    color: #039;
+    color: var(--bl-tb-handicap);
     font-size: 8pt;
 }
 
@@ -189,19 +179,19 @@ a {
 div.match + div.league,
 div.league,
 .no-details {
-    color: #666;
+    color: var(--bl-tb-name);
     line-height: 15px;
     margin-top: 1px;
 }
 
 .bl_oddtype,
 .oddstype {
-    color: #586985;
+    color: var(--bl-tb-oddtype);
 }
 
 .bl_status,
 .status {
-    color: #606060;
+    color: var(--bl-tb-status);
     font-size: 11px;
     font-weight: bold;
 }
@@ -212,13 +202,13 @@ div.league,
 
 .bl_btype,
 .bettype {
-    color: #003399;
+    color: var(--bl-tb-bettype);
     font-weight: 600;
 }
 
 .bl_time,
 .time {
-    color: #434343;
+    color: var(--bl-tb-time);
     font-size: 10pt;
     font-weight: normal;
     text-align: center;
@@ -226,22 +216,22 @@ div.league,
 
 .bl_stype,
 .sport {
-    color: #0066cc;
+    color: var(--bl-tb-sport);
 }
 
 .bl_match {
-    color: $text-color;
+    color: var(--bl-tb-match);
     font-weight: normal;
     line-height: 15px;
 }
 
 .bl_footertotal {
     font-weight: bold;
-    background-color: #e8dfca !important;
+    background-color: var(--bl-tb-footertotal-bg) !important;
     line-height: 20px;
 
     &.outstanding {
-        background-color: #f9c95b !important;
+        background-color: var(--bl-tb-outstanding-bg) !important;
     }
 
     .text {
@@ -282,14 +272,13 @@ div.league,
 }
 
 .w-order {
-    color: #7d7d7d;
     font-weight: normal;
     text-align: right;
     width: 20px;
 }
 
 .fhFirstGoal {
-    background: url(images/1F.gif) no-repeat scroll center center transparent;
+    background: url(../images/1F.gif) no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -362,7 +351,7 @@ div.league,
 
 .detail {
     display: inline;
-    color: $text-color;
+    color: var(--bl-detail-link-color);
     font-weight: bold;
     @include ripple-effect-icon($top: -2px, $margin-left: -7px);
 
@@ -373,7 +362,7 @@ div.league,
             weight: normal;
         }
 
-        color: #888;
+        color: var(--bl-detail-icon-color);
         content: '\e932';
         margin-right: 4px;
         position: relative;
@@ -382,7 +371,7 @@ div.league,
 
     &:hover {
         cursor: pointer;
-        color: #045ace;
+        color: var(--bl-detail-color-hover);
 
         &:before {
             color: #555;
@@ -390,12 +379,15 @@ div.league,
     }
 
     .detail-link {
-        color: #755200;
+        color: var(--bl-detail-link-color);
     }
 }
 
 .combinationLink {
     line-height: 20px;
+    a{
+        color: var(--bl-combinationLink);
+    }
 }
 
 .offer-name-list {
@@ -405,6 +397,9 @@ div.league,
 .float_l,
 .scoremap {
     float: left;
+    a{
+        text-decoration: none;
+    }
 }
 
 .iconScoreMap,
@@ -421,7 +416,7 @@ div.league,
         }
 
         content: '\e92d';
-        color: #0b599c;
+        color: var(--bl-tb-icon-score-map);
     }
 }
 
@@ -445,21 +440,21 @@ div.ticket-list div.void div.lastGoal {
 }
 
 .viewbrokengame-link {
-    color: #1ba4ff;
+    color: var(--bl-viewbrokengame-link);
     cursor: pointer;
 }
 
 .excluding-choices {
-    color: #484848;
+    color: var(--bl-excluding-choices);
     font-weight: normal;
 }
 
 .allbet-bet-id {
-    color: #bbb;
+    color: var(--bl-allbet-bet-id);
 }
 
 .allbet-bet-type-name {
-    color: #696969;
+    color: var(--bl-allbet-bet-type-name);
 }
 
 .p213,
@@ -733,7 +728,7 @@ span.strikethrough {
 }
 
 span.icon-boost {
-    background: url(Images/ico_parlay_boost.svg) no-repeat center center / 100%;
+    background: url(../../styles/images/) no-repeat center center / 100%;
     display: inline-block;
     height: 15px;
     width: 15px;
@@ -826,7 +821,7 @@ span.icon-boost {
         .label {
             color: $text-color;
             font-weight: 400;
-            font-size: $font-size;
+            font-size: var(--bl-font-size);
             background-color: transparent;
             padding: 2px 0 0;
             cursor: pointer;
@@ -841,7 +836,7 @@ span.icon-boost {
 
         .btn-submit {
             font-weight: 500;
-            font-size: $font-size;
+            font-size: var(--bl-font-size);
             margin: 0;
             line-height: 28px;
             margin-left: 15px;
