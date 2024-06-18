@@ -1,8 +1,6 @@
 ﻿:root,
 :root [data-theme='light'] {
     --bl-font-size: 13px;
-
-    
     --bl-text-color: #333;
 
     //title
@@ -39,6 +37,9 @@
     --bl-tb-outstanding-bg: #f9c95b;
     --bl-tb-icon-score-map: #0b599c;
 
+    --bl-handicap-color: #606060;
+    --bl-link-color: #045ace;
+
     --bl-detail-color: #333;
     --bl-detail-icon-color: #888;
     --bl-detail-color-hover: #555;
@@ -49,6 +50,18 @@
     --bl-excluding-choices:#484848;
     --bl-allbet-bet-id:#bbb;
     --bl-allbet-bet-type-name:#696969;
+
+    --bl-gamegroupname: #008000;
+    --bl-unit-stake: #039;
+
+    //betbuilder
+    --bl-betbuilder-color: #171717;
+    --bl-betbuilder-border: #171717;
+    --bl-bettype-description-color: #003399;
+
+    --bl-game-bet-id-color: #bbb;
+    --bl-game-bet-type-name-color: #696969;
+    --bl-players-choice-color: #000000;
 
 }
 :root [data-theme='dark'] {
@@ -88,6 +101,9 @@
     --bl-tb-outstanding-bg: #56533C;
     --bl-tb-icon-score-map: #3783E9;
 
+    --bl-handicap-color: #bcbcbc;
+    --bl-link-color: #56D6FF;
+
     --bl-detail-color: #cbcbcb;
     --bl-detail-icon-color: #cacaca;
     --bl-detail-color-hover: #555;
@@ -99,6 +115,12 @@
     --bl-allbet-bet-id:#bbb;
     --bl-allbet-bet-type-name:#ededed;
 
+    --bl-gamegroupname: #00cc00;
+    --bl-unit-stake: #508BFF;
+
+    --bl-game-bet-id-color: #bbb;
+    --bl-game-bet-type-name-color: #bcbcbc;
+    --bl-players-choice-color: #bbb;
 }
 
 

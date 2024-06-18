@@ -286,7 +286,7 @@ div.league,
 }
 
 .fhLastGoal {
-    background: url(images/1L.gif) no-repeat scroll center center transparent;
+    background: url(../images/1L.gif) no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -294,7 +294,7 @@ div.league,
 }
 
 .firstGoal {
-    background: url(images/firstGoal.gif) no-repeat scroll center center transparent;
+    background: url(../images/firstGoal.gif) no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -302,7 +302,7 @@ div.league,
 }
 
 .lastGoal {
-    background: url(images/lastGoal.gif) no-repeat scroll center center transparent;
+    background: url(../images/lastGoal.gif) no-repeat scroll center center transparent;
     display: inline;
     height: 10px;
     padding: 0 4px;
@@ -311,7 +311,7 @@ div.league,
 
 .colorHandicap,
 .handicap {
-    color: #606060;
+    color: var(--bl-handicap-color);
 }
 
 .handicap.custom {
@@ -319,7 +319,7 @@ div.league,
 }
 
 .link {
-    color: $link-color;
+    color: var(--bl-handicap-color);
     text-decoration: none;
     white-space: nowrap;
 }
@@ -470,23 +470,23 @@ div.ticket-list div.void div.lastGoal {
 }
 
 .blue {
-    color: #2673ce;
+    color: #2673CE;
 }
 
 .light-blue {
-    color: #0017cd;
+    color: #0017CD;
 }
 
 .dark-orange {
-    color: #af5319;
+    color: #AF5319;
 }
 
 .gamegroupname {
-    color: #008000;
+    color: var(--bl-gamegroupname);
 }
 
 .unit-stake {
-    color: #039;
+    color: var(--bl-unit-stake);
 }
 
 .meron-choice {
@@ -502,13 +502,6 @@ div.ticket-list div.void div.lastGoal {
     color: #484848;
 }
 
-.allbet-bet-id {
-    color: #bbb;
-}
-
-.allbet-bet-type-name {
-    color: #696969;
-}
 
 .comm_note {
     float: left;
@@ -554,59 +547,34 @@ div.ticket-list div.void div.lastGoal {
 }
 
 .betbuilder {
-    color: #171717;
+    color: var(--bl-betbuilder-color);
     font-weight: normal;
-    border-right: 2px solid #171717;
+    border-right: 2px solid var(--bl-betbuilder-border);
     padding-right: 3px;
-    margin: 2px 10px 2px 0px;
+    margin: 2px 10px 2px 0;
     line-height: 15px;
 }
 
 .bettype-description {
-    color: #003399;
+    color: var(--bl-bettype-description-color);
     font-weight: normal;
 }
 
-.sexygaming-bet-id {
-    color: #bbb;
+.bet-id,.sexygaming-bet-id , .gtcasino-bet-id, .bbin-bet-id, .bettype > .bet-id {
+    color: var(--bl-game-bet-id-color);
 }
 
-.sexygaming-bet-type-name {
-    color: #696969;
-}
-
-.gtcasino-bet-id {
-    color: #bbb;
-}
-
-.gtcasino-bet-type-name {
-    color: #696969;
-}
-
-.bbin-bet-id {
-    color: #bbb;
-}
-
-.bbin-bet-type-name {
-    color: #696969;
-}
-
-.bettype > .bet-id {
-    color: #bbb;
+.sexygaming-bet-type-name, .gtcasino-bet-type-name, .bbin-bet-type-name ,.leagueName > .bet-type-name {
+    color: var(--bl-game-bet-type-name-color);
 }
 
 .underdog > .bet-id,
 .favorite > .bet-id {
-    color: #bbb;
+    color: var(--bl-game-bet-id-color);
     display: block;
 }
 
-.leagueName > .bet-type-name {
-    color: #696969;
-}
-
 .bet-id {
-    color: #bbb;
     font-weight: 600;
 }
 
@@ -623,7 +591,7 @@ div.ticket-list div.void div.lastGoal {
 }
 
 .players-choice {
-    color: #000000;
+    color: var(--bl-players-choice-color);
     font-weight: bold !important;
     word-break: break-word;
     white-space: normal;
@@ -728,7 +696,7 @@ span.strikethrough {
 }
 
 span.icon-boost {
-    background: url(../../styles/images/) no-repeat center center / 100%;
+    background: url(../images/ico_parlay_boost.svg) no-repeat center center / 100%;
     display: inline-block;
     height: 15px;
     width: 15px;
@@ -738,7 +706,7 @@ span.icon-boost {
 }
 
 .icon-max-payout {
-    background: url(Images/icon-info-circle.png) no-repeat scroll center center transparent;
+    background: url(../images/icon-info-circle.png) no-repeat scroll center center transparent;
     display: inline-block;
     height: 16px;
     width: 16px;
