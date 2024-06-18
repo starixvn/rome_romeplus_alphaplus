@@ -48,6 +48,12 @@ class SubAccount {
         this.$('.pMemInfo').click((item) => {
             this.OpenUpdatePopup(item);
         });
+        this.$("#btnEdit").click(() => {
+            this.UpdateInfo();
+        });
+        this.$("#btn-reset").click(() => {
+            this.Reset();
+        });
     };
 
     Add = () => {
@@ -88,6 +94,8 @@ class SubAccount {
     };
 
     UpdatePageAccess = (subAccId: number, item: any) => {
+        this.$.blockUI();
+
         var pageAccess = this.$(item.currentTarget).data('pageaccess');
 
         if (this.$('#' + subAccId + '-D').is(':checked')) {
@@ -127,6 +135,9 @@ class SubAccount {
                 } else {
                     alert((result && result.Message) || 'Unexpected error occurs!');
                 }
+            },
+            complete: () => {
+                this.$.unblockUI();
             }
         });
     };
@@ -176,6 +187,51 @@ class SubAccount {
                 popup.hide(100);
             }, 100);
         });
+    };
+
+    UpdateInfo = () => {
+        this.$.blockUI();
+
+        var subAccId = this.$("#SubAccId").val();
+        var firstName = this.$("#txtFirstname").val();
+        var lastName = this.$("#txtLastname").val();
+        var closed = this.$("#chkClosed").is(":checked");
+
+        this.$.ajax({
+            headers: {
+                RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            url: "/settings/SubAccount/UpdateSubAccountInfo",
+            data: {
+                subAccId: subAccId,
+                firstName: firstName,
+                lastName: lastName,
+                closed: closed
+            },
+            type: "POST",
+            success: (result) => {
+                if (result && result.IsSuccessful) {
+                    this.topWindow.popupManager.close();
+                    (<HTMLIFrameElement>this.$("#main")[0]).src = (<HTMLIFrameElement>this.$("#main")[0]).src;
+                }
+                else {
+                    this.$("#errMsg").html((result && result.Message) || 'Unexpected error occurs!').css({
+                        border: "1px solid red",
+                        color: "red"
+                    }).show();
+                }
+            },
+            complete: () => {
+                this.$.unblockUI();
+            }
+        });
+    };
+
+    Reset = () => {
+        this.$("#txtFirstname").val(this.$("#Firstname").val());
+        this.$("#txtLastname").val(this.$("#Lastname").val());
+        this.$("#chkClosed").prop("checked", this.$("#Closed").val() === "True" ? true : false);
     };
 }
 

@@ -4,6 +4,7 @@
 }
 <div class="container">
     <main role="main" class="pb-3">
+        <div id="errMsg" style="display: none;"></div>
         <table class="tblPop width-100per">
             @if (Model.SubAccId != 0)
             {
@@ -13,11 +14,11 @@
                 </tr>
                 <tr>
                     <td>Firstname</td>
-                    <td><input type="text" value="@Model.Firstname" /></td>
+                    <td><input type="text" value="@Model.Firstname" id="txtFirstname" /></td>
                 </tr>
                 <tr>
                     <td>Lastname</td>
-                    <td><input type="text" value="@Model.Lastname" /></td>
+                    <td><input type="text" value="@Model.Lastname" id="txtLastname" /></td>
                 </tr>
                 <tr>
                     <td>Status-Closed</td>
@@ -38,5 +39,9 @@
             }
         </table>
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.SubAccId)
+        @Html.HiddenFor(m => m.Firstname)
+        @Html.HiddenFor(m => m.Lastname)
+        @Html.HiddenFor(m => m.Closed)
     </main>
 </div>
