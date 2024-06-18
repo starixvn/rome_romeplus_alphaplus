@@ -212,8 +212,8 @@ class SubAccount {
             type: "POST",
             success: (result) => {
                 if (result && result.IsSuccessful) {
+                    (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src = (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src;
                     this.topWindow.popupManager.close();
-                    (<HTMLIFrameElement>this.$("#main")[0]).src = (<HTMLIFrameElement>this.$("#main")[0]).src;
                 }
                 else {
                     this.$("#errMsg").html((result && result.Message) || 'Unexpected error occurs!').css({
