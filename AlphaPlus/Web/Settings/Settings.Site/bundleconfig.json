@@ -48,6 +48,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/assets/bundles/sub-account/index-dark.css",
+    "inputFiles": [
+      "assets/styles/sub-account/sub-account-dark.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/MemberInfo/assets/bundles/default.css",
     "inputFiles": [
       "MemberInfo/assets/styles/member-info.css"

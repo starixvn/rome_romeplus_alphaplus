@@ -47,6 +47,9 @@
 
 .divMenuPopup .group:hover {
     background-color: #ddd;
+    label{
+        cursor: pointer;
+    }
 }
 
 .divMenuPopup .group input[type='checkbox'],.divMenuPopup .group input[type='radio'] {
