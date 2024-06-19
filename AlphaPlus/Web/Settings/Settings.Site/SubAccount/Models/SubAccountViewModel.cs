@@ -70,6 +70,6 @@ namespace AlphaPlus.Settings.Site.SubAccount.Models
             HasUpdatePermission ? "Update" :
             HasViewMemberInfoPermission ? "View" : "None";
 
-        public bool IsCustomerDateLimit => UserSession.Current.GetProperty<bool>("CustomerDateLimit");
+        public bool IsCustomerDateLimit => UserSession.Current.GetProperty<DateTime>("CustomerDateLimit") != default;
     }
 }
