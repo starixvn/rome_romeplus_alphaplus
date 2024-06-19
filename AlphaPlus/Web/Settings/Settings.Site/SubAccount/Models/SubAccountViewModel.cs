@@ -1,3 +1,5 @@
+using AlphaPlus.Core.Models;
+
 namespace AlphaPlus.Settings.Site.SubAccount.Models
 {
     public class SubAccountViewModel
@@ -67,5 +69,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Models
         public string GetPermission() => HasCreateAccountPermission ? "Full Control" :
             HasUpdatePermission ? "Update" :
             HasViewMemberInfoPermission ? "View" : "None";
+
+        public bool IsCustomerDateLimit => UserSession.Current.GetProperty<bool>("CustomerDateLimit");
     }
 }

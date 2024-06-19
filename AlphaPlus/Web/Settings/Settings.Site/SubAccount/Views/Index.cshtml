@@ -20,7 +20,10 @@
                 <td>Nickname</td>
                 <td>Firstname</td>
                 <td>Lastname</td>
+                @if (!Model.FirstOrDefault().IsCustomerDateLimit)
+                {
                 <td>Created Date</td>
+                }
                 <td>Member Information</td>
                 <td>Bets & Forecast</td>
                 <td>Reports</td>
@@ -42,7 +45,10 @@
                         <td>@subAcc.Nickname</td>
                         <td>@subAcc.Firstname</td>
                         <td>@subAcc.Lastname</td>
+                        @if (!subAcc.IsCustomerDateLimit)
+                        {
                         <td class="c">@subAcc.CreateDate</td>
+                        }
                         <td class="c">
                             <div class="@(hasnotPerm ? string.Empty : "pMemInfo")" data-subaccid="@subAcc.SubAccId"
                                 data-pageaccess="@subAcc.MemberInfoPermission" >@subAcc.GetPermission()</div>
