@@ -1,4 +1,6 @@
 using AlphaPlus.Core;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.SubAccount.Models;
 using AlphaPlus.Settings.Site.SubAccount.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +28,13 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
 
         public IActionResult Add()
         {
-            return View();
+            var model = new SubAccountViewModel
+            {
+                Username = $"{UserSession.Current.UserName}Sub",
+                PageAccess = string.Empty
+            };
+
+            return View(model);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
