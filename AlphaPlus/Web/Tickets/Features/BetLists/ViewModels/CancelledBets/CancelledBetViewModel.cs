@@ -40,8 +40,8 @@ public class CancelledBetViewModel(
     public IEnumerable<SelectListItem> Status =>
     [
         new SelectListItem(Resources.Void, TicketStatusConstants.Void.ToString(), StatusIds.Contains(TicketStatusConstants.Void)),
-        new SelectListItem(Resources.reject, TicketStatusConstants.Void.ToString(), StatusIds.Contains(TicketStatusConstants.Reject)),
-        new SelectListItem(Resources.refund, TicketStatusConstants.Void.ToString(), StatusIds.Contains(TicketStatusConstants.Refund))
+        new SelectListItem(Resources.reject, TicketStatusConstants.Reject.ToString(), StatusIds.Contains(TicketStatusConstants.Reject)),
+        new SelectListItem(Resources.refund, TicketStatusConstants.Refund.ToString(), StatusIds.Contains(TicketStatusConstants.Refund))
     ];
 
     public DateRangePickerViewModel DateRangePicker { get; } = new DateRangePickerViewModel(

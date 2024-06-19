@@ -36,14 +36,9 @@
     <input type="hidden" asp-for="IsFilterVisible" />
     <product model="@Model.ProductViewModel" />
     <div class="form-group">
-        <select id="dropdown-status" data-label-select="@Resources.selectStatuses"
-            data-label-selected="@Resources.Selected" data-label-all="@Resources.AllStatus"
-            data-label-selectall="@Resources.SelectAll" multiple="multiple" class="select-multiple">
-            @foreach (var item in Model.Status)
-            {
-                <!option value="@item.Value" @(item.Selected ? "selected=selected" : string.Empty)>@item.Text</!option>
-            }
-        </select>
+        <select id="dropdown-status" class="select-multiple" asp-items="Model.Status" multiple="multiple"
+            data-label-select="@Resources.selectStatuses" data-label-selected="@Resources.Selected"
+            data-label-all="@Resources.AllStatus" data-label-selectall="@Resources.SelectAll"></select>
         <input type="hidden" name="StatusIds" id="status-ids" value="@string.Join(',', Model.StatusIds)" />
     </div>
     <daterange-picker model="Model.DateRangePicker" />
