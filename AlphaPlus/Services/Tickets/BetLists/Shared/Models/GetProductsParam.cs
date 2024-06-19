@@ -5,4 +5,5 @@ public record GetProductsParam(
     int CurrencyId,
     byte SettingStatus,
     string Language,
-    DateTime MinReportDate);
+    DateTime MinReportDate,
+    bool IsSiteLabel777);

@@ -37,6 +37,7 @@ public static class DependencyInjection
     public static IServiceCollection AddBetListsServices(this IServiceCollection services, IConfiguration configuration)
     {
         services
+            .AddSingleton<Func<int, bool>>(_ => UserPermission.IsShowOrNotExistProduct)
             .AddSingleton<IIPInfoDataAccess, IPInfoDataAccess>()
             .AddSingleton<ISmartPunterDataAccess, SmartPunterDataAccess>()
             .AddSingleton<IPService, IPServiceImpl>()
@@ -49,7 +50,7 @@ public static class DependencyInjection
                 IPHelper.GetClientIP))
             .AddSingleton<IForecastService, ForecastService>()
             .AddSingleton<IReportDateService, ReportDateService>()
-            //.AddSingleton<IProductService, ProductService>()
+            .AddSingleton<IProductService, ProductService>()
             .AddSingleton<ILastBetsService, LastBetsService>()
             .AddSingleton<IFilterBetsService, FilterBetsService>()
             .AddSingleton<ISearchTicketsService, SearchTicketsService>()

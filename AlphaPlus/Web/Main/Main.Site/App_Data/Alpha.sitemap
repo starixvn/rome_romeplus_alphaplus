@@ -70,7 +70,7 @@
   <siteMapNode resourceKey="BetLists" menuItemType="BetListsMenuItem" functionType="[L]">
     <siteMapNode resourceKey="LastBets" url="/tickets/LastBets/Index" roles="Agent" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
     <siteMapNode resourceKey="searchTickets" url="/tickets/SearchTickets/Index" useDomainConfig="Betlist:Domain" isNew="true"></siteMapNode>
-    <siteMapNode resourceKey="cancelledBets" url="/tickets/CancelledBet/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
+    <siteMapNode resourceKey="cancelledBets" url="/tickets/CancelledBets/Index" useDomainConfig="Betlist:Domain"></siteMapNode>
 
     <siteMapNode resourceKey="correctscore" url="/tickets/correctscore/index" useDomainConfig="Betlist:Domain"></siteMapNode>
     <siteMapNode resourceKey="parlay" url="/tickets/CombinationMixParlay/Index" useDomainConfig="Betlist:Domain"></siteMapNode>

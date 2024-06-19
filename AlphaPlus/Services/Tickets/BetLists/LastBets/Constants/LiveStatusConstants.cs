@@ -1,4 +1,4 @@
-namespace AlphaPlus.BetLists.Shared.Constants;
+namespace AlphaPlus.BetLists.LastBets;
 
 public class LiveStatusConstants
 {

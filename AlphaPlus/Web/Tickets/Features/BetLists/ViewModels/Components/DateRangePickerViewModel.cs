@@ -1,5 +1,6 @@
 using AlphaPlus.BetLists.AppResources;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
@@ -24,6 +25,7 @@ public class DateRangePickerViewModel
         bool isRenderSubmitButton = true,
         IEnumerable<int> optionValues = null)
     {
+        Today = SystemTime.Today.ToShortDateWithSlash();
         MinDate = minDate.ToShortDateWithSlash();
         MaxDate = maxDate.ToShortDateWithSlash();
         FromDate = fromDate.ToShortDateWithSlash();
@@ -34,6 +36,8 @@ public class DateRangePickerViewModel
         RangeOptions = optionValues != null ? rangeOptions.Where(item => optionValues.Contains(int.Parse(item.Value))) : rangeOptions;
         IsRenderSubmitButton = isRenderSubmitButton;
     }
+
+    public string Today { get; }
 
     public string MinDate { get; }
 

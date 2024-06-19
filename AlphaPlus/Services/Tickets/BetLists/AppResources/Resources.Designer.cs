@@ -2741,5 +2741,16 @@ namespace AlphaPlus.BetLists.AppResources
                 return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select none.
+        /// </summary>
+        public static string SelectNone
+        {
+            get
+            {
+                return ResourceManager.GetString("SelectNone", resourceCulture);
+            }
+        }
     }
 }

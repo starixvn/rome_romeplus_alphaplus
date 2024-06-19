@@ -4,7 +4,6 @@ public record CancelledBetParam(
     int CustId,
     DateTime FromDate,
     DateTime ToDate,
-    DateTime MoveBetsDay,
     byte RoleId,
     string ProductIds,
     string StatusIds,

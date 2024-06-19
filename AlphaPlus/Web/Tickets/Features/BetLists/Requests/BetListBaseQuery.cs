@@ -65,9 +65,9 @@ public class BetListBaseQuery
 
     public DateTime ToDate { get; set; }
 
-    public string ProductIds { get; set; }
+    public string ProductIds { get; set; } = "*";
 
-    public string ResourceIds { get; set; }
+    public string ResourceIds { get; set; } = "*";
 
     public string Type { get; set; }
 

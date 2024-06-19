@@ -1,4 +1,5 @@
 using AlphaPlus.BetLists.Shared.Criteria;
+using AlphaPlus.BetLists.Shared.Helpers;
 using AlphaPlus.BetLists.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;
@@ -7,6 +8,8 @@ namespace AlphaPlus.BetLists.Shared.Services;
 
 public interface IProductService
 {
+    IEnumerable<string> ConcatProductNames(IEnumerable<int> productIds, bool isSiteLabel777);
+
     IEnumerable<Product> GetProducts(GetProductsParam param);
 
     Task<IEnumerable<Product>> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param);
@@ -17,12 +20,16 @@ public interface IProductService
 public class ProductService(
     IDynamicRepository repository,
     ICacheService cacheService,
-    Func<int, bool> canViewProduct,
-    Func<int, string> getProductName) : IProductService
+    Func<int, bool> canViewProduct) : IProductService
 {
     private const int CustProductsCacheTimeInMinutes = 5;
     private const string ProductsCacheKey = "AlphaPlus.BetLists.Products";
-    private readonly int[] IgnoreCheckProductStatusTypes = [41, 53];
+    private const int LiveCasinoProductId = 41;
+    private const int RNGCasinoProductId = 53;
+    private static readonly HashSet<int> IgnoreCheckProductStatusTypes = [LiveCasinoProductId, RNGCasinoProductId];
+
+    public IEnumerable<string> ConcatProductNames(IEnumerable<int> productIds, bool isSiteLabel777)
+        => productIds.Select(id => CacheRefServiceHelper.GetProductName(id, isSiteLabel777));
 
     public IEnumerable<Product> GetProducts(GetProductsParam param)
     {
@@ -32,8 +39,8 @@ public class ProductService(
                 .Where(product => !product.IsHide)
                 .Select(product =>
                 {
-                    product.Name = getProductName(product.Id);
-                    product.TypeName = product.Type == 0 ? string.Empty : getProductName(product.Type);
+                    product.Name = CacheRefServiceHelper.GetProductName(product.Id, param.IsSiteLabel777);
+                    product.TypeName = product.Type == 0 ? string.Empty : CacheRefServiceHelper.GetProductName(product.Type, param.IsSiteLabel777);
                     return product;
                 }).ToList(),
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
@@ -49,8 +56,8 @@ public class ProductService(
             .Where(product => product.IsEnable && IsRemainSupportProduct(product, param.MinDate))
             .Select(product =>
                 {
-                    product.Name = getProductName(product.Id);
-                    product.TypeName = product.Type == 0 ? string.Empty : getProductName(product.Type);
+                    product.Name = CacheRefServiceHelper.GetProductName(product.Id, param.IsSiteLabel777);
+                    product.TypeName = product.Type == 0 ? string.Empty : CacheRefServiceHelper.GetProductName(product.Type, param.IsSiteLabel777);
                     return product;
                 });
     }

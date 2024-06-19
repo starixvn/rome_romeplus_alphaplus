@@ -1,5 +1,5 @@
 using AlphaPlus.BetLists.AppResources;
-using AlphaPlus.BetLists.Shared.Constants;
+using AlphaPlus.BetLists.LastBets;
 using AlphaPlus.BetLists.Shared.Helpers;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using Microsoft.AspNetCore.Mvc.Rendering;

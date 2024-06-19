@@ -2,8 +2,12 @@ namespace AlphaPlus.Core.Extensions;
 
 public static class DateTimeExtensions
 {
+    private const string ShortDate = "MMddyyyy";
     private const string ShortDateWithSlash = "MM/dd/yyyy";
     private const string LongDateTimeWithSlash = "MM/dd/yyyy hh:mm:ss tt";
+
+    public static string ToShortDate(this DateTime dateTime)
+        => dateTime.ToString(ShortDate);
 
     public static string ToShortDateWithSlash(this DateTime dateTime)
         => dateTime.ToString(ShortDateWithSlash);

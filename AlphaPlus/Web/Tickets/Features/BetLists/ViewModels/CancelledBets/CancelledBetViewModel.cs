@@ -1,105 +1,72 @@
-// using AlphaPlus.BetLists.Shared.Models;
-// using AlphaPlus.Tickets.Site.Features.BetLists.Requests.CancelledBets;
-// using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
-// using Fanex.BetList.Core.Builder;
-// using Fanex.BetList.Core.Entities;
+using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.BetLists.CancelledBets;
+using AlphaPlus.BetLists.Shared.Models;
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Tickets.Site.Features.BetLists.Requests.CancelledBets;
+using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
+using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
+using Fanex.BetList.Core.Builder;
+using Fanex.BetList.Core.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-// namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CancelledBets;
+namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CancelledBets;
 
-// public class CancelledBetViewModel : BetListBaseViewModel
-// {
-//     public static readonly IEnumerable<int> RangeOptions =
-//     [
-//         DateRangePickerViewModel.TodayOptionValue,
-//         DateRangePickerViewModel.YesterdayOptionValue,
-//         DateRangePickerViewModel.ThisWeekOptionValue,
-//         DateRangePickerViewModel.LastWeekOptionValue,
-//         DateRangePickerViewModel.ThisMonthOptionValue,
-//         DateRangePickerViewModel.SpecificDateOptionValue
-//     ];
+public class CancelledBetViewModel(
+    CancelledBetQuery message,
+    BetListData betListData,
+    PagerViewModel pager,
+    ProductMultiSelectionViewModel productViewModel,
+    IBetListHTMLBuilder builder,
+    ITicketHelper ticketHelper) : BetListBaseViewModel(message, betListData, builder, ticketHelper, true)
+{
+    public static readonly IEnumerable<int> RangeOptions =
+    [
+        DateRangePickerViewModel.TodayOptionValue,
+        DateRangePickerViewModel.YesterdayOptionValue,
+        DateRangePickerViewModel.ThisWeekOptionValue,
+        DateRangePickerViewModel.LastWeekOptionValue,
+        DateRangePickerViewModel.ThisMonthOptionValue,
+        DateRangePickerViewModel.SpecificDateOptionValue
+    ];
 
-//     public CancelledBetViewModel(
-//         CancelledBetBaseQuery message,
-//         CancelledBetParam param,
-//         PagedReportData<BetListData> reportData,
-//         IEnumerable<GroupProductViewModel> groupProducts,
-//         IBetListHTMLBuilder builder,
-//         ITicketHelper ticketHelper) : base(message, reportData.DataSource.FirstOrDefault(), builder, ticketHelper, true)
-//     {
-//         GroupProducts = groupProducts;
-//         ProductsId = param.ProductIds.JoinWithComma();
-//         ReportData = reportData;
-//         Language = query.Language;
-//         MinDate = query.MinDate;
-//         UserSelectedDateRangeOption = query.UserSelectedDateRangeOption;
-//         StatusIds = string.IsNullOrEmpty(query.StatusIds) ?
-//             $"{TicketStatusIdConstants.Void},{TicketStatusIdConstants.Refund},{TicketStatusIdConstants.Reject}" :
-//             query.StatusIds;
+    public bool IsFilterVisible { get; } = message.IsFilterVisible;
 
-//         Title = Resources.VoidAndReject;
-//         ViewDataInstructionMessage = string.Format(Resources.NoteCancelledBetPage, MinDate.ToShortDateWithSlash());
-//         IsFilterVisible = query.IsFilterVisible;
-//     }
+    public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 
-//     public bool IsFilterVisible { get; }
+    public IEnumerable<int> StatusIds { get; } = string.IsNullOrWhiteSpace(message.StatusIds)
+        ? TicketStatusConstants.All
+        : message.StatusIds.ToListInt();
 
-//     public PagerViewModel PagerViewModel =>
-//         new PagerViewModel(ReportData.PageIndex, ReportData.PageSize, ReportData.TotalRecords);
+    public IEnumerable<SelectListItem> Status =>
+    [
+        new SelectListItem(Resources.Void, TicketStatusConstants.Void.ToString(), StatusIds.Contains(TicketStatusConstants.Void)),
+        new SelectListItem(Resources.reject, TicketStatusConstants.Void.ToString(), StatusIds.Contains(TicketStatusConstants.Reject)),
+        new SelectListItem(Resources.refund, TicketStatusConstants.Void.ToString(), StatusIds.Contains(TicketStatusConstants.Refund))
+    ];
 
-//     public string ViewDataInstructionMessage { get; }
+    public DateRangePickerViewModel DateRangePicker { get; } = new DateRangePickerViewModel(
+        message.MinDate,
+        DateTime.MaxValue,
+        message.FromDate,
+        message.ToDate,
+        message.UserSelectedDateRangeOption,
+        true,
+        RangeOptions);
 
-//     public string StatusIds { get; }
+    public string ViewDataInstructionMessage
+        => string.Format(Resources.NoteCancelledBetPage, message.MinDate.ToShortDateWithSlash());
 
-//     public DateRangePickerViewModel DateRangePickerViewModel
-//         => new DateRangePickerViewModel(
-//             MinDate,
-//             DateTime.MaxValue,
-//             FromDate,
-//             ToDate,
-//             UserSelectedDateRangeOption,
-//             true,
-//             RangeOptions);
+    public PagerViewModel Pager { get; } = pager;
 
-//     public ProductMultiSelectionViewModel ProductMultiSelectionViewModel
-//        => new ProductMultiSelectionViewModel(GroupProducts, ProductsId, Language);
+    public int StartIndex { get; } = pager.PageSize * (pager.PageIndex - 1) + 1;
 
-//     public StatusMultiSelectionViewModel StatusMultiSelectionViewModel
-//     {
-//         get
-//         {
-//             var statuses = new List<StatusModel>
-//                 {
-//                     new StatusModel(TicketStatusIdConstants.Void, Resources.Void),
-//                     new StatusModel(TicketStatusIdConstants.Reject, Resources.reject),
-//                     new StatusModel(TicketStatusIdConstants.Refund, Resources.refund)
-//                 };
+    protected override string GetTitle() => Resources.VoidAndReject;
 
-//             var statusListItem = statuses.Select(s =>
-//              {
-//                  var item = new SelectListItem
-//                  {
-//                      Text = s.Name,
-//                      Value = s.Id.ToString(),
-//                      Selected = StatusIds.Contains(s.Id.ToString())
-//                  };
-
-//                  return item;
-//              });
-
-//             return new StatusMultiSelectionViewModel(statusListItem, StatusIds, Language);
-//         }
-//     }
-
-//     public int BuildNo(int no)
-//         => no + 1 + ((ReportData.PageIndex - 1) * ReportData.PageSize);
-
-//     private IEnumerable<GroupProductViewModel> GroupProducts { get; }
-
-//     private string Language { get; }
-
-//     private int UserSelectedDateRangeOption { get; }
-
-//     private DateTime MinDate { get; }
-
-//     private PagedReportData<BetListData> ReportData { get; }
-// }
+    public IDictionary<string, string> GetExcelParams() => new Dictionary<string, string>
+    {
+        [nameof(ProductIds)] = ProductIds,
+        [nameof(StatusIds)] = StatusIds.JoinWithComma(),
+        [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
+        [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate
+    };
+}

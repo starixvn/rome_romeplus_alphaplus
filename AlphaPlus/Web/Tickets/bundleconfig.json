@@ -202,5 +202,29 @@
       "assets/scripts/betlists/last-bets/last-bets-copyhtml.js",
       "assets/scripts/betlists/last-bets/last-bets-new.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/filter.css",
+    "inputFiles": [
+      "assets/styles/betlists/filter.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/cancelledbets.js",
+    "inputFiles": [
+      "assets/scripts/components/productmultiselection.js",
+      "assets/scripts/components/daterangepicker.js",
+      "assets/scripts/components/dropdown-list.js",
+      "assets/scripts/components/pager.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/cancelledbets/cancelledbets.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/casino-details.js",
+    "inputFiles": [
+      "assets/scripts/components/pager.js",
+      "assets/scripts/betlists/casino-details/casino-details.js"
+    ]
   }
 ]

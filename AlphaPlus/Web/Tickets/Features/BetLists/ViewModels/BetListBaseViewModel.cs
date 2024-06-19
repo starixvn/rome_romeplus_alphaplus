@@ -52,7 +52,7 @@ public class BetListBaseViewModel(
 
     public DateTime ToDate { get; } = message.ToDate;
 
-    public string ProductsId { get; } = message.ProductIds;
+    public string ProductIds { get; } = message.ProductIds;
 
     public string ResourceIds { get; } = message.ResourceIds;
 

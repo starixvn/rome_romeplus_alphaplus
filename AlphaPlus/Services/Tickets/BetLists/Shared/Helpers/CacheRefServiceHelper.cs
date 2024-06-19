@@ -18,12 +18,16 @@ public static class CacheRefServiceHelper
     // public static string GetLeague3rdName(int league3rdId)
     //     => Instance.GetLeagueName3rd(league3rdId.ToString(), LanguageCode);
 
-    // public static string GetProductName(int productId)
-    //     => Instance.GetResourceDataByRefIdAndResourceId(
-    //         "Product",
-    //         productId.ToString(),
-    //         LanguageCode,
-    //         string.Empty);
+    public static string GetProductName(int productId, bool isSiteLabel777)
+    {
+        var productName = isSiteLabel777
+            ? GetResourceDataByRefIdAndResourceId("Product_Saba", productId)
+            : string.Empty;
+
+        return string.IsNullOrEmpty(productName)
+            ? GetResourceDataByRefIdAndResourceId("Product", productId)
+            : productName;
+    }
 
     // public static string GetProductDetailName(string refId, int resourceId)
     //     => Instance.GetResourceDataByRefIdAndResourceId(
@@ -34,6 +38,9 @@ public static class CacheRefServiceHelper
 
     public static string GetSportName(int sportTypeId)
         => Instance.GetSportName(sportTypeId.ToString(), LanguageCode, string.Empty);
+
+    private static string GetResourceDataByRefIdAndResourceId(string refId, int resourceId)
+        => Instance.GetResourceDataByRefIdAndResourceId(refId, resourceId.ToString(), LanguageCode, LanguageCode);
 
     private static string LanguageCode => Thread.CurrentThread.CurrentCulture.Name;
 }

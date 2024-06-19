@@ -30,7 +30,7 @@ public class ParlayWinLossByMatchViewModel(
         {
             [nameof(CustName)] = CustName,
             [nameof(CustId)] = CustId.ToString(),
-            [nameof(ProductsId)] = ProductsId,
+            [nameof(ProductIds)] = ProductIds,
             [nameof(FromDate)] = FromDate.ToShortDateWithSlash(),
             [nameof(ToDate)] = ToDate.ToShortDateWithSlash(),
             [nameof(BetType)] = BetType.ToString(),

@@ -44,11 +44,7 @@ class DateRangePickerComponent {
             minDate: new Date(minDate),
             maxDate: maxDate === '' ? null : maxDate,
             currentDate: new Date(currentDate),
-            onSelectDatePicker: () => {
-                if (this.options.onChange) {
-                    this.options.onChange();
-                }
-            },
+            onSelectDatePicker: () => this.options.onChange && this.options.onChange(),
             onQuickChooseChange: (selectValue: number) => {
                 this.options.onBeforeQuickChooseChange && this.options.onBeforeQuickChooseChange();
 

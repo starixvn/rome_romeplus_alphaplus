@@ -15,4 +15,6 @@ public class AppSettings
     public int RunningMatchCacheTime { get; init; }
 
     public int[] MonitoringBetsBetTypes { get; init; }
+
+    public byte SettingStatus { get; init; }
 }
