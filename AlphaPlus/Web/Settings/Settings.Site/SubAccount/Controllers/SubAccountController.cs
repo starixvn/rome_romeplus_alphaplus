@@ -40,18 +40,33 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(AddSubAccountRequest subAccountRequest)
         {
+            if (!subAccountRequest.IsValid())
+            {
+                return Json(new Result(1, "You are not authorized on this function!"));
+            }
+
             return Json(await mediator.Send(subAccountRequest));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateSubAccountInfo(UpdateSubAccountInfoRequest subAccountRequest)
         {
+            if (!subAccountRequest.IsValid())
+            {
+                return Json(new Result(1, "You are not authorized on this function!"));
+            }
+
             return Json(await mediator.Send(subAccountRequest));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest subAccountRequest)
         {
+            if (!subAccountRequest.IsValid())
+            {
+                return Json(new Result(1, "You are not authorized on this function!"));
+            }
+
             return Json(await mediator.Send(subAccountRequest));
         }
     }

@@ -12,6 +12,8 @@ namespace AlphaPlus.Settings.Site.SubAccount.Requests
 
         public string Language => UserSession.Current.LangKey;
 
-        public virtual bool IsValid() => SubAccId > 0;
+        public bool HasUpdatePermission => !UserSession.Current.IsLimitedHostPermissionOnSubAccountFunction;
+
+        public virtual bool IsValid() => CustId > 0;
     }
 }

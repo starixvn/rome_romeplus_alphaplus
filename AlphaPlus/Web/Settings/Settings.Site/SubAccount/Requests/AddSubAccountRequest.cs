@@ -14,5 +14,10 @@ namespace AlphaPlus.Settings.Site.SubAccount.Requests
         public string Lastname { get; set; }
 
         public string PageAccess { get; set; }
+
+        public override bool IsValid()
+        {
+            return base.IsValid() && HasUpdatePermission;
+        }
     }
 }
