@@ -50,7 +50,6 @@
     }
 
     td {
-        color: var(--bl-text-color);
         vertical-align: middle;
         text-align: right;
 
@@ -220,7 +219,7 @@ div.league,
 }
 
 .bl_match {
-    color: var(--bl-tb-match);
+    color: var(--bl-tb-bl-match);
     font-weight: normal;
     line-height: 15px;
 }
@@ -336,7 +335,7 @@ div.league,
 
 .iplink {
     cursor: pointer;
-    color: $link-color;
+    color: var(--bl-link-color);
     font-size: 11px;
     width: 85px;
     word-break: break-word;
@@ -344,7 +343,7 @@ div.league,
     margin: auto;
 
     &:hover {
-        color: $link-hover-color;
+        color: var(--bl-link-color-hover);
         text-decoration: none;
     }
 }
@@ -407,7 +406,7 @@ div.league,
     height: 18px;
     width: 18px;
     margin: 3px 3px;
-    @include ripple-effect-icon($top: 2px, $margin-left: -4px);
+    @include ripple-effect-icon($top: 6px, $margin-left: -4px);
 
     &:before {
         font: {
@@ -417,6 +416,11 @@ div.league,
 
         content: '\e92d';
         color: var(--bl-tb-icon-score-map);
+    }
+    &:hover {
+        &:before {
+            color: var(--bl-link-color-hover);
+        }
     }
 }
 

@@ -17,6 +17,7 @@
 
     //table
     --bl-tb-bg: #fff;
+    --bl-tb-color: #333;
     --bl-tb-border-color: #d1d1d1;
     --bl-tb-header-color: #fff;
     --bl-tb-header-bg-color: #666;
@@ -32,7 +33,7 @@
     --bl-tb-bettype: #003399;
     --bl-tb-time: #434343;
     --bl-tb-sport: #0066CC;
-    --bl-tb-match: #333;
+    --bl-tb-bl-match: #333;
     --bl-tb-footertotal-bg: #e8dfca;
     --bl-tb-outstanding-bg: #f9c95b;
     --bl-tb-icon-score-map: #0b599c;
@@ -62,6 +63,10 @@
     --bl-game-bet-id-color: #bbb;
     --bl-game-bet-type-name-color: #696969;
     --bl-players-choice-color: #000000;
+    --bl-game-id-color: #000;
+
+    --bl-link-color:#045ace;
+    --bl-link-color-hover: #F60;
 
 }
 :root [data-theme='dark'] {
@@ -81,6 +86,7 @@
 
     //table
     --bl-tb-bg: #212223;
+    --bl-tb-color: #ededed;
     --bl-tb-border-color: #5F626B;
     --bl-tb-header-color: #fff;
     --bl-tb-header-bg-color: #666;
@@ -96,7 +102,7 @@
     --bl-tb-bettype: #3783E9;
     --bl-tb-time: #ededed;
     --bl-tb-sport: #56AEFF;
-    --bl-tb-match: #CBCBCB;
+    --bl-tb-bl-match: #CBCBCB;
     --bl-tb-footertotal-bg: #27261B;
     --bl-tb-outstanding-bg: #56533C;
     --bl-tb-icon-score-map: #3783E9;
@@ -121,6 +127,10 @@
     --bl-game-bet-id-color: #bbb;
     --bl-game-bet-type-name-color: #bcbcbc;
     --bl-players-choice-color: #bbb;
+    --bl-game-id-color: #fff;
+
+    --bl-link-color:#56D6FF;
+    --bl-link-color-hover: #F60;
 }
 
 
