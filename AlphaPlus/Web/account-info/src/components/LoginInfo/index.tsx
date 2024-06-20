@@ -43,7 +43,7 @@ export default function LoginInfo() {
 
     const loginInfo = customer?.LoginInfo;
     if (!loginInfo) {
-        return <NoInformation />;
+        return '';
     }
 
     const loginInfoPropsArray = [

@@ -78,7 +78,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 
         public string SuperName => DefaultStringValueIfNull(customerInfo.SuperName);
 
-        public LoginInfoViewModel LoginInfo => new(customerInfo.CreatDate, customerInfo.LastLogged, customerInfo.LastLoginIP);
+        public LoginInfoViewModel LoginInfo => IsCustomerDateLimit ? default : new(customerInfo.CreatDate, customerInfo.LastLogged, customerInfo.LastLoginIP);
 
         public IBalanceInfoViewModel BalanceInfo { get; }
 
@@ -151,5 +151,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
         }
 
         public byte Locked => customerInfo.Locked;
+
+        private static bool IsCustomerDateLimit => UserSession.Current.GetProperty<DateTime>("CustomerDateLimit") != default;
     }
 }
