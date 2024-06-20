@@ -57,8 +57,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 
                 var betListLink = MicroSites.TicketUrl($"~/RunningBetList/Index?CustID={customerInfo.CustId}&amp;CustName={customerInfo.UserName}&amp;GetAll=True");
 
-                var directDownlineLevelName = Enumeration.FromValue<UserLevel>((byte)(message.ViewerLevelId - 1)).DisplayName;
-                var outstandingLink = MicroSites.ReportsUrl($"~/outstanding/{directDownlineLevelName}?" +
+                var outstandingLink = MicroSites.ReportsUrl($"~/outstanding/index?" +
                         $"CustId={customerInfo.CustId}&CustName={customerInfo.UserName}" +
                         $"&CustLevelId={customerInfo.RoleId}&BreadcrumbLevelJson={BreadcrumbLevelJson}");
 
