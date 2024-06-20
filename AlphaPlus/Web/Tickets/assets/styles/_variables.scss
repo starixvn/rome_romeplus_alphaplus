@@ -9,6 +9,7 @@
     --bl-note-title-color: #333;
     --bl-note-title-color-require: #fe0000;
     --bl-title-bg-fixed: #fff;
+    --bl-line-border: #dfdfdf;
 
     //button switch view
     --bl-bt-switch-view-bg: #d3dfec;
@@ -40,6 +41,8 @@
 
     --bl-handicap-color: #606060;
     --bl-link-color: #045ace;
+    --bl-position-taking-bg: #F5E3E3;
+    --bl-result-color: #1BA4ED;
 
     --bl-detail-color: #333;
     --bl-detail-icon-color: #888;
@@ -68,6 +71,13 @@
     --bl-link-color:#045ace;
     --bl-link-color-hover: #F60;
 
+    --bl-game-id: #000;
+
+    --bl-modal-color: #333;
+    --bl-max-payout-color: #b50000;
+
+    --bl-icon-max-payout: url(../images/icon-info-circle.png);
+
 }
 :root [data-theme='dark'] {
 
@@ -78,6 +88,7 @@
     --bl-note-title-color: #cbcbcb;
     --bl-note-title-color-require: #dd6161;
     --bl-title-bg-fixed: #171717;
+    --bl-line-border: #dfdfdf;
 
     //button switch view
     --bl-bt-switch-view-bg: #3b4652;
@@ -109,6 +120,8 @@
 
     --bl-handicap-color: #bcbcbc;
     --bl-link-color: #56D6FF;
+    --bl-position-taking-bg: #3E3535;
+    --bl-result-color: #4D78E5;
 
     --bl-detail-color: #cbcbcb;
     --bl-detail-icon-color: #cacaca;
@@ -131,6 +144,18 @@
 
     --bl-link-color:#56D6FF;
     --bl-link-color-hover: #F60;
+
+    --bl-game-id: #fff;
+
+    --bl-modal-color: #EDEDED;
+    --bl-max-payout-color: #E54748;
+
+    --bl-icon-max-payout: url(../images/icon-info-circle-dark.png);
+
+    //custom for dark mode
+    .pt-winloss font {
+        color: #E54748 !important;
+    }
 }
 
 

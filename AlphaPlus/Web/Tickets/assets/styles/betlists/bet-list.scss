@@ -150,7 +150,7 @@
 .line {
     margin-top: 5px;
     margin-bottom: 5px;
-    border-bottom: 1px solid #dfdfdf;
+    border-bottom: 1px solid var(--bl-line-border);
     width: 100%;
     overflow: hidden;
     text-align: left;
@@ -324,13 +324,13 @@ div.league,
 }
 
 .position-taking {
-    background: none repeat scroll 0 0 rgb(245, 227, 227);
+    background: none repeat scroll 0 0 var(--bl-position-taking-bg);
     padding: 4px;
 }
 
 .result {
     cursor: pointer;
-    color: rgb(27, 164, 237);
+    color: var(--bl-result-color);
 }
 
 .iplink {
@@ -453,13 +453,6 @@ div.ticket-list div.void div.lastGoal {
     font-weight: normal;
 }
 
-.allbet-bet-id {
-    color: var(--bl-allbet-bet-id);
-}
-
-.allbet-bet-type-name {
-    color: var(--bl-allbet-bet-type-name);
-}
 
 .p213,
 .p214,
@@ -501,6 +494,14 @@ div.ticket-list div.void div.lastGoal {
     color: #000080;
 }
 
+.allbet-bet-id {
+    color: var(--bl-allbet-bet-id);
+}
+
+.allbet-bet-type-name {
+    color: var(--bl-allbet-bet-type-name);
+}
+
 .ftd-choice,
 .bdd-choice {
     color: #484848;
@@ -517,7 +518,7 @@ div.ticket-list div.void div.lastGoal {
         padding-right: 4px;
         line-height: 18px;
         font-weight: bold;
-        color: $note-color;
+        color: #666;
 
         .star {
             color: #ff0101;
@@ -602,7 +603,7 @@ div.ticket-list div.void div.lastGoal {
 }
 
 .game-id {
-    color: #000;
+    color: var(--bl-game-id);
 }
 
 .filter {
@@ -640,7 +641,7 @@ div.ticket-list div.void div.lastGoal {
             .modal-body {
                 #msg-content {
                     text-transform: none;
-                    color: #333;
+                    color: var(--bl-modal-color);
                     font-weight: 300;
                 }
             }
@@ -710,7 +711,7 @@ span.icon-boost {
 }
 
 .icon-max-payout {
-    background: url(../images/icon-info-circle.png) no-repeat scroll center center transparent;
+    background: var(--bl-icon-max-payout) no-repeat scroll center center transparent;
     display: inline-block;
     height: 16px;
     width: 16px;
@@ -721,101 +722,17 @@ span.icon-boost {
 }
 
 .max-payout {
-    color: #b50000;
+    color: var(--bl-max-payout-color);
     font-style: italic;
 
     span {
         margin-left: 4px;
     }
 }
-/********** popup *************/
-.bg-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    z-index: 12;
-}
-.popup-highlight {
-    background: $popup-bg;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-    width: 400px;
-    z-index: 130;
-    color: $text-color;
-    padding: 20px;
-    margin-top: 120px;
 
-    .icon-close {
-        position: absolute;
-        top: 5px;
-        margin: 0;
-        right: 5px;
-        color: $text-color;
-        opacity: 1;
-        font-size: 20px;
-        text-shadow: none;
-    }
-
-    .text {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 10px;
-
-        p {
-            span {
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 20px;
-                display: block;
-                margin: 0 0 8px 0;
-            }
-
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 20px;
-            margin: 0 0 7px 0;
-
-            b {
-                color: #0b599c;
-            }
-        }
-    }
-
-    .action {
-        display: flex;
-        justify-content: space-between;
-
-        .label {
-            color: $text-color;
-            font-weight: 400;
-            font-size: var(--bl-font-size);
-            background-color: transparent;
-            padding: 2px 0 0;
-            cursor: pointer;
-
-            input {
-                width: 16px;
-                height: 16px;
-                top: 4px;
-                margin-right: 3px;
-            }
-        }
-
-        .btn-submit {
-            font-weight: 500;
-            font-size: var(--bl-font-size);
-            margin: 0;
-            line-height: 28px;
-            margin-left: 15px;
-        }
-
-        a.btn-submit {
-            text-decoration: none;
-        }
-    }
+.booked-icon {
+    padding: 0 10px;
+    background-color: #F27C06;
+    color: white;
+    border-radius: 2px;
 }
