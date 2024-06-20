@@ -95,6 +95,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetsForecast.Domain", "Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetsForecast.Infrastructure", "Services\Tickets\BetsForecast\Infrastructure\BetsForecast.Infrastructure.csproj", "{281BBACB-06E2-4F78-99D9-ACC7DDCB56B2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{AEE5D7CE-37E3-4A33-BEBA-576C2E9590DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Shared.AppResources", "Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj", "{1CA2C329-CE74-4748-8C32-1E4013630B56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -217,6 +221,10 @@ Global
 		{281BBACB-06E2-4F78-99D9-ACC7DDCB56B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{281BBACB-06E2-4F78-99D9-ACC7DDCB56B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{281BBACB-06E2-4F78-99D9-ACC7DDCB56B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA2C329-CE74-4748-8C32-1E4013630B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA2C329-CE74-4748-8C32-1E4013630B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA2C329-CE74-4748-8C32-1E4013630B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA2C329-CE74-4748-8C32-1E4013630B56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,6 +273,7 @@ Global
 		{C2FB89CF-1A89-4F67-BACE-9E90BC595684} = {7B9C6584-82C3-4898-AC65-2127A441D4BA}
 		{320A13E3-8100-4997-942E-BA5A518E98FC} = {C2FB89CF-1A89-4F67-BACE-9E90BC595684}
 		{281BBACB-06E2-4F78-99D9-ACC7DDCB56B2} = {C2FB89CF-1A89-4F67-BACE-9E90BC595684}
+		{1CA2C329-CE74-4748-8C32-1E4013630B56} = {AEE5D7CE-37E3-4A33-BEBA-576C2E9590DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6824C82-34D8-41F1-82A0-92424ADF9DA2}

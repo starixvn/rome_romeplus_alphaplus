@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="alertPasswordEmpty" xml:space="preserve">
+    <value>죄송합니다. 비밀번호를 입력하지 않았습니다.</value>
+  </data>
+  <data name="firstname" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="ip" xml:space="preserve">
+    <value>아이피</value>
+  </data>
+  <data name="lastname" xml:space="preserve">
+    <value>성</value>
+  </data>
+  <data name="memberinfo" xml:space="preserve">
+    <value>회원 정보</value>
+  </data>
+  <data name="msgErrPassWord" xml:space="preserve">
+    <value>비밀번호를 입력해주세요</value>
+  </data>
+  <data name="msgErrUsername" xml:space="preserve">
+    <value>사용자명을 입력해주세요</value>
+  </data>
+  <data name="msgErrUsernamePassWord" xml:space="preserve">
+    <value>사용자명과 비밀번호를 입력해주세요</value>
+  </data>
+  <data name="nickname" xml:space="preserve">
+    <value>닉네임</value>
+  </data>
+  <data name="noInfo" xml:space="preserve">
+    <value>가능한 정보가 없습니다</value>
+  </data>
+  <data name="notAccessSubAccount" xml:space="preserve">
+    <value>죄송합니다. 하위계정을 업데이트할 권한이 없습니다!</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>비밀번호</value>
+  </data>
+  <data name="statusclosed" xml:space="preserve">
+    <value>상황-마감</value>
+  </data>
+  <data name="strNotAccessPage" xml:space="preserve">
+    <value>죄송합니다. 이페이지를 엑서스 할 수 있는 권한이 없습니다.</value>
+  </data>
+  <data name="subaccount" xml:space="preserve">
+    <value>보조계정</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="transfer" xml:space="preserve">
+    <value>전송</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>사용자 이름</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>보기</value>
+  </data>
+  <data name="lblNotAuthorized" xml:space="preserve">
+    <value>해당 기능에 대한 권한이 없습니다.</value>
+  </data>
+  <data name="lblconfirmclosesubacc" xml:space="preserve">
+    <value>보조 계정에 대한 권한이 없습니다.</value>
+  </data>
+  <data name="viewlog" xml:space="preserve">
+    <value>로그인 보기</value>
+  </data>
+  <data name="noChangeToUpdate" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
+  <data name="notExist" xml:space="preserve">
+    <value>존재하지 않는 유저</value>
+  </data>
+  <data name="lblPasswordRequire" xml:space="preserve">
+    <value>비밀번호 공백없이 8 자 이상이어야하며 다음 중 적어도 3를 포함해야합니다.
+
+  • 대문자 문자 [A-Z]
+   • 소문자 편지 [A-Z]
+   • 숫자 [0-9]
+   • 특수 문자 (!, @, #, 등.)
+
+예시 : 59D7!4$h, 493abcDE
+참고 : 비밀번호는 대소 문자를 구분합니다</value>
+  </data>
+  <data name="lblPasswordWrongRule" xml:space="preserve">
+    <value>입력하신 비밀번호는 최소 보안 요구 사항을 충족하지 않습니다</value>
+  </data>
+  <data name="BetLists" xml:space="preserve">
+    <value>배팅 리스트</value>
+  </data>
+  <data name="UsernameIsNotAvailableError" xml:space="preserve">
+    <value>이 사용자 이름을 사용할 수 없습니다.</value>
+  </data>
+</root>

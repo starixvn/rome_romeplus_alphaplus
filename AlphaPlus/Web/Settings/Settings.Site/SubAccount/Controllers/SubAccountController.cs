@@ -2,6 +2,7 @@ using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.SubAccount.Models;
 using AlphaPlus.Settings.Site.SubAccount.Requests;
+using AlphaPlus.Shared.AppResources.SubAccount;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,7 +43,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
         {
             if (!subAccountRequest.IsValid())
             {
-                return Json(new Result(1, "You are not authorized on this function!"));
+                return Json(new Result(1, Lang.lblNotAuthorized));
             }
 
             return Json(await mediator.Send(subAccountRequest));
@@ -53,7 +54,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
         {
             if (!subAccountRequest.IsValid())
             {
-                return Json(new Result(1, "You are not authorized on this function!"));
+                return Json(new Result(1, Lang.lblNotAuthorized));
             }
 
             return Json(await mediator.Send(subAccountRequest));
@@ -64,7 +65,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
         {
             if (!subAccountRequest.IsValid())
             {
-                return Json(new Result(1, "You are not authorized on this function!"));
+                return Json(new Result(1, Lang.lblNotAuthorized));
             }
 
             return Json(await mediator.Send(subAccountRequest));
