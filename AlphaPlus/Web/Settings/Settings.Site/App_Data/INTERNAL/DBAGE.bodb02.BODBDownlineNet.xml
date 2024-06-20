@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Base Functions">
-    <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
+    <Setting Key="Age_Rpt_MatchSelResultEntered" SpName="Age_Rpt_MatchSelResultEntered" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
   </Function>
   <Function Name="Check Belonging">
-    <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Age_CustomerSelCheckBelonging_MultiCust" SpName="Age_CustomerSelCheckBelonging_MultiCust" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
+    <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
+    <Setting Key="Age_CustomerSelCheckBelonging_MultiCust" SpName="Age_CustomerSelCheckBelonging_MultiCust" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
   </Function>
   <Function Name="Win Loss Limit">
-    <Setting Key="Age_CustomerSelWinLimitProduct" SpName="Age_CustomerSelWinLimitProduct" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelWinLimitProduct" SpName="Age_CustomerSelWinLimitProduct" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
   </Function>
   <Function Name="Credit/Balance">
-    <Setting Key="Age_CustomerSelCreditBalanceList_Ag" SpName="Age_CustomerSelCreditBalanceList_Ag" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Age_CustomerSelCreditBalanceList_Mag" SpName="Age_CustomerSelCreditBalanceList_MAg" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Age_CustomerSelCreditBalanceList_Sag" SpName="Age_CustomerSelCreditBalanceList_SAg" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelCreditBalanceList_Ag" SpName="Age_CustomerSelCreditBalanceList_Ag" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
+    <Setting Key="Age_CustomerSelCreditBalanceList_Mag" SpName="Age_CustomerSelCreditBalanceList_MAg" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
+    <Setting Key="Age_CustomerSelCreditBalanceList_Sag" SpName="Age_CustomerSelCreditBalanceList_SAg" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
   </Function>
   <Function Name="Create Member By QR Code">
-    <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Age_CustomerSelCheckBelonging_ByUsername" SpName="Age_CustomerSelCheckBelonging_ByUsername" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
+    <Setting Key="Age_CustomerSelCheckBelonging_ByUsername" SpName="Age_CustomerSelCheckBelonging_ByUsername" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
   </Function>
   <Function Name="Customer List">
-    <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus" DbName="DBAGE.bodb02.BODBDownlineNetView" Plain="0" />  
+    <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />  
   </Function>
   <Function Name="My Monitor Accounts">
-    <Setting Key="Acc_WLMonitored_Player_ReachDetail_Sel" SpName="Acc_WLMonitored_Player_ReachDetail_Sel" DbName="DB052.bodb02.BODBDownlineNetView" Plain="0" />
-    <Setting Key="Acc_WLMonitored_Player_ReachList_ByAg" SpName="Acc_WLMonitored_Player_ReachList_ByAg" DbName="DB052.bodb02.BODBDownlineNetView" Plain="0"/>
-    <Setting Key="Acc_WLMonitored_SMA_ReachDetail_Sel" SpName="Acc_WLMonitored_SMA_ReachDetail_Sel" DbName="DB052.bodb02.BODBDownlineNetView" Plain="0"/>
+    <Setting Key="Acc_WLMonitored_Player_ReachDetail_Sel" SpName="Acc_WLMonitored_Player_ReachDetail_Sel" DbName="DB052.bodb02.wsv_alpv" Plain="0" />
+    <Setting Key="Acc_WLMonitored_Player_ReachList_ByAg" SpName="Acc_WLMonitored_Player_ReachList_ByAg" DbName="DB052.bodb02.wsv_alpv" Plain="0"/>
+    <Setting Key="Acc_WLMonitored_SMA_ReachDetail_Sel" SpName="Acc_WLMonitored_SMA_ReachDetail_Sel" DbName="DB052.bodb02.wsv_alpv" Plain="0"/>
   </Function>
 </Functions>

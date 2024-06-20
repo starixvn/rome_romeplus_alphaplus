@@ -3,4 +3,7 @@
   <Function Name="Member Win Loss Limit">
     <Setting Key="Age_CustomerSelWinlimit_Outstanding" SpName="Age_CustomerSelWinlimit_Outstanding" DbName="DBBOF.bodb02.wsv_alp" Plain="0" />
   </Function>
+  <Function Name="Account Info">
+    <Setting Key="Acc_OutstandingMemberSel" SpName="Acc_OutstandingMemberSel" DbName="DBBOF.bodb02.wsv_alp" Plain="0" />
+  </Function>
 </Functions>
