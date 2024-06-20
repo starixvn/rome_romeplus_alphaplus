@@ -226,5 +226,15 @@
       "assets/scripts/components/pager.js",
       "assets/scripts/betlists/casino-details/casino-details.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/member-betlist.js",
+    "inputFiles": [
+      "assets/scripts/components/productmultiselection.js",
+      "assets/scripts/components/daterangepicker.js",
+      "assets/scripts/components/dropdown-list.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/member-betlist/member-betlist.js"
+    ]
   }
 ]

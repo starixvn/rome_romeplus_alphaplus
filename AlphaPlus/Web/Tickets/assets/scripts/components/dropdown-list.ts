@@ -3,21 +3,19 @@ interface JQuery {
 }
 
 class DropdownListComponent {
-    private $dropdownList: JQuery;
+    $dropdownList: JQuery;
     private $multiSelectButton: JQuery;
-    private $hiddenInput: JQuery;
-    isReady = false;
+    private onChangeCallback: Function;
+    private isReady = false;
 
-    render(selectorId: string, options = {}, hiddenInputSelectorId: string = undefined) {
+    render(selectorId: string, options = {}, onChangeCallback: Function = undefined) {
         this.$dropdownList = $('#' + selectorId);
-        const multiple = this.$dropdownList.attr('multiple');
-
-        let defaults: any = { maxHeight: 300 };
-        if (multiple) {
-            if (hiddenInputSelectorId) {
-                this.$hiddenInput = $('#' + hiddenInputSelectorId);
-            }
-
+        this.onChangeCallback = onChangeCallback;
+        let defaults: any = {
+            maxHeight: 300,
+            onChange: (option) => this.onChangeCallback && this.onChangeCallback(option)
+        };
+        if (this.$dropdownList.attr('multiple')) {
             defaults = $.extend(defaults, {
                 numberDisplayed: 1,
                 nonSelectedText: this.$dropdownList.data('label-select'),
@@ -25,8 +23,8 @@ class DropdownListComponent {
                 allSelectedText: this.$dropdownList.data('label-all'),
                 selectAllText: this.$dropdownList.data('label-selectall'),
                 includeSelectAllOption: true,
-                onChange: () => this.onChange(),
-                onSelectAll: () => this.onChange()
+                onChange: (option, checked) => this.onChangeMultiple(option, checked),
+                onSelectAll: (option, checked) => this.onChangeMultiple(option, checked)
             });
         }
 
@@ -37,10 +35,10 @@ class DropdownListComponent {
         return this.$dropdownList;
     }
 
-    private onChange() {
+    private onChangeMultiple(option: any, checked: boolean) {
         if (this.isReady) {
             this.validateSelectedItems();
-            this.$hiddenInput && this.$hiddenInput.val(this.getSelected().join(','));
+            this.onChangeCallback && this.onChangeCallback(option, checked);
         }
     }
 

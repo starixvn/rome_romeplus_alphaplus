@@ -1,7 +1,6 @@
 class CancelledBetsListView {
     $betlistForm: JQuery;
     $pageTitle: JQuery;
-    $isFilterVisible: JQuery;
     dateRangePicker: DateRangePickerComponent;
     productMultiSelection: ProductMultiSelectionComponent;
     statusMultiSelection: DropdownListComponent;
@@ -24,7 +23,9 @@ class CancelledBetsListView {
 
         this.dateRangePicker.render();
         this.productMultiSelection.render();
-        this.statusMultiSelection.render('dropdown-status', {});
+        this.statusMultiSelection.render('dropdown-status', {}, () => {
+            $('#status-ids').val(this.statusMultiSelection.getSelected().join(','));
+        });
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
         this.pagerComponent.render();
     }
@@ -32,7 +33,6 @@ class CancelledBetsListView {
     private cacheElements() {
         this.$betlistForm = $('#betlist-form');
         this.$pageTitle = $('.bl_title');
-        this.$isFilterVisible = $('#IsFilterVisible');
     }
 
     public registerEvents() {
@@ -65,7 +65,7 @@ class CancelledBetsListView {
 
         $.blockUI();
         const isFilterVisible = !this.$betlistForm.is(':hidden');
-        this.$isFilterVisible.val(String(alphaReports.screenSmallThan768() ? false : isFilterVisible));
+        $('#IsFilterVisible').val(String(alphaReports.screenSmallThan768() ? false : isFilterVisible));
     };
 }
 

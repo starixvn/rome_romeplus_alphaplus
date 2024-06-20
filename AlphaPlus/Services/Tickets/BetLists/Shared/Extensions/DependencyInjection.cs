@@ -29,6 +29,8 @@ using AlphaPlus.BetLists.JackpotDetails;
 using AlphaPlus.BetLists.BetBuilder;
 using AlphaPlus.BetLists.Shared.Helpers;
 using Fanex.RemotingRef;
+using AlphaPlus.BetLists.RunningBetList;
+using AlphaPlus.BetLists.MemberBetList;
 
 namespace AlphaPlus.BetLists.Shared.Extensions;
 
@@ -48,6 +50,7 @@ public static class DependencyInjection
                 sp.GetService<IUserSession>(),
                 sp.GetService<ISmartPunterService>(),
                 IPHelper.GetClientIP))
+            .AddSingleton<IAutoFollowBetService, AutoFollowBetService>()
             .AddSingleton<IForecastService, ForecastService>()
             .AddSingleton<IReportDateService, ReportDateService>()
             .AddSingleton<IProductService, ProductService>()
@@ -68,7 +71,9 @@ public static class DependencyInjection
             .AddSingleton<IBetBuilderService, BetBuilderService>()
             .AddSingleton<IJackpotDetailsService, JackpotDetailsService>()
             .AddSingleton<ICashOutHistoryService, CashOutHistoryService>()
-            .AddSingleton<ICasinoDetailsService, CasinoDetailsService>();
+            .AddSingleton<ICasinoDetailsService, CasinoDetailsService>()
+            .AddSingleton<IRunningBetListService, RunningBetListService>()
+            .AddSingleton<IMemberBetListService, MemberBetListService>();
 
         var serviceProvider = services.BuildServiceProvider();
         ReportDateService.Instance = serviceProvider.GetRequiredService<IReportDateService>();

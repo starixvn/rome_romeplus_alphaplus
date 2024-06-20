@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = Model.Title;
+    var notes = new List<string> { Resources.ipnote, Model.ViewDataInstructionMessage, Resources.CommissionRoundNote };
+    if (Model.ShowContributionAmountRoundNote)
+    {
+        notes.Add(Resources.ContributionAmountRoundNote);
+    }
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
+    <link rel="stylesheet" href="~/bundles/betlists/filter.css" asp-append-version="true" />
+}
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
+    <script src="~/bundles/betlists/member-betlist.js" asp-append-version="true"></script>
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.MemberBetList.MemberBetListViewModel
+<div class="bl_title">
+    <div class="box">
+        <div>@Model.Title</div>
+        <div>
+            <partial name="IconInformation" model="@notes" />
+        </div>
+        <div class="push">
+            <div class="list-icon" id="betlist-filter">
+                <ul>
+                    <li class="showfilter-element"><span class="icon-arrow-up-drop-circle icon-filter"
+                            title="@Resources.HideFilter"></span></li>
+                    <li class="hidefilter-element"><span class="icon-arrow-down-drop-circle icon-filter"
+                            title="@Resources.ShowFilter"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<form class="form-inline filter @(Model.IsFilterVisible ? string.Empty : "hide")" role="form" id="betlist-form">
+    <input type="hidden" asp-for="CustId" />
+    <input type="hidden" asp-for="CustName" />
+    <input type="hidden" asp-for="IsFilterVisible" />
+    <div class="form-group">
+        <select id="dropdown-betlist-type">
+            <option value="1" data-url="@Model.GetDailyStatementUrl()">@Resources.DailyStatement</option>
+            <option value="2" selected="selected">@Resources.BetList</option>
+            <option value="3" data-url="@Model.GetRunningBetListUrl()">@Resources.BetlistRunning</option>
+        </select>
+    </div>
+    <product model="@Model.ProductViewModel" />
+    <daterange-picker model="Model.DateRangePicker" />
+</form>
+<partial name="WinLossTable" model="Model" />
