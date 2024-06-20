@@ -1,7 +1,7 @@
 ﻿using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.ParlayMaxPayout.Models;
-using AlphaPlus.Settings.Site.Features.Shared.AppResources.ProductResources;
+using AlphaPlus.Shared.AppResources.Settings.ProductResources;
 
 namespace AlphaPlus.Settings.Site.Features.ParlayMaxPayout.ViewModels
 {

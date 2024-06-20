@@ -7,7 +7,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.ProductStatus.Criteria;
 using AlphaPlus.Settings.Site.Features.ProductStatus.Models;
 using AlphaPlus.Settings.Site.Features.ProductStatus.Params;
-using AlphaPlus.Settings.Site.Features.Shared.AppResources;
+using AlphaPlus.Shared.AppResources.Settings;
 using AlphaPlus.Settings.Site.Features.Shared.Services;
 using Fanex.Data.Repository;
 

@@ -1,5 +1,5 @@
 using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Site.Features.Shared.AppResources;
+using AlphaPlus.Shared.AppResources.Settings;
 
 namespace AlphaPlus.Settings.Site.Features.AccountInfo.Models
 {

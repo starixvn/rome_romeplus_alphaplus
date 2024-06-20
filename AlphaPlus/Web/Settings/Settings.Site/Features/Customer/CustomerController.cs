@@ -13,7 +13,7 @@ using System.Text.Json;
 using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Constants;
 using Microsoft.Extensions.Caching.Memory;
-using AlphaPlus.Settings.Site.Features.Shared.AppResources;
+using AlphaPlus.Shared.AppResources.Settings;
 
 namespace AlphaPlus.Settings.Site.Features.Customer
 {

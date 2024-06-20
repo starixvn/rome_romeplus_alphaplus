@@ -1,6 +1,6 @@
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.ProductStatus.Models;
-using AlphaPlus.Settings.Site.Features.Shared.AppResources;
+using AlphaPlus.Shared.AppResources.Settings;
 
 namespace AlphaPlus.Settings.Site.Features.ProductStatus.ViewModels
 {

@@ -1,7 +1,7 @@
 ﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Products.Configurations;
 using AlphaPlus.Products.Models;
-using AlphaPlus.Settings.Site.Features.Shared.AppResources.ProductResources;
+using AlphaPlus.Shared.AppResources.Settings.ProductResources;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 {

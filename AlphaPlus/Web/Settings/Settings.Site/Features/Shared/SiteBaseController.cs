@@ -1,5 +1,6 @@
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Settings.ProductResources;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared
         protected async Task<ActionResult> Json<TResponse>(IRequest<TResponse> message)
             => (message as BaseQuery).IsValid() ?
                 Json(await mediator.Send(message)) :
-                Json(Result.CreateErrorResult(AppResources.Resources.NotAuthorized, BadRequestErrorCode));
+                Json(Result.CreateErrorResult(ProductResources.NotAuthorized, BadRequestErrorCode));
     }
 }
