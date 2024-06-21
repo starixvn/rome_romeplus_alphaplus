@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AlphaPlus.Settings.Site.Requests.ProblemAccount;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
 

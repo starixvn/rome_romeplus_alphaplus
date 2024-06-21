@@ -4,7 +4,7 @@
     using AlphaPlus.Settings.Site.Handlers;
     using AlphaPlus.Settings.Site.ViewModels;
     using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params;

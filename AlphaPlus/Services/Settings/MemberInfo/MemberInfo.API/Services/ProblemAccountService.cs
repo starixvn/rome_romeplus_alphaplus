@@ -4,7 +4,7 @@
     using System.Linq;
     using AlphaPlus.Settings.MemberInfo.API.Criteria.ProblemAccount;
     using AlphaPlus.Settings.MemberInfo.Domain.Params.ProblemAccount;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
     using Fanex.Data.Repository;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;

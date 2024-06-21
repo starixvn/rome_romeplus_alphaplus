@@ -2,7 +2,7 @@
 {
     using System.Net;
     using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Features.Messages.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Features.Messages;
     using AlphaPlus.Features.Site.Messages.Requests.ToastMessage;
     using MediatR;
     using AlphaPlus.Core.Models;

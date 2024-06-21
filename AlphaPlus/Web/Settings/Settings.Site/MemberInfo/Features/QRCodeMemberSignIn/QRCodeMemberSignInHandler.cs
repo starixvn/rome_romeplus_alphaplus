@@ -4,7 +4,7 @@ using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.ViewModels;
 using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn.Criteria;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
-using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Params;

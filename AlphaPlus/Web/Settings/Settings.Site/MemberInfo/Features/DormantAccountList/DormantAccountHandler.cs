@@ -7,7 +7,7 @@
     using AlphaPlus.Settings.Site.Handlers;
     using AlphaPlus.Settings.Site.ViewModels;
     using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Params;
     using MediatR;

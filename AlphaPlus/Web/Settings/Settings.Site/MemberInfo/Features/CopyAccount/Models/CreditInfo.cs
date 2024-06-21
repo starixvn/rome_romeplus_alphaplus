@@ -1,4 +1,4 @@
-﻿using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+﻿using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount.Models
 {

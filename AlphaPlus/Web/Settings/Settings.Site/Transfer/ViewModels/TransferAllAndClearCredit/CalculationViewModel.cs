@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using Helpers;
     using Requests.TransferAllAndClearCredit;
     using Settings.Transfer.API.Models;

@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.ViewModels.TransferAllAndClearCredit
 {
     using System.Collections.Generic;
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using Helpers;
     using Requests.TransferAllAndClearCredit;
     using Settings.Transfer.API.Models;

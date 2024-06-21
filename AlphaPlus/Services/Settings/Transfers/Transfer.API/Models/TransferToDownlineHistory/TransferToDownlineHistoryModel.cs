@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory
 {
     using AlphaPlus.Settings.Transfer.API.Extensions;
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using System;
 
     public class TransferToDownlineHistoryModel

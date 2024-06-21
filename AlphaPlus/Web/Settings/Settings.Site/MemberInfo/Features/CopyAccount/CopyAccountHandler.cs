@@ -2,7 +2,7 @@
 using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
 using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using Fanex.Cryptography.Aes;

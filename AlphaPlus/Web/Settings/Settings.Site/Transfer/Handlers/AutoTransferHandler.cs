@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Handlers
 {
     using System.Threading.Tasks;
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
     using AlphaPlus.Settings.Transfer.API.Params.AutoTransfer;
     using AlphaPlus.Settings.Transfer.API.Services;

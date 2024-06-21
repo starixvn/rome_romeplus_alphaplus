@@ -2,7 +2,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
 {
     using System;
     using System.Collections.Generic;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
     using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;

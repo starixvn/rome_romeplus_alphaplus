@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using AlphaPlus.Settings.Site.Controllers;
     using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;

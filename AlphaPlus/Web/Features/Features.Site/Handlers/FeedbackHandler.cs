@@ -4,7 +4,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Features.Messages;
     using AlphaPlus.Features.Messages.API.Models.Feedback;
     using AlphaPlus.Features.Messages.API.Params.Feedback;
     using AlphaPlus.Features.Messages.API.Services;

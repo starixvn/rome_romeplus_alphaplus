@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Settings.MemberInfo.Domain.AppResources
+namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
 {
     using System;
 
@@ -44,7 +44,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.AppResources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Settings.MemberInfo.Domain.AppResources.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Settings.MemberInfo.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

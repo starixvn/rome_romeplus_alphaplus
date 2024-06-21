@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using AlphaPlus.Settings.Transfer.API.Configurations;
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using Criteria;
     using Criteria.CashBalanceTransfer;
     using Fanex.Caching;

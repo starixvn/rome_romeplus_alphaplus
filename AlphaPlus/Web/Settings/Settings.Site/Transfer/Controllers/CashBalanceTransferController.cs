@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using MediatR;
     using Requests.CashBalanceTransfer;
     using Settings.Transfer.API.Models;

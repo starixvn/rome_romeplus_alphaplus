@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
-using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels

@@ -6,7 +6,7 @@
     using AlphaPlus.Settings.Transfer.API.Helpers;
     using MediatR;
     using Settings.Transfer.API.Models;
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using AlphaPlus.Settings.Site.Transfer.Models;
     using AlphaPlus.Core.Models;
     using Result = Settings.Transfer.API.Models.Result;

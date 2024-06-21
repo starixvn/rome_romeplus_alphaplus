@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AlphaPlus.Settings.Transfer.API.AppResources;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Transfer.API.Models;
 
 namespace AlphaPlus.Settings.Transfer.API.Helpers

@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using AlphaPlus.Settings.Transfer.API.Configurations;
     using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
     using AlphaPlus.Settings.Transfer.API.Services;

@@ -5,7 +5,7 @@
     using AlphaPlus.Settings.Site.Requests;
     using AlphaPlus.Settings.Site.ViewModels;
     using AlphaPlus.Core;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;

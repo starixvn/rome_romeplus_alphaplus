@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using AlphaPlus.Settings.MemberInfo.API.Criteria.IndirectLoginAccount;
     using AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount;
     using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
     using Fanex.Cryptography.Aes;

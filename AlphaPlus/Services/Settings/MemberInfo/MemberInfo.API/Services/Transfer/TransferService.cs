@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using Criteria.Transfer;
     using Fanex.Data.Repository;

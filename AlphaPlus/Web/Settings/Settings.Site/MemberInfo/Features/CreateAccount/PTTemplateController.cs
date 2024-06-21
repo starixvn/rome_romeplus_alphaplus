@@ -1,7 +1,7 @@
 ﻿using AlphaPlus.Settings.Site.Features.CreateAccount.Requests;
 using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels;
 using AlphaPlus.Core;
-using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;

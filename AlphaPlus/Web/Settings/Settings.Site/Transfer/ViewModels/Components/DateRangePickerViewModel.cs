@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.ViewModels.Components
 {
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using System;
     using System.Collections.Generic;
     using System.Linq;

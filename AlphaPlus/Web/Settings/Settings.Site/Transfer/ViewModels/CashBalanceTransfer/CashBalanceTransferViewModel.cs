@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.ViewModels.CashBalanceTransfer
 {
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using Settings.Transfer.API.Models;
 
     public class CashBalanceTransferViewModel

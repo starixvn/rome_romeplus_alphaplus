@@ -5,7 +5,7 @@
     using AlphaPlus.Settings.Site.Requests.ProblemAccount;
     using AlphaPlus.Settings.Site.ViewModels;
     using AlphaPlus.Settings.MemberInfo.API.Services;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
     using MediatR;

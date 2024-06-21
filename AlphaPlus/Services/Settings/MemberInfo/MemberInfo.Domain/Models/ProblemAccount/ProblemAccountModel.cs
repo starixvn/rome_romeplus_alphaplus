@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount
 {
     using System;
-    using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
     using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
 

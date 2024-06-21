@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.Site.Transfer.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Settings.Transfer.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using AlphaPlus.Settings.Transfer.API.Models;
     using AlphaPlus.Settings.Transfer.API.Services;
     using MediatR;

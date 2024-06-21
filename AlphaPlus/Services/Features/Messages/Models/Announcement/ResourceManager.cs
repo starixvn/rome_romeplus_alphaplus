@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.Features.Messages.API.Models.Announcement
 {
-    using AlphaPlus.Features.Messages.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Features.Messages;
     using System.Globalization;
 
     public interface ResourceManager

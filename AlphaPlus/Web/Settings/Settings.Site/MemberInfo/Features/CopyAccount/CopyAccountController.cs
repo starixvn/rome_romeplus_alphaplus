@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Settings.Site.Controllers;
 using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
-using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

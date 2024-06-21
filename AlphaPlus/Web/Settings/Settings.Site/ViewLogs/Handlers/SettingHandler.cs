@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-    using AlphaPlus.Settings.ViewLogs.API.AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.ViewLog;
     using AlphaPlus.Settings.ViewLogs.API.Constants;
     using AlphaPlus.Settings.ViewLogs.API.Helpers;
     using AlphaPlus.Settings.ViewLogs.API.Models;

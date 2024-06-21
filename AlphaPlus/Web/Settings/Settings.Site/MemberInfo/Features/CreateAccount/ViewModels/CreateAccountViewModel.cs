@@ -1,4 +1,4 @@
-﻿using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+﻿using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 

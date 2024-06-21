@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Requests;
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 
 namespace AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.ViewModels

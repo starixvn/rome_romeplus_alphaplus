@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Settings.MemberInfo.Domain.AppResources
+namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
 {
     using System;
 
@@ -45,7 +45,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.AppResources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Settings.MemberInfo.Domain.AppResources.Lang", typeof(Lang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Settings.MemberInfo.Lang", typeof(Lang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

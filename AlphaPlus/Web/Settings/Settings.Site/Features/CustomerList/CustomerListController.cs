@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using MediatR;
-using AlphaPlus.Settings.MemberInfo.Domain.AppResources;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
