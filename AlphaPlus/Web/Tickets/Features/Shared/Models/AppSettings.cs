@@ -17,4 +17,10 @@ public class AppSettings
     public int[] MonitoringBetsBetTypes { get; init; }
 
     public byte SettingStatus { get; init; }
+
+    public int[] ProductOfferProductDetail { get; init; }
+
+    public int BetListMaxTotalRowView { get; init; }
+
+    public int BetListMaxTotalRowExportExcel { get; init; }
 }

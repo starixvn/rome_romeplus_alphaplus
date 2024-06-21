@@ -16,11 +16,7 @@ public class ProductDetail
 
     public string DisplayName { get; set; }
 
-    public string LeagueGroupId { get; init; }
+    public int LeagueGroupId { get; init; }
 
-    public string[] LeagueGroupIds => LeagueGroupId.ToList();
-
-    public string TicketType { get; init; }
-
-    public string[] TicketTypeIds => TicketType.ToList();
+    public int TicketType { get; init; }
 }

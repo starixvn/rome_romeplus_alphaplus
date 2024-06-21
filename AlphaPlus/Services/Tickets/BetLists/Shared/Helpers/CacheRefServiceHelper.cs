@@ -6,6 +6,9 @@ public static class CacheRefServiceHelper
 {
     internal static IRemotingRefService Instance { get; set; }
 
+    public static string GetSportName(int sportTypeId)
+        => Instance.GetSportName(sportTypeId.ToString(), LanguageCode, string.Empty);
+
     public static string GetBetTypeName(int betTypeId)
         => Instance.GetBetTypeName(betTypeId.ToString(), LanguageCode);
 
@@ -14,9 +17,6 @@ public static class CacheRefServiceHelper
 
     public static string GetLeagueName(int leagueId, int leagueGroupId)
         => Instance.GetLeagueName(leagueId.ToString(), leagueGroupId.ToString(), LanguageCode, string.Empty);
-
-    // public static string GetLeague3rdName(int league3rdId)
-    //     => Instance.GetLeagueName3rd(league3rdId.ToString(), LanguageCode);
 
     public static string GetProductName(int productId, bool isSiteLabel777)
     {
@@ -29,15 +29,16 @@ public static class CacheRefServiceHelper
             : productName;
     }
 
-    // public static string GetProductDetailName(string refId, int resourceId)
-    //     => Instance.GetResourceDataByRefIdAndResourceId(
-    //         refId,
-    //         resourceId.ToString(),
-    //         LanguageCode,
-    //         string.Empty);
+    public static string GetProductDetailName(int productDetailId, bool isSiteLabel777)
+    {
+        var productDetailName = isSiteLabel777
+            ? GetResourceDataByRefIdAndResourceId("ProductDetail_Saba", productDetailId)
+            : string.Empty;
 
-    public static string GetSportName(int sportTypeId)
-        => Instance.GetSportName(sportTypeId.ToString(), LanguageCode, string.Empty);
+        return string.IsNullOrEmpty(productDetailName)
+            ? GetResourceDataByRefIdAndResourceId("ProductDetail", productDetailId)
+            : productDetailName;
+    }
 
     private static string GetResourceDataByRefIdAndResourceId(string refId, int resourceId)
         => Instance.GetResourceDataByRefIdAndResourceId(refId, resourceId.ToString(), LanguageCode, LanguageCode);

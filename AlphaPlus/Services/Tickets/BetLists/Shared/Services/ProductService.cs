@@ -1,3 +1,4 @@
+using System.Text;
 using AlphaPlus.BetLists.Shared.Criteria;
 using AlphaPlus.BetLists.Shared.Helpers;
 using AlphaPlus.BetLists.Shared.Models;
@@ -14,7 +15,11 @@ public interface IProductService
 
     Task<IEnumerable<Product>> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param);
 
-    //IEnumerable<ProductDetail> GetProductDetails(int custId, IEnumerable<Product> products);
+    Task<bool> IsEnabledJackpot(string site, int currencyId, bool isTest);
+
+    Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param);
+
+    string BuildProductDetailsXml(IEnumerable<ProductDetail> productDetails);
 }
 
 public class ProductService(
@@ -24,9 +29,17 @@ public class ProductService(
 {
     private const int CustProductsCacheTimeInMinutes = 5;
     private const string ProductsCacheKey = "AlphaPlus.BetLists.Products";
+    private const int ProductDetailsCacheInMinutes = 60 * 24; // 1 day
+    private const string ProductDetailsCacheKey = "AlphaPlus.BetLists.ProductDetails";
+    private const int CustProductDetailsCacheInMinutes = 5;
     private const int LiveCasinoProductId = 41;
     private const int RNGCasinoProductId = 53;
     private static readonly HashSet<int> IgnoreCheckProductStatusTypes = [LiveCasinoProductId, RNGCasinoProductId];
+    private const int SoccerPinGoal = 15;
+    private const int BasketballPinGoal = 16;
+    private const int EsportsPinGoal = 19;
+    private static readonly HashSet<int> ExcludedProductDetailFor777 = [SoccerPinGoal, BasketballPinGoal, EsportsPinGoal];
+    public const int CacheDayforJackpot = 7;
 
     public IEnumerable<string> ConcatProductNames(IEnumerable<int> productIds, bool isSiteLabel777)
         => productIds.Select(id => CacheRefServiceHelper.GetProductName(id, isSiteLabel777));
@@ -66,5 +79,66 @@ public class ProductService(
         => !product.EndOfSupportDate.HasValue
         || minReportDate <= product.EndOfSupportDate.Value;
 
+    public async Task<bool> IsEnabledJackpot(string site, int currencyId, bool isTest)
+    {
+        var (jackpotOfferedBySites, jackpotOfferedByCurrencies) = await GetEnabledJackpot(isTest);
+        var productIdsBySite = jackpotOfferedBySites.Where(i => i.Site.Equals(site, StringComparison.OrdinalIgnoreCase));
 
+        return jackpotOfferedByCurrencies.Any(i => i.Currency == currencyId && productIdsBySite.Any(s => s.Product == i.Product));
+    }
+
+    private Task<(IEnumerable<JackpotOfferedBySite>, IEnumerable<JackpotOfferedByCurrency>)> GetEnabledJackpot(bool isTest)
+        => cacheService.GetOrSetAsync(
+        "AlphaPlus.BetLists.OfferedJackpot",
+        () => repository.FetchMultipleAsync<JackpotOfferedBySite, JackpotOfferedByCurrency>(new GetEnableJackpotProductCriteria(isTest)),
+        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheDayforJackpot)));
+
+    public Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param)
+        => cacheService.GetOrSetAsync(
+        $"{ProductDetailsCacheKey}-{param.CustId}",
+        async () =>
+        {
+            var productSupportDetail = param.Products
+                .Where(product => param.ProductOfferProductDetail.Contains(product.Id))
+                .Select(product => product.Id)
+                .ToList();
+
+            return (await GetAllProductDetails())
+                .Where(p => productSupportDetail.Contains(p.ProductId) && CanViewProductDetailByResourceId(p.ResourceId, param.IsSiteLabel777))
+                .Select(product =>
+                {
+                    product.DisplayName = CacheRefServiceHelper.GetProductDetailName(product.ResourceId, param.IsSiteLabel777);
+                    return product;
+                });
+        },
+        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
+
+    private static bool CanViewProductDetailByResourceId(int resourceId, bool isSiteLabel777)
+        => isSiteLabel777
+        ? !ExcludedProductDetailFor777.Contains(resourceId)
+        : true;
+
+    private Task<IEnumerable<ProductDetail>> GetAllProductDetails()
+        => cacheService.GetOrSetAsync(
+        ProductDetailsCacheKey,
+        () => repository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria()),
+        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductDetailsCacheInMinutes)));
+
+    public string BuildProductDetailsXml(IEnumerable<ProductDetail> productDetails)
+    {
+        var xml = new StringBuilder("<ROOT>");
+        foreach (var productDetail in productDetails)
+        {
+            xml.AppendFormat(
+                "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
+                productDetail.ProductId,
+                productDetail.SportType,
+                productDetail.BetType,
+                productDetail.LeagueGroupId,
+                productDetail.TicketType);
+        }
+        xml.Append("</ROOT>");
+
+        return xml.ToString();
+    }
 }
