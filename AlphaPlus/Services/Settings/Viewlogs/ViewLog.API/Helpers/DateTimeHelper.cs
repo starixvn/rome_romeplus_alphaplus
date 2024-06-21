@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.ViewLogs.API.Helpers
 {
     using System;
-    using AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 
     public static class DateTimeHelper
     {

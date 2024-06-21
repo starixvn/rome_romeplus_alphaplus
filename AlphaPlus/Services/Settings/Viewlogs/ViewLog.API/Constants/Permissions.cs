@@ -3,7 +3,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using AlphaPlus.Core.Models;
-    using AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 
     public static class Permissions
     {

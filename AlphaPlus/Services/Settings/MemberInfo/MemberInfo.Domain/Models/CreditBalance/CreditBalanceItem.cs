@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance
 {
     using System;
-    using AppResources;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 
     public class CreditBalanceItem
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Settings.Site.Features.ProductStatus.AppResources
+namespace AlphaPlus.Shared.AppResources.Settings.ProductStatus
 {
     using System;
 
@@ -45,7 +45,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.AppResources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Settings.Site.Features.ProductStatus.AppResources.ProductStatus", typeof(ProductStatus).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Settings.ProductStatus.ProductStatus", typeof(ProductStatus).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

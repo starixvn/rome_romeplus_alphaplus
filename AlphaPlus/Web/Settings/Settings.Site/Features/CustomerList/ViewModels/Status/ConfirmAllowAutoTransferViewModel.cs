@@ -3,6 +3,7 @@ using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+using AlphaPlus.Shared.AppResources.Settings.CustomerList;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 {
@@ -72,13 +73,13 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 
         private string GetConfirmMessage_Disable()
         {
-            var hintPath = AppResources.Lang.ResourceManager.GetString("AutoTransferPageHint_" + SearchAccount.CustomerLevel.DisplayName);
-            var message = string.Format(AppResources.Lang.ConfirmAllowAutoTransferViewModelInCaseDisabledMemberMessage_Message, SearchAccount.Username.ToString());
+            var hintPath = Lang.ResourceManager.GetString("AutoTransferPageHint_" + SearchAccount.CustomerLevel.DisplayName);
+            var message = string.Format(Lang.ConfirmAllowAutoTransferViewModelInCaseDisabledMemberMessage_Message, SearchAccount.Username.ToString());
 
             message += "<ul class='ul-confirm'>";
-            message += "<li class='clear-schedule-note'>" + AppResources.Lang.AutoTransfer_ClearSchedule + "</li>";
+            message += "<li class='clear-schedule-note'>" + Lang.AutoTransfer_ClearSchedule + "</li>";
             message += "<li class='tip'><span class='icon-lightbulb-on'></span>";
-            message += string.Format(AppResources.Lang.ConfirmAllowAutoTransferViewModelInCaseDisabledMemberMessage_Tip, hintPath);
+            message += string.Format(Lang.ConfirmAllowAutoTransferViewModelInCaseDisabledMemberMessage_Tip, hintPath);
             message += "</li></ul>";
 
             return message;
@@ -86,11 +87,11 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 
         private string GetConfirmMessage_Enable()
         {
-            var hintPath = AppResources.Lang.ResourceManager.GetString("AutoTransferPageHint_" + SearchAccount.CustomerLevel.DisplayName);
+            var hintPath = Lang.ResourceManager.GetString("AutoTransferPageHint_" + SearchAccount.CustomerLevel.DisplayName);
             var uplineCondition = accountService.GetTransferOption(SearchAccount.Upline.Id, SearchAccount.Upline.CustomerLevelValue);
             var transferrableDates = TransferConditionHelper.GetTransferrableDatesFromCondition(uplineCondition);
 
-            string[] dates = { AppResources.Lang.Sun, AppResources.Lang.Mon, AppResources.Lang.Tue, AppResources.Lang.Wed, AppResources.Lang.Thurs, AppResources.Lang.Fri, AppResources.Lang.Sat };
+            string[] dates = { Lang.Sun, Lang.Mon, Lang.Tue, Lang.Wed, Lang.Thurs, Lang.Fri, Lang.Sat };
             var schedule = Request.GetData<string>(DataKey.SearchAccount.ScheduleWeekDays);
             var selectedDates = string.IsNullOrWhiteSpace(schedule)
                 ? transferrableDates
@@ -98,7 +99,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 
             var scheduleChecks = "<span class='spn-schedule'>" +
                 "<input id='opt-schedule-all' type='checkbox' class='opt-schedule-all' "
-                    + (selectedDates.Count == transferrableDates.Count ? " checked='checked'" : "") + " />" + AppResources.Lang.SelectAll + "</span>";
+                    + (selectedDates.Count == transferrableDates.Count ? " checked='checked'" : "") + " />" + Lang.SelectAll + "</span>";
 
             foreach (var d in transferrableDates)
             {
@@ -107,13 +108,13 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
                         (selectedDates.Any(s => s == d) ? " checked='checked'" : "") + " data-val='" + d + "' />" + dates[d - 1] + "</span>";
             }
 
-            var message = string.Format(AppResources.Lang.ConfirmAllowAutoTransferViewModelInCaseEnabledMemberMessage_Message, SearchAccount.Username.ToString());
+            var message = string.Format(Lang.ConfirmAllowAutoTransferViewModelInCaseEnabledMemberMessage_Message, SearchAccount.Username.ToString());
             message += "<ul class='ul-confirm'>";
-            message += "<li>" + AppResources.Lang.AutoTransfer_AffectTime + "</li>";
-            message += "<li>" + AppResources.Lang.AutoTransfer_SetSchedule + "</li>";
+            message += "<li>" + Lang.AutoTransfer_AffectTime + "</li>";
+            message += "<li>" + Lang.AutoTransfer_SetSchedule + "</li>";
             message += "<li class='li-schedule'>" + scheduleChecks + "</li>";
             message += "<li class='tip'><span class='icon-lightbulb-on'></span>";
-            message += string.Format(AppResources.Lang.ConfirmAllowAutoTransferViewModelInCaseEnabledMemberMessage_Tip, hintPath);
+            message += string.Format(Lang.ConfirmAllowAutoTransferViewModelInCaseEnabledMemberMessage_Tip, hintPath);
             message += "</li></ul>";
 
             return message;

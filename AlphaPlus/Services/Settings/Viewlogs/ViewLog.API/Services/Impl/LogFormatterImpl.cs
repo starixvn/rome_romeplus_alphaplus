@@ -8,10 +8,10 @@
     using System.Xml.Linq;
     using AlphaPlus.Settings.ViewLogs.API.Extensions;
     using AlphaPlus.Core.Configurations;
-    using AppResources;
     using Constants;
     using Helpers;
     using Params;
+    using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 
     public class LogFormatterImpl : LogFormatter
     {

@@ -1,5 +1,6 @@
 ﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
+using AlphaPlus.Shared.AppResources.Settings.CustomerList;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 {
@@ -27,7 +28,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 
                 if (Request.AutoTransferAffect)
                 {
-                    confirmMessage += string.Format(AppResources.Lang.TurnOnTransferBalanceDailyNoteMessage, SearchAccount.Username);
+                    confirmMessage += string.Format(Lang.TurnOnTransferBalanceDailyNoteMessage, SearchAccount.Username);
                 }
 
                 return confirmMessage;

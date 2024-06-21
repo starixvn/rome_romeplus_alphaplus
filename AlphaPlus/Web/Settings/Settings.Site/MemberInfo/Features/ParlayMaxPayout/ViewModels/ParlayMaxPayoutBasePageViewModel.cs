@@ -32,7 +32,7 @@ namespace AlphaPlus.Settings.Site.Features.ParlayMaxPayout.ViewModels
             InvalidMaxPayoutValueText = Resources.InvalidMaxPayoutValueText;
             GreaterThanMaxValueText = Resources.GreaterThanMaxValueText;
             HasNoChangeText = ProductResources.NoDataChange;
-            NotAuthorizedText = Settings.MemberInfo.Domain.AppResources.Lang.NotAuthorized;
+            NotAuthorizedText = Lang.NotAuthorized;
             ParlayMaxPayoutSettingPartialViewPath = parlayMaxPayoutSettingPartialViewPath;
         }
 

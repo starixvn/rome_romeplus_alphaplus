@@ -222,7 +222,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
                ToUMDateTime(message.EndTime));
 
         private static string GetResource(string name, string language)
-            => AppResources.ProductStatus.ResourceManager.GetString(name, new CultureInfo(language));
+            => AlphaPlus.Shared.AppResources.Settings.ProductStatus.ProductStatus.ResourceManager.GetString(name, new CultureInfo(language));
 
         private static string ToUMDateTime(DateTime dateTime)
            => dateTime.ToString(UMDateTimeFormat);

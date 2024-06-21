@@ -1,6 +1,7 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Extensions
 {
     using System.Globalization;
+    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 
     public static class NumberExtensions
     {
@@ -16,6 +17,6 @@
         public static string ToMoneyFormatWithUnlimited(this decimal? number)
            => number.HasValue
            ? number.Value.ToMoneyFormat()
-           : AppResources.Resources.Unlimited;
+           : Resources.Unlimited;
     }
 }
