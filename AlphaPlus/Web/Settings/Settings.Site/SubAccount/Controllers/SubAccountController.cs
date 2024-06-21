@@ -2,7 +2,7 @@ using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.SubAccount.Models;
 using AlphaPlus.Settings.Site.SubAccount.Requests;
-using AlphaPlus.Shared.AppResources.SubAccount;
+using AlphaPlus.Shared.AppResources.Settings.SubAccount;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
