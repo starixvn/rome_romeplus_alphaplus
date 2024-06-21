@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.Tickets.Site</AssemblyName>
+    <RootNamespace>AlphaPlus.Tickets.Site</RootNamespace>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="App_Data\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Features\Shared\Constants\BetTypeConstants.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\EnumerableExtensions.cs" Link="Features\Shared\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Features\Shared\Extensions\FanexLoggingExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Features\Shared\Extensions\RemotingRefExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+    <ProjectReference Include="..\..\..\Services\Tickets\BetsForecast\Domain\BetsForecast.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Services\Tickets\BetLists\AlphaPlus.BetLists.csproj" />
+    <ProjectReference Include="..\..\..\Services\Tickets\Results\AlphaPlus.Results.csproj" />
+    <ProjectReference Include="..\BetLists.Builders\BetLists.Builders.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.Caching" Version="2.2.4" />
+    <PackageReference Include="Fanex.Common" Version="1.1.1.1" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
+    <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
+    <PackageReference Include="Fanex.Result.Core-Bitcoin" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.Result.Core-LeapGaming" Version="2.0.0" />
+    <PackageReference Include="Fanex.Result.Core-NPOI.2.0.6" Version="3.0.0.6-upgrade-03" />
+    <PackageReference Include="Fanex.Result.Core-NumberGame" Version="2.0.0" />
+    <PackageReference Include="Fanex.Result.Core-Sportsbook" Version="2.0.0.7-upgrade-02" />
+    <PackageReference Include="Fanex.Result.Core.AllBetCasino" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.Result.Core.ConfigurationHelper" Version="1.0.0" />
+    <PackageReference Include="Fanex.Result.Core.GTCasino" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.Result.Core.Happy5" Version="2.0.0.2-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.KenoLotteryTG" Version="3.0.1-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.LinkedGames" Version="2.0.1-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.2" />
+    <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.1-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.SAGaming" Version="2.0.0" />
+    <PackageReference Include="Fanex.Result.Core.SexyGaming" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.Result.Core.SportsLottery" Version="2.0.0-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1-upgrade-02" />
+    <PackageReference Include="Fanex.Result.Core.WM" Version="2.0.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
+    <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="1.0.0.3" />
+    <PackageReference Include="System.CodeDom" Version="8.0.0" />
+  </ItemGroup>
+</Project>

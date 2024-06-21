@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>AlphaPlus.BetLists.Builders</AssemblyName>
+    <RootNamespace>AlphaPlus.BetLists.Builders</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.BetList.Core" Version="3.0.3.2" />
+    <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="1.0.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
+  </ItemGroup>
+</Project>
