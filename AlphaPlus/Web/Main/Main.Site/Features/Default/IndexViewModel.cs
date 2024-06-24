@@ -1,5 +1,5 @@
 ﻿using System.Web;
-using AlphaPlus.Main.Site.AppResources;
+using AlphaPlus.Shared.AppResources.Main;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Helpers;
 using AlphaPlus.SecurityCode.Web;

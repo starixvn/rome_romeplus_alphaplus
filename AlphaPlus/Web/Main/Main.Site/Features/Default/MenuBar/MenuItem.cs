@@ -1,4 +1,4 @@
-﻿using AlphaPlus.Main.Site.AppResources;
+﻿using AlphaPlus.Shared.AppResources.Main;
 using AlphaPlus.Main.Site.Shared.Models;
 using AlphaPlus.Core.Helpers;
 

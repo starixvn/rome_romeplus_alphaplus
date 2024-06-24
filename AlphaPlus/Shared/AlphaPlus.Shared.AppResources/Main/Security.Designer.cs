@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Main.Site.AppResources
+namespace AlphaPlus.Shared.AppResources.Main
 {
     using System;
 
@@ -45,7 +45,7 @@ namespace AlphaPlus.Main.Site.AppResources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Main.Site.AppResources.Security", typeof(Security).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Main.Security", typeof(Security).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

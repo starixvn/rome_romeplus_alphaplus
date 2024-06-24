@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.Main.Site.Helpers;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Main.Site.AppResources;
+using AlphaPlus.Shared.AppResources.Main;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

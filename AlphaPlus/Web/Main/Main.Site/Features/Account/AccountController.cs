@@ -1,6 +1,6 @@
 using System.Security.Claims;
 using System.Text.Json;
-using AlphaPlus.Main.Site.AppResources;
+using AlphaPlus.Shared.AppResources.Main;
 using AlphaPlus.Core.Models;
 using AlphaPlus.RequestInfo;
 using Fanex.Cryptography.Aes;

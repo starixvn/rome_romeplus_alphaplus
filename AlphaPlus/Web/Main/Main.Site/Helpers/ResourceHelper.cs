@@ -2,7 +2,7 @@
 {
     using System.Globalization;
     using System.Resources;
-    using AppResources;
+    using AlphaPlus.Shared.AppResources.Main;
 
     public static class ResourceHelper
     {

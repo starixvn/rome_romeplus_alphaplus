@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Main.Site.AppResources
+namespace AlphaPlus.Shared.AppResources.Main
 {
     using System;
 
@@ -45,7 +45,7 @@ namespace AlphaPlus.Main.Site.AppResources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Main.Site.AppResources.Alpha.sitemap", typeof(Alpha_sitemap).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Main.Alpha.sitemap", typeof(Alpha_sitemap).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

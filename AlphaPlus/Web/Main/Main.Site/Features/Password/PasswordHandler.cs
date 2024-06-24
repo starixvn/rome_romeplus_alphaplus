@@ -1,5 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
-using AlphaPlus.Main.Site.AppResources;
+using AlphaPlus.Shared.AppResources.Main;
 using MediatR;
 using CustomResult = AlphaPlus.Core.Models.Result;
 using AlphaPlus.SecurityCode.Services;

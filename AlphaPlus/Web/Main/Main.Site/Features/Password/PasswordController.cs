@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Main.Site.AppResources;
+using AlphaPlus.Shared.AppResources.Main;
 using MediatR;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core;
