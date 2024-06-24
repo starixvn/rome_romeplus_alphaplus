@@ -6,5 +6,5 @@ public class GroupPageAccess
 
     public string[] DeniedPages { get; set; } = [];
 
-    public PageAccess[] PageAccesses { get; set; }
+    public PageAccess[] PageAccesses { get; set; } = [];
 }

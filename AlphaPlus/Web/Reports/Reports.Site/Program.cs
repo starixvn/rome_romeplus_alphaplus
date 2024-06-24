@@ -34,7 +34,7 @@ builder.Services
     })
     .AddControllersWithViews(options =>
     {
-        //options.Filters.Add<CheckBelongingFilterAttribute>();
+        options.Filters.Add<CheckBelongingFilterAttribute>();
         options.Filters.Add<AfterLoginFlowFilterAttribute>();
         options.Filters.Add<ProtectedModeFilterAttribute>();
         options.Filters.Add<SecurityCodeFilterAttribute>();
@@ -63,6 +63,11 @@ builder.Services
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
+app.Use(async (context, next) =>
+{
+    context.Request.EnableBuffering();
+    await next();
+});
 // Configure the HTTP request pipeline.
 app
     .UseExceptionHandler("/Shared/Error")

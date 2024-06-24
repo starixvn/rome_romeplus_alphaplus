@@ -2,8 +2,8 @@
     "Authorization": {
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,
-        "DisabledCheckDuplicationLogin": false,
-        "KickOutUrl": "/main/default/kickout",
+        "DisabledCheckDuplicationLogin": true,
+        "KickOutUrl": "~/default/kickout",
         "CustIdQueryStringParamNames": [
             "CustId",
             "SearchAccountId"

@@ -8,6 +8,7 @@ using Fanex.Data.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -27,6 +28,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IRequestContext, RequestContext>();
         services.TryAddSingleton<INicknameChecker, NicknameChecker>();
         services.AddSingleton<IAuthorizationService, AuthorizationService>();
+
+        services.Configure<KestrelServerOptions>(options =>
+        {
+            options.AllowSynchronousIO = true;
+        });
 
         return services.Configure<AuthorizationOptions>(configuration.GetSection(AuthorizationOptions.Authorization));
     }
