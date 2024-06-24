@@ -17,9 +17,11 @@ public interface IProductService
 
     Task<bool> IsEnabledJackpot(string site, int currencyId, bool isTest);
 
-    Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param);
+    Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param, IEnumerable<Product> products);
 
     string BuildProductDetailsXml(IEnumerable<ProductDetail> productDetails);
+
+    string BuildProductDetailXml(ProductDetail productDetail);
 }
 
 public class ProductService(
@@ -93,12 +95,12 @@ public class ProductService(
         () => repository.FetchMultipleAsync<JackpotOfferedBySite, JackpotOfferedByCurrency>(new GetEnableJackpotProductCriteria(isTest)),
         new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheDayforJackpot)));
 
-    public Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param)
+    public Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param, IEnumerable<Product> products)
         => cacheService.GetOrSetAsync(
         $"{ProductDetailsCacheKey}-{param.CustId}",
         async () =>
         {
-            var productSupportDetail = param.Products
+            var productSupportDetail = products
                 .Where(product => param.ProductOfferProductDetail.Contains(product.Id))
                 .Select(product => product.Id)
                 .ToList();
@@ -127,18 +129,21 @@ public class ProductService(
     public string BuildProductDetailsXml(IEnumerable<ProductDetail> productDetails)
     {
         var xml = new StringBuilder("<ROOT>");
-        foreach (var productDetail in productDetails)
+        foreach (var item in productDetails)
         {
-            xml.AppendFormat(
-                "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
-                productDetail.ProductId,
-                productDetail.SportType,
-                productDetail.BetType,
-                productDetail.LeagueGroupId,
-                productDetail.TicketType);
+            xml.Append(BuildProductDetailXml(item));
         }
         xml.Append("</ROOT>");
 
         return xml.ToString();
     }
+
+    public string BuildProductDetailXml(ProductDetail productDetail)
+        => string.Format(
+        "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
+        productDetail.ProductId,
+        productDetail.SportType,
+        productDetail.BetType,
+        productDetail.LeagueGroupId,
+        productDetail.TicketType);
 }

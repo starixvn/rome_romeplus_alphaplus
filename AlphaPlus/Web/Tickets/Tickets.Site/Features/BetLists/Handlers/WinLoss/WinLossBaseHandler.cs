@@ -76,8 +76,8 @@ public class WinLossBaseHandler(
 
     private async Task<IEnumerable<ProductDetail>> GetProductDetails(WinLossQuery message, IEnumerable<Product> products)
     {
-        var param = new GetProductDetailsParam(message.CustId, products, appSettings.ProductOfferProductDetail, appSettings.IsSiteLabel777);
-        var productDetails = await productService.GetProductDetails(param);
+        var param = new GetProductDetailsParam(message.CustId, appSettings.ProductOfferProductDetail, appSettings.IsSiteLabel777);
+        var productDetails = await productService.GetProductDetails(param, products);
 
         if ("*" != message.ResourceIds)
         {

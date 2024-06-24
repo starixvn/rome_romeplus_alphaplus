@@ -63,6 +63,12 @@ function copyAllbetImages() {
         .pipe(gulp.dest('wwwroot/bundles/images/results/Allbet/template'));
 }
 
+function copyAllbetImages2() {
+    return gulp
+        .src('assets/styles/results/fanex.result/Allbet/css/images/**/*')
+        .pipe(gulp.dest('wwwroot/bundles/results/images'));
+}
+
 function copySAGamingImages() {
     return gulp
         .src('assets/styles/results/fanex.result/SAGaming/template/**/*')
@@ -114,6 +120,7 @@ gulp.task(
             minJs,
             copyImages,
             copyAllbetImages,
+            copyAllbetImages2,
             copySAGamingImages,
             copySexyGamingImages,
             copyWMImages
@@ -132,6 +139,7 @@ gulp.task('watch', () => {
                 minJs,
                 copyImages,
                 copyAllbetImages,
+                copyAllbetImages2,
                 copySAGamingImages,
                 copySexyGamingImages,
                 copyWMImages
