@@ -1,6 +1,6 @@
 namespace AlphaPlus.BetLists.WinLoss;
 
-public class WinLossWeekData
+public class WinLossWeekModel
 {
     public DateTime StartOfWeek { get; init; }
 

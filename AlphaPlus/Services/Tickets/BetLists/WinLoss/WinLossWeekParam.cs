@@ -1,6 +1,6 @@
 namespace AlphaPlus.BetLists.WinLoss;
 
-public record WinLossWeekDataParam(
+public record WinLossWeekParam(
     int ViewerId,
     DateTime FromDate,
     DateTime ToDate,

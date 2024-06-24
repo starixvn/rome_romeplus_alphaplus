@@ -12,7 +12,7 @@ public interface IWinLossService
 {
     Task<BetListData> GetBetList(WinLossParam param);
 
-    Task<IEnumerable<WinLossWeekData>> GetWinLossWeekData(WinLossWeekDataParam param);
+    Task<IEnumerable<WinLossWeekModel>> GetWeekData(WinLossWeekParam param);
 }
 
 public class WinLossService(
@@ -130,7 +130,7 @@ public class WinLossService(
         return betListData;
     }
 
-    public async Task<IEnumerable<WinLossWeekData>> GetWinLossWeekData(WinLossWeekDataParam param)
+    public async Task<IEnumerable<WinLossWeekModel>> GetWeekData(WinLossWeekParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
         var criteria = new GetWinLossWeekDataCriteria(
@@ -143,6 +143,6 @@ public class WinLossService(
             param.ProductDetailsXML,
             param.Username);
 
-        return await repository.FetchAsync<WinLossWeekData>(criteria);
+        return await repository.FetchAsync<WinLossWeekModel>(criteria);
     }
 }
