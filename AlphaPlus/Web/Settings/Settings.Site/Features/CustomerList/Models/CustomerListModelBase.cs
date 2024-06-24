@@ -1,7 +1,7 @@
 namespace AlphaPlus.Settings.Site.Features.CustomerList.Models
 {
     using System;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.CustomerListResources;
+    using AlphaPlus.Shared.AppResources.Settings.CustomerList;
 
     public abstract class CustomerListModelBase
     {

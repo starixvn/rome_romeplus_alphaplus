@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Settings.Site.Helpers;
-using AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.CustomerListResources;
+using AlphaPlus.Shared.AppResources.Settings.CustomerList;
 using AlphaPlus.Settings.Site.Features.CustomerList.Models;
 using AlphaPlus.Core.Models;
 

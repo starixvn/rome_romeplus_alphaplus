@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.CustomerListResources {
+namespace AlphaPlus.Shared.AppResources.Settings.CustomerList {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResource
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Settings.MemberInfo.Domain.Features.CustomerList.AppResources.CustomerListResources.Custome" +
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Settings.CustomerList.Custome" +
                             "rListResources", typeof(CustomerListResources).Assembly);
                     resourceMan = temp;
                 }
