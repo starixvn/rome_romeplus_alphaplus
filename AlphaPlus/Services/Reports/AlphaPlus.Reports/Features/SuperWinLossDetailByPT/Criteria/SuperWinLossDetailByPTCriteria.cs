@@ -2,7 +2,7 @@ using AlphaPlus.Reports.Features.Shared.Criteria;
 
 namespace AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 
-public class SuperWinLossDetailByPTCriteria(
+internal class SuperWinLossDetailByPTCriteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,

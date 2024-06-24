@@ -2,7 +2,7 @@ using AlphaPlus.Reports.Features.Shared;
 
 namespace AlphaPlus.Reports.Features.Statement;
 
-public class GetStatementBetTrans14Criteria(
+internal class GetStatementBetTrans14Criteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,

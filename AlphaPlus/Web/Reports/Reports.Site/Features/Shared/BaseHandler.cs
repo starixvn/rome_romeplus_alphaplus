@@ -59,7 +59,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var validUserSelectedProductIds = new List<int>();
 
         var isCheckedAll = "*" == userSelectedProductIds;
-        var userSelectedProductIdsList = isCheckedAll ? [] : userSelectedProductIds.ToListInt();
+        var userSelectedProductIdsList = isCheckedAll ? [] : userSelectedProductIds.ToListInt().ToList();
 
         var offeredProductGroups = products.GroupBy(p => new { p.Type, p.TypeName });
         foreach (var groups in offeredProductGroups)
@@ -101,7 +101,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         string userSelectedResourceIds)
     {
         var isCheckedAll = "*" == userSelectedResourceIds;
-        var userSelectedResourceIdsList = isCheckedAll ? [] : userSelectedResourceIds.ToListInt();
+        var userSelectedResourceIdsList = isCheckedAll ? [] : userSelectedResourceIds.ToListInt().ToList();
 
         var productDetails = new List<ProductDetailDTO>();
         var validUserSelectedResourceIds = new List<int>();
@@ -164,7 +164,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     {
         if ("*" != userSelectedProductIds)
         {
-            var userSelectedProductIdsList = userSelectedProductIds.ToListInt();
+            var userSelectedProductIdsList = userSelectedProductIds.ToListInt().ToList();
             products = products.Where(product => userSelectedProductIdsList.Contains(product.Id));
         }
 
@@ -182,8 +182,8 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var isCheckedAll = "*" == userSelectedProductIds && "*" == userSelectedResourceIds;
         if (!isCheckedAll)
         {
-            userSelectedProductIdsList = userSelectedProductIds.ToListInt();
-            userSelectedResourceIdsList = userSelectedResourceIds.ToListInt();
+            userSelectedProductIdsList = userSelectedProductIds.ToListInt().ToList();
+            userSelectedResourceIdsList = userSelectedResourceIds.ToListInt().ToList();
         }
 
         var allProductsSupportProductDetails = new List<int>();

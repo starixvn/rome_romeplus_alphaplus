@@ -2,7 +2,7 @@ using AlphaPlus.Reports.Features.Shared.Criteria;
 
 namespace AlphaPlus.Reports.Features.Consolidation;
 
-public class GetConsolidationCriteria(
+internal class GetConsolidationCriteria(
     int custId,
     int currency,
     DateTime fromDate,

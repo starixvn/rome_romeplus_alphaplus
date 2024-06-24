@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Legends;
 
-public class GetProductsByRefTableCriteria(string refTable) : CriteriaBase
+internal class GetProductsByRefTableCriteria(string refTable) : CriteriaBase
 {
     public string RefTable { get; } = refTable;
 

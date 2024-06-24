@@ -4,7 +4,7 @@ using Fanex.BetList.Core.Utils;
 
 namespace AlphaPlus.BetLists.Builders;
 
-public class PTComm2198(ITicket ticket, UserLevel userLevel) : PTComm(ticket, userLevel)
+internal class PTComm2198(ITicket ticket, UserLevel userLevel) : PTComm(ticket, userLevel)
 {
     public override string PositionTaking => FormatPositionTaking(PtByUserLevel[UserLevel]);
 

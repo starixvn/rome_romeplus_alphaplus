@@ -70,6 +70,4 @@ public class BetListBaseQuery
     public string ResourceIds { get; set; } = "*";
 
     public string Type { get; set; }
-
-    public bool IsHistoricReport { get; set; }
 }

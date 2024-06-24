@@ -63,11 +63,6 @@ builder.Services
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
-app.Use(async (context, next) =>
-{
-    context.Request.EnableBuffering();
-    await next();
-});
 // Configure the HTTP request pipeline.
 app
     .UseExceptionHandler("/Shared/Error")
@@ -82,6 +77,11 @@ app
 app.MapHealthChecks("/health");
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
+app.Use(next => context =>
+{
+    context.Request.EnableBuffering();
+    return next(context);
+});
 app.MapDefaultControllerRoute();
 
 await Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");

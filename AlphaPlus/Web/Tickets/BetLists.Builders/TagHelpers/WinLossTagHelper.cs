@@ -1,9 +1,8 @@
 using System.Text;
-using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Blocks;
 using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
+namespace AlphaPlus.BetLists.Builders;
 
 [HtmlTargetElement("winloss")]
 public class WinLossTagHelper : TagHelper
@@ -13,18 +12,18 @@ public class WinLossTagHelper : TagHelper
 
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
-        var model = new WinLostBlockViewModel(Ticket);
+        var builder = new WinLossBuilder(Ticket);
 
         output.TagName = "td";
         output.TagMode = TagMode.StartTagAndEndTag;
         output.Attributes.Add("class", "win-loss-block text-right nonbreak");
 
         var winloss = new StringBuilder();
-        winloss.Append($"<div><span class=\"bl_underdog\">{model.WinLost}</span></div>");
+        winloss.Append($"<div><span class=\"bl_underdog\">{builder.WinLoss}</span></div>");
 
-        if (model.CommVisibility)
+        if (builder.CommVisibility)
         {
-            winloss.Append($"<div><span class=\"bl_underdog\">{model.Comm}</span></div>");
+            winloss.Append($"<div><span class=\"bl_underdog\">{builder.Comm}</span></div>");
         }
 
         output.Content.SetHtmlContent(winloss.ToString());

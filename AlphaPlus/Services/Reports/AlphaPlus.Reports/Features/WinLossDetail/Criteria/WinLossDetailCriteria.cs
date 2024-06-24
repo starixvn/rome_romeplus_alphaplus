@@ -2,7 +2,7 @@ using Fanex.Data;
 
 namespace AlphaPlus.Reports.Features.WinLossDetail;
 
-public class WinLossDetailCriteria(
+internal class WinLossDetailCriteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,

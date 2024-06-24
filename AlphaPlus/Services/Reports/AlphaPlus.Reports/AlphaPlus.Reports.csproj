@@ -9,6 +9,7 @@
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Models\Enumeration.cs" Link="Features\Shared\Models\Enumeration.cs" />
     <Compile Include="..\..\..\Shared\Models\UserLevel.cs" Link="Features\Shared\Models\UserLevel.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\EnumerableExtensions.cs" Link="Features\Shared\Extensions\EnumerableExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\StringExtensions.cs" Link="Features\Shared\Extensions\StringExtensions.cs" />
     <Compile Include="..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Features\Shared\Constants\BetTypeConstants.cs" />
   </ItemGroup>

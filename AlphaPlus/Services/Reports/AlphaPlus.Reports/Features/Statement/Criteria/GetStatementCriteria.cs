@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Statement;
 
-public class GetStatementCriteria(
+internal class GetStatementCriteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,

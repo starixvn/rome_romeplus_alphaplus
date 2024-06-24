@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Customer;
 
-public class UsernameSuggestionCriteria(
+internal class UsernameSuggestionCriteria(
     int viewerId,
     string username,
     bool isInternal,

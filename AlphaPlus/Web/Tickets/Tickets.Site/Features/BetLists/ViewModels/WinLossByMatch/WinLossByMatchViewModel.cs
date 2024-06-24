@@ -26,7 +26,7 @@ public class WinLossByMatchViewModel(
 
     public byte CustLevelId { get; } = message.CustLevelId;
 
-    public IDictionary<string, string> GetExcelParams()
+    public override IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {
             [nameof(CustName)] = CustName,

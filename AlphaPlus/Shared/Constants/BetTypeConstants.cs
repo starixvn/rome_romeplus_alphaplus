@@ -1,4 +1,4 @@
-public static class BetTypeConstants
+internal static class BetTypeConstants
 {
     public const int AllBetTypes = 0;
     public const int Handicap = 1;

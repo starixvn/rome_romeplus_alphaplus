@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Shared.Criteria;
 
-public class GetBalanceUpDayAndMoveBetsDayCriteria : CriteriaBase
+internal class GetBalanceUpDayAndMoveBetsDayCriteria : CriteriaBase
 {
     public override string GetSettingKey() => "Age_SelBalanceUpDay";
 

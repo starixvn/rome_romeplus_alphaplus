@@ -1,4 +1,5 @@
 using System.Text.Encodings.Web;
+using AlphaPlus.Core.Helpers;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -18,7 +19,7 @@ public class ViewBetListIconTagHelper : TagHelper
         output.TagName = "a";
         output.TagMode = TagMode.StartTagAndEndTag;
         output.AddClass("icon-fc", HtmlEncoder.Default);
-        output.Attributes.Add("href", $"/tickets/BetListByBetTypeAndMatch/Index?matchid={MatchId}&bettype={BetType}");
+        output.Attributes.Add("href", MicroSites.TicketUrl($"~/BetListByBetTypeAndMatch/Index?matchid={MatchId}&bettype={BetType}"));
         output.Content.SetHtmlContent("&nbsp;");
     }
 }

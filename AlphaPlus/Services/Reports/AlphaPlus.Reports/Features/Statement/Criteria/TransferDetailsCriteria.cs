@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Statement;
 
-public class TransferDetailsCriteria(
+internal class TransferDetailsCriteria(
     int custId,
     DateTime transferDate,
     string storeMappingSuffix) : CriteriaBase

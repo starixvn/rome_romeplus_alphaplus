@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.IPMatching;
 
-public class GetIPMatchingCriteria(int custId, DateTime winlostDate, DateTime moveBetsDay, int memberCount) : CriteriaBase
+internal class GetIPMatchingCriteria(int custId, DateTime winlostDate, DateTime moveBetsDay, int memberCount) : CriteriaBase
 {
     public int CustId { get; } = custId;
 

@@ -3,7 +3,7 @@ using Fanex.Data;
 
 namespace AlphaPlus.Reports.Features.ProgressiveContribution;
 
-public class ProgressiveContributionCriteria(
+internal class ProgressiveContributionCriteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,

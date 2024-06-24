@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.BetChoiceMatching;
 
-public class BetChoiceUplinesCriteria(int custId) : CriteriaBase
+internal class BetChoiceUplinesCriteria(int custId) : CriteriaBase
 {
     public int CustId { get; } = custId;
 

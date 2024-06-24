@@ -14,6 +14,7 @@
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Features\Shared\Constants\BetTypeConstants.cs" />
     <Compile Include="..\..\..\Shared\Extensions\EnumerableExtensions.cs" Link="Features\Shared\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\StringExtensions.cs" Link="Features\Shared\Extensions\StringExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Features\Shared\Extensions\FanexLoggingExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Features\Shared\Extensions\RemotingRefExtensions.cs" />
   </ItemGroup>

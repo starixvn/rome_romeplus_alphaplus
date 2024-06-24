@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Outstanding;
 
-public class OutstandingCriteria(UserLevel custLevel, int custId, string productIds) : CriteriaBase
+internal class OutstandingCriteria(UserLevel custLevel, int custId, string productIds) : CriteriaBase
 {
     [SpParam(Ignored = true)]
     public UserLevel CustLevel { get; } = custLevel;

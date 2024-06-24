@@ -1,7 +1,6 @@
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
-using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
@@ -19,9 +18,7 @@ public class BetListBaseHandler
         Builder = builder;
         TicketHelper = ticketHelper;
         MonitorService = monitorService;
-        IpService = ipService;
-        TicketHelper.IsVnIp = IpService.IsVNIP;
-        GetOddsTypeName = ticketHelper.GetOddsTypeNameById;
+        TicketHelper.IsVnIp = ipService.IsVNIP;
     }
 
     protected internal IBetListHTMLBuilder Builder { get; }
@@ -29,12 +26,6 @@ public class BetListBaseHandler
     protected internal ITicketHelper TicketHelper { get; }
 
     protected internal ISmartPunterBetListMonitor MonitorService { get; }
-
-    protected internal IPService IpService { get; }
-
-    protected internal GetCachePropertyById GetOddsTypeName { get; }
-
-    internal Func<string, bool> IsFileExist { get; set; } = File.Exists;
 
     protected internal void WriteLog(int custId, IEnumerable<TicketDto> tickets)
          => MonitorService.WriteLog(custId, tickets.ToList<ITicket>());
@@ -57,7 +48,7 @@ public class BetListBaseHandler
         var validUserSelectedProductIds = new List<int>();
 
         var isCheckedAll = "*" == userSelectedProductIds;
-        var userSelectedProductIdsList = isCheckedAll ? [] : userSelectedProductIds.ToListInt();
+        var userSelectedProductIdsList = isCheckedAll ? [] : userSelectedProductIds.ToListInt().ToList();
 
         var offeredProductGroups = products.GroupBy(p => new { p.Type, p.TypeName });
         foreach (var groups in offeredProductGroups)

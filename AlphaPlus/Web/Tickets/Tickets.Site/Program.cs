@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Fanex.Data;
 using AlphaPlus.Results.Features.Shared;
 using AlphaPlus.BetLists.Shared.Extensions;
+using AlphaPlus.Core.Filters;
 
 var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
@@ -32,13 +33,13 @@ builder.Services
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     })
-    .AddControllersWithViews(/*options =>
+    .AddControllersWithViews(options =>
     {
         //options.Filters.Add<CheckBelongingFilterAttribute>();
-        options.Filters.Add<AfterLoginFlowFilterAttribute>();
-        options.Filters.Add<ProtectedModeFilterAttribute>();
-        options.Filters.Add<SecurityCodeFilterAttribute>();
-    }*/)
+        //options.Filters.Add<AfterLoginFlowFilterAttribute>();
+        //options.Filters.Add<ProtectedModeFilterAttribute>();
+        //options.Filters.Add<SecurityCodeFilterAttribute>();
+    })
     .AddRazorOptions(options =>
     {
         // The old locations are /Views/{1}/{0}.cshtml and /Views/Shared/{0}.cshtml

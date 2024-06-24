@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Shared.Criteria;
 
-public class GetUMInfoListCriteria(string siteName) : CriteriaBase
+internal class GetUMInfoListCriteria(string siteName) : CriteriaBase
 {
     public string SiteName { get; } = siteName;
 

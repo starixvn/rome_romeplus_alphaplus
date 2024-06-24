@@ -1,19 +1,16 @@
-public static class StringExtensions
+internal static class StringExtensions
 {
     public static IEnumerable<int> ToListInt(this string value, char separator = ',')
     {
-        var arrayInt = new List<int>();
         var arrayString = ToList(value, separator);
 
         foreach (var item in arrayString)
         {
             if (int.TryParse(item, out var number))
             {
-                arrayInt.Add(number);
+                yield return number;
             }
         }
-
-        return arrayInt;
     }
 
     public static IEnumerable<int> ToListIntRemoveDuplicate(this string value, char separator = ',')
@@ -23,13 +20,11 @@ public static class StringExtensions
 
         foreach (var item in arrayString)
         {
-            if (int.TryParse(item, out var number))
+            if (int.TryParse(item, out var number) && hashSetInt.Add(number))
             {
-                hashSetInt.Add(number);
+                yield return number;
             }
         }
-
-        return hashSetInt;
     }
 
     public static string[] ToList(this string value, char separator = ',')

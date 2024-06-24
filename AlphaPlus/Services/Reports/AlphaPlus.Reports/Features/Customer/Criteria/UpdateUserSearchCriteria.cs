@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Customer;
 
-public class UpdateUserSearchCriteria(
+internal class UpdateUserSearchCriteria(
     int userId,
     string search,
     string firstName,

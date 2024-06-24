@@ -21,7 +21,7 @@ public class JackpotDetailsViewModel(
         ? Resources.PPJackpotWonDetails
         : Resources.ProgressiveJackpotWonDetails;
 
-    public IDictionary<string, string> GetExcelParams()
+    public override IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {
             [nameof(CustId)] = CustId.ToString(),

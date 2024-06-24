@@ -1,10 +1,9 @@
 using System.Text;
-using AlphaPlus.BetLists.Shared.Models;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
+namespace AlphaPlus.BetLists.Builders;
 
 public class StatusTagHelper : TagHelper
 {
@@ -12,7 +11,7 @@ public class StatusTagHelper : TagHelper
     public IBetListHTMLBuilder Builder { get; set; }
 
     [HtmlAttributeName("ticket")]
-    public TicketDto Ticket { get; set; }
+    public ITicket Ticket { get; set; }
 
     [HtmlAttributeName("ticket-helper")]
     public ITicketHelper TicketHelper { get; set; }
@@ -23,6 +22,9 @@ public class StatusTagHelper : TagHelper
     [HtmlAttributeName("is-show-vn-ip")]
     public bool IsShowVNIP { get; set; }
 
+    [HtmlAttributeName("country")]
+    public string Country { get; set; }
+
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "td";
@@ -32,9 +34,9 @@ public class StatusTagHelper : TagHelper
         var status = new StringBuilder();
         status.Append(Builder.BuildStatus(Ticket, TicketHelper, TicketData, IsShowVNIP));
 
-        if (!string.IsNullOrWhiteSpace(Ticket.Country))
+        if (!string.IsNullOrWhiteSpace(Country))
         {
-            status.Append($"<div class=\"country\">{Ticket.Country}</div>");
+            status.Append($"<div class=\"country\">{Country}</div>");
         }
 
         output.Content.SetHtmlContent(status.ToString());

@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Consolidation;
 
-public class GetSMAPositionTakingCriteria(string custIds, byte settingStatus) : CriteriaBase
+internal class GetSMAPositionTakingCriteria(string custIds, byte settingStatus) : CriteriaBase
 {
     public string CustIds { get; } = custIds;
 

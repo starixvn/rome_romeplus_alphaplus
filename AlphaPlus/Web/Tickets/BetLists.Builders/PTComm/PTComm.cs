@@ -4,7 +4,7 @@ using Fanex.BetList.Core.Utils;
 
 namespace AlphaPlus.BetLists.Builders;
 
-public class PTComm(ITicket ticket, UserLevel userLevel)
+internal class PTComm(ITicket ticket, UserLevel userLevel)
 {
     public virtual bool VisiblePositionTaking => !BetStatusIsRunningOrWaiting();
 

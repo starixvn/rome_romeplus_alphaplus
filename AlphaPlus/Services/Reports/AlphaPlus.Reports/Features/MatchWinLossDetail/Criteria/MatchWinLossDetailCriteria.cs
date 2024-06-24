@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.MatchWinLossDetail;
 
-public class MatchWinLossDetailCriteria(
+internal class MatchWinLossDetailCriteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,

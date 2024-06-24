@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Shared.Criteria;
 
-public class GetFollowBetAccountsCriteria(int agentId) : CriteriaBase
+internal class GetFollowBetAccountsCriteria(int agentId) : CriteriaBase
 {
     public int DummyAgentId { get; } = agentId;
 

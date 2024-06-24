@@ -35,7 +35,7 @@ public class CancelledBetViewModel(
 
     public IEnumerable<int> StatusIds { get; } = string.IsNullOrWhiteSpace(message.StatusIds)
         ? TicketStatusConstants.All
-        : message.StatusIds.ToListInt();
+        : message.StatusIds.ToListInt().ToList();
 
     public IEnumerable<SelectListItem> Status =>
     [

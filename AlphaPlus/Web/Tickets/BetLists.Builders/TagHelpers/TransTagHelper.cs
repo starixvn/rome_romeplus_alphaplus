@@ -2,7 +2,7 @@ using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
+namespace AlphaPlus.BetLists.Builders;
 
 public class TransTagHelper : TagHelper
 {

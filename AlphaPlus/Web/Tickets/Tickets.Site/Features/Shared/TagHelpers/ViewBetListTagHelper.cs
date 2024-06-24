@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Encodings.Web;
+using AlphaPlus.Core.Helpers;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -33,7 +34,7 @@ public class ViewBetListTagHelper : TagHelper
     {
         output.TagName = "a";
         output.TagMode = TagMode.StartTagAndEndTag;
-        var link = $"/tickets/BetListByBetTypeAndMatch/Index?matchid={MatchId}&bettype={BetType}";
+        var link = MicroSites.TicketUrl($"~/BetListByBetTypeAndMatch/Index?matchid={MatchId}&bettype={BetType}");
         if (IsLive.HasValue)
         {
             link += "&islive=" + IsLive;

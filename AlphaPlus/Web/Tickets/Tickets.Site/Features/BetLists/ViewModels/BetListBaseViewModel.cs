@@ -15,15 +15,6 @@ public class BetListBaseViewModel(
     ITicketHelper ticketHelper,
     bool showMemberName = false)
 {
-    private static readonly Dictionary<_UserLevel, int> TotalColumnByViewLevelId = new Dictionary<_UserLevel, int>
-    {
-        [_UserLevel.Agent] = 9,
-        [_UserLevel.Master] = 10,
-        [_UserLevel.Super] = 11
-    };
-
-    protected readonly BetListBaseQuery BaseQuery = message;
-
     public BetListData BetListData { get; } = betListData;
 
     public IBetListHTMLBuilder Builder { get; } = builder;
@@ -42,12 +33,6 @@ public class BetListBaseViewModel(
 
     public int ViewerIdOrViewerAdminId { get; } = message.ViewerIdOrViewerAdminId;
 
-    public bool DisplayVNIP { get; } = message.DisplayVNIP;
-
-    public string Title => GetTitle();
-
-    public int TotalColumn => TotalColumnByViewLevelId[ViewerLevel] + (ShowMemberName ? 1 : 0);
-
     public DateTime FromDate { get; } = message.FromDate;
 
     public DateTime ToDate { get; } = message.ToDate;
@@ -58,57 +43,38 @@ public class BetListBaseViewModel(
 
     public string BetListType { get; } = message.Type;
 
-    public bool IsHistoricReport { get; } = message.IsHistoricReport;
+    public bool DisplayVNIP { get; } = message.DisplayVNIP;
 
-    // public string ResultsPath
-    // {
-    //     get
-    //     {
-    //         if (HttpContext.Current == null)
-    //         {
-    //             return AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
-    //         }
-    //         return HttpContext.Current.Session.IsCookieless ?
-    //                 $"/site-results/(S({HttpContext.Current.Session.SessionID}))/"
-    //                 : AppPathHelper.GetAppPath(AppSettings.ResultAppPath, "~");
-    //     }
-    // }
-
-    // public string OldMainPath
-    // {
-    //     get
-    //     {
-    //         if (HttpContext.Current == null)
-    //         {
-    //             return MicroSites.SettingUrl("~");
-    //         }
-    //         return HttpContext.Current.Session.IsCookieless ?
-    //             $"/ex-main/(S({HttpContext.Current.Session.SessionID}))/" : MicroSites.SettingUrl("~");
-    //     }
-    // }
-
-    // public string TotalBetsForecastPath
-    // {
-    //     get
-    //     {
-    //         if (HttpContext.Current == null)
-    //         {
-    //             return AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
-    //         }
-    //         return HttpContext.Current.Session.IsCookieless ?
-    //         $"/ex-totalbetsforecast/(S({HttpContext.Current.Session.SessionID}))/" : AppPathHelper.GetAppPath(AppSettings.TotalBetsForecastAppPath, "~");
-    //     }
-    // }
-
-    // public string SiteMainPath => AppPathHelper.GetAppPath(AppSettings.MainAppPath, "~");
+    public string Title => GetTitle();
 
     protected virtual string GetTitle()
         => HasDateParam()
-        ? $"{Resources.memberBetList} {BaseQuery.FromDate.ToShortDateWithSlash()} --> {BaseQuery.ToDate.ToShortDateWithSlash()} - {BaseQuery.CustName}"
+        ? $"{Resources.memberBetList} {FromDate.ToShortDateWithSlash()} --> {ToDate.ToShortDateWithSlash()} - {CustName}"
         : Resources.memberBetList;
 
-    protected bool HasDateParam()
-        => BaseQuery.FromDate != DateTime.MinValue && BaseQuery.ToDate != DateTime.MinValue;
+    protected bool HasDateParam() => FromDate != DateTime.MinValue && ToDate != DateTime.MinValue;
+
+    public int TotalColumn
+    {
+        get
+        {
+            var totalColumn = 0;
+            if (ViewerLevel.IsAgentLevel())
+            {
+                totalColumn = 9;
+            }
+            else if (ViewerLevel.IsMasterLevel())
+            {
+                totalColumn = 10;
+            }
+            else if (ViewerLevel.IsSuperLevel())
+            {
+                totalColumn = 11;
+            }
+
+            return totalColumn + (ShowMemberName ? 1 : 0);
+        }
+    }
 
     // TODO: will implement here
     public virtual bool CanViewScoreMap(ITicket ticket) => false;

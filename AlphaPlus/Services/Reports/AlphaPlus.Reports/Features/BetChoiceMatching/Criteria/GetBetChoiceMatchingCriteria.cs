@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.BetChoiceMatching;
 
-public class GetBetChoiceMatchingCriteria(
+internal class GetBetChoiceMatchingCriteria(
     int custId,
     DateTime winlostDate,
     DateTime moveBetsDay,

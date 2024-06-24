@@ -2,7 +2,7 @@ using AlphaPlus.Reports.Features.Shared.Criteria;
 
 namespace AlphaPlus.Reports.Features.WinLossDetail;
 
-public class WinLossDetailWeekDataCriteria(
+internal class WinLossDetailWeekDataCriteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,

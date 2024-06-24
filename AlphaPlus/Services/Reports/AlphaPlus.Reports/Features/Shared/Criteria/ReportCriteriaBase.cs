@@ -6,7 +6,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Shared.Criteria;
 
-public abstract class ReportCriteriaBase(
+internal abstract class ReportCriteriaBase(
     int custId,
     DateTime fromDate,
     DateTime toDate,

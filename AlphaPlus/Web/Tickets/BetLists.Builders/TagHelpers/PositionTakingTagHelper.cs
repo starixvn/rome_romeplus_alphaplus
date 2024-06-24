@@ -1,8 +1,7 @@
-using AlphaPlus.BetLists.Builders;
 using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
+namespace AlphaPlus.BetLists.Builders;
 
 [HtmlTargetElement("position-taking")]
 public class PositionTakingTagHelper : TagHelper

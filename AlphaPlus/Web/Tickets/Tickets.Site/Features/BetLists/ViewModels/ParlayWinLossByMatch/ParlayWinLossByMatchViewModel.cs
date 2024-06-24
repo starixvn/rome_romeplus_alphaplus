@@ -22,10 +22,10 @@ public class ParlayWinLossByMatchViewModel(
 
     protected override string GetTitle()
         => HasDateParam()
-        ? $"{CacheRefServiceHelper.GetBetTypeName(BetType)} {message.FromDate.ToShortDateWithSlash()} --> {message.ToDate.ToShortDateWithSlash()}"
+        ? $"{CacheRefServiceHelper.GetBetTypeName(BetType)} {FromDate.ToShortDateWithSlash()} --> {ToDate.ToShortDateWithSlash()}"
         : Resources.memberBetList;
 
-    public IDictionary<string, string> GetExcelParams()
+    public override IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {
             [nameof(CustName)] = CustName,

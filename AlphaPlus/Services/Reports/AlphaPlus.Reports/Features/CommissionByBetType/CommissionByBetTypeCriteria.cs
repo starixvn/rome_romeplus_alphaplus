@@ -3,7 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.CommissionByBetType;
 
-public class CommissionByBetTypeCriteria(
+internal class CommissionByBetTypeCriteria(
     UserLevel custLevel,
     int custId,
     DateTime fromDate,

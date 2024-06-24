@@ -20,7 +20,7 @@ public class CasinoDetailsViewModel(
     protected override string GetTitle()
         => $"{(!string.IsNullOrWhiteSpace(message.SportName) ? message.SportName : "RNG Casino")} Details";
 
-    public IDictionary<string, string> GetExcelParams()
+    public override IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {
             [nameof(message.RefNo)] = message.RefNo.ToString(),

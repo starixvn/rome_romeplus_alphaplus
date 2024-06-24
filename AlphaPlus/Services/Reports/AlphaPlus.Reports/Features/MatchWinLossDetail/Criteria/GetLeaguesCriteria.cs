@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.MatchWinLossDetail;
 
-public class GetLeaguesCriteria(
+internal class GetLeaguesCriteria(
     int custId,
     string productIds,
     DateTime fromDate,

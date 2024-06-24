@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Consolidation;
 
-public class GetConsolidationProductsCriteria(int custId, byte settingStatus) : CriteriaBase
+internal class GetConsolidationProductsCriteria(int custId, byte settingStatus) : CriteriaBase
 {
     public int CustId { get; } = custId;
 

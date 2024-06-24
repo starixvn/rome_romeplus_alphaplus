@@ -1,7 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
+namespace AlphaPlus.BetLists.Builders;
 
 [HtmlTargetElement("parlay-boost-odds")]
 public class ParlayBoostOddsTagHelper : TagHelper

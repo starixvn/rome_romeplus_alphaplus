@@ -94,19 +94,19 @@ public class CasinoDetailsExcelHandler(
     }
 
     private IRichTextString BuildChoice(ITicket ticket)
-        => ExcelBuilder
+        => excelBuilder
             .CreateChoiceBuilder(ticket.BetTypeId)
             .RenderRTF(ticket, TicketHelper, null, false, RtfHelper)
             .FirstOrDefault();
 
     private IRichTextString BuildOdds(ITicket ticket)
-        => ExcelBuilder
+        => excelBuilder
             .CreateOddsBuilder(ticket.BetTypeId)
-            .RenderRTF(ticket, null, GetOddsTypeName, RtfHelper);
+            .RenderRTF(ticket, null, TicketHelper.GetOddsTypeNameById, RtfHelper);
 
     private IRichTextString BuildStatus(TicketDto ticket, bool displayVNIP)
     {
-        RtfHelper.RTFRenderer.AddText(ExcelBuilder
+        RtfHelper.RTFRenderer.AddText(excelBuilder
             .CreateStatusBuilder(ticket.BetTypeId)
             .RenderRTF(ticket, TicketHelper, null, displayVNIP, RtfHelper)
             .ToString());

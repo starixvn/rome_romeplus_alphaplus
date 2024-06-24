@@ -2,7 +2,6 @@ using AlphaPlus.BetLists.LastBets;
 using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets;
-using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using MediatR;
 using Microsoft.Extensions.Options;

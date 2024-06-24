@@ -1,22 +1,21 @@
-using AlphaPlus.BetLists.Shared.Helpers;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Utils;
 
-namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Blocks;
+namespace AlphaPlus.BetLists.Builders;
 
-public class WinLostBlockViewModel
+public class WinLossBuilder
 {
-    public WinLostBlockViewModel(ITicket ticket)
+    public WinLossBuilder(ITicket ticket)
     {
         SetData(ticket);
         CommVisibility = DisplayComm(ticket);
     }
 
-    public string WinLost { get; private set; }
-
-    public bool CommVisibility { get; }
+    public string WinLoss { get; private set; }
 
     public string Comm { get; private set; }
+
+    public bool CommVisibility { get; }
 
     private static bool DisplayComm(ITicket ticket)
         => !BetTypeHelper.IsJackpotContribution(ticket.BetTypeId);
@@ -25,7 +24,7 @@ public class WinLostBlockViewModel
     {
         if (BetTypeHelper.IsJackpotContribution(ticket.BetTypeId))
         {
-            WinLost = "-";
+            WinLoss = "-";
             Comm = string.Empty;
 
             return;
@@ -38,22 +37,22 @@ public class WinLostBlockViewModel
             case BetStatus.Running:
             case BetStatus.Waiting:
             case BetStatus.Pending:
-                WinLost = "-";
+                WinLoss = "-";
                 Comm = string.Empty;
                 break;
 
             case BetStatus.Void:
-                WinLost = ticket.BetTypeId == 500 ? "(NW) 0.00" : string.Empty;
+                WinLoss = ticket.BetTypeId == 500 ? "(NW) 0.00" : string.Empty;
                 Comm = "0.00";
                 break;
 
             case BetStatus.Reject:
-                WinLost = "0.00";
+                WinLoss = "0.00";
                 Comm = string.Empty;
                 break;
 
             default:
-                WinLost = ticket.BetTypeId == 500 ? "(NW) " + ConvertByBetType.Winloss(ticket.ActualStake) : ConvertByBetType.Winloss(ticket.Winlost);
+                WinLoss = ticket.BetTypeId == 500 ? "(NW) " + ConvertByBetType.Winloss(ticket.ActualStake) : ConvertByBetType.Winloss(ticket.Winlost);
                 Comm = ticket.BetTypeId == 500 ? ConvertByBetType.Winloss(ticket.PlayerComm) : ConvertByBetType.Comm(ticket.PlayerComm);
                 break;
         }

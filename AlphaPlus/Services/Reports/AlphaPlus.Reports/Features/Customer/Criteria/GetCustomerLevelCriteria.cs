@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Customer;
 
-public class GetCustomerLevelCriteria(int uplineId, string username) : CriteriaBase
+internal class GetCustomerLevelCriteria(int uplineId, string username) : CriteriaBase
 {
     public int UplineId { get; } = uplineId;
 

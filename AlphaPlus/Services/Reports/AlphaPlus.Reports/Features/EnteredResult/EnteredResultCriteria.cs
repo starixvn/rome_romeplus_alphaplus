@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.EnteredResult;
 
-public class EnteredResultCriteria(bool includeTestData) : CriteriaBase
+internal class EnteredResultCriteria(bool includeTestData) : CriteriaBase
 {
     public bool IncludeTestData { get; } = includeTestData;
 

@@ -36,7 +36,7 @@ public class WinLossViewModel(
 
     public int StartIndex { get; } = startIndex;
 
-    public IDictionary<string, string> GetExcelParams()
+    public virtual IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {
             [nameof(CustName)] = CustName,

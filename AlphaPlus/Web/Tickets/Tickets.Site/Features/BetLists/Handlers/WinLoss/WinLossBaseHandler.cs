@@ -81,7 +81,7 @@ public class WinLossBaseHandler(
 
         if ("*" != message.ResourceIds)
         {
-            var userSelectedResourceIds = message.ResourceIds.ToListInt();
+            var userSelectedResourceIds = message.ResourceIds.ToListInt().ToList();
             productDetails = productDetails.Where(p => userSelectedResourceIds.Contains(p.ResourceId));
         }
 

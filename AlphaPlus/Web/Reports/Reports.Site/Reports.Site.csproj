@@ -7,6 +7,8 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Shared\Extensions\EnumerableExtensions.cs" Link="Features\Shared\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\StringExtensions.cs" Link="Features\Shared\Extensions\StringExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Features\Shared\Extensions\FanexLoggingExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Features\Shared\Extensions\RemotingRefExtensions.cs" />
   </ItemGroup>
@@ -21,8 +23,8 @@
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.BetList.Core" Version="3.0.2.3" />
-    <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.1" />
+    <PackageReference Include="Fanex.BetList.Core" Version="3.0.3.2" />
+    <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.2" />
     <PackageReference Include="Fanex.Common" Version="1.1.1.1" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />

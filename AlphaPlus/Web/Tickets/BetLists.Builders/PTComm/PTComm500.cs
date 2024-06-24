@@ -3,7 +3,7 @@ using Fanex.BetList.Core.Entities;
 
 namespace AlphaPlus.BetLists.Builders;
 
-public class PTComm500(ITicket ticket, UserLevel userLevel) : PTComm(ticket, userLevel)
+internal class PTComm500(ITicket ticket, UserLevel userLevel) : PTComm(ticket, userLevel)
 {
     protected override void InitCommSettingByUserLevel()
     {

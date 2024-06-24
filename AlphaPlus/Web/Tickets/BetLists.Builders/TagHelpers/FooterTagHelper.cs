@@ -2,9 +2,8 @@ using System.Text;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using AlphaPlus.BetLists.AppResources;
 
-namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
+namespace AlphaPlus.BetLists.Builders;
 
 public class FooterTagHelper : TagHelper
 {
@@ -34,7 +33,7 @@ public class FooterTagHelper : TagHelper
             .Append($"<td class=\"text-right\" colspan=\"{SubTotalColSpan}\">")
             .Append($"<div>{Resources.Subtotal_wl}:</div>")
             .Append($"<div>{Resources.Subtotal_com}:</div>")
-            .Append($"<div>{Resources.total}:</div>")
+            .Append($"<div>{Resources.Total}:</div>")
             .Append("</td>")
             .Append("<td class=\"text-right\">")
             .Append($"<div>{SubTotalWinLoss}</div>")

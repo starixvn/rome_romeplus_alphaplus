@@ -8,7 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Constants\BetTypeConstants.cs" />
-    <Compile Include="..\..\..\Shared\Constants\SportTypeConstants.cs" Link="Constants\SportTypeConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Data.ProxyClient" Version="0.0.3-alpha02" />

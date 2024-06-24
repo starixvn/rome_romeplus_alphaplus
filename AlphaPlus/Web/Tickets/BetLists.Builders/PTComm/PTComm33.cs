@@ -4,7 +4,7 @@ using Fanex.BetList.Core.Utils;
 
 namespace AlphaPlus.BetLists.Builders;
 
-public class PTComm33 : PTComm
+internal class PTComm33 : PTComm
 {
     public PTComm33(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
         : base(ticket, userLevel)

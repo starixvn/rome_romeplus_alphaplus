@@ -75,9 +75,12 @@ public static class BetListHtmlBuilderExt
     private static void RenderRacingPtValue(PTComm_Template template, PTComm positionTakingComm)
     {
         var positionTakingComm33 = positionTakingComm as PTComm33;
-        var racingTemplate = new PTRacing_Template();
-        racingTemplate.PT_Win = positionTakingComm33.PositionTakingWin;
-        racingTemplate.PT_Place = positionTakingComm33.PositionTakingPlace;
+        var racingTemplate = new PTRacing_Template
+        {
+            PT_Win = positionTakingComm33.PositionTakingWin,
+            PT_Place = positionTakingComm33.PositionTakingPlace
+        };
+
         template.PT.PT_Percent = racingTemplate;
     }
 }

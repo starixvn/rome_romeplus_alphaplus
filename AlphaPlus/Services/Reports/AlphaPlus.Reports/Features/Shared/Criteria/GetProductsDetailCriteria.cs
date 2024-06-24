@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Shared.Criteria;
 
-public class GetProductsDetailCriteria : CriteriaBase
+internal class GetProductsDetailCriteria : CriteriaBase
 {
     public override string GetSettingKey() => "Age_Rpt_GetProductDetail";
 

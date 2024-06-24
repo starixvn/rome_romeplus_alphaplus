@@ -2,7 +2,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Shared.Criteria;
 
-public class GetProductsCriteria(string site, int currencyId, byte settingStatus) : CriteriaBase
+internal class GetProductsCriteria(string site, int currencyId, byte settingStatus) : CriteriaBase
 {
     public string Site { get; } = site;
 

@@ -1,6 +1,6 @@
 namespace AlphaPlus.Reports.Features.Shared.Criteria;
 
-public abstract class ReportProductCriteria(
+internal abstract class ReportProductCriteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,
