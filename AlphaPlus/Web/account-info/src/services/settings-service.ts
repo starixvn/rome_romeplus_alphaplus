@@ -86,24 +86,10 @@ const SettingsService = {
         return axiosInstance
             .post<Result>(`AccountInfo/${status.Url}`, JSON.parse(status.JsonParams), {
                 headers: {
-                    __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                    RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
                     'X-Requested-With': 'XMLHttpRequest'
                 }
             })
-            .then((response) => response.data);
-    },
-    UpdateGivenCredit: async (searchAccountId: number, searchAccountRoleId: number, creditAmount: number) => {
-        return axiosInstance
-            .post<Result>(
-                'AccountInfo/UpdateGivenCredit',
-                { searchAccountId, searchAccountRoleId, creditAmount },
-                {
-                    headers: {
-                        __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                }
-            )
             .then((response) => response.data);
     }
 };

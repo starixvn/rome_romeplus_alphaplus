@@ -1,12 +1,26 @@
 @{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
+@using System.Globalization
+@model GivenCreditViewModel
 
 @Html.AntiForgeryToken()
 
-<div id="given-credit"></div>
+<div id="root"></div>
 
 @section Scripts {
+    <script type="text/javascript">
+        const givenCreditParams = {
+            searchAccountId: @Model.SearchAccountId,
+            searchAccountName: '@Model.SearchAccountName',
+            searchAccountRoleId: @Model.SearchAccountRoleId,
+            currentGivenCredit: '@Model.CurrentGivenCredit',
+            givenCreditMin: '@Model.GivenCreditMin',
+            givenCreditMax: '@Model.GivenCreditMax',
+            memberMaxCredit: @Model.MemberMaxCredit.ToString(CultureInfo.InvariantCulture),
+            availableCredit: @Model.AvailableCredit.ToString(CultureInfo.InvariantCulture)
+                };
+    </script>
     <script type="module">
         import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
         RefreshRuntime.injectIntoGlobalHook(window)

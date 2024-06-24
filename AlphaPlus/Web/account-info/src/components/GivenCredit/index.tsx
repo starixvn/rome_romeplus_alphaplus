@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NumericFormat } from 'react-number-format';
@@ -5,39 +6,31 @@ import { Tooltip } from 'react-tippy';
 
 import { UserLevel } from '../../constants';
 import { formatNumber } from '../../helpers';
-import SettingsService, { handleError } from '../../services/settings-service';
+import Result from '../../models/result';
+import { handleError } from '../../services/settings-service';
 import CellContainNumberFormat from '../common/CellContainNumberFormat';
+import styles from './GivenCredit.module.scss';
 
 function Row({ title, value }: { title: string; value?: number }) {
     return (
-        <div className="col-xs-12 form-group">
+        <div className={`col-xs-12 ${styles['form-group']}`}>
             <div className="col-xs-7">{title}</div>
-            <CellContainNumberFormat value={value} classNames="value col-xs-5" />
+            <CellContainNumberFormat value={value} classNames={`col-xs-5 ${styles.value}`} />
         </div>
     );
 }
 
-type Props = {
-    searchAccountName: string;
-    searchAccountId: number;
-    searchAccountRoleId: number;
-    currentGivenCredit: number;
-    givenCreditMin: number;
-    givenCreditMax: number;
-    memberMaxCredit: number;
-    availableCredit: number;
-};
-
-export default function GivenCredit({
-    searchAccountId,
-    searchAccountRoleId,
-    searchAccountName,
-    currentGivenCredit,
-    givenCreditMin,
-    givenCreditMax,
-    availableCredit,
-    memberMaxCredit
-}: Props) {
+export default function GivenCredit() {
+    const {
+        searchAccountId,
+        searchAccountRoleId,
+        searchAccountName,
+        currentGivenCredit,
+        givenCreditMin,
+        givenCreditMax,
+        availableCredit,
+        memberMaxCredit
+    } = givenCreditParams;
     const { t } = useTranslation();
     const [hideMessages, setHideMessages] = useState(true);
     const [updateSuccess, setUpdateSuccess] = useState(true);
@@ -65,6 +58,21 @@ export default function GivenCredit({
         setUpdateSuccess(false);
     };
 
+    const updateGivenCredit = async (searchAccountId: number, searchAccountRoleId: number, creditAmount: number) => {
+        return axios
+            .post<Result>(
+                `${window.top?.alpha.urls['settingsRootPath']}AccountInfo/UpdateGivenCredit`,
+                { searchAccountId, searchAccountRoleId, creditAmount },
+                {
+                    headers: {
+                        RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                }
+            )
+            .then((response) => response.data);
+    };
+
     const handleSubmit = () => {
         if (newGivenCredit < 0 || newGivenCredit < givenCreditMin || newGivenCredit > givenCreditMax) {
             showErrorMessage(t('InvalidValue'));
@@ -78,7 +86,7 @@ export default function GivenCredit({
 
         $.blockUI?.();
 
-        SettingsService.UpdateGivenCredit(searchAccountId, searchAccountRoleId, newGivenCredit)
+        updateGivenCredit(searchAccountId, searchAccountRoleId, newGivenCredit)
             .then((data) => {
                 setHideMessages(false);
                 setMessage(data.IsSuccessful ? t('UpdateGivenCreditSuccessfully') : data.Message.trim());
@@ -95,7 +103,7 @@ export default function GivenCredit({
 
     const buildNumberFormat = (value: number) => (
         <NumericFormat
-            className="number"
+            className={styles.number}
             value={value}
             displayType={'text'}
             decimalScale={2}
@@ -118,7 +126,7 @@ export default function GivenCredit({
                         arrow: true
                     }}
                 >
-                    <span className="icon-credit"></span>
+                    <span className={`icon-credit ${styles['icon-credit']}`}></span>
                 </Tooltip>
             );
         }
@@ -128,8 +136,8 @@ export default function GivenCredit({
 
     const buildGivenCreditLimitNote = () => {
         return (
-            <div className="col-xs-12 form-group note">
-                <div className="value">
+            <div className={`col-xs-12 ${styles['form-group']} ${styles.note}`}>
+                <div className={styles.value}>
                     {t('Min')}: {buildNumberFormat(givenCreditMin)} - {t('Max')}: {buildNumberFormat(givenCreditMax)}
                     {renderTooltip()}
                 </div>
@@ -144,18 +152,18 @@ export default function GivenCredit({
     };
 
     return (
-        <div>
+        <div className={styles['given-credit']}>
             <div className={hideMessages ? `hidden` : ``}>
-                <span className={updateSuccess ? 'col-xs-12 msg msg-success' : 'col-xs-12 msg msg-error'}>
+                <span className={`col-xs-12 ${styles.msg} ${updateSuccess ? 'msg-success' : 'msg-error'}`}>
                     {message}
                 </span>
             </div>
             <Row title={t('CurrentGivenCredit')} value={currentGivenCredit} />
 
-            <div className="col-xs-12 form-group">
-                <div className="col-xs-7">{t('NewGivenCredit')}</div>
+            <div className={`col-xs-12 ${styles['form-group']}`}>
+                <div className="col-xs-7">{t('GivenCredit')}</div>
                 <NumericFormat
-                    className="textbox col-xs-5"
+                    className={`col-xs-5 ${styles.textbox}`}
                     value={newGivenCredit}
                     fixedDecimalScale={true}
                     thousandSeparator={true}
@@ -173,7 +181,7 @@ export default function GivenCredit({
 
             <Row title={t('Difference')} value={newGivenCredit - currentGivenCredit} />
 
-            <div className="col-xs-12 row-info popup-bottom list-button">
+            <div className={`col-xs-12 row-info popup-bottom ${styles['list-button']}`}>
                 <button className="btn-submit" onClick={handleSubmit}>
                     {t('Submit')}
                 </button>

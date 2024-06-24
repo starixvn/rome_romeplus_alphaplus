@@ -11,8 +11,20 @@ interface Params {
     mobileView: boolean;
 }
 
+interface GivenCreditParam {
+    searchAccountName: string;
+    searchAccountId: number;
+    searchAccountRoleId: number;
+    currentGivenCredit: number;
+    givenCreditMin: number;
+    givenCreditMax: number;
+    memberMaxCredit: number;
+    availableCredit: number;
+}
+
 declare global {
     const params: Params;
+    const givenCreditParams: GivenCreditParam;
     interface Window {
         alpha: {
             urls: { [key: string]: string };

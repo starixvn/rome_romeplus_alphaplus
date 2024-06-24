@@ -45,5 +45,7 @@
     "ThisUserIsNotOnline": "This user is not online",
     "IP": "IP",
     "LoginTime": "Login Time",
-    "Update": "Update"
+    "Update": "Update",
+    "UpdateGivenCredit": "Update Given Credit",
+    "CurrentGivenCredit": "Current Given Credit"
 }

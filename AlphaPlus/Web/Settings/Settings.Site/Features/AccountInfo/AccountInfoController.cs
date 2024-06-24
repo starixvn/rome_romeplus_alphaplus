@@ -1,4 +1,5 @@
 using System.Net;
+using System.Text.Json;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.AccountInfo.Models;
@@ -109,6 +110,20 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UpdateGivenCredit([FromBody] UpdateGivenCreditCommand command)
+        {
+            Console.WriteLine(JsonSerializer.Serialize(command));
+            if (!command.IsValid())
+            {
+                return ForbiddenResult();
+            }
+
+            return Json(await accountInfoService.UpdateGivenCredit(command));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> UpdateCustomerStatus([FromBody] CustomerNonProductStatusCommand command)
             => Json(await accountInfoService.UpdateCustomerStatus(command));
 

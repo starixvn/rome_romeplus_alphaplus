@@ -13,7 +13,7 @@ export default defineConfig({
     plugins: [react()],
     build: {
         rollupOptions: {
-            input: '/src/main.tsx',
+            input: { main: '/src/main.tsx', givenCredit: '/src/given-credit.tsx' },
             output: {
                 entryFileNames: '[name].js',
                 chunkFileNames: '[name].js',

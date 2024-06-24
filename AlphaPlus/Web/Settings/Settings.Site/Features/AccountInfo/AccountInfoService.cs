@@ -1,4 +1,5 @@
 using System.Text.Json;
+using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.AccountInfo.Criteria;
 using AlphaPlus.Settings.Site.Features.AccountInfo.Models;
@@ -30,10 +31,14 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
         Task<IEnumerable<OnlineUser>> GetOnlineList(int custid, bool adminCanViewVNIP);
 
         Task<Result> UpdateCustomerStatus(CustomerNonProductStatusCommand param);
+
+        Task<Result> UpdateGivenCredit(UpdateGivenCreditCommand param);
     }
 
     public class AccountInfoService(IDynamicRepository dynamicRepository, IPService ipService) : IAccountInfoService
     {
+        private readonly int failErrorCode = 100;
+
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
         private readonly IPService ipService = ipService;
 
@@ -158,8 +163,6 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
 
         public async Task<Result> UpdateCustomerStatus(CustomerNonProductStatusCommand param)
         {
-            Console.WriteLine(JsonSerializer.Serialize(param));
-
             UpdateCustomerStatusCommand command = param.StatusName switch
             {
                 StatusNames.Closed => new UpdateClosedStatusCommand(
@@ -218,9 +221,56 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo
                                         param.StatusName,
                                         param.StatusValue),
             };
-            Console.WriteLine(JsonSerializer.Serialize(command));
             await dynamicRepository.ExecuteAsync(command);
             return new Result(command.ErrCode, command.ErrMsg);
+        }
+
+        public async Task<Result> UpdateGivenCredit(UpdateGivenCreditCommand param)
+        {
+            UpdateSMAGivenCreditCommand command;
+            if (param.SearchAccountRoleId == UserLevel.Member.Value)
+            {
+                var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId);
+                await dynamicRepository.ExecuteAsync(totalAmtCommand, param.AGIP);
+                command = new UpdateMemberGivenCreditCommand(
+                    param.SearchAccountId,
+                    param.SearchAccountRoleId,
+                    param.CreditAmount,
+                    param.ActorId,
+                    param.SubAccountId,
+                    param.Language,
+                    param.IP,
+                    totalAmtCommand.TotalAmt);
+                await dynamicRepository.ExecuteAsync(command);
+            }
+            else
+            {
+                command = new UpdateSMAGivenCreditCommand(
+                    param.SearchAccountId,
+                    param.SearchAccountRoleId,
+                    param.CreditAmount,
+                    param.ActorId,
+                    param.SubAccountId,
+                    param.Language,
+                    param.IP);
+
+                await dynamicRepository.ExecuteAsync(command);
+            }
+
+            if (command.IsInvalid() || command.CreditProblem)
+            {
+                return Result.CreateErrorResult(command.ErrMsg, failErrorCode);
+            }
+            else
+            {
+                if (AppSettings.UpdateCreditBothDBCustAndDBAge)
+                {
+                    var replicateServerCommand = new UpdateGivenCreditReplicateServerCommand(param.SearchAccountId, param.CreditAmount);
+                    await dynamicRepository.ExecuteAsync(replicateServerCommand);
+                }
+
+                return Result.CreateSuccessfulResult();
+            }
         }
     }
 }
