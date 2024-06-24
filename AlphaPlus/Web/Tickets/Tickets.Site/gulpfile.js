@@ -57,6 +57,28 @@ function copyImages() {
     return gulp.src('assets/styles/images/**/*').pipe(gulp.dest('wwwroot/bundles/images'));
 }
 
+function copyAllbetImages() {
+    return gulp
+        .src('assets/styles/results/fanex.result/Allbet/template/**/*')
+        .pipe(gulp.dest('wwwroot/bundles/images/results/Allbet/template'));
+}
+
+function copySAGamingImages() {
+    return gulp
+        .src('assets/styles/results/fanex.result/SAGaming/template/**/*')
+        .pipe(gulp.dest('wwwroot/bundles/images/results/SAGaming/template'));
+}
+
+function copySexyGamingImages() {
+    return gulp
+        .src('assets/styles/results/fanex.result/SexyGaming/template/**/*')
+        .pipe(gulp.dest('wwwroot/bundles/images/results/SexyGaming/template'));
+}
+
+function copyWMImages() {
+    return gulp.src('assets/styles/results/fanex.result/WM/**/*').pipe(gulp.dest('wwwroot/bundles/images/results/WM'));
+}
+
 function compileJs() {
     const tsProject = ts.createProject('tsconfig.json');
     return gulp
@@ -84,12 +106,36 @@ gulp.task('clean', clean);
 
 gulp.task(
     'default',
-    gulp.series(clean, gulp.parallel(compileCss, compileJs), gulp.parallel([minCss, minJs, copyImages]))
+    gulp.series(
+        clean,
+        gulp.parallel(compileCss, compileJs),
+        gulp.parallel([
+            minCss,
+            minJs,
+            copyImages,
+            copyAllbetImages,
+            copySAGamingImages,
+            copySexyGamingImages,
+            copyWMImages
+        ])
+    )
 );
 
 gulp.task('watch', () => {
     gulp.watch(
         ['assets/styles/**/*.scss', 'assets/scripts/**/*.ts'],
-        gulp.series(clean, gulp.parallel(compileCss, compileJs), gulp.parallel([minCss, minJs, copyImages]))
+        gulp.series(
+            clean,
+            gulp.parallel(compileCss, compileJs),
+            gulp.parallel([
+                minCss,
+                minJs,
+                copyImages,
+                copyAllbetImages,
+                copySAGamingImages,
+                copySexyGamingImages,
+                copyWMImages
+            ])
+        )
     );
 });

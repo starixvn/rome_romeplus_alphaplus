@@ -11,7 +11,7 @@ public class WinLossQuery : BetListBaseQuery, IRequest<WinLossViewModel>
 
     public bool IsGroupHeadline { get; set; }
 
-    public DateTime MinDate
+    public virtual DateTime MinDate
         => IsGroupHeadline
         ? SystemTime.Today.AddMonths(NegativeThree).FirstDayOfMonth()
         : DateTime.MinValue;
