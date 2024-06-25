@@ -12,5 +12,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
         public string ActorName { get; } = message.ViewerUsername;
 
         public string AssetsVersion { get; } = assetsVersion;
+
+        public bool ShowLoginInfo => !message.IsEnabledCustomerDateLimit;
     }
 }

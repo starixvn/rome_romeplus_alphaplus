@@ -18,7 +18,12 @@
     @Html.AntiForgeryToken()
     <div id="root"></div>
     <script type="text/javascript">
-        const params = { actorName: '@Model.ActorName', actorRoleId: @Model.ActorLevel.Value, mobileView: JSON.parse('@Model.MobileView'.toLowerCase()) };
+        const params = {
+            actorName: '@Model.ActorName',
+            actorRoleId: @Model.ActorLevel.Value,
+            mobileView: JSON.parse('@Model.MobileView'.toLowerCase()),
+            showLoginInfo: JSON.parse('@Model.ShowLoginInfo'.toLowerCase())
+        };
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @* <script type="module" src="http://localhost:5102/main.js?version=@(Model.AssetsVersion)"></script> *@

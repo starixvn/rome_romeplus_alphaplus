@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import { BlockIds, UserLevel } from '../../constants';
+import { UserLevel } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
-import AccordionItem from '../common/AccordionItem';
 import NoInformation from '../common/NoInformation';
 import styles from './BalanceInfo.module.scss';
 import BalanceInfoRow from './BalanceInfoRow';
@@ -11,7 +10,7 @@ import MemberCreditMaxRow from './MemberCreditMaxRow';
 
 export default function BalanceInfo() {
     const { t } = useTranslation();
-    const { customer, expandedBlockId, handleBlockClick } = useGlobalContext();
+    const { customer } = useGlobalContext();
 
     if (!customer) {
         return <NoInformation />;
@@ -80,17 +79,10 @@ export default function BalanceInfo() {
     const contents = balanceInfoByLevel.find((level) => customer.RoleId === level.Id)?.Contents;
 
     return (
-        <AccordionItem
-            expanded={expandedBlockId === BlockIds.BalanceInfo}
-            iconClass="icon-balance"
-            featureText={t('Balance Info')}
-            onClick={() => handleBlockClick?.(BlockIds.BalanceInfo)}
-        >
-            <div className={styles['balance-info']}>
-                {contents?.map((content, index) => (
-                    <div key={index}>{content} </div>
-                ))}
-            </div>
-        </AccordionItem>
+        <div className={styles['balance-info']}>
+            {contents?.map((content, index) => (
+                <div key={index}>{content} </div>
+            ))}
+        </div>
     );
 }

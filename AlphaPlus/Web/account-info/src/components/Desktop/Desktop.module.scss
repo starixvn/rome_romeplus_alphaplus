@@ -1,0 +1,15 @@
+.accordions {
+    position: relative;
+
+    &.translate-from-left {
+        animation: TranslateFromLeft 0.3s;
+    }
+
+    &.translate-from-right {
+        animation: TranslateFromRight 0.3s;
+    }
+}
+
+.accordions {
+    padding: 0 10px;
+}

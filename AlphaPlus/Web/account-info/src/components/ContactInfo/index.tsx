@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Tooltip } from 'react-tippy';
 
-import { BlockIds } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
-import AccordionItem from '../common/AccordionItem';
 import NoInformation from '../common/NoInformation';
 
 const ContactInfoRow = ({ title, value }: { title: string; value: string }) => {
@@ -25,7 +23,7 @@ const ContactInfoRow = ({ title, value }: { title: string; value: string }) => {
 
 export default function ContactInfo() {
     const { t } = useTranslation();
-    const { customer, expandedBlockId, handleBlockClick } = useGlobalContext();
+    const { customer } = useGlobalContext();
 
     if (!customer) {
         return <NoInformation />;
@@ -55,16 +53,11 @@ export default function ContactInfo() {
     ];
 
     return (
-        <AccordionItem
-            expanded={expandedBlockId === BlockIds.ContactInfo}
-            iconClass="icon-contact-info"
-            featureText={t('ContactInfo')}
-            onClick={() => handleBlockClick?.(BlockIds.ContactInfo)}
-        >
+        <>
             {contactInfoPropsArray.map(
                 ({ title, value, visible }, index) =>
                     visible && <ContactInfoRow key={index} title={title} value={value} />
             )}
-        </AccordionItem>
+        </>
     );
 }

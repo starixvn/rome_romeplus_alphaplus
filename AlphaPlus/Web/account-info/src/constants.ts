@@ -9,6 +9,7 @@ interface Params {
     actorName: string;
     actorRoleId: number;
     mobileView: boolean;
+    showLoginInfo: boolean;
 }
 
 interface GivenCreditParam {

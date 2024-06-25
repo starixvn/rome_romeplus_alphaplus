@@ -1,18 +1,25 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './App.module.scss';
 import BalanceInfo from './components/BalanceInfo';
 import ContactInfo from './components/ContactInfo';
 import CustomerInfo from './components/CustomerInfo';
+import AccountInfoDesktop from './components/Desktop';
 import DownlineList from './components/DownlineList';
 import LoginInfo from './components/LoginInfo';
 import OnlineList from './components/OnlineList';
 import SearchBox from './components/SearchBox';
-import StatusAndSetting from './components/StatusAndSetting';
+import Setting from './components/Setting';
+import Status from './components/Status';
 import { BlockIds, LoadCustomerAllStatus, LoadCustomerInfo, UserLevel } from './constants';
 import { GlobalContext } from './context/global-context';
 import Customer from './models/customer';
+import DownlineListResponse from './models/DownlineListReponse';
+import OnlineUser from './models/online-user';
+import SettingItem from './models/setting-item';
+import StatusItem from './models/status-item';
 import SettingsService, { handleError } from './services/settings-service';
 
 function App() {
@@ -21,11 +28,16 @@ function App() {
     const [username, setUsername] = useState<string | undefined>('');
     const [searchCounter, setSearchCounter] = useState(0);
     const [customer, setCustomer] = useState<Customer | undefined>(undefined);
-    const [expandedBlockId, setExpandedBlockId] = useState<BlockIds | undefined>(BlockIds.BalanceInfo);
     const [requestType, setRequestType] = useState<string>(LoadCustomerInfo.ByClick);
+    const [downlineListData, setDownlineListData] = useState<DownlineListResponse | undefined>(undefined);
+    const [lastTxn, setLastTxn] = useState('');
+    const [onlineUsers, setOnlineUsers] = useState<OnlineUser[] | undefined>(undefined);
+    const [statusData, setStatusData] = useState<StatusItem[] | undefined>(undefined);
+    const [settingData, setSettingData] = useState<SettingItem[] | undefined>(undefined);
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
     const lastSearchUsernameCacheKey = `${actorName}-lastSearchUsername`;
+    const { t } = useTranslation();
 
     const getCustomerInfo = (username: string, requestId: string = LoadCustomerInfo.ByClick) => {
         setRequestType(requestId);
@@ -60,26 +72,157 @@ function App() {
             });
     };
 
+    const fetchDownlineListFromServer = (pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) => {
+        if (customer?.CustId && (!downlineListData || pageIndex > 1 || reloadByStatus)) {
+            $.blockUI?.();
+            SettingsService.GetDownlineList(customer?.CustId, customer?.RoleId, pageIndex, statusId, totalPages)
+                .then((data) => {
+                    data.PageIndex = pageIndex;
+                    data.StatusId = statusId;
+                    setDownlineListData(data);
+                })
+                .catch(handleError)
+                .finally(() => $.unblockUI?.());
+        }
+    };
+
+    const fetchLastTxnFromServer = () => {
+        if (customer && customer.CustId > 0 && !lastTxn) {
+            $.blockUI?.();
+            SettingsService.GetLastTxn(customer.UserName)
+                .then((lastTxn) => setLastTxn(lastTxn))
+                .catch(handleError)
+                .finally(() => $.unblockUI?.());
+        }
+    };
+
+    const fetchOnlineListFromServer = () => {
+        if (customer?.CustId && onlineUsers === undefined) {
+            SettingsService.GetOnlineList(customer.CustId).then((data) => setOnlineUsers(data));
+        }
+    };
+
+    const blockUIWrapper = () => {
+        if ($('.ui-widget-overlay:visible').length > 0) {
+            $.blockUI?.();
+        }
+    };
+
+    const getCustomerStatus = (requestId: string | undefined) => {
+        if ((!statusData || !settingData || requestId === LoadCustomerAllStatus.ByUpdateStatus) && customer) {
+            blockUIWrapper();
+
+            const { CustId, UserName, RoleId } = customer;
+            let uplineId: number;
+            let uplineName: string;
+
+            switch (RoleId) {
+                case UserLevel.Master:
+                    uplineId = customer.SuperId;
+                    uplineName = customer.SuperName;
+                    break;
+                case UserLevel.Agent:
+                    uplineId = customer.MasterId;
+                    uplineName = customer.MasterName;
+                    break;
+                default:
+                    uplineId = customer.AgentId;
+                    uplineName = customer.AgentName;
+                    break;
+            }
+
+            SettingsService.GetCustomerAllStatus(CustId, UserName, RoleId, uplineId, uplineName)
+                .then((responseData) => {
+                    setStatusData(responseData.Status);
+                    setSettingData(responseData.Settings);
+                })
+                .catch(handleError)
+                .finally(() => $.unblockUI?.());
+        }
+    };
+
     useEffect(() => {
         const lastSearchUsername = localStorage.getItem(lastSearchUsernameCacheKey);
         if (lastSearchUsername) {
             setUsername(lastSearchUsername);
             getCustomerInfo(lastSearchUsername);
         }
-    }, [username, actorName, lastSearchUsernameCacheKey]);
+    }, []);
 
-    const handleBlockClick = (blockId: BlockIds) => {
-        if (blockId === expandedBlockId) {
-            setExpandedBlockId?.(undefined);
-        } else {
-            setExpandedBlockId?.(blockId);
-        }
-    };
+    useEffect(() => {
+        setDownlineListData(undefined);
+        setLastTxn('');
+        setOnlineUsers(undefined);
+        setStatusData(undefined);
+        setSettingData(undefined);
+    }, [customer?.CustId]);
 
     const handleOpenIPInfo = (ip: string) => {
         const IPInfoPath = `${customer?.ViewLoginIPLink}?ip=${ip}`;
         window.top?.ageWnd.open(IPInfoPath);
     };
+
+    const accordionItems = [
+        {
+            blockId: BlockIds.ContactInfo,
+            featureText: t('ContactInfo'),
+            iconClass: 'icon-contact-info',
+            visible: true,
+            children: <ContactInfo />
+        },
+        {
+            blockId: BlockIds.BalanceInfo,
+            featureText: t('BalanceInfo'),
+            iconClass: 'icon-balance',
+            visible: true,
+            children: <BalanceInfo />
+        },
+        {
+            blockId: BlockIds.DownlineList,
+            featureText: t('DownlineList'),
+            iconClass: 'icon-downline',
+            visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
+            fetchDataFromServer: fetchDownlineListFromServer,
+            children: (
+                <DownlineList
+                    downlineListData={downlineListData}
+                    fetchDownlineListFromServer={fetchDownlineListFromServer}
+                />
+            )
+        },
+        {
+            blockId: BlockIds.Status,
+            featureText: t('Status'),
+            iconClass: 'icon-status',
+            visible: true,
+            fetchDataFromServer: getCustomerStatus,
+            children: <Status statusItems={statusData} getCustomerStatus={getCustomerStatus} />
+        },
+        {
+            blockId: BlockIds.Setting,
+            featureText: t('Setting'),
+            iconClass: 'icon-settings',
+            visible: true,
+            fetchDataFromServer: getCustomerStatus,
+            children: <Setting settingItems={settingData} />
+        },
+        {
+            blockId: BlockIds.LoginInfo,
+            featureText: t('LoginInfo'),
+            iconClass: 'icon-login',
+            visible: params.showLoginInfo,
+            fetchDataFromServer: fetchLastTxnFromServer,
+            children: <LoginInfo lastTxn={lastTxn} />
+        },
+        {
+            blockId: BlockIds.OnlineList,
+            featureText: t('OnlineList'),
+            iconClass: 'icon-onlinelist',
+            visible: true,
+            fetchDataFromServer: fetchOnlineListFromServer,
+            children: <OnlineList onlineUsers={onlineUsers} />
+        }
+    ];
 
     return (
         <div className={styles.container}>
@@ -91,23 +234,12 @@ function App() {
                     setUsername,
                     getCustomerInfo,
                     customer,
-                    expandedBlockId,
-                    handleBlockClick,
                     handleOpenIPInfo
                 }}
             >
                 <SearchBox />
                 <CustomerInfo searchCounter={searchCounter} />
-                {customer && (
-                    <div className={styles['accordions']}>
-                        <ContactInfo />
-                        <BalanceInfo />
-                        {actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member && <DownlineList />}
-                        <StatusAndSetting />
-                        <LoginInfo />
-                        <OnlineList />
-                    </div>
-                )}
+                {customer && <AccountInfoDesktop accordionItems={accordionItems} />}
             </GlobalContext.Provider>
         </div>
     );

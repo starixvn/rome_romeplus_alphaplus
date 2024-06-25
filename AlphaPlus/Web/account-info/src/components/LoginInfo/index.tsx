@@ -1,12 +1,7 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { BlockIds } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
-import SettingsService, { handleError } from '../../services/settings-service';
-import AccordionItem from '../common/AccordionItem';
-import NoInformation from '../common/NoInformation';
 import styles from './LoginInfo.module.scss';
 
 function LoginInfoRow({ title, value }: { title: string; value: string }) {
@@ -32,14 +27,13 @@ function LoginInfoWithLinkRow({ title, value }: { title: string; value: string }
     );
 }
 
-export default function LoginInfo() {
-    const { t } = useTranslation();
-    const { customer, expandedBlockId, handleBlockClick } = useGlobalContext();
-    const [lastTxn, setLastTxn] = useState('');
+type Props = {
+    lastTxn: string;
+};
 
-    useEffect(() => {
-        setLastTxn('');
-    }, [customer?.CustId]);
+export default function LoginInfo({ lastTxn }: Props) {
+    const { t } = useTranslation();
+    const { customer } = useGlobalContext();
 
     const loginInfo = customer?.LoginInfo;
     if (!loginInfo) {
@@ -68,40 +62,21 @@ export default function LoginInfo() {
         });
     }
 
-    const handleClick = () => {
-        handleBlockClick?.(BlockIds.LoginInfo);
-
-        if (loginInfo && !lastTxn) {
-            $.blockUI?.();
-            SettingsService.GetLastTxn(customer.UserName)
-                .then((lastTxn) => setLastTxn(lastTxn))
-                .catch(handleError)
-                .finally(() => $.unblockUI?.());
-        }
-    };
-
     return (
-        <AccordionItem
-            expanded={expandedBlockId === BlockIds.LoginInfo}
-            iconClass="icon-login"
-            featureText={t('LoginInfo')}
-            onClick={handleClick}
-        >
-            <div className={styles['login-info']}>
-                {loginInfoPropsArray.map((loginInfoProps, index) => (
-                    <LoginInfoRow {...loginInfoProps} key={index} />
-                ))}
-                {loginInfo.AllowOpenInfoPopup ? (
-                    <LoginInfoRow {...{ title: t('LoginIP'), value: loginInfo.LoginIP }} />
-                ) : (
-                    <LoginInfoWithLinkRow
-                        {...{
-                            title: t('LoginIP'),
-                            value: loginInfo.LoginIP
-                        }}
-                    />
-                )}
-            </div>
-        </AccordionItem>
+        <div className={styles['login-info']}>
+            {loginInfoPropsArray.map((loginInfoProps, index) => (
+                <LoginInfoRow {...loginInfoProps} key={index} />
+            ))}
+            {loginInfo.AllowOpenInfoPopup ? (
+                <LoginInfoRow {...{ title: t('LoginIP'), value: loginInfo.LoginIP }} />
+            ) : (
+                <LoginInfoWithLinkRow
+                    {...{
+                        title: t('LoginIP'),
+                        value: loginInfo.LoginIP
+                    }}
+                />
+            )}
+        </div>
     );
 }
