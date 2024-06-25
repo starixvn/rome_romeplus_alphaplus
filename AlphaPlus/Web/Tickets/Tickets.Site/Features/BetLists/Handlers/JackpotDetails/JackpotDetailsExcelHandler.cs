@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.JackpotDetails;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Models;

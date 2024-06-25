@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 
 namespace AlphaPlus.BetLists.Shared.Helpers;
 

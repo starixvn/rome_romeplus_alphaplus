@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.Parlay;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.Parlay;

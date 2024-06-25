@@ -2,7 +2,7 @@ using AlphaPlus.BetLists.BetsForecast;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Models;
 using AlphaPlus.SmartPunter.Services;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetListByBetType;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetListByBetTypeAndMatch;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetTypeAndMatch;

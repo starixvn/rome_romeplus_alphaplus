@@ -1,7 +1,7 @@
-using AlphaPlus.BetLists.Builders;
+using AlphaPlus.Shared.AppResources.Betlist.Builders;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.SmartPunter.Services;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Blocks;
 using AlphaPlus.Utilities.IP;

@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text;
 using System.Xml.Serialization;
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.Shared.Helpers;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.PartialUM.Services;

@@ -1,6 +1,6 @@
 using System.Text;
 using System.Text.Encodings.Web;
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;

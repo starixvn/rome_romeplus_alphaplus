@@ -1,5 +1,5 @@
 using System.Text;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;

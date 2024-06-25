@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;

@@ -1,5 +1,5 @@
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using Fanex.Result.Core.KenoLotteryTG;
 using MediatR;
 

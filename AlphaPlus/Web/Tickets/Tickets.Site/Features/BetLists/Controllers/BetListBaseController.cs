@@ -1,7 +1,7 @@
 using System.Net;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,10 +33,10 @@ public class BetListBaseController(IMediator mediator) : BaseController
         => Json(await mediator.Send(message));
 
     protected IActionResult JsonForbidden()
-        => Json(new Result((int)HttpStatusCode.Forbidden, AlphaPlus.BetLists.AppResources.Resources.NotAuthorized));
+        => Json(new Result((int)HttpStatusCode.Forbidden, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
 
     protected IActionResult JsonBadRequest()
-        => Json(new Result((int)HttpStatusCode.BadRequest, AlphaPlus.BetLists.AppResources.Resources.BadRequest));
+        => Json(new Result((int)HttpStatusCode.BadRequest, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.BadRequest));
 
     protected static string GetViewPath(string controllerName, string actionName)
         => $"~/Features/BetLists/Views/{controllerName}/{actionName}.cshtml";

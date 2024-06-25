@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.LastBets;
 using AlphaPlus.BetLists.Shared.Helpers;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;

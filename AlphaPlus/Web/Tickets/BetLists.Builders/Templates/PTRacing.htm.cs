@@ -4,7 +4,8 @@ using System.Text;
 #pragma warning disable
 namespace AlphaPlus.BetLists.Builders
 {
-	using TplNetCore.Element;
+    using AlphaPlus.Shared.AppResources.Betlist.Builders;
+    using TplNetCore.Element;
 
 	namespace Templates
 	{

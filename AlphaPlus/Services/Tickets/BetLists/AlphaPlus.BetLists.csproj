@@ -21,5 +21,6 @@
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SmartPunter\AlphaPlus.SmartPunter.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.IPInfo\AlphaPlus.IPInfo.csproj" />
+    <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
 </Project>

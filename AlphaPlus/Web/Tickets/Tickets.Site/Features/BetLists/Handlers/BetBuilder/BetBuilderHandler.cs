@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.BetBuilder;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.BetBuilder;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetBuilder;

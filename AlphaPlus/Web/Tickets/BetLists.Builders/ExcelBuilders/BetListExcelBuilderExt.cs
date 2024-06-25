@@ -1,3 +1,4 @@
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using BetListNPOI.SS.UserModel;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Utils;
@@ -121,7 +122,7 @@ public static class BetListExcelBuilderExt
         rtfHelper.RTFRenderer.AddText($"{Resources.Win}: ", rtfHelper.PosFont);
         rtfNumber.Render(positionTakingComm33.PositionTakingWin);
 
-        rtfHelper.RTFRenderer.AddText($"\n{Resources.Place}: ", rtfHelper.PosFont);
+        rtfHelper.RTFRenderer.AddText($"\n{Shared.AppResources.Betlist.Builders.Resources.Place}: ", rtfHelper.PosFont);
         rtfNumber.Render(positionTakingComm33.PositionTakingPlace + "\n");
     }
 }

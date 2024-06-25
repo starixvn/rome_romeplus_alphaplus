@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Tickets.Site.App_GlobalResources
+namespace AlphaPlus.Shared.AppResources.Betlist.Site
 {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
@@ -20,7 +20,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
+    public class Resources
     {
 
         private static global::System.Resources.ResourceManager resourceMan;
@@ -28,7 +28,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         private static global::System.Globalization.CultureInfo resourceCulture;
 
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
+        public Resources()
         {
         }
 
@@ -36,13 +36,13 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
+        public static global::System.Resources.ResourceManager ResourceManager
         {
             get
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Tickets.Site.App_GlobalResources.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Betlist.Site.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -54,7 +54,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
+        public static global::System.Globalization.CultureInfo Culture
         {
             get
             {
@@ -69,7 +69,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Forecast.
         /// </summary>
-        internal static string Forecast
+        public static string Forecast
         {
             get
             {
@@ -80,7 +80,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Total Bets.
         /// </summary>
-        internal static string TotalBets
+        public static string TotalBets
         {
             get
             {
@@ -91,7 +91,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Handicap/Over Under/Live.
         /// </summary>
-        internal static string HDPOULive
+        public static string HDPOULive
         {
             get
             {
@@ -102,7 +102,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Over/Under.
         /// </summary>
-        internal static string OverSlashUnder
+        public static string OverSlashUnder
         {
             get
             {
@@ -113,7 +113,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 1st Half.
         /// </summary>
-        internal static string _1stHalf
+        public static string _1stHalf
         {
             get
             {
@@ -124,7 +124,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Handicap.
         /// </summary>
-        internal static string Handicap
+        public static string Handicap
         {
             get
             {
@@ -135,7 +135,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Event.
         /// </summary>
-        internal static string Event
+        public static string Event
         {
             get
             {
@@ -146,7 +146,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
-        internal static string Time
+        public static string Time
         {
             get
             {
@@ -157,7 +157,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Full Time.
         /// </summary>
-        internal static string FullTime
+        public static string FullTime
         {
             get
             {
@@ -168,7 +168,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
-        internal static string Refresh
+        public static string Refresh
         {
             get
             {
@@ -179,7 +179,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
-        internal static string NoInformationIsAvailable
+        public static string NoInformationIsAvailable
         {
             get
             {
@@ -190,7 +190,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Money Line.
         /// </summary>
-        internal static string MoneyLine
+        public static string MoneyLine
         {
             get
             {
@@ -201,7 +201,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Total Home.
         /// </summary>
-        internal static string TotalHome
+        public static string TotalHome
         {
             get
             {
@@ -212,7 +212,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Total Away.
         /// </summary>
-        internal static string TotalAway
+        public static string TotalAway
         {
             get
             {
@@ -223,7 +223,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Forecast Home.
         /// </summary>
-        internal static string ForecastHome
+        public static string ForecastHome
         {
             get
             {
@@ -234,7 +234,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Forecast Away.
         /// </summary>
-        internal static string ForecastAway
+        public static string ForecastAway
         {
             get
             {
@@ -245,7 +245,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Odd/Even.
         /// </summary>
-        internal static string OddSlashEven
+        public static string OddSlashEven
         {
             get
             {
@@ -256,7 +256,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 1X2.
         /// </summary>
-        internal static string _1X2
+        public static string _1X2
         {
             get
             {
@@ -267,7 +267,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Draw/No Draw.
         /// </summary>
-        internal static string DrawSlashNoDraw
+        public static string DrawSlashNoDraw
         {
             get
             {
@@ -278,7 +278,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Total Goal.
         /// </summary>
-        internal static string TotalGoal
+        public static string TotalGoal
         {
             get
             {
@@ -289,7 +289,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
-        internal static string Home
+        public static string Home
         {
             get
             {
@@ -300,7 +300,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Away.
         /// </summary>
-        internal static string Away
+        public static string Away
         {
             get
             {
@@ -311,7 +311,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 0-1.
         /// </summary>
-        internal static string TotalGoal01
+        public static string TotalGoal01
         {
             get
             {
@@ -322,7 +322,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 2-3.
         /// </summary>
-        internal static string TotalGoal23
+        public static string TotalGoal23
         {
             get
             {
@@ -333,7 +333,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 4-6.
         /// </summary>
-        internal static string TotalGoal46
+        public static string TotalGoal46
         {
             get
             {
@@ -344,7 +344,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 7&Over.
         /// </summary>
-        internal static string TotalGoal7Over
+        public static string TotalGoal7Over
         {
             get
             {
@@ -355,7 +355,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 4&Over.
         /// </summary>
-        internal static string TotalGoal4Over
+        public static string TotalGoal4Over
         {
             get
             {
@@ -366,7 +366,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Outright.
         /// </summary>
-        internal static string Outright
+        public static string Outright
         {
             get
             {
@@ -377,7 +377,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Team.
         /// </summary>
-        internal static string Team
+        public static string Team
         {
             get
             {
@@ -388,7 +388,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Balance.
         /// </summary>
-        internal static string Balance
+        public static string Balance
         {
             get
             {
@@ -399,7 +399,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to HT/FT.
         /// </summary>
-        internal static string HTSlashFT
+        public static string HTSlashFT
         {
             get
             {
@@ -410,7 +410,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to HH.
         /// </summary>
-        internal static string HH
+        public static string HH
         {
             get
             {
@@ -421,7 +421,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to HD.
         /// </summary>
-        internal static string HD
+        public static string HD
         {
             get
             {
@@ -432,7 +432,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to HA.
         /// </summary>
-        internal static string HA
+        public static string HA
         {
             get
             {
@@ -443,7 +443,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to DH.
         /// </summary>
-        internal static string DH
+        public static string DH
         {
             get
             {
@@ -454,7 +454,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to DD.
         /// </summary>
-        internal static string DD
+        public static string DD
         {
             get
             {
@@ -465,7 +465,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to DA.
         /// </summary>
-        internal static string DA
+        public static string DA
         {
             get
             {
@@ -476,7 +476,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to AH.
         /// </summary>
-        internal static string AH
+        public static string AH
         {
             get
             {
@@ -487,7 +487,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to AD.
         /// </summary>
-        internal static string AD
+        public static string AD
         {
             get
             {
@@ -498,7 +498,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to AA.
         /// </summary>
-        internal static string AA
+        public static string AA
         {
             get
             {
@@ -509,7 +509,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to FG/LG.
         /// </summary>
-        internal static string FGSlashLG
+        public static string FGSlashLG
         {
             get
             {
@@ -520,7 +520,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to First Goal.
         /// </summary>
-        internal static string FirstGoal
+        public static string FirstGoal
         {
             get
             {
@@ -531,7 +531,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Last Goal.
         /// </summary>
-        internal static string LastGoal
+        public static string LastGoal
         {
             get
             {
@@ -542,7 +542,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to No Goal.
         /// </summary>
-        internal static string NoGoal
+        public static string NoGoal
         {
             get
             {
@@ -553,7 +553,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Home/Draw/Away No Bet.
         /// </summary>
-        internal static string HomeDrawAwayNoBet
+        public static string HomeDrawAwayNoBet
         {
             get
             {
@@ -564,7 +564,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Home No Bet.
         /// </summary>
-        internal static string HomeNoBet
+        public static string HomeNoBet
         {
             get
             {
@@ -575,7 +575,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Draw No Bet.
         /// </summary>
-        internal static string DrawNoBet
+        public static string DrawNoBet
         {
             get
             {
@@ -586,7 +586,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Away No Bet.
         /// </summary>
-        internal static string AwayNoBet
+        public static string AwayNoBet
         {
             get
             {
@@ -597,7 +597,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Number Game.
         /// </summary>
-        internal static string NumberGame
+        public static string NumberGame
         {
             get
             {
@@ -608,7 +608,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Number Game No.
         /// </summary>
-        internal static string NumberGameNo
+        public static string NumberGameNo
         {
             get
             {
@@ -619,7 +619,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 1st Ball.
         /// </summary>
-        internal static string _1stBall
+        public static string _1stBall
         {
             get
             {
@@ -630,7 +630,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Last Ball.
         /// </summary>
-        internal static string LastBall
+        public static string LastBall
         {
             get
             {
@@ -641,7 +641,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Next Ball.
         /// </summary>
-        internal static string NextBall
+        public static string NextBall
         {
             get
             {
@@ -652,7 +652,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Next Combo.
         /// </summary>
-        internal static string NextCombo
+        public static string NextCombo
         {
             get
             {
@@ -663,7 +663,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Full Time Odd Even.
         /// </summary>
-        internal static string FullTimeOddEven
+        public static string FullTimeOddEven
         {
             get
             {
@@ -674,7 +674,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to FT.O/E.
         /// </summary>
-        internal static string FTDotOSlashE
+        public static string FTDotOSlashE
         {
             get
             {
@@ -685,7 +685,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Number Wheel.
         /// </summary>
-        internal static string NumberWheel
+        public static string NumberWheel
         {
             get
             {
@@ -696,7 +696,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Over, Odd.
         /// </summary>
-        internal static string OverCommaOdd
+        public static string OverCommaOdd
         {
             get
             {
@@ -707,7 +707,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Under, Odd.
         /// </summary>
-        internal static string UnderCommaOdd
+        public static string UnderCommaOdd
         {
             get
             {
@@ -718,7 +718,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Over, Even.
         /// </summary>
-        internal static string OverCommaEven
+        public static string OverCommaEven
         {
             get
             {
@@ -729,7 +729,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Under, Even.
         /// </summary>
-        internal static string UnderCommaEven
+        public static string UnderCommaEven
         {
             get
             {
@@ -740,7 +740,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Next R/B.
         /// </summary>
-        internal static string NextRSlashB
+        public static string NextRSlashB
         {
             get
             {
@@ -751,7 +751,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Live Game.
         /// </summary>
-        internal static string LiveGame
+        public static string LiveGame
         {
             get
             {
@@ -762,7 +762,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Pre Game.
         /// </summary>
-        internal static string PreGame
+        public static string PreGame
         {
             get
             {
@@ -773,7 +773,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to O/U.
         /// </summary>
-        internal static string OSlashU
+        public static string OSlashU
         {
             get
             {
@@ -784,7 +784,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to O/E.
         /// </summary>
-        internal static string OSlashE
+        public static string OSlashE
         {
             get
             {
@@ -795,7 +795,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to O,O.
         /// </summary>
-        internal static string OCommaO
+        public static string OCommaO
         {
             get
             {
@@ -806,7 +806,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to U,O.
         /// </summary>
-        internal static string UCommaO
+        public static string UCommaO
         {
             get
             {
@@ -817,7 +817,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to O,E.
         /// </summary>
-        internal static string OCommaE
+        public static string OCommaE
         {
             get
             {
@@ -828,7 +828,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to U,E.
         /// </summary>
-        internal static string UCommaE
+        public static string UCommaE
         {
             get
             {
@@ -839,7 +839,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Half Time.
         /// </summary>
-        internal static string HalfTime
+        public static string HalfTime
         {
             get
             {
@@ -850,7 +850,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to League.
         /// </summary>
-        internal static string League
+        public static string League
         {
             get
             {
@@ -861,7 +861,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Home/Away.
         /// </summary>
-        internal static string HomeSlashAway
+        public static string HomeSlashAway
         {
             get
             {
@@ -872,7 +872,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Live.
         /// </summary>
-        internal static string Live
+        public static string Live
         {
             get
             {
@@ -883,7 +883,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Score Map.
         /// </summary>
-        internal static string ScoreMap
+        public static string ScoreMap
         {
             get
             {
@@ -894,7 +894,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Select Match.
         /// </summary>
-        internal static string SelectMatch
+        public static string SelectMatch
         {
             get
             {
@@ -905,7 +905,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Live Ball.
         /// </summary>
-        internal static string LiveBall
+        public static string LiveBall
         {
             get
             {
@@ -916,7 +916,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Dead Ball.
         /// </summary>
-        internal static string DeadBall
+        public static string DeadBall
         {
             get
             {
@@ -927,7 +927,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
-        internal static string Submit
+        public static string Submit
         {
             get
             {
@@ -938,7 +938,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Click to view Score Map Info.
         /// </summary>
-        internal static string ClickToViewScoreMapInfo
+        public static string ClickToViewScoreMapInfo
         {
             get
             {
@@ -949,7 +949,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Select.
         /// </summary>
-        internal static string Select
+        public static string Select
         {
             get
             {
@@ -960,7 +960,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Hide Match.
         /// </summary>
-        internal static string HideMatch
+        public static string HideMatch
         {
             get
             {
@@ -971,7 +971,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
-        internal static string All
+        public static string All
         {
             get
             {
@@ -982,7 +982,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to HT.
         /// </summary>
-        internal static string HT
+        public static string HT
         {
             get
             {
@@ -993,7 +993,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to FT.
         /// </summary>
-        internal static string FT
+        public static string FT
         {
             get
             {
@@ -1004,7 +1004,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Score.
         /// </summary>
-        internal static string Score
+        public static string Score
         {
             get
             {
@@ -1015,7 +1015,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Score Map Information.
         /// </summary>
-        internal static string ScoreMapInformation
+        public static string ScoreMapInformation
         {
             get
             {
@@ -1026,7 +1026,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
-        internal static string Note
+        public static string Note
         {
             get
             {
@@ -1037,7 +1037,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Check boxes in Score Map function are applied to bet types as following:.
         /// </summary>
-        internal static string ScoreMapInformationDescription
+        public static string ScoreMapInformationDescription
         {
             get
             {
@@ -1048,7 +1048,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Group.
         /// </summary>
-        internal static string Group
+        public static string Group
         {
             get
             {
@@ -1059,7 +1059,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Bet Types.
         /// </summary>
-        internal static string BetTypes
+        public static string BetTypes
         {
             get
             {
@@ -1070,7 +1070,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to This information is for reference only. It might become obsolete, please contact CSD for more information..
         /// </summary>
-        internal static string ScoreMapNoteContent
+        public static string ScoreMapNoteContent
         {
             get
             {
@@ -1081,7 +1081,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 1st Hdp.
         /// </summary>
-        internal static string _1stHdp
+        public static string _1stHdp
         {
             get
             {
@@ -1092,7 +1092,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to 1st OU.
         /// </summary>
-        internal static string _1stOU
+        public static string _1stOU
         {
             get
             {
@@ -1103,7 +1103,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
-        internal static string BetList
+        public static string BetList
         {
             get
             {
@@ -1114,7 +1114,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to View Over Under Forecast.
         /// </summary>
-        internal static string ViewOverUnderForecast
+        public static string ViewOverUnderForecast
         {
             get
             {
@@ -1125,7 +1125,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to View Handicap Forecast.
         /// </summary>
-        internal static string ViewHandicapForecast
+        public static string ViewHandicapForecast
         {
             get
             {
@@ -1136,7 +1136,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to View 1st Over/Under Forecast.
         /// </summary>
-        internal static string View1stOverUnderForecast
+        public static string View1stOverUnderForecast
         {
             get
             {
@@ -1147,7 +1147,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to View 1st Handicap Forecast.
         /// </summary>
-        internal static string View1stHandicapForecast
+        public static string View1stHandicapForecast
         {
             get
             {
@@ -1158,7 +1158,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Please choose a match.
         /// </summary>
-        internal static string PleaseChooseAMatch
+        public static string PleaseChooseAMatch
         {
             get
             {
@@ -1169,7 +1169,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Please choose a bet type.
         /// </summary>
-        internal static string PleaseChooseABetType
+        public static string PleaseChooseABetType
         {
             get
             {
@@ -1180,7 +1180,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Non-Live.
         /// </summary>
-        internal static string NonLive
+        public static string NonLive
         {
             get
             {
@@ -1191,7 +1191,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Soccer.
         /// </summary>
-        internal static string Soccer
+        public static string Soccer
         {
             get
             {
@@ -1202,7 +1202,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Bets & Forecast.
         /// </summary>
-        internal static string BetsAndForecast
+        public static string BetsAndForecast
         {
             get
             {
@@ -1213,7 +1213,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Bet Type.
         /// </summary>
-        internal static string BetType
+        public static string BetType
         {
             get
             {
@@ -1224,7 +1224,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Bet Count.
         /// </summary>
-        internal static string BetCount
+        public static string BetCount
         {
             get
             {
@@ -1235,7 +1235,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Turnover.
         /// </summary>
-        internal static string Turnover
+        public static string Turnover
         {
             get
             {
@@ -1246,7 +1246,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Forecast Win/Loss.
         /// </summary>
-        internal static string ForecastWinLoss
+        public static string ForecastWinLoss
         {
             get
             {
@@ -1257,7 +1257,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
-        internal static string Total
+        public static string Total
         {
             get
             {
@@ -1268,7 +1268,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Select an event.
         /// </summary>
-        internal static string SelectAnEvent
+        public static string SelectAnEvent
         {
             get
             {
@@ -1279,7 +1279,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Selected Event(s).
         /// </summary>
-        internal static string SelectedEvents
+        public static string SelectedEvents
         {
             get
             {
@@ -1290,7 +1290,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Please select at least one event.
         /// </summary>
-        internal static string SelectAtLeastOneEvent
+        public static string SelectAtLeastOneEvent
         {
             get
             {
@@ -1301,7 +1301,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to All Events.
         /// </summary>
-        internal static string AllEvents
+        public static string AllEvents
         {
             get
             {
@@ -1312,7 +1312,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Your browser is out of date and might not be working properly width our website. For a better support, we strongly recommend that you upgrade to a newer version.
         /// </summary>
-        internal static string BrowserIsOutOfDate
+        public static string BrowserIsOutOfDate
         {
             get
             {
@@ -1323,7 +1323,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Click here to update your browser.
         /// </summary>
-        internal static string ClickToUpdateBrowser
+        public static string ClickToUpdateBrowser
         {
             get
             {
@@ -1334,7 +1334,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Bets & Forecast Guidelines.
         /// </summary>
-        internal static string BetsAndForecastGuidelines
+        public static string BetsAndForecastGuidelines
         {
             get
             {
@@ -1345,7 +1345,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Take a quick tour of Bets & Forecast.
         /// </summary>
-        internal static string Forecast_Title
+        public static string Forecast_Title
         {
             get
             {
@@ -1356,7 +1356,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to It’s the fastest and most centralized Total Bets and Forecast ever.
         /// </summary>
-        internal static string Forecast_Title_Content
+        public static string Forecast_Title_Content
         {
             get
             {
@@ -1367,7 +1367,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Let’s go.
         /// </summary>
-        internal static string Forecast_Title_LetsGo
+        public static string Forecast_Title_LetsGo
         {
             get
             {
@@ -1378,7 +1378,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Not now.
         /// </summary>
-        internal static string Forecast_Title_NotNow
+        public static string Forecast_Title_NotNow
         {
             get
             {
@@ -1389,7 +1389,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to It starts with the new and intuitive menu.
         /// </summary>
-        internal static string Forecast_Popup_1
+        public static string Forecast_Popup_1
         {
             get
             {
@@ -1400,7 +1400,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to The meaningful LIVE Forecast Win Loss of Handicap.
         /// </summary>
-        internal static string Forecast_Popup_2
+        public static string Forecast_Popup_2
         {
             get
             {
@@ -1411,7 +1411,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Old Forecast Win Loss always starts from Score 0.
         /// </summary>
-        internal static string Forecast_Popup_3
+        public static string Forecast_Popup_3
         {
             get
             {
@@ -1422,7 +1422,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to New Forecast Win Loss starts from Current Score.
         /// </summary>
-        internal static string Forecast_Popup_4
+        public static string Forecast_Popup_4
         {
             get
             {
@@ -1433,7 +1433,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Each bet type has its own Forecast Win Loss display, please refer to this guideline for more details.
         /// </summary>
-        internal static string Forecast_Popup_5
+        public static string Forecast_Popup_5
         {
             get
             {
@@ -1444,7 +1444,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to You are not authorized on this function.
         /// </summary>
-        internal static string NotAuthorized
+        public static string NotAuthorized
         {
             get
             {
@@ -1455,7 +1455,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Bad Request.
         /// </summary>
-        internal static string BadRequest
+        public static string BadRequest
         {
             get
             {
@@ -1466,7 +1466,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Member Bet List.
         /// </summary>
-        internal static string memberBetList
+        public static string memberBetList
         {
             get
             {
@@ -1477,7 +1477,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Country info provided by IP2Location™ and DNSstuff is for reference only, without warranty. For current and accurate info, consult reliable sources if needed.
         /// </summary>
-        internal static string ipnote
+        public static string ipnote
         {
             get
             {
@@ -1488,7 +1488,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Export to Excel.
         /// </summary>
-        internal static string ExportToExcel
+        public static string ExportToExcel
         {
             get
             {
@@ -1499,7 +1499,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
-        internal static string member
+        public static string member
         {
             get
             {
@@ -1510,7 +1510,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Trans.Time.
         /// </summary>
-        internal static string transtime
+        public static string transtime
         {
             get
             {
@@ -1521,7 +1521,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Choice.
         /// </summary>
-        internal static string choice
+        public static string choice
         {
             get
             {
@@ -1532,7 +1532,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Odds.
         /// </summary>
-        internal static string odds
+        public static string odds
         {
             get
             {
@@ -1543,7 +1543,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
-        internal static string status
+        public static string status
         {
             get
             {
@@ -1554,7 +1554,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Stake.
         /// </summary>
-        internal static string stake
+        public static string stake
         {
             get
             {
@@ -1565,7 +1565,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Super PT.
         /// </summary>
-        internal static string superPT
+        public static string superPT
         {
             get
             {
@@ -1576,7 +1576,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Comm.
         /// </summary>
-        internal static string lblComm
+        public static string lblComm
         {
             get
             {
@@ -1587,7 +1587,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Master PT.
         /// </summary>
-        internal static string masterPT
+        public static string masterPT
         {
             get
             {
@@ -1598,7 +1598,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Agent PT.
         /// </summary>
-        internal static string agentPT
+        public static string agentPT
         {
             get
             {
@@ -1609,7 +1609,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Platform.
         /// </summary>
-        internal static string platform
+        public static string platform
         {
             get
             {
@@ -1620,7 +1620,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to N/A.
         /// </summary>
-        internal static string Platform_0
+        public static string Platform_0
         {
             get
             {
@@ -1631,7 +1631,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Desktop.
         /// </summary>
-        internal static string Platform_1
+        public static string Platform_1
         {
             get
             {
@@ -1642,7 +1642,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Mobile.
         /// </summary>
-        internal static string Platform_2
+        public static string Platform_2
         {
             get
             {
@@ -1653,7 +1653,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to APP.
         /// </summary>
-        internal static string Platform_3
+        public static string Platform_3
         {
             get
             {
@@ -1664,7 +1664,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Uncategorized.
         /// </summary>
-        internal static string Platform_99
+        public static string Platform_99
         {
             get
             {
@@ -1675,7 +1675,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to N/A.
         /// </summary>
-        internal static string Platform_NA
+        public static string Platform_NA
         {
             get
             {
@@ -1686,7 +1686,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Uncategorized.
         /// </summary>
-        internal static string Platform_Uncategorized
+        public static string Platform_Uncategorized
         {
             get
             {
@@ -1697,7 +1697,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Win.
         /// </summary>
-        internal static string Win
+        public static string Win
         {
             get
             {
@@ -1708,7 +1708,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Place.
         /// </summary>
-        internal static string place
+        public static string place
         {
             get
             {
@@ -1719,7 +1719,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Subtotal(winlost).
         /// </summary>
-        internal static string Subtotal_wl
+        public static string Subtotal_wl
         {
             get
             {
@@ -1730,7 +1730,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Subtotal(Com.).
         /// </summary>
-        internal static string Subtotal_com
+        public static string Subtotal_com
         {
             get
             {
@@ -1741,7 +1741,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to #.
         /// </summary>
-        internal static string number
+        public static string number
         {
             get
             {
@@ -1752,7 +1752,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Super PT/ Comm.
         /// </summary>
-        internal static string superptcomm
+        public static string superptcomm
         {
             get
             {
@@ -1763,7 +1763,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Master PT/ Comm.
         /// </summary>
-        internal static string masterptcomm
+        public static string masterptcomm
         {
             get
             {
@@ -1774,7 +1774,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Agent PT/ Comm.
         /// </summary>
-        internal static string agentptcomm
+        public static string agentptcomm
         {
             get
             {
@@ -1785,7 +1785,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Connect failed to {0}.
         /// </summary>
-        internal static string ConnectionFailedTo3rd
+        public static string ConnectionFailedTo3rd
         {
             get
             {
@@ -1796,7 +1796,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
-        internal static string Date
+        public static string Date
         {
             get
             {
@@ -1807,7 +1807,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to From.
         /// </summary>
-        internal static string From
+        public static string From
         {
             get
             {
@@ -1818,7 +1818,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to To.
         /// </summary>
-        internal static string To
+        public static string To
         {
             get
             {
@@ -1829,7 +1829,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to RNG Keno.
         /// </summary>
-        internal static string Keno
+        public static string Keno
         {
             get
             {
@@ -1840,7 +1840,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Mix Parlay.
         /// </summary>
-        internal static string MixParlay
+        public static string MixParlay
         {
             get
             {
@@ -1851,7 +1851,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Normal.
         /// </summary>
-        internal static string Normal
+        public static string Normal
         {
             get
             {
@@ -1862,7 +1862,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Outright Results.
         /// </summary>
-        internal static string OutrightResults
+        public static string OutrightResults
         {
             get
             {
@@ -1873,7 +1873,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to We're updating this function for a better experience. Thus, this function is turned off temporarily ({0} - {1} (GMT+8)). Please try again later and sorry for the inconvenience..
         /// </summary>
-        internal static string PartialUMAnnouncement
+        public static string PartialUMAnnouncement
         {
             get
             {
@@ -1884,7 +1884,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Please Select.
         /// </summary>
-        internal static string PleaseSelect
+        public static string PleaseSelect
         {
             get
             {
@@ -1895,7 +1895,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Click here to open {0} results.
         /// </summary>
-        internal static string ResultLinkText
+        public static string ResultLinkText
         {
             get
             {
@@ -1906,7 +1906,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to {0} Result.
         /// </summary>
-        internal static string ResultPopupTitle
+        public static string ResultPopupTitle
         {
             get
             {
@@ -1917,7 +1917,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Results.
         /// </summary>
-        internal static string Results
+        public static string Results
         {
             get
             {
@@ -1928,7 +1928,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to All Leagues.
         /// </summary>
-        internal static string ShowAllLeagues
+        public static string ShowAllLeagues
         {
             get
             {
@@ -1939,7 +1939,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Show All Leagues.
         /// </summary>
-        internal static string ShowAllLeaguesExcelTitle
+        public static string ShowAllLeaguesExcelTitle
         {
             get
             {
@@ -1950,7 +1950,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to Sport.
         /// </summary>
-        internal static string Sport
+        public static string Sport
         {
             get
             {
@@ -1961,7 +1961,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to System Parlay.
         /// </summary>
-        internal static string SystemParlay
+        public static string SystemParlay
         {
             get
             {
@@ -1972,7 +1972,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to There is no data.
         /// </summary>
-        internal static string ThereIsNoData
+        public static string ThereIsNoData
         {
             get
             {
@@ -1983,7 +1983,7 @@ namespace AlphaPlus.Tickets.Site.App_GlobalResources
         /// <summary>
         ///   Looks up a localized string similar to You can view the report data from {0}.
         /// </summary>
-        internal static string ViewDataFromDate
+        public static string ViewDataFromDate
         {
             get
             {

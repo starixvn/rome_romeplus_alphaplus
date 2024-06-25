@@ -24,6 +24,7 @@
     <ProjectReference Include="..\..\..\Services\Tickets\BetLists\AlphaPlus.BetLists.csproj" />
     <ProjectReference Include="..\..\..\Services\Tickets\Results\AlphaPlus.Results.csproj" />
     <ProjectReference Include="..\BetLists.Builders\BetLists.Builders.csproj" />
+    <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.BetList.Core.RemotingRef" Version="2.0.0.2" />

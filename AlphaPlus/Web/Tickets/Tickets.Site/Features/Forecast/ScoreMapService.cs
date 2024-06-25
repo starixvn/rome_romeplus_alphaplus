@@ -1,5 +1,5 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
 using AlphaPlus.Tickets.Site.Features.Shared;
 using AlphaPlus.Tickets.Site.Features.Shared.Extensions;

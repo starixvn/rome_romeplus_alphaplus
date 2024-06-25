@@ -1,5 +1,5 @@
 
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.Parlay;
 using Fanex.BetList.Core.App_GlobalResources;
 using Fanex.BetList.Core.Entities;

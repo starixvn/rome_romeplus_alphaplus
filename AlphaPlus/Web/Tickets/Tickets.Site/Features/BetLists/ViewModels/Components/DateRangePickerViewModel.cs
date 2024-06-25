@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Utils;
 using Microsoft.AspNetCore.Mvc.Rendering;

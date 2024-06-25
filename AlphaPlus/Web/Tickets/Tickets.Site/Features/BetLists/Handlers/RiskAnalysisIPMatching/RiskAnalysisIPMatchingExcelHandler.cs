@@ -1,5 +1,5 @@
-using AlphaPlus.BetLists.AppResources;
-using AlphaPlus.BetLists.Builders;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
+using AlphaPlus.Shared.AppResources.Betlist.Builders;
 using AlphaPlus.BetLists.RiskAnalysisIPMatching;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Models;

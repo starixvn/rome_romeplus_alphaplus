@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.CashOutHistory;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CashOutHistory;

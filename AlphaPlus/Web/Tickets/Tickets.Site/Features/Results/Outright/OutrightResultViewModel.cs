@@ -1,6 +1,6 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Utils;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.Outright;

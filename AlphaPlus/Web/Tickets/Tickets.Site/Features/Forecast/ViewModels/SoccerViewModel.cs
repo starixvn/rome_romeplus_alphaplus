@@ -1,4 +1,4 @@
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Tickets.Site.Features.Forecast.ViewModels;

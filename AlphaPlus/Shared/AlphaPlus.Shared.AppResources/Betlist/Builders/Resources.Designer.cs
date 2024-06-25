@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.BetLists.Builders
+namespace AlphaPlus.Shared.AppResources.Betlist.Builders
 {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
@@ -20,7 +20,7 @@ namespace AlphaPlus.BetLists.Builders
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
+    public class Resources
     {
 
         private static global::System.Resources.ResourceManager resourceMan;
@@ -28,7 +28,7 @@ namespace AlphaPlus.BetLists.Builders
         private static global::System.Globalization.CultureInfo resourceCulture;
 
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
+        public Resources()
         {
         }
 
@@ -36,13 +36,13 @@ namespace AlphaPlus.BetLists.Builders
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
+        public static global::System.Resources.ResourceManager ResourceManager
         {
             get
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.BetLists.Builders.App_GlobalResources.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Betlist.Builders.App_GlobalResources.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -54,7 +54,7 @@ namespace AlphaPlus.BetLists.Builders
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
+        public static global::System.Globalization.CultureInfo Culture
         {
             get
             {
@@ -69,7 +69,7 @@ namespace AlphaPlus.BetLists.Builders
         /// <summary>
         ///   Looks up a localized string similar to Subtotal(winlost).
         /// </summary>
-        internal static string Subtotal_wl
+        public static string Subtotal_wl
         {
             get
             {
@@ -80,7 +80,7 @@ namespace AlphaPlus.BetLists.Builders
         /// <summary>
         ///   Looks up a localized string similar to Subtotal(Com.).
         /// </summary>
-        internal static string Subtotal_com
+        public static string Subtotal_com
         {
             get
             {
@@ -91,7 +91,7 @@ namespace AlphaPlus.BetLists.Builders
         /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
-        internal static string Total
+        public static string Total
         {
             get
             {
@@ -102,7 +102,7 @@ namespace AlphaPlus.BetLists.Builders
         /// <summary>
         ///   Looks up a localized string similar to Win.
         /// </summary>
-        internal static string Win
+        public static string Win
         {
             get
             {
@@ -113,7 +113,7 @@ namespace AlphaPlus.BetLists.Builders
         /// <summary>
         ///   Looks up a localized string similar to Place.
         /// </summary>
-        internal static string Place
+        public static string Place
         {
             get
             {

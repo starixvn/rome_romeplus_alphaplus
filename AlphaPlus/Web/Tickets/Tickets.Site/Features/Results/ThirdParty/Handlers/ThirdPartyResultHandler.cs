@@ -1,5 +1,5 @@
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.Shared;
 using Fanex.Result.Core.ThirdParty;
 using Fanex.Result.Core.ThirdParty.Models;

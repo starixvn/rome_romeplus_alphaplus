@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.AppResources;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.CombinationMixParlay;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetType;

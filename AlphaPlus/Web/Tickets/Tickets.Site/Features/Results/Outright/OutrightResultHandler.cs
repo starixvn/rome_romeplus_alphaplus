@@ -2,7 +2,7 @@ using System.Globalization;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Results.Features.Outright;
 using AlphaPlus.Results.Features.Shared;
-using AlphaPlus.Tickets.Site.App_GlobalResources;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.Results.Normal;
 using AlphaPlus.Tickets.Site.Features.Shared;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
