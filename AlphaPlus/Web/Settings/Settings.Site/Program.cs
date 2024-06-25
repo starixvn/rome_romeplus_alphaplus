@@ -8,6 +8,8 @@ builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables()
     .AddCommandLine(args);
 
@@ -39,5 +41,11 @@ app.UseMiddleware<RequestCultureMiddleware>();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=SubAccount}/{action=Index}/{id?}");
+
+app.Use(async (context, next) =>
+{
+    context.Request.EnableBuffering();
+    await next();
+});
 
 app.Run();

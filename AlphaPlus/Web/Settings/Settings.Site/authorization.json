@@ -1,0 +1,57 @@
+{
+    "Authorization": {
+        "cachedExpireTime": 30,
+        "EnableCheckBelonging": true,
+        "DisabledCheckDuplicationLogin": true,
+        "KickOutUrl": "~/default/kickout",
+        "CustIdQueryStringParamNames": [
+            "subaccid",
+            "subAccountId",
+            "custid",
+            "CustId",
+            "custId",
+            "targetCustId",
+            "id",
+            "cid",
+            "recommend",
+            "mrecommend",
+            "idagent",
+            "masterId",
+            "agentId",
+            "idAgent",
+            "idMaster",
+            "ibccustid",
+            "ACustID"
+        ],
+        "CustIdJsonParamNames": [
+            "txtCustomerObject",
+            "newCustomer"
+        ],
+        "GroupPageAccesses": [
+            {
+                "RoleId": 2,
+                "Name": "Agent",
+                "PageAccesses": [
+                    {
+                        "Url": "SubAccount/UpdateSubAccountPageAccess",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "SubAccount/UpdateSubAccountInfo",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "SubAccount/Add",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    }
+                ]
+            }
+        ]
+    }
+}

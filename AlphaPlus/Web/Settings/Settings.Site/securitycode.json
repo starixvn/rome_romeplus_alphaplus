@@ -22,7 +22,9 @@
             "CashBalanceTransfer/CashBalance",
             "AutoTransfer/UpdateSingleAutoTransfer",
             "AutoTransfer/UpdateSchedule",
-            "AutoTransfer/UpdateMultipleAutoTransfer"
+            "AutoTransfer/UpdateMultipleAutoTransfer",
+            "SubAccount/Add",
+            "SubAccount/UpdateSubAccountPageAccess"
         ],
         "BetListsPaths": [],
         "StatementPaths": [],

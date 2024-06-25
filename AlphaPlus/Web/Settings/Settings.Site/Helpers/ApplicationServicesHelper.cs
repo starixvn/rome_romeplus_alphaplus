@@ -61,6 +61,8 @@ using AlphaPlus.Settings.Site.Features.ProductStatus;
 using Fanex.Data.Repository;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Configurations;
+using AlphaPlus.Core.Filters;
+using AlphaPlus.SecurityCode.Filters;
 
 namespace AlphaPlus.Settings.Site.Helpers
 {
@@ -89,7 +91,12 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddHealthChecks();
 
             services
-                .AddControllersWithViews()
+                .AddControllersWithViews(options => {
+                    options.Filters.Add<CheckBelongingFilterAttribute>();
+                    options.Filters.Add<AfterLoginFlowFilterAttribute>();
+                    options.Filters.Add<ProtectedModeFilterAttribute>();
+                    options.Filters.Add<SecurityCodeFilterAttribute>();
+                })
                 .AddNewtonsoftJson(option =>
                 {
                     option.UseMemberCasing();
