@@ -13,16 +13,12 @@ public interface IResultServiceFactory
 public class ResultServiceFactory(
     IOptions<AppSettings> options,
     IParlayService parlayService,
-    IMetricGamingService metricGamingService,
     ISportsbookService sportsbookService,
     INumberGameService numberGameService,
     IVirtualRacingService virtualRacingService,
     IBitcoinService bitcoinService,
     IResultEngineAdapter resultEngineAdapter) : IResultServiceFactory
 {
-    public const int MetricGaming60SecondOfKick = 801;
-    public const int MetricGamingEndBetType = 899;
-
     public IProductResultService CreateProductResultService(int sportId, int betTypeId)
     {
         if (betTypeId == BetTypeConstants.MixParlay
@@ -36,11 +32,6 @@ public class ResultServiceFactory(
         switch (sportId)
         {
             case SportTypeConstants.Soccer:
-                if (MetricGaming60SecondOfKick <= betTypeId && betTypeId <= MetricGamingEndBetType)
-                {
-                    return new MetricGamingResultService(metricGamingService, resultEngineAdapter);
-                }
-
                 return new SportsbookResultService(options, sportsbookService, resultEngineAdapter);
 
             case SportTypeConstants.NumberGame:

@@ -15,7 +15,6 @@ public static class DependencyInjection
         .AddPartialUM(configuration)
         .AddSingleton<IResultsService, ResultsService>()
         .AddSingleton<IParlayService, ParlayService>()
-        .AddSingleton<IMetricGamingService, MetricGamingService>()
         .AddSingleton<ISportsbookService, SportsbookService>()
         .AddSingleton<INumberGameService, NumberGameService>()
         .AddSingleton<IVirtualRacingService, VirtualRacingService>()
