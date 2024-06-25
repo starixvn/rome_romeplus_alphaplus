@@ -495,7 +495,7 @@ body {
 
     li.dropdown .dropdown-menu.list-setting {
         right: -446px;
-
+        width: calculateScale(220px);
         li > a {
             font-size: calculateScale(13px);
         }
