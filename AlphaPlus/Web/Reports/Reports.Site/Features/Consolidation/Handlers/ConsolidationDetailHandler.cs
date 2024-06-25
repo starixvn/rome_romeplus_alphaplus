@@ -12,6 +12,7 @@ using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Reports.Site.Features.WinLossDetail;
 using MediatR;
 using Microsoft.Extensions.Options;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Consolidation;
 

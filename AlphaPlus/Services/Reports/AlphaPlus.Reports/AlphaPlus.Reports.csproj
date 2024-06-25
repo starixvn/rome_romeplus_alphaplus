@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
+    <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Data.ProxyClient" Version="0.0.3-alpha02" />

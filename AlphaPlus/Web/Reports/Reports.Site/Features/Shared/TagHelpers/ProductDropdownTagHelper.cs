@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 

@@ -1,6 +1,7 @@
 using System.Text;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 

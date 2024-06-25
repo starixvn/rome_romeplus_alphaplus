@@ -6,6 +6,7 @@ using BetListNPOI.HSSF.UserModel;
 using BetListNPOI.SS.UserModel;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Statement;
 

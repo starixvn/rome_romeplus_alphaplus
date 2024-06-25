@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
+namespace AlphaPlus.Shared.AppResources.Report
 {
     using System;
 
@@ -23,7 +23,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class BetCreditHistoryResources
+    public class BetCreditHistoryResources
     {
 
         private static global::System.Resources.ResourceManager resourceMan;
@@ -31,7 +31,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         private static global::System.Globalization.CultureInfo resourceCulture;
 
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal BetCreditHistoryResources()
+        public BetCreditHistoryResources()
         {
         }
 
@@ -39,13 +39,13 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
+        public static global::System.Resources.ResourceManager ResourceManager
         {
             get
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory.Resources.BetCreditHistoryResources", typeof(BetCreditHistoryResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Report.BetCreditHistoryResources", typeof(BetCreditHistoryResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,7 +57,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
+        public static global::System.Globalization.CultureInfo Culture
         {
             get
             {
@@ -72,7 +72,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to VOID.
         /// </summary>
-        internal static string _void
+        public static string _void
         {
             get
             {
@@ -83,7 +83,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Event date was moved from {0} to {1}.
         /// </summary>
-        internal static string Action2
+        public static string Action2
         {
             get
             {
@@ -94,7 +94,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Bet placed.
         /// </summary>
-        internal static string BetPlaced
+        public static string BetPlaced
         {
             get
             {
@@ -105,7 +105,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Bet placed as.
         /// </summary>
-        internal static string BetPlacedAs
+        public static string BetPlacedAs
         {
             get
             {
@@ -116,7 +116,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Bet rejected.
         /// </summary>
-        internal static string BetRejected
+        public static string BetRejected
         {
             get
             {
@@ -127,7 +127,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Bet settled.
         /// </summary>
-        internal static string BetSettled
+        public static string BetSettled
         {
             get
             {
@@ -138,7 +138,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Bet updated.
         /// </summary>
-        internal static string BetUpdated
+        public static string BetUpdated
         {
             get
             {
@@ -149,7 +149,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Cancel Cash Out.
         /// </summary>
-        internal static string CancelCashOut
+        public static string CancelCashOut
         {
             get
             {
@@ -160,7 +160,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Cash Out.
         /// </summary>
-        internal static string CashOut
+        public static string CashOut
         {
             get
             {
@@ -171,7 +171,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to DRAW.
         /// </summary>
-        internal static string draw
+        public static string draw
         {
             get
             {
@@ -182,7 +182,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to LOSE.
         /// </summary>
-        internal static string lose
+        public static string lose
         {
             get
             {
@@ -193,7 +193,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Opening Credit.
         /// </summary>
-        internal static string OpeningCredit
+        public static string OpeningCredit
         {
             get
             {
@@ -204,7 +204,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Refund.
         /// </summary>
-        internal static string refund
+        public static string refund
         {
             get
             {
@@ -215,7 +215,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Reject.
         /// </summary>
-        internal static string reject
+        public static string reject
         {
             get
             {
@@ -226,7 +226,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to running.
         /// </summary>
-        internal static string running
+        public static string running
         {
             get
             {
@@ -237,7 +237,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to to.
         /// </summary>
-        internal static string to
+        public static string to
         {
             get
             {
@@ -248,7 +248,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to Transfer submitted.
         /// </summary>
-        internal static string TransferSubmitted
+        public static string TransferSubmitted
         {
             get
             {
@@ -259,7 +259,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to UpdateGivenCredit.
         /// </summary>
-        internal static string UpdateGivenCredit
+        public static string UpdateGivenCredit
         {
             get
             {
@@ -270,7 +270,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to waiting.
         /// </summary>
-        internal static string waiting
+        public static string waiting
         {
             get
             {
@@ -281,7 +281,7 @@ namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory
         /// <summary>
         ///   Looks up a localized string similar to WON.
         /// </summary>
-        internal static string won
+        public static string won
         {
             get
             {

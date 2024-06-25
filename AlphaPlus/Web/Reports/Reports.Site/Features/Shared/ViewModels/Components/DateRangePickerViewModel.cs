@@ -1,5 +1,6 @@
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 

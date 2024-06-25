@@ -1,7 +1,7 @@
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Constants;
-using AlphaPlus.Reports.Features.Shared.Resources;
+using AlphaPlus.Shared.AppResources.Report;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.WinLossByProduct;

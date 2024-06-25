@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Reports.Features.Shared.Resources
+namespace AlphaPlus.Shared.AppResources.Report
 {
     using System;
 
@@ -22,14 +22,14 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class SharedResources
+    public class SharedResources
     {
         private static global::System.Resources.ResourceManager resourceMan;
 
         private static global::System.Globalization.CultureInfo resourceCulture;
 
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SharedResources()
+        public SharedResources()
         {
         }
 
@@ -37,13 +37,13 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
+        public static global::System.Resources.ResourceManager ResourceManager
         {
             get
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Reports.Features.Shared.Resources.SharedResources", typeof(SharedResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Report.SharedResources", typeof(SharedResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -55,7 +55,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
+        public static global::System.Globalization.CultureInfo Culture
         {
             get
             {
@@ -70,7 +70,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
-        internal static string Next
+        public static string Next
         {
             get
             {
@@ -81,7 +81,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to FT.
         /// </summary>
-        internal static string FT
+        public static string FT
         {
             get
             {
@@ -92,7 +92,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to LiveGame.
         /// </summary>
-        internal static string LiveGame
+        public static string LiveGame
         {
             get
             {
@@ -103,7 +103,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to LiveGame.
         /// </summary>
-        internal static string PreGame
+        public static string PreGame
         {
             get
             {
@@ -114,7 +114,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to Number Game No.
         /// </summary>
-        internal static string NumberGameNo
+        public static string NumberGameNo
         {
             get
             {
@@ -125,7 +125,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
-        internal static string No
+        public static string No
         {
             get
             {
@@ -136,7 +136,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to Number Game.
         /// </summary>
-        internal static string NumberGame
+        public static string NumberGame
         {
             get
             {
@@ -147,7 +147,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to Happy 5.
         /// </summary>
-        internal static string Happy5
+        public static string Happy5
         {
             get
             {
@@ -158,7 +158,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to Virtual Sports.
         /// </summary>
-        internal static string VirtualSports
+        public static string VirtualSports
         {
             get
             {
@@ -169,7 +169,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to Super.
         /// </summary>
-        internal static string Super
+        public static string Super
         {
             get
             {
@@ -180,7 +180,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to Master.
         /// </summary>
-        internal static string Master
+        public static string Master
         {
             get
             {
@@ -191,7 +191,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
-        internal static string Agent
+        public static string Agent
         {
             get
             {
@@ -202,7 +202,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
-        internal static string Member
+        public static string Member
         {
             get
             {
@@ -213,7 +213,7 @@ namespace AlphaPlus.Reports.Features.Shared.Resources
         /// <summary>
         ///   Looks up a localized string similar to PT.
         /// </summary>
-        internal static string PT
+        public static string PT
         {
             get
             {

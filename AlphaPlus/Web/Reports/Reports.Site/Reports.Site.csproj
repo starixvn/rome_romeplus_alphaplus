@@ -21,6 +21,7 @@
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
     <ProjectReference Include="..\..\..\Services\Reports\AlphaPlus.Reports\AlphaPlus.Reports.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
+    <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.BetList.Core" Version="3.0.3.2" />

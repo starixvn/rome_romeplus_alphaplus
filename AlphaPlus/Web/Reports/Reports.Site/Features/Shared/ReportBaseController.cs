@@ -6,6 +6,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Shared;
 

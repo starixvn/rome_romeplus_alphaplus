@@ -6,6 +6,7 @@ using BetListNPOI.SS.Util;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
 using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Consolidation;
 

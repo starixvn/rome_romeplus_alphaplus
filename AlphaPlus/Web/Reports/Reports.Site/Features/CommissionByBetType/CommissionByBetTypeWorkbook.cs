@@ -7,6 +7,7 @@ using BetListNPOI.HSSF.UserModel;
 using BetListNPOI.SS.UserModel;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.CommissionByBetType;
 

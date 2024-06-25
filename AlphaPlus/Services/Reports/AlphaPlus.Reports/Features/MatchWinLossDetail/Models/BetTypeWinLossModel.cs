@@ -1,5 +1,5 @@
 using AlphaPlus.Reports.Features.Shared.Models;
-using AlphaPlus.Reports.Features.Shared.Resources;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Features.MatchWinLossDetail;
 

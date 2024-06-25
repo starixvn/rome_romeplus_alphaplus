@@ -1,5 +1,6 @@
 using AlphaPlus.Reports.Features.WinLossByProduct;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossByProduct;
 

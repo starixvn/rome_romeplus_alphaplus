@@ -1,6 +1,7 @@
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.SuperWinLossDetailByPT;
 

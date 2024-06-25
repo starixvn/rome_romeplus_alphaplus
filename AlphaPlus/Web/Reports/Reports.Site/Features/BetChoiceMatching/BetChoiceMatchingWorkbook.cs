@@ -11,6 +11,7 @@ using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Utils;
 using Microsoft.Extensions.Options;
 using ONEbook.SpreadSheets;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.BetChoiceMatching;
 

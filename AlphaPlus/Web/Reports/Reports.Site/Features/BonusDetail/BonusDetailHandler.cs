@@ -2,6 +2,7 @@ using AlphaPlus.Reports.Features.BonusDetail;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using MediatR;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.BonusDetail;
 

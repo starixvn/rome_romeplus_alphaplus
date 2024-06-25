@@ -2,6 +2,7 @@ using System.Security.Permissions;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.WinLossAnalysisChart;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossAnalysisChart;
 

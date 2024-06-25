@@ -4,6 +4,7 @@ using AlphaPlus.Reports.Site.Features.Shared;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.ProgressiveContribution;
 

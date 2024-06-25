@@ -1,5 +1,5 @@
 using AlphaPlus.Reports.Features.Shared.Extensions;
-using static AlphaPlus.Reports.Site.Resources;
+using static AlphaPlus.Shared.AppResources.Report.Resources;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 

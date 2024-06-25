@@ -3,6 +3,7 @@ using AlphaPlus.Reports.Features.Legends;
 using MediatR;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Microsoft.Extensions.Options;
+using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Legends;
 
