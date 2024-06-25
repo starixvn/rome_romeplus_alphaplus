@@ -1,4 +1,3 @@
-using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.Shared.AppResources.Betlist.Builders;
 using AlphaPlus.BetLists.RiskAnalysisIPMatching;
 using AlphaPlus.BetLists.Shared.Models;
@@ -81,6 +80,6 @@ public class RiskAnalysisIPMatchingExcelHandler(
 
     protected internal override Mapper<TicketDto> GetFooterRowMapper(Footer footer)
         => new Mapper<TicketDto>()
-            .Map(A, _ => BetListExcelBuilderExt.BuildFooterHeader(RtfHelper))
+            .Map(A, _ => AlphaPlus.BetLists.Builders.BetListExcelBuilderExt.BuildFooterHeader(RtfHelper))
             .Map(G, _ => BuildFooter(footer));
 }

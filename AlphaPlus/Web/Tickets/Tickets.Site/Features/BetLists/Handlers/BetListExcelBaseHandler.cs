@@ -12,6 +12,7 @@ using Fanex.BetList.Core.Utils;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
 using _UserLevel = AlphaPlus.Core.Models.UserLevel;
+using AlphaPlus.BetLists.Builders;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers;
 
@@ -128,7 +129,7 @@ public class BetListExcelBaseHandler(
     protected internal virtual TemplateInfo GetTemplateInfo(_UserLevel viewerLevel)
         => new TemplateInfo(
             ExcelTemplatePath(viewerLevel),
-            noInfomationText: Resources.NoInformationIsAvailable,
+            noInfomationText: AlphaPlus.Shared.AppResources.Betlist.Site.Resources.NoInformationIsAvailable,
             bodyStartIndex: 3,
             bodyEndIndex: 4,
             footerEndIndex: 5);
