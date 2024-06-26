@@ -16,20 +16,16 @@ public class SecurityCodeFilterAttribute : TypeFilterAttribute
     private class SecurityCodeFilter(
         ISecurityCodeChecker securityCodeChecker,
         ISecurityCodeHttpContext securityCodeHttpContext)
-        : IActionFilter
+        : IAsyncActionFilter
     {
         private readonly ISecurityCodeChecker securityCodeChecker = securityCodeChecker;
         private readonly ISecurityCodeHttpContext securityCodeHttpContext = securityCodeHttpContext;
 
-        public void OnActionExecuted(ActionExecutedContext context)
-        {
-        }
-
-        public void OnActionExecuting(ActionExecutingContext context)
+        public Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             if (!securityCodeHttpContext.IsValidRequest())
             {
-                return;
+                return Task.CompletedTask;
             }
 
             var relativePath = securityCodeHttpContext.GetRelativePath();
@@ -39,16 +35,16 @@ public class SecurityCodeFilterAttribute : TypeFilterAttribute
             {
                 if (securityCodeHttpContext.IsAjaxRequest())
                 {
-                    securityCodeHttpContext.DenyAjaxRequest();
-                    return;
+                    return securityCodeHttpContext.DenyAjaxRequest();
                 }
                 else
                 {
                     securityCodeHttpContext.RedirectToVerifySecurityCodePage();
+                    return Task.CompletedTask;
                 }
             }
+
+            return next();
         }
     }
 }
-
-
