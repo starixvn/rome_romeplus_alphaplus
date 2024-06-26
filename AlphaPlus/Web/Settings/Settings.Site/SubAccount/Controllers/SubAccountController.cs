@@ -50,7 +50,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateSubAccountInfo(UpdateSubAccountInfoRequest subAccountRequest)
+        public async Task<IActionResult> UpdateInfo(UpdateSubAccountInfoRequest subAccountRequest)
         {
             if (!subAccountRequest.IsValid())
             {
@@ -61,7 +61,7 @@ namespace AlphaPlus.Settings.Site.SubAccount.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest subAccountRequest)
+        public async Task<IActionResult> UpdatePageAccess(UpdateSubAccountPageAccessRequest subAccountRequest)
         {
             if (!subAccountRequest.IsValid())
             {

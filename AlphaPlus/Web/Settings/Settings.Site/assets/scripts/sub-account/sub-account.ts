@@ -1,6 +1,8 @@
 'use strict';
 interface Window {
-    age: Function;
+    age: {
+        SignOut: Function
+    };
     clearPopupSubtitle: Function;
     ShowSecCodePopup: Function;
     popupManager: {
@@ -125,7 +127,7 @@ class SubAccount {
             pageAccess: pageAccess
         };
 
-        var updateUrl = '/settings/SubAccount/UpdateSubAccountPageAccess?' + this.$.param(data);
+        var updateUrl = '/settings/SubAccount/UpdatePageAccess?' + this.$.param(data);
 
         this.$.ajax({
             headers: {
@@ -217,7 +219,7 @@ class SubAccount {
                 RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
-            url: "/settings/SubAccount/UpdateSubAccountInfo",
+            url: "/settings/SubAccount/UpdateInfo",
             data: {
                 subAccId: subAccId,
                 firstName: firstName,
