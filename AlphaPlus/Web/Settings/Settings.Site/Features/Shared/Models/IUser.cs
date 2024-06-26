@@ -81,5 +81,7 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
         PageAccess SubPageAccess { get; }
 
         string AGIP { get; }
+
+        bool IsEnabledCustomerDateLimit { get; }
     }
 }

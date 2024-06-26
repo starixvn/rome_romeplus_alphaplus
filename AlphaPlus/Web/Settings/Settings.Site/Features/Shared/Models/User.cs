@@ -99,5 +99,7 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
         public string AGIP => userSession.AGIP;
 
         public string LangKey => userSession.LangKey;
+
+        public bool IsEnabledCustomerDateLimit => userSession.GetProperty<DateTime>("CustomerDateLimit") != default;
     }
 }
