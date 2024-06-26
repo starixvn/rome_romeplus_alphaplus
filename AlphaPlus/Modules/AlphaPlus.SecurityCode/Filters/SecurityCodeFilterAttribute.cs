@@ -40,6 +40,7 @@ public class SecurityCodeFilterAttribute : TypeFilterAttribute
                 if (securityCodeHttpContext.IsAjaxRequest())
                 {
                     securityCodeHttpContext.DenyAjaxRequest();
+                    return;
                 }
                 else
                 {

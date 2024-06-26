@@ -1,6 +1,8 @@
 'use strict';
 interface Window {
+    age: Function;
     clearPopupSubtitle: Function;
+    ShowSecCodePopup: Function;
     popupManager: {
         open: Function;
         openWithHanlder: Function;
@@ -118,22 +120,35 @@ class SubAccount {
             pageAccess += '[G]';
         }
 
+        var data = {
+            subAccId: subAccId,
+            pageAccess: pageAccess
+        };
+
+        var updateUrl = '/settings/SubAccount/UpdateSubAccountPageAccess?' + this.$.param(data);
+
         this.$.ajax({
             headers: {
                 RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
-            url: '/settings/SubAccount/UpdateSubAccountPageAccess',
-            data: {
-                subAccId: subAccId,
-                pageAccess: pageAccess
-            },
-            type: 'POST',
+            url: updateUrl,
+            type: "POST",
             success: (result) => {
-                if (result && result.IsSuccessful) {
+                if (result && result.code === 999991) {
+                    var $top = this;
+                    this.topWindow[updateUrl] = function () {
+                        $top.UpdatePageAccess(subAccId, item);
+                    };
+
+                    this.topWindow.ShowSecCodePopup(updateUrl, this.topWindow.age);
+                }
+                else {
+                    if (result && result.Code !== 0) {
+                        alert((result && result.Message) || 'Unexpected error occurs!');
+                    }
+
                     location.reload();
-                } else {
-                    alert((result && result.Message) || 'Unexpected error occurs!');
                 }
             },
             complete: () => {
