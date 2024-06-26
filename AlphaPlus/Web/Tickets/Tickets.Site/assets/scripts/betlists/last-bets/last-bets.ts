@@ -43,9 +43,9 @@ namespace BetList {
             this.lastTransIdCacheKey = $('#last-trans-id-cache-key').val();
             this.latestTransIdCacheKey = $('#latest-trans-id-cache-key').val();
 
-            if (alphaReports.convertAttributeToBool($('#reset-last-trans-id').val())) {
-                alphaReports.localStorage.set(this.lastTransIdCacheKey, 0);
-                alphaReports.localStorage.set(this.latestTransIdCacheKey, 0);
+            if (alphaBetLists.convertAttributeToBool($('#reset-last-trans-id').val())) {
+                alphaBetLists.localStorage.set(this.lastTransIdCacheKey, 0);
+                alphaBetLists.localStorage.set(this.latestTransIdCacheKey, 0);
             }
 
             this.loadLastBets(false);
@@ -99,8 +99,8 @@ namespace BetList {
 
         loadLastBets = (isAutoLoad: boolean) => {
             if (!isAutoLoad) {
-                alphaReports.localStorage.set(this.lastTransIdCacheKey, 0);
-                alphaReports.localStorage.set(this.latestTransIdCacheKey, 0);
+                alphaBetLists.localStorage.set(this.lastTransIdCacheKey, 0);
+                alphaBetLists.localStorage.set(this.latestTransIdCacheKey, 0);
             }
 
             if (this.isCalling) {
@@ -110,8 +110,8 @@ namespace BetList {
             this.$loadingIcon.removeClass('hide');
 
             this.isCalling = true;
-            const lastTransId = alphaReports.localStorage.get(this.lastTransIdCacheKey);
-            const latestTransId = alphaReports.localStorage.get(this.latestTransIdCacheKey);
+            const lastTransId = alphaBetLists.localStorage.get(this.lastTransIdCacheKey);
+            const latestTransId = alphaBetLists.localStorage.get(this.latestTransIdCacheKey);
 
             const param = {
                 BetType: this.betType,
@@ -173,11 +173,11 @@ namespace BetList {
             const lastTransId = this.$betListTableContainer.find('#last-trans-id').val();
 
             if (lastTransId > 0) {
-                alphaReports.localStorage.set(this.lastTransIdCacheKey, lastTransId);
+                alphaBetLists.localStorage.set(this.lastTransIdCacheKey, lastTransId);
             }
 
             const latestTransId = this.$betListTableContainer.find('#latest-trans-id').val();
-            alphaReports.localStorage.set(this.latestTransIdCacheKey, latestTransId);
+            alphaBetLists.localStorage.set(this.latestTransIdCacheKey, latestTransId);
 
             this.timeToGetLastBets && this.startAutoRefresh();
 
@@ -200,7 +200,7 @@ namespace BetList {
             $('.tab-report-type').each((index: number, element: Element) => {
                 const $link = $(element).find('>a');
                 let currentUrl = $link.attr('href');
-                currentUrl = alphaReports.replaceQueryStringValue(currentUrl, paramName, paramValue);
+                currentUrl = alphaBetLists.replaceQueryStringValue(currentUrl, paramName, paramValue);
                 $link.attr('href', currentUrl);
             });
         };

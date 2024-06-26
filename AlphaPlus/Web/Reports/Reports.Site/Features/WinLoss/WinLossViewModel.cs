@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
@@ -127,4 +128,21 @@ public class WinLossViewModel
 
         return (title, custLevelName, downlineLevelName);
     }
+
+    public string GetBetListUrl(int custId, string custName)
+    {
+        var queryString = QueryString.Create(
+        [
+            KeyValuePair.Create(nameof(custId), custId.ToString()),
+            KeyValuePair.Create(nameof(custName), custName),
+            KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
+            KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate),
+            KeyValuePair.Create("ProductIds", ProductViewModel.UserSelectedProductIds),
+            KeyValuePair.Create("ResourceIds", ProductViewModel.UserSelectedResourceIds),
+        ]);
+
+        return $"{BetListPath}{queryString}";
+    }
+
+    private static string BetListPath = MicroSites.TicketUrl("~/WinLoss/Index");
 }

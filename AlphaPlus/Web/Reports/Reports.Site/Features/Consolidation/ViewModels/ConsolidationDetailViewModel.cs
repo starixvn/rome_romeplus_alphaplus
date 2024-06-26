@@ -38,6 +38,7 @@ public class ConsolidationDetailViewModel : WinLossDetailViewModel
         ConsolidationFromDate = DateRangePicker.FromDate;
         ConsolidationToDate = DateRangePicker.ToDate;
         ConsolidationUserSelectedDateRangeOption = message.UserSelectedDateRangeOption;
+        IsGroupHeadline = true;
     }
 
     public string ReportType { get; }

@@ -36,20 +36,21 @@ class WinLossDetailTable {
         this.stickyTableHeaders();
     }
 
-    registerTableEvents(getWinLossDetailHandler: Function) {
+    registerTableEvents(getWinLossDetailHandler: Function, drilldownBetListHandler: Function) {
         this.$tableReport.find('[data-toggle="tooltip"]').tooltip();
         this.$tableReport
             .find('.downline-link')
             .off()
             .click((e) => {
-                e.preventDefault();
                 const $this = $(e.target);
                 const custId = $this.data('custid');
                 const custName = $this.data('custname');
                 const custLevelId = $this.data('custlevelid');
                 if (custLevelId === this.MasterLevel || custLevelId === this.AgentLevel) {
+                    e.preventDefault();
                     getWinLossDetailHandler({ custId, custName, custLevelId });
                 } else if (custLevelId === this.MemberLevel) {
+                    drilldownBetListHandler($this, { custId, custName, custLevelId });
                 }
             });
     }

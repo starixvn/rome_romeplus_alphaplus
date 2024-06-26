@@ -236,5 +236,24 @@
       "assets/scripts/betlists/common/icon-note.js",
       "assets/scripts/betlists/member-betlist/member-betlist.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/winloss.css",
+    "inputFiles": [
+      "assets/styles/betlists/winloss.css",
+      "assets/styles/betlists/filter.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/winloss.js",
+    "inputFiles": [
+      "assets/scripts/components/breadcrumb-level.js",
+      "assets/scripts/components/daterangepicker-jquery.js",
+      "assets/scripts/components/product-dropdown.js",
+      "assets/scripts/components/week.js",
+      "assets/scripts/betlists/common/ajax-helper.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/winloss/winloss.js"
+    ]
   }
 ]

@@ -81,7 +81,7 @@ class FilterConfigurationView {
 
     private bindEvents() {
         this.stakeInput = $('#txt-stake').on('input', function () {
-            this.value = alphaReports.forceInputDecimal(this.value);
+            this.value = alphaBetLists.forceInputDecimal(this.value);
         });
 
         const sportsContainer = $('#sports-container');

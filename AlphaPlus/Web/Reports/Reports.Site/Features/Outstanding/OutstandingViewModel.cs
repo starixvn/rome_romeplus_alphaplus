@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Reports.Features.Outstanding;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
@@ -67,4 +68,19 @@ public class OutstandingViewModel
             yield return Enumeration.FromValue<UserLevel>(level);
         }
     }
+
+    public string GetBetListUrl(int custId, string custName)
+    {
+        var queryString = QueryString.Create(
+        [
+            KeyValuePair.Create(nameof(custId), custId.ToString()),
+            KeyValuePair.Create(nameof(custName), custName),
+            KeyValuePair.Create("GetAll", "true"),
+            KeyValuePair.Create("ProductIds", ProductViewModel.UserSelectedProductIds)
+        ]);
+
+        return $"{BetListPath}{queryString}";
+    }
+
+    private static string BetListPath = MicroSites.TicketUrl("~/RunningBetList/Index");
 }

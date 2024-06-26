@@ -5,6 +5,9 @@ namespace AlphaPlus.Reports.Site.Features.BetCreditTracking;
 
 public class MoveStatementHistoryQuery : DefaultDateRangeQuery, IRequest<MoveStatementHistoryViewModel>
 {
+    public MoveStatementHistoryQuery()
+        => IsProtectedMode = Viewer.IsProtectedMode;
+
     public string Member { get; set; }
 
     public int PageIndex { get; set; } = 1;
@@ -12,4 +15,6 @@ public class MoveStatementHistoryQuery : DefaultDateRangeQuery, IRequest<MoveSta
     public int PageSize { get; set; } = 100;
 
     public bool IsMainReport { get; set; } = true;
+
+    public bool IsProtectedMode { get; }
 }

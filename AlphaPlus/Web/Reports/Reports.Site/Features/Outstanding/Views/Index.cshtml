@@ -39,6 +39,7 @@
     }
 
     var length = Model.DisplayOutstandingLevels.Count;
+    var isAgentLevel = Model.CustLevel.IsAgentLevel();
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
@@ -110,8 +111,15 @@
                 {
                     <tr>
                         <td class="text-left" data-islink="true">
-                            <a href="javascript:;" class="downline-link" data-custid="@outstanding.CustId"
-                                data-custname="@outstanding.CustName">@outstanding.CustName</a>
+                            @if (isAgentLevel)
+                            {
+                                <a href="@Model.GetBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
+                            }
+                            else
+                            {
+                                <a href="javascript:;" class="downline-link" data-custid="@outstanding.CustId"
+                                    data-custname="@outstanding.CustName">@outstanding.CustName</a>
+                            }
                         </td>
                         @{
                             RenderOutstandingCells(outstanding);

@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
@@ -100,6 +101,8 @@ public class WinLossDetailViewModel
 
     public bool CanDrilldown { get; protected set; }
 
+    public bool IsGroupHeadline { get; protected set; }
+
     public IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {
@@ -119,4 +122,22 @@ public class WinLossDetailViewModel
         : custLevel.IsMasterLevel()
             ? Resources.AgentWinLossDetail
             : Resources.MemberWinLossDetail;
+
+    public string GetBetListUrl(int custId, string custName)
+    {
+        var queryString = QueryString.Create(
+        [
+            KeyValuePair.Create(nameof(custId), custId.ToString()),
+            KeyValuePair.Create(nameof(custName), custName),
+            KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
+            KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate),
+            KeyValuePair.Create("ProductIds", ProductViewModel.UserSelectedProductIds),
+            KeyValuePair.Create("ResourceIds", ProductViewModel.UserSelectedResourceIds),
+            KeyValuePair.Create(nameof(IsGroupHeadline), IsGroupHeadline.ToString())
+        ]);
+
+        return $"{BetListPath}{queryString}";
+    }
+
+    private static string BetListPath = MicroSites.TicketUrl("~/WinLoss/Index");
 }

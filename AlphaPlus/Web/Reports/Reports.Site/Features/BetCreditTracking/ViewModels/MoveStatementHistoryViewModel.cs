@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Reports.Features.BetCreditTracking.MoveStatementHistory;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
@@ -17,7 +18,7 @@ public class MoveStatementHistoryViewModel(MoveStatementHistoryQuery message, Mo
 
     public string ErrorMessage { get; } = model?.ErrorMessage;
 
-    public bool CanViewBetList { get; } = message.ViewerLevel.IsAgentLevel();
+    public bool CanViewBetList { get; } = !message.IsProtectedMode || !message.ViewerLevel.IsAgentLevel();
 
     public MonthPickerViewModel MonthPicker { get; }
         = new MonthPickerViewModel(message.MinDate, message.FromDate, message.ToDate, true);
@@ -42,4 +43,18 @@ public class MoveStatementHistoryViewModel(MoveStatementHistoryQuery message, Mo
         [nameof(MonthPicker.FromDate)] = message.FromDate.ToShortDateWithSlash(),
         [nameof(MonthPicker.ToDate)] = MonthPicker.ToDate.ToShortDateWithSlash()
     };
+
+    public string GetBetListUrl(int custId, string custName, long transId)
+    {
+        var queryString = QueryString.Create(
+        [
+            KeyValuePair.Create(nameof(custId), custId.ToString()),
+            KeyValuePair.Create(nameof(custName), custName),
+            KeyValuePair.Create(nameof(transId), transId.ToString())
+        ]);
+
+        return $"{BetListPath}{queryString}";
+    }
+
+    private static string BetListPath = MicroSites.TicketUrl("~/MoveStatementHistory/Index");
 }

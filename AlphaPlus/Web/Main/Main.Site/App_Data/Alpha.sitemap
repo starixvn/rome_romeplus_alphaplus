@@ -10,9 +10,9 @@
     <siteMapNode resourceKey="agentwinloss" url="/reports/enteredresult/index" roles="Master"></siteMapNode>
     <siteMapNode resourceKey="masterwinloss" url="/reports/enteredresult/index" roles="Super"></siteMapNode>
 
-    <siteMapNode resourceKey="memberwinlossdetail" url="/reports/winlossdetail/index" roles="Agent" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="agentwinlostdetail" url="/reports/winlossdetail/index" roles="Master" byPassProtectedMode="true"></siteMapNode>
-    <siteMapNode resourceKey="masterwinlostdetail" url="/reports/winlossdetail/index" roles="Super" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="memberwinlossdetail" url="/reports/winlossdetail/indexnew" roles="Agent" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="agentwinlostdetail" url="/reports/winlossdetail/indexnew" roles="Master" byPassProtectedMode="true"></siteMapNode>
+    <siteMapNode resourceKey="masterwinlostdetail" url="/reports/winlossdetail/indexnew" roles="Super" byPassProtectedMode="true"></siteMapNode>
 
     <siteMapNode resourceKey="matchWinLostDetail" url="/reports/matchwinlossdetail/index"></siteMapNode>
 

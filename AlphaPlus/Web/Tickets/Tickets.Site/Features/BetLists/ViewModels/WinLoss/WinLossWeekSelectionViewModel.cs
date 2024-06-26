@@ -19,10 +19,10 @@ public class WinLossWeekSelectionViewModel(
     string[] excludingTicketStatus = null)
         : WinLossViewModel(message, betListData, builder, ticketHelper, showContributionAmountRoundNote, isGroupHeadline, showMemberName, excludingTicketStatus)
 {
-    public IEnumerable<WinLossWeekViewModel> WeekSelections { get; } = weeks;
+    public IEnumerable<WinLossWeekViewModel> Weeks { get; } = weeks;
 
     public IEnumerable<Breadcrumb> BreadcrumbLevels { get; }
-        = string.IsNullOrWhiteSpace(message.BreadcrumbLevelJson)
+        = string.IsNullOrWhiteSpace(message.BreadcrumbsJson)
         ? []
-        : JsonSerializer.Deserialize<IEnumerable<Breadcrumb>>(message.BreadcrumbLevelJson);
+        : JsonSerializer.Deserialize<IEnumerable<Breadcrumb>>(message.BreadcrumbsJson);
 }

@@ -91,7 +91,7 @@
 }
 @model MatchWinLossDetailViewModel
 <report-title model="Model.PageHeader" />
-<form class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form">
+<form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form">
     <product model="@Model.ProductViewModel" />
     <daterange-picker model="Model.DateRangePicker" />
     <league model="@Model.LeagueViewModel" />
@@ -107,7 +107,7 @@
     </div>
 </form>
 <table
-    class="tblRpt tblRpt-bordered alternative-row-table tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    class="tblRpt tblRpt-bordered tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
     <thead>
         <tr>
@@ -179,15 +179,15 @@
                         }
                     </td>
                 </tr>
-                @* var isEvenRow = false; *@
+                var isEvenRow = false;
                 foreach (var betType in data.BetTypeWinLoss)
                 {
-                    <tr @*class="@(isEvenRow ? "even-row" : string.Empty)"*@>
+                    <tr class="@(isEvenRow ? "even-row" : string.Empty)">
                         @{
-                            RenderBetTypeRow(betType, $"<a href=\"javascript:;\">{betType.Name}</a>");
+                            RenderBetTypeRow(betType, $"<a href=\"{Model.GetBetListUrl(data, betType)}\">{betType.Name}</a>");
                         }
                     </tr>
-                    @* isEvenRow = !isEvenRow; *@
+                    isEvenRow = !isEvenRow;
                 }
                 if (data.RenderSubTotal)
                 {
@@ -210,7 +210,7 @@
             {
                 <tr>
                     @{
-                        RenderBetTypeRow(Model.ReportData.MixParlay, $"<a href=\"javascript:;\">{Model.ReportData.MixParlay.Name}</a>");
+                        RenderBetTypeRow(Model.ReportData.MixParlay, $"<a href=\"{Model.GetParlayBetListUrl(Model.ReportData.MixParlay.Id)}\">{Model.ReportData.MixParlay.Name}</a>");
                     }
                 </tr>
             }
@@ -218,7 +218,7 @@
             {
                 <tr>
                     @{
-                        RenderBetTypeRow(Model.ReportData.SystemParlay, $"<a href=\"javascript:;\">{Model.ReportData.SystemParlay.Name}</a>");
+                        RenderBetTypeRow(Model.ReportData.SystemParlay, $"<a href=\"{Model.GetParlayBetListUrl(Model.ReportData.SystemParlay.Id)}\">{Model.ReportData.SystemParlay.Name}</a>");
                     }
                 </tr>
             }
@@ -226,7 +226,7 @@
             {
                 <tr>
                     @{
-                        RenderBetTypeRow(parlay, $"<a href=\"javascript:;\">{parlay.Name}</a>");
+                        RenderBetTypeRow(parlay, $"<a href=\"{Model.GetBetListUrlByBetType(parlay.Id)}\">{parlay.Name}</a>");
                     }
                 </tr>
             }

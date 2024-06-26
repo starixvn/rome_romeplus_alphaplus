@@ -195,16 +195,34 @@ class WinLossDetailViewNew extends BaseReportNew {
             this.visibleColumnComponent.getColumns()
         );
         json.ReportData.HasData &&
-            this.winLossDetailTable.registerTableEvents((custInfo) => {
-                this.getWinLossDetailUpOrDownline(custInfo, () => {
-                    this.$reportTitle.text(reportTitle[custInfo.custLevelId]);
+            this.winLossDetailTable.registerTableEvents(
+                (custInfo) => {
+                    this.getWinLossDetailUpOrDownline(custInfo, () => {
+                        this.$reportTitle.text(reportTitle[custInfo.custLevelId]);
+                        this.breadcrumbLevelComponent.addBreadcrumb({
+                            CustId: custInfo.custId,
+                            CustName: custInfo.custName,
+                            CustLevelId: custInfo.custLevelId
+                        });
+                    });
+                },
+                ($element: JQuery, custInfo) => {
+                    $.blockUI();
                     this.breadcrumbLevelComponent.addBreadcrumb({
                         CustId: custInfo.custId,
                         CustName: custInfo.custName,
                         CustLevelId: custInfo.custLevelId
                     });
-                });
-            });
+                    const breadcrumbsJson = this.breadcrumbLevelComponent.toStringBreadcrumb();
+                    const visibleColumns = this.visibleColumnComponent.getShowColumns().join(',');
+                    const betListParams = $.extend({}, this.globalFormData, custInfo, {
+                        breadcrumbsJson,
+                        visibleColumns
+                    });
+                    delete betListParams.getWeekData;
+                    $element.attr('href', `${$('#hidden-betListUrl').val()}?${$.param(betListParams)}`);
+                }
+            );
     }
 
     private updateQueryString(queryString: string = undefined) {

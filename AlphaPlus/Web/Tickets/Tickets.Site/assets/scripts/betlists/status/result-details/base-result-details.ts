@@ -271,14 +271,14 @@
     }
 
     export class BaseResultDetails {
-        protected readonly ResultDetailsPath: string = Common.AppPath.TicketsAppPath + 'Normal/ResultDetails';
-        protected readonly ProductIds: string = $('#product-ids').val();
-        protected readonly BetListType: string = $('#betlist-type').val();
-        protected readonly FromDate: string = $('#from-date').val();
-        protected readonly ToDate: string = $('#to-date').val();
+        protected readonly ResultDetailsPath: string = Common.AppPath.TicketsAppPath + 'Results/Details';
+        // protected readonly ProductIds: string = $('#product-ids').val();
+        // protected readonly BetListType: string = $('#betlist-type').val();
+        // protected readonly FromDate: string = $('#from-date').val();
+        // protected readonly ToDate: string = $('#to-date').val();
         protected readonly CustId: string = $('#cust-id').val();
         protected readonly ViewerLevelId: string = $('#viewer-level-id').val();
-        protected readonly IsHistoricReport: boolean = Common.Utils.ParseBoolean($('#is-historic-report').val());
+        // protected readonly IsHistoricReport: boolean = Common.Utils.ParseBoolean($('#is-historic-report').val());
         private static instance: BaseResultDetails;
 
         public static get Instance() {

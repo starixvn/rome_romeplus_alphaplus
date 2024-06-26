@@ -65,7 +65,7 @@ class CancelledBetsListView {
 
         $.blockUI();
         const isFilterVisible = !this.$betlistForm.is(':hidden');
-        $('#IsFilterVisible').val(String(alphaReports.screenSmallThan768() ? false : isFilterVisible));
+        $('#IsFilterVisible').val(String(alphaBetLists.screenSmallThan768() ? false : isFilterVisible));
     };
 }
 

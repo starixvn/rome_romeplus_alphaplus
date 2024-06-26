@@ -25,9 +25,9 @@ public class BetListByBetTypeViewModel(
 
     public int BetType { get; } = message.BetType;
 
-    public bool AllowToViewSuperPT => ViewerLevel.IsSuperLevel();
+    public bool AllowToViewSuperPT { get; } = message.ViewerLevel.IsSuperLevel();
 
-    public bool AllowToViewMasterPT => ViewerLevel.IsMasterOrSuperLevel();
+    public bool AllowToViewMasterPT { get; } = message.ViewerLevel.IsMasterOrSuperLevel();
 
     protected override string GetTitle() => CacheRefServiceHelper.GetBetTypeName(BetType);
 

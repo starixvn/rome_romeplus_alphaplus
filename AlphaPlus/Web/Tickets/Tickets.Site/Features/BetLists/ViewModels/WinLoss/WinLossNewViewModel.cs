@@ -1,3 +1,4 @@
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.WinLoss;
@@ -9,7 +10,7 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.WinLoss;
 
 public class WinLossNewViewModel(
     WinLossNewQuery message,
-    IEnumerable<ProductMultiSelectionViewModel> productViewModel,
+    ProductMultiSelectionViewModel productViewModel,
     IEnumerable<WinLossWeekViewModel> weeks,
     BetListData betListData,
     IBetListHTMLBuilder builder,
@@ -27,7 +28,9 @@ public class WinLossNewViewModel(
         SystemTime.Today.AddDays(1),
         message.Language);
 
-    public IEnumerable<ProductMultiSelectionViewModel> ProductViewModel { get; } = productViewModel;
+    public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 
-    public string ShowColumns { get; } = message.ShowColumns;
+    public string VisibleColumns { get; } = message.VisibleColumns;
+
+    protected override string GetTitle() => $"{Resources.memberBetList} - {CustName}";
 }

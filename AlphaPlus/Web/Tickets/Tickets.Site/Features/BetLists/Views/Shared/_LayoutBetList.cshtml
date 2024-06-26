@@ -1,7 +1,7 @@
 @inject IUserSession userSession
 @{
     Layout = null;
-    var request = AlphaContext.Current.Request;
+    var theme = string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark";
 }
 <!DOCTYPE html>
 <html>
@@ -18,10 +18,10 @@
     @GoogleAnalyticHelper.GtagScript()
 </head>
 
-<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+<body data-theme="@theme">
     @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
-    <input type="hidden" id="hidden-TicketBaseUrl" value="//@request.Host@request.PathBase/" />
+    <partial name="HiddenFields" model="userSession" />
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/ajaxSetup")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/default")

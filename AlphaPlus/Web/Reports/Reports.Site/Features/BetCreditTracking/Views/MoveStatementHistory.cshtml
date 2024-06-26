@@ -18,9 +18,7 @@
                     <div class="refno">
                         @if (Model.CanViewBetList)
                         {
-                            <a asp-area="tickets" asp-controller="MoveStatementHistory" asp-action="Index"
-                                asp-route-CustId="@row.CustId" asp-route-Username="@row.Username"
-                                asp-route-TransId="@row.TransId">@row.TransId</a>
+                            <a href="@Model.GetBetListUrl(row.CustId, row.Username, row.TransId)">@row.TransId</a>
                         }
                         else
                         {

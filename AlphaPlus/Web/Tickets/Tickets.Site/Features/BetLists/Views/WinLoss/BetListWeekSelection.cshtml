@@ -1,0 +1,18 @@
+@{
+    Layout = null;
+    ViewData["WinLossBetListNew"] = true;
+}
+@model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.WinLoss.WinLossWeekSelectionViewModel
+<week model="@Model.Weeks" />
+<div class="breadcrumb-table">
+    <breadcrumb-level model="@Model.BreadcrumbLevels" />
+    <div class="list-icon">
+        <ul>
+            <li>
+                <a href="javascript:;" id="icon-excel" class="icon icon-excel icon-excel-new"
+                    title="@Resources.ExportToExcel" data-url="@MicroSites.TicketUrl("~/WinLoss/Excel")"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<partial name="WinLossTable" model="Model" view-data="ViewData" />

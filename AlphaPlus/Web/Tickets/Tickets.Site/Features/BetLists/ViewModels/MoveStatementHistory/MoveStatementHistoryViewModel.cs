@@ -12,9 +12,9 @@ public class MoveStatementHistoryViewModel(
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper) : BetListBaseViewModel(message, betListData, builder, ticketHelper)
 {
-    public bool AllowToViewSuperPT => ViewerLevel.IsSuperLevel();
+    public bool AllowToViewSuperPT { get; } = message.ViewerLevel.IsSuperLevel();
 
-    public bool AllowToViewMasterPT => ViewerLevel.IsMasterOrSuperLevel();
+    public bool AllowToViewMasterPT { get; } = message.ViewerLevel.IsMasterOrSuperLevel();
 
     public string GetMoveStatementHistoryTitle
         => $"{CustName.ToUpperInvariant()} - {Resources.TicketDetails.ToUpperInvariant()}";

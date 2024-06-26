@@ -1,7 +1,9 @@
 using System.Text;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.BetLists.Shared.Services;
 using AlphaPlus.BetLists.WinLoss;
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.WinLoss;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
@@ -18,7 +20,7 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.WinLoss;
 public class WinLossNewHandler(
     IOptions<AppSettings> options,
     IProductService productService,
-    IWinLossService winLossService,
+    IWinLossService winlossService,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
@@ -28,14 +30,48 @@ public class WinLossNewHandler(
 {
     private readonly AppSettings appSettings = options.Value;
     private readonly IProductService productService = productService;
-    private readonly IWinLossService winLossService = winLossService;
+    private readonly IWinLossService winlossService = winlossService;
 
     public async Task<WinLossNewViewModel> Handle(WinLossNewQuery message, CancellationToken cancellationToken)
     {
         var showContributionAmountRoundNote = message.IsEnabledJackpot;
-        var (productViewModel, _) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
+        var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
 
-        throw new NotImplementedException();
+        var weekDataParam = new WinLossWeekParam(
+                message.ViewerId,
+                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+                message.ToDate,
+                productViewModel.UserSelectedProductIds,
+                productDetailsXml,
+                message.CustName);
+        var weekData = await winlossService.GetWeekData(weekDataParam);
+        var betlistData = new BetListData([], []);
+
+        if (weekData.Any())
+        {
+            var param = new WinLossParam(
+                message.CustId,
+                productViewModel.UserSelectedProductIds,
+                (message.WeekFromDate ?? message.FromDate).GetGreaterDate(message.LimitedDateToShowInfo),
+                message.WeekToDate ?? message.ToDate,
+                productDetailsXml,
+                message.DisplayVNIP,
+                message.Site,
+                maxTotalRow: appSettings.BetListMaxTotalRowView,
+                maxTotalRowConfig: appSettings.BetListMaxTotalRowView);
+            betlistData = await winlossService.GetBetList(param);
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+        }
+
+        return new WinLossNewViewModel(
+            message,
+            productViewModel,
+            BuildWeekViewModels(weekData, message.FromDate, message.ToDate, message.WeekFromDate, message.WeekToDate),
+            betlistData,
+            Builder,
+            TicketHelper,
+            showContributionAmountRoundNote,
+            message.IsGroupHeadline);
     }
 
     protected async Task<(ProductMultiSelectionViewModel, string)> BuildProductViewModel(
@@ -160,5 +196,53 @@ public class WinLossNewHandler(
         var param = new GetProductDetailsParam(custId, appSettings.ProductOfferProductDetail, appSettings.IsSiteLabel777);
 
         return productService.GetProductDetails(param, products);
+    }
+
+    private static IEnumerable<WinLossWeekViewModel> BuildWeekViewModels(
+        IEnumerable<WinLossWeekModel> weekData,
+        DateTime fromDate,
+        DateTime toDate,
+        DateTime? selectedFromDate = null,
+        DateTime? selectedToDate = null)
+    {
+        var weekDataHash = new HashSet<string>();
+        foreach (var item in weekData)
+        {
+            weekDataHash.Add($"{item.StartOfWeek.ToShortDateWithSlash()}-{item.EndOfWeek.ToShortDateWithSlash()}");
+        }
+
+        var weekSelections = new List<WinLossWeekViewModel>();
+        var startDate = fromDate.Date;
+        var endDate = toDate.Date;
+
+        while (endDate.Subtract(startDate).TotalDays >= 0)
+        {
+            var endDateStartOfWeek = endDate.StartOfWeek();
+            var startDateOrEndDateStartOfWeek = startDate < endDateStartOfWeek ? endDateStartOfWeek : startDate;
+
+            var startDateOrEndDateStartOfWeekString = startDateOrEndDateStartOfWeek.ToShortDateWithSlash();
+            var endDateString = endDate.ToShortDateWithSlash();
+            var weekSelection = new WinLossWeekViewModel(
+                startDateOrEndDateStartOfWeekString,
+                endDateString,
+                GetDisplayWeek(startDateOrEndDateStartOfWeek, endDate),
+                weekDataHash.Contains($"{startDateOrEndDateStartOfWeekString}-{endDateString}"),
+                selectedFromDate.HasValue
+                && selectedToDate.HasValue
+                && selectedFromDate.Value == startDateOrEndDateStartOfWeek
+                && selectedToDate.Value == endDate);
+            weekSelections.Add(weekSelection);
+
+            endDate = endDateStartOfWeek.AddDays(-1);
+        }
+
+        return weekSelections;
+    }
+
+    private static string GetDisplayWeek(DateTime fromDate, DateTime toDate)
+    {
+        var displayToDate = $"{toDate.ToString("dd")} {Resources.ResourceManager.GetString($"_{toDate.ToString("MMM")}")}";
+
+        return fromDate == toDate ? displayToDate : $"{fromDate.ToString("dd")} - {displayToDate}";
     }
 }

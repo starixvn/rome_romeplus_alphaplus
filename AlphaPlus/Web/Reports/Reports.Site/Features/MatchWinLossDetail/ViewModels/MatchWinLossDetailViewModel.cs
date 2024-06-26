@@ -1,5 +1,5 @@
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Reports.Features.MatchWinLossDetail;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
 
@@ -51,4 +51,58 @@ public class MatchWinLossDetailViewModel(
             [nameof(LeagueViewModel.UserSelectedLeagueIds)] = LeagueViewModel.UserSelectedLeagueIds.JoinWithComma(),
             [nameof(LeagueViewModel.IsUserSelectsAllLeagues)] = LeagueViewModel.IsUserSelectsAllLeagues.ToString()
         };
+
+    public string GetBetListUrl(MatchWinLossDetailModel match, BetTypeWinLossModel betType)
+    {
+        var queryString = QueryString.Create(
+        [
+            KeyValuePair.Create("CustId", message.ViewerId.ToString()),
+            KeyValuePair.Create(nameof(message.CustName), message.CustName),
+            KeyValuePair.Create("CustLevelId", message.ViewerLevelId.ToString()),
+            KeyValuePair.Create("BetType", betType.Id.ToString()),
+            KeyValuePair.Create("LiveIndicator", betType.IsLive ? "1" : "0"),
+            KeyValuePair.Create(nameof(match.LeagueId), match.LeagueId.ToString()),
+            KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
+            KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate),
+            match.Race > 0
+                ? KeyValuePair.Create(nameof(betType.Race), betType.Race.ToString())
+                : KeyValuePair.Create(nameof(match.MatchId), match.MatchId.ToString())
+        ]);
+
+        return $"{WinLossByMatchBetListPath}{queryString}";
+    }
+
+    public string GetParlayBetListUrl(int betType)
+    {
+        var queryString = QueryString.Create(
+        [
+            KeyValuePair.Create("CustId", message.ViewerId.ToString()),
+            KeyValuePair.Create(nameof(message.CustName), message.CustName),
+            KeyValuePair.Create("CustLevelId", message.ViewerLevelId.ToString()),
+            KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
+            KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate),
+            KeyValuePair.Create(nameof(betType), betType.ToString()),
+        ]);
+
+        return $"{ParlayWinLossByMatchBetListPath}{queryString}";
+    }
+
+    public string GetBetListUrlByBetType(int betType)
+    {
+        var queryString = QueryString.Create(
+        [
+            KeyValuePair.Create("CustId", message.ViewerId.ToString()),
+            KeyValuePair.Create(nameof(message.CustName), message.CustName),
+            KeyValuePair.Create("CustLevelId", message.ViewerLevelId.ToString()),
+            KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
+            KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate),
+            KeyValuePair.Create(nameof(betType), betType.ToString()),
+        ]);
+
+        return $"{WinLossByMatchBetListPath}{queryString}";
+    }
+
+    private static string WinLossByMatchBetListPath = MicroSites.TicketUrl("~/WinLossByMatch/Index");
+
+    private static string ParlayWinLossByMatchBetListPath = MicroSites.TicketUrl("~/ParlayWinLossByMatch/Index");
 }

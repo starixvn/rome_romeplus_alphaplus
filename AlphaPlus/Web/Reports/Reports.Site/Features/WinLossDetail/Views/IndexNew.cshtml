@@ -100,6 +100,12 @@
 @model WinLossDetailNewViewModel
 <report-title-new model="Model.PageHeader" />
 <form class="form-inline filter" role="form" id="report-form">
+    <div class="switch-version">
+        <a class="btn-switch-version" asp-action="Index">
+            <span class="icon-swap-horizontal"></span>
+            <span class="text">@Resources.ClassicView</span>
+        </a>
+    </div>
     <daterange-picker-jquery model="@Model.DateRangePicker" />
     <product-dropdown show-product-details="true" />
     <div class="form-group">
@@ -125,3 +131,4 @@
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per" id="tbl-report">
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true" asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
+<input type="hidden" id="hidden-betListUrl" value="@MicroSites.TicketUrl("~/WinLoss/IndexNew")">

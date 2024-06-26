@@ -132,8 +132,8 @@ class LastBetsNewView {
     }
 
     private setTransId(lastTransId, lastestTransId) {
-        alphaReports.localStorage.set(this.lastTransIdCacheKeyByFilter, lastTransId);
-        alphaReports.localStorage.set(this.latestTransIdCacheKeyByFilter, lastestTransId);
+        alphaBetLists.localStorage.set(this.lastTransIdCacheKeyByFilter, lastTransId);
+        alphaBetLists.localStorage.set(this.latestTransIdCacheKeyByFilter, lastestTransId);
     }
 
     private loadLastBets = (isResetTransId: boolean) => {
@@ -149,8 +149,8 @@ class LastBetsNewView {
     };
 
     private getParam() {
-        let lastTransId = alphaReports.localStorage.get(this.lastTransIdCacheKeyByFilter);
-        let latestTransId = alphaReports.localStorage.get(this.latestTransIdCacheKeyByFilter);
+        let lastTransId = alphaBetLists.localStorage.get(this.lastTransIdCacheKeyByFilter);
+        let latestTransId = alphaBetLists.localStorage.get(this.latestTransIdCacheKeyByFilter);
         const selectedFilter = this.dropdownFilter.find(':selected');
 
         const FilterId = selectedFilter.val();

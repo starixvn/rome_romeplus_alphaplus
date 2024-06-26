@@ -36,39 +36,23 @@
 
             if (jqXHR.status === 401) {
                 window.top['age'].SignOut();
+            } else if (jqXHR.status === 429) {
+                window.location.href = window.top.alpha.urls.mainRootPath + 'error/blocked';
             } else if (jqXHR.status === 500 && jqXHR.responseText) {
                 const jsonData = JSON.parse(jqXHR.responseText);
                 if (jsonData.UMFrom && jsonData.UMTo) {
-                    const cookielessSiteMainUrl = $('#CookielessSiteMainUrl');
-                    const siteMainUrl = cookielessSiteMainUrl.length
-                        ? cookielessSiteMainUrl.val()
-                        : window.top['alpha'].urls.mainRootPath;
-                    location.href = `${siteMainUrl}partialum/index?${$.param(jsonData)}`;
+                    location.href = `${window.top.alpha.urls.mainRootPath}partialum/index?${$.param(jsonData)}`;
                 }
             }
         }
     }
 
-    static get(url: string, onSuccess: Function) {
-        $.blockUI();
+    static get(url: string, onSuccess: Function, $element: JQuery = undefined) {
+        ($element || $).blockUI();
         $.get(url, onSuccess)
             .fail((jqXHR) => this.handleOnFail(jqXHR))
-            .always($.unblockUI);
-        //$.blockUI();
-        // return $.ajax({
-        //     url: url,
-        //     headers: {
-        //         RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-        //         'X-Requested-With': 'XMLHttpRequest'
-        //     },
-        //     type: 'GET',
-        //     data: formData,
-        //     success: function (result) {
-        //         onSuccess(result);
-        //         $.unblockUI();
-        //     },
-        //     error: (jqXHR) => this.handleOnFail(jqXHR),
-        //     complete: onComplete
-        // });
+            .always(function () {
+                ($element || $).unblockUI();
+            });
     }
 }

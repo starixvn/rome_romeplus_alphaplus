@@ -1,6 +1,4 @@
 using System.Text;
-using AlphaPlus.Reports.Features.Shared.Extensions;
-using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using AlphaPlus.Shared.AppResources.Report;
@@ -32,7 +30,7 @@ public class DateRangePickerJQueryTagHelper : TagHelper
         sb.Append($"data-language=\"{Model.Language}\"/>")
             .Append("<label class=\"input-group-addon\" for=\"daterange-picker\">")
             .Append("<span class=\"icon-calendar\"></span>")
-            .Append("</label></div></div>");
+            .Append("</label></div>");
 
         output.Content.SetHtmlContent(sb.ToString());
     }

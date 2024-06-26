@@ -9,7 +9,7 @@ public class WinLossNewQuery : WinLossWeekSelectionQuery, IRequest<WinLossNewVie
 
     public DateTime? WeekToDate { get; set; }
 
-    public string ShowColumns { get; set; }
+    public string VisibleColumns { get; set; }
 
     public override bool IsValid() => base.IsValid() && IsValidWeekRange();
 

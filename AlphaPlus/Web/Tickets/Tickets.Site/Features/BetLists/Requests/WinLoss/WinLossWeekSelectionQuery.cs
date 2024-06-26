@@ -12,7 +12,7 @@ public class WinLossWeekSelectionQuery : WinLossQuery, IRequest<WinLossWeekSelec
         .FirstDayOfYear()
         .GetGreaterDate(LimitedDateToShowInfo);
 
-    public string BreadcrumbLevelJson { get; set; }
+    public string BreadcrumbsJson { get; set; }
 
     public virtual bool IsValid() => MinDate <= FromDate && FromDate <= ToDate;
 }
