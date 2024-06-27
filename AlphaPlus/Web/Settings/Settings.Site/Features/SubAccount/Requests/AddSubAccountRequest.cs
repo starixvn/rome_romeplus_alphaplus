@@ -1,7 +1,7 @@
 using AlphaPlus.Core.Models;
 using MediatR;
 
-namespace AlphaPlus.Settings.Site.SubAccount.Requests
+namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
 {
     public class AddSubAccountRequest : SubAccountBaseRequest, IRequest<Result>
     {

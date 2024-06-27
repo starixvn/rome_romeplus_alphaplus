@@ -1,6 +1,6 @@
 using AlphaPlus.Core.Models;
 
-namespace AlphaPlus.Settings.Site.SubAccount.Models
+namespace AlphaPlus.Settings.Site.Features.SubAccount.Models
 {
     public class SubAccountViewModel
     {

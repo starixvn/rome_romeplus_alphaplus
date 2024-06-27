@@ -1,10 +1,10 @@
 using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Site.SubAccount.Models;
-using AlphaPlus.Settings.Site.SubAccount.Requests;
-using AlphaPlus.Settings.Site.SubAccount.Services;
+using AlphaPlus.Settings.Site.Features.SubAccount.Models;
+using AlphaPlus.Settings.Site.Features.SubAccount.Requests;
+using AlphaPlus.Settings.Site.Features.SubAccount.Services;
 using MediatR;
 
-namespace AlphaPlus.Settings.Site.SubAccount.Handlers
+namespace AlphaPlus.Settings.Site.Features.SubAccount.Handlers
 {
     public class SubAccountHandler : 
         IRequestHandler<SubAccountListRequest, IEnumerable<SubAccountViewModel>>,

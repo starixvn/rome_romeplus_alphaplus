@@ -1,8 +1,8 @@
 using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Site.SubAccount.Models;
-using AlphaPlus.Settings.Site.SubAccount.Requests;
+using AlphaPlus.Settings.Site.Features.SubAccount.Models;
+using AlphaPlus.Settings.Site.Features.SubAccount.Requests;
 
-namespace AlphaPlus.Settings.Site.SubAccount.Services
+namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
 {
     public interface ISubAccountService
     {

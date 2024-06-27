@@ -23,7 +23,7 @@ using AlphaPlus.Settings.Site.Features.DormantAccountList;
 using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold;
 using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Helpers;
 using AlphaPlus.Settings.Site.Handlers;
-using AlphaPlus.Settings.Site.SubAccount.Services;
+using AlphaPlus.Settings.Site.Features.SubAccount.Services;
 using Fanex.Cryptography.Aes;
 using Fanex.Data;
 using Fanex.RemotingRef;

@@ -38,19 +38,19 @@
   {
     "outputFileName": "wwwroot/assets/bundles/sub-account/index.js",
     "inputFiles": [
-      "assets/scripts/sub-account/sub-account.js"
+      "Features/SubAccount/assets/scripts/sub-account/sub-account.js"
     ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/sub-account/index.css",
     "inputFiles": [
-      "assets/styles/sub-account/sub-account.css"
+      "Features/SubAccount/assets/styles/sub-account/sub-account.css"
     ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/sub-account/index-dark.css",
     "inputFiles": [
-      "assets/styles/sub-account/sub-account-dark.css"
+      "Features/SubAccount/assets/styles/sub-account/sub-account-dark.css"
     ]
   },
   {

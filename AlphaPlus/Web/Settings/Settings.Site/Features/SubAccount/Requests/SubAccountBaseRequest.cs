@@ -1,6 +1,6 @@
 using AlphaPlus.Core.Models;
 
-namespace AlphaPlus.Settings.Site.SubAccount.Requests
+namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
 {
     public abstract class SubAccountBaseRequest
     {

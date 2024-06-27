@@ -1,12 +1,12 @@
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Site.SubAccount.Models;
-using AlphaPlus.Settings.Site.SubAccount.Requests;
+using AlphaPlus.Settings.Site.Features.SubAccount.Models;
+using AlphaPlus.Settings.Site.Features.SubAccount.Requests;
 using AlphaPlus.Shared.AppResources.Settings.SubAccount;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AlphaPlus.Settings.Site.SubAccount.Controllers
+namespace AlphaPlus.Settings.Site.Features.SubAccount.Controllers
 {
     public class SubAccountController : BaseController
     {
