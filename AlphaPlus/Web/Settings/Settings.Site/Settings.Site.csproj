@@ -20,6 +20,7 @@
     <PackageReference Include="ONEbook.Common.Auth" Version="2.0.0" />
     <PackageReference Include="ONEbook.SpreadSheets" Version="1.0.0.1" />
     <PackageReference Include="ONEbook.SpreadSheets.NPOI" Version="1.0.0.3" />
+    <PackageReference Include="Fanex.Common" Version="1.1.0.1" />
     <PackageReference Include="Fanex.Caching" Version="2.2.4" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
