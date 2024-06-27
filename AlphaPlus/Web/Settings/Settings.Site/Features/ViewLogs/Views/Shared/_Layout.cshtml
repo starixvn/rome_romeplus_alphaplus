@@ -1,0 +1,36 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.ViewLog
+@using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels
+@using AlphaPlus.Core.Helpers
+
+@model LogViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-viewlogs/viewlogs-{Model.UserLevel}")
+    @StaticResources.RenderStylesWithDarkMode($"~/Features/ViewLogs/assets/bundles/default")
+    @RenderSection("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+<body>
+    @GoogleAnalyticHelper.GtagNoScript()
+    <div class="container-fluid page-viewlog">
+        @await Html.PartialAsync("~/Features/ViewLogs/Views/Tab/Index.cshtml", new TabViewModel(ViewContext.RouteData.Values["controller"].ToString()))
+        @RenderBody()
+        @await Html.PartialAsync("MonthNames")
+    </div>
+
+    <div class="shadow" id="shadow"></div>
+    <div class="output" id="output"></div>
+
+    @Html.Hidden("indexPath", "/settings/" + ViewContext.RouteData.Values["controller"] + "/index")
+    @Html.Hidden("usernameAutoSuggestionPath", Model.UsernameAutoSuggestionPath)
+    @Html.Hidden("viewIPInfoPath", Model.ViewIPInfoPath)
+    @Html.Hidden("CustId", AlphaPlus.Core.Models.UserSession.Current.CustId)
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

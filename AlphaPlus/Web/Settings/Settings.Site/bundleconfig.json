@@ -515,55 +515,55 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/ViewLogs/assets/bundles/default.css",
+    "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/default.css",
     "inputFiles": [
-      "ViewLogs/assets/styles/viewlog.css"
+      "Features/ViewLogs/assets/styles/viewlog.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/ViewLogs/assets/bundles/setting.js",
+    "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/setting.js",
     "inputFiles": [
-      "ViewLogs/assets/scripts/old-main.js",
-      "ViewLogs/assets/scripts/core.js",
-      "ViewLogs/assets/scripts/tab/index.js",
-      "ViewLogs/assets/scripts/setting/index-view.js",
-      "ViewLogs/assets/scripts/setting/index-controller.js"
+      "Features/ViewLogs/assets/scripts/old-main.js",
+      "Features/ViewLogs/assets/scripts/core.js",
+      "Features/ViewLogs/assets/scripts/tab/index.js",
+      "Features/ViewLogs/assets/scripts/setting/index-view.js",
+      "Features/ViewLogs/assets/scripts/setting/index-controller.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/ViewLogs/assets/bundles/status.js",
+    "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/status.js",
     "inputFiles": [
-      "ViewLogs/assets/scripts/old-main.js",
-      "ViewLogs/assets/scripts/core.js",
-      "ViewLogs/assets/scripts/tab/index.js",
-      "ViewLogs/assets/scripts/status/index-view.js",
-      "ViewLogs/assets/scripts/status/index-controller.js"
+      "Features/ViewLogs/assets/scripts/old-main.js",
+      "Features/ViewLogs/assets/scripts/core.js",
+      "Features/ViewLogs/assets/scripts/tab/index.js",
+      "Features/ViewLogs/assets/scripts/status/index-view.js",
+      "Features/ViewLogs/assets/scripts/status/index-controller.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/ViewLogs/assets/bundles/credit.js",
+    "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/credit.js",
     "inputFiles": [
-      "ViewLogs/assets/scripts/old-main.js",
-      "ViewLogs/assets/scripts/core.js",
-      "ViewLogs/assets/scripts/tab/index.js",
-      "ViewLogs/assets/scripts/credit/index-view.js",
-      "ViewLogs/assets/scripts/credit/index-controller.js"
+      "Features/ViewLogs/assets/scripts/old-main.js",
+      "Features/ViewLogs/assets/scripts/core.js",
+      "Features/ViewLogs/assets/scripts/tab/index.js",
+      "Features/ViewLogs/assets/scripts/credit/index-view.js",
+      "Features/ViewLogs/assets/scripts/credit/index-controller.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/ViewLogs/assets/bundles/login.js",
+    "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/login.js",
     "inputFiles": [
-      "ViewLogs/assets/scripts/old-main.js",
-      "ViewLogs/assets/scripts/core.js",
-      "ViewLogs/assets/scripts/login/index-view.js",
-      "ViewLogs/assets/scripts/tab/index.js",
-      "ViewLogs/assets/scripts/login/index-controller.js"
+      "Features/ViewLogs/assets/scripts/old-main.js",
+      "Features/ViewLogs/assets/scripts/core.js",
+      "Features/ViewLogs/assets/scripts/login/index-view.js",
+      "Features/ViewLogs/assets/scripts/tab/index.js",
+      "Features/ViewLogs/assets/scripts/login/index-controller.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/ViewLogs/assets/bundles/default-dark.css",
+    "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/default-dark.css",
     "inputFiles": [
-      "ViewLogs/assets/styles/viewlog-dark.css"
+      "Features/ViewLogs/assets/styles/viewlog-dark.css"
     ]
   },
   {

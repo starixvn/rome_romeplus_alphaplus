@@ -45,7 +45,6 @@ function compileCss() {
         .src([
             'assets/styles/**/*.scss',
             'MemberInfo/**/*.scss',
-            'ViewLogs/**/*.scss',
             'Transfer/**/*.scss',
             'Features/**/*.scss'
         ])

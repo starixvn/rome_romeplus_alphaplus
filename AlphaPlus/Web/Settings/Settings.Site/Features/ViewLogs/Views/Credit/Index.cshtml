@@ -1,0 +1,109 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.ViewLog
+@using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels
+@using AlphaPlus.Core.Helpers
+
+@model LogViewModel
+@{
+    Layout = "~/Features/ViewLogs/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.ViewLogCredit;
+}
+<div class="tab-content tb-ver2">
+    <div role="tabpanel" class="tab-pane active" id="@ViewContext.RouteData.Values["controller"].ToString().ToLower()">
+        <div class="filter">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <input type="text" id="txt-username" placeholder="@Resources.UsernameOrFirstLastName"
+                           value="@(string.IsNullOrWhiteSpace(Model.Username) ? string.Empty : Model.Username)"
+                           autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <div id="monthPickerID"><div id="ddlMonth"></div></div>
+                </div>
+                <div class="form-group submit-box">
+                    <input type="button" class="btn-submit" id="btn-submit" value="@Resources.Submit">
+                    <span id="icon-loading" class="hide block-icon-small"></span>
+                </div>
+            </form>
+        </div>
+
+        <div id="content">
+            <table id="DataLog" class="width-100per tblRpt tblRpt-bordered">
+                <thead>
+                    <tr class="RptHeader">
+                        <th>@Resources.No</th>
+                        <th>@Resources.Username</th>
+                        <th>@Resources.Action</th>
+                        <th>@Resources.Details</th>
+                        <th>@Resources.IP</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @if (Model.HasLogs)
+                    {
+                        var index = 1;
+                        foreach (var logItem in Model.LogItems)
+                        {
+                            <tr>
+                                <td align="center">
+                                    @(Model.FirstRowNumber + index++)
+                                </td>
+                                <td align="left">
+                                    @logItem.CustName
+                                </td>
+                                <td class="col-action">
+                                    <span class="action-name">@Html.Raw(logItem.ActionName)</span>
+                                    <br />
+                                    @if (LogViewModel.ShowEditedBy(logItem.ActionId))
+                                    {
+                                        <span class="username">@Html.Raw(Resources.By + " " + logItem.Username)</span>
+                                    }
+
+                                    <span class="log-date">@Html.Raw(logItem.LogDate)</span>
+                                    <br />
+                                    <span class="logid">#@logItem.LogId</span>
+                                </td>
+                                <td align="left">
+                                    @Html.Raw(logItem.Details)
+                                    <br />
+                                    <span class="valuechanged">@Html.Raw(logItem.TrackingValue)</span>
+                                    <span class="valueold\">(@Html.Raw(logItem.TrackingValueOld))</span>
+                                </td>
+                                <td align="center">@Html.Raw(logItem.IP)</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" align="center">@Resources.NoInfo</td>
+                        </tr>
+                    }
+            </table>
+            <div id="pagination" class="@(Model.HasLogs ? " ":"hide" )"></div>
+        </div>
+    </div>
+</div>
+
+@Html.Hidden("maxReportDate", Model.MaxReportDate)
+@Html.Hidden("minReportDate", Model.MinReportDate)
+@Html.Hidden("dayInMonth", Model.DayInMonth)
+@Html.Hidden("totalRecords", Model.TotalRecords)
+@Html.Hidden("pageIndex", Model.PageIndex)
+@Html.Hidden("actionTypeId", Model.ActionTypeId)
+@Html.Hidden("showOldValuesCookieName", Model.ShowOldValuesCookieName)
+@Html.Hidden("viewmodal-fromdate", Model.FromDate)
+@Html.Hidden("viewmodal-todate", Model.ToDate)
+@Html.Hidden("viewmodal-pagesize", Model.PageSize)
+
+@Html.Hidden("labelTo", Resources.To)
+@Html.Hidden("noInfo", Resources.NoInfo)
+@Html.Hidden("Page", Resources.Page)
+@Html.Hidden("of", Resources.of)
+@Html.Hidden("Pager_DisplayItems", Resources.Pager_DisplayItems)
+
+@section Scripts
+{
+    @StaticResources.AssetScripts.Render("/bundles/site-viewlogs/default")
+    @StaticResources.RenderScripts("~/Features/ViewLogs/assets/bundles/credit")
+}

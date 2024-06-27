@@ -41,7 +41,7 @@ using AlphaPlus.Settings.ViewLogs.API.DataAccesses.Impl;
 using AlphaPlus.Settings.ViewLogs.API.Services.Impl;
 using AlphaPlus.Settings.ViewLogs.API.Helpers;
 using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
-using AlphaPlus.Settings.Site.ViewLogs.Helpers;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
 using AlphaPlus.Settings.Site.Features.AccountInfo;
 using AlphaPlus.Settings.Transfer.API.Services;
 using ONEbook.SpreadSheets;
@@ -54,7 +54,6 @@ using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
-using AlphaPlus.Products.Configurations;
 using AlphaPlus.Settings.Site.Features.Shared.Services;
 using Fanex.Caching;
 using AlphaPlus.Settings.Site.Features.ProductStatus;
@@ -111,8 +110,8 @@ namespace AlphaPlus.Settings.Site.Helpers
                     options.ViewLocationFormats.Add("/MemberInfo/Views/{1}/{0}.cshtml");
                     options.ViewLocationFormats.Add("/MemberInfo/Features/Shared/Views/{0}.cshtml");
                     options.ViewLocationFormats.Add("/MemberInfo/Features/{1}/Views/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/ViewLogs/Views/Shared/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/ViewLogs/Views/{1}/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/ViewLogs/Views/Shared/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/ViewLogs/Views/{1}/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Transfer/Views/Shared/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Transfer/Views/{1}/{0}.cshtml");
                 });
@@ -200,12 +199,12 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<IDateTime, DateTimeWrap>()
                 .AddScoped<TransformService, TransformServiceImpl>()
                 .AddScoped<TrackingValueFormatter, TrackingValueFormatterImpl>()
-                .AddScoped<ViewLogs.Helpers.MicroSites, MicroSitesImpl>()
+                .AddScoped<Features.ViewLogs.Helpers.MicroSites, MicroSitesImpl>()
                 .AddScoped<LogFormatter, LogFormatterImpl>()
                 .AddScoped<LogDataAccess, LogDataAccessImpl>()
                 .AddScoped<ViewLogIPService, ViewLogIPServiceImpl>()
                 .AddScoped<RemotingRefWrapper, RemotingRefWrapperImpl>()
-                .AddScoped<Settings.ViewLogs.API.Services.CustomerService, CustomerServiceImpl>()
+                .AddScoped<ViewLogs.API.Services.CustomerService, CustomerServiceImpl>()
                 .AddKeyedScoped<LogService, SettingServiceImpl>("settingLogSvc")
                 .AddKeyedScoped<LogService, StatusServiceImpl>("statusLogSvc")
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")
