@@ -1,5 +1,5 @@
 import ContentItem from '../../models/content-item';
-import CustomLink from '../common/AccordionItem/CustomLink';
+import CustomLink from './CustomLink';
 import styles from './Mobile.module.scss';
 
 export default function ContentPage({
@@ -11,7 +11,7 @@ export default function ContentPage({
     fetchDataFromServer?.();
 
     return (
-        <div className={`${styles['feature-detail']} ${styles['translate-from-left']}`}>
+        <div className={`${styles['content-page']} ${styles['translate-from-left']}`}>
             <CustomLink {...{ iconClass, featureText, pathname: '/featureList' }} />
             {children}
         </div>

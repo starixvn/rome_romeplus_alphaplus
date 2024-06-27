@@ -1,5 +1,5 @@
 import ContentItem from '../../models/content-item';
-import CustomLink from '../common/AccordionItem/CustomLink';
+import CustomLink from './CustomLink';
 import styles from './Mobile.module.scss';
 
 type Props = {

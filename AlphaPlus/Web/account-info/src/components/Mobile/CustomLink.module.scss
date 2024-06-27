@@ -1,0 +1,75 @@
+@import '../../styles/mixins';
+
+.custom-link {
+    position: relative;
+    width: 100%;
+    display: block;
+    font-weight: bold;
+    padding: 9px 25px 8px 39px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #333333;
+
+    &:hover {
+        background-color: #e5e5e5;
+
+        [class^='icon'] {
+            background: #fafafa;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &:after {
+        position: absolute;
+        top: 4px;
+        right: 5px;
+        font-family: Iconalpha, sans-serif !important;
+        font-size: 19px;
+        font-weight: 400;
+        transition: transform 0.3s ease-out;
+    }
+
+    [class^='icon'] {
+        position: absolute;
+        transform: translate(0, -50%);
+        top: 50%;
+        left: 8px;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        background: #ededed;
+        color: #333333;
+        border-radius: 5px;
+        font-size: 17px;
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    .custom-link {
+        padding: 0 calculateScale(30px) 0 calculateScale(40px);
+        font-size: calculateScale(13px);
+        margin-bottom: 9px;
+        height: calculateScale(36px);
+        line-height: calculateScale(36px);
+
+        &:after {
+            content: '\E942';
+            top: calculateScale(-2px);
+            right: calculateScale(3px);
+            font-size: calculateScale(22px);
+        }
+
+        [class^='icon'] {
+            width: calculateScale(24px);
+            height: calculateScale(24px);
+            font-size: calculateScale(18px);
+            top: 50%;
+            text-align: center;
+            line-height: calculateScale(24px);
+            transform: translate(0, -50%);
+            left: calculateScale(8px);
+        }
+    }
+}

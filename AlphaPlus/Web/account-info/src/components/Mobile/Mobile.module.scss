@@ -12,7 +12,7 @@
     }
 }
 
-.feature-detail {
+.content-page {
     display: block;
     width: 100%;
 
@@ -22,7 +22,7 @@
 }
 
 @media only screen and (max-device-width: 767px) {
-    .feature-detail,
+    .content-page,
     .feature-list {
         padding: 0 calculateScale(10px);
     }

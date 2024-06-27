@@ -1,15 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import styles from './AccordionItem.module.scss';
+import styles from './CustomLink.module.scss';
 
 type Props = {
     iconClass: string;
     pathname: string;
     featureText: string;
+    isDetail?: boolean;
 };
 
-export default function CustomLink({ iconClass, pathname, featureText }: Props) {
+export default function CustomLink({ iconClass, pathname, featureText, isDetail = false }: Props) {
     const { t } = useTranslation();
     return (
         <Link
@@ -18,11 +19,12 @@ export default function CustomLink({ iconClass, pathname, featureText }: Props) 
                 pathname,
                 state: { addAnimation: true }
             }}
-            className={styles['feature-item']}
+            className={styles['custom-link']}
         >
             <span className={iconClass} />
             {featureText}
-            <span className={styles['feature-item-nav']}>{t('Back')}</span>
+
+            {isDetail && <span className={styles['feature-item-nav']}>{t('Back')}</span>}
         </Link>
     );
 }
