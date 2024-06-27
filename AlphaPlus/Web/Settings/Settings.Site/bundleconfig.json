@@ -567,191 +567,191 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/default.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/default.css",
     "inputFiles": [
-      "Transfer/assets/styles/site.css"
+      "Features/Transfer/assets/styles/site.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-all-clear-credit.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-all-clear-credit.css",
     "inputFiles": [
-      "Transfer/assets/styles/transfer-all-clear-credit.css"
+      "Features/Transfer/assets/styles/transfer-all-clear-credit.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-all-clear-credit/calculation.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-all-clear-credit/calculation.js",
     "inputFiles": [
-      "Transfer/assets/scripts/transfer-all-clear-credit/calculation.js"
+      "Features/Transfer/assets/scripts/transfer-all-clear-credit/calculation.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-all-clear-credit/transfer-result.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-all-clear-credit/transfer-result.js",
     "inputFiles": [
-      "Transfer/assets/scripts/transfer-all-clear-credit/transfer-result.js"
+      "Features/Transfer/assets/scripts/transfer-all-clear-credit/transfer-result.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/cash-balance-transfer/cash-balance.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/cash-balance-transfer/cash-balance.js",
     "inputFiles": [
-      "Transfer/assets/scripts/cash-balance-transfer/cash-balance.js"
+      "Features/Transfer/assets/scripts/cash-balance-transfer/cash-balance.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/multiple-transfer/customer-list.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/multiple-transfer/customer-list.js",
     "inputFiles": [
-      "Transfer/assets/scripts/components/single-selection-dropdown.js",
-      "Transfer/assets/scripts/multiple-transfer/customer-list.js"
+      "Features/Transfer/assets/scripts/components/single-selection-dropdown.js",
+      "Features/Transfer/assets/scripts/multiple-transfer/customer-list.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-to-downline-history/index.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-to-downline-history/index.css",
     "inputFiles": [
-      "Transfer/assets/styles/transfer-to-downline-history/index.css"
+      "Features/Transfer/assets/styles/transfer-to-downline-history/index.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-to-downline-history/index-mobile.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-to-downline-history/index-mobile.css",
     "inputFiles": [
-      "Transfer/assets/styles/datepicker-mobile.css",
-      "Transfer/assets/styles/site-mobile.css",
-      "Transfer/assets/styles/transfer-to-downline-history/index-mobile.css"
+      "Features/Transfer/assets/styles/datepicker-mobile.css",
+      "Features/Transfer/assets/styles/site-mobile.css",
+      "Features/Transfer/assets/styles/transfer-to-downline-history/index-mobile.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-to-downline-history/index.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-to-downline-history/index.js",
     "inputFiles": [
-      "Transfer/assets/scripts/components/daterangepicker.js",
-      "Transfer/assets/scripts/transfer-to-downline-history/utils.js",
-      "Transfer/assets/scripts/transfer-to-downline-history/transfer-report.js",
-      "Transfer/assets/scripts/transfer-to-downline-history/index.js"
+      "Features/Transfer/assets/scripts/components/daterangepicker.js",
+      "Features/Transfer/assets/scripts/transfer-to-downline-history/utils.js",
+      "Features/Transfer/assets/scripts/transfer-to-downline-history/transfer-report.js",
+      "Features/Transfer/assets/scripts/transfer-to-downline-history/index.js"
     ],
     "sourceMap": true
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/monitoring.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/monitoring.css",
     "inputFiles": [
-      "Transfer/assets/styles/refresh-countdown.css",
-      "Transfer/assets/styles/auto-transfer/monitoring.css"
+      "Features/Transfer/assets/styles/refresh-countdown.css",
+      "Features/Transfer/assets/styles/auto-transfer/monitoring.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/monitoring.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/monitoring.js",
     "inputFiles": [
-      "Transfer/assets/scripts/core.js",
-      "Transfer/assets/scripts/components/pager.js",
-      "Transfer/assets/scripts/components/visible-columns-dropdown.js",
-      "Transfer/assets/scripts/components/auto-refresh.js",
-      "Transfer/assets/scripts/components/multiple-selection-dropdown.js",
-      "Transfer/assets/scripts/auto-transfer/monitoring.js"
+      "Features/Transfer/assets/scripts/core.js",
+      "Features/Transfer/assets/scripts/components/pager.js",
+      "Features/Transfer/assets/scripts/components/visible-columns-dropdown.js",
+      "Features/Transfer/assets/scripts/components/auto-refresh.js",
+      "Features/Transfer/assets/scripts/components/multiple-selection-dropdown.js",
+      "Features/Transfer/assets/scripts/auto-transfer/monitoring.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/history.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/history.js",
     "inputFiles": [
-      "Transfer/assets/scripts/core.js",
-      "Transfer/assets/scripts/components/pager.js",
-      "Transfer/assets/scripts/components/daterangepicker.js",
-      "Transfer/assets/scripts/components/visible-columns-dropdown.js",
-      "Transfer/assets/scripts/components/auto-refresh.js",
-      "Transfer/assets/scripts/components/multiple-selection-dropdown.js",
-      "Transfer/assets/scripts/auto-transfer/history.js"
+      "Features/Transfer/assets/scripts/core.js",
+      "Features/Transfer/assets/scripts/components/pager.js",
+      "Features/Transfer/assets/scripts/components/daterangepicker.js",
+      "Features/Transfer/assets/scripts/components/visible-columns-dropdown.js",
+      "Features/Transfer/assets/scripts/components/auto-refresh.js",
+      "Features/Transfer/assets/scripts/components/multiple-selection-dropdown.js",
+      "Features/Transfer/assets/scripts/auto-transfer/history.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/update-schedule.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/update-schedule.js",
     "inputFiles": [
-      "Transfer/assets/scripts/auto-transfer/update-schedule.js"
+      "Features/Transfer/assets/scripts/auto-transfer/update-schedule.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/update-multiple.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/update-multiple.js",
     "inputFiles": [
-      "Transfer/assets/scripts/auto-transfer/update-multiple.js"
+      "Features/Transfer/assets/scripts/auto-transfer/update-multiple.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/update-schedule.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/update-schedule.css",
     "inputFiles": [
-      "Transfer/assets/styles/auto-transfer/update-schedule.css"
+      "Features/Transfer/assets/styles/auto-transfer/update-schedule.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/update-multiple.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/update-multiple.css",
     "inputFiles": [
-      "Transfer/assets/styles/auto-transfer/update-multiple.css"
+      "Features/Transfer/assets/styles/auto-transfer/update-multiple.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/update-single.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/update-single.css",
     "inputFiles": [
-      "Transfer/assets/styles/auto-transfer/update-single.css"
+      "Features/Transfer/assets/styles/auto-transfer/update-single.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/update-single.js",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/update-single.js",
     "inputFiles": [
-      "Transfer/assets/scripts/auto-transfer/update-single.js"
+      "Features/Transfer/assets/scripts/auto-transfer/update-single.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/default-dark.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/default-dark.css",
     "inputFiles": [
-      "Transfer/assets/styles/site-dark.css"
+      "Features/Transfer/assets/styles/site-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-hint.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-hint.css",
     "inputFiles": [
-      "Transfer/assets/styles/transfer-hint.css"
+      "Features/Transfer/assets/styles/transfer-hint.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-hint-dark.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-hint-dark.css",
     "inputFiles": [
-      "Transfer/assets/styles/transfer-hint-dark.css"
+      "Features/Transfer/assets/styles/transfer-hint-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/cash-balance-transfer-dark.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/cash-balance-transfer-dark.css",
     "inputFiles": [
-      "Transfer/assets/styles/cash-balance-transfer-dark.css"
+      "Features/Transfer/assets/styles/cash-balance-transfer-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-to-downline-history/index-dark.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-to-downline-history/index-dark.css",
     "inputFiles": [
-      "Transfer/assets/styles/transfer-to-downline-history/index-dark.css"
+      "Features/Transfer/assets/styles/transfer-to-downline-history/index-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/transfer-all-clear-credit-dark.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-all-clear-credit-dark.css",
     "inputFiles": [
-      "Transfer/assets/styles/transfer-all-clear-credit-dark.css"
+      "Features/Transfer/assets/styles/transfer-all-clear-credit-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/monitoring-dark.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/monitoring-dark.css",
     "inputFiles": [
-      "Transfer/assets/styles/refresh-countdown-dark.css",
-      "Transfer/assets/styles/auto-transfer/monitoring-dark.css"
+      "Features/Transfer/assets/styles/refresh-countdown-dark.css",
+      "Features/Transfer/assets/styles/auto-transfer/monitoring-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/update-schedule-dark.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/update-schedule-dark.css",
     "inputFiles": [
-      "Transfer/assets/styles/auto-transfer/update-schedule-dark.css"
+      "Features/Transfer/assets/styles/auto-transfer/update-schedule-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/update-multiple-dark.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/update-multiple-dark.css",
     "inputFiles": [
-      "Transfer/assets/styles/auto-transfer/update-multiple-dark.css"
+      "Features/Transfer/assets/styles/auto-transfer/update-multiple-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Transfer/assets/bundles/auto-transfer/update-single-dark.css",
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/auto-transfer/update-single-dark.css",
     "inputFiles": [
-      "Transfer/assets/styles/auto-transfer/update-single-dark.css"
+      "Features/Transfer/assets/styles/auto-transfer/update-single-dark.css"
     ]
   }
 ]

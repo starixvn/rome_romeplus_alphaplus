@@ -112,8 +112,8 @@ namespace AlphaPlus.Settings.Site.Helpers
                     options.ViewLocationFormats.Add("/MemberInfo/Features/{1}/Views/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/ViewLogs/Views/Shared/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/ViewLogs/Views/{1}/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/Transfer/Views/Shared/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/Transfer/Views/{1}/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/Transfer/Views/Shared/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/Transfer/Views/{1}/{0}.cshtml");
                 });
 
             services
