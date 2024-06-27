@@ -1,0 +1,18 @@
+﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
+{
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
+    public class ReviewedStatusSelectionViewModel
+    {
+        public ReviewedStatusSelectionViewModel(IEnumerable<SelectListItem> statuses, int userSelectedId)
+        {
+            Statuses = statuses;
+            UserSelectedReviewedStatusId = userSelectedId;
+        }
+
+        public IEnumerable<SelectListItem> Statuses { get; }
+
+        public int UserSelectedReviewedStatusId { get; }
+    }
+}

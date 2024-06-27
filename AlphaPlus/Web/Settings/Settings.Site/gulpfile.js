@@ -43,7 +43,6 @@ function minJs() {
 function compileCss() {
     return gulp
         .src([
-            'MemberInfo/**/*.scss',
             'Features/**/*.scss'
         ])
         .pipe(sass().on('error', sass.logError))

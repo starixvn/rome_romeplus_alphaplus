@@ -17,12 +17,12 @@ using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
-using AlphaPlus.Settings.Site.Features.CopyAccount;
-using AlphaPlus.Settings.Site.Features.CreateAccount;
-using AlphaPlus.Settings.Site.Features.DormantAccountList;
-using AlphaPlus.Settings.Site.Features.MyWatchlist.ReachedThreshold;
-using AlphaPlus.Settings.Site.Features.QRCodeMemberSignIn.Helpers;
-using AlphaPlus.Settings.Site.Handlers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Helpers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
 using AlphaPlus.Settings.Site.Features.SubAccount.Services;
 using Fanex.Cryptography.Aes;
 using Fanex.Data;
@@ -106,10 +106,10 @@ namespace AlphaPlus.Settings.Site.Helpers
                     options.ViewLocationFormats.Add("/{1}/Views/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/{1}/Views/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/MemberInfo/Views/Shared/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/MemberInfo/Views/{1}/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/MemberInfo/Features/Shared/Views/{0}.cshtml");
-                    options.ViewLocationFormats.Add("/MemberInfo/Features/{1}/Views/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/MemberInfo/Views/Shared/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/MemberInfo/Views/{1}/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/MemberInfo/Features/Shared/Views/{0}.cshtml");
+                    options.ViewLocationFormats.Add("/Features/MemberInfo/Features/{1}/Views/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/ViewLogs/Views/Shared/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/ViewLogs/Views/{1}/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Features/Transfer/Views/Shared/{0}.cshtml");
@@ -147,7 +147,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>()
                 .Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode))
                 .AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>()
-                .AddScoped<IUser, Models.User>()
+                .AddScoped<IUser, Features.MemberInfo.Models.User>()
                 .AddScoped<CustomerListService, CustomerListServiceImpl>()
                 .AddScoped<Settings.MemberInfo.API.Services.Transfer.TransferService, Settings.MemberInfo.API.Services.Transfer.TransferServiceImpl>();
 

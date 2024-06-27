@@ -54,182 +54,182 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/default.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/default.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/member-info.css"
+      "Features/MemberInfo/assets/styles/member-info.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/credit-balance.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/credit-balance.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/credit-balance.css"
+      "Features/MemberInfo/assets/styles/credit-balance.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/win-loss-limit.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/win-loss-limit.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/win-loss-limit.css"
+      "Features/MemberInfo/assets/styles/win-loss-limit.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/problem-account/index.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/index.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/problem-account/index.css"
+      "Features/MemberInfo/assets/styles/problem-account/index.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/problem-account/confirm-add-to-watchlist.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/confirm-add-to-watchlist.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/problem-account/confirm-add-to-watchlist.css"
+      "Features/MemberInfo/assets/styles/problem-account/confirm-add-to-watchlist.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/problem-account/update.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/update.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/problem-account/update.css"
+      "Features/MemberInfo/assets/styles/problem-account/update.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/member-requests/member-requests.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/member-requests/member-requests.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
-      "MemberInfo/assets/scripts/member-requests/member-requests.js"
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/MemberInfo/assets/scripts/member-requests/member-requests.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
-      "MemberInfo/assets/scripts/components/pager.js",
-      "MemberInfo/assets/scripts/win-loss-limit/win-loss-limit.js"
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/MemberInfo/assets/scripts/components/pager.js",
+      "Features/MemberInfo/assets/scripts/win-loss-limit/win-loss-limit.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/credit-balance/credit-balance.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/credit-balance/credit-balance.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
-      "MemberInfo/assets/scripts/components/pager.js",
-      "MemberInfo/assets/scripts/credit-balance/columns-control.js",
-      "MemberInfo/assets/scripts/credit-balance/credit-balance.js"
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/MemberInfo/assets/scripts/components/pager.js",
+      "Features/MemberInfo/assets/scripts/credit-balance/columns-control.js",
+      "Features/MemberInfo/assets/scripts/credit-balance/credit-balance.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/problem-account/index.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/index.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/html-wrapper.js",
-      "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
-      "MemberInfo/assets/scripts/components/daterangepicker.js",
-      "MemberInfo/assets/scripts/ProblemAccount/base-list.js",
-      "MemberInfo/assets/scripts/ProblemAccount/customer-list-helper.js",
-      "MemberInfo/assets/scripts/ProblemAccount/index.js",
-      "MemberInfo/assets/scripts/ProblemAccount/edit-setting-popup.js",
-      "MemberInfo/assets/scripts/shared/ajax-helper.js"
+      "Features/MemberInfo/assets/scripts/components/html-wrapper.js",
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/MemberInfo/assets/scripts/components/daterangepicker.js",
+      "Features/MemberInfo/assets/scripts/ProblemAccount/base-list.js",
+      "Features/MemberInfo/assets/scripts/ProblemAccount/customer-list-helper.js",
+      "Features/MemberInfo/assets/scripts/ProblemAccount/index.js",
+      "Features/MemberInfo/assets/scripts/ProblemAccount/edit-setting-popup.js",
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/problem-account/confirm-add-to-watchlist.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/confirm-add-to-watchlist.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/ProblemAccount/confirm-add-to-watchlist.js"
+      "Features/MemberInfo/assets/scripts/ProblemAccount/confirm-add-to-watchlist.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/problem-account/update.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/update.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/ProblemAccount/update.js"
+      "Features/MemberInfo/assets/scripts/ProblemAccount/update.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js",
     "inputFiles": [
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js"
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in.js",
     "inputFiles": [
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/qr-code-member-sign-in.js",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js"
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/qr-code-member-sign-in.js",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in.css",
     "inputFiles": [
-      "MemberInfo/Features/QRCodeMemberSignIn/Styles/qr-code-member-sign-in.css",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Styles/qr-code-member-sign-in.css",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/bundles/show-qr-code.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/QRCodeMemberSignIn/bundles/show-qr-code.js",
     "inputFiles": [
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/show-qr-code.js",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/ClipboardPolyfill/clipboard-polyfill.js"
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/show-qr-code.js",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/ClipboardPolyfill/clipboard-polyfill.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/bundles/show-qr-code.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/QRCodeMemberSignIn/bundles/show-qr-code.css",
     "inputFiles": [
-      "MemberInfo/Features/QRCodeMemberSignIn/Styles/show-qr-code.css"
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Styles/show-qr-code.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/indirect-login-account/indirect-login-account.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/indirect-login-account/indirect-login-account.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/indirect-login-account.css",
-      "MemberInfo/assets/styles/quick-introduction.css"
+      "Features/MemberInfo/assets/styles/indirect-login-account.css",
+      "Features/MemberInfo/assets/styles/quick-introduction.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/indirect-login-account/manage-account.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/indirect-login-account/manage-account.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/indirect-login-account/manage-account.js",
-      "MemberInfo/assets/scripts/indirect-login-account/quick-introduction.js"
+      "Features/MemberInfo/assets/scripts/indirect-login-account/manage-account.js",
+      "Features/MemberInfo/assets/scripts/indirect-login-account/quick-introduction.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/indirect-login-account/new-account.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/indirect-login-account/new-account.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/aes.js",
-      "MemberInfo/assets/scripts/encryptor.js",
-      "MemberInfo/assets/scripts/components/alert.js",
-      "MemberInfo/assets/scripts/indirect-login-account/base-account.js",
-      "MemberInfo/assets/scripts/indirect-login-account/new-account.js"
+      "Features/MemberInfo/assets/scripts/aes.js",
+      "Features/MemberInfo/assets/scripts/encryptor.js",
+      "Features/MemberInfo/assets/scripts/components/alert.js",
+      "Features/MemberInfo/assets/scripts/indirect-login-account/base-account.js",
+      "Features/MemberInfo/assets/scripts/indirect-login-account/new-account.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/indirect-login-account/update-account.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/indirect-login-account/update-account.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/aes.js",
-      "MemberInfo/assets/scripts/encryptor.js",
-      "MemberInfo/assets/scripts/components/alert.js",
-      "MemberInfo/assets/scripts/indirect-login-account/base-account.js",
-      "MemberInfo/assets/scripts/indirect-login-account/update-account.js"
+      "Features/MemberInfo/assets/scripts/aes.js",
+      "Features/MemberInfo/assets/scripts/encryptor.js",
+      "Features/MemberInfo/assets/scripts/components/alert.js",
+      "Features/MemberInfo/assets/scripts/indirect-login-account/base-account.js",
+      "Features/MemberInfo/assets/scripts/indirect-login-account/update-account.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/indirect-login-account/disconnect.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/indirect-login-account/disconnect.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/alert.js",
-      "MemberInfo/assets/scripts/indirect-login-account/disconnect.js"
+      "Features/MemberInfo/assets/scripts/components/alert.js",
+      "Features/MemberInfo/assets/scripts/indirect-login-account/disconnect.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list.css",
     "inputFiles": [
-      "MemberInfo/Features/DormantAccountList/Styles/dormant-account-list.css"
+      "Features/MemberInfo/Features/DormantAccountList/Styles/dormant-account-list.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
-      "MemberInfo/assets/scripts/components/pager.js",
-      "MemberInfo/Features/DormantAccountList/Scripts/dormant-account-list.js"
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/MemberInfo/assets/scripts/components/pager.js",
+      "Features/MemberInfo/Features/DormantAccountList/Scripts/dormant-account-list.js"
     ]
   },
   {
     "outputFileName": "wwwroot/bundles/Features/CustomerList/customer-list.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/CustomerList/Scripts/customer-list-popup.js",
       "Features/CustomerList/Scripts/customer-list-services.js",
       "Features/CustomerList/Scripts/edit-status.js",
@@ -244,15 +244,15 @@
   {
     "outputFileName": "wwwroot/bundles/Features/CustomerList/customer-list.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/common.css",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
+      "Features/MemberInfo/assets/styles/common.css",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
       "Features/CustomerList/Styles/customer-list.css"
     ]
   },
   {
     "outputFileName": "wwwroot/bundles/Features/CustomerList/customer-list-07.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/common-07.css",
+      "Features/MemberInfo/assets/styles/common-07.css",
       "Features/CustomerList/Styles/customer-list-07.css"
     ]
   },
@@ -263,255 +263,255 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout.css",
     "inputFiles": [
-      "MemberInfo/Features/ParlayMaxPayout/Styles/parlay-max-payout.css"
+      "Features/MemberInfo/Features/ParlayMaxPayout/Styles/parlay-max-payout.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout.js",
     "inputFiles": [
-      "MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-helper.js",
-      "MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-alert.js",
-      "MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-service.js",
-      "MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout.js"
+      "Features/MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-helper.js",
+      "Features/MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-alert.js",
+      "Features/MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-service.js",
+      "Features/MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/common.css",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
-      "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist.css"
+      "Features/MemberInfo/assets/styles/common.css",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-media.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-media.css",
     "inputFiles": [
-      "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-media.css"
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-media.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/daterangepicker.js",
-      "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
-      "MemberInfo/assets/scripts/shared/datatable-helper.js",
-      "MemberInfo/assets/scripts/shared/ajax-helper.js",
-      "MemberInfo/assets/scripts/shared/customer-status-helper.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
-      "MemberInfo/Features/MyWatchlist/ReachedThreshold/Scripts/reached-threshold-datatable.js",
-      "MemberInfo/Features/MyWatchlist/ReachedThreshold/Scripts/reached-threshold.js"
+      "Features/MemberInfo/assets/scripts/components/daterangepicker.js",
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/customer-status-helper.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
+      "Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/Scripts/reached-threshold-datatable.js",
+      "Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/Scripts/reached-threshold.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold-datatable.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold-datatable.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/shared/ajax-helper.js"
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reach-history.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reach-history.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/shared/datatable-helper.js",
-      "MemberInfo/assets/scripts/shared/ajax-helper.js",
-      "MemberInfo/Features/MyWatchlist/ReachedThreshold/Scripts/reach-history.js"
+      "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/Scripts/reach-history.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/common.css",
-      "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-settings.css"
+      "Features/MemberInfo/assets/styles/common.css",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-settings.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media.css",
     "inputFiles": [
-      "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-settings-media.css"
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-settings-media.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/my-watchlist-accounts.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/my-watchlist-accounts.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/shared/datatable-helper.js",
-      "MemberInfo/assets/scripts/shared/ajax-helper.js",
-      "MemberInfo/assets/scripts/shared/customer-status-helper.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
-      "MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/edit-setting-popup.js",
-      "MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/my-watchlist-accounts-datatable.js",
-      "MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/my-watchlist-accounts.js"
+      "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/customer-status-helper.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
+      "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/edit-setting-popup.js",
+      "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/my-watchlist-accounts-datatable.js",
+      "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/my-watchlist-accounts.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-presets.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-presets.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/shared/site-helper.js",
-      "MemberInfo/assets/scripts/shared/ajax-helper.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
-      "MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/manage-presets.js"
+      "Features/MemberInfo/assets/scripts/shared/site-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
+      "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/manage-presets.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-global-threshold.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-global-threshold.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/shared/site-helper.js",
-      "MemberInfo/assets/scripts/shared/ajax-helper.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/threshold-inputs-base.js",
-      "MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/manage-global-threshold.js"
+      "Features/MemberInfo/assets/scripts/shared/site-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/threshold-inputs-base.js",
+      "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/manage-global-threshold.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-watchlist-accounts.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-watchlist-accounts.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/single-selection-dropdown.js",
-      "MemberInfo/assets/scripts/shared/site-helper.js",
-      "MemberInfo/assets/scripts/shared/ajax-helper.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/threshold-inputs-base.js",
-      "MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/manage-watchlist-accounts.js"
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/MemberInfo/assets/scripts/shared/site-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/threshold-inputs-base.js",
+      "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/manage-watchlist-accounts.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/components/daterangepicker.js",
-      "MemberInfo/assets/scripts/shared/datatable-helper.js",
-      "MemberInfo/assets/scripts/shared/ajax-helper.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
-      "MemberInfo/Features/MyWatchlist/MyThresholds/Scripts/my-thresholds.js"
+      "Features/MemberInfo/assets/scripts/components/daterangepicker.js",
+      "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
+      "Features/MemberInfo/Features/MyWatchlist/MyThresholds/Scripts/my-thresholds.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds-settings.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds-settings.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/shared/site-helper.js",
-      "MemberInfo/assets/scripts/shared/ajax-helper.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
-      "MemberInfo/Features/MyWatchlist/Shared/Scripts/threshold-inputs-base.js",
-      "MemberInfo/Features/MyWatchlist/MyThresholds/Scripts/my-thresholds-settings.js"
+      "Features/MemberInfo/assets/scripts/shared/site-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/threshold-inputs-base.js",
+      "Features/MemberInfo/Features/MyWatchlist/MyThresholds/Scripts/my-thresholds-settings.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CopyAccount/bundles/copy-account.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/CopyAccount/bundles/copy-account.css",
     "inputFiles": [
-      "MemberInfo/Features/CopyAccount/Assets/Styles/copy-account.css",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
+      "Features/MemberInfo/Features/CopyAccount/Assets/Styles/copy-account.css",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CopyAccount/bundles/copy-account.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/CopyAccount/bundles/copy-account.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/aes.js",
-      "MemberInfo/assets/scripts/encryptor.js",
-      "MemberInfo/Features/CopyAccount/Assets/Scripts/copy-account.js",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js"
+      "Features/MemberInfo/assets/scripts/aes.js",
+      "Features/MemberInfo/assets/scripts/encryptor.js",
+      "Features/MemberInfo/Features/CopyAccount/Assets/Scripts/copy-account.js",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CreateAccount/bundles/create-account.js",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/CreateAccount/bundles/create-account.js",
     "inputFiles": [
-      "MemberInfo/assets/scripts/aes.js",
-      "MemberInfo/Features/CreateAccount/Scripts/quick-introduction.js"
+      "Features/MemberInfo/assets/scripts/aes.js",
+      "Features/MemberInfo/Features/CreateAccount/Scripts/quick-introduction.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CreateAccount/bundles/create-account.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/CreateAccount/bundles/create-account.css",
     "inputFiles": [
-      "MemberInfo/Features/CreateAccount/Styles/quick-introduction.css"
+      "Features/MemberInfo/Features/CreateAccount/Styles/quick-introduction.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/default-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/default-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/member-info-dark.css"
+      "Features/MemberInfo/assets/styles/member-info-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/credit-balance-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/credit-balance-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/credit-balance-dark.css"
+      "Features/MemberInfo/assets/styles/credit-balance-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/win-loss-limit-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/win-loss-limit-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/win-loss-limit-dark.css"
+      "Features/MemberInfo/assets/styles/win-loss-limit-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/problem-account/index-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/index-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/problem-account/index-dark.css"
+      "Features/MemberInfo/assets/styles/problem-account/index-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/problem-account/confirm-add-to-watchlist-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/confirm-add-to-watchlist-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/problem-account/confirm-add-to-watchlist-dark.css"
+      "Features/MemberInfo/assets/styles/problem-account/confirm-add-to-watchlist-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/problem-account/update-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/update-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/problem-account/update-dark.css"
+      "Features/MemberInfo/assets/styles/problem-account/update-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in-dark.css",
     "inputFiles": [
-      "MemberInfo/Features/QRCodeMemberSignIn/Styles/qr-code-member-sign-in-dark.css",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Styles/qr-code-member-sign-in-dark.css",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/assets/bundles/indirect-login-account/indirect-login-account-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/indirect-login-account/indirect-login-account-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/indirect-login-account-dark.css",
-      "MemberInfo/assets/styles/quick-introduction.css"
+      "Features/MemberInfo/assets/styles/indirect-login-account-dark.css",
+      "Features/MemberInfo/assets/styles/quick-introduction.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list-dark.css",
     "inputFiles": [
-      "MemberInfo/Features/DormantAccountList/Styles/dormant-account-list-dark.css"
+      "Features/MemberInfo/Features/DormantAccountList/Styles/dormant-account-list-dark.css"
     ]
   },
   {
     "outputFileName": "wwwroot/bundles/Features/CustomerList/customer-list-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/common-dark.css",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
+      "Features/MemberInfo/assets/styles/common-dark.css",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
       "Features/CustomerList/Styles/customer-list-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout-dark.css",
     "inputFiles": [
-      "MemberInfo/Features/ParlayMaxPayout/Styles/parlay-max-payout-dark.css"
+      "Features/MemberInfo/Features/ParlayMaxPayout/Styles/parlay-max-payout-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/common-dark.css",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
-      "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-dark.css"
+      "Features/MemberInfo/assets/styles/common-dark.css",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-dark.css",
     "inputFiles": [
-      "MemberInfo/assets/styles/common-dark.css",
-      "MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-settings-dark.css"
+      "Features/MemberInfo/assets/styles/common-dark.css",
+      "Features/MemberInfo/Features/MyWatchlist/Shared/Styles/my-watchlist-settings-dark.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/MemberInfo/Features/CopyAccount/bundles/copy-account-dark.css",
+    "outputFileName": "wwwroot/Features/MemberInfo/Features/CopyAccount/bundles/copy-account-dark.css",
     "inputFiles": [
-      "MemberInfo/Features/CopyAccount/Assets/Styles/copy-account-dark.css",
-      "MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
+      "Features/MemberInfo/Features/CopyAccount/Assets/Styles/copy-account-dark.css",
+      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
     ]
   },
   {

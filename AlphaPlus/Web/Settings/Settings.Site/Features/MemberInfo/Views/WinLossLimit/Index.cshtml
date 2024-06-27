@@ -1,0 +1,212 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
+@using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
+@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
+@using AlphaPlus.Settings.MemberInfo.Domain.Models
+@using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
+
+@model WinLossLimitViewModel
+@{
+    ViewBag.Title = "Member Win/Loss Limit";
+}
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/win-loss-limit")
+}
+<div class="page-title">
+    <span class="pull-left">@Resources.MemberWinLossLimit</span>
+</div>
+<form id="win-loss-limit-form" class="form-inline demo-form-inline filter" role="form">
+    <div class="form-group">
+        <select id="dropdown-product">
+            @foreach (var group in Model.GroupProducts)
+            {
+                if (group.HasGroupName)
+                {
+                    <optgroup label="@group.GroupName">
+                        @foreach (var product in group.Products)
+                        {
+                            <option value="@product.ProductName"
+                                    data-product-id="@product.ProductId"
+                                    data-sport-type="@product.SportType"
+                                    data-bet-type="@product.BetType"
+                                    @(Model.UserSelectedProductId == product.ProductId ? " selected=\"selected\"" : string.Empty)
+                                    data-isnested="1">
+                                @product.ProductName
+                                </option>
+                            }
+                    </optgroup>
+                }
+                else
+                {
+                    foreach (var product in group.Products)
+                    {
+                        <option value="@product.ProductName"
+                                data-product-id="@product.ProductId"
+                                data-sport-type="@product.SportType"
+                                data-bet-type="@product.BetType"
+                                @(Model.UserSelectedProductId == product.ProductId ? " selected=\"selected\"" : string.Empty)>
+                            @product.ProductName
+                            </option>
+                        }
+                    }
+                }
+        </select>
+    </div>
+    @if (Model.ViewerLevel.IsSuperLevel())
+    {
+        <div class="form-group">
+            <label>@Resources.SelectMaster</label>
+            <select id="dropdown-master">
+                @if (Model.MasterList.Any())
+                {
+                    foreach (var master in Model.MasterList)
+                    {
+                        <option value="@master.CustId" @(Model.MasterId == master.CustId ? " selected=\"selected\"" : string.Empty)>@master.Username</option>
+                    }
+                }
+                else
+                {
+                    <option value="0">@Resources.NoDataFound</option>
+                }
+            </select>
+        </div>
+    }
+    @if (Model.ViewerLevel.IsMasterOrSuperLevel())
+    {
+        <div class="form-group">
+            <label>@Resources.SelectAgent</label>
+            <select id="dropdown-agent">
+                @if (Model.AgentList.Any())
+                {
+                    if (Model.ViewerLevel.IsSuperLevel())
+                    {
+                        <option value="0">@Resources.AllAgent</option>
+                    }
+
+                    foreach (var agent in Model.AgentList)
+                    {
+                        <option value="@agent.CustId" @(Model.AgentId == agent.CustId ? " selected=\"selected\"" : string.Empty)>@agent.Username</option>
+                    }
+                }
+                else
+                {
+                    <option value="0">@Resources.NoDataFound</option>
+                }
+            </select>
+        </div>
+    }
+    <div class="form-group">
+        <label>@Resources.Username</label>
+        <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username" />
+    </div>
+    @if (Model.IsBBin)
+    {
+        <p><span class="star">@Html.Raw(Resources.BBINNote)</span></p>
+    }
+    @if (Model.IsSabaclub)
+    {
+        <div class="form-group">
+            <label>@Resources.PlayerId</label>
+            <input type="text" id="txt-player-id" name="PlayerId" value="@Model.PlayerId" />
+        </div>
+    }
+    <table id="tbl-report" class="tblRpt tblRpt-bordered tblRpt-hover tablesorter alternative-row-table" data-has-data="@Model.WinLossLimitPage.WinLossLimitDetail.Any()">
+        <thead>
+            <tr>
+                <th><div class="col-no">@Resources.No</div></th>
+                <th class="col-status">@Resources.Status</th>
+                <th class="col-username">@Resources.Username</th>
+                <th class="col-first-name">@Resources.FirstName</th>
+                <th class="col-last-name">@Resources.LastName</th>
+                @if (Model.IsSabaclub)
+                {
+                    <th><div class="col-player-id">@Resources.PlayerId</div></th>
+                }
+                <th><div class="col-credit">@Resources.Credit</div></th>
+                <th><div class="col-balance">@Resources.Balance</div></th>
+                <th><div class="col-auto-daily-reset">@Resources.AutoDailyResetLimit</div></th>
+                <th><div class="col-current-win-loss">@Resources.CurrentWinLossAmount</div></th>
+                @if (Model.IsBBin)
+                {
+                    <th><div class="col-current-win-loss">@Resources.RemainingTransferInAmount</div></th>
+                }
+                <th><div class="col-max-win">@Resources.MaximumWin</div></th>
+                <th><div class="col-win-percent">@Resources.CurrentWinLimit</div></th>
+                <th class="col-max-loss">@Resources.MaximumLoss</th>
+                <th><div class="col-loss-percent">@Resources.CurrentLossLimit</div></th>
+            </tr>
+        </thead>
+        @if (Model.HasData)
+        {
+            int index = (Model.PageIndex - 1) * Model.PageSize + 1;
+            <tbody>
+                @foreach (var winLossLimitDetail in Model.WinLossLimitPage.WinLossLimitDetail)
+                {
+                    <tr class="@BackgroundColorHelper.GetClassNameByAccountStatus(winLossLimitDetail.Enabled, winLossLimitDetail.Closed, winLossLimitDetail.ClosedReason, winLossLimitDetail.Suspended, winLossLimitDetail.Locked, index)">
+                        <td class="text-center">@index</td>
+                        <td class="text-left">@WinLossLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
+                        <td class="text-left" title="@winLossLimitDetail.Username">@winLossLimitDetail.Username</td>
+                        <td class="text-left" title="@winLossLimitDetail.Firstname">
+                            <div class="col-first-name">
+                                @winLossLimitDetail.Firstname
+                            </div>
+                        </td>
+                        <td class="text-left" title="@winLossLimitDetail.Lastname">
+                            <div class="col-last-name">
+                                @winLossLimitDetail.Lastname
+                            </div>
+                        </td>
+                        @if (Model.IsSabaclub)
+                        {
+                            <td class="text-left">@WinLossLimitViewModel.GetPlayerIdText(winLossLimitDetail.PlayerId)</td>
+                        }
+                        <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Credit)</td>
+                        <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Balance)</td>
+                        <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
+                        <td class="text-center">@WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)</td>
+                        @if (Model.IsBBin)
+                        {
+                            <td class="text-center">@WinLossLimitViewModel.GetRemainingTransferInAmount(winLossLimitDetail.ReaminingTransferInAmount, winLossLimitDetail.MaxLossLimit)</td>
+                        }
+                        <td class="text-center">@Model.GetMaxWinLimit(winLossLimitDetail.MaxWinLimit)</td>
+                        <td class="text-center @((winLossLimitDetail.Credit == 0 && winLossLimitDetail.CurrentWinAnmout > 0 || winLossLimitDetail.WinPercent >= 100 || winLossLimitDetail.WinPercent == -2) && !Model.IsBBin ? "negative-value" : "")">
+                            @Model.GetWinPercent(winLossLimitDetail.WinPercent, winLossLimitDetail.CurrentWinAnmout, winLossLimitDetail.Credit, winLossLimitDetail.MaxWinLimit)
+                        </td>
+                        <td class="text-center">@WinLossLimitViewModel.GetMaxLossLimit(winLossLimitDetail.MaxLossLimit)</td>
+                        <td class="text-center @(winLossLimitDetail.LossPercent >= 100 ? "negative-value" : "")">
+                            @WinLossLimitViewModel.GetLossPercent(winLossLimitDetail.MaxLossLimit, winLossLimitDetail.LossPercent)
+                        </td>
+                    </tr>
+                    index++;
+                }
+            </tbody>
+        }
+        else
+        {
+            @NoInformation.Render(Model.NumberOfColumns)
+        }
+        @if (Model.ShowPager)
+        {
+            <tfoot>
+                <tr>
+                    <td colspan="@Model.NumberOfColumns">
+                        <div>
+                            @Pager.Render(Model.PagerViewModel)
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        }
+    </table>
+    @Html.Hidden("UserSelectedProductId", Model.UserSelectedProductId)
+    @Html.Hidden("SportType", Model.SportType)
+    @Html.Hidden("BetType", Model.BetType)
+    @Html.Hidden("MasterId", Model.MasterId)
+    @Html.Hidden("AgentId", Model.AgentId)
+</form>
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit")
+}

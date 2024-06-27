@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../MemberInfo/assets/scripts/components/single-selection-dropdown.ts" />
+﻿/// <reference path="../../../Features/MemberInfo/assets/scripts/components/single-selection-dropdown.ts" />
 'use strict';
 
 interface Window {

@@ -1,0 +1,17 @@
+﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.Requests
+{
+    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
+    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
+    using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using MediatR;
+    using System.Collections.Generic;
+
+    public class PersonalPresetQuery : MemberInfoBaseQuery, IRequest<IEnumerable<PersonalPresetModel>>
+    {
+        public PersonalPresetQuery() : this(null){}
+        
+        public PersonalPresetQuery(IUser viewer) : base(viewer)
+        {
+        }
+    }
+}

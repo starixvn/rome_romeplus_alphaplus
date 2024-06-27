@@ -1,8 +1,8 @@
 ﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
-using AlphaPlus.Settings.Site.Helpers;
 using AlphaPlus.Shared.AppResources.Settings.CustomerList;
 using AlphaPlus.Settings.Site.Features.CustomerList.Models;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {

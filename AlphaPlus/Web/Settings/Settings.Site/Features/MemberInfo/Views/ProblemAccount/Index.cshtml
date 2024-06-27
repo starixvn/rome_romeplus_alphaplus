@@ -1,0 +1,293 @@
+﻿@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.ProblemAccount
+@using AlphaPlus.Settings.MemberInfo.Domain.Models
+@using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.ProductResources
+
+@{
+    Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
+}
+
+@model ProblemAccountReportViewModel
+@{
+    ViewBag.Title = Resources.ProblemAccountList;
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-memberinfo/problem-account-{Model.Query.CustLevel.DisplayName}")
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/problem-account/index")
+}
+
+<div class="page-title">
+    <span class="pull-left">@Resources.ProblemAccountList</span>
+</div>
+<div id="page_main">
+    <div id="page_main">
+        <ul id="nav-tabs" class="nav nav-tabs" role="tablist">
+            @if (Model.Query.CustLevel.IsSuperLevel())
+            {
+                RenderTab(UserLevel.Master, Resources.Master);
+            }
+
+            @if (Model.Query.CustLevel.IsMasterOrSuperLevel())
+            {
+                RenderTab(UserLevel.Agent, Resources.Agent);
+            }
+
+            @{RenderTab(UserLevel.Member, Resources.Member);}
+        </ul>
+        <div class="tab-content">
+            @if (Model.Query.CustLevel.IsSuperLevel())
+            {
+                RenderContent(UserLevel.Master);
+            }
+
+            @if (Model.Query.CustLevel.IsMasterOrSuperLevel())
+            {
+                RenderContent(UserLevel.Agent);
+            }
+
+            @{RenderContent(UserLevel.Member);}
+            <div class="shadow" id="shadow">
+                <div class="output" id="output"></div>
+            </div>
+        </div>
+        <form class="form-inline hide" role="form" id="export-excel-form" action="@Url.Action("Excel")">
+            @Html.Hidden("FromDate", Model.Query.FromDate)
+            @Html.Hidden("ToDate", Model.Query.ToDate)
+            @Html.Hidden("UserSelectedReviewedStatusId", Model.Query.UserSelectedReviewedStatusId)
+            @Html.Hidden("UplineName", Model.Query.UplineName)
+            @Html.Hidden("SearchRoleId", Model.Query.SearchRoleId)
+            @Html.Hidden("UserName", Model.Query.UserName)
+        </form>
+        <form class="hide" id="target" method="get" action="@Url.Action("Update")">
+            @Html.Hidden("Ids", string.Empty)
+            @Html.Hidden("UserNames", string.Empty)
+            @Html.Hidden("RoleId", Model.Query.SearchRoleId)
+        </form>
+    </div>
+</div>
+@Html.AntiForgeryToken()
+@Html.Hidden("TotalColumnMaster", ProblemAccountReportViewModel.TotalColumnMaster)
+@Html.Hidden("TotalColumnAgent", Model.TotalColumnAgent)
+@Html.Hidden("TotalColumnMember", Model.TotalColumnMember)
+@Html.Hidden("CanUpdateAccount", Model.CanUpdateAccount ? "true" : "false")
+@Html.Hidden("SearchRoleId", Model.Query.SearchRoleId)
+@Html.Hidden("getProblemAccountUrl", Url.Action("GetProblemAccounts"))
+@Html.Hidden("NoInformationIsAvailable", Resources.NoInformationIsAvailable)
+@Html.Hidden("markAsReviewedText", Resources.MarkAsReviewed)
+@Html.Hidden("ActorLevel", Model.Query.ActorLevel.Value)
+@Html.Hidden("isMobileView", Model.IsMobileView)
+@Html.Hidden("editSettingText", Resources.EditSetting)
+@Html.Hidden("editMultipleSettingText", Resources.EditMutipleSetting)
+@Html.Hidden("markMultipleAsReviewedText", Resources.MarkMultipleAsReviewed)
+@Html.Hidden("addMultipleToWatchlistText", Resources.AddMultipleToWatchlist)
+@Html.Hidden("addMultipleAccountsToWatchlistText", Resources.AddMultipleAccountsToWatchlist)
+@Html.Hidden("suspendMultipleAccountsText", Resources.SuspendMultipleAccounts)
+@Html.Hidden("suspendAccountsText", Resources.SuspendAccount)
+@Html.Hidden("addToMyWatchlistText", Resources.AddToMyWatchlist)
+@Html.Hidden("suspended-text", Resources.Suspended)
+@Html.Hidden("changeStatusToSuspendText", @ProductResources.ConfirmSuspendedViewModelInCaseSuspendedMemberMessage)
+@Html.Hidden("text-locked", Resources.Locked)
+
+@Html.Hidden("memberInfoUrl", @MicroSites.SettingUrl())
+@Html.Hidden("accountInfoUrl", @MicroSites.SettingUrl())
+
+<div class="modal modal-sm fade" id="edit-popup" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @if (Model.IsMobileView)
+            {
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="Close" id="close-edit-popup">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+            }
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-memberinfo/problem-account")
+    @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/problem-account/index")
+}
+
+@functions
+{
+    void RenderContent(UserLevel level)
+    {
+    <div id="@($"tab{level.DisplayName}")" class="tab-pane fade @(IsActiveTab(level) ? "in active" : string.Empty)" role="tabpanel">
+        @{RenderFilter(level);}
+        @{RenderCheckAll(level);}
+        @{RenderContainer(level);}
+    </div>
+    }
+}
+
+@functions
+{
+    void RenderFilter(UserLevel level)
+    {
+    var levelName = level.DisplayName.ToLower();
+    <div class="filter">
+        <div id="@($"form-{levelName}")" class="form-inline demo-form-inline filter" role="form">
+            @if (Model.IsShowUplineUsername(level.Value))
+            {
+                <div class="form-group">
+                    <label>@level.GetDirectUplineLevel().DisplayName</label>
+                    <input id="@($"txt-uplinename-{level.GetDirectUplineLevel().DisplayName.ToLower()}")" class="control txt-username-nickname" type="text" value="" autocomplete="off" />
+                </div>
+            }
+
+            <div id="daterange-picker-@levelName"
+                 class="daterange-picker"
+                 data-currentdate="@DateTime.Now"
+                 data-mindate="@Model.DateRangePickerViewModel.MinDate.ToShortDateWithSlash()"
+                 data-maxdate="@Model.DateRangePickerViewModel.MaxDate.ToShortDateWithSlash()">
+            </div>
+            <div class="form-group  from-date-box">
+                <label>@Resources.DateNotifiedFrom</label>
+
+                <div class="control date">
+                    <div id="from-date-container"
+                         class="input-group date fromdate">
+                        <input type="text"
+                               id="from-date-@levelName"
+                               name="FromDate"
+                               readonly="readonly"
+                               autocomplete="off"
+                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                               value="@Model.DateRangePickerViewModel.FromDate.ToShortDateWithSlash()" />
+                        <span class="input-group-addon">
+                            <span class="icon-calendar" id="fdate_trigger"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>@Resources.To</label>
+
+                <div class="control date">
+                    <div id="to-date-container"
+                         class="input-group date todate">
+                        <input type="text"
+                               id="to-date-@levelName"
+                               name="ToDate"
+                               readonly="readonly"
+                               autocomplete="off"
+                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                               value="@Model.DateRangePickerViewModel.ToDate.ToShortDateWithSlash()" />
+                        <span class="input-group-addon">
+                            <span class="icon-calendar" id="tdate_trigger"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dropdown-reviewstatus">@Resources.ReviewStatus</label>
+                <select id="dropdown-reviewstatus-@levelName">
+                    @foreach (var status in Model.ReviewedStatusSelectionViewModel.Statuses)
+                    {
+                        <option value="@status.Value" @(status.Selected ? " selected=\"selected\"" : string.Empty)>
+                            @status.Text
+                        </option>
+                    }
+                </select>
+                <input type="hidden" name="UserSelectedReviewedStatusId" id="UserSelectedReviewedStatusId-@levelName" value="@Model.ReviewedStatusSelectionViewModel.UserSelectedReviewedStatusId" />
+            </div>
+
+            <div class="form-group">
+                <input type="text"
+                       id="@($"txt-username-{levelName}")"
+                       name="@($"username-{levelName}")"
+                       class="typeahead"
+                       autocomplete="off"
+                       value="@Model.Query.UserName"
+                       placeholder="@Resources.EnterAccount" />
+
+            </div>
+
+            <div class="form-group">
+                <input id="@($"btn-submit-{levelName}")" class="btn-submit" type="button" value="@Resources.Submit" />
+            </div>
+
+            <div class="form-group">
+                <span id="icon-excel-@levelName" class="icon-excel" title="@Resources.ExportToExcel"></span>
+            </div>
+        </div>
+    </div>
+    }
+}
+
+@functions
+{
+    void RenderCheckAll(UserLevel level)
+    {
+        if (Model.Query.CustLevel.IsNotAgentLevel())
+        {
+            <div class="checkall-section">
+                <button type="button" class="btn-submit" data-placement="right" title="@Resources.MarkMultipleAsReviewed" id="btn-markReviewed-@level.DisplayName.ToLower()" disabled>@Resources.MarkAsReviewed</button>
+            </div>
+        }
+    }
+}
+@functions
+{
+    void RenderContainer(UserLevel level)
+    {
+        var levelName = level.DisplayName.ToLower();
+        var columns = new[]
+        {
+            new { Text = "#", ClassName = string.Empty, Show = true },
+            new { Text = $"<input type='checkbox' class='select-all' id='select-all-{levelName}'/>", ClassName = string.Empty, Show = Model.CanUpdateAccount },
+            new { Text = "<div class='edit-multiple icon-table-edit' id='edit-multiple' data-url='' title='"+@Resources.EditMutipleSetting+"'>", ClassName = string.Empty, Show = Model.Query.CustLevel.IsAgentLevel() && Model.CanUpdateAccount },
+            new { Text = Resources.Username, ClassName = string.Empty, Show = true },
+            new { Text = Resources.Nickname, ClassName = string.Empty, Show = Model.Query.CustLevel.GetDirectDownLineLevel().Is(level) },
+            new { Text = Resources.FirstName, ClassName = string.Empty, Show = true },
+            new { Text = Resources.LastName, ClassName = string.Empty, Show = true },
+            new { Text = Resources.Status, ClassName = string.Empty, Show = true },
+            new { Text = Resources.DateNotified, ClassName = string.Empty, Show = true },
+            new { Text = level.IsMasterLevel()?Resources.ProblemAgentAccounts:Resources.ProblemMemberAccounts, ClassName = string.Empty, Show = !level.IsMemberLevel() },
+            new { Text = Resources.ReviewStatus, ClassName = string.Empty, Show = true }
+        };
+
+    <div id="@($"container-{levelName}")">
+        <table id="@($"tbl-{levelName}")" class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover @($"level-{levelName}")">
+            <thead>
+                <tr>
+                    @foreach (var column in columns)
+                    {
+                        if (column.Show)
+                        {
+                            <th class="@column.ClassName">@Html.Raw(column.Text)</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+}
+}
+
+@functions
+{
+    void RenderTab(UserLevel level, string displayName)
+    {
+        <li @(IsActiveTab(level) ? "class=active" : string.Empty) role="presentation">
+            <a id="@($"tab{level.Value}")" data-toggle="tab" href="@($"#tab{level.DisplayName}")">@displayName</a>
+        </li>
+    }
+}
+
+@functions{
+    public bool IsActiveTab(UserLevel userLevel)
+    {
+        return Model.Query.SearchRoleId == userLevel.Value;
+    }
+}

@@ -1,0 +1,239 @@
+﻿@using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@using AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance
+@using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
+@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
+@using System.Net
+@using Microsoft.AspNetCore.Html
+
+@model AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance.CreditBalanceViewModel
+@{
+    Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Resources.CreditBalance;
+    var pagedCreditBalances = Model.PagedCreditBalances;
+    var enteredSportResult = Model.EnteredSportResult;
+}
+<div class="page-title">
+    <div class="entered-non-entered">
+        @if (enteredSportResult.EnteredSportYesterday.NonEntered > 0)
+        {
+            <div class="icon-non-entered">
+                <div class="text">@DateTime.Now.AddDays(-1).ToMMDDWithSlash(): @Resources.NonEntered</div>
+                <div class="number">@enteredSportResult.EnteredSportYesterday.NonEntered</div>
+                <div class="icon-clock"></div>
+            </div>
+        }
+        else
+        {
+            <div class="icon-entered">
+                <div class="text">@DateTime.Now.AddDays(-1).ToMMDDWithSlash(): @Resources.Entered</div>
+                <div class="icon-check-circle"></div>
+            </div>
+        }
+        <div class="icon-non-entered">
+            <div class="text">@DateTime.Now.ToMMDDWithSlash(): @Resources.NonEntered</div>
+            <div class="number">@enteredSportResult.EnteredSportToday.NonEntered</div>
+            <div class="icon-clock"></div>
+        </div>
+    </div>
+    <div style="clear: both">
+        @Resources.CreditBalance
+        <span id="icon-information" class="icon icon-information-outline"></span>
+    </div>
+</div>
+@using (Html.BeginForm("Index", "CreditBalance", FormMethod.Get, new { id = "creditBalanceForm", @class = "form-inline filter", role = "form" }))
+{
+    <div class="form-group">
+        <label>@Resources.Username</label>
+        <input type="text"
+               name="UserName"
+               class="typeahead"
+               data-provide="typeahead"
+               autocomplete="off"
+               value="@Model.UserName"
+               placeholder="@Resources.EnterUsername" />
+    </div>
+    <div class="form-group">
+        <label>@Resources.Status</label>
+        @Html.DropDownList("StatusId", Model.Status)
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn-submit" id="btn-submit">@Resources.Submit</button>
+    </div>
+    <input type="hidden" value="@Model.CustId" name="@nameof(Model.CustId)" id="autoSuggestionCustId" />
+    <input type="hidden" value="@Model.CustLevelId" name="@nameof(Model.CustLevelId)" />
+}
+<div id="tbl-container">
+    @{ await Html.RenderPartialAsync("~/Features/MemberInfo/Views/CreditBalance/_ColumnsControl.cshtml"); }
+    <table id="tbl-report" class="tblRpt tblRpt-bordered tblRpt-hover alternative-row-table hide">
+        <thead>
+            <tr>
+                <th id="column-no">@Resources.No</th>
+                <th class="column-st">@Resources.Status</th>
+                <th>@Resources.Username</th>
+                <th class="column-fn">@Resources.FirstName</th>
+                <th class="column-ln">@Resources.LastName</th>
+                <th class="column-cd">@Resources.Credit</th>
+                @if (Model.IsViewingMemberList)
+                {
+                    <th class="column-bl">@Resources.Balance</th>
+                    <th class="column-yb">@Resources.YesterdayBalance</th>
+                    <th class="column-bc">@Resources.BetCredit</th>
+                }
+                else
+                {
+                    <th class="column-bl">@Resources.Cash</th>
+                    <th class="column-yb">@Resources.YesterdayCashBalance</th>
+                    <th class="column-bc">@Resources.AvailableCredit</th>
+                }
+                <th class="column-ot">@Resources.Outstanding</th>
+                <th class="column-pta">@Resources.pendingTransfer3rd</th>
+                @if (Model.IsShowDateTimeColumn)
+                {
+                    <th class="column-crd">@Resources.CreatedDate</th>
+                    <th class="column-ll">@Resources.LastLogin</th>
+                }
+                <th class="column-li">@Resources.LoginIP</th>
+                <th class="column-un">@Resources.Username</th>
+            </tr>
+        </thead>
+        @if (pagedCreditBalances.TotalItems > 0)
+        {
+            <tbody>
+                @foreach (var item in pagedCreditBalances.CreditBalances)
+                {
+                    <tr class="@BackgroundColorHelper.GetClassNameByAccountStatus(item.Enabled, item.Closed, item.ClosedReason, item.Suspended, item.Locked, item.RowNumber)">
+                        <td class="text-center">@item.RowNumber</td>
+                        <td class="text-center column-st">@item.Status</td>
+                        <td>@Html.Raw(RenderUsernameColumn(item, pagedCreditBalances.PageSize))</td>
+                        <td class="column-fn">@WebUtility.HtmlEncode(item.FirstName)</td>
+                        <td class="column-ln">@WebUtility.HtmlEncode(item.LastName)</td>
+                        <td class="text-right column-cd">@Html.Raw(RenderCreditColumn(item))</td>
+                        <td class="text-right column-bl">@Html.Raw(RenderBalanceColumn(item))</td>
+                        <td class="text-right column-yb">@Html.Raw(RenderYesterdayBalanceColumn(item))</td>
+                        <td class="text-right column-bc">@Html.Raw(RenderBetCreditColumn(item))</td>
+                        <td class="text-right column-ot">@Html.Raw(renderOutstandingColumn(item))</td>
+                        <td class="text-right column-pta">@Html.Raw(HtmlHelpers.FormatDecimal(item.PendingTransfer3rd))</td>
+                        @if (Model.IsShowDateTimeColumn)
+                        {
+                            <td class="text-center text-sm column-crd">@item.CreatedDate.FormatDateTimeEn12()</td>
+                            <td class="text-center text-sm column-ll">@item.LastLogged.FormatDateTimeEn12()</td>
+                        }
+                        <td class="text-center text-sm column-li">
+                            @if (!string.IsNullOrWhiteSpace(item.IPLogin))
+                            {
+                                <a href="javascript:;" class="link iplink column-loginip">@item.IPLogin</a>
+                            }
+                        </td>
+                        <td class="column-un">@Html.Raw(RenderUsernameColumn(item, pagedCreditBalances.PageSize))</td>
+                    </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+            @NoInformation.Render(15)
+        }
+        @if (pagedCreditBalances.ShowPager)
+        {
+            <tfoot>
+                <tr>
+                    <td colspan="15">
+                        @Pager.Render(new PagerViewModel(pagedCreditBalances.PageIndex, pagedCreditBalances.PageSize, pagedCreditBalances.TotalItems))
+                    </td>
+                </tr>
+            </tfoot>
+        }
+    </table>
+</div>
+<input type="hidden" value="@Model.OldMainRootPath" id="@nameof(Model.OldMainRootPath)" />
+<input type="hidden" value="@Model.CookiePrefix" id="CookiePrefix" />
+<input type="hidden" value="@Model.GivenCreditLink" id="GivenCreditLink" />
+<input type="hidden" value="@Resources.GivenCreditPopupTitle" id="GivenCreditPopupTitle" />
+@await Html.PartialAsync(Model.LegendView, Model)
+
+@{
+    string  RenderUsernameColumn(CreditBalanceItem item, int pageSize)
+    {
+        if (Model.IsViewingMemberList)
+        {
+            return item.UserName;
+        }
+        else
+        {
+            return $"<a href='?custId={item.CustId}&custLevelId={Model.DownlineLevel.Value}&statusId={Model.StatusId}&PageSize={pageSize}' class='link'>{item.UserName}</a>";
+        }
+    }
+    
+    string  RenderCreditColumn(CreditBalanceItem item)
+    {
+        if (Model.CanUpdateAccount)
+        {
+            return $"<a href='javascript:;' class='link creditlink' data-custid='{item.CustId}' data-username='{item.UserName}' data-levelid='{Model.DownlineLevel.Value}'>{HtmlHelpers.FormatDecimal(item.Credit)}</a>";
+        }
+        else
+        {
+            return HtmlHelpers.FormatDecimal(item.Credit);
+        }
+    }
+    
+    string RenderBalanceColumn(CreditBalanceItem item)
+    {
+        if (Model.CanTransferOnBalanceColumn && item.Balance != 0)
+        {
+            return $"<a href='javascript:;' class='link balancelink' data-custid='{item.CustId}'>{HtmlHelpers.FormatDecimal(item.Balance, true)}</a>";
+        }
+        else
+        {
+            return HtmlHelpers.FormatDecimal(item.Balance, true);
+        }
+    }
+    
+    string RenderYesterdayBalanceColumn(CreditBalanceItem item)
+    {
+        if (Model.CanTransferOnYesterdayBalanceColumn && item.Yesterday_Balance != 0)
+        {
+            return $"<a href='javascript:;' class='link yesterdaybalancelink' data-custid='{item.CustId}'>{HtmlHelpers.FormatDecimal(item.Yesterday_Balance, true)}</a>";
+        }
+        else
+        {
+            return HtmlHelpers.FormatDecimal(item.Yesterday_Balance, true);
+        }
+    }
+    
+    string RenderBetCreditColumn(CreditBalanceItem item)
+    {
+        if (Model.IsViewingMemberList)
+        {
+            return $"<a href='{Model.GetMemberBalanceInfoLink(item.UserName)}' class='link betcreditlink'>{HtmlHelpers.FormatDecimal(item.BetCredit)}</a>";
+        }
+        else
+        {
+            return HtmlHelpers.FormatDecimal(item.BetCredit);
+        }
+    }
+    
+    string renderOutstandingColumn(CreditBalanceItem item)
+    {
+        if (Model.CanViewBetListsFromOutstanding)
+        {
+            return $"<a href='{Model.GetRunningBetListLink(item)}' class='link'>{HtmlHelpers.FormatDecimal(item.Outstanding)}</a>";
+        }
+        else
+        {
+            return HtmlHelpers.FormatDecimal(item.Outstanding);
+        }
+    }
+}
+
+
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/credit-balance")
+}
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
+    @StaticResources.AssetScripts.Render("/bundles/site-memberinfo/credit-balance")
+    @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/credit-balance/credit-balance")
+}

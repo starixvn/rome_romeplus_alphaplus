@@ -1,0 +1,91 @@
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount.ViewModels;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
+using Sunplus.Agent.Utilities;
+using Fanex.Cryptography.Aes;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Core;
+using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount
+{
+    public class CreateAccountController : BaseController
+    {
+        private const string HashKeySessionKey = "AlphaPlus.MemberInfo.Site.Features.CreateAccount.CreateAccountController.PasswordHash";
+        private const string IndexPath = "~/Features/MemberInfo/Features/CreateAccount/Views/Index.cshtml";
+
+        private readonly IUser viewer;
+        private readonly Encryptor encryptor;
+        private readonly ICreateAccountService createAccountService;
+        private readonly ISessionManager sessionManager;
+        private readonly IAesService aesService;
+
+        public CreateAccountController(
+            IUser viewer,
+            Encryptor encryptor,
+            ICreateAccountService createAccountService,
+            ISessionManager sessionManager,
+            IAesService aesService)
+        {
+            this.viewer = viewer;
+            this.encryptor = encryptor;
+            this.createAccountService = createAccountService;
+            this.sessionManager = sessionManager;
+            this.aesService = aesService;
+        }
+
+        public async Task<ActionResult> Index()
+        {
+            var limitNewDownlineResult = await createAccountService.CheckAllLimitedRules(
+                   viewer.Id,
+                   viewer.LevelId,
+                   viewer.Name,
+                   viewer.Language);
+
+            return View(IndexPath, new CreateAccountViewModel(limitNewDownlineResult.IsFailed, limitNewDownlineResult.Message, viewer.LevelId, GetHashKey()));
+        }
+
+        private string GetHashKey()
+        {
+            var hashKey = encryptor.RandomString(4);
+            sessionManager.Add(HashKeySessionKey, hashKey);
+
+            return hashKey;
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<ActionResult> Index([FromBody]CreateAccountRequest request)
+        {
+            if (viewer.IsInternal)
+            {
+                return UnAuthorized();
+            }
+
+            var generalInfo = request.GeneralInfo;
+            var rawPassword = aesService.Decrypt(generalInfo.Password, sessionManager.Get<string>(HashKeySessionKey));
+            generalInfo.Password = encryptor.CfsEnCode(rawPassword);
+            generalInfo.UpLineRoleId = viewer.LevelId;
+            generalInfo.Site = viewer.Site;
+            generalInfo.SiteLabel = AppSettings.SiteLabel;
+
+            return Content(await createAccountService.CreateAccount(
+                viewer.Id,
+                viewer.SubAccId,
+                viewer.IP,
+                viewer.Language,
+                request.UIBehavior,
+                generalInfo,
+                request.ProductGroups));
+        }
+
+        public async Task<ActionResult> GetCustomerInfo()
+            => Content(await createAccountService.GetCustomerInfo(viewer.Id, viewer.LevelId, viewer.Language));
+
+        private ActionResult UnAuthorized()
+           => Content(JsonConvert.SerializeObject(Result.CreateErrorResult(Lang.NotAuthorized), new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
+    }
+}

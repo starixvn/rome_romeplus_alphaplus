@@ -2,11 +2,11 @@
 {
     using System.Collections.Generic;
     using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using Helpers;
     using Requests.TransferAllAndClearCredit;
     using Settings.Transfer.API.Models;
     using Settings.Transfer.API.Models.TransferAllAndClearCredit;
     using AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit;
+    using AlphaPlus.Settings.Transfer.API.Helpers;
 
     public class TransferResultViewModel
     {

@@ -1,0 +1,74 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+
+@{
+    Layout = null;
+    string slide1, slide2, lang;
+    lang = AlphaPlus.Core.Models.UserSession.Current.Language;
+
+    var folder = "~/Features/MemberInfo/assets/styles/images/";
+    var imgLang = File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/wwwroot/MemberInfo/assets/styles/images/Slide2.{lang}.png") ?
+        lang : "en-US";
+
+
+    slide1 = $"{folder}Slide2.{imgLang}.png";
+    slide2 = $"{folder}Slide3.{imgLang}.png";
+}
+<!-- Begin Modal -->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>-->
+
+<div class="modal fade" id="beginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog smallModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong class="modal-title">@Lang.viewQuickGuideIndirectLogin</strong></p>
+                <p>@Lang.viewQuickGuideDetail</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-default" data-dismiss="modal" aria-label="Close" id="btnClose"><span aria-hidden="true">@Lang.viewQuickGuideNotNow</span></button>
+                <button class="btn-submit js-let-go-btn" data-toggle="modal"><span>@Lang.viewQuickGuideLetsgo</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large modal -->
+<div class="modal fade" id="quickIntroductionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  largeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="line-height: 40px; margin-left: 10px; font-size: 16px; font-weight: bold">@Lang.viewQuickGuideTitle</span>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="carousel-main" class="carousel slide carousel-fade" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active" style="margin-right: -4px">
+                            <div class="slider"><img src="@Url.Content(slide1)" /></div>
+                        </div>
+                        <div class="item">
+                            <div class="slider"><img src="@Url.Content(slide2)" /></div>
+                        </div>
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="buttons-control">
+                        <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="text prev"><i class="icon-caret-left"></i></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-main" role="button" data-slide="next">
+                            <span class="text next"><i class="icon-caret-right"></i></span>
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                    <!-- /.carousel -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

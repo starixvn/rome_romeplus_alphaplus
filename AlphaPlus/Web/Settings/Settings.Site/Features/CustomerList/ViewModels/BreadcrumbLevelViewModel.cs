@@ -1,5 +1,5 @@
 ﻿using AlphaPlus.Settings.Site.Features.CustomerList.Models;
-using AlphaPlus.Settings.Site.Helpers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {

@@ -1,8 +1,7 @@
 ﻿@using Newtonsoft.Json
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
-@using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
-@using AlphaPlus.Shared.AppResources.Settings.CustomerList
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
 @using AlphaPlus.Shared.AppResources.Settings.CustomerList
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Shared.AppResources.Settings.ProductResources
@@ -379,6 +378,6 @@
         var customerListData = @Html.Raw(JsonConvert.SerializeObject(Model.CustomerListPagingViewModel, Formatting.None));
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/data-table")
-    @StaticResources.RenderScripts("~/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
+    @StaticResources.RenderScripts("~/Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
     @StaticResources.RenderScripts("~/bundles/Features/CustomerList/customer-list")
 }
