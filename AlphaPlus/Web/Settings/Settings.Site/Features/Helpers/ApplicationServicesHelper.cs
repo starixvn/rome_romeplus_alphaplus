@@ -63,7 +63,7 @@ using Fanex.Customer.Client.Configurations;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.SecurityCode.Filters;
 
-namespace AlphaPlus.Settings.Site.Helpers
+namespace AlphaPlus.Settings.Site.Features.Helpers
 {
     public static class ApplicationServicesHelper
     {
@@ -84,7 +84,7 @@ namespace AlphaPlus.Settings.Site.Helpers
 
             var qrCodeMemberLoginApi = new Uri(configuration.GetValue<string>("QRCodeMemberLogin:Api"));
             var qrCodeMemberLoginKey = configuration.GetValue<string>("QRCodeMemberLogin:Key");
-            var qrCodeMemberLoginConfig = AppDomain.CurrentDomain.BaseDirectory + "/QRCodeMemberSiteLoginConfigs/QRCodeMemberSiteLoginConfig.json";
+            var qrCodeMemberLoginConfig = AppDomain.CurrentDomain.BaseDirectory + "/Features/QRCodeMemberSiteLoginConfigs/QRCodeMemberSiteLoginConfig.json";
 
             services
                 .AddHealthChecks();
@@ -204,7 +204,7 @@ namespace AlphaPlus.Settings.Site.Helpers
                 .AddScoped<LogDataAccess, LogDataAccessImpl>()
                 .AddScoped<ViewLogIPService, ViewLogIPServiceImpl>()
                 .AddScoped<RemotingRefWrapper, RemotingRefWrapperImpl>()
-                .AddScoped<ViewLogs.API.Services.CustomerService, CustomerServiceImpl>()
+                .AddScoped<Settings.ViewLogs.API.Services.CustomerService, CustomerServiceImpl>()
                 .AddKeyedScoped<LogService, SettingServiceImpl>("settingLogSvc")
                 .AddKeyedScoped<LogService, StatusServiceImpl>("statusLogSvc")
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")

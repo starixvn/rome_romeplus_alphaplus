@@ -1,4 +1,4 @@
-using AlphaPlus.Settings.Site.Helpers;
+using AlphaPlus.Settings.Site.Features.Helpers;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 
@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"Features/ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables()
