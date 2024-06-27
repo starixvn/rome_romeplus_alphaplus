@@ -4,18 +4,8 @@
     padding-top: 52px;
 }
 
-.feature-list,
-.accordions {
-    position: relative;
-
-    &.translate-from-left {
-        animation: TranslateFromLeft 0.3s;
+@media only screen and (max-device-width: 767px) {
+    .container {
+        padding-top: calculateScale(52px);
     }
-
-    &.translate-from-right {
-        animation: TranslateFromRight 0.3s;
-    }
-}
-.accordions {
-    padding: 0 10px;
 }

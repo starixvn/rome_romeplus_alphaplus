@@ -1,0 +1,29 @@
+@import '../../styles/mixins';
+
+.feature-list {
+    position: relative;
+
+    &.translate-from-left {
+        animation: TranslateFromLeft 0.3s;
+    }
+
+    &.translate-from-right {
+        animation: TranslateFromRight 0.3s;
+    }
+}
+
+.feature-detail {
+    display: block;
+    width: 100%;
+
+    &.translate-from-left {
+        animation: TranslateFromLeft 0.3s;
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    .feature-detail,
+    .feature-list {
+        padding: 0 calculateScale(10px);
+    }
+}

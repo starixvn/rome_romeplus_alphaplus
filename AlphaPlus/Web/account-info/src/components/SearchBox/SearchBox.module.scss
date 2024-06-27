@@ -37,3 +37,39 @@
         cursor: pointer;
     }
 }
+
+@media only screen and (max-device-width: 767px) {
+    .container {
+        height: auto;
+        top: calculateScale(7px);
+        padding: 0 calculateScale(20px);
+
+        .txt-search {
+            height: calculateScale(36px);
+            padding: 0px calculateScale(29px);
+            font-size: calculateScale(12px);
+
+            &:focus {
+                border-bottom: calculateScale(2px) solid #67151b;
+            }
+        }
+
+        .icon-search {
+            top: 50%;
+            transform: translate(0, -50%);
+            right: auto;
+            left: calculateScale(22px);
+            padding: calculateScale(6px);
+            &:before {
+                font-size: calculateScale(12px);
+            }
+            &:hover:after {
+                top: calculateScale(3px);
+                width: calculateScale(26px);
+                height: calculateScale(26px);
+                margin-left: calculateScale(-1px);
+                margin-top: calculateScale(-4px);
+            }
+        }
+    }
+}

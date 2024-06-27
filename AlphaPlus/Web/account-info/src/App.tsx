@@ -9,6 +9,7 @@ import CustomerInfo from './components/CustomerInfo';
 import AccountInfoDesktop from './components/Desktop';
 import DownlineList from './components/DownlineList';
 import LoginInfo from './components/LoginInfo';
+import AccountInfoMobile from './components/Mobile';
 import OnlineList from './components/OnlineList';
 import SearchBox from './components/SearchBox';
 import Setting from './components/Setting';
@@ -38,6 +39,7 @@ function App() {
     const source = CancelToken.source();
     const lastSearchUsernameCacheKey = `${actorName}-lastSearchUsername`;
     const { t } = useTranslation();
+    const [redirectToBalanceInfoPage, setRedirectToBalanceInfoPage] = useState(false);
 
     const getCustomerInfo = (username: string, requestId: string = LoadCustomerInfo.ByClick) => {
         setRequestType(requestId);
@@ -59,6 +61,7 @@ function App() {
                 if (result) {
                     setSearchAccountRoleId(result.RoleId - 1);
                     localStorage.setItem(lastSearchUsernameCacheKey, username);
+                    setRedirectToBalanceInfoPage(loadCustomerInfoByClick);
                 } else {
                     if (resetSetting) {
                         setCustomer(undefined);
@@ -80,6 +83,7 @@ function App() {
                     data.PageIndex = pageIndex;
                     data.StatusId = statusId;
                     setDownlineListData(data);
+                    setRedirectToBalanceInfoPage(false);
                 })
                 .catch(handleError)
                 .finally(() => $.unblockUI?.());
@@ -90,7 +94,10 @@ function App() {
         if (customer && customer.CustId > 0 && !lastTxn) {
             $.blockUI?.();
             SettingsService.GetLastTxn(customer.UserName)
-                .then((lastTxn) => setLastTxn(lastTxn))
+                .then((lastTxn) => {
+                    setLastTxn(lastTxn);
+                    setRedirectToBalanceInfoPage(false);
+                })
                 .catch(handleError)
                 .finally(() => $.unblockUI?.());
         }
@@ -98,7 +105,10 @@ function App() {
 
     const fetchOnlineListFromServer = () => {
         if (customer?.CustId && onlineUsers === undefined) {
-            SettingsService.GetOnlineList(customer.CustId).then((data) => setOnlineUsers(data));
+            SettingsService.GetOnlineList(customer.CustId).then((data) => {
+                setOnlineUsers(data);
+                setRedirectToBalanceInfoPage(false);
+            });
         }
     };
 
@@ -133,8 +143,12 @@ function App() {
 
             SettingsService.GetCustomerAllStatus(CustId, UserName, RoleId, uplineId, uplineName)
                 .then((responseData) => {
+                    if (requestId === LoadCustomerAllStatus.ByClick) {
+                        source.cancel(LoadCustomerAllStatus.ByUpdateStatus);
+                    }
                     setStatusData(responseData.Status);
                     setSettingData(responseData.Settings);
+                    setRedirectToBalanceInfoPage(false);
                 })
                 .catch(handleError)
                 .finally(() => $.unblockUI?.());
@@ -167,6 +181,7 @@ function App() {
             blockId: BlockIds.ContactInfo,
             featureText: t('ContactInfo'),
             iconClass: 'icon-contact-info',
+            pathname: '/contactInfo',
             visible: true,
             children: <ContactInfo />
         },
@@ -174,6 +189,7 @@ function App() {
             blockId: BlockIds.BalanceInfo,
             featureText: t('BalanceInfo'),
             iconClass: 'icon-balance',
+            pathname: '/balanceInfo',
             visible: true,
             children: <BalanceInfo />
         },
@@ -181,6 +197,7 @@ function App() {
             blockId: BlockIds.DownlineList,
             featureText: t('DownlineList'),
             iconClass: 'icon-downline',
+            pathname: '/downlineList',
             visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
             fetchDataFromServer: fetchDownlineListFromServer,
             children: (
@@ -194,6 +211,7 @@ function App() {
             blockId: BlockIds.Status,
             featureText: t('Status'),
             iconClass: 'icon-status',
+            pathname: '/status',
             visible: true,
             fetchDataFromServer: getCustomerStatus,
             children: <Status statusItems={statusData} getCustomerStatus={getCustomerStatus} />
@@ -202,6 +220,7 @@ function App() {
             blockId: BlockIds.Setting,
             featureText: t('Setting'),
             iconClass: 'icon-settings',
+            pathname: '/setting',
             visible: true,
             fetchDataFromServer: getCustomerStatus,
             children: <Setting settingItems={settingData} />
@@ -210,6 +229,7 @@ function App() {
             blockId: BlockIds.LoginInfo,
             featureText: t('LoginInfo'),
             iconClass: 'icon-login',
+            pathname: '/loginInfo',
             visible: params.showLoginInfo,
             fetchDataFromServer: fetchLastTxnFromServer,
             children: <LoginInfo lastTxn={lastTxn} />
@@ -218,6 +238,7 @@ function App() {
             blockId: BlockIds.OnlineList,
             featureText: t('OnlineList'),
             iconClass: 'icon-onlinelist',
+            pathname: '/onlineList',
             visible: true,
             fetchDataFromServer: fetchOnlineListFromServer,
             children: <OnlineList onlineUsers={onlineUsers} />
@@ -239,7 +260,15 @@ function App() {
             >
                 <SearchBox />
                 <CustomerInfo searchCounter={searchCounter} />
-                {customer && <AccountInfoDesktop accordionItems={accordionItems} />}
+                {mobileView ? (
+                    <AccountInfoMobile
+                        customerInfo={customer}
+                        accordionItems={accordionItems}
+                        redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                    />
+                ) : (
+                    customer && <AccountInfoDesktop accordionItems={accordionItems} />
+                )}
             </GlobalContext.Provider>
         </div>
     );

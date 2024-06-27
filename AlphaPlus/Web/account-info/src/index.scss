@@ -167,3 +167,81 @@ hr {
     padding-left: 0;
     padding-right: 0;
 }
+
+@media only screen and (max-device-width: 767px) {
+    body {
+        font-size: calculateScale(var(--font-size));
+    }
+
+    hr {
+        margin-top: calculateScale(4px);
+        margin-bottom: calculateScale(4px);
+    }
+
+    .no-information {
+        padding: calculateScale(4px) calculateScale(10px) 0;
+    }
+
+    .row-info {
+        line-height: calculateScale(30px);
+        padding-left: calculateScale(20px);
+        padding-right: calculateScale(20px);
+    }
+
+    .radio label {
+        padding-left: calculateScale(22px);
+
+        &:before {
+            height: calculateScale(14px);
+            width: calculateScale(14px);
+        }
+
+        &:after {
+            top: calculateScale(3px);
+            left: calculateScale(3px);
+            height: calculateScale(8px);
+            width: calculateScale(8px);
+        }
+    }
+
+    // Customize UI for auto suggestion
+
+    .react-autosuggest__suggestions-list {
+        border: calculateScale(1px) solid #dfdfdf;
+        border-radius: calculateScale(1px);
+        box-shadow: 0 calculateScale(3px) calculateScale(6px) rgba(0, 0, 0, 0.16),
+            0 calculateScale(3px) calculateScale(6px) rgba(0, 0, 0, 0.23);
+    }
+
+    .react-autosuggest__suggestion {
+        padding: calculateScale(8px) calculateScale(10px);
+    }
+
+    /* Customize tooltip*/
+
+    .tippy-tooltip {
+        @include border-radius(calculateScale(2px));
+        font-size: calculateScale(var(--font-size));
+    }
+
+    .tippy-popper .tippy-tooltip.light-theme {
+        min-width: calculateScale(106px);
+    }
+
+    .tippy-popper[x-placement^='top'] .tippy-tooltip.light-theme [x-arrow] {
+        &:after {
+            border-width: calculateScale(7px);
+            margin-left: calculateScale(-7px);
+        }
+
+        &:before {
+            border-width: calculateScale(8px);
+            margin-left: calculateScale(-8px);
+        }
+    }
+
+    .ReactVirtualized__List {
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
+    }
+}

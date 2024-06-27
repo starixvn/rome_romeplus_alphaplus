@@ -22,3 +22,25 @@
         opacity: 0.4;
     }
 }
+
+@media only screen and (max-device-width: 767px) {
+    .status-setting {
+        // custom checkbox
+
+        .checkbox label {
+            padding-left: calculateScale(22px);
+
+            &:before {
+                height: calculateScale(16px);
+                width: calculateScale(16px);
+            }
+
+            &:after {
+                top: calculateScale(5px);
+                left: calculateScale(4px);
+                height: calculateScale(4px);
+                width: calculateScale(9px);
+            }
+        }
+    }
+}

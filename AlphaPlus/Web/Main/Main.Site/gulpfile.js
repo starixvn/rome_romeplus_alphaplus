@@ -1,7 +1,6 @@
 'use strict';
 
 import gulp from 'gulp';
-import { deleteSync } from 'del';
 import concat from 'gulp-concat';
 import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';

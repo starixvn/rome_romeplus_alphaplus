@@ -115,3 +115,33 @@
         }
     }
 }
+
+@media only screen and (max-device-width: 767px) {
+    .block-info {
+        .icon-viewlog {
+            margin-left: calculateScale(4px);
+        }
+
+        .no-information-search {
+            padding: calculateScale(8px) calculateScale(12px);
+        }
+        // User status for business
+        .actived,
+        .closed,
+        .suspended {
+            padding: 0 calculateScale(2px);
+        }
+    }
+
+    .list-button {
+        padding-top: calculateScale(8px);
+        padding-bottom: calculateScale(8px);
+
+        [class^='btn'] {
+            line-height: calculateScale(var(--height-mobile));
+            height: calculateScale(var(--height-mobile));
+            padding-left: calculateScale(6px);
+            padding-right: calculateScale(6px);
+        }
+    }
+}
