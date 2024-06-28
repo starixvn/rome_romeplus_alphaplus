@@ -12,7 +12,7 @@ export default function ContentPage({
 
     return (
         <div className={`${styles['content-page']} ${styles['translate-from-left']}`}>
-            <CustomLink {...{ iconClass, featureText, pathname: '/featureList' }} />
+            <CustomLink {...{ iconClass, featureText, pathname: '/featureList' }} isDetail />
             {children}
         </div>
     );

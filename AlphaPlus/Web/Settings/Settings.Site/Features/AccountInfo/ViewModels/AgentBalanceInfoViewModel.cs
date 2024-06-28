@@ -36,8 +36,7 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 
         public bool ShowMemberMaxCreditLimit => ActorLevel.IsMasterLevel();
 
-        // TODO:
-        // public string MemberMaxCreditLimit => $">={MemMaxCreditMin} {Resources.And} <={GivenCredit}";
+        public string MemberMaxCreditLimit => $">={MemMaxCreditMin} {AlphaPlus.Shared.AppResources.Settings.Resources.And} <={GivenCredit}";
 
         public override decimal GivenCreditMin => creditInfo.AgentCreditMin;
 

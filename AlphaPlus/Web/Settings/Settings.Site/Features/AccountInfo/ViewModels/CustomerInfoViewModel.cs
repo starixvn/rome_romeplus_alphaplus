@@ -132,18 +132,18 @@ namespace AlphaPlus.Settings.Site.Features.AccountInfo.ViewModels
 
         public string ViewLoginIPLink => MicroSites.MainUrl("~/IPInfo");
 
-        // public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel() && canCreateAccount && AppSettings.GetConfigValue("QRCode:Hide") != "1";
+        public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel() && message.CanCreateAccount;
 
-        // public string CreateMemberByQRCodeUrl => IsShowCreateMemberByQRCode ?
-        //     $"{MemberInfoUrl}/QRCodeMemberSignIn?MemberName={UserName}" : string.Empty;
+        public string CreateMemberByQRCodeUrl => IsShowCreateMemberByQRCode ?
+            MicroSites.SettingUrl($"~/QRCodeMemberSignIn?MemberName={UserName}") : string.Empty;
 
-        // public string ShowQRCodeUrl =>
-        //     IsShowCreateMemberByQRCode &&
-        //     customerInfo.LastLogged == DateTime.MinValue &&
-        //     showQRCode ?
-        //         $"{MemberInfoUrl}/QRCodeMemberSignIn/ShowQRCode?FirstName={customerInfo.FirstName}" +
-        //         $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
-        //         $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}" : string.Empty;
+        public string ShowQRCodeUrl =>
+            IsShowCreateMemberByQRCode &&
+            customerInfo.LastLogged == DateTime.MinValue &&
+            showQRCode ?
+                MicroSites.SettingUrl($"~/QRCodeMemberSignIn/ShowQRCode?FirstName={customerInfo.FirstName}" +
+                $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
+                $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}") : string.Empty;
 
         internal static string DefaultStringValueIfNull(string value)
         {

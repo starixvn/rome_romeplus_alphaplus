@@ -168,6 +168,19 @@ hr {
     padding-right: 0;
 }
 
+.checkbox:hover label {
+    color: var(--link-color);
+}
+
+.checkbox.disabled {
+    opacity: 1;
+}
+
+.checkbox.disabled label:before,
+.checkbox.disabled label:after {
+    opacity: 0.4;
+}
+
 @media only screen and (max-device-width: 767px) {
     body {
         font-size: calculateScale(var(--font-size));
@@ -243,5 +256,35 @@ hr {
     .ReactVirtualized__List {
         padding-left: calculateScale(10px);
         padding-right: calculateScale(10px);
+    }
+
+    .checkbox label {
+        padding-left: calculateScale(22px);
+
+        &:before {
+            height: calculateScale(16px);
+            width: calculateScale(16px);
+        }
+
+        &:after {
+            top: calculateScale(5px);
+            left: calculateScale(4px);
+            height: calculateScale(4px);
+            width: calculateScale(9px);
+        }
+    }
+
+    .icon-ic_list {
+        margin-right: calculateScale(8px);
+        line-height: calculateScale(20px);
+        font-size: calculateScale(15px);
+    }
+
+    .icon-ic_list:hover:after {
+        top: calculateScale(-2px);
+        width: calculateScale(26px);
+        height: calculateScale(26px);
+        margin-left: calculateScale(-5px);
+        margin-top: calculateScale(-4px);
     }
 }

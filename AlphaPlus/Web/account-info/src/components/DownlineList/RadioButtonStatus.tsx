@@ -12,7 +12,7 @@ type Props = {
 export default function RadioButtonStatus({ statusId, title, checked, className, value, handleChange }: Props) {
     const id = `${title}-${statusId}`;
     return (
-        <div className={styles['radio']}>
+        <div className={`radio ${styles['radio']}`}>
             <input id={id} type="radio" onChange={() => handleChange(statusId)} checked={checked} />
             <label className="label-text" htmlFor={id}>
                 {title}

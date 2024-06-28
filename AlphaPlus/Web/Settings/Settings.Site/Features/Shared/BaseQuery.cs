@@ -43,6 +43,8 @@ namespace AlphaPlus.Settings.Site.Features.Shared
 
         public bool AllowTransfer => viewer.CanTransfer;
 
+        public bool CanCreateAccount => viewer.SubPageAccess.CreateAccount;
+
         public bool CanUpdateAccount => viewer.CanUpdateAccount;
 
         public bool AllowedTotalBalanceTransfer => viewer.IsAllowedTotalBalanceTransfer;

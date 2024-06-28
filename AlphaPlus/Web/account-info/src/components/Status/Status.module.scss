@@ -8,39 +8,16 @@
         line-height: 20px;
         margin: 6px 0;
     }
-
-    .checkbox:hover label {
-        color: var(--link-color);
-    }
-
-    .checkbox.disabled {
-        opacity: 1;
-    }
-
-    .checkbox.disabled label:before,
-    .checkbox.disabled label:after {
-        opacity: 0.4;
-    }
 }
 
 @media only screen and (max-device-width: 767px) {
     .status-setting {
-        // custom checkbox
+        padding-left: calculateScale(10px);
+        padding-right: calculateScale(10px);
 
-        .checkbox label {
-            padding-left: calculateScale(22px);
-
-            &:before {
-                height: calculateScale(16px);
-                width: calculateScale(16px);
-            }
-
-            &:after {
-                top: calculateScale(5px);
-                left: calculateScale(4px);
-                height: calculateScale(4px);
-                width: calculateScale(9px);
-            }
+        [class^='col'] {
+            line-height: calculateScale(20px);
+            margin: calculateScale(6px) 0;
         }
     }
 }

@@ -19,7 +19,7 @@ export default function CustomLink({ iconClass, pathname, featureText, isDetail 
                 pathname,
                 state: { addAnimation: true }
             }}
-            className={styles['custom-link']}
+            className={`${styles['custom-link']} ${isDetail ? styles.detail : ''}`}
         >
             <span className={iconClass} />
             {featureText}

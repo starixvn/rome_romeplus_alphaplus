@@ -54,6 +54,10 @@
         height: calculateScale(36px);
         line-height: calculateScale(36px);
 
+        &.detail::after {
+            content: '\E93F';
+        }
+
         &:after {
             content: '\E942';
             top: calculateScale(-2px);
@@ -70,6 +74,12 @@
             line-height: calculateScale(24px);
             transform: translate(0, -50%);
             left: calculateScale(8px);
+        }
+
+        .feature-item-nav {
+            display: inline-block;
+            float: right;
+            text-transform: capitalize;
         }
     }
 }
