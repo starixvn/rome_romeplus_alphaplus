@@ -31,6 +31,7 @@ export default interface Customer {
     ViewLogLink: string;
     IsShowCreateMemberByQRCode: boolean;
     CreateMemberByQRCodeUrl: string;
+    ShowQRCodeUrl: string;
     Buttons: Button[];
     BalanceInfo: BalanceInfo;
     LoginInfo: LoginInfoModel;

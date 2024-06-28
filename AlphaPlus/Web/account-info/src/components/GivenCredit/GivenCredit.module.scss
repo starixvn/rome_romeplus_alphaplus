@@ -79,7 +79,7 @@
     }
 }
 
-@media only screen and (max-device-width: var(--screen-device-lower768)) {
+@media only screen and (max-device-width: 767px) {
     body {
         font-size: calculateScale(var(--font-size));
     }

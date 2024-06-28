@@ -33,3 +33,10 @@ export const formatNumber = (value: number) => {
 
     return number;
 };
+
+export const closeLeftPanelOnMobile = () => {
+    const closeIconElement = window.parent.document.getElementById('closeIconOnMobile');
+    if (closeIconElement) {
+        closeIconElement.click();
+    }
+};

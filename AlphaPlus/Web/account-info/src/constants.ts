@@ -29,6 +29,7 @@ declare global {
     interface Window {
         alpha: {
             urls: { [key: string]: string };
+            core: any;
         };
         $: JQueryStatic;
         ageWnd: any;

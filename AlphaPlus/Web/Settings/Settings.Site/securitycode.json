@@ -24,7 +24,9 @@
             "AutoTransfer/UpdateSchedule",
             "AutoTransfer/UpdateMultipleAutoTransfer",
             "SubAccount/Add",
-            "SubAccount/UpdatePageAccess"
+            "SubAccount/UpdatePageAccess",
+            "AccountInfo/GivenCredit",
+            "AccountInfo/UpdateGivenCredit"
         ],
         "BetListsPaths": [],
         "StatementPaths": [],

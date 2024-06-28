@@ -181,6 +181,25 @@ hr {
     opacity: 0.4;
 }
 
+.icon-qr-code {
+    display: inline-block;
+    text-transform: uppercase;
+    margin-right: 7px;
+    font-size: 12px;
+    width: 16px !important;
+    height: 16px !important;
+
+    &:hover {
+        background-color: #ddd;
+        color: var(--text-color);
+    }
+
+    span {
+        padding-left: 10px;
+        font-family: Roboto, Arial, Tahoma, sans-serif !important;
+    }
+}
+
 @media only screen and (max-device-width: 767px) {
     body {
         font-size: calculateScale(var(--font-size));
@@ -286,5 +305,14 @@ hr {
         height: calculateScale(26px);
         margin-left: calculateScale(-5px);
         margin-top: calculateScale(-4px);
+    }
+
+    .icon-qr-code {
+        font-size: calculateScale(12px);
+        padding: 0 !important;
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 10px !important;
+        margin-left: 6px !important;
     }
 }

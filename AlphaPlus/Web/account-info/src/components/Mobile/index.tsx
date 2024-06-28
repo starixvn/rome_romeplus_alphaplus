@@ -51,7 +51,6 @@ export default class AccountInfoMobile extends React.Component<Props, State> {
     render() {
         const { redirectToBalanceInfoPage, redirectToFeatureList } = this.state;
         const { accordionItems, customerInfo } = this.props;
-        console.log(redirectToFeatureList);
 
         const routePropsArray: any[] = [
             {
