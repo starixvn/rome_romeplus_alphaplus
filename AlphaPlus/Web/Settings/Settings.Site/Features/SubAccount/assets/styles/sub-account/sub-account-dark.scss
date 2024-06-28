@@ -62,10 +62,11 @@ input[type="text"], input[type="password"] {
     width: 250px;
     height: 28px;
     line-height: 28px;
-    border: none;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    margin: 2px;
     padding-left: 8px;
     padding-right: 8px;
-    margin-left: 8px;
     appearance: none;
     border-radius: 1px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 1px;
