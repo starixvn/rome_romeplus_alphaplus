@@ -1,5 +1,21 @@
 using Fanex.Result.Core.Sportsbook.DTO;
+using RazorEngine.Compilation.ImpromptuInterface.Dynamic;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.Normal;
 
-public record ResultDetailModel(string Html, Sportsbook Match = null);
+public class ResultDetailModel
+{
+    public ResultDetailModel(string html) : this(html, new List<Sportsbook>())
+    {
+    }
+
+    public ResultDetailModel(string html, IEnumerable<Sportsbook> matchs)
+    {
+        Html = html;
+        Matchs = matchs;
+    }
+
+    public string Html { get; set; }
+
+    public IEnumerable<Sportsbook> Matchs { get; set; }
+}

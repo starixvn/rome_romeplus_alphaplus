@@ -1,3 +1,4 @@
+using AlphaPlus.BetLists.LastBets;
 using AlphaPlus.Results.Features.Normal;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using Fanex.Result.Core.Base;
@@ -81,7 +82,7 @@ public class SportsbookResultService(
         {
             return null;
         }
-
+        var sportsbooks = new List<Sportsbook> { sportsbook };
         var resultSetting = new ResultSetting
         {
             SportType = (SportType)message.SportId,
@@ -94,9 +95,9 @@ public class SportsbookResultService(
             HighlightWinnerTeam = true
         };
         var html = message.IsViewResultFromBetList
-            ? resultEngineAdapter.HtmlParser([sportsbook], resultSetting).Replace("original-title", " title ")
+            ? resultEngineAdapter.HtmlParser(sportsbooks, resultSetting).Replace("original-title", " title ")
             : resultEngineAdapter.HtmlGameDetailParser(sportsbook, resultSetting).Replace("original-title", " title ");
 
-        return new ResultDetailModel(html, sportsbook);
+        return new ResultDetailModel(html, sportsbooks);
     }
 }

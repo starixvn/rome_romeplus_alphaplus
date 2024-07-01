@@ -41,7 +41,7 @@ public class ResultServiceFactory(
                 return new Happy5ResultService(options, numberGameService, resultEngineAdapter);
 
             case SportTypeConstants.AllBet:
-                return new AllBetCasinoResultService();
+                return new AllBetCasinoResultService(options);
 
             case SportTypeConstants.SAGaming:
                 return new SAGamingResultService();

@@ -96,12 +96,12 @@ public class NormalResultHandler(
         var leagueId = message.LeagueId;
         var leagueGroupId = 0;
         var html = string.Empty;
-        var resultDetails = await CreateProductResultService(message).GetResultDetails(message);
-
+        var resultDetails = await CreateProductResultService(message).GetResultDetails(message);    
         if (resultDetails != null)
         {
-            leagueId = resultDetails.Match.LeagueId;
-            leagueGroupId = resultDetails.Match.LeagueGroupId;
+            var firstDetail = resultDetails.Matchs.FirstOrDefault();
+            leagueId = firstDetail == null ? message.LeagueId : firstDetail.LeagueId;
+            leagueGroupId = firstDetail == null ? 0 : firstDetail.LeagueGroupId;
             html = resultDetails.Html;
         }
 

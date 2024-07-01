@@ -60,29 +60,23 @@ function copyImages() {
 function copyAllbetImages() {
     return gulp
         .src('assets/styles/results/fanex.result/Allbet/template/**/*')
-        .pipe(gulp.dest('wwwroot/bundles/images/results/Allbet/template'));
-}
-
-function copyAllbetImages2() {
-    return gulp
-        .src('assets/styles/results/fanex.result/Allbet/css/images/**/*')
-        .pipe(gulp.dest('wwwroot/bundles/results/images'));
+        .pipe(gulp.dest('wwwroot/bundles/results/Allbet/template'));
 }
 
 function copySAGamingImages() {
     return gulp
         .src('assets/styles/results/fanex.result/SAGaming/template/**/*')
-        .pipe(gulp.dest('wwwroot/bundles/images/results/SAGaming/template'));
+        .pipe(gulp.dest('wwwroot/bundles/results/SAGaming/template'));
 }
 
 function copySexyGamingImages() {
     return gulp
         .src('assets/styles/results/fanex.result/SexyGaming/template/**/*')
-        .pipe(gulp.dest('wwwroot/bundles/images/results/SexyGaming/template'));
+        .pipe(gulp.dest('wwwroot/bundles/results/SexyGaming/template'));
 }
 
 function copyWMImages() {
-    return gulp.src('assets/styles/results/fanex.result/WM/**/*').pipe(gulp.dest('wwwroot/bundles/images/results/WM'));
+    return gulp.src('assets/styles/results/fanex.result/WM/**/*').pipe(gulp.dest('wwwroot/bundles/results/WM'));
 }
 
 function compileJs() {
@@ -120,7 +114,6 @@ gulp.task(
             minJs,
             copyImages,
             copyAllbetImages,
-            copyAllbetImages2,
             copySAGamingImages,
             copySexyGamingImages,
             copyWMImages

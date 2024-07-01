@@ -23,4 +23,6 @@ public class AppSettings
     public int BetListMaxTotalRowView { get; init; }
 
     public int BetListMaxTotalRowExportExcel { get; init; }
+
+    public string AllbetResultImagePath { get; init; }
 }

@@ -1,10 +1,13 @@
+
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using Fanex.Result.Core.AllBetCasino;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.Normal;
 
-public class AllBetCasinoResultService(IAllbetResultBuilder resultBuilder = null) : IProductResultService
+public class AllBetCasinoResultService(IOptions<AppSettings> options) : IProductResultService
 {
-    private readonly IAllbetResultBuilder resultBuilder = resultBuilder ?? new AllbetResultBuilder();
+    private readonly IAllbetResultBuilder resultBuilder = new AllbetResultBuilder(new AllbetConfigs() { ImagePath = options.Value.AllbetResultImagePath });
 
     public Task<string> GetResult(NormalResultQuery message)
     {
