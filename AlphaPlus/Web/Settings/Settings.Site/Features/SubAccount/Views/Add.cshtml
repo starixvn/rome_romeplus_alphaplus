@@ -9,19 +9,19 @@
         <table class="tblPop width-100per">
             <tr>
                 <td>Username</td>
-                <td>@Model.Username</td>
+                <td>@Model.Username @Html.DropDownList("FirstOptions.Value", Model.FirstOptions) @Html.DropDownList("NextOptions.Value", Model.NextOptions)</td>
             </tr>
             <tr>
                 <td>Password</td>
-                <td><input type="password" id="txtPassword" /></td>
+                <td><input type="password" id="txtPwd" /></td>
             </tr>
             <tr>
                 <td>Firstname</td>
-                <td><input type="text" value="@Model.Firstname" id="txtFirstname" /></td>
+                <td><input type="text" value="@Model.Firstname" id="txtFname" /></td>
             </tr>
             <tr>
                 <td>Lastname</td>
-                <td><input type="text" value="@Model.Lastname" id="txtLastname" /></td>
+                <td><input type="text" value="@Model.Lastname" id="txtLname" /></td>
             </tr>
         </table>
         <div>Account Permission</div>
@@ -37,7 +37,8 @@
             <tbody>
                 <tr>
                     <td class="c">
-                        <div data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission"></div>
+                        <div class="MemInfo" data-subaccid="@Model.SubAccId"
+                                data-pageaccess="@Model.MemberInfoPermission" >@Model.GetPermission()</div>
                     </td>
                     <td class="c"><input id="@(Model.SubAccId + "-D")" type="checkbox" class="pageaccess"
                             data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
@@ -54,5 +55,22 @@
         </table>
         <div><input type="button" id="btnAdd" class="btnSubmit" value="Add "></div>
         @Html.AntiForgeryToken()
+        <ul id="Popup" class="divMenuPopup" style="display: none;">
+            <li class="group">
+                <input type="radio" name="rdPermission" id="None" data-pageaccess="">
+                <label for="pNone">None</label>
+            </li>
+            <li class="group">
+                <input type="radio" name="rdPermission" id="View" data-pageaccess="[H]">
+                <label for="pView">View</label>
+            </li>
+            <li class="group">
+                <input type="radio" name="rdPermission" id="UpdateView" data-pageaccess="[B][H]">
+                <label for="pUpdateView">Update</label>
+            </li>
+            <li class="group"><input type="radio" name="rdPermission" id="FullControl" data-pageaccess="[A][B][H]">
+                <label for="pFullControl">Full Control</label>
+            </li>
+        </ul>
     </main>
 </div>

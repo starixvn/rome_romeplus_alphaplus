@@ -58,6 +58,9 @@ class SubAccount {
         this.$("#btn-reset").click(() => {
             this.Reset();
         });
+        this.$('.MemInfo').click((item) => {
+            this.OpenAddPopup(item);
+        });
     };
 
     Add = () => {
@@ -159,6 +162,61 @@ class SubAccount {
         });
     };
 
+    AddSubAccount = (subAccId: number, item: any) => {
+        this.$.blockUI();
+
+        var pageAccess = this.$(item.currentTarget).data('pageaccess');
+
+        if (this.$('#' + subAccId + '-D').is(':checked')) {
+            pageAccess += '[D]';
+        }
+
+        if (this.$('#' + subAccId + '-E').is(':checked')) {
+            pageAccess += '[E]';
+        }
+
+        if (this.$('#' + subAccId + '-L').is(':checked')) {
+            pageAccess += '[L]';
+        }
+
+        if (this.$('#' + subAccId + '-C').is(':checked')) {
+            pageAccess += '[C]';
+        }
+
+        if (this.$('#' + subAccId + '-G').is(':checked')) {
+            pageAccess += '[G]';
+        }
+
+        var data = {
+            first: this.$("#FirstOptions").val(),
+            next: this.$("#NextOptions").val(),
+            firstName: this.$("#Firstname").val(),
+            lastName: this.$("#Lastname").val(),
+            pageAccess: pageAccess
+        };
+
+        var updateUrl = '/settings/SubAccount/Add?' + this.$.param(data);
+
+        this.$.ajax({
+            headers: {
+                RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            url: updateUrl,
+            type: "POST",
+            success: (result) => {
+                if (result && result.Code !== 0) {
+                    alert((result && result.Message) || 'Unexpected error occurs!');
+                }
+
+                location.reload();
+            },
+            complete: () => {
+                this.$.unblockUI();
+            }
+        });
+    };
+
     OpenUpdatePopup = (evt: any) => {
         var currentPerm = this.$(evt.currentTarget).data('pageaccess');
         switch (currentPerm) {
@@ -182,6 +240,53 @@ class SubAccount {
         this.$('input[type=radio]').change((item) => {
             var subAccId = this.$(evt.currentTarget).data('subaccid');
             this.UpdatePageAccess(subAccId, item);
+        });
+
+        var popup = this.$('#Popup');
+        popup.css({
+            top: evt.clientY + 'px',
+            left: evt.clientX + 'px',
+            display: 'block',
+            position: 'absolute'
+        });
+        var timerId = setTimeout(() => {
+            popup.hide(100);
+        }, 2000);
+
+        popup.on('mouseover', () => {
+            clearTimeout(timerId);
+        });
+
+        popup.on('mouseout', () => {
+            timerId = setTimeout(() => {
+                popup.hide(100);
+            }, 100);
+        });
+    };
+
+    OpenAddPopup = (evt: any) => {
+        var currentPerm = this.$(evt.currentTarget).data('pageaccess');
+        switch (currentPerm) {
+            case '[H]':
+                this.$('#View').prop('checked', true);
+                break;
+
+            case '[B][H]':
+                this.$('#UpdateView').prop('checked', true);
+                break;
+
+            case '[A][B][H]':
+                this.$('#FullControl').prop('checked', true);
+                break;
+
+            default:
+                this.$('#None').prop('checked', true);
+                break;
+        }
+
+        this.$('#btnAdd').click((item) => {
+            var subAccId = this.$(evt.currentTarget).data('subaccid');
+            this.AddSubAccount(subAccId, item);
         });
 
         var popup = this.$('#Popup');
