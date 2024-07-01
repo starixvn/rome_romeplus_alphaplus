@@ -10,7 +10,7 @@ public class AppSettings
 
     public bool EnableBetsListMonitoring { get; init; }
 
-    public int[] UsersAlwaysAllowAccessBetsListMonitoring { get; init; }
+    public HashSet<int> UsersAlwaysAllowAccessBetsListMonitoring { get; init; }
 
     public int RunningMatchCacheTime { get; init; }
 
@@ -18,7 +18,7 @@ public class AppSettings
 
     public byte SettingStatus { get; init; }
 
-    public int[] ProductOfferProductDetail { get; init; }
+    public HashSet<int> ProductOfferProductDetail { get; init; }
 
     public int BetListMaxTotalRowView { get; init; }
 

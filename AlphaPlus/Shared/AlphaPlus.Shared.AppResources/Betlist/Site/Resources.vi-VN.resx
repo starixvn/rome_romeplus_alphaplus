@@ -132,6 +132,12 @@
   <data name="AllEvents" xml:space="preserve">
     <value>Tất cả sự kiện</value>
   </data>
+  <data name="Apr" xml:space="preserve">
+    <value>Th04</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>Th08</value>
+  </data>
   <data name="Away" xml:space="preserve">
     <value>Đội Khách</value>
   </data>
@@ -189,6 +195,9 @@
   <data name="DeadBall" xml:space="preserve">
     <value>Chưa bắt đầu</value>
   </data>
+  <data name="Dec" xml:space="preserve">
+    <value>Th12</value>
+  </data>
   <data name="DrawNoBet" xml:space="preserve">
     <value>Hòa Không Tính</value>
   </data>
@@ -209,6 +218,9 @@
   </data>
   <data name="FTDotOSlashE" xml:space="preserve">
     <value>Tổng Ba Banh Lẻ/Chẵn</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>Th02</value>
   </data>
   <data name="FirstGoal" xml:space="preserve">
     <value>Bàn thắng đầu tiên</value>
@@ -303,6 +315,15 @@
   <data name="HomeSlashAway" xml:space="preserve">
     <value>Đội Nhà/Đội Khách</value>
   </data>
+  <data name="Jan" xml:space="preserve">
+    <value>Th01</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>Th07</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>Th06</value>
+  </data>
   <data name="Keno" xml:space="preserve">
     <value>RNG Keno</value>
   </data>
@@ -323,6 +344,12 @@
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Trực tiếp</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>Th03</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Th05</value>
   </data>
   <data name="MixParlay" xml:space="preserve">
     <value>Cá cược tổng hợp</value>
@@ -357,6 +384,9 @@
   <data name="Note" xml:space="preserve">
     <value>Lưu ý</value>
   </data>
+  <data name="Nov" xml:space="preserve">
+    <value>Th11</value>
+  </data>
   <data name="NumberGame" xml:space="preserve">
     <value>Number Game</value>
   </data>
@@ -377,6 +407,9 @@
   </data>
   <data name="OSlashU" xml:space="preserve">
     <value>Tài/Xỉu</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>Th10</value>
   </data>
   <data name="OddSlashEven" xml:space="preserve">
     <value>Lẻ/Chẵn</value>
@@ -473,6 +506,9 @@
   </data>
   <data name="SelectedEvents" xml:space="preserve">
     <value>Sự Kiện Đã Chọn</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>Th09</value>
   </data>
   <data name="ShowAllLeagues" xml:space="preserve">
     <value>Tất cả Giải</value>

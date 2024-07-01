@@ -1,4 +1,4 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Reports.Features.Legends;
 using MediatR;
 using AlphaPlus.Reports.Features.Shared.Models;

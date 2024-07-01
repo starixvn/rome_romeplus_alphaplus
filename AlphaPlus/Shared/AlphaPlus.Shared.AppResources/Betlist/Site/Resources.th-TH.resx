@@ -132,6 +132,12 @@
   <data name="AllEvents" xml:space="preserve">
     <value>ทุกการแข่งขัน</value>
   </data>
+  <data name="Apr" xml:space="preserve">
+    <value>เมษา</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>สิงหา</value>
+  </data>
   <data name="Away" xml:space="preserve">
     <value>ทีมเยือน</value>
   </data>
@@ -189,6 +195,9 @@
   <data name="DeadBall" xml:space="preserve">
     <value>เกมส์ไม่สด</value>
   </data>
+  <data name="Dec" xml:space="preserve">
+    <value>ธันวา</value>
+  </data>
   <data name="DrawNoBet" xml:space="preserve">
     <value>Draw No Bet</value>
   </data>
@@ -209,6 +218,9 @@
   </data>
   <data name="FTDotOSlashE" xml:space="preserve">
     <value>คู่คี่ เต็มเวลา</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>กุมภา</value>
   </data>
   <data name="FirstGoal" xml:space="preserve">
     <value>ประตูแรก</value>
@@ -303,6 +315,15 @@
   <data name="HomeSlashAway" xml:space="preserve">
     <value>เจ้าบ้าน/ ทีมเยือน</value>
   </data>
+  <data name="Jan" xml:space="preserve">
+    <value>มกรา</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>กรกฎา</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>มิถุนา</value>
+  </data>
   <data name="Keno" xml:space="preserve">
     <value>คีโน</value>
   </data>
@@ -323,6 +344,12 @@
   </data>
   <data name="LiveGame" xml:space="preserve">
     <value>Live Game</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>มีนา</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>พฤษภา</value>
   </data>
   <data name="MixParlay" xml:space="preserve">
     <value>บอลชุดผสม</value>
@@ -357,6 +384,9 @@
   <data name="Note" xml:space="preserve">
     <value>หมายเหตุ</value>
   </data>
+  <data name="Nov" xml:space="preserve">
+    <value>พฤศจิกา</value>
+  </data>
   <data name="NumberGame" xml:space="preserve">
     <value>เกมหมายเลข</value>
   </data>
@@ -377,6 +407,9 @@
   </data>
   <data name="OSlashU" xml:space="preserve">
     <value>สูง / ต่ำ</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>ตุลา</value>
   </data>
   <data name="OddSlashEven" xml:space="preserve">
     <value>คู่/คี่</value>
@@ -473,6 +506,9 @@
   </data>
   <data name="SelectedEvents" xml:space="preserve">
     <value>เลื่อกการแข่งขันต่างๆ</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>กันยา</value>
   </data>
   <data name="ShowAllLeagues" xml:space="preserve">
     <value>ลีก ทั้งหมด</value>

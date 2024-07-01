@@ -29,8 +29,6 @@ public interface IUser
 
     bool IsEnabledJackpot { get; }
 
-    bool HasPermissionOnProduct(int productId);
-
     DateTime LimitedDateToShowInfo { get; }
 
     bool AutoFollowBetIsDummyAgent { get; }
@@ -83,8 +81,6 @@ public class User(IUserSession userSession) : IUser
                 : products.Any();
         }
     }
-
-    public bool HasPermissionOnProduct(int productId) => UserPermission.HasPermissionOnProduct(productId);
 
     public DateTime LimitedDateToShowInfo => userSession.GetProperty<DateTime>(CustomerDatelimit);
 

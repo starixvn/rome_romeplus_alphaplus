@@ -1,3 +1,5 @@
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
@@ -10,7 +12,7 @@ public class WinLossAnalysisChartQuery : DefaultDateRangeQuery, IRequest<WinLoss
 
     public WinLossAnalysisChartQuery() : base()
     {
-        var today = DateTime.Today;
+        var today = SystemTime.Today;
         if (today.IsEndOfMonth())
         {
             FromDate = today.AddMonths(-2).FirstDayOfMonth();

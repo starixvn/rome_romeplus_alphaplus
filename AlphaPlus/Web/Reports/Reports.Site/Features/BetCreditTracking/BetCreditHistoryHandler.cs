@@ -1,6 +1,6 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using MediatR;
 using AlphaPlus.Shared.AppResources.Report;
 

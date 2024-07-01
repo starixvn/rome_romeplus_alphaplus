@@ -1,4 +1,4 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossAnalysis;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;

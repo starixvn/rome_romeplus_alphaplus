@@ -1,5 +1,5 @@
 using System.Text;
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 

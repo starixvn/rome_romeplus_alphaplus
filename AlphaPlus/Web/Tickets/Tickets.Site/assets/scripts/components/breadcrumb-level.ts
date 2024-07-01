@@ -42,10 +42,7 @@
         this.onClick && this.onClick($this, { custId, custName, custLevelId });
     }
 
-    getBreadcrumbLevels(custLevelId = 0): string {
-        const breadcrumbLevels = custLevelId
-            ? this.breadcrumbs.filter((item) => item.custLevelId >= custLevelId)
-            : this.breadcrumbs;
-        return breadcrumbLevels.length ? JSON.stringify(breadcrumbLevels) : '';
+    getBreadcrumbLevels(custLevelId = 0) {
+        return custLevelId ? this.breadcrumbs.filter((item) => item.custLevelId >= custLevelId) : this.breadcrumbs;
     }
 }

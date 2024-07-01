@@ -135,13 +135,13 @@
 
     getCheckedValues() {
         const productsAndResources = {
-            userSelectedProductIds: this.$dropdownProduct.fanexMultiSelect('getCheckedValues').join(','),
-            userSelectedResourceIds: this.$dropdownProductDetail
+            productIds: this.$dropdownProduct.fanexMultiSelect('getCheckedValues').join(','),
+            resourceIds: this.$dropdownProductDetail
                 ? this.$dropdownProductDetail.fanexMultiSelect('getCheckedValues').join(',')
                 : undefined
         };
 
-        this.$dropdownProduct.fanexMultiSelect('addError', productsAndResources.userSelectedProductIds.length === 0);
+        this.$dropdownProduct.fanexMultiSelect('addError', productsAndResources.productIds.length === 0);
         return productsAndResources;
     }
 }

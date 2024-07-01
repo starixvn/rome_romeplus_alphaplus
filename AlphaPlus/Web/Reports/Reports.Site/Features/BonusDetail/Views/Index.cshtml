@@ -1,7 +1,8 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Core.Extensions
 @using AlphaPlus.Core.Helpers
-@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Core.Utils;
 @using AlphaPlus.Reports.Features.BonusDetail
 @using AlphaPlus.Reports.Site
 @using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
@@ -318,7 +319,7 @@
                                         <input type="text" id="payment-date" name="paymentDate" readonly="readonly"
                                             autocomplete="off"
                                             class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
-                                            value="@DateTime.Today.ToShortDateWithSlash()" />
+                                            value="@SystemTime.Today.ToShortDateWithSlash()" />
                                         <span class="input-group-addon">
                                             <label class="icon-calendar" for="payment-date"></label>
                                         </span>

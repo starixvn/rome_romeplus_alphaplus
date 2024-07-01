@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
@@ -12,7 +13,7 @@ public class IPMatchingQuery : BaseQuery, IRequest<IPMatchingViewModel>
         IsAdminCanViewVNIP = Viewer.IsAdminCanViewVNIP;
     }
 
-    public DateTime Date { get; set; } = DateTime.Today;
+    public DateTime Date { get; set; } = SystemTime.Today;
 
     public int MemberCount { get; set; } = 2;
 

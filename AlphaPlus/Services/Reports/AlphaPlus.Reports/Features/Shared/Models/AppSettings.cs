@@ -6,7 +6,7 @@ public class AppSettings
 
     public byte SettingStatus { get; init; }
 
-    public int[] ProductOfferProductDetail { get; init; }
+    public HashSet<int> ProductOfferProductDetail { get; init; }
 
     public string SiteLabel { get; init; }
 

@@ -1,4 +1,5 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
 
@@ -7,7 +8,7 @@ namespace AlphaPlus.Reports.Site.Features.Statement;
 public class StatementDetailsQuery : BaseQuery, IRequest<StatementDetailViewModel>
 {
     public StatementDetailsQuery() : base()
-        => MinDate = DateTime.Today.AddYears(-3).FirstDayOfYear();
+        => MinDate = SystemTime.Today.AddYears(-3).FirstDayOfYear();
 
     public DateTime TransferDate { get; set; }
 

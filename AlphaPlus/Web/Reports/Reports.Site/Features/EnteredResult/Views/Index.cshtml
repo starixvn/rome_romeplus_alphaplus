@@ -1,7 +1,8 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Core.Extensions
 @using AlphaPlus.Core.Helpers
-@using AlphaPlus.Reports.Features.Shared.Extensions
+@using AlphaPlus.Core.Utils
 @using AlphaPlus.Reports.Features.EnteredResult
 @using AlphaPlus.Reports.Site
 @using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
@@ -32,8 +33,8 @@
     }
     else
     {
-        today = DateTime.Today;
-        yesterday = today.Yesterday();
+        today = SystemTime.Today;
+        yesterday = SystemTime.Yesterday;
     }
 }
 @section Styles {

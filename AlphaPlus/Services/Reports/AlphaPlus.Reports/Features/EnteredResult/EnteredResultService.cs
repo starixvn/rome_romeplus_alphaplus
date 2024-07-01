@@ -4,7 +4,6 @@ using Fanex.Data.Repository;
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Shared;
 using Fanex.Caching;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 
 namespace AlphaPlus.Reports.Features.EnteredResult;
 
@@ -36,8 +35,8 @@ public class EnteredResultService(
         var totalNonEnteredToday = 0;
         var totalEnteredYesterday = 0;
         var totalNonEnteredYesterday = 0;
-        var today = DateTime.Today;
-        var yesterday = today.Yesterday();
+        var today = SystemTime.Today;
+        var yesterday = SystemTime.Yesterday;
 
         foreach (var data in dailyEnteredSports)
         {

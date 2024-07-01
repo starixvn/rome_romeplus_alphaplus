@@ -1,4 +1,5 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using MediatR;
@@ -9,8 +10,8 @@ public class SMAStatementQuery : DefaultDateRangeQuery, IRequest<SMAStatementVie
 {
     public SMAStatementQuery() : base()
     {
-        var today = DateTime.Today;
-        FromDate = today.Yesterday();
+        var today = SystemTime.Today;
+        FromDate = SystemTime.Yesterday;
         MinDate = today.AddYears(-3).FirstDayOfYear();
         UserSelectedDateRangeOption = DateRangePickerViewModel.SpecificDateOptionValue;
     }

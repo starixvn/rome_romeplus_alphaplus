@@ -24,6 +24,6 @@ public class WinLossController(IMediator mediator) : BetListBaseController(media
 
     public async Task<IActionResult> BetList(WinLossBetListQuery message)
         => message.IsValid()
-        ? await View<WinLossViewModel>(message, GetViewPath("WinLoss", nameof(BetList)))
+        ? await View<WinLossBetListViewModel>(message, GetViewPath("WinLoss", nameof(BetList)))
         : View(InvalidBetListView);
 }

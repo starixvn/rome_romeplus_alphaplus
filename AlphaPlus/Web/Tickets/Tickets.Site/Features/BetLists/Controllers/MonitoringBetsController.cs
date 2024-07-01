@@ -76,7 +76,7 @@ public class MonitoringBetsController(
         }
         else
         {
-            context.Result = new RedirectResult("/tickets/shared/invalid");
+            context.Result = RedirectToAction("invalid", "shared");
         }
     }
 }

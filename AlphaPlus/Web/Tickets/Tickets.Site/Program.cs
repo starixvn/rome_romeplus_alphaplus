@@ -32,13 +32,14 @@ builder.Services
     {
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
     })
     .AddControllersWithViews(options =>
     {
-        //options.Filters.Add<CheckBelongingFilterAttribute>();
-        //options.Filters.Add<AfterLoginFlowFilterAttribute>();
-        //options.Filters.Add<ProtectedModeFilterAttribute>();
-        //options.Filters.Add<SecurityCodeFilterAttribute>();
+        // options.Filters.Add<CheckBelongingFilterAttribute>();
+        // options.Filters.Add<AfterLoginFlowFilterAttribute>();
+        // options.Filters.Add<ProtectedModeFilterAttribute>();
+        // options.Filters.Add<SecurityCodeFilterAttribute>();
     })
     .AddRazorOptions(options =>
     {
@@ -59,7 +60,9 @@ builder.Services
     .AddRequestInfo()
     .AddAlphaPlusCore(configuration)
     .AddSharedSession(configuration)
+    .AddBetsForecastServices(configuration)
     .AddBetListsServices(configuration)
+    .AddBetListsCore()
     .AddResultsServices(configuration)
     .AddResultsSiteServices(configuration)
     .AddApplicationServices(configuration)
@@ -84,10 +87,10 @@ app.MapHealthChecks("/health");
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 app.MapDefaultControllerRoute();
-app.MapControllerRoute(
-    "results",
-    "results/{controller}/{action}",
-    new { controller = "normal", action = "index" });
+// app.MapControllerRoute(
+//     "results",
+//     "results/{controller}/{action}",
+//     new { controller = "normal", action = "index" });
 
 await Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
 await app.RunAsync();

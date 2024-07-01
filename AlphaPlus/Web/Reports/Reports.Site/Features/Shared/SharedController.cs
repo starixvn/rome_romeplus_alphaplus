@@ -1,7 +1,6 @@
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.PartialUM.Exceptions;
-using AlphaPlus.Reports.Site.Features.Shared.Models;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +12,6 @@ public class SharedController(Fanex.Logging.ILogger logger) : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> Error()
     {
-        ErrorViewModel viewModel = null;
         HttpContext.Request.EnableBuffering();
         var exceptionHandlerFeature = HttpContext.Features.Get<IExceptionHandlerFeature>();
 
@@ -23,14 +21,13 @@ public class SharedController(Fanex.Logging.ILogger logger) : Controller
 
             if (exception is PartialUMException partialUMException)
             {
-                return Redirect($"/main/partialum/index?umfrom={partialUMException.StartTime}&umto={partialUMException.EndTime}");
+                return Redirect(MicroSites.MainUrl($"~/partialum/index?umfrom={partialUMException.StartTime}&umto={partialUMException.EndTime}"));
             }
 
-            viewModel = new(false, exception.Message);
             await logger.ErrorAsync(await ExceptionHelper.BuildError(HttpContext.Request, exception, exceptionHandlerFeature.Path));
         }
 
-        return View(viewModel);
+        return Redirect(MicroSites.MainUrl("~/error/index"));
     }
 
     public IActionResult InvalidReport() => View();

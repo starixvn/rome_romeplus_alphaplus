@@ -1,4 +1,5 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using MediatR;
@@ -9,7 +10,7 @@ public class BonusDetailQuery : DefaultDateRangeQuery, IRequest<BonusDetailViewM
 {
     public BonusDetailQuery() : base()
     {
-        FromDate = DateTime.Today.AddMonths(-1).FirstDayOfMonth();
+        FromDate = SystemTime.Today.AddMonths(-1).FirstDayOfMonth();
         MinDate = new DateTime(2021, 1, 1);
         UserSelectedDateRangeOption = DateRangePickerViewModel.SinceLastMonthOptionValue;
     }

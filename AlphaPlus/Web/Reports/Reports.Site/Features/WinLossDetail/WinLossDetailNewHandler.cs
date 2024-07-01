@@ -1,8 +1,8 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Customer;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;

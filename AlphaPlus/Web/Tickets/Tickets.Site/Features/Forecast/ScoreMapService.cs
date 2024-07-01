@@ -1,7 +1,6 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
 using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.Forecast.Requests;
-using AlphaPlus.Tickets.Site.Features.Shared;
 using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using Fanex.Caching;
 
@@ -18,16 +17,14 @@ public interface IScoreMapService
     Task<IEnumerable<ScoreMapResult>> GetResults(GetScoreMapResultRequest message);
 }
 
-public class ScoreMapService : ServiceBase, IScoreMapService
+public class ScoreMapService(ICacheService cacheService, HttpClient client) : IScoreMapService
 {
     private const string ScoreMapUrl = "api/forecast/scoremap";
     private const string BetTypesCacheKey = "AlphaPlus.Tickets.Site.ScoreMapBetTypes_{0}";
     private const int BetTypesCacheTimeOut = 2; // 2 hours
 
-    private readonly ICacheService cacheService;
-
-    public ScoreMapService(HttpClient client, ICacheService cacheService) : base(client)
-        => this.cacheService = cacheService;
+    private readonly ICacheService cacheService = cacheService;
+    private readonly HttpClient client = client;
 
     public Task<IEnumerable<ScoreMapBetType>[]> GetBetTypes(string language, string siteName)
         => cacheService.GetOrSetAsync(
@@ -40,7 +37,7 @@ public class ScoreMapService : ServiceBase, IScoreMapService
                     KeyValuePair.Create(nameof(siteName), siteName)
                 });
 
-                var rawdata = await GetFromJson<IEnumerable<ScoreMapBetType>[]>($"{ScoreMapUrl}/bettypes{queryString}");
+                var rawdata = await client.GetJson<IEnumerable<ScoreMapBetType>[]>($"{ScoreMapUrl}/bettypes{queryString}");
                 UpdateBetTypeName(rawdata[0]);
                 UpdateBetTypeName(rawdata[1]);
 
@@ -68,7 +65,7 @@ public class ScoreMapService : ServiceBase, IScoreMapService
             KeyValuePair.Create(nameof(siteName), siteName)
         });
 
-        return GetFromJson<IEnumerable<League>>($"{ScoreMapUrl}/leagues{queryString}");
+        return client.GetJson<IEnumerable<League>>($"{ScoreMapUrl}/leagues{queryString}");
     }
 
     public Task<IEnumerable<Match>> GetMatches(int custId, int leagueId, string language)
@@ -80,7 +77,7 @@ public class ScoreMapService : ServiceBase, IScoreMapService
             KeyValuePair.Create(nameof(language), language)
         });
 
-        return GetFromJson<IEnumerable<Match>>($"{ScoreMapUrl}/matches{queryString}");
+        return client.GetJson<IEnumerable<Match>>($"{ScoreMapUrl}/matches{queryString}");
     }
 
     public async Task<IEnumerable<ScoreMapResult>> GetResults(GetScoreMapResultRequest message)
@@ -99,7 +96,7 @@ public class ScoreMapService : ServiceBase, IScoreMapService
             KeyValuePair.Create(nameof(message.Language), message.Language)
         });
 
-        var rawdata = await GetFromJson<IEnumerable<ScoreMapResultDTO>>($"{ScoreMapUrl}/results{queryString}");
+        var rawdata = await client.GetJson<IEnumerable<ScoreMapResultDTO>>($"{ScoreMapUrl}/results{queryString}");
 
         return BuildResults(rawdata);
     }

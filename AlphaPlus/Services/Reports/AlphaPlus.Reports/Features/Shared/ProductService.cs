@@ -69,31 +69,20 @@ public class ProductService(
                     .ToList();
 
                 return GetAllProductDetails()
-                    .Where(p => productSupportDetail.Contains(p.ProductId) && SportsbookSupportDetail(p))
+                    .Where(p => productSupportDetail.Contains(p.ProductId) && CanViewProductDetailByResourceId(p.ResourceId))
                     .Select(product =>
                     {
-                        product.DisplayName = GetProductDetailName(product.RefId, product.ResourceId);
+                        product.DisplayName = cacheRefService.GetProductDetailName(product.ResourceId);
                         return product;
                     });
             },
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
 
-    private string GetProductDetailName(string refId, int resourceId)
+    private bool CanViewProductDetailByResourceId(int resourceId)
     {
-        var productDetailName = options.Value.IsSiteLabel777 && ProductDetaiIdConstants.SportsbookDetailFor777Site.Contains(resourceId)
-            ? cacheRefService.GetResourceDataByRefIdAndResourceId($"{refId}_Saba", resourceId)
-            : string.Empty;
-
-        return string.IsNullOrEmpty(productDetailName)
-            ? cacheRefService.GetResourceDataByRefIdAndResourceId(refId, resourceId)
-            : productDetailName;
-    }
-
-    private bool SportsbookSupportDetail(ProductDetail detail)
-    {
-        if (options.Value.IsSiteLabel777 && detail.ProductId == ProductIdConstants.Sportsbook)
+        if (options.Value.IsSiteLabel777)
         {
-            return ProductDetaiIdConstants.SportsbookDetailFor777Site.Contains(detail.ResourceId);
+            return !ProductDetaiIdConstants.ExcludedProductDetailFor777.Contains(resourceId);
         }
 
         return true;
@@ -106,22 +95,11 @@ public class ProductService(
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductDetailsCacheInMinutes)));
 
     public string BuildProductDetailXml(ProductDetail productDetail)
-    {
-        var xml = new StringBuilder();
-        foreach (var leagueId in productDetail.LeagueGroupIds)
-        {
-            foreach (var typeId in productDetail.TicketTypeIds)
-            {
-                xml.AppendFormat(
-                    "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
-                    productDetail.ProductId,
-                    productDetail.SportType,
-                    productDetail.BetType,
-                    leagueId,
-                    typeId);
-            }
-        }
-
-        return xml.ToString();
-    }
+        => string.Format(
+        "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
+        productDetail.ProductId,
+        productDetail.SportType,
+        productDetail.BetType,
+        productDetail.LeagueGroupId,
+        productDetail.TicketType);
 }

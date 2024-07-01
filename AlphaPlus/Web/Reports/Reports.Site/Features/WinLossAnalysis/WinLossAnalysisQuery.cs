@@ -1,4 +1,5 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.WinLossAnalysis;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
@@ -8,7 +9,7 @@ namespace AlphaPlus.Reports.Site.Features.WinLossAnalysis;
 public class WinLossAnalysisQuery : DefaultDateRangeQuery, IRequest<WinLossAnalysisViewModel>
 {
     public WinLossAnalysisQuery() : base()
-        => MinDate = DateTime.Today.AddMonths(-18).FirstDayOfMonth();
+        => MinDate = SystemTime.Today.AddMonths(-18).FirstDayOfMonth();
 
     public string UserSelectedProductIds { get; set; } = "*";
 

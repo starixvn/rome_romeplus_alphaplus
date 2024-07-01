@@ -1,4 +1,4 @@
-using AlphaPlus.Tickets.Site.Features.Shared;
+using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 
 namespace AlphaPlus.Tickets.Site.Features.TotalBets;
 
@@ -7,11 +7,9 @@ public interface ITotalBetsService
     Task<IEnumerable<T>> GetTotalBets<T>(string action, byte custLevel, int custId, string language, string siteName);
 }
 
-public class TotalBetsService : ServiceBase, ITotalBetsService
+public class TotalBetsService(HttpClient client) : ITotalBetsService
 {
-    public TotalBetsService(HttpClient client) : base(client)
-    {
-    }
+    private readonly HttpClient client = client;
 
     public Task<IEnumerable<T>> GetTotalBets<T>(string action, byte custLevel, int custId, string language, string siteName)
     {
@@ -23,6 +21,6 @@ public class TotalBetsService : ServiceBase, ITotalBetsService
             KeyValuePair.Create(nameof(siteName), siteName)
         });
 
-        return GetFromJson<IEnumerable<T>>($"api/totalbets/{action}{queryString}");
+        return client.GetJson<IEnumerable<T>>($"api/totalbets/{action}{queryString}");
     }
 }

@@ -1,4 +1,5 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 
@@ -46,5 +47,5 @@ public class DateRangePickerJQueryViewModel(
             ]
             : customShortcuts;
 
-    public string Today => DateTime.Today.ToShortDateWithSlash();
+    public string Today => SystemTime.Today.ToShortDateWithSlash();
 }

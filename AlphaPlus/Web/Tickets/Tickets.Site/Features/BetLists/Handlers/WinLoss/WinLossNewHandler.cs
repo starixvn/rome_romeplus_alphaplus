@@ -26,7 +26,9 @@ public class WinLossNewHandler(
     ISmartPunterBetListMonitor monitorService,
     IPService ipService) :
         BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
-        IRequestHandler<WinLossNewQuery, WinLossNewViewModel>
+        IRequestHandler<WinLossNewQuery, WinLossNewViewModel>,
+        IRequestHandler<WinLossWeekSelectionQuery, WinLossWeekSelectionViewModel>,
+        IRequestHandler<WinLossBetListQuery, WinLossBetListViewModel>
 {
     private readonly AppSettings appSettings = options.Value;
     private readonly IProductService productService = productService;
@@ -75,7 +77,7 @@ public class WinLossNewHandler(
     }
 
     protected async Task<(ProductMultiSelectionViewModel, string)> BuildProductViewModel(
-        WinLossWeekSelectionQuery message,
+        WinLossQuery message,
         string userSelectedProductIds,
         string userSelectedResourceIds)
     {
@@ -244,5 +246,71 @@ public class WinLossNewHandler(
         var displayToDate = $"{toDate.ToString("dd")} {Resources.ResourceManager.GetString($"_{toDate.ToString("MMM")}")}";
 
         return fromDate == toDate ? displayToDate : $"{fromDate.ToString("dd")} - {displayToDate}";
+    }
+
+    public async Task<WinLossWeekSelectionViewModel> Handle(WinLossWeekSelectionQuery message, CancellationToken cancellationToken)
+    {
+        var showContributionAmountRoundNote = message.IsEnabledJackpot;
+        var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
+
+        var weekDataParam = new WinLossWeekParam(
+                message.ViewerId,
+                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+                message.ToDate,
+                productViewModel.UserSelectedProductIds,
+                productDetailsXml,
+                message.CustName);
+        var weekData = await winlossService.GetWeekData(weekDataParam);
+        var betlistData = new BetListData([], []);
+
+        if (weekData.Any())
+        {
+            var param = new WinLossParam(
+                message.CustId,
+                productViewModel.UserSelectedProductIds,
+                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+                message.ToDate,
+                productDetailsXml,
+                message.DisplayVNIP,
+                message.Site,
+                maxTotalRow: appSettings.BetListMaxTotalRowView,
+                maxTotalRowConfig: appSettings.BetListMaxTotalRowView);
+            betlistData = await winlossService.GetBetList(param);
+            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+        }
+
+        return new WinLossWeekSelectionViewModel(
+            message,
+            BuildWeekViewModels(weekData, message.FromDate, message.ToDate),
+            betlistData,
+            Builder,
+            TicketHelper,
+            showContributionAmountRoundNote,
+            message.IsGroupHeadline);
+    }
+
+    public async Task<WinLossBetListViewModel> Handle(WinLossBetListQuery message, CancellationToken cancellationToken)
+    {
+        var showContributionAmountRoundNote = message.IsEnabledJackpot;
+        var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
+        var param = new WinLossParam(
+            message.CustId,
+            productViewModel.UserSelectedProductIds,
+            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+            message.ToDate,
+            productDetailsXml,
+            message.DisplayVNIP,
+            message.Site,
+            maxTotalRow: appSettings.BetListMaxTotalRowView,
+            maxTotalRowConfig: appSettings.BetListMaxTotalRowView);
+        var betlistData = await winlossService.GetBetList(param);
+        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+        return new WinLossBetListViewModel(
+            message,
+            betlistData,
+            Builder,
+            TicketHelper,
+            showContributionAmountRoundNote);
     }
 }

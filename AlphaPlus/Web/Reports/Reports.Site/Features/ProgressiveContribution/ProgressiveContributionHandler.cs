@@ -1,8 +1,8 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Legends;
 using AlphaPlus.Reports.Features.ProgressiveContribution;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Legends;
 using AlphaPlus.Reports.Site.Features.Shared;
@@ -25,10 +25,8 @@ public class ProgressiveContributionHandler(
 {
     public async Task<ProgressiveContributionViewModel> Handle(ProgressiveContributionQuery message, CancellationToken cancellationToken)
     {
-        var productViewModel = BuildProductViewModel(
-            message,
-            message.UserSelectedProductIds,
-            GetProducts(message).Where(p => message.EnableJackpotProductIds.Contains(p.Id)));
+        var products = GetProducts(message).Where(p => message.EnableJackpotProductIds.Contains(p.Id));
+        var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds, products);
         var (progressiveContributions, total) = await GetProgressiveContributions(message, productViewModel.UserSelectedProductIds);
 
         return new ProgressiveContributionViewModel(

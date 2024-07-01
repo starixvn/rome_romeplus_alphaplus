@@ -1,6 +1,7 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 
@@ -27,7 +28,7 @@ public class DateRangePickerViewModel
         bool isSupportHistoricReport = false,
         bool isHistoricReport = false)
     {
-        Today = DateTime.Today.ToShortDateWithSlash();
+        Today = SystemTime.Today.ToShortDateWithSlash();
         MinDate = minDate.ToShortDateWithSlash();
         MaxDate = maxDate.ToShortDateWithSlash();
         FromDate = fromDate.ToShortDateWithSlash();

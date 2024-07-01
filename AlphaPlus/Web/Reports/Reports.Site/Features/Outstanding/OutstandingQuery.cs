@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.Outstanding;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
@@ -6,7 +7,7 @@ namespace AlphaPlus.Reports.Site.Features.Outstanding;
 
 public class OutstandingQuery : BaseQuery, IRequest<OutstandingViewModel>
 {
-    public OutstandingQuery() : base() => MinDate = DateTime.Today;
+    public OutstandingQuery() : base() => MinDate = SystemTime.Today;
 
     private const string AutoFollowBetIsDummyAgentSessionKey = "AutoFollowBetIsDummyAgent";
 

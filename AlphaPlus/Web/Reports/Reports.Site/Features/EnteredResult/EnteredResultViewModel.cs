@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
@@ -18,8 +19,8 @@ public class EnteredResultViewModel(EnteredResultQuery message, ReportData<Enter
         = new DateRangePickerViewModel(
             message.MinDate,
             DateTime.MaxValue,
-            DateTime.Today,
-            DateTime.Today,
+            SystemTime.Today,
+            SystemTime.Today,
             DateRangePickerViewModel.TodayOptionValue,
             isSupportHistoricReport: true);
 

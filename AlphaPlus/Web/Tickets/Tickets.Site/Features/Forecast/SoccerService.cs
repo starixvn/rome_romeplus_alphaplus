@@ -1,5 +1,5 @@
 using AlphaPlus.BetsForecast.Domain.Forecast;
-using AlphaPlus.Tickets.Site.Features.Shared;
+using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using Fanex.Caching;
 
 namespace AlphaPlus.Tickets.Site.Features.Forecast;
@@ -13,18 +13,14 @@ public interface ISoccerService
     Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language, string siteName);
 }
 
-public class SoccerService : ServiceBase, ISoccerService
+public class SoccerService(ICacheService cacheService, HttpClient client) : ISoccerService
 {
     private const string SoccerUrl = "api/forecast/soccer";
     private const string LeaguesCacheKey = "AlphaPlus.Tickets.Site.SoccerLeagues_{0}_{1}";
     private const int LeaguesCacheTimeOut = 5; // 5 Minutes
 
-    private readonly ICacheService cacheService;
-
-    public SoccerService(
-        HttpClient client,
-        ICacheService cacheService) : base(client)
-        => this.cacheService = cacheService;
+    private readonly ICacheService cacheService = cacheService;
+    private readonly HttpClient client = client;
 
     public Task<IEnumerable<League>> GetLeagues(bool isLive, string language, string siteName)
     {
@@ -41,7 +37,7 @@ public class SoccerService : ServiceBase, ISoccerService
                     KeyValuePair.Create(nameof(siteName), siteName)
                 });
 
-                return GetFromJson<IEnumerable<League>>($"{SoccerUrl}/leagues{queryString}");
+                return client.GetJson<IEnumerable<League>>($"{SoccerUrl}/leagues{queryString}");
             },
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(LeaguesCacheTimeOut)));
     }
@@ -56,7 +52,7 @@ public class SoccerService : ServiceBase, ISoccerService
             KeyValuePair.Create(nameof(siteName), siteName)
         });
 
-        return GetFromJson<IEnumerable<Match>>($"{SoccerUrl}/matches{queryString}");
+        return client.GetJson<IEnumerable<Match>>($"{SoccerUrl}/matches{queryString}");
     }
 
     public Task<IEnumerable<SoccerResult>> GetResults(int custId, string matchIds, bool isLive, string language, string siteName)
@@ -70,6 +66,6 @@ public class SoccerService : ServiceBase, ISoccerService
             KeyValuePair.Create(nameof(siteName), siteName)
         });
 
-        return GetFromJson<IEnumerable<SoccerResult>>($"{SoccerUrl}/results{queryString}");
+        return client.GetJson<IEnumerable<SoccerResult>>($"{SoccerUrl}/results{queryString}");
     }
 }

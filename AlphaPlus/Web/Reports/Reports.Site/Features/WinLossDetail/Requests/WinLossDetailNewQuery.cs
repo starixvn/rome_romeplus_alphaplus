@@ -1,4 +1,5 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
 
@@ -8,7 +9,7 @@ public class WinLossDetailNewQuery : ProductDetailDateRangeQuery, IRequest<WinLo
 {
     public WinLossDetailNewQuery() : base()
     {
-        MinDate = DateTime.Today.AddYears(-3).FirstDayOfYear();
+        MinDate = SystemTime.Today.AddYears(-3).FirstDayOfYear();
         IsProtectedMode = Viewer.IsProtectedMode;
     }
 

@@ -1,11 +1,12 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Reports.Site.Features.EnteredResult;
 
@@ -37,8 +38,8 @@ public class EnteredResultWorkbook(IWebHostEnvironment webHostEnvironment) :
         }
         else
         {
-            today = DateTime.Today;
-            yesterday = today.Yesterday();
+            today = SystemTime.Today;
+            yesterday = SystemTime.Yesterday;
         }
         var resources = new Dictionary<string, string>
         {

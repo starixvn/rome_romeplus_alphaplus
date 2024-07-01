@@ -1,15 +1,16 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Reports.Features.IPMatching;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Reports.Site.Features.IPMatching;
 
 public class IPMatchingViewModel(IPMatchingQuery message, ReportData<IPMatchingModel> reportData)
 {
-    public string Today { get; } = DateTime.Today.ToShortDateWithSlash();
+    public string Today { get; } = SystemTime.Today.ToShortDateWithSlash();
 
     public string MinDate { get; } = message.MinDate.ToShortDateWithSlash();
 

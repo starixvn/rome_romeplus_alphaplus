@@ -47,7 +47,12 @@
     </div>
 </div>
 <input type="hidden" id="winloss-detail-report-path" value="@MicroSites.ReportsUrl("~/WinLossDetail/IndexNew")" />
+<input type="hidden" id="from-date" value="@Model.DateRangePicker.FromDate" />
+<input type="hidden" id="to-date" value="@Model.DateRangePicker.ToDate" />
+<input type="hidden" id="product-ids" value="@Model.ProductViewModel.UserSelectedProductIds" />
+<input type="hidden" id="resource-ids" value="@Model.ProductViewModel.UserSelectedResourceIds" />
+<input type="hidden" id="cust-id" value="@Model.CustId.ToString()" />
 <input type="hidden" id="cust-name" value="@Model.CustName" />
+<input type="hidden" id="hidden-show-columns" value="@Model.VisibleColumns" />
 <input type="hidden" id="hidden-hide-filter-text" value="@Resources.HideFilter" />
 <input type="hidden" id="hidden-show-filter-text" value="@Resources.ShowFilter" />
-<input type="hidden" id="hidden-show-columns" value="@Model.VisibleColumns" />

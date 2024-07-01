@@ -26,6 +26,8 @@ public interface ICacheRefService
 
     string GetProductName(string productId);
 
+    string GetProductDetailName(int productDetailId);
+
     string GetResourceDataByRefIdAndResourceId(string refId, int resourceId);
 }
 
@@ -69,6 +71,17 @@ public class CacheRefService(
         return string.IsNullOrEmpty(productName)
             ? GetResourceDataByRefIdAndResourceId("Product", productId)
             : productName;
+    }
+
+    public string GetProductDetailName(int productDetailId)
+    {
+        var productDetailName = options.Value.IsSiteLabel777
+            ? GetResourceDataByRefIdAndResourceId("ProductDetail_Saba", productDetailId)
+            : string.Empty;
+
+        return string.IsNullOrEmpty(productDetailName)
+            ? GetResourceDataByRefIdAndResourceId("ProductDetail", productDetailId)
+            : productDetailName;
     }
 
     public string GetResourceDataByRefIdAndResourceId(string refId, int resourceId)

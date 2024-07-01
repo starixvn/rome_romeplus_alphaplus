@@ -45,7 +45,7 @@ public class ReportDateService(IDynamicRepository repository, ICacheService cach
         var balanceUpDayAndMoveBetsDay = await GetBalanceUpDayAndMoveBetsDay();
         var eventDates = new[]
         {
-            balanceUpDayAndMoveBetsDay.BalanceUpDay.Yesterday(),
+            balanceUpDayAndMoveBetsDay.BalanceUpDay.AddDays(-1),
             balanceUpDayAndMoveBetsDay.MoveBetsDay
         };
 

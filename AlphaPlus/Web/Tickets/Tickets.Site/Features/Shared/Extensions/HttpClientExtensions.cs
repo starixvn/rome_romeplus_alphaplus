@@ -2,18 +2,13 @@ using System.Net;
 using AlphaPlus.PartialUM.Exceptions;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
-namespace AlphaPlus.Tickets.Site.Features.Shared;
+namespace AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 
-public class ServiceBase
+public static class HttpClientExtensions
 {
-    protected readonly HttpClient client;
-
-    protected ServiceBase(HttpClient client)
-        => this.client = client;
-
-    public async Task<T> GetFromJson<T>(string url)
+    public static async Task<T> GetJson<T>(this HttpClient httpClient, string url)
     {
-        var response = await client.GetAsync(url).ConfigureAwait(false);
+        var response = await httpClient.GetAsync(url).ConfigureAwait(false);
         if (response.IsSuccessStatusCode)
         {
             if (response.StatusCode == HttpStatusCode.NoContent)

@@ -1,5 +1,5 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossAnalysis;
@@ -7,6 +7,7 @@ using AlphaPlus.Reports.Site.Features.Shared;
 using MediatR;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Reports.Features.Shared;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossAnalysis;
 

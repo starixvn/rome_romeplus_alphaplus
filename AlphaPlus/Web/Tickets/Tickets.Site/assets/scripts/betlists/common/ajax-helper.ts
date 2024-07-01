@@ -48,11 +48,20 @@
     }
 
     static get(url: string, onSuccess: Function, $element: JQuery = undefined) {
-        ($element || $).blockUI();
+        if ($element) {
+            $element.block();
+        } else {
+            $.blockUI();
+        }
+
         $.get(url, onSuccess)
             .fail((jqXHR) => this.handleOnFail(jqXHR))
             .always(function () {
-                ($element || $).unblockUI();
+                if ($element) {
+                    $element.unblock();
+                } else {
+                    $.unblockUI();
+                }
             });
     }
 }

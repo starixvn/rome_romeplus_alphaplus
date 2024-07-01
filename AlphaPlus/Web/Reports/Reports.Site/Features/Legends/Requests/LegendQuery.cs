@@ -1,5 +1,6 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Utils;
 using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.Legends;
@@ -17,8 +18,8 @@ public class LegendQuery : IRequest<LegendViewModel>
         CurrencyId = viewer.CurrencyId;
         Language = viewer.Language;
         MinDate = IsHistoricReport
-            ? DateTime.Today.AddYears(-3).FirstDayOfYear()
-            : DateTime.Today.AddMonths(-3).FirstDayOfMonth();
+            ? SystemTime.Today.AddYears(-3).FirstDayOfYear()
+            : SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
     }
 
     public UserLevel ViewerLevel { get; }

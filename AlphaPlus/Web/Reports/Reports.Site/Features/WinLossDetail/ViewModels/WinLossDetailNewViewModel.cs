@@ -1,5 +1,6 @@
+using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
@@ -29,7 +30,7 @@ public class WinLossDetailNewViewModel(
         message.FromDate,
         message.ToDate,
         message.MinDate,
-        DateTime.Today.AddDays(1),
+        SystemTime.Today.AddDays(1),
         message.Language);
 
     public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;

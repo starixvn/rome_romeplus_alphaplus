@@ -17,7 +17,7 @@ public class WinLossWeekSelectionViewModel(
     bool isGroupHeadline = false,
     bool showMemberName = false,
     string[] excludingTicketStatus = null)
-        : WinLossViewModel(message, betListData, builder, ticketHelper, showContributionAmountRoundNote, isGroupHeadline, showMemberName, excludingTicketStatus)
+        : WinLossViewModel(message, betListData, builder, ticketHelper, showContributionAmountRoundNote, isGroupHeadline, showMemberName, excludingTicketStatus, showFooter: true)
 {
     public IEnumerable<WinLossWeekViewModel> Weeks { get; } = weeks;
 

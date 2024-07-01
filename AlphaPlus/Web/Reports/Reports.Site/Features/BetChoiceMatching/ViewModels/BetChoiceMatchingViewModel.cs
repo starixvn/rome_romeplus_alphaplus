@@ -1,13 +1,14 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Reports.Site.Features.BetChoiceMatching;
 
 public class BetChoiceMatchingViewModel(BetChoiceMatchingQuery message, DateTime balanceUpDay)
 {
-    public string Today { get; } = DateTime.Today.ToShortDateWithSlash();
+    public string Today { get; } = SystemTime.Today.ToShortDateWithSlash();
 
     public string MinDate { get; } = balanceUpDay.ToShortDateWithSlash();
 

@@ -1,4 +1,5 @@
-using AlphaPlus.Reports.Features.Shared.Extensions;
+using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Extensions;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.Requests;
 
@@ -6,7 +7,7 @@ public class DefaultDateRangeQuery : BaseQuery
 {
     public DateTime FromDate { get; set; } = DateTime.MinValue;
 
-    public DateTime ToDate { get; set; } = DateTime.Today;
+    public DateTime ToDate { get; set; } = SystemTime.Today;
 
     public int UserSelectedDateRangeOption { get; set; }
 
@@ -26,7 +27,7 @@ public class DefaultDateRangeQuery : BaseQuery
 
     private void AssignFromDateValue()
     {
-        var today = DateTime.Today;
+        var today = SystemTime.Today;
         if (FromDate == DateTime.MinValue)
         {
             FromDate = IsHistoricReport ? today.FirstDayOfMonth() : today;

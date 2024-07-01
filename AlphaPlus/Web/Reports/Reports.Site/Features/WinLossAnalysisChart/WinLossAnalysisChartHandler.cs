@@ -1,5 +1,5 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossAnalysisChart;
 using AlphaPlus.Reports.Site.Features.Shared;

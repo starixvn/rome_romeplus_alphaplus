@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using Microsoft.AspNetCore.Diagnostics;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.PartialUM.Exceptions;
+using AlphaPlus.Core.Filters;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared;
 
+[AllowProtectedMode]
 public class SharedController(Fanex.Logging.ILogger logger) : Controller
 {
     private readonly Fanex.Logging.ILogger logger = logger;
@@ -13,7 +14,6 @@ public class SharedController(Fanex.Logging.ILogger logger) : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public async Task<IActionResult> Error()
     {
-        ErrorViewModel viewModel = null;
         HttpContext.Request.EnableBuffering();
         var exceptionHandlerFeature = HttpContext.Features.Get<IExceptionHandlerFeature>();
 
@@ -23,16 +23,13 @@ public class SharedController(Fanex.Logging.ILogger logger) : Controller
 
             if (exception is PartialUMException partialUMException)
             {
-                viewModel = new(true, "Partial UM");
+                return Redirect(MicroSites.MainUrl($"~/partialum/index?umfrom={partialUMException.StartTime}&umto={partialUMException.EndTime}"));
             }
-            else
-            {
-                viewModel = new(false, exception.Message);
-                await logger.ErrorAsync(await ExceptionHelper.BuildError(HttpContext.Request, exception, exceptionHandlerFeature.Path));
-            }
+
+            await logger.ErrorAsync(await ExceptionHelper.BuildError(HttpContext.Request, exception, exceptionHandlerFeature.Path));
         }
 
-        return View("~/Features/Shared/Views/Error.cshtml", viewModel);
+        return Redirect(MicroSites.MainUrl("~/error/index"));
     }
 
     public IActionResult Invalid() => View("~/Features/Shared/Views/Invalid.cshtml");
