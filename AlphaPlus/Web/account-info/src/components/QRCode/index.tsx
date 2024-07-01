@@ -14,10 +14,10 @@ export default function QRCode() {
         }
 
         const mainFrame = window.top?.$('#main');
-        if (!window.top?.alpha.core.isIe()) {
-            mainFrame?.contents().find('head').append(window.$('#AssetCommonCssLink').val());
-            mainFrame?.contents().find('body').empty().block();
-        }
+        // if (!window.top?.alpha.core.isIe()) {
+        //     mainFrame?.contents().find('head').append(window.$('#AssetCommonCssLink')?.val());
+        //     mainFrame?.contents().find('body').empty().block();
+        // }
 
         mainFrame?.attr('src', customer?.ShowQRCodeUrl || '');
     };
