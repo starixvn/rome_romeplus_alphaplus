@@ -49,7 +49,7 @@ class SubAccount {
             var subAccId = this.$(item.currentTarget).data('subaccid');
             this.UpdatePageAccess(subAccId, item);
         });
-        this.$('.pMemInfo').click((item) => {
+        this.$('.lMemInfo').click((item) => {
             this.OpenUpdatePopup(item);
         });
         this.$("#btnEdit").click(() => {
@@ -58,8 +58,23 @@ class SubAccount {
         this.$("#btn-reset").click(() => {
             this.Reset();
         });
-        this.$('.MemInfo').click((item) => {
+        this.$('#MemInfo').click((item) => {
             this.OpenAddPopup(item);
+        });
+        this.$('#btnAdd').click(() => {
+            this.AddSubAccount(0);
+        });
+        this.$("#None").click(() => {
+            this.$("#MemInfo").text("None");
+        });
+        this.$("#View").click(() => {
+            this.$("#MemInfo").text("View");
+        });
+        this.$("#UpdateView").click(() => {
+            this.$("#MemInfo").text("Update");
+        });
+        this.$("#FullControl").click(() => {
+            this.$("#MemInfo").text("Full Control");
         });
     };
 
@@ -162,10 +177,12 @@ class SubAccount {
         });
     };
 
-    AddSubAccount = (subAccId: number, item: any) => {
+    AddSubAccount = (subAccId: number) => {
         this.$.blockUI();
 
-        var pageAccess = this.$(item.currentTarget).data('pageaccess');
+        var pageAccess = this.$("#View").is(":checked") ? "[H]" :
+            this.$("#UpdateView").is(":checked") ? "[B][H]" :
+            this.$("#FullControl").is(":checked") ? "[A][B][H]" : "";
 
         if (this.$('#' + subAccId + '-D').is(':checked')) {
             pageAccess += '[D]';
@@ -188,10 +205,11 @@ class SubAccount {
         }
 
         var data = {
-            first: this.$("#FirstOptions").val(),
-            next: this.$("#NextOptions").val(),
-            firstName: this.$("#Firstname").val(),
-            lastName: this.$("#Lastname").val(),
+            first: this.$("#FirstOptions_Value").val(),
+            next: this.$("#NextOptions_Value").val(),
+            password: this.$("#txtPwd").val(),
+            firstName: this.$("#txtFname").val(),
+            lastName: this.$("#txtLname").val(),
             pageAccess: pageAccess
         };
 
@@ -205,11 +223,16 @@ class SubAccount {
             url: updateUrl,
             type: "POST",
             success: (result) => {
-                if (result && result.Code !== 0) {
-                    alert((result && result.Message) || 'Unexpected error occurs!');
+                if (result && result.IsSuccessful) {
+                    (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src = (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src;
+                    this.topWindow.popupManager.close();
                 }
-
-                location.reload();
+                else {
+                    this.$("#errMsg").html((result && result.Message) || 'Unexpected error occurs!').css({
+                        border: "1px solid red",
+                        color: "red"
+                    }).show();
+                }
             },
             complete: () => {
                 this.$.unblockUI();
@@ -284,12 +307,7 @@ class SubAccount {
                 break;
         }
 
-        this.$('#btnAdd').click((item) => {
-            var subAccId = this.$(evt.currentTarget).data('subaccid');
-            this.AddSubAccount(subAccId, item);
-        });
-
-        var popup = this.$('#Popup');
+        var popup = this.$('#nPopup');
         popup.css({
             top: evt.clientY + 'px',
             left: evt.clientX + 'px',

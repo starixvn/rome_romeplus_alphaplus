@@ -37,39 +37,39 @@
             <tbody>
                 <tr>
                     <td class="c">
-                        <div class="MemInfo" data-subaccid="@Model.SubAccId"
+                        <div id="MemInfo" class="pMemInfo" data-subaccid="@Model.SubAccId"
                                 data-pageaccess="@Model.MemberInfoPermission" >@Model.GetPermission()</div>
                     </td>
-                    <td class="c"><input id="@(Model.SubAccId + "-D")" type="checkbox" class="pageaccess"
+                    <td class="c"><input id="@(Model.SubAccId + "-D")" type="checkbox" class="npageaccess"
                             data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
-                    <td class="c"><input id="@(Model.SubAccId + "-E")" type="checkbox" class="pageaccess"
+                    <td class="c"><input id="@(Model.SubAccId + "-E")" type="checkbox" class="npageaccess"
                             data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
-                    <td class="c"><input id="@(Model.SubAccId + "-L")" type="checkbox" class="pageaccess"
+                    <td class="c"><input id="@(Model.SubAccId + "-L")" type="checkbox" class="npageaccess"
                             data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
-                    <td class="c"><input id="@(Model.SubAccId + "-C")" type="checkbox" class="pageaccess"
+                    <td class="c"><input id="@(Model.SubAccId + "-C")" type="checkbox" class="npageaccess"
                             data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
-                    <td class="c"><input id="@(Model.SubAccId + "-G")" type="checkbox" class="pageaccess"
+                    <td class="c"><input id="@(Model.SubAccId + "-G")" type="checkbox" class="npageaccess"
                             data-subaccid="@Model.SubAccId" data-pageaccess="@Model.MemberInfoPermission" /></td>
                 </tr>
             </tbody>
         </table>
-        <div><input type="button" id="btnAdd" class="btnSubmit" value="Add "></div>
+        <div><input type="button" id="btnAdd" class="btnSubmit" value="Add"></div>
         @Html.AntiForgeryToken()
-        <ul id="Popup" class="divMenuPopup" style="display: none;">
+        <ul id="nPopup" class="divMenuPopup" style="display: none;">
             <li class="group">
                 <input type="radio" name="rdPermission" id="None" data-pageaccess="">
-                <label for="pNone">None</label>
+                <label for="None">None</label>
             </li>
             <li class="group">
                 <input type="radio" name="rdPermission" id="View" data-pageaccess="[H]">
-                <label for="pView">View</label>
+                <label for="View">View</label>
             </li>
             <li class="group">
                 <input type="radio" name="rdPermission" id="UpdateView" data-pageaccess="[B][H]">
-                <label for="pUpdateView">Update</label>
+                <label for="UpdateView">Update</label>
             </li>
             <li class="group"><input type="radio" name="rdPermission" id="FullControl" data-pageaccess="[A][B][H]">
-                <label for="pFullControl">Full Control</label>
+                <label for="FullControl">Full Control</label>
             </li>
         </ul>
     </main>

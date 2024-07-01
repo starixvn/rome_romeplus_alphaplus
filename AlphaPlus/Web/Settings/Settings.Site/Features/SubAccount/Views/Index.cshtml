@@ -50,7 +50,7 @@
                         <td class="c">@subAcc.CreateDate</td>
                         }
                         <td class="c">
-                            <div class="@(hasnotPerm ? string.Empty : "pMemInfo")" data-subaccid="@subAcc.SubAccId"
+                            <div class="@(hasnotPerm ? string.Empty : "pMemInfo lMemInfo")" data-subaccid="@subAcc.SubAccId"
                                 data-pageaccess="@subAcc.MemberInfoPermission" >@subAcc.GetPermission()</div>
                         </td>
                         <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-D")"
