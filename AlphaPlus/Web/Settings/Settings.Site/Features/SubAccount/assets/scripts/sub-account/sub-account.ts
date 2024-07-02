@@ -11,6 +11,8 @@ interface Window {
         close: Function;
         closeAllPopup: Function;
     };
+    passwordEmptyMsg: string;
+    editInfoText: string;
 }
 
 class SubAccount {
@@ -23,12 +25,12 @@ class SubAccount {
     }
 
     Init = () => {
-        this.$('#btn-add').click(() => {
-            this.Add();
+        this.$('#btn-add').click((item) => {
+            this.Add(this.$(item.currentTarget).text());
         });
         this.$('.info').click((item) => {
             var subAccId = this.$(item.currentTarget).data('subaccid');
-            this.Edit(subAccId);
+            this.Edit(subAccId, window.editInfoText);
         });
         this.$('.pwd').click((item) => {
             var subAccId = this.$(item.currentTarget).data('subaccid');
@@ -64,26 +66,26 @@ class SubAccount {
         this.$('#btnAdd').click(() => {
             this.AddSubAccount(0);
         });
-        this.$("#None").change(() => {
-            this.$("#MemInfo").text("None");
+        this.$("#None").change((item) => {
+            this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
         });
-        this.$("#View").change(() => {
-            this.$("#MemInfo").text("View");
+        this.$("#View").change((item) => {
+            this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
         });
-        this.$("#UpdateView").change(() => {
-            this.$("#MemInfo").text("Update");
+        this.$("#UpdateView").change((item) => {
+            this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
         });
-        this.$("#FullControl").change(() => {
-            this.$("#MemInfo").text("Full Control");
+        this.$("#FullControl").change((item) => {
+            this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
         });
     };
 
-    Add = () => {
-        this.topWindow.popupManager.open('/settings/SubAccount/Add', 'Add Sub Account', 734, 536);
+    Add = (title: string) => {
+        this.topWindow.popupManager.open('/settings/SubAccount/Add', title, 734, 536);
     };
 
-    Edit = (subAccId: number) => {
-        this.topWindow.popupManager.open('/settings/SubAccount/Get?subAccId=' + subAccId, 'Edit Sub Account', 468, 368);
+    Edit = (subAccId: number, title: string) => {
+        this.topWindow.popupManager.open('/settings/SubAccount/Get?subAccId=' + subAccId, title, 468, 368);
     };
 
     ResetPassword = (subAccId: number, username: string) => {
@@ -179,7 +181,7 @@ class SubAccount {
 
     AddSubAccount = (subAccId: number) => {
         if (!this.$("#txtPwd").val()) {
-            this.$("#errMsg").html('Sorry, password cannot be empty!!!').css({
+            this.$("#errMsg").html(window.passwordEmptyMsg).css({
                 border: "1px solid red",
                 padding: "10px",
                 color: "red"

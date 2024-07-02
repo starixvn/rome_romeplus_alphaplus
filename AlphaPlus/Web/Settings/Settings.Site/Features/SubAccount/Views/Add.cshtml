@@ -1,4 +1,5 @@
 @using AlphaPlus.Core.Models
+@using AlphaPlus.Shared.AppResources.Settings.SubAccount
 @model SubAccountViewModel
 @{
     Layout = "~/Features/SubAccount/Views/_Layout.cshtml";
@@ -8,31 +9,31 @@
         <div id="errMsg" style="display: none;"></div>
         <table class="tblPop width-100per">
             <tr>
-                <td>Username</td>
+                <td>@Lang.username</td>
                 <td>@Model.Username @Html.DropDownList("FirstOptions.Value", Model.FirstOptions) @Html.DropDownList("NextOptions.Value", Model.NextOptions)</td>
             </tr>
             <tr>
-                <td>Password</td>
+                <td>@Lang.password</td>
                 <td><input type="password" id="txtPwd" /></td>
             </tr>
             <tr>
-                <td>Firstname</td>
+                <td>@Lang.firstname</td>
                 <td><input type="text" value="@Model.Firstname" id="txtFname" /></td>
             </tr>
             <tr>
-                <td>Lastname</td>
+                <td>@Lang.lastname</td>
                 <td><input type="text" value="@Model.Lastname" id="txtLname" /></td>
             </tr>
         </table>
-        <div>Account Permission</div>
+        <div>@Lang.accpermission</div>
         <table class="tblRpt">
             <thead class="RptHeader">
-                <td>Member Information</td>
-                <td>Bets & Forecast</td>
-                <td>Reports</td>
-                <td>Bet Lists</td>
-                <td>Transfer</td>
-                <td>View Log</td>
+                <td>@Lang.memberinfo</td>
+                <td>@Lang.BetsAndForecast</td>
+                <td>@Lang.Reports</td>
+                <td>@Lang.BetLists</td>
+                <td>@Lang.transfer</td>
+                <td>@Lang.viewlog</td>
             </thead>
             <tbody>
                 <tr>
@@ -53,24 +54,29 @@
                 </tr>
             </tbody>
         </table>
-        <div><input type="button" id="btnAdd" class="btnSubmit" value="Add"></div>
+        <div><input type="button" id="btnAdd" class="btnSubmit" value="@Lang.Add"></div>
         @Html.AntiForgeryToken()
         <ul id="nPopup" class="divMenuPopup" style="display: none;">
             <li class="group">
-                <input type="radio" name="rdPermission" id="None" data-pageaccess="">
-                <label for="None">None</label>
+                <input type="radio" name="rdPermission" id="None" data-pageaccess="" checked>
+                <label for="None">@Lang.None</label>
             </li>
             <li class="group">
                 <input type="radio" name="rdPermission" id="View" data-pageaccess="[H]">
-                <label for="View">View</label>
+                <label for="View">@Lang.view</label>
             </li>
             <li class="group">
                 <input type="radio" name="rdPermission" id="UpdateView" data-pageaccess="[B][H]">
-                <label for="UpdateView">Update</label>
+                <label for="UpdateView">@Lang.Update</label>
             </li>
             <li class="group"><input type="radio" name="rdPermission" id="FullControl" data-pageaccess="[A][B][H]">
-                <label for="FullControl">Full Control</label>
+                <label for="FullControl">@Lang.FullControl</label>
             </li>
         </ul>
     </main>
 </div>
+@section Scripts {
+    <script>
+        var passwordEmptyMsg = '@Lang.alertPasswordEmpty';
+    </script>
+}

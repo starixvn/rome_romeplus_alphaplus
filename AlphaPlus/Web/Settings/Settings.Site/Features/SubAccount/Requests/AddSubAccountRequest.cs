@@ -17,7 +17,7 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
 
         public string Lastname { get; set; }
 
-        public string PageAccess { get; set; }
+        public string PageAccess { get; set; } = string.Empty;
 
         public override bool IsValid()
         {

@@ -213,4 +213,37 @@ Lưu ý : Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="UsernameIsNotAvailableError" xml:space="preserve">
     <value>Tên tài khoản đã được dùng.</value>
   </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>Tổng Cược &amp; Dự Đoán</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Báo cáo</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Tùy chỉnh</value>
+  </data>
+  <data name="addsubaccount" xml:space="preserve">
+    <value>Tạo tài khoản phụ</value>
+  </data>
+  <data name="FullControl" xml:space="preserve">
+    <value>Toàn quyền </value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Không Chọn</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="accpermission" xml:space="preserve">
+    <value>Quyền hạn của tài khoản</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Thêm</value>
+  </data>
+  <data name="editsubacc" xml:space="preserve">
+    <value>Tùy chỉnh cho tài khoản phụ</value>
+  </data>
 </root>

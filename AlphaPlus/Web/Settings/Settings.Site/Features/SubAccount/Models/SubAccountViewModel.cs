@@ -1,4 +1,5 @@
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Settings.SubAccount;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Settings.Site.Features.SubAccount.Models
@@ -67,9 +68,9 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Models
             HasUpdatePermission ? UpdatePermission :
             HasViewMemberInfoPermission ? ViewPermission : NonePermission;
 
-        public string GetPermission() => HasCreateAccountPermission ? "Full Control" :
-            HasUpdatePermission ? "Update" :
-            HasViewMemberInfoPermission ? "View" : "None";
+        public string GetPermission() => HasCreateAccountPermission ? Lang.FullControl :
+            HasUpdatePermission ? Lang.Update :
+            HasViewMemberInfoPermission ? Lang.view : Lang.None;
 
         public bool IsCustomerDateLimit => UserSession.Current.GetProperty<DateTime>("CustomerDateLimit") != default;
 

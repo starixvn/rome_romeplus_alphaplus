@@ -311,5 +311,113 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
                 return ResourceManager.GetString("viewlog", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bets & Forecast.
+        /// </summary>
+        public static string BetsAndForecast {
+            get {
+                return ResourceManager.GetString("BetsAndForecast", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reports.
+        /// </summary>
+        public static string Reports {
+            get {
+                return ResourceManager.GetString("Reports", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Security Code.
+        /// </summary>
+        public static string SecurityCode {
+            get {
+                return ResourceManager.GetString("SecurityCode", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Add Sub Account.
+        /// </summary>
+        public static string addsubaccount {
+            get {
+                return ResourceManager.GetString("addsubaccount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Full Control.
+        /// </summary>
+        public static string FullControl {
+            get {
+                return ResourceManager.GetString("FullControl", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Update.
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string None.
+        /// </summary>
+        public static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Reset.
+        /// </summary>
+        public static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Account Permission.
+        /// </summary>
+        public static string accpermission {
+            get {
+                return ResourceManager.GetString("accpermission", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string Edit Sub Account.
+        /// </summary>
+        public static string editsubacc {
+            get {
+                return ResourceManager.GetString("editsubacc", resourceCulture);
+            }
+        }
     }
 }

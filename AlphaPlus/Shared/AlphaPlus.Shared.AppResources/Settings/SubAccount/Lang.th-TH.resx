@@ -209,4 +209,37 @@
   <data name="UsernameIsNotAvailableError" xml:space="preserve">
     <value>ชื่อที่ใช้ในการเข้าระบบนี้ ไม่สามารถใช้งานได้.</value>
   </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>ยอดการเล่นและคำนวณผล</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>รายงาน</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>แก้ไข</value>
+  </data>
+  <data name="addsubaccount" xml:space="preserve">
+    <value>เพิ่ม บัญชีย่อย</value>
+  </data>
+  <data name="FullControl" xml:space="preserve">
+    <value>ควบคุมทั้งหมด</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>ล่าสุด</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>ไม่ใช่</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>ตั้งค่าใหม่</value>
+  </data>
+  <data name="accpermission" xml:space="preserve">
+    <value>สิทธิ์ของบัญชี</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>เพิ่ม</value>
+  </data>
+  <data name="editsubacc" xml:space="preserve">
+    <value>แก้ไข บัญชีย่อย</value>
+  </data>
 </root>

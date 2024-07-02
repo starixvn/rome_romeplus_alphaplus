@@ -1,4 +1,7 @@
 @using AlphaPlus.Core.Models
+@using AlphaPlus.Shared.AppResources.Common
+@using AlphaPlus.Shared.AppResources.Settings
+@using AlphaPlus.Shared.AppResources.Settings.SubAccount
 @{
     Layout = "~/Features/SubAccount/Views/_Layout.cshtml";
     var index = 0;
@@ -8,32 +11,31 @@
 <div>
     <main role="main" class="pb-3">
         <div class="title-page">
-            <span class="txt-title">Sub Account</span>
+            <span class="txt-title">@Lang.subaccount</span>
             <button @(hasnotPerm ? "disabled" : string.Empty)
-                class="btn-refresh btn-add @(hasnotPerm ? "btn-add-disable" : string.Empty)" id="btn-add">Add Sub
-                Account</button>
+                class="btn-refresh btn-add @(hasnotPerm ? "btn-add-disable" : string.Empty)" id="btn-add">@Lang.addsubaccount</button>
         </div>
         <table class="tblRpt">
             <thead class="RptHeader">
                 <td>#</td>
-                <td>Username</td>
-                <td>Nickname</td>
-                <td>Firstname</td>
-                <td>Lastname</td>
+                <td>@Lang.username</td>
+                <td>@Lang.nickname</td>
+                <td>@Lang.firstname</td>
+                <td>@Lang.lastname</td>
                 @if (!Model.FirstOrDefault().IsCustomerDateLimit)
                 {
-                <td>Created Date</td>
+                <td>@Resources.CreatedDate</td>
                 }
-                <td>Member Information</td>
-                <td>Bets & Forecast</td>
-                <td>Reports</td>
-                <td>Bet Lists</td>
-                <td>Transfer</td>
-                <td>View Log</td>
-                <td>Edit</td>
-                <td>Password</td>
-                <td>Security Code</td>
-                <td>Remove OTP</td>
+                <td>@Lang.memberinfo</td>
+                <td>@Lang.BetsAndForecast</td>
+                <td>@Lang.Reports</td>
+                <td>@Lang.BetLists</td>
+                <td>@Lang.transfer</td>
+                <td>@Lang.viewlog</td>
+                <td>@Lang.Edit</td>
+                <td>@Lang.password</td>
+                <td>@Lang.SecurityCode</td>
+                <td>@CommonResx.RemoveOtpViewModelText</td>
             </thead>
             <tbody>
                 @foreach (var subAcc in Model)
@@ -89,19 +91,24 @@
         <ul id="Popup" class="divMenuPopup" style="display: none;">
             <li class="group">
                 <input type="radio" name="rdPermission" id="pNone" data-pageaccess="">
-                <label for="pNone">None</label>
+                <label for="pNone">@Lang.None</label>
             </li>
             <li class="group">
                 <input type="radio" name="rdPermission" id="pView" data-pageaccess="[H]">
-                <label for="pView">View</label>
+                <label for="pView">@Lang.view</label>
             </li>
             <li class="group">
                 <input type="radio" name="rdPermission" id="pUpdateView" data-pageaccess="[B][H]">
-                <label for="pUpdateView">Update</label>
+                <label for="pUpdateView">@Lang.Update</label>
             </li>
             <li class="group"><input type="radio" name="rdPermission" id="pFullControl" data-pageaccess="[A][B][H]">
-                <label for="pFullControl">Full Control</label>
+                <label for="pFullControl">@Lang.FullControl</label>
             </li>
         </ul>
     </main>
 </div>
+@section Scripts {
+    <script>
+        var editInfoText = '@Lang.editsubacc';
+    </script>
+}

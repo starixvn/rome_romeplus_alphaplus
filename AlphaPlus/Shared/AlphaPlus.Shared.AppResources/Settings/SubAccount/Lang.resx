@@ -136,7 +136,13 @@
     <value>You are not authorized on this function</value>
   </data>
   <data name="lblPasswordRequire" xml:space="preserve">
-    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:  • Uppercase letter [A-Z]   • Lowercase letter [a-z]   • Numeric [0-9]   • Special character (!,@,#,etc..)For example: 59D7!4$h, 493abcDENotes: your password is cAsE sEnSiTiVe</value>
+    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:  
+    • Uppercase letter [A-Z]   
+    • Lowercase letter [a-z]   
+    • Numeric [0-9]   
+    • Special character (!,@,#,etc..)
+    For example: 59D7!4$h, 493abcDE
+    Notes: your password is cAsE sEnSiTiVe</value>
   </data>
   <data name="lblPasswordWrongRule" xml:space="preserve">
     <value>Your password does not meet the minimum security requirement.</value>
@@ -200,5 +206,41 @@
   </data>
   <data name="UsernameIsNotAvailableError" xml:space="preserve">
     <value>This username is not available.</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>Bets &amp; Forecast</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>Security Code</value>
+  </data>
+  <data name="addsubaccount" xml:space="preserve">
+    <value>Add Sub Account</value>
+  </data>
+  <data name="FullControl" xml:space="preserve">
+    <value>Full Control</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="accpermission" xml:space="preserve">
+    <value>Account Permission</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="editsubacc" xml:space="preserve">
+    <value>Edit Sub Account</value>
   </data>
 </root>

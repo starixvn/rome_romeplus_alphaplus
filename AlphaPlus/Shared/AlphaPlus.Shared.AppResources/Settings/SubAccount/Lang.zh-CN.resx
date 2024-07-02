@@ -211,4 +211,37 @@
   <data name="UsernameIsNotAvailableError" xml:space="preserve">
     <value>此帳戶已有人使用。</value>
   </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>投注 &amp; 预测</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>报告</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="addsubaccount" xml:space="preserve">
+    <value>新增子帐号</value>
+  </data>
+  <data name="FullControl" xml:space="preserve">
+    <value>完全控制</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>没有</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>重填</value>
+  </data>
+  <data name="accpermission" xml:space="preserve">
+    <value>账户许可</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>增加</value>
+  </data>
+  <data name="editsubacc" xml:space="preserve">
+    <value>修改子账号</value>
+  </data>
 </root>
