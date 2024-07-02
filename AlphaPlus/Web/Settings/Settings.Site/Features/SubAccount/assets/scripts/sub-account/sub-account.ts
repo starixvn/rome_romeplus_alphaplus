@@ -64,16 +64,16 @@ class SubAccount {
         this.$('#btnAdd').click(() => {
             this.AddSubAccount(0);
         });
-        this.$("#None").click(() => {
+        this.$("#None").change(() => {
             this.$("#MemInfo").text("None");
         });
-        this.$("#View").click(() => {
+        this.$("#View").change(() => {
             this.$("#MemInfo").text("View");
         });
-        this.$("#UpdateView").click(() => {
+        this.$("#UpdateView").change(() => {
             this.$("#MemInfo").text("Update");
         });
-        this.$("#FullControl").click(() => {
+        this.$("#FullControl").change(() => {
             this.$("#MemInfo").text("Full Control");
         });
     };
@@ -178,6 +178,16 @@ class SubAccount {
     };
 
     AddSubAccount = (subAccId: number) => {
+        if (!this.$("#txtPwd").val()) {
+            this.$("#errMsg").html('Sorry, password cannot be empty!!!').css({
+                border: "1px solid red",
+                padding: "10px",
+                color: "red"
+            }).show();
+            
+            return;
+        }
+
         this.$.blockUI();
 
         var pageAccess = this.$("#View").is(":checked") ? "[H]" :
@@ -207,10 +217,10 @@ class SubAccount {
         var data = {
             first: this.$("#FirstOptions_Value").val(),
             next: this.$("#NextOptions_Value").val(),
-            password: this.$("#txtPwd").val(),
+            password: this.$("#txtPwd").val() || "",
             firstName: this.$("#txtFname").val(),
             lastName: this.$("#txtLname").val(),
-            pageAccess: pageAccess
+            pageAccess: pageAccess || ""
         };
 
         var updateUrl = '/settings/SubAccount/Add?' + this.$.param(data);
@@ -230,6 +240,7 @@ class SubAccount {
                 else {
                     this.$("#errMsg").html((result && result.Message) || 'Unexpected error occurs!').css({
                         border: "1px solid red",
+                        padding: "10px",
                         color: "red"
                     }).show();
                 }
@@ -288,25 +299,6 @@ class SubAccount {
     };
 
     OpenAddPopup = (evt: any) => {
-        var currentPerm = this.$(evt.currentTarget).data('pageaccess');
-        switch (currentPerm) {
-            case '[H]':
-                this.$('#View').prop('checked', true);
-                break;
-
-            case '[B][H]':
-                this.$('#UpdateView').prop('checked', true);
-                break;
-
-            case '[A][B][H]':
-                this.$('#FullControl').prop('checked', true);
-                break;
-
-            default:
-                this.$('#None').prop('checked', true);
-                break;
-        }
-
         var popup = this.$('#nPopup');
         popup.css({
             top: evt.clientY + 'px',
@@ -358,6 +350,7 @@ class SubAccount {
                 else {
                     this.$("#errMsg").html((result && result.Message) || 'Unexpected error occurs!').css({
                         border: "1px solid red",
+                        padding: "10px",
                         color: "red"
                     }).show();
                 }
