@@ -1,25 +1,17 @@
 ﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.Request;
+using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
+namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
-    public class CopyAccountController : SiteBaseController
+    public class CopyAccountController(IMediator mediator) : SiteBaseController(mediator)
     {
-        private const string IndexPath = "~/Features/MemberInfo/Features/CopyAccount/Views/Index.cshtml";
-        private const string ResultPath = "~/Features/MemberInfo/Features/CopyAccount/Views/_CopyResult.cshtml";
-
-        public CopyAccountController(IMediator mediator)
-            : base(mediator)
-        {
-        }
-
         public async Task<ActionResult> Index(CopyAccountQuery query)
-            => await ViewAsync(query, IndexPath);
+            => await ViewAsync(query);
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(CopyAccountCommand command)
@@ -34,7 +26,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
             {
                 result.Credit = command.Credit;
                 result.NoOfAccount = command.NumberOfAccounts;
-                return PartialView(ResultPath, result);
+                return PartialView("_CopyResult", result);
             }
             else
             {
@@ -51,7 +43,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
         public async Task<ActionResult> CheckExistedCopyCustomer(CheckExistedCustomerQuery query)
             => await JsonAsync(query);
 
-        public async Task<ActionResult> CheckExistedCustomer([FromBody]CheckExistedCustomerQuery query)
+        public async Task<ActionResult> CheckExistedCustomer([FromBody] CheckExistedCustomerQuery query)
             => await JsonAsync(query);
     }
 }

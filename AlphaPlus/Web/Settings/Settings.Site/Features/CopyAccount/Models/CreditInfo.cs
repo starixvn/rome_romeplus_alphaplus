@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.Models
+namespace AlphaPlus.Settings.Site.Features.CopyAccount.Models
 {
     public class CreditInfo
     {

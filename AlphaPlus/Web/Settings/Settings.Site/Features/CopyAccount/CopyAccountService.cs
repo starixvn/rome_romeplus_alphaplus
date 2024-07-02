@@ -1,11 +1,11 @@
-﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.Models;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.Request;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.ViewModels;
+﻿using AlphaPlus.Settings.Site.Features.CopyAccount.Models;
+using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
+using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
 using Newtonsoft.Json;
 using System.Text;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
+namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
     public interface ICopyAccountService : ICustomerService
     {
@@ -24,7 +24,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
 
     public class CopyAccountService : CustomerService, ICopyAccountService
     {
-        public CopyAccountService(HttpClient httpClient) 
+        public CopyAccountService(HttpClient httpClient)
             : base(httpClient)
         {
         }
@@ -35,7 +35,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
             {
                 actorId = command.ViewerId,
                 actorSubAccId = command.SubAccId,
-                actorSubAccName = command.SubUsername,
+                actorSubAccName = command.SubAccName,
                 actorUserLevel = command.ViewerLevelId,
                 userName = command.Username,
                 password = command.Password,
@@ -47,7 +47,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
                 language = command.Language,
                 ip = command.IP,
                 systemId = 2,
-                actorUsername = command.ActorUsername
+                actorUsername = command.ViewerUsername
             };
 
             return await PostAsJsonAsync<CopyAccountResponse>("api/customer", command.SiteDBGroupIp, payload);
@@ -58,18 +58,12 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
 
         private async Task<T> PostAsJsonAsync<T>(string requestUri, string siteDBGroupIp, object payload = null)
         {
-            using (var stringContent = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"))
-            {
-                using (var request = new HttpRequestMessage(HttpMethod.Post, requestUri) { Content = stringContent })
-                {
-                    request.Headers.Add("X-SiteDBServer", siteDBGroupIp);
-                    using (var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false))
-                    {
-                        response.EnsureSuccessStatusCode();
-                        return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
-                    }
-                }
-            }
+            using var stringContent = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
+            using var request = new HttpRequestMessage(HttpMethod.Post, requestUri) { Content = stringContent };
+            request.Headers.Add("X-SiteDBServer", siteDBGroupIp);
+            using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
         }
 
         public Task<string> GetSuggestUsername(string actorName, byte roleId)

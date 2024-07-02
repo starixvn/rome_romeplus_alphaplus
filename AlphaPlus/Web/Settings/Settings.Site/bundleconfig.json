@@ -189,7 +189,7 @@
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/indirect-login-account/new-account.js",
     "inputFiles": [
       "Features/MemberInfo/assets/scripts/aes.js",
-      "Features/MemberInfo/assets/scripts/encryptor.js",
+      "Features/Shared/Scripts/encryptor.js",
       "Features/MemberInfo/assets/scripts/components/alert.js",
       "Features/MemberInfo/assets/scripts/indirect-login-account/base-account.js",
       "Features/MemberInfo/assets/scripts/indirect-login-account/new-account.js"
@@ -199,7 +199,7 @@
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/indirect-login-account/update-account.js",
     "inputFiles": [
       "Features/MemberInfo/assets/scripts/aes.js",
-      "Features/MemberInfo/assets/scripts/encryptor.js",
+      "Features/Shared/Scripts/encryptor.js",
       "Features/MemberInfo/assets/scripts/components/alert.js",
       "Features/MemberInfo/assets/scripts/indirect-login-account/base-account.js",
       "Features/MemberInfo/assets/scripts/indirect-login-account/update-account.js"
@@ -394,19 +394,19 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/Features/MemberInfo/Features/CopyAccount/bundles/copy-account.css",
+    "outputFileName": "wwwroot/bundles/CopyAccount/copy-account.css",
     "inputFiles": [
-      "Features/MemberInfo/Features/CopyAccount/Assets/Styles/copy-account.css",
-      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
+      "Features/CopyAccount/Assets/Styles/copy-account.css",
+      "Features/Shared/Scripts/EasyAutocomplete/easy-autocomplete.css"
     ]
   },
   {
-    "outputFileName": "wwwroot/Features/MemberInfo/Features/CopyAccount/bundles/copy-account.js",
+    "outputFileName": "wwwroot/bundles/CopyAccount/copy-account.js",
     "inputFiles": [
-      "Features/MemberInfo/assets/scripts/aes.js",
-      "Features/MemberInfo/assets/scripts/encryptor.js",
-      "Features/MemberInfo/Features/CopyAccount/Assets/Scripts/copy-account.js",
-      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js"
+      "Features/Shared/Scripts/aes.js",
+      "Features/Shared/Scripts/encryptor.js",
+      "Features/CopyAccount/Assets/Scripts/copy-account.js",
+      "Features/Shared/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js"
     ]
   },
   {
@@ -508,10 +508,10 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/Features/MemberInfo/Features/CopyAccount/bundles/copy-account-dark.css",
+    "outputFileName": "wwwroot/bundles/CopyAccount/copy-account-dark.css",
     "inputFiles": [
-      "Features/MemberInfo/Features/CopyAccount/Assets/Styles/copy-account-dark.css",
-      "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css"
+      "Features/CopyAccount/Assets/Styles/copy-account-dark.css",
+      "Features/Shared/Scripts/EasyAutocomplete/easy-autocomplete.css"
     ]
   },
   {

@@ -1,17 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.ViewModels
+﻿namespace AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
 {
     public class CopyAccountResponse
     {
-        public IEnumerable<string> Usernames { get; set; } = Enumerable.Empty<string>();
+        public IEnumerable<string> Usernames { get; set; } = [];
 
         public decimal Credit { get; set; }
 
         public int NoOfAccount { get; set; }
 
-        public int NoOfFailedAccount => (NoOfAccount - Usernames.Count());
+        public int NoOfFailedAccount => NoOfAccount - Usernames.Count();
 
         public bool Success { get; set; }
 

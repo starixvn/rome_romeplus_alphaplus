@@ -17,7 +17,7 @@ using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount;
+using AlphaPlus.Settings.Site.Features.CopyAccount;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold;
@@ -90,7 +90,8 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddHealthChecks();
 
             services
-                .AddControllersWithViews(options => {
+                .AddControllersWithViews(options =>
+                {
                     options.Filters.Add<CheckBelongingFilterAttribute>();
                     options.Filters.Add<AfterLoginFlowFilterAttribute>();
                     options.Filters.Add<ProtectedModeFilterAttribute>();

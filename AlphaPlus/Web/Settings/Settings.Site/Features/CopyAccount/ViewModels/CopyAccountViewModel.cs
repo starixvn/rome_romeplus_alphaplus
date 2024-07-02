@@ -1,21 +1,20 @@
-﻿using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.Request;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.ViewModels
+namespace AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
 {
     public class CopyAccountViewModel
     {
         public CopyAccountViewModel(CopyAccountQuery request, string usernameSuffix, string hashKey)
         {
-            ActorLevel = request.ActorLevel;
+            ActorLevel = request.ViewerLevel;
             ActorUsername = request.CustName;
             UsernameSuffix = usernameSuffix;
             HashKey = hashKey;
             FirstChar = UsernameSuffix.Substring(0, 1).ToUpper();
             SecondChar = UsernameSuffix.Substring(1, 1).ToUpper();
-            ThirdChar = request.ActorLevel.IsAgentLevel() ? UsernameSuffix.Substring(2, 1).ToUpper() : string.Empty;
+            ThirdChar = request.ViewerLevel.IsAgentLevel() ? UsernameSuffix.Substring(2, 1).ToUpper() : string.Empty;
             Language = request.Language;
             IsDarkMode = request.IsDarkMode;
         }
@@ -24,7 +23,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.ViewM
         {
             IsLimitNewDownline = isLimitNewDownline;
             ErrorMessage = errorMessage;
-            ActorLevel = request.ActorLevel;
+            ActorLevel = request.ViewerLevel;
             Language = request.Language;
             IsDarkMode = request.IsDarkMode;
         }
@@ -61,6 +60,5 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.ViewM
 
         public bool IsDarkMode { get; }
 
-        public bool IsOfferLiteMode => AppSettings.IsOfferCreateAccountLiteMode;
     }
 }

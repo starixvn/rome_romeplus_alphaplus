@@ -11,8 +11,8 @@
     var errorMessageClass = string.IsNullOrEmpty(Model.ErrorMessage) ? "hidden" : "msg msg-error";
 
     var userguideLink = AppSettings.IsSiteLabel789y ?
-        MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159") :
-        MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
+    MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159") :
+    MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
 }
 @section Styles {
     @* @Html.Stylesheet() *@
@@ -29,18 +29,22 @@
         @Html.ActionLink(Resources.SearchAndCopy, "Index", "CopyAccount")
     </li>
     <li role="presentation">
-        <a href="@MicroSites.SettingUrl("~/_MemberInfo/SearchAndCopy/MasterPage.aspx")" role="tab" data-toggle="tab">@Resources.FullMode</a>
+        <a href="@MicroSites.SettingUrl("~/_MemberInfo/SearchAndCopy/MasterPage.aspx")" role="tab"
+            data-toggle="tab">@Resources.FullMode</a>
     </li>
     <li role="presentation" class="has-icon active">
         <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.QRCode</a>
     </li>
-    @if (Model.IsOfferLiteMode)
-    {
-        <li role="presentation" class="new-function">
-            @Html.ActionLink(Resources.LiteMode, "Index", "CreateAccount", new { lng = Model.Language, isDarkMode = Model.IsDarkMode.ToString().ToLowerInvariant() }, null)
-            <span class="bage-new">@Resources.lblNew</span>
-        </li>
-    }
+    <li role="presentation" class="new-function">
+        @Html.ActionLink(Resources.LiteMode, "Index", "CreateAccount", new
+            {
+                lng = Model.Language,
+                isDarkMode =
+                 Model.IsDarkMode.ToString().ToLowerInvariant()
+            }, null)
+        <span class="bage-new">@Resources.lblNew</span>
+    </li>
+
 </ul>
 @if (Model.OnlyShowErrorMessage)
 {
@@ -57,7 +61,8 @@ else
         <div id="create-form">
             <div class="form-group">
                 <label>@Resources.InputExistingMemberAccount <span class="red">*</span></label>
-                <input type="text" name="UsernameCopyFrom" id="UsernameCopyFrom" placeholder="@Resources.UsernamePlaceHolder" value="@Model.MemberNameCopyFrom" />
+                <input type="text" name="UsernameCopyFrom" id="UsernameCopyFrom"
+                    placeholder="@Resources.UsernamePlaceHolder" value="@Model.MemberNameCopyFrom" />
                 <span id="icon-message-UsernameCopyFrom" />
             </div>
             <div class="form-group">
@@ -65,7 +70,8 @@ else
                 <input type="text" name="Credit" id="Credit" placeholder="@Resources.PleaseInputMemberCredit" value="" />
                 <span id="icon-message-credit"> </span>
                 <div id="credit-range" class="hidden">
-                    <span id="credit-min-label"></span> &lt;=  @Resources.NewGivenCredit &lt;= <span id="credit-max-label"></span>
+                    <span id="credit-min-label"></span> &lt;= @Resources.NewGivenCredit &lt;= <span
+                        id="credit-max-label"></span>
                 </div>
             </div>
             <div class="form-group" id="username-group">
@@ -74,19 +80,22 @@ else
                 <select id="FirstSuffix" name="FirstSuffix">
                     @foreach (var item in Model.NameSuffix)
                     {
-                        <option value="@item" @(Model.FirstChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item</option>
+                        <option value="@item" @(Model.FirstChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item
+                        </option>
                     }
                 </select>
                 <select id="SecondSuffix" name="SecondSuffix">
                     @foreach (var item in Model.NameSuffix)
                     {
-                        <option value="@item" @(Model.SecondChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item</option>
+                        <option value="@item" @(Model.SecondChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item
+                        </option>
                     }
                 </select>
                 <select id="ThirdSuffix" name="ThirdSuffix">
                     @foreach (var item in Model.NameSuffix)
                     {
-                        <option value="@item" @(Model.ThirdChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item</option>
+                        <option value="@item" @(Model.ThirdChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item
+                        </option>
                     }
                 </select>
                 <span id="icon-message-username" class="icon-check" />
@@ -109,7 +118,7 @@ else
     </form>
 
     @section Scripts {
-        @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
-        @StaticResources.RenderScripts("~/Features/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in")
+    @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
+    @StaticResources.RenderScripts("~/Features/MemberInfo/Features/QRCodeMemberSignIn/bundles/qr-code-member-sign-in")
     }
 }

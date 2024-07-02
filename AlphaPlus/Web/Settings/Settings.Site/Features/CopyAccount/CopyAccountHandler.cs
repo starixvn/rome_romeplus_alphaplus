@@ -1,15 +1,14 @@
-﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.Models;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.Request;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.ViewModels;
+﻿using AlphaPlus.Settings.Site.Features.CopyAccount.Models;
+using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
+using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using Fanex.Cryptography.Aes;
 using MediatR;
 using Sunplus.Agent.Utilities;
+using AlphaPlus.Core.Models;
 
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
+namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
     public class CopyAccountHandler :
         IRequestHandler<CopyAccountQuery, CopyAccountViewModel>,
@@ -18,7 +17,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
         IRequestHandler<CheckUsernameQuery, Result>,
         IRequestHandler<CheckExistedCustomerQuery, bool>
     {
-        private const string HashKeySessionKey = "AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.CopyAccountHandler.PasswordHash";
+        private const string HashKeySessionKey = "AlphaPlus.Settings.Site.Features.CopyAccount.CopyAccountHandler.PasswordHash";
 
         private readonly Encryptor encryptor;
         private readonly IAesService aes;
@@ -70,7 +69,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
             var model = await copyAccountService.GetDownlineByUsername(message.CustId, message.SubAccId, message.SourceUsername);
             var sourceCustId = model.CustId;
             message.Password = aes.Decrypt(message.Password, sessionManager.Get<string>(HashKeySessionKey));
-            if (string.IsNullOrWhiteSpace(message.Password) || sourceCustId <= 0 || !Enumeration.FromValue<UserLevel>(model.RoleId).IsDirectDownlineOf(message.ActorLevel))
+            if (string.IsNullOrWhiteSpace(message.Password) || sourceCustId <= 0 || !Enumeration.FromValue<UserLevel>(model.RoleId).IsDirectDownlineOf(message.ViewerLevel))
             {
                 return new CopyAccountResponse
                 {
@@ -87,7 +86,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
         public async Task<CreditInfo> Handle(CreditQuery message, CancellationToken cancellation)
         {
             var result = await copyAccountService.GetDownlineByUsername(message.ViewerId, message.SubAccId, message.CustName);
-            if (result.CustId > 0 && Enumeration.FromValue<UserLevel>(result.RoleId).IsDirectDownlineOf(message.ActorLevel))
+            if (result.CustId > 0 && Enumeration.FromValue<UserLevel>(result.RoleId).IsDirectDownlineOf(message.ViewerLevel))
             {
                 return await copyAccountService.GetCreditInfo(message.CustName);
             }
@@ -100,11 +99,11 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount
         public async Task<Result> Handle(CheckUsernameQuery message, CancellationToken cancellation)
         {
             var result = await copyAccountService.GetDownlineByUsername(message.ViewerId, message.SubAccId, message.CustName);
-            if (result.CustId > 0 && Enumeration.FromValue<UserLevel>(result.RoleId).IsDirectDownlineOf(message.ActorLevel))
+            if (result.CustId > 0 && Enumeration.FromValue<UserLevel>(result.RoleId).IsDirectDownlineOf(message.ViewerLevel))
             {
                 if (await copyAccountService.IsCustomerEnabled(result.CustId))
                 {
-                    return Result.CreateSuccessResult();
+                    return Result.CreateSuccessfulResult();
                 }
                 else
                 {

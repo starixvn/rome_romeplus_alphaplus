@@ -1,10 +1,10 @@
 ﻿@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
-@using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.ViewModels
+@using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
 @using AlphaPlus.Settings.MemberInfo.Domain.Configurations
 @model CopyAccountViewModel
 @{
-    Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
+    Layout = "~/Features/Shared/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Resources.SearchAndCopy;
     var errorMessageClass = string.IsNullOrEmpty(Model.ErrorMessage) ? "hidden" : "msg msg-error";
     var userguideLink = AppSettings.IsSiteLabel789y ?
@@ -13,7 +13,7 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/Features/CopyAccount/bundles/copy-account")
+    @StaticResources.RenderStylesWithDarkMode("~/bundles/CopyAccount/copy-account")
 }
 
 <div class="page-title">
@@ -208,5 +208,5 @@
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/copy-account")
-    @StaticResources.RenderScripts("~/Features/MemberInfo/Features/CopyAccount/bundles/copy-account")
+    @StaticResources.RenderScripts("~/bundles/CopyAccount/copy-account")
 }

@@ -61,6 +61,5 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
 
         public bool IsDarkMode { get; }
 
-        public bool IsOfferLiteMode => AppSettings.IsOfferCreateAccountLiteMode;
     }
 }

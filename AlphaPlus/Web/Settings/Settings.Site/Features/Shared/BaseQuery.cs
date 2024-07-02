@@ -29,6 +29,8 @@ namespace AlphaPlus.Settings.Site.Features.Shared
 
         public int SubAccId => viewer.SubAccId;
 
+        public string SubAccName => viewer.SubAccName;
+
         public string ViewerUsername => string.IsNullOrWhiteSpace(viewer.SubAccName) ? viewer.Name : viewer.SubAccName;
 
         public byte ViewerLevelId => viewer.LevelId;

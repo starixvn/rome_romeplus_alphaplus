@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CopyAccount.Models
+namespace AlphaPlus.Settings.Site.Features.CopyAccount.Models
 {
     public class Downline
     {
