@@ -132,7 +132,6 @@ gulp.task('watch', () => {
                 minJs,
                 copyImages,
                 copyAllbetImages,
-                copyAllbetImages2,
                 copySAGamingImages,
                 copySexyGamingImages,
                 copyWMImages
