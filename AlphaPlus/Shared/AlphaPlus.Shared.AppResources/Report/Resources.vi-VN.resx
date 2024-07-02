@@ -850,9 +850,6 @@
   <data name="RoundCount" xml:space="preserve">
     <value>Số ván</value>
   </data>
-  <data name="SabaSportsNote" xml:space="preserve">
-    <value>Báo cáo hiệu suất dành riêng cho SABA Sports chỉ có sẵn từ {0} trở đi. Trước {0}, các số liệu là sự kết hợp của Sportsbook và SABA Sports.</value>
-  </data>
   <data name="SearchColumns" xml:space="preserve">
     <value>Tìm Cột</value>
   </data>
@@ -1162,5 +1159,8 @@
   </data>
   <data name="vs" xml:space="preserve">
     <value/>
+  </data>
+  <data name="SabaOtherSportsLegend" xml:space="preserve">
+    <value>Dữ liệu {0} đã bao gồm trong {1}</value>
   </data>
 </root>

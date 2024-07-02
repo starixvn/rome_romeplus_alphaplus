@@ -13,6 +13,7 @@ public class LegendQuery : IRequest<LegendViewModel>
 
     protected LegendQuery(IUserSession viewer)
     {
+        ViewerId = viewer.CustId;
         ViewerLevel = Enumeration.FromValue<UserLevel>(viewer.RoleId);
         Site = viewer.Site;
         CurrencyId = viewer.CurrencyId;
@@ -21,6 +22,8 @@ public class LegendQuery : IRequest<LegendViewModel>
             ? SystemTime.Today.AddYears(-3).FirstDayOfYear()
             : SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
     }
+
+    public int ViewerId { get; }
 
     public UserLevel ViewerLevel { get; }
 

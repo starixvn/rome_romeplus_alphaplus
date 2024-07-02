@@ -4,14 +4,20 @@ using MediatR;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Shared.Constants;
 
 namespace AlphaPlus.Reports.Site.Features.Legends;
 
-public class LegendHandler(ILengendService lengendService, IOptions<AppSettings> options) :
-    IRequestHandler<LegendQuery, LegendViewModel>,
-    IRequestHandler<WinLossLegendQuery, LegendViewModel>,
-    IRequestHandler<WinLossDetailLegendQuery, LegendViewModel>,
-    IRequestHandler<MatchWinLossDetailLegendQuery, LegendViewModel>
+public class LegendHandler(
+    IOptions<AppSettings> options,
+    ILengendService lengendService,
+    IProductService productService,
+    ICacheRefService cacheRefService) :
+        IRequestHandler<LegendQuery, LegendViewModel>,
+        IRequestHandler<WinLossLegendQuery, LegendViewModel>,
+        IRequestHandler<WinLossDetailLegendQuery, LegendViewModel>,
+        IRequestHandler<MatchWinLossDetailLegendQuery, LegendViewModel>
 {
     public async Task<LegendViewModel> Handle(LegendQuery message, CancellationToken cancellationToken)
     {
@@ -31,6 +37,7 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
         }
 
         await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
+        legends.Add($"- {GetProductDetailsBelongSabaOtherSportsNote(message)}");
         legends.Add(GetGrossCommNotes(message.ViewerLevel));
         legends.Add(Resources.GrossCommRoundingNote);
         if (message.ShowDormantAccountsNote)
@@ -75,6 +82,7 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
         }
 
         await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
+        legends.Add($"- {GetProductDetailsBelongSabaOtherSportsNote(message)}");
         legends.Add(GetGrossCommNotes(message.ViewerLevel));
         legends.Add(Resources.GrossCommRoundingNote);
         if (message.ShowDormantAccountsNote)
@@ -83,6 +91,18 @@ public class LegendHandler(ILengendService lengendService, IOptions<AppSettings>
         }
 
         return new LegendViewModel(legends);
+    }
+
+    private string GetProductDetailsBelongSabaOtherSportsNote(LegendQuery message)
+    {
+        var param = new GetProductsParam(message.Site, message.CurrencyId, options.Value.SettingStatus, message.Language, message.MinDate);
+        var products = productService.GetProducts(param);
+        var productDetailsBelongSabaOthers = productService.GetProductDetailsBelongSabaOtherSports(message.ViewerId, products).JoinWithComma(", ");
+
+        return string.Format(
+            Resources.SabaOtherSportsLegend,
+            productDetailsBelongSabaOthers,
+            cacheRefService.GetProductDetailName(ProductDetaiIdConstants.SabaOtherSports));
     }
 
     public Task<LegendViewModel> Handle(MatchWinLossDetailLegendQuery message, CancellationToken cancellationToken)

@@ -1,7 +1,5 @@
-using System.Text;
 using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Criteria;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;
@@ -18,6 +16,8 @@ public interface IProductService
     IEnumerable<ProductDetail> GetProductDetails(int custId, IEnumerable<Product> products);
 
     string BuildProductDetailXml(ProductDetail productDetail);
+
+    IEnumerable<string> GetProductDetailsBelongSabaOtherSports(int custId, IEnumerable<Product> products);
 }
 
 public class ProductService(
@@ -32,6 +32,11 @@ public class ProductService(
     private const int ProductDetailsCacheInMinutes = 60 * 24; // 1 day
     private const string ProductDetailsCacheKey = "AlphaPlus.Reports.ProductDetails";
     private const int CustProductDetailsCacheInMinutes = 5;
+    private static readonly HashSet<int> IgnoreCheckProductStatusTypes =
+    [
+        ProductIdConstants.LiveCasino,
+        ProductIdConstants.DummyRNGProductId
+    ];
 
     public string ConcatProductNames(IEnumerable<int> productIds)
         => productIds.Select(cacheRefService.GetProductName).JoinWithComma(", ");
@@ -50,7 +55,7 @@ public class ProductService(
                 }).ToList(),
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
-        return products.Where(i => canViewProduct(i.Id) && IsRemainSupportProduct(i, param.MinReportDate));
+        return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && (IgnoreCheckProductStatusTypes.Contains(i.Type) || canViewProduct(i.Id)));
     }
 
     private static bool IsRemainSupportProduct(Product product, DateTime? minReportDate)
@@ -70,6 +75,8 @@ public class ProductService(
 
                 return GetAllProductDetails()
                     .Where(p => productSupportDetail.Contains(p.ProductId) && CanViewProductDetailByResourceId(p.ResourceId))
+                    .OrderBy(p => p.ProductId)
+                    .ThenBy(p => p.Order)
                     .Select(product =>
                     {
                         product.DisplayName = cacheRefService.GetProductDetailName(product.ResourceId);
@@ -79,14 +86,9 @@ public class ProductService(
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
 
     private bool CanViewProductDetailByResourceId(int resourceId)
-    {
-        if (options.Value.IsSiteLabel777)
-        {
-            return !ProductDetaiIdConstants.ExcludedProductDetailFor777.Contains(resourceId);
-        }
-
-        return true;
-    }
+        => options.Value.IsSiteLabel777
+        ? !ProductDetaiIdConstants.ExcludedProductDetailFor777.Contains(resourceId)
+        : true;
 
     private IEnumerable<ProductDetail> GetAllProductDetails()
         => cacheService.GetOrSet(
@@ -102,4 +104,10 @@ public class ProductService(
         productDetail.BetType,
         productDetail.LeagueGroupId,
         productDetail.TicketType);
+
+    public IEnumerable<string> GetProductDetailsBelongSabaOtherSports(int custId, IEnumerable<Product> products)
+        => GetProductDetails(custId, products)
+        .Where(i => i.ResourceId == ProductDetaiIdConstants.SabaOtherSports)
+        .OrderBy(product => product.Order)
+        .Select(i => cacheRefService.GetProductDetailName(i.ChildResourceId));
 }

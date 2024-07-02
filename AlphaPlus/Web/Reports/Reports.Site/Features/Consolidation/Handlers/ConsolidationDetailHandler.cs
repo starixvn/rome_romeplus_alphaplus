@@ -30,7 +30,7 @@ public class ConsolidationDetailHandler(
     public async Task<ConsolidationDetailViewModel> Handle(ConsolidationDetailQuery message, CancellationToken cancellationToken)
     {
         var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
-        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus);
+        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
         await Task.WhenAll(enteredResultTask, productsTask);
 
         var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
@@ -46,7 +46,7 @@ public class ConsolidationDetailHandler(
 
     public async Task<ExcelFileViewModel> Handle(ConsolidationDetailExcelQuery message, CancellationToken cancellationToken)
     {
-        var products = await consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus);
+        var products = await consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
         var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
             message,
             message.UserSelectedProductIds,

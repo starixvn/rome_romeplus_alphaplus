@@ -849,9 +849,6 @@
   <data name="RoundCount" xml:space="preserve">
     <value/>
   </data>
-  <data name="SabaSportsNote" xml:space="preserve">
-    <value>รายงานเฉพาะของ กีฬาSABA จะมีตั้งแต่วันที่ {0} เป็นต้นไป ก่อนวันที่ {0} รายงานของกีฬาและกีฬาSABA จะรวมกัน</value>
-  </data>
   <data name="SearchColumns" xml:space="preserve">
     <value>ค้นหาคอลัมน์</value>
   </data>
@@ -1160,5 +1157,8 @@
   </data>
   <data name="vs" xml:space="preserve">
     <value/>
+  </data>
+  <data name="SabaOtherSportsLegend" xml:space="preserve">
+    <value>ข้อมูลของ {0} จะอยู่ภายใต้ {1}</value>
   </data>
 </root>

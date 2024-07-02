@@ -24,6 +24,7 @@ using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 using AlphaPlus.Reports.Features.WinLossByProduct;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.Customer;
+using System.Collections;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
@@ -32,6 +33,7 @@ public static class DependencyInjection
     public static IServiceCollection AddReportsServices(this IServiceCollection services, IConfiguration configuration)
     {
         services
+            .AddAllowedSitesToShareLoadConfig(configuration)
             .Configure<AppSettings>(configuration)
             .AddSingleton<IPService, IPServiceImpl>()
             .AddSingleton<IAutoFollowBetService, AutoFollowBetService>()
@@ -66,5 +68,25 @@ public static class DependencyInjection
         ReportDateService.Instance = serviceProvider.GetRequiredService<IReportDateService>();
 
         return services;
+    }
+
+    public static IServiceCollection AddAllowedSitesToShareLoadConfig(this IServiceCollection services, IConfiguration configuration)
+    {
+        IDictionary<string, string> siteNameToIP = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        var allowedSitesToShareLoadConfig = configuration.GetSection("AllowedSitesToShareLoad");
+
+        foreach (var item in allowedSitesToShareLoadConfig.GetChildren())
+        {
+            var siteNames = allowedSitesToShareLoadConfig.GetValue<string>(item.Key).ToList();
+
+            foreach (var site in siteNames)
+            {
+                siteNameToIP[site.Trim()] = item.Key;
+            }
+        }
+
+        var allowedSitesToShareLoad = new AllowedSitesToShareLoad(siteNameToIP);
+
+        return services.AddSingleton(allowedSitesToShareLoad);
     }
 }

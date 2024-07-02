@@ -20,6 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Data.ProxyClient" Version="0.0.3-alpha02" />
-    <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
+    <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
   </ItemGroup>
 </Project>

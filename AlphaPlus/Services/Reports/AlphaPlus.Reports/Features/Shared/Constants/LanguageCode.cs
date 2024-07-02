@@ -1,6 +1,6 @@
 namespace AlphaPlus.Reports.Features.Shared.Constants;
 
-public static class LanguageCode
+internal static class LanguageCode
 {
     public const string English = "en-US";
     public const string ChineseTraditional = "zh-TW";

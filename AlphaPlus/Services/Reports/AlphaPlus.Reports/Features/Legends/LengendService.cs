@@ -24,8 +24,8 @@ public class LengendService(
 {
     private const int CacheInMinutes = 5;
     private const string CacheKey = "AlphaPlus.Reports.Legends.ProductsNeedDelayTimeToSummarizeData";
-    private static readonly HashSet<int> LiveCasinoTooltips = new HashSet<int>
-    {
+    private static readonly HashSet<int> LiveCasinoTooltips =
+    [
         ProductIdConstants.Allbet,
         ProductIdConstants.SexyGaming,
         ProductIdConstants.SAGaming,
@@ -39,13 +39,13 @@ public class LengendService(
         ProductIdConstants.YeeBet,
         ProductIdConstants.FGG,
         ProductIdConstants.WE
-    };
-    private static readonly HashSet<int> RNGCasinoTooltips = new HashSet<int>
-    {
+    ];
+    private static readonly HashSet<int> RNGCasinoTooltips =
+    [
         ProductIdConstants.RNGWar,
         ProductIdConstants.SabaClub,
         ProductIdConstants.VGaming
-    };
+    ];
 
     public string GetProductNamesForLiveCasinoTooltip(GetProductsParam productsParam)
         => GetProductNames(productsParam, LiveCasinoTooltips);

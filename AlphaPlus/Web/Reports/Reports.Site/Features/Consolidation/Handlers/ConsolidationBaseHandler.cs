@@ -126,8 +126,8 @@ public class ConsolidationBaseHandler(
         EnteredResultSport)> GetConsolidationFilter(ConsolidationQuery message)
     {
         var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
-        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus);
-        var currenciesTask = consolidationService.GetCurrencies(message.ViewerId);
+        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
+        var currenciesTask = consolidationService.GetCurrencies(message.ViewerId, message.Site);
         await Task.WhenAll(enteredResultTask, productsTask, currenciesTask);
 
         var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
@@ -137,8 +137,8 @@ public class ConsolidationBaseHandler(
 
     protected async Task<(string, string, string, IEnumerable<ConsolidationCurrency>)> GetConsolidationFilterExcel(ConsolidationExcelQuery message)
     {
-        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus);
-        var currenciesTask = consolidationService.GetCurrencies(message.ViewerId);
+        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
+        var currenciesTask = consolidationService.GetCurrencies(message.ViewerId, message.Site);
         await Task.WhenAll(productsTask, currenciesTask);
 
         var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(

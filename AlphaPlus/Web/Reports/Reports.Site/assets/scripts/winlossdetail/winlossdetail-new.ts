@@ -144,7 +144,7 @@ class WinLossDetailViewNew extends BaseReportNew {
         const productsAndResources = this.productComponent.getCheckedValues();
         const username = this.usernameSuggestionComponent.getUsername();
 
-        const formData = $.extend({}, dateRange, productsAndResources, { username, getWeekData: true });
+        const formData = $.extend({}, dateRange, productsAndResources, { username });
         if (
             formData.userSelectedProductIds.length === 0 ||
             formData.custLevelId > viewerLevelId ||
@@ -153,38 +153,42 @@ class WinLossDetailViewNew extends BaseReportNew {
             return;
         }
 
-        this.getData(formData);
+        this.getData(formData, undefined, true);
     }
 
-    getWinLossDetailUpOrDownline(custInfo, callback) {
+    getWinLossDetailUpOrDownline(custInfo, callback: Function) {
         this.clearUsername();
-        custInfo.getWeekData = true;
-        this.getData(custInfo, callback);
+        this.getData(custInfo, callback, true);
     }
 
-    getData(formData, callback: Function = undefined) {
+    getData(formData, callback: Function, isGetWeeks: boolean) {
+        this.winLossDetailTable.$tableReport.block();
         this.isGettingData = true;
         const queryStringObject = $.extend({}, this.globalFormData, formData);
         const queryString = $.param(queryStringObject);
+        isGetWeeks && this.getWeeks(queryString);
         $.get(`GetData?${queryString}`, (json) => {
             this.getDataSuccess(json);
             callback && callback();
             this.globalFormData = queryStringObject;
             this.updateQueryString(queryString);
             this.isGettingData = false;
+            this.winLossDetailTable.$tableReport.unblock();
         }).fail((jqXHR) => {
             alphaReports.ajaxFail(jqXHR);
             this.isGettingData = false;
+            this.winLossDetailTable.$tableReport.unblock();
         });
+    }
+
+    getWeeks(queryString: string) {
+        $.get(`GetWeeks?${queryString}`, (json) =>
+            this.weekComponent.render(json, (dateRange) => this.getData(dateRange, undefined, false))
+        ).fail((jqXHR) => alphaReports.ajaxFail(jqXHR));
     }
 
     getDataSuccess(json) {
         this.totalEnteredNonEnteredComponent.render(json.TotalEnteredResults);
-        json.Weeks &&
-            this.weekComponent.render(json.Weeks, (dateRange) => {
-                dateRange.getWeekData = false;
-                this.getData(dateRange);
-            });
         if (json.Breadcrumbs) {
             this.$reportTitle.text(reportTitle[json.CustLevelId]);
             this.breadcrumbLevelComponent.resetBreadcrumb(json.Breadcrumbs);
@@ -219,7 +223,6 @@ class WinLossDetailViewNew extends BaseReportNew {
                         breadcrumbsJson,
                         visibleColumns
                     });
-                    delete betListParams.getWeekData;
                     $element.attr('href', `${$('#hidden-betListUrl').val()}?${$.param(betListParams)}`);
                 }
             );

@@ -8,5 +8,4 @@ public record WinLossDetailGetDataViewModel(
     byte CustLevelId,
     EnteredResultSport TotalEnteredResults,
     ReportData<WinLossDetailModel> ReportData,
-    IEnumerable<WinLossDetailWeekViewModel> Weeks,
     IEnumerable<Breadcrumb> Breadcrumbs);

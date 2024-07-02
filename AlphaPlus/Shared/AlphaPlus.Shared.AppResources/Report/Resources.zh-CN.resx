@@ -849,10 +849,6 @@
   <data name="RoundCount" xml:space="preserve">
     <value/>
   </data>
-  <data name="SabaSportsNote" xml:space="preserve">
-    <value>沙巴体育的专属报表仅從 {0} 開始提供。&#xD;&#xD;&#xD;
- 在 {0} 之前，体育博彩报表和沙巴体育报表的 數據是结合的。</value>
-  </data>
   <data name="SearchColumns" xml:space="preserve">
     <value>搜索专栏</value>
   </data>
@@ -1161,5 +1157,8 @@
   </data>
   <data name="vs" xml:space="preserve">
     <value/>
+  </data>
+  <data name="SabaOtherSportsLegend" xml:space="preserve">
+    <value>数据{0} 将低于 {1}</value>
   </data>
 </root>

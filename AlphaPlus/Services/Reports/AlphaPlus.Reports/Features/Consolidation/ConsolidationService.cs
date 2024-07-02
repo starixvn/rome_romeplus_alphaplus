@@ -10,9 +10,9 @@ namespace AlphaPlus.Reports.Features.Consolidation;
 
 public interface IConsolidationService
 {
-    Task<IEnumerable<ConsolidationCurrency>> GetCurrencies(int custId);
+    Task<IEnumerable<ConsolidationCurrency>> GetCurrencies(int custId, string siteName);
 
-    Task<IEnumerable<Product>> GetProducts(int custId, DateTime minDate, byte settingStatus);
+    Task<IEnumerable<Product>> GetProducts(int custId, DateTime minDate, byte settingStatus, string siteName);
 
     Task<IEnumerable<ConsolidationByUsername>> GetConsolidationByUsername(ConsolidationParam param);
 
@@ -24,26 +24,32 @@ public class ConsolidationService(
     IReportDateService reportDateService,
     ICacheService cacheService,
     ICacheRefService cacheRefService,
-    IPartialUMService partialUMService) : IConsolidationService
+    IPartialUMService partialUMService,
+    AllowedSitesToShareLoad allowedSitesToShareLoad) : IConsolidationService
 {
     private const int ProductsCacheTimeInMinutes = 2;
 
-    public Task<IEnumerable<ConsolidationCurrency>> GetCurrencies(int custId)
-        => repository.FetchAsync<ConsolidationCurrency>(new GetConsolidationCurrencyCriteria(custId));
+    public Task<IEnumerable<ConsolidationCurrency>> GetCurrencies(int custId, string siteName)
+        => repository.FetchAsync<ConsolidationCurrency>(new GetConsolidationCurrencyCriteria(custId), allowedSitesToShareLoad.GetIP(siteName));
 
-    public Task<IEnumerable<Product>> GetProducts(int custId, DateTime minDate, byte settingStatus)
+    public Task<IEnumerable<Product>> GetProducts(int custId, DateTime minDate, byte settingStatus, string siteName)
         => cacheService
             .GetOrSetAsync(
             $"AlphaPlus.Reports.Consolidation-{custId}",
-            async () => (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus)))
-                .Where(product => product.ProductId != ProductIdConstants.Cashout && IsRemainSupportProduct(product, minDate))
-                .Select(product => new Product
-                {
-                    Id = product.ProductId,
-                    Name = cacheRefService.GetProductName(product.ProductId),
-                    Type = product.Type,
-                    TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type)
-                }),
+            async () =>
+            {
+                var ip = allowedSitesToShareLoad.GetIP(siteName);
+
+                return (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus), ip))
+                    .Where(product => product.ProductId != ProductIdConstants.Cashout && IsRemainSupportProduct(product, minDate))
+                    .Select(product => new Product
+                    {
+                        Id = product.ProductId,
+                        Name = cacheRefService.GetProductName(product.ProductId),
+                        Type = product.Type,
+                        TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type)
+                    });
+            },
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheTimeInMinutes)));
 
     private static bool IsRemainSupportProduct(ConsolidationProduct product, DateTime minReportDate)
@@ -177,7 +183,8 @@ public class ConsolidationService(
             param.ProductDetailsXml);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        return await repository.FetchAsync<ConsolidationEntity>(criteria);
+        var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
+        return await repository.FetchAsync<ConsolidationEntity>(criteria, ip);
     }
 
     private static IEnumerable<ConsolidationEntity> SetCurrencies(

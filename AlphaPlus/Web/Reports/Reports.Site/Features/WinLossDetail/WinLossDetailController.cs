@@ -1,5 +1,4 @@
 using AlphaPlus.Core.Filters;
-using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
 using MediatR;
@@ -18,6 +17,9 @@ public class WinLossDetailController(IMediator mediator) : ReportBaseController(
 
     public Task<IActionResult> GetData(WinLossDetailGetDataQuery message)
         => Json<WinLossDetailGetDataViewModel>(message);
+
+    public Task<IActionResult> GetWeeks(WinLossDetailGetWeeksQuery message)
+        => Json<IEnumerable<WinLossDetailWeekViewModel>>(message);
 
     public Task<IActionResult> ExcelNew(WinLossDetailExcelNewQuery message) => ExcelView(message);
 }

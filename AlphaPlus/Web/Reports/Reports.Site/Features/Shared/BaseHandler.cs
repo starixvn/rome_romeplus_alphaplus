@@ -20,8 +20,8 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         IEnumerable<Product> products = null)
     {
         products = products ?? GetProducts(message);
-        var (productGroups, validUserSelectedProductIds) = BuildProductViewModel(products, userSelectedProductIds);
-        var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = BuildProductDetailViewModel(
+        var (productGroups, validUserSelectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
+        var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = BuildProductDetailGroups(
             message.ViewerId,
             products,
             validUserSelectedProductIds,
@@ -45,12 +45,12 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         IEnumerable<Product> products = null)
     {
         products = products ?? GetProducts(message);
-        var (productGroups, validUserSelectedProductIds) = BuildProductViewModel(products, userSelectedProductIds);
+        var (productGroups, validUserSelectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
 
         return new ProductMultiSelectionViewModel(productGroups, validUserSelectedProductIds.JoinWithComma(), message.Language);
     }
 
-    private static (IEnumerable<ProductGroupDTO>, IEnumerable<int>) BuildProductViewModel(
+    private static (IEnumerable<ProductGroupDTO>, IEnumerable<int>) BuildProductGroups(
         IEnumerable<Product> products,
         string userSelectedProductIds)
     {
@@ -93,7 +93,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return (productGroups, validUserSelectedProductIds);
     }
 
-    private (IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string) BuildProductDetailViewModel(
+    private (IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string) BuildProductDetailGroups(
         int custId,
         IEnumerable<Product> products,
         IEnumerable<int> validUserSelectedProductIds,
@@ -102,6 +102,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var isCheckedAll = "*" == userSelectedResourceIds;
         var userSelectedResourceIdsList = isCheckedAll ? [] : userSelectedResourceIds.ToListInt().ToList();
 
+        var resourceIdHashSet = new HashSet<int>();
         var productDetails = new List<ProductDetailDTO>();
         var validUserSelectedResourceIds = new List<int>();
         var allProductsSupportProductDetails = new List<int>();
@@ -119,7 +120,11 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
                 xml.Append(productService.BuildProductDetailXml(item));
             }
 
-            productDetails.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
+            if (resourceIdHashSet.Add(item.ResourceId))
+            {
+                productDetails.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
+            }
+
             allProductsSupportProductDetails.Add(item.ProductId);
         }
 

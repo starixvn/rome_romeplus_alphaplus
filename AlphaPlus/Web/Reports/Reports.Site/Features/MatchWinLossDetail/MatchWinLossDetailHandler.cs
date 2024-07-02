@@ -52,7 +52,7 @@ public class MatchWinLossDetailHandler(
             message.ToDate,
             message.Language,
             message.LanguageKey,
-            options.Value.LocalTest);
+            appSettings.LocalTest);
         var leagueViewModel = await BuildLeagueViewModel(leagueParam, message.UserSelectedLeagueIds, message.IsUserSelectsAllLeagues);
 
         var param = new MatchWinLossDetailParam(
@@ -84,7 +84,7 @@ public class MatchWinLossDetailHandler(
             message.ToDate,
             message.Language,
             message.LanguageKey,
-            options.Value.LocalTest);
+            appSettings.LocalTest);
 
         var leagueIds = message.IsUserSelectsAllLeagues
             ? string.Empty

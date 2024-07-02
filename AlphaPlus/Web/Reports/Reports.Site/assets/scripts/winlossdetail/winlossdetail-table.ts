@@ -1,5 +1,5 @@
 class WinLossDetailTable {
-    private $tableReport: JQuery;
+    $tableReport: JQuery;
     private SuperLevel = 4;
     private MasterLevel = 3;
     private AgentLevel = 2;
@@ -30,7 +30,8 @@ class WinLossDetailTable {
             this.buildBodyNoData(html, custLevelId);
         }
 
-        this.$tableReport.html(html.join(''));
+        this.$tableReport.html(html.join('')).removeClass('hide');
+        this.$tableReport.prev('.breadcrumb-table').removeClass('hide');
         this.showHideColumns(columns);
         this.initTableSorter(reportData.MoreThanOne);
         this.stickyTableHeaders();

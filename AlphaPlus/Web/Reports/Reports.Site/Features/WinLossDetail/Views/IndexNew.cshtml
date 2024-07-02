@@ -117,7 +117,7 @@
     <visible-column />
     <div class="label-week-box" id="week-container"></div>
 </form>
-<div class="breadcrumb-table">
+<div class="breadcrumb-table hide">
     <div class="breadcrumb-container">
         <ul class="breadcrumb" id="breadcrumb-level"></ul>
     </div>
@@ -128,7 +128,7 @@
         </ul>
     </div>
 </div>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per" id="tbl-report">
+<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per hide" id="tbl-report">
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true" asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
 <input type="hidden" id="hidden-betListUrl" value="@MicroSites.TicketUrl("~/WinLoss/IndexNew")">
