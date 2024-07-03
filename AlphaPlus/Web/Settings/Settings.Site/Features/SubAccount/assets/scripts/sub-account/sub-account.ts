@@ -13,6 +13,7 @@ interface Window {
     };
     passwordEmptyMsg: string;
     editInfoText: string;
+    passwordFormatMsg: string;
 }
 
 class SubAccount {
@@ -64,7 +65,16 @@ class SubAccount {
             this.OpenAddPopup(item);
         });
         this.$('#btnAdd').click(() => {
-            this.AddSubAccount(0);
+            if (this.ValidatePassword(this.$("#txtPwd").val())) {
+                this.AddSubAccount(0);
+            }
+            else {
+                this.$("#errMsg").html(window.passwordFormatMsg).css({
+                    border: "1px solid red",
+                    padding: "10px",
+                    color: "red"
+                }).show();
+            }
         });
         this.$("#None").change((item) => {
             this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
@@ -77,6 +87,10 @@ class SubAccount {
         });
         this.$("#FullControl").change((item) => {
             this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
+        });
+        this.$("#txtPwd").change((item) => {
+            var pwd = this.$(item.currentTarget).val();
+            this.ValidatePassword(pwd);
         });
     };
 
@@ -369,6 +383,41 @@ class SubAccount {
         this.$("#txtFirstname").val(this.$("#Firstname").val());
         this.$("#txtLastname").val(this.$("#Lastname").val());
         this.$("#chkClosed").prop("checked", this.$("#Closed").val() === "True" ? true : false);
+    };
+
+    ValidatePassword = (password: string): boolean => {
+        var validPwd = this.IsPassword(password);
+        if (validPwd) {
+            this.$("#spnPwdIcon")
+                .removeClass("PwdError")
+                .removeClass("PwdSuccess")
+                .addClass("PwdSuccess");
+            return true;
+        }
+        else {
+            this.$("#spnPwdIcon")
+            .removeClass("PwdError")
+            .removeClass("PwdSuccess")
+            .addClass("PwdError");
+            return false;
+        }
+    };
+
+    IsPassword = (str: string): boolean => {
+        var regex1 = /^(?=.{8,100}$).*\d/i;
+        var regex2 = /^(?=.{8,100}$).*[a-z]/;
+        var regex3 = /^(?=.{8,100}$).*[A-Z]/;
+        var regex4 = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
+    
+        var whiteSpace = /^\S*$/;
+    
+        var case1 = str.search(regex1) != -1 ? 1 : 0;
+        var case2 = str.search(regex2) != -1 ? 1 : 0;
+        var case3 = str.search(regex3) != -1 ? 1 : 0;
+        var case4 = str.search(regex4) != -1 ? 1 : 0;
+    
+        var case5 = str.search(whiteSpace) != -1;
+        return (case1 + case2 + case3 + case4 >= 3) && case5;
     };
 }
 
