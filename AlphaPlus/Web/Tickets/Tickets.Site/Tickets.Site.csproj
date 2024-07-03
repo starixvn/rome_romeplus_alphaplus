@@ -34,6 +34,7 @@
     <PackageReference Include="Fanex.BetList.BBIN" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.BetTrade" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.BG" Version="2.0.0" />
+    <PackageReference Include="Fanex.BetList.Bitcoin" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.CardClub" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.CG" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Core" Version="3.0.3.2" />
