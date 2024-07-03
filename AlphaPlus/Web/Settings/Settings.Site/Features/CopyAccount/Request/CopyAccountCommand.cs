@@ -1,11 +1,11 @@
-﻿using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
-using MediatR;
+﻿using MediatR;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 using AlphaPlus.Settings.Site.Features.Shared;
+using Fanex.Customer.Client.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount.Request
 {
-    public class CopyAccountCommand : BaseQuery, IRequest<CopyAccountResponse>
+    public class CopyAccountCommand : BaseQuery, IRequest<CopyMultipleCustomersResult>
     {
         public string SourceUsername { get; set; }
 

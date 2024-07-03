@@ -1,13 +1,13 @@
-﻿@using AlphaPlus.Core.Helpers
-@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+﻿@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
-@model CopyAccountResponse
-<p class="msg msg-success msg-result">@string.Format(Resources.CreateCustomerSuccessMessage, Model.Usernames.Count())</p>
+@model CopyAccountResultViewModel
+<p class="msg msg-success msg-result">@string.Format(Resources.CreateCustomerSuccessMessage,
+    Model.Result.Usernames.Count())</p>
 <div class="form-row">
     <label>@Resources.Usernames:</label>
     <div class="relative-input result-area">
         <textarea readonly="readonly" type="text" name="member"
-            id="usernames">@string.Join(", ", Model.Usernames)</textarea>
+            id="usernames">@string.Join(", ", Model.Result.Usernames)</textarea>
         <span class="icon icon-content-copy" data-clipboard-target="#usernames" title="@Resources.Copy"></span>
     </div>
 </div>
@@ -23,7 +23,37 @@
 {
     <div class="failed-account-created">
         <p class="msg msg-error result-text">@string.Format(Resources.NoAccountCreatedFailed, Model.NoOfFailedAccount)</p>
-        <p class="result-text"><span>@Resources.FailureReason:</span> <span>@Model.Message</span></p>
+        <p class="result-text">
+            <span>@Resources.FailureReason: </span>
+            @if (Model.Result.MessageContent != null)
+            {
+            <div class="msg msg-error">
+                <div class="main-message">@Model.Result.MessageContent.MainMessage</div>
+                    @{
+                        var subMessages = Model.Result.MessageContent?.SubMessages;
+                        if (subMessages != null && subMessages.Count() > 0)
+                        {
+                            foreach (var subMessage in subMessages)
+                            {
+
+                            <div class="sub-message">
+                                    @if (subMessage.IsLive)
+                                    {
+                                    <span class="live-badge">@Resources.Live</span>
+                                    }
+                                    @subMessage.Message
+                            </div>
+                            }
+                        }
+                    }
+            </div>
+
+            }
+            else
+            {
+            <span>@Model.Result.Message</span>
+            }
+        </p>
     </div>
 }
 

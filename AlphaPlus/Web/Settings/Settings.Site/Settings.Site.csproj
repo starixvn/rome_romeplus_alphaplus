@@ -12,7 +12,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.Customer.Client" Version="1.0.0.4" />
+    <PackageReference Include="Fanex.Customer.Client" Version="1.0.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.2" />
     <PackageReference Include="Sunplus.Agent.Utilities" Version="4.0.0" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />

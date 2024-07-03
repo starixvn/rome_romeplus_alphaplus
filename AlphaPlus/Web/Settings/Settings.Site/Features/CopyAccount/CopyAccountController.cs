@@ -1,17 +1,17 @@
-﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
+﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
+using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
+using AlphaPlus.Settings.Site.Features.Shared;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
     public class CopyAccountController(IMediator mediator) : SiteBaseController(mediator)
     {
-        public async Task<ActionResult> Index(CopyAccountQuery query)
-            => await ViewAsync(query);
+        public Task<ActionResult> Index(CopyAccountQuery query)
+            => View(query);
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(CopyAccountCommand command)
@@ -24,9 +24,13 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
             var result = await mediator.Send(command);
             if (result.Usernames.Any())
             {
-                result.Credit = command.Credit;
-                result.NoOfAccount = command.NumberOfAccounts;
-                return PartialView("_CopyResult", result);
+                return PartialView("_CopyResult", new CopyAccountResultViewModel
+                {
+                    Result = result,
+                    Credit = command.Credit,
+                    NumberOfAccounts = command.NumberOfAccounts,
+                    NoOfFailedAccount = command.NumberOfAccounts - result.Usernames.Count()
+                });
             }
             else
             {
@@ -34,16 +38,16 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
             }
         }
 
-        public async Task<ActionResult> GetCredit(CreditQuery query)
-            => await JsonAsync(query);
+        public Task<ActionResult> GetCredit(CreditQuery query)
+            => Json(query);
 
-        public async Task<ActionResult> CheckUsername(CheckUsernameQuery query)
-            => await JsonAsync(query);
+        public Task<ActionResult> CheckUsername(CheckUsernameQuery query)
+            => Json(query);
 
-        public async Task<ActionResult> CheckExistedCopyCustomer(CheckExistedCustomerQuery query)
-            => await JsonAsync(query);
+        public Task<ActionResult> CheckExistedCopyCustomer(CheckExistedCustomerQuery query)
+            => Json(query);
 
-        public async Task<ActionResult> CheckExistedCustomer([FromBody] CheckExistedCustomerQuery query)
-            => await JsonAsync(query);
+        public Task<ActionResult> CheckExistedCustomer([FromBody] CheckExistedCustomerQuery query)
+            => Json(query);
     }
 }

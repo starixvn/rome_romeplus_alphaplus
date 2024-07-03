@@ -1,4 +1,5 @@
-﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount.Models;
+﻿
+using Fanex.Customer.Client.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount.Requests
 {

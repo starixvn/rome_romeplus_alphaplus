@@ -1,5 +1,4 @@
-﻿using AlphaPlus.Settings.Site.Features.CopyAccount.Models;
-using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
+﻿using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
 using AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
@@ -7,14 +6,17 @@ using Fanex.Cryptography.Aes;
 using MediatR;
 using Sunplus.Agent.Utilities;
 using AlphaPlus.Core.Models;
+using Fanex.Customer.Client.Services;
+using Fanex.Customer.Client.Params;
+using Fanex.Customer.Client.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
     public class CopyAccountHandler :
         IRequestHandler<CopyAccountQuery, CopyAccountViewModel>,
-        IRequestHandler<CopyAccountCommand, CopyAccountResponse>,
+        IRequestHandler<CopyAccountCommand, CopyMultipleCustomersResult>,
         IRequestHandler<CreditQuery, CreditInfo>,
-        IRequestHandler<CheckUsernameQuery, Result>,
+        IRequestHandler<CheckUsernameQuery, AlphaPlus.Core.Models.Result>,
         IRequestHandler<CheckExistedCustomerQuery, bool>
     {
         private const string HashKeySessionKey = "AlphaPlus.Settings.Site.Features.CopyAccount.CopyAccountHandler.PasswordHash";
@@ -22,23 +24,23 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
         private readonly Encryptor encryptor;
         private readonly IAesService aes;
         private readonly ISessionManager sessionManager;
-        private readonly ICopyAccountService copyAccountService;
+        private readonly ICustomerService customerService;
 
         public CopyAccountHandler(
             Encryptor encryptor,
             IAesService aes,
             ISessionManager sessionManager,
-            ICopyAccountService copyAccountService)
+            ICustomerService customerService)
         {
             this.encryptor = encryptor;
             this.aes = aes;
             this.sessionManager = sessionManager;
-            this.copyAccountService = copyAccountService;
+            this.customerService = customerService;
         }
 
         public async Task<CopyAccountViewModel> Handle(CopyAccountQuery message, CancellationToken cancellation)
         {
-            var limitNewDownlineResult = await copyAccountService.CheckAllLimitedRules(
+            var limitNewDownlineResult = await customerService.CheckAllLimitedRules(
                    message.ViewerId,
                    message.ViewerLevelId,
                    message.CustName,
@@ -51,7 +53,7 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
 
             return new CopyAccountViewModel(
                 message,
-                await copyAccountService.GetSuggestUsername(message.CustName, message.ViewerLevelId),
+                await customerService.GetSuggestUsername(message.CustName, message.ViewerLevelId),
                 GetHasKey());
         }
 
@@ -64,14 +66,14 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
             return hashKey;
         }
 
-        public async Task<CopyAccountResponse> Handle(CopyAccountCommand message, CancellationToken cancellation)
+        public async Task<CopyMultipleCustomersResult> Handle(CopyAccountCommand message, CancellationToken cancellation)
         {
-            var model = await copyAccountService.GetDownlineByUsername(message.CustId, message.SubAccId, message.SourceUsername);
+            var model = await customerService.GetDownlineByUsername(message.CustId, message.SubAccId, message.SourceUsername);
             var sourceCustId = model.CustId;
             message.Password = aes.Decrypt(message.Password, sessionManager.Get<string>(HashKeySessionKey));
             if (string.IsNullOrWhiteSpace(message.Password) || sourceCustId <= 0 || !Enumeration.FromValue<UserLevel>(model.RoleId).IsDirectDownlineOf(message.ViewerLevel))
             {
-                return new CopyAccountResponse
+                return new CopyMultipleCustomersResult
                 {
                     Code = 1,
                     Message = Lang.NotAuthorized
@@ -80,15 +82,30 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
 
             message.Password = encryptor.CfsEnCode(message.Password);
 
-            return await copyAccountService.CreateAccount(message, sourceCustId);
+            return await customerService.CopyMultipleCustomers(new CopyMultipleCustomersParam(
+                message.ViewerId,
+                message.SubAccId,
+                message.CustId,
+                message.CustLevel.GetDirectDownLineLevel().Value,
+                message.ViewerUsername,
+                message.Username,
+                message.Password,
+                message.Credit,
+                message.MemberMaxCredit,
+                sourceCustId,
+                message.NumberOfAccounts,
+                message.Site,
+                false,
+                message.IP,
+                message.Language));
         }
 
         public async Task<CreditInfo> Handle(CreditQuery message, CancellationToken cancellation)
         {
-            var result = await copyAccountService.GetDownlineByUsername(message.ViewerId, message.SubAccId, message.CustName);
+            var result = await customerService.GetDownlineByUsername(message.ViewerId, message.SubAccId, message.CustName);
             if (result.CustId > 0 && Enumeration.FromValue<UserLevel>(result.RoleId).IsDirectDownlineOf(message.ViewerLevel))
             {
-                return await copyAccountService.GetCreditInfo(message.CustName);
+                return await customerService.GetCreditInfo(message.CustName);
             }
             else
             {
@@ -96,27 +113,27 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
             }
         }
 
-        public async Task<Result> Handle(CheckUsernameQuery message, CancellationToken cancellation)
+        public async Task<Core.Models.Result> Handle(CheckUsernameQuery message, CancellationToken cancellation)
         {
-            var result = await copyAccountService.GetDownlineByUsername(message.ViewerId, message.SubAccId, message.CustName);
+            var result = await customerService.GetDownlineByUsername(message.ViewerId, message.SubAccId, message.CustName);
             if (result.CustId > 0 && Enumeration.FromValue<UserLevel>(result.RoleId).IsDirectDownlineOf(message.ViewerLevel))
             {
-                if (await copyAccountService.IsCustomerEnabled(result.CustId))
+                if (await customerService.IsCustomerEnabled(result.CustId))
                 {
-                    return Result.CreateSuccessfulResult();
+                    return Core.Models.Result.CreateSuccessfulResult();
                 }
                 else
                 {
-                    return Result.CreateErrorResult(Resources.AccountWasDisabled);
+                    return Core.Models.Result.CreateErrorResult(Resources.AccountWasDisabled);
                 }
             }
 
-            return Result.CreateErrorResult(Resources.UserNotExist);
+            return Core.Models.Result.CreateErrorResult(Resources.UserNotExist);
         }
 
         public Task<bool> Handle(CheckExistedCustomerQuery message, CancellationToken cancellation)
         {
-            return copyAccountService.CheckExistedCustomer(message.CustName);
+            return customerService.CheckExistedCustomer(message.CustName);
         }
     }
 }

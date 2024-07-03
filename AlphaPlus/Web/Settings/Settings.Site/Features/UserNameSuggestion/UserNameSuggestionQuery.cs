@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.Shared.Requests
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
-    using System.Collections.Generic;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.UserNameSuggestion.Models;
 
+namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
+{
     public class UserNameSuggestionQuery : MemberInfoBaseQuery, IRequest<IEnumerable<UsernameSuggestion>>
     {
-        public UserNameSuggestionQuery() : this(null){}
-        
+        public UserNameSuggestionQuery() : this(null) { }
+
         public UserNameSuggestionQuery(IUser viewer) : base(viewer)
         {
             DirectDownlines = false;

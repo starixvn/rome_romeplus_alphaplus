@@ -1,6 +1,6 @@
-﻿using AlphaPlus.Settings.Site.Features.CopyAccount.Models;
-using MediatR;
+﻿using MediatR;
 using AlphaPlus.Settings.Site.Features.Shared;
+using Fanex.Customer.Client.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount.Request
 {

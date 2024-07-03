@@ -17,8 +17,6 @@ using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
-using AlphaPlus.Settings.Site.Features.CopyAccount;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Helpers;
@@ -62,6 +60,7 @@ using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Configurations;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.SecurityCode.Filters;
+using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -121,11 +120,8 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddSingleton<IAesService, AesService>()
                 .AddSingleton<ISessionManager, SessionManager>()
                 .AddScoped<Encryptor, EncryptorImpl>()
-                .AddScoped<UsernameSuggestionService, UsernameSuggestionServiceImpl>()
-                .AddHttpClient<ICopyAccountService, CopyAccountService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
+                .AddScoped<UsernameSuggestionService, UsernameSuggestionServiceImpl>();
 
-            services
-                .AddHttpClient<ICreateAccountService, CreateAccountService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
             services.AddSingleton<IRemotingRefService, RemotingRefService>();
             services.AddSingleton<GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>, StatusViewModelFactory>();

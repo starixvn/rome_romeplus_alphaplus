@@ -1,11 +1,9 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.Shared
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.Shared.Requests;
-    using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-    using MediatR;
-    using System.Collections.Generic;
+﻿using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
+using AlphaPlus.Settings.Site.Features.UserNameSuggestion.Models;
+using MediatR;
 
+namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
+{
     public class UserNameSuggestionHandler :
         IRequestHandler<UserNameSuggestionQuery, IEnumerable<UsernameSuggestion>>
     {

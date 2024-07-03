@@ -2,10 +2,14 @@
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount.ViewModels;
 using AlphaPlus.Core;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Fanex.Customer.Client.Services;
+using Fanex.Customer.Client.Configurations;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Shared.Models;
+using Fanex.Customer.Client.Params;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount
 {
@@ -14,12 +18,14 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount
         private const string PTTemplatePath = "~/Features/MemberInfo/Features/CreateAccount/Views/PTTemplate.cshtml";
 
         private readonly IUser viewer;
-        private readonly ICreateAccountService createAccountService;
+        private readonly ICustomerService customerService;
+        private readonly CustomerClientConfiguration customerClientConfiguration;
 
-        public PTTemplateController(IUser viewer, ICreateAccountService createAccountService)
+        public PTTemplateController(IUser viewer, ICustomerService customerService, CustomerClientConfiguration customerClientConfiguration)
         {
             this.viewer = viewer;
-            this.createAccountService = createAccountService;
+            this.customerService = customerService;
+            this.customerClientConfiguration = customerClientConfiguration;
         }
 
         public ActionResult Index()
@@ -27,46 +33,46 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount
 
         [HttpGet]
         public async Task<ActionResult> GetPTSettings()
-            => Content(await createAccountService.GetPTSettings(viewer.Id, viewer.LevelId, viewer.Site, viewer.CurrencyId, viewer.Language));
+            => Content(await customerService.GetPTSettings(viewer.Id, viewer.LevelId, viewer.Site, viewer.CurrencyId, customerClientConfiguration.SystemId, viewer.Language));
 
         [HttpGet]
         public async Task<ActionResult> GetPTTemplates()
-            => Content(await createAccountService.GetPTTemplates(viewer.Id));
+            => Content(await customerService.GetPTTemplates(viewer.Id));
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([FromBody]CreatePTTemplateRequest request)
+        public async Task<ActionResult> Create([FromBody] CreatePTTemplateRequest request)
         {
             if (viewer.IsInternal)
             {
                 return UnAuthorized();
             }
 
-            return Content(await createAccountService.CreatePTTemplate(
+            return Content(await customerService.CreatePTTemplate(new CreatePTTemplateParam(
                 viewer.Id,
                 request.Name,
                 request.IsDefault,
                 request.Settings,
                 viewer.SubAccId,
                 viewer.Language,
-                viewer.IP));
+                viewer.IP)));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([FromBody]EditPTTemplateRequest request)
+        public async Task<ActionResult> Edit(EditPTTemplateRequest request)
         {
             if (viewer.IsInternal)
             {
                 return UnAuthorized();
             }
 
-            return Content(await createAccountService.EditPTTemplate(
+            return Content(await customerService.EditPTTemplate(new EditPTTemplateParam(
                 viewer.Id,
                 request.Id,
                 request.IsDefault,
                 request.Settings,
                 viewer.SubAccId,
                 viewer.Language,
-                viewer.IP));
+                viewer.IP)));
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -78,7 +84,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.CreateAccount
                 return UnAuthorized();
             }
 
-            return Content(await createAccountService.DeletePTTemplate(viewer.Id, templateId, viewer.SubAccId, viewer.Language, viewer.IP));
+            return Content(await customerService.DeletePTTemplate(new DeletePTTemplateParam(templateId, viewer.Id, viewer.SubAccId, viewer.Language, viewer.IP)));
         }
 
         private ActionResult UnAuthorized()

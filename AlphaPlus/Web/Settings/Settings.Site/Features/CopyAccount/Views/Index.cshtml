@@ -4,7 +4,7 @@
 @using AlphaPlus.Settings.MemberInfo.Domain.Configurations
 @model CopyAccountViewModel
 @{
-    Layout = "~/Features/Shared/Views/Shared/_Layout.cshtml";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
     ViewBag.Title = Resources.SearchAndCopy;
     var errorMessageClass = string.IsNullOrEmpty(Model.ErrorMessage) ? "hidden" : "msg msg-error";
     var userguideLink = AppSettings.IsSiteLabel789y ?

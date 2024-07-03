@@ -1,4 +1,4 @@
-namespace AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models
+namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion.Models
 {
     public class UsernameSuggestion
     {

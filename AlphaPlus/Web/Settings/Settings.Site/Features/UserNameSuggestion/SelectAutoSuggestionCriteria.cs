@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.Shared.Criteria
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
+{
     public class SelectAutoSuggestionCriteria : CriteriaBase
     {
         public SelectAutoSuggestionCriteria(

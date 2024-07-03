@@ -1,11 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.Shared
-{
-    using AlphaPlus.Settings.MemberInfo.API.Features.Shared.Criteria;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-    using Fanex.Data.Repository;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using AlphaPlus.Settings.Site.Features.UserNameSuggestion.Models;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
+{
     public interface UsernameSuggestionService
     {
         Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(
@@ -16,14 +13,9 @@
             bool isAccInfo);
     }
 
-    public class UsernameSuggestionServiceImpl : UsernameSuggestionService
+    public class UsernameSuggestionServiceImpl(IDynamicRepository dynamicRepository) : UsernameSuggestionService
     {
-        private readonly IDynamicRepository dynamicRepository;
-
-        public UsernameSuggestionServiceImpl(IDynamicRepository dynamicRepository)
-        {
-            this.dynamicRepository = dynamicRepository;
-        }
+        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
 
         public async Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(
             int actorId,

@@ -553,7 +553,7 @@ class CopyAccount {
 
     getHeadersForPostRequest = () => {
         return {
-            __RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
+            RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
             'X-Requested-With': 'XMLHttpRequest'
         };
     };
