@@ -147,7 +147,7 @@ class SubAccount {
             pageAccess: pageAccess
         };
 
-        var updateUrl = '/settings/SubAccount/UpdatePageAccess?' + this.$.param(data);
+        var updateUrl = '/settings/SubAccount/UpdatePageAccess';
 
         this.$.ajax({
             headers: {
@@ -155,6 +155,7 @@ class SubAccount {
                 'X-Requested-With': 'XMLHttpRequest'
             },
             url: updateUrl,
+            data: data,
             type: "POST",
             success: (result) => {
                 if (result && result.code === 999991) {
@@ -225,7 +226,7 @@ class SubAccount {
             pageAccess: pageAccess || ""
         };
 
-        var updateUrl = '/settings/SubAccount/Add?' + this.$.param(data);
+        var updateUrl = '/settings/SubAccount/Add';
 
         this.$.ajax({
             headers: {
@@ -233,6 +234,7 @@ class SubAccount {
                 'X-Requested-With': 'XMLHttpRequest'
             },
             url: updateUrl,
+            data: data,
             type: "POST",
             success: (result) => {
                 if (result && result.IsSuccessful) {
