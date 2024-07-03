@@ -88,7 +88,7 @@ class SubAccount {
         this.$("#FullControl").change((item) => {
             this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
         });
-        this.$("#txtPwd").change((item) => {
+        this.$("#txtPwd").keyup((item) => {
             var pwd = this.$(item.currentTarget).val();
             this.ValidatePassword(pwd);
         });
