@@ -29,6 +29,7 @@ public class WinLossNewHandler(
         BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
         IRequestHandler<WinLossNewQuery, WinLossNewViewModel>,
         IRequestHandler<WinLossWeekSelectionQuery, WinLossWeekSelectionViewModel>,
+        IRequestHandler<WinLossWeeksQuery, IEnumerable<WinLossWeekViewModel>>,
         IRequestHandler<WinLossBetListQuery, WinLossBetListViewModel>
 {
     private readonly AppSettings appSettings = options.Value;
@@ -209,6 +210,51 @@ public class WinLossNewHandler(
         return productService.GetProductDetails(param, products);
     }
 
+    public async Task<WinLossWeekSelectionViewModel> Handle(WinLossWeekSelectionQuery message, CancellationToken cancellationToken)
+    {
+        var showContributionAmountRoundNote = message.IsEnabledJackpot;
+        var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
+
+        var param = new WinLossParam(
+            message.CustId,
+            productViewModel.UserSelectedProductIds,
+            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+            message.ToDate,
+            productDetailsXml,
+            message.DisplayVNIP,
+            message.Site,
+            maxTotalRow: appSettings.BetListMaxTotalRowView,
+            maxTotalRowConfig: appSettings.BetListMaxTotalRowView,
+            ip: allowedSitesToShareLoad.GetIP(message.Site));
+        var betlistData = await winlossService.GetBetList(param);
+        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+        return new WinLossWeekSelectionViewModel(
+            message,
+            betlistData,
+            Builder,
+            TicketHelper,
+            showContributionAmountRoundNote,
+            message.IsGroupHeadline);
+    }
+
+    public async Task<IEnumerable<WinLossWeekViewModel>> Handle(WinLossWeeksQuery message, CancellationToken cancellationToken)
+    {
+        var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
+
+        var param = new WinLossWeekParam(
+            message.ViewerId,
+            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+            message.ToDate,
+            productViewModel.UserSelectedProductIds,
+            productDetailsXml,
+            message.CustName,
+            allowedSitesToShareLoad.GetIP(message.Site));
+        var weekData = await winlossService.GetWeekData(param);
+
+        return BuildWeekViewModels(weekData, param.FromDate, param.ToDate, message.WeekFromDate, message.WeekToDate);
+    }
+
     private static IEnumerable<WinLossWeekViewModel> BuildWeekViewModels(
         IEnumerable<WinLossWeekModel> weekData,
         DateTime fromDate,
@@ -255,49 +301,6 @@ public class WinLossNewHandler(
         var displayToDate = $"{toDate.ToString("dd")} {Resources.ResourceManager.GetString($"_{toDate.ToString("MMM")}")}";
 
         return fromDate == toDate ? displayToDate : $"{fromDate.ToString("dd")} - {displayToDate}";
-    }
-
-    public async Task<WinLossWeekSelectionViewModel> Handle(WinLossWeekSelectionQuery message, CancellationToken cancellationToken)
-    {
-        var showContributionAmountRoundNote = message.IsEnabledJackpot;
-        var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
-
-        var weekDataParam = new WinLossWeekParam(
-            message.ViewerId,
-            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-            message.ToDate,
-            productViewModel.UserSelectedProductIds,
-            productDetailsXml,
-            message.CustName,
-            allowedSitesToShareLoad.GetIP(message.Site));
-        var weekData = await winlossService.GetWeekData(weekDataParam);
-        var betlistData = new BetListData([], []);
-
-        if (weekData.Any())
-        {
-            var param = new WinLossParam(
-                message.CustId,
-                productViewModel.UserSelectedProductIds,
-                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-                message.ToDate,
-                productDetailsXml,
-                message.DisplayVNIP,
-                message.Site,
-                maxTotalRow: appSettings.BetListMaxTotalRowView,
-                maxTotalRowConfig: appSettings.BetListMaxTotalRowView,
-                ip: allowedSitesToShareLoad.GetIP(message.Site));
-            betlistData = await winlossService.GetBetList(param);
-            WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-        }
-
-        return new WinLossWeekSelectionViewModel(
-            message,
-            BuildWeekViewModels(weekData, message.FromDate, message.ToDate),
-            betlistData,
-            Builder,
-            TicketHelper,
-            showContributionAmountRoundNote,
-            message.IsGroupHeadline);
     }
 
     public async Task<WinLossBetListViewModel> Handle(WinLossBetListQuery message, CancellationToken cancellationToken)

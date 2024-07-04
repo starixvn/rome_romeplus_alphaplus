@@ -47,8 +47,8 @@ class WinLossBetListView {
             toDate: $('#to-date').val(),
             productIds: $('#product-ids').val(),
             resourceIds: $('#resource-ids').val(),
-            custId: $('#cust-id').val(),
-            custName: $('#cust-name').val()
+            CustId: $('#cust-id').val(),
+            CustName: $('#cust-name').val()
         };
 
         this.betListWeekSelection = $('#betlist-week-selection');
@@ -127,7 +127,7 @@ class WinLossBetListView {
             }
 
             $.blockUI();
-            const breadcrumbLevels = this.breadcrumbLevelComponent.getBreadcrumbLevels(breadcrumbParam.custLevelId);
+            const breadcrumbLevels = this.breadcrumbLevelComponent.getBreadcrumbLevels(breadcrumbParam.CustLevelId);
             let reportParams: any = this.weekComponent.getActiveWeek() || {};
             if (breadcrumbLevels.length) {
                 reportParams.breadcrumbsJson = JSON.stringify(breadcrumbLevels);
@@ -159,6 +159,9 @@ class WinLossBetListView {
         delete formData.weekToDate;
         const queryString = $.param(formData);
 
+        AJAXHelper.getWithoutBlockUI(`${AJAXHelper.buildURL('WinLoss/GetWeeks')}?${queryString}`, (html) => {
+            this.weekComponent.reRender(html);
+        });
         AJAXHelper.get(
             `${AJAXHelper.buildURL('WinLoss/BetListWeekSelection')}?${queryString}`,
             (html) => {
@@ -166,7 +169,6 @@ class WinLossBetListView {
 
                 this.betListWeekSelection.html(html);
                 this.tableBetList = this.betListWeekSelection.find('#tbl-betlist');
-                this.weekComponent.bindEvents();
                 this.breadcrumbLevelComponent.bindEvents();
                 this.bindExportExcelEvent();
 

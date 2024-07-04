@@ -32,7 +32,6 @@ builder.Services
     {
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
-        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
     })
     .AddControllersWithViews(options =>
     {

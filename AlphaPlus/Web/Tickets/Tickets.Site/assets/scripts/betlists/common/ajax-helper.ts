@@ -64,4 +64,8 @@
                 }
             });
     }
+
+    static getWithoutBlockUI(url: string, onSuccess: Function) {
+        $.get(url, onSuccess).fail((jqXHR) => this.handleOnFail(jqXHR));
+    }
 }

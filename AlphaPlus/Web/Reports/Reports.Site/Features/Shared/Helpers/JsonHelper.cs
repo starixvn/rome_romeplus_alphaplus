@@ -11,8 +11,11 @@ public static class JsonHelper
         {
             try
             {
-                var jsonDocument = JsonDocument.Parse(json);
-                value = JsonSerializer.Deserialize<T>(jsonDocument);
+                value = JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
                 return true;
             }
             catch (Exception)

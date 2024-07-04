@@ -13,14 +13,14 @@
                 if (uplineLinkList.length) {
                     const uplineLink = uplineLinkList.eq(0);
                     this.breadcrumbs.push({
-                        custId: uplineLink.data('custid'),
-                        custName: uplineLink.data('custname'),
-                        custLevelId: +uplineLink.data('custlevelid')
+                        CustId: uplineLink.data('custid'),
+                        CustName: uplineLink.data('custname'),
+                        CustLevelId: +uplineLink.data('custlevelid')
                     });
                     uplineLink.off().click((event) => this.handleBreadcrumbClick(event));
                 } else {
                     this.breadcrumbs.push({
-                        custName: item.innerText
+                        CustName: item.innerText
                     });
                 }
             });
@@ -34,15 +34,14 @@
     }
 
     private handleBreadcrumbClick(event) {
-        event.preventDefault();
         const $this = $(event.target);
-        const custId = $this.data('custid');
-        const custName = $this.data('custname');
-        const custLevelId = $this.data('custlevelid');
-        this.onClick && this.onClick($this, { custId, custName, custLevelId });
+        const CustId = $this.data('custid');
+        const CustName = $this.data('custname');
+        const CustLevelId = $this.data('custlevelid');
+        this.onClick && this.onClick($this, { CustId, CustName, CustLevelId });
     }
 
     getBreadcrumbLevels(custLevelId = 0) {
-        return custLevelId ? this.breadcrumbs.filter((item) => item.custLevelId >= custLevelId) : this.breadcrumbs;
+        return custLevelId ? this.breadcrumbs.filter((item) => item.CustLevelId >= custLevelId) : this.breadcrumbs;
     }
 }

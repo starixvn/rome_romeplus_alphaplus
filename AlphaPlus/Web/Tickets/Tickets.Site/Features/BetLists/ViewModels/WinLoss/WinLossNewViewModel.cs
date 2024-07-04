@@ -19,7 +19,7 @@ public class WinLossNewViewModel(
     bool isGroupHeadline = false,
     bool showMemberName = false,
     string[] excludingTicketStatus = null)
-        : WinLossWeekSelectionViewModel(message, weeks, betListData, builder, ticketHelper, showContributionAmountRoundNote, isGroupHeadline, showMemberName, excludingTicketStatus)
+        : WinLossWeekSelectionViewModel(message, betListData, builder, ticketHelper, showContributionAmountRoundNote, isGroupHeadline, showMemberName, excludingTicketStatus)
 {
     public DateRangePickerJQueryViewModel DateRangePicker { get; } = new DateRangePickerJQueryViewModel(
         message.FromDate,
@@ -31,6 +31,8 @@ public class WinLossNewViewModel(
     public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 
     public string VisibleColumns { get; } = message.VisibleColumns;
+
+    public IEnumerable<WinLossWeekViewModel> Weeks { get; } = weeks;
 
     protected override string GetTitle() => $"{Resources.memberBetList} - {CustName}";
 }

@@ -1,5 +1,4 @@
 using AlphaPlus.Core.Filters;
-using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

@@ -115,24 +115,43 @@ public class WinLossDetailNewHandler(
 
     public async Task<IEnumerable<WinLossDetailWeekViewModel>> Handle(WinLossDetailGetWeeksQuery message, CancellationToken cancellationToken)
     {
-        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
-            message,
-            message.UserSelectedProductIds,
-            message.UserSelectedResourceIds);
-        var weekDataParam = new WinLossDetailWeekParam(
-            message.ViewerId,
-            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-            message.ToDate,
-            validUserSelectedProductIds.JoinWithComma(),
-            productDetailXml,
-            string.IsNullOrWhiteSpace(message.Username) ? message.CustName : message.Username,
-            message.Site);
-        var weekData = await winlossDetailService.GetWeekData(weekDataParam);
+        var isValidUsername = true;
+
+        if (!string.IsNullOrWhiteSpace(message.Username))
+        {
+            var customerLevel = await customerService.GetCustomerLevel(message.ViewerId, message.Username);
+            isValidUsername = customerLevel != null;
+        }
+
+        if (isValidUsername)
+        {
+            var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+                message,
+                message.UserSelectedProductIds,
+                message.UserSelectedResourceIds);
+
+            var weekDataParam = new WinLossDetailWeekParam(
+                message.ViewerId,
+                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+                message.ToDate,
+                validUserSelectedProductIds.JoinWithComma(),
+                productDetailXml,
+                string.IsNullOrWhiteSpace(message.Username) ? message.CustName : message.Username,
+                message.Site);
+            var weekData = await winlossDetailService.GetWeekData(weekDataParam);
+
+            return BuildWeekViewModels(
+                weekData,
+                weekDataParam.FromDate,
+                weekDataParam.ToDate,
+                message.WeekFromDate,
+                message.WeekToDate);
+        }
 
         return BuildWeekViewModels(
-            weekData,
-            weekDataParam.FromDate,
-            weekDataParam.ToDate,
+            [],
+            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+            message.ToDate,
             message.WeekFromDate,
             message.WeekToDate);
     }
