@@ -12,6 +12,8 @@ using static ONEbook.SpreadSheets.Column;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Parlay;
 using BetListNPOI.SS.UserModel;
 using Fanex.BetList.Core.Utils;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.Parlay;
 
@@ -20,11 +22,11 @@ public class ParlayExcelHandler(
     IBetListHTMLBuilder builder,
     IBetListExcelBuilder excelBuilder,
     ITicketHelper ticketHelper,
-    //ISmartPunterBetListMonitor monitorService,
     IPService ipService,
+    IOptions<AppSettings> options,
     IWebHostEnvironment webHostEnvironment,
     IComboParlayDetailWorkbook workbook) :
-        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, null, ipService, webHostEnvironment),
+        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, null, ipService, options, webHostEnvironment),
         IRequestHandler<ComboParlayDetailExcelQuery, ExcelFileViewModel>
 {
     private readonly IParlayService parlayService = parlayService;

@@ -14,7 +14,6 @@ using Microsoft.Extensions.Options;
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.WinLoss;
 
 public class WinLossBaseHandler(
-    IOptions<AppSettings> options,
     IProductService productService,
     IWinLossService winLossService,
     IBetListHTMLBuilder builder,
@@ -22,10 +21,13 @@ public class WinLossBaseHandler(
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
     IPService ipService,
+    IOptions<AppSettings> options,
+    AllowedSitesToShareLoad allowedSitesToShareLoad,
     IWebHostEnvironment webHostEnvironment)
-        : BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment)
+        : BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, options, webHostEnvironment)
 {
     protected readonly AppSettings appSettings = options.Value;
+    private readonly AllowedSitesToShareLoad allowedSitesToShareLoad = allowedSitesToShareLoad;
     private readonly IProductService productService = productService;
     private readonly IWinLossService winLossService = winLossService;
 
@@ -49,7 +51,8 @@ public class WinLossBaseHandler(
             message.Site,
             message.IsExcel,
             maxTotalRow,
-            maxTotalRow);
+            maxTotalRow,
+            allowedSitesToShareLoad.GetIP(message.Site));
         var betlistData = await winLossService.GetBetList(param);
 
         WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);

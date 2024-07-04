@@ -166,7 +166,7 @@ let showCombMP: Function;
 let showNewCombMP: Function;
 let showSingleMatchParlayDetail: Function;
 let ViewNewCashOutHistory: Function;
-$(document).ready(() => {
+$(function () {
     showMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowMixParlayTickets;
     showCombMPDetail = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayDetails;
     showCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayOldTickets;

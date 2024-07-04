@@ -18,19 +18,21 @@ using Microsoft.Extensions.Options;
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.WinLoss;
 
 public class WinLossNewHandler(
-    IOptions<AppSettings> options,
     IProductService productService,
     IWinLossService winlossService,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
-    IPService ipService) :
-        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+    IPService ipService,
+    IOptions<AppSettings> options,
+    AllowedSitesToShareLoad allowedSitesToShareLoad) :
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
         IRequestHandler<WinLossNewQuery, WinLossNewViewModel>,
         IRequestHandler<WinLossWeekSelectionQuery, WinLossWeekSelectionViewModel>,
         IRequestHandler<WinLossBetListQuery, WinLossBetListViewModel>
 {
     private readonly AppSettings appSettings = options.Value;
+    private readonly AllowedSitesToShareLoad allowedSitesToShareLoad = allowedSitesToShareLoad;
     private readonly IProductService productService = productService;
     private readonly IWinLossService winlossService = winlossService;
 
@@ -40,12 +42,13 @@ public class WinLossNewHandler(
         var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
 
         var weekDataParam = new WinLossWeekParam(
-                message.ViewerId,
-                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-                message.ToDate,
-                productViewModel.UserSelectedProductIds,
-                productDetailsXml,
-                message.CustName);
+            message.ViewerId,
+            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+            message.ToDate,
+            productViewModel.UserSelectedProductIds,
+            productDetailsXml,
+            message.CustName,
+            allowedSitesToShareLoad.GetIP(message.Site));
         var weekData = await winlossService.GetWeekData(weekDataParam);
         var betlistData = new BetListData([], []);
 
@@ -60,7 +63,8 @@ public class WinLossNewHandler(
                 message.DisplayVNIP,
                 message.Site,
                 maxTotalRow: appSettings.BetListMaxTotalRowView,
-                maxTotalRowConfig: appSettings.BetListMaxTotalRowView);
+                maxTotalRowConfig: appSettings.BetListMaxTotalRowView,
+                ip: allowedSitesToShareLoad.GetIP(message.Site));
             betlistData = await winlossService.GetBetList(param);
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
         }
@@ -76,14 +80,14 @@ public class WinLossNewHandler(
             message.IsGroupHeadline);
     }
 
-    protected async Task<(ProductMultiSelectionViewModel, string)> BuildProductViewModel(
+    private async Task<(ProductMultiSelectionViewModel, string)> BuildProductViewModel(
         WinLossQuery message,
         string userSelectedProductIds,
         string userSelectedResourceIds)
     {
         var products = GetProducts(message);
-        var (productGroups, validUserSelectedProductIds) = BuildProductViewModel(products, userSelectedProductIds);
-        var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = await BuildProductDetailViewModel(
+        var (productGroups, validUserSelectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
+        var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = await BuildProductDetailGroups(
             message.ViewerId,
             products,
             validUserSelectedProductIds,
@@ -101,7 +105,7 @@ public class WinLossNewHandler(
             validUserSelectedResourceIds.JoinWithComma()), productDetailXml);
     }
 
-    private static (IEnumerable<ProductGroupDTO>, IEnumerable<int>) BuildProductViewModel(
+    private static (IEnumerable<ProductGroupDTO>, IEnumerable<int>) BuildProductGroups(
         IEnumerable<Product> products,
         string userSelectedProductIds)
     {
@@ -144,7 +148,7 @@ public class WinLossNewHandler(
         return (productGroups, validUserSelectedProductIds);
     }
 
-    private async Task<(IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string)> BuildProductDetailViewModel(
+    private async Task<(IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string)> BuildProductDetailGroups(
         int custId,
         IEnumerable<Product> products,
         IEnumerable<int> validUserSelectedProductIds,
@@ -153,6 +157,7 @@ public class WinLossNewHandler(
         var isCheckedAll = "*" == userSelectedResourceIds;
         var userSelectedResourceIdsList = isCheckedAll ? [] : userSelectedResourceIds.ToListInt().ToList();
 
+        var resourceIdHashSet = new HashSet<int>();
         var productDetails = new List<ProductDetailDTO>();
         var validUserSelectedResourceIds = new List<int>();
         var allProductsSupportProductDetails = new List<int>();
@@ -170,7 +175,11 @@ public class WinLossNewHandler(
                 xml.Append(productService.BuildProductDetailXml(item));
             }
 
-            productDetails.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
+            if (resourceIdHashSet.Add(item.ResourceId))
+            {
+                productDetails.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
+            }
+
             allProductsSupportProductDetails.Add(item.ProductId);
         }
 
@@ -254,12 +263,13 @@ public class WinLossNewHandler(
         var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
 
         var weekDataParam = new WinLossWeekParam(
-                message.ViewerId,
-                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-                message.ToDate,
-                productViewModel.UserSelectedProductIds,
-                productDetailsXml,
-                message.CustName);
+            message.ViewerId,
+            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+            message.ToDate,
+            productViewModel.UserSelectedProductIds,
+            productDetailsXml,
+            message.CustName,
+            allowedSitesToShareLoad.GetIP(message.Site));
         var weekData = await winlossService.GetWeekData(weekDataParam);
         var betlistData = new BetListData([], []);
 
@@ -274,7 +284,8 @@ public class WinLossNewHandler(
                 message.DisplayVNIP,
                 message.Site,
                 maxTotalRow: appSettings.BetListMaxTotalRowView,
-                maxTotalRowConfig: appSettings.BetListMaxTotalRowView);
+                maxTotalRowConfig: appSettings.BetListMaxTotalRowView,
+                ip: allowedSitesToShareLoad.GetIP(message.Site));
             betlistData = await winlossService.GetBetList(param);
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
         }
@@ -302,7 +313,8 @@ public class WinLossNewHandler(
             message.DisplayVNIP,
             message.Site,
             maxTotalRow: appSettings.BetListMaxTotalRowView,
-            maxTotalRowConfig: appSettings.BetListMaxTotalRowView);
+            maxTotalRowConfig: appSettings.BetListMaxTotalRowView,
+            ip: allowedSitesToShareLoad.GetIP(message.Site));
         var betlistData = await winlossService.GetBetList(param);
         WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 

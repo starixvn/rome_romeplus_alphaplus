@@ -16,14 +16,14 @@ using Microsoft.Extensions.Options;
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.CancelledBets;
 
 public class CancelledBetHandler(
-    IOptions<AppSettings> options,
     ICancelledBetService cancelledBetService,
     IProductService productService,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
-    IPService ipService) :
-        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+    IPService ipService,
+    IOptions<AppSettings> options) :
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
         IRequestHandler<CancelledBetQuery, CancelledBetViewModel>
 {
     private static readonly HashSet<int> SupportedProducts =

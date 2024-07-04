@@ -11,6 +11,8 @@ using Fanex.BetList.Core.Entities;
 using MediatR;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetListByBetType;
 
@@ -21,9 +23,10 @@ public class BetListByBetTypeExcelHandler(
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
     IPService ipService,
+    IOptions<AppSettings> options,
     Workbook<TicketDto> workbook,
     IWebHostEnvironment webHostEnvironment) :
-        BetListByBetTypeExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment),
+        BetListByBetTypeExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, options, webHostEnvironment),
         IRequestHandler<BetListByBetTypeExcelQuery, ExcelFileViewModel>
 {
     private Workbook<TicketDto> workbook = workbook;

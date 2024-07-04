@@ -1,7 +1,5 @@
-using AlphaPlus.Shared.AppResources.Betlist.Builders;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.SmartPunter.Services;
-using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Blocks;
 using AlphaPlus.Utilities.IP;
@@ -13,6 +11,8 @@ using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
 using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 using AlphaPlus.BetLists.Builders;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers;
 
@@ -28,7 +28,8 @@ public class BetListExcelBaseHandler(
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
     IPService ipService,
-    IWebHostEnvironment webHostEnvironment) : BetListBaseHandler(builder, ticketHelper, monitorService, ipService)
+    IOptions<AppSettings> options,
+    IWebHostEnvironment webHostEnvironment) : BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options)
 {
     private const string ExcelTemplateDir = "App_Data/ExcelTemplates/{0}/{1}.{2}";
     private int currentRowIndex = 1;

@@ -33,9 +33,13 @@
         private static sealResult: ResultDetails;
         private static mgResult: ResultDetails;
         private static jiliResult: ResultDetails;
+        private static live22Result: ResultDetails;
+        private static weResult: ResultDetails;
+        private static uuSlotsResult: ResultDetails;
+        private static sabaxDResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
-            if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799) {
+            if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449) {
                 this.mixParlayResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.mixParlayResult)
                     ? new MixParlayResultDetails()
                     : this.mixParlayResult;
@@ -263,6 +267,34 @@
                 return this.jiliResult;
             }
 
+            if (betTypeId >= 7601 && betTypeId <= 7700) {
+                this.live22Result = Common.Utils.IsNullOrUndefinedOrEmpty(this.live22Result)
+                    ? new Live22ResultDetails()
+                    : this.live22Result;
+                return this.live22Result;
+            }
+
+            if (betTypeId >= 10300 && betTypeId <= 10399) {
+                this.weResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.weResult)
+                    ? new WEResultDetails()
+                    : this.weResult;
+                return this.weResult;
+            }
+
+            if (betTypeId >= 10000 && betTypeId <= 10299) {
+                this.uuSlotsResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.uuSlotsResult)
+                    ? new UUSlotsResultDetails()
+                    : this.uuSlotsResult;
+                return this.uuSlotsResult;
+            }
+
+            if (betTypeId >= 10801 && betTypeId <= 11000) {
+                this.sabaxDResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sabaxDResult)
+                    ? new SabaxDResultDetails()
+                    : this.sabaxDResult;
+                return this.sabaxDResult;
+            }
+
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)
                 ? new SportsbookResultDetails()
                 : this.sportsbookResult;
@@ -328,6 +360,6 @@
 
 let ViewResult: Function;
 
-$(document).ready(() => {
+$(function () {
     ViewResult = BetList.Status.ResultDetails.BaseResultDetails.Instance.ViewResultDetails;
 });

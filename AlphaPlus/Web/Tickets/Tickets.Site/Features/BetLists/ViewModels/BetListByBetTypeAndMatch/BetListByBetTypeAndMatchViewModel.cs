@@ -7,35 +7,51 @@ using Fanex.BetList.Core.Entities;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.BetListByBetTypeAndMatch;
 
-public class BetListByBetTypeAndMatchViewModel(
-    BetListByBetTypeAndMatchQuery message,
-    BetListData betListData,
-    IBetListHTMLBuilder builder,
-    ITicketHelper ticketHelper,
-    HashSet<int> supportScoreMapBetTypeIds = null)
-        : BetListByBetTypeViewModel(message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
+public class BetListByBetTypeAndMatchViewModel : BetListByBetTypeViewModel
 {
-    public int MatchId { get; } = message.MatchId;
+    public BetListByBetTypeAndMatchViewModel(
+        BetListByBetTypeAndMatchQuery message,
+        BetListData betListData,
+        IBetListHTMLBuilder builder,
+        ITicketHelper ticketHelper,
+        HashSet<int> supportScoreMapBetTypeIds = null)
+            : base(message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
+    {
+        MatchId = message.MatchId;
+        IsLive = message.IsLive;
+        BetTeam = message.BetTeam;
 
-    public int IsLive { get; } = message.IsLive;
+        var firstTicket = betListData.Tickets.FirstOrDefault();
+        if (firstTicket != null)
+        {
+            LeagueId = firstTicket.LeagueId;
+            LeagueGroupId = firstTicket.LeagueGroupId;
+        }
+    }
 
-    public string BetTeam { get; } = message.BetTeam;
+    public int MatchId { get; }
 
-    public int LeagueId { get; } = betListData.Total > 0 ? betListData.Tickets.First().LeagueId : 0;
+    public int IsLive { get; }
+
+    public string BetTeam { get; }
+
+    public int LeagueId { get; }
+
+    public int LeagueGroupId { get; }
 
     protected override string GetTitle()
-        => BetTypeConstants.IsOutright(message.BetType)
-        ? CacheRefServiceHelper.GetBetTypeName(message.BetType)
+        => BetTypeConstants.IsOutright(BetType)
+        ? CacheRefServiceHelper.GetBetTypeName(BetType)
         : LeagueId == 0
-            ? CacheRefServiceHelper.GetBetTypeName(message.BetType)
-            : $"{CacheRefServiceHelper.GetLeagueName(LeagueId)} {CacheRefServiceHelper.GetBetTypeName(message.BetType)}";
+            ? CacheRefServiceHelper.GetBetTypeName(BetType)
+            : $"{CacheRefServiceHelper.GetLeagueName(LeagueId, LeagueGroupId)} {CacheRefServiceHelper.GetBetTypeName(BetType)}";
 
     public IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
         {
-            [nameof(message.MatchId)] = message.MatchId.ToString(),
-            [nameof(message.BetType)] = message.BetType.ToString(),
-            [nameof(message.IsLive)] = message.IsLive.ToString(),
-            [nameof(message.BetTeam)] = message.BetTeam
+            [nameof(MatchId)] = MatchId.ToString(),
+            [nameof(BetType)] = BetType.ToString(),
+            [nameof(IsLive)] = IsLive.ToString(),
+            [nameof(BetTeam)] = BetTeam
         };
 }

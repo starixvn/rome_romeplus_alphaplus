@@ -13,6 +13,8 @@ using MediatR;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
 using _UserLevel = AlphaPlus.Core.Models.UserLevel;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.DailyStatement;
 
@@ -23,9 +25,10 @@ public class DailyStatementExcelHandler(
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
     IPService ipService,
+    IOptions<AppSettings> options,
     Workbook<TicketDto> workbook,
     IWebHostEnvironment webHostEnvironment) :
-        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment),
+        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, options, webHostEnvironment),
         IRequestHandler<DailyStatementExcelQuery, ExcelFileViewModel>
 {
     private readonly IDailyStatementService dailyStatementService = dailyStatementService;

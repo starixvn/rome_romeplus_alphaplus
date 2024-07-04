@@ -3,10 +3,12 @@ using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.MoveStatementHistory;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.MoveStatementHistory;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.MoveStatementHistory;
 
@@ -15,8 +17,9 @@ public class MoveStatementHistoryHandler(
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
-    IPService ipService) :
-        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+    IPService ipService,
+    IOptions<AppSettings> options) :
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
         IRequestHandler<MoveStatementHistoryQuery, MoveStatementHistoryViewModel>
 {
     private readonly IMoveStatementHistoryService moveStatementHistoryService = moveStatementHistoryService;

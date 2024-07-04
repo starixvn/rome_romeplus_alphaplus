@@ -13,7 +13,6 @@ using Microsoft.Extensions.Options;
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.WinLoss;
 
 public class WinLossHandler(
-    IOptions<AppSettings> options,
     IProductService productService,
     IWinLossService winLossService,
     IBetListHTMLBuilder builder,
@@ -21,8 +20,10 @@ public class WinLossHandler(
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
     IPService ipService,
+    IOptions<AppSettings> options,
+    AllowedSitesToShareLoad allowedSitesToShareLoad,
     IWebHostEnvironment webHostEnvironment) :
-        WinLossBaseHandler(options, productService, winLossService, builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment),
+        WinLossBaseHandler(productService, winLossService, builder, excelBuilder, ticketHelper, monitorService, ipService, options, allowedSitesToShareLoad, webHostEnvironment),
         IRequestHandler<WinLossQuery, WinLossViewModel>
 {
     public Task<WinLossViewModel> Handle(WinLossQuery message, CancellationToken cancellationToken)

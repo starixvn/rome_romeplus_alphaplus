@@ -10,7 +10,8 @@ public class WinLossParam(
     string siteName,
     bool isExcel = false,
     int maxTotalRow = 10000,
-    int maxTotalRowConfig = 10000)
+    int maxTotalRowConfig = 10000,
+    string ip = "")
 {
     public int CustId { get; } = custId;
 
@@ -35,4 +36,6 @@ public class WinLossParam(
     public int MaxTotalRowConfig { get; } = maxTotalRowConfig;
 
     public bool IsExcel { get; } = isExcel;
+
+    public string IP { get; } = ip;
 }

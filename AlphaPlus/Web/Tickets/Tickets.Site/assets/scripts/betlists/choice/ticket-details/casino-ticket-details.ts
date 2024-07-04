@@ -29,18 +29,22 @@
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, 'Macau Games');
             this.ShowDetailsPopup(params);
         };
+
         public showVideoPokerGameDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, 'Arcadia Gaming');
             this.ShowDetailsPopup(params);
         };
+
         public ShowFishingWorldDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, 'Fishing World');
             this.ShowDetailsPopup(params);
         };
+
         public ShowJokerDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, 'Joker');
             this.ShowDetailsPopup(params);
         };
+
         public ShowPPDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, 'PP');
             this.ShowDetailsPopup(params);
@@ -88,22 +92,22 @@
             transType: string,
             sportName: string = 'Saba Casino'
         ): string => {
-            return (
-                '?refNo=' +
-                refNo +
-                '&transType=' +
-                transType +
-                '&custId=' +
-                custId +
-                '&sportName=' +
-                sportName +
+            return [
+                '?refNo=',
+                refNo,
+                '&transType=',
+                transType,
+                '&custId=',
+                custId,
+                '&sportName=',
+                sportName,
                 '&productId=6'
-            );
+            ].join('');
         };
 
         private ShowDetailsPopup = (params: string) =>
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 '',
                 1500
             );
@@ -120,8 +124,7 @@
         }
 
         public ShowRunningBetsDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=Allbet&productId=21';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Allbet&productId=21`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -135,7 +138,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -154,11 +157,10 @@
         }
 
         public ShowJackpotWonDetails = (jackpotTransId: string, custId: string, betType: string) => {
-            const params =
-                '?transid=' + jackpotTransId + '&custid=' + custId + '&bettype=' + betType + '&productId=' + 6;
+            const params = `?transid='${jackpotTransId}&custid=${custId}&bettype=${betType}&productId=6`;
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'JackpotDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}JackpotDetails/Index${params}`,
                 '',
                 1260
             );
@@ -176,11 +178,10 @@
         }
 
         public ShowJackpotWonDetails = (jackpotTransId: string, custId: string, betType: string) => {
-            const params =
-                '?transid=' + jackpotTransId + '&custid=' + custId + '&bettype=' + betType + '&productId=' + 32;
+            const params = `?transid=${jackpotTransId}&custid=${custId}&bettype=${betType}&productId=32`;
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'JackpotDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}JackpotDetails/Index${params}`,
                 '',
                 1260
             );
@@ -198,8 +199,7 @@
         }
 
         public ShowSexyGamingBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=AE Sexy&productId=45';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=AE Sexy&productId=45`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -213,7 +213,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'AE Sexy - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -232,14 +232,7 @@
         }
 
         public ShowSAGamingBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' +
-                refNo +
-                '&custid=' +
-                custId +
-                '&transType=' +
-                transType +
-                '&sportName=SA Gaming&productId=39';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=SA Gaming&productId=39`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -253,7 +246,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'SA Gaming - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -272,14 +265,7 @@
         }
 
         public ShowGTCasinoBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' +
-                refNo +
-                '&custid=' +
-                custId +
-                '&transType=' +
-                transType +
-                '&sportName=IBCBetLiveCasino&productId=46';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=IBCBetLiveCasino&productId=46`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -293,7 +279,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'IBCBet Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -312,8 +298,7 @@
         }
 
         public ShowIONBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=ION&productId=52';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=ION&productId=52`;
 
             let width = 1510;
             let roleId = Number(this.ViewerLevelId);
@@ -327,7 +312,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'ION - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -346,8 +331,7 @@
         }
 
         public ShowBBinBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=BBin&productId=47';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=BBin&productId=47`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -361,7 +345,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'BBIN - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -380,14 +364,7 @@
         }
 
         public ShowRNGWarBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' +
-                refNo +
-                '&custid=' +
-                custId +
-                '&transType=' +
-                transType +
-                '&sportName=Funky Games&productId=50';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Funky Games&productId=50`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -401,7 +378,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -420,8 +397,7 @@
         }
 
         public ShowWMBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=WM&productId=51';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=WM&productId=51`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -435,7 +411,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'WM - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -454,8 +430,7 @@
         }
 
         public ShowGDGBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=GDG&productId=59';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=GDG&productId=59`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -469,7 +444,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'GDG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -488,8 +463,7 @@
         }
 
         public ShowBGBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=BG&productId=57';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=BG&productId=57`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -503,7 +477,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'BG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -527,14 +501,7 @@
             custId: string,
             transType: string
         ) => {
-            const params =
-                '?refno=' +
-                refNo +
-                '&custid=' +
-                custId +
-                '&transType=' +
-                transType +
-                '&sportName=PP Live Casino&productId=65';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=PP Live Casino&productId=65`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -548,7 +515,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'PP Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -567,8 +534,7 @@
         }
 
         public ShowFGGBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=FGG&productId=70';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=FGG&productId=70`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -582,7 +548,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'FGG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -606,14 +572,7 @@
             custId: string,
             transType: string
         ) => {
-            const params =
-                '?refno=' +
-                refNo +
-                '&custid=' +
-                custId +
-                '&transType=' +
-                transType +
-                '&sportName=SEAL Entertainment&productId=72';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=SEAL Entertainment&productId=72`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -627,7 +586,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'SEAL Entertainment - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -646,8 +605,7 @@
         }
 
         public ShowMGRNGCasinoBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=MG-RNG&productId=73';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=MG-RNG&productId=73`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -661,7 +619,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'MG-RNG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -680,8 +638,7 @@
         }
 
         public ShowJiliBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=Jili&productId=75';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Jili&productId=75`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -695,7 +652,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'Jili - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -714,8 +671,7 @@
         }
 
         public ShowYeeBetTicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=YeeBet&productId=76';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=YeeBet&productId=76`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -729,7 +685,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'YeeBet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -748,8 +704,7 @@
         }
 
         public ShowLive22TicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params =
-                '?refno=' + refNo + '&custid=' + custId + '&transType=' + transType + '&sportName=Live22&productId=79';
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Live22&productId=79`;
 
             let width = 1500;
             let roleId = Number(this.ViewerLevelId);
@@ -763,8 +718,113 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'CasinoDetails/Index' + params,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
                 'Live22 - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                width,
+                800
+            );
+        };
+    }
+
+    export class WETicketDetails extends BaseTicketDetails {
+        private static instance: WETicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new WETicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShoWELiveCasinoBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=WE Live Casino&productId=80`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                'WE Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                width,
+                800
+            );
+        };
+    }
+
+    export class UUSlotsTicketDetails extends BaseTicketDetails {
+        private static instance: UUSlotsTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new UUSlotsTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowUUSlotsTicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=UUSLOTS&productId=78`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                'UU SLOTS - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                width,
+                800
+            );
+        };
+    }
+
+    export class SabaxDTicketDetails extends BaseTicketDetails {
+        private static instance: SabaxDTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new SabaxDTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowSabaxDTicketDetails = (
+            refNo: string,
+            winlossDate: Date,
+            custId: string,
+            transType: string,
+            sportName: string
+        ) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=${sportName}&productId=86`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                sportName + ' - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
             );
@@ -807,8 +867,11 @@ let showMGRNGCasinoBetDetails: Function;
 let showJiliBetDetails: Function;
 let showYeeBetBetDetails: Function;
 let showLive22BetDetails: Function;
+let showWELiveCasinoBetDetails: Function;
+let showUUSlotsBetDetails: Function;
+let showSabaxDDetails: Function;
 
-$(document).ready(() => {
+$(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
     showVoidBridgeDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMacauGamesDetails;
     showVideoPokerGameDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.showVideoPokerGameDetails;
@@ -847,4 +910,7 @@ $(document).ready(() => {
     showJiliBetDetails = BetList.Choice.TicketDetails.JiliTicketDetails.Instance.ShowJiliBetDetails;
     showYeeBetBetDetails = BetList.Choice.TicketDetails.YeeBetTicketDetails.Instance.ShowYeeBetTicketDetails;
     showLive22BetDetails = BetList.Choice.TicketDetails.Live22TicketDetails.Instance.ShowLive22TicketDetails;
+    showWELiveCasinoBetDetails = BetList.Choice.TicketDetails.WETicketDetails.Instance.ShoWELiveCasinoBetDetails;
+    showUUSlotsBetDetails = BetList.Choice.TicketDetails.UUSlotsTicketDetails.Instance.ShowUUSlotsTicketDetails;
+    showSabaxDDetails = BetList.Choice.TicketDetails.SabaxDTicketDetails.Instance.ShowSabaxDTicketDetails;
 });

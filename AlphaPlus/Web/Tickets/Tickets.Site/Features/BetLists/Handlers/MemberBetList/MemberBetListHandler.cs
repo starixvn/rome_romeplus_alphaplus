@@ -15,15 +15,15 @@ using Microsoft.Extensions.Options;
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.MemberBetList;
 
 public class MemberBetListHandler(
-    IOptions<AppSettings> options,
     IMemberBetListService memberBetListService,
     IProductService productService,
     IForecastService forecastService,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
-    IPService ipService) :
-        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+    IPService ipService,
+    IOptions<AppSettings> options) :
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
         IRequestHandler<MemberBetListQuery, MemberBetListViewModel>
 {
     private readonly AppSettings appSettings = options.Value;

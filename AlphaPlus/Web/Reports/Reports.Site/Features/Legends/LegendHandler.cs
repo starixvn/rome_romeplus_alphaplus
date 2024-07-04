@@ -102,7 +102,7 @@ public class LegendHandler(
         return string.Format(
             Resources.SabaOtherSportsLegend,
             productDetailsBelongSabaOthers,
-            cacheRefService.GetProductDetailName(ProductDetaiIdConstants.SabaOtherSports));
+            cacheRefService.GetProductDetailName(ProductDetailIdConstants.SabaOtherSports));
     }
 
     public Task<LegendViewModel> Handle(MatchWinLossDetailLegendQuery message, CancellationToken cancellationToken)

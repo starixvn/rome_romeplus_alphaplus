@@ -27,8 +27,8 @@
     <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
   <ItemGroup>
-    
-    <PackageReference Include="Fanex.BetList.AdvantPlay" Version="2.0.0" />    
+
+    <PackageReference Include="Fanex.BetList.AdvantPlay" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.AdvantPlayMini" Version="2.0.0" />
     <PackageReference Include="Fanex.BetList.Allbet" Version="2.0.0.2" />
     <PackageReference Include="Fanex.BetList.BBIN" Version="2.0.0.1" />

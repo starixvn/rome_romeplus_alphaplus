@@ -3,20 +3,23 @@ using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.Parlay;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Parlay;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.Parlay;
+
 public class ParlayHandler(
     IParlayService parlayService,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
-    //ISmartPunterBetListMonitor monitorService,
     IPService ipService,
+    IOptions<AppSettings> options,
     IBrowserHelper browserHelper) :
-        BetListBaseHandler(builder, ticketHelper, null, ipService),
+        BetListBaseHandler(builder, ticketHelper, null, ipService, options),
         IRequestHandler<MixParlayQuery, MixParlayViewModel>,
         IRequestHandler<ComboParlayQuery, ComboParlayViewModel>,
         IRequestHandler<ComboParlayDetailQuery, ComboParlayDetailViewModel>

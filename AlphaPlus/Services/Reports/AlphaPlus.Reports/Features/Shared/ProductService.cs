@@ -87,7 +87,7 @@ public class ProductService(
 
     private bool CanViewProductDetailByResourceId(int resourceId)
         => options.Value.IsSiteLabel777
-        ? !ProductDetaiIdConstants.ExcludedProductDetailFor777.Contains(resourceId)
+        ? !ProductDetailIdConstants.ExcludedProductDetailFor777.Contains(resourceId)
         : true;
 
     private IEnumerable<ProductDetail> GetAllProductDetails()
@@ -107,7 +107,7 @@ public class ProductService(
 
     public IEnumerable<string> GetProductDetailsBelongSabaOtherSports(int custId, IEnumerable<Product> products)
         => GetProductDetails(custId, products)
-        .Where(i => i.ResourceId == ProductDetaiIdConstants.SabaOtherSports)
+        .Where(i => i.ResourceId == ProductDetailIdConstants.SabaOtherSports)
         .OrderBy(product => product.Order)
         .Select(i => cacheRefService.GetProductDetailName(i.ChildResourceId));
 }

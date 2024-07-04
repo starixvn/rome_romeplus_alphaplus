@@ -14,6 +14,8 @@ using MediatR;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
 using _UserLevel = AlphaPlus.Core.Models.UserLevel;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.ParlayWinLossByMatch;
 
@@ -24,9 +26,10 @@ public class ParlayWinLossByMatchExcelHanlder(
     IBetListExcelBuilder excelBuilder,
     ITicketHelper ticketHelper,
     IPService ipService,
+    IOptions<AppSettings> options,
     IWebHostEnvironment webHostEnvironment,
     Workbook<TicketDto> workbook) :
-        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment),
+        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, options, webHostEnvironment),
         IRequestHandler<ParlayWinLossByMatchExcelQuery, ExcelFileViewModel>
 {
     private readonly IParlayWinLossByMatchService parlayWinLossByMatchService = parlayWinLossByMatchService;
@@ -38,6 +41,7 @@ public class ParlayWinLossByMatchExcelHanlder(
         ticketHelper,
         monitorService,
         ipService,
+        options,
         webHostEnvironment,
         workbook);
 

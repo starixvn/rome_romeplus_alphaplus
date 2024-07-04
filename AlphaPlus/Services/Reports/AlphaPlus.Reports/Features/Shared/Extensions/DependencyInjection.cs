@@ -24,7 +24,6 @@ using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 using AlphaPlus.Reports.Features.WinLossByProduct;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.Customer;
-using System.Collections;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
@@ -70,7 +69,7 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IServiceCollection AddAllowedSitesToShareLoadConfig(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection AddAllowedSitesToShareLoadConfig(this IServiceCollection services, IConfiguration configuration)
     {
         IDictionary<string, string> siteNameToIP = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         var allowedSitesToShareLoadConfig = configuration.GetSection("AllowedSitesToShareLoad");

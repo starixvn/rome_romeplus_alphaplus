@@ -6,4 +6,5 @@ public record WinLossWeekParam(
     DateTime ToDate,
     string ProductIds,
     string ProductDetailsXML,
-    string Username);
+    string Username,
+    string IP);

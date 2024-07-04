@@ -5,6 +5,7 @@ using AlphaPlus.IPInfo.Services;
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
+using Fanex.BetList.Core.Entities;
 
 namespace AlphaPlus.BetLists.WinLoss;
 
@@ -101,7 +102,17 @@ public class WinLossService(
             await reportDateService.GetMoveBetsDay(),
             maxTotalRow: param.MaxTotalRow,
             isExportExcel: param.IsExcel);
-        return await GetBetList(criteria, param);
+        await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
+
+        var (tickets, ticketData) = await repository.FetchMultipleAsync<TicketDto, TicketData>(criteria, param.IP);
+        await AssignCountry(tickets, param.DisplayVNIP);
+
+        var errFormat = param.IsExcel
+            ? string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig)
+            : string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, criteria.MaxTotalRow, param.MaxTotalRowConfig);
+        var outputParams = new BetListOutputParams(criteria.ErrCode, criteria.ErrCode != 0 ? errFormat : criteria.ErrMsg, criteria.MaxTotalRow);
+
+        return new BetListData(tickets, ticketData, outputParams);
     }
 
     private async Task<BetListData> GetBetListBeforeBalanceUpDay(WinLossParam param, DateTime fromDate, DateTime toDate)
@@ -114,11 +125,6 @@ public class WinLossService(
             toDate,
             maxTotalRow: param.MaxTotalRow,
             isExportExcel: param.IsExcel);
-        return await GetBetList(criteria, param);
-    }
-
-    private async Task<BetListData> GetBetList(GetBetListWinLossByDateBaseCriteria criteria, WinLossParam param)
-    {
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var betListData = await GetBetList(criteria, param.DisplayVNIP);
@@ -143,6 +149,6 @@ public class WinLossService(
             param.ProductDetailsXML,
             param.Username);
 
-        return await repository.FetchAsync<WinLossWeekModel>(criteria);
+        return await repository.FetchAsync<WinLossWeekModel>(criteria, param.IP);
     }
 }

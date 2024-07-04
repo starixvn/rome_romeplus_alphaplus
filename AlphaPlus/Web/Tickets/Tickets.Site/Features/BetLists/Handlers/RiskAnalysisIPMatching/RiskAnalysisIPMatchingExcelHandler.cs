@@ -15,6 +15,8 @@ using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
 using static ONEbook.SpreadSheets.Column;
 using _UserLevel = AlphaPlus.Core.Models.UserLevel;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.RiskAnalysisIPMatching;
 
@@ -24,10 +26,11 @@ public class RiskAnalysisIPMatchingExcelHandler(
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
     IPService ipService,
+    IOptions<AppSettings> options,
     IRiskAnalysisIPMatchingService riskAnalysisIPMatchingService,
     IWebHostEnvironment webHostEnvironment,
     Workbook<TicketDto> workbook) :
-        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment),
+        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, options, webHostEnvironment),
         IRequestHandler<RiskAnalysisIPMatchingExcelQuery, ExcelFileViewModel>
 {
     private readonly IRiskAnalysisIPMatchingService riskAnalysisIPMatchingService = riskAnalysisIPMatchingService;

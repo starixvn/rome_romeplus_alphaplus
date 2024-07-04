@@ -5,7 +5,6 @@ using AlphaPlus.Core.Utils;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets;
-using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;
@@ -25,7 +24,7 @@ public class LastBetsHandler(
     IPService ipService,
     IEncryption encryption,
     IOptions<AppSettings> options) :
-        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
         IRequestHandler<LastBetsQuery, LastBetsViewModel>,
         IRequestHandler<GetLastBetsDataQuery, LastBetsDataViewModel>,
         IRequestHandler<LastBetsNewQuery, LastBetsNewViewModel>,
@@ -42,8 +41,8 @@ public class LastBetsHandler(
     {
         var viewModel = new LastBetsViewModel(
             message,
-            builder,
-            ticketHelper,
+            Builder,
+            TicketHelper,
             LastTransIdCacheKeyByFilter(message.ViewerId),
             LatestTransIdCacheKeyByFilter(message.ViewerId));
 
@@ -77,7 +76,7 @@ public class LastBetsHandler(
 
         var latestTransId = newTickets.Any() ? newTickets.First().TransId : message.LatestTransId;
 
-        return new LastBetsDataViewModel(latestTransId, message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds);
+        return new LastBetsDataViewModel(latestTransId, message, betListData, Builder, TicketHelper, supportScoreMapBetTypeIds);
     }
 
     public async Task<LastBetsNewViewModel> Handle(LastBetsNewQuery message, CancellationToken cancellationToken)

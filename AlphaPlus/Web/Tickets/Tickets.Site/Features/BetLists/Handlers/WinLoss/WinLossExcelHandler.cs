@@ -17,7 +17,6 @@ using ONEbook.SpreadSheets.BetListNPOI;
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.WinLoss;
 
 public class WinLossExcelHandler(
-    IOptions<AppSettings> options,
     IProductService productService,
     IWinLossService winLossService,
     IBetListHTMLBuilder builder,
@@ -25,9 +24,11 @@ public class WinLossExcelHandler(
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
     IPService ipService,
+    IOptions<AppSettings> options,
+    AllowedSitesToShareLoad allowedSitesToShareLoad,
     IWebHostEnvironment webHostEnvironment,
     Workbook<TicketDto> workbook) :
-        WinLossBaseHandler(options, productService, winLossService, builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment),
+        WinLossBaseHandler(productService, winLossService, builder, excelBuilder, ticketHelper, monitorService, ipService, options, allowedSitesToShareLoad, webHostEnvironment),
         IRequestHandler<WinLossExcelQuery, ExcelFileViewModel>
 {
     private Workbook<TicketDto> workbook = workbook;

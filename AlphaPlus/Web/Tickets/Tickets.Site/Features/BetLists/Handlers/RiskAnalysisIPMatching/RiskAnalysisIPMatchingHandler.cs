@@ -2,10 +2,12 @@ using AlphaPlus.BetLists.RiskAnalysisIPMatching;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.RiskAnalysisIPMatching;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.RiskAnalysisIPMatching;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using MediatR;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.RiskAnalysisIPMatching;
 
@@ -14,8 +16,9 @@ public class RiskAnalysisIPMatchingHandler(
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
-    IPService ipService) :
-        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+    IPService ipService,
+    IOptions<AppSettings> options) :
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
         IRequestHandler<RiskAnalysisIPMatchingQuery, RiskAnalysisIPMatchingViewModel>
 {
     private readonly IRiskAnalysisIPMatchingService riskAnalysisIPMatchingService = riskAnalysisIPMatchingService;

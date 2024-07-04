@@ -14,13 +14,20 @@
             betId?: number,
             betCheck?: string,
             custId?: number,
-            transDesc?: string) => {
-            var params = '?custId=' + this.CustId +
-                '&roleId=' + this.ViewerLevelId +
-                '&sportId=' + sportTypeId +
-                '&transDesc=' + transDesc +
-                '&productId=49';
-            Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, "", 835, 675);
-        }
+            transDesc?: string
+        ) => {
+            var params = [
+                '?custId=',
+                this.CustId,
+                '&roleId=',
+                this.ViewerLevelId,
+                '&sportId=',
+                sportTypeId,
+                '&transDesc=',
+                transDesc,
+                '&productId=49'
+            ].join();
+            Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, '', 835, 675);
+        };
     }
 }

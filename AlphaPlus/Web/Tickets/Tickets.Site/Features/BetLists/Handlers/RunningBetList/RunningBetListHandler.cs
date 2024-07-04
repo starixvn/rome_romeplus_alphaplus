@@ -15,7 +15,6 @@ using Microsoft.Extensions.Options;
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.RunningBetList;
 
 public class RunningBetListHandler(
-    IOptions<AppSettings> options,
     IAutoFollowBetService autoFollowBetService,
     IRunningBetListService runningBetListService,
     IProductService productService,
@@ -23,8 +22,9 @@ public class RunningBetListHandler(
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
     ISmartPunterBetListMonitor monitorService,
-    IPService ipService) :
-        BetListBaseHandler(builder, ticketHelper, monitorService, ipService),
+    IPService ipService,
+    IOptions<AppSettings> options) :
+        BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
         IRequestHandler<RunningBetListQuery, RunningBetListViewModel>
 {
     private const int SabaPromotionProductId = 37;

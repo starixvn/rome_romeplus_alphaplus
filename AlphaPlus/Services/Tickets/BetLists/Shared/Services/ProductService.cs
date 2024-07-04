@@ -1,4 +1,5 @@
 using System.Text;
+using AlphaPlus.BetLists.Shared.Constants;
 using AlphaPlus.BetLists.Shared.Criteria;
 using AlphaPlus.BetLists.Shared.Helpers;
 using AlphaPlus.BetLists.Shared.Models;
@@ -34,13 +35,6 @@ public class ProductService(
     private const int ProductDetailsCacheInMinutes = 60 * 24; // 1 day
     private const string ProductDetailsCacheKey = "AlphaPlus.BetLists.ProductDetails";
     private const int CustProductDetailsCacheInMinutes = 5;
-    private const int LiveCasinoProductId = 41;
-    private const int RNGCasinoProductId = 53;
-    private static readonly HashSet<int> IgnoreCheckProductStatusTypes = [LiveCasinoProductId, RNGCasinoProductId];
-    private const int SoccerPinGoal = 15;
-    private const int BasketballPinGoal = 16;
-    private const int EsportsPinGoal = 19;
-    private static readonly HashSet<int> ExcludedProductDetailFor777 = [SoccerPinGoal, BasketballPinGoal, EsportsPinGoal];
     public const int CacheDayforJackpot = 7;
 
     public IEnumerable<string> ConcatProductNames(IEnumerable<int> productIds, bool isSiteLabel777)
@@ -60,7 +54,7 @@ public class ProductService(
                 }).ToList(),
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
-        return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && (IgnoreCheckProductStatusTypes.Contains(i.Type) || canViewProduct(i.Id)));
+        return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && (ProductIdConstants.IgnoreCheckProductStatusTypes.Contains(i.Type) || canViewProduct(i.Id)));
     }
 
     public async Task<IEnumerable<Product>> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param)
@@ -70,11 +64,11 @@ public class ProductService(
         return products
             .Where(product => product.IsEnable && IsRemainSupportProduct(product, param.MinDate))
             .Select(product =>
-                {
-                    product.Name = CacheRefServiceHelper.GetProductName(product.Id, param.IsSiteLabel777);
-                    product.TypeName = product.Type == 0 ? string.Empty : CacheRefServiceHelper.GetProductName(product.Type, param.IsSiteLabel777);
-                    return product;
-                });
+            {
+                product.Name = CacheRefServiceHelper.GetProductName(product.Id, param.IsSiteLabel777);
+                product.TypeName = product.Type == 0 ? string.Empty : CacheRefServiceHelper.GetProductName(product.Type, param.IsSiteLabel777);
+                return product;
+            });
     }
 
     private static bool IsRemainSupportProduct(Product product, DateTime minReportDate)
@@ -107,6 +101,8 @@ public class ProductService(
 
             return (await GetAllProductDetails())
                 .Where(p => productSupportDetail.Contains(p.ProductId) && CanViewProductDetailByResourceId(p.ResourceId, param.IsSiteLabel777))
+                .OrderBy(p => p.ProductId)
+                .ThenBy(p => p.Order)
                 .Select(product =>
                 {
                     product.DisplayName = CacheRefServiceHelper.GetProductDetailName(product.ResourceId, param.IsSiteLabel777);
@@ -117,7 +113,7 @@ public class ProductService(
 
     private static bool CanViewProductDetailByResourceId(int resourceId, bool isSiteLabel777)
         => isSiteLabel777
-        ? !ExcludedProductDetailFor777.Contains(resourceId)
+        ? !ProductDetailIdConstants.ExcludedProductDetailFor777.Contains(resourceId)
         : true;
 
     private Task<IEnumerable<ProductDetail>> GetAllProductDetails()

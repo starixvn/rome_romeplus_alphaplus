@@ -16,15 +16,16 @@
             custId?: number,
             transDesc?: string
         ) => {
-            const params =
-                '?transDesc=' +
-                transDesc +
-                '&betCheck=' +
-                betCheck +
-                '&bettypeId=' +
-                betTypeId +
-                '&sportId=' +
-                sportTypeId;
+            const params = [
+                '?transDesc=',
+                transDesc,
+                '&betCheck=',
+                betCheck,
+                '&bettypeId=',
+                betTypeId,
+                '&sportId=',
+                sportTypeId
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, '', 835, 500);
         };
@@ -48,18 +49,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=6';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=6'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/RngCasinoResult' + params,
                 '',
@@ -87,18 +89,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=22';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=22'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/MacauGamesResult' + params,
                 '',
@@ -123,8 +126,7 @@
             betId?: number,
             betCheck?: string
         ) => {
-            var params =
-                '?custId=' + this.CustId + '&roleId=' + this.ViewerLevelId + '&gameId=' + betCheck + '&productId=24';
+            var params = `?custId=${this.CustId}&roleId=${this.ViewerLevelId}&gameId=${betCheck}&productId=24`;
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/Detail' + params,
                 '',
@@ -152,18 +154,21 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=32';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&BetType=',
+                betTypeId,
+                '&siteId=',
+                siteId,
+                '&productId=32'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/PPResult' + params,
                 '',
@@ -191,18 +196,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=36';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=36'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/SpadegamingResult' + params,
                 '',
@@ -230,18 +236,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=38';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=38'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/VirtualGamesResult' + params,
                 '',
@@ -269,18 +276,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=50';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=50'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/RNGWarResult' + params,
                 '',
@@ -307,18 +315,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=52';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=52'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/IONCasinoResult' + params,
                 '',
@@ -345,20 +354,21 @@
             transDesc?: number,
             betcheck?: string
         ) => {
-            var params =
-                '?custId=' +
-                (transDesc || this.CustId) +
-                '&roleId=' +
-                this.ViewerLevelId +
-                '&gameRoundId=' +
-                betcheck +
-                '&gameId=' +
-                betTypeId +
-                '&sportId=' +
-                sportTypeId +
-                '&siteId=' +
-                matchCode +
-                '&productId=42';
+            var params = [
+                '?custId=',
+                transDesc || this.CustId,
+                '&roleId=',
+                this.ViewerLevelId,
+                '&gameRoundId=',
+                betcheck,
+                '&gameId=',
+                betTypeId,
+                '&sportId=',
+                sportTypeId,
+                '&siteId=',
+                matchCode,
+                '&productId=42'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'SabaClub/Index' + params,
                 '',
@@ -386,18 +396,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=55';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=55'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/PGSoftResult' + params,
                 '',
@@ -425,18 +436,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=56';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=56'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/JokerResult' + params,
                 '',
@@ -464,18 +476,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=59';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=59'
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/GDGResult' + params,
@@ -504,22 +517,23 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                refNo +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=3' +
-                '&BetTypeId=' +
-                betTypeId +
-                '&SportTypeId=' +
-                sportTypeId;
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                refNo,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=3',
+                '&BetTypeId=',
+                betTypeId,
+                '&SportTypeId=',
+                sportTypeId
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/LinkedGamesResult' + params,
@@ -548,18 +562,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=63';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=63'
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/SportsLotteryDetailResult' + params,
@@ -587,18 +602,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=57';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=57'
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/BGResult' + params,
@@ -627,22 +643,23 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&BetType=' +
-                betTypeId +
-                '&endtime=' +
-                winLostDate +
-                '&productId=60';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&endtime=',
+                winLostDate,
+                '&productId=60'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/MaxGameResult' + params,
                 '',
@@ -670,20 +687,21 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&BetType=' +
-                betTypeId +
-                '&productId=65';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&productId=65'
+            ].join('');
 
             var mainDomain = location.origin.split(':')[0] + ':' + $('#MainDomain').val() + '/site-main';
             window.top.postMessage(
@@ -714,18 +732,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=61';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=61'
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/HabaneroResult' + params,
@@ -754,18 +773,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=62';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=62'
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/CGResult' + params,
@@ -788,29 +808,27 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number,
-            matchCode?: string,
-            transDesc?: number,
-            betcheck?: string
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                (transDesc || this.CustId) +
-                '&roleId=' +
-                this.ViewerLevelId +
-                '&gameRoundId=' +
-                betcheck +
-                '&gameId=' +
-                betTypeId +
-                '&sportId=' +
-                sportTypeId +
-                '&siteId=' +
-                matchCode +
-                '&currencyName=' +
-                userName +
-                '&productId=66';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&productId=66'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'ThirdParty/VGamingResult' + params,
+                `${Common.AppPath.TicketsAppPath}ThirdParty/VGamingResult${params}`,
                 '',
                 835,
                 675
@@ -836,18 +854,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=67';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=67'
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/AdvantPlayResult' + params,
@@ -876,18 +895,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=68';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=68'
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/AdvantPlayMiniResult' + params,
@@ -916,18 +936,19 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&productId=47';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=47'
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/BBINResult' + params,
@@ -956,20 +977,21 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&BetType=' +
-                betTypeId +
-                '&productId=34';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&productId=34'
+            ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/CardClubResult' + params,
@@ -999,20 +1021,21 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&endtime=' +
-                winLostDate +
-                '&productId=70';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&endtime=',
+                winLostDate,
+                '&productId=70'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/FGGResult' + params,
                 '',
@@ -1040,18 +1063,21 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&BetType=' +
-                betTypeId +
-                '&productId=72';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&productId=72'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/SEALResult' + params,
                 '',
@@ -1079,20 +1105,21 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&BetType=' +
-                betTypeId +
-                '&productId=73';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&productId=73'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/MGResult' + params,
                 '',
@@ -1120,22 +1147,189 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params =
-                '?custId=' +
-                custId +
-                '&transId3rd=' +
-                transId3rd +
-                '&gameId3rd=' +
-                gameId3rd +
-                '&currencyId=' +
-                currencyId +
-                '&siteId=' +
-                siteId +
-                '&BetType=' +
-                betTypeId +
-                '&productId=75';
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&productId=75'
+            ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/JiliResult' + params,
+                '',
+                835,
+                675
+            );
+        };
+    }
+
+    export class Live22ResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string
+        ) => {
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&endtime=',
+                winLostDate,
+                '&productId=79'
+            ].join('');
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}ThirdParty/Live22Result${params}`,
+                '',
+                835,
+                675
+            );
+        };
+    }
+
+    export class WEResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string
+        ) => {
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&productId=80'
+            ].join('');
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}ThirdParty/WEResult${params}`,
+                '',
+                835,
+                675
+            );
+        };
+    }
+
+    export class UUSlotsResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string
+        ) => {
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&productId=78'
+            ].join('');
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}ThirdParty/UUSlotsResult${params}`,
+                '',
+                835,
+                675
+            );
+        };
+    }
+
+    export class SabaxDResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string
+        ) => {
+            var params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&productId=86'
+            ].join('');
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}ThirdParty/SabaxDResult${params}`,
                 '',
                 835,
                 675

@@ -23,7 +23,6 @@ using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.CancelledBets;
 
 public class CancelledBetExcelHandler(
-    IOptions<AppSettings> options,
     ICancelledBetService cancelledBetService,
     IProductService productService,
     ISmartPunterBetListMonitor monitorService,
@@ -31,22 +30,23 @@ public class CancelledBetExcelHandler(
     IBetListExcelBuilder excelBuilder,
     ITicketHelper ticketHelper,
     IPService ipService,
+    IOptions<AppSettings> options,
     IWebHostEnvironment webHostEnvironment,
     Workbook<TicketDto> workbook) :
-        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, webHostEnvironment),
+        BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, options, webHostEnvironment),
         IRequestHandler<CancelledBetExcelQuery, ExcelFileViewModel>
 {
     private readonly AppSettings appSettings = options.Value;
     private readonly IProductService productService = productService;
     private Workbook<TicketDto> workbook = workbook;
     private readonly CancelledBetHandler cancelledBetHandler = new CancelledBetHandler(
-        options,
         cancelledBetService,
         productService,
         builder,
         ticketHelper,
         monitorService,
-        ipService);
+        ipService,
+        options);
 
     public async Task<ExcelFileViewModel> Handle(CancelledBetExcelQuery message, CancellationToken cancellationToken)
     {

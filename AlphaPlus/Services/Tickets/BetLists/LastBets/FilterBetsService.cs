@@ -388,4 +388,13 @@ public class FilterBetsService(
             BuildMembers(customFilter.FilterByMembers, customFilter.InputList, customFilter.MyWatchlist),
             customFilter.FilterByMembers);
     }
+
+    private IEnumerable<League> SiteGroup777DontSupportPinGoal(IEnumerable<League> leagues, bool isSiteLabel777)
+    {
+        var leagueGroupPinGoal = new List<int> { 113, 122, 151 };
+
+        return isSiteLabel777
+            ? leagues.Where(i => !leagueGroupPinGoal.Contains(i.LeagueGroupId))
+            : leagues;
+    }
 }

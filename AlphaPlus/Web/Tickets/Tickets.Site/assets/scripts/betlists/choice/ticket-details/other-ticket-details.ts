@@ -3,17 +3,19 @@
         private static instance: GoldDeluxeTicketDetails;
 
         public static get Instance() {
-            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new GoldDeluxeTicketDetails() : this.instance;
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new GoldDeluxeTicketDetails()
+                : this.instance;
             return this.instance;
         }
 
         public ShowDetails(id: string) {
             const element = document.getElementById(id);
 
-            if (element.style.display === "block") {
-                element.style.display = "none"
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
             } else {
-                element.style.display = "block";
+                element.style.display = 'block';
             }
         }
     }
@@ -21,6 +23,6 @@
 
 let showDetail: Function;
 
-$(document).ready(() => {
+$(function () {
     showDetail = BetList.Choice.TicketDetails.GoldDeluxeTicketDetails.Instance.ShowDetails;
-})
+});

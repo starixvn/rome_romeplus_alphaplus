@@ -1,9 +1,11 @@
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
+using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers;
 
@@ -13,12 +15,14 @@ public class BetListBaseHandler
         IBetListHTMLBuilder builder,
         ITicketHelper ticketHelper,
         ISmartPunterBetListMonitor monitorService,
-        IPService ipService)
+        IPService ipService,
+        IOptions<AppSettings> options)
     {
         Builder = builder;
         TicketHelper = ticketHelper;
         MonitorService = monitorService;
         TicketHelper.IsVnIp = ipService.IsVNIP;
+        TicketHelper.HideSabaText = options.Value.IsSiteLabel777;
     }
 
     protected internal IBetListHTMLBuilder Builder { get; }
