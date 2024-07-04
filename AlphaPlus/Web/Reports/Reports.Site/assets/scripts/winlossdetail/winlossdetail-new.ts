@@ -212,11 +212,14 @@ class WinLossDetailViewNew extends BaseReportNew {
                 },
                 ($element: JQuery, custInfo) => {
                     $.blockUI();
-                    this.breadcrumbLevelComponent.addBreadcrumb({
-                        CustId: custInfo.custId,
-                        CustName: custInfo.custName,
-                        CustLevelId: custInfo.custLevelId
-                    });
+                    this.breadcrumbLevelComponent.addBreadcrumb(
+                        {
+                            CustId: custInfo.custId,
+                            CustName: custInfo.custName,
+                            CustLevelId: custInfo.custLevelId
+                        },
+                        false
+                    );
                     const breadcrumbsJson = this.breadcrumbLevelComponent.toStringBreadcrumb();
                     const visibleColumns = this.visibleColumnComponent.getShowColumns().join(',');
                     const betListParams = $.extend({}, this.globalFormData, custInfo, {

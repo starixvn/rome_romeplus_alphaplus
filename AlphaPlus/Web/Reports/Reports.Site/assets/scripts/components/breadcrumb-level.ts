@@ -16,9 +16,9 @@
         }
     }
 
-    addBreadcrumb(breadcrumbData: any) {
+    addBreadcrumb(breadcrumbData: any, isRender = true) {
         this.breadcrumbs.push(breadcrumbData);
-        this.render();
+        isRender && this.render();
     }
 
     removeBreadcrumb(custLevelId: number) {
