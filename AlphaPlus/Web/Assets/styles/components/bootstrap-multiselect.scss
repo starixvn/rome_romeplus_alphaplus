@@ -58,7 +58,8 @@
     border: 1px solid $dropdown-border;
     font-size: 13px;
     @include effect-normal;
-
+    margin: 2px 0 0;
+    
     > li:hover > a {
         background-color: $dropdown-bg-hover;
     }
