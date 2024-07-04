@@ -69,11 +69,12 @@ class SubAccount {
                 this.AddSubAccount(0);
             }
             else {
-                this.$("#errMsg").html(window.passwordFormatMsg).css({
-                    border: "1px solid red",
-                    padding: "10px",
-                    color: "red"
-                }).show();
+                this.$("#errMsg").html(this.$.trim(this.$("#txtPwd").val()) === "" ? window.passwordEmptyMsg : window.passwordFormatMsg)
+                    .css({
+                        border: "1px solid red",
+                        padding: "10px",
+                        color: "red"
+                    }).show();
             }
         });
         this.$("#None").change((item) => {
@@ -195,16 +196,6 @@ class SubAccount {
     };
 
     AddSubAccount = (subAccId: number) => {
-        if (!this.$("#txtPwd").val()) {
-            this.$("#errMsg").html(window.passwordEmptyMsg).css({
-                border: "1px solid red",
-                padding: "10px",
-                color: "red"
-            }).show();
-            
-            return;
-        }
-
         this.$.blockUI();
 
         var pageAccess = this.$("#View").is(":checked") ? "[H]" :
