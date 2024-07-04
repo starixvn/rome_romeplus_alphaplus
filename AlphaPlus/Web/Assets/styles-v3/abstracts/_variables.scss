@@ -4,6 +4,7 @@
     --font-size: 13px;
     // text
     --text-color: #333333;
+    --text-color2: var(--link-text-color);  
     --border-color: #d1d1d1;
     --bg-color1: #ffffff;
 
@@ -14,6 +15,7 @@
 :root [data-theme='dark'] {
 
     --text-color: #ededed;
+    --text-color2: var(--link-text-color);  
     --border-color: #474747;
     --bg-color1: #171717;
     
