@@ -1,4 +1,7 @@
 'use strict';
+
+declare var encryptor: Encryptor;
+
 interface Window {
     age: {
         SignOut: Function
@@ -225,7 +228,7 @@ class SubAccount {
         var data = {
             first: this.$("#FirstOptions_Value").val(),
             next: this.$("#NextOptions_Value").val(),
-            password: this.$("#txtPwd").val() || "",
+            password: encryptor.encrypt(this.$("#txtPwd").val(), this.$("#Code").val()),
             firstName: this.$("#txtFname").val(),
             lastName: this.$("#txtLname").val(),
             pageAccess: pageAccess || ""

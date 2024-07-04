@@ -38,6 +38,8 @@
   {
     "outputFileName": "wwwroot/assets/bundles/sub-account/index.js",
     "inputFiles": [
+      "Features/Shared/Scripts/aes.js",
+      "Features/Shared/Scripts/encryptor.js",
       "Features/SubAccount/assets/scripts/sub-account/sub-account.js"
     ]
   },

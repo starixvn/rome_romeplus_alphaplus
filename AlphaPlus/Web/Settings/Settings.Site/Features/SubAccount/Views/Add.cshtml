@@ -78,6 +78,7 @@
             </li>
         </ul>
     </main>
+    @Html.Hidden("Code", UserSession.Current.CaptchaCode)
 </div>
 @section Scripts {
     <script>

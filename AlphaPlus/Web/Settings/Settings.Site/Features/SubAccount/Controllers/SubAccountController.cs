@@ -1,5 +1,6 @@
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Settings.Site.Features.SubAccount.Models;
 using AlphaPlus.Settings.Site.Features.SubAccount.Requests;
 using AlphaPlus.Shared.AppResources.Settings.SubAccount;
@@ -12,9 +13,10 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Controllers
     {
         private readonly IMediator mediator;
 
-        public SubAccountController(IMediator mediator)
+        public SubAccountController(IMediator mediator, IEncryption encryption)
         {
             this.mediator = mediator;
+            UserSession.Current.CaptchaCode = encryption.RandomString(4);
         }
 
         public async Task<IActionResult> Index(SubAccountListRequest subAccountListRequest)

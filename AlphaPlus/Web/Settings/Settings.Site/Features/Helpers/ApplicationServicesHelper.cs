@@ -61,6 +61,7 @@ using Fanex.Customer.Client.Configurations;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.SecurityCode.Filters;
 using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -78,6 +79,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddRequestInfo()
                 .AddAlphaPlusCore(configuration)
                 .AddSharedSession(configuration)
+                .AddSingleton<IEncryption, Core.Utils.Encryption>()
                 .AddHttpClient<ISubAccountService, SubAccountService>
                     (httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 

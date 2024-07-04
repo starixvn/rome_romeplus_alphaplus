@@ -17,3 +17,5 @@ class Encryptor {
         return pwd.toString();
     }
 }
+
+var encryptor = new Encryptor();
