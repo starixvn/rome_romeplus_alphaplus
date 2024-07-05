@@ -169,10 +169,82 @@ input[type="reset"]:hover, input[type="button"].btn-reset:hover {
     background-color: rgb(238, 101, 9);
 }
 
-table{
+table {
     width: 100%;
-    line-height: 28px;
+    border-spacing: 0;
+    border: 0;
 }
+
+.tblRpt {
+    background-color: #fff;
+    border: 1px solid $table-border-color;
+
+    tfoot tr:first-child td {
+        border-bottom: 1px solid $table-border-color;
+    }
+
+    thead tr th, tr th {
+        font-weight: normal;
+    }
+
+    tr td, thead tr th, tr th {
+        border-right-width: 0;
+        border-bottom-width: 0;
+        border-right: 1px solid $table-border-color;
+        border-top: 1px solid $table-border-color;
+        height: $height-normal;
+        padding: 2px 8px;
+        white-space: nowrap;
+        vertical-align: middle;
+        @include box-sizing;
+    }
+
+    tbody + tfoot tr:first-child td {
+        border-top: 1px solid $table-border-color;
+    }
+
+    tr.RptFooter {
+        background-color: $table-footer-bg;
+        color: $table-footer-color;
+        font-weight: 700;
+    }
+}
+
+.RptSubTitle {
+    background-color: #ffefde;
+}
+
+.RptTitle {
+    text-align: center;
+}
+
+.RptHeader {
+    font-weight: 400;
+    text-align: center;
+
+    td, th {
+        background-color: $table-header-bg-color;
+        color: $table-header-color;
+    }
+}
+
+.RptHeader02 {
+    font-weight: 400;
+    text-align: center;
+
+    td, th {
+        background-color: $table-subheader-bg-color;
+        color: $table-subheader-color;
+    }
+}
+
+.RptHeader01 {
+    background-color: #e8e8e8;
+    font-weight: 700;
+    height: 22px;
+    text-align: center;
+}
+
 
 .editBtn:before,.editBtnDisable:before,.editBtn-Disable:before,.pMemInfo:after,.pMemInfoActive:after {
     font-family: 'Iconalpha';
