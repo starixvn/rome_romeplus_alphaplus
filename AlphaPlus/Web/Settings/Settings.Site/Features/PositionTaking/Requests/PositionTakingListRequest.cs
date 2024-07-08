@@ -4,7 +4,7 @@ using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.PositionTaking.Requests;
 
-public class SubAccountListRequest : IRequest<IEnumerable<PositionTakingViewModel>>
+public class PositionTakingListRequest : IRequest<IEnumerable<PositionTakingViewModel>>
 {
     public int CustId { get; set; } = UserSession.Current.CustId;
 

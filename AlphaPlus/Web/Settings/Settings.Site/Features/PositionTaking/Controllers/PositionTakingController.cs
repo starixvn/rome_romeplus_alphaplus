@@ -13,4 +13,9 @@ public class PositionTakingController : BaseController
     {
         this.mediator = mediator;
     }
+
+    public async Task<IActionResult> Index(int id = 0)
+    {
+        return View();
+    }
 }
