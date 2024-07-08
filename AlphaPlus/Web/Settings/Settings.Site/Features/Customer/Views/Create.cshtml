@@ -5,7 +5,7 @@
 
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
-    <link rel="stylesheet" href="@(Model.CdnUri)create-customer/index.css?version=@(Model.AssetsVersion)" />
+    <link rel="stylesheet" href="@(Model.CdnUri)create-customer/index.css" asp-append-version="true" />
 }
 
 @await Html.PartialAsync("_PageHeader", Model)
@@ -42,20 +42,20 @@ else
             window.location.replace(redirectUrl);
         };
     </script>
-    <environment names="Production">
-        <script type="module" src="@(Model.CdnUri)create-customer/index.js?version=@(Model.AssetsVersion)"></script>
+    <environment names="Development,Production">
+        <script type="module" src="@(Model.CdnUri)create-customer/index.js" asp-append-version="true"></script>
     </environment>
-    <environment names="Development">
-        <script type="module">
-            import RefreshRuntime from "http://localhost:4201/@@react-refresh";
-            RefreshRuntime.injectIntoGlobalHook(window);
-            window.$RefreshReg$ = () => { };
-            window.$RefreshSig$ = () => (type) => type;
-            window.__vite_plugin_react_preamble_installed__ = true;
-        </script>
-        <script type="module" src=@("http://localhost:4201/@vite/client")></script>
-        <script type="module" src="http://localhost:4201/src/main.tsx"></script>
-    </environment>
+    @* <environment names="Development">
+<script type="module">
+import RefreshRuntime from "http://localhost:4201/@@react-refresh";
+RefreshRuntime.injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => { };
+window.$RefreshSig$ = () => (type) => type;
+window.__vite_plugin_react_preamble_installed__ = true;
+</script>
+<script type="module" src=@("http://localhost:4201/@vite/client")></script>
+<script type="module" src="http://localhost:4201/src/main.tsx"></script>
+</environment> *@
 
     }
 }

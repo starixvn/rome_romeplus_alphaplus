@@ -14,10 +14,11 @@
 <div id="root" style="height:100%"></div>
 
 @section Scripts {
-
-    <!-- if development -->
-    @* <script type="module" src="http://localhost:5173/src/pages/ptTemplate.tsx"></script> *@
-    <!-- if production -->
-    <link rel="stylesheet" href="~/ptTemplate.css" asp-append-version="true" />
-    <script type="module" src="~/ptTemplate.js" asp-append-version="true"></script>
+    @* <environment names="Development">
+<script type="module" src="http://localhost:5173/src/pages/ptTemplate.tsx"></script>
+</environment> *@
+    <environment names="Development,Production">
+        <link rel="stylesheet" href="~/ptTemplate.css" asp-append-version="true" />
+        <script type="module" src="~/ptTemplate.js" asp-append-version="true"></script>
+    </environment>
 }

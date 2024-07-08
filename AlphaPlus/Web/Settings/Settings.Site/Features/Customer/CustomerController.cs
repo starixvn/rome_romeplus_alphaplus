@@ -11,7 +11,6 @@ using AlphaPlus.Core.Configurations;
 using System.Text.Json;
 using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Constants;
-using Microsoft.Extensions.Caching.Memory;
 using AlphaPlus.Shared.AppResources.Settings;
 using AlphaPlus.Core.Utils;
 
@@ -21,23 +20,19 @@ namespace AlphaPlus.Settings.Site.Features.Customer
     {
         private const string DCSStaticSessionKey = "DCSStaticAppPathSessionKey";
         private const string HashKeySessionKey = "Alpha.MemberInfo.Site.Controllers.CustomerController.PasswordHash";
-        private const string AssetsVersionCacheKey = "Customer:AssetsVersion";
         private readonly int systemId;
-        private readonly IMemoryCache memoryCache;
         private readonly IEncryption encryption;
         private readonly ISessionManager sessionManager;
         private readonly IAesService aesService;
         private readonly ICustomerService customerService;
 
         public CustomerController(
-            IMemoryCache memoryCache,
             IEncryption encryption,
             ISessionManager sessionManager,
             IAesService aesService,
             CustomerClientConfiguration clientConfiguration,
             ICustomerService customerService)
         {
-            this.memoryCache = memoryCache;
             this.encryption = encryption;
             this.sessionManager = sessionManager;
             this.aesService = aesService;
@@ -57,7 +52,6 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
                 CDNUri,
-                GetAssetsVersion(),
                 GetHashKey(),
                 await customerService.GetSuggestUsername(query.CustName, query.ViewerLevelId));
 
@@ -69,8 +63,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var viewModel = new EditCustomerViewModel(
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
-                CDNUri,
-                GetAssetsVersion());
+                CDNUri);
 
             return View(viewModel);
         }
@@ -80,8 +73,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var viewModel = new EditMultipleCustomersViewModel(
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
-                CDNUri,
-                GetAssetsVersion());
+                CDNUri);
 
             return View(viewModel);
         }
@@ -91,8 +83,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var viewModel = new SportBookInformationViewModel(
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
-                CDNUri,
-                GetAssetsVersion()
+                CDNUri
             );
 
             return View(viewModel);
@@ -218,18 +209,6 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             }
 
             return applicationPath;
-        }
-
-        private string GetAssetsVersion()
-        {
-            if (!memoryCache.TryGetValue(AssetsVersionCacheKey, out string version))
-            {
-                version = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
-                var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromHours(4));
-                memoryCache.Set(AssetsVersionCacheKey, version, cacheEntryOptions);
-            }
-
-            return version;
         }
 
         private ContentResult UnAuthorized() => Content(JsonSerializer.Serialize(Result.CreateErrorResult(Resources.NotAuthorized)));

@@ -26,8 +26,12 @@
         @Html.ActionLink(Resources.SearchAndCopy, "Index", "CopyAccount")
     </li>
     <li role="presentation">
-        <a href="@MicroSites.SettingUrl("~/_MemberInfo/SearchAndCopy/MasterPage.aspx")" role="tab"
-            data-toggle="tab">@Resources.FullMode</a>
+        @Html.ActionLink(Resources.FullMode, "Create", "Customer", new
+            {
+                lng = Model.Language,
+                isDarkMode =
+                 Model.IsDarkMode.ToString().ToLowerInvariant()
+            }, null)
     </li>
     @if (Model.IsCreateMember)
     {
@@ -61,9 +65,13 @@ else
     <script type="text/javascript">
         const params = @Html.Raw(Model.Params);
     </script>
-    @* <script type="module" src="http://localhost:5173/src/pages/createAccount.tsx"></script> *@
-    <link rel="stylesheet" href="~/createAccount.css" asp-append-version="true" />
-    <script type="module" src="~/createAccount.js" asp-append-version="true"></script>
+    @* <environment names="Development">
+<script type="module" src="http://localhost:5173/src/pages/createAccount.tsx"></script>
+</environment> *@
+    <environment names="Development,Production">
+        <link rel="stylesheet" href="~/createAccount.css" asp-append-version="true" />
+        <script type="module" src="~/createAccount.js" asp-append-version="true"></script>
+    </environment>
     }
 }
 @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")

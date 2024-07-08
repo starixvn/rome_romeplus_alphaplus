@@ -7,7 +7,7 @@
 
 <head>
     <title>Customer Setting Information</title>
-    <link rel="stylesheet" href="@(Model.CdnUri)sportsbook-information/index.css?version=@(Model.AssetsVersion)" />
+    <link rel="stylesheet" href="@(Model.CdnUri)sportsbook-information/index.css" asp-append-version="true" />
 </head>
 
 <body>
@@ -16,21 +16,20 @@
         const appConfig = @Html.Raw(Model.AppConfig);
         const informationPageParams = @Html.Raw(Model.Params);
     </script>
-    <environment include="Production">
-        <script type="module"
-            src="@(Model.CdnUri)sportsbook-information/index.js?version=@(Model.AssetsVersion)"></script>
+    <environment include="Development,Production">
+        <script type="module" src="@(Model.CdnUri)sportsbook-information/index.js" asp-append-version="true"></script>
     </environment>
-    <environment include="Development">
-        <script type="module">
-            import RefreshRuntime from "http://localhost:4205/@@react-refresh";
-            RefreshRuntime.injectIntoGlobalHook(window);
-            window.$RefreshReg$ = () => { };
-            window.$RefreshSig$ = () => (type) => type;
-            window.__vite_plugin_react_preamble_installed__ = true;
-        </script>
-        <script type="module" src=@("http://localhost:4205/@vite/client")></script>
-        <script type="module" src="http://localhost:4205/src/main.tsx"></script>
-    </environment>
+    @* <environment include="Development">
+    <script type="module">
+    import RefreshRuntime from "http://localhost:4205/@@react-refresh";
+    RefreshRuntime.injectIntoGlobalHook(window);
+    window.$RefreshReg$ = () => { };
+    window.$RefreshSig$ = () => (type) => type;
+    window.__vite_plugin_react_preamble_installed__ = true;
+    </script>
+    <script type="module" src=@("http://localhost:4205/@vite/client")></script>
+    <script type="module" src="http://localhost:4205/src/main.tsx"></script>
+    </environment> *@
 
 </body>
 

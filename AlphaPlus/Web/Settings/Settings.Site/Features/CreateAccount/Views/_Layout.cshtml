@@ -17,11 +17,15 @@
 <body style="height:100%">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     @RenderBody()
-    @* <script type="module" src=@("http://localhost:5173/@vite/client")></script> *@
-    <link rel="stylesheet" href="~/index.css" asp-append-version="true" />
-    <script type="module" src="~/index.js" asp-append-version="true"></script>
-    <link rel="stylesheet" href="~/PTSelect.css" asp-append-version="true" />
-    <script type="module" src="~/PTSelect.js" asp-append-version="true"></script>
+    @* <environment names="Development">
+    <script type="module" src=@("http://localhost:5173/@vite/client")></script>
+    </environment> *@
+    <environment names="Development,Production">
+        <link rel="stylesheet" href="~/index.css" asp-append-version="true" />
+        <script type="module" src="~/index.js" asp-append-version="true"></script>
+        <link rel="stylesheet" href="~/PTSelect.css" asp-append-version="true" />
+        <script type="module" src="~/PTSelect.js" asp-append-version="true"></script>
+    </environment>
     @RenderSection("Scripts", required: false)
 </body>
 

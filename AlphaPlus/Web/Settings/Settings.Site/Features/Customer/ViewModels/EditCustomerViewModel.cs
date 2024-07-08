@@ -8,9 +8,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
         public EditCustomerViewModel(
             EditCustomerQuery query,
             AppConfiguration appConfig,
-            string cndUri,
-            string assetsVersion)
-            : base(appConfig, cndUri, assetsVersion)
+            string cndUri)
+            : base(appConfig, cndUri)
         {
             Params = JsonSerializer.Serialize(new
             {

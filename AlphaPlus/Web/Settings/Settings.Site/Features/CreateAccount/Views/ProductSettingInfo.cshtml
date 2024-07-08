@@ -11,11 +11,11 @@
 </div>
 
 @section Scripts {
-    <!-- if development -->
-    @* <script type="module" src="http://localhost:5173/src/pages/productSettingInfo.tsx"></script> *@
-
-    <!-- if production -->
-    <link rel="stylesheet" href="~/productSettingInfo.css" asp-append-version="true" />
-    <script type="module" src="~/productSettingInfo.js" asp-append-version="true"></script>
-
+    @* <environment names="Development">
+<script type="module" src="http://localhost:5173/src/pages/productSettingInfo.tsx"></script>
+</environment> *@
+    <environment names="Development,Production">
+        <link rel="stylesheet" href="~/productSettingInfo.css" asp-append-version="true" />
+        <script type="module" src="~/productSettingInfo.js" asp-append-version="true"></script>
+    </environment>
 }
