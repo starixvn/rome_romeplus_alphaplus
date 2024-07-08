@@ -1,20 +1,19 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
-{
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.IndirectLoginAccount;
-    using AlphaPlus.Utilities.IP;
-    using MediatR;
-    using Sunplus.Agent.Utilities;
-    using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.IndirectLoginAccount;
+using AlphaPlus.Utilities.IP;
+using MediatR;
+using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount;
+using AlphaPlus.Core.Utils;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
+{
     public class IndirectLoginAccountHandler :
         IRequestHandler<ManageAccountQuery, ManageAccountViewModel>,
-        IRequestHandler<NewAccountQuery, object>,
+        IRequestHandler<NewAccountQuery, string>,
         IRequestHandler<ValidateAccountQuery, Result>,
         IRequestHandler<NewAccountCommand, Result>,
         IRequestHandler<UpdatePasswordQuery, UpdatePasswordViewModel>,
@@ -26,25 +25,25 @@
 
         private readonly IndirectLoginAccountService service;
         private readonly ISessionManager sessionManager;
-        private readonly Encryptor encryptor;
+        private readonly IEncryption encryption;
         private readonly IPService ipService;
 
         public IndirectLoginAccountHandler(
             IndirectLoginAccountService service,
             ISessionManager sessionManager,
-            Encryptor encryptor,
+            IEncryption encryption,
             IPService ipService)
         {
             this.service = service;
             this.sessionManager = sessionManager;
-            this.encryptor = encryptor;
+            this.encryption = encryption;
             this.ipService = ipService;
         }
 
         public async Task<ManageAccountViewModel> Handle(ManageAccountQuery message, CancellationToken cancellation)
             => new ManageAccountViewModel(await service.GetIndirectLoginAccountsAsync(message.ViewerId, message.ViewerSubAccId));
 
-        public async Task<object> Handle(NewAccountQuery message, CancellationToken cancellation) => GetHashKey();
+        public Task<string> Handle(NewAccountQuery message, CancellationToken cancellation) => Task.FromResult(GetHashKey());
 
         public async Task<Result> Handle(ValidateAccountQuery message, CancellationToken cancellation)
             => await service.ValidateIndirectLoginAccountAsync(message.ViewerId, message.ViewerSubAccId, message.CustId, message.SubAccId);
@@ -65,8 +64,8 @@
                 requestInfo));
         }
 
-        public async Task<UpdatePasswordViewModel> Handle(UpdatePasswordQuery message, CancellationToken cancellation)
-            => new UpdatePasswordViewModel(message.CustId, message.SubAccId, message.CustName, GetHashKey());
+        public Task<UpdatePasswordViewModel> Handle(UpdatePasswordQuery message, CancellationToken cancellation)
+            => Task.FromResult(new UpdatePasswordViewModel(message.CustId, message.SubAccId, message.CustName, GetHashKey()));
 
         public async Task<Result> Handle(UpdatePasswordCommand message, CancellationToken cancellation)
         {
@@ -114,7 +113,7 @@
 
         private string GetHashKey()
         {
-            var hashKey = encryptor.RandomString(4);
+            var hashKey = encryption.RandomString(4);
             sessionManager.Add(HashKeySessionKey, hashKey);
 
             return hashKey;

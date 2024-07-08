@@ -1,18 +1,15 @@
-﻿namespace AlphaPlus.Utilities.IP
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Net.Sockets;
-    using System.Numerics;
-    using System.Text.RegularExpressions;
-    using AlphaPlus.Utilities.IP.Models;
-    using Criteria;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Model;
+﻿using AlphaPlus.Utilities.IP.Models;
+using AlphaPlus.Utilities.IP.Criteria;
+using AlphaPlus.Utilities.IP.Model;
+using Fanex.Data.Repository;
+using Fanex.Caching;
+using System.Net;
+using System.Net.Sockets;
+using System.Numerics;
+using System.Text.RegularExpressions;
 
+namespace AlphaPlus.Utilities.IP
+{
     public interface IPService
     {
         bool IsVNIP(string ipAddress);
@@ -22,16 +19,11 @@
         IPInformationModel GetIPInformation(string ip);
     }
 
-    public class IPServiceImpl : IPService
+    public class IPServiceImpl(IDynamicRepository dynamicRepository) : IPService
     {
         private const string IPValidateRegex = @"(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)";
         private const string VNIPListCacheKey = "Alpha.BetLists.Service.IPService.VNIPList";
-        private readonly IDynamicRepository dynamicRepository;
-
-        public IPServiceImpl(IDynamicRepository dynamicRepository)
-        {
-            this.dynamicRepository = dynamicRepository;
-        }
+        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
 
         public bool IsVNIP(string ipAddress)
         {
@@ -59,7 +51,7 @@
                 return new FormatedIP(ip, false);
             }
 
-            Regex regex = new Regex(IPValidateRegex);
+            Regex regex = new(IPValidateRegex);
             if (!regex.IsMatch(ip, 0))
             {
                 return new FormatedIP(ip, false);

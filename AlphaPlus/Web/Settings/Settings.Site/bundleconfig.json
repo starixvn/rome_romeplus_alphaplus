@@ -412,16 +412,16 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/Features/MemberInfo/Features/CreateAccount/bundles/create-account.js",
+    "outputFileName": "wwwroot/bundles/CreateAccount/create-account.js",
     "inputFiles": [
       "Features/MemberInfo/assets/scripts/aes.js",
-      "Features/MemberInfo/Features/CreateAccount/Scripts/quick-introduction.js"
+      "Features/CreateAccount/Scripts/quick-introduction.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/Features/MemberInfo/Features/CreateAccount/bundles/create-account.css",
+    "outputFileName": "wwwroot/bundles/CreateAccount/create-account.css",
     "inputFiles": [
-      "Features/MemberInfo/Features/CreateAccount/Styles/quick-introduction.css"
+      "Features/CreateAccount/Styles/quick-introduction.css"
     ]
   },
   {

@@ -4,11 +4,11 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using Fanex.Cryptography.Aes;
 using MediatR;
-using Sunplus.Agent.Utilities;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
 using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Models;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
@@ -21,18 +21,18 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
     {
         private const string HashKeySessionKey = "AlphaPlus.Settings.Site.Features.CopyAccount.CopyAccountHandler.PasswordHash";
 
-        private readonly Encryptor encryptor;
+        private readonly IEncryption encryption;
         private readonly IAesService aes;
         private readonly ISessionManager sessionManager;
         private readonly ICustomerService customerService;
 
         public CopyAccountHandler(
-            Encryptor encryptor,
+            IEncryption encryption,
             IAesService aes,
             ISessionManager sessionManager,
             ICustomerService customerService)
         {
-            this.encryptor = encryptor;
+            this.encryption = encryption;
             this.aes = aes;
             this.sessionManager = sessionManager;
             this.customerService = customerService;
@@ -59,7 +59,7 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
 
         private string GetHasKey()
         {
-            var hashKey = encryptor.RandomString(4);
+            var hashKey = encryption.RandomString(4);
 
             sessionManager.Add(HashKeySessionKey, hashKey);
 
@@ -80,7 +80,7 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
                 };
             }
 
-            message.Password = encryptor.CfsEnCode(message.Password);
+            message.Password = encryption.CfsEnCode(message.Password);
 
             return await customerService.CopyMultipleCustomers(new CopyMultipleCustomersParam(
                 message.ViewerId,

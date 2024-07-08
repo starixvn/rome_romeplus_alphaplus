@@ -1,0 +1,133 @@
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+@using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
+@{
+    Layout = null;
+    var dataThem = AlphaPlus.Core.Models.UserSession.Current.DarkModeName == "" ? "light" : "dark";
+    var language = AlphaPlus.Core.Models.UserSession.Current.Language;
+    var roleId = AlphaPlus.Core.Models.UserSession.Current.RoleId;
+    var defaultEnUs = $"~/assets/CreateAccount/images/default/en-Us/{dataThem}/";
+    var img1 = $"{defaultEnUs}lv{roleId}.img1.png";
+    var img2 = $"{defaultEnUs}lv{roleId}.img2.png";
+    var img3 = $"{defaultEnUs}lv{roleId}.img3.png";
+
+    var folder = $"/assets/CreateAccount/images/default/{language}/{dataThem}/";
+
+    var is789y = AppSettings.IsSiteLabel789y;
+
+    if (is789y)
+    {
+        folder = $"/assets/CreateAccount/images/site789y/{language}/{dataThem}/";
+    }
+
+    var isExistsImgOfLang = File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/wwwroot{folder}lv{roleId}.img1.png");
+    if (isExistsImgOfLang)
+    {
+        img1 = $"~/{folder}lv{roleId}.img1.png";
+        img2 = $"~/{folder}lv{roleId}.img2.png";
+        img3 = $"~/{folder}lv{roleId}.img3.png";
+    }
+
+}
+@model QuickIntroductionViewModel
+
+<div class="modal fade modal-quick-tour" id="beginModal" data-theme="@dataThem" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog smallModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <strong class="modal-title">@Resources.QuickIntro_Title</strong>
+                </p>
+                <p>@Resources.QuickIntro_Title_Content</p>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-left">
+                    <input id="chkHideQuickIntroPopup" type="checkbox" />
+                    <label for="chkHideQuickIntroPopup">@Resources.DontShowAgain</label>
+                </div>
+
+                <div class="modal-footer-right">
+                    <button type="button" class="btn-default" data-dismiss="modal" aria-label="Close" id="btnClose">
+                        <span aria-hidden="true">@Resources.QuickIntro_Title_NotNow</span>
+                    </button>
+                    <button class="btn-submit js-let-go-btn" data-toggle="modal">
+                        <span>@Resources.QuickIntro_Title_Confirm</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large modal -->
+<div class="modal fade" id="quickIntroductionModal" data-theme="@dataThem" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  largeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="icon-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="carousel-main" class="carousel slide carousel-fade" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="inner">
+                                <h4>@Resources.QuickIntro_Popup_1</h4>
+                                <div class="info-text">@Resources.QuickIntro_Popup_2</div>
+                                <div class="slider">
+                                    <img src="@Url.Content(img1)" alt="img1" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="inner">
+                                <div class="info-text">@Resources.QuickIntro_Popup_3</div>
+                                <div class="slider">
+                                    <img src="@Url.Content(img2)" alt="img2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="inner">
+                                <div class="info-text">@Resources.QuickIntro_Popup_3</div>
+                                <div class="slider">
+                                    <img src="@Url.Content(img3)" alt="img3" />
+                                </div>
+                                <div class="info-text">@Resources.QuickIntro_Note</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-caption">
+                        <div id="slideIndex"></div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="buttons-control">
+                        <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="text prev">
+                                <i class="icon-caret-left"></i>
+                            </span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-main" role="button" data-slide="next">
+                            <span class="text next">
+                                <i class="icon-caret-right"></i>
+                            </span>
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                    <!-- /.carousel -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Hidden("ActorUsername", Model.ActorUsername)
+@Html.Hidden("PageOf", @Resources.PageOf)

@@ -2,7 +2,7 @@
 {
     using MediatR;
 
-    public class NewAccountQuery : IRequest<object>
+    public class NewAccountQuery : IRequest<string>
     {
     }
 }

@@ -2,7 +2,6 @@ using AlphaPlus.Core;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using Fanex.Cryptography.Aes;
-using Sunplus.Agent.Utilities;
 using Fanex.Customer.Client.Services;
 using Fanex.Customer.Client.Configurations;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +13,7 @@ using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Constants;
 using Microsoft.Extensions.Caching.Memory;
 using AlphaPlus.Shared.AppResources.Settings;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Settings.Site.Features.Customer
 {
@@ -24,21 +24,21 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private const string AssetsVersionCacheKey = "Customer:AssetsVersion";
         private readonly int systemId;
         private readonly IMemoryCache memoryCache;
-        private readonly Encryptor encryptor;
+        private readonly IEncryption encryption;
         private readonly ISessionManager sessionManager;
         private readonly IAesService aesService;
         private readonly ICustomerService customerService;
 
         public CustomerController(
             IMemoryCache memoryCache,
-            Encryptor encryptor,
+            IEncryption encryption,
             ISessionManager sessionManager,
             IAesService aesService,
             CustomerClientConfiguration clientConfiguration,
             ICustomerService customerService)
         {
             this.memoryCache = memoryCache;
-            this.encryptor = encryptor;
+            this.encryption = encryption;
             this.sessionManager = sessionManager;
             this.aesService = aesService;
             systemId = clientConfiguration.SystemId;
@@ -100,7 +100,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         private string GetHashKey()
         {
-            var hashKey = encryptor.RandomString(4);
+            var hashKey = encryption.RandomString(4);
             sessionManager.Add(HashKeySessionKey, hashKey);
 
             return hashKey;
@@ -116,7 +116,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
             var generalInfo = request.GeneralInfo;
             var rawPassword = aesService.Decrypt(generalInfo.Password, sessionManager.Get<string>(HashKeySessionKey));
-            generalInfo.Password = encryptor.CfsEnCode(rawPassword);
+            generalInfo.Password = encryption.CfsEnCode(rawPassword);
             generalInfo.UpLineRoleId = request.ViewerLevelId;
             generalInfo.Site = request.Site;
             generalInfo.SiteLabel = AppSettings.SiteLabel;

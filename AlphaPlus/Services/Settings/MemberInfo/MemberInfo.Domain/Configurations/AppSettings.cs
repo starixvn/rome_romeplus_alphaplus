@@ -102,8 +102,6 @@
 
         public static bool IsStandaloneBetlist => !string.IsNullOrWhiteSpace(GetConfigValue("Betlist:Domain"));
 
-        public static bool DevelopmentEnvironment => GetConfigValue("Env:Development") == "1";
-
         public static int SystemId => Convert.ToInt32(GetConfigValue("SystemId"));
 
         public static string BetlistDomain

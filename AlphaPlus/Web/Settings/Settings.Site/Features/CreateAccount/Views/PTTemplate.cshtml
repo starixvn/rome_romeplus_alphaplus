@@ -1,0 +1,23 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Settings.MemberInfo.Domain.Configurations
+@using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
+@{
+    Layout = "~/Features/CreateAccount/Views/_Layout.cshtml";
+}
+@model PTTemplateViewModel
+
+@Html.AntiForgeryToken()
+<input type="hidden" id="ActorLevelId" value="@Model.ActorLevelId" />
+<input type="hidden" id="IsSpecialSite" value="@AppSettings.IsSiteLabel789y.ToString().ToLowerInvariant()" />
+<input type="hidden" id="Is3DecimalSite" value="@AppSettings.IsSupportPT3DecimalSites.ToString().ToLowerInvariant()" />
+<div id="root" style="height:100%"></div>
+
+@section Scripts {
+
+    <!-- if development -->
+    @* <script type="module" src="http://localhost:5173/src/pages/ptTemplate.tsx"></script> *@
+    <!-- if production -->
+    <link rel="stylesheet" href="~/ptTemplate.css" asp-append-version="true" />
+    <script type="module" src="~/ptTemplate.js" asp-append-version="true"></script>
+}

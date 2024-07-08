@@ -1,0 +1,21 @@
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
+@{
+    Layout = "~/Features/CreateAccount/Views/_Layout.cshtml";
+}
+
+<div class="pt-template">
+    <input type="hidden" id="productSettingInfoUrl" value="@MicroSites.SettingUrl("~/ProductSettingInfo")" />
+    <div id="root" style="height:100%"></div>
+</div>
+
+@section Scripts {
+    <!-- if development -->
+    @* <script type="module" src="http://localhost:5173/src/pages/productSettingInfo.tsx"></script> *@
+
+    <!-- if production -->
+    <link rel="stylesheet" href="~/productSettingInfo.css" asp-append-version="true" />
+    <script type="module" src="~/productSettingInfo.js" asp-append-version="true"></script>
+
+}

@@ -27,7 +27,6 @@ using Fanex.Data;
 using Fanex.RemotingRef;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using RestSharp;
-using Sunplus.Agent.Utilities;
 using MediatR;
 using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.SecurityCode.Configurations;
@@ -121,7 +120,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             services
                 .AddSingleton<IAesService, AesService>()
                 .AddSingleton<ISessionManager, SessionManager>()
-                .AddScoped<Encryptor, EncryptorImpl>()
+                .AddSingleton<IEncryption, Encryption>()
                 .AddScoped<UsernameSuggestionService, UsernameSuggestionServiceImpl>();
 
 
@@ -138,6 +137,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                     UserPermission.HasPermissionOnProduct));
 
             services.AddSingleton(new CustomerClientConfiguration().Initialize(configuration));
+            services.AddSingleton<Features.Shared.Models.IUser, Features.Shared.Models.User>();
             services.AddSingleton<Fanex.Customer.Client.Services.ICustomerService, Fanex.Customer.Client.Services.CustomerService>();
 
             services

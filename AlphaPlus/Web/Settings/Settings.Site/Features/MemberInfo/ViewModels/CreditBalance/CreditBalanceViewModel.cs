@@ -1,22 +1,19 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
-    using Microsoft.AspNetCore.Mvc.Rendering;
-    using Requests.CreditBalance;
-    using Sunplus.Agent.Utilities;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.CreditBalance;
+using AlphaPlus.Core.Utils;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance
+{
     public class CreditBalanceViewModel
     {
         public CreditBalanceViewModel(CreditBalanceQuery message, EnteredSportResult enteredSportResult, bool isAllDayBalTransfer)
-            : this(new PagedCreditBalance(message.PageIndex, message.PageSize, 0, Enumerable.Empty<CreditBalanceItem>()),
+            : this(new PagedCreditBalance(message.PageIndex, message.PageSize, 0, []),
                   null,
                   message,
                   enteredSportResult,
@@ -51,8 +48,8 @@
             CanTransferOnBalanceColumn = showTransferPopup && message.IsAllowedTotalBalanceTransfer;
             CanTransferOnYesterdayBalanceColumn = showTransferPopup && !message.IsAllowedTotalBalanceTransfer;
             CanViewBetListsFromOutstanding = IsViewingMemberList && message.CanViewBetLists;
-            IsShowDateTimeColumn = message.LimitedDateToShowInfo == default(DateTime);
-            CookiePrefix = Encryption.PearsonEncode(string.Concat(message.LoggedInUserId, message.ActorId, message.SubAccId, "CreditBalance"));
+            IsShowDateTimeColumn = message.LimitedDateToShowInfo == default;
+            CookiePrefix = new Encryption().PearsonEncode(string.Concat(message.LoggedInUserId, message.ActorId, message.SubAccId, "CreditBalance"));
             EnteredSportResult = enteredSportResult;
         }
 
@@ -85,7 +82,7 @@
         }
 
         private SelectListItem BuildSelectListItem(string text, byte value)
-            => new SelectListItem { Text = text, Value = value.ToString(), Selected = value == StatusId };
+            => new() { Text = text, Value = value.ToString(), Selected = value == StatusId };
 
         public UserLevel DownlineLevel { get; }
 

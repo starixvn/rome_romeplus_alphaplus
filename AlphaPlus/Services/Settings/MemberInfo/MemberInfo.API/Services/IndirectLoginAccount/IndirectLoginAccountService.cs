@@ -1,19 +1,16 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.MemberInfo.API.Criteria.IndirectLoginAccount;
-    using AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount;
-    using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
-    using Fanex.Cryptography.Aes;
-    using Fanex.Data.Repository;
-    using RSACryptoPad;
-    using Sunplus.Agent.Utilities;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
+﻿using AlphaPlus.Settings.MemberInfo.API.Criteria.IndirectLoginAccount;
+using AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+using Fanex.Cryptography.Aes;
+using Fanex.Data.Repository;
+using RSACryptoPad;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Core.Utils;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount
+{
     public interface IndirectLoginAccountService
     {
         Task<IEnumerable<IndirectLoginAccountItem>> GetIndirectLoginAccountsAsync(int custId, int subAccId);
@@ -36,16 +33,16 @@
 
         private readonly IDynamicRepository dynamicRepository;
         private readonly IAesService aes;
-        private readonly Encryptor encryptor;
+        private readonly IEncryption encryption;
 
         public IndirectLoginAccountServiceImpl(
             IDynamicRepository dynamicRepository,
             IAesService aes,
-            Encryptor encryptor)
+            IEncryption encryption)
         {
             this.dynamicRepository = dynamicRepository;
             this.aes = aes;
-            this.encryptor = encryptor;
+            this.encryption = encryption;
         }
 
         public async Task<IEnumerable<IndirectLoginAccountItem>> GetIndirectLoginAccountsAsync(int custId, int subAccId)
@@ -142,7 +139,7 @@
         {
             var rawPassword = aes.Decrypt(encryptPassword, hashKey);
 
-            return encryptor.CfsEnCode(rawPassword);
+            return encryption.CfsEnCode(rawPassword);
         }
 
         public async Task<Result> DisconnectAsync(DisconnectAccountParam param)

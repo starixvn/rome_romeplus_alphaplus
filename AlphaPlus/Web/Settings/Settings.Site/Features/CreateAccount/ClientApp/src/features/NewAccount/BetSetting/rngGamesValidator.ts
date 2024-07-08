@@ -1,0 +1,133 @@
+import { RNGGamesBetSettingItem } from '@/types/new-account';
+
+import { IBetSettingValidator, Operator, RNGGamesValue } from './type';
+import { getRNGGamesValue, validateBetSettingValue } from './utils';
+
+export default class RNGGamesValidator implements IBetSettingValidator<RNGGamesBetSettingItem> {
+  private is789y: boolean;
+  private betSettingConfigs: RNGGamesBetSettingItem;
+  private betSettings: RNGGamesValue;
+  private error: string = '';
+
+  constructor(is789y: boolean, configs: RNGGamesBetSettingItem, settings: RNGGamesBetSettingItem) {
+    this.is789y = is789y;
+    this.betSettingConfigs = configs;
+    this.betSettings = getRNGGamesValue(settings);
+  }
+
+  private setError(error: string) {
+    if (error !== '' && this.error === '') {
+      this.error = error;
+    }
+
+    return this;
+  }
+
+  private getError() {
+    return this.error;
+  }
+
+  private isUnlimitedOrPreventBetValue() {
+    const { minBet, maxBet, maxPerBall, maxPerMatch } = this.betSettings;
+    if (maxPerBall === null) {
+      const betSettings = JSON.stringify([minBet, maxBet, maxPerMatch]);
+      return (
+        betSettings === JSON.stringify([0, 0, 0]) ||
+        betSettings === JSON.stringify([0, 0.1, 0.1]) ||
+        (minBet === 0 &&
+          maxBet <= this.betSettingConfigs.maxBet &&
+          maxPerMatch <= this.betSettingConfigs.maxPerMatch &&
+          maxBet <= maxPerMatch) ||
+        (minBet === 0 && maxBet === 0 && maxPerMatch <= this.betSettingConfigs.maxPerMatch)
+      );
+    }
+
+    const betSettings = JSON.stringify([minBet, maxBet, maxPerMatch, maxPerBall]);
+    return (
+      betSettings === JSON.stringify([0, 0, 0, 0]) ||
+      betSettings === JSON.stringify([0, 0.1, 0.1, 0.1]) ||
+      (minBet === 0 &&
+        maxPerBall !== undefined &&
+        this.betSettingConfigs.maxPerBall !== undefined &&
+        maxBet <= this.betSettingConfigs.maxBet &&
+        maxPerMatch <= this.betSettingConfigs.maxPerMatch &&
+        maxPerBall <= this.betSettingConfigs.maxPerBall &&
+        maxBet <= maxPerMatch &&
+        maxPerBall >= maxBet &&
+        maxPerBall <= maxPerMatch) ||
+      (minBet === 0 &&
+        maxBet === 0 &&
+        maxPerBall !== undefined &&
+        this.betSettingConfigs.maxPerBall !== undefined &&
+        maxPerMatch <= this.betSettingConfigs.maxPerMatch &&
+        maxPerBall <= this.betSettingConfigs.maxPerBall &&
+        maxPerBall <= maxPerMatch) ||
+      (minBet === 0 &&
+        maxBet === 0 &&
+        maxPerBall === 0 &&
+        maxPerMatch !== undefined &&
+        this.betSettingConfigs.maxPerMatch !== undefined &&
+        maxPerMatch <= this.betSettingConfigs.maxPerMatch)
+    );
+  }
+
+  private validateMinBet(prop?: keyof RNGGamesBetSettingItem) {
+    if (this.error || (prop && prop !== 'minBet')) return this;
+    const { minBet, maxBet } = this.betSettings;
+    const error = validateBetSettingValue(this.is789y, {
+      current: { name: 'minBet', value: minBet },
+      config: { operator: Operator.LessEqual, value: this.betSettingConfigs.minBet },
+      max: { name: 'maxBet', value: maxBet },
+    });
+    if (error) return this.setError(error);
+    return this;
+  }
+
+  private validateMaxBet(prop?: keyof RNGGamesBetSettingItem) {
+    if (this.error || (prop && prop !== 'maxBet')) return this;
+    const { minBet, maxBet, maxPerMatch, maxPerBall } = this.betSettings;
+    const error = validateBetSettingValue(this.is789y, {
+      current: { name: 'maxBet', value: maxBet },
+      config: { operator: Operator.GreaterEqual, value: this.betSettingConfigs.maxBet },
+      max:
+        maxPerBall !== null ? { name: 'maxPerBall', value: maxPerBall } : { name: 'maxPerMatch', value: maxPerMatch },
+      min: { name: 'minBet', value: minBet },
+    });
+    if (error) return this.setError(error);
+
+    return this;
+  }
+
+  private validateMaxPerBall(prop?: keyof RNGGamesBetSettingItem) {
+    if (this.error || (prop && prop !== 'maxPerBall')) return this;
+    const { maxPerBall, maxBet, maxPerMatch } = this.betSettings;
+    if (maxPerBall === null) return this;
+    const error = validateBetSettingValue(this.is789y, {
+      current: { name: 'maxPerBall', value: maxPerBall },
+      config: { operator: Operator.GreaterEqual, value: this.betSettingConfigs.maxPerBall },
+      max: maxPerMatch !== null ? { name: 'maxPerMatch', value: maxPerMatch } : undefined,
+      min: { name: 'maxBet', value: maxBet },
+    });
+    if (error) return this.setError(error);
+    return this;
+  }
+
+  private validateMaxPerMatch(prop?: keyof RNGGamesBetSettingItem) {
+    if (this.error || (prop && prop !== 'maxPerMatch')) return this;
+    const { maxPerMatch, maxPerBall, maxBet } = this.betSettings;
+    const error = validateBetSettingValue(this.is789y, {
+      current: { name: 'maxPerMatch', value: maxPerMatch },
+      config: { operator: Operator.GreaterEqual, value: this.betSettingConfigs.maxPerMatch },
+      min: maxPerBall !== null ? { name: 'maxPerBall', value: maxPerBall } : { name: 'maxBet', value: maxBet },
+    });
+    if (error) return this.setError(error);
+    return this;
+  }
+
+  validate(prop?: keyof RNGGamesBetSettingItem): string {
+    this.error = '';
+    if (!this.is789y && this.isUnlimitedOrPreventBetValue()) return this.error;
+
+    return this.validateMinBet(prop).validateMaxBet(prop).validateMaxPerMatch(prop).validateMaxPerBall(prop).getError();
+  }
+}

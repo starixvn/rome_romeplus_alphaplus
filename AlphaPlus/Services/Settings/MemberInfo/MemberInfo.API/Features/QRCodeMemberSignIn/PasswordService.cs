@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn
 {
+    using AlphaPlus.Core.Utils;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
-    using Sunplus.Agent.Utilities;
     using System;
     using System.Text.RegularExpressions;
 
@@ -12,22 +12,22 @@
 
     public class PasswordServiceImpl : PasswordService
     {
-        private readonly Encryptor encryptor;
+        private readonly IEncryption encryption;
         private static readonly Regex MemberPasswordRule = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$"); private static readonly Regex NoWhiteSpace = new Regex(@"^\S*$");
 
-        public PasswordServiceImpl(Encryptor encryptor)
+        public PasswordServiceImpl(IEncryption encryption)
         {
-            this.encryptor = encryptor;
+            this.encryption = encryption;
         }
 
         public PasswordModel CreateMemberPasswordRandom()
         {
             var rawPassword = CreateRandomPassword();
-            return new PasswordModel(rawPassword, encryptor.CfsEnCode(rawPassword));
+            return new PasswordModel(rawPassword, encryption.CfsEnCode(rawPassword));
         }
 
         internal bool IsMatchedRules(string password)
-            => MemberPasswordRule.Match(password).Success && 
+            => MemberPasswordRule.Match(password).Success &&
                NoWhiteSpace.Match(password).Success;
 
         internal string CreateRandomPassword(int length = 8)
@@ -48,7 +48,7 @@
                     chars[i] = validChars[random.Next(0, validChars.Length)];
                 }
 
-                 password = new string(chars); 
+                password = new string(chars);
 
                 if (!IsMatchedRules(password) ||
                     string.Compare(password, "59D7!4$h", StringComparison.OrdinalIgnoreCase) == 0
