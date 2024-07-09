@@ -4,9 +4,9 @@
 @{
     Layout = "~/Features/SubAccount/Views/_Layout.cshtml";
 }
-<div class="container">
+<div>
     <main role="main" class="pb-3">
-        <div id="errMsg" style="display: none;"></div>
+        <div id="errMsg" class="msgerr" style="display: none;"></div>
         <table class="tblPop width-100per">
             <tr>
                 <td>@Lang.username</td>
@@ -29,7 +29,7 @@
                 <td><input type="text" value="@Model.Lastname" id="txtLname" /></td>
             </tr>
         </table>
-        <div>@Lang.accpermission</div>
+        <div class="accpermission">@Lang.accpermission</div>
         <table class="tblRpt">
             <thead class="RptHeader">
                 <td>@Lang.memberinfo</td>
@@ -58,7 +58,7 @@
                 </tr>
             </tbody>
         </table>
-        <div><input type="button" id="btnAdd" class="btnSubmit" value="@Lang.Add"></div>
+        <div class="list-button"><input type="button" id="btnAdd" class="btnSubmit" value="@Lang.Add"></div>
         @Html.AntiForgeryToken()
         <ul id="nPopup" class="divMenuPopup" style="display: none;">
             <li class="group">
