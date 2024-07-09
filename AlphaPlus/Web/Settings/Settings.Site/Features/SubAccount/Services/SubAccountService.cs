@@ -21,7 +21,7 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
 
     public class SubAccountService : ISubAccountService
     {
-        private const string subAccountApiGroup = "api/sub-account";
+        private const string subAccountApiGroup = "sub-account";
 
         private readonly HttpClient httpClient;
 
