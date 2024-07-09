@@ -10,8 +10,7 @@ declare global {
   interface Window {
     alpha: {
       urls: {
-        memberInfoRootPath: string;
-        oldMainRootPath: string;
+        settingsRootPath: string;
       };
     };
     bootboxConfirm: any;
@@ -20,8 +19,7 @@ declare global {
   }
 }
 
-export const siteMemberInfoUrl = window.top?.alpha?.urls.memberInfoRootPath;
-export const oldMainUrl = window.top?.alpha?.urls.oldMainRootPath;
+export const siteMemberInfoUrl = window.top?.alpha?.urls.settingsRootPath;
 
 export const createAccountRootUrl = `${siteMemberInfoUrl}CreateAccount`;
 

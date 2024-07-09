@@ -68,7 +68,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
     {
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
-            var customerSettingApiUrl = new Uri(configuration.GetValue<string>("CustomerSettingApi"));
+            var customerSettingApiUrl = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUri"));
 
             services
                 .AddMediatR(typeof(Program).Assembly)
