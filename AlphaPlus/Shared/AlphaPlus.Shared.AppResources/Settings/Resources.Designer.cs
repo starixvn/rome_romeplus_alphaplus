@@ -1399,5 +1399,93 @@ namespace AlphaPlus.Shared.AppResources.Settings
                 return ResourceManager.GetString("lblNew", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string FirstName
+        {
+            get
+            {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string LastName
+        {
+            get
+            {
+                return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Phone.
+        /// </summary>
+        public static string MobilePhone
+        {
+            get
+            {
+                return ResourceManager.GetString("MobilePhone", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Email
+        {
+            get
+            {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Reset
+        {
+            get
+            {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        public static string Info
+        {
+            get
+            {
+                return ResourceManager.GetString("Info", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Email is not valid!.
+        /// </summary>
+        public static string EmailNotValid
+        {
+            get
+            {
+                return ResourceManager.GetString("EmailNotValid", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Updated successfully.
+        /// </summary>
+        public static string UpdatedSuccessfully
+        {
+            get
+            {
+                return ResourceManager.GetString("UpdatedSuccessfully", resourceCulture);
+            }
+        }
     }
 }

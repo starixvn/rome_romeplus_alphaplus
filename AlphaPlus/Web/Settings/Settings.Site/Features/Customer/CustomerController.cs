@@ -200,6 +200,26 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         public async Task<ActionResult> CheckExistedCustomer(string username)
            => Json(await customerService.CheckExistedCustomer(username));
 
+        public async Task<IActionResult> UpdateInfo(int custId)
+            => View(await customerService.GetCustomerInfo(custId));
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateInfo(UpdateCustomerInfoRequest request)
+            => Json(await customerService.UpdateCustomerInfo(new UpdateCustomerInfoParam
+            {
+                CustId = request.CustId,
+                FirstName = request.FirstName?.Trim() ?? string.Empty,
+                LastName = request.LastName?.Trim() ?? string.Empty,
+                Phone = request.Phone?.Trim() ?? string.Empty,
+                MobilePhone = request.MobilePhone?.Trim() ?? string.Empty,
+                Email = request.Email?.Trim() ?? string.Empty,
+                Fax = request.Fax?.Trim() ?? string.Empty,
+                UserId = request.ViewerId,
+                SubAccId = request.SubAccId,
+                IP = request.IP,
+                Language = request.LangKey
+            }));
+
         private string GetApplicationPath()
         {
             var applicationPath = HttpContext.Request.PathBase.Value;

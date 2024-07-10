@@ -1,6 +1,6 @@
 ﻿declare var Cleave: any;
 declare var numeral: any;
-declare var Clipboard: any;
+//declare var Clipboard: any;
 
 interface Math {
     trunc(number: number): number;
@@ -379,7 +379,8 @@ class CopyAccount {
                     this.$form.addClass('hidden');
                     const self = this;
                     if (window.document.queryCommandSupported && window.document.queryCommandSupported('copy')) {
-                        this.clipboardUsernames
+                        const clipboard = new this.clipboardUsernames('.icon-content-copy');
+                        clipboard
                             .on('success', function (e) {
                                 self.completeCopy(self.$(e.trigger));
                                 self.$(e.trigger).tooltip('show');
@@ -620,7 +621,7 @@ class CopyAccount {
     };
 }
 
-const copyAccount = new CopyAccount($, new Encryptor(), window.top, new Clipboard('.icon-content-copy'));
+const copyAccount = new CopyAccount($, new Encryptor(), window.top, Clipboard);
 
 $(() => {
     copyAccount.init();

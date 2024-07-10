@@ -755,5 +755,11 @@
     "inputFiles": [
       "Features/Transfer/assets/styles/auto-transfer/update-single-dark.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/customer/update-customer-info.js",
+    "inputFiles": [
+      "Features/Customer/assets/scripts/update-customer-info.js"
+    ]
   }
 ]

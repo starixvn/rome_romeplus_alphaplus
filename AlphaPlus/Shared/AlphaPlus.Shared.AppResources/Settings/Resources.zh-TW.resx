@@ -608,4 +608,28 @@
     <value>新增</value>
     <comment/>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>名</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>手機</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>電郵</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>重填</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>資料</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>電郵地址不正確！</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
 </root>

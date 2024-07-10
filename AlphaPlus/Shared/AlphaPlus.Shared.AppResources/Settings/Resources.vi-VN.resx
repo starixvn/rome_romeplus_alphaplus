@@ -596,4 +596,28 @@
     <value>Mới</value>
     <comment/>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Họ</value>
+  </data>
+  <data name="MobilePhone" xml:space="preserve">
+    <value>Điện thoại di động</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>Email không có thực</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>Cập nhật thành công</value>
+  </data>
 </root>
