@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Params.MultipleTransfer
 {
-    using Models;
+    using AlphaPlus.Core.Models;
 
     public class GetCustomerListParam
     {

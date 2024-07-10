@@ -10,7 +10,6 @@
     using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer;
     using AlphaPlus.Core.Models;
     using MediatR;
-    using TransferResult = AlphaPlus.Settings.Transfer.API.Models.Result;
     using Microsoft.AspNetCore.Mvc.Filters;
 
     public class AutoTransferController : SiteBaseController
@@ -44,19 +43,19 @@
         [HttpPost]
         public async Task<ActionResult> Update(UpdateQuery message)
         {
-            TransferResult result;
+            Result result;
 
             if (transferService.IsAllDayBalanceTransfer(userSession.CustId))
             {
-                result = TransferResult.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode);
+                result = Result.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode);
             }
             else if (message == null || !message.IsValid())
             {
-                result = TransferResult.CreateErrorResult(Resources.BadRequest, 400);
+                result = Result.CreateErrorResult(Resources.BadRequest, 400);
             }
             else if (userSession.IsInternal)
             {
-                result = TransferResult.CreateErrorResult(Resources.NotAuthorized, 403);
+                result = Result.CreateErrorResult(Resources.NotAuthorized, 403);
             }
             else
             {
@@ -104,7 +103,7 @@
         {
             if (transferService.IsAllDayBalanceTransfer(userSession.CustId))
             {
-                return Json(TransferResult.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode));
+                return Json(Result.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode));
             }
 
             var result = await mediator.Send(message);
@@ -117,7 +116,7 @@
         {
             if (transferService.IsAllDayBalanceTransfer(userSession.CustId))
             {
-                return Json(TransferResult.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode));
+                return Json(Result.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode));
             }
 
             var result = await mediator.Send(message);
@@ -128,19 +127,19 @@
         [HttpPost]
         public async Task<ActionResult> CancelJob(CancelJobQuery message)
         {
-            TransferResult result;
+            Result result;
 
             if (transferService.IsAllDayBalanceTransfer(userSession.CustId))
             {
-                result = TransferResult.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode);
+                result = Result.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode);
             }
             else if (message == null || !message.IsValid())
             {
-                result = TransferResult.CreateErrorResult(Resources.BadRequest, 400);
+                result = Result.CreateErrorResult(Resources.BadRequest, 400);
             }
             else if (userSession.IsInternal)
             {
-                result = TransferResult.CreateErrorResult(Resources.NotAuthorized, 403);
+                result = Result.CreateErrorResult(Resources.NotAuthorized, 403);
             }
             else
             {
@@ -153,19 +152,19 @@
         [HttpPost]
         public async Task<ActionResult> CancelAllJobs(CancelAllJobsQuery message)
         {
-            TransferResult result;
+            Result result;
 
             if (transferService.IsAllDayBalanceTransfer(userSession.CustId))
             {
-                result = TransferResult.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode);
+                result = Result.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode);
             }
             else if (message == null || !message.IsValid())
             {
-                result = TransferResult.CreateErrorResult(Resources.BadRequest, 400);
+                result = Result.CreateErrorResult(Resources.BadRequest, 400);
             }
             else if (userSession.IsInternal)
             {
-                result = TransferResult.CreateErrorResult(Resources.NotAuthorized, 403);
+                result = Result.CreateErrorResult(Resources.NotAuthorized, 403);
             }
             else
             {
@@ -189,19 +188,19 @@
         [HttpPost]
         public async Task<ActionResult> PostUpdateSchedule(PostUpdateScheduleQuery message)
         {
-            TransferResult result;
+            Result result;
 
             if (transferService.IsAllDayBalanceTransfer(userSession.CustId))
             {
-                result = TransferResult.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode);
+                result = Result.CreateErrorResult(Resources.ADBTChangeError, ADBTChangeCode);
             }
             else if (userSession.IsInternal)
             {
-                result = TransferResult.CreateErrorResult(Resources.NotAuthorized, 403);
+                result = Result.CreateErrorResult(Resources.NotAuthorized, 403);
             }
             else if (message == null || !message.IsValid())
             {
-                result = TransferResult.CreateErrorResult(Resources.BadRequest, 400);
+                result = Result.CreateErrorResult(Resources.BadRequest, 400);
             }
             else
             {
@@ -248,7 +247,7 @@
             base.OnActionExecuting(filterContext);
 
             var userSession = UserSession.Current;
-            var method = filterContext.HttpContext?.Request?.Method;
+            //var method = filterContext.HttpContext?.Request?.Method;
 
             var enabled = transferService.IsEnableAutoTransfer(userSession.CustId, userSession.Currency, userSession.IsSubAcc, userSession.SubPageAccess, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
 

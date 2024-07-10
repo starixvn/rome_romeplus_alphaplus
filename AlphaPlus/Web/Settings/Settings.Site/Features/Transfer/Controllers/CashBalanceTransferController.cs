@@ -6,8 +6,6 @@
     using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using MediatR;
     using Requests.CashBalanceTransfer;
-    using Settings.Transfer.API.Models;
-    using TransferResult = Settings.Transfer.API.Models.Result;
 
     public class CashBalanceTransferController : SiteBaseController
     {
@@ -33,15 +31,15 @@
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> CashBalance(CashBalanceTransferCommand command)
         {
-            TransferResult result;
+            Result result;
 
             if (command == null || !command.IsValid())
             {
-                result = TransferResult.CreateErrorResult(Resources.BadRequest, 400);
+                result = Result.CreateErrorResult(Resources.BadRequest, 400);
             }
             else if (userSession.IsInternal)
             {
-                result = TransferResult.CreateErrorResult(Resources.NotAuthorized, 403);
+                result = Result.CreateErrorResult(Resources.NotAuthorized, 403);
             }
             else
             {

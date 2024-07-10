@@ -3,14 +3,12 @@
     using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.Site.Features.Transfer.Models;
     using Settings.Transfer.API.Models;
-    using UserLevel = Settings.Transfer.API.Models.UserLevel;
-    using Enumeration = Settings.Transfer.API.Models.Enumeration;
 
     public class TransferBaseQuery
     {
         private readonly IUser viewer;
 
-        protected TransferBaseQuery() : this(null) {}
+        protected TransferBaseQuery() : this(null) { }
 
         protected TransferBaseQuery(IUser viewer)
         {

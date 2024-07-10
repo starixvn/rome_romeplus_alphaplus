@@ -4,11 +4,10 @@
     using AlphaPlus.Settings.Site.Features.Transfer.Models;
     using MediatR;
     using Settings.Transfer.API.Models;
-    using Result = Settings.Transfer.API.Models.Result;
 
     public class CancelJobQuery : IRequest<Result>
     {
-        public CancelJobQuery() : this(null) {}
+        public CancelJobQuery() : this(null) { }
 
         public CancelJobQuery(IUser user)
         {

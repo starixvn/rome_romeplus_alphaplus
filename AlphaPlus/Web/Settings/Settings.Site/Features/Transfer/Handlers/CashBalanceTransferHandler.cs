@@ -7,7 +7,7 @@
     using ViewModels.CashBalanceTransfer;
     using AlphaPlus.Settings.Transfer.API.Configurations;
     using AlphaPlus.Settings.Transfer.API.Services;
-    using AlphaPlus.Settings.Transfer.API.Models;
+    using AlphaPlus.Core.Models;
 
     public class CashBalanceTransferHandler :
         IRequestHandler<CashBalanceTransferQuery, CashBalanceTransferViewModel>,

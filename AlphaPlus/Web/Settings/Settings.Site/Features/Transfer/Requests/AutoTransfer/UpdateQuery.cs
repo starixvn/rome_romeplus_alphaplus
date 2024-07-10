@@ -9,7 +9,6 @@
     using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using AlphaPlus.Settings.Site.Features.Transfer.Models;
     using AlphaPlus.Core.Models;
-    using Result = Settings.Transfer.API.Models.Result;
 
     public class UpdateQuery : IRequest<Result>
     {

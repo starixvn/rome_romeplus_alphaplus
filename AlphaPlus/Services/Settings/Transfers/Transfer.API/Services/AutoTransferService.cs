@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.Transfer.API.Constants;
     using AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer;
     using AlphaPlus.Settings.Transfer.API.Extensions;
@@ -11,7 +12,6 @@
     using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
     using AlphaPlus.Settings.Transfer.API.Params.AutoTransfer;
     using Fanex.Data.Repository;
-    using Models;
 
     public interface AutoTransferService
     {
@@ -39,7 +39,7 @@
             var criteria = new UpdateStatusCriteria(
                 param.UplineId,
                 param.CustId,
-                TransferConditionHelper.GetAutoTransferScheduleFromDates(param.Schedule ?? new [] { "" }),
+                TransferConditionHelper.GetAutoTransferScheduleFromDates(param.Schedule ?? new[] { "" }),
                 isAutoJobRunning,
                 string.Equals(AutoTransferConstant.On, param.State, StringComparison.InvariantCultureIgnoreCase),
                 param.Language ?? string.Empty,

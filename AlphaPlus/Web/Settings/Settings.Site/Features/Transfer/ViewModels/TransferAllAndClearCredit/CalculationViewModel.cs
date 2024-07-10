@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.Transfer.API.Helpers;
     using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using Requests.TransferAllAndClearCredit;
-    using Settings.Transfer.API.Models;
     using Settings.Transfer.API.Models.TransferAllAndClearCredit;
 
     public class CalculationViewModel

@@ -1,12 +1,12 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory
 {
     using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using AlphaPlus.Settings.Transfer.API.Models;
     using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
     using AlphaPlus.Settings.Transfer.API.Utils;
     using Requests.TransferToDownlineHistory;
     using System;
     using ViewModels.Components;
+    using AlphaPlus.Core.Models;
 
     public class TransferToDownlineHistoryViewModel
     {

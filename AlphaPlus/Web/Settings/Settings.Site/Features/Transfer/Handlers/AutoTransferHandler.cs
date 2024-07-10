@@ -8,7 +8,7 @@
     using AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer;
     using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer;
     using MediatR;
-    using Settings.Transfer.API.Models;
+    using AlphaPlus.Core.Models;
 
     public class AutoTransferHandler :
         IRequestHandler<GetTransferConditionQuery, GetTransferConditionViewModel>,

@@ -80,10 +80,19 @@ public class UserLevel : Enumeration
 
     public bool IsNot(Enumeration level) => !Is(level);
 
-    private static int GapBetweenTwoLevels(byte uplineLevelValue, byte downlineLevelValue)
-        => uplineLevelValue - downlineLevelValue;
-
     public UserLevel GetDirectUplineLevel() => FromValue<UserLevel>((byte)(Value + 1));
 
     public UserLevel GetDirectDownLineLevel() => FromValue<UserLevel>((byte)(Value - 1));
+
+    public bool IsEqualOrUplineOf(Enumeration custLevel)
+        => Value == custLevel.Value || IsUplineOf(custLevel.Value);
+
+    public bool IsUplineOf(byte downlineLevelValue)
+        => GapBetweenTwoLevels(Value, downlineLevelValue) >= 1;
+
+    public bool IsUplineOf(Enumeration downlineLevel)
+        => (downlineLevel is not null) && IsUplineOf(downlineLevel.Value);
+
+    private static int GapBetweenTwoLevels(byte uplineLevelValue, byte downlineLevelValue)
+        => uplineLevelValue - downlineLevelValue;
 }

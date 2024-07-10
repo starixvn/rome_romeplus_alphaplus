@@ -2,10 +2,10 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using AlphaPlus.Settings.Transfer.API.Models;
     using AlphaPlus.Settings.Transfer.API.Services;
     using MediatR;
     using Requests.TransferToDownlineHistory;
+    using AlphaPlus.Core.Models;
 
     public class TransferToDownlineHistoryController : SiteBaseController
     {

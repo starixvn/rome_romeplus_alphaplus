@@ -6,11 +6,10 @@
     using AlphaPlus.Settings.Site.Features.Transfer.Models;
     using MediatR;
     using Settings.Transfer.API.Models;
-    using Result = Settings.Transfer.API.Models.Result;
 
     public class PostUpdateScheduleQuery : IRequest<Result>
     {
-        public PostUpdateScheduleQuery() : this(null) {}
+        public PostUpdateScheduleQuery() : this(null) { }
 
         public PostUpdateScheduleQuery(IUser user)
         {

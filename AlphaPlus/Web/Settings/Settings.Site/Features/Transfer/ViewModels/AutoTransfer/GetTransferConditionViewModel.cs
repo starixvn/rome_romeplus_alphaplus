@@ -1,5 +1,5 @@
-﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
-using AlphaPlus.Settings.Transfer.API.Models;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer
 {
