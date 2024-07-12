@@ -720,6 +720,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/cash-balance-transfer.css",
+    "inputFiles": [
+      "Features/Transfer/assets/styles/cash-balance-transfer.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-to-downline-history/index-dark.css",
     "inputFiles": [
       "Features/Transfer/assets/styles/transfer-to-downline-history/index-dark.css"
