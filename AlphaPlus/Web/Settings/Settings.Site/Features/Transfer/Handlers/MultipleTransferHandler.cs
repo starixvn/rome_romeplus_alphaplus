@@ -1,41 +1,38 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
+﻿using AlphaPlus.Settings.MemberInfo.API.Services;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.MultipleTransfer;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.MultipleTransfer;
+using AlphaPlus.Settings.Transfer.API.Params.MultipleTransfer;
+using AlphaPlus.Settings.Transfer.API.Services;
+using MediatR;
+
+namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
+
+public class MultipleTransferHandler(
+    IMultipleTransferService multipleTransferService,
+    TransferService transferService,
+    IWinlossService winlossService) : IRequestHandler<TransferListQuery, TransferListViewModel>
 {
-    using AlphaPlus.Settings.Transfer.API.Params.MultipleTransfer;
-    using AlphaPlus.Settings.Transfer.API.Services;
-    using MediatR;
-    using Requests.MultipleTransfer;
-    using ViewModels.MultipleTransfer;
+    private readonly IMultipleTransferService multipleTransferService = multipleTransferService;
+    private readonly TransferService transferService = transferService;
 
-    public class MultipleTransferHandler :
-        IRequestHandler<CustomerListQuery, CustomerListViewModel>
+    public async Task<TransferListViewModel> Handle(TransferListQuery message, CancellationToken cancellation)
     {
-        private readonly MultipleTransferService multipleTransferService;
-        private readonly TransferService transferService;
+        var param = new GetTransferListParam(
+            message.ViewerId,
+            message.ViewerLevelId,
+            message.Username,
+            message.Status,
+            message.AutoTransfer,
+            message.AllYesterdayBalance,
+            message.AllowTotalBalanceTransfer,
+            message.PageIndex,
+            message.PageSize);
 
-        public MultipleTransferHandler(
-            MultipleTransferService multipleTransferService,
-            TransferService transferService)
-        {
-            this.multipleTransferService = multipleTransferService;
-            this.transferService = transferService;
-        }
+        var enteredSportResultTask = winlossService.GetEnteredSportResultsAsync();
+        var reportDataTask = multipleTransferService.GetTransferList(param);
+        var isAllDayBalanceTransferTask = transferService.IsAllDayBalanceTransferAsync(message.ViewerId);
+        await Task.WhenAll(enteredSportResultTask, isAllDayBalanceTransferTask, reportDataTask);
 
-        public async Task<CustomerListViewModel> Handle(CustomerListQuery message, CancellationToken cancellation)
-        {
-            var param = new GetCustomerListParam(
-                message.CustLevel,
-                message.CustId,
-                message.Username,
-                message.PageIndex,
-                message.PageSize,
-                message.AllYesterdayBalance,
-                message.AllowTotalBalanceTransfer,
-                message.Status);
-
-            var isAllDayBalanceTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
-            var data = multipleTransferService.GetCustomerList(param);
-
-            return new CustomerListViewModel(message, data, isAllDayBalanceTransfer);
-        }
+        return new TransferListViewModel(message, await enteredSportResultTask, await reportDataTask, await isAllDayBalanceTransferTask);
     }
 }

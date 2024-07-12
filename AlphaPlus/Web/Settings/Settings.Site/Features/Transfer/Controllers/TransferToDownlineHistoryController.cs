@@ -19,7 +19,7 @@
             this.transferService = transferService;
         }
 
-        public async Task<ActionResult> Index(TransferToDownlineHistoryQuery message)
+        public async Task<IActionResult> Index(TransferToDownlineHistoryQuery message)
         {
             if (message != null && transferService.IsAllDayBalanceTransfer(message.ViewerId))
             {

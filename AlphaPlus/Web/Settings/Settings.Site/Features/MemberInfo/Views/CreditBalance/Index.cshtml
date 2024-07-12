@@ -4,7 +4,6 @@
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Core.Helpers
-@using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
 @using System.Net
 @using Microsoft.AspNetCore.Html
 
@@ -166,7 +165,7 @@
             return $"<a href='?custId={item.CustId}&custLevelId={Model.DownlineLevel.Value}&statusId={Model.StatusId}&PageSize={pageSize}' class='link'>{item.UserName}</a>";
         }
     }
-    
+
     string  RenderCreditColumn(CreditBalanceItem item)
     {
         if (Model.CanUpdateAccount)
@@ -178,7 +177,7 @@
             return HtmlHelpers.FormatDecimal(item.Credit);
         }
     }
-    
+
     string RenderBalanceColumn(CreditBalanceItem item)
     {
         if (Model.CanTransferOnBalanceColumn && item.Balance != 0)
@@ -190,7 +189,7 @@
             return HtmlHelpers.FormatDecimal(item.Balance, true);
         }
     }
-    
+
     string RenderYesterdayBalanceColumn(CreditBalanceItem item)
     {
         if (Model.CanTransferOnYesterdayBalanceColumn && item.Yesterday_Balance != 0)
@@ -202,7 +201,7 @@
             return HtmlHelpers.FormatDecimal(item.Yesterday_Balance, true);
         }
     }
-    
+
     string RenderBetCreditColumn(CreditBalanceItem item)
     {
         if (Model.IsViewingMemberList)
@@ -214,7 +213,7 @@
             return HtmlHelpers.FormatDecimal(item.BetCredit);
         }
     }
-    
+
     string renderOutstandingColumn(CreditBalanceItem item)
     {
         if (Model.CanViewBetListsFromOutstanding)

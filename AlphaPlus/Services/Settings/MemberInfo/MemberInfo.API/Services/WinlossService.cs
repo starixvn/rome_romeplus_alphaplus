@@ -9,6 +9,8 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services
     public interface IWinlossService
     {
         EnteredSportResult GetEnteredSportResults();
+
+        Task<EnteredSportResult> GetEnteredSportResultsAsync();
     }
 
     public class WinlossService : IWinlossService
@@ -24,10 +26,12 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services
         }
 
         public EnteredSportResult GetEnteredSportResults()
+            => GetEnteredSportResultsAsync().GetAwaiter().GetResult();
+
+        public async Task<EnteredSportResult> GetEnteredSportResultsAsync()
         {
             bool includeTestData = AppSettings.LocalTest;
-
-            var reportData = GetDataEnteredSportResults(includeTestData);
+            var reportData = await GetDataEnteredSportResults(includeTestData);
 
             return GetTotalEnteredSportYesterdayAndToday(reportData);
         }
@@ -63,25 +67,29 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services
             return new EnteredSportResult(0, "Total", totalToday, totalYesterday);
         }
 
-        internal IEnumerable<EnteredSportResult> GetDataEnteredSportResults(bool includeTestData)
+        internal async Task<IEnumerable<EnteredSportResult>> GetDataEnteredSportResults(bool includeTestData)
         {
-            var criteria = new DailyEnteredSportCriteria(includeTestData);
-
-            var dailyEnteredSportData = cacheService.GetOrSet(EnteredResultsCacheKey,
-                () => dynamicRepository.Fetch<DailyEnteredSport>(criteria),
+            var dailyEnteredSportData = await cacheService.GetOrSetAsync(
+                EnteredResultsCacheKey,
+                () =>
+                {
+                    var criteria = new DailyEnteredSportCriteria(includeTestData);
+                    return dynamicRepository.FetchAsync<DailyEnteredSport>(criteria);
+                },
                 new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(1)));
 
             if (dailyEnteredSportData.Any())
             {
-                return dailyEnteredSportData.GroupBy(dailyEnteredSport => dailyEnteredSport.SportType)
-                    .Select(dailyEnteredSports => new EnteredSportResult(
-                    dailyEnteredSports.Key,
-                    dailyEnteredSports.Key.ToString(),
-                    dailyEnteredSports.FirstOrDefault(enteredSportResult => enteredSportResult.IsToday),
-                    dailyEnteredSports.FirstOrDefault(enteredSportResult => !enteredSportResult.IsToday)));
+                return dailyEnteredSportData.GroupBy(
+                    dailyEnteredSport => dailyEnteredSport.SportType,
+                    (sportType, dailyEnteredSports) => new EnteredSportResult(
+                        sportType,
+                        sportType.ToString(),
+                        dailyEnteredSports.FirstOrDefault(enteredSportResult => enteredSportResult.IsToday),
+                        dailyEnteredSports.FirstOrDefault(enteredSportResult => !enteredSportResult.IsToday)));
             }
 
-            return Enumerable.Empty<EnteredSportResult>();
+            return [];
         }
     }
 }

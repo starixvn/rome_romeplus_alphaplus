@@ -285,19 +285,16 @@
   <data name="AllYesterdayBalance" xml:space="preserve">
     <value>All yesterday balance</value>
   </data>
-  <data name="Status_0" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="Status_1" xml:space="preserve">
+  <data name="Open" xml:space="preserve">
     <value>Open</value>
   </data>
-  <data name="Status_2" xml:space="preserve">
+  <data name="Suspended" xml:space="preserve">
     <value>Suspended</value>
   </data>
-  <data name="Status_3" xml:space="preserve">
+  <data name="Closed" xml:space="preserve">
     <value>Closed</value>
   </data>
-  <data name="Status_4" xml:space="preserve">
+  <data name="Disabled" xml:space="preserve">
     <value>Disabled</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
@@ -677,5 +674,20 @@
   </data>
   <data name="AutoTransfer_Error_102_Single" xml:space="preserve">
     <value>This account does not belong to your downline</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>Non-Entered</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>Entered</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>3rd Party Pending Transfer</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
 </root>

@@ -225,19 +225,16 @@
   <data name="AllYesterdayBalance" xml:space="preserve">
     <value>ยอดเงินรวมของของเมื่อวาน</value>
   </data>
-  <data name="Status_0" xml:space="preserve">
-    <value>ทั้งหมด</value>
-  </data>
-  <data name="Status_1" xml:space="preserve">
+  <data name="Open" xml:space="preserve">
     <value>เปิด</value>
   </data>
-  <data name="Status_2" xml:space="preserve">
+  <data name="Suspended" xml:space="preserve">
     <value>ถูกระงับ</value>
   </data>
-  <data name="Status_3" xml:space="preserve">
+  <data name="Closed" xml:space="preserve">
     <value>ปิด</value>
   </data>
-  <data name="Status_4" xml:space="preserve">
+  <data name="Disabled" xml:space="preserve">
     <value>ปิดการใช้งาน</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
@@ -650,5 +647,20 @@
   </data>
   <data name="AutoTransfer_Error_102_Multiple" xml:space="preserve">
     <value>บัญชีเหล่านี้ไม่ได้เป็นของดาวน์ไลน์ของคุณ:</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>เปิดใช้งาน</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>ไม่สามารถเข้าได้</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>เข้า</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>บุคคลที่สามรอการถ่ายโอน</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>ยอดรวม</value>
   </data>
 </root>

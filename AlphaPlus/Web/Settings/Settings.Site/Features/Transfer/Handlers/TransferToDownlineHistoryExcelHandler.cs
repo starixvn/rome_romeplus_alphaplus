@@ -5,11 +5,11 @@
     using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
     using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
     using AlphaPlus.Settings.Transfer.API.Services;
-    using AlphaPlus.Settings.Transfer.API.Utils;
     using MediatR;
     using ONEbook.SpreadSheets;
     using Requests.TransferToDownlineHistory;
     using ViewModels;
+    using AlphaPlus.Core.Utils;
 
     public class TransferToDownlineHistoryExcelHandler : TransferToDownlineHistoryBaseHandler, IRequestHandler<TransferToDownlineHistoryExcelQuery, ExcelFileViewModel>
     {

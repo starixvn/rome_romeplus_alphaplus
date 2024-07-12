@@ -8,10 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Shared.AppResources.Settings.Transfer {
+namespace AlphaPlus.Shared.AppResources.Settings.Transfer
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,1724 +23,2150 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
-        
+    public class Resources
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        public static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Settings.Transfer.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
-            get {
+        public static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Action Date.
         /// </summary>
-        public static string ActionDate {
-            get {
+        public static string ActionDate
+        {
+            get
+            {
                 return ResourceManager.GetString("ActionDate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to You cannot use Auto Transfer because upline has enabled All Day Balance Transfer for you. The page will refresh automatically..
         /// </summary>
-        public static string ADBTChangeError {
-            get {
+        public static string ADBTChangeError
+        {
+            get
+            {
                 return ResourceManager.GetString("ADBTChangeError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
-        public static string Agent {
-            get {
+        public static string Agent
+        {
+            get
+            {
                 return ResourceManager.GetString("Agent", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
-        public static string All {
-            get {
+        public static string All
+        {
+            get
+            {
                 return ResourceManager.GetString("All", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to You are allowed to transfer on.
         /// </summary>
-        public static string AllowTransfer {
-            get {
+        public static string AllowTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("AllowTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to All yesterday balance.
         /// </summary>
-        public static string AllYesterdayBalance {
-            get {
+        public static string AllYesterdayBalance
+        {
+            get
+            {
                 return ResourceManager.GetString("AllYesterdayBalance", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
-        public static string Amount {
-            get {
+        public static string Amount
+        {
+            get
+            {
                 return ResourceManager.GetString("Amount", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer.
         /// </summary>
-        public static string AutoTransfer {
-            get {
+        public static string AutoTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer processing has been successfully cancelled.
         /// </summary>
-        public static string AutoTransfer_CancelAllSuccess {
-            get {
+        public static string AutoTransfer_CancelAllSuccess
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_CancelAllSuccess", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Job&apos;s cancelled!.
         /// </summary>
-        public static string AutoTransfer_CancelSuccess {
-            get {
+        public static string AutoTransfer_CancelSuccess
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_CancelSuccess", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Once disabled, the current Auto Transfer schedule will be cleared..
         /// </summary>
-        public static string AutoTransfer_ClearSchedule {
-            get {
+        public static string AutoTransfer_ClearSchedule
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_ClearSchedule", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to These accounts do not exist:.
         /// </summary>
-        public static string AutoTransfer_Error_101_Multiple {
-            get {
+        public static string AutoTransfer_Error_101_Multiple
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_Error_101_Multiple", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This account does not exist..
         /// </summary>
-        public static string AutoTransfer_Error_101_Single {
-            get {
+        public static string AutoTransfer_Error_101_Single
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_Error_101_Single", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to These accounts do not belong to your downline: .
         /// </summary>
-        public static string AutoTransfer_Error_102_Multiple {
-            get {
+        public static string AutoTransfer_Error_102_Multiple
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_Error_102_Multiple", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This account does not belong to your downline.
         /// </summary>
-        public static string AutoTransfer_Error_102_Single {
-            get {
+        public static string AutoTransfer_Error_102_Single
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_Error_102_Single", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to You cannot disable Auto Transfer for these accounts because the Auto Transfer process is in progress. Please try again after the process has been completed..
         /// </summary>
-        public static string AutoTransfer_Error_103_Multiple {
-            get {
+        public static string AutoTransfer_Error_103_Multiple
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_Error_103_Multiple", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to You cannot disable Auto Transfer for this account because the Auto Transfer process is in progress. Please try again after the process has been completed..
         /// </summary>
-        public static string AutoTransfer_Error_103_Single {
-            get {
+        public static string AutoTransfer_Error_103_Single
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_Error_103_Single", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Member List.
         /// </summary>
-        public static string AutoTransfer_HintPath_2 {
-            get {
+        public static string AutoTransfer_HintPath_2
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_HintPath_2", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Agent List.
         /// </summary>
-        public static string AutoTransfer_HintPath_3 {
-            get {
+        public static string AutoTransfer_HintPath_3
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_HintPath_3", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Master Agent List.
         /// </summary>
-        public static string AutoTransfer_HintPath_4 {
-            get {
+        public static string AutoTransfer_HintPath_4
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_HintPath_4", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Once enabled, the Yesterday Balance will be cleared at &lt;span&gt;12:00 PM (GMT+8)&lt;/span&gt; based on your transfer condition &lt;b&gt;({0})&lt;/b&gt;..
         /// </summary>
-        public static string AutoTransfer_InfoAffectTime {
-            get {
+        public static string AutoTransfer_InfoAffectTime
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_InfoAffectTime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to If you ENABLE Auto Transfer during its runtime, the Auto Transfer process will take effect at the next scheduled time according to your transfer condition..
         /// </summary>
-        public static string AutoTransfer_InfoAffectTime2 {
-            get {
+        public static string AutoTransfer_InfoAffectTime2
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_InfoAffectTime2", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Once enabled, the Yesterday Balance will be cleared at &lt;span&gt;12:00 PM (GMT+8)&lt;/span&gt;.
         /// </summary>
-        public static string AutoTransfer_InfoAffectTimeSuper {
-            get {
+        public static string AutoTransfer_InfoAffectTimeSuper
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_InfoAffectTimeSuper", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to To ensure data accuracy during Auto Transfer process, you CANNOT transfer to your downlines whose Auto Transfer is enabled..
         /// </summary>
-        public static string AutoTransfer_InfoCannotTransfer {
-            get {
+        public static string AutoTransfer_InfoCannotTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_InfoCannotTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer process is scheduled to take place at 12:00 PM (GMT+8), during which the Yesterday Balance will be cleared..
         /// </summary>
-        public static string AutoTransfer_InfoSettingTime {
-            get {
+        public static string AutoTransfer_InfoSettingTime
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_InfoSettingTime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The Auto Transfer has been enabled for these accounts. However, this process is taking place, and these accounts will be queued for Auto Transfer at the next scheduled time based on their Auto Transfer schedule..
         /// </summary>
-        public static string AutoTransfer_MultipleAffectNextConditionWarning {
-            get {
+        public static string AutoTransfer_MultipleAffectNextConditionWarning
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_MultipleAffectNextConditionWarning", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The Auto Transfer has been enabled for this account. However, this process is taking place, and the account will be queued for Auto Transfer at the next scheduled time based on its Auto Transfer Schedule..
         /// </summary>
-        public static string AutoTransfer_MultipleAffectNextConditionWarning_Single {
-            get {
+        public static string AutoTransfer_MultipleAffectNextConditionWarning_Single
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_MultipleAffectNextConditionWarning_Single", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to There are no cancellable transactions..
         /// </summary>
-        public static string AutoTransfer_NoCancellable {
-            get {
+        public static string AutoTransfer_NoCancellable
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_NoCancellable", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to You can set up Auto Transfer schedule for your downline from the available options based on your transfer condition..
         /// </summary>
-        public static string AutoTransfer_SetSchedule {
-            get {
+        public static string AutoTransfer_SetSchedule
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_SetSchedule", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The number of transfers in the &quot;Pending&quot;, &quot;Processing&quot;, &quot;Failed&quot;, and &quot;Cancel suspended transactions&quot; categories is counted for all downlines..
         /// </summary>
-        public static string AutoTransfer_Statistic {
-            get {
+        public static string AutoTransfer_Statistic
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_Statistic", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer schedule for account {0} has been successfully updated..
         /// </summary>
-        public static string AutoTransfer_UpdateScheduleSuccess {
-            get {
+        public static string AutoTransfer_UpdateScheduleSuccess
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_UpdateScheduleSuccess", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer has been successfully updated for these accounts..
         /// </summary>
-        public static string AutoTransfer_UpdateSuccess {
-            get {
+        public static string AutoTransfer_UpdateSuccess
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_UpdateSuccess", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer for account {0} has been successfully disabled..
         /// </summary>
-        public static string AutoTransfer_UpdateSuccessOff {
-            get {
+        public static string AutoTransfer_UpdateSuccessOff
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_UpdateSuccessOff", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer for account {0} has been successfully enabled..
         /// </summary>
-        public static string AutoTransfer_UpdateSuccessOn {
-            get {
+        public static string AutoTransfer_UpdateSuccessOn
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_UpdateSuccessOn", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tip: you can enable/disable Auto Transfer for multiple accounts on [Member Information &gt;&gt; {0}] or [Transfer &gt;&gt; Transfer] and monitor the progress on [Transfer &gt;&gt; Auto Transfer Monitor]..
         /// </summary>
-        public static string AutoTransfer_UpdateTip {
-            get {
+        public static string AutoTransfer_UpdateTip
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_UpdateTip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Your Transfer Condition was changed by upline. Please refresh the page..
         /// </summary>
-        public static string AutoTransfer_UplineConditionChanged {
-            get {
+        public static string AutoTransfer_UplineConditionChanged
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransfer_UplineConditionChanged", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer Guideline.
         /// </summary>
-        public static string AutoTransferGuideline {
-            get {
+        public static string AutoTransferGuideline
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransferGuideline", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer History.
         /// </summary>
-        public static string AutoTransferHistory {
-            get {
+        public static string AutoTransferHistory
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransferHistory", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Auto Transfer Monitor.
         /// </summary>
-        public static string AutoTransferMonitoring {
-            get {
+        public static string AutoTransferMonitoring
+        {
+            get
+            {
                 return ResourceManager.GetString("AutoTransferMonitoring", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Amount to transfer must be between {0} and {1}..
         /// </summary>
-        public static string AvailableRangeTransfer {
-            get {
+        public static string AvailableRangeTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("AvailableRangeTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Bad Request..
         /// </summary>
-        public static string BadRequest {
-            get {
+        public static string BadRequest
+        {
+            get
+            {
                 return ResourceManager.GetString("BadRequest", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Calculate.
         /// </summary>
-        public static string Calculate {
-            get {
+        public static string Calculate
+        {
+            get
+            {
                 return ResourceManager.GetString("Calculate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string Cancel {
-            get {
+        public static string Cancel
+        {
+            get
+            {
                 return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel All.
         /// </summary>
-        public static string CancelAll {
-            get {
+        public static string CancelAll
+        {
+            get
+            {
                 return ResourceManager.GetString("CancelAll", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Would you like to cancel Auto Transfer process for {0} account(s)?.
         /// </summary>
-        public static string CancelAllAutoTransferJobsConfirm {
-            get {
+        public static string CancelAllAutoTransferJobsConfirm
+        {
+            get
+            {
                 return ResourceManager.GetString("CancelAllAutoTransferJobsConfirm", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cancelled.
         /// </summary>
-        public static string Cancelled {
-            get {
+        public static string Cancelled
+        {
+            get
+            {
                 return ResourceManager.GetString("Cancelled", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel suspended transactions.
         /// </summary>
-        public static string CancelSuspendedTransactions {
-            get {
+        public static string CancelSuspendedTransactions
+        {
+            get
+            {
                 return ResourceManager.GetString("CancelSuspendedTransactions", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Click here to Cancel all pending/processing transactions over 15 minutes..
         /// </summary>
-        public static string CancelSuspendedTransactionsTip {
-            get {
+        public static string CancelSuspendedTransactionsTip
+        {
+            get
+            {
                 return ResourceManager.GetString("CancelSuspendedTransactionsTip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to You can view the report data from {0}..
         /// </summary>
-        public static string CanViewReportDataFrom {
-            get {
+        public static string CanViewReportDataFrom
+        {
+            get
+            {
                 return ResourceManager.GetString("CanViewReportDataFrom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cash Balance.
         /// </summary>
-        public static string CashBalance {
-            get {
+        public static string CashBalance
+        {
+            get
+            {
                 return ResourceManager.GetString("CashBalance", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Clear credit.
         /// </summary>
-        public static string Clear_credit {
-            get {
+        public static string Clear_credit
+        {
+            get
+            {
                 return ResourceManager.GetString("Clear_credit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Clearable Credit.
         /// </summary>
-        public static string ClearableCredit {
-            get {
+        public static string ClearableCredit
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearableCredit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Clear Credit.
         /// </summary>
-        public static string ClearCredit {
-            get {
+        public static string ClearCredit
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearCredit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to transfer all &amp; clear credit?.
         /// </summary>
-        public static string ClearCreditConfirm {
-            get {
+        public static string ClearCreditConfirm
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearCreditConfirm", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Agent {0}.
         /// </summary>
-        public static string ClearCreditStep_Master_Agent {
-            get {
+        public static string ClearCreditStep_Master_Agent
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearCreditStep_Master_Agent", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to All Members.
         /// </summary>
-        public static string ClearCreditStep_Master_Member {
-            get {
+        public static string ClearCreditStep_Master_Member
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearCreditStep_Master_Member", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0}&apos;s Agents.
         /// </summary>
-        public static string ClearCreditStep_Super_Agent {
-            get {
+        public static string ClearCreditStep_Super_Agent
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearCreditStep_Super_Agent", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0}.
         /// </summary>
-        public static string ClearCreditStep_Super_Master {
-            get {
+        public static string ClearCreditStep_Super_Master
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearCreditStep_Super_Master", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0}&apos;s Members.
         /// </summary>
-        public static string ClearCreditStep_Super_Member {
-            get {
+        public static string ClearCreditStep_Super_Member
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearCreditStep_Super_Member", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Clear credit successfully..
         /// </summary>
-        public static string ClearCreditSuccess {
-            get {
+        public static string ClearCreditSuccess
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearCreditSuccess", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Clear credit unsuccessfully. Please try again..
         /// </summary>
-        public static string ClearCreditUnsuccessfully {
-            get {
+        public static string ClearCreditUnsuccessfully
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearCreditUnsuccessfully", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cleared Credit.
         /// </summary>
-        public static string ClearedCredit {
-            get {
+        public static string ClearedCredit
+        {
+            get
+            {
                 return ResourceManager.GetString("ClearedCredit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Columns.
         /// </summary>
-        public static string Columns {
-            get {
+        public static string Columns
+        {
+            get
+            {
                 return ResourceManager.GetString("Columns", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Completed.
         /// </summary>
-        public static string Completed {
-            get {
+        public static string Completed
+        {
+            get
+            {
                 return ResourceManager.GetString("Completed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Completed Time.
         /// </summary>
-        public static string CompletedTime {
-            get {
+        public static string CompletedTime
+        {
+            get
+            {
                 return ResourceManager.GetString("CompletedTime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Would you like to cancel Auto Transfer process for this account?.
         /// </summary>
-        public static string confirmCancelJob {
-            get {
+        public static string confirmCancelJob
+        {
+            get
+            {
                 return ResourceManager.GetString("confirmCancelJob", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Would you like to change Auto Transfer schedule for this account: {0}?.
         /// </summary>
-        public static string confirmChangeAutoTransferSchedule {
-            get {
+        public static string confirmChangeAutoTransferSchedule
+        {
+            get
+            {
                 return ResourceManager.GetString("confirmChangeAutoTransferSchedule", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to transfer?.
         /// </summary>
-        public static string ConfirmTransfer {
-            get {
+        public static string ConfirmTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("ConfirmTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &lt;b&gt;Would you like to disable Auto Transfer for this account: {0}?&lt;/b&gt;.
         /// </summary>
-        public static string confirmTurnOffAutoTransfer {
-            get {
+        public static string confirmTurnOffAutoTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("confirmTurnOffAutoTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &lt;b&gt;Would you like to enable Auto Transfer for this account: {0}?&lt;/b&gt;.
         /// </summary>
-        public static string confirmTurnOnAutoTransfer {
-            get {
+        public static string confirmTurnOnAutoTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("confirmTurnOnAutoTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to &lt;b&gt;Would you like to update Auto Transfer for these accounts:&lt;b&gt;.
         /// </summary>
-        public static string confirmUpdateAutoTransfer {
-            get {
+        public static string confirmUpdateAutoTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("confirmUpdateAutoTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Daily.
         /// </summary>
-        public static string Daily {
-            get {
+        public static string Daily
+        {
+            get
+            {
                 return ResourceManager.GetString("Daily", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Some data has been changed during calculation. Please check the highlighted figures in the tables below..
         /// </summary>
-        public static string DataChangedWarning {
-            get {
+        public static string DataChangedWarning
+        {
+            get
+            {
                 return ResourceManager.GetString("DataChangedWarning", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Deposit.
         /// </summary>
-        public static string Deposit {
-            get {
+        public static string Deposit
+        {
+            get
+            {
                 return ResourceManager.GetString("Deposit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
-        public static string Description {
-            get {
+        public static string Description
+        {
+            get
+            {
                 return ResourceManager.GetString("Description", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed..
         /// </summary>
-        public static string DisallowedAllDayBalanceTransferError {
-            get {
+        public static string DisallowedAllDayBalanceTransferError
+        {
+            get
+            {
                 return ResourceManager.GetString("DisallowedAllDayBalanceTransferError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit Auto Transfer Schedule.
         /// </summary>
-        public static string EditAutoTransferSchedule {
-            get {
+        public static string EditAutoTransferSchedule
+        {
+            get
+            {
                 return ResourceManager.GetString("EditAutoTransferSchedule", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit Multiple Auto Transfer.
         /// </summary>
-        public static string EditMultipleAutoTransfer {
-            get {
+        public static string EditMultipleAutoTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("EditMultipleAutoTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Export to Excel.
         /// </summary>
-        public static string ExportToExcel {
-            get {
+        public static string ExportToExcel
+        {
+            get
+            {
                 return ResourceManager.GetString("ExportToExcel", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Failed.
         /// </summary>
-        public static string Failed {
-            get {
+        public static string Failed
+        {
+            get
+            {
                 return ResourceManager.GetString("Failed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to First/ Last Name.
         /// </summary>
-        public static string First_LastName {
-            get {
+        public static string First_LastName
+        {
+            get
+            {
                 return ResourceManager.GetString("First_LastName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
-        public static string FirstName {
-            get {
+        public static string FirstName
+        {
+            get
+            {
                 return ResourceManager.GetString("FirstName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Fri.
         /// </summary>
-        public static string Fri {
-            get {
+        public static string Fri
+        {
+            get
+            {
                 return ResourceManager.GetString("Fri", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Friday.
         /// </summary>
-        public static string Friday {
-            get {
+        public static string Friday
+        {
+            get
+            {
                 return ResourceManager.GetString("Friday", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to From.
         /// </summary>
-        public static string From {
-            get {
+        public static string From
+        {
+            get
+            {
                 return ResourceManager.GetString("From", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Given Credit.
         /// </summary>
-        public static string GivenCredit {
-            get {
+        public static string GivenCredit
+        {
+            get
+            {
                 return ResourceManager.GetString("GivenCredit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cash balance is not available to transfer..
         /// </summary>
-        public static string HintNotAvailableToTransfer {
-            get {
+        public static string HintNotAvailableToTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("HintNotAvailableToTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to You can transfer from {0} to {1}..
         /// </summary>
-        public static string HintRangeTransfer {
-            get {
+        public static string HintRangeTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("HintRangeTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ignored.
         /// </summary>
-        public static string Ignored {
-            get {
+        public static string Ignored
+        {
+            get
+            {
                 return ResourceManager.GetString("Ignored", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
-        public static string Information {
-            get {
+        public static string Information
+        {
+            get
+            {
                 return ResourceManager.GetString("Information", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Invalid value..
         /// </summary>
-        public static string InvalidValue {
-            get {
+        public static string InvalidValue
+        {
+            get
+            {
                 return ResourceManager.GetString("InvalidValue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Last Month.
         /// </summary>
-        public static string LastMonth {
-            get {
+        public static string LastMonth
+        {
+            get
+            {
                 return ResourceManager.GetString("LastMonth", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
-        public static string LastName {
-            get {
+        public static string LastName
+        {
+            get
+            {
                 return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Last Week.
         /// </summary>
-        public static string LastWeek {
-            get {
+        public static string LastWeek
+        {
+            get
+            {
                 return ResourceManager.GetString("LastWeek", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
-        public static string Level {
-            get {
+        public static string Level
+        {
+            get
+            {
                 return ResourceManager.GetString("Level", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Master.
         /// </summary>
-        public static string Master {
-            get {
+        public static string Master
+        {
+            get
+            {
                 return ResourceManager.GetString("Master", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Master Balance.
         /// </summary>
-        public static string MasterBalance {
-            get {
+        public static string MasterBalance
+        {
+            get
+            {
                 return ResourceManager.GetString("MasterBalance", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Master Cash.
         /// </summary>
-        public static string MasterCash {
-            get {
+        public static string MasterCash
+        {
+            get
+            {
                 return ResourceManager.GetString("MasterCash", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
-        public static string Member {
-            get {
+        public static string Member
+        {
+            get
+            {
                 return ResourceManager.GetString("Member", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Member Outstanding.
         /// </summary>
-        public static string MemberOutstanding {
-            get {
+        public static string MemberOutstanding
+        {
+            get
+            {
                 return ResourceManager.GetString("MemberOutstanding", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mon.
         /// </summary>
-        public static string Mon {
-            get {
+        public static string Mon
+        {
+            get
+            {
                 return ResourceManager.GetString("Mon", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Monday.
         /// </summary>
-        public static string Monday {
-            get {
+        public static string Monday
+        {
+            get
+            {
                 return ResourceManager.GetString("Monday", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Multiple Transfer.
         /// </summary>
-        public static string MultipleTransfer {
-            get {
+        public static string MultipleTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("MultipleTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ready to Transfer.
         /// </summary>
-        public static string New {
-            get {
+        public static string New
+        {
+            get
+            {
                 return ResourceManager.GetString("New", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to New Balance.
         /// </summary>
-        public static string NewBalance {
-            get {
+        public static string NewBalance
+        {
+            get
+            {
                 return ResourceManager.GetString("NewBalance", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to #.
         /// </summary>
-        public static string No {
-            get {
+        public static string No
+        {
+            get
+            {
                 return ResourceManager.GetString("No", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
-        public static string NoInformationIsAvailable {
-            get {
+        public static string NoInformationIsAvailable
+        {
+            get
+            {
                 return ResourceManager.GetString("NoInformationIsAvailable", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
-        public static string NoRefresh {
-            get {
+        public static string NoRefresh
+        {
+            get
+            {
                 return ResourceManager.GetString("NoRefresh", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to You are not authorized on this function..
         /// </summary>
-        public static string NotAuthorized {
-            get {
+        public static string NotAuthorized
+        {
+            get
+            {
                 return ResourceManager.GetString("NotAuthorized", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to of.
         /// </summary>
-        public static string of {
-            get {
+        public static string of
+        {
+            get
+            {
                 return ResourceManager.GetString("of", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Off.
         /// </summary>
-        public static string Off {
-            get {
+        public static string Off
+        {
+            get
+            {
                 return ResourceManager.GetString("Off", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
-        public static string OK {
-            get {
+        public static string OK
+        {
+            get
+            {
                 return ResourceManager.GetString("OK", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Old Balance.
         /// </summary>
-        public static string OldBalance {
-            get {
+        public static string OldBalance
+        {
+            get
+            {
                 return ResourceManager.GetString("OldBalance", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to On.
         /// </summary>
-        public static string On {
-            get {
+        public static string On
+        {
+            get
+            {
                 return ResourceManager.GetString("On", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Outstanding.
         /// </summary>
-        public static string Outstanding {
-            get {
+        public static string Outstanding
+        {
+            get
+            {
                 return ResourceManager.GetString("Outstanding", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Out. Txn.
         /// </summary>
-        public static string OutstandingShortcut {
-            get {
+        public static string OutstandingShortcut
+        {
+            get
+            {
                 return ResourceManager.GetString("OutstandingShortcut", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
-        public static string Page {
-            get {
+        public static string Page
+        {
+            get
+            {
                 return ResourceManager.GetString("Page", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Displaying {from} to {to} of {total} items.
         /// </summary>
-        public static string Pager_DisplayItems {
-            get {
+        public static string Pager_DisplayItems
+        {
+            get
+            {
                 return ResourceManager.GetString("Pager_DisplayItems", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Page Size.
         /// </summary>
-        public static string PageSize {
-            get {
+        public static string PageSize
+        {
+            get
+            {
                 return ResourceManager.GetString("PageSize", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Pending.
         /// </summary>
-        public static string Pending {
-            get {
+        public static string Pending
+        {
+            get
+            {
                 return ResourceManager.GetString("Pending", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 3rd Party Pending Transfer.
         /// </summary>
-        public static string pendingTransfer3rd {
-            get {
+        public static string pendingTransfer3rd
+        {
+            get
+            {
                 return ResourceManager.GetString("pendingTransfer3rd", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Processing.
         /// </summary>
-        public static string Processing {
-            get {
+        public static string Processing
+        {
+            get
+            {
                 return ResourceManager.GetString("Processing", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ready to Transfer.
         /// </summary>
-        public static string ReadyToTransfer {
-            get {
+        public static string ReadyToTransfer
+        {
+            get
+            {
                 return ResourceManager.GetString("ReadyToTransfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Reason.
         /// </summary>
-        public static string Reason {
-            get {
+        public static string Reason
+        {
+            get
+            {
                 return ResourceManager.GetString("Reason", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sat.
         /// </summary>
-        public static string Sat {
-            get {
+        public static string Sat
+        {
+            get
+            {
                 return ResourceManager.GetString("Sat", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Saturday.
         /// </summary>
-        public static string Saturday {
-            get {
+        public static string Saturday
+        {
+            get
+            {
                 return ResourceManager.GetString("Saturday", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
-        public static string Search {
-            get {
+        public static string Search
+        {
+            get
+            {
                 return ResourceManager.GetString("Search", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Search column.
         /// </summary>
-        public static string SearchColumn {
-            get {
+        public static string SearchColumn
+        {
+            get
+            {
                 return ResourceManager.GetString("SearchColumn", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Select all.
         /// </summary>
-        public static string SelectAll {
-            get {
+        public static string SelectAll
+        {
+            get
+            {
                 return ResourceManager.GetString("SelectAll", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Select All.
         /// </summary>
-        public static string SelectAll2 {
-            get {
+        public static string SelectAll2
+        {
+            get
+            {
                 return ResourceManager.GetString("SelectAll2", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to selected.
         /// </summary>
-        public static string Selected {
-            get {
+        public static string Selected
+        {
+            get
+            {
                 return ResourceManager.GetString("Selected", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Select none.
         /// </summary>
-        public static string SelectNone {
-            get {
+        public static string SelectNone
+        {
+            get
+            {
                 return ResourceManager.GetString("SelectNone", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Right-click on the header to show/hide columns..
         /// </summary>
-        public static string showhidecolumnAd {
-            get {
+        public static string showhidecolumnAd
+        {
+            get
+            {
                 return ResourceManager.GetString("showhidecolumnAd", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Since Last Month.
         /// </summary>
-        public static string SinceLastMonth {
-            get {
+        public static string SinceLastMonth
+        {
+            get
+            {
                 return ResourceManager.GetString("SinceLastMonth", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Specific Dates.
         /// </summary>
-        public static string SpecificDate {
-            get {
+        public static string SpecificDate
+        {
+            get
+            {
                 return ResourceManager.GetString("SpecificDate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
-        public static string Status {
-            get {
+        public static string Status
+        {
+            get
+            {
                 return ResourceManager.GetString("Status", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All.
-        /// </summary>
-        public static string Status_0 {
-            get {
-                return ResourceManager.GetString("Status_0", resourceCulture);
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
-        public static string Status_1 {
-            get {
-                return ResourceManager.GetString("Status_1", resourceCulture);
+        public static string Open
+        {
+            get
+            {
+                return ResourceManager.GetString("Open", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Suspended.
         /// </summary>
-        public static string Status_2 {
-            get {
-                return ResourceManager.GetString("Status_2", resourceCulture);
+        public static string Suspended
+        {
+            get
+            {
+                return ResourceManager.GetString("Suspended", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Closed.
         /// </summary>
-        public static string Status_3 {
-            get {
-                return ResourceManager.GetString("Status_3", resourceCulture);
+        public static string Closed
+        {
+            get
+            {
+                return ResourceManager.GetString("Closed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
-        public static string Status_4 {
-            get {
-                return ResourceManager.GetString("Status_4", resourceCulture);
+        public static string Disabled
+        {
+            get
+            {
+                return ResourceManager.GetString("Disabled", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Step.
         /// </summary>
-        public static string Step {
-            get {
+        public static string Step
+        {
+            get
+            {
                 return ResourceManager.GetString("Step", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
-        public static string Submit {
-            get {
+        public static string Submit
+        {
+            get
+            {
                 return ResourceManager.GetString("Submit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sun.
         /// </summary>
-        public static string Sun {
-            get {
+        public static string Sun
+        {
+            get
+            {
                 return ResourceManager.GetString("Sun", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sunday.
         /// </summary>
-        public static string Sunday {
-            get {
+        public static string Sunday
+        {
+            get
+            {
                 return ResourceManager.GetString("Sunday", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Super.
         /// </summary>
-        public static string Super {
-            get {
+        public static string Super
+        {
+            get
+            {
                 return ResourceManager.GetString("Super", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This Month.
         /// </summary>
-        public static string ThisMonth {
-            get {
+        public static string ThisMonth
+        {
+            get
+            {
                 return ResourceManager.GetString("ThisMonth", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This Week.
         /// </summary>
-        public static string ThisWeek {
-            get {
+        public static string ThisWeek
+        {
+            get
+            {
                 return ResourceManager.GetString("ThisWeek", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Thu.
         /// </summary>
-        public static string Thurs {
-            get {
+        public static string Thurs
+        {
+            get
+            {
                 return ResourceManager.GetString("Thurs", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Thursday.
         /// </summary>
-        public static string Thursday {
-            get {
+        public static string Thursday
+        {
+            get
+            {
                 return ResourceManager.GetString("Thursday", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to To.
         /// </summary>
-        public static string To {
-            get {
+        public static string To
+        {
+            get
+            {
                 return ResourceManager.GetString("To", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Today.
         /// </summary>
-        public static string Today {
-            get {
+        public static string Today
+        {
+            get
+            {
                 return ResourceManager.GetString("Today", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer all.
         /// </summary>
-        public static string Transfer_all {
-            get {
+        public static string Transfer_all
+        {
+            get
+            {
                 return ResourceManager.GetString("Transfer_all", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transferable Amount.
         /// </summary>
-        public static string TransferableAmount {
-            get {
+        public static string TransferableAmount
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferableAmount", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer All.
         /// </summary>
-        public static string TransferAll {
-            get {
+        public static string TransferAll
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferAll", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The Transfer All &amp; Clear Credit actions are unavailable because of the following reason(s):.
         /// </summary>
-        public static string TransferAll_ClearCredit_Errors {
-            get {
+        public static string TransferAll_ClearCredit_Errors
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferAll_ClearCredit_Errors", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer All &amp; Clear Credit.
         /// </summary>
-        public static string TransferAllAndClearCredit {
-            get {
+        public static string TransferAllAndClearCredit
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferAllAndClearCredit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The Transfer All and Clear Credit still follow the current rules, but they will be applied for all listed levels..
         /// </summary>
-        public static string TransferAllAndClearCreditNote {
-            get {
+        public static string TransferAllAndClearCreditNote
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferAllAndClearCreditNote", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to transfer all?.
         /// </summary>
-        public static string TransferAllConfirm {
-            get {
+        public static string TransferAllConfirm
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferAllConfirm", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer all successfully..
         /// </summary>
-        public static string TransferAllSuccess {
-            get {
+        public static string TransferAllSuccess
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferAllSuccess", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer all unsuccessfully. Please try again..
         /// </summary>
-        public static string TransferAllUnsuccessfully {
-            get {
+        public static string TransferAllUnsuccessfully
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferAllUnsuccessfully", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer Amount.
         /// </summary>
-        public static string TransferAmount {
-            get {
+        public static string TransferAmount
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferAmount", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer amount is.
         /// </summary>
-        public static string TransferAmountIs {
-            get {
+        public static string TransferAmountIs
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferAmountIs", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer.
         /// </summary>
-        public static string TransferButton {
-            get {
+        public static string TransferButton
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferButton", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transferred Amount.
         /// </summary>
-        public static string TransferredAmount {
-            get {
+        public static string TransferredAmount
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferredAmount", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0} to your account.
         /// </summary>
-        public static string TransferStep_Master_Agent {
-            get {
+        public static string TransferStep_Master_Agent
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferStep_Master_Agent", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Member to {0}.
         /// </summary>
-        public static string TransferStep_Master_Member {
-            get {
+        public static string TransferStep_Master_Member
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferStep_Master_Member", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Agent to {0}.
         /// </summary>
-        public static string TransferStep_Super_Agent {
-            get {
+        public static string TransferStep_Super_Agent
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferStep_Super_Agent", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to {0} to your account.
         /// </summary>
-        public static string TransferStep_Super_Master {
-            get {
+        public static string TransferStep_Super_Master
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferStep_Super_Master", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Member to Agent.
         /// </summary>
-        public static string TransferStep_Super_Member {
-            get {
+        public static string TransferStep_Super_Member
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferStep_Super_Member", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer successfully.
         /// </summary>
-        public static string TransferSuccessfully {
-            get {
+        public static string TransferSuccessfully
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferSuccessfully", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer To Downline History.
         /// </summary>
-        public static string TransferToDownlineHistory {
-            get {
+        public static string TransferToDownlineHistory
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferToDownlineHistory", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transfer Type.
         /// </summary>
-        public static string TransferType {
-            get {
+        public static string TransferType
+        {
+            get
+            {
                 return ResourceManager.GetString("TransferType", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tue.
         /// </summary>
-        public static string Tue {
-            get {
+        public static string Tue
+        {
+            get
+            {
                 return ResourceManager.GetString("Tue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tuesday.
         /// </summary>
-        public static string Tuesday {
-            get {
+        public static string Tuesday
+        {
+            get
+            {
                 return ResourceManager.GetString("Tuesday", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Update.
         /// </summary>
-        public static string Update {
-            get {
+        public static string Update
+        {
+            get
+            {
                 return ResourceManager.GetString("Update", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Used Credit.
         /// </summary>
-        public static string UsedCredit {
-            get {
+        public static string UsedCredit
+        {
+            get
+            {
                 return ResourceManager.GetString("UsedCredit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
-        public static string Username {
-            get {
+        public static string Username
+        {
+            get
+            {
                 return ResourceManager.GetString("Username", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Username or First/Last Name.
         /// </summary>
-        public static string UsernameOrFirstLastName {
-            get {
+        public static string UsernameOrFirstLastName
+        {
+            get
+            {
                 return ResourceManager.GetString("UsernameOrFirstLastName", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Username or First/Last Name.
         /// </summary>
-        public static string UsernamePlaceHolder {
-            get {
+        public static string UsernamePlaceHolder
+        {
+            get
+            {
                 return ResourceManager.GetString("UsernamePlaceHolder", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Waiting.
         /// </summary>
-        public static string Waiting {
-            get {
+        public static string Waiting
+        {
+            get
+            {
                 return ResourceManager.GetString("Waiting", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wed.
         /// </summary>
-        public static string Wed {
-            get {
+        public static string Wed
+        {
+            get
+            {
                 return ResourceManager.GetString("Wed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wednesday.
         /// </summary>
-        public static string Wednesday {
-            get {
+        public static string Wednesday
+        {
+            get
+            {
                 return ResourceManager.GetString("Wednesday", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Withdrawal.
         /// </summary>
-        public static string Withdrawal {
-            get {
+        public static string Withdrawal
+        {
+            get
+            {
                 return ResourceManager.GetString("Withdrawal", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yesterday.
         /// </summary>
-        public static string Yesterday {
-            get {
+        public static string Yesterday
+        {
+            get
+            {
                 return ResourceManager.GetString("Yesterday", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yesterday Balance.
         /// </summary>
-        public static string YesterdayBalance {
-            get {
+        public static string YesterdayBalance
+        {
+            get
+            {
                 return ResourceManager.GetString("YesterdayBalance", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yesterday Cash Balance.
         /// </summary>
-        public static string YesterdayCashBalance {
-            get {
+        public static string YesterdayCashBalance
+        {
+            get
+            {
                 return ResourceManager.GetString("YesterdayCashBalance", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string Enabled
+        {
+            get
+            {
+                return ResourceManager.GetString("Enabled", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Non-Entered.
+        /// </summary>
+        public static string NonEntered
+        {
+            get
+            {
+                return ResourceManager.GetString("NonEntered", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Entered.
+        /// </summary>
+        public static string Entered
+        {
+            get
+            {
+                return ResourceManager.GetString("Entered", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 3rd Party Pending Transfer.
+        /// </summary>
+        public static string PendingTransfer3rd
+        {
+            get
+            {
+                return ResourceManager.GetString("PendingTransfer3rd", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Total
+        {
+            get
+            {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
     }

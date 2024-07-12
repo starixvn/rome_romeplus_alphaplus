@@ -1,18 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
+using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.MultipleTransfer;
+
+namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers;
+
+public class MultipleTransferController(IMediator mediator) : SiteBaseController(mediator)
 {
-    using Microsoft.AspNetCore.Mvc;
-    using MediatR;
-    using Requests.MultipleTransfer;
-
-    public class MultipleTransferController : SiteBaseController
-    {
-        public MultipleTransferController(IMediator mediator)
-            : base(mediator)
-        {
-        }
-
-        [HttpGet]
-        public async Task<ActionResult> CustomerList(CustomerListQuery message)
-            => View(await mediator.Send(message));
-    }
+    public Task<IActionResult> Index(TransferListQuery message) => View(message);
 }

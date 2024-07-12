@@ -1,46 +1,38 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using AlphaPlus.Core;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels;
+
+namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers;
+
+public abstract class SiteBaseController(IMediator mediator) : BaseController
 {
-    using Microsoft.AspNetCore.Mvc;
-    using MediatR;
-    using Requests;
-    using ViewModels;
-    using AlphaPlus.Core;
+    protected readonly IMediator mediator = mediator;
 
-    public abstract class SiteBaseController : BaseController
+    protected const string InvalidPageViewPath = "~/Features/Transfer/Views/Shared/InvalidPage.cshtml";
+    protected const string InvalidExcelFileName = "InvalidExcelFile";
+
+    protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message)
     {
-        protected readonly IMediator mediator;
-
-        protected const string InvalidPageViewPath = "~/Features/Transfer/Views/Shared/InvalidPage.cshtml";
-        protected const string InvalidExcelFileName = "InvalidExcelFile";
-
-        protected SiteBaseController(IMediator mediator)
+        if (message is TransferBaseQuery transferMessage && !transferMessage.IsValid())
         {
-            this.mediator = mediator;
+            return View(InvalidPageViewPath);
         }
 
-        protected async Task<ActionResult> View<TResponse>(IRequest<TResponse> message)
-        {
-            var query = message as TransferBaseQuery;
-            if (query == null || !query.IsValid())
-            {
-                return View(InvalidPageViewPath);
-            }
-
-            return View( await mediator.Send(message));
-        }
-
-        protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
-        {
-            var query = message as TransferBaseQuery;
-            if (query == null || !query.IsValid())
-            {
-                return GetExcelContent(new ExcelFileViewModel(InvalidExcelFileName, new byte[] { }));
-            }
-
-            return GetExcelContent(await mediator.Send(message));
-        }
-
-        private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
-            => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
+        return View(await mediator.Send(message));
     }
+
+    protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
+    {
+        if (message is TransferBaseQuery transferMessage && !transferMessage.IsValid())
+        {
+            return GetExcelContent(new ExcelFileViewModel(InvalidExcelFileName, []));
+        }
+
+        return GetExcelContent(await mediator.Send(message));
+    }
+
+    private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
+        => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
 }

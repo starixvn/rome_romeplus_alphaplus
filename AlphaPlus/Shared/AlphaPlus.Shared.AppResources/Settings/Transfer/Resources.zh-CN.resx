@@ -225,19 +225,16 @@
   <data name="AllYesterdayBalance" xml:space="preserve">
     <value>所有昨天余额</value>
   </data>
-  <data name="Status_0" xml:space="preserve">
-    <value>全部</value>
-  </data>
-  <data name="Status_1" xml:space="preserve">
+  <data name="Open" xml:space="preserve">
     <value>开启</value>
   </data>
-  <data name="Status_2" xml:space="preserve">
+  <data name="Suspended" xml:space="preserve">
     <value>暫停</value>
   </data>
-  <data name="Status_3" xml:space="preserve">
+  <data name="Closed" xml:space="preserve">
     <value>关闭</value>
   </data>
-  <data name="Status_4" xml:space="preserve">
+  <data name="Disabled" xml:space="preserve">
     <value>禁用</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
@@ -650,5 +647,20 @@
   </data>
   <data name="AutoTransfer_Error_102_Multiple" xml:space="preserve">
     <value>这些账号不属于您的下线：</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>开启</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>未完成</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>第三方待定转账</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>总和</value>
   </data>
 </root>

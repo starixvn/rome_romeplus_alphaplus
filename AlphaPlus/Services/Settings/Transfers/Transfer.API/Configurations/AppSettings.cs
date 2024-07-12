@@ -57,5 +57,11 @@
         public static bool EnableTransferLogInfo => GetConfigValue("EnableTransferLogInfo") == "1";
 
         public static string TransferLogCategory => GetConfigValue("TransferLogCategory");
+
+        public static HashSet<string> OfferAutoTransferCurrencies { get; } = new HashSet<string>(
+            (GetConfigValue("OfferAutoTransfer.Currencies") ?? string.Empty)
+            .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(c => c.Trim())
+        );
     }
 }

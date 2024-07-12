@@ -15,11 +15,17 @@
         Task<bool> IsAllDayBalanceTransferAsync(int custId);
 
         bool IsEnableAutoTransfer(
-             int custId,
-             string currency,
-             bool isSubAcc,
-             PageAccess subPageAccess,
-             string offerCurrencies);
+            int custId,
+            string currency,
+            bool isSubAcc,
+            PageAccess subPageAccess,
+            HashSet<string> offerCurrencies);
+
+        Task<bool> IsEnableAutoTransfer(
+            int custId,
+            string currency,
+            PageAccess subPageAccess,
+            HashSet<string> offerCurrencies);
     }
 
     public class TransferServiceImpl : TransferService
@@ -50,25 +56,33 @@
             string currency,
             bool isSubAcc,
             PageAccess subPageAccess,
-            string offerCurrencies)
+            HashSet<string> offerCurrencies)
         {
             if (isSubAcc && !subPageAccess.Transfer)
             {
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(offerCurrencies))
+            return offerCurrencies.Contains("*") || offerCurrencies.Contains(currency);
+        }
+
+        public async Task<bool> IsEnableAutoTransfer(
+            int custId,
+            string currency,
+            PageAccess subPageAccess,
+            HashSet<string> offerCurrencies)
+        {
+            if (!subPageAccess.Transfer)
             {
                 return false;
             }
 
-            if (offerCurrencies == "*")
+            if (offerCurrencies.Contains("*") || offerCurrencies.Contains(currency))
             {
-                return true;
+                return !await IsAllDayBalanceTransferAsync(custId);
             }
 
-            return offerCurrencies.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
-                .Any(c => string.Equals(currency, c.Trim(), StringComparison.OrdinalIgnoreCase));
+            return false;
         }
     }
 }

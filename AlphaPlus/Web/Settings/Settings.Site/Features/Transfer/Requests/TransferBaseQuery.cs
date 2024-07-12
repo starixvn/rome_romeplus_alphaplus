@@ -6,9 +6,9 @@
 
     public class TransferBaseQuery
     {
-        private readonly IUser viewer;
+        protected readonly IUser viewer;
 
-        protected TransferBaseQuery() : this(null) { }
+        public TransferBaseQuery() : this(null) { }
 
         protected TransferBaseQuery(IUser viewer)
         {

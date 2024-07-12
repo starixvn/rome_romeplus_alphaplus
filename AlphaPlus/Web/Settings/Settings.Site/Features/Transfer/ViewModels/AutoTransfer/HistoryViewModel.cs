@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.Components;
-using AlphaPlus.Settings.Transfer.API.Utils;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer
 {
@@ -14,7 +14,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer
 
         public HistoryViewModel(IUserSession userSession)
         {
-            var minDate = SystemTime.Today.AddDays(-1).AddMonths(reportMonth);
+            var minDate = SystemTime.Yesterday.AddMonths(reportMonth);
             MinDate = minDate;
             DateRangePickerViewModel = new DateRangePickerViewModel(MinDate, MaxDate, FromDate, ToDate, 1);
             DateRangePickerViewModel.RangeOptions = DateRangePickerViewModel.RangeOptions.Where(x => x.Value != "0");
@@ -23,13 +23,13 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer
             SubAccId = userSession.SubAccId;
         }
 
-        public DateTime FromDate => SystemTime.Today.AddDays(-1);
+        public DateTime FromDate => SystemTime.Yesterday;
 
-        public DateTime ToDate => SystemTime.Today.AddDays(-1);
+        public DateTime ToDate => SystemTime.Yesterday;
 
         public static DateTime MinDate { get; set; }
 
-        public static DateTime MaxDate => SystemTime.Today.AddDays(-1);
+        public static DateTime MaxDate => SystemTime.Yesterday;
 
         public DateRangePickerViewModel DateRangePickerViewModel { get; }
 
@@ -38,13 +38,13 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer
         public int SubAccId { get; set; }
 
         public IEnumerable<SelectListItem> Columns
-            => new[] {
-                new SelectListItem { Text = Resources.First_LastName, Value = "3" },
-                new SelectListItem { Text = Resources.TransferAmount, Value = "4" },
-                new SelectListItem { Text = Resources.Status, Value = "5" },
-                new SelectListItem { Text = Resources.Reason, Value = "6" },
-                new SelectListItem { Text = Resources.CompletedTime, Value = "7" },
-            };
+            => [
+                new SelectListItem(Resources.First_LastName, "3" ),
+                new SelectListItem(Resources.TransferAmount, "4" ),
+                new SelectListItem(Resources.Status, "5" ),
+                new SelectListItem(Resources.Reason, "6" ),
+                new SelectListItem(Resources.CompletedTime, "7" )
+            ];
 
         public string UserGuideLink => AppSettings.IsMBCSite
             ? MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=184099")

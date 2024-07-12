@@ -1,0 +1,145 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Utils
+@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = Resources.MultipleTransfer;
+}
+@model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.MultipleTransfer.TransferListViewModel
+@section Styles {
+}
+@section Scripts {
+    @* @StaticResources.RenderScripts("~/Features/Transfer/assets/bundles/multiple-transfer/customer-list") *@
+}
+<div class="page-title">
+    <div class="entered-non-entered">
+        @if (Model.EnteredSportResult.EnteredSportYesterday.NonEntered > 0)
+        {
+            <div class="icon-non-entered">
+                <div class="text">@SystemTime.Yesterday.ToMMDDWithSlash(): @Resources.NonEntered</div>
+                <div class="number">@Model.EnteredSportResult.EnteredSportYesterday.NonEntered</div>
+                <div class="icon-clock"></div>
+            </div>
+        }
+        else
+        {
+            <div class="icon-entered">
+                <div class="text">@SystemTime.Yesterday.ToMMDDWithSlash(): @Resources.Entered</div>
+                <div class="icon-check-circle"></div>
+            </div>
+        }
+        <div class="icon-non-entered">
+            <div class="text">@SystemTime.Today.ToMMDDWithSlash(): @Resources.NonEntered</div>
+            <div class="number">@Model.EnteredSportResult.EnteredSportToday.NonEntered</div>
+            <div class="icon-clock"></div>
+        </div>
+    </div>
+    <div style="clear: both">
+        @Resources.MultipleTransfer
+        <a href="javascript:getPrint('print');" class="icon-print"></a>
+    </div>
+</div>
+<form class="form-inline filter" role="form" id="form-transfer">
+    <div class="form-group">
+        <label for="txt-username">@Resources.Username</label>
+        <input type="text" id="txt-username" placeholder=" @Resources.UsernamePlaceHolder" autocomplete="off"
+            value="@Model.Username" />
+    </div>
+    <div class="form-group">
+        <label>@Resources.Status</label>
+        <select asp-for="Status" asp-items="Model.StatusOptions"></select>
+    </div>
+    <div class="form-group">
+        <label>@Resources.AutoTransfer</label>
+        <select asp-for="AutoTransfer" asp-items="Model.AutoTransferOptions"></select>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" asp-for="AllYesterdayBalance" />
+        <label asp-for="AllYesterdayBalance">@Resources.AllYesterdayBalance</label>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn-submit">@Resources.Submit</button>
+    </div>
+    <div class="form-group">
+        <span id="icon-information" class="icon-information-outline"></span>
+    </div>
+</form>
+<table class="tblRpt tblRpt-bordered tblRpt-hover width-100per">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th><input type="checkbox" id="chk-all" /></th>
+            <th>@Resources.AutoTransfer</th>
+            <th>@Resources.Username</th>
+            <th>@Resources.YesterdayBalance</th>
+            <th>@Resources.PendingTransfer3rd</th>
+            <th>@Resources.MasterBalance</th>
+            <th>@Resources.YesterdayCashBalance</th>
+            <th>@Resources.MasterCash</th>
+            <th>@Resources.Outstanding</th>
+            <th>@Resources.GivenCredit</th>
+            <th>@Resources.UsedCredit</th>
+            <th>@Resources.FirstName</th>
+            <th>@Resources.LastName</th>
+            <th>@Resources.Username</th>
+        </tr>
+    </thead>
+    @if (Model.ReportData.TotalPages > 0)
+    {
+        <tbody>
+            @foreach (var customer in Model.ReportData.Customers)
+            {
+                <tr>
+                    <td class="text-center">@customer.RowNumber</td>
+                    <td class="text-center"><input type="checkbox" /></td>
+                    <td></td>
+                    <td>@customer.Username</td>
+                    <td class="text-right">@customer.YesterdayBalance</td>
+                    <td class="text-right">@customer.PendingTransfer3rd</td>
+                    <td class="text-right">@customer.Balance</td>
+                    <td class="text-right">@customer.YesterdayCashBalance</td>
+                    <td class="text-right">@customer.CashBalance</td>
+                    <td class="text-right">@customer.Outstanding</td>
+                    <td class="text-right">@customer.GivenCredit</td>
+                    <td class="text-right">@customer.UsedCredit</td>
+                    <td>@System.Net.WebUtility.HtmlEncode(customer.FirstName)</td>
+                    <td>@System.Net.WebUtility.HtmlEncode(customer.LastName)</td>
+                    <td>@customer.Username</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="tbl-footer">
+                <td colspan="4" class="text-right">@Resources.Total</td>
+                <td class="text-right">@Model.ReportData.Total.YesterdayBalance</td>
+                <td class="text-right">@Model.ReportData.Total.PendingTransfer3rd</td>
+                <td class="text-right">@Model.ReportData.Total.Balance</td>
+                <td class="text-right">@Model.ReportData.Total.YesterdayCashBalance</td>
+                <td class="text-right">@Model.ReportData.Total.CashBalance</td>
+                <td class="text-right">@Model.ReportData.Total.Outstanding</td>
+                <td class="text-right">@Model.ReportData.Total.GivenCredit</td>
+                <td class="text-right">@Model.ReportData.Total.UsedCredit</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    }
+    else
+    {
+        <tbody>
+            <tr>
+                <td colspan="15" class="text-center">@Resources.NoInformationIsAvailable</td>
+            </tr>
+        </tbody>
+    }
+
+
+</table>
+@*
+<div class="shadow" id="shadow"></div>
+<div class="output" id="output"></div>
+@Html.Hidden("usernameAutoSuggestionPath", Model.UsernameAutoSuggestionPath)
+@Html.Hidden("TransferInformationPath", Model.TransferInformationPath)
+</div> *@

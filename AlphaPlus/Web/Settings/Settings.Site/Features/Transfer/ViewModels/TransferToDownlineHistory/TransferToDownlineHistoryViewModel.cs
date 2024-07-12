@@ -2,11 +2,11 @@
 {
     using AlphaPlus.Shared.AppResources.Settings.Transfer;
     using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
-    using AlphaPlus.Settings.Transfer.API.Utils;
     using Requests.TransferToDownlineHistory;
     using System;
     using ViewModels.Components;
     using AlphaPlus.Core.Models;
+    using AlphaPlus.Core.Utils;
 
     public class TransferToDownlineHistoryViewModel
     {

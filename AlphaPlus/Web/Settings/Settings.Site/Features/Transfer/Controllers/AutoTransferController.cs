@@ -30,7 +30,7 @@
         }
 
         [HttpGet]
-        public async Task<ActionResult> UpdateSingleAutoTransfer(UpdateQuery message)
+        public async Task<IActionResult> UpdateSingleAutoTransfer(UpdateQuery message)
         {
             if (transferService.IsAllDayBalanceTransfer(userSession.CustId))
             {
@@ -249,7 +249,7 @@
             var userSession = UserSession.Current;
             //var method = filterContext.HttpContext?.Request?.Method;
 
-            var enabled = transferService.IsEnableAutoTransfer(userSession.CustId, userSession.Currency, userSession.IsSubAcc, userSession.SubPageAccess, AppSettings.GetConfigValue("OfferAutoTransfer.Currencies"));
+            var enabled = transferService.IsEnableAutoTransfer(userSession.CustId, userSession.Currency, userSession.IsSubAcc, userSession.SubPageAccess, AppSettings.OfferAutoTransferCurrencies);
 
             if (enabled)
             {

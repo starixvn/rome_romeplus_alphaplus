@@ -1,7 +1,7 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory
 {
     using System;
-    using Utils;
+    using AlphaPlus.Core.Utils;
 
     public class TransferToDownlineHistoryParam
     {

@@ -1,43 +1,110 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Services
-{
-    using Criteria.MultipleTransfer;
-    using Fanex.Data.Repository;
-    using Models.MultipleTransfer;
-    using Params.MultipleTransfer;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Transfer.API.Criteria.MultipleTransfer;
+using AlphaPlus.Settings.Transfer.API.Models.MultipleTransfer;
+using AlphaPlus.Settings.Transfer.API.Params.MultipleTransfer;
+using Fanex.Data.Repository;
 
-    public interface MultipleTransferService
+namespace AlphaPlus.Settings.Transfer.API.Services;
+
+public interface IMultipleTransferService
+{
+    Task<CustomerTransferReport> GetTransferList(GetTransferListParam param);
+}
+
+public class MultipleTransferService(IDynamicRepository repository) : IMultipleTransferService
+{
+    private readonly IDynamicRepository repository = repository;
+
+    public async Task<CustomerTransferReport> GetTransferList(GetTransferListParam param)
     {
-        CustomerListModel GetCustomerList(GetCustomerListParam criteria);
+        var criteria = BuildCriteria(param);
+        var customers = await repository.FetchAsync<CustomerTransfer>(criteria);
+
+        return new CustomerTransferReport(customers, BuildTotal(criteria), criteria.TotalPages);
     }
 
-    public class MultipleTransferServiceImpl : MultipleTransferService
+    private static GetTransferListCriteria BuildCriteria(GetTransferListParam param)
     {
-        private readonly IDynamicRepository repository;
+        var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
 
-        public MultipleTransferServiceImpl(IDynamicRepository repository)
-            => this.repository = repository;
-
-        public CustomerListModel GetCustomerList(GetCustomerListParam param)
+        if (custLevel.IsAgentLevel())
         {
-            var criteria = CreateCriteria(param);
-            var data = repository.Fetch<CustomerInformation>(criteria);
-
-            return new CustomerListModel(data, criteria.TotalPages);
+            return new GetAgentTransferListCriteria(
+                param.CustId,
+                param.DonwlineName,
+                param.Status,
+                param.AllYesterdayBalance,
+                param.AllowTotalBalanceTransfer,
+                param.AutoTransfer,
+                param.PageIndex,
+                param.PageSize);
         }
 
-        private static GetCustomerListCriteria CreateCriteria(GetCustomerListParam param)
+        if (custLevel.IsMasterLevel())
         {
-            if (param.UserLevel.IsAgentLevel())
-            {
-                return new GetAgentTransferListCriteria(param);
-            }
-
-            if (param.UserLevel.IsMasterLevel())
-            {
-                return new GetMasterTransferListCriteria(param);
-            }
-
-            return new GetSuperTransferListCriteria(param);
+            return new GetMasterTransferListCriteria(
+                param.CustId,
+                param.DonwlineName,
+                param.Status,
+                param.AllYesterdayBalance,
+                param.AllowTotalBalanceTransfer,
+                param.AutoTransfer,
+                param.PageIndex,
+                param.PageSize);
         }
+
+        return new GetSuperTransferListCriteria(
+            param.CustId,
+            param.DonwlineName,
+            param.Status,
+            param.AllYesterdayBalance,
+            param.AllowTotalBalanceTransfer,
+            param.AutoTransfer,
+            param.PageIndex,
+            param.PageSize);
+    }
+
+    private static CustomerTransfer BuildTotal(GetTransferListCriteria criteria)
+    {
+        if (criteria is GetAgentTransferListCriteria agentCriteria)
+        {
+            return new CustomerTransfer
+            {
+                YesterdayBalance = agentCriteria.TotalYesterdayBalance,
+                Balance = agentCriteria.TotalBalance,
+                Outstanding = agentCriteria.TotalOutStanding,
+                GivenCredit = agentCriteria.TotalCredit
+            };
+        }
+
+        if (criteria is GetMasterTransferListCriteria masterCriteria)
+        {
+            return new CustomerTransfer
+            {
+                YesterdayBalance = masterCriteria.TotalYesterdayAgentBalance,
+                Balance = masterCriteria.TotalAgentBalance,
+                YesterdayCashBalance = masterCriteria.TotalYesterday_AgentCashBalance,
+                CashBalance = masterCriteria.TotalAgentCashBalance,
+                Outstanding = masterCriteria.TotalOutStanding,
+                GivenCredit = masterCriteria.TotalCredit,
+                UsedCredit = masterCriteria.TotalUsedCredit
+            };
+        }
+
+        if (criteria is GetSuperTransferListCriteria superCriteria)
+        {
+            return new CustomerTransfer
+            {
+                YesterdayBalance = superCriteria.TotalYesterdayMAgentBalance,
+                Balance = superCriteria.TotalMAgentBalance,
+                YesterdayCashBalance = superCriteria.TotalYesterday_MAgentCashBalance,
+                CashBalance = superCriteria.TotalMAgentCashBalance,
+                Outstanding = superCriteria.TotalOutStanding,
+                GivenCredit = superCriteria.TotalCredit,
+                UsedCredit = superCriteria.TotalUsedCredit
+            };
+        }
+
+        return new CustomerTransfer();
     }
 }

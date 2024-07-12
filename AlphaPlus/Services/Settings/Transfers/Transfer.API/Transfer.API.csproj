@@ -4,7 +4,7 @@
     <AssemblyName>AlphaPlus.Settings.Transfer.API</AssemblyName>
     <RootNamespace>AlphaPlus.Settings.Transfer.API</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.2" />
