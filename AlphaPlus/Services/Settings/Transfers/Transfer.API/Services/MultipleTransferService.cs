@@ -70,10 +70,10 @@ public class MultipleTransferService(IDynamicRepository repository) : IMultipleT
         {
             return new CustomerTransfer
             {
-                YesterdayBalance = agentCriteria.TotalYesterdayBalance,
-                Balance = agentCriteria.TotalBalance,
-                Outstanding = agentCriteria.TotalOutStanding,
-                GivenCredit = agentCriteria.TotalCredit
+                YesterdayBalance = agentCriteria.TotalYesterdayBalance ?? 0,
+                Balance = agentCriteria.TotalBalance ?? 0,
+                Outstanding = agentCriteria.TotalOutStanding ?? 0,
+                GivenCredit = agentCriteria.TotalCredit ?? 0
             };
         }
 
@@ -81,13 +81,13 @@ public class MultipleTransferService(IDynamicRepository repository) : IMultipleT
         {
             return new CustomerTransfer
             {
-                YesterdayBalance = masterCriteria.TotalYesterdayAgentBalance,
-                Balance = masterCriteria.TotalAgentBalance,
-                YesterdayCashBalance = masterCriteria.TotalYesterday_AgentCashBalance,
-                CashBalance = masterCriteria.TotalAgentCashBalance,
-                Outstanding = masterCriteria.TotalOutStanding,
-                GivenCredit = masterCriteria.TotalCredit,
-                UsedCredit = masterCriteria.TotalUsedCredit
+                YesterdayBalance = masterCriteria.TotalYesterdayAgentBalance ?? 0,
+                Balance = masterCriteria.TotalAgentBalance ?? 0,
+                YesterdayCashBalance = masterCriteria.TotalYesterday_AgentCashBalance ?? 0,
+                CashBalance = masterCriteria.TotalAgentCashBalance ?? 0,
+                Outstanding = masterCriteria.TotalOutStanding ?? 0,
+                GivenCredit = masterCriteria.TotalCredit ?? 0,
+                UsedCredit = masterCriteria.TotalUsedCredit ?? 0
             };
         }
 
@@ -95,13 +95,13 @@ public class MultipleTransferService(IDynamicRepository repository) : IMultipleT
         {
             return new CustomerTransfer
             {
-                YesterdayBalance = superCriteria.TotalYesterdayMAgentBalance,
-                Balance = superCriteria.TotalMAgentBalance,
-                YesterdayCashBalance = superCriteria.TotalYesterday_MAgentCashBalance,
-                CashBalance = superCriteria.TotalMAgentCashBalance,
-                Outstanding = superCriteria.TotalOutStanding,
-                GivenCredit = superCriteria.TotalCredit,
-                UsedCredit = superCriteria.TotalUsedCredit
+                YesterdayBalance = superCriteria.TotalYesterdayMAgentBalance ?? 0,
+                Balance = superCriteria.TotalMAgentBalance ?? 0,
+                YesterdayCashBalance = superCriteria.TotalYesterday_MAgentCashBalance ?? 0,
+                CashBalance = superCriteria.TotalMAgentCashBalance ?? 0,
+                Outstanding = superCriteria.TotalOutStanding ?? 0,
+                GivenCredit = superCriteria.TotalCredit ?? 0,
+                UsedCredit = superCriteria.TotalUsedCredit ?? 0
             };
         }
 

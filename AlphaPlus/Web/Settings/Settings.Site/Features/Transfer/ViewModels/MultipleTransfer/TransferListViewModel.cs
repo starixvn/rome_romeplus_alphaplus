@@ -3,6 +3,7 @@ using AlphaPlus.Settings.Site.Features.Transfer.Requests.MultipleTransfer;
 using AlphaPlus.Settings.Transfer.API.Models.MultipleTransfer;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
+using AlphaPlus.Settings.Site.Features.Transfer.Constants;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.MultipleTransfer;
 
@@ -10,39 +11,49 @@ public class TransferListViewModel(
     TransferListQuery message,
     EnteredSportResult enteredSportResult,
     CustomerTransferReport reportData,
-    bool allowAllDayBalanceTransfer)
+    bool isAllDayBalanceTransfer,
+    bool isEnableAutoTransfer)
 {
+    public int ViewerId { get; } = message.ViewerId;
+
     public string Username { get; } = message.Username;
 
     public string Status { get; } = message.Status;
 
     public IEnumerable<SelectListItem> StatusOptions { get; } =
     [
-        new SelectListItem(Resources.All, "all"),
-        new SelectListItem(Resources.Open, "open"),
-        new SelectListItem(Resources.Suspended, "suspended"),
-        new SelectListItem(Resources.Closed, "closed"),
-        new SelectListItem(Resources.Disabled, "disabled")
+        new SelectListItem(Resources.All, StatusConstant.All),
+        new SelectListItem(Resources.Open, StatusConstant.Open),
+        new SelectListItem(Resources.Suspended, StatusConstant.Suspended),
+        new SelectListItem(Resources.Closed, StatusConstant.Closed),
+        new SelectListItem(Resources.Disabled, StatusConstant.Disabled)
     ];
 
     public byte AutoTransfer { get; } = message.AutoTransfer;
 
     public IEnumerable<SelectListItem> AutoTransferOptions { get; } =
     [
-        new SelectListItem(Resources.All, "2"),
-        new SelectListItem(Resources.Enabled, "1"),
-        new SelectListItem(Resources.Disabled, "0")
+        new SelectListItem(Resources.All, AutoTransferConstant.All.ToString()),
+        new SelectListItem(Resources.Enabled, AutoTransferConstant.Enabled.ToString()),
+        new SelectListItem(Resources.Disabled, AutoTransferConstant.Disabled.ToString())
     ];
 
     public bool AllYesterdayBalance { get; } = message.AllYesterdayBalance;
 
     public bool AllowTotalBalanceTransfer { get; } = message.AllowTotalBalanceTransfer;
 
-    public bool AllowAllDayBalanceTransfer { get; } = allowAllDayBalanceTransfer;
+    public bool IsAllDayBalanceTransfer { get; } = isAllDayBalanceTransfer;
+
+    public bool IsEnableAutoTransfer { get; } = isEnableAutoTransfer;
 
     public int PageIndex { get; } = message.PageIndex;
 
     public int PageSize { get; } = message.PageSize;
+
+    public IEnumerable<SelectListItem> PageSizes { get; } =
+        new int[] { 10, 50, 100, 500 }
+        .Select(p => new SelectListItem(p.ToString(), p.ToString(), p == message.PageSize))
+        .ToList();
 
     public EnteredSportResult EnteredSportResult { get; } = enteredSportResult;
 
@@ -56,7 +67,7 @@ public class TransferListViewModel(
 
     public bool CanTransferYesterday(CustomerTransfer customer)
     {
-        if (AllowAllDayBalanceTransfer)
+        if (IsAllDayBalanceTransfer)
         {
             return AllowTotalBalanceTransfer && customer.Balance != 0 && customer.YesterdayBalance != 0;
         }
@@ -71,17 +82,11 @@ public class TransferListViewModel(
 
     public string GetYesterdayBalanceColor(CustomerTransfer customer)
     {
-        if (AllowAllDayBalanceTransfer)
+        if (IsAllDayBalanceTransfer)
         {
-            if (AllowTotalBalanceTransfer && (customer.Balance == 0 || customer.YesterdayBalance == 0))
-            {
-                return string.Empty;
-            }
-
-            if (customer.YesterdayBalance < 0)
-            {
-                return "favorite";
-            }
+            return !(AllowTotalBalanceTransfer && customer.Balance == 0) && customer.YesterdayBalance < 0
+                ? "favorite"
+                : string.Empty;
         }
 
         if (AllowTotalBalanceTransfer)
@@ -92,16 +97,11 @@ public class TransferListViewModel(
         return customer.YesterdayBalance < 0 ? "favorite" : "underdog";
     }
 
-    public string GetBalanceColor(CustomerTransfer customer)
-        => customer.Balance < 0 ? "favorite" : string.Empty;
-
     public string GetCashBalanceColor(decimal cashBalance) => cashBalance < 0 ? "favorite" : string.Empty;
 
     public bool ShowYesterdayBalanceLink(CustomerTransfer customer)
-        => !AllowAllDayBalanceTransfer && !AllowTotalBalanceTransfer && customer.YesterdayBalance != 0;
+        => !IsAllDayBalanceTransfer && !AllowTotalBalanceTransfer && customer.YesterdayBalance != 0;
 
     public bool ShowBalanceLink(CustomerTransfer customer)
-        => !AllowAllDayBalanceTransfer && AllowTotalBalanceTransfer && customer.Balance != 0;
-
-    public bool ShowCashBalanceLink() => AllowAllDayBalanceTransfer;
+        => !IsAllDayBalanceTransfer && AllowTotalBalanceTransfer && customer.Balance != 0;
 }

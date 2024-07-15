@@ -2,15 +2,18 @@
 @using AlphaPlus.Core.Utils
 @using AlphaPlus.Core.Extensions
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
+@using AlphaPlus.Settings.Site.Features.Shared.Helpers
+@using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewBag.Title = Resources.MultipleTransfer;
 }
 @model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.MultipleTransfer.TransferListViewModel
 @section Styles {
+    <link rel="stylesheet" href="~/bundles/transfer/multiple-transfer.css" asp-append-version="true" />
 }
 @section Scripts {
-    @* @StaticResources.RenderScripts("~/Features/Transfer/assets/bundles/multiple-transfer/customer-list") *@
+    <script src="~/bundles/transfer/multiple-transfer.js" asp-append-version="true"></script>
 }
 <div class="page-title">
     <div class="entered-non-entered">
@@ -37,14 +40,13 @@
     </div>
     <div style="clear: both">
         @Resources.MultipleTransfer
-        <a href="javascript:getPrint('print');" class="icon-print"></a>
+        <a href="javascript:;" class="icon-print"></a>
     </div>
 </div>
 <form class="form-inline filter" role="form" id="form-transfer">
     <div class="form-group">
         <label for="txt-username">@Resources.Username</label>
-        <input type="text" id="txt-username" placeholder=" @Resources.UsernamePlaceHolder" autocomplete="off"
-            value="@Model.Username" />
+        <input asp-for="Username" placeholder="@Resources.UsernamePlaceHolder" autocomplete="off" />
     </div>
     <div class="form-group">
         <label>@Resources.Status</label>
@@ -55,7 +57,7 @@
         <select asp-for="AutoTransfer" asp-items="Model.AutoTransferOptions"></select>
     </div>
     <div class="form-group">
-        <input type="checkbox" asp-for="AllYesterdayBalance" />
+        <input asp-for="AllYesterdayBalance" />
         <label asp-for="AllYesterdayBalance">@Resources.AllYesterdayBalance</label>
     </div>
     <div class="form-group">
@@ -64,25 +66,50 @@
     <div class="form-group">
         <span id="icon-information" class="icon-information-outline"></span>
     </div>
+    <input type="hidden" name="IsPostBack" value="true" />
+    <input type="hidden" asp-for="PageIndex" />
+    <input type="hidden" asp-for="PageSize" />
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-hover width-100per">
+<div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-submit dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false" id="btn-transfer">@Resources.Transfer <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="javascript:;" id="">@Resources.OnlyThisPage</a></li>
+            <li><a href="javascript:;" id="">@Resources.AllPages</a></li>
+        </ul>
+    </div>
+    <button type="button" class="btn-submit" id="btn-autoTransfer">@Resources.AutoTransfer</button>
+    <partial name="_Paging" />
+    @Resources.PageSize
+    <select class="pagingSize" asp-items="@Model.PageSizes"></select>
+</div>
+<table class="tblRpt tblRpt-bordered tblRpt-hover width-100per hide" id="tbl-transfer">
     <thead>
         <tr>
             <th>#</th>
-            <th><input type="checkbox" id="chk-all" /></th>
-            <th>@Resources.AutoTransfer</th>
+            <th><input type="checkbox" id="checkbox-all" /></th>
+            @if (Model.IsEnableAutoTransfer)
+            {
+                <th>
+                    @Resources.AutoTransfer
+                    <a href="/site-howtouse/Index.aspx?linktomessagesite=184099" target="_blank"
+                        class="user-guide-link pull-right" title="@Resources.AutoTransferGuideline"><span
+                            class="icon icon-book"></span></a>
+                </th>
+            }
             <th>@Resources.Username</th>
             <th>@Resources.YesterdayBalance</th>
-            <th>@Resources.PendingTransfer3rd</th>
+            <th data-colname="pendingtransfer3rd">@Resources.PendingTransfer3rd</th>
             <th>@Resources.MasterBalance</th>
-            <th>@Resources.YesterdayCashBalance</th>
-            <th>@Resources.MasterCash</th>
+            <th data-colname="yesterdaycash">@Resources.YesterdayCashBalance</th>
+            <th data-colname="cash">@Resources.MasterCash</th>
             <th>@Resources.Outstanding</th>
             <th>@Resources.GivenCredit</th>
             <th>@Resources.UsedCredit</th>
-            <th>@Resources.FirstName</th>
-            <th>@Resources.LastName</th>
-            <th>@Resources.Username</th>
+            <th data-colname="fname">@Resources.FirstName</th>
+            <th data-colname="lname">@Resources.LastName</th>
+            <th data-colname="username">@Resources.Username</th>
         </tr>
     </thead>
     @if (Model.ReportData.TotalPages > 0)
@@ -90,39 +117,94 @@
         <tbody>
             @foreach (var customer in Model.ReportData.Customers)
             {
-                <tr>
+                <tr
+                    class="@BackgroundColorHelper.GetClassNameByAccountStatus(customer.Enabled, customer.Closed, customer.ClosedReason, customer.Suspended, customer.Locked)">
                     <td class="text-center">@customer.RowNumber</td>
-                    <td class="text-center"><input type="checkbox" /></td>
-                    <td></td>
+                    <td class="text-center"><input type="checkbox" class="checkbox" data-custid="@customer.CustId" /></td>
+                    @if (Model.IsEnableAutoTransfer)
+                    {
+                        <td>
+                            <div class="box-auto-calendar">
+                                <div class="switch-auto-transfer" data-state="@(customer.IsAllowAutoTransfer ? "on" : "off")"
+                                    data-custid="@customer.CustId" data-custname="@customer.Username">
+                                    <div class="toggle"></div>
+                                </div>
+                                @if (customer.IsAllowAutoTransfer)
+                                {
+                                    <a class="icon-calendar icon-schedule" title="@DayOfWeekHelper.BuildDays(customer.ScheduleWeekDays)"
+                                        asp-action="UpdateSchedule" asp-controller="AutoTransfer" asp-route-custid="@customer.CustId"
+                                        asp-route-custname="@customer.Username" asp-route-schedule="@customer.ScheduleWeekDays"></a>
+                                }
+                            </div>
+                        </td>
+                    }
                     <td>@customer.Username</td>
-                    <td class="text-right">@customer.YesterdayBalance</td>
-                    <td class="text-right">@customer.PendingTransfer3rd</td>
-                    <td class="text-right">@customer.Balance</td>
-                    <td class="text-right">@customer.YesterdayCashBalance</td>
-                    <td class="text-right">@customer.CashBalance</td>
-                    <td class="text-right">@customer.Outstanding</td>
-                    <td class="text-right">@customer.GivenCredit</td>
-                    <td class="text-right">@customer.UsedCredit</td>
-                    <td>@System.Net.WebUtility.HtmlEncode(customer.FirstName)</td>
-                    <td>@System.Net.WebUtility.HtmlEncode(customer.LastName)</td>
-                    <td>@customer.Username</td>
+                    <td class="text-right @Model.GetYesterdayBalanceColor(customer)">
+                        @if (Model.ShowYesterdayBalanceLink(customer))
+                        {
+                            <a class="transfer-link">@customer.YesterdayBalance.FormatNumber2()</a>
+                        }
+                        else
+                        {
+                            @customer.YesterdayBalance.FormatNumber2()
+                        }
+                    </td>
+                    <td class="text-right" data-colname="pendingtransfer3rd">@customer.PendingTransfer3rd.FormatNumber2()
+                    </td>
+                    <td class="text-right @Model.GetCashBalanceColor(customer.Balance)">
+                        @if (Model.ShowBalanceLink(customer))
+                        {
+                            <a class="transfer-link">@customer.Balance.FormatNumber2()</a>
+                        }
+                        else
+                        {
+                            @customer.Balance.FormatNumber2()
+                        }
+                    </td>
+                    <td class="text-right @Model.GetCashBalanceColor(customer.YesterdayCashBalance)"
+                        data-colname="yesterdaycash">
+                        @customer.YesterdayCashBalance.FormatNumber2()</td>
+                    <td class="text-right @Model.GetCashBalanceColor(customer.CashBalance)" data-colname="cash">
+                        @if (Model.IsAllDayBalanceTransfer)
+                        {
+                            <a class="transfer-link" asp-action="CashBalance" asp-controller="CashBalanceTransfer"
+                                asp-route-custid="@customer.CustId">@customer.CashBalance.FormatNumber2()</a>
+                        }
+                        else
+                        {
+                            @customer.CashBalance.FormatNumber2()
+                        }
+                    </td>
+                    <td class="text-right">@customer.Outstanding.FormatNumber2()</td>
+                    <td class="text-right">@customer.GivenCredit.FormatNumber2()</td>
+                    <td class="text-right">@customer.UsedCredit.FormatNumber2()</td>
+                    <td data-colname="fname">@System.Net.WebUtility.HtmlEncode(customer.FirstName)</td>
+                    <td data-colname="lname">@System.Net.WebUtility.HtmlEncode(customer.LastName)</td>
+                    <td data-colname="username">@customer.Username</td>
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr class="tbl-footer">
-                <td colspan="4" class="text-right">@Resources.Total</td>
-                <td class="text-right">@Model.ReportData.Total.YesterdayBalance</td>
-                <td class="text-right">@Model.ReportData.Total.PendingTransfer3rd</td>
-                <td class="text-right">@Model.ReportData.Total.Balance</td>
-                <td class="text-right">@Model.ReportData.Total.YesterdayCashBalance</td>
-                <td class="text-right">@Model.ReportData.Total.CashBalance</td>
-                <td class="text-right">@Model.ReportData.Total.Outstanding</td>
-                <td class="text-right">@Model.ReportData.Total.GivenCredit</td>
-                <td class="text-right">@Model.ReportData.Total.UsedCredit</td>
+                <td colspan="2" class="text-center">@Resources.Total</td>
+                @if (Model.IsEnableAutoTransfer)
+                {
+                    <td></td>
+                }
                 <td></td>
-                <td></td>
-                <td></td>
+                <td class="text-right">@Model.ReportData.Total.YesterdayBalance.FormatNumber2()</td>
+                <td class="text-right" data-colname="pendingtransfer3rd">
+                    @Model.ReportData.Total.PendingTransfer3rd.FormatNumber2()</td>
+                <td class="text-right">@Model.ReportData.Total.Balance.FormatNumber2()</td>
+                <td class="text-right" data-colname="yesterdaycash">
+                    @Model.ReportData.Total.YesterdayCashBalance.FormatNumber2()</td>
+                <td class="text-right" data-colname="cash">@Model.ReportData.Total.CashBalance.FormatNumber2()</td>
+                <td class="text-right">@Model.ReportData.Total.Outstanding.FormatNumber2()</td>
+                <td class="text-right">@Model.ReportData.Total.GivenCredit.FormatNumber2()</td>
+                <td class="text-right">@Model.ReportData.Total.UsedCredit.FormatNumber2()</td>
+                <td data-colname="fname"></td>
+                <td data-colname="lname"></td>
+                <td data-colname="username"></td>
             </tr>
         </tfoot>
     }
@@ -134,12 +216,9 @@
             </tr>
         </tbody>
     }
-
-
 </table>
-@*
-<div class="shadow" id="shadow"></div>
-<div class="output" id="output"></div>
-@Html.Hidden("usernameAutoSuggestionPath", Model.UsernameAutoSuggestionPath)
-@Html.Hidden("TransferInformationPath", Model.TransferInformationPath)
-</div> *@
+<partial name="_Paging" />
+<partial name="~/Features/Transfer/Views/Shared/_VisibleColumns.cshtml" />
+<input type="hidden" asp-for="ViewerId" />
+<input type="hidden" id="hidden-usernameSuggestionUrl" value="@MicroSites.SettingUrl("~/UserNameSuggestion")" />
+<a class="hide" id="hidden-transferHintUrl" asp-action="Hint" asp-controller="CashBalanceTransfer"></a>

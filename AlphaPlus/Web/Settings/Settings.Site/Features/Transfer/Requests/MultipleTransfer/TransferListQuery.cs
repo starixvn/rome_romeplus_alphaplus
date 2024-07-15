@@ -1,5 +1,5 @@
-﻿using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.MultipleTransfer;
-using AlphaPlus.Settings.Transfer.API.Constants;
+﻿using AlphaPlus.Settings.Site.Features.Transfer.Constants;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.MultipleTransfer;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.MultipleTransfer;
@@ -7,19 +7,28 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.MultipleTransfer;
 public class TransferListQuery : TransferBaseQuery, IRequest<TransferListViewModel>
 {
     public TransferListQuery() : base()
-        => AllowTotalBalanceTransfer = viewer.AllowTotalBalanceTransfer;
+    {
+        AllowTotalBalanceTransfer = viewer.AllowTotalBalanceTransfer;
+        Currency = viewer.Currency;
+    }
+
+    public bool? ADBT { get; set; }
+
+    public bool? IsPostBack { get; set; }
 
     public string Username { get; set; }
 
-    public string Status { get; set; } = "open";
+    public string Status { get; set; } = StatusConstant.Open;
 
-    public byte AutoTransfer { get; set; } = 2;
+    public byte AutoTransfer { get; set; } = AutoTransferConstant.All;
 
     public bool AllYesterdayBalance { get; set; }
 
-    public int PageIndex { get; set; } = PagerConstant.DefaultPageIndex;
+    public int PageIndex { get; set; } = 1;
 
-    public int PageSize { get; set; } = PagerConstant.DefaultPageSize;
+    public int PageSize { get; set; } = 500;
 
     public bool AllowTotalBalanceTransfer { get; }
+
+    public string Currency { get; }
 }

@@ -1,0 +1,71 @@
+﻿@import '_mixins.scss';
+
+@mixin effect-normal() {
+    @include border-radius(1px);
+    -webkit-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+$border-color-dark: #cecece;
+$dropdown-bg: #fff;
+$dropdown-border: #dfdfdf;
+$dropdown-bg-hover: #ddd;
+
+.columns-contextmenu {
+    input[type='checkbox'] {
+        display: inline-block;
+    }
+
+    label {
+        color: #333;
+        font-weight: 500;
+        margin: 0;
+        padding: 0 8px;
+    }
+
+    .hint {
+        background-color: #fff;
+        border: 1px solid $border-color-dark;
+        padding: 8px 15px;
+        position: absolute;
+        left: 200px;
+        top: 0;
+        @include effect-normal;
+
+        p {
+            margin-bottom: 5px;
+        }
+
+        label {
+            cursor: pointer;
+            padding: 0;
+        }
+    }
+
+    .column-dropdown {
+        background-color: $dropdown-bg;
+        border: 1px solid $dropdown-border;
+        position: absolute;
+        left: 55px;
+        top: 45px;
+        z-index: 10;
+        @include effect-normal;
+
+        li {
+            padding: 7px 20px;
+
+            &:hover {
+                background-color: $dropdown-bg-hover;
+            }
+
+            label {
+                white-space: nowrap;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

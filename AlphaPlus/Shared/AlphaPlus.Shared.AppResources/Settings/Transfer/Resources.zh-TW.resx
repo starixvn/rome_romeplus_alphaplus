@@ -519,7 +519,7 @@
   <data name="Reason" xml:space="preserve">
     <value>原因</value>
   </data>
-  <data name="pendingTransfer3rd" xml:space="preserve">
+  <data name="PendingTransfer3rd" xml:space="preserve">
     <value>第三方待定轉賬</value>
   </data>
   <data name="AutoTransfer_MultipleAffectNextConditionWarning" xml:space="preserve">
@@ -657,10 +657,16 @@
   <data name="Entered" xml:space="preserve">
     <value>已完成</value>
   </data>
-  <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>第三方待定轉賬</value>
-  </data>
   <data name="Total" xml:space="preserve">
     <value>總和</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>轉帳</value>
+  </data>
+  <data name="OnlyThisPage" xml:space="preserve">
+    <value>僅此頁面</value>
+  </data>
+  <data name="AllPages" xml:space="preserve">
+    <value>全部頁面</value>
   </data>
 </root>

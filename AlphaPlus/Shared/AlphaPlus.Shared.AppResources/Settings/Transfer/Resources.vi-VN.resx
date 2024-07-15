@@ -471,7 +471,7 @@
   <data name="Search" xml:space="preserve">
     <value>Tìm kiếm</value>
   </data>
-  <data name="pendingTransfer3rd" xml:space="preserve">
+  <data name="PendingTransfer3rd" xml:space="preserve">
     <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
   </data>
   <data name="Pending" xml:space="preserve">
@@ -582,10 +582,16 @@
   <data name="Entered" xml:space="preserve">
     <value>Kết thúc</value>
   </data>
-  <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
-  </data>
   <data name="Total" xml:space="preserve">
     <value>Tổng cộng</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Chuyển khoản</value>
+  </data>
+  <data name="OnlyThisPage" xml:space="preserve">
+    <value>Chỉ trang này</value>
+  </data>
+  <data name="AllPages" xml:space="preserve">
+    <value>Tất cả các trang</value>
   </data>
 </root>

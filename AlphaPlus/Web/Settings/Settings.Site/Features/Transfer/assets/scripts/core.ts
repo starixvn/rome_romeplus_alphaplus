@@ -1,7 +1,4 @@
-﻿"use strict";
-
-class AlphaTransfer {
-    $: JQueryStatic;
+﻿class AlphaTransfer {
     store: any;
 
     numberDisplayedSelectedOnFilter = 1;
@@ -10,20 +7,16 @@ class AlphaTransfer {
         pageIndex: 1
     };
 
-    constructor($: JQueryStatic, store: any) {
-        this.$ = $;
+    constructor(store: any) {
         this.store = store;
     }
 
     localStorage = {
-        get: (key: string) => {
-            return this.store.enabled ? this.store.get(key) : this.$.cookie(key);
-        },
-
-        set: (key: string, value: any) => {
-            this.store.enabled ? this.store.set(key, value) : this.$.cookie(key, value, this.localStorage.getCookieExpireOptions());
-        },
-
+        get: (key: string) => (this.store.enabled ? this.store.get(key) : $.cookie(key)),
+        set: (key: string, value: any) =>
+            this.store.enabled
+                ? this.store.set(key, value)
+                : $.cookie(key, value, this.localStorage.getCookieExpireOptions()),
         getCookieExpireOptions: () => {
             var cookieExpire: any = { expires: 365, path: window.location.pathname };
 
@@ -34,12 +27,13 @@ class AlphaTransfer {
             return cookieExpire;
         }
     };
+
     isIe = () => {
         var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE ");
+        var msie = ua.indexOf('MSIE ');
 
         return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
     };
 }
 
-const alphaTransfer = new AlphaTransfer($, store);
+const alphaTransfer = new AlphaTransfer(store);

@@ -19,15 +19,15 @@ public class GetAgentTransferListCriteria(
 {
     public int CustId { get; } = custId;
 
-    public decimal TotalOutStanding { get; set; }
+    public decimal? TotalOutStanding { get; set; }
 
-    public decimal TotalCredit { get; set; }
+    public decimal? TotalCredit { get; set; }
 
-    public decimal TotalBalance { get; set; }
+    public decimal? TotalBalance { get; set; }
 
-    public decimal TotalYesterdayBalance { get; set; }
+    public decimal? TotalYesterdayBalance { get; set; }
 
-    public decimal TotalPendingTransfer3rd { get; set; }
+    public decimal? TotalPendingTransfer3rd { get; set; }
 
     public override string GetSettingKey() => "Age_Transfer_SelList_Ag";
 

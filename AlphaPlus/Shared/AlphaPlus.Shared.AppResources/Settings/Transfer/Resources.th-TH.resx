@@ -519,7 +519,7 @@
   <data name="Reason" xml:space="preserve">
     <value>เหตุผล</value>
   </data>
-  <data name="pendingTransfer3rd" xml:space="preserve">
+  <data name="PendingTransfer3rd" xml:space="preserve">
     <value>บุคคลที่สามรอการถ่ายโอน</value>
   </data>
   <data name="AutoTransfer_MultipleAffectNextConditionWarning" xml:space="preserve">
@@ -657,10 +657,16 @@
   <data name="Entered" xml:space="preserve">
     <value>เข้า</value>
   </data>
-  <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>บุคคลที่สามรอการถ่ายโอน</value>
-  </data>
   <data name="Total" xml:space="preserve">
     <value>ยอดรวม</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>ตั้งค่าใหม่</value>
+  </data>
+  <data name="OnlyThisPage" xml:space="preserve">
+    <value>เฉพาะหน้านี้</value>
+  </data>
+  <data name="AllPages" xml:space="preserve">
+    <value>ทุกหน้า</value>
   </data>
 </root>

@@ -1,7 +1,6 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Models
+﻿namespace AlphaPlus.Settings.Transfer.API.Models;
+
+public class TransferModel
 {
-    public class TransferModel
-    {
-        public bool IsAllDayBalTransfer { get; set; }
-    }
+    public bool IsAllDayBalTransfer { get; init; }
 }

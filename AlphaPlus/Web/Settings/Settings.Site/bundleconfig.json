@@ -599,10 +599,21 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/multiple-transfer/customer-list.js",
+    "outputFileName": "wwwroot/bundles/transfer/multiple-transfer.css",
     "inputFiles": [
-      "Features/Transfer/assets/scripts/components/single-selection-dropdown.js",
-      "Features/Transfer/assets/scripts/multiple-transfer/customer-list.js"
+      "Features/Transfer/assets/styles/visible-columns-contextmenu.css",
+      "Features/Transfer/assets/styles/multiple-transfer.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/transfer/multiple-transfer.js",
+    "inputFiles": [
+      "Features/Transfer/assets/scripts/core.js",
+      "Features/Transfer/assets/scripts/components/username-suggestion.js",
+      "Features/Transfer/assets/scripts/components/dropdown-transfer.js",
+      "Features/Transfer/assets/scripts/components/visible-columns-contextmenu.js",
+      "Features/Transfer/assets/scripts/multiple-transfer/transfer-list-paging.js",
+      "Features/Transfer/assets/scripts/multiple-transfer/transfer-list.js"
     ]
   },
   {

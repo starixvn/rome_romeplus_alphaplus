@@ -19,21 +19,21 @@ public class GetMasterTransferListCriteria(
 {
     public int MasterId { get; } = custId;
 
-    public decimal TotalOutStanding { get; set; }
+    public decimal? TotalOutStanding { get; set; }
 
-    public decimal TotalCredit { get; set; }
+    public decimal? TotalCredit { get; set; }
 
-    public decimal TotalUsedCredit { get; set; }
+    public decimal? TotalUsedCredit { get; set; }
 
-    public decimal TotalAgentBalance { get; set; }
+    public decimal? TotalAgentBalance { get; set; }
 
-    public decimal TotalYesterdayAgentBalance { get; set; }
+    public decimal? TotalYesterdayAgentBalance { get; set; }
 
-    public decimal TotalAgentCashBalance { get; set; }
+    public decimal? TotalAgentCashBalance { get; set; }
 
-    public decimal TotalYesterday_AgentCashBalance { get; set; }
+    public decimal? TotalYesterday_AgentCashBalance { get; set; }
 
-    public decimal TotalPendingTransfer3rd { get; set; }
+    public decimal? TotalPendingTransfer3rd { get; set; }
 
     public override string GetSettingKey() => "Age_Transfer_SelList_MAg";
 

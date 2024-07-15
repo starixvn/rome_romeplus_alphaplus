@@ -7,7 +7,7 @@
     using Requests.TransferToDownlineHistory;
     using AlphaPlus.Core.Models;
 
-    public class TransferToDownlineHistoryController : SiteBaseController
+    public class TransferToDownlineHistoryController : TransferBaseController
     {
         private const string InvalidTransferStatusViewPath = "~/Features/Transfer/Views/Shared/InvalidTransferStatus.cshtml";
         private readonly TransferService transferService;

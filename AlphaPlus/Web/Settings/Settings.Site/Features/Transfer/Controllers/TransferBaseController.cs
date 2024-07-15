@@ -3,10 +3,11 @@ using MediatR;
 using AlphaPlus.Core;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests;
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers;
 
-public abstract class SiteBaseController(IMediator mediator) : BaseController
+public abstract class TransferBaseController(IMediator mediator) : BaseController
 {
     protected readonly IMediator mediator = mediator;
 

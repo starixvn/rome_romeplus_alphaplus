@@ -9,6 +9,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -18,6 +19,7 @@
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.RenderStylesWithDarkMode("~/Features/Transfer/assets/bundles/cash-balance-transfer")
 </head>
+
 <body>
     @if (Model == null)
     {
@@ -56,7 +58,7 @@
                     <div class="col-xs-7 col-sm-9 col-lg-10">@HtmlHelpers.FormatNumber(Model.Outstanding)</div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-5 col-sm-3 col-lg-2">@Resources.pendingTransfer3rd</div>
+                    <div class="col-xs-5 col-sm-3 col-lg-2">@Resources.PendingTransfer3rd</div>
                     <div class="col-xs-7 col-sm-9 col-lg-10">@HtmlHelpers.FormatNumber(Model.PendingTransfer3rd)</div>
                 </div>
                 <div class="row">
@@ -66,13 +68,21 @@
             </div>
             <div class="section">
                 <div class="row">
-                    @using (Html.BeginForm("CashBalance", "CashBalanceTransfer", FormMethod.Post, new { @class = "form-inline col-xs-12", role = "form", id = "form-transfer" }))
+                    @using (Html.BeginForm("CashBalance", "CashBalanceTransfer", FormMethod.Post, new
+                    {
+                        @class =
+                   "form-inline col-xs-12",
+                        role = "form",
+                        id = "form-transfer"
+                    }))
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-group">
                             <label for="amount">@Resources.Amount</label>
-                            <input type="text" class="textbox hasBorder text-right" id="amount" maxlength="22" autocomplete="off">
-                            <button type="submit" class="btn-submit" @(Model.DisableTransfer ? "disabled=disabled" : string.Empty)>@Resources.TransferButton</button>
+                            <input type="text" class="textbox hasBorder text-right" id="amount" maxlength="22"
+                                autocomplete="off">
+                            <button type="submit" class="btn-submit" @(Model.DisableTransfer ? "disabled=disabled" :
+                        string.Empty)>@Resources.TransferButton</button>
                         </div>
                     }
                 </div>
@@ -92,4 +102,5 @@
         @StaticResources.RenderScripts("~/Features/Transfer/assets/bundles/cash-balance-transfer/cash-balance")
     }
 </body>
+
 </html>

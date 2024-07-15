@@ -1,5 +1,5 @@
-﻿@import "variables";
-@import "_mixins.scss";
+﻿@import 'variables';
+@import '_mixins.scss';
 
 body {
     background: transparent;
@@ -54,7 +54,8 @@ body {
     margin-bottom: 0;
 }
 
-.icon-refresh, .icon-edit {
+.icon-refresh,
+.icon-edit {
     margin-right: 5px;
 }
 
@@ -76,17 +77,17 @@ body {
     cursor: pointer;
 
     &:hover {
-        color: #F60;
+        color: #f60;
     }
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
     margin-right: 0;
     display: inherit;
 }
 
-input[type="button"][disabled] {
-    opacity: .4;
+input[type='button'][disabled] {
+    opacity: 0.4;
     cursor: not-allowed;
 }
 
@@ -103,12 +104,13 @@ input[type="button"][disabled] {
     .multiselect-container label {
         font-size: 13px;
 
-        input[type="checkbox"] {
+        input[type='checkbox'] {
             display: inline-block;
         }
     }
 
-    .icon-excel, .icon-back {
+    .icon-excel,
+    .icon-back {
         cursor: pointer;
         color: #1f7244;
         font-size: 19px;
@@ -132,7 +134,8 @@ input[type="button"][disabled] {
         width: 160px;
     }
 
-    .error, .btn-group button.multiselect.error {
+    .error,
+    .btn-group button.multiselect.error {
         border: 1px solid #e9322d;
         padding: 4px 10px;
     }
@@ -145,13 +148,15 @@ input[type="button"][disabled] {
         margin-bottom: 0;
         padding-bottom: 0;
 
-        .btn-submit, .btn-group {
+        .btn-submit,
+        .btn-group {
             float: left;
         }
 
         &.daterange-picker {
             //margin-bottom: 0;
-            .ui_nexdatepicker_edit_field, .ui_nexdatepicker_lbl_field {
+            .ui_nexdatepicker_edit_field,
+            .ui_nexdatepicker_lbl_field {
                 margin-bottom: 15px;
             }
         }
@@ -231,7 +236,8 @@ input[type="button"][disabled] {
     width: 230px;
     z-index: 9999;
 
-    .opOut, .opOver {
+    .opOut,
+    .opOver {
         padding: 0 5px;
     }
 

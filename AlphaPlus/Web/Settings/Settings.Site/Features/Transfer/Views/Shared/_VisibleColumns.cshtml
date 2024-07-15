@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+}
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+<div class="columns-contextmenu" id="columns-contextmenu">
+    <div class="hint" style="display:none">
+        <p>@Resources.ShowHideColumnHint</p>
+        <div>
+            <input type="checkbox" id="chk-dontShowAgain" />
+            <label for="chk-dontShowAgain">@Resources.DontShowAgain</label>
+        </div>
+    </div>
+    <ul class="column-dropdown" style="display:none"></ul>
+</div>

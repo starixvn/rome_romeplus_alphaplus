@@ -1392,11 +1392,11 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
         /// <summary>
         ///   Looks up a localized string similar to 3rd Party Pending Transfer.
         /// </summary>
-        public static string pendingTransfer3rd
+        public static string PendingTransfer3rd
         {
             get
             {
-                return ResourceManager.GetString("pendingTransfer3rd", resourceCulture);
+                return ResourceManager.GetString("PendingTransfer3rd", resourceCulture);
             }
         }
 
@@ -2149,17 +2149,6 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to 3rd Party Pending Transfer.
-        /// </summary>
-        public static string PendingTransfer3rd
-        {
-            get
-            {
-                return ResourceManager.GetString("PendingTransfer3rd", resourceCulture);
-            }
-        }
-
-        /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
         public static string Total
@@ -2167,6 +2156,39 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
             get
             {
                 return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer.
+        /// </summary>
+        public static string Transfer
+        {
+            get
+            {
+                return ResourceManager.GetString("Transfer", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Only this page.
+        /// </summary>
+        public static string OnlyThisPage
+        {
+            get
+            {
+                return ResourceManager.GetString("OnlyThisPage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All pages.
+        /// </summary>
+        public static string AllPages
+        {
+            get
+            {
+                return ResourceManager.GetString("AllPages", resourceCulture);
             }
         }
     }

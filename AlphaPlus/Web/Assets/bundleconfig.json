@@ -864,7 +864,8 @@
             "styles/vendors/bootstrap-multiselect.css",
             "styles/components/bootstrap-multiselect.css",
             "styles/components/icon.css",
-            "styles/components/pagination.css"
+            "styles/components/pagination.css",
+            "styles/themes/customer-status.css"
         ]
     },
     {
@@ -872,6 +873,7 @@
         "inputFiles": [
             "js/libs/bootstrap/transition.js",
             "js/libs/bootstrap/collapse.js",
+            "js/components/typeahead/typeahead.js",
             "js/components/pagination/jquery.draggable.js",
             "js/components/pagination/jquery.resizable.js",
             "js/components/bootbox/bootbox.js",

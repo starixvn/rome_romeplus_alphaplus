@@ -40,5 +40,5 @@ public class CustomerTransfer
 
     public bool Suspended { get; init; }
 
-    public bool Locked { get; init; }
+    public byte Locked { get; init; }
 }

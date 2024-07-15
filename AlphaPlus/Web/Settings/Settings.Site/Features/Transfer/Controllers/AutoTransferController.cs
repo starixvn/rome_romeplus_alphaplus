@@ -12,7 +12,7 @@
     using MediatR;
     using Microsoft.AspNetCore.Mvc.Filters;
 
-    public class AutoTransferController : SiteBaseController
+    public class AutoTransferController : TransferBaseController
     {
         private readonly IUserSession userSession;
         private readonly TransferService transferService;
@@ -245,21 +245,15 @@
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-
-            var userSession = UserSession.Current;
             //var method = filterContext.HttpContext?.Request?.Method;
 
-            var enabled = transferService.IsEnableAutoTransfer(userSession.CustId, userSession.Currency, userSession.IsSubAcc, userSession.SubPageAccess, AppSettings.OfferAutoTransferCurrencies);
-
-            if (enabled)
+            if (AppSettings.CheckOfferAutoTransferCurrencies(UserSession.Current.Currency))
             {
                 return;
             }
 
             filterContext.Result = new UnauthorizedObjectResult("You are not authorized on this function!");
-
-            var session = filterContext.HttpContext.Session;
-            session.Clear();
+            filterContext.HttpContext.Session.Clear();
         }
     }
 }

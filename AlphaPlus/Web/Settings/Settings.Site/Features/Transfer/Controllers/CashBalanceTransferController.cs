@@ -7,7 +7,7 @@
     using MediatR;
     using Requests.CashBalanceTransfer;
 
-    public class CashBalanceTransferController : SiteBaseController
+    public class CashBalanceTransferController : TransferBaseController
     {
         private readonly IUserSession userSession;
 

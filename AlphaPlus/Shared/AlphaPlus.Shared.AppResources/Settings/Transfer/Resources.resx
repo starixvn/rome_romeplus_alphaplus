@@ -432,7 +432,7 @@
   <data name="DisallowedAllDayBalanceTransferError" xml:space="preserve">
     <value>Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
   </data>
-  <data name="pendingTransfer3rd" xml:space="preserve">
+  <data name="PendingTransfer3rd" xml:space="preserve">
     <value>3rd Party Pending Transfer</value>
   </data>
   <data name="confirmCancelJob" xml:space="preserve">
@@ -684,10 +684,16 @@
   <data name="Entered" xml:space="preserve">
     <value>Entered</value>
   </data>
-  <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>3rd Party Pending Transfer</value>
-  </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+  <data name="OnlyThisPage" xml:space="preserve">
+    <value>Only this page</value>
+  </data>
+  <data name="AllPages" xml:space="preserve">
+    <value>All pages</value>
   </data>
 </root>
