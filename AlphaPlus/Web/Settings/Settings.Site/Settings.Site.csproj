@@ -66,6 +66,7 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="NPOI" Version="2.2.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="Fanex.PTSetting.BettypeReference" Version="1.0.0.9" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />

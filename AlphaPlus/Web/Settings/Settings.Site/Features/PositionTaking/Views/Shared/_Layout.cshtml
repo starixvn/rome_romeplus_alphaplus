@@ -1,0 +1,37 @@
+﻿@using AlphaPlus.Core.Helpers
+@{ var darkModeName = ViewData["DarkModeName"]; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <link href="@Url.Content(string.Format("~/App_Themes/Apo/Common/Agent{0}.min.css?07", darkModeName))" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content(string.Format("~/App_Themes/Apo/Reports/Reports{0}.min.css?06", darkModeName))" rel="stylesheet" type="text/css" />
+    @RenderSection("Head", false)
+    @GoogleAnalyticHelper.GtagScript()
+</head>
+<body>
+    @GoogleAnalyticHelper.GtagNoScript()
+    @RenderBody()
+    @Html.Hidden("RootURL", Url.Content("~/"))
+</body>
+</html>
+<script src="@Url.Content("~/Js/jQuery/jquery-1.8.2.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    window.rootUrl = '~/';
+    var domain;
+
+    jQuery(document).ready(function () {
+        domain = location.protocol + '//' + location.host + jQuery('#RootURL').val();
+    });
+
+    jQuery(window).resize(function () {
+        var width = jQuery(window).width() - 20; //padding-right: 10 + padding-left: 10
+        jQuery("#GridContainer-grid-title").css("width", width + "px");
+    });
+</script>
+
+@RenderSection("Scripts", false)

@@ -1,0 +1,24 @@
+﻿@* @using Fanex.Razorbill.Module.Common;
+@using Fanex.Razorbill.Module.Common.Helpers;
+@using AlphaPlus.User.Models
+@using Alpha.Web.Helpers
+
+@model Dictionary<string, object>
+
+    @{
+        var theme = DarkModeHelper.IsDarkMode() ? "dark" : "light";
+    }
+
+    <div id="box_header">
+        <div class="pull-left">
+            <label for="dropdown-product">@Resources.Lang.product</label>
+            @Html.Raw(ProductRenderUtility.GetViewPTProductSelector(UserSession.Current.CustId, (int)Model["ProductId"]))
+        </div>
+        
+        @if ((bool)Model["ShowPTIcon"])
+        {
+            <div class="pull-left">
+                <a class="infoIco" href="@MicroSites.MemberInfoUrl(string.Format("~/Customer/SportBookInformation?tabindex=2&theme={0}&custId={1}&roleId={2}&site={3}&siteLabel={4}&lng={5}",theme,UserSession.Current.CustId,UserSession.Current.RoleId-1,UserSession.Current.Site, Model["SiteLabel"], UserSession.Current.Language))" target="_blank" title="Click to view PT Info"></a>
+            </div>
+        }
+    </div> *@
