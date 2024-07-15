@@ -42,7 +42,7 @@ services:
         image: ${REGISTRY:-alphaplus}/account-info:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/account-info/Dockerfile
+            dockerfile: Web/AccountInfo/AccountInfo.Site/Dockerfile
         restart: always
 
     main:
