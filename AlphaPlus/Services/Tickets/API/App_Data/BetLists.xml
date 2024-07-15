@@ -25,7 +25,7 @@
     <Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="DBPOL.NAP_UserControl.wsv_alp">
       <Mapping DataField="actual_policy" ObjectProperty="ActualPolicy"></Mapping>
     </Setting>
-    <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBCUST.CustDB.wsv_alp" />
+    <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBCust.CustDB.wsv_alp" />
   </Function>
 
   <Function Name="Running BetList">

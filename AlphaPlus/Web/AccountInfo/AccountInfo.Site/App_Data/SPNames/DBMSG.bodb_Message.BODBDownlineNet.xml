@@ -1,0 +1,7 @@
+﻿<Functions>
+  <Function Name="Toast Message">
+    <Setting Key="Age_ToastMessage_Ins" SpName="Age_ToastMessage_Ins" DbName="DBMSG.bodb_Message.wsv_alp" Plain="0" />
+    <Setting Key="Age_Msg_SetMessage" SpName="Age_Msg_SetMessage" DbName="DBMSG.bodb_Message.wsv_alp" Plain="0" />
+    <Setting Key="Age_Msg_SetUsrMessage" SpName="Age_Msg_SetUsrMessage" DbName="DBMSG.bodb_Message.wsv_alp" Plain="0" />
+  </Function>
+</Functions>

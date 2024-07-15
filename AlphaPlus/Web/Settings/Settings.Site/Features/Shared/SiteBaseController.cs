@@ -9,7 +9,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared
     public class SiteBaseController : BaseController
     {
         protected const string InvalidPageViewPath = "~/Features/MemberInfo/Views/Shared/InvalidPage.cshtml";
-        private const string InvalidExcelFileName = "Invalid";
         protected const int BadRequestErrorCode = 999;
 
         protected readonly IMediator mediator;

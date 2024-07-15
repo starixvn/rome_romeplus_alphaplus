@@ -103,6 +103,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickets.Site", "Web\Tickets
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetLists.Builders", "Web\Tickets\BetLists.Builders\BetLists.Builders.csproj", "{F2D17A3D-FE92-474C-BC8E-18B4BD36DC05}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AccountInfo", "AccountInfo", "{DF3ADBD3-77BD-4C57-AFB3-5FEAE25DB5B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountInfo.Site", "Web\AccountInfo\AccountInfo.Site\AccountInfo.Site.csproj", "{2CFBD75A-2B9A-4FD5-A840-015C50AE1F09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +237,10 @@ Global
 		{F2D17A3D-FE92-474C-BC8E-18B4BD36DC05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2D17A3D-FE92-474C-BC8E-18B4BD36DC05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2D17A3D-FE92-474C-BC8E-18B4BD36DC05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CFBD75A-2B9A-4FD5-A840-015C50AE1F09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CFBD75A-2B9A-4FD5-A840-015C50AE1F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CFBD75A-2B9A-4FD5-A840-015C50AE1F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CFBD75A-2B9A-4FD5-A840-015C50AE1F09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -284,6 +292,8 @@ Global
 		{C4FD7446-CBAD-4FE5-A091-A71FBD7A80C2} = {D045C960-B0B2-4AAF-8F38-05343695C2C6}
 		{6D77995A-7605-49A4-BC31-C0573F88AA80} = {C4FD7446-CBAD-4FE5-A091-A71FBD7A80C2}
 		{F2D17A3D-FE92-474C-BC8E-18B4BD36DC05} = {C4FD7446-CBAD-4FE5-A091-A71FBD7A80C2}
+		{DF3ADBD3-77BD-4C57-AFB3-5FEAE25DB5B4} = {D045C960-B0B2-4AAF-8F38-05343695C2C6}
+		{2CFBD75A-2B9A-4FD5-A840-015C50AE1F09} = {DF3ADBD3-77BD-4C57-AFB3-5FEAE25DB5B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6824C82-34D8-41F1-82A0-92424ADF9DA2}
