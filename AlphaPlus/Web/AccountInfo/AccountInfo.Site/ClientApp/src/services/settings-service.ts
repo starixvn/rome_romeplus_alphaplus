@@ -36,12 +36,12 @@ const SettingsService = {
     },
     GetCustomerInfo: async (username: string) => {
         return axiosInstance
-            .get<Customer>(`AccountInfo/GetAccount?username=${username}`)
+            .get<Customer>(`SearchAccount/GetAccount?username=${username}`)
             .then((response) => response.data);
     },
     GetDownlineList: async (custId: number, roleId: number, pageIndex = 1, statusId = 1, totalPages = 0) => {
         return axiosInstance
-            .get<DownlineListResponse>(`AccountInfo/GetDownlineList`, {
+            .get<DownlineListResponse>(`SearchAccount/GetDownlineList`, {
                 params: { custId, roleId, pageIndex, statusId, totalPages }
             })
             .then((response) => response.data);
@@ -70,21 +70,21 @@ const SettingsService = {
     },
     GetLastTxn: async (username: string) => {
         return axiosInstance
-            .get<string>(`AccountInfo/GetLastTxn`, {
+            .get<string>(`SearchAccount/GetLastTxn`, {
                 params: { username }
             })
             .then((response) => response.data);
     },
     GetOnlineList: async (custId: number) => {
         return axiosInstance
-            .get<OnlineUser[]>('AccountInfo/GetOnlineList', {
+            .get<OnlineUser[]>('SearchAccount/GetOnlineList', {
                 params: { SearchAccountId: custId }
             })
             .then((response) => response.data);
     },
     UpdateCustomerStatus: async (status: StatusItem) => {
         return axiosInstance
-            .post<Result>(`AccountInfo/${status.Url}`, JSON.parse(status.JsonParams), {
+            .post<Result>(`SearchAccount/${status.Url}`, JSON.parse(status.JsonParams), {
                 headers: {
                     RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
                     'X-Requested-With': 'XMLHttpRequest'

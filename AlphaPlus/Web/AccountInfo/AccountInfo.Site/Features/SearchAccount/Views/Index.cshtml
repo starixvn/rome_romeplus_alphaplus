@@ -7,12 +7,14 @@
 @section Styles {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-accountinfo/index")
+    <link rel="stylesheet" href="~/main.css" asp-append-version="true" />
 }
 
 @Html.AntiForgeryToken()
 <div id="root"></div>
 
 @section Scripts {
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     <script type="text/javascript">
         const params = {
             actorName: '@Model.ActorName',
@@ -21,15 +23,16 @@
             showLoginInfo: JSON.parse('@Model.ShowLoginInfo'.toLowerCase())
         };
     </script>
-    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+
+    <script type="module" src="~/main.js" asp-append-version="true"></script>
     @* <script type="module" src="http://localhost:5102/main.js?version=@(Model.AssetsVersion)"></script> *@
-    <script type="module">
-        import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
-        RefreshRuntime.injectIntoGlobalHook(window)
-        window.$RefreshReg$ = () => { }
-        window.$RefreshSig$ = () => (type) => type
-        window.__vite_plugin_react_preamble_installed__ = true
-    </script>
-    <script type="module" src=@("http://localhost:5173/@vite/client")></script>
-    <script type="module" src="http://localhost:5173/src/main.tsx"></script>
+    @* <script type="module">
+import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => { }
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+<script type="module" src=@("http://localhost:5173/@vite/client")></script>
+<script type="module" src="http://localhost:5173/src/main.tsx"></script> *@
 }

@@ -1,0 +1,58 @@
+{
+    "Authorization": {
+        "cachedExpireTime": 30,
+        "EnableCheckBelonging": true,
+        "DisabledCheckDuplicationLogin": true,
+        "KickOutUrl": "~/default/kickout",
+        "CustIdQueryStringParamNames": [
+            "SearchAccountId"
+        ],
+        "CustIdJsonParamNames": [
+            "SearchAccountId",
+            "CustIds"
+        ],
+        "GroupPageAccesses": [
+            {
+                "RoleId": 2,
+                "Name": "Agent",
+                "PageAccesses": [
+                    {
+                        "Url": "SearchAccount/UpdateCustomerStatus",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "ProductStatus/Update",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "SearchAccount/UpdateGivenCredit",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "SearchAccount/Index",
+                        "Permission": "[A],[B],[C],[D],[E],[F],[G],[H]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "SearchAccount/GetAccount",
+                        "Permission": "[A],[B],[C],[D],[E],[F],[G],[H]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "SearchAccount/GetOnlineList",
+                        "Permission": "[A],[B],[C],[D],[E],[F],[G],[H]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "SearchAccount/GetCustomerAllStatus",
+                        "Permission": "[A],[B],[C],[D],[E],[F],[G],[H]",
+                        "IsCheckBelonging": true
+                    }
+                ]
+            }
+        ]
+    }
+}

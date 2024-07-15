@@ -34,4 +34,7 @@ public static class MicroSites
 
     public static string SettingUrl(string virtualPath = "~/")
         => AppPathHelper.GetAppPath("/settings", virtualPath);
+
+    public static string AccountInfoUrl(string virtualPath = "~/")
+    => AppPathHelper.GetAppPath("/account-info", virtualPath);
 }
