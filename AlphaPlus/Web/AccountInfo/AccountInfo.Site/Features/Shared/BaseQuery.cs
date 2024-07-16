@@ -2,13 +2,19 @@ using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.AccountInfo.Site.Features.Shared
 {
-    public abstract class BaseQuery(IUserSession userSession)
+    public abstract class BaseQuery
     {
-        protected IUserSession userSession = userSession;
+        protected readonly IUserSession userSession;
 
         public BaseQuery() : this(new UserSessionExt()) { }
 
-        public int CustId { get; set; } = userSession.CustId;
+        protected BaseQuery(IUserSession userSession)
+        {
+            this.userSession = userSession;
+            CustId = userSession.CustId;
+        }
+
+        public int CustId { get; set; }
 
         public int ViewerId => userSession.CustId;
 

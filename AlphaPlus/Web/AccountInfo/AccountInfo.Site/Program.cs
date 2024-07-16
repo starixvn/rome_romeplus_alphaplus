@@ -1,25 +1,21 @@
 using AlphaPlus.AccountInfo.Site.Extensions;
-using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
-using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .AddCommandLine(args);
 
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
 LoggingConfig.Init(["password", "seccode", "securitycode"]);
-
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Filters.Add<CheckBelongingFilterAttribute>();
-    options.Filters.Add<AfterLoginFlowFilterAttribute>();
-    options.Filters.Add<ProtectedModeFilterAttribute>();
-    options.Filters.Add<SecurityCodeFilterAttribute>();
-});
 
 builder.Services
     .AddHttpContextAccessor()

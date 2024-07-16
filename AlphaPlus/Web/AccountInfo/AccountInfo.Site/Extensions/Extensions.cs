@@ -1,6 +1,9 @@
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Filters;
 using AlphaPlus.RequestInfo;
+using AlphaPlus.SecurityCode.Configurations;
+using AlphaPlus.SecurityCode.Filters;
 using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.SecurityCode.Web;
 using Fanex.Caching;
@@ -34,7 +37,26 @@ namespace AlphaPlus.AccountInfo.Site.Extensions
             services.AddSingleton<ISearchAccountService, SearchAccountService>();
 
 
-            // services.Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode));
+            services.Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode));
+
+            services
+            .AddControllersWithViews(options =>
+            {
+                options.Filters.Add<CheckBelongingFilterAttribute>();
+                options.Filters.Add<AfterLoginFlowFilterAttribute>();
+                options.Filters.Add<ProtectedModeFilterAttribute>();
+                options.Filters.Add<SecurityCodeFilterAttribute>();
+            }).AddNewtonsoftJson(option =>
+                {
+                    option.UseMemberCasing();
+                })
+                .AddRazorOptions(options =>
+            {
+                options.ViewLocationFormats.Clear();
+                options.ViewLocationFormats.Add("/{1}/Views/{0}.cshtml");
+                options.ViewLocationFormats.Add("/Features/{1}/Views/{0}.cshtml");
+                options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+            });
 
             return services;
         }

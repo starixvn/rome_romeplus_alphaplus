@@ -47,8 +47,18 @@
                         "IsCheckBelonging": true
                     },
                     {
-                        "Url": "SearchAccount/GetCustomerAllStatus",
-                        "Permission": "[A],[B],[C],[D],[E],[F],[G],[H]",
+                        "Url": "SearchAccount/GetDownlineList",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "SearchAccount/GivenCredit",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "SearchAccount/GetMemberBalanceInfo",
+                        "Permission": "[H]",
                         "IsCheckBelonging": true
                     }
                 ]

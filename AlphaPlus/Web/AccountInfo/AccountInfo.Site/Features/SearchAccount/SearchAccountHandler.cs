@@ -115,6 +115,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             => searchAccountService.UpdateGivenCredit(request);
 
         public Task<Result> Handle(CustomerNonProductStatusCommand request, CancellationToken cancellationToken)
-        => searchAccountService.UpdateCustomerStatus(request);
+            => searchAccountService.UpdateCustomerStatus(request);
     }
 }

@@ -1,0 +1,14 @@
+{
+    "SecurityCode": {
+        "IsActive": true,
+        "IsSiteMain": true,
+        "Paths": [
+            "SearchAccount/GivenCredit",
+            "SearchAccount/UpdateGivenCredit"
+        ],
+        "Sites": [],
+        "VerifyingOtpPath": "Otp/VerifyOtp",
+        "VerifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
+        "ResetSecurityCodePath": "SecurityCode/ChangeSecurityCode"
+    }
+}

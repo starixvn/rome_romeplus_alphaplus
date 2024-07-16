@@ -9,7 +9,7 @@ import StatusItem from '../models/status-item';
 import UsernameSuggestion from '../models/username-suggestion';
 
 const axiosInstance = axios.create({
-    baseURL: window.top?.alpha.urls['settingsRootPath'],
+    baseURL: window.top?.alpha.urls['accountInfoRootPath'],
     timeout: 1000
 });
 
@@ -28,10 +28,12 @@ export const handleError = (err: any) => {
     throw err;
 };
 
+const settingsRootPath = window.top?.alpha.urls['settingsRootPath'];
+
 const SettingsService = {
     GetUsernameSuggestion: async (query: string) => {
-        return axiosInstance
-            .get<UsernameSuggestion[]>(`UserNameSuggestion?isAccountInfo=true&query=${query}`)
+        return axios
+            .get<UsernameSuggestion[]>(`${settingsRootPath}UserNameSuggestion?isAccountInfo=true&query=${query}`)
             .then((response) => response.data);
     },
     GetCustomerInfo: async (username: string) => {
@@ -62,8 +64,8 @@ const SettingsService = {
             UplineRoleId: roleId + 1
         };
 
-        return axiosInstance
-            .get<CustomerStatus>(`CustomerList/GetCustomerAllStatus`, {
+        return axios
+            .get<CustomerStatus>(`${settingsRootPath}CustomerList/GetCustomerAllStatus`, {
                 params
             })
             .then((response) => response.data);
@@ -86,8 +88,7 @@ const SettingsService = {
         return axiosInstance
             .post<Result>(`SearchAccount/${status.Url}`, JSON.parse(status.JsonParams), {
                 headers: {
-                    RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                    'X-Requested-With': 'XMLHttpRequest'
+                    RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
                 }
             })
             .then((response) => response.data);
