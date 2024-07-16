@@ -19,33 +19,35 @@
 <div class="msg hide" id="msg-alert"></div>
 <form method="post" asp-action="UpdateCustomerInfo" id="form-update">
     <input type="hidden" name="CustId" value="@queryString["custid"]" />
-    <div>
+    <div class="update-info">
+    <div class="form">
         <label asp-for="FirstName">@Resources.FirstName</label>
         <input type="text" asp-for="FirstName" maxlength="32" autocomplete="off" />
     </div>
-    <div>
+    <div class="form">
         <label asp-for="LastName">@Resources.LastName</label>
         <input type="text" asp-for="LastName" maxlength="32" autocomplete="off" />
     </div>
-    <div>
+    <div class="form">
         <label asp-for="Phone">@CommonResx.Phone</label>
         <input type="text" asp-for="Phone" maxlength="32" autocomplete="off" />
     </div>
-    <div>
+    <div class="form">
         <label asp-for="MobilePhone">@Resources.MobilePhone</label>
         <input type="text" asp-for="MobilePhone" maxlength="32" autocomplete="off" />
     </div>
-    <div>
+    <div class="form">
         <label asp-for="Email">@Resources.Email</label>
         <input type="text" asp-for="Email" maxlength="32" autocomplete="off" />
     </div>
-    <div>
+    <div class="form">
         <label asp-for="Fax">@CommonResx.Fax</label>
         <input type="text" asp-for="Fax" maxlength="32" autocomplete="off" />
     </div>
     <div>
-        <button type="submit">@Resources.Update</button>
-        <button type="reset">@Resources.Reset</button>
+        <button class="btn-submit" type="submit">@Resources.Update</button>
+        <button class="btn-reset" type="reset">@Resources.Reset</button>
+    </div>
     </div>
 </form>
 <input type="hidden" id="hidden-EmailNotValidText" value="@Resources.EmailNotValid" />

@@ -320,3 +320,39 @@ html {
         transform: translateY(0);
     }
 }
+// update info 
+.update-info{
+    padding-top: 12px;
+    .form{
+        display: flex;
+        margin-bottom: 8px;
+        label{
+            width: 130px;
+            line-height: 28px;
+            margin: 0;
+            color: #333;
+            font-size: 13px;
+        }
+        input[type="text"]{
+            border: 1px solid #dfdfdf;
+            min-width: 260px;
+            margin-left: 0;
+            margin-right: 4px;
+            width: 250px;
+            height: 28px;
+            line-height: 28px;
+            margin: 2px;
+            padding-left: 8px;
+            padding-right: 8px;
+            appearance: none;
+            border-radius: 1px;
+            box-shadow: rgba(0, 0, 0, .3) 0 1px 1px;
+            box-sizing: border-box;
+        }
+    }
+}
+input[type=reset], input[type=button].btn-reset {
+    background-color: #f6731b;
+    color: #fff;
+    outline: none;
+}
