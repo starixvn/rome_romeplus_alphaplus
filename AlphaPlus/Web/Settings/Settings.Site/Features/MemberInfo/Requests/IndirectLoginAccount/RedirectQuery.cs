@@ -19,10 +19,7 @@
 
         public string BrowserSize { get; set; }
 
-        public string IBCPKey => "~/Features/MemberInfo/IbcKeys/ibcpkey.snk";
-
-        public HttpRequest Request
-            => AlphaContext.Current.Request;
+        public string IBCPKey => "App_Data/IbcKeys/ibcpkey.snk";
 
         public string DarkModeName { get; }
 
