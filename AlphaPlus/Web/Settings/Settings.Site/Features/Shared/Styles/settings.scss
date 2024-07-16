@@ -325,7 +325,7 @@ html {
     padding-top: 12px;
     .form{
         display: flex;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         label{
             width: 130px;
             line-height: 28px;
@@ -340,10 +340,9 @@ html {
             margin-right: 4px;
             width: 250px;
             height: 28px;
-            line-height: 28px;
-            margin: 2px;
-            padding-left: 8px;
-            padding-right: 8px;
+            line-height: 28px;          
+            padding-left: 4px;
+            padding-right: 4px;
             appearance: none;
             border-radius: 1px;
             box-shadow: rgba(0, 0, 0, .3) 0 1px 1px;
