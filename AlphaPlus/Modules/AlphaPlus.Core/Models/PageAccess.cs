@@ -103,6 +103,19 @@ public class PageAccess
         }
     }
 
+    public bool ViewBetLists
+    {
+        get
+        {
+            return permissions[PageAccessType.ViewBetLists];
+        }
+
+        set
+        {
+            permissions[PageAccessType.ViewBetLists] = value;
+        }
+    }
+
     public void SetPermission(string key, bool value)
     {
         if (permissions.ContainsKey(key))
