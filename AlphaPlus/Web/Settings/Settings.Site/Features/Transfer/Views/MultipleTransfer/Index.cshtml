@@ -70,19 +70,23 @@
     <input type="hidden" asp-for="PageIndex" />
     <input type="hidden" asp-for="PageSize" />
 </form>
-<div>
+<div class="list-btn">
+    <div class="btn-left">
     <div class="btn-group">
         <button type="button" class="btn btn-submit dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false" id="btn-transfer">@Resources.Transfer <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <li><a href="javascript:;" id="">@Resources.OnlyThisPage</a></li>
-            <li><a href="javascript:;" id="">@Resources.AllPages</a></li>
+        <ul class="dropdown-menu transfer">
+            <li><a href="javascript:;" id=""><span class="icon-transfer"></span>@Resources.OnlyThisPage</a></li>
+            <li><a href="javascript:;" id=""><span class="icon-transfer"></span>@Resources.AllPages</a></li>
         </ul>
     </div>
     <button type="button" class="btn-submit" id="btn-autoTransfer">@Resources.AutoTransfer</button>
+    </div>
+    <div  class="btn-right">
     <partial name="_Paging" />
     @Resources.PageSize
     <select class="pagingSize" asp-items="@Model.PageSizes"></select>
+    </div>
 </div>
 <table class="tblRpt tblRpt-bordered tblRpt-hover width-100per hide" id="tbl-transfer">
     <thead>

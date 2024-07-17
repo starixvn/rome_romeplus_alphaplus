@@ -1,5 +1,17 @@
 @import '_mixins.scss';
 
+:root,
+:root [data-theme='light'] {
+    --transfer-border:#dfdfdf; 
+    --transfer-bg-hover: #ddd;
+    --transfer-color: #333;
+}
+:root [data-theme='dark'] {
+     
+    --transfer-border:#292929; 
+    --transfer-bg-hover: #3c3c3c;
+    --transfer-color: #ededed;
+}
 %icon {
     font: {
         family: 'Iconalpha';
@@ -155,36 +167,86 @@ $border-color: #dfdfdf;
         }
 
         &.disabled {
-            background-color: $paging-btn-bg;
-            filter: alpha(opacity=35);
-            -moz-opacity: 0.35;
-            opacity: 0.35;
-            cursor: default;
+        background-color: $paging-btn-bg;
+        filter: alpha(opacity=35);
+        -moz-opacity: 0.35;
+        opacity: 0.35;
+        cursor: default;
 
-            &:hover {
-                background-color: $paging-btn-bg;
-            }
+        &:hover {
+            background-color: $paging-btn-bg;
         }
     }
+}
 
-    .pagingCurrent {
-        border: 1px solid $border-color;
-        width: 48px;
-        margin: 0 4px;
-        white-space: nowrap;
-        height: 24px;
-        line-height: 24px;
-        padding: 0 8px;
-        @include box-sizing;
-        @include box-shadow-multiple(none);
-    }
-
-    .pagingSeperator {
+.pagingCurrent {
+    border: 1px solid $border-color;
+    width: 48px;
+    margin: 0 4px;
+    white-space: nowrap;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 8px;
+    @include box-sizing;
+    @include box-shadow-multiple(none);
+}
+.pagingSeperator {
         border-left: 1px solid #666;
         filter: alpha(opacity=35);
         -moz-opacity: 0.35;
         opacity: 0.35;
         margin: 0 6px;
         width: 1px;
+    }
+}
+
+
+.filter {
+    margin-bottom: 15px;
+    .form-group{
+        .btn-group{
+            float: none;
+        }
+    }
+}
+.list-btn{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+#Username{
+    width: 250px;
+}
+.btn-submit{
+    &:hover, &:focus, &:active{
+        opacity: 0.85;
+        background: #094b84!important;
+    }
+    &.disable, &[disable]{
+        opacity: 0.5;
+    }
+}
+.transfer{
+    padding: 8px 0;
+    border: 1px solid var(--transfer-border) !important;
+    li{
+        a{
+            padding: 0 12px 0 16px;
+            display: flex;
+            align-items: center;
+            line-height: 30px;
+            color: var(--transfer-color);
+            &.disabled, &[disabled]{
+                color: #888;
+            }
+            &:hover{
+                background: var(--transfer-bg-hover);
+                color: inherit;
+            }
+            span{
+                font-weight: bold;
+                margin-right: 12px;
+            }
+        }
     }
 }
