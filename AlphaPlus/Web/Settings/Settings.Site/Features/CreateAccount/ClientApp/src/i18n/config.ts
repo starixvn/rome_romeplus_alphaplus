@@ -23,7 +23,7 @@ i18next
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    supportedLngs: ['en-US', 'th-TH', 'vi-VN', 'zh-CN', 'zh-TW'],
+    supportedLngs: ['en-US', 'zh-CN', 'zh-TW', 'ja-JP', 'ko-KR', 'th-TH', 'vi-VN'],
     fallbackLng: 'en-US',
     resources,
     defaultNS,

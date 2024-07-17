@@ -24,16 +24,16 @@
             givenCreditMax: '@Model.GivenCreditMax',
             memberMaxCredit: @Model.MemberMaxCredit.ToString(CultureInfo.InvariantCulture),
             availableCredit: @Model.AvailableCredit.ToString(CultureInfo.InvariantCulture)
-                                        };
+                                            };
     </script>
     <script type="module" src="~/givenCredit.js" asp-append-version="true"></script>
-    <script type="module">
-        import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
-        RefreshRuntime.injectIntoGlobalHook(window)
-        window.$RefreshReg$ = () => { }
-        window.$RefreshSig$ = () => (type) => type
-        window.__vite_plugin_react_preamble_installed__ = true
-    </script>
-    <script type="module" src=@("http://localhost:5173/@vite/client")></script>
-    <script type="module" src="http://localhost:5173/src/given-credit.tsx"></script>
+    @* <script type="module">
+import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => { }
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+<script type="module" src=@("http://localhost:5173/@vite/client")></script>
+<script type="module" src="http://localhost:5173/src/given-credit.tsx"></script> *@
 }

@@ -61,7 +61,7 @@ export default function GivenCredit() {
     const updateGivenCredit = async (searchAccountId: number, searchAccountRoleId: number, creditAmount: number) => {
         return axios
             .post<Result>(
-                `${window.top?.alpha.urls['settingsRootPath']}AccountInfo/UpdateGivenCredit`,
+                `${window.top?.alpha.urls['accountInfoRootPath']}SearchAccount/UpdateGivenCredit`,
                 { searchAccountId, searchAccountRoleId, creditAmount },
                 {
                     headers: {
@@ -154,7 +154,7 @@ export default function GivenCredit() {
     return (
         <div className={styles['given-credit']}>
             <div className={hideMessages ? `hidden` : ``}>
-                <span className={`col-xs-12 ${styles.msg} ${updateSuccess ? 'msg-success' : 'msg-error'}`}>
+                <span className={`col-xs-12 msg ${styles.msg} ${updateSuccess ? 'msg-success' : 'msg-error'}`}>
                     {message}
                 </span>
             </div>

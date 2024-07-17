@@ -63,10 +63,10 @@
   dependencies:
     "@types/sizzle" "*"
 
-"@types/jquery@^2.0.32":
-  version "2.0.32"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.32.tgz#8e0b01690d482782f68938bf0a0dde52b018e0f2"
-  integrity sha512-yJgZc/9lv97DrOa8HXdq8Jnxb1xsS98NlbD+CCoYfILnjDMDPb0BLcG4X/GCtCKU8cNsGyLwaYU4Qiug38YBjA==
+"@types/jquery@1.10.27":
+  version "1.10.27"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-1.10.27.tgz#49ef535f89559408761261a9cd23252cbb6e374b"
+  integrity sha512-IIQJzkqPmbABLiPq9zvI1Z+5JNKLnm2Alj9wYygBoF+7NuQWrhkIfwhQldg6QotFivDhs6JEBaahz0ioyoIX+w==
 
 "@types/jqueryui@^1.12.21":
   version "1.12.21"

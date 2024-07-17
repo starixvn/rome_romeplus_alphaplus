@@ -1,4 +1,7 @@
 ﻿/// <reference path="menu-bar.ts" />
+interface JQueryStatic {
+    material: any;
+}
 
 declare var popupManager: any;
 declare interface String {
@@ -50,9 +53,9 @@ var indexManager = {
 
     init: function () {
         alpha.detectResponsiveInformation();
-        // if (!alpha.core.IsIe8OrLower()) {
-        //     $.material.init();
-        // }
+        if (!alpha.core.IsIe8OrLower()) {
+            $.material.init();
+        }
 
         indexManager.cachedDomElements();
         indexManager.loadPartialViews();

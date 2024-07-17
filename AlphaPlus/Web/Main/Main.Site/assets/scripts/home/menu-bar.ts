@@ -3,6 +3,7 @@
 var menuBar = {
     topWindow: null,
     domElements: {
+        language: null,
         subMenuItems: null,
         menuOpeners: null,
         subMenus: null,
@@ -48,6 +49,7 @@ var menuBar = {
     },
 
     storeElements: function () {
+        menuBar.domElements.language = $('#language');
         menuBar.domElements.subMenuItems = $('.sub-menu-item');
         menuBar.domElements.menuOpeners = $('.menu-opener');
         menuBar.domElements.subMenus = $('.sub-menu');
@@ -246,14 +248,25 @@ var menuBar = {
         var accInfoContent = menuBar.domElements.accountInfoContent,
             accountInfoUrl = accInfoContent.attr('src');
 
+        var currentLanguage = menuBar.domElements.language.data('currentlanguage');
+
         if (!accountInfoUrl) {
-            accInfoContent.attr('src', menuBar.urls.accountInfo + '?mobileView=' + alpha.isScreenLower768);
+            accInfoContent.attr(
+                'src',
+                menuBar.urls.accountInfo + '?mobileView=' + alpha.isScreenLower768 + '&lng=' + currentLanguage
+            );
         }
 
         if (userName !== '' || typeof userName === 'undefined') {
             accInfoContent.attr(
                 'src',
-                menuBar.urls.accountInfo + '?mobileView=' + alpha.isScreenLower768 + '&SearchAccountName=' + userName
+                menuBar.urls.accountInfo +
+                    '?mobileView=' +
+                    alpha.isScreenLower768 +
+                    '&SearchAccountName=' +
+                    userName +
+                    '&lng=' +
+                    currentLanguage
             );
         }
 

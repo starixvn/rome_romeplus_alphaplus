@@ -11,7 +11,7 @@
   "devDependencies": {
     "@types/bootstrap": "3.3.*",
     "@types/clipboard": "1.5.*",
-    "@types/jquery": "^2.0.32",
+    "@types/jquery": "1.10.27",
     "@types/jquery-typeahead": "^2.10.5",
     "@types/jquery.blockui": "^0.0.32",
     "@types/jquery.cookie": "^1.4.35",

@@ -41,7 +41,7 @@ export default function GivenCreditRow({ editable, givenCredit }: Props) {
 
     const handleOpenGivenCreditPopup = () => {
         const givenCreditUrl =
-            `${top?.alpha.urls['settingsRootPath']}AccountInfo/GivenCredit` +
+            `${top?.alpha.urls['accountInfoRootPath']}SearchAccount/GivenCredit` +
             `?SearchAccountId=${customer?.CustId}&SearchAccountName=${customer?.UserName}` +
             `&SearchAccountRoleId=${customer?.RoleId}`;
         let width = 470,
