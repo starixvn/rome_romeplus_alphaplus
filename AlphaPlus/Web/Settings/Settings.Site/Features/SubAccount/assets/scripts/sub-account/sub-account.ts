@@ -186,7 +186,7 @@ class SubAccount {
                 }
                 else {
                     if (result && result.Code !== 0) {
-                        alert((result && result.Message) || 'Unexpected error occurs!');
+                        alert((result && result.Message) || 'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!');
                     }
 
                     location.reload();
@@ -250,7 +250,7 @@ class SubAccount {
                     this.topWindow.popupManager.close();
                 }
                 else {
-                    this.$("#errMsg").html((result && result.Message) || 'Unexpected error occurs!').css({
+                    this.$("#errMsg").html((result && result.Message) || 'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!').css({
                         border: "1px solid red",
                         padding: "10px",
                         color: "red"
@@ -360,7 +360,7 @@ class SubAccount {
                     this.topWindow.popupManager.close();
                 }
                 else {
-                    this.$("#errMsg").html((result && result.Message) || 'Unexpected error occurs!').css({
+                    this.$("#errMsg").html((result && result.Message) || 'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!').css({
                         border: "1px solid red",
                         padding: "10px",
                         color: "red"
