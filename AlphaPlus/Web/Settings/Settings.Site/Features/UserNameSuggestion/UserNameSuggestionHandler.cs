@@ -14,8 +14,8 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
             this.usernameSuggestionService = usernameSuggestionService;
         }
 
-        public Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message, CancellationToken cancellation)
-            => usernameSuggestionService.GetUsernamesSuggestion(
+        public async Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionQuery message, CancellationToken cancellation)
+            => await usernameSuggestionService.GetUsernamesSuggestion(
                 message.CustId,
                 message.Query,
                 message.IsInternal,

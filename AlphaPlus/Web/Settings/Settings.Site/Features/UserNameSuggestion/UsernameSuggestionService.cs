@@ -1,5 +1,4 @@
 ﻿using AlphaPlus.Settings.Site.Features.UserNameSuggestion.Models;
-using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
 {
@@ -13,9 +12,9 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
             bool isAccInfo);
     }
 
-    public class UsernameSuggestionServiceImpl(IDynamicRepository dynamicRepository) : UsernameSuggestionService
+    public class UsernameSuggestionServiceImpl(HttpClient httpClient) : UsernameSuggestionService
     {
-        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
+        private readonly HttpClient httpClient = httpClient;
 
         public async Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(
             int actorId,
@@ -23,12 +22,22 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
             bool isInternal,
             bool directDownline,
             bool isAccInfo)
-            => (await dynamicRepository.FetchAsync<UsernameSuggestion>(
-              new SelectAutoSuggestionCriteria(
-                  actorId,
-                  suggestionQuery,
-                  isInternal,
-                  directDownline,
-                  isAccInfo))).OrderBy(item => item.UserName);
+        {
+            var query = QueryString.Create
+            (
+                new[] 
+                {
+                    KeyValuePair.Create("actorId", actorId.ToString()),
+                    KeyValuePair.Create("query", suggestionQuery),
+                    KeyValuePair.Create("isInternal", isInternal.ToString().ToLowerInvariant()),
+                    KeyValuePair.Create("directDownlines", directDownline.ToString().ToLowerInvariant()),
+                    KeyValuePair.Create("isAccInfo", isAccInfo.ToString().ToLowerInvariant())
+                }
+            );
+
+            var result = await httpClient.GetAsJsonAsync<IEnumerable<UsernameSuggestion>>($"customer/username-suggestion{query}");
+
+            return result.OrderBy(item => item.UserName);
+        }
     }
 }
