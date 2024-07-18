@@ -226,6 +226,11 @@ $border-color: #dfdfdf;
         opacity: 0.5;
     }
 }
+.dropdown-menu {
+    .active , li:hover  {
+        background-color: var(--transfer-bg-hover);
+    }
+}
 .transfer{
     padding: 8px 0;
     border: 1px solid var(--transfer-border) !important;
