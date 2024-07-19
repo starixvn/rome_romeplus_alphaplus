@@ -61,7 +61,6 @@ public class BaseQuery
 
     public virtual bool IsValid()
        => CustId > 0
-       && CustLevel.IsNotMemberLevel()
        && ViewerId > 0
        && ViewerLevel.IsEqualOrUplineOf(CustLevel);
 }

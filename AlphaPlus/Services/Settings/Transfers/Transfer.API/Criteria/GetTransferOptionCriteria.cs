@@ -1,21 +1,14 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria
+﻿using Fanex.Data.Repository;
+
+namespace AlphaPlus.Settings.Transfer.API.Criteria;
+
+public class GetTransferOptionCriteria(int custId) : NonQueryCommand
 {
-    using Fanex.Data.Repository;
+    public int CustId { get; } = custId;
 
-    public class GetTransferOptionCriteria : NonQueryCommand
-    {
-        public GetTransferOptionCriteria(int custId)
-        {
-            CustId = custId;
-            TransferOption = string.Empty;
-        }
+    public string TransferOption { get; set; } = string.Empty;
 
-        public int CustId { get; }
+    public override string GetSettingKey() => "Acc_CustomerSelTransferOption";
 
-        public string TransferOption { get; set; }
-
-        public override string GetSettingKey() => "Acc_CustomerSelTransferOption";
-
-        public override bool IsValid() => CustId > 0;
-    }
+    public override bool IsValid() => CustId > 0;
 }

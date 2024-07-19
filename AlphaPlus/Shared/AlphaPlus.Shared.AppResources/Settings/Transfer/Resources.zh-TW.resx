@@ -669,4 +669,10 @@
   <data name="AllPages" xml:space="preserve">
     <value>全部頁面</value>
   </data>
+  <data name="AllowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>您的上線允許您使用全天餘額轉賬。該頁面將自動刷新。</value>
+  </data>
+  <data name="NoTransferMade" xml:space="preserve">
+    <value>未進行轉賬, 因爲所有已選擇賬號余額爲零。</value>
+  </data>
 </root>

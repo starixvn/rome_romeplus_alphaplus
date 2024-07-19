@@ -594,4 +594,10 @@
   <data name="AllPages" xml:space="preserve">
     <value>Tất cả các trang</value>
   </data>
+  <data name="AllowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>Cấp trên đã loại bỏ giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ được tự động làm mới để cập nhật các cài đặt mới.</value>
+  </data>
+  <data name="NoTransferMade" xml:space="preserve">
+    <value>Không giao dịch nào được thực hiện vì tất cả các tài khoản đã chọn đều có số dư là không.</value>
+  </data>
 </root>

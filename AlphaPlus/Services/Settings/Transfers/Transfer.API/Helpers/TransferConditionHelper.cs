@@ -9,17 +9,21 @@ public static class TransferConditionHelper
     private const string DailyOption = "00000000";
     private const int DateInWeek = 7;
     private const int indexOfWeeklyCondition = 7;
+    private static readonly string[] DaysOfWeek =
+    [
+        Resources.Sun,
+        Resources.Mon,
+        Resources.Tue,
+        Resources.Wed,
+        Resources.Thurs,
+        Resources.Fri,
+        Resources.Sat
+    ];
 
     public static List<int> GetTransferrableDatesFromSchedule(string schedule)
-    {
-        var sc = schedule ?? string.Empty;
-
-        var ds = sc.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-            .Select(s => int.Parse(s))
-            .ToList();
-
-        return ds;
-    }
+        => (schedule ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+        .Select(s => int.Parse(s))
+        .ToList();
 
     public static string GetAutoTransferScheduleFromDates(string selectedDates)
         => selectedDates ?? string.Empty;
@@ -32,12 +36,7 @@ public static class TransferConditionHelper
         .Select(s => int.Parse(s))
         .ToList();
 
-    public static string GetDateName(int dateIndex)
-    {
-        string[] dates = { Resources.Sun, Resources.Mon, Resources.Tue, Resources.Wed, Resources.Thurs, Resources.Fri, Resources.Sat };
-
-        return dates[dateIndex - 1];
-    }
+    public static string GetDateName(int dateIndex) => DaysOfWeek[dateIndex - 1];
 
     public static string GetTransferOption(List<int> selectedDates)
     {
@@ -56,8 +55,7 @@ public static class TransferConditionHelper
         return result.ToString();
     }
 
-    public static List<int> GetAutoTransferScheduleFromTransferOption(
-        string transferOption, byte roleId)
+    public static List<int> GetAutoTransferScheduleFromTransferOption(string transferOption, byte roleId)
     {
         var allDates = new List<int> { 2, 3, 4, 5, 6, 7, 1 };
 
@@ -94,5 +92,19 @@ public static class TransferConditionHelper
         }
 
         return transferrableDates;
+    }
+
+    public static string BuildDaysFromSchedule(string scheduleWeekDays)
+    {
+        if (!string.IsNullOrWhiteSpace(scheduleWeekDays))
+        {
+            var days = scheduleWeekDays.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+            return days.Length == DateInWeek
+                ? Resources.Daily
+                : string.Join('-', days.Select(d => GetDateName(int.Parse(d))));
+        }
+
+        return string.Empty;
     }
 }

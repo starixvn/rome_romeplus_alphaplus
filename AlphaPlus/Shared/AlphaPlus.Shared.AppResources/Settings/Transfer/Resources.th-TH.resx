@@ -669,4 +669,10 @@
   <data name="AllPages" xml:space="preserve">
     <value>ทุกหน้า</value>
   </data>
+  <data name="AllowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>อัพไลน์ของคุณได้เปิดการใช้งานระบบ โอนยอดคงเหลือทั้งวัน ให้กับคุณ ข้อมูลในหน้านี้จะรีเฟรชเพื่อแสดงผลใหม่โดยอัตโนมัติ</value>
+  </data>
+  <data name="NoTransferMade" xml:space="preserve">
+    <value>ไม่มีการโอนเงินเนื่องจากบัญชีที่เลือกทั้งหมดมียอดคงเหลือเป็นศูนย์</value>
+  </data>
 </root>

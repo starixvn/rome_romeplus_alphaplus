@@ -8,22 +8,24 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public interface IMultipleTransferService
 {
-    Task<CustomerTransferReport> GetTransferList(GetTransferListParam param);
+    Task<CustomerTransferReport> GetTransferList(TransferListParam param);
+
+    Task<Result> TransferYesterdayBalance(TransferYesterdayBalanceParam param);
 }
 
 public class MultipleTransferService(IDynamicRepository repository) : IMultipleTransferService
 {
     private readonly IDynamicRepository repository = repository;
 
-    public async Task<CustomerTransferReport> GetTransferList(GetTransferListParam param)
+    public async Task<CustomerTransferReport> GetTransferList(TransferListParam param)
     {
-        var criteria = BuildCriteria(param);
-        var customers = await repository.FetchAsync<CustomerTransfer>(criteria);
+        var criteria = BuildTransferListCriteria(param);
+        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, param.AGIP);
 
         return new CustomerTransferReport(customers, BuildTotal(criteria), criteria.TotalPages);
     }
 
-    private static GetTransferListCriteria BuildCriteria(GetTransferListParam param)
+    private static GetTransferListCriteria BuildTransferListCriteria(TransferListParam param)
     {
         var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
 
@@ -106,5 +108,62 @@ public class MultipleTransferService(IDynamicRepository repository) : IMultipleT
         }
 
         return new CustomerTransfer();
+    }
+
+    public async Task<Result> TransferYesterdayBalance(TransferYesterdayBalanceParam param)
+    {
+        var criteria = BuildTransferYesterdayBalanceCriteria(param);
+        await repository.ExecuteAsync(criteria, param.AGIP);
+
+        return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
+    }
+
+    private static TransferYesterdayBalanceCriteria BuildTransferYesterdayBalanceCriteria(TransferYesterdayBalanceParam param)
+    {
+        var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
+
+        if (custLevel.IsAgentLevel())
+        {
+            return new AgentTransferYesterdayBalanceCriteria(
+                param.CustId,
+                param.SuperIdsTransferTotal,
+                param.ToCustIds,
+                param.Amount,
+                param.IsAllDayBalanceTransfer,
+                param.AutoTransfer,
+                param.Language,
+                param.IP,
+                param.CustId,
+                param.SubAccId);
+        }
+
+        if (custLevel.IsMasterLevel())
+        {
+            return new MasterTransferYesterdayBalanceCriteria(
+                param.CustId,
+                param.SuperIdsTransferTotal,
+                param.ToCustIds,
+                param.IsFullTransfer,
+                param.Amount,
+                param.CustStatus,
+                param.AutoTransfer,
+                param.Language,
+                param.IP,
+                param.CustId,
+                param.SubAccId);
+        }
+
+        return new SuperTransferYesterdayBalanceCriteria(
+            param.CustId,
+            param.SuperIdsTransferTotal,
+            param.ToCustIds,
+            param.IsFullTransfer,
+            param.Amount,
+            param.CustStatus,
+            param.AutoTransfer,
+            param.Language,
+            param.IP,
+            param.CustId,
+            param.SubAccId);
     }
 }

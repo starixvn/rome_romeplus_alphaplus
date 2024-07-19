@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Params.MultipleTransfer;
 
-public record GetTransferListParam(
+public record TransferListParam(
     int CustId,
     byte CustLevelId,
     string DonwlineName,
@@ -9,4 +9,5 @@ public record GetTransferListParam(
     bool AllYesterdayBalance,
     bool AllowTotalBalanceTransfer,
     int PageIndex,
-    int PageSize);
+    int PageSize,
+    string AGIP);

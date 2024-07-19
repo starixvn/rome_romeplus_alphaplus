@@ -4,6 +4,7 @@ using AlphaPlus.Settings.Transfer.API.Models.MultipleTransfer;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
 using AlphaPlus.Settings.Site.Features.Transfer.Constants;
+using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.MultipleTransfer;
 
@@ -12,7 +13,9 @@ public class TransferListViewModel(
     EnteredSportResult enteredSportResult,
     CustomerTransferReport reportData,
     bool isAllDayBalanceTransfer,
-    bool isEnableAutoTransfer)
+    bool isEnableAutoTransfer,
+    string transferOption,
+    string transferCondition)
 {
     public int ViewerId { get; } = message.ViewerId;
 
@@ -59,12 +62,6 @@ public class TransferListViewModel(
 
     public CustomerTransferReport ReportData { get; } = reportData;
 
-    // public string UsernameAutoSuggestionPath
-    //     => MicroSites.SettingUrl("~/UserNameSuggestion");
-
-    // public string TransferInformationPath
-    //     => MicroSites.SettingUrl("~/cashbalancetransfer/hint");
-
     public bool CanTransferYesterday(CustomerTransfer customer)
     {
         if (IsAllDayBalanceTransfer)
@@ -104,4 +101,34 @@ public class TransferListViewModel(
 
     public bool ShowBalanceLink(CustomerTransfer customer)
         => !IsAllDayBalanceTransfer && AllowTotalBalanceTransfer && customer.Balance != 0;
+
+    public IDictionary<string, string> GetAutoTransferParams(CustomerTransfer customer)
+        => new Dictionary<string, string>
+        {
+            [nameof(customer.CustId)] = customer.CustId.ToString(),
+            ["CustName"] = customer.Username,
+            ["State"] = customer.IsAllowAutoTransfer ? "off" : "on",
+            ["Old_TransferOption"] = transferOption
+        };
+
+    public IDictionary<string, string> GetScheduleTransferParams(CustomerTransfer customer)
+        => new Dictionary<string, string>
+        {
+            [nameof(customer.CustId)] = customer.CustId.ToString(),
+            ["CustName"] = customer.Username,
+            ["Schedule"] = customer.ScheduleWeekDays,
+            ["Old_TransferOption"] = transferOption,
+            ["UplineCondition"] = transferCondition
+        };
+
+    public IDictionary<string, string> GetSingleTransferParams(CustomerTransfer customer)
+        => new Dictionary<string, string>
+        {
+            [nameof(customer.CustId)] = customer.CustId.ToString(),
+            ["CustName"] = customer.Username,
+            ["ShowTitle"] = "1"
+        };
+
+    public string UpdateMultipleAutoTransferUrl
+        => MicroSites.SettingUrl($"~/AutoTransfer/UpdateMultipleAutoTransfer?uplineCondition={transferCondition}&Old_TransferOption={transferOption}");
 }

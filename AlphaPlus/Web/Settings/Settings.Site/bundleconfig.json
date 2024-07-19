@@ -609,11 +609,19 @@
     "outputFileName": "wwwroot/bundles/transfer/multiple-transfer.js",
     "inputFiles": [
       "Features/Transfer/assets/scripts/core.js",
+      "Features/Transfer/assets/scripts/components/alert.js",
       "Features/Transfer/assets/scripts/components/username-suggestion.js",
       "Features/Transfer/assets/scripts/components/dropdown-transfer.js",
       "Features/Transfer/assets/scripts/components/visible-columns-contextmenu.js",
       "Features/Transfer/assets/scripts/multiple-transfer/transfer-list-paging.js",
       "Features/Transfer/assets/scripts/multiple-transfer/transfer-list.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/transfer/single-transfer.js",
+    "inputFiles": [
+      "Features/Transfer/assets/scripts/components/alert.js",
+      "Features/Transfer/assets/scripts/multiple-transfer/single-transfer.js"
     ]
   },
   {

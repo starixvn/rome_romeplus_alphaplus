@@ -696,4 +696,10 @@
   <data name="AllPages" xml:space="preserve">
     <value>All pages</value>
   </data>
+  <data name="AllowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+  </data>
+  <data name="NoTransferMade" xml:space="preserve">
+    <value>No transfer made because all selected accounts have a zero balance.</value>
+  </data>
 </root>

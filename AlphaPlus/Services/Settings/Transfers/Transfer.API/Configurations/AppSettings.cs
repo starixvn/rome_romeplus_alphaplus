@@ -64,4 +64,6 @@ public static class AppSettings
             .Select(c => c.Trim()),
         StringComparer.OrdinalIgnoreCase
     );
+
+    public static string AllowedListSuperAccounts => GetConfigValue("AllowedListSuperAccounts");
 }

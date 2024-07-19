@@ -2191,5 +2191,27 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
                 return ResourceManager.GetString("AllPages", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed..
+        /// </summary>
+        public static string AllowedAllDayBalanceTransferError
+        {
+            get
+            {
+                return ResourceManager.GetString("AllowedAllDayBalanceTransferError", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No transfer made because all selected accounts have a zero balance..
+        /// </summary>
+        public static string NoTransferMade
+        {
+            get
+            {
+                return ResourceManager.GetString("NoTransferMade", resourceCulture);
+            }
+        }
     }
 }

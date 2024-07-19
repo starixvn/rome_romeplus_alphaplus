@@ -669,4 +669,10 @@
   <data name="AllPages" xml:space="preserve">
     <value>全部页面</value>
   </data>
+  <data name="AllowedAllDayBalanceTransferError" xml:space="preserve">
+    <value>您的上线允许您使用全天余额转账。该页面将自动刷新。</value>
+  </data>
+  <data name="NoTransferMade" xml:space="preserve">
+    <value>未进行转账, 因为所有已选择账号余额为零。</value>
+  </data>
 </root>
