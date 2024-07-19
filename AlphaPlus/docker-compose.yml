@@ -50,7 +50,6 @@ services:
         build:
             context: .
             dockerfile: Web/Main/Main.Site/Dockerfile
-            target: final
         restart: always
         depends_on:
             - identity-api

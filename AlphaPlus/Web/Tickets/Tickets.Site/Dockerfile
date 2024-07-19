@@ -41,8 +41,7 @@ WORKDIR /src/Web/Tickets/Tickets.Site
 
 RUN yarn
 RUN gulp default
-RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
-  dotnet publish --use-current-runtime --self-contained -o /app
+RUN dotnet publish --use-current-runtime --self-contained -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 
