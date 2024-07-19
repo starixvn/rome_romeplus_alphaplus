@@ -145,7 +145,6 @@
     <Setting Key="Acc_CustomerUpdMaster_DisableAutoMPT" SpName="Acc_CustomerUpdMaster_DisableAutoMPT" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Acc_CustomerUpdDisableOutright" SpName="Acc_CustomerUpdDisableOutright" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Acc_CustomerUpdDoubleCommLosing" SpName="Acc_CustomerUpdDoubleCommLosing" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_Customer_CreditInfo_Sel" SpName="Age_Customer_CreditInfo_Sel" DbName="DBCust.CustDB.wsv_alp" Plain="0">
       <Mapping ObjectProperty="MasterCreditMin" DataField="masterCredit_Min" />
       <Mapping ObjectProperty="MasterCreditMax" DataField="masterCredit_Max" />

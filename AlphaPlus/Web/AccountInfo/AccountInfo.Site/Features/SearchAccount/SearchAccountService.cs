@@ -42,11 +42,12 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
     }
 
 
-    public class SearchAccountService(IDynamicRepository dynamicRepository, IPService ipService) : ISearchAccountService
+    public class SearchAccountService(IDynamicRepository dynamicRepository, IPService ipService, HttpClient httpClient) : ISearchAccountService
     {
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
         private readonly IPService ipService = ipService;
         private readonly int failErrorCode = 100;
+        private readonly HttpClient httpClient = httpClient;
 
         public async Task<Account> GetAccount(string username, int uplineId, int roleId)
         {
@@ -64,8 +65,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             return customerInfo;
         }
 
-        private Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname)
-           => dynamicRepository.GetAsync<bool>(new UpdateUserSearchCriteria(userId, search, firstName, lastName, nickname));
+        private async Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname)
+           => await httpClient.PostAsJsonAsync<bool>("customer/username-suggestion", new { userId, search, firstName, lastName, nickname });
 
         public Task<CreditInfo> GetCreditInfo(int custId)
             => dynamicRepository.GetAsync<CreditInfo>(new SelectCreditInfoCriteria(custId));

@@ -34,7 +34,7 @@ namespace AlphaPlus.AccountInfo.Site.Extensions
             services.AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>();
 
             services.AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>();
-            services.AddSingleton<ISearchAccountService, SearchAccountService>();
+            services.AddHttpClient<ISearchAccountService, SearchAccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUri")));
 
 
             services.Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode));
