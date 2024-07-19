@@ -675,4 +675,16 @@
   <data name="NoTransferMade" xml:space="preserve">
     <value>ไม่มีการโอนเงินเนื่องจากบัญชีที่เลือกทั้งหมดมียอดคงเหลือเป็นศูนย์</value>
   </data>
+  <data name="AgentBalance" xml:space="preserve">
+    <value>ยอดคงเหลือบัญชีของตัวแทน</value>
+  </data>
+  <data name="AgentCash" xml:space="preserve">
+    <value>เงิดสดของตัวแทน</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>ยอดเงิน</value>
+  </data>
+  <data name="WarningMultipleTransfer" xml:space="preserve">
+    <value>คำเตือน: หากยอดเงินถูกโอนจาก"ยอดคงเหลือเมื่อวาน" สมาชิกที่<font class="highlight">ไฮไลต์</font>ด้านล่างนี้จะมียอดเครดิตเดิมพันติดลบและอาจจะเสียมากกว่าวงเงินเครดิตของพวกเขา</value>
+  </data>
 </root>

@@ -11,6 +11,7 @@
     --transfer-bg-hover: #3c3c3c;
     --transfer-color: #ededed;
 }
+
 %icon {
     font: {
         family: 'Iconalpha';
@@ -112,6 +113,10 @@
     width: 210px;
 }
 
+.transfer-hightlight {
+    background-color: #f8eb95;
+}
+
 /* Paging */
 $paging-bg: #fff;
 $paging-btn-bg: #979797;
@@ -211,14 +216,13 @@ $border-color: #dfdfdf;
         }
     }
 }
+
 .list-btn {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
-#Username {
-    width: 250px;
-}
+
 .btn-submit {
     &:hover,
     &:focus,
@@ -231,12 +235,14 @@ $border-color: #dfdfdf;
         opacity: 0.5;
     }
 }
+
 .dropdown-menu {
     .active,
     li:hover {
         background-color: var(--transfer-bg-hover);
     }
 }
+
 .transfer {
     padding: 8px 0;
     border: 1px solid var(--transfer-border) !important;

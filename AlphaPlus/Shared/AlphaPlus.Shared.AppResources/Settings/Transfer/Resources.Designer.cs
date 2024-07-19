@@ -2213,5 +2213,49 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
                 return ResourceManager.GetString("NoTransferMade", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Balance.
+        /// </summary>
+        public static string AgentBalance
+        {
+            get
+            {
+                return ResourceManager.GetString("AgentBalance", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Cash.
+        /// </summary>
+        public static string AgentCash
+        {
+            get
+            {
+                return ResourceManager.GetString("AgentCash", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Balance.
+        /// </summary>
+        public static string Balance
+        {
+            get
+            {
+                return ResourceManager.GetString("Balance", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Warning: if yesterday balance is fully transferred, the <font class="highlight">highlighted</font> members below will have negative bet credit and consequently, they might lose more than their given credit..
+        /// </summary>
+        public static string WarningMultipleTransfer
+        {
+            get
+            {
+                return ResourceManager.GetString("WarningMultipleTransfer", resourceCulture);
+            }
+        }
     }
 }

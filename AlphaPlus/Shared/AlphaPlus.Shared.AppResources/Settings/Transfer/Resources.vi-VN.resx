@@ -600,4 +600,16 @@
   <data name="NoTransferMade" xml:space="preserve">
     <value>Không giao dịch nào được thực hiện vì tất cả các tài khoản đã chọn đều có số dư là không.</value>
   </data>
+  <data name="AgentBalance" xml:space="preserve">
+    <value>Tổng tiền giao dịch của Agent</value>
+  </data>
+  <data name="AgentCash" xml:space="preserve">
+    <value>Số dư</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="WarningMultipleTransfer" xml:space="preserve">
+    <value>Cảnh báo: nếu số dư ngày hôm qua được chuyển hết, những thành viên <font class="highlight">được đánh dấu</font> dưới đây sẽ bị âm hạn mức khả dụng và do đó, họ có thể thua nhiều hơn mức tín dụng được cấp.</value>
+  </data>
 </root>

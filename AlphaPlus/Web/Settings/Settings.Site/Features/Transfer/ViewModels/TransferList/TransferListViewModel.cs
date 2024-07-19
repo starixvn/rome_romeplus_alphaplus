@@ -19,9 +19,17 @@ public class TransferListViewModel(
 {
     public int ViewerId { get; } = message.ViewerId;
 
+    public bool IsSuperLevel { get; } = message.ActorLevel.IsSuperLevel();
+
+    public bool IsMasterLevel { get; } = message.ActorLevel.IsMasterLevel();
+
+    public bool IsMasterOrSuperLevel { get; } = message.ActorLevel.IsMasterOrSuperLevel();
+
     public string Username { get; } = message.Username;
 
     public string Status { get; } = message.Status;
+
+    public bool IsShowWarningMultipleTransfer { get; private set; }
 
     public IEnumerable<SelectListItem> StatusOptions { get; } =
     [
@@ -95,6 +103,24 @@ public class TransferListViewModel(
     }
 
     public string GetCashBalanceColor(decimal cashBalance) => cashBalance < 0 ? "favorite" : string.Empty;
+
+    public string GetBalanceColor(CustomerTransfer customer)
+    {
+        var className = customer.Balance < 0 ? "favorite" : string.Empty;
+
+        if (!IsMasterOrSuperLevel)
+        {
+            var isHightlight = customer.FutureBetCredit < 0;
+
+            if (isHightlight)
+            {
+                IsShowWarningMultipleTransfer = true;
+                return $"{className} transfer-hightlight";
+            }
+        }
+
+        return className;
+    }
 
     public bool ShowYesterdayBalanceLink(CustomerTransfer customer)
         => !IsAllDayBalanceTransfer && !AllowTotalBalanceTransfer && customer.YesterdayBalance != 0;

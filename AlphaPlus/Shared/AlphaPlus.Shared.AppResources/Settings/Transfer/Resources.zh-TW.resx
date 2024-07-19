@@ -675,4 +675,16 @@
   <data name="NoTransferMade" xml:space="preserve">
     <value>未進行轉賬, 因爲所有已選擇賬號余額爲零。</value>
   </data>
+  <data name="AgentBalance" xml:space="preserve">
+    <value>代理餘額</value>
+  </data>
+  <data name="AgentCash" xml:space="preserve">
+    <value>代理現金</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>現金</value>
+  </data>
+  <data name="WarningMultipleTransfer" xml:space="preserve">
+    <value>注意: 若已轉賬 “昨天余額”, 被<font class="highlight">特别显示</font> 会员的投注金额将显示负数。因此, 他们的输额有可能超过信用额度。</value>
+  </data>
 </root>

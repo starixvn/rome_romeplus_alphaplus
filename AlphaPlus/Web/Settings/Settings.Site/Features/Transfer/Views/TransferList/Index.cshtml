@@ -1,5 +1,4 @@
 ﻿@using AlphaPlus.Core.Helpers
-@using AlphaPlus.Core.Utils
 @using AlphaPlus.Core.Extensions
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @using AlphaPlus.Settings.Transfer.API.Helpers
@@ -16,30 +15,18 @@
 }
 @section Scripts {
     <script src="~/bundles/transfer/transfer-list.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        const warning = @Convert.ToByte(Model.IsShowWarningMultipleTransfer);
+        if (warning) {
+            document.getElementById('warning-multiple-transfer').style.display = 'block';
+        }
+        else {
+            document.getElementById('warning-multiple-transfer').remove();
+        }
+    </script>
 }
 <div class="page-title">
-    <div class="entered-non-entered">
-        @if (Model.EnteredSportResult.EnteredSportYesterday.NonEntered > 0)
-        {
-            <div class="icon-non-entered">
-                <div class="text">@SystemTime.Yesterday.ToMMDDWithSlash(): @Resources.NonEntered</div>
-                <div class="number">@Model.EnteredSportResult.EnteredSportYesterday.NonEntered</div>
-                <div class="icon-clock"></div>
-            </div>
-        }
-        else
-        {
-            <div class="icon-entered">
-                <div class="text">@SystemTime.Yesterday.ToMMDDWithSlash(): @Resources.Entered</div>
-                <div class="icon-check-circle"></div>
-            </div>
-        }
-        <div class="icon-non-entered">
-            <div class="text">@SystemTime.Today.ToMMDDWithSlash(): @Resources.NonEntered</div>
-            <div class="number">@Model.EnteredSportResult.EnteredSportToday.NonEntered</div>
-            <div class="icon-clock"></div>
-        </div>
-    </div>
+    <partial name="_EnteredSportResult" model="Model.EnteredSportResult" />
     <div style="clear: both">
         @Resources.MultipleTransfer
         <a href="javascript:;" class="icon-print"></a>
@@ -72,6 +59,10 @@
     <input type="hidden" asp-for="PageIndex" />
     <input type="hidden" asp-for="PageSize" />
 </form>
+@if (!Model.IsMasterOrSuperLevel)
+{
+    <div id="warning-multiple-transfer" style="display:none">* @Resources.WarningMultipleTransfer</div>
+}
 <div class="msg" id="msg-alert" style="display:none"></div>
 <div class="btn-left">
     <div class="btn-group">
@@ -110,12 +101,40 @@
             <th>@Resources.Username</th>
             <th>@Resources.YesterdayBalance</th>
             <th data-colname="pendingtransfer3rd">@Resources.PendingTransfer3rd</th>
-            <th>@Resources.MasterBalance</th>
-            <th data-colname="yesterdaycash">@Resources.YesterdayCashBalance</th>
-            <th data-colname="cash">@Resources.MasterCash</th>
+            <th>
+                @if (Model.IsSuperLevel)
+                {
+                    @:@Resources.MasterBalance
+                }
+                else if (Model.IsMasterLevel)
+                {
+                    @:@Resources.AgentBalance
+                }
+                else
+                {
+                    @:@Resources.Balance
+                }
+            </th>
+            @if (Model.IsMasterOrSuperLevel)
+            {
+                <th data-colname="yesterdaycash">@Resources.YesterdayCashBalance</th>
+                <th data-colname="cash">
+                    @if (Model.IsSuperLevel)
+                    {
+                        @:@Resources.MasterCash
+                    }
+                    else
+                    {
+                        @:@Resources.AgentCash
+                    }
+                </th>
+            }
             <th>@Resources.Outstanding</th>
             <th>@Resources.GivenCredit</th>
-            <th>@Resources.UsedCredit</th>
+            @if (Model.IsMasterOrSuperLevel)
+            {
+                <th>@Resources.UsedCredit</th>
+            }
             <th data-colname="fname">@Resources.FirstName</th>
             <th data-colname="lname">@Resources.LastName</th>
             <th data-colname="username">@Resources.Username</th>
@@ -165,34 +184,40 @@
                     </td>
                     <td class="text-right" data-colname="pendingtransfer3rd">@customer.PendingTransfer3rd.FormatNumber2()
                     </td>
-                    <td class="text-right @Model.GetCashBalanceColor(customer.Balance)">
+                    <td class="text-right @Model.GetBalanceColor(customer)">
                         @if (Model.ShowBalanceLink(customer))
                         {
                             <a class="transfer-link" asp-action="Single"
-                                asp-all-route-data="@Model.GetSingleTransferParams(customer)">@customer.YesterdayBalance.FormatNumber2()</a>
+                                asp-all-route-data="@Model.GetSingleTransferParams(customer)">@customer.Balance.FormatNumber2()</a>
                         }
                         else
                         {
                             @customer.Balance.FormatNumber2()
                         }
                     </td>
-                    <td class="text-right @Model.GetCashBalanceColor(customer.YesterdayCashBalance)"
-                        data-colname="yesterdaycash">
-                        @customer.YesterdayCashBalance.FormatNumber2()</td>
-                    <td class="text-right @Model.GetCashBalanceColor(customer.CashBalance)" data-colname="cash">
-                        @if (Model.IsAllDayBalanceTransfer)
-                        {
-                            <a class="transfer-link" asp-action="CashBalance" asp-controller="CashBalanceTransfer"
-                                asp-route-custid="@customer.CustId">@customer.CashBalance.FormatNumber2()</a>
-                        }
-                        else
-                        {
-                            @customer.CashBalance.FormatNumber2()
-                        }
-                    </td>
+                    @if (Model.IsMasterOrSuperLevel)
+                    {
+                        <td class="text-right @Model.GetCashBalanceColor(customer.YesterdayCashBalance)"
+                            data-colname="yesterdaycash">
+                            @customer.YesterdayCashBalance.FormatNumber2()</td>
+                        <td class="text-right @Model.GetCashBalanceColor(customer.CashBalance)" data-colname="cash">
+                            @if (Model.IsAllDayBalanceTransfer)
+                            {
+                                <a class="transfer-link" asp-action="CashBalance" asp-controller="CashBalanceTransfer"
+                                    asp-route-custid="@customer.CustId">@customer.CashBalance.FormatNumber2()</a>
+                            }
+                            else
+                            {
+                                @customer.CashBalance.FormatNumber2()
+                            }
+                        </td>
+                    }
                     <td class="text-right">@customer.Outstanding.FormatNumber2()</td>
                     <td class="text-right">@customer.GivenCredit.FormatNumber2()</td>
-                    <td class="text-right">@customer.UsedCredit.FormatNumber2()</td>
+                    @if (Model.IsMasterOrSuperLevel)
+                    {
+                        <td class="text-right">@customer.UsedCredit.FormatNumber2()</td>
+                    }
                     <td data-colname="fname">@System.Net.WebUtility.HtmlEncode(customer.FirstName)</td>
                     <td data-colname="lname">@System.Net.WebUtility.HtmlEncode(customer.LastName)</td>
                     <td data-colname="username">@customer.Username</td>
@@ -211,12 +236,18 @@
                 <td class="text-right" data-colname="pendingtransfer3rd">
                     @Model.ReportData.Total.PendingTransfer3rd.FormatNumber2()</td>
                 <td class="text-right">@Model.ReportData.Total.Balance.FormatNumber2()</td>
-                <td class="text-right" data-colname="yesterdaycash">
-                    @Model.ReportData.Total.YesterdayCashBalance.FormatNumber2()</td>
-                <td class="text-right" data-colname="cash">@Model.ReportData.Total.CashBalance.FormatNumber2()</td>
+                @if (Model.IsMasterOrSuperLevel)
+                {
+                    <td class="text-right" data-colname="yesterdaycash">
+                        @Model.ReportData.Total.YesterdayCashBalance.FormatNumber2()</td>
+                    <td class="text-right" data-colname="cash">@Model.ReportData.Total.CashBalance.FormatNumber2()</td>
+                }
                 <td class="text-right">@Model.ReportData.Total.Outstanding.FormatNumber2()</td>
                 <td class="text-right">@Model.ReportData.Total.GivenCredit.FormatNumber2()</td>
-                <td class="text-right">@Model.ReportData.Total.UsedCredit.FormatNumber2()</td>
+                @if (Model.IsMasterOrSuperLevel)
+                {
+                    <td class="text-right">@Model.ReportData.Total.UsedCredit.FormatNumber2()</td>
+                }
                 <td data-colname="fname"></td>
                 <td data-colname="lname"></td>
                 <td data-colname="username"></td>
@@ -227,7 +258,8 @@
     {
         <tbody>
             <tr>
-                <td colspan="15" class="text-center">@Resources.NoInformationIsAvailable</td>
+                <td colspan="@(Model.IsMasterOrSuperLevel ? 15 : 12)" class="text-center">
+                    @Resources.NoInformationIsAvailable</td>
             </tr>
         </tbody>
     }

@@ -1,0 +1,29 @@
+﻿@using AlphaPlus.Core.Utils
+@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@model AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss.EnteredSportResult
+@{
+    Layout = null;
+}
+<div class="entered-non-entered">
+    @if (Model.EnteredSportYesterday.NonEntered > 0)
+    {
+        <div class="icon-non-entered">
+            <div class="text">@SystemTime.Yesterday.ToMMDDWithSlash(): @Resources.NonEntered</div>
+            <div class="number">@Model.EnteredSportYesterday.NonEntered</div>
+            <div class="icon-clock"></div>
+        </div>
+    }
+    else
+    {
+        <div class="icon-entered">
+            <div class="text">@SystemTime.Yesterday.ToMMDDWithSlash(): @Resources.Entered</div>
+            <div class="icon-check-circle"></div>
+        </div>
+    }
+    <div class="icon-non-entered">
+        <div class="text">@SystemTime.Today.ToMMDDWithSlash(): @Resources.NonEntered</div>
+        <div class="number">@Model.EnteredSportToday.NonEntered</div>
+        <div class="icon-clock"></div>
+    </div>
+</div>

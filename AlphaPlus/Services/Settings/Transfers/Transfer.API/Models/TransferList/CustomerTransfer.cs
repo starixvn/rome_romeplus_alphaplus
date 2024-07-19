@@ -41,4 +41,6 @@ public class CustomerTransfer
     public bool Suspended { get; init; }
 
     public byte Locked { get; init; }
+
+    public decimal FutureBetCredit { get; init; }
 }
