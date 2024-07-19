@@ -37,7 +37,7 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
 
             var result = await httpClient.GetAsJsonAsync<IEnumerable<UsernameSuggestion>>($"customer/username-suggestion{query}");
 
-            return result.OrderBy(item => item.UserName);
+            return result;
         }
     }
 }
