@@ -1,63 +1,56 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
-{
-    using AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit;
-    using AlphaPlus.Settings.Transfer.API.Services;
-    using MediatR;
-    using Requests.TransferAllAndClearCredit;
-    using Settings.Transfer.API.Models.TransferAllAndClearCredit;
-    using ViewModels.TransferAllAndClearCredit;
+﻿using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClearCredit;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit;
+using AlphaPlus.Settings.Transfer.API.Models.TransferAllAndClearCredit;
+using AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit;
+using AlphaPlus.Settings.Transfer.API.Services;
+using MediatR;
 
-    public class TransferAllAndClearCreditHandler :
+namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
+
+public class TransferAllAndClearCreditHandler(
+    TransferAllAndClearCreditService transferAllAndClearCreditService,
+    ITransferService transferService) :
         IRequestHandler<CalculationQuery, CalculationViewModel>,
         IRequestHandler<TransferResultQuery, TransferResultViewModel>
+{
+    private readonly TransferAllAndClearCreditService transferAllAndClearCreditService = transferAllAndClearCreditService;
+    private readonly ITransferService transferService = transferService;
+
+    public async Task<CalculationViewModel> Handle(CalculationQuery message, CancellationToken cancellation)
     {
-        private readonly TransferAllAndClearCreditService transferAllAndClearCreditService;
-        private readonly TransferService transferService;
+        var isAllDayBalanceTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
+        var param = new GetCalculationResultParam(
+            message.CustId,
+            message.Username,
+            message.LanguageKey,
+            message.AllowedTotalBalanceTransferSuperIds,
+            isAllDayBalanceTransfer,
+            message.AGIP);
 
-        public TransferAllAndClearCreditHandler(
-            TransferAllAndClearCreditService transferAllAndClearCreditService,
-            TransferService transferService)
-        {
-            this.transferAllAndClearCreditService = transferAllAndClearCreditService;
-            this.transferService = transferService;
-        }
+        var calculationResult = string.IsNullOrWhiteSpace(message.Username) ? new TransferResult() : transferAllAndClearCreditService.GetCalculateResult(param);
 
-        public async Task<CalculationViewModel> Handle(CalculationQuery message, CancellationToken cancellation)
-        {
-            var isAllDayBalanceTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
-            var param = new GetCalculationResultParam(
-                message.CustId,
-                message.Username,
-                message.LanguageKey,
-                message.AllowedTotalBalanceTransferSuperIds,
-                isAllDayBalanceTransfer,
-                message.AGIP);
+        return new CalculationViewModel(message, calculationResult);
+    }
 
-            var calculationResult = string.IsNullOrWhiteSpace(message.Username) ? new TransferResult() : transferAllAndClearCreditService.GetCalculateResult(param);
+    public async Task<TransferResultViewModel> Handle(TransferResultQuery message, CancellationToken cancellation)
+    {
+        var isAllDayBalanceTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
+        var param = new GetTransferResultParam(
+            message.CustId,
+            message.UserId,
+            message.SubAccId,
+            message.IsClearCredit,
+            message.Username,
+            message.AllowedTotalBalanceTransferSuperIds,
+            message.IP,
+            message.LanguageKey,
+            message.TransferSteps,
+            message.ClearCreditSteps,
+            isAllDayBalanceTransfer,
+            message.AGIP);
 
-            return new CalculationViewModel(message, calculationResult);
-        }
+        var transferResult = message.IsInternal ? null : transferAllAndClearCreditService.GetTransferResult(param);
 
-        public async Task<TransferResultViewModel> Handle(TransferResultQuery message, CancellationToken cancellation)
-        {
-            var isAllDayBalanceTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
-            var param = new GetTransferResultParam(
-                message.CustId,
-                message.UserId,
-                message.SubAccId,
-                message.IsClearCredit,
-                message.Username,
-                message.AllowedTotalBalanceTransferSuperIds,
-                message.IP,
-                message.LanguageKey,
-                message.TransferSteps,
-                message.ClearCreditSteps,
-                isAllDayBalanceTransfer,
-                message.AGIP);
-
-            var transferResult = message.IsInternal ? null : transferAllAndClearCreditService.GetTransferResult(param);
-
-            return new TransferResultViewModel(message, param, transferResult);
-        }
+        return new TransferResultViewModel(message, param, transferResult);
     }
 }

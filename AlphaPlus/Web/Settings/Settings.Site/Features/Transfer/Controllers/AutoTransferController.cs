@@ -14,12 +14,12 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers;
 public class AutoTransferController(
     IMediator mediator,
     IUserSession userSession,
-    TransferService transferService) : TransferBaseController(mediator)
+    ITransferService transferService) : TransferBaseController(mediator)
 {
     private const int ADBTChangeCode = 108;
     private const string InvalidTransferStatusViewPath = "~/Features/Transfer/Views/AutoTransfer/ADBTChange.cshtml";
     private readonly IUserSession userSession = userSession;
-    private readonly TransferService transferService = transferService;
+    private readonly ITransferService transferService = transferService;
 
     [HttpGet]
     public async Task<IActionResult> UpdateSingleAutoTransfer(UpdateQuery message)

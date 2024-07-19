@@ -1,176 +1,94 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Services
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Transfer.API.Configurations;
+using AlphaPlus.Settings.Transfer.API.Criteria.CashBalanceTransfer;
+using AlphaPlus.Settings.Transfer.API.Models;
+using AlphaPlus.Settings.Transfer.API.Models.CashBalanceTransfer;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+
+namespace AlphaPlus.Settings.Transfer.API.Services;
+
+public interface ICashBalanceTransferService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Transfer.API.Configurations;
-    using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using Criteria;
-    using Criteria.CashBalanceTransfer;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Models;
-    using Models.CashBalanceTransfer;
+    Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId);
 
-    public interface CashBalanceTransferService
+    Task<Result> AddCashBalanceTransfer(
+        int fromCustId,
+        int toCustId,
+        decimal amount,
+        int creator,
+        string creatorName,
+        int subAccId,
+        string ip,
+        string languageKey,
+        string agIP);
+}
+
+public class CashBalanceTransferService(
+    IDynamicRepository repository,
+    ICacheService cacheService) : ICashBalanceTransferService
+{
+    private const string AgentTransferMemberListCache = "AgentMultipleTransfer.{0}.{1}";
+    private const string ConcurrentSingleTransferResultMessage = "<span style=\"color: red\">The transfer has been proceeding by {0}<br/>";
+
+    private readonly IDynamicRepository repository = repository;
+    private readonly ICacheService cacheService = cacheService;
+
+    public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId)
+        => repository.GetAsync<CashBalanceTransfer>(new GetCashBalanceTransferCriteria(custId));
+
+    public async Task<Result> AddCashBalanceTransfer(
+        int fromCustId,
+        int toCustId,
+        decimal amount,
+        int creator,
+        string creatorName,
+        int subAccId,
+        string ip,
+        string languageKey,
+        string agIP)
     {
-        Task<CashBalanceTransfer> GetCashBalanceTransferAsync(int custId);
+        string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
+        TransferCacheService transferCacheService = new TransferCacheServiceImpl(cacheService) { AdminId = creator, AdminName = creatorName };
 
-        Task<Result> AddCashBalanceTransferAsync(
-            int fromCustId,
-            int toCustId,
-            decimal amount,
-            int creator,
-            string creatorName,
-            int subAccId,
-            string ip,
-            string languageKey,
-            string agIP);
+        var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
+        var concurrentTrasfer = transferCacheService.CacheContains(custIdCache, toCustId);
 
-        Task<string> GetAllowTransfer(int custId);
-
-        Task<Tuple<bool, IEnumerable<string>>> GetTransferCondition(int custId);
-
-        Task<string> GetTransferOption(int custId);
-    }
-
-    public class CashBalanceTransferServiceImpl : CashBalanceTransferService
-    {
-        private const string AgentTransferMemberListCache = "AgentMultipleTransfer.{0}.{1}";
-        private const string ConcurrentSingleTransferResultMessage = "<span style=\"color: red\">The transfer has been proceeding by {0}<br/>";
-
-        private readonly IDynamicRepository repository;
-        private readonly ICacheService cacheService;
-
-        public CashBalanceTransferServiceImpl(
-            IDynamicRepository dynamicRepository,
-            ICacheService cacheService)
+        if (concurrentTrasfer != null)
         {
-            repository = dynamicRepository;
-            this.cacheService = cacheService;
-        }
-
-        public async Task<CashBalanceTransfer> GetCashBalanceTransferAsync(int custId)
-        {
-            ICriteria criteria = new GetCashBalanceTransferCriteria(custId);
-
-            return await repository.GetAsync<CashBalanceTransfer>(criteria);
-        }
-
-        public async Task<Result> AddCashBalanceTransferAsync(
-            int fromCustId,
-            int toCustId,
-            decimal amount,
-            int creator,
-            string creatorName,
-            int subAccId,
-            string ip,
-            string languageKey,
-            string agIP)
-        {
-            string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
-            TransferCacheService transferCacheService = new TransferCacheServiceImpl(cacheService) { AdminId = creator, AdminName = creatorName };
-
-            var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
-            var concurrentTrasfer = transferCacheService.CacheContains(custIdCache, toCustId);
-
-            if (concurrentTrasfer != null)
-            {
-                return new Result
-                {
-                    Code = 105,
-                    Message = string.Format(ConcurrentSingleTransferResultMessage, concurrentTrasfer.AdminName)
-                };
-            }
-
-            transferCacheService.CacheAdd(custIdCache, toCustId, creator, creatorName);
-            transferCacheService.Set(cacheKey, custIdCache);
-
-            var criteria = new AddCashBalanceTransferCriteria(
-                fromCustId,
-                toCustId,
-                amount * -1,
-                creator,
-                subAccId,
-                ip,
-                languageKey);
-
-            try
-            {
-                await repository.ExecuteAsync(criteria, agIP);
-            }
-            finally
-            {
-                transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, new List<int> { toCustId });
-            }
-
             return new Result
             {
-                Code = criteria.ErrCode,
-                Message = criteria.ErrCode == 0 ? Resources.TransferSuccessfully : criteria.ErrMsg
+                Code = 105,
+                Message = string.Format(ConcurrentSingleTransferResultMessage, concurrentTrasfer.AdminName)
             };
         }
 
-        public async Task<string> GetAllowTransfer(int custId)
-        {
-            var (isDaily, days) = await GetTransferCondition(custId);
-            var transferCondition = isDaily ? Resources.Daily : string.Join(" - ", days);
+        transferCacheService.CacheAdd(custIdCache, toCustId, creator, creatorName);
+        transferCacheService.Set(cacheKey, custIdCache);
 
-            return Resources.AllowTransfer + (string.IsNullOrEmpty(transferCondition) ? string.Empty : " " + transferCondition);
+        var criteria = new AddCashBalanceTransferCriteria(
+            fromCustId,
+            toCustId,
+            amount * -1,
+            creator,
+            subAccId,
+            ip,
+            languageKey);
+
+        try
+        {
+            await repository.ExecuteAsync(criteria, agIP);
+        }
+        finally
+        {
+            transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, new List<int> { toCustId });
         }
 
-        public async Task<Tuple<bool, IEnumerable<string>>> GetTransferCondition(int custId)
+        return new Result
         {
-            string transferOption = await GetTransferOption(custId);
-
-            char[] charArray = transferOption.ToCharArray();
-
-            if (charArray.Length == 0)
-            {
-                return new Tuple<bool, IEnumerable<string>>(false, Enumerable.Empty<string>());
-            }
-
-            const int dayInWeek = 7;
-            if (charArray[dayInWeek] != '1')
-            {
-                return new Tuple<bool, IEnumerable<string>>(true, Enumerable.Empty<string>());
-            }
-
-            var dayBuilder = new List<string>();
-
-            string[] dayArray =
-            {
-                Resources.Sunday,
-                Resources.Monday,
-                Resources.Tuesday,
-                Resources.Wednesday,
-                Resources.Thursday,
-                Resources.Friday,
-                Resources.Saturday
-            };
-
-            for (int i = 1, max = charArray.Length; i < max; i++)
-            {
-                var id = i % dayInWeek;
-
-                if (charArray[id] == '1')
-                {
-                    dayBuilder.Add(dayArray[id]);
-                }
-            }
-
-            return new Tuple<bool, IEnumerable<string>>(false, dayBuilder);
-        }
-
-        public async Task<string> GetTransferOption(int custId)
-        {
-            var criteria = new GetTransferOptionCriteria(custId);
-
-            await repository.ExecuteAsync(criteria);
-
-            return criteria.TransferOption;
-        }
+            Code = criteria.ErrCode,
+            Message = criteria.ErrCode == 0 ? Resources.TransferSuccessfully : criteria.ErrMsg
+        };
     }
 }

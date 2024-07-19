@@ -17,7 +17,6 @@
             LanguageKey = viewer.LanguageKey;
         }
 
-        
         public string Username { get; set; }
 
         public bool IsInternal { get; }

@@ -1,18 +1,12 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria
+using Fanex.Data.Repository;
+
+namespace AlphaPlus.Settings.Transfer.API.Criteria;
+
+public class GetIsAllDayBalTransferCriteria(int custId) : CriteriaBase
 {
-    using Fanex.Data.Repository;
+    public int CustId { get; } = custId;
 
-    public class GetIsAllDayBalTransferCriteria : CriteriaBase
-    {
-        public GetIsAllDayBalTransferCriteria(int custId)
-            => CustId = custId;
+    public override string GetSettingKey() => "Age_GetIsAllDayBalTransfer";
 
-        public int CustId { get; }
-
-        public override string GetSettingKey()
-            => "Age_GetIsAllDayBalTransfer";
-
-        public override bool IsValid()
-            => CustId > 0;
-    }
+    public override bool IsValid() => CustId > 0;
 }

@@ -10,11 +10,11 @@
     public class TransferToDownlineHistoryController : TransferBaseController
     {
         private const string InvalidTransferStatusViewPath = "~/Features/Transfer/Views/Shared/InvalidTransferStatus.cshtml";
-        private readonly TransferService transferService;
+        private readonly ITransferService transferService;
 
         public TransferToDownlineHistoryController(
             IMediator mediator,
-            TransferService transferService) : base(mediator)
+            ITransferService transferService) : base(mediator)
         {
             this.transferService = transferService;
         }

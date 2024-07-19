@@ -1,76 +1,68 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
-{
-    using System.Threading.Tasks;
-    using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using MediatR;
-    using Requests.CashBalanceTransfer;
-    using ViewModels.CashBalanceTransfer;
-    using AlphaPlus.Settings.Transfer.API.Configurations;
-    using AlphaPlus.Settings.Transfer.API.Services;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using MediatR;
+using AlphaPlus.Settings.Transfer.API.Configurations;
+using AlphaPlus.Settings.Transfer.API.Services;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.CashBalanceTransfer;
 
-    public class CashBalanceTransferHandler :
+namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
+
+public class CashBalanceTransferHandler(
+    ICashBalanceTransferService cashBalanceTransferService,
+    ITransferService transferService) :
         IRequestHandler<CashBalanceTransferQuery, CashBalanceTransferViewModel>,
         IRequestHandler<CashBalanceTransferCommand, Result>,
         IRequestHandler<HintTransferQuery, HintTransferViewModel>
+{
+    private readonly ICashBalanceTransferService cashBalanceTransferService = cashBalanceTransferService;
+    private readonly ITransferService transferService = transferService;
+
+    public async Task<CashBalanceTransferViewModel> Handle(CashBalanceTransferQuery message, CancellationToken cancellation)
     {
-        private readonly CashBalanceTransferService cashBalanceTransferService;
-        private readonly TransferService transferService;
+        var model = await cashBalanceTransferService.GetCashBalanceTransfer(message.CustId);
 
-        public CashBalanceTransferHandler(
-            CashBalanceTransferService cashBalanceTransferService,
-            TransferService transferService)
+        return new CashBalanceTransferViewModel(
+            model.UplineCashBalance,
+            model.CustId,
+            model.UserName,
+            Enumeration.FromValue<UserLevel>(model.RoleId),
+            model.CashBalance,
+            model.Outstanding,
+            model.GivenCredit,
+            model.PendingTransfer3rd);
+    }
+
+    public async Task<Result> Handle(CashBalanceTransferCommand message, CancellationToken cancellation)
+    {
+        var isAllDayBalTransfer = await transferService.IsAllDayBalanceTransferAsync(message.UplineId);
+        if (!isAllDayBalTransfer)
         {
-            this.cashBalanceTransferService = cashBalanceTransferService;
-            this.transferService = transferService;
+            return Result.CreateErrorResult(Resources.DisallowedAllDayBalanceTransferError, 6001);
         }
 
-        public async Task<CashBalanceTransferViewModel> Handle(CashBalanceTransferQuery message, CancellationToken cancellation)
-        {
-            var model = await cashBalanceTransferService.GetCashBalanceTransferAsync(message.CustId);
+        return await cashBalanceTransferService.AddCashBalanceTransfer(
+            message.UplineId,
+            message.CustId,
+            message.Amount,
+            message.UplineId,
+            message.UplineName,
+            message.SubAccId,
+            message.IP,
+            message.LanguageKey,
+            message.AGIP);
+    }
 
-            return new CashBalanceTransferViewModel(
-                model.UplineCashBalance,
-                model.CustId,
-                model.UserName,
-                Enumeration.FromValue<UserLevel>(model.RoleId),
-                model.CashBalance,
-                model.Outstanding,
-                model.GivenCredit,
-                model.PendingTransfer3rd);
-        }
+    public async Task<HintTransferViewModel> Handle(HintTransferQuery message, CancellationToken cancellation)
+    {
+        var userRole = Enumeration.FromValue<UserLevel>(message.RoleId);
 
-        public async Task<Result> Handle(CashBalanceTransferCommand message, CancellationToken cancellation)
-        {
-            var isAllDayBalTransfer = await transferService.IsAllDayBalanceTransferAsync(message.UplineId);
-            if (!isAllDayBalTransfer)
-            {
-                return Result.CreateErrorResult(Resources.DisallowedAllDayBalanceTransferError, 6001);
-            }
+        var allowTransfer = userRole.IsNotSuperLevel()
+            ? await transferService.GetAllowTransfer(message.CustId)
+            : string.Empty;
+        var isAllDayBalTransfer = await transferService.IsAllDayBalanceTransferAsync(message.CustId);
+        var isEnabledAutoTransfer = !isAllDayBalTransfer && AppSettings.CheckOfferAutoTransferCurrencies(message.User.Currency);
 
-            return await cashBalanceTransferService.AddCashBalanceTransferAsync(
-                message.UplineId,
-                message.CustId,
-                message.Amount,
-                message.UplineId,
-                message.UplineName,
-                message.SubAccId,
-                message.IP,
-                message.LanguageKey,
-                message.AGIP);
-        }
-
-        public async Task<HintTransferViewModel> Handle(HintTransferQuery message, CancellationToken cancellation)
-        {
-            var userRole = Enumeration.FromValue<UserLevel>(message.RoleId);
-
-            var allowTransfer = userRole.IsNotSuperLevel()
-                ? await cashBalanceTransferService.GetAllowTransfer(message.CustId)
-                : string.Empty;
-            var isAllDayBalTransfer = await transferService.IsAllDayBalanceTransferAsync(message.CustId);
-            var isEnabledAutoTransfer = !isAllDayBalTransfer && AppSettings.CheckOfferAutoTransferCurrencies(message.User.Currency);
-
-            return new HintTransferViewModel(allowTransfer, isAllDayBalTransfer, isEnabledAutoTransfer);
-        }
+        return new HintTransferViewModel(allowTransfer, isAllDayBalTransfer, isEnabledAutoTransfer);
     }
 }
