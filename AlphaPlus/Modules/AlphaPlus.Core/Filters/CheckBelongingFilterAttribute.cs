@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Extensions;
 
 namespace AlphaPlus.Core.Filters;
 
@@ -27,6 +28,13 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
+            if (!context.HttpContext.User.Identity.IsAuthenticated ||
+                context.HttpContext.Session.Get<int>("CUSTID") == 0)
+            {
+                await UnAuthorization(context);
+                return;
+            }
+
             var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute>().Any();
             if (allowAnonymous)
             {
