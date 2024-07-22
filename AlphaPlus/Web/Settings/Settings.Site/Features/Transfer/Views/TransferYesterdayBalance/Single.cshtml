@@ -1,13 +1,13 @@
-﻿@* @using AlphaPlus.Core.Helpers
+﻿@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewBag.Title = Resources.Transfer;
     var showTitle = AlphaContext.Current.Request.Query["showtitle"].ToString() != string.Empty;
 }
-@model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.MultipleTransfer.SingleTransferViewModel
+@model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferYesterdayBalance.SingleViewModel
 @section Scripts {
-    <script src="~/bundles/transfer/single-transfer.js" asp-append-version="true"></script>
+    <script src="~/bundles/transfer/transfer-yesterday-balance-single.js" asp-append-version="true"></script>
 }
 @if (showTitle)
 {
@@ -29,4 +29,4 @@
 </form>
 <input type="hidden" asp-for="CustId" />
 <input type="hidden" id="hidden-InvalidValue" value="@Resources.InvalidValue" />
-<input type="hidden" id="hidden-ConfirmTransfer" value="@Resources.ConfirmTransfer" /> *@
+<input type="hidden" id="hidden-ConfirmTransfer" value="@Resources.ConfirmTransfer" />

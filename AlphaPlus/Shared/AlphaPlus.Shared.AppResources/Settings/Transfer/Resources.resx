@@ -714,4 +714,25 @@
   <data name="WarningMultipleTransfer" xml:space="preserve">
     <value>Warning: if yesterday balance is fully transferred, the <font class="highlight">highlighted</font> members below will have negative bet credit and consequently, they might lose more than their given credit.</value>
   </data>
+  <data name="CurrentStatusAllTransactions" xml:space="preserve">
+    <value>Current Status All Transactions</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="OutTxn" xml:space="preserve">
+    <value>Out. Txn</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>Out. Txn</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>Last Txn</value>
+  </data>
+  <data name="YouCanTransferUpTo" xml:space="preserve">
+    <value>You can transfer up to</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>Bet Credit</value>
+  </data>
 </root>

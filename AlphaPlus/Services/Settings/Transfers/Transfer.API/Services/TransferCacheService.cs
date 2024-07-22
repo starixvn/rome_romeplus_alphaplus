@@ -1,164 +1,169 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Services
+﻿using AlphaPlus.Settings.Transfer.API.Configurations;
+using AlphaPlus.Settings.Transfer.API.Models;
+using Fanex.Caching;
+using Fanex.Caching.Redis;
+using Fanex.Logging;
+using Newtonsoft.Json;
+using StackExchange.Redis;
+
+namespace AlphaPlus.Settings.Transfer.API.Services;
+
+public interface ITransferCacheService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using AlphaPlus.Settings.Transfer.API.Configurations;
-    using AlphaPlus.Settings.Transfer.API.Models;
-    using Fanex.Caching;
-    using Fanex.Logging;
-    using Newtonsoft.Json;
+    List<TransferCacheModel> Get(string cacheKey);
 
-    public interface TransferCacheService
+    TransferCacheModel CacheContains(List<TransferCacheModel> listTransferCacheModel, int custId);
+
+    void CacheAdd(List<TransferCacheModel> listTransferCacheModel, int custId, int adminId, string adminName);
+
+    bool Set(string cacheKey, List<TransferCacheModel> value);
+
+    void CacheRemove(List<TransferCacheModel> listTransferCacheModel, int custId);
+
+    void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds);
+}
+
+public class TransferCacheService(int adminId, string adminName, ICacheService cacheService = null) : ITransferCacheService
+{
+    private readonly int adminId = adminId;
+    private readonly string adminName = adminName;
+    private readonly ICacheService cacheService = cacheService ?? InitCacheService();
+    private static readonly object lockObject = new object();
+
+    public List<TransferCacheModel> Get(string cacheKey)
     {
-        List<TransferCacheModel> Get(string cacheKey);
+        lock (lockObject)
+        {
+            string value = cacheService.Get<string>(cacheKey);
 
-        TransferCacheModel CacheContains(List<TransferCacheModel> listTransferCacheModel, int custId);
-
-        void CacheAdd(List<TransferCacheModel> listTransferCacheModel, int custId, int adminId, string adminName);
-
-        bool Set(string cacheKey, List<TransferCacheModel> value);
-
-        void CacheRemove(List<TransferCacheModel> listTransferCacheModel, int custId);
-
-        void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds);
+            return string.IsNullOrWhiteSpace(value)
+                ? null
+                : JsonConvert.DeserializeObject<List<TransferCacheModel>>(value);
+        }
     }
 
-    public class TransferCacheServiceImpl : TransferCacheService
+    public TransferCacheModel CacheContains(List<TransferCacheModel> listTransferCacheModel, int custId)
     {
-        public int AdminId { get; set; }
-        public string AdminName { get; set; }
-        private readonly ICacheService cacheService;
-        private static readonly object lockObject = new object();
-
-        public TransferCacheServiceImpl(ICacheService cacheService)
+        foreach (var item in listTransferCacheModel)
         {
-            this.cacheService = cacheService;
-        }
-
-        public List<TransferCacheModel> Get(string cacheKey)
-        {
-            lock (lockObject)
+            if (item.CustIds.Contains(0) || item.CustIds.Contains(custId))
             {
-                string value = cacheService.Get<string>(cacheKey);
-
-                return string.IsNullOrWhiteSpace(value)
-                    ? null
-                    : JsonConvert.DeserializeObject<List<TransferCacheModel>>(value);
+                return item;
             }
         }
 
-        public TransferCacheModel CacheContains(List<TransferCacheModel> listTransferCacheModel, int custId)
-        {
-            foreach (var item in listTransferCacheModel)
-            {
-                if (item.CustIds.Contains(0) || item.CustIds.Contains(custId))
-                {
-                    return item;
-                }
-            }
+        return null;
+    }
 
-            return null;
+    public void CacheAdd(List<TransferCacheModel> listTransferCacheModel, int custId, int adminId, string adminName)
+    {
+        foreach (var item in listTransferCacheModel)
+        {
+            if (item.AdminId == adminId)
+            {
+                item.CustIds.Add(custId);
+                return;
+            }
         }
 
-        public void CacheAdd(List<TransferCacheModel> listTransferCacheModel, int custId, int adminId, string adminName)
+        var newAdminTransferCache = new TransferCacheModel
         {
-            foreach (var item in listTransferCacheModel)
+            AdminId = adminId,
+            AdminName = adminName
+        };
+
+        newAdminTransferCache.CustIds.Add(custId);
+        listTransferCacheModel.Add(newAdminTransferCache);
+    }
+
+    public bool Set(string cacheKey, List<TransferCacheModel> value)
+    {
+        lock (lockObject)
+        {
+            var cachePolicy = new CacheItemOptions()
+                .SetAbsoluteExpiration(TimeSpan.FromSeconds(AppSettings.MultipleTransferCacheTimeOut));
+            cacheService.Set(cacheKey, JsonConvert.SerializeObject(value), cachePolicy);
+
+            if (AppSettings.EnableTransferLogInfo)
             {
-                if (item.AdminId == adminId)
-                {
-                    item.CustIds.Add(custId);
-                    return;
-                }
+                LogService.Info(InfoMessageFormat(value), AppSettings.TransferLogCategory);
             }
 
-            var newAdminTransferCache = new TransferCacheModel
+            if (!CompareAfterSet(cacheKey, value))
             {
-                AdminId = adminId,
-                AdminName = adminName
-            };
+                LogService.Error(ErrorMessageFormat(value));
+                return false;
+            }
 
-            newAdminTransferCache.CustIds.Add(custId);
-            listTransferCacheModel.Add(newAdminTransferCache);
+            return true;
+        }
+    }
+
+    private bool CompareAfterSet(string cacheKey, List<TransferCacheModel> value)
+    {
+        var temp = Get(cacheKey);
+        if (temp == null && value == null)
+        {
+            return true;
         }
 
-        public bool Set(string cacheKey, List<TransferCacheModel> value)
+        if (temp != null && value != null && value.Count == temp.Count)
         {
-            lock (lockObject)
+            for (int i = 0; i < value.Count; i++)
             {
-                var cachePolicy = new CacheItemOptions()
-                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(AppSettings.MultipleTransferCacheTimeOut));
-                cacheService.Set(cacheKey, JsonConvert.SerializeObject(value), cachePolicy);
-
-                if (AppSettings.EnableTransferLogInfo)
+                if (!value[i].Equals(temp[i]))
                 {
-                    LogService.Info(InfoMessageFormat(value), AppSettings.TransferLogCategory);
-                }
-
-                if (!CompareAfterSet(cacheKey, value))
-                {
-                    LogService.Error(ErrorMessageFormat(value));
                     return false;
                 }
-
-                return true;
             }
+
+            return true;
         }
 
-        private bool CompareAfterSet(string cacheKey, List<TransferCacheModel> value)
+        return false;
+    }
+
+    private static string ErrorMessageFormat(List<TransferCacheModel> value)
+        => $"[Agent Transfer Process] Redis cannot set value: {JsonConvert.SerializeObject(value)}";
+
+    private string InfoMessageFormat(List<TransferCacheModel> value)
+        => $"[Agent Transfer Process - PID: {Thread.CurrentThread.ManagedThreadId}] {adminName}({adminId}) set redis value to: {JsonConvert.SerializeObject(value)}";
+
+    public void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds)
+    {
+        var listMemberTransferCache = Get(cacheKey);
+        if (listMemberTransferCache != null)
         {
-            var temp = Get(cacheKey);
-            if (temp == null && value == null)
+            foreach (var successTransferCustId in listSuccessTransferCustIds)
             {
-                return true;
+                CacheRemove(listMemberTransferCache, successTransferCustId);
             }
 
-            if (temp != null && value != null && value.Count == temp.Count)
-            {
-                for (int i = 0; i < value.Count; i++)
-                {
-                    if (!value[i].Equals(temp[i]))
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-
-            return false;
+            Set(cacheKey, listMemberTransferCache);
         }
+    }
 
-        private static string ErrorMessageFormat(List<TransferCacheModel> value)
-            => $"[Agent Transfer Process] Redis cannot set value: {JsonConvert.SerializeObject(value)}";
-
-        private string InfoMessageFormat(List<TransferCacheModel> value)
-            => $"[Agent Transfer Process - PID: {Thread.CurrentThread.ManagedThreadId}] {AdminName}({AdminId}) set redis value to: {JsonConvert.SerializeObject(value)}";
-
-        public void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds)
+    public void CacheRemove(List<TransferCacheModel> listTransferCacheModel, int custId)
+    {
+        foreach (var cacheModel in listTransferCacheModel)
         {
-            var listMemberTransferCache = Get(cacheKey);
-            if (listMemberTransferCache != null)
+            if (cacheModel.CustIds.Contains(custId))
             {
-                foreach (var successTransferCustId in listSuccessTransferCustIds)
-                {
-                    CacheRemove(listMemberTransferCache, successTransferCustId);
-                }
-
-                Set(cacheKey, listMemberTransferCache);
+                cacheModel.CustIds.Remove(custId);
+                return;
             }
         }
+    }
 
-        public void CacheRemove(List<TransferCacheModel> listTransferCacheModel, int custId)
+    private static ICacheService InitCacheService()
+    {
+        var configurationOptions = ConfigurationOptions.Parse(AppSettings.TransferRedisConfiguration);
+        var redisCacheOptions = new RedisCacheOptions
         {
-            foreach (var cacheModel in listTransferCacheModel)
-            {
-                if (cacheModel.CustIds.Contains(custId))
-                {
-                    cacheModel.CustIds.Remove(custId);
-                    return;
-                }
-            }
-        }
+            ConnectionOptions = configurationOptions,
+            ApplicationName = configurationOptions.ClientName
+        };
+
+        return new CacheService(new RedisCache(redisCacheOptions));
     }
 }

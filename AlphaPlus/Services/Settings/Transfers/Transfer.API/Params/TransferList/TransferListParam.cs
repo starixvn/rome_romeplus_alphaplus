@@ -3,7 +3,7 @@
 public record TransferListParam(
     int CustId,
     byte CustLevelId,
-    string DonwlineName,
+    string DownlineName,
     string Status,
     byte AutoTransfer,
     bool AllYesterdayBalance,

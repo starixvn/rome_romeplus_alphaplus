@@ -69,7 +69,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(link) && string.Equals("MultipleTransfer", ResourceKey, StringComparison.OrdinalIgnoreCase))
+                if (!string.IsNullOrWhiteSpace(link) && string.Equals("TransferList", ResourceKey, StringComparison.OrdinalIgnoreCase))
                 {
                     return string.Format(link, transferService.IsAllDayBalanceTransfer(user.CustId));
                 }

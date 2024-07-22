@@ -2257,5 +2257,82 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
                 return ResourceManager.GetString("WarningMultipleTransfer", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Current Status All Transactions.
+        /// </summary>
+        public static string CurrentStatusAllTransactions
+        {
+            get
+            {
+                return ResourceManager.GetString("CurrentStatusAllTransactions", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Customer.
+        /// </summary>
+        public static string Customer
+        {
+            get
+            {
+                return ResourceManager.GetString("Customer", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Out. Txn.
+        /// </summary>
+        public static string OutTxn
+        {
+            get
+            {
+                return ResourceManager.GetString("OutTxn", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last Login.
+        /// </summary>
+        public static string LastLogin
+        {
+            get
+            {
+                return ResourceManager.GetString("LastLogin", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last Txn.
+        /// </summary>
+        public static string LastTxn
+        {
+            get
+            {
+                return ResourceManager.GetString("LastTxn", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You can transfer up to.
+        /// </summary>
+        public static string YouCanTransferUpTo
+        {
+            get
+            {
+                return ResourceManager.GetString("YouCanTransferUpTo", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Credit.
+        /// </summary>
+        public static string BetCredit
+        {
+            get
+            {
+                return ResourceManager.GetString("BetCredit", resourceCulture);
+            }
+        }
     }
 }

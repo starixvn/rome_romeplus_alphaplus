@@ -18,6 +18,13 @@ public class TransferBaseQuery
         CustId = this.viewer.Id;
         CustName = this.viewer.Name;
         CustLevelId = this.viewer.LevelId;
+        CustLevel = Enumeration.FromValue<UserLevel>(CustLevelId);
+
+        ViewerId = this.viewer.Id;
+        ViewerLevelId = this.viewer.LevelId;
+        ActorLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
+        Language = this.viewer.Language;
+        AGIP = this.viewer.AGIP;
     }
 
     public int CustId { get; set; }
@@ -26,17 +33,17 @@ public class TransferBaseQuery
 
     public byte CustLevelId { get; set; }
 
-    public virtual UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
+    public virtual UserLevel CustLevel { get; }
 
-    public int ViewerId => viewer.Id;
+    public int ViewerId { get; }
 
-    public byte ViewerLevelId => viewer.LevelId;
+    public byte ViewerLevelId { get; }
 
-    public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
+    public virtual UserLevel ActorLevel { get; }
 
-    public string Language => viewer.Language;
+    public string Language { get; }
 
-    public string AGIP => viewer.AGIP;
+    public string AGIP { get; }
 
     public virtual bool IsValid()
         => CustId > 0

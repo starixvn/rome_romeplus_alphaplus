@@ -31,6 +31,7 @@ COPY "Web/Main/Main.Site" "Web/Main/Main.Site"
 
 WORKDIR /src/Web/Main/Main.Site
 
+RUN yarn && yarn build
 RUN dotnet publish --use-current-runtime --self-contained -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base

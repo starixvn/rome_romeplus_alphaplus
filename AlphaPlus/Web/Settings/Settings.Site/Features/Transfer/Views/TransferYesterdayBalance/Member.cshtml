@@ -1,0 +1,73 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = Resources.Transfer;
+    var showTitle = AlphaContext.Current.Request.Query["showtitle"].ToString() != string.Empty;
+}
+@model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferYesterdayBalance.MemberViewModel
+@section Scripts {
+    <script src="~/bundles/transfer/transfer-yesterday-balance-single.js" asp-append-version="true"></script>
+}
+@if (showTitle)
+{
+    <div class="page-title">@Resources.Transfer</div>
+}
+<div class="msg" id="msg-alert" style="display:none"></div>
+<div>
+    <p>@Resources.CurrentStatusAllTransactions</p>
+    <div>
+        <label>@Resources.Customer</label>
+        <span>@Model.Member.Username</span>
+    </div>
+    <div>
+        <label>@Resources.CashBalance</label>
+        <span>@Model.Member.CashBalance.FormatNumber2()</span>
+    </div>
+    <div>
+        <label>@Resources.OutTxn</label>
+        <span>@Model.Member.Oustanding.FormatNumber2()</span>
+    </div>
+    <div>
+        <label>@Resources.PendingTransfer3rd</label>
+        <span>@Model.Member.PendingTransfer3rd.FormatNumber2()</span>
+    </div>
+    <div>
+        <label>@Resources.GivenCredit</label>
+        <span>@Model.Member.GivenCredit.FormatNumber2()</span>
+    </div>
+    <div>
+        <label>@Resources.BetCredit</label>
+        <span>@Model.Member.BetCredit.FormatNumber2()</span>
+    </div>
+    <div>
+        <label>@Resources.TransferredAmount</label>
+        <span>@Model.Member.AmountTransferred.FormatNumber2()</span>
+    </div>
+    <div>
+        <label>@Resources.LastLogin</label>
+        <span>@Model.Member.LastLogin</span>
+    </div>
+    <div>
+        <label>@Resources.LastTxn</label>
+        <span>@Model.Member.MaxTransDate</span>
+    </div>
+</div>
+<form method="post" asp-action="Member" role="form" id="form-update">
+    <div>
+        <label>@Resources.From:</label>
+        <span>@Model.Member.Username</span>
+        <label>@Resources.To:</label>
+        <span>@Model.ActorName</span>
+    </div>
+    <div>
+        <label asp-for="Amount">@Resources.Amount</label>
+        <input asp-for="Amount" class="text-right" maxlength="17" autocomplete="off" />
+        <button type="submit" class="btn-submit">@Resources.Transfer</button>
+    </div>
+    <p>@Resources.YouCanTransferUpTo @Model.Amount</p>
+</form>
+<input type="hidden" id="CustId" value="@Model.Member.CustId.ToString()" />
+<input type="hidden" id="hidden-InvalidValue" value="@Resources.InvalidValue" />
+<input type="hidden" id="hidden-ConfirmTransfer" value="@Resources.ConfirmTransfer" />

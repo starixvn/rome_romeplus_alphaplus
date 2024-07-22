@@ -687,4 +687,25 @@
   <data name="WarningMultipleTransfer" xml:space="preserve">
     <value>注意: 若已轉賬 “昨天余額”, 被<font class="highlight">特别显示</font> 会员的投注金额将显示负数。因此, 他们的输额有可能超过信用额度。</value>
   </data>
+  <data name="CurrentStatusAllTransactions" xml:space="preserve">
+    <value>現有全部交易狀態</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="OutTxn" xml:space="preserve">
+    <value>未完成交易</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>最後登入</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>最後交易</value>
+  </data>
+  <data name="YouCanTransferUpTo" xml:space="preserve">
+    <value>您可轉帳不超過</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>投注額度</value>
+  </data>
 </root>

@@ -612,4 +612,25 @@
   <data name="WarningMultipleTransfer" xml:space="preserve">
     <value>Cảnh báo: nếu số dư ngày hôm qua được chuyển hết, những thành viên <font class="highlight">được đánh dấu</font> dưới đây sẽ bị âm hạn mức khả dụng và do đó, họ có thể thua nhiều hơn mức tín dụng được cấp.</value>
   </data>
+  <data name="CurrentStatusAllTransactions" xml:space="preserve">
+    <value>Trạng thái hiện tại của tất cả các giao dịch</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Thành viên </value>
+  </data>
+  <data name="OutTxn" xml:space="preserve">
+    <value>Giao dịch chưa xử lý</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>Lần đăng nhập cuối</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>Lần giao dịch cuối cùng</value>
+  </data>
+  <data name="YouCanTransferUpTo" xml:space="preserve">
+    <value>Bạn có thể chuyển khoản tối đa là:</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>Hạn mức khả dụng</value>
+  </data>
 </root>

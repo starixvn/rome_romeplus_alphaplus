@@ -687,4 +687,25 @@
   <data name="WarningMultipleTransfer" xml:space="preserve">
     <value>คำเตือน: หากยอดเงินถูกโอนจาก"ยอดคงเหลือเมื่อวาน" สมาชิกที่<font class="highlight">ไฮไลต์</font>ด้านล่างนี้จะมียอดเครดิตเดิมพันติดลบและอาจจะเสียมากกว่าวงเงินเครดิตของพวกเขา</value>
   </data>
+  <data name="CurrentStatusAllTransactions" xml:space="preserve">
+    <value>สถานะปัจจุบันของธุรกรรมทั้งหมด</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>ลูกค้า</value>
+  </data>
+  <data name="OutTxn" xml:space="preserve">
+    <value>transaction ที่ยังไม่ได้คำนวณ</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>เข้าระบบครั้งสุดท้าย</value>
+  </data>
+  <data name="LastTxn" xml:space="preserve">
+    <value>transaction ครั้งล่าสุด</value>
+  </data>
+  <data name="YouCanTransferUpTo" xml:space="preserve">
+    <value>คุณสามารถโอนเงิน</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>เครดิตสำหรับการวางเดิมพัน</value>
+  </data>
 </root>

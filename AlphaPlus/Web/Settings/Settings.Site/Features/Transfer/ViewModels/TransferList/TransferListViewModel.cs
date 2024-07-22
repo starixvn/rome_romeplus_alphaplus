@@ -21,8 +21,6 @@ public class TransferListViewModel(
 
     public bool IsSuperLevel { get; } = message.ActorLevel.IsSuperLevel();
 
-    public bool IsMasterLevel { get; } = message.ActorLevel.IsMasterLevel();
-
     public bool IsMasterOrSuperLevel { get; } = message.ActorLevel.IsMasterOrSuperLevel();
 
     public string Username { get; } = message.Username;
@@ -51,8 +49,6 @@ public class TransferListViewModel(
 
     public bool AllYesterdayBalance { get; } = message.AllYesterdayBalance;
 
-    public bool AllowTotalBalanceTransfer { get; } = message.AllowTotalBalanceTransfer;
-
     public bool IsAllDayBalanceTransfer { get; } = isAllDayBalanceTransfer;
 
     public bool IsEnableAutoTransfer { get; } = isEnableAutoTransfer;
@@ -70,31 +66,16 @@ public class TransferListViewModel(
 
     public CustomerTransferReport ReportData { get; } = reportData;
 
-    public bool CanTransferYesterday(CustomerTransfer customer)
-    {
-        if (IsAllDayBalanceTransfer)
-        {
-            return AllowTotalBalanceTransfer && customer.Balance != 0 && customer.YesterdayBalance != 0;
-        }
-
-        if (AllowTotalBalanceTransfer)
-        {
-            return customer.Balance != 0;
-        }
-
-        return customer.YesterdayBalance != 0;
-    }
-
     public string GetYesterdayBalanceColor(CustomerTransfer customer)
     {
         if (IsAllDayBalanceTransfer)
         {
-            return !(AllowTotalBalanceTransfer && customer.Balance == 0) && customer.YesterdayBalance < 0
+            return !(message.AllowTotalBalanceTransfer && customer.Balance == 0) && customer.YesterdayBalance < 0
                 ? "favorite"
                 : string.Empty;
         }
 
-        if (AllowTotalBalanceTransfer)
+        if (message.AllowTotalBalanceTransfer)
         {
             return string.Empty;
         }
@@ -123,10 +104,10 @@ public class TransferListViewModel(
     }
 
     public bool ShowYesterdayBalanceLink(CustomerTransfer customer)
-        => !IsAllDayBalanceTransfer && !AllowTotalBalanceTransfer && customer.YesterdayBalance != 0;
+        => !IsAllDayBalanceTransfer && !message.AllowTotalBalanceTransfer && customer.YesterdayBalance != 0;
 
     public bool ShowBalanceLink(CustomerTransfer customer)
-        => !IsAllDayBalanceTransfer && AllowTotalBalanceTransfer && customer.Balance != 0;
+        => !IsAllDayBalanceTransfer && message.AllowTotalBalanceTransfer && customer.Balance != 0;
 
     public IDictionary<string, string> GetAutoTransferParams(CustomerTransfer customer)
         => new Dictionary<string, string>
@@ -151,8 +132,7 @@ public class TransferListViewModel(
         => new Dictionary<string, string>
         {
             [nameof(customer.CustId)] = customer.CustId.ToString(),
-            ["CustName"] = customer.Username,
-            ["ShowTitle"] = "1"
+            ["CustName"] = customer.Username
         };
 
     public string UpdateMultipleAutoTransferUrl

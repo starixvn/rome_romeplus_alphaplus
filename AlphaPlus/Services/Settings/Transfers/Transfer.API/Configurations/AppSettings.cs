@@ -11,7 +11,7 @@ public static class AppSettings
 
     public static string AllowedTotalBalanceTransferSuperIds => GetConfigValue("AllowedTotalBalanceTransferSuperIds");
 
-    public static string TransferRedisConfigurationOptions => GetConfigValue("RedisConfigurationOptions:AlphaPlus.Settings.Transfer.API");
+    public static string TransferRedisConfiguration => GetConfigValue("RedisConfiguration:AlphaPlus.Transfer");
 
     public static string GetConfigValue(string configName) => ConfigurationManager.GetValue<string>(configName);
 

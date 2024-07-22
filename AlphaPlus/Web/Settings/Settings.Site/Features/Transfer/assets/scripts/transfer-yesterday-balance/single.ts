@@ -10,15 +10,16 @@ class SingleTransferView {
     }
 
     init() {
-        $('#Amount').on('input', function () {
+        const $amount = $('#Amount');
+        $amount.on('input', function () {
             this.value = this.value.replace(/\D/g, '').replace(/^0+(?!$)/, '');
         });
 
         $('#form-update').submit((event) => {
             event.preventDefault();
 
-            const amount = parseFloat($('#Amount').val().replace(/,/g, ''));
-            if (isNaN(amount)) {
+            const amountValue = parseFloat($amount.val().replace(/,/g, ''));
+            if (isNaN(amountValue)) {
                 this.alert.showError($('#hidden-InvalidValue').val());
                 return;
             }
@@ -37,17 +38,30 @@ class SingleTransferView {
                 },
                 type: 'POST',
                 url: $formUpdate.attr('action'),
-                data: { CustId: $('#CustId').val(), Amount: amount },
+                data: { CustId: $('#CustId').val(), Amount: amountValue },
                 dataType: 'json',
                 success: (result) => {
-                    this.alert.show(result.Code, result.Message);
-                    result.IsSuccessful &&
+                    if (result.Code === 6001) {
+                        this.reloadPage(result.Message);
+                    } else if (result.Code === 0) {
+                        this.alert.showSuccess(result.Message);
                         window.top.closePopupAndReloadMainFrameAfterUpdateSuccess &&
-                        window.top.closePopupAndReloadMainFrameAfterUpdateSuccess(3000);
+                            window.top.closePopupAndReloadMainFrameAfterUpdateSuccess(3000);
+                    } else {
+                        this.alert.showError(result.Message);
+                    }
                 },
                 complete: $.unblockUI
             });
         });
+
+        $amount.focus();
+    }
+
+    private reloadPage(message) {
+        window.top.indexManager.addCustomCookies('messageForReloadSite', message);
+        window.top.indexManager.updateCurrentUrl('adbt=True');
+        window.top.location.reload();
     }
 }
 

@@ -25,15 +25,12 @@ public interface ICashBalanceTransferService
         string agIP);
 }
 
-public class CashBalanceTransferService(
-    IDynamicRepository repository,
-    ICacheService cacheService) : ICashBalanceTransferService
+public class CashBalanceTransferService(IDynamicRepository repository) : ICashBalanceTransferService
 {
     private const string AgentTransferMemberListCache = "AgentMultipleTransfer.{0}.{1}";
     private const string ConcurrentSingleTransferResultMessage = "<span style=\"color: red\">The transfer has been proceeding by {0}<br/>";
 
     private readonly IDynamicRepository repository = repository;
-    private readonly ICacheService cacheService = cacheService;
 
     public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId)
         => repository.GetAsync<CashBalanceTransfer>(new GetCashBalanceTransferCriteria(custId));
@@ -50,7 +47,7 @@ public class CashBalanceTransferService(
         string agIP)
     {
         string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
-        TransferCacheService transferCacheService = new TransferCacheServiceImpl(cacheService) { AdminId = creator, AdminName = creatorName };
+        ITransferCacheService transferCacheService = new TransferCacheService(creator, creatorName);
 
         var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
         var concurrentTrasfer = transferCacheService.CacheContains(custIdCache, toCustId);

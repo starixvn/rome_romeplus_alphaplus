@@ -8,6 +8,7 @@
       <Mapping DataField="outstanding" ObjectProperty="Outstanding" />
       <Mapping DataField="credit" ObjectProperty="GivenCredit" />
     </Setting>
+    <Setting Key="Age_Transfer_SelMemberInfo_Yesterday" SpName="Age_Transfer_SelMemberInfo_Yesterday_ForDBTrans" DbName="DBTXN.bodb02.wsv_alp" />
   </Function>
   <!-- 107963 - End-->
   <Function Name="Base Functions">

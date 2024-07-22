@@ -31,7 +31,7 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
         {
             return new GetAgentTransferListCriteria(
                 param.CustId,
-                param.DonwlineName,
+                param.DownlineName,
                 param.Status,
                 param.AllYesterdayBalance,
                 param.AllowTotalBalanceTransfer,
@@ -44,7 +44,7 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
         {
             return new GetMasterTransferListCriteria(
                 param.CustId,
-                param.DonwlineName,
+                param.DownlineName,
                 param.Status,
                 param.AllYesterdayBalance,
                 param.AllowTotalBalanceTransfer,
@@ -55,7 +55,7 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
 
         return new GetSuperTransferListCriteria(
             param.CustId,
-            param.DonwlineName,
+            param.DownlineName,
             param.Status,
             param.AllYesterdayBalance,
             param.AllowTotalBalanceTransfer,
@@ -107,61 +107,4 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
 
         return new CustomerTransfer();
     }
-
-    // public async Task<Result> TransferYesterdayBalance(TransferYesterdayBalanceParam param)
-    // {
-    //     var criteria = BuildTransferYesterdayBalanceCriteria(param);
-    //     await repository.ExecuteAsync(criteria, param.AGIP);
-
-    //     return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
-    // }
-
-    // private static TransferYesterdayBalanceCriteria BuildTransferYesterdayBalanceCriteria(TransferYesterdayBalanceParam param)
-    // {
-    //     var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
-
-    //     if (custLevel.IsAgentLevel())
-    //     {
-    //         return new AgentTransferYesterdayBalanceCriteria(
-    //             param.CustId,
-    //             param.SuperIdsTransferTotal,
-    //             param.ToCustIds,
-    //             param.Amount,
-    //             param.IsAllDayBalanceTransfer,
-    //             param.AutoTransfer,
-    //             param.Language,
-    //             param.IP,
-    //             param.CustId,
-    //             param.SubAccId);
-    //     }
-
-    //     if (custLevel.IsMasterLevel())
-    //     {
-    //         return new MasterTransferYesterdayBalanceCriteria(
-    //             param.CustId,
-    //             param.SuperIdsTransferTotal,
-    //             param.ToCustIds,
-    //             param.IsFullTransfer,
-    //             param.Amount,
-    //             param.CustStatus,
-    //             param.AutoTransfer,
-    //             param.Language,
-    //             param.IP,
-    //             param.CustId,
-    //             param.SubAccId);
-    //     }
-
-    //     return new SuperTransferYesterdayBalanceCriteria(
-    //         param.CustId,
-    //         param.SuperIdsTransferTotal,
-    //         param.ToCustIds,
-    //         param.IsFullTransfer,
-    //         param.Amount,
-    //         param.CustStatus,
-    //         param.AutoTransfer,
-    //         param.Language,
-    //         param.IP,
-    //         param.CustId,
-    //         param.SubAccId);
-    // }
 }
