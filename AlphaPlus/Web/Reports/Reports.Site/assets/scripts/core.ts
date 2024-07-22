@@ -125,13 +125,9 @@ class AlphaReports {
         return msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./);
     }
 
-    formatNumber(value: number) {
-        return (value || 0).toLocaleString(this.defaultLocale);
-    }
+    formatNumber = (value: number) => (value || 0).toLocaleString(this.defaultLocale);
 
-    formatDecimal(value: number) {
-        return (value || 0).toLocaleString(this.defaultLocale, this.localeStringOptions);
-    }
+    formatDecimal = (value: number) => (value || 0).toLocaleString(this.defaultLocale, this.localeStringOptions);
 
     formatCurrency(value: number) {
         return value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');

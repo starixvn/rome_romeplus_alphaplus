@@ -59,7 +59,8 @@
 </form>
 @if (!Model.IsMasterOrSuperLevel)
 {
-    <div id="warning-multiple-transfer" style="display:none">* @Resources.WarningMultipleTransfer</div>
+    <div id="warning-multiple-transfer" style="display:none">* @Html.Raw(string.Format(Resources.WarningMultipleTransfer,
+    "<font class='highlight'>", "</font>"))</div>
 }
 <div class="msg" id="msg-alert" style="display:none"></div>
 <div class="list-btn">
@@ -69,7 +70,8 @@
                 aria-expanded="false" id="btn-transfer" disabled>@Resources.Transfer
                 <span class="caret"></span></button>
             <ul class="dropdown-menu transfer">
-                <li><a href="javascript:;" id="menu-transfer"><span class="icon-transfer"></span>@Resources.OnlyThisPage</a>
+                <li><a href="javascript:;" id="menu-transfer"><span
+                            class="icon-transfer"></span>@Resources.OnlyThisPage</a>
                 </li>
                 <li class="@(Model.ReportData.TotalPages > 1 ? string.Empty : "disabled")"><a href="javascript:;"
                         id="menu-transfer-allpages"><span class="icon-transfer"></span>@Resources.AllPages</a></li>
@@ -96,7 +98,8 @@ else
 <input type="hidden" asp-for="ViewerId" />
 <input type="hidden" id="hidden-usernameSuggestionUrl" value="@MicroSites.SettingUrl("~/UserNameSuggestion")" />
 <a class="hide" id="hidden-transferHintUrl" asp-action="Hint" asp-controller="CashBalanceTransfer"></a>
-<a class="hide" id="hidden-transferYesterdayBalanceMultipleUrl" asp-action="Multiple"
+<a class="hide" id="hidden-transferYesterdayBalanceMultipleUrl"
+    asp-action="@(Model.IsMasterOrSuperLevel ? "Multiple" : "MultipleMember")"
     asp-controller="TransferYesterdayBalance"></a>
 <input type="hidden" id="hidden-updateMultipleAutoTransferUrl" value="@Model.UpdateMultipleAutoTransferUrl" />
 <input type="hidden" id="hidden-confirmTransfer" value="@Resources.ConfirmTransfer" />

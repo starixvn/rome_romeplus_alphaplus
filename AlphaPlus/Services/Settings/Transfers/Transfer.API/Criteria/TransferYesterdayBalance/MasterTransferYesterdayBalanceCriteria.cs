@@ -11,7 +11,7 @@ public class MasterTransferYesterdayBalanceCriteria(
     string language,
     string ip,
     int creator,
-    int subAccId) : TransferYesterdayBalanceCriteria(superIdsTransferTotal, autoTransfer, language, ip, creator, subAccId)
+    int subAccId) : TransferYesterdayBalanceCriteria(superIdsTransferTotal, language, ip, creator, subAccId)
 {
     public int MasterId { get; } = custId;
 
@@ -22,6 +22,8 @@ public class MasterTransferYesterdayBalanceCriteria(
     public decimal AmtTrans { get; } = amtTrans;
 
     public string CustStatus { get; } = custStatus;
+
+    public byte AutoTransfer { get; } = autoTransfer;
 
     public override string GetSettingKey() => "Age_Transfer_Ins_MAg";
 

@@ -12,5 +12,4 @@ public record TransferYesterdayBalanceParam(
     string Language,
     string IP,
     int SubAccId,
-    string AGIP,
-    bool IsAllDayBalanceTransfer);
+    string AGIP);

@@ -685,7 +685,7 @@
     <value>ยอดเงิน</value>
   </data>
   <data name="WarningMultipleTransfer" xml:space="preserve">
-    <value>คำเตือน: หากยอดเงินถูกโอนจาก"ยอดคงเหลือเมื่อวาน" สมาชิกที่<font class="highlight">ไฮไลต์</font>ด้านล่างนี้จะมียอดเครดิตเดิมพันติดลบและอาจจะเสียมากกว่าวงเงินเครดิตของพวกเขา</value>
+    <value>คำเตือน: หากยอดเงินถูกโอนจาก"ยอดคงเหลือเมื่อวาน" สมาชิกที่{0}ไฮไลต์{1}ด้านล่างนี้จะมียอดเครดิตเดิมพันติดลบและอาจจะเสียมากกว่าวงเงินเครดิตของพวกเขา</value>
   </data>
   <data name="CurrentStatusAllTransactions" xml:space="preserve">
     <value>สถานะปัจจุบันของธุรกรรมทั้งหมด</value>

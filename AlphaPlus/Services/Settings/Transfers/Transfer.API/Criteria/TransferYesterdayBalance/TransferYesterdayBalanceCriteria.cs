@@ -5,15 +5,12 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
 public abstract class TransferYesterdayBalanceCriteria(
     string superIdsTransferTotal,
-    byte autoTransfer,
     string language,
     string ip,
     int creator,
     int subAccId) : NonQueryCommand
 {
     public string SuperIdsTransferTotal { get; } = superIdsTransferTotal;
-
-    public byte AutoTransfer { get; } = autoTransfer;
 
     public string Language { get; } = language;
 

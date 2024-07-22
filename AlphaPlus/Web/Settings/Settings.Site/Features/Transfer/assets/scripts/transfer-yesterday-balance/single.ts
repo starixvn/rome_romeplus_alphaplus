@@ -55,6 +55,10 @@ class SingleTransferView {
             });
         });
 
+        $('.btn-cancel').click(function () {
+            window.top.popupManager.close();
+        });
+
         $amount.focus();
     }
 

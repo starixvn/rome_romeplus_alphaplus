@@ -79,8 +79,7 @@ public class TransferYesterdayBalanceHandler(
             message.LangKey,
             message.IP,
             message.SubAccId,
-            message.AGIP,
-            isAllDayBalanceTransfer);
+            message.AGIP);
         var result = await transferYesterdayBalanceService.Transfer(param);
 
         if (result.IsSuccessful)
@@ -137,8 +136,7 @@ public class TransferYesterdayBalanceHandler(
             message.LangKey,
             message.IP,
             message.SubAccId,
-            message.AGIP,
-            isAllDayBalanceTransfer);
+            message.AGIP);
         var result = await transferYesterdayBalanceService.Transfer(param);
 
         if (result.IsSuccessful)
@@ -181,29 +179,27 @@ public class TransferYesterdayBalanceHandler(
         ITransferCacheService transferCacheService = new TransferCacheService(actorId, actorName);
         var cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, message.ViewerId);
         var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
-        var concurrentTrasfer = transferCacheService.CacheContains(custIdCache, message.CustId);
-        if (concurrentTrasfer != null)
+        var concurrentTransfer = transferCacheService.CacheContains(custIdCache, message.CustId);
+        if (concurrentTransfer != null)
         {
-            return Result.CreateErrorResult(string.Format(ConcurrentSingleTransferResultMessage, concurrentTrasfer.AdminName), 9999);
+            return Result.CreateErrorResult(string.Format(ConcurrentSingleTransferResultMessage, concurrentTransfer.AdminName), 9999);
         }
 
         transferCacheService.CacheAdd(custIdCache, message.CustId, actorId, actorName);
         transferCacheService.Set(cacheKey, custIdCache);
-        var param = new TransferYesterdayBalanceParam(
+        var param = new AgentTransferYesterdayBalanceParam(
             message.ViewerId,
-            message.ViewerLevelId,
+            message.ActorName,
             AppSettings.AllowedListSuperAccounts,
-            message.CustId.ToString(),
+            message.CustId,
             false,
             message.Amount,
-            string.Empty,
-            AutoTransferConstant.All,
+            isAllDayBalanceTransfer,
             message.LangKey,
             message.IP,
             message.SubAccId,
-            message.AGIP,
-            isAllDayBalanceTransfer);
-        var result = await transferYesterdayBalanceService.Transfer(param);
+            message.AGIP);
+        var result = await transferYesterdayBalanceService.MemberTransfer(param);
         transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [message.CustId]);
 
         if (result.IsSuccessful)

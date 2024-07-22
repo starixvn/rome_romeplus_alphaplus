@@ -685,7 +685,7 @@
     <value>現金</value>
   </data>
   <data name="WarningMultipleTransfer" xml:space="preserve">
-    <value>注意: 若已轉賬 “昨天余額”, 被<font class="highlight">特别显示</font> 会员的投注金额将显示负数。因此, 他们的输额有可能超过信用额度。</value>
+    <value>注意: 若已轉賬 “昨天余額”, 被{0}特别显示{1} 会员的投注金额将显示负数。因此, 他们的输额有可能超过信用额度。</value>
   </data>
   <data name="CurrentStatusAllTransactions" xml:space="preserve">
     <value>現有全部交易狀態</value>

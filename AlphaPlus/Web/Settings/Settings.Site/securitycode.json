@@ -23,6 +23,7 @@
             "AutoTransfer/UpdateSingleAutoTransfer",
             "AutoTransfer/UpdateSchedule",
             "AutoTransfer/UpdateMultipleAutoTransfer",
+            "TransferYesterdayBalance",
             "SubAccount/Add",
             "SubAccount/UpdatePageAccess",
             "AccountInfo/GivenCredit",

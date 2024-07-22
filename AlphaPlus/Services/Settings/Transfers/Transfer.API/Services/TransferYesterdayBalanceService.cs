@@ -11,6 +11,8 @@ public interface ITransferYesterdayBalanceService
     Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, string agIP);
 
     Task<Result> Transfer(TransferYesterdayBalanceParam param);
+
+    Task<Result> MemberTransfer(AgentTransferYesterdayBalanceParam param);
 }
 
 public class TransferYesterdayBalanceService(IDynamicRepository repository) : ITransferYesterdayBalanceService
@@ -50,24 +52,20 @@ public class TransferYesterdayBalanceService(IDynamicRepository repository) : IT
     {
         var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
 
-        if (custLevel.IsAgentLevel())
-        {
-            return new AgentTransferYesterdayBalanceCriteria(
+        return custLevel.IsMasterLevel()
+            ? new MasterTransferYesterdayBalanceCriteria(
                 param.CustId,
                 param.SuperIdsTransferTotal,
                 param.ToCustIds,
+                param.IsFullTransfer,
                 param.Amount,
-                param.IsAllDayBalanceTransfer,
+                param.CustStatus,
                 param.AutoTransfer,
                 param.Language,
                 param.IP,
                 param.CustId,
-                param.SubAccId);
-        }
-
-        if (custLevel.IsMasterLevel())
-        {
-            return new MasterTransferYesterdayBalanceCriteria(
+                param.SubAccId)
+            : new SuperTransferYesterdayBalanceCriteria(
                 param.CustId,
                 param.SuperIdsTransferTotal,
                 param.ToCustIds,
@@ -79,19 +77,22 @@ public class TransferYesterdayBalanceService(IDynamicRepository repository) : IT
                 param.IP,
                 param.CustId,
                 param.SubAccId);
-        }
+    }
 
-        return new SuperTransferYesterdayBalanceCriteria(
-            param.CustId,
+    public async Task<Result> MemberTransfer(AgentTransferYesterdayBalanceParam param)
+    {
+        var criteria = new AgentTransferYesterdayBalanceCriteria(
+            param.AgentName,
             param.SuperIdsTransferTotal,
-            param.ToCustIds,
-            param.IsFullTransfer,
+            param.MemberId,
             param.Amount,
-            param.CustStatus,
-            param.AutoTransfer,
+            param.IsAllDayBalanceTransfer,
             param.Language,
             param.IP,
-            param.CustId,
+            param.AgentId,
             param.SubAccId);
+        await repository.ExecuteAsync(criteria, param.AGIP);
+
+        return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
     }
 }

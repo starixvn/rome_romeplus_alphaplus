@@ -1,20 +1,19 @@
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
 public class AgentTransferYesterdayBalanceCriteria(
-    int custId,
+    string agentName,
     string superIdsTransferTotal,
-    string toUsername,
+    int memberId,
     decimal amount,
     bool isAllDayBalTransfer,
-    byte autoTransfer,
     string language,
     string ip,
     int creator,
-    int subAccId) : TransferYesterdayBalanceCriteria(superIdsTransferTotal, autoTransfer, language, ip, creator, subAccId)
+    int subAccId) : TransferYesterdayBalanceCriteria(superIdsTransferTotal, language, ip, creator, subAccId)
 {
-    public int FromCustId { get; } = custId;
+    public string ToUsername { get; } = agentName;
 
-    public string ToUsername { get; } = toUsername;
+    public int FromCustId { get; } = memberId;
 
     public decimal Amount { get; } = amount;
 

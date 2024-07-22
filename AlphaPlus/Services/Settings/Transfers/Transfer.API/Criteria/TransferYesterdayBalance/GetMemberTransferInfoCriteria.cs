@@ -1,5 +1,4 @@
 using System.Data.SqlTypes;
-using AlphaPlus.Core.Utils;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
