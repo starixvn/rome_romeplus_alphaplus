@@ -209,7 +209,7 @@ $border-color: #dfdfdf;
 }
 
 .filter {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     .form-group {
         .btn-group {
             float: none;
@@ -235,7 +235,10 @@ $border-color: #dfdfdf;
         opacity: 0.5;
     }
 }
-
+#warning-multiple-transfer{
+    color: #b50000;
+    margin-bottom: 10px;
+}
 .dropdown-menu {
     .active,
     li:hover {

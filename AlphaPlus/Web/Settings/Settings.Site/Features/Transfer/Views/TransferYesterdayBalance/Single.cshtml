@@ -15,11 +15,11 @@
 }
 <div class="msg" id="msg-alert" style="display:none"></div>
 <form method="post" asp-action="Single" role="form" id="form-update">
-    <div>
+    <div class="form-popup justify-content-space-between">
         <label asp-for="Amount">@Resources.Amount</label>
         <input asp-for="Amount" class="text-right" maxlength="17" autocomplete="off" />
     </div>
-    <div>
+    <div class="form-popup justify-content-flex-end">
         @if (!showTitle)
         {
             <button type="button" class="btn-cancel">@Resources.Cancel</button>

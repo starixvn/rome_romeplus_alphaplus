@@ -317,3 +317,56 @@ a.transfer-link {
     text-decoration: none;
     cursor: pointer;
 }
+
+.form-popup{
+    display: flex;
+    align-items: center;
+    margin-bottom: 13px;
+    label{
+        margin: 0;
+    }
+    input[type="text"]{
+        border: 1px solid #dfdfdf;
+        text-align: right;
+        width: 280px;
+        margin-left: 35px;         
+    } 
+    &.w-50{
+        > *{
+            width: 50%;
+        }
+    }  
+}
+.justify-content-space-between{
+    justify-content: space-between;
+}
+.justify-content-flex-end{
+    justify-content: flex-end;
+}
+.account-info{
+    background-color: #f3f5e0;
+    border: 1px solid #cecece;
+    padding: 6px 16px 8px;
+    margin: 6px 0 12px;
+    .form-popup{
+        margin-bottom: 0;
+    }
+    .title-popup{
+        margin-bottom: 0;
+        line-height: 24px;
+        padding: 4px 0;
+        font-weight: bold;
+    }
+    label, span{
+        line-height: 24px;
+        padding: 4px 0;
+    }
+    .transfer-up{
+        line-height: 24px;
+        margin: 0;
+    }
+    .amount{
+        display: flex;
+        justify-content: space-between;
+    }
+}
