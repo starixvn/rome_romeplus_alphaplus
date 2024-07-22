@@ -1,19 +1,24 @@
 import { Tooltip } from 'react-tippy';
 
 import { useGlobalContext } from '../../context/global-context';
+import styles from './CustomerInfo.module.scss';
 
-export default function UplineInfo() {
-    const { username } = useGlobalContext();
+type Props = {
+    username: string;
+};
+
+export default function UplineInfo({ username }: Props) {
+    const { getCustomerInfo } = useGlobalContext();
     const maxLength = 15;
     const isTruncated = username && username.length > maxLength;
 
     const content = (
         <span
             id="upline-info"
-            className="enabled"
-            // onClick={() => {
-            //     fetchCustomerInfoFromServer(username);
-            // }}
+            className={styles.enabled}
+            onClick={() => {
+                getCustomerInfo?.(username);
+            }}
         >
             {isTruncated ? `${username.substring(0, maxLength)}...` : username}
         </span>

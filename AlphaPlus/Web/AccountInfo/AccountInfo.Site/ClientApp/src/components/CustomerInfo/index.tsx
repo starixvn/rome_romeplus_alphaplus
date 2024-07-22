@@ -53,7 +53,11 @@ export default function CustomerInfo({ searchCounter }: Props) {
                         <div className={classNames('col-xs-12', 'row-info')} key={index}>
                             <div className="col-xs-4">{userLevelInfo.LevelName}</div>
                             <div className={classNames('col-xs-8', 'col-right')}>
-                                {customer?.RoleId === userLevelInfo.LevelId ? <SearchAccountInfo /> : <UplineInfo />}
+                                {customer?.RoleId === userLevelInfo.LevelId ? (
+                                    <SearchAccountInfo />
+                                ) : (
+                                    <UplineInfo username={userLevelInfo.Name ?? ''} />
+                                )}
                             </div>
                         </div>
                     )

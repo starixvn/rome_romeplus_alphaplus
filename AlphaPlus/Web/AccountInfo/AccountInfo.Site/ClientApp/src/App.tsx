@@ -59,13 +59,15 @@ function App() {
                 setSearchCounter(searchCounter + 1);
                 setCustomer(result);
                 if (result) {
-                    setSearchAccountRoleId(result.RoleId - 1);
+                    setUsername(username);
+                    setSearchAccountRoleId(result.RoleId);
                     localStorage.setItem(lastSearchUsernameCacheKey, username);
                     setRedirectToBalanceInfoPage(loadCustomerInfoByClick);
                 } else {
                     if (resetSetting) {
                         setCustomer(undefined);
                     }
+                    setUsername('');
                     localStorage.removeItem(lastSearchUsernameCacheKey);
                 }
             })
