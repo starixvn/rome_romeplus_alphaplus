@@ -323,8 +323,12 @@ a.transfer-link {
     display: flex;
     align-items: center;
     margin-bottom: 13px;
+    &.left-content{
+
+    }
     label{
         margin: 0;
+        padding-right: 10px;
     }
     input[type="text"]{
         border: 1px solid #dfdfdf;
@@ -351,6 +355,14 @@ a.transfer-link {
     margin: 6px 0 12px;
     .form-popup{
         margin-bottom: 0;
+        label{
+            padding-right: 15px;
+        }
+        &.amount {
+            .btn-submit{
+                margin: 0 0 0 20px;;
+            }
+        }
     }
     .title-popup{
         margin-bottom: 0;

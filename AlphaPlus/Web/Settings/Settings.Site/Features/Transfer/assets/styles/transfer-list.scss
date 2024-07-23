@@ -1,7 +1,6 @@
 @import '_mixins.scss';
 
 
-
 %icon {
     font: {
         family: 'Iconalpha';
@@ -227,16 +226,23 @@ $border-color: #dfdfdf;
     &:focus,
     &:active {
         opacity: 0.85;
-        background: #094b84 !important;
+        background: #094b84!important;
     }
-    &.disable,
-    &[disable] {
+    &.disabled,
+    &[disabled] {
         opacity: 0.5;
+        background: #094b84!important;
     }
 }
+
 #warning-multiple-transfer{
-    color: #b50000;
+    color: var(--transfer-warning-color);
     margin-bottom: 10px;
+    .highlight, font{
+        background: var(--transfer-warning-highlight-bg);
+        color: var(--transfer-warning-highlight-color);
+    }
+
 }
 .dropdown-menu {
     .active,
@@ -273,59 +279,60 @@ $border-color: #dfdfdf;
     }
 }
 
-%closed {
-	color: var(--transfer-text-red-color-light);
-	font-weight: bold;
-}
+
 .locked-falsePassword {
     background-color: var(--transfer-status-closedby-pwd-others);
-    @extend %closed;
 }
 
 .closed-byAdmin {
     background-color: var(--transfer-status-closedby-admin);
-    @extend %closed;
 }
 
 .closed-byUpline {
     background-color: var(--transfer-status-closedby-upline);
-    @extend %closed;
 }
 
 .locked-falseOTPSC {
     background-color: var(--transfer-status-closedby-otp-sc);
-    @extend %closed;
 }
 
 .closed-byArchive {
     background-color: var(--transfer-status-closedby-archive);
-    @extend %closed;
 }
 
-
+.favorite a.transfer-link{
+    color: #b50000;
+}
 :root,
 :root [data-theme='light'] {
     --transfer-border: #dfdfdf;
     --transfer-bg-hover: #ddd;
     --transfer-color: #333;
-
-    --transfer-text-red-color-light: #B50000;    
+  
     --transfer-status-closedby-pwd-others: #ccc7ba;
     --transfer-status-closedby-admin: #b3a2c7;
     --transfer-status-closedby-upline: #f79646;
     --transfer-status-closedby-otp-sc: #86c5e4;
-    --transfer-status-closedby-archive: #969696;
-   
+    --transfer-status-closedby-archive: #969696;   
+
+    --transfer-warning-color: #b50000;
+    --transfer-warning-highlight-color: #9d1c1c;
+    --transfer-warning-highlight-bg: #f8eb95;
+
+    
 }
 :root [data-theme='dark'] {
     --transfer-border: #292929;
     --transfer-bg-hover: #3c3c3c;
     --transfer-color: #ededed;
 
-    --transfer-text-red-color-light: #FF4F50;
     --transfer-status-closedby-pwd-others: #6E654E;
     --transfer-status-closedby-admin: #453659;
     --transfer-status-closedby-upline: #874D1E;
     --transfer-status-closedby-otp-sc: #0D3C54;
     --transfer-status-closedby-archive: #0B2945;
+
+    --transfer-warning-color: #ff4f50;
+    --transfer-warning-highlight-color: #ff4f50;
+    --transfer-warning-highlight-bg: #36362e;
 }

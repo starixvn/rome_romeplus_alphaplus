@@ -85,16 +85,18 @@
         <select class="pagingSize" asp-items="@Model.PageSizes"></select>
     </div>
 </div>
-@if (Model.IsMasterOrSuperLevel)
-{
-    <partial name="_DataViewSuperMaster" />
-}
-else
-{
-    <partial name="_DataViewAgent" />
-}
-<partial name="_Paging" model="pagerViewModel" />
-<partial name="~/Features/Transfer/Views/Shared/_VisibleColumns.cshtml" />
+<div class="block-tbl-transfer">
+    @if (Model.IsMasterOrSuperLevel)
+    {
+        <partial name="_DataViewSuperMaster" />
+    }
+    else
+    {
+        <partial name="_DataViewAgent" />
+    }
+    <partial name="_Paging" model="pagerViewModel" />
+    <partial name="~/Features/Transfer/Views/Shared/_VisibleColumns.cshtml" />
+</div>
 <input type="hidden" asp-for="ViewerId" />
 <input type="hidden" id="hidden-usernameSuggestionUrl" value="@MicroSites.SettingUrl("~/UserNameSuggestion")" />
 <a class="hide" id="hidden-transferHintUrl" asp-action="Hint" asp-controller="CashBalanceTransfer"></a>
