@@ -786,5 +786,37 @@
     "inputFiles": [
       "Features/Customer/assets/scripts/update-customer-info.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/position-taking/index.css",
+    "inputFiles": [
+      "Features/PositionTaking/assets/styles/Agent.css",
+      "Features/PositionTaking/assets/styles/CustomizeFanexGrid.css",
+      "Features/PositionTaking/assets/styles/Paging.css",
+      "Features/PositionTaking/assets/styles/PagingHeader.css",
+      "Features/PositionTaking/assets/styles/ViewPTStyles.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/position-taking/index-dark.css",
+    "inputFiles": [
+      "Features/PositionTaking/assets/styles/Agent-dark.css",
+      "Features/PositionTaking/assets/styles/CustomizeFanexGrid-dark.css",
+      "Features/PositionTaking/assets/styles/Paging-dark.css",
+      "Features/PositionTaking/assets/styles/PagingHeader-dark.css",
+      "Features/PositionTaking/assets/styles/ViewPTStyles-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/position-taking/index.js",
+    "inputFiles": [
+      "Features/PositionTaking/assets/scripts/jquery-1.8.2.min.js",
+      "Features/PositionTaking/assets/scripts/AGEWnd.js",
+      "Features/PositionTaking/assets/scripts/bootstrap.min.js",
+      "Features/PositionTaking/assets/scripts/Fanex.Grid.js",
+      "Features/PositionTaking/assets/scripts/moment.js",
+      "Features/PositionTaking/assets/scripts/numeral.js",
+      "Features/PositionTaking/Views/Scripts/ViewPT.js"
+    ]
   }
 ]

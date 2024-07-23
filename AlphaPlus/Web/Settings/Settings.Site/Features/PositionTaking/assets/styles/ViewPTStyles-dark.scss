@@ -1,0 +1,123 @@
+﻿@import '_Variables-dark.scss';
+
+$page-width: 1024px;
+
+// To remove the 300-350ms tap delay
+html {
+    touch-action: manipulation;
+}
+
+body {
+    padding: 2px 16px 8px 16px;
+}
+
+.no-data {
+    color: $text-color;
+    font-weight: bold;
+    text-align: center;
+    background-color: #FFF;
+}
+
+.display-none {
+    display: none;
+}
+
+/******************************************/
+/* Filter */
+/******************************************/
+.infoIco:after {
+    position: relative;
+    top: 6px;
+}
+
+label[for] {
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+
+/******************************************/
+/* Tables */
+/******************************************/
+/*#tbl-rpt th, td {
+    white-space: nowrap;
+}*/
+
+#tblHeader {
+    margin-top: 8px;
+}
+
+#tblFooter {
+    border: solid 1px $table-border-color;
+    border-top: none;
+    min-height: $height-normal;
+}
+
+.BgOdd {
+    background-color: $table-odd-bg;
+}
+
+.BgEven {
+    background-color: $table-even-bg;
+}
+
+.BgOver {
+    text-align: center;
+    background-color: $table-td-hover-color;
+}
+
+.freegrid {
+    .free-top-left table thead th, .col_header table thead th {
+        &.column-level-name, &.column-bettype-name {
+            background-color: #4A4734;
+            color: $text-color;
+        }
+    }
+
+    .closed-wrongPwdOthers td {
+        background-color: $status-closed;
+    }
+
+    .closed-byAdmin td {
+        background-color: $status-closedby-admin;
+    }
+
+    .closed-byUpline td {
+        background-color: $status-closedby-upline;
+    }
+
+    .closed-wrongOTPSC td {
+        background-color: $status-closedby-otp-sc;
+    }
+
+    .closed-byArchive td {
+        background-color: $status-closedby-archive;
+    }
+
+    .locked-falseOTPSC td {
+        background-color: $status-closedby-otp;
+    }
+
+    .locked-falsePassword td {
+        background-color: $status-closedby-pwd;
+    }
+
+    .suspended-row td {
+        background-color: $status-suspended;
+    }
+
+    .disabled-row td {
+        background-color: $status-disabled;
+    }
+
+    td.column-levelname {
+        background-color: #6B5048;
+        color: #ededed;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    td, .grid-fixed-table td {
+        border-color: $table-border-color;
+    }
+}

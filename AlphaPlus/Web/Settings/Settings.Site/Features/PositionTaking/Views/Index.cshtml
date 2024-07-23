@@ -1,35 +1,26 @@
-@* @using Fanex.Razorbill.Module.PositionTaking.Resources;
-@using Newtonsoft.Json;
-@using Fanex.Razorbill.Module.PositionTaking.Models.SportsbookModels;
-@using AlphaPlus.Configurations;
-@model SportsbookPTViewModel
+@using Newtonsoft.Json
+@using AlphaPlus.Configurations
+@model dynamic
 @{
-    Page.Title = Labels.View_Position_Taking;
-    Layout = "../Shared/_Layout.cshtml";
+    Layout = "~/Shared/_Layout.cshtml";
     var bootstrapData = JsonConvert.SerializeObject(Model);
     var productId = Model.Product.MainProductId != 0 ?
         Model.Product.MainProductId : Model.Product.Id;
     var darkModeName = ViewData["DarkModeName"];
-    var jsVersion = AppSettings.JsVersion;
 }
 @section Head{
-    <link rel="stylesheet" type="text/css" href="~/App_Themes/Apo/Common/Agent@(darkModeName).min.css" />
-    <link rel="stylesheet" type="text/css" href="~/App_Themes/Apo/Components/PagingHeader/PagingHeader@(darkModeName).min.css?v=@jsVersion" />
-    <link rel="stylesheet" type="text/css" href="~/App_Themes/Apo/Components/Paging/Paging@(darkModeName).min.css?v=@jsVersion" />
-    <link rel="stylesheet" type="text/css" href="~/Scripts/_Libs/FanexGrid/Fanex.Grid.css" />
-    <link rel="stylesheet" type="text/css" href="~/App_Themes/Apo/Common/CustomizeFanexGrid@(darkModeName).min.css" />
-    <link rel="stylesheet" type="text/css" href="@(Url.Content(string.Format("~/App_Themes/Apo/MemberInfo/PositionTakingList/ViewPTStyles{0}.min.css?v={1}", darkModeName, jsVersion)))" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bundles/position-taking/index.css")" asp-append-version="true" />
 }
 <body>
     <div id="page_main">
         <div id="header_main">
-            @Resources.Lang.lblPositionTaking
+            Position Taking @* @Resources.Lang.lblPositionTaking *@
         </div>
         <div id="tbl-container">
             <table id="tbl-container-layout" style="width: 100%;">
                 <tr>
                     <td>
-                        @Html.Partial("~/Areas/PositionTakingInformation/Views/Shared/_PositionTakingHeader.cshtml", new Dictionary<string, object>() { { "ProductId", productId }, { "ShowPTIcon", Model.Product.ShowPTIcon }, {"SiteLabel", Model.SiteLabel} })
+                        @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml", new Dictionary<string, object>() { { "ProductId", productId }, { "ShowPTIcon", Model.Product.ShowPTIcon }, {"SiteLabel", Model.SiteLabel} })
                     </td>
                 </tr>
                 <tr>
@@ -61,19 +52,12 @@
     <input type="hidden" id="arrayCustID" name="arrayCustID" />
     <input type="hidden" id="arrayUserName" name="arrayUserName" />
     @section Scripts {
-        <script type="text/javascript" src="~/Scripts/_Libs/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="~/_Components/AGEWnd/AGEWnd.js"></script>
-        <script type="text/javascript" src="~/Scripts/_Libs/FanexGrid/Fanex.Grid.js"></script>
-        <script type="text/javascript" src="~/Scripts/_Libs/FanexGrid/moment.js"></script>
-        <script type="text/javascript" src="~/Scripts/_Libs/FanexGrid/numeral.js"></script>
-        <script type="text/javascript" src="~/Js/Numeral/numeral.js"></script>
-        <script type="text/javascript" src="@(Url.Content("~/Areas/PositionTakingInformation/Views/Scripts/ViewPT.js?v=" + AppSettings.JsVersion))"></script>
-        <script type="text/javascript" src="@(Url.Content("~/Areas/PositionTakingInformation/Views/Sportsbook/Scripts/ViewPT.js?v=" + AppSettings.JsVersion))"></script>
+        <script type="text/javascript" src="@Url.Content("~/bundles/position-taking/index.js")" asp-append-version="true"></script>
     }
     <script type="text/javascript">
         window.isDarkMode = @(string.IsNullOrWhiteSpace((string)darkModeName) ? "false" : "true");
-        window.rootUrl = '@Response.ApplyAppPathModifier("~")';
-        var viewResources = {
+        window.rootUrl = '~/';
+        @* var viewResources = {
             Page_Size: '@Resources.Lang.pagesize',
             Symbol_No: '@Labels.Symbol_No',
             Username: '@Resources.Lang.username',
@@ -82,8 +66,19 @@
             noInfo: '@Html.Raw(Resources.Lang.noInfo)',
             live: '@Resources.Lang.lblLive',
             editPTTitle: '@Resources.Lang.lblEditMember'
+        }; *@
+        
+        var viewResources = {
+            Page_Size: 'Page size',
+            Symbol_No: 'of',
+            Username: 'Username',
+            Page: 'Page',
+            of: 'of',
+            noInfo: 'No information is available',
+            live: 'Live',
+            editPTTitle: 'Edit member'
         };
 
         var bootstrapData = @Html.Raw(JsonConvert.DeserializeObject(bootstrapData));
     </script>
-</body> *@
+</body>
