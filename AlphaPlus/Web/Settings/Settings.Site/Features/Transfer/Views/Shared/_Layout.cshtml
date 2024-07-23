@@ -1,8 +1,14 @@
 ﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Models
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
-
+@inject IUserSession userSession
+@{
+    var theme = string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark";
+    var bodyClassName = Enumeration.FromValue<UserLevel>(userSession.RoleId);
+}
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -15,7 +21,8 @@
     @StaticResources.RenderStylesWithDarkMode("~/Features/Transfer/assets/bundles/default")
     @RenderSection("Styles", required: false)
 </head>
-<body>
+
+<body class="@bodyClassName" data-theme="@theme">
     @RenderBody()
 
     @Html.Hidden("NoInformationIsAvailable", @Resources.NoInformationIsAvailable)
@@ -27,4 +34,5 @@
     @StaticResources.AssetScripts.Render("/bundles/site-transfer/default")
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>

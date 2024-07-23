@@ -21,6 +21,8 @@ public interface ITransferCacheService
     void CacheRemove(List<TransferCacheModel> listTransferCacheModel, int custId);
 
     void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds);
+
+    ICacheService GetCacheService();
 }
 
 public class TransferCacheService(int adminId, string adminName, ICacheService cacheService = null) : ITransferCacheService
@@ -154,6 +156,8 @@ public class TransferCacheService(int adminId, string adminName, ICacheService c
             }
         }
     }
+
+    public ICacheService GetCacheService() => InitCacheService();
 
     private static ICacheService InitCacheService()
     {
