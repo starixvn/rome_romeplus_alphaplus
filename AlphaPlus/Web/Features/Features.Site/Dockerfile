@@ -29,6 +29,7 @@ COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
 
 COPY "Services/Features" "Services/Features"
 COPY "Web/Features" "Web/Features"
+COPY ./Web/Features/Features.Site/assets/styles/feedback/images ./Web/Features/Features.Site/wwwroot/assets/bundles/feedback/images
 
 WORKDIR /src/Web/Features/Features.Site
 
