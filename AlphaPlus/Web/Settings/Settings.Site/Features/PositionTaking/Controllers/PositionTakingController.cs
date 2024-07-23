@@ -1,4 +1,5 @@
 using AlphaPlus.Core;
+using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,6 @@ public class PositionTakingController : BaseController
 
     public async Task<IActionResult> Index(int id = 1)
     {
-        return View();
+        return View(new { MainProductId = 0, Id = id, ShowPTIcon = true, SiteLabel = AppSettings.SiteLabel });
     }
 }

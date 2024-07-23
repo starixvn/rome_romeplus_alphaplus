@@ -60,6 +60,7 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.SecurityCode.Filters;
 using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Settings.Site.Features.PositionTaking.Services;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -219,6 +220,9 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<ITransferYesterdayBalanceService, TransferYesterdayBalanceService>()
                 .AddScoped<TransferAllAndClearCreditService, TransferAllAndClearCreditServiceImpl>()
                 .AddScoped<TransferToDownlineHistoryService, TransferToDownlineHistoryServiceImpl>();
+
+            services
+                .AddHttpClient<IPositionTakingService, PositionTakingService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
             services
                 .AddHttpContextAccessor()

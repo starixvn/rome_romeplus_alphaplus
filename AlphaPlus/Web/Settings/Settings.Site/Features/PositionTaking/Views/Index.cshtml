@@ -2,10 +2,10 @@
 @using AlphaPlus.Configurations
 @model dynamic
 @{
-    Layout = "~/Shared/_Layout.cshtml";
+    Layout = "~/Features/PositionTaking/Views/Shared/_Layout.cshtml";
     var bootstrapData = JsonConvert.SerializeObject(Model);
-    var productId = Model.Product.MainProductId != 0 ?
-        Model.Product.MainProductId : Model.Product.Id;
+    var productId = Model.MainProductId != 0 ?
+        Model.MainProductId : Model.Id;
     var darkModeName = ViewData["DarkModeName"];
 }
 @section Head{
@@ -20,7 +20,7 @@
             <table id="tbl-container-layout" style="width: 100%;">
                 <tr>
                     <td>
-                        @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml", new Dictionary<string, object>() { { "ProductId", productId }, { "ShowPTIcon", Model.Product.ShowPTIcon }, {"SiteLabel", Model.SiteLabel} })
+                        @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml", new Dictionary<string, object>() { { "ProductId", productId }, { "ShowPTIcon", Model.ShowPTIcon }, {"SiteLabel", Model.SiteLabel} })
                     </td>
                 </tr>
                 <tr>
