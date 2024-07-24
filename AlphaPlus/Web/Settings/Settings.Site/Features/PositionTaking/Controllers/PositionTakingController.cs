@@ -14,8 +14,15 @@ public class PositionTakingController : BaseController
         this.mediator = mediator;
     }
 
+    [HttpGet]
     public async Task<IActionResult> Index(PositionTakingRequest request)
     {
         return View(await mediator.Send(request));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Index([FromBody]DownlinePositionTakingRequest request)
+    {
+        return Json(await mediator.Send(request));
     }
 }
