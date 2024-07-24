@@ -1,6 +1,5 @@
 using AlphaPlus.Core;
-using AlphaPlus.Core.Configurations;
-using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.PositionTaking.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,8 +14,8 @@ public class PositionTakingController : BaseController
         this.mediator = mediator;
     }
 
-    public async Task<IActionResult> Index(int id = 1)
+    public async Task<IActionResult> Index(PositionTakingRequest request)
     {
-        return View(new { MainProductId = 0, Id = id, ShowPTIcon = true, SiteLabel = AppSettings.SiteLabel });
+        return View(await mediator.Send(request));
     }
 }

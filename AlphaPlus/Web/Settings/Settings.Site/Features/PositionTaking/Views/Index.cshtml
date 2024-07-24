@@ -1,11 +1,11 @@
+@using AlphaPlus.Core.Configurations
 @using Newtonsoft.Json
-@using AlphaPlus.Configurations
 @model dynamic
 @{
     Layout = "~/Features/PositionTaking/Views/Shared/_Layout.cshtml";
     var bootstrapData = JsonConvert.SerializeObject(Model);
-    var productId = Model.MainProductId != 0 ?
-        Model.MainProductId : Model.Id;
+    var productId = Model.product.mainProductId != 0 ?
+        Model.product.mainProductId : Model.product.id;
     var darkModeName = ViewData["DarkModeName"];
 }
 @section Head{
@@ -14,13 +14,13 @@
 <body>
     <div id="page_main">
         <div id="header_main">
-            Position Taking @* @Resources.Lang.lblPositionTaking *@
+            Position Taking (%) @* @Resources.Lang.lblPositionTaking *@
         </div>
         <div id="tbl-container">
             <table id="tbl-container-layout" style="width: 100%;">
                 <tr>
                     <td>
-                        @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml", new Dictionary<string, object>() { { "ProductId", productId }, { "ShowPTIcon", Model.ShowPTIcon }, {"SiteLabel", Model.SiteLabel} })
+                        @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml", new Dictionary<string, object>() { { "ProductId", productId }, { "ShowPTIcon", Model.product.showPTIcon }, {"SiteLabel", AppSettings.SiteLabel} })
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +56,7 @@
     }
     <script type="text/javascript">
         window.isDarkMode = @(string.IsNullOrWhiteSpace((string)darkModeName) ? "false" : "true");
-        window.rootUrl = '~/';
+        window.rootUrl = '/settings';
         @* var viewResources = {
             Page_Size: '@Resources.Lang.pagesize',
             Symbol_No: '@Labels.Symbol_No',
@@ -70,7 +70,7 @@
         
         var viewResources = {
             Page_Size: 'Page size',
-            Symbol_No: 'of',
+            Symbol_No: '#',
             Username: 'Username',
             Page: 'Page',
             of: 'of',

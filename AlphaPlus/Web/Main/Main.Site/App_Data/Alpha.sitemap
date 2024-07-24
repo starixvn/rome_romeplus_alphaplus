@@ -59,7 +59,7 @@
     <siteMapNode resourceKey="problemAccountList" url="/settings/ProblemAccount"></siteMapNode>
 
     <siteMapNode resourceKey="creditbalance" url="/settings/CreditBalance"></siteMapNode>
-    <siteMapNode resourceKey="positionTaking" url="/settings/positiontaking"></siteMapNode>
+    <siteMapNode resourceKey="positionTaking" url="/settings/positiontaking?productId=1&amp;showPtIcon=true"></siteMapNode>
 
     <siteMapNode resourceKey="memberCommission" url="/settings/sportsbookcomm"></siteMapNode>
     <!--<siteMapNode resourceKey="BetChoiceLimit" menuItemType="BetChoiceLimitMenuItem" url="MemberInformation/BetChoiceLimit/Index"></siteMapNode>-->

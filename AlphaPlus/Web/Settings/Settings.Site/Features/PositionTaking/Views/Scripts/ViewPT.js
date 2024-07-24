@@ -11,16 +11,16 @@ var ViewPTManagement = function () {
 
     self.cachedData = {
         getPositionTakingInfoCriteria: {
-            PageSize: 0,
-            PageIndex: 0
+            pageSize: 0,
+            pageIndex: 0
         },
 
-        PositionTakingInfo: null,
+        positionTakingInfo: null,
         lastParam: null,
-        ShowPTIcon: false
+        showPTIcon: false
     };
     self.Enums = {
-        RoleId: {
+        roleId: {
             Member: 1,
             Agent: 2,
             Master: 3,
@@ -28,24 +28,24 @@ var ViewPTManagement = function () {
         }
     };
 
-    self.PositionTakingInfo = bootstrapData;
-    self.PageSizeList = bootstrapData.PageSizeList;
-    self.ShowPTIcon = bootstrapData.Product.ShowPTIcon;
+    self.positionTakingInfo = bootstrapData;
+    self.pageSizeList = bootstrapData.pageSizeList;
+    self.showPTIcon = bootstrapData.product.showPTIcon;
 
     self.initPage = function () {
-        $("#arrayCustID").val(self.PositionTakingInfo.CustomerInfo.CustId);
+        $("#arrayCustID").val(self.positionTakingInfo.customerInfo.custId);
 
         self.cacheElement();
         self.renderPagingControl();
         self.cachedData.getPositionTakingInfoCriteria = {
-            PageSize: self.PositionTakingInfo.PageSize,
-            PageIndex: self.PositionTakingInfo.PageIndex
+            pageSize: self.positionTakingInfo.pageSize,
+            pageIndex: self.positionTakingInfo.pageIndex
         };
 
-        self.cachedData.PositionTakingInfo = self.PositionTakingInfo;
-        self.cachedData.ShowPTIcon = self.ShowPTIcon;
+        self.cachedData.positionTakingInfo = self.positionTakingInfo;
+        self.cachedData.showPTIcon = self.showPTIcon;
 
-        self.renderPositionTakingInfo(self.PositionTakingInfo);
+        self.renderPositionTakingInfo(self.positionTakingInfo);
     };
     self.cacheElement = function () {
         self.domElements.pagingControl = $("#tblHeader .pagingcontrol");
@@ -53,7 +53,7 @@ var ViewPTManagement = function () {
         self.domElements.viewPageContainer = $(".viewpage-container");
     };
     self.renderPagingControl = function () {
-        if (!self.PositionTakingInfo || !self.PositionTakingInfo.Product) {
+        if (!self.positionTakingInfo || !self.positionTakingInfo.product) {
             self.domElements.pagingControl.empty();
             return;
         }
@@ -61,10 +61,10 @@ var ViewPTManagement = function () {
         var controlHtml = '';
         controlHtml += viewResources.Page_Size;
         controlHtml += '<select id="sel_PagingTop" name="sel_PagingTop">';
-        var pageSizeLength = self.PageSizeList.length;
+        var pageSizeLength = self.pageSizeList.length;
         for (var i = 0; i < pageSizeLength; i++) {
-            var pageSize = self.PageSizeList[i];
-            var isSelected = self.PositionTakingInfo.PageSize === pageSize ? 'selected="selected" ' : '';
+            var pageSize = self.pageSizeList[i];
+            var isSelected = self.positionTakingInfo.pageSize === pageSize ? 'selected="selected" ' : '';
             controlHtml += '<option value="' + pageSize + '"' + isSelected + '>' + pageSize + '</option>';
         }
 
@@ -79,38 +79,38 @@ var ViewPTManagement = function () {
     };
     self.getPositionTakingInfo = function (pageSize, pageIndex) {
         var criteria = {
-            ProductId: self.cachedData.PositionTakingInfo.Product.Id,
-            MainProductId: self.cachedData.PositionTakingInfo.Product.MainProductId,
+            ProductId: self.cachedData.positionTakingInfo.product.id,
+            MainProductId: self.cachedData.positionTakingInfo.product.mainProductId,
             PageSize: pageSize,
             PageIndex: pageIndex,
-            CustId: self.cachedData.PositionTakingInfo ?
-                self.cachedData.PositionTakingInfo.ViewedCustomerInfo.CustId :
+            CustId: self.cachedData.positionTakingInfo ?
+                self.cachedData.positionTakingInfo.viewedCustomerInfo.custId :
                 0,
-            RoleId: self.cachedData.PositionTakingInfo ?
-                self.cachedData.PositionTakingInfo.ViewedCustomerInfo.RoleId :
+            RoleId: self.cachedData.positionTakingInfo ?
+                self.cachedData.positionTakingInfo.viewedCustomerInfo.roleId :
                 0
         };
 
         self.cachedData.lastParam = criteria;
         $.ajax({
             type: "POST",
-            url: window.rootUrl + "SportsbookPT/GetPositionTaking",
+            url: window.rootUrl + "PositionTaking",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: JSON.stringify(criteria),
             success: function (rs) {
-                self.cachedData.PositionTakingInfo = rs;
+                self.cachedData.positionTakingInfo = rs;
                 self.renderPositionTakingInfo(rs);
             }
         });
     };
     self.renderPositionTakingInfo = function (positionTakingInfo) {
-        if (!self.PositionTakingInfo || !self.PositionTakingInfo.Product) {
+        if (!self.positionTakingInfo || !self.positionTakingInfo.product) {
             return;
         }
 
-        self.cachedData.getPositionTakingInfoCriteria.PageSize = positionTakingInfo.PageSize;
-        self.cachedData.getPositionTakingInfoCriteria.PageIndex = positionTakingInfo.PageIndex;
+        self.cachedData.getPositionTakingInfoCriteria.pageSize = positionTakingInfo.pageSize;
+        self.cachedData.getPositionTakingInfoCriteria.pageIndex = positionTakingInfo.pageIndex;
 
         var gridOptions = self.getGridOptions(positionTakingInfo);
         self.domElements.mainTable.removeClass("hidden").fanexGrid(gridOptions);
@@ -120,12 +120,12 @@ var ViewPTManagement = function () {
     };
 
     self.renderPositionTakingInfoFooter = function (positionTakingInfo) {
-        if (positionTakingInfo.TotalPage <= 1) {
+        if (positionTakingInfo.totalPage <= 1) {
             self.domElements.viewPageContainer.addClass("display-none");
             return;
         }
 
-        var pagingControlContent = self.renderFooterPaging(positionTakingInfo.PageIndex, positionTakingInfo.TotalPage);
+        var pagingControlContent = self.renderFooterPaging(positionTakingInfo.pageIndex, positionTakingInfo.totalPage);
         self.domElements.viewPageContainer.empty().append(pagingControlContent).removeClass("display-none");
         self.cacheFooterPagingElements();
     };
@@ -164,12 +164,12 @@ var ViewPTManagement = function () {
     self.firstPaging = function () {
         var selectedPageIndex = 1;
         self.domElements.pagingCurrent.val(selectedPageIndex);
-        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.PageSize, selectedPageIndex);
+        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.pageSize, selectedPageIndex);
     };
     self.nextPaging = function () {
-        var selectedPageIndex = parseInt(self.cachedData.PositionTakingInfo.PageIndex) + 1;
+        var selectedPageIndex = parseInt(self.cachedData.positionTakingInfo.pageIndex) + 1;
         self.domElements.pagingCurrent.val(selectedPageIndex);
-        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.PageSize, selectedPageIndex);
+        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.pageSize, selectedPageIndex);
     };
     self.doEnterPaging = function (element, event) {
         var keyCode = event.which;
@@ -181,23 +181,23 @@ var ViewPTManagement = function () {
         if (selectedPageIndex < 1) {
             selectedPageIndex = 1;
         }
-        else if (self.cachedData.PositionTakingInfo &&
-            self.cachedData.PositionTakingInfo.TotalPage < selectedPageIndex) {
-            selectedPageIndex = self.cachedData.PositionTakingInfo.TotalPage;
+        else if (self.cachedData.positionTakingInfo &&
+            self.cachedData.positionTakingInfo.totalPage < selectedPageIndex) {
+            selectedPageIndex = self.cachedData.positionTakingInfo.totalPage;
         }
 
         self.domElements.pagingCurrent.val(selectedPageIndex);
-        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.PageSize, selectedPageIndex);
+        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.pageSize, selectedPageIndex);
     };
     self.previousPaging = function () {
-        var selectedPageIndex = parseInt(self.cachedData.PositionTakingInfo.PageIndex) - 1;
+        var selectedPageIndex = parseInt(self.cachedData.positionTakingInfo.pageIndex) - 1;
         self.domElements.pagingCurrent.val(selectedPageIndex);
-        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.PageSize, selectedPageIndex);
+        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.pageSize, selectedPageIndex);
     };
     self.lastPaging = function () {
-        var selectedPageIndex = self.cachedData.PositionTakingInfo.TotalPage;
+        var selectedPageIndex = self.cachedData.positionTakingInfo.totalPage;
         self.domElements.pagingCurrent.val(selectedPageIndex);
-        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.PageSize, selectedPageIndex);
+        self.getPositionTakingInfo(self.cachedData.getPositionTakingInfoCriteria.pageSize, selectedPageIndex);
     };
 
     self.getGridOptions = function (positionTakingInfo) {
@@ -213,7 +213,7 @@ var ViewPTManagement = function () {
             bodyRowHeight: 24,
             noDataText: viewResources.noInfo,
             numberOfFrozenColumn: 0,
-            gridExpandHeight: positionTakingInfo.TotalPage <= 1 ? 140 : 180,
+            gridExpandHeight: positionTakingInfo.totalPage <= 1 ? 140 : 180,
             showHighlightRow: true,
             showPager: false,
             showDistinctRow: false,
@@ -240,18 +240,18 @@ var ViewPTManagement = function () {
             Name: "ColNo",
             HeaderAlign: "center",
             CellAlign: "center",
-            MergeColNumber: positionTakingInfo.IsShowUplinePT ? 3 : 2
+            MergeColNumber: positionTakingInfo.isShowUplinePT ? 3 : 2
         });
 
         headerColumns.push({
             HeaderText: viewResources.Username,
-            Width: positionTakingInfo.CustomerList.length ? 180 : 447,
+            Width: positionTakingInfo.customerList.length ? 180 : 447,
             Name: "ColUsername",
             HeaderAlign: "center",
             CellAlign: "left"
         });
 
-        if (positionTakingInfo.IsShowUplinePT && positionTakingInfo.CustomerList.length) {
+        if (positionTakingInfo.isShowUplinePT && positionTakingInfo.customerList.length) {
             headerColumns.push({
                 HeaderText: '',
                 Width: 20,
@@ -262,35 +262,35 @@ var ViewPTManagement = function () {
             });
         }
 
-        var sportLength = positionTakingInfo.Product.ActivationGroups.length;
+        var sportLength = positionTakingInfo.product.activationGroups.length;
         for (var i = 0; i < sportLength; i++) {
-            var sport = positionTakingInfo.Product.ActivationGroups[i];
-            if (!sport.Active) {
+            var sport = positionTakingInfo.product.activationGroups[i];
+            if (!sport.active) {
                 continue;
             }
 
-            var liveTypeLength = sport.ActivationGroups.length;
+            var liveTypeLength = sport.activationGroups.length;
             for (var j = 0; j < liveTypeLength; j++) {
-                var liveType = sport.ActivationGroups[j];
-                if (!liveType.Active) {
+                var liveType = sport.activationGroups[j];
+                if (!liveType.active) {
                     continue;
                 }
 
-                var betTypeLength = liveType.ActivationGroups.length;
+                var betTypeLength = liveType.activationGroups.length;
                 var activeBetTypeLength = 0;
                 for (var k = 0; k < betTypeLength; k++) {
-                    var betType = liveType.ActivationGroups[k];
-                    if (!betType.Active) {
+                    var betType = liveType.activationGroups[k];
+                    if (!betType.active) {
                         continue;
                     }
                     var width = betTypeLength < 3 ? 300 : 150;
-                    if (betType.Name.length > 35) {
+                    if (betType.name.length > 35) {
                         width = 500;
                     }
                     headerColumns.push({
-                        HeaderText: betType.Name,
+                        HeaderText: betType.name,
                         Width: width,
-                        Name: "ColSportType" + sport.Id + "-LiveType" + liveType.Id + "-BetType" + betType.Id,
+                        Name: "ColSportType" + sport.id + "-LiveType" + liveType.id + "-BetType" + betType.id,
                         HeaderAlign: "center",
                         CellAlign: "center",
                         ThClass: 'column-bettype-name'
@@ -300,8 +300,8 @@ var ViewPTManagement = function () {
 
                 if (activeBetTypeLength) {
                     groupHeaderColumns.push({
-                        HeaderText: sport.Name + " " + liveType.Name,
-                        Name: "ColSportType" + sport.Id + "-LiveType" + liveType.Id + "-BetType" + liveType.ActivationGroups[0].Id,
+                        HeaderText: sport.name + " " + liveType.name,
+                        Name: "ColSportType" + sport.id + "-LiveType" + liveType.id + "-BetType" + liveType.activationGroups[0].id,
                         HeaderAlign: "center",
                         CellAlign: "center",
                         MergeColNumber: activeBetTypeLength
@@ -319,8 +319,8 @@ var ViewPTManagement = function () {
     };
     self.renderPositionTakingInfoBody = function (positionTakingInfo) {
         var bodyData = [];
-        var custLength = positionTakingInfo.CustomerList.length;
-        if (positionTakingInfo.IsShowUplinePT) {
+        var custLength = positionTakingInfo.customerList.length;
+        if (positionTakingInfo.isShowUplinePT) {
             bodyData = self.renderPositionTakingInfoBody_WithUplineInfo(positionTakingInfo);
         } else {
             bodyData = self.renderPositionTakingInfoBody_WithoutUplineInfo(positionTakingInfo);
@@ -331,35 +331,35 @@ var ViewPTManagement = function () {
 
     self.renderPositionTakingInfoBody_WithUplineInfo = function (positionTakingInfo) {
         var bodyData = [];
-        var custLength = positionTakingInfo.CustomerList.length;
-        var uplineLength = positionTakingInfo.ViewedLevels.length - 1;
+        var custLength = positionTakingInfo.customerList.length;
+        var uplineLength = positionTakingInfo.viewedLevels.length - 1;
         for (var i = 0; i < custLength; i++) {
-            var custPt = positionTakingInfo.CustomerList[i];
+            var custPt = positionTakingInfo.customerList[i];
             var columns = [];
             columns.push({
                 Name: "ColNo",
-                Value: custPt.GroupIndex,
+                Value: custPt.groupIndex,
                 MergeRowNumber: uplineLength + 1
             });
 
             columns.push({
                 Name: "ColUsername",
-                Value: self.drilldownLink(positionTakingInfo, custPt.CustomerInfo),
+                Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo),
                 MergeRowNumber: uplineLength + 1
             });
 
             for (var j = 0; j < uplineLength; j++) {
-                var uplinePT = custPt.UplinePT[j];
+                var uplinePT = custPt.uplinePT[j];
                 columns.push({
                     Name: "ColUserLevelName",
-                    Value: self.getLevelName(positionTakingInfo.ViewedLevels[j]),
+                    Value: self.getLevelName(positionTakingInfo.viewedLevels[j]),
                     TdClass: 'column-levelname'
                 });
 
                 columns = columns.concat(self.renderPTBySport(uplinePT));
                 bodyData.push({
                     Columns: columns,
-                    CssClass: self.customerStatusRowCss(uplinePT.CustomerInfo)
+                    CssClass: self.customerStatusRowCss(uplinePT.customerInfo)
                 });
 
                 columns = [];
@@ -367,14 +367,14 @@ var ViewPTManagement = function () {
 
             columns.push({
                 Name: "ColUserLevelName",
-                Value: self.getLevelName(positionTakingInfo.ViewedLevels[uplineLength]),
+                Value: self.getLevelName(positionTakingInfo.viewedLevels[uplineLength]),
                 TdClass: 'column-levelname'
             });
 
             columns = columns.concat(self.renderPTBySport(custPt));
             bodyData.push({
                 Columns: columns,
-                CssClass: self.customerStatusRowCss(custPt.CustomerInfo)
+                CssClass: self.customerStatusRowCss(custPt.customerInfo)
             });
         }
 
@@ -382,24 +382,24 @@ var ViewPTManagement = function () {
     };
     self.renderPositionTakingInfoBody_WithoutUplineInfo = function (positionTakingInfo) {
         var bodyData = [];
-        var custLength = positionTakingInfo.CustomerList.length;
+        var custLength = positionTakingInfo.customerList.length;
         for (var i = 0; i < custLength; i++) {
-            var custPt = positionTakingInfo.CustomerList[i];
+            var custPt = positionTakingInfo.customerList[i];
             var columns = [];
             columns.push({
                 Name: "ColNo",
-                Value: custPt.GroupIndex
+                Value: custPt.groupIndex
             });
 
             columns.push({
                 Name: "ColUsername",
-                Value: self.drilldownLink(positionTakingInfo, custPt.CustomerInfo)
+                Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo)
             });
 
             columns = columns.concat(self.renderPTBySport(custPt));
             bodyData.push({
                 Columns: columns,
-                CssClass: self.customerStatusRowCss(custPt.CustomerInfo)
+                CssClass: self.customerStatusRowCss(custPt.customerInfo)
             });
         }
 
@@ -408,18 +408,18 @@ var ViewPTManagement = function () {
 
     self.drilldownLink = function (positionTakingInfo, customerInfo) {
         var link = '';
-        switch (positionTakingInfo.ViewedCustomerInfo.RoleId) {
-            case self.Enums.RoleId.Super:
-            case self.Enums.RoleId.Master:
-                link = '<a onclick="viewPTManagement.viewDownlinePTList(\'' + customerInfo.CustId + '\');" href="#">' +
-                    customerInfo.CustName +
+        switch (positionTakingInfo.viewedCustomerInfo.roleId) {
+            case self.Enums.roleId.Super:
+            case self.Enums.roleId.Master:
+                link = '<a onclick="viewPTManagement.viewDownlinePTList(\'' + customerInfo.custId + '\');" href="javascript:;">' +
+                    customerInfo.custName +
                     '</a>';
                 break;
-            case self.Enums.RoleId.Agent:
+            case self.Enums.roleId.Agent:
                 link = '<a  onclick="viewPTManagement.editMemberPTList(' +
-                    '\'' + customerInfo.CustId + '\',' +
-                    '\'' + customerInfo.CustName + '\'' + ');" href="javascript:;">' +
-                    customerInfo.CustName +
+                    '\'' + customerInfo.custId + '\',' +
+                    '\'' + customerInfo.custName + '\'' + ');" href="javascript:;">' +
+                    customerInfo.custName +
                     '</a>';
                 break;
             default:
@@ -430,33 +430,33 @@ var ViewPTManagement = function () {
     };
 
     self.renderPTBySport = function (custPt) {
-        var sportLength = custPt.PTByGroups.length;
+        var sportLength = custPt.positionTakingByGroups.length;
         var columns = [];
         for (var i = 0; i < sportLength; i++) {
-            var sport = custPt.PTByGroups[i];
+            var sport = custPt.positionTakingByGroups[i];
             columns = columns.concat(self.renderPTByLiveType(custPt, sport));
         }
 
         return columns;
     };
     self.renderPTByLiveType = function (custPt, sport) {
-        var liveTypeLength = sport.PTByGroups.length;
+        var liveTypeLength = sport.positionTakingByGroups.length;
         var columns = [];
         for (var i = 0; i < liveTypeLength; i++) {
-            var liveType = sport.PTByGroups[i];
+            var liveType = sport.positionTakingByGroups[i];
             columns = columns.concat(self.renderPTByBetType(custPt, sport, liveType));
         }
 
         return columns;
     };
     self.renderPTByBetType = function (custPt, sport, liveType) {
-        var betTypeLength = liveType.PTByGroups.length;
+        var betTypeLength = liveType.positionTakingByGroups.length;
         var columns = [];
         for (var i = 0; i < betTypeLength; i++) {
-            var betType = liveType.PTByGroups[i];
+            var betType = liveType.positionTakingByGroups[i];
             var ptValue = numeral(betType.PTValue).value();
             columns.push({
-                Name: "ColSportType" + sport.Id + "-LiveType" + liveType.Id + "-BetType" + betType.Id,
+                Name: "ColSportType" + sport.id + "-LiveType" + liveType.id + "-BetType" + betType.id,
                 Value: ptValue
             });
         }
@@ -465,49 +465,49 @@ var ViewPTManagement = function () {
     };
 
     self.viewDownlinePTList = function (custId) {
-        var downlineId = self.getDirectDownlineId(self.cachedData.PositionTakingInfo.ViewedCustomerInfo.RoleId);
+        var downlineId = self.getDirectDownlineId(self.cachedData.positionTakingInfo.viewedCustomerInfo.roleId);
         var criteria = {
-            ProductId: self.cachedData.PositionTakingInfo.Product.Id,
-            PageSize: self.cachedData.PositionTakingInfo ?
-                self.cachedData.PositionTakingInfo.PageSize :
+            ProductId: self.cachedData.positionTakingInfo.product.id,
+            PageSize: self.cachedData.positionTakingInfo ?
+                self.cachedData.positionTakingInfo.pageSize :
                 0,
             PageIndex: 1,
             CustId: custId,
             RoleId: downlineId,
-            ShowPTIcon: self.cachedData.ShowPTIcon,
-            MainProductId: self.cachedData.PositionTakingInfo.Product.MainProductId,
-            ProductGroupId: self.cachedData.PositionTakingInfo.Product.GroupId
+            ShowPTIcon: self.cachedData.showPTIcon,
+            MainProductId: self.cachedData.positionTakingInfo.product.mainProductId,
+            ProductGroupId: self.cachedData.positionTakingInfo.product.groupId
         };
         self.cachedData.lastParam = criteria;
-        window.location.href = window.rootUrl + "SportsbookPT/DownlinePT?" + $.param(criteria);
+        window.location.href = window.rootUrl + "PositionTaking?" + $.param(criteria);
     };
     self.getDirectDownlineId = function (roleId) {
         switch (roleId) {
-            case self.Enums.RoleId.Super:
-                return self.Enums.RoleId.Master;
-            case self.Enums.RoleId.Master:
-                return self.Enums.RoleId.Agent;
-            case self.Enums.RoleId.Agent:
-                return self.Enums.RoleId.Member;
+            case self.Enums.roleId.Super:
+                return self.Enums.roleId.Master;
+            case self.Enums.roleId.Master:
+                return self.Enums.roleId.Agent;
+            case self.Enums.roleId.Agent:
+                return self.Enums.roleId.Member;
             default:
-                return self.Enums.RoleId.Member;
+                return self.Enums.roleId.Member;
         }
     };
     self.customerStatusRowCss = function (customerInfo) {
-        if (!customerInfo.Enabled) {
+        if (!customerInfo.enabled) {
             return 'disabled-row'
         }
 
-        if (customerInfo.Closed) {
-            return customerInfo.ClosedReason.ClassName;
+        if (customerInfo.closed) {
+            return customerInfo.closedReason.className;
         }
 
-        if (customerInfo.Suspended) {
+        if (customerInfo.suspended) {
             return 'suspended-row';
         }
 
-        if (customerInfo.LockedAccess.IsLocked) {
-            return customerInfo.LockedAccess.ClassName
+        if (customerInfo.lockedAccess.IsLocked) {
+            return customerInfo.lockedAccess.className
         }
 
         return '';
@@ -515,14 +515,14 @@ var ViewPTManagement = function () {
 
     self.editMemberPTList = function (custId, custName) {
         var params = $.param({
-            productId: self.PositionTakingInfo.Product.Id,
+            productId: self.positionTakingInfo.product.id,
             customerLevel: 1,
-            uplineLevel: self.PositionTakingInfo.CustomerInfo.RoleId,
+            uplineLevel: self.positionTakingInfo.customerInfo.roleId,
             customerId: custId,
 
             isMultiple: false,
             username: custName,
-            userId: self.PositionTakingInfo.CustomerInfo.CustId,
+            userId: self.positionTakingInfo.customerInfo.custId,
             subAccid: 0,
             isViewPt: true,
             isDarkMode: window.isDarkMode
@@ -531,18 +531,18 @@ var ViewPTManagement = function () {
         var title = viewResources.editPTTitle + " - " + custName;
         var popupWidth = 1250;
 
-        if (self.PositionTakingInfo.Product.IsNewSetting == true) {
+        if (self.positionTakingInfo.product.isNewSetting == true) {
             var payload = $.param({
-                productGroupId: self.PositionTakingInfo.Product.GroupId,
+                productGroupId: self.positionTakingInfo.product.groupId,
                 custId: custId,
                 roleId: 1,
-                uplineRoleId: self.PositionTakingInfo.CustomerInfo.RoleId,
-                lng: self.PositionTakingInfo.Language,
+                uplineRoleId: self.positionTakingInfo.customerInfo.roleId,
+                lng: self.positionTakingInfo.language,
                 isDarkMode: window.isDarkMode
             });
             top.popupManager.open(top.alpha.urls.memberInfoRootPath + "Customer/EditCustomer?" + payload, title, popupWidth);
         } else {
-            var url = self.PositionTakingInfo.Product.CustomerSettingLink;
+            var url = self.positionTakingInfo.product.customerSettingLink;
 
             if (url) {
                 url += "?" + params;
@@ -556,11 +556,11 @@ var ViewPTManagement = function () {
     };
     self.getRoleName = function (roleId) {
         switch (roleId) {
-            case self.Enums.RoleId.Super:
+            case self.Enums.roleId.Super:
                 return "Super";
-            case self.Enums.RoleId.Master:
+            case self.Enums.roleId.Master:
                 return "Master";
-            case self.Enums.RoleId.Agent:
+            case self.Enums.roleId.Agent:
                 return "Agent";
             default:
                 return "";
@@ -568,11 +568,11 @@ var ViewPTManagement = function () {
     };
     self.getLevelName = function (levelId) {
         switch (levelId) {
-            case self.Enums.RoleId.Super:
+            case self.Enums.roleId.Super:
                 return "S";
-            case self.Enums.RoleId.Master:
+            case self.Enums.roleId.Master:
                 return "M";
-            case self.Enums.RoleId.Agent:
+            case self.Enums.roleId.Agent:
                 return "A";
             default:
                 return "";

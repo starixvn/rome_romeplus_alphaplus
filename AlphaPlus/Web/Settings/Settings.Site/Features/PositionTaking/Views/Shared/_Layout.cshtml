@@ -1,7 +1,10 @@
 ﻿@using AlphaPlus.Core.Helpers
-@{ var darkModeName = ViewData["DarkModeName"]; }
+@{
+    var darkModeName = ViewData["DarkModeName"];
+}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>@ViewBag.Title</title>
@@ -11,24 +14,25 @@
     @RenderSection("Head", false)
     @GoogleAnalyticHelper.GtagScript()
 </head>
+
 <body>
     @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @Html.Hidden("RootURL", Url.Content("~/"))
+    @RenderSection("Scripts", false)
+    <script type="text/javascript">
+        window.rootUrl = '';
+        var domain;
+
+        jQuery(document).ready(function () {
+            domain = location.protocol + '//' + location.host + jQuery('#RootURL').val();
+        });
+
+        jQuery(window).resize(function () {
+            var width = jQuery(window).width() - 20; //padding-right: 10 + padding-left: 10
+            jQuery("#GridContainer-grid-title").css("width", width + "px");
+        });
+    </script>
 </body>
+
 </html>
-<script type="text/javascript">
-    window.rootUrl = '~/';
-    var domain;
-
-    jQuery(document).ready(function () {
-        domain = location.protocol + '//' + location.host + jQuery('#RootURL').val();
-    });
-
-    jQuery(window).resize(function () {
-        var width = jQuery(window).width() - 20; //padding-right: 10 + padding-left: 10
-        jQuery("#GridContainer-grid-title").css("width", width + "px");
-    });
-</script>
-
-@RenderSection("Scripts", false)
