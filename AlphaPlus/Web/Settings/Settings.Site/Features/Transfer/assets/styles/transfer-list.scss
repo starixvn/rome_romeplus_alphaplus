@@ -1,6 +1,41 @@
 @import '_mixins.scss';
 
 
+:root,
+:root [data-theme='light'] {
+
+    --transfer-border: #dfdfdf;
+    --transfer-bg-hover: #ddd;
+    --transfer-color: #333;
+  
+    --transfer-status-closedby-pwd-others: #ccc7ba;
+    --transfer-status-closedby-admin: #b3a2c7;
+    --transfer-status-closedby-upline: #f79646;
+    --transfer-status-closedby-otp-sc: #86c5e4;
+    --transfer-status-closedby-archive: #969696;   
+
+    --transfer-warning-color: #b50000;
+    --transfer-warning-highlight-color: #9d1c1c;
+    --transfer-warning-highlight-bg: #f8eb95;
+
+    
+}
+:root [data-theme='dark'] {
+    --transfer-border: #292929;
+    --transfer-bg-hover: #3c3c3c;
+    --transfer-color: #ededed;
+
+    --transfer-status-closedby-pwd-others: #6E654E;
+    --transfer-status-closedby-admin: #453659;
+    --transfer-status-closedby-upline: #874D1E;
+    --transfer-status-closedby-otp-sc: #0D3C54;
+    --transfer-status-closedby-archive: #0B2945;
+
+    --transfer-warning-color: #ff4f50;
+    --transfer-warning-highlight-color: #ff4f50;
+    --transfer-warning-highlight-bg: #36362e;
+}
+
 %icon {
     font: {
         family: 'Iconalpha';
@@ -107,13 +142,6 @@
 }
 
 /* Paging */
-$paging-bg: #fff;
-$paging-btn-bg: #979797;
-$paging-btn-color: #fff;
-$paging-btn-bg-hover: #676767;
-$paging-border: #666;
-$border-color: #dfdfdf;
-
 .pagingContainer {
     text-align: center;
     padding: 2px 0;
@@ -127,7 +155,7 @@ $border-color: #dfdfdf;
         width: 20px;
         height: 20px;
         line-height: 20px;
-        background-color: $paging-btn-bg;
+        background-color: #979797;
         cursor: pointer;
         outline: none;
         margin: 0 4px;
@@ -138,13 +166,13 @@ $border-color: #dfdfdf;
         @include box-sizing;
 
         &:hover {
-            background-color: $paging-btn-bg-hover;
+            background-color: #676767;
         }
 
         &:before {
             font-family: Iconalpha;
             font-size: 15px;
-            color: $paging-btn-color;
+            color: #fff;
         }
 
         &.pagingFirst:before {
@@ -164,20 +192,20 @@ $border-color: #dfdfdf;
         }
 
         &.disabled {
-            background-color: $paging-btn-bg;
+            background-color: #979797;
             filter: alpha(opacity=35);
             -moz-opacity: 0.35;
             opacity: 0.35;
             cursor: default;
 
             &:hover {
-                background-color: $paging-btn-bg;
+                background-color: #979797;
             }
         }
     }
 
     .pagingCurrent {
-        border: 1px solid $border-color;
+        border: 1px solid var(--transfer-border);
         width: 48px;
         margin: 0 4px;
         white-space: nowrap;
@@ -205,20 +233,35 @@ $border-color: #dfdfdf;
         }
     }
 }
-.multiselect-container.dropdown-menu{
-    li{
-        a{
-            label{
-                display: block;
+.filter {
+    .multiselect {    
+        .multiselect-selected-text{
+            width: 80px;
+        }
+    }
+    .multiselect-container.dropdown-menu{
+        min-width: 100%;
+        li{
+            a{
+                label{
+                    display: block;
+                }
             }
         }
     }
 }
 
+
 .list-btn {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    position: relative;
+    .pagingContainer{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 .btn-submit {
@@ -226,13 +269,14 @@ $border-color: #dfdfdf;
     &:focus,
     &:active {
         opacity: 0.85;
-        background: #094b84!important;
+        background: #094b84;
+        &.disabled,
+        &[disabled] {
+            opacity: 0.5;
+            background: #094b84;
+        }
     }
-    &.disabled,
-    &[disabled] {
-        opacity: 0.5;
-        background: #094b84!important;
-    }
+    
 }
 
 #warning-multiple-transfer{
@@ -252,6 +296,9 @@ $border-color: #dfdfdf;
 }
 .block-tbl-transfer{
     position: relative;
+    .tblRpt{
+        margin-bottom: 5px;
+    }
 }
 .transfer {
     padding: 8px 0;
@@ -302,37 +349,4 @@ $border-color: #dfdfdf;
 
 .favorite a.transfer-link{
     color: #b50000;
-}
-:root,
-:root [data-theme='light'] {
-    --transfer-border: #dfdfdf;
-    --transfer-bg-hover: #ddd;
-    --transfer-color: #333;
-  
-    --transfer-status-closedby-pwd-others: #ccc7ba;
-    --transfer-status-closedby-admin: #b3a2c7;
-    --transfer-status-closedby-upline: #f79646;
-    --transfer-status-closedby-otp-sc: #86c5e4;
-    --transfer-status-closedby-archive: #969696;   
-
-    --transfer-warning-color: #b50000;
-    --transfer-warning-highlight-color: #9d1c1c;
-    --transfer-warning-highlight-bg: #f8eb95;
-
-    
-}
-:root [data-theme='dark'] {
-    --transfer-border: #292929;
-    --transfer-bg-hover: #3c3c3c;
-    --transfer-color: #ededed;
-
-    --transfer-status-closedby-pwd-others: #6E654E;
-    --transfer-status-closedby-admin: #453659;
-    --transfer-status-closedby-upline: #874D1E;
-    --transfer-status-closedby-otp-sc: #0D3C54;
-    --transfer-status-closedby-archive: #0B2945;
-
-    --transfer-warning-color: #ff4f50;
-    --transfer-warning-highlight-color: #ff4f50;
-    --transfer-warning-highlight-bg: #36362e;
 }
