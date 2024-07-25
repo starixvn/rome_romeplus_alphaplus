@@ -8,23 +8,23 @@ public class TransferBaseQuery
 {
     protected readonly IUser viewer;
 
-    public TransferBaseQuery() : this(null) { }
+    public TransferBaseQuery() : this(new User(UserSession.Current))
+    {
+    }
 
     protected TransferBaseQuery(IUser viewer)
     {
-        this.viewer = viewer ?? new User(UserSession.Current);
-
+        this.viewer = viewer;
         // Default data, if query string had data, then get from query string.
-        CustId = this.viewer.Id;
-        CustName = this.viewer.Name;
-        CustLevelId = this.viewer.LevelId;
+        CustId = viewer.Id;
+        CustName = viewer.Name;
+        CustLevelId = viewer.LevelId;
         CustLevel = Enumeration.FromValue<UserLevel>(CustLevelId);
 
-        ViewerId = this.viewer.Id;
-        ViewerLevelId = this.viewer.LevelId;
+        ViewerId = viewer.Id;
+        ViewerLevelId = viewer.LevelId;
         ActorLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
-        Language = this.viewer.Language;
-        AGIP = this.viewer.AGIP;
+        AGIP = viewer.AGIP;
     }
 
     public int CustId { get; set; }
@@ -41,13 +41,7 @@ public class TransferBaseQuery
 
     public virtual UserLevel ActorLevel { get; }
 
-    public string Language { get; }
-
     public string AGIP { get; }
 
-    public virtual bool IsValid()
-        => CustId > 0
-        && !string.IsNullOrWhiteSpace(CustName)
-        && ActorLevel.IsEqualOrUplineOf(CustLevel)
-        && !string.IsNullOrWhiteSpace(Language);
+    public virtual bool IsValid() => CustId > 0 && ActorLevel.IsEqualOrUplineOf(CustLevel);
 }

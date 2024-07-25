@@ -116,7 +116,8 @@
                         @if (Model.IsAllDayBalanceTransfer)
                         {
                             <a class="transfer-link" asp-action="CashBalance" asp-controller="CashBalanceTransfer"
-                                asp-route-custid="@customer.CustId">@customer.CashBalance.FormatNumber2()</a>
+                                asp-route-custid="@customer.CustId" data-w="520"
+                                data-h="500">@customer.CashBalance.FormatNumber2()</a>
                         }
                         else
                         {

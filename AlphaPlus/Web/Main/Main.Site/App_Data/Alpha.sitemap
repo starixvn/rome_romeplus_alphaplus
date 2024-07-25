@@ -118,10 +118,7 @@
     <siteMapNode menuItemType="AutoTransferMonitoringMenuItem" resourceKey="AutoTransferMonitoring" appPath="TransferAppPath" url="/settings/AutoTransfer/Monitoring?v2"></siteMapNode>
     <siteMapNode menuItemType="TransferDownlineHistoryMenuItem" resourceKey="TransferToDownlineHistory" appPath="TransferAppPath" url="/settings/TransferToDownlineHistory/Index?v2"></siteMapNode>
   </siteMapNode>
-
-  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" url="/settings/MultipleTransfer/MasterList?v=2&amp;adbt={0}" functionType="[C]" roles="Super"></siteMapNode>
-  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" url="/settings/MultipleTransfer/AgentList?v=2&amp;adbt={0}" functionType="[C]" roles="Master"></siteMapNode>
-  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" url="/settings/MultipleTransfer/MemberList?v=2&amp;adbt={0}" functionType="[C]" roles="Agent"></siteMapNode>
+  <siteMapNode resourceKey="transfer" menuItemType="SingleTransferMenuItem" url="/settings/TransferList/Index?adbt={0}" functionType="[C]"></siteMapNode>
 
   <siteMapNode resourceKey="viewLog" menuItemType="ViewLogMenuItem" functionType="[G]">
     <siteMapNode resourceKey="Setting" url="/settings/Setting"></siteMapNode>

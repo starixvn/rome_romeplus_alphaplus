@@ -217,7 +217,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<AutoTransferService, AutoTransferServiceImpl>()
                 .AddScoped<ICashBalanceTransferService, CashBalanceTransferService>()
                 .AddScoped<ITransferListService, TransferListService>()
-                .AddScoped<ITransferYesterdayBalanceService, TransferYesterdayBalanceService>()
+                .AddScoped<IYesterdayBalanceTransferService, YesterdayBalanceTransferService>()
                 .AddScoped<TransferAllAndClearCreditService, TransferAllAndClearCreditServiceImpl>()
                 .AddScoped<TransferToDownlineHistoryService, TransferToDownlineHistoryServiceImpl>();
 

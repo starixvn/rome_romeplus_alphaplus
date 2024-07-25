@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions SiteId="105" SiteName="Member Information">
   <Function Name="Multiple Transfer">
-    <Setting Key="Age_Transfer_Ins_Ag" SpName="Age_Transfer_Ins_Ag" DbName="DBTXN.bodb02.wsv_alp" Plain="0" />
-    <Setting Key="Age_Transfer_Ins_MAg" SpName="Age_Transfer_Ins_MAg" DbName="DBTXN.bodb02.wsv_alp" Plain="0" />
-    <Setting Key="Age_Transfer_Ins_SAg" SpName="Age_Transfer_Ins_SAg" DbName="DBTXN.bodb02.wsv_alp" Plain="0" />
+    <Setting Key="Age_Transfer_Ins_Ag" SpName="Age_Transfer_Ins_Ag" DbName="DBTXN.bodb02.wsv_alp" />
+    <Setting Key="Age_Transfer_Ins_MAg" SpName="Age_Transfer_Ins_MAg" DbName="DBTXN.bodb02.wsv_alp" />
+    <Setting Key="Age_Transfer_Ins_SAg" SpName="Age_Transfer_Ins_SAg" DbName="DBTXN.bodb02.wsv_alp" />
+    <Setting Key="Age_Transfer_InsClearBalance_Ag" SpName="Age_Transfer_InsClearBalance_Ag" DbName="DBTXN.bodb02.wsv_alp" />
     <!-- 107963 - Temporarily move 2 SPs to DBTXN to enhance transfer -->
-    <Setting Key="Age_Transfer_SelList_Ag" SpName="Age_Transfer_SelList_Ag_ForDBTrans" DbName="DBTXN.bodb02.wsv_alp" Plain="0">
+    <Setting Key="Age_Transfer_SelList_Ag" SpName="Age_Transfer_SelList_Ag_ForDBTrans" DbName="DBTXN.bodb02.wsv_alp">
       <Mapping DataField="yesterday_balance" ObjectProperty="YesterdayBalance" />
       <Mapping DataField="balance" ObjectProperty="Balance" />
       <Mapping DataField="outstanding" ObjectProperty="Outstanding" />
@@ -15,16 +16,16 @@
     <!-- 107963 - End-->
   </Function>
   <Function Name="Base Functions">
-    <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
+    <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.wsv_alp" />
   </Function>
   <Function Name="Check Belonging">
-    <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
-    <Setting Key="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" SpName="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
-    <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
-    <Setting Key="Age_CustomerSelCheckBelonging_MultiCust" SpName="Age_CustomerSelCheckBelonging_MultiCust" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustomerSelCheckBelonging" SpName="Age_CustomerSelCheckBelonging" DbName="DBAGE.bodb02.wsv_alp" />
+    <Setting Key="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" SpName="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" DbName="DBAGE.bodb02.wsv_alp" />
+    <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.wsv_alp" />
+    <Setting Key="Age_CustomerSelCheckBelonging_MultiCust" SpName="Age_CustomerSelCheckBelonging_MultiCust" DbName="DBAGE.bodb02.wsv_alp" />
   </Function>
   <Function Name="Cash Balance Transfer">
-    <Setting Key="Age_Transfer_CashBalance_Sel" SpName="Age_Transfer_CashBalance_Sel" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
+    <Setting Key="Age_Transfer_CashBalance_Sel" SpName="Age_Transfer_CashBalance_Sel" DbName="DBAGE.bodb02.wsv_alp" />
   </Function>
   <Function Name="Transfer all and Clear Credit">
     <Setting Key="Age_Transfer_Credit_All_Sel" SpName="Age_Transfer_Credit_All_Sel" DbName="DBAGE.bodb02.wsv_alp" Plain="0">
@@ -32,7 +33,7 @@
       <Mapping DataField="MemberOutStanding" ObjectProperty="Outstanding" Class="TransferStep" />
       <Mapping DataField="RowId" ObjectProperty="Id" Class="ClearCreditStep" />
     </Setting>
-    <Setting Key="Age_Transfer_Credit_All_SelDownlineInfo" SpName="Age_Transfer_Credit_All_SelDownlineInfo" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
+    <Setting Key="Age_Transfer_Credit_All_SelDownlineInfo" SpName="Age_Transfer_Credit_All_SelDownlineInfo" DbName="DBAGE.bodb02.wsv_alp" />
   </Function>
   <Function Name="Transfer To Downline History">
     <Setting Key="Age_Rpt_Downline_Transfer_History" SpName="Age_Transfer_DownlineHistorySel" DbName="DBACC.bodb02.wsv_alp" Plain="0">
@@ -44,7 +45,7 @@
   </Function>
   <Function Name="Multiple Transfer">
     <!-- 107963 - Temporarily move 2 SPs to DBTXN to enhance transfer -->
-    <!-- <Setting Key="Age_Transfer_SelList_Ag" SpName="Age_Transfer_SelList_Ag" DbName="DBAGE.bodb02.wsv_alp" Plain="0" /> -->
+    <!-- <Setting Key="Age_Transfer_SelList_Ag" SpName="Age_Transfer_SelList_Ag" DbName="DBAGE.bodb02.wsv_alp" /> -->
     <!-- 107963 - End-->
     <Setting Key="Age_Transfer_SelList_MAg" SpName="Age_Transfer_SelList_MAg" DbName="DBAGE.bodb02.wsv_alp" Plain="0">
       <Mapping DataField="yesterday_agentBalance" ObjectProperty="YesterdayBalance" />

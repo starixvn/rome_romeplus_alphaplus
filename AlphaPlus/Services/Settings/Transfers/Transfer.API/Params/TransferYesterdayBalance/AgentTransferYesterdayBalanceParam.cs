@@ -5,7 +5,6 @@ public record AgentTransferYesterdayBalanceParam(
     string AgentName,
     string SuperIdsTransferTotal,
     int MemberId,
-    bool IsFullTransfer,
     decimal Amount,
     bool IsAllDayBalanceTransfer,
     string Language,

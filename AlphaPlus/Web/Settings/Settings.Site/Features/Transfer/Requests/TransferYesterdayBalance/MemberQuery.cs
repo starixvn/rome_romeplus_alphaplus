@@ -1,17 +1,20 @@
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferYesterdayBalance;
+using AlphaPlus.Settings.Transfer.API.Models;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;
 
 public class MemberQuery : TransferBaseQuery, IRequest<MemberViewModel>
 {
-    public MemberQuery() : base()
+    public MemberQuery()
     {
-        AllowTotalBalanceTransfer = viewer.AllowTotalBalanceTransfer;
         ActorName = viewer.Name;
+        AllowTotalBalanceTransfer = viewer.AllowTotalBalanceTransfer;
     }
+
+    public string ActorName { get; }
 
     public bool AllowTotalBalanceTransfer { get; }
 
-    public string ActorName { get; }
+    public override bool IsValid() => ActorLevel.IsAgentLevel() && base.IsValid();
 }

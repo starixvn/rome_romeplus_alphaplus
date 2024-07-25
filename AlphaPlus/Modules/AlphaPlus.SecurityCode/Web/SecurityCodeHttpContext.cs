@@ -32,6 +32,13 @@ public class SecurityCodeHttpContext(ISecurityCodePathBuilder securityCodePathBu
     public string GetRelativePath()
     {
         var request = AlphaContext.Current.Request;
+        var pathBase = request.PathBase;
+
+        if (string.IsNullOrWhiteSpace(pathBase))
+        {
+            return request.GetEncodedPathAndQuery();
+        }
+
         return request.GetEncodedPathAndQuery().Replace(request.PathBase, string.Empty);
     }
 

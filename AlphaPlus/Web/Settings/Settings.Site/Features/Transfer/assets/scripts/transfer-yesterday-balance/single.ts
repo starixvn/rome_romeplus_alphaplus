@@ -25,33 +25,31 @@ class SingleTransferView {
             }
 
             this.alert.hideAlert();
-            if (!confirm($('#hidden-ConfirmTransfer').val())) {
-                return;
-            }
-
-            $.blockUI();
-            const $formUpdate = $(event.target);
-            $.ajax({
-                headers: {
-                    RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                type: 'POST',
-                url: $formUpdate.attr('action'),
-                data: { CustId: $('#CustId').val(), Amount: amountValue },
-                dataType: 'json',
-                success: (result) => {
-                    if (result.Code === 6001) {
-                        this.reloadPage(result.Message);
-                    } else if (result.Code === 0) {
-                        this.alert.showSuccess(result.Message);
-                        window.top.closePopupAndReloadMainFrameAfterUpdateSuccess &&
-                            window.top.closePopupAndReloadMainFrameAfterUpdateSuccess(3000);
-                    } else {
-                        this.alert.showError(result.Message);
-                    }
-                },
-                complete: $.unblockUI
+            window.top.bootboxAlert($('#hidden-ConfirmTransfer').val(), null, () => {
+                $.blockUI();
+                const $formUpdate = $(event.target);
+                $.ajax({
+                    headers: {
+                        RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    type: 'POST',
+                    url: $formUpdate.attr('action'),
+                    data: { CustId: $('#CustId').val(), Amount: amountValue },
+                    dataType: 'json',
+                    success: (result) => {
+                        if (result.Code === 6001) {
+                            this.reloadPage(result.Message);
+                        } else if (result.Code === 0) {
+                            this.alert.showSuccess(result.Message);
+                            window.top.closePopupAndReloadMainFrameAfterUpdateSuccess &&
+                                window.top.closePopupAndReloadMainFrameAfterUpdateSuccess(3000);
+                        } else {
+                            this.alert.showError(result.Message);
+                        }
+                    },
+                    complete: $.unblockUI
+                });
             });
         });
 

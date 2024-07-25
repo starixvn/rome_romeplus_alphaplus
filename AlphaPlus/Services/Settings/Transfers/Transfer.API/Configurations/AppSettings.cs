@@ -66,4 +66,6 @@ public static class AppSettings
     );
 
     public static string AllowedListSuperAccounts => GetConfigValue("AllowedListSuperAccounts");
+
+    public static int MaxCustIdTransfer => int.Parse(GetConfigValue("MaxCustIdTransfer"));
 }

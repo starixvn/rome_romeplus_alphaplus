@@ -6,7 +6,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferList;
 
 public class TransferListQuery : TransferBaseQuery, IRequest<TransferListViewModel>
 {
-    public TransferListQuery() : base()
+    public TransferListQuery()
     {
         AllowTotalBalanceTransfer = viewer.AllowTotalBalanceTransfer;
         Currency = viewer.Currency;

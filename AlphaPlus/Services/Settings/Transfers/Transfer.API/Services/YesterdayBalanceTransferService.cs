@@ -6,16 +6,18 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Transfer.API.Services;
 
-public interface ITransferYesterdayBalanceService
+public interface IYesterdayBalanceTransferService
 {
     Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, string agIP);
 
     Task<Result> Transfer(TransferYesterdayBalanceParam param);
 
     Task<Result> MemberTransfer(AgentTransferYesterdayBalanceParam param);
+
+    Task<Result> MultipleMemberTransfer(AgentTransferMultipleYesterdayBalanceCriteria criteria, string agIP);
 }
 
-public class TransferYesterdayBalanceService(IDynamicRepository repository) : ITransferYesterdayBalanceService
+public class YesterdayBalanceTransferService(IDynamicRepository repository) : IYesterdayBalanceTransferService
 {
     private readonly IDynamicRepository repository = repository;
 
@@ -58,24 +60,22 @@ public class TransferYesterdayBalanceService(IDynamicRepository repository) : IT
                 param.SuperIdsTransferTotal,
                 param.ToCustIds,
                 param.IsFullTransfer,
-                param.Amount,
+                -param.Amount,
                 param.CustStatus,
                 param.AutoTransfer,
                 param.Language,
                 param.IP,
-                param.CustId,
                 param.SubAccId)
             : new SuperTransferYesterdayBalanceCriteria(
                 param.CustId,
                 param.SuperIdsTransferTotal,
                 param.ToCustIds,
                 param.IsFullTransfer,
-                param.Amount,
+                -param.Amount,
                 param.CustStatus,
                 param.AutoTransfer,
                 param.Language,
                 param.IP,
-                param.CustId,
                 param.SubAccId);
     }
 
@@ -85,13 +85,20 @@ public class TransferYesterdayBalanceService(IDynamicRepository repository) : IT
             param.AgentName,
             param.SuperIdsTransferTotal,
             param.MemberId,
-            param.Amount,
+            -param.Amount,
             param.IsAllDayBalanceTransfer,
             param.Language,
             param.IP,
             param.AgentId,
             param.SubAccId);
         await repository.ExecuteAsync(criteria, param.AGIP);
+
+        return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
+    }
+
+    public async Task<Result> MultipleMemberTransfer(AgentTransferMultipleYesterdayBalanceCriteria criteria, string agIP)
+    {
+        await repository.ExecuteAsync(criteria, agIP);
 
         return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
     }

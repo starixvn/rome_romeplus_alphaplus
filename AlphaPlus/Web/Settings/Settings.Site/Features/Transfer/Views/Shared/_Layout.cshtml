@@ -4,7 +4,7 @@
 @inject IUserSession userSession
 @{
     var theme = string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark";
-    var bodyClassName = Enumeration.FromValue<UserLevel>(userSession.RoleId);
+    var bodyClassName = Enumeration.FromValue<UserLevel>(userSession.RoleId).DisplayName.ToLowerInvariant();
 }
 <!DOCTYPE html>
 <html>

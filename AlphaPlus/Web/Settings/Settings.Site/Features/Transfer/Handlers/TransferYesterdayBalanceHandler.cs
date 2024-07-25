@@ -9,24 +9,26 @@ using MediatR;
 using AlphaPlus.Settings.Transfer.API.Params.TransferYesterdayBalance;
 using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Models;
+using AlphaPlus.Core.Extensions;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 
 public class TransferYesterdayBalanceHandler(
     ITransferService transferService,
     ITransferListService transferListService,
-    ITransferYesterdayBalanceService transferYesterdayBalanceService) :
+    IYesterdayBalanceTransferService yesterdayBalanceTransferService) :
         IRequestHandler<SingleQuery, SingleViewModel>,
         IRequestHandler<SingleCommand, Result>,
         IRequestHandler<MultipleCommand, Result>,
         IRequestHandler<MemberQuery, MemberViewModel>,
-        IRequestHandler<MemberCommand, Result>
+        IRequestHandler<MemberCommand, Result>,
+        IRequestHandler<MultipleMemberCommand, Result>
 {
     private const string AgentTransferMemberListCache = "AgentMultipleTransfer.{0}.{1}";
     private const string ConcurrentSingleTransferResultMessage = "<span style=\"color: red\">The transfer has been proceeding by {0}<br/>";
     private readonly ITransferService transferService = transferService;
     private readonly ITransferListService transferListService = transferListService;
-    private readonly ITransferYesterdayBalanceService transferYesterdayBalanceService = transferYesterdayBalanceService;
+    private readonly IYesterdayBalanceTransferService yesterdayBalanceTransferService = yesterdayBalanceTransferService;
 
     public async Task<SingleViewModel> Handle(SingleQuery message, CancellationToken cancellationToken)
     {
@@ -80,7 +82,7 @@ public class TransferYesterdayBalanceHandler(
             message.IP,
             message.SubAccId,
             message.AGIP);
-        var result = await transferYesterdayBalanceService.Transfer(param);
+        var result = await yesterdayBalanceTransferService.Transfer(param);
 
         if (result.IsSuccessful)
         {
@@ -92,64 +94,61 @@ public class TransferYesterdayBalanceHandler(
 
     public async Task<Result> Handle(MultipleCommand message, CancellationToken cancellationToken)
     {
-        var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransferAsync(message.ViewerId);
-
-        if (isAllDayBalanceTransfer)
+        IEnumerable<int> custIds;
+        if (message.IsAllPages && !string.IsNullOrWhiteSpace(message.Username))
         {
-            return Result.CreateErrorResult(Resources.AllowedAllDayBalanceTransferError, 6001);
+            var transferListParam = new TransferListParam(
+                message.ViewerId,
+                message.ViewerLevelId,
+                message.Username,
+                message.Status,
+                message.AutoTransfer,
+                message.AllYesterdayBalance,
+                message.AllowTotalBalanceTransfer,
+                1,
+                int.MaxValue - 1,
+                message.ActorLevel.IsAgentLevel() ? message.AGIP : string.Empty);
+            var reportData = await transferListService.GetTransferList(transferListParam);
+            custIds = reportData.Customers.Select(c => c.CustId);
+        }
+        else
+        {
+            custIds = message.CustIds.ToListInt();
         }
 
-        var custIds = message.CustIds;
-        if (string.IsNullOrWhiteSpace(custIds))
+        var failedResults = new List<Result>();
+        var custIdsBatches = custIds.Chunk(AppSettings.MaxCustIdTransfer);
+        foreach (var custIdList in custIdsBatches)
         {
-            if (string.IsNullOrWhiteSpace(message.Username))
+            var param = new TransferYesterdayBalanceParam(
+                message.ViewerId,
+                message.ViewerLevelId,
+                AppSettings.AllowedListSuperAccounts,
+                string.Join(',', custIdList),
+                true,
+                0,
+                message.Status,
+                message.AutoTransfer,
+                message.LangKey,
+                message.IP,
+                message.SubAccId,
+                message.AGIP);
+            var result = await yesterdayBalanceTransferService.Transfer(param);
+
+            if (!result.IsSuccessful)
             {
-                custIds = "0";
-            }
-            else
-            {
-                var transferListParam = new TransferListParam(
-                    message.ViewerId,
-                    message.ViewerLevelId,
-                    message.Username,
-                    message.Status,
-                    message.AutoTransfer,
-                    !message.AllYesterdayBalance,
-                    message.AllowTotalBalanceTransfer,
-                    1,
-                    int.MaxValue - 1,
-                    message.ActorLevel.IsAgentLevel() ? message.AGIP : string.Empty);
-                var reportData = await transferListService.GetTransferList(transferListParam);
-                custIds = string.Join(',', reportData.Customers.Select(t => t.CustId));
+                failedResults.Add(result);
             }
         }
 
-        var param = new TransferYesterdayBalanceParam(
-            message.ViewerId,
-            message.ViewerLevelId,
-            AppSettings.AllowedListSuperAccounts,
-            custIds,
-            true,
-            0,
-            string.Empty,
-            AutoTransferConstant.All,
-            message.LangKey,
-            message.IP,
-            message.SubAccId,
-            message.AGIP);
-        var result = await transferYesterdayBalanceService.Transfer(param);
-
-        if (result.IsSuccessful)
-        {
-            result.Message = Resources.TransferSuccessfully;
-        }
-
-        return result;
+        return failedResults.Any()
+            ? Result.CreateErrorResult(string.Join("<br/>", failedResults.Select(r => r.Message)))
+            : Result.CreateSuccessfulResult(Resources.TransferSuccessfully);
     }
 
     public async Task<MemberViewModel> Handle(MemberQuery message, CancellationToken cancellationToken)
     {
-        var member = await transferYesterdayBalanceService.GetMemberTransfer(message.CustId, message.AllowTotalBalanceTransfer, message.AGIP);
+        var member = await yesterdayBalanceTransferService.GetMemberTransfer(message.CustId, message.AllowTotalBalanceTransfer, message.AGIP);
 
         return new MemberViewModel(message.ActorName, member);
     }
@@ -163,20 +162,10 @@ public class TransferYesterdayBalanceHandler(
             return Result.CreateErrorResult(Resources.AllowedAllDayBalanceTransferError, 6001);
         }
 
-        int actorId;
-        string actorName;
-        if (message.SubAccId == 0)
-        {
-            actorId = message.ViewerId;
-            actorName = message.ActorName;
-        }
-        else
-        {
-            actorId = message.SubAccId;
-            actorName = message.SubAccName;
-        }
+        var adminId = message.ViewerId;
+        var adminName = message.ActorName;
 
-        ITransferCacheService transferCacheService = new TransferCacheService(actorId, actorName);
+        ITransferCacheService transferCacheService = new TransferCacheService();
         var cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, message.ViewerId);
         var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
         var concurrentTransfer = transferCacheService.CacheContains(custIdCache, message.CustId);
@@ -185,22 +174,21 @@ public class TransferYesterdayBalanceHandler(
             return Result.CreateErrorResult(string.Format(ConcurrentSingleTransferResultMessage, concurrentTransfer.AdminName), 9999);
         }
 
-        transferCacheService.CacheAdd(custIdCache, message.CustId, actorId, actorName);
-        transferCacheService.Set(cacheKey, custIdCache);
+        transferCacheService.CacheAdd(custIdCache, message.CustId, adminId, adminName);
+        transferCacheService.Set(cacheKey, custIdCache, adminId, adminName);
         var param = new AgentTransferYesterdayBalanceParam(
             message.ViewerId,
             message.ActorName,
             AppSettings.AllowedListSuperAccounts,
             message.CustId,
-            false,
             message.Amount,
             isAllDayBalanceTransfer,
             message.LangKey,
             message.IP,
             message.SubAccId,
             message.AGIP);
-        var result = await transferYesterdayBalanceService.MemberTransfer(param);
-        transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [message.CustId]);
+        var result = await yesterdayBalanceTransferService.MemberTransfer(param);
+        transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [message.CustId], adminId, adminName);
 
         if (result.IsSuccessful)
         {
@@ -208,5 +196,28 @@ public class TransferYesterdayBalanceHandler(
         }
 
         return result;
+    }
+
+    public Task<Result> Handle(MultipleMemberCommand message, CancellationToken cancellationToken)
+    {
+        var param = new AgentTransferMultipleYesterdayBalanceParam(
+            message.ViewerId,
+            AppSettings.AllowedListSuperAccounts,
+            message.CustIds,
+            message.Username,
+            message.Status,
+            message.AutoTransfer,
+            message.AllYesterdayBalance,
+            message.AllowTotalBalanceTransfer,
+            message.IsAllPages,
+            message.LangKey,
+            message.IP,
+            message.SubAccId,
+            message.AGIP,
+            message.AdminId,
+            message.AdminName);
+        var service = new AgentTransferMultipleYesterdayBalanceService(param, transferService, transferListService, yesterdayBalanceTransferService);
+
+        return service.ProcessTransfer();
     }
 }

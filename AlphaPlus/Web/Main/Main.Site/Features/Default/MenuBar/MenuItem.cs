@@ -69,16 +69,19 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(link) && string.Equals("TransferList", ResourceKey, StringComparison.OrdinalIgnoreCase))
+                if (!string.IsNullOrWhiteSpace(link))
                 {
-                    return string.Format(link, transferService.IsAllDayBalanceTransfer(user.CustId));
-                }
+                    if (link.IndexOf("TransferList/Index", StringComparison.OrdinalIgnoreCase) > -1)
+                    {
+                        return string.Format(link, transferService.IsAllDayBalanceTransfer(user.CustId));
+                    }
 
-                if (!string.IsNullOrWhiteSpace(link) && link.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)
-                {
-                    var languageParam = buildLanguageQueryStringFunc();
-                    var darkModeParam = buildDarkModeQueryStringFunc();
-                    return $"{link}?{languageParam}&{darkModeParam}";
+                    if (link.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)
+                    {
+                        var languageParam = buildLanguageQueryStringFunc();
+                        var darkModeParam = buildDarkModeQueryStringFunc();
+                        return $"{link}?{languageParam}&{darkModeParam}";
+                    }
                 }
 
                 return link;

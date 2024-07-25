@@ -10,8 +10,7 @@ public class SuperTransferYesterdayBalanceCriteria(
     byte autoTransfer,
     string language,
     string ip,
-    int creator,
-    int subAccId) : TransferYesterdayBalanceCriteria(superIdsTransferTotal, language, ip, creator, subAccId)
+    int subAccId) : TransferYesterdayBalanceCriteria(superIdsTransferTotal, language, ip, custId, subAccId)
 {
     public int SAgId { get; } = custId;
 

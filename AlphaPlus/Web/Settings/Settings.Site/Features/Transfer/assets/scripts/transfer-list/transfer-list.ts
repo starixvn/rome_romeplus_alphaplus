@@ -71,24 +71,37 @@
         });
 
         $btnAutoTransfer.click(() => this.openPopupMultipleAutoTransfer($tableTransfer));
-        $('#menu-transfer').click(() => this.handleMultipleTransferYesterdayBalance($tableTransfer));
+        $('#menu-transfer').click(() => {
+            const custIds = [];
+            $tableTransfer.find('.checkbox:checked').each(function () {
+                const $this = $(this);
+                $this.is(':checked') && $this.data('value') !== 0 && custIds.push($this.data('custid'));
+            });
+
+            if (!custIds.length) {
+                window.top.bootboxAlert($('#hidden-noTransferMade').val());
+                return;
+            }
+
+            this.handleMultipleTransferYesterdayBalance({
+                custIds: custIds.join(',')
+            });
+        });
         $('#menu-transfer-allpages').click((e) => {
             if ($(e.target).parent().hasClass('disabled')) {
                 return;
             }
 
-            const username = $.trim($('#Username').val());
-            const status = $('#Status').val();
-            const autoTransfer = $('#AutoTransfer').val();
-            const allYesterdayBalance = $('#AllYesterdayBalance').is(':checked');
             this.handleMultipleTransferYesterdayBalance({
-                username,
-                status,
-                autoTransfer,
-                allYesterdayBalance
+                custIds: '0',
+                username: $.trim($('#Username').val()),
+                status: $('#Status').val(),
+                autoTransfer: $('#AutoTransfer').val(),
+                allYesterdayBalance: $('#AllYesterdayBalance').is(':checked'),
+                isAllPages: true
             });
         });
-        $('#icon-information').click(() => this.openPopup($('#hidden-transferHintUrl').attr('href'), 560, 400));
+        $('#icon-information').click(() => this.openPopup($('#hidden-transferHintUrl').attr('href'), 560, 320));
 
         $('.switch-auto-transfer, .icon-calendar').click((event) => {
             event.preventDefault();
@@ -151,53 +164,30 @@
             this.openPopup(url, 600, 500);
         }
     }
-    /*
-    private handleMultipleTransferYesterdayBalance($tableTransfer: JQuery) {
-        const custIds = [];
-        $tableTransfer.find('.checkbox:checked').each(function () {
-            const $this = $(this);
-            $this.is(':checked') && $this.data('value') !== 0 && custIds.push($this.data('custid'));
-        });
 
-        if (!custIds.length) {
-            window.top.bootboxAlert($('#hidden-noTransferMade').val());
-            return;
-        }
-
-        this.handleMultipleTransferYesterdayBalanceAllPages({ custIds });
-
-        if (!confirm($('#hidden-confirmTransfer').val())) {
-            return;
-        }
-    }
-*/
     private handleMultipleTransferYesterdayBalance(formData) {
-        if (!confirm($('#hidden-confirmTransfer').val())) {
-            return;
-        }
-
-        $.blockUI();
-        $.ajax({
-            headers: {
-                RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            type: 'POST',
-            url: $('#hidden-transferYesterdayBalanceMultipleUrl').attr('href'),
-            data: formData,
-            dataType: 'json',
-            success: (result) => {
-                if (result.Code === 6001) {
-                    this.reloadPage(result.Message);
-                } else if (result.Code === 0) {
-                    window.top.bootboxAlert(result.Message);
-                    window.top.closePopupAndReloadMainFrameAfterUpdateSuccess &&
-                        window.top.closePopupAndReloadMainFrameAfterUpdateSuccess(3000);
-                } else {
-                    this.alert.showError(result.Message);
-                }
-            },
-            complete: $.unblockUI
+        window.top.bootboxAlert($('#hidden-confirmTransfer').val(), null, () => {
+            $.blockUI();
+            $.ajax({
+                headers: {
+                    RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                type: 'POST',
+                url: $('#hidden-transferYesterdayBalanceMultipleUrl').attr('href'),
+                data: formData,
+                dataType: 'json',
+                success: (result) => {
+                    if (result.Code === 0) {
+                        window.top.bootboxAlert(result.Message);
+                        window.top.closePopupAndReloadMainFrameAfterUpdateSuccess &&
+                            window.top.closePopupAndReloadMainFrameAfterUpdateSuccess(3000);
+                    } else {
+                        this.alert.showError(result.Message);
+                    }
+                },
+                complete: $.unblockUI
+            });
         });
     }
 

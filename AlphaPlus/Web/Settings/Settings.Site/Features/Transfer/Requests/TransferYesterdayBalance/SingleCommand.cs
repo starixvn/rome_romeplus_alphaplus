@@ -5,7 +5,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBa
 
 public class SingleCommand : TransferBaseQuery, IRequest<Result>
 {
-    public SingleCommand() : base()
+    public SingleCommand()
     {
         IsInternal = viewer.IsInternal;
         LangKey = viewer.LanguageKey;
@@ -22,4 +22,6 @@ public class SingleCommand : TransferBaseQuery, IRequest<Result>
     public string IP { get; }
 
     public int SubAccId { get; }
+
+    public override bool IsValid() => ActorLevel.IsMasterOrSuperLevel() && base.IsValid();
 }

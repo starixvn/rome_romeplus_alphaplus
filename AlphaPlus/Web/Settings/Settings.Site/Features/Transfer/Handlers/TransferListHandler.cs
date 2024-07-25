@@ -33,7 +33,7 @@ public class TransferListHandler(
             message.Username,
             message.Status,
             message.AutoTransfer,
-            !message.AllYesterdayBalance,
+            message.AllYesterdayBalance,
             message.AllowTotalBalanceTransfer,
             message.PageIndex,
             message.PageSize,

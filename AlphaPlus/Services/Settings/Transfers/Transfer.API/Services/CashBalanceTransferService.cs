@@ -4,7 +4,6 @@ using AlphaPlus.Settings.Transfer.API.Criteria.CashBalanceTransfer;
 using AlphaPlus.Settings.Transfer.API.Models;
 using AlphaPlus.Settings.Transfer.API.Models.CashBalanceTransfer;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
-using Fanex.Caching;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Transfer.API.Services;
@@ -47,7 +46,7 @@ public class CashBalanceTransferService(IDynamicRepository repository) : ICashBa
         string agIP)
     {
         string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
-        ITransferCacheService transferCacheService = new TransferCacheService(creator, creatorName);
+        ITransferCacheService transferCacheService = new TransferCacheService();
 
         var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
         var concurrentTrasfer = transferCacheService.CacheContains(custIdCache, toCustId);
@@ -62,7 +61,7 @@ public class CashBalanceTransferService(IDynamicRepository repository) : ICashBa
         }
 
         transferCacheService.CacheAdd(custIdCache, toCustId, creator, creatorName);
-        transferCacheService.Set(cacheKey, custIdCache);
+        transferCacheService.Set(cacheKey, custIdCache, creator, creatorName);
 
         var criteria = new AddCashBalanceTransferCriteria(
             fromCustId,
@@ -79,7 +78,7 @@ public class CashBalanceTransferService(IDynamicRepository repository) : ICashBa
         }
         finally
         {
-            transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, new List<int> { toCustId });
+            transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, new List<int> { toCustId }, creator, creatorName);
         }
 
         return new Result

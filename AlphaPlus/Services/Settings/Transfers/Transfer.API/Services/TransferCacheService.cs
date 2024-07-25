@@ -16,19 +16,17 @@ public interface ITransferCacheService
 
     void CacheAdd(List<TransferCacheModel> listTransferCacheModel, int custId, int adminId, string adminName);
 
-    bool Set(string cacheKey, List<TransferCacheModel> value);
+    bool Set(string cacheKey, List<TransferCacheModel> value, int adminId, string adminName);
 
     void CacheRemove(List<TransferCacheModel> listTransferCacheModel, int custId);
 
-    void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds);
+    void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds, int adminId, string adminName);
 
     ICacheService GetCacheService();
 }
 
-public class TransferCacheService(int adminId, string adminName, ICacheService cacheService = null) : ITransferCacheService
+public class TransferCacheService(ICacheService cacheService = null) : ITransferCacheService
 {
-    private readonly int adminId = adminId;
-    private readonly string adminName = adminName;
     private readonly ICacheService cacheService = cacheService ?? InitCacheService();
     private static readonly object lockObject = new object();
 
@@ -78,7 +76,7 @@ public class TransferCacheService(int adminId, string adminName, ICacheService c
         listTransferCacheModel.Add(newAdminTransferCache);
     }
 
-    public bool Set(string cacheKey, List<TransferCacheModel> value)
+    public bool Set(string cacheKey, List<TransferCacheModel> value, int adminId, string adminName)
     {
         lock (lockObject)
         {
@@ -88,7 +86,7 @@ public class TransferCacheService(int adminId, string adminName, ICacheService c
 
             if (AppSettings.EnableTransferLogInfo)
             {
-                LogService.Info(InfoMessageFormat(value), AppSettings.TransferLogCategory);
+                LogService.Info(InfoMessageFormat(value, adminId, adminName), AppSettings.TransferLogCategory);
             }
 
             if (!CompareAfterSet(cacheKey, value))
@@ -128,10 +126,10 @@ public class TransferCacheService(int adminId, string adminName, ICacheService c
     private static string ErrorMessageFormat(List<TransferCacheModel> value)
         => $"[Agent Transfer Process] Redis cannot set value: {JsonConvert.SerializeObject(value)}";
 
-    private string InfoMessageFormat(List<TransferCacheModel> value)
+    private string InfoMessageFormat(List<TransferCacheModel> value, int adminId, string adminName)
         => $"[Agent Transfer Process - PID: {Thread.CurrentThread.ManagedThreadId}] {adminName}({adminId}) set redis value to: {JsonConvert.SerializeObject(value)}";
 
-    public void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds)
+    public void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds, int adminId, string adminName)
     {
         var listMemberTransferCache = Get(cacheKey);
         if (listMemberTransferCache != null)
@@ -141,7 +139,7 @@ public class TransferCacheService(int adminId, string adminName, ICacheService c
                 CacheRemove(listMemberTransferCache, successTransferCustId);
             }
 
-            Set(cacheKey, listMemberTransferCache);
+            Set(cacheKey, listMemberTransferCache, adminId, adminName);
         }
     }
 
