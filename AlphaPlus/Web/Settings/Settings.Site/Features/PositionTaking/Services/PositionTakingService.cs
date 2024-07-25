@@ -14,6 +14,8 @@ public class PositionTakingService(HttpClient httpClient) : IPositionTakingServi
     public async Task<dynamic> GetPT(PositionTakingRequest request)
     {
         var param = QueryString.Create(new[] {
+            KeyValuePair.Create(nameof(request.ActorRoleId), request.ActorRoleId.ToString()),
+            KeyValuePair.Create(nameof(request.ActorId), request.ActorId.ToString()),
             KeyValuePair.Create(nameof(request.RoleId), request.RoleId.ToString()),
             KeyValuePair.Create(nameof(request.CustId), request.CustId.ToString()),
             KeyValuePair.Create(nameof(request.ProductId), request.ProductId.ToString()),

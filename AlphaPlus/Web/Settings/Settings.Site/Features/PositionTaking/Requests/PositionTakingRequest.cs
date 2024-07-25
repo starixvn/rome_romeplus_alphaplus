@@ -24,5 +24,9 @@ public class PositionTakingRequest : IRequest<object>
 
     public byte RoleId { get; set; } = UserSession.Current.RoleId;
 
+    public int ActorId => UserSession.Current.CustId;
+
+    public byte ActorRoleId => UserSession.Current.RoleId;
+
     public string SiteLabel => AppSettings.SiteLabel;
 }
