@@ -59,11 +59,13 @@ class CustomerListDataTable {
         if (!data.Enabled) {
             return statusClasses.Disabled.Css;
         } else if (data.Closed) {
-            return statusClasses.Closed.filter((closedReason) => data.ClosedReason === closedReason.Id)[0].Css;
+            const closed = statusClasses.Closed.filter((closedReason) => data.ClosedReason === closedReason.Id);
+            return closed && closed.length ? closed[0].Css : '';
         } else if (data.Suspended) {
             return statusClasses.Suspended.Css;
         } else if (data.Locked) {
-            return statusClasses.Locked.filter((locked) => data.Locked === locked.Id)[0].Css;
+            const locked = statusClasses.Locked.filter((locked) => data.Locked === locked.Id);
+            return locked && locked.length ? locked[0].Css : '';
         }
 
         return data.Enabled.Css;
@@ -467,7 +469,9 @@ class CustomerListDataTable {
         const reportDomain =
             this.topWindow.menuBar.domElements.reportDomain ||
             this.viewModel.ReportsUrl.substr(0, this.viewModel.ReportsUrl.length - 1);
-        const viewStatementLink = `${reportDomain}/Statement/${actionName}?${this.$.param(queryString)}`;
+        const viewStatementLink = `${reportDomain}${
+            this.topWindow.menuBar.domElements.cookieless
+        }/Statement/${actionName}?${this.$.param(queryString)}`;
         return `<a data-url='${viewStatementLink}' title='${this.$(
             '#statementTooltipText'
         ).val()}' class='icon-statement' />`;
@@ -485,7 +489,7 @@ class CustomerListDataTable {
         const attrs = {
             class: 'login-ip',
             'data-title': `${this.$('#loginIPText').val()} - ${item.Username}`,
-            'data-url': `/main/IPInfo`,
+            'data-url': `${this.viewModel.OldMainUrl}_IPInfo/IPInfo.aspx`,
             'data-params': JSON.stringify({ ip: item.LastLoginIP }),
             'data-width': '500px',
             'data-height': '400px',

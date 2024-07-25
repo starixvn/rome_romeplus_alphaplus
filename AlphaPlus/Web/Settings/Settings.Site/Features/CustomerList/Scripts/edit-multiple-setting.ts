@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿'use strict';
 
 class EditMultipleSetting {
     private $: JQueryStatic;
@@ -12,7 +12,8 @@ class EditMultipleSetting {
         viewModel: CustomerListViewModel,
         customerListPopup: CustomerListPopup,
         customerListServices: CustomerListServices,
-        editSingleSetting: EditSingleSetting) {
+        editSingleSetting: EditSingleSetting
+    ) {
         this.$ = $;
         this.viewModel = viewModel;
         this.customerListPopup = customerListPopup;
@@ -22,21 +23,22 @@ class EditMultipleSetting {
 
     public bindingEvent = () => {
         var self = this;
-        const tblRpt = this.$(".tblRpt");
+        const tblRpt = this.$('.tblRpt');
         tblRpt.undelegate();
-        tblRpt.delegate(".edit-multiple", "click", event => this.openPopup(event.currentTarget));
-        tblRpt.delegate(".select-all", "click", function () {
+        tblRpt.delegate('.edit-multiple', 'click', (event) => this.openPopup(event.currentTarget));
+        tblRpt.delegate('.select-all', 'click', function () {
             const checked = this.checked;
             self.$('tbody .checkbox').prop('checked', checked);
-            self.$(".select-all").prop('checked', checked);
+            self.$('.select-all').prop('checked', checked);
         });
-    }
+    };
 
-    private openPopup = element => {
-        let usernames = [], custids = [];
+    private openPopup = (element) => {
+        let usernames = [],
+            custids = [];
         this.$('input.checkbox:checkbox:checked').each((index, checkbox) => {
-            usernames.push(this.$(checkbox).data("username"));
-            custids.push(this.$(checkbox).data("custid"));
+            usernames.push(this.$(checkbox).data('username'));
+            custids.push(this.$(checkbox).data('custid'));
         });
 
         const params = {
@@ -49,8 +51,8 @@ class EditMultipleSetting {
         };
 
         if (custids.length > 0) {
-            this.$('.edit-multiple').data("custid", custids[0]);
-            this.$('.edit-multiple').data("url", this.$(`#setting-${custids[0]}`).data('url'));
+            this.$('.edit-multiple').data('custid', custids[0]);
+            this.$('.edit-multiple').data('url', this.$(`#setting-${custids[0]}`).data('url'));
 
             this.$('#arrayCustID').val(custids.join('^'));
             this.$('#arrayUserName').val(usernames.join('^'));
@@ -63,30 +65,31 @@ class EditMultipleSetting {
 
                 this.customerListServices.getSettings(
                     `${this.viewModel.MemberInfoUrl}CustomerList/MultipleEditPopup`,
-                    data => {
+                    (data) => {
                         this.customerListPopup.openEditSettingPopup(
                             element,
                             this.buildPopupHtml(data),
                             this.$('#editMultipleSettingText').val(),
-                            this.bindingPopupEvent);
+                            this.bindingPopupEvent
+                        );
 
                         this.customerListPopup.removeCursorProgress($element);
                     },
                     'POST',
-                    params);
+                    params
+                );
             }
         }
-    }
+    };
 
-    private buildPopupHtml = settings => {
+    private buildPopupHtml = (settings) => {
         let html = ['<ul>'];
         this.$.each(settings, (key, item) => {
-
             const attrs = {
-                'class': `edit-multiple-settings ${item.Icon}`,
+                class: `edit-multiple-settings ${item.Icon}`,
                 'data-title': item.Title || item.Text,
                 'data-method': item.Method,
-                'data-params': JSON.stringify(item.QueryStringParamaters),
+                'data-params': JSON.stringify(item.QueryStringParameters),
                 'data-url': item.Url,
                 'data-show-guide-line': item.ShowGuideLine,
                 'data-guide-line-url': item.GuideLineUrl
@@ -96,7 +99,10 @@ class EditMultipleSetting {
         });
 
         return html.join('');
-    }
+    };
 
-    private bindingPopupEvent = () => this.$('.edit-multiple-settings').click(event => this.customerListPopup.openProductPopup(event.currentTarget, this.$(event.currentTarget).data("method")))
+    private bindingPopupEvent = () =>
+        this.$('.edit-multiple-settings').click((event) =>
+            this.customerListPopup.openProductPopup(event.currentTarget, this.$(event.currentTarget).data('method'))
+        );
 }
