@@ -454,7 +454,7 @@ var ViewPTManagement = function () {
         var columns = [];
         for (var i = 0; i < betTypeLength; i++) {
             var betType = liveType.positionTakingByGroups[i];
-            var ptValue = numeral(betType.PTValue).value();
+            var ptValue = numeral(betType.value).value();
             columns.push({
                 Name: "ColSportType" + sport.id + "-LiveType" + liveType.id + "-BetType" + betType.id,
                 Value: ptValue
