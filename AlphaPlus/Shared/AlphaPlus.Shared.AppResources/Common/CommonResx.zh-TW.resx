@@ -608,4 +608,7 @@
     <value>新增</value>
     <comment/>
   </data>
+  <data name="lblEditMember" xml:space="preserve">
+    <value>修改會員</value>
+  </data>
 </root>

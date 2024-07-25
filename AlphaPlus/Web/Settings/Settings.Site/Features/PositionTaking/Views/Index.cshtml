@@ -1,4 +1,7 @@
 @using AlphaPlus.Core.Configurations
+@using AlphaPlus.Shared.AppResources.Common
+@using AlphaPlus.Shared.AppResources.Main
+@using AlphaPlus.Shared.AppResources.Settings.CustomerList
 @using Newtonsoft.Json
 @model dynamic
 @{
@@ -14,7 +17,7 @@
 <body>
     <div id="page_main">
         <div id="header_main">
-            Position Taking (%) @* @Resources.Lang.lblPositionTaking *@
+            @Alpha_sitemap.positionTaking
         </div>
         <div id="tbl-container">
             <table id="tbl-container-layout" style="width: 100%;">
@@ -57,26 +60,16 @@
     <script type="text/javascript">
         window.isDarkMode = @(string.IsNullOrWhiteSpace((string)darkModeName) ? "false" : "true");
         window.rootUrl = '/settings';
-        @* var viewResources = {
-            Page_Size: '@Resources.Lang.pagesize',
-            Symbol_No: '@Labels.Symbol_No',
-            Username: '@Resources.Lang.username',
-            Page: '@Labels.Page',
-            of: '@Labels.of',
-            noInfo: '@Html.Raw(Resources.Lang.noInfo)',
-            live: '@Resources.Lang.lblLive',
-            editPTTitle: '@Resources.Lang.lblEditMember'
-        }; *@
         
         var viewResources = {
-            Page_Size: 'Page size',
+            Page_Size: '@CustomerListResources.PageSize',
             Symbol_No: '#',
-            Username: 'Username',
-            Page: 'Page',
-            of: 'of',
-            noInfo: 'No information is available',
-            live: 'Live',
-            editPTTitle: 'Edit member'
+            Username: '@CustomerListResources.Username',
+            Page: '@CustomerListResources.Page',
+            of: '@CustomerListResources.Of',
+            noInfo: '@CommonResx.NoInfo',
+            live: '@AlphaPlus.Shared.AppResources.Betlist.Site.Resources.Live',
+            editPTTitle: '@CommonResx.lblEditMember'
         };
 
         var bootstrapData = @Html.Raw(JsonConvert.DeserializeObject(bootstrapData));

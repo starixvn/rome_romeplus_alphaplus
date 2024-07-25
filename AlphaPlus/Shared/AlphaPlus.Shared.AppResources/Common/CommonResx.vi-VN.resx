@@ -596,4 +596,7 @@
     <value>Mới</value>
     <comment/>
   </data>
+  <data name="lblEditMember" xml:space="preserve">
+    <value>Tùy chỉnh cho Member</value>
+  </data>
 </root>

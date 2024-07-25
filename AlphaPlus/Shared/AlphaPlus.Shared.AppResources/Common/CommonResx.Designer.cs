@@ -1399,5 +1399,16 @@ namespace AlphaPlus.Shared.AppResources.Common
                 return ResourceManager.GetString("lblNew", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Member.
+        /// </summary>
+        public static string lblEditMember
+        {
+            get
+            {
+                return ResourceManager.GetString("lblEditMember", resourceCulture);
+            }
+        }
     }
 }

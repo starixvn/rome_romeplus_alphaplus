@@ -604,4 +604,7 @@
     <value>New</value>
     <comment/>
   </data>
+  <data name="lblEditMember" xml:space="preserve">
+    <value>Edit Member</value>
+  </data>
 </root>
