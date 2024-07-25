@@ -25,7 +25,7 @@ class SingleTransferView {
             }
 
             this.alert.hideAlert();
-            window.top.bootboxAlert($('#hidden-ConfirmTransfer').val(), null, () => {
+            window.top.bootboxConfirm($('#hidden-ConfirmTransfer').val(), null, () => {
                 $.blockUI();
                 const $formUpdate = $(event.target);
                 $.ajax({

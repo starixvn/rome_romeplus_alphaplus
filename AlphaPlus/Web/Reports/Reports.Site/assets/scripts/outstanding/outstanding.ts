@@ -12,7 +12,7 @@ class OutstandingView extends BaseReport {
     isClickedCollapseExpandAll = false;
 
     constructor(productComponent: ProductMultiSelectionComponent) {
-        super();
+        super(false);
         this.productComponent = productComponent;
     }
 

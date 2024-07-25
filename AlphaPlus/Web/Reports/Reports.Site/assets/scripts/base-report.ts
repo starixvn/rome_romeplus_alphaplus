@@ -13,11 +13,11 @@ class BaseReport {
 
     levels = ['member', 'agent', 'master', 'super'];
 
-    constructor() {
-        this.initBaseReport();
+    constructor(isSetStickyTableHeaders = true) {
+        this.initBaseReport(isSetStickyTableHeaders);
     }
 
-    private initBaseReport() {
+    private initBaseReport(isSetStickyTableHeaders: boolean) {
         // cache elements
         this.$pageTitle = $('.page-title');
         this.$reportForm = $('#report-form');
@@ -28,7 +28,7 @@ class BaseReport {
         $('.icon-filter').click(() => this.onClickIconFilter());
         this.$reportForm.submit((event) => this.onSubmitReport(event));
 
-        this.$tableReport.stickyTableHeaders();
+        isSetStickyTableHeaders && this.$tableReport.stickyTableHeaders();
     }
 
     private initBaseReportLegend() {

@@ -44,4 +44,10 @@ public class TransferYesterdayBalanceController(IMediator mediator) : TransferBa
         => Json(!message.IsValid() || message.IsInternal
         ? Result.CreateErrorResult(Resources.NotAuthorized)
         : await mediator.Send(message));
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> MultipleMember(MultipleMemberCommand message)
+        => Json(!message.IsValid() || message.IsInternal
+        ? Result.CreateErrorResult(Resources.NotAuthorized)
+        : await mediator.Send(message));
 }

@@ -68,7 +68,8 @@
                         @if (Model.ShowYesterdayBalanceLink(customer))
                         {
                             <a class="transfer-link" asp-action="Member" asp-controller="TransferYesterdayBalance"
-                                asp-all-route-data="@Model.GetSingleTransferParams(customer)">@customer.YesterdayBalance.FormatNumber2()</a>
+                                asp-all-route-data="@Model.GetSingleTransferParams(customer)" data-w="520"
+                                data-h="520">@customer.YesterdayBalance.FormatNumber2()</a>
                         }
                         else
                         {
@@ -82,7 +83,7 @@
                         {
                             <a class="transfer-link" asp-action="Member" asp-controller="TransferYesterdayBalance"
                                 asp-all-route-data="@Model.GetSingleTransferParams(customer)" data-w="520"
-                                data-h="500">@customer.Balance.FormatNumber2()</a>
+                                data-h="520">@customer.Balance.FormatNumber2()</a>
                         }
                         else
                         {

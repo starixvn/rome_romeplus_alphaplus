@@ -162,9 +162,6 @@ public class TransferYesterdayBalanceHandler(
             return Result.CreateErrorResult(Resources.AllowedAllDayBalanceTransferError, 6001);
         }
 
-        var adminId = message.ViewerId;
-        var adminName = message.ActorName;
-
         ITransferCacheService transferCacheService = new TransferCacheService();
         var cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, message.ViewerId);
         var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
@@ -174,8 +171,8 @@ public class TransferYesterdayBalanceHandler(
             return Result.CreateErrorResult(string.Format(ConcurrentSingleTransferResultMessage, concurrentTransfer.AdminName), 9999);
         }
 
-        transferCacheService.CacheAdd(custIdCache, message.CustId, adminId, adminName);
-        transferCacheService.Set(cacheKey, custIdCache, adminId, adminName);
+        transferCacheService.CacheAdd(custIdCache, message.CustId, message.AdminId, message.AdminName);
+        transferCacheService.Set(cacheKey, custIdCache, message.AdminId, message.AdminName);
         var param = new AgentTransferYesterdayBalanceParam(
             message.ViewerId,
             message.ActorName,
@@ -188,7 +185,7 @@ public class TransferYesterdayBalanceHandler(
             message.SubAccId,
             message.AGIP);
         var result = await yesterdayBalanceTransferService.MemberTransfer(param);
-        transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [message.CustId], adminId, adminName);
+        transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [message.CustId], message.AdminId, message.AdminName);
 
         if (result.IsSuccessful)
         {

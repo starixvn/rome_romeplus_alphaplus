@@ -23,6 +23,21 @@
     }
 
     init() {
+        $('#icon-print').click(function () {
+            const printContent = document.getElementById('block-tbl-transfer');
+            const printWindow = window.open('', '', 'left=500,top=400,width=200,height=5');
+            printWindow.document.write('<html>');
+            printWindow.document.write('<head>');
+            printWindow.document.write('</head>');
+            printWindow.document.write("<body style='margin-top: 100px'>");
+            printWindow.document.write(printContent.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+        });
+
         const $formTransfer = $('#form-transfer').submit(function () {
             $.blockUI();
         });
@@ -166,18 +181,25 @@
     }
 
     private handleMultipleTransferYesterdayBalance(formData) {
-        window.top.bootboxAlert($('#hidden-confirmTransfer').val(), null, () => {
+        const doMultipleTransfer = (formData) => {
             $.blockUI();
+            const url = $('#hidden-transferYesterdayBalanceMultipleUrl').attr('href');
             $.ajax({
                 headers: {
                     RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
                     'X-Requested-With': 'XMLHttpRequest'
                 },
                 type: 'POST',
-                url: $('#hidden-transferYesterdayBalanceMultipleUrl').attr('href'),
+                url: url,
                 data: formData,
                 dataType: 'json',
                 success: (result) => {
+                    if (result.code === 999991) {
+                        window.top[url] = () => doMultipleTransfer(formData);
+                        window.top.ShowSecCodePopup(url);
+                        return;
+                    }
+
                     if (result.Code === 0) {
                         window.top.bootboxAlert(result.Message);
                         window.top.closePopupAndReloadMainFrameAfterUpdateSuccess &&
@@ -188,7 +210,9 @@
                 },
                 complete: $.unblockUI
             });
-        });
+        };
+
+        window.top.bootboxConfirm($('#hidden-confirmTransfer').val(), null, () => doMultipleTransfer(formData));
     }
 
     private openPopup(url: string, width: number, height = 360) {
@@ -197,13 +221,6 @@
         } else {
             window.open(url, '_blank').focus();
         }
-    }
-
-    private reloadPage(message) {
-        const currentADBT = $('#hidden-isAllDayBalanceTransfer').val().toLowerCase() === 'true';
-        window.top.indexManager.addCustomCookies('messageForReloadSite', message);
-        window.top.indexManager.updateCurrentUrl('adbt=' + (currentADBT ? 'False' : 'True'));
-        window.top.location.reload();
     }
 }
 

@@ -27,7 +27,7 @@
     <partial name="_EnteredSportResult" model="Model.EnteredSportResult" />
     <div style="clear: both">
         @Resources.MultipleTransfer
-        <a href="javascript:;" class="icon-print"></a>
+        <a href="javascript:;" class="icon-print" id="icon-print"></a>
     </div>
 </div>
 <form class="form-inline filter" role="form" id="form-transfer">
@@ -90,7 +90,7 @@
         <select class="pagingSize" asp-items="@Model.PageSizes"></select>
     </div>
 </div>
-<div class="block-tbl-transfer">
+<div class="block-tbl-transfer" id="block-tbl-transfer">
     @if (Model.IsMasterOrSuperLevel)
     {
         <partial name="_DataViewSuperMaster" />

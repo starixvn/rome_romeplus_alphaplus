@@ -1,18 +1,28 @@
 using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Transfer.API.Models;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;
 
 public class MemberCommand : TransferBaseQuery, IRequest<Result>
 {
-    public MemberCommand(IUser viewer)
+    public MemberCommand()
     {
         IsInternal = viewer.IsInternal;
         LangKey = viewer.LanguageKey;
         IP = viewer.IP;
         SubAccId = viewer.SubAccId;
-        ActorName = SubAccId > 0 ? viewer.SubAccName : viewer.Name;
+        ActorName = viewer.Name;
+
+        if (SubAccId > 0)
+        {
+            AdminId = SubAccId;
+            AdminName = viewer.SubAccName;
+        }
+        else
+        {
+            AdminId = viewer.Id;
+            AdminName = viewer.Name;
+        }
     }
 
     public decimal Amount { get; set; }
@@ -26,6 +36,10 @@ public class MemberCommand : TransferBaseQuery, IRequest<Result>
     public int SubAccId { get; }
 
     public string ActorName { get; }
+
+    public int AdminId { get; }
+
+    public string AdminName { get; }
 
     public override bool IsValid() => ActorLevel.IsAgentLevel() && base.IsValid();
 }
