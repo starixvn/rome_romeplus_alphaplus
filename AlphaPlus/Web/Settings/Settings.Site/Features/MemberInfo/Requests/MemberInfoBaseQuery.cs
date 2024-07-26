@@ -46,7 +46,7 @@
 
         public byte CustLevelId { get; set; }
 
-        public virtual Settings.MemberInfo.Domain.Models.UserLevel CustLevel => Settings.MemberInfo.Domain.Enumerations.Enumeration.FromValue<Settings.MemberInfo.Domain.Models.UserLevel>(CustLevelId);
+        public virtual UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
 
         public int ViewerId => viewer.Id;
 
@@ -58,7 +58,7 @@
 
         public byte ViewerLevelId => viewer.LevelId;
 
-        public virtual Settings.MemberInfo.Domain.Models.UserLevel ActorLevel => Settings.MemberInfo.Domain.Enumerations.Enumeration.FromValue<Settings.MemberInfo.Domain.Models.UserLevel>(ViewerLevelId);
+        public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
 
         public string Language => viewer.Language;
 

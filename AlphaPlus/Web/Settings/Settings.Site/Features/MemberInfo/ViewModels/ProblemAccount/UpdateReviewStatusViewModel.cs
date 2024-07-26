@@ -3,10 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount;
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
     public class UpdateReviewStatusViewModel
     {

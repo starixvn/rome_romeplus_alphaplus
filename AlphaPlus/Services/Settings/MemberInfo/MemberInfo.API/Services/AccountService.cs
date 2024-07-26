@@ -1,6 +1,6 @@
-﻿using AlphaPlus.Settings.MemberInfo.API.Criteria;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.API.Criteria;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Services;

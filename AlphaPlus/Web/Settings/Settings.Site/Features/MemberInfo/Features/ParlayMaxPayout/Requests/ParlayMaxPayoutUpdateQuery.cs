@@ -32,8 +32,7 @@
             && !IsInternal;
     }
 
-    public class ParlayMaxPayoutUpdateSingleQuery :
-        ParlayMaxPayoutUpdateBaseQuery, IRequest<Settings.MemberInfo.Domain.Models.Result>
+    public class ParlayMaxPayoutUpdateSingleQuery : ParlayMaxPayoutUpdateBaseQuery, IRequest<Result>
     {
         public ParlayMaxPayoutUpdateSingleQuery() : this(null) { }
 
@@ -52,8 +51,7 @@
         }
     }
 
-    public class ParlayMaxPayoutUpdateMultipleQuery :
-        ParlayMaxPayoutUpdateBaseQuery, IRequest<IEnumerable<Settings.MemberInfo.Domain.Models.Result>>
+    public class ParlayMaxPayoutUpdateMultipleQuery : ParlayMaxPayoutUpdateBaseQuery, IRequest<IEnumerable<Result>>
     {
         public ParlayMaxPayoutUpdateMultipleQuery() : this(null) { }
 

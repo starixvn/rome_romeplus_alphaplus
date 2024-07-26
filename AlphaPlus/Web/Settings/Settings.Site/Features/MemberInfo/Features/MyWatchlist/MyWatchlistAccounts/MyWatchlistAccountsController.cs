@@ -1,9 +1,9 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts
 {
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
     using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.Requests;
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;

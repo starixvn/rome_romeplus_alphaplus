@@ -5,9 +5,9 @@ using AlphaPlus.Utilities.IP;
 using MediatR;
 using AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount;
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
 {

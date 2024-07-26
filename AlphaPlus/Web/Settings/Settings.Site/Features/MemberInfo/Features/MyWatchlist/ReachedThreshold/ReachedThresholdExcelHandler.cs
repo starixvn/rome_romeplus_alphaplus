@@ -2,7 +2,6 @@
 {
     using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
     using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels;
     using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
@@ -15,6 +14,7 @@
     using System.Threading.Tasks;
     using static ONEbook.SpreadSheets.Column;
     using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+    using AlphaPlus.Core.Models;
 
     public class ReachedThresholdExcelHandler : ExcelBaseHandler, IRequestHandler<ReachedThresholdExcelQuery, ExcelFileViewModel>
     {

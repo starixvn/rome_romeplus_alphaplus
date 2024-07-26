@@ -3,7 +3,6 @@
     using System;
     using System.Text;
     using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels;
     using AlphaPlus.Settings.MemberInfo.API.Services;
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
@@ -12,6 +11,7 @@
     using ONEbook.SpreadSheets;
     using static ONEbook.SpreadSheets.Column;
     using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+    using AlphaPlus.Core.Models;
 
     public class ProblemAccountExcelHandler : ExcelBaseHandler, IRequestHandler<ProblemAccountExcelQuery, ExcelFileViewModel>
     {
@@ -27,7 +27,7 @@
             this.workbook = workbook;
         }
 
-        public  async Task<ExcelFileViewModel> Handle(ProblemAccountExcelQuery message, CancellationToken cancellation)
+        public async Task<ExcelFileViewModel> Handle(ProblemAccountExcelQuery message, CancellationToken cancellation)
         {
             var param = ProblemAccountHandler.CreateParam(message);
 
@@ -128,7 +128,7 @@
         private TemplateInfo GetTemplateInfo(ProblemAccountExcelQuery message)
         {
             var templateName = message.SearchRole.DisplayName;
-            if(message.SearchRole.IsAgentLevel() && message.IsViewDirectDownLine)
+            if (message.SearchRole.IsAgentLevel() && message.IsViewDirectDownLine)
             {
                 templateName = $"DirectDownLine{templateName}";
             }

@@ -6,8 +6,8 @@ using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 using Fanex.Cryptography.Aes;
 using Fanex.Data.Repository;
 using RSACryptoPad;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount
 {

@@ -1368,4 +1368,10 @@
     <value>เครดิตสมาชิกสูงสุดที่กำหนดโดยอัพไลน์ของคุณ: {0}</value>
     <comment/>
   </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>คอมมิชชั่นของสมาชิก</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>ผลิตภัณฑ์</value>
+  </data>
 </root>

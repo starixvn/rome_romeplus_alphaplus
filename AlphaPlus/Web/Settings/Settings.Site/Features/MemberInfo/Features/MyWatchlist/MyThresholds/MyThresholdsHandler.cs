@@ -9,8 +9,8 @@
     using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyThresholds.Params;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
+    using AlphaPlus.Core.Models;
 
     public class MyThresholdsHandler :
         IRequestHandler<MyThresholdIndexPageQuery, MyThresholdIndexPageViewModel>,

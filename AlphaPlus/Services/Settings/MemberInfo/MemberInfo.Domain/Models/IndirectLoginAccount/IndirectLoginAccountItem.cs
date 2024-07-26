@@ -2,7 +2,7 @@
 {
     using System;
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
+    using AlphaPlus.Core.Models;
 
     public class IndirectLoginAccountItem
     {
@@ -38,7 +38,7 @@
 
         public int SubAccId { get; set; }
 
-        public string? Username { get; set; }
+        public string Username { get; set; }
 
         public byte Level { get; set; }
 

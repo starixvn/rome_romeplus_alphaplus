@@ -4,8 +4,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
     using System.Collections.Generic;
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using AlphaPlus.Core.Models;
 
     public class DormantAccount
     {
@@ -26,7 +25,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
         public DormantAccount(DormantAccountEntity entity, decimal yesterdayBalance)
         {
             Username = entity.Username ?? string.Empty;
-            RoleName = Enumeration.FromValue<UserLevel>(entity.RoleId).DisplayNameViaResource ?? string.Empty;
+            RoleName = Resources.ResourceManager.GetString(Enumeration.FromValue<UserLevel>(entity.RoleId).DisplayName) ?? string.Empty;
             Status = GetStatus(entity.StatusId, entity.IsWarningTicket);
             ArchiveStage = GetArchiveStage(entity.StageId);
             ToBeClearedGivenCredit = entity.ToBeClearedGivenCredit;
@@ -73,7 +72,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
             && LastLogged.Value > ClosedDate.Value;
 
         public bool IsSummaryRow { get; }
-                
+
         private static string GetStatus(byte statusId, bool isWarningTicket)
         {
             var accountStatusList = new Dictionary<byte, string>
@@ -85,7 +84,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
                 { StatusIdentity.Deleted, Resources.Deleted }
             };
             var status = accountStatusList.ContainsKey(statusId) ? accountStatusList[statusId] : string.Empty;
-            
+
             return isWarningTicket ? $"{status} (*)" : status;
         }
 

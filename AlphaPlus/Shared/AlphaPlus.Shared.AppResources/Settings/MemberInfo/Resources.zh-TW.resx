@@ -1368,4 +1368,10 @@
     <value>您的上線已設置會員最高信用：{0}</value>
     <comment/>
   </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>會員佣金</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>產品</value>
+  </data>
 </root>

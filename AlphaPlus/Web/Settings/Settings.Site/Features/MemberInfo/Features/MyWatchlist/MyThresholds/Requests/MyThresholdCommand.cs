@@ -3,11 +3,12 @@
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
     using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
+    using AlphaPlus.Core.Models;
 
     public class MyThresholdCommand : MemberInfoBaseQuery, IRequest<Result>
     {
-        public MyThresholdCommand() : this(null){}
-        
+        public MyThresholdCommand() : this(null) { }
+
         public MyThresholdCommand(IUser viewer) : base(viewer)
         {
         }

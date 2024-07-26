@@ -18,7 +18,7 @@
         private int pageIndex;
         private int pageSize;
 
-        public CreditBalanceQuery() : this(null){}
+        public CreditBalanceQuery() : this(null) { }
 
         public CreditBalanceQuery(IUser user)
         {
@@ -26,7 +26,7 @@
             LoggedInUserId = user.LoggedInUserId;
             SubAccId = user.SubAccId;
             ActorId = user.Id;
-            ActorLevel = Settings.MemberInfo.Domain.Enumerations.Enumeration.FromValue<Settings.MemberInfo.Domain.Models.UserLevel>(user.LevelId);
+            ActorLevel = Enumeration.FromValue<UserLevel>(user.LevelId);
             CanUpdateAccount = user.CanUpdateAccount;
             IsAllowedTotalBalanceTransfer = user.IsAllowedTotalBalanceTransfer;
             CanTransfer = user.CanTransfer;
@@ -63,8 +63,7 @@
             }
         }
 
-        public Settings.MemberInfo.Domain.Models.UserLevel CustLevel
-            => Settings.MemberInfo.Domain.Enumerations.Enumeration.FromValue<Settings.MemberInfo.Domain.Models.UserLevel>(CustLevelId);
+        public UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
 
         public string UserName
         {
@@ -120,7 +119,7 @@
 
         public int ActorId { get; }
 
-        public Settings.MemberInfo.Domain.Models.UserLevel ActorLevel { get; }
+        public UserLevel ActorLevel { get; }
 
         public bool CanUpdateAccount { get; }
 

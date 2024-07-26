@@ -820,5 +820,11 @@
       "Features/PositionTaking/assets/scripts/numeral.js",
       "Features/PositionTaking/Views/Scripts/ViewPT.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/commission/member-commission.js",
+    "inputFiles": [
+      "Features/MemberInfo/Features/Commission/scripts/member-commission.js"
+    ]
   }
 ]

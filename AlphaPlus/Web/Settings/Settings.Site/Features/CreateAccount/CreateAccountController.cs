@@ -13,6 +13,7 @@ using Fanex.Customer.Client.Services;
 using Fanex.Customer.Client.Constants;
 using Fanex.Customer.Client.Params;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CreateAccount
 {

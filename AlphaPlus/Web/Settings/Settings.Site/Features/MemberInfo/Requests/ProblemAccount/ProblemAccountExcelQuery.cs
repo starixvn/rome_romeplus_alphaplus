@@ -1,14 +1,13 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount
 {
-    using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels;
-    using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
+    using AlphaPlus.Core.Models;
 
-    public class ProblemAccountExcelQuery: ProblemAccountRequestBase, IRequest<ExcelFileViewModel>
+    public class ProblemAccountExcelQuery : ProblemAccountRequestBase, IRequest<ExcelFileViewModel>
     {
-        public ProblemAccountExcelQuery() : this(null){}
-        
+        public ProblemAccountExcelQuery() : this(null) { }
+
         public ProblemAccountExcelQuery(IUser viewer)
             : base(viewer)
         {

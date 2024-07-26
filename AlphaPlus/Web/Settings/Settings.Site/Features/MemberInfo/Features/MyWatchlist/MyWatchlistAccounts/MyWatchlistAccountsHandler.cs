@@ -6,10 +6,10 @@
     using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using AlphaPlus.Core.Models;
 
     public class MyWatchlistAccountsHandler :
         IRequestHandler<MyWatchlistAccountsQuery, MyWatchlistAccountsViewModel>,

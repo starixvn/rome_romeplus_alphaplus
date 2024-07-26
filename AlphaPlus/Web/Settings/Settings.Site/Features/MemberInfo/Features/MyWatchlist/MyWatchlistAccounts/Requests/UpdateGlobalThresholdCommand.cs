@@ -3,11 +3,12 @@
     using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
+    using AlphaPlus.Core.Models;
 
     public class UpdateGlobalThresholdCommand : MemberInfoBaseQuery, IRequest<Result>
     {
-        public UpdateGlobalThresholdCommand() : this(null){}
-        
+        public UpdateGlobalThresholdCommand() : this(null) { }
+
         public UpdateGlobalThresholdCommand(IUser viewer) : base(viewer)
         {
         }

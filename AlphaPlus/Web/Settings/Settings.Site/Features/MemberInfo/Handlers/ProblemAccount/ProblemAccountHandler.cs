@@ -8,10 +8,10 @@
     using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
     using AlphaPlus.Settings.MemberInfo.API.Services;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
     using AlphaPlus.Settings.MemberInfo.Domain.Params.ProblemAccount;
     using MediatR;
+    using AlphaPlus.Core.Models;
 
     public class ProblemAccountHandler :
         IRequestHandler<IndexRequest, ProblemAccountReportViewModel>,
@@ -32,10 +32,10 @@
             this.myWatchlistAccountsService = myWatchlistAccountsService;
         }
 
-        public  async Task<UpdateReviewStatusViewModel> Handle(UpdateProblemAccountRequest message, CancellationToken cancellation)
+        public async Task<UpdateReviewStatusViewModel> Handle(UpdateProblemAccountRequest message, CancellationToken cancellation)
             => new UpdateReviewStatusViewModel(message);
 
-        public  async Task<Result> Handle(UpdateProblemAccountCommand message, CancellationToken cancellation)
+        public async Task<Result> Handle(UpdateProblemAccountCommand message, CancellationToken cancellation)
         {
             return problemAccountService.UpdateReviewStatus(new UpdateProblemAccountParam
             {
@@ -49,11 +49,11 @@
             });
         }
 
-        public  async Task<ProblemAccountReportViewModel> Handle(IndexRequest message, CancellationToken cancellation)
+        public async Task<ProblemAccountReportViewModel> Handle(IndexRequest message, CancellationToken cancellation)
             => new ProblemAccountReportViewModel(message, new List<ProblemAccountModel>(),
                 browserHelper.IsMobile(isOnlyTablet: false));
 
-        public  async Task<IEnumerable<ProblemAccountModel>> Handle(GetProblemAccountRequest message, CancellationToken cancellation)
+        public async Task<IEnumerable<ProblemAccountModel>> Handle(GetProblemAccountRequest message, CancellationToken cancellation)
         {
             var models = problemAccountService.Get(CreateParam(message));
 

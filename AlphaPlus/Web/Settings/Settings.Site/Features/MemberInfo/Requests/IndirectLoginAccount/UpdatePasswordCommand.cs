@@ -4,8 +4,8 @@
 
     public class UpdatePasswordCommand : NewAccountCommand
     {
-        public UpdatePasswordCommand() : this(null){}
-        
+        public UpdatePasswordCommand() : this(null) { }
+
         public UpdatePasswordCommand(IUser viewer) : base(viewer)
         {
         }

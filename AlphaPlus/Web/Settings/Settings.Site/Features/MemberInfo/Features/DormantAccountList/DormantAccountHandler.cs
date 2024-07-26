@@ -5,7 +5,6 @@
     using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.Requests;
     using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.ViewModels;
     using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels;
     using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
@@ -14,6 +13,7 @@
     using ONEbook.SpreadSheets;
     using static ONEbook.SpreadSheets.Column;
     using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+    using AlphaPlus.Core.Models;
 
     public class DormantAccountHandler :
         ExcelBaseHandler,

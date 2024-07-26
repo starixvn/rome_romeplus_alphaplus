@@ -1,12 +1,13 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount
 {
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
 
     public class NewAccountCommand : MemberInfoBaseQuery, IRequest<Result>
     {
-        public NewAccountCommand() : this(null){}
-        
+        public NewAccountCommand() : this(null) { }
+
         public NewAccountCommand(IUser viewer) : base(viewer)
         {
         }

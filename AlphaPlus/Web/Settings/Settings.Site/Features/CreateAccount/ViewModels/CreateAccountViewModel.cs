@@ -1,8 +1,7 @@
 ﻿using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
 {

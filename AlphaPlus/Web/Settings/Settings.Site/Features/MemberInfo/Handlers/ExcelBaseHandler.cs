@@ -2,8 +2,8 @@
 {
     using System;
     using System.IO;
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using ONEbook.SpreadSheets;
 
     public abstract class ExcelBaseHandler

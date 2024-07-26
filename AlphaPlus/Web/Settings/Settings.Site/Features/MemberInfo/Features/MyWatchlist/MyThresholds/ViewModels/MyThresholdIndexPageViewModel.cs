@@ -6,8 +6,8 @@
     using AlphaPlus.Core.Helpers;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+    using AlphaPlus.Core.Models;
 
     public class MyThresholdIndexPageViewModel
     {

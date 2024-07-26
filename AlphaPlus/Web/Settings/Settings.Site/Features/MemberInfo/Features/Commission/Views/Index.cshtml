@@ -1,0 +1,22 @@
+﻿@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Settings.Site.Features.MemberInfo.Features.Commission
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model MemberCommissionViewModel
+@{
+    Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = @Resources.MemberCommission;
+}
+@section Styles {
+}
+@section Scripts {
+    <script src="~/bundles/commission/member-commission.js" asp-append-version="true"></script>
+}
+<div class="page-title">
+    <span class="pull-left">@Resources.MemberCommission</span>
+</div>
+<form method="get" class="form-inline filter" role="form" id="form-filter" asp-action="GetComm">
+    <div class="form-group">
+        <label>@Resources.Product</label>
+        <select id="ddl-product" asp-items="Model.Products"></select>
+    </div>
+</form>

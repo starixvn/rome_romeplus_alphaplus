@@ -1,10 +1,10 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.ParlayMaxPayout
 {
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.API.Features.ParlayMaxPayout;
     using AlphaPlus.Settings.MemberInfo.API.Services;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.ParlayMaxPayout.Params;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Params;
     using MediatR;
     using Requests;
@@ -30,17 +30,17 @@
             this.checkUMService = checkUMService;
         }
 
-        public  async Task<ParlayMaxPayoutSinglePageViewModel> Handle(ParlayMaxPayoutSingleSelectQuery message, CancellationToken cancellation)
+        public async Task<ParlayMaxPayoutSinglePageViewModel> Handle(ParlayMaxPayoutSingleSelectQuery message, CancellationToken cancellation)
             => new ParlayMaxPayoutSinglePageViewModel(
                 message,
                 parlayMaxPayoutService.GetParlayMaxPayout(new ParlayMaxPayoutSelectParam(message.CustId)));
 
-        public  async Task<ParlayMaxPayoutMultiplePageViewModel> Handle(ParlayMaxPayoutMultipleSelectQuery message, CancellationToken cancellation)
+        public async Task<ParlayMaxPayoutMultiplePageViewModel> Handle(ParlayMaxPayoutMultipleSelectQuery message, CancellationToken cancellation)
             => new ParlayMaxPayoutMultiplePageViewModel(
                 message,
                 parlayMaxPayoutService.GetParlayMaxPayout(new ParlayMaxPayoutSelectParam(message.SelectedCustId)));
 
-        public  async Task<Result> Handle(ParlayMaxPayoutUpdateSingleQuery message, CancellationToken cancellation)
+        public async Task<Result> Handle(ParlayMaxPayoutUpdateSingleQuery message, CancellationToken cancellation)
         {
             var checkUMResult = checkUMService.CheckUM(
                 new CheckUMParam(message.SelectedCustId, NonDcsProduct.Sportsbook, message.Language));
@@ -57,7 +57,7 @@
                         message.IP));
         }
 
-        public  async Task<IEnumerable<Result>> Handle(ParlayMaxPayoutUpdateMultipleQuery message, CancellationToken cancellation)
+        public async Task<IEnumerable<Result>> Handle(ParlayMaxPayoutUpdateMultipleQuery message, CancellationToken cancellation)
         {
             var custIds = message.CustIdList.Split(',').Select(int.Parse);
             var results = new List<Result>();
@@ -66,7 +66,7 @@
                 var checkUMResult = checkUMService.CheckUM(
                     new CheckUMParam(custId, NonDcsProduct.Sportsbook, message.Language));
 
-                results.Add( checkUMResult.IsFailed
+                results.Add(checkUMResult.IsFailed
                     ? checkUMResult
                     : parlayMaxPayoutService.UpdateParlayMaxPayout(
                         new ParlayMaxPayoutUpdateParam(
@@ -81,7 +81,7 @@
             return results;
         }
 
-        public  async Task<Result> Handle(ParlayMaxPayoutCheckDownlineQuery message, CancellationToken cancellation)
+        public async Task<Result> Handle(ParlayMaxPayoutCheckDownlineQuery message, CancellationToken cancellation)
         {
             var custId = message.CustIdList.Split(',').Select(int.Parse).FirstOrDefault();
 

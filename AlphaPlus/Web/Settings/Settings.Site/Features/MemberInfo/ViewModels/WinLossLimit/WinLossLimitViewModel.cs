@@ -2,13 +2,13 @@
 {
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
     using AlphaPlus.Settings.MemberInfo.Domain.Params;
     using Components;
     using Requests.WinLossLimit;
     using System.Collections.Generic;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
+    using AlphaPlus.Core.Models;
 
     public class WinLossLimitViewModel
     {

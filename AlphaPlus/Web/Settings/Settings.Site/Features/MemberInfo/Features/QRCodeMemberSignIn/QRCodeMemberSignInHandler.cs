@@ -5,11 +5,10 @@ using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn.Criteria;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Params;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using MediatR;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn
 {

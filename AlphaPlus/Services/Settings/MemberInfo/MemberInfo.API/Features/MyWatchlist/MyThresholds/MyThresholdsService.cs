@@ -12,7 +12,7 @@
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
+    using AlphaPlus.Core.Models;
 
     public interface MyThresholdsService
     {

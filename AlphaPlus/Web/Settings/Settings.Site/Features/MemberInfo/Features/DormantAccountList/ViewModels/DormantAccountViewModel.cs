@@ -5,10 +5,9 @@
     using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.Requests;
     using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
     using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Enumerations;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using Microsoft.AspNetCore.Mvc.Rendering;
+    using AlphaPlus.Core.Models;
 
     public class DormantAccountViewModel
     {
@@ -39,7 +38,7 @@
                 {
                     currentLevelId--;
                     yield return BuildSelectListItem(
-                        Enumeration.FromValue<UserLevel>(currentLevelId).DisplayNameViaResource,
+                        Resources.ResourceManager.GetString(Enumeration.FromValue<UserLevel>(currentLevelId).DisplayName),
                         currentLevelId,
                         currentLevelId == Message.LevelId);
                 }

@@ -3,11 +3,12 @@
     using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
+    using AlphaPlus.Core.Models;
 
     public class UpdatePersonalPresetCommand : MemberInfoBaseQuery, IRequest<Result>
     {
-        public UpdatePersonalPresetCommand() : this(null){}
-        
+        public UpdatePersonalPresetCommand() : this(null) { }
+
         public UpdatePersonalPresetCommand(IUser viewer) : base(viewer)
         {
         }

@@ -1,12 +1,12 @@
 ﻿using AlphaPlus.Core.Helpers;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.CreditBalance;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance
 {

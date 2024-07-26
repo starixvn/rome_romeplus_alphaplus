@@ -3520,5 +3520,27 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
                 return ResourceManager.GetString("memberMaxCreditHint", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Member Commission.
+        /// </summary>
+        public static string MemberCommission
+        {
+            get
+            {
+                return ResourceManager.GetString("MemberCommission", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string Product
+        {
+            get
+            {
+                return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
     }
 }

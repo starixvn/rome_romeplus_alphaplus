@@ -1,12 +1,13 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount
 {
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using MediatR;
 
     public class UpdateProblemAccountCommand : MemberInfoBaseQuery, IRequest<Result>
     {
-        public UpdateProblemAccountCommand() : this(null){}
-        
+        public UpdateProblemAccountCommand() : this(null) { }
+
         public UpdateProblemAccountCommand(IUser viewer) : base(viewer)
         {
         }

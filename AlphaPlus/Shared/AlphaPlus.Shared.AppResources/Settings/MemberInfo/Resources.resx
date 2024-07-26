@@ -1372,4 +1372,10 @@
     <value>The Maximum Member Credit set by your upline: {0}</value>
     <comment/>
   </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>Member Commission</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
 </root>

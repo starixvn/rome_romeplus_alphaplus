@@ -1,11 +1,11 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.ParlayMaxPayout
 {
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using Criteria;
     using Fanex.Data.Repository;
     using System.Collections.Generic;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.ParlayMaxPayout.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Features.ParlayMaxPayout.Params;
+    using AlphaPlus.Core.Models;
 
     public interface ParlayMaxPayoutService
     {

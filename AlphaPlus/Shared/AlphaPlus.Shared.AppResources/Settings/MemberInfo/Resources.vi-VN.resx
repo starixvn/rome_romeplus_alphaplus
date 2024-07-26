@@ -1344,4 +1344,10 @@
     <value>Hạn Mức Tín Dụng Tối Đa Của Member Cấp Bởi Cấp Trên：{0}</value>
     <comment/>
   </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>Hoa hồng của Member</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Sản phẩm</value>
+  </data>
 </root>
