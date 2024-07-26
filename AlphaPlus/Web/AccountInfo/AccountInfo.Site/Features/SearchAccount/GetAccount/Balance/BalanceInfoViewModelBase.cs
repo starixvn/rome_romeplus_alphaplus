@@ -104,8 +104,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
 
         internal string BuildTransferLink(decimal transferValue)
             => MicroSites.SettingUrl(
-                string.Format("~/TransferYesterdayBalance/{0}?custId={1}&showtitle=1",
+                string.Format("~/TransferYesterdayBalance/{0}?custId={1}&custName={2}&showtitle=1",
                     SearchAccountLevel.IsMemberLevel() ? "Member" : "Single",
-                    account.CustId));
+                    account.CustId,
+                    account.UserName));
     }
 }

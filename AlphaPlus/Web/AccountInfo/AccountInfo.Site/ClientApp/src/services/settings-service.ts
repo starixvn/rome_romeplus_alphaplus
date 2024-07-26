@@ -9,8 +9,7 @@ import StatusItem from '../models/status-item';
 import UsernameSuggestion from '../models/username-suggestion';
 
 const axiosInstance = axios.create({
-    baseURL: window.top?.alpha.urls['accountInfoRootPath'],
-    timeout: 1000
+    baseURL: window.top?.alpha.urls['accountInfoRootPath']
 });
 
 export const handleError = (err: any) => {
@@ -37,9 +36,8 @@ const SettingsService = {
             .then((response) => response.data);
     },
     GetCustomerInfo: async (username: string) => {
-        return axiosInstance
-            .get<Customer>(`SearchAccount/GetAccount?username=${username}`)
-            .then((response) => response.data);
+        const response = await axiosInstance.get<Customer>(`SearchAccount/GetAccount?username=${username}`);
+        return response.data;
     },
     GetDownlineList: async (custId: number, roleId: number, pageIndex = 1, statusId = 1, totalPages = 0) => {
         return axiosInstance
