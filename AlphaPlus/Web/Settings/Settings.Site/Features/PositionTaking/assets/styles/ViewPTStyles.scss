@@ -18,10 +18,21 @@ body {
     background-color: #FFF;
 }
 
+.container{
+    padding: 0;
+}
 .display-none {
     display: none;
 }
-
+#header_main{
+    border-bottom: 1px solid #cecece;
+    color: #9d1c1c;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 39px;
+    margin: 0;
+    text-transform: uppercase;
+}
 /******************************************/
 /* Filter */
 /******************************************/
@@ -34,7 +45,14 @@ label[for] {
     cursor: pointer;
     padding: 0 5px;
 }
-
+#box_header {
+ > *{
+    float: none !important;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+ }
+}
 
 /******************************************/
 /* Tables */
