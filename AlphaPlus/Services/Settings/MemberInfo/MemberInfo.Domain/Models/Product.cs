@@ -1,22 +1,18 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models
+﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models;
+
+public class Product
 {
-    public class Product
-    {
-        public Product()
-        {
-        }
+    public int Id { get; init; }
 
-        public Product(byte id, string name, bool isDisable)
-        {
-            Id = id;
-            Name = name;
-            IsDisable = isDisable;
-        }
+    public string Name { get; set; }
 
-        public int Id { get; set; }
+    public bool IsDisable { get; init; }
 
-        public string? Name { get; set; }
+    public DateTime? EndOfSupportDate { get; init; }
 
-        public bool IsDisable { get; set; }
-    }
+    public int OrderNo { get; init; }
+
+    public int Type { get; init; }
+
+    public int GroupId { get; init; }
 }
