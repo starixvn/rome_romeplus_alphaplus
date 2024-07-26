@@ -1,4 +1,5 @@
-﻿using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
@@ -11,8 +12,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
         {
         }
 
-        protected override string BaseAddress => ""; // TODO:
-        // $"{OldMainUrl}_AccountInfo/EditCustomerInfo.aspx";
+        protected override string BaseAddress => MicroSites.SettingUrl("~/Customer/UpdateInfo");
 
         public override Dictionary<string, string> QueryStringParameters
             => new()
