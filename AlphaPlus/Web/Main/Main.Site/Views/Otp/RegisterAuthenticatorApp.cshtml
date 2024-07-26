@@ -17,21 +17,21 @@
         <div class="panel-body">
             <ul class="list-requirements">
                 <li>
-                    <strong>@Security.DownloadSophos</strong>
+                    <strong>@Security.DownloadGoogleAuthenticator</strong>
                     <div class="download-content">
-                        <div class="logo-sophos">
-                            <img src="~/Assets/Styles/otp/images/logo.png" />
+                        <div class="logo-otp-app">
+                            <img src="~/assets/images/otp/logo.png" />
                         </div>
                         <div class="list-download">
-                            <h2>Sophos Authenticator</h2>
-                            <p><strong>Sophos Gmbh</strong></p>
+                            <h2>Google Authenticator</h2>
+                            <p><strong>Google</strong></p>
                             <ul class="list-inline">
-                                <li><a href="https://itunes.apple.com/vn/app/sophos-authenticator/id864224575?mt=8"
+                                <li><a href="https://apps.apple.com/us/app/google-authenticator/id388497605?mt=8"
                                         class="btn-download-ios" target="_parent"><img
-                                            src="~/Assets/Styles/otp/images/apple.png" /></a></li>
-                                <li><a href="https://play.google.com/store/apps/details?id=com.sophos.sophtoken&hl=en"
+                                            src="~/assets/images/otp/apple.png" /></a></li>
+                                <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US&pli=1"
                                         target="_blank" class="btn-download-android"><img
-                                            src="~/Assets/Styles/otp/images/google.png" /></a></li>
+                                            src="~/assets/images/otp/google.png" /></a></li>
                             </ul>
                         </div>
                     </div>
@@ -42,8 +42,8 @@
                 </li>
                 <li>
                     <strong>@Security.ScanQRCode</strong>
-                    <div class="qr-code sophos-qr">
-                        <img src="@Html.Raw(Model.CustomerOtp.QRCode)" />
+                    <div id="qr-code" class="qr-code sophos-qr">
+                        @* <img src="@Html.Raw(Model.CustomerOtp.QRCode)" /> *@
                     </div>
                     <div class="username-customize">
                         <p>@Html.Raw(string.Format(Security.UsernameWarning,
@@ -83,10 +83,10 @@
                                     </p>
                                     <div class="example">
                                         <div class="col-left">
-                                            <img src="~/Assets/Styles/otp/images/manual-ios.png" title="IOS" />
+                                            <img src="~/assets/images/otp/manual-ios.png" title="IOS" />
                                         </div>
                                         <div class="col-right">
-                                            <img src="~/Assets/Styles/otp/images/manual-android.png" title="Android" />
+                                            <img src="~/assets/images/otp/manual-android.png" title="Android" />
                                         </div>
                                     </div>
                                 </div>
@@ -115,3 +115,5 @@
         </div>
     </div>
 </div>
+
+@Html.Hidden("OTPUrl", Model.CustomerOtp.OTPUrl)

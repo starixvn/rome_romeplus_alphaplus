@@ -303,13 +303,13 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Download Sophos Authenticator on your device..
+        ///   Looks up a localized string similar to Download Google Authenticator on your device..
         /// </summary>
-        public static string DownloadSophos
+        public static string DownloadGoogleAuthenticator
         {
             get
             {
-                return ResourceManager.GetString("DownloadSophos", resourceCulture);
+                return ResourceManager.GetString("DownloadGoogleAuthenticator", resourceCulture);
             }
         }
 

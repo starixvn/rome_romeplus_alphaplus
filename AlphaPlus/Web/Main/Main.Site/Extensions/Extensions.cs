@@ -27,6 +27,8 @@ using AlphaPlus.Main.Site.Features.OTP;
 using AlphaPlus.Main.Site.Features.ProtectionCode;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Shared.Models;
+using ONEbook.OTP.Services;
+using ONEbook.OTP.Helpers;
 
 namespace AlphaPlus.Main.Site.Extensions;
 
@@ -67,6 +69,8 @@ public static class Extensions
         services.AddSingleton<INicknameChecker, NicknameChecker>();
         services.AddSingleton<IBannerService, BannerService>();
         services.AddSingleton<IUMMessageService, UMMessageService>();
+        services.AddSingleton<OtpService, OtpServiceImpl>();
+        services.AddSingleton<OtpAdapter, OtpAdapterImpl>();
 
         services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
         services.AddHttpClient<IAccountService, AccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))

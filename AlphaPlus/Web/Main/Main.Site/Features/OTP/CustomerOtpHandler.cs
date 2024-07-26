@@ -271,7 +271,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
                     request.Username = userSession.IsSubAcc ? userSession.SubUserName : userSession.UserName;
                 }
 
-                viewModel.CustomerOtp = await customerOtpService.GenerateCustomerOtp(request.CustId, request.Username, request.SubAccountId);
+                viewModel.CustomerOtp = customerOtpService.GenerateCustomerOtp(request.CustId, request.Username, request.SubAccountId);
                 viewModel.IsAlreadySetup = false;
                 sessionManager.Add(SecretKeySessionKey, viewModel.CustomerOtp.SecretKey);
             }

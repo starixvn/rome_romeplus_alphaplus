@@ -158,6 +158,7 @@
     "outputFileName": "wwwroot/assets/bundles/security/otp/setup-otp.js",
     "inputFiles": [
       "assets/scripts/core.js",
+      "assets/scripts/qrcode.js",
       "assets/scripts/security/otp/setup-otp.js"
     ]
   },

@@ -12,7 +12,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
 
         public string SecretKey { get; set; }
 
-        public string QRCode { get; set; }
+        public string OTPUrl { get; set; }
 
         public bool Enabled { get; set; }
 
