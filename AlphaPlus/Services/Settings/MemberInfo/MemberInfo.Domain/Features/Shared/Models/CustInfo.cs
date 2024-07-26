@@ -1,18 +1,10 @@
-namespace AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models
+namespace AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
+
+public class CustInfo(int custId, string custName, byte custLevelId)
 {
-    public class CustInfo
-    {
-        public CustInfo(int custId, string custName, byte custLevelId)
-        {
-            CustId = custId;
-            CustName = custName;
-            CustLevelId = custLevelId;
-        }
+    public int CustId { get; init; } = custId;
 
-        public int CustId { get; set; }
+    public string CustName { get; init; } = custName;
 
-        public string CustName { get; set; }
-
-        public byte CustLevelId { get; set; }
-    }
+    public byte CustLevelId { get; init; } = custLevelId;
 }

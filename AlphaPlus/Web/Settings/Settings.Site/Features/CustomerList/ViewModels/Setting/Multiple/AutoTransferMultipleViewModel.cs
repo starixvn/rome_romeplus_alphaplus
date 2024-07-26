@@ -9,9 +9,9 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
     public class AutoTransferMultipleViewModel : SettingItemViewModel, ISettingItemMultipleViewModel
     {
         private new const int DisplayOrder = 1005;
-        private readonly AccountService accountService;
+        private readonly IAccountService accountService;
 
-        public AutoTransferMultipleViewModel(ISearchAccountInfoRequest request, AccountService accountService) : base(request, DisplayOrder)
+        public AutoTransferMultipleViewModel(ISearchAccountInfoRequest request, IAccountService accountService) : base(request, DisplayOrder)
         {
             this.accountService = accountService;
         }

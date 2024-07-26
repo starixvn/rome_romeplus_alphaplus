@@ -11,12 +11,12 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
     public sealed class StatusViewModelFactory
         : GenericViewModelFactory<ISearchAccountInfoRequest, IStatusItemViewModel>
     {
-        private readonly AccountService accountService;
+        private readonly IAccountService accountService;
 
         public StatusViewModelFactory(IConfiguration configuration)
             : base(configuration)
         {
-            accountService = new AccountServiceImpl(new DynamicRepository());
+            accountService = new AccountService(new DynamicRepository());
         }
 
         protected override IEnumerable<IStatusItemViewModel> GetNonProductViewModels(ISearchAccountInfoRequest request)

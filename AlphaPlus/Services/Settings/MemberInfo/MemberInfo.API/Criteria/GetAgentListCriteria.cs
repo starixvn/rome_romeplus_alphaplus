@@ -1,22 +1,12 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria
+﻿using Fanex.Data.Repository;
+
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria;
+
+public class GetAgentListCriteria(int custId) : CriteriaBase
 {
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+    public int MRecommend { get; } = custId;
 
-    public class GetAgentListCriteria : CriteriaBase
-    {
-        public GetAgentListCriteria(int custId)
-        {
-            CustId = custId;
-        }
+    public override string GetSettingKey() => "Age_CustomerSelAgentList";
 
-        [SpParam(SqlParamName = "MRecommend")]
-        public int CustId { get; set; }
-
-        public override string GetSettingKey()
-            => "Age_CustomerSelAgentList";
-
-        public override bool IsValid()
-            => CustId > 0;
-    }
+    public override bool IsValid() => MRecommend > 0;
 }

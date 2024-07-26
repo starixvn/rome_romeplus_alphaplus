@@ -194,7 +194,8 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<CreditBalanceService, CreditBalanceServiceImpl>();
 
             services
-                .AddScoped<WinLossLimitService, WinLossLimitServiceImpl>();
+                .AddSingleton<IAccountService, AccountService>()
+                .AddSingleton<WinLossLimitService, WinLossLimitServiceImpl>();
 
             services
                 .AddSingleton<IDateTime, DateTimeWrap>()

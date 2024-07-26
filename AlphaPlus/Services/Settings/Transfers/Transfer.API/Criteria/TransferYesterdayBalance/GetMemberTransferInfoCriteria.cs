@@ -21,9 +21,9 @@ public class GetMemberTransferInfoCriteria(int custId, bool allowedTotalBalanceT
 
     public decimal AmtTransferred { get; set; }
 
-    public DateTime LastLogin { get; set; } = SqlDateTime.MinValue.Value;
+    public DateTime? LastLogin { get; set; }
 
-    public DateTime MaxTransDate { get; set; } = SqlDateTime.MinValue.Value;
+    public DateTime? MaxTransDate { get; set; }
 
     public decimal Balance { get; set; }
 

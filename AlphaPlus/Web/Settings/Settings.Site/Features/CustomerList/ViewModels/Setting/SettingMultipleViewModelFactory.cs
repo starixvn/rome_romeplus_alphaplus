@@ -16,12 +16,12 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
         private const int ResetPasswordDisplayAfterLastProduct = 1;
         private const int ResetSecurityDisplayAfterLastProduct = 2;
         private const int RemoveOTPDisplayAfterLastProduct = 3;
-        private readonly AccountService accountService;
+        private readonly IAccountService accountService;
 
         public SettingMultipleViewModelFactory(IConfiguration configuration)
             : base(configuration)
         {
-            accountService = new AccountServiceImpl(new DynamicRepository());
+            accountService = new AccountService(new DynamicRepository());
         }
 
         protected override IEnumerable<ISettingItemMultipleViewModel> GetNonProductViewModels(ISearchAccountInfoRequest request)

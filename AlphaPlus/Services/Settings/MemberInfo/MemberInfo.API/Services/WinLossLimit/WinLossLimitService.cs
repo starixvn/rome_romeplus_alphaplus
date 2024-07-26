@@ -1,145 +1,126 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit
+﻿using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
+using AlphaPlus.Settings.MemberInfo.Domain.Params;
+using Fanex.Data.Repository;
+
+namespace AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
+
+public interface WinLossLimitService
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
-    using AlphaPlus.Settings.MemberInfo.Domain.Params;
-    using Criteria;
-    using Criteria.WinLossLimit;
-    using Fanex.Data.Repository;
+    Task<IEnumerable<WinLossLimitGroupProductModel>> GetWinLossLimitProducts(int custId);
 
-    public interface WinLossLimitService
+    Task<WinLossLimitPage> GetWinLossLimitPage(WinLossLimitParam param);
+}
+
+public class WinLossLimitServiceImpl(
+    IDynamicRepository repository,
+    CacheRefService cacheRefService) : WinLossLimitService
+{
+    private readonly IDynamicRepository repository = repository;
+    private readonly Func<int, string> getProductName = cacheRefService.GetProductName;
+
+    public async Task<IEnumerable<WinLossLimitGroupProductModel>> GetWinLossLimitProducts(int custId)
     {
-        IEnumerable<WinLossLimitGroupProductModel> GetWinLossLimitProducts(int custId);
+        var winLossLimitProducts = new List<WinLossLimitGroupProductModel>();
+        var groupProducts = (await repository
+            .FetchAsync<WinLossLimitProductModel>(new GetWinLossLimitProductCriteria(custId)))
+            .GroupBy(product => product.Type);
 
-        IEnumerable<CustomerInfo> GetMasterList(int custId);
+        foreach (var group in groupProducts)
+        {
+            foreach (var product in group)
+            {
+                product.ProductName = getProductName(product.ProductId);
+            }
 
-        IEnumerable<CustomerInfo> GetAgentList(int custId);
+            winLossLimitProducts.Add(new WinLossLimitGroupProductModel(
+                group.Key == 0 ? string.Empty : getProductName(group.Key),
+                group));
+        }
 
-        WinLossLimitPage GetWinLossLimitPage(WinLossLimitParam param);
+        return winLossLimitProducts;
     }
 
-    public class WinLossLimitServiceImpl : WinLossLimitService
+    public async Task<WinLossLimitPage> GetWinLossLimitPage(WinLossLimitParam param)
     {
-        private readonly IDynamicRepository dynamicRepository;
-        private readonly Func<int, string> getProductName;
+        var result = new WinLossLimitPage();
+        var playerIds = !string.IsNullOrWhiteSpace(param.PlayerId)
+            ? await MapPlayerIdToCustId(new MapPlayerId3rdToCustIdCriteria(param.ProductId, param.PlayerId, param.CustId, param.MasterId, param.AgentId))
+            : [];
 
-        public WinLossLimitServiceImpl(
-            IDynamicRepository dynamicRepository,
-            CacheRefService cacheRefService)
+        if (!playerIds.Any() && string.IsNullOrWhiteSpace(param.PlayerId))
         {
-            this.dynamicRepository = dynamicRepository;
-            this.getProductName = cacheRefService.GetProductName;
-        }
-
-        public IEnumerable<WinLossLimitGroupProductModel> GetWinLossLimitProducts(int custId)
-        {
-            var groupProducts = dynamicRepository
-                .Fetch<WinLossLimitProductModel>(new GetWinLossLimitProductCriteria(custId))
-                .GroupBy(product => product.Type);
-
-            foreach (var group in groupProducts)
-            {
-                foreach (var product in group)
-                {
-                    product.ProductName = getProductName(product.ProductId);
-                }
-
-                yield return new WinLossLimitGroupProductModel(
-                    group.Key == 0 ? string.Empty : getProductName(group.Key),
-                    group);
-            }
-        }
-
-        public IEnumerable<CustomerInfo> GetMasterList(int custId)
-            => dynamicRepository.Fetch<CustomerInfo>(new GetMasterListCriteria(custId));
-
-        public IEnumerable<CustomerInfo> GetAgentList(int custId)
-            => dynamicRepository.Fetch<CustomerInfo>(new GetAgentListCriteria(custId));
-
-        public WinLossLimitPage GetWinLossLimitPage(WinLossLimitParam param)
-        {
-            var result = new WinLossLimitPage();
-            var playerIds = !string.IsNullOrWhiteSpace(param.PlayerId) ?
-                MapPlayerIdToCustId(new MapPlayerId3rdToCustIdCriteria(param.ProductId, param.PlayerId, param.CustId, param.MasterId, param.AgentId))
-                : Enumerable.Empty<int>();
-
-            if (!playerIds.Any() && string.IsNullOrWhiteSpace(param.PlayerId))
-            {
-                result += GetWinLossLimits(new GetCustWinLossLimitCriteria(
-                    param.CustId,
-                    param.ProductId,
-                    param.BetType,
-                    param.SportType,
-                    param.Username,
-                    param.MasterId,
-                    param.AgentId,
-                    param.PageIndex,
-                    param.PageSize,
-                    null));
-            }
-
-            foreach (var playerId in playerIds)
-            {
-                result += GetWinLossLimits(new GetCustWinLossLimitCriteria(
-                    param.CustId,
-                    param.ProductId,
-                    param.BetType,
-                    param.SportType,
-                    param.Username,
-                    param.MasterId,
-                    param.AgentId,
-                    param.PageIndex,
-                    param.PageSize,
-                    playerId));
-            }
-
-            if (!result.WinLossLimitDetail.Any())
-            {
-                return result;
-            }
-
-            var balances = dynamicRepository.Fetch<WinLossLimitDetail>(new GetBalanceCriteria(
+            result += await GetWinLossLimits(new GetCustWinLossLimitCriteria(
                 param.CustId,
+                param.ProductId,
                 param.BetType,
+                param.SportType,
                 param.Username,
                 param.MasterId,
                 param.AgentId,
                 param.PageIndex,
-                param.PageSize), param.AGIP);
-            IEnumerable<WinLossLimitDetail> outstandings = Enumerable.Empty<WinLossLimitDetail>();
+                param.PageSize,
+                null));
+        }
 
-            foreach (var custWinLossLimit in result.WinLossLimitDetail)
-            {
-                var balance = balances.FirstOrDefault(item => item.CustId == custWinLossLimit.CustId);
-                if (balance != null)
-                {
-                    custWinLossLimit.CreditBalance = balance.CreditBalance;
-                    custWinLossLimit.DebitBalance = balance.DebitBalance;
-                    custWinLossLimit.Balance = balance.Balance;
-                    custWinLossLimit.Transfer3rd = balance.Transfer3rd;
-                }
+        foreach (var playerId in playerIds)
+        {
+            result += await GetWinLossLimits(new GetCustWinLossLimitCriteria(
+                param.CustId,
+                param.ProductId,
+                param.BetType,
+                param.SportType,
+                param.Username,
+                param.MasterId,
+                param.AgentId,
+                param.PageIndex,
+                param.PageSize,
+                playerId));
+        }
 
-                var outstanding = outstandings.FirstOrDefault(item => item.CustId == custWinLossLimit.CustId);
-                if (outstanding != null)
-                {
-                    custWinLossLimit.Outstanding = outstanding.Outstanding;
-                }
-            }
-
+        if (!result.WinLossLimitDetail.Any())
+        {
             return result;
         }
 
-        private IEnumerable<int> MapPlayerIdToCustId(MapPlayerId3rdToCustIdCriteria criteria)
-            => dynamicRepository.Fetch<int>(criteria);
+        var balances = await repository.FetchAsync<WinLossLimitDetail>(new GetBalanceCriteria(
+            param.CustId,
+            param.BetType,
+            param.Username,
+            param.MasterId,
+            param.AgentId,
+            param.PageIndex,
+            param.PageSize), param.AGIP);
+        var outstandings = Enumerable.Empty<WinLossLimitDetail>();
 
-        private WinLossLimitPage GetWinLossLimits(GetCustWinLossLimitCriteria criteria)
+        foreach (var custWinLossLimit in result.WinLossLimitDetail)
         {
-            var winLossLimitDetail = dynamicRepository.Fetch<WinLossLimitDetail>(criteria);
+            var balance = balances.FirstOrDefault(item => item.CustId == custWinLossLimit.CustId);
+            if (balance != null)
+            {
+                custWinLossLimit.CreditBalance = balance.CreditBalance;
+                custWinLossLimit.DebitBalance = balance.DebitBalance;
+                custWinLossLimit.Balance = balance.Balance;
+                custWinLossLimit.Transfer3rd = balance.Transfer3rd;
+            }
 
-            return new WinLossLimitPage(criteria.TotalRows, winLossLimitDetail);
+            var outstanding = outstandings.FirstOrDefault(item => item.CustId == custWinLossLimit.CustId);
+            if (outstanding != null)
+            {
+                custWinLossLimit.Outstanding = outstanding.Outstanding;
+            }
         }
+
+        return result;
+    }
+
+    private Task<IEnumerable<int>> MapPlayerIdToCustId(MapPlayerId3rdToCustIdCriteria criteria)
+        => repository.FetchAsync<int>(criteria);
+
+    private async Task<WinLossLimitPage> GetWinLossLimits(GetCustWinLossLimitCriteria criteria)
+    {
+        var winLossLimitDetail = await repository.FetchAsync<WinLossLimitDetail>(criteria);
+
+        return new WinLossLimitPage(criteria.TotalRows, winLossLimitDetail);
     }
 }

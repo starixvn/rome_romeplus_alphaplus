@@ -16,9 +16,9 @@ public class MemberTransfer
 
     public decimal AmountTransferred { get; init; }
 
-    public DateTime LastLogin { get; init; }
+    public DateTime? LastLogin { get; init; }
 
-    public DateTime MaxTransDate { get; init; }
+    public DateTime? MaxTransDate { get; init; }
 
     public decimal Balance { get; init; }
 

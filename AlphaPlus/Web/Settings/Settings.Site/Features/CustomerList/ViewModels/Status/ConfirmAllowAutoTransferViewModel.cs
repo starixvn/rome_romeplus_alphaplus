@@ -9,13 +9,12 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
 {
     public class ConfirmAllowAutoTransferViewModel : ConfirmStatusItemViewModelBase
     {
-        private readonly AccountService accountService;
+        private readonly IAccountService accountService;
 
         public ConfirmAllowAutoTransferViewModel(
             ISearchAccountInfoRequest request,
-            AccountService accountService,
-            int displayOrder = 7)
-           : base(request, displayOrder)
+            IAccountService accountService,
+            int displayOrder = 7) : base(request, displayOrder)
         {
             this.accountService = accountService;
         }
@@ -23,7 +22,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
         public override bool Visible => Request.SupportAutoTransfer;
 
         public override bool Disabled
-                => base.Disabled || Request.ActorIsNotEditingDirectDownline;
+            => base.Disabled || Request.ActorIsNotEditingDirectDownline;
 
         public override bool Checked => Request.GetData<bool>(DataKey.SearchAccount.IsAllowAutoTransfer);
 

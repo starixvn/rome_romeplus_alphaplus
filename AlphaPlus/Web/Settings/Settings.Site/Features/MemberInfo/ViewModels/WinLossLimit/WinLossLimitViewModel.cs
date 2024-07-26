@@ -8,6 +8,7 @@
     using Components;
     using Requests.WinLossLimit;
     using System.Collections.Generic;
+    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
 
     public class WinLossLimitViewModel
     {
@@ -24,8 +25,8 @@
         public WinLossLimitViewModel(
             WinLossLimitQuery message,
             IEnumerable<WinLossLimitGroupProductModel> groupProducts,
-            IEnumerable<CustomerInfo> masterList,
-            IEnumerable<CustomerInfo> agentList,
+            IEnumerable<CustInfo> masterList,
+            IEnumerable<CustInfo> agentList,
             WinLossLimitPage winLossLimitPage,
             WinLossLimitParam param)
         {
@@ -74,9 +75,9 @@
 
         public int BetType { get; }
 
-        public IEnumerable<CustomerInfo> MasterList { get; }
+        public IEnumerable<CustInfo> MasterList { get; }
 
-        public IEnumerable<CustomerInfo> AgentList { get; }
+        public IEnumerable<CustInfo> AgentList { get; }
 
         public WinLossLimitPage WinLossLimitPage { get; }
 

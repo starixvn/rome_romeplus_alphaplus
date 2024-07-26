@@ -12,8 +12,12 @@
     <Setting Key="Age_CustomerSelCreditBalClosedReason_SAg" SpName="Age_CustomerSelCreditBalClosedReason_SAg" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
   <Function Name="Win Loss Limit">
-    <Setting Key="Age_CustomerSelMAgentList" SpName="Age_CustomerSelMAgentList" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-    <Setting Key="Age_CustomerSelAgentList" SpName="Age_CustomerSelAgentList" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+    <Setting Key="Age_CustomerSelMAgentList" SpName="Age_CustomerSelMAgentList" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Mapping DataField="username" ObjectProperty="CustName" />
+    </Setting>
+    <Setting Key="Age_CustomerSelAgentList" SpName="Age_CustomerSelAgentList" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+      <Mapping DataField="username" ObjectProperty="CustName" />
+    </Setting>
     <Setting Key="Age_CustomerSelCustWinlimit" SpName="Age_CustomerSelCustWinlimit" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_CustomerSelByPlayerId" SpName="Age_CustomerSelByPlayerId" DbName="DBCust.CustDB.wsv_alp" />
   </Function>

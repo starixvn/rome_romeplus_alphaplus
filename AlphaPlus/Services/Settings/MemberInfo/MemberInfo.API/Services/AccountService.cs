@@ -1,36 +1,40 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Services
+﻿using AlphaPlus.Settings.MemberInfo.API.Criteria;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using Fanex.Data.Repository;
+
+namespace AlphaPlus.Settings.MemberInfo.API.Services;
+
+public interface IAccountService
 {
-    using AlphaPlus.Settings.MemberInfo.API.Criteria;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using Fanex.Data.Repository;
+    string GetTransferOption(int custId, int roleId);
 
-    public interface AccountService
+    Task<IEnumerable<CustInfo>> GetMasterList(int custId);
+
+    Task<IEnumerable<CustInfo>> GetAgentList(int custId);
+}
+
+public class AccountService(IDynamicRepository repository) : IAccountService
+{
+    private readonly IDynamicRepository repository = repository;
+    private const string DailyTransferCondition = "00000000";
+
+    public string GetTransferOption(int custId, int roleId)
     {
-        string GetTransferOption(int custId, int roleId);
-    }
-
-    public class AccountServiceImpl : AccountService
-    {
-        private readonly IDynamicRepository repository;
-        private const string DailyTransferCondition = "00000000";
-
-        public AccountServiceImpl(IDynamicRepository dynamicRepository)
+        if (roleId == UserLevel.Super.Value)
         {
-            repository = dynamicRepository;
+            return DailyTransferCondition;
         }
 
-        public string GetTransferOption(int custId, int roleId)
-        {
-            if(roleId == UserLevel.Super.Value)
-            {
-                return DailyTransferCondition;
-            }
+        var criteria = new GetTransferOptionCriteria(custId);
+        repository.Execute(criteria);
 
-            var criteria = new GetTransferOptionCriteria(custId);
-
-            repository.Execute(criteria);
-
-            return criteria.TransferOption;
-        }
+        return criteria.TransferOption;
     }
+
+    public Task<IEnumerable<CustInfo>> GetMasterList(int custId)
+        => repository.FetchAsync<CustInfo>(new GetMasterListCriteria(custId));
+
+    public Task<IEnumerable<CustInfo>> GetAgentList(int custId)
+        => repository.FetchAsync<CustInfo>(new GetAgentListCriteria(custId));
 }

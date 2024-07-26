@@ -64,7 +64,7 @@
                 {
                     foreach (var master in Model.MasterList)
                     {
-                        <option value="@master.CustId" @(Model.MasterId == master.CustId ? " selected=\"selected\"" : string.Empty)>@master.Username</option>
+                        <option value="@master.CustId" @(Model.MasterId == master.CustId ? " selected=\"selected\"" : string.Empty)>@master.CustName</option>
                     }
                 }
                 else
@@ -88,7 +88,7 @@
 
                     foreach (var agent in Model.AgentList)
                     {
-                        <option value="@agent.CustId" @(Model.AgentId == agent.CustId ? " selected=\"selected\"" : string.Empty)>@agent.Username</option>
+                        <option value="@agent.CustId" @(Model.AgentId == agent.CustId ? " selected=\"selected\"" : string.Empty)>@agent.CustName</option>
                     }
                 }
                 else
