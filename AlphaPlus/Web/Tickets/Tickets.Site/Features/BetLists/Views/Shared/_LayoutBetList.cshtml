@@ -1,7 +1,6 @@
 @inject IUserSession userSession
 @{
     Layout = null;
-    var theme = string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark";
 }
 <!DOCTYPE html>
 <html>
@@ -18,7 +17,7 @@
     @GoogleAnalyticHelper.GtagScript()
 </head>
 
-<body data-theme="@theme">
+<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
     @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     <partial name="HiddenFields" model="userSession" />

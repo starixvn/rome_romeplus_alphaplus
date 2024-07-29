@@ -70,12 +70,12 @@
                         var className = ++sportColIndex % 2 == 0 ? string.Empty : "col-comm-odd";
                         if (!Model.IsAgentLevel)
                         {
-                            <td class="text-right @className">@sport.MasterDiscount.FormatNumber()</td>
+                            <td class="text-right @className">@sport.MasterDiscount.ToString("N2")</td>
                         }
-                        <td class="text-right @className">@sport.AgentDiscount.FormatNumber()</td>
-                        <td class="text-right @className">@sport.PlayerDiscount.FormatNumber()</td>
+                        <td class="text-right @className">@sport.AgentDiscount.ToString("N2")</td>
+                        <td class="text-right @className">@sport.PlayerDiscount.ToString("N2")</td>
                     }
-                    <td class="text-right">@item.Credit.FormatNumber()</td>
+                    <td class="text-right">@item.Credit.ToString("N2")</td>
                     <td>@item.Username</td>
                 </tr>
             }

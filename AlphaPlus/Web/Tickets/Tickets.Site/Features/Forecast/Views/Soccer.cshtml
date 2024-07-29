@@ -1,4 +1,6 @@
 @using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Models
+@inject IUserSession userSession
 @{
     Layout = null;
 }
@@ -14,7 +16,7 @@
     <link rel="stylesheet" href="~/bundles/forecast/soccer.css" asp-append-version="true" />
 </head>
 
-<body data-theme=''>
+<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
     <div id="browser-warning" class="note-browser" style="display:none;">
         <span class="icon-alert"></span>
         <div class="textnote-box">
@@ -33,7 +35,7 @@
                 <span class="help" data-toggle="modal" data-target="#helpModal" title="Help"></span>
             </li>
         </ul>
-        <div class="filter mt-10" >
+        <div class="filter mt-10">
             <form class="form-inline" role="form">
                 <div class="form-group">
                     <select asp-items="Model.LiveStatus" id="ddlLiveStatus"></select>
@@ -64,7 +66,17 @@
                             <li><a href="javascript:;" data-refresh-value="60">60</a></li>
                         </ul>
                     </div>
-                    <span class="block-icon-small" id="blockIconSmall" style="display:none;"></span>
+                    <span class="lds-spinner" id="blockIconSmall" style="display:none">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
                 </div>
             </form>
         </div>

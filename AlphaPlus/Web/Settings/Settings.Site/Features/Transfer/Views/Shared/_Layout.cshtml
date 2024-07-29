@@ -2,10 +2,6 @@
 @using AlphaPlus.Core.Models
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @inject IUserSession userSession
-@{
-    var theme = string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark";
-    var bodyClassName = Enumeration.FromValue<UserLevel>(userSession.RoleId).DisplayName.ToLowerInvariant();
-}
 <!DOCTYPE html>
 <html>
 
@@ -22,7 +18,7 @@
     @RenderSection("Styles", required: false)
 </head>
 
-<body class="@bodyClassName" data-theme="@theme">
+<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
     @RenderBody()
 
     @Html.Hidden("NoInformationIsAvailable", @Resources.NoInformationIsAvailable)
