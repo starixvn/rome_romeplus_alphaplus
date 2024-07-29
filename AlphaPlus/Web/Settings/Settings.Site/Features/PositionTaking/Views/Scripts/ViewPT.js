@@ -549,7 +549,7 @@ var ViewPTManagement = function () {
                 top.popupManager.open(url, title, popupWidth);
             }
             else {
-                url = "DCS/ViewCustomerSetting?" + params;
+                url = "/settings/DCS/ViewCustomerSetting?" + params;
                 top.popupManager.openByRelativeUrl(url, title, popupWidth);
             }
         }

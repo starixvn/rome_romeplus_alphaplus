@@ -518,8 +518,6 @@ function getBootboxPostion(handleElement, popUpOptions, dialog) {
 }
 
 function ShowSecCodePopup(preUrl, callerAge) {
-    //preUrl = 'url=' + escape(preUrl);
-    //var url = age.GetBaseUrl() + '_MemberInfo/SecurityCode/CheckSecurityCode.aspx?' + preUrl;
     alpha.detectResponsiveInformation();
     var url = top.mainRootPath + (alpha.user.isEnableOtp ? 'otp/verifyotp' : 'SecurityCode/VerifySecurityCode');
     var popH = 380, popW = 396, verticalOffset = -75;
@@ -1006,10 +1004,10 @@ var popupManager = {
 
     defaultWidth: 480,
     openByRelativeUrl: function (url, title, width, height, windowCss, titleCss, closeBtnCss, left, top, iframeAttributes, options) {
-        window.top.popupManager.open(age.GetBaseUrl() + url, title, width, height, windowCss, titleCss, closeBtnCss, left, top, iframeAttributes, options);
+        window.top.popupManager.open(url, title, width, height, windowCss, titleCss, closeBtnCss, left, top, iframeAttributes, options);
     },
     openMultipleByRelativeUrl: function (url, title, width, height, windowCss, titleCss, closeBtnCss, left, top, iframeAttributes, options) {
-        window.top.popupManager.openMultiple(age.GetBaseUrl() + url, title, width, height, windowCss, titleCss, closeBtnCss, left, top, iframeAttributes, options);
+        window.top.popupManager.openMultiple(url, title, width, height, windowCss, titleCss, closeBtnCss, left, top, iframeAttributes, options);
     },
     open: function (url, title, width, height, windowCss, titleCss, closeBtnCss, left, top, iframeAttributes, options) {
         var handler = window.top.ageWnd;
