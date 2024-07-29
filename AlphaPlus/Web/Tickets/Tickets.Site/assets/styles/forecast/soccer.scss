@@ -17,6 +17,7 @@
         --background-win-loss-name: #ebeaea;
         --color-positive: #e40000;
         --background-focus-color: #bbcae9;
+        --color-home-name: #e40000;
     }
 }
 :root [data-theme='dark'] {
@@ -29,6 +30,7 @@
         --background-win-loss-name: #2e2f30;
         --color-positive: #ff4f50;
         --background-focus-color: #2d4372;
+        --color-home-name: #ff5521;
     }
 }
 
@@ -224,12 +226,15 @@ table * {
         }
     }
 
-    .home-name,
+    
     .offer-live,
     .live-status,
     .positive,
     .live-match {
         color: var(--color-positive);
+    }
+    .home-name{
+        color: var(--color-home-name);
     }
 
     .offer-live {
