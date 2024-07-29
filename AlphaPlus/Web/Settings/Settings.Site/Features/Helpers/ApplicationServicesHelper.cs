@@ -229,9 +229,6 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddHttpClient<IPositionTakingService, PositionTakingService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
             services
-                .AddScoped<IProductService, ProductService>();
-
-            services
                 .AddHttpContextAccessor()
                 .AddAuthorization()
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
