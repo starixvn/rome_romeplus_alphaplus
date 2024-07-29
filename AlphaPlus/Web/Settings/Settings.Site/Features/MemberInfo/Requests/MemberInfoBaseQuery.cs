@@ -78,10 +78,6 @@
 
         public string AGIP => viewer.AGIP;
 
-        public virtual bool IsValid()
-            => CustId > 0
-            && !string.IsNullOrWhiteSpace(CustName)
-            && ActorLevel.IsEqualOrUplineOf(CustLevel)
-            && !string.IsNullOrWhiteSpace(Language);
+        public virtual bool IsValid() => CustId > 0 && ActorLevel.IsEqualOrUplineOf(CustLevel);
     }
 }

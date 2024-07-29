@@ -1,0 +1,98 @@
+﻿@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Settings.Site.Features.Shared.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using AlphaPlus.Settings.Site.Features.MemberInfo.Features.Commission
+@model CommissionViewModel
+@{
+    Layout = null;
+    var sportColIndex = 0;
+}
+<table class="tblRpt tblRpt-bordered tblRpt-hover alternative-row-table width-100per" id="tbl-comm">
+    <thead>
+        <tr>
+            <th colspan="@(Model.IsShowGroup ? 5 : 4)"></th>
+            @if (Model.IsShowDoubleComm)
+            {
+                <th rowspan="2">@Resources.DoubleComm</th>
+            }
+            @foreach (var name in Model.ReportData.SportTypes)
+            {
+                <th colspan="@(Model.IsAgentLevel ? 2 : 3)">@name</th>
+            }
+            <th colspan="2"></th>
+        </tr>
+        <tr class="thead-row2">
+            <th>#</th>
+            <th>@Resources.Username</th>
+            <th>@Resources.FirstName</th>
+            <th>@Resources.LastName</th>
+            @if (Model.IsShowGroup)
+            {
+                <th>@Resources.Group</th>
+            }
+            @foreach (var sport in Model.ReportData.SportTypes)
+            {
+                var className = ++sportColIndex % 2 == 0 ? "col-comm-even" : "col-comm-odd";
+                if (!Model.IsAgentLevel)
+                {
+                    <th title="@Resources.Master" class="@className">M</th>
+                }
+                <th title="@Resources.Agent" class="@className">A</th>
+                <th title="@Resources.Member" class="@className">P</th>
+            }
+            <th>@Resources.Credit</th>
+            <th>@Resources.Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ReportData.HasData)
+        {
+            var number = 0;
+            foreach (var item in Model.ReportData.Commissions)
+            {
+                sportColIndex = 0;
+                <tr
+                    class="@BackgroundColorHelper.GetClassNameByAccountStatus(item.Enabled, item.Closed, item.ClosedReason, item.Suspended, item.Locked)">
+                    <td class="text-center col-no">@(++number)</td>
+                    <td>@item.Username</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    @if (Model.IsShowGroup)
+                    {
+                        <td class="text-center">@item.Group</td>
+                    }
+                    @if (Model.IsShowDoubleComm)
+                    {
+                        <td class="text-center @(item.DoubleCommLosing ? "tick" : string.Empty)"></td>
+                    }
+                    @foreach (var sport in item.Commissions)
+                    {
+                        var className = ++sportColIndex % 2 == 0 ? string.Empty : "col-comm-odd";
+                        if (!Model.IsAgentLevel)
+                        {
+                            <td class="text-right @className">@sport.MasterDiscount.FormatNumber()</td>
+                        }
+                        <td class="text-right @className">@sport.AgentDiscount.FormatNumber()</td>
+                        <td class="text-right @className">@sport.PlayerDiscount.FormatNumber()</td>
+                    }
+                    <td class="text-right">@item.Credit.FormatNumber()</td>
+                    <td>@item.Username</td>
+                </tr>
+            }
+        }
+        else
+        {
+            var colspan = Model.IsShowGroup ? 5 : 4;
+            if (Model.IsShowDoubleComm)
+            {
+                colspan++;
+            }
+            colspan += Model.ReportData.SportTypes.Count() * (Model.IsAgentLevel ? 2 : 3) + 2;
+            <tr>
+                <td class="text-center" colspan="@colspan">
+                    @Resources.NoInformationIsAvailable
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

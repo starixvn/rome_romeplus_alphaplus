@@ -3542,5 +3542,49 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
                 return ResourceManager.GetString("Product", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Comm.
+        /// </summary>
+        public static string Comm
+        {
+            get
+            {
+                return ResourceManager.GetString("Comm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Myanmar Odds.
+        /// </summary>
+        public static string MyanmarOdds
+        {
+            get
+            {
+                return ResourceManager.GetString("MyanmarOdds", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Double Comm.
+        /// </summary>
+        public static string DoubleComm
+        {
+            get
+            {
+                return ResourceManager.GetString("DoubleComm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        public static string Group
+        {
+            get
+            {
+                return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
     }
 }

@@ -61,7 +61,7 @@
     <siteMapNode resourceKey="creditbalance" url="/settings/CreditBalance"></siteMapNode>
     <siteMapNode resourceKey="positionTaking" url="/settings/positiontaking?productId=1&amp;showPtIcon=true"></siteMapNode>
 
-    <siteMapNode resourceKey="memberCommission" url="/settings/sportsbookcomm"></siteMapNode>
+    <siteMapNode resourceKey="memberCommission" url="/settings/commission/index"></siteMapNode>
     <!--<siteMapNode resourceKey="BetChoiceLimit" menuItemType="BetChoiceLimitMenuItem" url="MemberInformation/BetChoiceLimit/Index"></siteMapNode>-->
     <siteMapNode resourceKey="IndirectLoginAccount" menuItemType="IndirectLoginAccountMenuItem" url="/settings/IndirectLoginAccount/Index"></siteMapNode>
     <siteMapNode resourceKey="DormantAccountList" menuItemType="DormantAccountListMenuItem" url="/settings/DormantAccount/Index"></siteMapNode>

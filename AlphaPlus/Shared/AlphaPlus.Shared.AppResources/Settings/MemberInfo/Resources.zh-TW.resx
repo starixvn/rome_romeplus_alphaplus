@@ -1374,4 +1374,16 @@
   <data name="Product" xml:space="preserve">
     <value>產品</value>
   </data>
+  <data name="Comm" xml:space="preserve">
+    <value>佣金</value>
+  </data>
+  <data name="MyanmarOdds" xml:space="preserve">
+    <value>緬甸盤</value>
+  </data>
+  <data name="DoubleComm" xml:space="preserve">
+    <value>雙倍佣金</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>組別</value>
+  </data>
 </root>

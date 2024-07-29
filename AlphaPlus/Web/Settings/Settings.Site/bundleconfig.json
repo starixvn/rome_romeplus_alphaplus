@@ -822,9 +822,9 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/bundles/commission/member-commission.js",
+    "outputFileName": "wwwroot/bundles/commission/commission.js",
     "inputFiles": [
-      "Features/MemberInfo/Features/Commission/scripts/member-commission.js"
+      "Features/MemberInfo/Features/Commission/scripts/commission.js"
     ]
   }
 ]

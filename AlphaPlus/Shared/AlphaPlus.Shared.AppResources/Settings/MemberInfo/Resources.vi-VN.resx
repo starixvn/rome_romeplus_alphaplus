@@ -1350,4 +1350,16 @@
   <data name="Product" xml:space="preserve">
     <value>Sản phẩm</value>
   </data>
+  <data name="Comm" xml:space="preserve">
+    <value>Hoa hồng</value>
+  </data>
+  <data name="MyanmarOdds" xml:space="preserve">
+    <value>Myanmar Odds</value>
+  </data>
+  <data name="DoubleComm" xml:space="preserve">
+    <value>Nhân đôi hoa hồng</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Nhóm</value>
+  </data>
 </root>

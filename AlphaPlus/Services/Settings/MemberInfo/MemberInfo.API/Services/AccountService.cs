@@ -9,9 +9,9 @@ public interface IAccountService
 {
     string GetTransferOption(int custId, int roleId);
 
-    Task<IEnumerable<CustInfo>> GetMasterList(int custId);
+    Task<IEnumerable<CustInfo>> GetMasterList(int superId);
 
-    Task<IEnumerable<CustInfo>> GetAgentList(int custId);
+    Task<IEnumerable<CustInfo>> GetAgentList(int masterId);
 }
 
 public class AccountService(IDynamicRepository repository) : IAccountService
@@ -32,9 +32,9 @@ public class AccountService(IDynamicRepository repository) : IAccountService
         return criteria.TransferOption;
     }
 
-    public Task<IEnumerable<CustInfo>> GetMasterList(int custId)
-        => repository.FetchAsync<CustInfo>(new GetMasterListCriteria(custId));
+    public Task<IEnumerable<CustInfo>> GetMasterList(int superId)
+        => repository.FetchAsync<CustInfo>(new GetMasterListCriteria(superId));
 
-    public Task<IEnumerable<CustInfo>> GetAgentList(int custId)
-        => repository.FetchAsync<CustInfo>(new GetAgentListCriteria(custId));
+    public Task<IEnumerable<CustInfo>> GetAgentList(int masterId)
+        => repository.FetchAsync<CustInfo>(new GetAgentListCriteria(masterId));
 }

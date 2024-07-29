@@ -1,4 +1,4 @@
-﻿@import "./abstracts/_variables.scss";
+﻿@import './abstracts/_variables.scss';
 
 body {
     background-color: transparent !important;
@@ -14,13 +14,43 @@ body {
     margin-bottom: 0;
 }*/
 
-.icon-refresh, .icon-edit, .icon-eye {
+.icon-refresh,
+.icon-edit,
+.icon-eye {
     margin-right: 5px;
 }
 
 .tblRpt.tblRpt-bordered tfoot > tr > td {
     border: 1px solid #eee;
     background: #eee;
+}
+
+.tblRpt {
+    .col-no {
+        width: 50px;
+    }
+
+    .thead-row2 .col-comm-odd,
+    .col-comm-odd {
+        background-color: #dde5fa;
+        color: #333;
+    }
+
+    .thead-row2 .col-comm-even {
+        background-color: #f0f1c7;
+        color: #333;
+    }
+
+    .tick {
+        &:before {
+            content: '\e91f';
+            color: #52a220;
+            display: inline-block;
+            font-family: 'Iconalpha';
+            font-size: 18px;
+            vertical-align: middle;
+        }
+    }
 }
 
 #tbl-report {
@@ -44,17 +74,17 @@ body {
     cursor: pointer;
 
     &:hover {
-        color: #F60;
+        color: #f60;
     }
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
     margin-right: 0;
     display: inherit;
 }
 
-input[type="button"][disabled] {
-    opacity: .4;
+input[type='button'][disabled] {
+    opacity: 0.4;
     cursor: not-allowed;
 }
 
@@ -76,12 +106,13 @@ input[type="button"][disabled] {
     .multiselect-container label {
         font-size: $font-size;
 
-        input[type="checkbox"] {
+        input[type='checkbox'] {
             display: inline-block;
         }
     }
 
-    .icon-excel, .icon-back {
+    .icon-excel,
+    .icon-back {
         cursor: pointer;
         color: #1f7244;
         font-size: 19px;
@@ -105,7 +136,8 @@ input[type="button"][disabled] {
         width: 160px;
     }
 
-    .error, .btn-group button.multiselect.error {
+    .error,
+    .btn-group button.multiselect.error {
         border: 1px solid #e9322d;
         padding: 4px 10px;
     }
@@ -118,12 +150,14 @@ input[type="button"][disabled] {
         margin-bottom: 0;
         padding-bottom: 0;
 
-        .btn-submit, .btn-group {
+        .btn-submit,
+        .btn-group {
             float: left;
         }
 
         &.daterange-picker {
-            .ui_nexdatepicker_edit_field, .ui_nexdatepicker_lbl_field {
+            .ui_nexdatepicker_edit_field,
+            .ui_nexdatepicker_lbl_field {
                 margin-bottom: 15px;
             }
         }
@@ -191,7 +225,8 @@ input[type="button"][disabled] {
     color: $red-color;
 }
 
-#txt-username, #txt-player-id {
+#txt-username,
+#txt-player-id {
     width: 210px;
 }
 

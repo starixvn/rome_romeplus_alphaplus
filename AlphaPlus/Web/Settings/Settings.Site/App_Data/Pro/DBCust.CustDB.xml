@@ -196,4 +196,8 @@
   <Function Name="Customer Information">
     <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
+  <Function Name="Member Commission">
+    <Setting Key="Age_CustomerSelCommByProductID_MAg" SpName="Age_CustomerSelCommByProductID_MAg" DbName="DBCust.CustDB.wsv_alp" />
+    <Setting Key="Age_CustomerSelCommByProductID_Ag" SpName="Age_CustomerSelCommByProductID_Ag" DbName="DBCust.CustDB.wsv_alp" />
+  </Function>
 </Functions>

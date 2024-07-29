@@ -1,22 +1,52 @@
-﻿@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Settings.Site.Features.MemberInfo.Features.Commission
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model MemberCommissionViewModel
+@model CommissionViewModel
 @{
     Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = @Resources.MemberCommission;
 }
-@section Styles {
-}
 @section Scripts {
-    <script src="~/bundles/commission/member-commission.js" asp-append-version="true"></script>
+    <script src="~/bundles/commission/commission.js" asp-append-version="true"></script>
 }
 <div class="page-title">
     <span class="pull-left">@Resources.MemberCommission</span>
 </div>
-<form method="get" class="form-inline filter" role="form" id="form-filter" asp-action="GetComm">
+<form method="get" class="form-inline filter" role="form" id="form-filter">
     <div class="form-group">
         <label>@Resources.Product</label>
         <select id="ddl-product" asp-items="Model.Products"></select>
     </div>
+    @if (Model.Masters != null)
+    {
+        <div class="form-group">
+            <label>@Resources.SelectMaster</label>
+            <select id="ddl-master" asp-items="Model.Masters"></select>
+        </div>
+    }
+    @if (Model.Agents != null)
+    {
+        <div class="form-group">
+            <label>@Resources.SelectAgent</label>
+            <select id="ddl-agent" asp-items="Model.Agents"></select>
+        </div>
+        <div class="form-group">
+            <span class="lds-spinner" id="icon-loadingAgent" style="display:none">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </div>
+    }
 </form>
+<div id="tblRpt-container">
+    <partial name="CommData" />
+</div>
+<input type="hidden" id="hidden-commissionUrl" value="@MicroSites.SettingUrl("~/commission")" />

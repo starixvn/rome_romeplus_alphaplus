@@ -61,6 +61,7 @@ using AlphaPlus.SecurityCode.Filters;
 using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Settings.Site.Features.PositionTaking.Services;
+using AlphaPlus.Settings.MemberInfo.API.Features.Commission;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -196,6 +197,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             services
                 .AddSingleton<IProductService, ProductService>()
                 .AddSingleton<IAccountService, AccountService>()
+                .AddSingleton<ICommissionService, CommissionService>()
                 .AddSingleton<WinLossLimitService, WinLossLimitServiceImpl>();
 
             services

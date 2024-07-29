@@ -17,7 +17,7 @@
 
         private readonly IUserSession userSession;
 
-        public User() : this(null){}
+        public User() : this(null) { }
         public User(IUserSession userSession)
         {
             this.userSession = userSession ?? UserSession.Current;
@@ -81,6 +81,8 @@
         public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
 
         public bool IsShowMyanmarOdds => userSession.IsMyanmarOdds;
+
+        public bool IsDoubleCommLosing => userSession.IsDoubleCommLosing;
 
         public bool CanViewReports => userSession.SubPageAccess.ViewReports;
 
