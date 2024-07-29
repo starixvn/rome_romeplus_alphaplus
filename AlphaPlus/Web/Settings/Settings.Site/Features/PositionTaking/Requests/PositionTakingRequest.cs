@@ -10,7 +10,7 @@ public class PositionTakingRequest : IRequest<object>
 
     public int ProductId { get; set; } = ProductIdConstants.Sportsbook;
 
-    public int ProductGroupId { get; set; }
+    public int ProductGroupId { get; set; } = ProductIdConstants.Sportsbook;
 
     public bool ShowPTIcon { get; set; }
 
