@@ -46,12 +46,13 @@ label[for] {
     padding: 0 5px;
 }
 #box_header {
- > *{
-    float: none !important;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 5px;
- }
+    margin-top: 10px;
+    > *{
+        float: none !important;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
 }
 
 /******************************************/
