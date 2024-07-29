@@ -1,15 +1,18 @@
 ﻿@using AlphaPlus.Core.Models
+@using AlphaPlus.Shared.AppResources.Betlist.Services
+@using Newtonsoft.Json
+@using AlphaPlus.Settings.MemberInfo.Domain.Models
 @model Dictionary<string, object>
 
     @{
         var theme = !string.IsNullOrWhiteSpace(UserSession.Current.DarkModeName) ? "dark" : "light";
+        var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(Model["Products"].ToString());
     }
 
     <div id="box_header">
         <div class="pull-left">
-            @* <label for="dropdown-product">@Resources.Lang.product</label>
-            Html.Raw(ProductRenderUtility.GetViewPTProductSelector(UserSession.Current.CustId, (int)Model["ProductId"])) *@
-            Product
+            <label for="dropdown-product">@Resources.Product</label>
+            @Html.DropDownList("dropdown-product", products.Select(item => new SelectListItem(item.Name, $"PositionTaking?productId={item.Id}&productGroupId={item.GroupId}", item.Id == Convert.ToInt32(Model["ProductId"].ToString()))), new { @onblur="ptProductDropdownBlur();", @onclick="ptView(this.value);", @onchange="ptProductChanged(this);" })
         </div>
         
         @if (Model["ShowPTIcon"].ToString().Equals("true", StringComparison.OrdinalIgnoreCase))

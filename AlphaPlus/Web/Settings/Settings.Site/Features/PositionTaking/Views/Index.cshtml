@@ -3,16 +3,17 @@
 @using AlphaPlus.Shared.AppResources.Main
 @using AlphaPlus.Shared.AppResources.Settings.CustomerList
 @using Newtonsoft.Json
+@using AlphaPlus.Core.Helpers
 @model dynamic
 @{
     Layout = "~/Features/PositionTaking/Views/Shared/_Layout.cshtml";
-    var bootstrapData = JsonConvert.SerializeObject(Model);
-    var productId = Model.product.mainProductId != 0 ?
-        Model.product.mainProductId : Model.product.id;
+    var productId = Model.pt.product.mainProductId != 0 ?
+        Model.pt.product.mainProductId : Model.pt.product.id;
+    var products = JsonConvert.SerializeObject(Model.product);
     var darkModeName = ViewData["DarkModeName"];
 }
 @section Head{
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bundles/position-taking/index.css")" asp-append-version="true" />
+    @StaticResources.RenderStylesWithDarkMode($"~/bundles/position-taking/index")
 }
 <body>
     <div id="page_main">
@@ -23,7 +24,7 @@
             <table id="tbl-container-layout" style="width: 100%;">
                 <tr>
                     <td>
-                        @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml", new Dictionary<string, object>() { { "ProductId", productId }, { "ShowPTIcon", Model.product.showPTIcon }, {"SiteLabel", AppSettings.SiteLabel} })
+                        @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml", new Dictionary<string, object>() { { "ProductId", productId }, { "ShowPTIcon", Model.pt.product.showPTIcon }, {"SiteLabel", AppSettings.SiteLabel}, {"Products", products} })
                     </td>
                 </tr>
                 <tr>
@@ -72,6 +73,6 @@
             editPTTitle: '@CommonResx.lblEditMember'
         };
 
-        var bootstrapData = @Html.Raw(JsonConvert.DeserializeObject(bootstrapData));
+        var bootstrapData = @Html.Raw(JsonConvert.SerializeObject(Model.pt));
     </script>
 </body>
