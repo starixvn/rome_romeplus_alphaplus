@@ -86,7 +86,8 @@ body {
         position: relative;
 
         .form-inline {
-            display: inline-block;
+            display: flex;
+            align-items: flex-start;
         }
     }
 
@@ -96,6 +97,13 @@ body {
 
         &.last-filter {
             margin-right: 8px;
+        }
+        &.loading{
+            margin: 0;
+        }
+        .lds-spinner{
+            position: relative;
+            top: 3px;
         }
 
         .btn-submit {
