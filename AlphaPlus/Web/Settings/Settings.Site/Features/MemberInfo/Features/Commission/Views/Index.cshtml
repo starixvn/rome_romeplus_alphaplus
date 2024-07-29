@@ -32,17 +32,14 @@
             <select id="ddl-agent" asp-items="Model.Agents"></select>
         </div>
         <div class="form-group">
-            <span class="lds-spinner" id="icon-loadingAgent" style="display:none">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
+            <span class="block-icon-small" id="icon-loadingAgent" style="display:none"></span>
+        </div>
+    }
+    @if (Model.IsShowGroup)
+    {
+        <div class="form-group">
+            <a asp-action="SportBookInformation" asp-controller="Customer" class="icon icon-information-outline"
+                asp-all-route-data="@Model.GetCommHintParams()" target="_blank"></a>
         </div>
     }
 </form>
