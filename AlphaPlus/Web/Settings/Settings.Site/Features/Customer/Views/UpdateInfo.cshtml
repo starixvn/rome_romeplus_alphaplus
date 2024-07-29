@@ -5,49 +5,47 @@
     ViewBag.Title = $"{Resources.Info} {Model.UserName}";
     var queryString = AlphaContext.Current.Request.Query;
 }
-@section Styles {
-}
 @section Scripts {
     <script src="~/bundles/customer/update-customer-info.js" asp-append-version="true"></script>
 }
-@if (queryString["showtitle"] != string.Empty)
+@if (!string.IsNullOrWhiteSpace(queryString["showtitle"]))
 {
     <div class="page-title">
         <span class="text-title pull-left">@ViewBag.Title</span>
     </div>
 }
 <div class="msg hide" id="msg-alert"></div>
-<form method="post" asp-action="UpdateCustomerInfo" id="form-update">
+<form method="post" asp-action="UpdateInfo" id="form-update">
     <input type="hidden" name="CustId" value="@queryString["custid"]" />
     <div class="update-info">
-    <div class="form">
-        <label asp-for="FirstName">@Resources.FirstName</label>
-        <input type="text" asp-for="FirstName" maxlength="32" autocomplete="off" />
-    </div>
-    <div class="form">
-        <label asp-for="LastName">@Resources.LastName</label>
-        <input type="text" asp-for="LastName" maxlength="32" autocomplete="off" />
-    </div>
-    <div class="form">
-        <label asp-for="Phone">@CommonResx.Phone</label>
-        <input type="text" asp-for="Phone" maxlength="32" autocomplete="off" />
-    </div>
-    <div class="form">
-        <label asp-for="MobilePhone">@Resources.MobilePhone</label>
-        <input type="text" asp-for="MobilePhone" maxlength="32" autocomplete="off" />
-    </div>
-    <div class="form">
-        <label asp-for="Email">@Resources.Email</label>
-        <input type="text" asp-for="Email" maxlength="32" autocomplete="off" />
-    </div>
-    <div class="form">
-        <label asp-for="Fax">@CommonResx.Fax</label>
-        <input type="text" asp-for="Fax" maxlength="32" autocomplete="off" />
-    </div>
-    <div>
-        <button class="btn-submit" type="submit">@Resources.Update</button>
-        <button class="btn-reset" type="reset">@Resources.Reset</button>
-    </div>
+        <div class="form">
+            <label asp-for="FirstName">@Resources.FirstName</label>
+            <input type="text" asp-for="FirstName" maxlength="32" autocomplete="off" />
+        </div>
+        <div class="form">
+            <label asp-for="LastName">@Resources.LastName</label>
+            <input type="text" asp-for="LastName" maxlength="32" autocomplete="off" />
+        </div>
+        <div class="form">
+            <label asp-for="Phone">@CommonResx.Phone</label>
+            <input type="text" asp-for="Phone" maxlength="32" autocomplete="off" />
+        </div>
+        <div class="form">
+            <label asp-for="MobilePhone">@Resources.MobilePhone</label>
+            <input type="text" asp-for="MobilePhone" maxlength="32" autocomplete="off" />
+        </div>
+        <div class="form">
+            <label asp-for="Email">@Resources.Email</label>
+            <input type="text" asp-for="Email" maxlength="32" autocomplete="off" />
+        </div>
+        <div class="form">
+            <label asp-for="Fax">@CommonResx.Fax</label>
+            <input type="text" asp-for="Fax" maxlength="32" autocomplete="off" />
+        </div>
+        <div>
+            <button class="btn-submit" type="submit">@Resources.Update</button>
+            <button class="btn-reset" type="reset">@Resources.Reset</button>
+        </div>
     </div>
 </form>
 <input type="hidden" id="hidden-EmailNotValidText" value="@Resources.EmailNotValid" />

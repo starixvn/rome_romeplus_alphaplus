@@ -2,6 +2,7 @@
 using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.Commission;
 
@@ -13,5 +14,9 @@ public class CommissionController(IMediator mediator) : SiteBaseController(media
     public Task<ActionResult> GetData(CommDataQuery message)
         => View(message, "~/Features/MemberInfo/Features/Commission/Views/CommData.cshtml");
 
-    public Task<ActionResult> GetAgents(AgentListQuery message) => Json(message);
+    public async Task<ActionResult> GetAgents(AgentListQuery message)
+        => Json(message.IsValid() ? await mediator.Send(message) : [], new JsonSerializerSettings
+        {
+            DefaultValueHandling = DefaultValueHandling.Ignore
+        });
 }
