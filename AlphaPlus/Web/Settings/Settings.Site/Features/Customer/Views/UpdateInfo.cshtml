@@ -8,7 +8,7 @@
 @section Scripts {
     <script src="~/bundles/customer/update-customer-info.js" asp-append-version="true"></script>
 }
-@if (!string.IsNullOrWhiteSpace(queryString["showtitle"]))
+@if (queryString["showtitle"] == "1")
 {
     <div class="page-title">
         <span class="text-title pull-left">@ViewBag.Title</span>
