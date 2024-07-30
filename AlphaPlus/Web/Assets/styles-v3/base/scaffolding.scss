@@ -3,6 +3,7 @@
 @import '../abstracts/_breakpoints.scss';
 :root {
     --bg-scroll-bar-thumb: #cccccc;
+    --bg-color1: #f4f4f4;
 }
 
 :root [data-theme='dark'] {
@@ -99,5 +100,5 @@ body {
     color: var(--text-color);
     font-weight: 400;
     background: transparent;
-    //background-color: var(--bg-color1);
+    background-color: var(--bg-color1);
 }
