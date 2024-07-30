@@ -41,5 +41,6 @@ public class MemberCommand : TransferBaseQuery, IRequest<Result>
 
     public string AdminName { get; }
 
-    public override bool IsValid() => ActorLevel.IsAgentLevel() && base.IsValid();
+    public override bool IsValid()
+        => !IsInternal && ActorLevel.IsAgentLevel() && base.IsValid();
 }

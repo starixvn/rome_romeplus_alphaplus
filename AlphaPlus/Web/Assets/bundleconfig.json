@@ -1825,6 +1825,20 @@
         ]
     },
     {
+        "outputFileName": "bundles-v2/site-assets/tipsy.css",
+        "inputFiles": [
+            "styles-v2/vendors/tipsy.css",
+            "styles-v2/components/tipsy-modify.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles-v2/site-assets/tipsy.js",
+        "inputFiles": [
+            "js-v2/components/tipsy/jquery.tipsy.js",
+            "js-v2/components/tipsy/tipsy-helper.js"
+        ]
+    },
+    {
         "outputFileName": "bundles3/site-totalbetsforecast/default.css",
         "inputFiles": [
             "styles-v3/base/reset.css",

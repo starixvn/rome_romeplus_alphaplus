@@ -23,5 +23,6 @@ public class SingleCommand : TransferBaseQuery, IRequest<Result>
 
     public int SubAccId { get; }
 
-    public override bool IsValid() => ActorLevel.IsMasterOrSuperLevel() && base.IsValid();
+    public override bool IsValid()
+        => !IsInternal && ActorLevel.IsMasterOrSuperLevel() && base.IsValid();
 }

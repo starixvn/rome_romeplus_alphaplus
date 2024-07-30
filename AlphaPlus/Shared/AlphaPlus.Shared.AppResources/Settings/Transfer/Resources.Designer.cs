@@ -2334,5 +2334,60 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
                 return ResourceManager.GetString("BetCredit", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer Condition.
+        /// </summary>
+        public static string TransferCondition
+        {
+            get
+            {
+                return ResourceManager.GetString("TransferCondition", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Weekly.
+        /// </summary>
+        public static string Weekly
+        {
+            get
+            {
+                return ResourceManager.GetString("Weekly", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Account Balance Transfer Condition.
+        /// </summary>
+        public static string AccountBalanceTransferCondition
+        {
+            get
+            {
+                return ResourceManager.GetString("AccountBalanceTransferCondition", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose Daily instead of 7 days..
+        /// </summary>
+        public static string PleaseChooseDaily
+        {
+            get
+            {
+                return ResourceManager.GetString("PleaseChooseDaily", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please select at least one day..
+        /// </summary>
+        public static string PleaseSelectOneDay
+        {
+            get
+            {
+                return ResourceManager.GetString("PleaseSelectOneDay", resourceCulture);
+            }
+        }
     }
 }

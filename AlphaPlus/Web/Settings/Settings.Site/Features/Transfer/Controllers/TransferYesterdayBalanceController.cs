@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using AlphaPlus.Core.Models;
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers;
@@ -26,28 +24,20 @@ public class TransferYesterdayBalanceController(IMediator mediator) : TransferBa
     }
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> Single(SingleCommand message)
-        => Json(!message.IsValid() || message.IsInternal
-        ? Result.CreateErrorResult(Resources.NotAuthorized)
-        : await mediator.Send(message));
+    public Task<IActionResult> Single(SingleCommand message)
+        => Json(message);
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> Multiple(MultipleCommand message)
-        => Json(!message.IsValid() || message.IsInternal
-        ? Result.CreateErrorResult(Resources.NotAuthorized)
-        : await mediator.Send(message));
+    public Task<IActionResult> Multiple(MultipleCommand message)
+        => Json(message);
 
     public Task<IActionResult> Member(MemberQuery message) => View(message);
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> Member(MemberCommand message)
-        => Json(!message.IsValid() || message.IsInternal
-        ? Result.CreateErrorResult(Resources.NotAuthorized)
-        : await mediator.Send(message));
+    public Task<IActionResult> Member(MemberCommand message)
+        => Json(message);
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> MultipleMember(MultipleMemberCommand message)
-        => Json(!message.IsValid() || message.IsInternal
-        ? Result.CreateErrorResult(Resources.NotAuthorized)
-        : await mediator.Send(message));
+    public Task<IActionResult> MultipleMember(MultipleMemberCommand message)
+        => Json(message);
 }

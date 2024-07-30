@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Core;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests;
-using AlphaPlus.Settings.Site.Features.Transfer.ViewModels;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers;
 
@@ -35,4 +36,14 @@ public abstract class TransferBaseController(IMediator mediator) : BaseControlle
 
     private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
         => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
+
+    protected async Task<IActionResult> Json<TResponse>(IRequest<TResponse> message)
+    {
+        if (message is TransferBaseQuery transferMessage && !transferMessage.IsValid())
+        {
+            return Json(Result.CreateErrorResult(Resources.NotAuthorized));
+        }
+
+        return Json(await mediator.Send(message));
+    }
 }

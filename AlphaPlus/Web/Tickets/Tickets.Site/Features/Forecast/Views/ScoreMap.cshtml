@@ -21,8 +21,9 @@
     if (Model.FromBetList)
     {
         <div class="text-right mt-10 mb-10">
-        <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip font-size-icon" target="_blank"></a>
-        <input type="hidden" id="hidden-matchIds" value="@Model.MatchIds" />
+            <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip font-size-icon"
+                target="_blank"></a>
+            <input type="hidden" id="hidden-matchIds" value="@Model.MatchIds" />
         </div>
     }
     else
@@ -31,32 +32,41 @@
             @Resources.ScoreMap
             <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip" target="_blank"></a>
         </div>
-        <div class="filter mt-10">
-            <label for="ddlLeague">@Resources.League</label>
-            <select asp-items="Model.Leagues" id="ddlLeague"></select>
-            <span class="icon-refresh hover-effect-rip" id="icon-refreshLeague"></span>
-            <button type="button" class="btn-submit" id="btn-selectMatch">@Resources.SelectMatch</button>
-            @{
-                RenderLoadingIcon("icon-loadingLeague");
-            }
-        </div>
-        <div class="modal" tabindex="-1" role="dialog" id="popup-matches" aria-labelledby="myModalLabel" data-backdrop="false">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="alert error hidden" id="popup-alertMatchError">@Resources.PleaseChooseAMatch</div>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
-                        <div class="modal-title">@Resources.SelectMatch</div>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="match-list" id="popup-matchList"></ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn-submit" id="popup-btnSelect">@Resources.Select</button>
+        if (!Model.Leagues.Any())
+        {
+            <div class="filter mt-10">
+                <div class="msg msg-error">@Resources.NoInformationIsAvailable</div>
+            </div>
+        }
+        else
+        {
+            <div class="filter mt-10">
+                <label for="ddlLeague">@Resources.League</label>
+                <select asp-items="Model.Leagues" id="ddlLeague"></select>
+                <span class="icon-refresh hover-effect-rip" id="icon-refreshLeague"></span>
+                <button type="button" class="btn-submit" id="btn-selectMatch">@Resources.SelectMatch</button>
+                @{
+                    RenderLoadingIcon("icon-loadingLeague");
+                }
+            </div>
+            <div class="modal" tabindex="-1" role="dialog" id="popup-matches" aria-labelledby="myModalLabel" data-backdrop="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="alert error hidden" id="popup-alertMatchError">@Resources.PleaseChooseAMatch</div>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
+                            <div class="modal-title">@Resources.SelectMatch</div>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="match-list" id="popup-matchList"></ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-submit" id="popup-btnSelect">@Resources.Select</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
     }
 }
 <partial name="ScoreMapBetTypes" model="Model" />

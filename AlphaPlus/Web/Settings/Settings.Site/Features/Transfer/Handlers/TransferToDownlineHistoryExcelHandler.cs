@@ -8,8 +8,8 @@
     using MediatR;
     using ONEbook.SpreadSheets;
     using Requests.TransferToDownlineHistory;
-    using ViewModels;
     using AlphaPlus.Core.Utils;
+    using AlphaPlus.Core.Models;
 
     public class TransferToDownlineHistoryExcelHandler : TransferToDownlineHistoryBaseHandler, IRequestHandler<TransferToDownlineHistoryExcelQuery, ExcelFileViewModel>
     {

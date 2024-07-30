@@ -708,4 +708,19 @@
   <data name="BetCredit" xml:space="preserve">
     <value>投注額度</value>
   </data>
+  <data name="TransferCondition" xml:space="preserve">
+    <value>轉帳設定</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>每週</value>
+  </data>
+  <data name="AccountBalanceTransferCondition" xml:space="preserve">
+    <value>轉帳設定</value>
+  </data>
+  <data name="PleaseChooseDaily" xml:space="preserve">
+    <value>如要選擇七天,請選每天</value>
+  </data>
+  <data name="PleaseSelectOneDay" xml:space="preserve">
+    <value>請至少選擇一天</value>
+  </data>
 </root>

@@ -826,5 +826,12 @@
     "inputFiles": [
       "Features/MemberInfo/Features/Commission/scripts/commission.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/transfer/transfer-condition.js",
+    "inputFiles": [
+      "Features/Transfer/assets/scripts/components/alert.js",
+      "Features/Transfer/assets/scripts/transfer-condition/transfer-condition.js"
+    ]
   }
 ]

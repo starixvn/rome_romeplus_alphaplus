@@ -708,4 +708,19 @@
   <data name="BetCredit" xml:space="preserve">
     <value>เครดิตสำหรับการวางเดิมพัน</value>
   </data>
+  <data name="TransferCondition" xml:space="preserve">
+    <value>เงื่อนไขในการโอนถ่ายยอดคงเหลือของบัญชี</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>รายอาทิตย์</value>
+  </data>
+  <data name="AccountBalanceTransferCondition" xml:space="preserve">
+    <value>เงื่อนไขในการโอนถ่ายยอดคงเหลือของบัญชี</value>
+  </data>
+  <data name="PleaseChooseDaily" xml:space="preserve">
+    <value>กรุณาเลือกแต่ละวันแทนที่จะเลือกทั้ง 7 วัน</value>
+  </data>
+  <data name="PleaseSelectOneDay" xml:space="preserve">
+    <value>กรุณาเลือกอย่างน้อย 1 วัน</value>
+  </data>
 </root>

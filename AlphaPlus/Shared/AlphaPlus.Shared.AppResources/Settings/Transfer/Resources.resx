@@ -735,4 +735,19 @@
   <data name="BetCredit" xml:space="preserve">
     <value>Bet Credit</value>
   </data>
+  <data name="TransferCondition" xml:space="preserve">
+    <value>Transfer Condition</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="AccountBalanceTransferCondition" xml:space="preserve">
+    <value>Account Balance Transfer Condition</value>
+  </data>
+  <data name="PleaseChooseDaily" xml:space="preserve">
+    <value>Please choose Daily instead of 7 days.</value>
+  </data>
+  <data name="PleaseSelectOneDay" xml:space="preserve">
+    <value>Please select at least one day.</value>
+  </data>
 </root>

@@ -633,4 +633,19 @@
   <data name="BetCredit" xml:space="preserve">
     <value>Hạn mức khả dụng</value>
   </data>
+  <data name="TransferCondition" xml:space="preserve">
+    <value>Điều kiện chuyển khoản</value>
+  </data>
+  <data name="Weekly" xml:space="preserve">
+    <value>Hằng tuần</value>
+  </data>
+  <data name="AccountBalanceTransferCondition" xml:space="preserve">
+    <value>Điều kiện chuyển khoản</value>
+  </data>
+  <data name="PleaseChooseDaily" xml:space="preserve">
+    <value>Vui lòng chọn 1 ngày trong tuần</value>
+  </data>
+  <data name="PleaseSelectOneDay" xml:space="preserve">
+    <value>Chọn ít nhất 1 ngày</value>
+  </data>
 </root>

@@ -1,0 +1,47 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferCondition.TransferConditionViewModel
+@{
+    ViewBag.Title = Resources.TransferCondition;
+    var showTitle = !string.IsNullOrWhiteSpace(AlphaContext.Current.Request.Query["showtitle"].ToString());
+    var dayOfWeekIndex = 0;
+}
+@section Styles {
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-assets/tipsy")
+    @* <link rel="stylesheet" href="~/bundles/transfer/transfer-list.css" asp-append-version="true" /> *@
+}
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles-v2/site-assets/tipsy")
+    <script src="~/bundles/transfer/transfer-condition.js" asp-append-version="true"></script>
+}
+@if (showTitle)
+{
+    <div class="page-title">@Resources.MultipleTransfer</div>
+}
+<div class="msg" id="msg-alert" style="display:none"></div>
+<h5>@Resources.AccountBalanceTransferCondition</h5>
+<form method="post" asp-action="Update" role="form" id="form-transfer">
+    <div>
+        <input type="radio" id="rdo-daily" name="TransferCondition" value="00000000" @(Model.Daily ? "checked" :
+            string.Empty) />
+        <label for="rdo-daily">@Resources.Daily</label>
+    </div>
+    <div>
+        <input type="radio" id="rdo-weekly" name="TransferCondition" value="00000001" @(Model.Daily ? string.Empty :
+            "checked") />
+        <label for="rdo-weekly">@Resources.Weekly</label>
+        @foreach (var item in Model.Weekly)
+        {
+            <input type="checkbox" id="chk-@dayOfWeekIndex" name="Weekly" value="@item.Value" @(item.Selected ? "checked" :
+            string.Empty) @(Model.Daily ? "disabled" : string.Empty) />
+            <label for="chk-@dayOfWeekIndex">@item.Text</label>
+            dayOfWeekIndex++;
+        }
+    </div>
+    <div><button type="submit" class="btn-submit">@Resources.Update</button></div>
+</form>
+<input type="hidden" asp-for="CustId" />
+<input type="hidden" id="hidden-showTitle" value="@Convert.ToByte(showTitle).ToString()" />
+<input type="hidden" id="hidden-pleaseChooseDailyText" value="@Resources.PleaseChooseDaily" />
+<input type="hidden" id="hidden-pleaseSelectOneDayText" value="@Resources.PleaseSelectOneDay" />
