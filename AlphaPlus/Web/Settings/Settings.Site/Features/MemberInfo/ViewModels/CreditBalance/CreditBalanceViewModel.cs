@@ -107,7 +107,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance
 
         public string OldMainRootPath => MicroSites.SettingUrl();
 
-        public string GivenCreditLink => MicroSites.SettingUrl($"~/SearchAccount/GivenCredit");
+        public string GivenCreditLink => MicroSites.AccountInfoUrl($"~/SearchAccount/GivenCredit");
 
         public string GetMemberBalanceInfoLink(string custName)
             => MicroSites.SettingUrl($"~/SearchAccount/GetMemberBalanceInfo?custname={custName}");
