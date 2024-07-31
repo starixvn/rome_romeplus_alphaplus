@@ -34,13 +34,13 @@ body {
 
     .thead-row2 .col-comm-odd,
     .col-comm-odd {
-        background-color: #dde5fa;
-        color: #333;
+        background-color: #1a2a4f;
+        color: #cbcbcb;
     }
 
     .thead-row2 .col-comm-even {
-        background-color: #f0f1c7;
-        color: #333;
+        background-color: #56533c ;
+        color: #cbcbcb;
     }
 }
 
@@ -87,8 +87,7 @@ input[type='button'][disabled] {
 .filter {
     display: table;
     width: 100%;
-    clear: both;
-    padding-top: 0;
+    clear: both; 
 
     .multiselect .multiselect-selected-text {
         width: 130px;
@@ -139,11 +138,19 @@ input[type='button'][disabled] {
 
     .form-group {
         margin-bottom: 0;
-        padding-bottom: 0;
+        padding-bottom: 12px;
 
-        .btn-submit,
-        .btn-group {
+        .btn-submit{
             float: left;
+        }
+        .btn-group{
+            margin: 0;
+            label{
+                display: block;
+            }
+        }
+        a{
+            text-decoration: none;
         }
 
         &.daterange-picker {
@@ -152,7 +159,14 @@ input[type='button'][disabled] {
                 margin-bottom: 15px;
             }
         }
-
+        label{
+            font-size: 13px;
+            color: #ededed;          
+            vertical-align: middle;
+            position: relative;
+            top: 3px;
+             
+        }
         &.pull-right {
             margin-right: 0;
 

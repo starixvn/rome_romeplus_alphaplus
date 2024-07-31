@@ -97,7 +97,6 @@ input[type='button'][disabled] {
     display: table;
     width: 100%;
     clear: both;
-    padding-top: 0;
 
     .multiselect .multiselect-selected-text {
         width: 130px;
@@ -148,11 +147,19 @@ input[type='button'][disabled] {
 
     .form-group {
         margin-bottom: 0;
-        padding-bottom: 0;
+        padding-bottom: 12px;
 
-        .btn-submit,
-        .btn-group {
+        .btn-submit{
             float: left;
+        }
+        .btn-group{
+            margin: 0;
+            label{
+                display: block;
+            }
+        }
+        a{
+            text-decoration: none;
         }
 
         &.daterange-picker {
@@ -161,7 +168,13 @@ input[type='button'][disabled] {
                 margin-bottom: 15px;
             }
         }
-
+        label{
+            font-size: 13px;
+            color: #333;          
+            vertical-align: middle;
+            position: relative;
+            top: 3px;
+        }
         &.pull-right {
             margin-right: 0;
 
