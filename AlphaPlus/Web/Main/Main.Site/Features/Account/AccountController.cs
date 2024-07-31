@@ -35,7 +35,7 @@ public class AccountController(
 
     public IActionResult Login(string r)
     {
-        var domains = configuration.GetSection("DomainMapping:Domains").Get<DomainMapping[]>();
+        var domains = configuration.GetSection("DomainMappings").Get<DomainMapping[]>();
         var loginUrl = domains.FirstOrDefault(domain => AlphaContext.Current.Request.Headers["Host"].Contains(domain.After, StringComparer.OrdinalIgnoreCase));
         return Redirect($"{loginUrl.Before}?r={r}");
     }
