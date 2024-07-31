@@ -4,7 +4,7 @@
 
     public class GetJobStatusCriteria : NonQueryCommand
     {
-        public GetJobStatusCriteria(int fromCustId, int toCustId, bool isAllowAutoTransfer)
+        public GetJobStatusCriteria(int? fromCustId, int? toCustId, bool isAllowAutoTransfer)
         {
             FromCustId = fromCustId;
             ToCustId = toCustId;
@@ -13,9 +13,9 @@
             ErrMsg = string.Empty;
         }
 
-        public int FromCustId { get; }
+        public int? FromCustId { get; }
 
-        public int ToCustId { get; }
+        public int? ToCustId { get; }
 
         public bool IsAllowAutoTransfer { get; }
 

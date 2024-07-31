@@ -723,4 +723,40 @@
   <data name="PleaseSelectOneDay" xml:space="preserve">
     <value>请至少选择一天</value>
   </data>
+  <data name="TransferConditionByCompany" xml:space="preserve">
+    <value>您的账号已被公司设置应用于"每日自动转账"。 您将不被允许调整每周转账设定。</value>
+  </data>
+  <data name="TransferConditionByUpline" xml:space="preserve">
+    <value>您的账号已被上线设置应用于“每日转账”。您将不被允许调整每周转账设定。</value>
+  </data>
+  <data name="ConditionChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>目前该旗下账号正在进行自动转账流程。 请等待几分钟以完成该过程后，再对转账设定进行更改。</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="ConfirmUpdateTransferCondition" xml:space="preserve">
+    <value>您确定使用此转账条件于其所有下线?</value>
+  </data>
+  <data name="UpdateTransferCondition_Note" xml:space="preserve">
+    <value>注意：更改转账设定将会影响该账号下所有下线的自动转账状态和日程表。 请选择一个操作：</value>
+  </data>
+  <data name="UpdateTransferCondition_OnAuto" xml:space="preserve">
+    <value>保持当前日程表的自动转账启用状态，并根据新的转账设定调整。</value>
+  </data>
+  <data name="UpdateTransferCondition_OffAuto" xml:space="preserve">
+    <value>禁用所有下线的自动转账并清除自动转账日程表</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>没有任何的变化更新。</value>
+  </data>
+  <data name="TransferConditionChangeToastTitle" xml:space="preserve">
+    <value>自动转账配置</value>
+  </data>
+  <data name="TransferConditionChangeToastBody" xml:space="preserve">
+    <value>您的转账设定已被上线更改。 您的下线的自动转账状态和日程表已相应调整。 点击{0}查看详细信息。</value>
+  </data>
+  <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
+    <value>您的转账设定已被上线更改。 以下客户已调整自动转账状态和日程表： {0} 。 详细可以在转账功能查询。</value>
+  </data>
 </root>

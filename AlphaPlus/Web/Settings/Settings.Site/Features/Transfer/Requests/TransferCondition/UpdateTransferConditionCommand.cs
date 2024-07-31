@@ -7,6 +7,14 @@ public class UpdateTransferConditionCommand : TransferBaseQuery, IRequest<Result
 {
     public string TransferOption { get; set; }
 
+    public bool AutoTransferOption { get; set; }
+
+    public int SubAccId => viewer.SubAccId;
+
+    public string IP => viewer.IP;
+
+    public string LangKey => viewer.LanguageKey;
+
     public override bool IsValid()
         => !viewer.IsInternal && IsValidTransferOption() && base.IsValid();
 

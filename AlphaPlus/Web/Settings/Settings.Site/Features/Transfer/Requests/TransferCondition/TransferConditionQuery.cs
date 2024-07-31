@@ -5,4 +5,5 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferCondition;
 
 public class TransferConditionQuery : TransferBaseQuery, IRequest<TransferConditionViewModel>
 {
+    public string Site => viewer.Site;
 }

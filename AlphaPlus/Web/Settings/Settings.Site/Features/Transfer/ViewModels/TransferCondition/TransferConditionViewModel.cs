@@ -1,25 +1,34 @@
-using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferCondition;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferCondition;
 
-public class TransferConditionViewModel(TransferConditionQuery message, string transferCondition)
+public class TransferConditionViewModel(
+    int custId,
+    string transferOption,
+    string warningMessage,
+    bool isEnableAutoTransfer)
 {
-    public int CustId { get; } = message.CustId;
+    public int CustId { get; } = custId;
 
-    public bool Daily { get; } = "00000000" == transferCondition;
+    public string TransferOption { get; } = transferOption;
+
+    public string WarningMessage { get; } = warningMessage;
+
+    public bool IsEnableAutoTransfer { get; } = isEnableAutoTransfer;
+
+    public bool Daily { get; } = "00000000" == transferOption;
 
     public IEnumerable<SelectListItem> Weekly
     {
         get
         {
-            if (string.IsNullOrWhiteSpace(transferCondition) || transferCondition.Length != 8)
+            if (string.IsNullOrWhiteSpace(TransferOption) || TransferOption.Length != 8)
             {
                 yield break;
             }
 
-            var dayOfWeekArray = transferCondition.ToCharArray();
+            var dayOfWeekArray = TransferOption.ToCharArray();
             var dayOfWeekArrayLength = dayOfWeekArray.Length - 1;
 
             for (var i = 1; i < dayOfWeekArrayLength; i++)

@@ -723,4 +723,40 @@
   <data name="PleaseSelectOneDay" xml:space="preserve">
     <value>กรุณาเลือกอย่างน้อย 1 วัน</value>
   </data>
+  <data name="TransferConditionByCompany" xml:space="preserve">
+    <value>การตั้งค่าการโอนรายวันถูกกำหนดโดยทางบริษัท คุณไม่สามารถเปลี่ยนการกำหนดไปเป็นโอนรายสัปดาห์ได้</value>
+  </data>
+  <data name="TransferConditionByUpline" xml:space="preserve">
+    <value>การตั้งค่าการโอนรายวันถูกกำหนดโดยต้นสายของคุณ คุณไม่สามารถเปลี่ยนการกำหนดไปเป็นโอนรายสัปดาห์ได้</value>
+  </data>
+  <data name="ConditionChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>ขณะนี้กระบวนการโอนอัตโนมัติอยู่ในระหว่างดำเนินการสำหรับสายนี้ โปรดรอสักครู่เพื่อให้กระบวนการเสร็จสิ้นก่อนทำการเปลี่ยนแปลงเงื่อนไขการโอน</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>อัพเดทเสร็จสมบูรณ์</value>
+  </data>
+  <data name="ConfirmUpdateTransferCondition" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าคุณต้องการอัพเดทเงื่อนไขการโอนรายการนี้สำหรับทุกคนที่คุณแนะนำ</value>
+  </data>
+  <data name="UpdateTransferCondition_Note" xml:space="preserve">
+    <value>หมายเหตุ: การเปลี่ยนแปลงเงื่อนไขการโอนจะส่งผลต่อสถานะการโอนอัตโนมัติและกำหนดการของดาวน์ไลน์ทั้งหมดภายใต้บัญชีนี้ โปรดเลือกการดำเนินการ:</value>
+  </data>
+  <data name="UpdateTransferCondition_OnAuto" xml:space="preserve">
+    <value>เปิดใช้งานการถ่ายโอนอัตโนมัติไว้ตามเดิมและปรับกำหนดการปัจจุบันให้เป็นไปตามเงื่อนไขการโอนใหม่</value>
+  </data>
+  <data name="UpdateTransferCondition_OffAuto" xml:space="preserve">
+    <value>ปิดการใช้งานการโอนอัตโนมัติสำหรับดาวน์ไลน์ทั้งหมด และล้างกำหนดการโอนอัตโนมัติ</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>ไม่มีการเปลี่ยนแปลงการอัพเดท</value>
+  </data>
+  <data name="TransferConditionChangeToastTitle" xml:space="preserve">
+    <value>ตั้งค่าโอนอัตโนมัติ</value>
+  </data>
+  <data name="TransferConditionChangeToastBody" xml:space="preserve">
+    <value>เงื่อนไขการโอนของคุณถูกเปลี่ยนแปลงโดยอัพไลน์ สถานะและกำหนดการการโอนอัตโนมัติสำหรับดาวน์ไลน์ของคุณได้รับการปรับเปลี่ยนตามนั้น คลิก {0} เพื่อดูรายละเอียด</value>
+  </data>
+  <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
+    <value>เงื่อนไขการโอนของคุณถูกเปลี่ยนแปลงโดยอัพไลน์ สถานะและกำหนดการการโอนอัตโนมัติได้รับการปรับเปลี่ยนสำหรับลูกค้าต่อไปนี้: {0} รายละเอียดสามารถพบได้ในฟังก์ชั่นการโอน</value>
+  </data>
 </root>

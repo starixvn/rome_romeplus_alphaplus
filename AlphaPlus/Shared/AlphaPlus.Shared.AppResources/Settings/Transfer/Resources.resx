@@ -750,4 +750,40 @@
   <data name="PleaseSelectOneDay" xml:space="preserve">
     <value>Please select at least one day.</value>
   </data>
+  <data name="TransferConditionByCompany" xml:space="preserve">
+    <value>The Daily Transfer setting has been applied to you via the company automated transfer process. You are not allowed to adjust the Weekly Transfer Condition.</value>
+  </data>
+  <data name="TransferConditionByUpline" xml:space="preserve">
+    <value>The Daily Transfer setting has been applied to you by the upline. You are not allowed to adjust the Weekly Transfer Condition.</value>
+  </data>
+  <data name="ConditionChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>The Auto Transfer process is currently in progress for this line. Please wait a few minutes for the process to complete before making any changes to the Transfer Condition.</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>Updated successfully</value>
+  </data>
+  <data name="ConfirmUpdateTransferCondition" xml:space="preserve">
+    <value>Are you sure that you want to update this transfer condition for all of downlines?</value>
+  </data>
+  <data name="UpdateTransferCondition_Note" xml:space="preserve">
+    <value>Note: Changing the Transfer Condition will affect the Auto Transfer status and schedule of all downlines under this account. Please select an action:</value>
+  </data>
+  <data name="UpdateTransferCondition_OnAuto" xml:space="preserve">
+    <value>Keep Auto Transfer enabled with the current schedule adjusted to the new transfer condition.</value>
+  </data>
+  <data name="UpdateTransferCondition_OffAuto" xml:space="preserve">
+    <value>Disable Auto Transfer for all downlines and CLEAR the Auto Transfer schedule</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
+  <data name="TransferConditionChangeToastTitle" xml:space="preserve">
+    <value>Auto Transfer Config</value>
+  </data>
+  <data name="TransferConditionChangeToastBody" xml:space="preserve">
+    <value>Your Transfer Condition was changed by upline. The Auto Transfer status and schedule for your downlines have been adjusted accordingly. Click {0} to view details.</value>
+  </data>
+  <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
+    <value>Your Transfer Condition was changed by upline. The Auto Transfer status and schedule have been adjusted for the following customers: {0}. Details can be found in Transfer function.</value>
+  </data>
 </root>

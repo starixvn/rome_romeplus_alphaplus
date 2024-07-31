@@ -4,7 +4,7 @@ using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferCondition;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers;
 
-public class TransferCondition(IMediator mediator) : TransferBaseController(mediator)
+public class TransferConditionController(IMediator mediator) : TransferBaseController(mediator)
 {
     public Task<IActionResult> Index(TransferConditionQuery message) => View(message);
 

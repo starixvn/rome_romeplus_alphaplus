@@ -28,36 +28,38 @@ class TransferConditionView {
         $formTransfer.submit((event) => {
             event.preventDefault();
 
+            this.alert.hideAlert();
             const transferOption = this.getTransferOption($checkboxDayOfWeeks, $labelMon);
             if (!transferOption) {
                 return;
             }
 
-            $.blockUI();
-            $.ajax({
-                headers: {
-                    RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
-                    'X-Requested-With': 'XMLHttpRequest'
+            if (transferOption === $('#TransferOption').val()) {
+                this.alert.showError($('#hidden-noChangeToUpdateText').val());
+                return;
+            }
+
+            let confirmMessage = $('#hidden-confirmUpdateTransferConditionText').val();
+            if ($('#hidden-isEnableAutoTransfer').val() === '1' && transferOption !== '00000000') {
+                confirmMessage += $('#hidden-updateTransferCondition_NoteText').val() + '<br/>';
+                confirmMessage +=
+                    '<div class="action-auto-transfer"><input id="rad-on-auto-transfer" type="radio" name="rad-change-affect" class="rad-change-affect" value="0" checked="checked" /><label for="rad-on-auto-transfer">' +
+                    $('#hidden-updateTransferCondition_OnAutoText').val() +
+                    '</label></div>';
+                confirmMessage +=
+                    '<div class="action-auto-transfer"><input id="rad-off-auto-transfer" type="radio" name="rad-change-affect" class="rad-change-affect" value="1" /><label for="rad-off-auto-transfer">' +
+                    $('#hidden-updateTransferCondition_OffAutoText').val() +
+                    '</label></div>';
+            }
+            window.top.bootboxConfirm(
+                confirmMessage,
+                $('#btn-submit'),
+                () => {
+                    this.updateTransferOption($formTransfer.attr('action'), transferOption);
                 },
-                type: 'POST',
-                url: $formTransfer.attr('action'),
-                data: { transferOption, custId: $('#CustId').val() },
-                success: (result) => {
-                    if (result.IsSuccessful) {
-                        this.alert.showSuccess(result.Message);
-                        setTimeout(function () {
-                            if ($('#hidden-showTitle').val() === '1') {
-                                window.location.reload();
-                            } else {
-                                window.top.popupManager.close();
-                            }
-                        }, 3000);
-                    } else {
-                        this.alert.showError(result.Message);
-                    }
-                },
-                complete: $.unblockUI
-            });
+                null,
+                { type: 'TransferCondition' }
+            );
         });
     }
 
@@ -89,6 +91,50 @@ class TransferConditionView {
         }
 
         return transferOption.join('');
+    }
+
+    private updateTransferOption(url: string, transferOption: string, autoTransferOption = undefined) {
+        if (typeof autoTransferOption === 'undefined') {
+            autoTransferOption = 0;
+            window.top.$('input[type=radio][name=rad-change-affect]').each(function () {
+                const $this = $(this);
+                if ($this.is(':checked')) {
+                    autoTransferOption = $this.val();
+                }
+            });
+        }
+
+        $.blockUI();
+        $.ajax({
+            headers: {
+                RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: 'POST',
+            url: url,
+            data: { transferOption, custId: $('#CustId').val() },
+            success: (result) => {
+                if (result.code === 999991) {
+                    window.top[url] = () => this.updateTransferOption(url, transferOption, autoTransferOption);
+                    window.top.ShowSecCodePopup(url);
+                    return;
+                }
+
+                if (result.IsSuccessful) {
+                    this.alert.showSuccess(result.Message);
+                    setTimeout(function () {
+                        if ($('#hidden-showTitle').val() === '1') {
+                            window.location.reload();
+                        } else {
+                            window.top.popupManager.close();
+                        }
+                    }, 3000);
+                } else {
+                    this.alert.showError(result.Message);
+                }
+            },
+            complete: $.unblockUI
+        });
     }
 }
 

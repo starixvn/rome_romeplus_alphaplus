@@ -2389,5 +2389,137 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
                 return ResourceManager.GetString("PleaseSelectOneDay", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Daily Transfer setting has been applied to you via the company automated transfer process. You are not allowed to adjust the Weekly Transfer Condition..
+        /// </summary>
+        public static string TransferConditionByCompany
+        {
+            get
+            {
+                return ResourceManager.GetString("TransferConditionByCompany", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Daily Transfer setting has been applied to you by the upline. You are not allowed to adjust the Weekly Transfer Condition..
+        /// </summary>
+        public static string TransferConditionByUpline
+        {
+            get
+            {
+                return ResourceManager.GetString("TransferConditionByUpline", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Auto Transfer process is currently in progress for this line. Please wait a few minutes for the process to complete before making any changes to the Transfer Condition..
+        /// </summary>
+        public static string ConditionChangeFailed_AutoJobRunning
+        {
+            get
+            {
+                return ResourceManager.GetString("ConditionChangeFailed_AutoJobRunning", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Updated successfully.
+        /// </summary>
+        public static string UpdatedSuccessfully
+        {
+            get
+            {
+                return ResourceManager.GetString("UpdatedSuccessfully", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to update this transfer condition for all of downlines?.
+        /// </summary>
+        public static string ConfirmUpdateTransferCondition
+        {
+            get
+            {
+                return ResourceManager.GetString("ConfirmUpdateTransferCondition", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Note: Changing the Transfer Condition will affect the Auto Transfer status and schedule of all downlines under this account. Please select an action:.
+        /// </summary>
+        public static string UpdateTransferCondition_Note
+        {
+            get
+            {
+                return ResourceManager.GetString("UpdateTransferCondition_Note", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Keep Auto Transfer enabled with the current schedule adjusted to the new transfer condition..
+        /// </summary>
+        public static string UpdateTransferCondition_OnAuto
+        {
+            get
+            {
+                return ResourceManager.GetString("UpdateTransferCondition_OnAuto", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Disable Auto Transfer for all downlines and CLEAR the Auto Transfer schedule.
+        /// </summary>
+        public static string UpdateTransferCondition_OffAuto
+        {
+            get
+            {
+                return ResourceManager.GetString("UpdateTransferCondition_OffAuto", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to There is no change to update..
+        /// </summary>
+        public static string NoChangeToUpdate
+        {
+            get
+            {
+                return ResourceManager.GetString("NoChangeToUpdate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Transfer Config.
+        /// </summary>
+        public static string TransferConditionChangeToastTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("TransferConditionChangeToastTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Your Transfer Condition was changed by upline. The Auto Transfer status and schedule for your downlines have been adjusted accordingly. Click {0} to view details..
+        /// </summary>
+        public static string TransferConditionChangeToastBody
+        {
+            get
+            {
+                return ResourceManager.GetString("TransferConditionChangeToastBody", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Your Transfer Condition was changed by upline. The Auto Transfer status and schedule have been adjusted for the following customers: {0}. Details can be found in Transfer function..
+        /// </summary>
+        public static string TransferConditionChange_PersonalMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("TransferConditionChange_PersonalMessage", resourceCulture);
+            }
+        }
     }
 }

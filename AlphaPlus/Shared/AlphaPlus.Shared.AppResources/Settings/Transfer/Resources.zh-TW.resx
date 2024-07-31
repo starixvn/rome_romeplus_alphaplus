@@ -723,4 +723,40 @@
   <data name="PleaseSelectOneDay" xml:space="preserve">
     <value>請至少選擇一天</value>
   </data>
+  <data name="TransferConditionByCompany" xml:space="preserve">
+    <value>您的賬號已被公司設置應用於"每日自動轉賬"。 您將不被允許調整每周轉賬設定。</value>
+  </data>
+  <data name="TransferConditionByUpline" xml:space="preserve">
+    <value>您的賬號已被上線設置應用於“每日轉賬”。您將不被允許調整每周轉賬設定。</value>
+  </data>
+  <data name="ConditionChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>目前該旗下賬號正在進行自動轉賬流程。 請等待幾分鍾以完成該過程後，再對轉賬設定進行更改。</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="ConfirmUpdateTransferCondition" xml:space="preserve">
+    <value>您確定使用此轉帳條件於其所有下線?</value>
+  </data>
+  <data name="UpdateTransferCondition_Note" xml:space="preserve">
+    <value>注意：更改轉賬設定將會影響該賬號下所有下線的自動轉賬狀態和日程表。 請選擇壹個操作：</value>
+  </data>
+  <data name="UpdateTransferCondition_OnAuto" xml:space="preserve">
+    <value>保持當前日程表的自動轉賬啓用狀態，並根據新的轉賬設定調整。</value>
+  </data>
+  <data name="UpdateTransferCondition_OffAuto" xml:space="preserve">
+    <value>禁用所有下線的自動轉賬並清除自動轉賬日程表</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>沒有任何的變化更新。</value>
+  </data>
+  <data name="TransferConditionChangeToastTitle" xml:space="preserve">
+    <value>自動轉賬配置</value>
+  </data>
+  <data name="TransferConditionChangeToastBody" xml:space="preserve">
+    <value>您的轉賬設定已被上線更改。 您的下線的自動轉賬狀態和日程表已相應調整。 點擊{0}查看詳細信息。</value>
+  </data>
+  <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
+    <value>您的轉賬設定已被上線更改。 以下客戶已調整自動轉賬狀態和日程表： {0} 。 詳細信息可以在轉賬功能查詢。</value>
+  </data>
 </root>

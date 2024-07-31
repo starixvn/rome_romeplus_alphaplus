@@ -648,4 +648,40 @@
   <data name="PleaseSelectOneDay" xml:space="preserve">
     <value>Chọn ít nhất 1 ngày</value>
   </data>
+  <data name="TransferConditionByCompany" xml:space="preserve">
+    <value>Thiết lập Chuyển Khoản Hằng Ngày đã được áp dụng cho bạn thông qua quy trình chuyển khoản tự động của công ty. Bạn không được phép điều chỉnh Điều kiện chuyển khoản hằng tuần</value>
+  </data>
+  <data name="TransferConditionByUpline" xml:space="preserve">
+    <value>Cấp trên đã thiết lập Chuyển Khoản Hằng Ngày cho bạn. Bạn không được phép điều chỉnh Điều Kiện Chuyển Khoản Hằng Tuần.</value>
+  </data>
+  <data name="ConditionChangeFailed_AutoJobRunning" xml:space="preserve">
+    <value>Quá trình Chuyển Khoản Tự Động đang được thực hiện cho tuyến này. Vui lòng chờ vài phút cho quá trình hoàn thành trước khi thay đổi Điều Kiện Chuyển Khoản.</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>Cập nhật thành công</value>
+  </data>
+  <data name="ConfirmUpdateTransferCondition" xml:space="preserve">
+    <value>Bạn có muốn áp dụng điều kiện chuyển khoản mới này cho tất cả những thành viên cấp dưới trực thuộc?</value>
+  </data>
+  <data name="UpdateTransferCondition_Note" xml:space="preserve">
+    <value>Lưu ý: Thay đổi Điều Kiện Chuyển Khoản sẽ ảnh hưởng đến trạng thái và lịch Chuyển Khoản Tự Động của tất cả cấp dưới thuộc tài khoản này. Vui lòng chọn một thao tác:</value>
+  </data>
+  <data name="UpdateTransferCondition_OnAuto" xml:space="preserve">
+    <value>Chuyển Khoản Tự Động vẫn được bật và điều chỉnh lịch chuyển khoản hiện tại theo điều kiện chuyển khoản mới.</value>
+  </data>
+  <data name="UpdateTransferCondition_OffAuto" xml:space="preserve">
+    <value>Tắt Chuyển Khoản Tự Động cho tất cả cấp dưới và XÓA lịch Chuyển Khoản Tự Động.</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>Không có gi thay đổi để cập nhật.</value>
+  </data>
+  <data name="TransferConditionChangeToastTitle" xml:space="preserve">
+    <value>Cấu Hình Chuyển Khoản Tự Động</value>
+  </data>
+  <data name="TransferConditionChangeToastBody" xml:space="preserve">
+    <value>Điều Kiện Chuyển Khoản của bạn đã được cấp trên thay đổi. Trạng thái và lịch Chuyển Khoản Tự Động cho cấp dưới của bạn đã được điều chỉnh tương ứng. Nhấn vào {0} để xem chi tiết.</value>
+  </data>
+  <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
+    <value>Điều Kiện Chuyển Khoản của bạn đã được cấp trên thay đổi. Trạng thái và lịch Chuyển Khoản Tự Động đã được điều chỉnh cho các tài khoản sau: {0}. Chi tiết có thể được tìm thấy trong chức năng Chuyển Khoản.</value>
+  </data>
 </root>
