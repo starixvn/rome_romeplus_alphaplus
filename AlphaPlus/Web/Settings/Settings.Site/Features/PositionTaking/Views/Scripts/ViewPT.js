@@ -16,8 +16,7 @@ var ViewPTManagement = function () {
         },
 
         positionTakingInfo: null,
-        lastParam: null,
-        showPTIcon: false
+        lastParam: null
     };
     self.Enums = {
         roleId: {
@@ -30,7 +29,6 @@ var ViewPTManagement = function () {
 
     self.positionTakingInfo = bootstrapData;
     self.pageSizeList = bootstrapData.pageSizeList;
-    self.showPTIcon = bootstrapData.product.showPTIcon;
 
     self.initPage = function () {
         $("#arrayCustID").val(self.positionTakingInfo.customerInfo.custId);
@@ -43,7 +41,6 @@ var ViewPTManagement = function () {
         };
 
         self.cachedData.positionTakingInfo = self.positionTakingInfo;
-        self.cachedData.showPTIcon = self.showPTIcon;
 
         self.renderPositionTakingInfo(self.positionTakingInfo);
     };
@@ -80,7 +77,6 @@ var ViewPTManagement = function () {
     self.getPositionTakingInfo = function (pageSize, pageIndex) {
         var criteria = {
             ProductId: self.cachedData.positionTakingInfo.product.id,
-            MainProductId: self.cachedData.positionTakingInfo.product.mainProductId,
             PageSize: pageSize,
             PageIndex: pageIndex,
             CustId: self.cachedData.positionTakingInfo ?
@@ -474,8 +470,6 @@ var ViewPTManagement = function () {
             PageIndex: 1,
             CustId: custId,
             RoleId: downlineId,
-            ShowPTIcon: self.cachedData.showPTIcon,
-            MainProductId: self.cachedData.positionTakingInfo.product.mainProductId,
             ProductGroupId: self.cachedData.positionTakingInfo.product.groupId
         };
         self.cachedData.lastParam = criteria;
