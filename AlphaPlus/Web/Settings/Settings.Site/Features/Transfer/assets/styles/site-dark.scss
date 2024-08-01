@@ -411,3 +411,42 @@ a.transfer-link {
         justify-content: space-between;
     }
 }
+
+.wrapper-transfer-condition{
+    max-width: 600px;
+}
+.ttl-form-transfer-condition{
+    font-weight: bold;
+}
+.form-transfer-condition{
+    display: flex;
+    flex-wrap: nowrap;
+    height: 28px;
+    align-items: center;
+    margin-bottom: 5px;
+    
+    label{
+        margin: 0;
+    }
+    .left{
+        min-width: 100px;
+        padding-right: 5px;
+    }
+    .weekly{
+        display: flex;
+        flex-wrap: nowrap;
+         
+        label, input{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        input{
+            position: relative;
+            top: -1px;
+            margin-right: 5px;
+        }
+        label{
+            margin-right: 15px;
+        }
+    }
+}
