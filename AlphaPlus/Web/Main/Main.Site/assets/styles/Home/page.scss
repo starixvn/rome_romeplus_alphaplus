@@ -951,9 +951,9 @@ html * {
 
   .icon-feedback {
     position: relative;
-    mask: url("Images/feedback-report.svg");
-    -webkit-mask-image: url("Images/feedback-report.svg");
-    mask-image: url("Images/feedback-report.svg");
+    mask: url("/main/assets/images/feedback-report.svg");
+    -webkit-mask-image: url("/main/assets/images/feedback-report.svg");
+    mask-image: url("/main/assets/images/feedback-report.svg");
     height: 31px;
     width: 30px;
     display: inline-block;
@@ -964,7 +964,7 @@ html * {
 }
 
 .icon-close-feedback {
-  background: url(Images/icon-close-feedback2.png) no-repeat;
+  background: url(/main/assets/images/icon-close-feedback2.png) no-repeat;
   height: 20px;
   width: 20px;
   display: inline-block;
