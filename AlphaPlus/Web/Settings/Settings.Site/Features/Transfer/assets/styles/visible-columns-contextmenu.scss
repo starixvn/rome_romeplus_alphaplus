@@ -7,30 +7,48 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-$border-color-dark: #cecece;
-$dropdown-bg: #fff;
-$dropdown-border: #dfdfdf;
-$dropdown-bg-hover: #ddd;
 
-.columns-contextmenu {
+
+:root,
+:root [data-theme='light'] {
+
+
+    --contextmenu-dropdown-bg: #fff;
+    --contextmenu-dropdown-border: #dfdfdf;
+    --contextmenu-dropdown-bg-hover: #ddd;
+
+    
+}
+:root [data-theme='dark'] {
+
+
+    --contextmenu-dropdown-bg: #171717;
+    --contextmenu-dropdown-border: #292929;
+    --contextmenu-dropdown-bg-hover: #3c3c3c;
+
+}
+
+
+.columns-contextmenu {    
     input[type='checkbox'] {
         display: inline-block;
     }
 
     label {
-        color: #333;
+       
         font-weight: 500;
         margin: 0;
         padding: 0 8px;
     }
 
     .hint {
-        background-color: #fff;
-        border: 1px solid $border-color-dark;
+        background-color: var(--contextmenu-dropdown-bg);
+        border: 1px solid var(--contextmenu-dropdown-border);
         padding: 8px 15px;
         position: absolute;
         left: 200px;
-        top: 0;
+        top: 170px;
+        z-index: 100;
         @include effect-normal;
 
         p {
@@ -44,19 +62,19 @@ $dropdown-bg-hover: #ddd;
     }
 
     .column-dropdown {
-        background-color: $dropdown-bg;
-        border: 1px solid $dropdown-border;
+        background-color: var(--contextmenu-dropdown-bg);
+        border: 1px solid var(--contextmenu-dropdown-border);
         position: absolute;
         left: 55px;
         top: 45px;
-        z-index: 10;
+        z-index: 100;
         @include effect-normal;
 
         li {
             padding: 7px 20px;
 
             &:hover {
-                background-color: $dropdown-bg-hover;
+                background-color: var(--contextmenu-dropdown-bg-hover);
             }
 
             label {
