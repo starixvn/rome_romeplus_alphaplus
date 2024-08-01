@@ -19,6 +19,8 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
 
         public string PageAccess { get; set; }
 
+        public int RoleId => UserSession.Current.RoleId;
+
         public override bool IsValid()
         {
             return base.IsValid() && HasUpdatePermission;

@@ -242,4 +242,10 @@
   <data name="editsubacc" xml:space="preserve">
     <value>แก้ไข บัญชีย่อย</value>
   </data>
+  <data name="lblPasswordCSample" xml:space="preserve">
+    <value>รหัสผ่านของคุณจะต้องแตกต่างจากรหัสผ่านตัวอย่าง</value>
+  </data>
+  <data name="lblPasswordDAccountName" xml:space="preserve">
+    <value>รหัสผ่านต้องไม่ซ้ำกับชื่อบัญชีผู้ใช้ หรือ ชื่อเล่น</value>
+  </data>
 </root>

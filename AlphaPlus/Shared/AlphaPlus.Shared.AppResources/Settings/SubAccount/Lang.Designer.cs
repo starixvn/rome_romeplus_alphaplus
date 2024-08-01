@@ -419,5 +419,23 @@ namespace AlphaPlus.Shared.AppResources.Settings.SubAccount {
                 return ResourceManager.GetString("editsubacc", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Your password must be different from sample password..
+        /// </summary>
+        public static string lblPasswordCSample {
+            get {
+                return ResourceManager.GetString("lblPasswordCSample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password must not contain your username or nickname..
+        /// </summary>
+        public static string lblPasswordDAccountName {
+            get {
+                return ResourceManager.GetString("lblPasswordDAccountName", resourceCulture);
+            }
+        }
     }
 }

@@ -243,4 +243,10 @@
   <data name="editsubacc" xml:space="preserve">
     <value>Edit Sub Account</value>
   </data>
+  <data name="lblPasswordCSample" xml:space="preserve">
+    <value>Your password must be different from sample password.</value>
+  </data>
+  <data name="lblPasswordDAccountName" xml:space="preserve">
+    <value>Your password must not contain your username or nickname.</value>
+  </data>
 </root>

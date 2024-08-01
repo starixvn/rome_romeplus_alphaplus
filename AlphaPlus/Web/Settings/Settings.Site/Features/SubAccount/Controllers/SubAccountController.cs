@@ -48,6 +48,16 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Controllers
                 return Json(new Result(1, Lang.lblNotAuthorized));
             }
 
+            if (string.Compare(subAccountRequest.Password, "59D7!4$h", true) == 0 || string.Compare(subAccountRequest.Password, "493abcDE", true) == 0)
+            {
+                return Json(new Result(1, Lang.lblPasswordCSample));
+            }
+
+            if (subAccountRequest.Password.Contains($"{subAccountRequest.Username}{subAccountRequest.First}{subAccountRequest.Next}", StringComparison.OrdinalIgnoreCase))
+            {
+                return Json(new Result(1, Lang.lblPasswordDAccountName));
+            }
+
             return Json(await mediator.Send(subAccountRequest));
         }
 

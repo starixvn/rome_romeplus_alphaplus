@@ -244,4 +244,10 @@
   <data name="editsubacc" xml:space="preserve">
     <value>修改子账号</value>
   </data>
+  <data name="lblPasswordCSample" xml:space="preserve">
+    <value>您的密码必须与示例密码不同。</value>
+  </data>
+  <data name="lblPasswordDAccountName" xml:space="preserve">
+    <value>您的密码不能包含您的用户名或昵称。</value>
+  </data>
 </root>
