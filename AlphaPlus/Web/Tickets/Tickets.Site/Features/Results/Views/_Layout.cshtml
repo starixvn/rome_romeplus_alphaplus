@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject AlphaPlus.Core.Models.IUserSession userSession
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -11,7 +12,7 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
-<body>
+<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
     <div id="page_main">
         <div class="container-fluid">
             <ul class="nav nav-tabs" role="tablist">
