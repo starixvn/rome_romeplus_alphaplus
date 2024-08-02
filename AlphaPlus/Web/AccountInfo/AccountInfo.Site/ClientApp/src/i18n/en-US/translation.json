@@ -59,5 +59,18 @@
     "Cancel": "Cancel",
     "InvalidValue": "The new bet credit is out of the available range.",
     "ThereIsNoChange": "There is no change to update.",
-    "UpdateGivenCreditSuccessfully": "Successfully updated Given Credit!"
+    "UpdateGivenCreditSuccessfully": "Successfully updated Given Credit!",
+    "DisplayLanguage": "Display Language",
+    "DisplayLanguageIntro": "Choose your preferred language for displaying pages.",
+    "PleaseSelectDisplayLanguage": "Please select display language",
+    "ProfilePicture": "Profile Picture",
+    "NotAuthorized": "You are not authorized on this function.",
+    "UploadFromYourDevice": "Upload from your device",
+    "OrChooseFromOurGallery": "or choose from our gallery",
+    "ViewAll": "View All",
+    "Reset": "Reset",
+    "ProfilePictureUpdatedSuccessfully": "Your profile picture has been uploaded successfully!",
+    "FailByFileType": "The uploading file is not a picture, please try again!",
+    "PictureLibrary": "Profile picture gallery",
+    "Select": "Select"
 }

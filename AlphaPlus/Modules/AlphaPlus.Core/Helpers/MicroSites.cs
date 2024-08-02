@@ -11,7 +11,7 @@ public static class MicroSites
         { "Message", FeatureUrl },
         { "ExTotalBetsForecast", TicketUrl },
         { "HowToUse", FeatureUrl },
-        { "AccountInfo", SettingUrl },
+        { "AccountInfo", AccountInfoUrl },
         { "ViewLog", SettingUrl },
         { "OldMain", SettingUrl },
         { "Settings", SettingUrl }
@@ -36,5 +36,5 @@ public static class MicroSites
         => AppPathHelper.GetAppPath("/settings", virtualPath);
 
     public static string AccountInfoUrl(string virtualPath = "~/")
-    => AppPathHelper.GetAppPath("/account-info", virtualPath);
+        => AppPathHelper.GetAppPath("/account-info", virtualPath);
 }

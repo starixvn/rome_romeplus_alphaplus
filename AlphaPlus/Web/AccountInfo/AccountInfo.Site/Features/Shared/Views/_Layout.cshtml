@@ -16,6 +16,8 @@
 <body>
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    <link rel="stylesheet" href="~/react-tippy.css" asp-append-version="true" />
+    <script type="module" src="~/react-tippy.js" asp-append-version="true"></script>
     <link rel="stylesheet" href="~/settings-service.css" asp-append-version="true" />
     <script type="module" src="~/settings-service.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)

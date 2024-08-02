@@ -316,3 +316,219 @@ hr {
         margin-left: 6px !important;
     }
 }
+
+.panel {
+    border: 1px solid transparent;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 5px 0;
+    background: none;
+    border-color: #dcdcdc;
+}
+
+.panel {
+    .panel-heading {
+        display: block;
+        height: 36px;
+        line-height: 30px;
+        padding: 0 6px;
+        border: none;
+        background-color: #f9f9f9;
+        color: #666;
+        font-weight: bold;
+        font-size: 13px;
+        cursor: pointer;
+        border-radius: 0;
+
+        &.open {
+            .panel-title {
+                &:before {
+                    transform: rotate(90deg);
+                }
+            }
+
+            + .panel-content {
+                display: block;
+            }
+        }
+
+        .panel-title {
+            padding: 0 20px;
+            position: relative;
+            background-color: #f9f9f9;
+            color: #666;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            height: 36px;
+            line-height: 36px;
+            text-transform: uppercase;
+
+            &:before {
+                position: absolute;
+                content: '';
+                top: 12px;
+                left: 4px;
+                transition: 0.35s;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 5px 0 5px 6px;
+                border-color: transparent transparent transparent #666666;
+            }
+        }
+    }
+
+    .panel-content {
+        display: none;
+        padding: 16px;
+        border-top: 1px solid #dcdcdc;
+        background-color: #fff;
+    }
+}
+
+.icon-flag {
+    &::before {
+        width: 24px;
+        height: 16px;
+        margin-right: 10px;
+        background-size: 48px 54px;
+    }
+
+    &.langFlag-en-us {
+        &::before {
+            background-position: -24px -38px;
+        }
+    }
+
+    &.langFlag-zh-tw {
+        &::before {
+            background-position: 0 -18px;
+        }
+    }
+
+    &.langFlag-zh-cn {
+        &::before {
+            background-position: 0 -18px;
+        }
+    }
+
+    &.langFlag-ja-jp {
+        &::before {
+            background-position: 0 -1px;
+        }
+    }
+
+    &.langFlag-th-th {
+        &::before {
+            background-position: -24px -19px;
+        }
+    }
+
+    &.langFlag-ko-kr {
+        &::before {
+            background-position: -24px 0;
+        }
+    }
+
+    &.langFlag-vi-vn {
+        &::before {
+            background-position: 0 -38px;
+        }
+    }
+}
+
+.select-modal {
+    .header {
+        border-bottom: 1px solid #d3d3d3;
+        position: relative;
+        color: #545454;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 12px;
+
+        .icon-close {
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+            font-size: 18px;
+            width: 36px;
+            text-align: center;
+            padding: 12px 0;
+            cursor: pointer;
+        }
+    }
+
+    .btn-select {
+        margin: 12px 12px 4px 0px;
+        height: 32px;
+        background-color: #66151a;
+        color: #fff;
+        border: none;
+        width: 72px;
+    }
+
+    .btn-cancel {
+        height: 30px;
+    }
+}
+
+.crop-image {
+    height: 100%;
+
+    .img-container {
+        margin: 0 12px;
+    }
+
+    .ReactCrop {
+        margin-top: 10px;
+        height: calc(100% - 122px);
+        display: block;
+        background: #fff;
+        left: 50%;
+        top: 0%;
+        -webkit-transform: translate(-50%, 0%);
+        transform: translate(-50%, 0%);
+
+        > div {
+            height: 100%;
+        }
+
+        .ReactCrop__image {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .ReactCrop__drag-handle {
+        width: 120px !important;
+        height: 120px !important;
+        background-color: inherit !important;
+        border: none !important;
+    }
+
+    .ord-sw {
+        margin-bottom: -40px !important;
+        margin-left: -40px !important;
+    }
+
+    .ord-se {
+        margin-bottom: -40px !important;
+        margin-right: -40px !important;
+    }
+
+    .ord-nw {
+        margin-top: -40px !important;
+        margin-left: -40px !important;
+    }
+
+    .ord-ne {
+        margin-top: -40px !important;
+        margin-right: -40px !important;
+    }
+
+    .select-image {
+        margin: 20px 0 20px 0;
+    }
+}

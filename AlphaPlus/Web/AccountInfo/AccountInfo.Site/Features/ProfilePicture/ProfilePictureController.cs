@@ -13,12 +13,11 @@ namespace AlphaPlus.AccountInfo.Site.Features.ProfilePicture
         public Task<ActionResult> Index(ProfilePictureQuery message)
             => View(message);
 
-        [HttpPost]
         public Task<ActionResult> GetPictureLibrary(ProfilePictureLibraryQuery message)
             => Json(message);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public Task<ActionResult> UpdateActorProfilePicture(UpdateActorProfilePictureRequest query)
+        public Task<ActionResult> UpdateActorProfilePicture([FromBody] UpdateActorProfilePictureRequest query)
             => Json(query);
     }
 }

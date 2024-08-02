@@ -1,3 +1,5 @@
+import { ProfilePictureModel } from './components/ProfilePicture/type';
+
 export const UserLevel = {
     Super: 4,
     Master: 3,
@@ -12,7 +14,7 @@ interface Params {
     showLoginInfo: boolean;
 }
 
-interface GivenCreditParam {
+interface GivenCreditParams {
     searchAccountName: string;
     searchAccountId: number;
     searchAccountRoleId: number;
@@ -23,15 +25,26 @@ interface GivenCreditParam {
     availableCredit: number;
 }
 
+interface ProfilePictureParams {
+    displayLanguage?: string;
+    allowUpdate: boolean;
+    languages: { [key: string]: string };
+    allowUpdateDisplayLanguage: boolean;
+    imageList: ProfilePictureModel[];
+}
+
 declare global {
     const params: Params;
-    const givenCreditParams: GivenCreditParam;
+    const givenCreditParams: GivenCreditParams;
+    const profilePictureParams: ProfilePictureParams;
     interface Window {
         alpha: {
             urls: { [key: string]: string };
             core: any;
+            isScreenLower768: boolean;
         };
         $: JQueryStatic;
+        headerNav: any;
         ageWnd: any;
         bootboxConfirm: any;
         confirmPopupPopup: any;

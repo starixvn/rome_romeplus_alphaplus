@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { GetPictureLibraryResponse } from '../components/ProfilePicture/type';
 import Customer from '../models/customer';
 import CustomerStatus from '../models/customer-status';
 import DownlineListResponse from '../models/DownlineListReponse';
@@ -89,6 +90,24 @@ const SettingsService = {
                     RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
                 }
             })
+            .then((response) => response.data);
+    },
+    GetPictureLibrary: async (currentPage = 1) => {
+        return axiosInstance
+            .get<GetPictureLibraryResponse>(`ProfilePicture/GetPictureLibrary?currentPage=${currentPage}`)
+            .then((response) => response.data);
+    },
+    UpdateProfilePicture: async (imageId: number, image: string | null) => {
+        return axiosInstance
+            .post<Result>(
+                `ProfilePicture/UpdateActorProfilePicture`,
+                { imageId, image },
+                {
+                    headers: {
+                        RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
+                    }
+                }
+            )
             .then((response) => response.data);
     }
 };

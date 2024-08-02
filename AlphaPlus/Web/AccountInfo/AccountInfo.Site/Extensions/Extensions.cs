@@ -1,3 +1,4 @@
+using AlphaPlus.AccountInfo.Site.Features.ProfilePicture;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
@@ -35,7 +36,7 @@ namespace AlphaPlus.AccountInfo.Site.Extensions
 
             services.AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>();
             services.AddHttpClient<ISearchAccountService, SearchAccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUri")));
-
+            services.AddSingleton<IProfilePictureService, ProfilePictureService>();
 
             services.Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode));
 

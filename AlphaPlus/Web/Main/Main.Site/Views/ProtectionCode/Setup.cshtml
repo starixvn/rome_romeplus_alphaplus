@@ -22,13 +22,13 @@
         </li>
         @if (Model.EnableSecurityCode)
         {
-                <li role="presentation" id="securityCodeNav">
-                    <a href="@MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode")" role="tab"
-                        data-toggle="tab">@Security.SecurityCode</a>
-                </li>
+            <li role="presentation" id="securityCodeNav">
+                <a href="@MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode")" role="tab"
+                    data-toggle="tab">@Security.SecurityCode</a>
+            </li>
         }
         <li role="presentation">
-            <a href="@MicroSites.SettingUrl($"~/ProfilePicture/")">@Resources.EditProfilePicture</a>
+            <a href="@MicroSites.AccountInfoUrl($"~/ProfilePicture/")">@Resources.EditProfilePicture</a>
         </li>
         <li role="presentation">
             @Html.ActionLink("OTP", "SetUpOtp", "OTP")
@@ -50,26 +50,26 @@
             }))
             {
                 @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        <label for="txt-newProtectionCode">@Resources.NewProtectionCode</label>
-                        <input type="text" autocomplete="off" maxlength="30" class="txt form-control"
-                            id="txt-newProtectionCode" />
-                        <i class="validation"></i>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtConfirmProtectionCode">@Resources.ConfirmProtectionCode</label>
-                        <input type="text" autocomplete="off" maxlength="30" class="txt form-control"
-                            id="txt-confirmProtectionCode" />
-                        <i class="validation"></i>
-                    </div>
-                    <div class="form-group">
-                        <label><input type="checkbox" id="chk-showProtectionCode" /> @Resources.ShowProtectionCode</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="@(Model.IsExistedProtectionCode ? Resources.Update : Resources.Create)"
-                            class="btn-submit" />
-                        <input type="reset" value="@Security.Reset" id="btn-reset" />
-                    </div>
+                <div class="form-group">
+                    <label for="txt-newProtectionCode">@Resources.NewProtectionCode</label>
+                    <input type="text" autocomplete="off" maxlength="30" class="txt form-control"
+                        id="txt-newProtectionCode" />
+                    <i class="validation"></i>
+                </div>
+                <div class="form-group">
+                    <label for="txtConfirmProtectionCode">@Resources.ConfirmProtectionCode</label>
+                    <input type="text" autocomplete="off" maxlength="30" class="txt form-control"
+                        id="txt-confirmProtectionCode" />
+                    <i class="validation"></i>
+                </div>
+                <div class="form-group">
+                    <label><input type="checkbox" id="chk-showProtectionCode" /> @Resources.ShowProtectionCode</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="@(Model.IsExistedProtectionCode ? Resources.Update : Resources.Create)"
+                        class="btn-submit" />
+                    <input type="reset" value="@Security.Reset" id="btn-reset" />
+                </div>
             }
             <div class="rules">
                 <p><span class="note-red">*</span> @Resources.ProtectionCodeRule</p>

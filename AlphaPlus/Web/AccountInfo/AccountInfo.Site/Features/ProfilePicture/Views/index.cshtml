@@ -1,0 +1,58 @@
+@using System.Text.Json;
+@using AlphaPlus.Shared.AppResources.Main;
+@model AlphaPlus.AccountInfo.Site.Features.ProfilePicture.Get.ProfilePictureViewModel
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/common/common-{Model.ActorLevel}")
+    <link rel="stylesheet" href="~/profilePicture.css" asp-append-version="true" />
+}
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+        <a href="@MicroSites.MainUrl("~/Password/ChangePassword")" role="tab" data-toggle="tab">@Resources.password</a>
+    </li>
+    @if (Model.EnableSecurityCode)
+    {
+        <li role="presentation" id="securityCodeNav">
+            <a href="@MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode")" role="tab"
+                data-toggle="tab">@Security.SecurityCode</a>
+        </li>
+    }
+    <li role="presentation" class="active">
+        <a role="tab" data-toggle="tab">@Resources.EditProfilePicture</a>
+    </li>
+    <li role="presentation" id="otpNav">
+        <a href="@MicroSites.MainUrl("~/Otp/SetupOtp")" role="tab" data-toggle="tab">OTP</a>
+    </li>
+    @if (Model.IsOfferProtectedMode)
+    {
+        <li role="presentation">
+            @Html.ActionLink(Resources.ProtectionCode, "Setup", "ProtectionCode")
+        </li>
+    }
+</ul>
+@Html.AntiForgeryToken()
+<div class="tab-content" id="root">
+</div>
+@section Scripts {
+    <script type="module" src="~/profilePicture.js" asp-append-version="true"></script>
+    @* <script type="text/javascript">
+const profilePictureParams = {
+allowUpdateDisplayLanguage: JSON.parse('@Model.AllowUpdateDisplayLanguage'.toLowerCase()),
+allowUpdate: JSON.parse('@Model.AllowUpdate'.toLowerCase()),
+displayLanguage: '@Model.DisplayLanguage',
+languages: @Html.Raw(JsonSerializer.Serialize(Model.Languages)),
+imageList: @Html.Raw(JsonSerializer.Serialize(Model.Images))
+};
+</script>
+<script type="module">
+import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => { }
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+<script type="module" src=@("http://localhost:5173/@vite/client")></script>
+<script type="module" src="http://localhost:5173/src/profile-picture.tsx"></script> *@
+}
