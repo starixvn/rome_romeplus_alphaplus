@@ -6,7 +6,7 @@ namespace AlphaPlus.Main.Site.Features.Account;
 
 public interface IAccountService
 {
-    Task<bool> AfterSignIn(SignInParam param);
+    Task<SignInResult> AfterSignIn(SignInParam param);
 
     Task CheckIn();
 
@@ -56,7 +56,7 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
         response.EnsureSuccessStatusCode();
     }
 
-    public async Task<bool> AfterSignIn(SignInParam param)
+    public async Task<SignInResult> AfterSignIn(SignInParam param)
     {
         var result = await client.PostAsJsonAsync<SignInResult>("api/auth/after", new
         {
@@ -78,13 +78,13 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
 
         if (result.IsFailed)
         {
-            return false;
+            return result;
         }
 
         userSessionService.SetUserSessionValues(result);
 
         session.UserLoginIp = param.RequestInfo.LoginIp;
 
-        return true;
+        return result;
     }
 }

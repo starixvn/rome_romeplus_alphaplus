@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Web.Models;
-using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -36,8 +35,10 @@ public class AccountController(
     public IActionResult Login(string r)
     {
         var domains = configuration.GetSection("DomainMappings").Get<DomainMapping[]>();
-        var loginUrl = domains.FirstOrDefault(domain => AlphaContext.Current.Request.Headers["Host"].Contains(domain.After, StringComparer.OrdinalIgnoreCase));
-        return Redirect($"{loginUrl.Before}?r={r}");
+        var loginUrl = domains.FirstOrDefault(domain => Request.Headers["Host"].Contains(domain.After, StringComparer.OrdinalIgnoreCase));
+        var loginResultMessage = string.IsNullOrWhiteSpace(r) ? string.Empty : $"?r={r}";
+
+        return Redirect($"{loginUrl.Before}{loginResultMessage}");
     }
 
     [Authorize]
@@ -83,7 +84,7 @@ public class AccountController(
     {
         var param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey));
         var requestInfo = await deviceHelper.GetRequestInfo();
-        var isSignedIn = await accountService.AfterSignIn(new SignInParam
+        var signInResult = await accountService.AfterSignIn(new SignInParam
         {
             CustId = param.CustId,
             Password = aesService.Decrypt(param.EncryptPassword, param.EncryptCode),
@@ -95,7 +96,7 @@ public class AccountController(
             RequestInfo = requestInfo
         });
 
-        if (isSignedIn)
+        if (signInResult.IsSuccessful)
         {
             if (!options.DisabledCheckDuplicationLogin)
             {
@@ -110,7 +111,7 @@ public class AccountController(
             return RedirectToAction("Redirect", "Default");
         }
 
-        return Ok();
+        return Login(signInResult.Message);
     }
 }
 
