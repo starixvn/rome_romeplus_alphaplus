@@ -31,6 +31,9 @@
             {
                 "RoleId": 2,
                 "Name": "Agent",
+                "DeniedPages": [
+                    "DormantAccount"
+                ],
                 "PageAccesses": [
                     {
                         "Url": "SubAccount/UpdateSubAccountPageAccess",
@@ -49,7 +52,361 @@
                         "Permission": "[A],[B],[H]",
                         "IsCheckBelonging": true,
                         "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CashBalanceTransfer/CashBalance",
+                        "Permission": "[C]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "TransferAllAndClearCredit",
+                        "Permission": "[C]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MultipleTransfer",
+                        "Permission": "[C]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "AutoTransfer",
+                        "Permission": "[C]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CreditBalance",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "WinLossLimit",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "QRCodeMemberSignIn",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "QRCodeMemberSignIn/CreateAccount",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "QRCodeMemberSignIn/ShowQRCode",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "QRCodeMemberSignIn/GenerateQrCode",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/Index",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/GetCustomerListData",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/GetCustomerAllStatus",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/MultipleEditPopup",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/Member",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/Agent",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/Master",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/Super",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/MultipleDoubleComm",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "CustomerList/UpdateMultipleDoubleComm",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "ReachedThreshold",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "ReachedThreshold/GetReachlistThreshold",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "ReachedThreshold/ReachHistoryIndex",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "ReachedThreshold/GetReachHistoryList",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "ReachedThreshold/Excel",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/GetWatchlistAccounts",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/AddPersonalThreshold",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/UpdateMultiplePersonalThreshold",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/DeleteMultiplePersonalThreshold",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/UpdateGlobalThreshold",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/AddMultiplePersonalPreset",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/UpdatePersonalPreset",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/DeletePersonalPreset",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/ManageWatchlistAccounts",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/ManageGlobalThreshold",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyWatchlistAccounts/ManagePersonalThresholdPreset",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyThresholds",
+                        "Permission": "[A],[B],[H]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "MyThresholds/UpdateSettings",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/Create",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/Update",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "Customer/EditCustomer",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "Customer/EditMultiple",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "Customer/UpdateMultipleCustomers",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "Customer/GetPTSettingInformation",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/GetProductCategories",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/GetCommissionHint",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/GetCurrentWinLossAmount",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "ProblemAccount/ConfirmAddToWatchlist",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "ProblemAccount/GetProblemAccounts",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "CopyAccount",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "CreateAccount",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "PTTemplate",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "PositionTaking",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Commission",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
                     }
+                ]
+            },
+            {
+                "RoleId": 3,
+                "Name": "Master",
+                "DeniedPages": [
+                    "QRCodeMemberSignIn",
+                    "ReachedThreshold",
+                    "MyWatchlistAccounts"
+                ],
+                "PageAccesses": [
+                    {
+                        "Url": "DormantAccount",
+                        "Permission": "[H]"
+                    }
+                ]
+            },
+            {
+                "RoleId": 4,
+                "Name": "Super",
+                "DeniedPages": [
+                    "QRCodeMemberSignIn",
+                    "ReachedThreshold",
+                    "MyWatchlistAccounts"
                 ]
             }
         ]
