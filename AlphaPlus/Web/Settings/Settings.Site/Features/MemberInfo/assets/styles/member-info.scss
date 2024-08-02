@@ -157,6 +157,9 @@ input[type='button'][disabled] {
             label{
                 display: block;
             }
+            .btn{
+                text-transform: none;
+            }
         }
         a{
             text-decoration: none;

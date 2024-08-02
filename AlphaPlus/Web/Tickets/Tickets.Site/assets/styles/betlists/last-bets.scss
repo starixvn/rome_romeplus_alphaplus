@@ -1,4 +1,32 @@
-﻿.page-section {
+﻿
+:root,
+:root [data-theme='light'] {
+    --lb-stake-color: #f00;
+    --lb-btn-countdown-bg: #eee;
+    --lb-btn-countdown-bg-hover: #e1e1e1;
+    --lb-btn-countdown-border: none;
+    --lb-btn-countdown-color: #212121;
+
+    --lb-pager-color: #1254fb;
+    --lb-pager-bg: #eff5fc;
+    --lb-pager-bg-hover: #cce4fc;
+    --lb-pager-border: #84aaf8;
+}
+:root [data-theme='dark'] {
+    --lb-stake-color: #ff4f50;
+    --lb-btn-countdown-bg: #171717;
+    --lb-btn-countdown-bg-hover: #3c3c3c;
+    --lb-btn-countdown-border: 1px solid #292929;
+    --lb-btn-countdown-color: #ededed;
+
+    --lb-pager-color: #171717;
+    --lb-pager-bg: #868686;
+    --lb-pager-bg-hover: #ededed;
+    --lb-pager-border: #868686;
+
+}
+
+.page-section {
     text-align: center;
     position: relative;
     display: inline-block;
@@ -15,9 +43,9 @@
     display: inline;
     padding: 3px 4px 2px;
     cursor: pointer;
-    background: #eff5fc;
-    color: #1254fb;
-    border: 1px solid #84aaf8;
+    background: var(--lb-pager-bg);
+    color: var(--lb-pager-color);
+    border: 1px solid var(--lb-pager-border);
     font-size: 11px;
     margin-right: 3px;
     letter-spacing: 0.05px;
@@ -25,7 +53,7 @@
     &.active,
     &:hover {
         font-weight: bold;
-        background: #cce4fc;
+        background: var(--lb-pager-bg-hover);
         letter-spacing: 0;
     }
 }
@@ -111,7 +139,7 @@ input:checked + .switch .slider:after {
 }
 
 .stake {
-    color: #f00;
+    color: var(--lb-stake-color);
 }
 // button refresh
 .btn-turn-off-on {
@@ -120,8 +148,9 @@ input:checked + .switch .slider:after {
     margin: 8px 5px;
 }
 .btn.btn-countdown {
-    background-color: #eee;
-    color: #212121;
+    background-color: var(--lb-btn-countdown-bg);
+    color: var(--lb-btn-countdown-color);
+    border: var(--lb-btn-countdown-border);
     padding: 4px 4px 3px 8px;
     font-size: 13px;
     min-width: 95px;
@@ -131,12 +160,12 @@ input:checked + .switch .slider:after {
     &:focus,
     &:active {
         box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-        color: #212121;
+        background-color: var(--lb-btn-countdown-bg-hover);
         outline: none;
     }
 
     &:hover {
-        background-color: #e1e1e1;
+        background-color: var(--lb-btn-countdown-bg-hover);
     }
 
     .icon-refresh,
@@ -156,7 +185,7 @@ input:checked + .switch .slider:after {
             font-family: 'Iconalpha';
             font-size: 20px;
             position: relative;
-            color: #212121;
+            color: var(--lb-btn-countdown-color);
             font-weight: normal;
         }
 
