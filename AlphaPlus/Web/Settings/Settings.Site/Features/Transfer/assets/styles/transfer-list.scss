@@ -18,6 +18,9 @@
     --transfer-warning-highlight-color: #9d1c1c;
     --transfer-warning-highlight-bg: #f8eb95;
 
+    --transfer-transfer-link: #045ace;
+    --transfer-favorite-transfer-link: #b50000;
+
     
 }
 :root [data-theme='dark'] {
@@ -34,6 +37,9 @@
     --transfer-warning-color: #ff4f50;
     --transfer-warning-highlight-color: #ff4f50;
     --transfer-warning-highlight-bg: #36362e;
+
+    --transfer-transfer-link: #41a4ff;
+    --transfer-favorite-transfer-link: #ff4f50;
 }
 
 %icon {
@@ -349,7 +355,9 @@
 .closed-byArchive {
     background-color: var(--transfer-status-closedby-archive);
 }
-
+a.transfer-link{
+    color: var(--transfer-transfer-link);
+}
 .favorite a.transfer-link{
-    color: #b50000;
+    color: var(--transfer-favorite-transfer-link);
 }
