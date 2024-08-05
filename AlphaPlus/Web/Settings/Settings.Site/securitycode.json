@@ -27,7 +27,8 @@
             "updateMultipleSetting",
             "Customer/Create",
             "Customer/EditCustomer",
-            "Customer/EditMultiple"
+            "Customer/EditMultiple",
+            "SearchAccount/GivenCredit"
         ],
         "BetListsPaths": [],
         "StatementPaths": [],
