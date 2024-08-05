@@ -1,8 +1,4 @@
-﻿$(document).ready(function () {
-    viewPTManagement.initPage();
-});
-
-var ViewPTManagement = function () {
+﻿var ViewPTManagement = function () {
     var self = this;
     self.domElements = {
         boxHeader: null,
@@ -531,7 +527,7 @@ var ViewPTManagement = function () {
                 custId: custId,
                 roleId: 1,
                 uplineRoleId: self.positionTakingInfo.customerInfo.roleId,
-                lng: self.positionTakingInfo.language,
+                lng: window.language,
                 isDarkMode: window.isDarkMode
             });
             top.popupManager.open(top.alpha.urls.memberInfoRootPath + "Customer/EditCustomer?" + payload, title, popupWidth);
@@ -631,10 +627,11 @@ function correctCheckValueOnDropdown(dropdownId) {
     }
 }
 
-window.top.successfulUpdatingCallback = function (isPartialUpdate, isMultipleUpdate) {
+window.top.successfulUpdatingCallback = function () {
     window.top.reloadPopUpSetting();
 };
 
 $(document).ready(function () {
+    viewPTManagement.initPage();
     correctCheckValueOnDropdown("dropdown-product");
 });

@@ -38,7 +38,7 @@ public class AccountController(
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
         var loginResultMessage = string.IsNullOrWhiteSpace(r) ? string.Empty : $"?r={r}";
 
-        return Redirect($"http://{loginUrl.Before}{loginResultMessage}");
+        return Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
     }
 
     [Authorize]

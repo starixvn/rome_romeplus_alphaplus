@@ -60,6 +60,7 @@
         <script type="text/javascript">
             window.isDarkMode = @(string.IsNullOrWhiteSpace(darkModeName) ? "false" : "true");
             window.rootUrl = '/settings';
+            window.language = '@UserSession.Current.Language';
             
             var viewResources = {
                 Page_Size: '@CustomerListResources.PageSize',
