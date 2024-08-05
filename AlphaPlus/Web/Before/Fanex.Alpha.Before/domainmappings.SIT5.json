@@ -1,8 +1,16 @@
 {
     "DomainMappings": [
         {
-            "Before": "mbc.playthefun.com",
-            "After": "http://mb10.playthefun.com/ex-main/"
+            "Before": "7a5.playonesit.com",
+            "After": "http://tmb.playonesit.com/ex-main/"
+        },
+        {
+            "Before": "bf14.playonesit.com",
+            "After": "http://mb14.playonesit.com/ex-main/"
+        },
+        {
+            "Before": "bf15.playonesit.com",
+            "After": "http://mb15.playonesit.com/ex-main/"
         }
     ]
 }

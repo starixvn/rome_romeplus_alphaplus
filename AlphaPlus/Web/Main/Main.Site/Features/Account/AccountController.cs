@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using AlphaPlus.Web.Models;
+using AlphaPlus.Main.Site.Helpers;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -32,13 +32,13 @@ public class AccountController(
 
     private const string SecretKey = "!@#$";
 
-    public IActionResult Login(string r)
+    public IActionResult Login(string r = null)
     {
-        var domains = configuration.GetSection("DomainMappings").Get<DomainMapping[]>();
-        var loginUrl = domains.FirstOrDefault(domain => Request.Headers["Host"].Contains(domain.After, StringComparer.OrdinalIgnoreCase));
+        var domains = DomainsHelper.DomainMappings;
+        var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
         var loginResultMessage = string.IsNullOrWhiteSpace(r) ? string.Empty : $"?r={r}";
 
-        return Redirect($"{loginUrl.Before}{loginResultMessage}");
+        return Redirect($"http://{loginUrl.Before}{loginResultMessage}");
     }
 
     [Authorize]
