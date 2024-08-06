@@ -59,6 +59,7 @@ public class ManageFilterBetsHandler(
             message.SubAccId,
             message.FilterName,
             message.IsDefault,
+            message.IsNotify,
             unsavedFilterParam.BetType,
             unsavedFilterParam.Stake,
             unsavedFilterParam.Sports,
@@ -72,7 +73,7 @@ public class ManageFilterBetsHandler(
             unsavedFilterParam.IP,
             message.Site));
 
-        if (result.ErrCode == 0)
+        if (result.Code == 0)
         {
             user.SetUnsavedFilter(message.ViewerId, message.SubAccId, null);
         }
@@ -86,6 +87,7 @@ public class ManageFilterBetsHandler(
         message.SubAccId,
         message.FilterName,
         message.IsDefault,
+        message.IsNotify,
         CheckIdList(message.BetType),
         message.Stake,
         message.Sports,
@@ -120,6 +122,7 @@ public class ManageFilterBetsHandler(
         message.FilterId,
         message.FilterName,
         message.IsDefault,
+        message.IsNotify,
         message.LanguageKey,
         message.IP,
         message.Site));

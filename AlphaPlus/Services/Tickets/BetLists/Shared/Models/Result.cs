@@ -1,3 +1,3 @@
 namespace AlphaPlus.BetLists.Shared.Models;
 
-public record Result(int ErrCode = 0, string ErrMsg = "");
+public record Result(int Code = 0, string Message = "");

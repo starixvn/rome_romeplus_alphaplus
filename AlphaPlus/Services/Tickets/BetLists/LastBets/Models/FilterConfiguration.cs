@@ -12,6 +12,8 @@ public class FilterConfiguration
 
     public bool IsDefault { get; init; }
 
+    public bool IsNotify { get; set; }
+
     public DateTime CreatedDate { get; init; }
 
     public string WatchList { get; init; }

@@ -2752,5 +2752,60 @@ namespace AlphaPlus.Shared.AppResources.Betlist.Services
                 return ResourceManager.GetString("SelectNone", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Notify via Telegram when new tickets match your filters.
+        /// </summary>
+        public static string NotifyLastBetsViaTelegram
+        {
+            get
+            {
+                return ResourceManager.GetString("NotifyLastBetsViaTelegram", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Notification.
+        /// </summary>
+        public static string Notification
+        {
+            get
+            {
+                return ResourceManager.GetString("Notification", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to disable notifications of this filter via Telegram?.
+        /// </summary>
+        public static string ConfirmTurnOffNotification
+        {
+            get
+            {
+                return ResourceManager.GetString("ConfirmTurnOffNotification", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to enable notifications of this filter via Telegram? Note: The maximum number of notification filters is 3.
+        /// </summary>
+        public static string ConfirmTurnOnNotification
+        {
+            get
+            {
+                return ResourceManager.GetString("ConfirmTurnOnNotification", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Chatbot &amp; Last Bets Notification to use Last Bets Notification feature. &lt;a class="lnk-chatbot"&gt;Go to Chatbot&lt;/a&gt;.
+        /// </summary>
+        public static string EnableChatBot_LastBets
+        {
+            get
+            {
+                return ResourceManager.GetString("EnableChatBot_LastBets", resourceCulture);
+            }
+        }
     }
 }

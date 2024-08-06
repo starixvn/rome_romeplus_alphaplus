@@ -96,7 +96,83 @@ class ManageFiltersView {
         $(`#span-filter-name-${filterId}`).addClass('hide');
         const filterName = $(`#input-filter-name-${filterId}`).removeClass('hide').val();
         const isDefault = $(`#radio-default-${filterId}`).prop('disabled', false).is(':checked');
-        this.originalData = { filterId, filterName, isDefault };
+        const isNotify = $(`#div-notify-${filterId}`).hasClass('ic-notification');
+        $(`#radio-default-${filterId}`).prop('disabled', false);
+        this.originalData = { filterId, filterName, isDefault, isNotify };
+    }
+
+    private handleOnClickDivNotify(e, radioDefaultFilter) {
+        const divNotify = $(e.target);
+        const filterId = divNotify.closest('tr').data('filterid');
+        const isNotify = $(`#div-notify-${filterId}`).hasClass('ic-notification');
+        const message = isNotify
+            ? $('#hidden-confirmTurnOffNotification').val()
+            : $('#hidden-confirmTurnOnNotification').val();
+
+        window.top.bootboxConfirm(message, undefined, () => {
+            const filterNameElement = $(`#input-filter-name-${filterId}`);
+            const filterName = $.trim(filterNameElement.val());
+            if (!filterName) {
+                TipsyHelper.showError(filterNameElement, $('#hidden-filterNameRequiredError').val());
+                return;
+            }
+
+            const isDefault = $(`#radio-default-${filterId}`).is(':checked');
+            this.originalData = { filterId, filterName, isDefault, isNotify: !isNotify };
+            this.handleOnClickIconClose(divNotify.closest('tr').find('.ic-close'), radioDefaultFilter);
+
+            const formData = {
+                filterId,
+                filterName,
+                isDefault: isDefault,
+                isNotify: !isNotify
+            };
+
+            AJAXHelper.post('UpdateFilter', formData, (result) => {
+                this.inlineMessageComponent.show(result.Message, result.Code);
+                this.originalData.isNotify = isNotify;
+                if (result.Code) {
+                    divNotify.removeClass('ic-notification').removeClass('ic-notification-off');
+                    divNotify.addClass(this.originalData.isNotify ? 'ic-notification' : 'ic-notification-off');
+                    $('.lnk-chatbot')
+                        .css('cursor', 'pointer')
+                        .click(() => {
+                            location.href = $('#hidden-chatbotUrl').val();
+                        });
+                } else {
+                    Common.Utils.ReloadPageAfterTimeout();
+                }
+            });
+        });
+    }
+
+    private handleOnClickRadioDefault(e, radioDefaultFilter) {
+        const radioDefault = $(e.target);
+
+        const filterId = radioDefault.closest('tr').data('filterid');
+        const filterNameElement = $(`#input-filter-name-${filterId}`);
+        const filterName = $.trim(filterNameElement.val());
+        if (!filterName) {
+            TipsyHelper.showError(filterNameElement, $('#hidden-filterNameRequiredError').val());
+            return;
+        }
+
+        const isDefault = $(`#radio-default-${filterId}`).is(':checked');
+        const isNotify = $(`#div-notify-${filterId}`).hasClass('ic-notification');
+        this.originalData = { filterId, filterName, isDefault, isNotify };
+        this.handleOnClickIconClose(radioDefault.closest('tr').find('.ic-close'), radioDefault);
+
+        const formData = {
+            filterId,
+            filterName,
+            isDefault: $(`#radio-default-${filterId}`).is(':checked'),
+            isNotify: isNotify
+        };
+
+        AJAXHelper.post('UpdateFilter', formData, (result) => {
+            this.inlineMessageComponent.show(result);
+            result.Code || Common.Utils.ReloadPageAfterTimeout();
+        });
     }
 
     private handleOnClickIconDelete(e) {
@@ -123,7 +199,7 @@ class ManageFiltersView {
                 const errors = [];
 
                 results.forEach(function (item) {
-                    item.ErrCode && errors.push(item.ErrMsg);
+                    item.Code && errors.push(item.Message);
                 });
 
                 if (errors.length) {
@@ -133,7 +209,7 @@ class ManageFiltersView {
                     Common.Utils.ReloadPageAfterTimeout();
                 }
             } else {
-                this.inlineMessageComponent.showError(results.ErrMsg);
+                this.inlineMessageComponent.showError(results.Message);
             }
         });
     }
@@ -153,20 +229,22 @@ class ManageFiltersView {
         const formData = {
             filterId,
             filterName,
-            isDefault: $(`#radio-default-${filterId}`).is(':checked')
+            isDefault: $(`#radio-default-${filterId}`).is(':checked'),
+            isNotify: $(`#div-notify-${filterId}`).hasClass('ic-notification')
         };
 
         if (
             this.originalData.filterId === formData.filterId &&
             this.originalData.filterName === formData.filterName &&
-            this.originalData.isDefault === formData.isDefault
+            this.originalData.isDefault === formData.isDefault &&
+            this.originalData.isNotify === formData.isNotify
         ) {
             this.inlineMessageComponent.showError($('#hidden-noChangeToUpdate').val());
         } else {
             const url = AJAXHelper.buildURL('MonitoringBets/UpdateFilter');
             AJAXHelper.post(url, formData, (result) => {
                 this.inlineMessageComponent.show(result);
-                result.ErrCode || Common.Utils.ReloadPageAfterTimeout();
+                result.Code || Common.Utils.ReloadPageAfterTimeout();
             });
         }
     }
@@ -180,6 +258,10 @@ class ManageFiltersView {
         const filterName = $(`#span-filter-name-${filterId}`).removeClass('hide').text();
         $(`#input-filter-name-${filterId}`).addClass('hide').val(filterName);
         $(`#radio-default-${filterId}`).prop('disabled', true);
+
+        const divNotify = $(`#div-notify-${filterId}`);
+        divNotify.removeClass('ic-notification').removeClass('ic-notification-off');
+        divNotify.addClass(this.originalData.isNotify ? 'ic-notification' : 'ic-notification-off');
 
         // reset UI to original data
         radioDefaultFilter.prop('checked', true);

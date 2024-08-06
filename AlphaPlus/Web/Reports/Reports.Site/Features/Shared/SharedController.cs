@@ -27,7 +27,7 @@ public class SharedController(Fanex.Logging.ILogger logger) : Controller
             await logger.ErrorAsync(await ExceptionHelper.BuildError(HttpContext.Request, exception, exceptionHandlerFeature.Path));
         }
 
-        return Redirect(MicroSites.MainUrl("~/error/index"));
+        return Redirect($"{MicroSites.MainUrl("~")}/error/index");
     }
 
     public IActionResult InvalidReport() => View();

@@ -6,6 +6,7 @@ public record AddFilterParam(
     int SubAccId,
     string FilterName,
     bool IsDefault,
+    bool IsNotify,
     string BetType,
     int Stake,
     SportXml[] Sports,
@@ -17,4 +18,4 @@ public record AddFilterParam(
     byte FilterByMembers,
     string LanguageKey,
     string IP,
-    string SiteName) : UpdateFilterParam(CustId, SubAccId, 0, FilterName, IsDefault, LanguageKey, IP, SiteName);
+    string SiteName) : UpdateFilterParam(CustId, SubAccId, 0, FilterName, IsDefault, IsNotify, LanguageKey, IP, SiteName);

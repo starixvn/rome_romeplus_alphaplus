@@ -7,6 +7,7 @@ internal class AddFilterCommand(
     int subAccId,
     string filterName,
     bool isDefault,
+    bool isNotify,
     string betType,
     int stake,
     string sportTypeListXml,
@@ -24,6 +25,8 @@ internal class AddFilterCommand(
     public string FilterName { get; } = filterName;
 
     public bool IsDefault { get; } = isDefault;
+
+    public bool IsNotify { get; } = isNotify;
 
     public string BetType { get; } = betType;
 

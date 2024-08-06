@@ -7,6 +7,7 @@ public record UpdateFilterParam(
     int FilterId,
     string FilterName,
     bool IsDefault,
+    bool IsNotify,
     string LanguageKey,
     string IP,
     string SiteName) : DeleteFilterParam(CustId, SubAccId, FilterId, LanguageKey, IP, SiteName);

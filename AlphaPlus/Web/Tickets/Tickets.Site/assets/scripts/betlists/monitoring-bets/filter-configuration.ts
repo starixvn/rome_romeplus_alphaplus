@@ -13,6 +13,7 @@ class FilterConfigurationView {
     private inlineMessagePopup: InlineMessageComponent;
     private filterNameInput: JQuery;
     private isDefaultCheckbox: JQuery;
+    private isNotifyCheckbox: JQuery;
 
     private addFilterFormData: any;
 
@@ -109,12 +110,14 @@ class FilterConfigurationView {
         const saveFilterPopup = $('#save-filter-popup');
         this.filterNameInput = saveFilterPopup.find('#txt-filterName');
         this.isDefaultCheckbox = saveFilterPopup.find('#chk-isDefault');
+        this.isNotifyCheckbox = saveFilterPopup.find('#chk-isNotify');
         saveFilterPopup
             .on('shown.bs.modal', () => this.filterNameInput.focus())
             .on('hide.bs.modal', () => {
                 this.filterNameInput.val('');
                 TipsyHelper.clear(this.filterNameInput);
                 this.isDefaultCheckbox.prop('checked', false);
+                this.isNotifyCheckbox.prop('checked', false);
                 this.inlineMessagePopup.hide();
             });
         saveFilterPopup.find('#btn-save-filter-popup').click(() =>
@@ -267,9 +270,11 @@ class FilterConfigurationView {
         }
 
         const isDefault = this.isDefaultCheckbox.is(':checked');
+        const isNotify = this.isNotifyCheckbox.is(':checked');
         return {
             filterName,
-            isDefault
+            isDefault,
+            isNotify
         };
     }
 
@@ -277,8 +282,8 @@ class FilterConfigurationView {
         this.addFilterFormData.filterName = $('#hidden-UnsavedFilter').val();
         const url = AJAXHelper.buildURL('MonitoringBets/ApplyFilter');
         AJAXHelper.post(url, this.addFilterFormData, (result) => {
-            if (result.ErrCode) {
-                this.inlineMessage.showError(result.ErrMsg);
+            if (result.Code) {
+                this.inlineMessage.showError(result.Message);
             } else {
                 window.location.href = this.getMainPageUrl(this.addFilterFormData.filterName);
             }
@@ -291,8 +296,12 @@ class FilterConfigurationView {
             this.addFilterFormData = $.extend(this.addFilterFormData, formDataPopup);
             const url = AJAXHelper.buildURL('MonitoringBets/AddFilter');
             AJAXHelper.post(url, this.addFilterFormData, (result) => {
-                this.inlineMessagePopup.show(result);
-                if (!result.ErrCode) {
+                this.inlineMessagePopup.show(result.Message, result.Code);
+                if (result.Code) {
+                    $('.lnk-chatbot')
+                        .css('cursor', 'pointer')
+                        .click(() => (location.href = $('#hidden-chatbotUrl').val()));
+                } else {
                     reloadPageCallback();
                     this.addFilterFormData = null;
                 }
@@ -307,7 +316,7 @@ class FilterConfigurationView {
                 .toLowerCase()
                 .replace('monitoringbets/filterconfiguration', 'LastBets/IndexNew') +
             '?filterName=' +
-            filterName
+            encodeURIComponent(filterName)
         );
     }
 

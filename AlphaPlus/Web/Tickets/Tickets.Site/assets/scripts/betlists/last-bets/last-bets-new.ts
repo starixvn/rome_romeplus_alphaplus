@@ -185,7 +185,7 @@ class LastBetsNewView {
     private successGetLastBets = (responseHtml: any) => {
         if (
             (responseHtml.ErrorCode && responseHtml.ErrorCode !== 0) ||
-            (responseHtml.ErrCode && responseHtml.ErrCode !== 0)
+            (responseHtml.Code && responseHtml.Code !== 0)
         ) {
             this.showError();
             return;

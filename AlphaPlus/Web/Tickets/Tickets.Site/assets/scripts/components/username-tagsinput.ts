@@ -118,9 +118,7 @@ class UsernameTagsInputComponent {
             const uniqueTagsList = [];
             tagsList.forEach((item) => {
                 if (this.tagExist(usernames, item)) {
-                    this.appendTags([
-                        { Username: item, ErrCode: 1, ErrMsg: this.tagsInputOption.duplicatedUsernameText }
-                    ]);
+                    this.appendTags([{ Username: item, Code: 1, ErrMsg: this.tagsInputOption.duplicatedUsernameText }]);
                 } else {
                     uniqueTagsList.push(item);
                 }
@@ -139,15 +137,15 @@ class UsernameTagsInputComponent {
 
     private appendTags(results) {
         results.forEach((result) => {
-            if (!result.ErrCode && this.tagsBox.find(`.tag[data-custid=${result.CustId}]`).length) {
-                result.ErrCode = 1;
-                result.ErrMsg = this.tagsInputOption.duplicatedUsernameText;
+            if (!result.Code && this.tagsBox.find(`.tag[data-custid=${result.CustId}]`).length) {
+                result.Code = 1;
+                result.Message = this.tagsInputOption.duplicatedUsernameText;
             }
 
             this.tagsBox.append(
                 $('<span>', {
-                    class: `tag${result.ErrCode ? ' error' : ''}`,
-                    title: result.ErrMsg,
+                    class: `tag${result.Code ? ' error' : ''}`,
+                    title: result.Message,
                     'data-custid': result.CustId,
                     'data-toggle': 'tooltip',
                     'data-placement': 'top'

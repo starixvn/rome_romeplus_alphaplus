@@ -8,7 +8,7 @@
         }
         else
         {
-            <a class="button-cancel" asp-action="Index" asp-route-filtername="@Model.FilterName"
+            <a class="button-cancel" asp-action="IndexNew" asp-controller="LastBets" asp-route-filtername="@Model.FilterName"
                 asp-route-limitrowcount="@Model.LimitRowCount" asp-route-autostart="@Model.AutoStart">@Resources.Back</a>
         }
         <input type="button" class="button-apply apply" value="@Resources.Apply" />

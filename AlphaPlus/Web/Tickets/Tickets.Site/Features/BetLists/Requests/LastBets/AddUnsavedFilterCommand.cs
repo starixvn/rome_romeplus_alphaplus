@@ -15,6 +15,8 @@ public class AddUnsavedFilterCommand : BetListBaseQuery, IRequest<Result>
 
     public bool IsDefault { get; set; }
 
+    public bool IsNotify { get; set; }
+
     public string LanguageKey { get; }
 
     public string IP { get; }
