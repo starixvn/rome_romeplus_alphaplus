@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icon-alpha-v2';
-  src:  url('fonts/icon-alpha-v2.eot?p3p9za');
-  src:  url('fonts/icon-alpha-v2.eot?p3p9za#iefix') format('embedded-opentype'),
-    url('fonts/icon-alpha-v2.ttf?p3p9za') format('truetype'),
-    url('fonts/icon-alpha-v2.woff?p3p9za') format('woff'),
-    url('fonts/icon-alpha-v2.svg?p3p9za#icon-alpha-v2') format('svg');
+  src:  url('../common/fonts/iconalpha/fonts/icon-alpha-v2.eot?p3p9za');
+  src:  url('../common/fonts/iconalpha/fonts/icon-alpha-v2.eot?p3p9za#iefix') format('embedded-opentype'),
+    url('../common/fonts/iconalpha/fonts/icon-alpha-v2.ttf?p3p9za') format('truetype'),
+    url('../common/fonts/iconalpha/fonts/icon-alpha-v2.woff?p3p9za') format('woff'),
+    url('../common/fonts/iconalpha/fonts/icon-alpha-v2.svg?p3p9za#icon-alpha-v2') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
