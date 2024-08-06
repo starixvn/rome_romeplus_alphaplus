@@ -1,4 +1,5 @@
-﻿using AlphaPlus.Settings.Site.Features.CustomerList;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.Site.Features.CustomerList;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 
@@ -11,7 +12,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels
         {
         }
 
-        protected override string BaseAddress => ""; // TODO: $"{OldMainUrl}_MemberInfo/TransferCondition/EditTransferCondition.aspx";
+        protected override string BaseAddress => MicroSites.SettingUrl("~/TransferCondition");
 
         public override Dictionary<string, string> QueryStringParameters
           => new()
