@@ -8,12 +8,9 @@
 @section Scripts {
     <script src="~/bundles/customer/update-customer-info.js" asp-append-version="true"></script>
 }
-@if (queryString["showtitle"] == "1")
-{
-    <div class="page-title">
-        <span class="text-title pull-left">@ViewBag.Title</span>
-    </div>
-}
+<div class="page-title hide">
+    <span class="text-title pull-left">@ViewBag.Title</span>
+</div>
 <div class="msg hide" id="msg-alert"></div>
 <form method="post" asp-action="UpdateInfo" id="form-update">
     <input type="hidden" name="CustId" value="@queryString["custid"]" />

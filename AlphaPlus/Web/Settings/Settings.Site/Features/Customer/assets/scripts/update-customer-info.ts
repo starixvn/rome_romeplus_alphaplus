@@ -1,5 +1,6 @@
 class UpdateCustomerInfoView {
     init() {
+        this.showTitle();
         const $form = $('#form-update').submit((e) => {
             e.preventDefault();
             const isValidEmail = this.validateEmail($('#Email').val());
@@ -54,6 +55,12 @@ class UpdateCustomerInfoView {
 
     private hideAlert() {
         $('#msg-alert').addClass('hide').text('');
+    }
+
+    // Hide Title on top page, when open Popup.
+    private showTitle() {
+        const popup = parent.document.getElementById('product-popup');
+        popup || $('.page-title').removeClass('hide');
     }
 }
 
