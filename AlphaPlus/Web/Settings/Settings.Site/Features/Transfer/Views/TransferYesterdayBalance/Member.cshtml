@@ -4,16 +4,12 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewBag.Title = Resources.Transfer;
-    var showTitle = !string.IsNullOrWhiteSpace(AlphaContext.Current.Request.Query["showtitle"].ToString());
 }
 @model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferYesterdayBalance.MemberViewModel
 @section Scripts {
     <script src="~/bundles/transfer/transfer-yesterday-balance-single.js" asp-append-version="true"></script>
 }
-@if (showTitle)
-{
-    <div class="page-title">@Resources.Transfer</div>
-}
+<div class="page-title hide">@Resources.Transfer</div>
 <div style="padding-top: 1px;"></div>
 <div class="msg" id="msg-alert" style="display:none"></div>
 <div class="account-info">

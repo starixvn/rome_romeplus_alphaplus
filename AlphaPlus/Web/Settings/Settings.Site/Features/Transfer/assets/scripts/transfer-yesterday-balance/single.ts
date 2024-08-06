@@ -10,6 +10,7 @@ class SingleTransferView {
     }
 
     init() {
+        this.showTitle();
         const $amount = $('#Amount');
         $amount.on('input', function () {
             this.value = this.value.replace(/\D/g, '').replace(/^0+(?!$)/, '');
@@ -64,6 +65,16 @@ class SingleTransferView {
         window.top.indexManager.addCustomCookies('messageForReloadSite', message);
         window.top.indexManager.updateCurrentUrl('adbt=True');
         window.top.location.reload();
+    }
+
+    // Hide Title on top page, when open Popup.
+    private showTitle() {
+        const popup = top.$('div[id^="page-popup-"]');
+        if (popup.length) {
+            $('.btn-cancel').removeClass('hide');
+        } else {
+            $('.page-title').removeClass('hide');
+        }
     }
 }
 

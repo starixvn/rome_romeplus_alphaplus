@@ -8,6 +8,7 @@ class TransferConditionView {
     }
 
     init() {
+        this.showTitle();
         const $checkboxDayOfWeeks = $('input[type=checkbox][name=Weekly]');
         const $labelMon = $('label[for=chk-0]');
 
@@ -31,11 +32,6 @@ class TransferConditionView {
             this.alert.hideAlert();
             const transferOption = this.getTransferOption($checkboxDayOfWeeks, $labelMon);
             if (!transferOption) {
-                return;
-            }
-
-            if (transferOption === $('#TransferOption').val()) {
-                this.alert.showError($('#hidden-noChangeToUpdateText').val());
                 return;
             }
 
@@ -123,11 +119,7 @@ class TransferConditionView {
                 if (result.IsSuccessful) {
                     this.alert.showSuccess(result.Message);
                     setTimeout(function () {
-                        if ($('#hidden-showTitle').val() === '1') {
-                            window.location.reload();
-                        } else {
-                            window.top.popupManager.close();
-                        }
+                        window.location.reload();
                     }, 3000);
                 } else {
                     this.alert.showError(result.Message);
@@ -135,6 +127,13 @@ class TransferConditionView {
             },
             complete: $.unblockUI
         });
+    }
+
+    // Hide Title on top page, when open Popup.
+    // Hide Title on top page, when open Popup.
+    private showTitle() {
+        const popup = parent.document.getElementById('product-popup');
+        popup || $('.page-title').removeClass('hide');
     }
 }
 

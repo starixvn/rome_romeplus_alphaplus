@@ -4,7 +4,6 @@
 @model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferCondition.TransferConditionViewModel
 @{
     ViewBag.Title = Resources.TransferCondition;
-    var showTitle = !string.IsNullOrWhiteSpace(AlphaContext.Current.Request.Query["showtitle"].ToString());
     var dayOfWeekIndex = 0;
 }
 @section Styles {
@@ -15,10 +14,7 @@
     @StaticResources.AssetScripts.Render("/bundles-v2/site-assets/tipsy")
     <script src="~/bundles/transfer/transfer-condition.js" asp-append-version="true"></script>
 }
-@if (showTitle)
-{
-    <div class="page-title">@Resources.MultipleTransfer</div>
-}
+<div class="page-title hide">@Resources.TransferCondition</div>
 <div class="wrapper-transfer-condition">
     <div class="msg" id="msg-alert" @(string.IsNullOrWhiteSpace(Model.WarningMessage) ? "style=display:none" :
         string.Empty)>@Model.WarningMessage</div>
@@ -50,13 +46,10 @@
         <div class="form-transfer-condition"><button type="submit" class="btn-submit" id="btn-submit">@Resources.Update</button></div>
     </form>
 </div>
-<input type="hidden" asp-for="TransferOption" />
 <input type="hidden" asp-for="CustId" />
 <input type="hidden" id="hidden-isEnableAutoTransfer" value="@Convert.ToByte(Model.IsEnableAutoTransfer).ToString()" />
-<input type="hidden" id="hidden-showTitle" value="@Convert.ToByte(showTitle).ToString()" />
 <input type="hidden" id="hidden-pleaseChooseDailyText" value="@Resources.PleaseChooseDaily" />
 <input type="hidden" id="hidden-pleaseSelectOneDayText" value="@Resources.PleaseSelectOneDay" />
-<input type="hidden" id="hidden-noChangeToUpdateText" value="@Resources.NoChangeToUpdate" />
 <input type="hidden" id="hidden-confirmUpdateTransferConditionText" value="@Resources.ConfirmUpdateTransferCondition" />
 <input type="hidden" id="hidden-updateTransferCondition_NoteText" value="@Resources.UpdateTransferCondition_Note" />
 <input type="hidden" id="hidden-updateTransferCondition_OnAutoText" value="@Resources.UpdateTransferCondition_OnAuto" />
