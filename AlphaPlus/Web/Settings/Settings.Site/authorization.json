@@ -156,12 +156,6 @@
                         "IsAllowToDoByThemselves": true
                     },
                     {
-                        "Url": "CustomerList/Super",
-                        "Permission": "[A],[B],[H]",
-                        "IsCheckBelonging": true,
-                        "IsAllowToDoByThemselves": true
-                    },
-                    {
                         "Url": "CustomerList/MultipleDoubleComm",
                         "Permission": "[A],[B],[H]",
                         "IsCheckBelonging": true,
@@ -225,13 +219,13 @@
                         "Url": "MyWatchlistAccounts/UpdateMultiplePersonalThreshold",
                         "Permission": "[B]",
                         "IsCheckBelonging": true,
-                        "IsAllowToDoByThemselves": true
+                        "IsAllowToDoByThemselves": false
                     },
                     {
                         "Url": "MyWatchlistAccounts/DeleteMultiplePersonalThreshold",
                         "Permission": "[B]",
                         "IsCheckBelonging": true,
-                        "IsAllowToDoByThemselves": true
+                        "IsAllowToDoByThemselves": false
                     },
                     {
                         "Url": "MyWatchlistAccounts/UpdateGlobalThreshold",
