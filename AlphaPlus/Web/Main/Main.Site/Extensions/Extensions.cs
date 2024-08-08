@@ -1,4 +1,3 @@
-using AlphaPlus.SecurityCode.Services;
 using Fanex.Data.Repository;
 using Fanex.RemotingRef;
 using TelegramBot.Client.Services;
@@ -9,9 +8,7 @@ using Fanex.Cryptography.Aes;
 using Fanex.Caching;
 using System.Net;
 using AlphaPlus.Core.Extensions;
-using AlphaPlus.SecurityCode.Configurations;
 using AlphaPlus.Main.Site.Features.Account;
-using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Main.Site.Features.ApiKey;
 using AlphaPlus.Main.Site.Features.Banner;
 using AlphaPlus.Main.Site.Features.UMMessage;
@@ -29,6 +26,7 @@ using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Shared.Models;
 using ONEbook.OTP.Services;
 using ONEbook.OTP.Helpers;
+using AlphaPlus.SecurityCode.Extensions;
 
 namespace AlphaPlus.Main.Site.Extensions;
 
@@ -40,15 +38,14 @@ public static class Extensions
             .AddMediatR()
             .AddFanexData(configuration)
             .AddRemotingRef(configuration)
-            .AddRequestInfo();
+            .AddRequestInfo()
+            .AddSecurityCodeServices(configuration);
         services.AddSingleton<ICacheService, CacheService>();
         services.AddSingleton<IDynamicRepository, DynamicRepository>();
         services.AddSingleton(Fanex.Logging.Logger.Log);
 
         services.AddAlphaPlusCore(configuration).AddSharedSession(configuration);
 
-        services.AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>();
-        services.AddSingleton<ISecurityCodeHttpContext, SecurityCodeHttpContext>();
         services.AddSingleton<IMenuItemBuilder, MenuItemBuilder>();
         services.AddSingleton<IAesService, AesService>();
         services.AddSingleton<IUserSessionService, UserSessionService>();
@@ -59,7 +56,6 @@ public static class Extensions
         services.AddSingleton<IEncryption, Encryption>();
         services.AddSingleton<IBalanceInfoService, BalanceInfoService>();
         services.AddSingleton<IStatisticsService, StatisticsService>();
-        services.AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>();
 
         services.AddTelegramBot(configuration);
         services.AddSingleton<ITransferService, TransferService>();
@@ -87,8 +83,6 @@ public static class Extensions
         services.AddHttpClient<IProfilePictureService, ProfilePictureService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<IProtectionCodeService, ProtectionCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ILanguageService, LanguageService>(httpClient => httpClient.BaseAddress = customerServiceUri);
-
-        services.Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode));
 
         return services;
     }

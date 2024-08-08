@@ -1,4 +1,3 @@
-using AlphaPlus.SecurityCode.Services;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.PartialUM.Configurations;
@@ -28,8 +27,6 @@ using Fanex.RemotingRef;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using RestSharp;
 using MediatR;
-using AlphaPlus.SecurityCode.Web;
-using AlphaPlus.SecurityCode.Configurations;
 using Alpha.CopyAccount.Authentications;
 using AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs;
 using AlphaPlus.Settings.ViewLogs.API.Services;
@@ -62,6 +59,7 @@ using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Settings.Site.Features.PositionTaking.Services;
 using AlphaPlus.Settings.MemberInfo.API.Features.Commission;
+using AlphaPlus.SecurityCode.Extensions;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -144,10 +142,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             services.AddSingleton<Fanex.Customer.Client.Services.ICustomerService, Fanex.Customer.Client.Services.CustomerService>();
 
             services
-                .AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>()
-                .AddSingleton<ISecurityCodeHttpContext, SecurityCodeHttpContext>()
-                .AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>()
-                .Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode))
+                .AddSecurityCodeServices(configuration)
                 .AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>()
                 .AddScoped<IUser, Features.MemberInfo.Models.User>()
                 .AddScoped<CustomerListService, CustomerListServiceImpl>()

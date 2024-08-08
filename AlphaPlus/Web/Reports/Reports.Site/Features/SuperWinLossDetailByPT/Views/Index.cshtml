@@ -206,5 +206,6 @@
     }
 </table>
 <partial name="ViewProductPTList" model="Model.SuperPTProductViewModels" />
-<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends"></a>
+<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends"
+    asp-route-MinDate="01/01/0001"></a>
 <input type="hidden" asp-for="IsSetDefaultStackMode" />

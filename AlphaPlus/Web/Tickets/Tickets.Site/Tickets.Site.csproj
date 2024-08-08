@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\..\Services\Tickets\Results\AlphaPlus.Results.csproj" />
     <ProjectReference Include="..\BetLists.Builders\BetLists.Builders.csproj" />
     <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
   </ItemGroup>
   <ItemGroup>
 

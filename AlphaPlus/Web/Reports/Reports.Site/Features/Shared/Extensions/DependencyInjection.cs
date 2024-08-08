@@ -14,9 +14,7 @@ using AlphaPlus.Reports.Site.Features.WinLoss;
 using AlphaPlus.Reports.Site.Features.WinLossAnalysis;
 using AlphaPlus.Reports.Site.Features.WinLossByProduct;
 using AlphaPlus.Reports.Site.Features.WinLossDetail;
-using AlphaPlus.SecurityCode.Configurations;
-using AlphaPlus.SecurityCode.Services;
-using AlphaPlus.SecurityCode.Web;
+using AlphaPlus.SecurityCode.Extensions;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Factories;
@@ -51,13 +49,6 @@ public static class DependencyInjection
         .AddTransient<IIPMatchingWorkbook, IPMatchingWorkbook>()
         .AddTransient<IBetChoiceMatchingWorkbook, BetChoiceMatchingWorkbook>()
         .AddBetListExcelServices();
-
-    private static IServiceCollection AddSecurityCodeServices(this IServiceCollection services, IConfiguration configuration)
-        => services
-        .Configure<SecurityCodeOptions>(configuration.GetSection(SecurityCodeOptions.SecurityCode))
-        .AddSingleton<ISecurityCodeHttpContext, SecurityCodeHttpContext>()
-        .AddSingleton<ISecurityCodeChecker, SecurityCodeChecker>()
-        .AddSingleton<ISecurityCodePathBuilder, SecurityCodePathBuilder>();
 
     private static IServiceCollection AddBetListExcelServices(this IServiceCollection services)
         => services

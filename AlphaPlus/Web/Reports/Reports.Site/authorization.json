@@ -5,8 +5,7 @@
         "DisabledCheckDuplicationLogin": true,
         "KickOutUrl": "~/default/kickout",
         "CustIdQueryStringParamNames": [
-            "CustId",
-            "SearchAccountId"
+            "CustId"
         ],
         "CustIdJsonParamNames": [
             "CustId"

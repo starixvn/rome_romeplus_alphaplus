@@ -14,6 +14,7 @@ COPY "Modules/AlphaPlus.IPInfo/AlphaPlus.IPInfo.csproj" "Modules/AlphaPlus.IPInf
 COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
 COPY "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj" "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj"
 COPY "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
+COPY "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
 COPY "Services/Tickets/BetLists/AlphaPlus.BetLists.csproj" "Services/Tickets/BetLists/AlphaPlus.BetLists.csproj"
 COPY "Services/Tickets/Results/AlphaPlus.Results.csproj" "Services/Tickets/Results/AlphaPlus.Results.csproj"
 
@@ -30,6 +31,7 @@ COPY "Modules/AlphaPlus.IPInfo" "Modules/AlphaPlus.IPInfo"
 COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
 COPY "Modules/AlphaPlus.SmartPunter" "Modules/AlphaPlus.SmartPunter"
 COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
+COPY "Modules/AlphaPlus.SecurityCode" "Modules/AlphaPlus.SecurityCode"
 COPY "Services/Tickets/BetLists" "Services/Tickets/BetLists"
 COPY "Services/Tickets/Results" "Services/Tickets/Results"
 

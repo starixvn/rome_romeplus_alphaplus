@@ -89,13 +89,9 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
 
         private async Task KickOutUser(AuthorizationFilterContext context, string message)
         {
-            var kickOutPageAbsoluteUrl = UriHelper.BuildAbsolute(
-                    context.HttpContext.Request.Scheme,
-                    context.HttpContext.Request.Host,
-                    options.KickOutUrl);
-
+            var kickOutPageAbsoluteUrl = MicroSites.MainUrl($"{options.KickOutUrl}");
             var currentPageAbsoluteUrl = context.HttpContext.Request.GetDisplayUrl();
-            if (kickOutPageAbsoluteUrl == currentPageAbsoluteUrl)
+            if (kickOutPageAbsoluteUrl.Equals(currentPageAbsoluteUrl, StringComparison.OrdinalIgnoreCase))
             {
                 return;
             }
@@ -109,7 +105,7 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
             }
             else
             {
-                context.Result = new RedirectResult(MicroSites.MainUrl($"{options.KickOutUrl}?reason={message}"));
+                context.Result = new RedirectResult($"{kickOutPageAbsoluteUrl}?reason={message}");
             }
         }
 

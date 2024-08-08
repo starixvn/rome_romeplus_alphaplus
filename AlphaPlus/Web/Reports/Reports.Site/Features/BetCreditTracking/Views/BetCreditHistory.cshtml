@@ -1,20 +1,24 @@
 ﻿@{
     Layout = "_Layout";
     ViewData["Title"] = Resources.BetCreditHistory;
+    string FormatNullableNumber(decimal? number)
+    {
+        return number.HasValue ? number.Value.FormatNumber() : string.Empty;
+    }
     void BuildBetCreditHistory(BetCreditHistoryEntity item)
     {
         <tr class="@(item.BetCredit == null ? "highlight-row" : string.Empty)">
             <td>@item.ActionDateString</td>
             <td class="text-center">@item.WinLostDateString</td>
             <td class="text-left">@item.RefNo</td>
-            <td>@item.ActualStake.FormatNullableNumber()</td>
-            <td>@item.WinLoss.FormatNullableNumber() </td>
-            <td>@item.PlayerComm.FormatNullableNumber()</td>
-            <td>@item.BalanceChanged.FormatNullableNumber()</td>
-            <td>@item.NewBalance.FormatNullableNumber()</td>
+            <td>@FormatNullableNumber(item.ActualStake)</td>
+            <td>@FormatNullableNumber(item.WinLoss) </td>
+            <td>@FormatNullableNumber(item.PlayerComm)</td>
+            <td>@FormatNullableNumber(item.BalanceChanged)</td>
+            <td>@FormatNullableNumber(item.NewBalance)</td>
             <td>@item.GivenCredit.FormatNumber()</td>
             <td class="@(item.BetCredit < 0M ? "red-cell" : string.Empty)">
-                @item.BetCredit.FormatNullableNumber()
+                @FormatNullableNumber(item.BetCredit)
             </td>
             <td class="text-left">@item.Action</td>
         </tr>

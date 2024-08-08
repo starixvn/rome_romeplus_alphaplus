@@ -14,8 +14,6 @@ class MemberStatementView extends StatementView {
         GrandPrize: 4
     };
 
-    betListUrl: string;
-    betListTitle: string;
     windowLocation: any;
 
     constructor(
@@ -42,9 +40,6 @@ class MemberStatementView extends StatementView {
             this.changeReportType
         );
         this.reportTypeComponent.render(reportTypeComponentOption);
-
-        this.betListUrl = $('#BetListUrl').val();
-        this.betListTitle = $('#BetListTitle').val();
 
         $.unblockUI();
     }
@@ -81,8 +76,8 @@ class MemberStatementView extends StatementView {
             TransType: transactionType
         };
 
-        var url = `${this.betListUrl}?${$.param(param)}`;
-        this.topWindow.popupManager.open(url, this.betListTitle, 900);
+        var url = `${$('#BetListLink').val()}?${$.param(param)}`;
+        this.topWindow.popupManager.open(url, $('#BetListTitle').val(), 900);
     };
 }
 

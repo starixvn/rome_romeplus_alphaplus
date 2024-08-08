@@ -248,7 +248,6 @@
         <no-information colspan="@(isAgentLevel ? 11 : 9)" />
     }
 </table>
-<a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends"
-    asp-route-MinDate="@Model.DateRangePicker.MinDate"></a>
+<a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends" asp-route-MinDate="01/01/0001"></a>
 <input type="hidden" asp-for="IsSetDefaultStackMode" />
 <input type="hidden" id="IsAgentLevel" value="@isAgentLevel.ToString()" />

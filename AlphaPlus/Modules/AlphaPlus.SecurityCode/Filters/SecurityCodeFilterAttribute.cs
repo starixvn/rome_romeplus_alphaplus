@@ -8,15 +8,13 @@ namespace AlphaPlus.SecurityCode.Filters;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
 public class SecurityCodeFilterAttribute : TypeFilterAttribute
 {
-    public SecurityCodeFilterAttribute()
-        : base(typeof(SecurityCodeFilter))
+    public SecurityCodeFilterAttribute() : base(typeof(SecurityCodeFilter))
     {
     }
 
     private class SecurityCodeFilter(
         ISecurityCodeChecker securityCodeChecker,
-        ISecurityCodeHttpContext securityCodeHttpContext)
-        : IAsyncActionFilter
+        ISecurityCodeHttpContext securityCodeHttpContext) : IAsyncActionFilter
     {
         private readonly ISecurityCodeChecker securityCodeChecker = securityCodeChecker;
         private readonly ISecurityCodeHttpContext securityCodeHttpContext = securityCodeHttpContext;

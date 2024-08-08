@@ -12,6 +12,8 @@ using Fanex.Data;
 using AlphaPlus.Results.Features.Shared;
 using AlphaPlus.BetLists.Shared.Extensions;
 using AlphaPlus.Core.Filters;
+using AlphaPlus.SecurityCode.Filters;
+using AlphaPlus.SecurityCode.Extensions;
 
 var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
@@ -19,9 +21,9 @@ var configuration = builder.Configuration;
 configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
-    //.AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile("partialum.json", optional: false, reloadOnChange: true)
-    //.AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables()
     .AddCommandLine(args);
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
@@ -35,10 +37,10 @@ builder.Services
     })
     .AddControllersWithViews(options =>
     {
-        // options.Filters.Add<CheckBelongingFilterAttribute>();
-        // options.Filters.Add<AfterLoginFlowFilterAttribute>();
-        // options.Filters.Add<ProtectedModeFilterAttribute>();
-        // options.Filters.Add<SecurityCodeFilterAttribute>();
+        options.Filters.Add<CheckBelongingFilterAttribute>();
+        options.Filters.Add<AfterLoginFlowFilterAttribute>();
+        options.Filters.Add<ProtectedModeFilterAttribute>();
+        options.Filters.Add<SecurityCodeFilterAttribute>();
     })
     .AddRazorOptions(options =>
     {
@@ -59,6 +61,7 @@ builder.Services
     .AddRequestInfo()
     .AddAlphaPlusCore(configuration)
     .AddSharedSession(configuration)
+    .AddSecurityCodeServices(configuration)
     .AddBetsForecastServices(configuration)
     .AddBetListsServices(configuration)
     .AddBetListsCore()
