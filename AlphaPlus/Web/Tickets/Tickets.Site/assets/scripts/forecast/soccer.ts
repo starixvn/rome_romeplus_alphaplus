@@ -136,13 +136,13 @@ const soccer = {
         soccer.currentRequest = $.ajax({
             url: soccer.urls.getMatchForecasts,
             type: 'GET',
+            cache: false,
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: {
                 matchIds: matchIds.join(','),
                 leagueId: soccer.domElements.ddlLeague.val(),
-                isLive: soccer.domElements.ddlDeadBall.val() === 'true',
-                version: Math.random()
+                isLive: soccer.domElements.ddlDeadBall.val() === 'true'
             }
         })
             .done(function (matchForecasts) {
@@ -174,7 +174,7 @@ const soccer = {
                     soccer.domElements.mainContent.parent().show();
                 }
             })
-            .fail(function (jqXHR, textStatus, errorThrown) {
+            .fail(function (jqXHR) {
                 soccer.removeLoadingIcon();
                 soccer.processAjaxError(jqXHR);
             });
@@ -265,45 +265,28 @@ const soccer = {
     },
 
     loadLeagues: function () {
-        $.ajax({
-            url: soccer.urls.getLeagues,
-            type: 'GET',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: {
-                isLive: soccer.domElements.ddlDeadBall.val() === 'true',
-                version: Math.random()
-            },
-            beforeSend: function () {
-                try {
-                    $.blockUI();
-                } catch (e) {}
-            }
-        })
-            .done(function (result) {
-                soccer.renderLeagues(result.Leagues);
-                soccer.renderMatches(result.Matches);
-                // if (leagues) {
-                //     soccer.renderLeagues(leagues);
-                //     if (leagues.length > 0) {
-                //         soccer.loadMatches();
-                //     } else {
-                //         soccer.renderMatches([]);
-                //     }
-                // }
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                try {
-                    $.unblockUI();
-                } catch (e) {}
-                soccer.processAjaxError(jqXHR);
-            });
+        try {
+            $.blockUI();
+        } catch (e) {}
+        const leagueId = +($.cookie(soccer.cookies.league) || '0');
+        const queryString = $.param({
+            isLive: soccer.domElements.ddlDeadBall.val() === 'true',
+            leagueId: leagueId,
+            _: Math.random()
+        });
+        $.get(`${soccer.urls.getLeagues}?${queryString}`, function (result) {
+            soccer.renderLeagues(result.Leagues, leagueId);
+            soccer.renderMatches(result.Matches);
+        }).fail(function (jqXHR) {
+            try {
+                $.unblockUI();
+            } catch (e) {}
+            soccer.processAjaxError(jqXHR);
+        });
     },
 
-    renderLeagues: function (leagues) {
-        let leagueId = soccer.domElements.ddlLeague.val() || $.cookie(soccer.cookies.league);
-        leagueId = leagueId || (leagues.length > 0 ? leagues[0].Id : 0);
-        const options = '';
+    renderLeagues: function (leagues, selectedLeagueId: number) {
+        let leagueId = selectedLeagueId > 0 ? selectedLeagueId : leagues.length > 0 ? leagues[0].Id : 0;
         const processedLeagues = leagues.map(function (league) {
             return {
                 label: league.LeagueName,
@@ -317,7 +300,7 @@ const soccer = {
             enableFiltering: true,
             numberDisplayed: 1,
             enableCaseInsensitiveFiltering: true,
-            nonSelectedText: soccer.domElements.mainContent.data('no-data-text'),
+            nonSelectedText: $('#hidden-noDataText').val(),
             onChange: function (option, checked) {
                 soccer.loadMatches();
                 soccer.domElements.mainContent.parent().hide().find('tbody').remove();
@@ -333,33 +316,22 @@ const soccer = {
     },
 
     loadMatches: function () {
-        $.ajax({
-            url: soccer.urls.getMatches,
-            type: 'GET',
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            data: {
-                leagueId: soccer.domElements.ddlLeague.val(),
-                isLive: soccer.domElements.ddlDeadBall.val() === 'true',
-                version: Math.random()
-            },
-            beforeSend: function () {
-                try {
-                    $.blockUI();
-                } catch (e) {}
-            }
-        })
-            .done(function (matches) {
-                if (matches) {
-                    soccer.renderMatches(matches);
-                }
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                try {
-                    $.unblockUI();
-                } catch (e) {}
-                soccer.processAjaxError(jqXHR);
-            });
+        try {
+            $.blockUI();
+        } catch (e) {}
+        const queryString = $.param({
+            isLive: soccer.domElements.ddlDeadBall.val() === 'true',
+            leagueId: +soccer.domElements.ddlLeague.val(),
+            _: Math.random()
+        });
+        $.get(`${soccer.urls.getMatches}?${queryString}`, function (matches) {
+            matches && soccer.renderMatches(matches);
+        }).fail(function (jqXHR) {
+            try {
+                $.unblockUI();
+            } catch (e) {}
+            soccer.processAjaxError(jqXHR);
+        });
     },
 
     renderMatches: function (matches) {
@@ -369,7 +341,6 @@ const soccer = {
             matchIds = $.cookie(soccer.cookies.match).split(',');
         }
 
-        const options = '';
         let anyMatchSelected = false;
         let processedMatches = matches.map(function (match) {
             const selected = matchIds ? matchIds.indexOf(match.MatchId.toString()) > -1 : true;
@@ -415,7 +386,7 @@ const soccer = {
                             return !$(this).is(':selected');
                         });
 
-                        const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
+                        //const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
                         nonSelectedOptions.each(function () {
                             const input = $('input[value="' + $(this).val() + '"]');
                             input.prop('disabled', true);
@@ -423,7 +394,7 @@ const soccer = {
                         });
                     } else {
                         // Enable all checkboxes.
-                        const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
+                        //const dropdown = soccer.domElements.ddlMatch.siblings('.multiselect-container');
                         soccer.domElements.ddlMatch.find('option').each(function () {
                             const input = $('input[value="' + $(this).val() + '"]');
                             input.prop('disabled', false);
@@ -454,12 +425,13 @@ const soccer = {
         if (xhr.status === 500 && xhr.responseText) {
             const jsonData = JSON.parse(xhr.responseText);
             if (jsonData.UMFrom && jsonData.UMTo) {
-                location.href =
-                    top.alpha.urls.mainRootPath +
-                    'PartialUM/Index?umfrom=' +
-                    jsonData.UMFrom +
-                    '&umto=' +
-                    jsonData.UMTo;
+                location.href = [
+                    top.alpha.urls.mainRootPath,
+                    'PartialUM/Index?umfrom=',
+                    jsonData.UMFrom,
+                    '&umto=',
+                    jsonData.UMTo
+                ].join('');
             }
         }
     }
