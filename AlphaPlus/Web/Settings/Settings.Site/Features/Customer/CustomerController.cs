@@ -98,7 +98,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CreateCustomerRequest request)
+        public async Task<ActionResult> Create([FromBody] CreateCustomerRequest request)
         {
             if (request.IsInternal || !request.IsValid())
             {
@@ -127,7 +127,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Update(UpdateCustomerRequest request)
+        public async Task<ActionResult> Update([FromBody] UpdateCustomerRequest request)
         {
             if (request.IsInternal)
             {
@@ -153,7 +153,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> UpdateMultipleCustomers(UpdateMultipleCustomerRequest request)
+        public async Task<ActionResult> UpdateMultipleCustomers([FromBody] UpdateMultipleCustomerRequest request)
         {
             if (request.IsInternal)
             {
@@ -204,7 +204,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             => View(await customerService.GetCustomerInfo(custId));
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateInfo(UpdateCustomerInfoRequest request)
+        public async Task<IActionResult> UpdateInfo([FromBody] UpdateCustomerInfoRequest request)
             => Json(await customerService.UpdateCustomerInfo(new UpdateCustomerInfoParam
             {
                 CustId = request.CustId,

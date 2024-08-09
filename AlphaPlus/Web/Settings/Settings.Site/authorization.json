@@ -21,11 +21,16 @@
             "idAgent",
             "idMaster",
             "ibccustid",
-            "ACustID"
+            "ACustID",
+            "SearchAccountId",
+            "selectedCustId"
         ],
         "CustIdJsonParamNames": [
             "txtCustomerObject",
-            "newCustomer"
+            "newCustomer",
+            "SearchAccountId",
+            "uplineCustId",
+            "custId"
         ],
         "GroupPageAccesses": [
             {
@@ -351,19 +356,13 @@
                         "Url": "CopyAccount",
                         "Permission": "[A]",
                         "IsCheckBelonging": true,
-                        "IsAllowToDoByThemselves": false
-                    },
-                    {
-                        "Url": "CreateAccount",
-                        "Permission": "[A]",
-                        "IsCheckBelonging": true,
                         "IsAllowToDoByThemselves": true
                     },
                     {
                         "Url": "PTTemplate",
                         "Permission": "[A]",
                         "IsCheckBelonging": true,
-                        "IsAllowToDoByThemselves": false
+                        "IsAllowToDoByThemselves": true
                     },
                     {
                         "Url": "PositionTaking",
