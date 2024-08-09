@@ -44,12 +44,11 @@ namespace AlphaPlus.AccountInfo.Site.Features.Shared.Helpers
         private static Image Base64ToImage(string base64String)
         {
             byte[] imageBytes = Convert.FromBase64String(base64String);
-
+            using var outStream = new MemoryStream();
             using var ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
-            using var image = Image.Load(ms);
-            image.Mutate(c => c.Resize(IMAGE_WIDTH, IMAGE_HEIGHT));
-            using MemoryStream outStream = new();
-            image.Save(outStream, new JpegEncoder());
+            var image = Image.Load(ms);
+            image.Mutate(c => c.Resize(IMAGE_WIDTH, IMAGE_HEIGHT).Grayscale());
+            image.Save(outStream, JpegFormat.Instance);
             return image;
         }
     }
