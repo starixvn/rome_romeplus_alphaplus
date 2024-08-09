@@ -1,0 +1,29 @@
+﻿:root,
+:root [data-theme='light'] {
+    --block-ui-icon-bg: "url(../images/ajax-loader-8.gif)"; 
+    --blockMsg-bg: "url(../images/ajax-loader.gif)"; 
+}
+:root [data-theme='dark'] {
+     --block-ui-icon-bg: "url(../images/ajax-loader-8-dark.gif)";
+     --blockMsg-bg: "url(../images/ajax-loader.gif)"; 
+}
+.block-icon-small {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    background: var(--block-ui-icon-bg) no-repeat;
+    vertical-align: middle;
+}
+
+// Formatting for jquery.blockUI plugin
+.blockOverlay {
+    background: #fff;
+    opacity: 0.6;
+}
+
+.blockMsg {
+    width: 100px;
+    height: 100px;
+    background: var(--blockMsg-bg) center center no-repeat;
+    left: 47% !important;
+}
