@@ -68,7 +68,7 @@ public class SecurityCodeHttpContext(ISecurityCodePathBuilder securityCodePathBu
 
         if (requestHeaders != null && requestHeaders.ContentType == "application/x-www-form-urlencoded")
         {
-            response.Redirect(securityCodePathBuilder.BuildVerifyingSecurityCodePath(), true);
+            response.Redirect(securityCodePathBuilder.BuildVerifyingSecurityCodePath(), false, true);
         }
         else
         {
@@ -87,7 +87,7 @@ public class SecurityCodeHttpContext(ISecurityCodePathBuilder securityCodePathBu
             //     }
             // }
 
-            response.Redirect(this.securityCodePathBuilder.BuildVerifyingSecurityCodePath(rawUrl), true);
+            response.Redirect(this.securityCodePathBuilder.BuildVerifyingSecurityCodePath(rawUrl), false, true);
         }
     }
 
