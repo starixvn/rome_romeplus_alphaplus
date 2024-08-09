@@ -11,6 +11,7 @@
 <div class="page-title hide">
     <span class="text-title pull-left">@ViewBag.Title</span>
 </div>
+<div class="wrapper-transfer-condition">
 <div class="msg hide" id="msg-alert"></div>
 <form method="post" asp-action="UpdateInfo" id="form-update">
     <input type="hidden" name="CustId" value="@queryString["custid"]" />
@@ -46,5 +47,6 @@
         </div>
     </div>
 </form>
+</div>
 <input type="hidden" id="hidden-EmailNotValidText" value="@Resources.EmailNotValid" />
 <input type="hidden" id="hidden-UpdatedSuccessfullyText" value="@Resources.UpdatedSuccessfully" />
