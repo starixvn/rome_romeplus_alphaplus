@@ -17,6 +17,10 @@ namespace AlphaPlus.Identity.API.Features.Auth
         Task CheckOut(CheckOutRequest request);
 
         Task<ReCheckInResponse> ReCheckIn(int onlineUserId);
+
+        Task<InternalLoginResponse> InternalLogin(InternalLoginRequest request);
+
+        Task<IndirectLoginResponse> IndirectLogin(IndirectLoginRequest request);
     }
 
     public class AuthenticateService(
@@ -210,6 +214,68 @@ namespace AlphaPlus.Identity.API.Features.Auth
             }
 
             return products.GetProductBySiteAndCurrency(site, currency);
+        }
+
+        public async Task<InternalLoginResponse> InternalLogin(InternalLoginRequest request)
+        {
+            InternalLoginCriteria criteria = new()
+            {
+                BrowserName = request.BrowserName,
+                CountryCode = request.CountryCode,
+                Language = request.Language,
+                LoginDomain = request.LoginDomain,
+                LoginIp = request.LoginIp,
+                LoginTime = request.LoginTime,
+                Platform = request.Platform,
+                SessionId = request.SessionId,
+                Username = request.Username,
+                AdminId = request.AdminId
+            };
+
+            await dynamicRepository.ExecuteAsync(criteria);
+            return new()
+            {
+                AdminId = criteria.AdminId,
+                CustId = criteria.CustId,
+                ErrCode = criteria.ErrCode,
+                ErrMsg = criteria.ErrMsg,
+                On_UserId = criteria.On_UserId,
+                RoleId = criteria.RoleId,
+                Username = criteria.Username
+            };
+        }
+
+        public async Task<IndirectLoginResponse> IndirectLogin(IndirectLoginRequest request)
+        {
+            IndirectLoginCriteria criteria = new()
+            {
+                BrowserName = request.BrowserName,
+                CountryCode = request.CountryCode,
+                CustId = request.CustId,
+                Language = request.Language,
+                LoginDomain = request.LoginDomain,
+                LoginIp = request.LoginIp,
+                LoginTime = request.LoginTime,
+                Platform = request.Platform,
+                SessionId = request.SessionId,
+                Username = request.Username,
+                UplineUsername = request.UplineUsername,
+                UplineCustId = request.UplineCustId,
+                UplineSubAccId = request.UplineSubAccId
+            };
+
+            await dynamicRepository.ExecuteAsync(criteria);
+            return new()
+            {
+                CustId = criteria.CustId,
+                ErrCode = criteria.ErrCode,
+                ErrMsg = criteria.ErrMsg,
+                SubAccId = criteria.SubAccId,
+                UplineCustId = criteria.UplineCustId,
+                UplineSubAccId = criteria.UplineSubAccId,
+                UplineUsername = criteria.UplineUsername,
+                Username = criteria.Username
+            };
         }
     }
 }

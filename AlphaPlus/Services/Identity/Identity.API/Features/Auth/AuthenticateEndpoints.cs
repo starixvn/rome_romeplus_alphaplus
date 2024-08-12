@@ -14,6 +14,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
             auth.MapPost("/check-in", CheckIn);
             auth.MapPost("/check-out", CheckOut);
             auth.MapGet("/re-check-in", ReCheckIn);
+            auth.MapGet("/internal-login", InternalLogin);
+            auth.MapGet("/indirect-login", IndirectLogin);
 
             return endpoints;
         }
@@ -39,5 +41,17 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         static Task CheckOut(CheckOutRequest request, IAuthenticateService service)
             => service.CheckOut(request);
+
+        static async Task<Results<Ok<InternalLoginResponse>, BadRequest>> InternalLogin([AsParameters]InternalLoginRequest request, IAuthenticateService service)
+        {
+            var response = await service.InternalLogin(request);
+            return TypedResults.Ok(response);
+        }
+
+        static async Task<Results<Ok<IndirectLoginResponse>, BadRequest>> IndirectLogin([AsParameters]IndirectLoginRequest request, IAuthenticateService service)
+        {
+            var response = await service.IndirectLogin(request);
+            return TypedResults.Ok(response);
+        }
     }
 }
