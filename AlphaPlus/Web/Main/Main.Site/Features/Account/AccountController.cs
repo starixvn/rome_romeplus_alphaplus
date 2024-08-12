@@ -51,8 +51,8 @@ public class AccountController(
 
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-        var beforeUrl = Url.Action(nameof(Login), "Account");
-        return SignOut(new AuthenticationProperties { RedirectUri = beforeUrl });
+        return UserSession.Current.IsInternal || UserSession.Current.IsIndirectLoggedIn ? SignOut() : 
+            SignOut(new AuthenticationProperties { RedirectUri = Url.Action(nameof(Login), "Account") });
     }
 
     [HttpPost]
