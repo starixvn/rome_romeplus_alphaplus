@@ -8,22 +8,15 @@
     <script src="~/bundles/forecast/forecast.js" asp-append-version="true"></script>
 }
 @model AH
-@if (Model == null)
-{
-    <div>@Resources.NoInformationIsAvailable</div>
-}
-else
-{
     <div style="padding-top: 1px"></div>
-    <div class="filter">
-        <div class="auto-refresh"></div>
-    </div>
-    <div id="content">
-        <partial name="AHPartial" />
-    </div>
-    <input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
-    <input type="hidden" id="hidden-autoRefreshSeconds" value="15,30,45,60,75" />
-    <input type="hidden" id="hidden-autoRefreshUrl"
-        value="AH?partial=true&matchid=@Model.MatchId&bettype=@Model.BetType&score=@Model.CurrentScore" />
-    <input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="AH" />
-}
+<div class="filter">
+    <div class="auto-refresh"></div>
+</div>
+<div id="content">
+    <partial name="AHPartial" />
+</div>
+<input type="hidden" id="hidden-autoRefreshRefreshText" value="@Resources.Refresh" />
+<input type="hidden" id="hidden-autoRefreshSeconds" value="15,30,45,60,75" />
+<input type="hidden" id="hidden-autoRefreshUrl"
+    value="AH?partial=true&matchid=@Model.MatchId&bettype=@Model.BetType&score=@Model.CurrentScore" />
+<input type="hidden" id="hidden-autoRefreshSavedSecondKey" value="AH" />

@@ -3,44 +3,48 @@ interface JQuery {
 }
 
 class Forecast {
-    dataUrl: string;
+    private initAutoRefresh() {
+        const $ddlLeague = $('#ddlLeague');
+        const url = `${$('#hidden-autoRefreshUrl').val()}${$ddlLeague.length ? $ddlLeague.val() : ''}`;
 
-    initAutoRefresh($content: JQuery) {
-        const autoRefreshSeconds = $('#hidden-autoRefreshSeconds')
-            .val()
-            .split(',')
-            .map(function (second) {
-                return +second;
-            });
-        const autoRefreshUrl = $('#hidden-autoRefreshUrl').val();
         $('.auto-refresh').fanexAutoRefresh({
             buttonRefreshTooltip: $('#hidden-autoRefreshRefreshText').val(),
-            seconds: autoRefreshSeconds,
-            refreshHandler: () => {
-                const $ddlLeague = $('#ddlLeague');
-                $.get(autoRefreshUrl + ($ddlLeague.length ? $ddlLeague.val() : ''), (html) => {
-                    $content.html(html);
-                    this.bindLeagueChangeEvent();
-                    this.bindViewForecast();
-                    this.viewBetList();
-                });
-            },
+            seconds: $('#hidden-autoRefreshSeconds')
+                .val()
+                .split(',')
+                .map((second) => +second),
+            refreshHandler: () => this.handleAutoRefresh(url),
             savedSecondKey: $('#hidden-autoRefreshSavedSecondKey').val()
         });
     }
 
-    bindLeagueChangeEvent() {
+    private handleAutoRefresh(url, succcessCallback: Function = undefined) {
+        $.get(url, (html) => {
+            $('#content').html(html);
+            this.bindEvents();
+            succcessCallback && succcessCallback();
+        });
+    }
+
+    private bindEvents() {
+        this.bindLeagueChangeEvent();
+        this.bindViewForecast();
+        this.bindViewBetList();
+        this.bindViewAH();
+    }
+
+    private bindLeagueChangeEvent() {
         $('#ddlLeague')
             .off('change')
             .change((e) => {
-                $.get(this.dataUrl + $(e.target).val(), (html) => {
+                $.get(`${$('#hidden-dataUrl').val()}${$(e.target).val()}`, (html) => {
                     $('#tblRpt tbody').html(html);
                     this.bindViewForecast();
                 });
             });
     }
 
-    bindViewForecast() {
+    private bindViewForecast() {
         $('.tbl-hdpoulive .icon-fc')
             .off('click')
             .click(function (e) {
@@ -49,7 +53,7 @@ class Forecast {
             });
     }
 
-    viewBetList() {
+    private bindViewBetList() {
         $('.view-betlist')
             .off('click')
             .click(function (e) {
@@ -58,12 +62,21 @@ class Forecast {
             });
     }
 
+    private bindViewAH() {
+        $('.view-ah')
+            .off('click')
+            .click((e) => {
+                e.preventDefault();
+                const url = $(e.target).attr('href');
+                this.handleAutoRefresh(url, function () {
+                    $('#hidden-autoRefreshUrl').val(url);
+                });
+            });
+    }
+
     init() {
-        this.dataUrl = $('#hidden-dataUrl').val();
-        this.initAutoRefresh($('#content'));
-        this.bindLeagueChangeEvent();
-        this.bindViewForecast();
-        this.viewBetList();
+        this.initAutoRefresh();
+        this.bindEvents();
     }
 }
 

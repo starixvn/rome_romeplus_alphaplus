@@ -85,21 +85,21 @@ public class ForecastService(
         await Task.WhenAll(matchTask, hdpouTask);
 
         var match = await matchTask;
+        var hasDataMatch = match != null;
         var (hasData, hdpou) = await hdpouTask;
 
-        return match == null
-            ? null
-            : new AH(
-                param.MatchId,
-                match.Event,
-                $"{match.LiveHomeScore} : {match.LiveAwayScore}",
-                param.BetType,
-                cacheRefService.GetBetTypeName(param.BetType, param.Language),
-                param.Score,
-                hasData,
-                hdpou,
-                GetAHAllScores(isHandicap, param.Score),
-                GetAHForecastScores(isHandicap, param.Score));
+        return new AH(
+            param.MatchId,
+            match?.Event,
+            hasDataMatch ? $"{match.LiveHomeScore} : {match.LiveAwayScore}" : null,
+            hasDataMatch,
+            param.BetType,
+            cacheRefService.GetBetTypeName(param.BetType, param.Language),
+            param.Score,
+            hasData,
+            hdpou,
+            GetAHAllScores(isHandicap, param.Score),
+            GetAHForecastScores(isHandicap, param.Score));
     }
 
     private async Task<ForecastMatch> GetAHMatch(int matchId, int betType, string language)

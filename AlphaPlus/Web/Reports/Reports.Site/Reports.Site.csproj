@@ -13,7 +13,10 @@
     <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Features\Shared\Extensions\RemotingRefExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\**">
+    <Content Include="App_Data\ExcelTemplates\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\SPNames\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

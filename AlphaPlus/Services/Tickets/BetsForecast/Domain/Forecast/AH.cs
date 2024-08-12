@@ -4,6 +4,7 @@ public class AH(
     int matchId,
     string eventName,
     string eventScore,
+    bool hasDataMatch,
     int betType,
     string betTypeName,
     int currentScore,
@@ -17,6 +18,8 @@ public class AH(
     public string EventName { get; } = eventName;
 
     public string EventScore { get; } = eventScore;
+
+    public bool HasDataMatch { get; } = hasDataMatch;
 
     public int BetType { get; } = betType;
 
