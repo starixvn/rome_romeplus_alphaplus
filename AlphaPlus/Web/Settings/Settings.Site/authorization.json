@@ -359,6 +359,12 @@
                         "IsAllowToDoByThemselves": true
                     },
                     {
+                        "Url": "CreateAccount",
+                        "Permission": "[A]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
                         "Url": "PTTemplate",
                         "Permission": "[A]",
                         "IsCheckBelonging": true,
