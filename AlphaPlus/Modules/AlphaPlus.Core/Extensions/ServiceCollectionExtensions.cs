@@ -25,9 +25,9 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IUserSession, UserSessionExt>();
         services.AddSingleton<IRequestAnalyst, RequestAnalyst>();
         services.AddSingleton<IBrowserHelper, BrowserHelper>();
-        services.AddSingleton<IRequestContext, RequestContext>();
+        services.AddTransient<IRequestContext, RequestContext>();
         services.TryAddSingleton<INicknameChecker, NicknameChecker>();
-        services.AddSingleton<IAuthorizationService, AuthorizationService>();
+        services.AddTransient<IAuthorizationService, AuthorizationService>();
 
         services.Configure<KestrelServerOptions>(options =>
         {

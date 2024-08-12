@@ -32,13 +32,12 @@ public class RequestAnalyst : IRequestAnalyst
 
     private static string GetJsonDataInRequestBody(Stream requestStream)
     {
-        if (requestStream != null)
+        if (requestStream != null && requestStream.CanSeek)
         {
             requestStream.Seek(0, SeekOrigin.Begin);
             var bodyData = new StreamReader(requestStream).ReadToEnd();
             requestStream.Seek(0, SeekOrigin.Begin);
-            if (!string.IsNullOrWhiteSpace(bodyData)
-                && bodyData.Contains('{'))
+            if (!string.IsNullOrWhiteSpace(bodyData) && bodyData.Contains('{'))
             {
                 return HttpUtility.UrlDecode(bodyData).Replace(@"\", string.Empty);
             }
@@ -46,5 +45,4 @@ public class RequestAnalyst : IRequestAnalyst
 
         return string.Empty;
     }
-
 }
