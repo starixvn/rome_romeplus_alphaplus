@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using AlphaPlus.Core.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -13,6 +14,10 @@ public interface IAccountService
     Task<ReCheckInResult> ReCheckIn(int onlineUserId);
 
     Task CheckOut(string reason = null);
+
+    Task<SignInResult> InternalLogin(InternalLoginParam param);
+
+    Task<SignInResult> IndirectLogin(IndirectLoginParam param);
 }
 
 public class AccountService(HttpClient client, IUserSession session, IUserSessionService userSessionService) : IAccountService
@@ -86,5 +91,47 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
         session.UserLoginIp = param.RequestInfo.LoginIp;
 
         return result;
+    }
+
+    [HttpGet]
+    public async Task<SignInResult> InternalLogin(InternalLoginParam param)
+    {
+        var query = QueryString.Create(new[] {
+            KeyValuePair.Create(nameof(param.AdminId), param.AdminId.ToString()),
+            KeyValuePair.Create(nameof(param.Language), param.Language),
+            KeyValuePair.Create(nameof(param.CountryCode), param.CountryCode),
+            KeyValuePair.Create(nameof(param.Username), param.Username),
+            KeyValuePair.Create(nameof(param.BrowserName), param.BrowserName),
+            KeyValuePair.Create(nameof(param.LoginDomain), param.LoginDomain),
+            KeyValuePair.Create(nameof(param.SessionId), param.SessionId),
+            KeyValuePair.Create(nameof(param.LoginIp), param.LoginIp),
+            KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
+            KeyValuePair.Create(nameof(param.Platform), param.Platform)
+        });
+
+        return await client.GetAsJsonAsync<SignInResult>($"api/auth/internal-login{query}");
+    }
+
+    [HttpGet]
+    public async Task<SignInResult> IndirectLogin(IndirectLoginParam param)
+    {
+        var query = QueryString.Create(new[] {
+            KeyValuePair.Create(nameof(param.CustId), param.CustId.ToString()),
+            KeyValuePair.Create(nameof(param.UplineCustId), param.UplineCustId.ToString()),
+            KeyValuePair.Create(nameof(param.UplineSubAccId), param.UplineSubAccId.ToString()),
+            KeyValuePair.Create(nameof(param.UplineUsername), param.UplineUsername),
+            KeyValuePair.Create(nameof(param.SubAccId), param.SubAccId.ToString()),
+            KeyValuePair.Create(nameof(param.Language), param.Language),
+            KeyValuePair.Create(nameof(param.CountryCode), param.CountryCode),
+            KeyValuePair.Create(nameof(param.Username), param.Username),
+            KeyValuePair.Create(nameof(param.BrowserName), param.BrowserName),
+            KeyValuePair.Create(nameof(param.LoginDomain), param.LoginDomain),
+            KeyValuePair.Create(nameof(param.SessionId), param.SessionId),
+            KeyValuePair.Create(nameof(param.LoginIp), param.LoginIp),
+            KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
+            KeyValuePair.Create(nameof(param.Platform), param.Platform)
+        });
+
+        return await client.GetAsJsonAsync<SignInResult>($"api/auth/indirect-login{query}");
     }
 }
