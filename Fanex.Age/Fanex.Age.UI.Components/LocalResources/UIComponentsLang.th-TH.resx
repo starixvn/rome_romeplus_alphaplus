@@ -250,7 +250,7 @@
     <comment />
   </data>
   <data name="com" xml:space="preserve">
-    <value>ความเสี่ยง</value>
+    <value>ค่าคอมฯ</value>
     <comment />
   </data>
   <data name="commission" xml:space="preserve">
@@ -2690,7 +2690,7 @@
     <comment />
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>ค่าคอมเอเย่นต์</value>
+    <value>ค่าความเสี่ยงเอเย่นต์</value>
     <comment />
   </data>
   <data name="masterMaxPT" xml:space="preserve">
@@ -2702,11 +2702,11 @@
     <comment />
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าคอมมาสเตอร์</value>
+    <value>ค่าความเสี่ยงมาสเตอร์</value>
     <comment />
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าคอมซุปเปอร์</value>
+    <value>ค่าความเสี่ยงซุปเปอร์</value>
     <comment />
   </data>
   <data name="masterAutoPT" xml:space="preserve">

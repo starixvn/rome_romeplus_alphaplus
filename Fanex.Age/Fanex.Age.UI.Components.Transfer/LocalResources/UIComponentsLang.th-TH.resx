@@ -217,7 +217,7 @@
     <value>ปิด</value>
   </data>
   <data name="com" xml:space="preserve">
-    <value>ความเสี่ยง</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="commission" xml:space="preserve">
     <value>คอมมิชชั่น</value>
@@ -2049,7 +2049,7 @@
     <value>ความเสี่ยงต่ำสุดของเอเย่นต์</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>ค่าคอมเอเย่นต์</value>
+    <value>ค่าความเสี่ยงเอเย่นต์</value>
   </data>
   <data name="masterMaxPT" xml:space="preserve">
     <value>ความเสี่ยงสูงสุดของมาสเตอร์</value>
@@ -2058,10 +2058,10 @@
     <value>ความเสี่ยงต่ำสุดของมาสเตอร์</value>
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าคอมมาสเตอร์</value>
+    <value>ค่าความเสี่ยงมาสเตอร์</value>
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าคอมซุปเปอร์</value>
+    <value>ค่าความเสี่ยงซุปเปอร์</value>
   </data>
   <data name="masterAutoPT" xml:space="preserve">
     <value>ค่าแบ่งสู้อัตโนมัติของมาสเตอร์</value>
