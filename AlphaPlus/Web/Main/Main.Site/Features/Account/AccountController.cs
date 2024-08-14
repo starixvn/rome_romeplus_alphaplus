@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Main.Site.Helpers;
+using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -38,7 +39,8 @@ public class AccountController(
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
         var loginResultMessage = string.IsNullOrWhiteSpace(r) ? string.Empty : $"?r={r}";
 
-        return Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
+        return UserSession.Current.IsIndirectLoggedIn || UserSession.Current.IsInternal ?
+            new EmptyResult() : Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
     }
 
     [Authorize]
@@ -51,8 +53,13 @@ public class AccountController(
 
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-        return UserSession.Current.IsInternal || UserSession.Current.IsIndirectLoggedIn ? SignOut() : 
-            SignOut(new AuthenticationProperties { RedirectUri = Url.Action(nameof(Login), "Account") });
+        if (UserSession.Current.IsInternal || UserSession.Current.IsIndirectLoggedIn)
+        {
+            SignOut();
+            return Login();
+        }
+
+        return SignOut(new AuthenticationProperties { RedirectUri = Url.Action(nameof(Login), "Account") });
     }
 
     [HttpPost]
@@ -94,6 +101,84 @@ public class AccountController(
             LoginTime = new DateTime(param.LoginTime),
             Language = userSession.LangKey,
             RequestInfo = requestInfo
+        });
+
+        if (signInResult.IsSuccessful)
+        {
+            if (!options.DisabledCheckDuplicationLogin)
+            {
+                await accountService.CheckIn();
+            }
+
+            var claims = new List<Claim>{
+                new (ClaimTypes.NameIdentifier,Guid.NewGuid().ToString())
+            };
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+            return RedirectToAction("Redirect", "Default");
+        }
+
+        return Login(signInResult.Message);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> InternalLogin(string parameter)
+    {
+        var param = JsonSerializer.Deserialize<InternalLoginParam>(aesService.Decrypt(parameter, SecretKey));
+        var requestInfo = await deviceHelper.GetRequestInfo();
+        var signInResult = await accountService.InternalLogin(new InternalLoginParam
+        {
+            AdminId = param.AdminId,
+            BrowserName = param.BrowserName,
+            CountryCode = param.CountryCode,
+            LoginDomain = param.LoginDomain,
+            LoginIp = param.LoginIp,
+            LoginTime = param.LoginTime,
+            Language = userSession.LangKey,
+            Platform = requestInfo.Platform,
+            SessionId = AlphaContext.Current.Session.Id,
+            Username = param.Username
+        });
+
+        if (signInResult.IsSuccessful)
+        {
+            if (!options.DisabledCheckDuplicationLogin)
+            {
+                await accountService.CheckIn();
+            }
+
+            var claims = new List<Claim>{
+                new (ClaimTypes.NameIdentifier,Guid.NewGuid().ToString())
+            };
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+            return RedirectToAction("Redirect", "Default");
+        }
+
+        return Login(signInResult.Message);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> IndirectLogin(string parameter)
+    {
+        var param = JsonSerializer.Deserialize<IndirectLoginParam>(aesService.Decrypt(parameter, SecretKey));
+        var requestInfo = await deviceHelper.GetRequestInfo();
+        var signInResult = await accountService.IndirectLogin(new IndirectLoginParam
+        {
+            CustId = param.CustId,
+            SubAccId = param.SubAccId,
+            UplineCustId = param.UplineSubAccId,
+            UplineUsername = param.UplineUsername,
+            UplineSubAccId = param.UplineSubAccId,
+            BrowserName = param.BrowserName,
+            CountryCode = param.CountryCode,
+            LoginDomain = param.LoginDomain,
+            LoginIp = param.LoginIp,
+            LoginTime = param.LoginTime,
+            Language = userSession.LangKey,
+            Platform = requestInfo.Platform,
+            SessionId = AlphaContext.Current.Session.Id,
+            Username = param.Username
         });
 
         if (signInResult.IsSuccessful)
