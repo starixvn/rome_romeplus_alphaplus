@@ -220,6 +220,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 Language = request.LangKey
             }));
 
+        [HttpGet]
+        public IActionResult RedirectPT(string username, int userId, int custId, int subAccId, bool isEdit, bool insert)
+        {
+            return View();
+        }
+
         private string GetApplicationPath()
         {
             var applicationPath = HttpContext.Request.PathBase.Value;
