@@ -401,7 +401,25 @@ a.transfer-link {
     height: 28px;
     align-items: center;
     margin-bottom: 5px;
-    
+    &-daily{
+        position: relative;
+        &:after{
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: #cecece;
+            bottom: -3px;
+            left: 0;
+
+        }
+    }
+    &-daily, &-weekly{
+        .left{
+            border-right: 1px solid #cecece;
+            margin-right: 10px;
+        }
+    }
     label{
         margin: 0;
     }

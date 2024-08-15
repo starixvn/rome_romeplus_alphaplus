@@ -20,14 +20,14 @@
         string.Empty)>@Model.WarningMessage</div>
     <h5 class="ttl-form-transfer-condition">@Resources.AccountBalanceTransferCondition</h5>
     <form method="post" asp-action="Update" role="form" id="form-transfer">
-        <div class="form-transfer-condition">
+        <div class="form-transfer-condition form-transfer-condition-daily">
             <div class="left">
                 <input type="radio" id="rdo-daily" name="TransferCondition" value="00000000" @(Model.Daily ? "checked" :
                     string.Empty) />
                 <label for="rdo-daily">@Resources.Daily</label>
             </div>
         </div>
-        <div class="form-transfer-condition">
+        <div class="form-transfer-condition form-transfer-condition-weekly">
             <div class="left">
                 <input type="radio" id="rdo-weekly" name="TransferCondition" value="00000001" @(Model.Daily ? string.Empty :
                     "checked") />
