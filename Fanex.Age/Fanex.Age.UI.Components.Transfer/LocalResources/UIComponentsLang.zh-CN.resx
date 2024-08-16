@@ -205,7 +205,7 @@
     <value>投注摘要</value>
   </data>
   <data name="btnAdd" xml:space="preserve">
-    <value>增加</value>
+    <value>添加</value>
   </data>
   <data name="cancel" xml:space="preserve">
     <value>取消</value>
@@ -370,7 +370,7 @@
     <value>代理资料</value>
   </data>
   <data name="lblAgentList" xml:space="preserve">
-    <value>代理</value>
+    <value>代理名单</value>
   </data>
   <data name="lblAgentMaxCredit" xml:space="preserve">
     <value>代理最高信用额度</value>
@@ -751,7 +751,7 @@
     <value>运动</value>
   </data>
   <data name="stake" xml:space="preserve">
-    <value>投注额</value>
+    <value>本金</value>
   </data>
   <data name="status" xml:space="preserve">
     <value>状态</value>
@@ -868,7 +868,7 @@
     <value>昨天</value>
   </data>
   <data name="yesterdaybalance" xml:space="preserve">
-    <value>昨天餘額</value>
+    <value>昨天余额</value>
   </data>
   <data name="yesterdaycashbalance" xml:space="preserve">
     <value>昨天现金余额</value>
@@ -2132,7 +2132,7 @@
     <value>开启双倍佣金</value>
   </data>
   <data name="Gaming" xml:space="preserve">
-    <value>Gaming</value>
+    <value>游戏</value>
   </data>
   <data name="home2" xml:space="preserve">
     <value>主</value>
@@ -2141,7 +2141,7 @@
     <value>虚拟网球</value>
   </data>
   <data name="agentList" xml:space="preserve">
-    <value>代理</value>
+    <value>代理名单</value>
   </data>
   <data name="memberList" xml:space="preserve">
     <value>会员</value>

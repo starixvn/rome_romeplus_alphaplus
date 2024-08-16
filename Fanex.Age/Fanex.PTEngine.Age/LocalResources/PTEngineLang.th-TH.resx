@@ -121,10 +121,10 @@
     <value>เงื่อนไขในการโอนถ่ายยอดคงเหลือของบัญชี</value>
   </data>
   <data name="agent" xml:space="preserve">
-    <value>ตัวแทน</value>
+    <value>เอเย่นต์</value>
   </data>
   <data name="agentwinloss" xml:space="preserve">
-    <value>เอเจนต์ ได้เสีย</value>
+    <value>ยอดได้เสียของเอเย่นต์</value>
   </data>
   <data name="alertConfirmPasswordEmpty" xml:space="preserve">
     <value>เสียใจคะ การยืนยันรหัสจำเป็นต้องกรอกด้วยคะ</value>
@@ -172,10 +172,10 @@
     <value>วางเดิมพัน</value>
   </data>
   <data name="betcredit" xml:space="preserve">
-    <value>เครดิตสำหรับการวางเดิมพัน</value>
+    <value>เครดิตสำหรับเดิมพัน</value>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>รายการวางเดิมพันที่เล่นไปแล้ว</value>
+    <value>รายการเดิมพัน</value>
   </data>
   <data name="betsummary" xml:space="preserve">
     <value> สรุปการเดิมพัน</value>
@@ -193,7 +193,7 @@
     <value>ปิด</value>
   </data>
   <data name="com" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="commission" xml:space="preserve">
     <value>คอมมิชชั่น</value>
@@ -274,7 +274,7 @@
     <value>แบบ เต็ม</value>
   </data>
   <data name="givencredit" xml:space="preserve">
-    <value>เครดิตทั้งหมด</value>
+    <value>เครดิตที่ได้รับ</value>
   </data>
   <data name="Golf" xml:space="preserve">
     <value>กอล์ฟ</value>
@@ -295,7 +295,7 @@
     <value>ชื่อ และ รหัสที่ใช้ในการเข้าระบบไม่ถูกต้อง</value>
   </data>
   <data name="ip" xml:space="preserve">
-    <value>รหัสของเครื่องคอมพิวเตอร์ที่ใช้</value>
+    <value>ไอพี</value>
   </data>
   <data name="last" xml:space="preserve">
     <value>หน้าสุดท้าย</value>
@@ -304,7 +304,7 @@
     <value>เข้าระบบครั้งสุดท้าย</value>
   </data>
   <data name="lastloginIP" xml:space="preserve">
-    <value>IP สุดท้ายที่เข้าระบบ</value>
+    <value>ไอพีที่เข้าระบบ</value>
   </data>
   <data name="lastname" xml:space="preserve">
     <value>นามสกุล</value>
@@ -343,7 +343,7 @@
     <value>จำนวนเงินสูงสุดในบัญชีของตัวแทน</value>
   </data>
   <data name="lblAgentOutstanding" xml:space="preserve">
-    <value>เอเย่นต์ยอดคงค้าง</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของเอเย่นต์</value>
   </data>
   <data name="lblAsianHDC_OU_OE" xml:space="preserve">
     <value>ราคาต่อรองแบบแต้มต่อ สูงต่ำ และ คี่ คู่</value>
@@ -352,10 +352,10 @@
     <value>กลับ</value>
   </data>
   <data name="lblBetListRunning" xml:space="preserve">
-    <value>รายการการเดิมพัน ( ที่กำลังแข่ง )</value>
+    <value>รายการเดิมพัน (ที่รับแล้ว)</value>
   </data>
   <data name="lblBetLists" xml:space="preserve">
-    <value>รายการวางเดิมพัน</value>
+    <value>รายการเดิมพัน</value>
   </data>
   <data name="lblBetSetting" xml:space="preserve">
     <value>การกำหนดการวางเดิมพัน</value>
@@ -379,7 +379,7 @@
     <value>ค่าคอมมิชชั่นสำหรับสมาชิก</value>
   </data>
   <data name="lblConfirmEditMaster" xml:space="preserve">
-    <value>คุณได้ทำการเปลี่ยนตัวแทนหลักและ ไม่ได้เลือกตำแหน่งอัตโนมัติ คุณต้องการที่จะอัพเดทตำแหน่งของสมาชิกที</value>
+    <value>คุณได้ทำการเปลี่ยนให้มาสเตอร์นี้ ไม่ใช้งานค่าความเสี่ยงอัตโนมัติ.&lt;br&gt;คุณต้องการจะเปลี่ยนแปลงค่าความเสี่ยงสำหรับสมาชิกทั้งหมดตามนี้หรือไม่:</value>
   </data>
   <data name="lblCopyAllPTfromHdp" xml:space="preserve">
     <value>คัดลอกการตั้งค่าเดิมพันทั้งหมด และ ค่าเอี่ยวจากแต้มต่อฟุตบอล (ไม่รวม เกมหมายเลย )</value>
@@ -448,7 +448,7 @@
     <value>จำนวนเงินในบัญชีสูงสุดสำหรับตัวแทนหลัก</value>
   </data>
   <data name="lblMasterOutstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุดของ Master</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของมาสเตอร์</value>
   </data>
   <data name="lblMBalInfo" xml:space="preserve">
     <value>ยอดเงินของ Master</value>
@@ -460,7 +460,7 @@
     <value>ข้อมูลสมาชิก</value>
   </data>
   <data name="lblMemberMaxCredit" xml:space="preserve">
-    <value>เครดิตโอนเงินสูงสุดของสมาชิก</value>
+    <value>เครดิตสูงสุดของสมาชิก</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
     <value>บอลชุดผสม</value>
@@ -505,7 +505,7 @@
     <value>ยอดรายการคงค้างของตัวแทนสูงสุด</value>
   </data>
   <data name="lblStatement" xml:space="preserve">
-    <value>บัญชี</value>
+    <value>รายการเดินบัญชี</value>
   </data>
   <data name="lblStatusClosed" xml:space="preserve">
     <value>ปิด</value>
@@ -559,7 +559,7 @@
     <value>เข้าระบบ</value>
   </data>
   <data name="master" xml:space="preserve">
-    <value>ตัวแทนหลัก</value>
+    <value>มาสเตอร์</value>
   </data>
   <data name="masterbalance" xml:space="preserve">
     <value>ตัวแทนหลัก ยอดคงเหลือ</value>
@@ -571,10 +571,10 @@
     <value>รายละเอียด เกี่ยวกับตัวแทนหลัก</value>
   </data>
   <data name="masterwinloss" xml:space="preserve">
-    <value>ตัวแทนหลัก ชนะ แพ้</value>
+    <value>ยอดได้เสียของมาสเตอร์</value>
   </data>
   <data name="masterwinlostdetail" xml:space="preserve">
-    <value>ตัวแทนหลัก ชนะ แพ้ รายละเอียด</value>
+    <value>รายละเอียดยอดได้เสียของมาสเตอร์</value>
   </data>
   <data name="member" xml:space="preserve">
     <value>สมาชิก</value>
@@ -586,7 +586,7 @@
     <value>เงินหมุนเวียนของสมาชิก</value>
   </data>
   <data name="memberwinlossdetail" xml:space="preserve">
-    <value>รายละเอียด</value>
+    <value>รายละเอียดการได้เสียของสมาชิก</value>
   </data>
   <data name="minposition" xml:space="preserve">
     <value>ตำแหน่งขั้นต่ำ</value>
@@ -616,7 +616,7 @@
     <value>ไม่มีข้อมูล</value>
   </data>
   <data name="odds" xml:space="preserve">
-    <value>ราคา</value>
+    <value>อัตราต่อรอง</value>
   </data>
   <data name="open" xml:space="preserve">
     <value>เปิด</value>
@@ -628,7 +628,7 @@
     <value>กีฬาชนิดอื่น</value>
   </data>
   <data name="outstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="outtxn" xml:space="preserve">
     <value>transaction ที่ยังไม่ได้คำนวณ</value>
@@ -667,7 +667,7 @@
     <value>ผลการแข่งขัน</value>
   </data>
   <data name="running" xml:space="preserve">
-    <value>กำลังแข่งขัน</value>
+    <value>ที่รับแล้ว</value>
   </data>
   <data name="sat" xml:space="preserve">
     <value>วันเสาร์</value>
@@ -697,7 +697,7 @@
     <value>บัญชีย่อย</value>
   </data>
   <data name="submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="sun" xml:space="preserve">
     <value>วันอาทิตย์</value>
@@ -706,7 +706,7 @@
     <value>วันอาทิตย์</value>
   </data>
   <data name="super" xml:space="preserve">
-    <value>สูงสุด</value>
+    <value>ซุปเปอร์</value>
   </data>
   <data name="suspend" xml:space="preserve">
     <value>ถูกระงับ</value>
@@ -751,7 +751,7 @@
     <value>วันอังคาร</value>
   </data>
   <data name="turnover" xml:space="preserve">
-    <value>เงินหมุนเวียน</value>
+    <value>มูลค่าการเดิมพัน</value>
   </data>
   <data name="type" xml:space="preserve">
     <value>ประเภท</value>
@@ -760,7 +760,7 @@
     <value>น้อยกว่า</value>
   </data>
   <data name="update" xml:space="preserve">
-    <value>ล่าสุด</value>
+    <value>อัปเดต</value>
   </data>
   <data name="updateaccount" xml:space="preserve">
     <value>อัพเดทบัญชี</value>
@@ -769,7 +769,7 @@
     <value>เครดิตที่ใช้ไป</value>
   </data>
   <data name="username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
   <data name="view" xml:space="preserve">
     <value>ดู</value>
@@ -790,7 +790,7 @@
     <value>รายอาทิตย์</value>
   </data>
   <data name="win" xml:space="preserve">
-    <value>ชนะ</value>
+    <value>ยอดได้เสีย</value>
   </data>
   <data name="yesterday" xml:space="preserve">
     <value>เมื่อวาน</value>
@@ -838,7 +838,7 @@
     <value>อื่นๆ</value>
   </data>
   <data name="lblConfirmEditAgent" xml:space="preserve">
-    <value>คุณได้เปลี่ยนเอเย่นท่านนี้ไม่ถือแบ่งสู้อัตโนมัติ&lt;br&gt;คุณต้องการจะอัพเดทแบ่งสู้บนสมาชิกทั้งหมกหรือไม่</value>
+    <value>คุณได้ทำการเปลี่ยนให้เอเย่นต์นี้ ไม่ใช้งานค่าความเสี่ยงอัตโนมัติ.&lt;br&gt;คุณต้องการจะเปลี่ยนแปลงค่าความเสี่ยงสำหรับสมาชิกทั้งหมดตามนี้หรือไม่:</value>
   </data>
   <data name="No1" xml:space="preserve">
     <value>1</value>
@@ -922,7 +922,7 @@
     <value>คุณแน่ใจหรือว่าต้องการเปลี่ยนสถานะเป็นระงับการใช้งานให้กับลูกค้าท่านนี้?</value>
   </data>
   <data name="lastcheckin" xml:space="preserve">
-    <value>เวลาเข้าระบบ</value>
+    <value>เวลาเข้าสู่ระบบ</value>
   </data>
   <data name="loading" xml:space="preserve">
     <value>กำลังโหลด</value>
@@ -1024,7 +1024,7 @@
     <value>ข้อมูลยอดเงินคงเหลือ</value>
   </data>
   <data name="downlinelist" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อดาวน์ไลน์</value>
   </data>
   <data name="donotshowagain" xml:space="preserve">
     <value>ไม่ต้องแสดงอีกครั้ง</value>
@@ -1069,7 +1069,7 @@
     <value>แก้ไขแบ่งสู้ไฟแนนซ์หลายฝ่าย</value>
   </data>
   <data name="editmultsportbook" xml:space="preserve">
-    <value>แก้ไขรายการของกีฬาหลายฝ่าย</value>
+    <value>แก้ไขกีฬาหลายรายการ</value>
   </data>
   <data name="lbl1x2Comm" xml:space="preserve">
     <value>1x2 คอมมิชั่น</value>
@@ -1096,10 +1096,10 @@
     <value>เอี่ยของซุปเปรอ์ที่ตั้งไว้ก่อนหน้า</value>
   </data>
   <data name="MinPTAgent" xml:space="preserve">
-    <value>แบ่งสู้ต่ำสุดของเอเย่น</value>
+    <value>ความเสี่ยงต่ำสุดของเอเย่นต์</value>
   </data>
   <data name="MinPTMaster" xml:space="preserve">
-    <value>แบ่งสู้ขั้นต่ำของมาสเตอร์</value>
+    <value>ความเสี่ยงต่ำสุดของมาสเตอร์</value>
   </data>
   <data name="MinPTSuper" xml:space="preserve">
     <value>แบ่งสู้ต่ำสุดของซุปเปรอ์</value>
@@ -1168,7 +1168,7 @@
     <value>บ่าย</value>
   </data>
   <data name="allowautopt" xml:space="preserve">
-    <value>อนุญาตให้มีแบ่งสู้อัตโนมัติ</value>
+    <value>อนุญาตให้ใช้ค่าความเสี่ยงอัตโนมัติ</value>
   </data>
   <data name="downlines" xml:space="preserve">
     <value>ดาวน์ไลน์</value>
@@ -1424,10 +1424,10 @@
     <value>อัพไลน์ได้ถูกระงับการใช้งาน</value>
   </data>
   <data name="lblNo" xml:space="preserve">
-    <value>ไม่</value>
+    <value>ไม่ใช่</value>
   </data>
   <data name="lblYes" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ใช่</value>
   </data>
   <data name="selectLeague" xml:space="preserve">
     <value>เลือก ลีก</value>
@@ -1466,7 +1466,7 @@
     <value>ยอดหมุนเวียนมากที่สุดของสมาชิกประจำเดือนนี้</value>
   </data>
   <data name="lblSuperOutstanding" xml:space="preserve">
-    <value>ยอดคงค้างของซุปเปอร์</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของซุปเปอร์</value>
   </data>
   <data name="newmemberofthemonth" xml:space="preserve">
     <value>สมาชิกใหม่ประจำเดือนนี้</value>
@@ -1534,7 +1534,7 @@
     <value>รวมทั้งหมด เปิด/ปิด/ระงับ</value>
   </data>
   <data name="no0" xml:space="preserve">
-    <value>ไม่</value>
+    <value>ไม่ใช่</value>
   </data>
   <data name="loginOptions" xml:space="preserve">
     <value>ตัวเลือกเข้าสู่ระบบ</value>
@@ -1624,7 +1624,7 @@
     <value>Product</value>
   </data>
   <data name="superwinloss" xml:space="preserve">
-    <value>การได้เสียสูงสุด</value>
+    <value>ยอดได้เสียซุปเปอร์</value>
   </data>
   <data name="least3monthtochart" xml:space="preserve">
     <value>กรุณาเลือกอย่างน้อย 3 เดือนในกราฟแผนภูมิ</value>
@@ -1745,7 +1745,7 @@
     <value>No currency play, otherwise, agents shall bear the risk and loss</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
-    <value>กีฬาอนิเมชั่น</value>
+    <value>กีฬาเสมือนจริง</value>
   </data>
   <data name="VirtualSoccer" xml:space="preserve">
     <value>ฟุตบอลอนิเมชั่น</value>
@@ -1763,16 +1763,16 @@
     <value>คุณต้องการที่จะเปิดกีฬาอนิเมชั่นสำหรับลูกค้ารายนี้?</value>
   </data>
   <data name="masterMaxPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้สูงสุดของมาสเตอร์</value>
+    <value>ความเสี่ยงสูงสุดของมาสเตอร์</value>
   </data>
   <data name="masterMinPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ต่ำสุดของมาสเตอร์</value>
+    <value>ความเสี่ยงต่ำสุดของมาสเตอร์</value>
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของมาสเตอร์</value>
+    <value>ค่าความเสี่ยงมาสเตอร์</value>
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของซุปเปอร์</value>
+    <value>ค่าความเสี่ยงซุปเปอร์</value>
   </data>
   <data name="masterAutoPT" xml:space="preserve">
     <value>ค่าแบ่งสู้อัตโนมัติของมาสเตอร์</value>
@@ -1781,7 +1781,7 @@
     <value>แก้ไขกีฬาอนิเมชั่นหลายสาย</value>
   </data>
   <data name="Unlimited" xml:space="preserve">
-    <value>ไม่จำกัด</value>
+    <value>ไม่จำกัดค่า</value>
   </data>
   <data name="GamesDetails" xml:space="preserve">
     <value>Games Details</value>
@@ -1847,7 +1847,7 @@
     <value>Virtual Tennis</value>
   </data>
   <data name="agentList" xml:space="preserve">
-    <value>รายชื่อ เอเจนต์</value>
+    <value>รายชื่อเอเย่นต์</value>
   </data>
   <data name="memberList" xml:space="preserve">
     <value>รายชื่อลูกค้า</value>
@@ -1963,7 +1963,7 @@
     <value>คำเตือน!!!  ท่านต้องการปิดการใช้งาน อี-สปอร์ต ให้กับลูกค้าท่านนี้และดาวน์ไลน์ทั้งหมด?</value>
   </data>
   <data name="ClickToViewPTInfo" xml:space="preserve">
-    <value>คลิ๊กที่นี่เพื่อดูข้อมูลตั้งค่าเปอร์เซ็นความเสี่ยง</value>
+    <value>คลิ๊กเพื่อดูข้อมูลค่าความเสี่ยง</value>
   </data>
   <data name="ViewDataFromDate" xml:space="preserve">
     <value>ท่านสามารถดูรายงานข้อมูลได้จาก {0}.</value>
@@ -1978,7 +1978,7 @@
     <value>Confirm Security Code</value>
   </data>
   <data name="titleResetSecCode" xml:space="preserve">
-    <value>Reset Security Code</value>
+    <value>ตั้งค่ารหัสรักษาความปลอดภัยใหม่</value>
   </data>
   <data name="SecurityCode" xml:space="preserve">
     <value>Security Code</value>

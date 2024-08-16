@@ -3,7 +3,7 @@
     <TargetFramework>net461</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Fanex.Age.UI.Components.Transfer</PackageId>
-    <Version>4.0.0.1</Version>
+    <Version>4.0.0.2-beta01</Version>
     <Authors>Rome</Authors>
     <Company>Starix Soft</Company>
     <Product>Alpha Plus</Product>

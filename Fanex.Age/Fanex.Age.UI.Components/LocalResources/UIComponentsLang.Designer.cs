@@ -331,8 +331,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re required to change Security Code. Your new Security Code must be different from the one provided by your upline/CSD.&lt;br/&gt;
-        ///Please use the form below to change your Security Code now..
+        ///   Looks up a localized string similar to You&apos;re required to change Security Code. Your new Security Code must be different from the one provided by your upline/CSD.&lt;br/&gt;Please use the form below to change your Security Code now..
         /// </summary>
         internal static string alertForcedChangeSCTitle {
             get {
@@ -341,8 +340,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re required to set your Security Code to authenticate later when you need to do any critical actions such as change your own password, reset your downline password, etc.&lt;br/&gt;
-        ///Please use the form below to set your Security Code now..
+        ///   Looks up a localized string similar to You&apos;re required to set your Security Code to authenticate later when you need to do any critical actions such as change your own password, reset your downline password, etc.&lt;br/&gt;Please use the form below to set your Security Code now..
         /// </summary>
         internal static string alertForcedChangeSCWithoutValidationTitle {
             get {
@@ -603,7 +601,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Tranfer.
+        ///   Looks up a localized string similar to Auto Transfer.
         /// </summary>
         internal static string autoTransfer {
             get {
@@ -972,8 +970,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to disallow outright betting for this customer?
-        ///Warning, all members under this agent can&apos;t place outright bet!.
+        ///   Looks up a localized string similar to Are you sure you want to disallow outright betting for this customer?Warning, all members under this agent can&apos;t place outright bet!.
         /// </summary>
         internal static string confirmDisableOutright {
             get {
@@ -1504,6 +1501,15 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        internal static string Enabled {
+            get {
+                return ResourceManager.GetString("Enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable SA Tote.
         /// </summary>
         internal static string enablesatote {
@@ -2017,8 +2023,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;div&gt;Dear customers! Now you can login with your own nickname&lt;/div&gt;
-        ///&lt;div&gt;... more secure and personalized.&lt;/div&gt;.
+        ///   Looks up a localized string similar to &lt;div&gt;Dear customers! Now you can login with your own nickname&lt;/div&gt;&lt;div&gt;... more secure and personalized.&lt;/div&gt;.
         /// </summary>
         internal static string introNickname {
             get {
@@ -2063,8 +2068,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Additional info at DNSstuff:&lt;a href=&quot;{0}&quot; target=&quot;_blank&quot;&gt; click here&lt;/a&gt;.
-        ///Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required..
+        ///   Looks up a localized string similar to Additional info at DNSstuff:&lt;a href=&quot;{0}&quot; target=&quot;_blank&quot;&gt; click here&lt;/a&gt;.Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required..
         /// </summary>
         internal static string ipnote {
             get {
@@ -3459,8 +3463,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your security and privacy are extremely important to us. Therefore, we continuously strive to improve our security precautions to protect your data. For this reason, we have decided to implement a password reset. 
-        ///Please use the form below to change your password now..
+        ///   Looks up a localized string similar to Your security and privacy are extremely important to us. Therefore, we continuously strive to improve our security precautions to protect your data. For this reason, we have decided to implement a password reset. Please use the form below to change your password now..
         /// </summary>
         internal static string lblPasswordExpired {
             get {
@@ -3478,8 +3481,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password must be 6-10 characters without white-space and contain at least 1 uppercase letter, 1 lowercase letter, 1 numeric digit. (e.g. 493abcDE, 59D7!4$h)
-        ///Notes: your password is cAsE sEnSiTiVe..
+        ///   Looks up a localized string similar to Password must be 6-10 characters without white-space and contain at least 1 uppercase letter, 1 lowercase letter, 1 numeric digit. (e.g. 493abcDE, 59D7!4$h)Notes: your password is cAsE sEnSiTiVe..
         /// </summary>
         internal static string lblPasswordMemberRequire {
             get {
@@ -3488,15 +3490,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password must be at least 8 characters without white-space and contain at least 3 of the following:
-        ///
-        ///  • Uppercase letter [A-Z] 
-        ///  • Lowercase letter [a-z] 
-        ///  • Numeric [0-9] 
-        ///  • Special character (!,@,#,etc..)
-        ///
-        ///For example: 59D7!4$h, 493abcDE
-        ///Notes: your password is cAsE sEnSiTiVe.
+        ///   Looks up a localized string similar to Password must be at least 8 characters without white-space and contain at least 3 of the following:  • Uppercase letter [A-Z]   • Lowercase letter [a-z]   • Numeric [0-9]   • Special character (!,@,#,etc..)For example: 59D7!4$h, 493abcDENotes: your password is cAsE sEnSiTiVe.
         /// </summary>
         internal static string lblPasswordRequire {
             get {
@@ -3604,15 +3598,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Security Code (SC) must be:
-        ///
-        ///    * Numeric digits only.
-        ///    * 6 digits from 0-9.
-        ///    * At least 2 different digits in the SC.
-        ///    * Not a forward run AND not a backward run number:
-        ///        + A &quot;Forward Run&quot; number is an integer whose digits are all in consecutive, ascending order, left to right.
-        ///        + A &quot;Backward Run&quot; number is an integer whose digits are all in consecutive, descending order, left to right.
-        ///        + For example: 123456, 456789, 765432, etc. are not allowed.
+        ///   Looks up a localized string similar to Security Code (SC) must be:    * Numeric digits only.    * 6 digits from 0-9.    * At least 2 different digits in the SC.    * Not a forward run AND not a backward run number:        + A &quot;Forward Run&quot; number is an integer whose digits are all in consecutive, ascending order, left to right.        + A &quot;Backward Run&quot; number is an integer whose digits are all in consecutive, descending order, left to right.        + For example: 123456, 456789, 765432, etc. are not allowed.
         /// </summary>
         internal static string lblRequiredSecCode {
             get {
@@ -4530,9 +4516,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;div class=&apos;mt3&apos;&gt;- You are not allowed to change your nickname afterward.&lt;/div&gt;
-        ///&lt;div class=&apos;mt3&apos;&gt;- Your nickname will not be disclosed to any person.&lt;/div&gt;
-        ///&lt;div class=&apos;mt3&apos;&gt;- This feature is not offered for sub-account.&lt;/div&gt;.
+        ///   Looks up a localized string similar to &lt;div class=&apos;mt3&apos;&gt;- You are not allowed to change your nickname afterward.&lt;/div&gt;&lt;div class=&apos;mt3&apos;&gt;- Your nickname will not be disclosed to any person.&lt;/div&gt;&lt;div class=&apos;mt3&apos;&gt;- This feature is not offered for sub-account.&lt;/div&gt;.
         /// </summary>
         internal static string msgNicknameOnly {
             get {
@@ -5738,15 +5722,6 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enabled.
-        /// </summary>
-        internal static string Enabled {
-            get {
-                return ResourceManager.GetString("Enabled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to allow Double Commission feature for Sportsbook&apos;s Losing tickets on this customer?.
         /// </summary>
         internal static string strConfirmEnableDoubleComm {
@@ -5981,7 +5956,7 @@ namespace Fanex.Age.UI.Components.LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thurs.
+        ///   Looks up a localized string similar to Thu.
         /// </summary>
         internal static string thurs {
             get {

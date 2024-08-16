@@ -181,7 +181,7 @@
     <value>投注摘要</value>
   </data>
   <data name="btnAdd" xml:space="preserve">
-    <value>增加</value>
+    <value>添加</value>
   </data>
   <data name="cancel" xml:space="preserve">
     <value>取消</value>
@@ -796,7 +796,7 @@
     <value>昨天</value>
   </data>
   <data name="yesterdaybalance" xml:space="preserve">
-    <value>昨天餘額</value>
+    <value>昨天余额</value>
   </data>
   <data name="yesterdaycashbalance" xml:space="preserve">
     <value>昨天现金余额</value>
@@ -1846,7 +1846,7 @@
     <value>虚拟网球</value>
   </data>
   <data name="agentList" xml:space="preserve">
-    <value>代理</value>
+    <value>代理名单</value>
   </data>
   <data name="memberList" xml:space="preserve">
     <value>会员</value>
