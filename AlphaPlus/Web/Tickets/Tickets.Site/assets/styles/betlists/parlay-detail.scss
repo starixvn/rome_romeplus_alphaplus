@@ -1,3 +1,12 @@
+
+:root,
+:root [data-theme='light'] {
+    --pl-footer-border-color: #d1d1d1;
+}
+:root [data-theme='dark'] {
+    --pl-footer-border-color: #353535;
+
+}
 .divParlayDetail {
     overflow-y: auto;
     max-height: 250px;
@@ -31,5 +40,5 @@
 
 tfoot th {
     padding: 4px 8px;
-    border-right: 1px solid #d1d1d1;
+    border-right: 1px solid var(--pl-footer-border-color);
 }
