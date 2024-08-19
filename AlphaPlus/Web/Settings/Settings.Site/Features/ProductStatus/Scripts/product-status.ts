@@ -77,7 +77,7 @@ class ProductStatusPopup {
             url: this.$formProductStatus.attr('action'),
             data: { message: formData },
             dataType: 'json',
-            beforeSend: (xhr) => xhr.setRequestHeader('__RequestVerificationToken', requestVerificationToken)
+            beforeSend: (xhr) => xhr.setRequestHeader('RequestVerificationToken', requestVerificationToken)
         })
             .done(this.afterUpdateStatusSuccessfully)
             .always(this.$.unblockUI);

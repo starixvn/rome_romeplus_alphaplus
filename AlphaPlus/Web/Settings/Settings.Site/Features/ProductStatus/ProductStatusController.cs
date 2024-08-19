@@ -14,7 +14,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Update([FromBody] ProductStatusCommand message)
+        public async Task<ActionResult> Update(ProductStatusCommand message)
             => await Json<IEnumerable<Result>>(message);
     }
 }
