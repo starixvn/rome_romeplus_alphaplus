@@ -3,6 +3,7 @@ using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Main.Site.Shared.Constants;
 
 public interface IUserSessionService
@@ -110,6 +111,9 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.AutoFollowBetIsDummyAgent = signInResult.AutoFollowBet;
 
         userSession.SetProperty(EnableJackpotSessionKey, signInResult.OfferedJackpotProducts);
+
+        userSession.IsInternalWebVPN = signInResult.AdminId > 0 && AlphaContext.Current.Request.Query["isVpn"] == "1";
+        
     }
 
     private static string GetSiteName(int roleId)

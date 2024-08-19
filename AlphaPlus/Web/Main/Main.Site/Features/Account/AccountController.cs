@@ -129,13 +129,9 @@ public class AccountController(
         var signInResult = await accountService.InternalLogin(new InternalLoginParam
         {
             AdminId = param.AdminId,
-            BrowserName = param.BrowserName,
-            CountryCode = param.CountryCode,
-            LoginDomain = param.LoginDomain,
-            LoginIp = param.LoginIp,
             LoginTime = param.LoginTime,
             Language = userSession.LangKey,
-            Platform = requestInfo.Platform,
+            RequestInfo = requestInfo,
             SessionId = AlphaContext.Current.Session.Id,
             Username = param.Username
         });
@@ -170,13 +166,9 @@ public class AccountController(
             UplineCustId = param.UplineSubAccId,
             UplineUsername = param.UplineUsername,
             UplineSubAccId = param.UplineSubAccId,
-            BrowserName = param.BrowserName,
-            CountryCode = param.CountryCode,
-            LoginDomain = param.LoginDomain,
-            LoginIp = param.LoginIp,
             LoginTime = param.LoginTime,
             Language = userSession.LangKey,
-            Platform = requestInfo.Platform,
+            RequestInfo = requestInfo,
             SessionId = AlphaContext.Current.Session.Id,
             Username = param.Username
         });

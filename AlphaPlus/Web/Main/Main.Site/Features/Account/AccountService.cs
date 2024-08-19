@@ -99,17 +99,24 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
         var query = QueryString.Create(new[] {
             KeyValuePair.Create(nameof(param.AdminId), param.AdminId.ToString()),
             KeyValuePair.Create(nameof(param.Language), param.Language),
-            KeyValuePair.Create(nameof(param.CountryCode), param.CountryCode),
+            KeyValuePair.Create(nameof(param.RequestInfo.CountryCode), param.RequestInfo.CountryCode),
             KeyValuePair.Create(nameof(param.Username), param.Username),
-            KeyValuePair.Create(nameof(param.BrowserName), param.BrowserName),
-            KeyValuePair.Create(nameof(param.LoginDomain), param.LoginDomain),
+            KeyValuePair.Create(nameof(param.RequestInfo.BrowserName), param.RequestInfo.BrowserName),
+            KeyValuePair.Create(nameof(param.RequestInfo.LoginDomain), param.RequestInfo.LoginDomain),
             KeyValuePair.Create(nameof(param.SessionId), param.SessionId),
-            KeyValuePair.Create(nameof(param.LoginIp), param.LoginIp),
+            KeyValuePair.Create(nameof(param.RequestInfo.LoginIp), param.RequestInfo.LoginIp),
             KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
-            KeyValuePair.Create(nameof(param.Platform), param.Platform)
+            KeyValuePair.Create(nameof(param.RequestInfo.Platform), param.RequestInfo.Platform)
         });
 
-        return await client.GetAsJsonAsync<SignInResult>($"api/auth/internal-login{query}");
+        var result = await client.GetAsJsonAsync<SignInResult>($"api/auth/internal-login{query}");
+
+        if (result.IsSuccessful)
+        {
+            userSessionService.SetUserSessionValues(result);
+        }
+
+        return result;
     }
 
     [HttpGet]
@@ -122,16 +129,23 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
             KeyValuePair.Create(nameof(param.UplineUsername), param.UplineUsername),
             KeyValuePair.Create(nameof(param.SubAccId), param.SubAccId.ToString()),
             KeyValuePair.Create(nameof(param.Language), param.Language),
-            KeyValuePair.Create(nameof(param.CountryCode), param.CountryCode),
+            KeyValuePair.Create(nameof(param.RequestInfo.CountryCode), param.RequestInfo.CountryCode),
             KeyValuePair.Create(nameof(param.Username), param.Username),
-            KeyValuePair.Create(nameof(param.BrowserName), param.BrowserName),
-            KeyValuePair.Create(nameof(param.LoginDomain), param.LoginDomain),
+            KeyValuePair.Create(nameof(param.RequestInfo.BrowserName), param.RequestInfo.BrowserName),
+            KeyValuePair.Create(nameof(param.RequestInfo.LoginDomain), param.RequestInfo.LoginDomain),
             KeyValuePair.Create(nameof(param.SessionId), param.SessionId),
-            KeyValuePair.Create(nameof(param.LoginIp), param.LoginIp),
+            KeyValuePair.Create(nameof(param.RequestInfo.LoginIp), param.RequestInfo.LoginIp),
             KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
-            KeyValuePair.Create(nameof(param.Platform), param.Platform)
+            KeyValuePair.Create(nameof(param.RequestInfo.Platform), param.RequestInfo.Platform)
         });
 
-        return await client.GetAsJsonAsync<SignInResult>($"api/auth/indirect-login{query}");
+        var result = await client.GetAsJsonAsync<SignInResult>($"api/auth/indirect-login{query}");
+
+        if (result.IsSuccessful)
+        {
+            userSessionService.SetUserSessionValues(result);
+        }
+
+        return result;
     }
 }
