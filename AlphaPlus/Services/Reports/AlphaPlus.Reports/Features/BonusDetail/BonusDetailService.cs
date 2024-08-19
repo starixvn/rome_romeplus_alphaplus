@@ -66,20 +66,16 @@ public class BonusDetailService(IDynamicRepository repository) : IBonusDetailSer
     {
         var colspan = 0;
         var totalAmount = 0M;
-        var masterBonusList = new List<GroupBonus>();
-        GroupBonus masterBonus;
-
-        entities
-            .GroupBy(b => b.MasterName)
-            .ToList()
-            .ForEach(grp =>
+        var masterBonusList = entities.GroupBy(
+            b => b.MasterName,
+            (masterName, grp) =>
             {
-                masterBonus = GetMasterBonus(grp.Key, grp);
-                masterBonusList.Add(masterBonus);
-
+                var masterBonus = GetMasterBonus(masterName, grp);
                 totalAmount += masterBonus.TotalAmount;
                 colspan += masterBonus.ColSpan;
-            });
+
+                return masterBonus;
+            }).ToList();
 
         return new GroupBonus(groupBy, totalAmount, masterBonusList, colspan);
     }
@@ -88,20 +84,16 @@ public class BonusDetailService(IDynamicRepository repository) : IBonusDetailSer
     {
         var colspan = 0;
         var totalAmount = 0M;
-        var agentBonusList = new List<GroupBonus>();
-        GroupBonus agentBonus;
-
-        entities
-            .GroupBy(b => b.AgentName)
-            .ToList()
-            .ForEach(grp =>
+        var agentBonusList = entities.GroupBy(
+            b => b.AgentName,
+            (agentName, grp) =>
             {
-                agentBonus = GetAgentBonus(grp.Key, grp);
-                agentBonusList.Add(agentBonus);
-
+                var agentBonus = GetAgentBonus(agentName, grp);
                 totalAmount += agentBonus.TotalAmount;
                 colspan += agentBonus.Bonus.Count;
-            });
+
+                return agentBonus;
+            }).ToList();
 
         return new GroupBonus(groupBy, totalAmount, agentBonusList, colspan);
     }
@@ -109,19 +101,15 @@ public class BonusDetailService(IDynamicRepository repository) : IBonusDetailSer
     private static GroupBonus GetAgentBonus(string groupBy, IEnumerable<BonusEntity> entities)
     {
         var totalAmount = 0M;
-        var bonusList = new List<BonusEntity>();
-
-        entities
-            .ToList()
-            .ForEach(bonus =>
+        var bonusList = entities.Select(bonus =>
+        {
+            if (!bonus.IsCancelled)
             {
-                bonusList.Add(bonus);
+                totalAmount += bonus.Amount;
+            }
 
-                if (!bonus.IsCancelled)
-                {
-                    totalAmount += bonus.Amount;
-                }
-            });
+            return bonus;
+        }).ToList();
 
         return new GroupBonus(groupBy, totalAmount, bonusList);
     }
@@ -133,15 +121,15 @@ public class BonusDetailService(IDynamicRepository repository) : IBonusDetailSer
         Func<string, IEnumerable<BonusEntity>, GroupBonus> getLevelBonus)
     {
         var totalAmount = 0M;
-        var bonusList = new List<GroupBonus>();
+        var bonusList = rawData.GroupBy(
+            b => b.CreatedDate.Date,
+            (date, group) =>
+            {
+                var bonus = getLevelBonus(date.ToShortDateWithSlash(), group);
+                totalAmount += bonus.TotalAmount;
 
-        rawData.GroupBy(b => b.CreatedDate.Date).ToList().ForEach(group =>
-        {
-            var bonus = getLevelBonus(group.Key.ToShortDateWithSlash(), group);
-            bonusList.Add(bonus);
-
-            totalAmount += bonus.TotalAmount;
-        });
+                return bonus;
+            }).ToList();
 
         return new PagedReportData<GroupBonus>(bonusList, new GroupBonus(totalAmount), param.PageIndex, param.PageSize, totalRecords);
     }

@@ -33,7 +33,7 @@ public static class BetsForecastDIExtensions
             {
                 AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
             })
-            .ConfigurePrimaryHttpMessageHandler(_ => new SocketsHttpHandler()
+            .ConfigurePrimaryHttpMessageHandler(_ => new SocketsHttpHandler
             {
                 PooledConnectionLifetime = TimeSpan.FromMinutes(pooledConnectionLifetime)
             })

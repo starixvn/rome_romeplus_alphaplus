@@ -11,8 +11,6 @@ public interface ICustomerService
 
     IEnumerable<Breadcrumb> BuildBreadcrumbs(CustomerLevel customerLevel, UserLevel viewerLevel);
 
-    Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(UsernameSuggestionParam param);
-
     Task UpdateUserSearch(int viewerId, UsernameSuggestion param);
 }
 
@@ -61,14 +59,6 @@ public class CustomerService(IDynamicRepository repository) : ICustomerService
             yield return new Breadcrumb(customerLevel.AgentId.Value, customerLevel.AgentName, UserLevel.Agent.Value);
         }
     }
-
-    public async Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(UsernameSuggestionParam param)
-        => (await repository.FetchAsync<UsernameSuggestion>(new UsernameSuggestionCriteria(
-            param.ViewerId,
-            param.Username,
-            param.IsInternal,
-            param.DirectDownline,
-            param.IsAccInfo))).OrderBy(item => item.Username);
 
     public Task UpdateUserSearch(int viewerId, UsernameSuggestion param)
         => repository.ExecuteAsync(new UpdateUserSearchCriteria(

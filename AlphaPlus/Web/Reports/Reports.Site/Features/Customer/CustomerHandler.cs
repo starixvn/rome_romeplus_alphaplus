@@ -3,14 +3,14 @@ using MediatR;
 
 namespace AlphaPlus.Reports.Site.Features.Customer;
 
-public class CustomerHandler(ICustomerService customerService)
+public class CustomerHandler(ICustomerClient customerClient)
     : IRequestHandler<UsernameSuggestionQuery, IEnumerable<UsernameSuggestion>>
 {
     public Task<IEnumerable<UsernameSuggestion>> Handle(UsernameSuggestionQuery message, CancellationToken cancellationToken)
-        => customerService.GetUsernamesSuggestion(new UsernameSuggestionParam(
+        => customerClient.GetUsernamesSuggestion(
             message.ViewerId,
             message.CustName,
             message.IsInternal,
             message.DirectDownline,
-            message.IsAccInfo));
+            message.IsAccInfo);
 }

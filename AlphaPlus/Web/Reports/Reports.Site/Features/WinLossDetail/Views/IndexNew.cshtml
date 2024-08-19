@@ -91,7 +91,7 @@
             weekToDate: '@Model.WeekToDate'
         }
         const visibleColumns = '@Model.VisibleColumns';
-        var usernameSuggestionUrl = '@MicroSites.SettingUrl("~/UserNameSuggestion")';
+        var betListUrl = '@MicroSites.TicketUrl("~/WinLoss/IndexNew")';
         var viewerLevelId = @Model.ViewerLevel.Value;
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail-new")
@@ -131,4 +131,4 @@
 <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per hide" id="tbl-report">
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true" asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
-<input type="hidden" id="hidden-betListUrl" value="@MicroSites.TicketUrl("~/WinLoss/IndexNew")">
+<a class="hide" id="hidden-usernameSuggestionUrl" asp-action="Suggest" asp-controller="Customer"></a>

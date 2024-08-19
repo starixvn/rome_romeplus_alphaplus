@@ -1,9 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Site.Features.BetChoiceMatching;
 using AlphaPlus.Reports.Site.Features.BetCreditTracking;
 using AlphaPlus.Reports.Site.Features.CommissionByBetType;
 using AlphaPlus.Reports.Site.Features.Consolidation;
+using AlphaPlus.Reports.Site.Features.Customer;
 using AlphaPlus.Reports.Site.Features.EnteredResult;
 using AlphaPlus.Reports.Site.Features.IPMatching;
 using AlphaPlus.Reports.Site.Features.MatchWinLossDetail;
@@ -48,7 +51,8 @@ public static class DependencyInjection
         .AddTransient<IMoveStatementHistoryWorkbook, MoveStatementHistoryWorkbook>()
         .AddTransient<IIPMatchingWorkbook, IPMatchingWorkbook>()
         .AddTransient<IBetChoiceMatchingWorkbook, BetChoiceMatchingWorkbook>()
-        .AddBetListExcelServices();
+        .AddBetListExcelServices()
+        .AddHttpClient<ICustomerClient, CustomerClient>(configuration.GetValue<string>("Fanex.Customer:ServiceUri"));
 
     private static IServiceCollection AddBetListExcelServices(this IServiceCollection services)
         => services
@@ -56,4 +60,26 @@ public static class DependencyInjection
         .AddScoped<ITicketHelper, TicketHelper>()
         .AddScoped<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>()
         .AddScoped<IBetListExcelBuilder>(sp => sp.GetRequiredService<IBetListFactory<BetListExcelBuilder>>().CreateBuilder());
+
+    private static IServiceCollection AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(
+        this IServiceCollection services,
+        string baseUrl,
+        int pooledConnectionLifetime = 15)
+            where TClient : class
+            where TImplementation : class, TClient
+    {
+        services
+            .AddHttpClient<TClient, TImplementation>(httpClient => httpClient.BaseAddress = new Uri(baseUrl))
+            .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
+            })
+            .ConfigurePrimaryHttpMessageHandler(_ => new SocketsHttpHandler
+            {
+                PooledConnectionLifetime = TimeSpan.FromMinutes(pooledConnectionLifetime)
+            })
+            .SetHandlerLifetime(Timeout.InfiniteTimeSpan);
+
+        return services;
+    }
 }

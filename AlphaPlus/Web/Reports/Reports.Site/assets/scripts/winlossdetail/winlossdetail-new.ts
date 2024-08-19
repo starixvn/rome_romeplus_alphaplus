@@ -10,7 +10,7 @@ declare var columnList: any;
 declare var breadcrumbLevel: any;
 declare var currentFromData: any;
 declare var visibleColumns: string;
-declare var usernameSuggestionUrl: string;
+declare var betListUrl: string;
 declare var viewerLevelId: number;
 
 class WinLossDetailViewNew extends BaseReportNew {
@@ -59,7 +59,7 @@ class WinLossDetailViewNew extends BaseReportNew {
             this.getWinLossDetail();
         });
         this.usernameSuggestionComponent.init(
-            new UsernameSuggestionOption(usernameSuggestionUrl, () => {
+            new UsernameSuggestionOption($('#hidden-usernameSuggestionUrl').attr('href'), () => {
                 this.clearCurrentCust();
                 this.getWinLossDetail();
             })
@@ -226,7 +226,7 @@ class WinLossDetailViewNew extends BaseReportNew {
                         breadcrumbsJson,
                         visibleColumns
                     });
-                    $element.attr('href', `${$('#hidden-betListUrl').val()}?${$.param(betListParams)}`);
+                    $element.attr('href', `${betListUrl}?${$.param(betListParams)}`);
                 }
             );
     }

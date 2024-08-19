@@ -2,12 +2,12 @@
     constructor(
         public url: string,
         public onBlur = Function(),
-        public directDownlines = false,
+        public directDownline = false,
         public isAccInfo = false
     ) {
         this.url = url;
         this.onBlur = onBlur;
-        this.directDownlines = directDownlines;
+        this.directDownline = directDownline;
         this.isAccInfo = isAccInfo;
     }
 }
@@ -31,25 +31,39 @@ class UsernameSuggestionComponent {
                 return `${parts[0]} <br/> ${parts[1]}`;
             },
             displayText: function (item) {
-                const nickname = item.UserName2 ? ` (${item.UserName2})` : '';
-                return `${item.UserName}${nickname}#${item.FirstName} ${item.LastName}`;
+                const nickname = item.Username2 ? ` (${item.Username2})` : '';
+                return `${item.Username}${nickname}#${item.FirstName} ${item.LastName}`;
             },
             autoSelect: false,
-            afterSelect: (item) => this.$usernameInput.val(item.UserName),
+            afterSelect: (item) => this.$usernameInput.val(item.Username),
             delay: 200
         };
 
-        this.$usernameInput.typeahead(typeaheadOptions).blur(() => {
-            const visible = this.$usernameInput.next('.typeahead').is(':visible');
-            !visible && options.onBlur();
-        });
+        let hitEnterTextboxUsername = false;
+        this.$usernameInput
+            .typeahead(typeaheadOptions)
+            .blur(() => {
+                if (hitEnterTextboxUsername) {
+                    hitEnterTextboxUsername = false;
+                } else {
+                    const visible = this.$usernameInput.next('.typeahead').is(':visible');
+                    !visible && options.onBlur();
+                }
+            })
+            .keypress(function (e) {
+                const key = e.which || e.keyCode;
+                if (key === 13) {
+                    hitEnterTextboxUsername = true;
+                    options.onBlur();
+                }
+            });
     }
 
     private buildQueryString(options: UsernameSuggestionOption) {
         const queryString = [];
 
-        if (options.directDownlines) {
-            queryString.push(`directdownlines=${options.directDownlines}`);
+        if (options.directDownline) {
+            queryString.push(`directDownline=${options.directDownline}`);
         }
 
         if (options.isAccInfo) {

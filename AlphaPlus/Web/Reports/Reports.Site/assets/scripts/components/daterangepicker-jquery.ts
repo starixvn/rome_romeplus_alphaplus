@@ -98,7 +98,7 @@ class DateRangePickerJQueryComponent {
     }
 
     private addShortcut($dateRangePicker, shortcuts, labelName, startDate, endDate) {
-        var name = $dateRangePicker.data(labelName);
+        const name = $dateRangePicker.data(labelName);
         name &&
             shortcuts.push({
                 name: name,
