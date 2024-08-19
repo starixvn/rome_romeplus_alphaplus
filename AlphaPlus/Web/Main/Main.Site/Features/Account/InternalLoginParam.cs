@@ -10,7 +10,5 @@ public class InternalLoginParam
 
     public string Language { get; set; }
 
-    public string SessionId { get; set; }
-
     public RequestInfo.Models.RequestInfo RequestInfo { get; set; }
 }

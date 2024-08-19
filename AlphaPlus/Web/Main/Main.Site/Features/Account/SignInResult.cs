@@ -61,5 +61,11 @@ namespace AlphaPlus.Main.Site.Features.Account
         public bool AutoFollowBet { get; init; }
 
         public IList<int> OfferedJackpotProducts { get; init; }
+
+        public string UplineUsername { get; set; }
+
+        public int UplineCustId { get; set; }
+
+        public int UplineSubAccId { get; set; }
     }
 }

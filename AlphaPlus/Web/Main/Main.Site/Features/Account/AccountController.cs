@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Main.Site.Helpers;
-using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -132,7 +131,6 @@ public class AccountController(
             LoginTime = param.LoginTime,
             Language = userSession.LangKey,
             RequestInfo = requestInfo,
-            SessionId = AlphaContext.Current.Session.Id,
             Username = param.Username
         });
 
@@ -169,7 +167,6 @@ public class AccountController(
             LoginTime = param.LoginTime,
             Language = userSession.LangKey,
             RequestInfo = requestInfo,
-            SessionId = AlphaContext.Current.Session.Id,
             Username = param.Username
         });
 

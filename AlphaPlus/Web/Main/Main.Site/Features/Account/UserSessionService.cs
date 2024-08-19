@@ -114,6 +114,9 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 
         userSession.IsInternalWebVPN = signInResult.AdminId > 0 && AlphaContext.Current.Request.Query["isVpn"] == "1";
         
+        userSession.IndirectCustId = signInResult.UplineCustId;
+        userSession.IndirectSubAccId = signInResult.UplineSubAccId;
+        userSession.IndirectUsername = signInResult.UplineUsername;
     }
 
     private static string GetSiteName(int roleId)

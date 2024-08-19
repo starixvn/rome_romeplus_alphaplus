@@ -30,11 +30,27 @@ public class IndirectLoginCriteria : NonQueryCommand
 
     public string Platform { get; set; }
 
-    public string SessionId { get; set; }
+    public string ServerId { get; set; }
 
     public byte RoleId { get; set; }
 
     public int On_UserId { get; set; }
+
+    public string Site { get; set; }
+
+    public int CurrencyId { get; set; }
+
+    public string Currency { get; set; }
+
+    public string SubPageAccess { get; set; }
+
+    public bool IsNickname { get; set; }
+
+    public bool NicknameLoginOnly { get; set; }
+
+    public bool IsProtectedMode { get; set; }
+
+    public string LanguageUsage { get; set; }
 
     public int ErrCode { get; set; }
 

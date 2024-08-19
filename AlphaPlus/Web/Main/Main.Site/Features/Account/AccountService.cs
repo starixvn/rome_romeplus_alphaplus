@@ -103,7 +103,6 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
             KeyValuePair.Create(nameof(param.Username), param.Username),
             KeyValuePair.Create(nameof(param.RequestInfo.BrowserName), param.RequestInfo.BrowserName),
             KeyValuePair.Create(nameof(param.RequestInfo.LoginDomain), param.RequestInfo.LoginDomain),
-            KeyValuePair.Create(nameof(param.SessionId), param.SessionId),
             KeyValuePair.Create(nameof(param.RequestInfo.LoginIp), param.RequestInfo.LoginIp),
             KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
             KeyValuePair.Create(nameof(param.RequestInfo.Platform), param.RequestInfo.Platform)
@@ -133,7 +132,6 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
             KeyValuePair.Create(nameof(param.Username), param.Username),
             KeyValuePair.Create(nameof(param.RequestInfo.BrowserName), param.RequestInfo.BrowserName),
             KeyValuePair.Create(nameof(param.RequestInfo.LoginDomain), param.RequestInfo.LoginDomain),
-            KeyValuePair.Create(nameof(param.SessionId), param.SessionId),
             KeyValuePair.Create(nameof(param.RequestInfo.LoginIp), param.RequestInfo.LoginIp),
             KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
             KeyValuePair.Create(nameof(param.RequestInfo.Platform), param.RequestInfo.Platform)

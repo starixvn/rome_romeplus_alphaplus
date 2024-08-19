@@ -227,7 +227,6 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 LoginIp = request.LoginIp,
                 LoginTime = request.LoginTime,
                 Platform = request.Platform,
-                SessionId = request.SessionId,
                 Username = request.Username,
                 AdminId = request.AdminId
             };
@@ -241,7 +240,14 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 ErrMsg = criteria.ErrMsg,
                 On_UserId = criteria.On_UserId,
                 RoleId = criteria.RoleId,
-                Username = criteria.Username
+                Username = criteria.Username,
+                AccUsername = criteria.AccUsername,
+                Currency = criteria.Currency,
+                CurrencyId = criteria.CurrencyId,
+                IsProtectedMode = criteria.IsProtectedMode,
+                LanguageUsage = criteria.LanguageUsage,
+                ServerId = criteria.ServerId,
+                Site = criteria.Site
             };
         }
 
@@ -257,7 +263,6 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 LoginIp = request.LoginIp,
                 LoginTime = request.LoginTime,
                 Platform = request.Platform,
-                SessionId = request.SessionId,
                 Username = request.Username,
                 UplineUsername = request.UplineUsername,
                 UplineCustId = request.UplineCustId,
@@ -274,7 +279,16 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 UplineCustId = criteria.UplineCustId,
                 UplineSubAccId = criteria.UplineSubAccId,
                 UplineUsername = criteria.UplineUsername,
-                Username = criteria.Username
+                Username = criteria.Username,
+                Currency = criteria.Currency,
+                CurrencyId = criteria.CurrencyId,
+                IsNickname = criteria.IsNickname,
+                IsProtectedMode = criteria.IsProtectedMode,
+                LanguageUsage = criteria.LanguageUsage,
+                NicknameLoginOnly = criteria.NicknameLoginOnly,
+                ServerId = criteria.ServerId,
+                Site = criteria.Site,
+                SubPageAccess = criteria.SubPageAccess
             };
         }
     }
