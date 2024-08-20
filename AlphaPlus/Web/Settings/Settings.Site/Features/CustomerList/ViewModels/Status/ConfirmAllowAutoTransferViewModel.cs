@@ -90,7 +90,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
             var uplineCondition = accountService.GetTransferOption(SearchAccount.Upline.Id, SearchAccount.Upline.CustomerLevelValue);
             var transferrableDates = TransferConditionHelper.GetTransferrableDatesFromCondition(uplineCondition);
 
-            string[] dates = { Lang.Sun, Lang.Mon, Lang.Tue, Lang.Wed, Lang.Thurs, Lang.Fri, Lang.Sat };
+            string[] dates = [Lang.Sun, Lang.Mon, Lang.Tue, Lang.Wed, Lang.Thurs, Lang.Fri, Lang.Sat];
             var schedule = Request.GetData<string>(DataKey.SearchAccount.ScheduleWeekDays);
             var selectedDates = string.IsNullOrWhiteSpace(schedule)
                 ? transferrableDates

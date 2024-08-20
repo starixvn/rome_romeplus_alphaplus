@@ -39,7 +39,7 @@
             var criteria = new UpdateStatusCriteria(
                 param.UplineId,
                 param.CustId,
-                TransferConditionHelper.GetAutoTransferScheduleFromDates(param.Schedule ?? new[] { "" }),
+                TransferConditionHelper.GetAutoTransferScheduleFromDates(param.Schedule ?? [""]),
                 isAutoJobRunning,
                 string.Equals(AutoTransferConstant.On, param.State, StringComparison.InvariantCultureIgnoreCase),
                 param.Language ?? string.Empty,

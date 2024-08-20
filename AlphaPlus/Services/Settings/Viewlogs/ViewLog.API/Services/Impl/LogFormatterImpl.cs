@@ -534,7 +534,7 @@
                 return Resources.Daily;
             }
 
-            string[] dateNames = {
+            string[] dateNames = [
                 Resources.Sun,
                 Resources.Mon,
                 Resources.Tue,
@@ -542,7 +542,7 @@
                 Resources.Thurs,
                 Resources.Fri,
                 Resources.Sat
-            };
+            ];
 
             return string.Join("-", dates.Select(d => dateNames[int.Parse(d.ToString()) - 1]));
         }

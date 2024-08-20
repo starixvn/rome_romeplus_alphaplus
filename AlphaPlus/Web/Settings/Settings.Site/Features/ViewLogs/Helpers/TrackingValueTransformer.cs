@@ -18,7 +18,7 @@
         public static string TransformToStandardTrackingValue(int actionId, string trackingValue)
         {
             var key = funcDictionary.Keys.SingleOrDefault(
-                k => k.Split(new[] { ',' }).Contains(actionId.ToString(), StringComparer.OrdinalIgnoreCase));
+                k => k.Split([',']).Contains(actionId.ToString(), StringComparer.OrdinalIgnoreCase));
             if (!string.IsNullOrWhiteSpace(key))
             {
                 return funcDictionary[key](trackingValue);

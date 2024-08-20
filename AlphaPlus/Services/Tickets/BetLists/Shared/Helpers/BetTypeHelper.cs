@@ -7,20 +7,20 @@ public static class BetTypeHelper
     public const int MonitoringBetsOthers = -1;
 
     private static readonly int[] JackpotContributionBetType =
-    {
+    [
         BetTypeConstants.JackpotContribution,
         BetTypeConstants.JackpotContribution_Mobile,
         BetTypeConstants.JackpotContribution_Tablet,
         BetTypeConstants.PPJackpotContribution,
         BetTypeConstants.SGJackpotContribution
-    };
+    ];
 
     private static readonly int[] HorseRacingBetType =
-    {
+    [
         BetTypeConstants.VirtualHorseRacing_Win,
         BetTypeConstants.VirtualHorseRacing_Place,
         BetTypeConstants.VirtualHorseRacing_WinPlace
-    };
+    ];
 
     public static bool IsOutRight(int betType) => betType == BetTypeConstants.Outright;
 

@@ -59,7 +59,7 @@ public static class AppSettings
 
     public static string QRCodeMemberSiteLoginConfigsPath => ConfigurationManager.GetValue<string>("QRCodeMemberSiteLoginConfigs");
 
-    public static string[] HideProductStatusSites => ConfigurationManager.GetValue<string>("HideProductStatus:Sites")?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries) ?? new string[] { };
+    public static string[] HideProductStatusSites => ConfigurationManager.GetValue<string>("HideProductStatus:Sites")?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries) ?? [];
 
     public static string SiteLabel => ConfigurationManager.GetValue<string>("SiteLabel");
 

@@ -10,8 +10,8 @@
 
         public static string[] DaysInWeek()
         {
-            return new[]
-            {
+            return
+            [
                 Resources.Sun,
                 Resources.Mon,
                 Resources.Tue,
@@ -19,7 +19,7 @@
                 Resources.Thurs,
                 Resources.Fri,
                 Resources.Sat
-            };
+            ];
         }
 
         public static DateTime GetBeginningOfDate(DateTime dateTime)

@@ -43,7 +43,7 @@
             {
                 StringBuilder dayBuilder = new StringBuilder();
                 string[] dayArray =
-                {
+                [
                     Lang.Sunday,
                     Lang.Monday,
                     Lang.Tuesday,
@@ -51,7 +51,7 @@
                     Lang.Thursday,
                     Lang.Friday,
                     Lang.Saturday
-                };
+                ];
 
                 for (int i = 1, max = charArray.Length; i < max - 1; i++)
                 {

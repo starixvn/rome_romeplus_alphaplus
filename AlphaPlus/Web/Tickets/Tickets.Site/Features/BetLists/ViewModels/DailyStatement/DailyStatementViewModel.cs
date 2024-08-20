@@ -17,13 +17,13 @@ public class DailyStatementViewModel(
         : BetListBaseViewModel(message, betListData, builder, ticketHelper, false)
 {
     private static readonly string[] ExcludedTicketStatus =
-    {
+    [
         BetStatus.Running,
         BetStatus.Waiting,
         BetStatus.Void,
         BetStatus.Reject,
         BetStatus.Pending
-    };
+    ];
 
     public Footer Footer { get; } = new Footer(betListData, message.ViewerLevel, false, ExcludedTicketStatus);
 
