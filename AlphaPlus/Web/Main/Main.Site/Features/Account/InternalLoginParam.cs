@@ -8,7 +8,7 @@ public class InternalLoginParam
 
     public DateTime LoginTime { get; set; }
 
-    public string Language { get; set; }
+    public string Language { get; set; } = "E";
 
     public RequestInfo.Models.RequestInfo RequestInfo { get; set; }
 }

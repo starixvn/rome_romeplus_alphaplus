@@ -123,16 +123,18 @@ public class AccountController(
     [HttpGet]
     public async Task<IActionResult> InternalLogin(string parameter)
     {
-        var param = JsonSerializer.Deserialize<InternalLoginParam>(aesService.Decrypt(parameter, SecretKey));
+        var reqParam = aesService.Decrypt(parameter, SecretKey);
+        var internalLoginParams = reqParam.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
         var requestInfo = await deviceHelper.GetRequestInfo();
-        var signInResult = await accountService.InternalLogin(new InternalLoginParam
+        var param = new InternalLoginParam
         {
-            AdminId = param.AdminId,
-            LoginTime = param.LoginTime,
-            Language = userSession.LangKey,
-            RequestInfo = requestInfo,
-            Username = param.Username
-        });
+            Username = internalLoginParams.ElementAt(0),
+            AdminId = int.Parse(internalLoginParams.ElementAt(1)),
+            LoginTime = new DateTime(long.Parse(internalLoginParams.ElementAt(2))),
+            RequestInfo = requestInfo
+        };
+
+        var signInResult = await accountService.InternalLogin(param);
 
         if (signInResult.IsSuccessful)
         {
@@ -188,5 +190,3 @@ public class AccountController(
         return Login(signInResult.Message);
     }
 }
-
-

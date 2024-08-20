@@ -26,7 +26,7 @@ public class InternalLoginCriteria : NonQueryCommand
 
     public int CustId { get; set; }
 
-    public byte RoleId { get; set; }
+    public int RoleId { get; set; }
 
     public int On_UserId { get; set; }
 

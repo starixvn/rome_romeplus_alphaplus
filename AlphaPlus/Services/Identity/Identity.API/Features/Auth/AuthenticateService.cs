@@ -232,7 +232,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
             };
 
             await dynamicRepository.ExecuteAsync(criteria);
-            return new()
+
+            var response = new InternalLoginResponse
             {
                 AdminId = criteria.AdminId,
                 CustId = criteria.CustId,
@@ -249,6 +250,30 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 ServerId = criteria.ServerId,
                 Site = criteria.Site
             };
+
+            if (criteria.ErrCode == 0)
+            {
+                response.Status = await GetCustomerStatus(response.CustId, response.AdminId);
+                response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
+                response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
+                response.SiteDB = await GetSiteDB(response.CustId);
+                response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
+                response.DateLimit = await GetDateLimit(response.CustId);
+
+                var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, 0);
+                response.IsEnabledSecurityCodeInBetLists = securityCodeFunction.BetList;
+                response.IsEnabledSecurityCodeInStatement = securityCodeFunction.Statement;
+
+                response.OfferedJackpotProducts = await GetOfferedJackpotProducts(response.Site, response.CurrencyId);
+
+                // Auto Follow Bet
+                var masterId = response.Status.TryGetValue("mrecommend", out string value) ? Convert.ToInt32(value) : 0;
+                response.AutoFollowBet = response.RoleId == RoleIdConstants.Agent
+                    && appSettings.AutoFollowBetMasterId == masterId
+                    && (await IsAutoFollowBetDummyAgent(response.CustId));
+            }
+
+            return response;
         }
 
         public async Task<IndirectLoginResponse> IndirectLogin(IndirectLoginRequest request)
@@ -270,7 +295,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
             };
 
             await dynamicRepository.ExecuteAsync(criteria);
-            return new()
+
+            var response = new IndirectLoginResponse
             {
                 CustId = criteria.CustId,
                 ErrCode = criteria.ErrCode,
@@ -290,6 +316,30 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 Site = criteria.Site,
                 SubPageAccess = criteria.SubPageAccess
             };
+
+            if (criteria.ErrCode == 0)
+            {
+                response.Status = await GetCustomerStatus(response.CustId, 0);
+                response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
+                response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
+                response.SiteDB = await GetSiteDB(response.CustId);
+                response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
+                response.DateLimit = await GetDateLimit(response.CustId);
+
+                var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, 0);
+                response.IsEnabledSecurityCodeInBetLists = securityCodeFunction.BetList;
+                response.IsEnabledSecurityCodeInStatement = securityCodeFunction.Statement;
+
+                response.OfferedJackpotProducts = await GetOfferedJackpotProducts(response.Site, response.CurrencyId);
+
+                // Auto Follow Bet
+                var masterId = response.Status.TryGetValue("mrecommend", out string value) ? Convert.ToInt32(value) : 0;
+                response.AutoFollowBet = response.RoleId == RoleIdConstants.Agent
+                    && appSettings.AutoFollowBetMasterId == masterId
+                    && (await IsAutoFollowBetDummyAgent(response.CustId));
+            }
+
+            return response;
         }
     }
 }

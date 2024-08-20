@@ -14,6 +14,8 @@ public class IndirectLoginResponse
 
     public int SubAccId { get; set; }
 
+    public int RoleId { get; set; }
+
     public int ErrCode { get; set; }
 
     public string ErrMsg { get; set; }
@@ -35,4 +37,24 @@ public class IndirectLoginResponse
     public bool IsProtectedMode { get; set; }
 
     public string LanguageUsage { get; set; }
+
+    public IDictionary<string, string> Status { get; set; }
+
+    public bool IsShowConsolidatedReport { get; set; }
+
+    public bool IsShowBetChoiceLimit { get; set; }
+
+    public SiteDB SiteDB { get; set; }
+
+    public bool IsAllowTotalBalanceTransfer { get; set; }
+
+    public DateTime DateLimit { get; set; }
+
+    public bool IsEnabledSecurityCodeInBetLists { get; set; }
+
+    public bool IsEnabledSecurityCodeInStatement { get; set; }
+
+    public bool AutoFollowBet { get; set; }
+
+    public IList<int> OfferedJackpotProducts { get; set; }
 }

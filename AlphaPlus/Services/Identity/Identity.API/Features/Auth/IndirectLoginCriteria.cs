@@ -32,7 +32,7 @@ public class IndirectLoginCriteria : NonQueryCommand
 
     public string ServerId { get; set; }
 
-    public byte RoleId { get; set; }
+    public int RoleId { get; set; }
 
     public int On_UserId { get; set; }
 
