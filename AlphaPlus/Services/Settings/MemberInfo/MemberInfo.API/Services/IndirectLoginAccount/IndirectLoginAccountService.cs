@@ -169,7 +169,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount
             // IndirectCustId, IndirectSubAccId, LoginTimeTicks, Language, CustId, SubAccId, Username
             // BrowserSize, IndirectUsername, DarkModeName, AssetAppPath
             var parameter = string.Format(
-                "{0}&{1}&{2}&{3}&{4}&{5}&{6}&{7}&{8}&{9}&{10}",
+                "{0}&{1}&{2}&{3}&{4}&{5}&{6}&{7}&{8}&{9}",
                 param.IndirectCustId,
                 param.IndirectSubAccId,
                 DateTime.Now.Ticks,
@@ -177,16 +177,15 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount
                 param.ActorId,
                 param.ActorSubAccId,
                 param.ActorUsername,
-                param.BrowserSize,
                 param.IndirectUsername,
                 param.DarkModeName,
                 param.AssetAppPath);
 
             parameter = await Task.Run(() =>
-                new EncryptionThread().EncryptString(parameter, KeySize, param.IBCPKey)
+                aes.Encrypt(parameter, "!@#$")
             ).ConfigureAwait(false);
 
-            return $"{AppSettings.IndirectLoginURL}?param={parameter}";
+            return $"{AppSettings.IndirectLoginURL}?parameter={parameter}";
         }
     }
 }

@@ -19,4 +19,8 @@ public class IndirectLoginParam
     public string Language { get; set; }
 
     public RequestInfo.Models.RequestInfo RequestInfo { get; set; }
+
+    public string DarkModeName { get; set; }
+
+    public string AssetAppPath { get; set; }
 }

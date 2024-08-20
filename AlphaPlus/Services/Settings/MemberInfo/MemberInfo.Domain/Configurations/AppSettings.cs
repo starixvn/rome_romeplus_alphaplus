@@ -22,7 +22,7 @@
 
         public static bool IsSiteLabel789y => SiteLabel.Equals(SiteLabel789y);
 
-        public static string[] SupportPT3DecimalSites => GetConfigValue("SupportPT3DecimalSites")?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries) ?? new string[] { };
+        public static string[] SupportPT3DecimalSites => GetConfigValue("SupportPT3DecimalSites")?.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries) ?? [];
 
         public static bool IsSupportPT3DecimalSites => SupportPT3DecimalSites.Contains(SiteLabel, StringComparer.InvariantCultureIgnoreCase);
 
@@ -50,8 +50,8 @@
         public static string TransferAppPath => GetConfigValue("TransferAppPath");
 
         public static string IndirectLoginURL
-            => !string.IsNullOrWhiteSpace(GetConfigValue("IndirectLoginURL")) ?
-                $"{GetConfigValue("IndirectLoginURL")}_Authorization/IndirectLogin.aspx" :
+            => !string.IsNullOrWhiteSpace(GetConfigValue("IndirectLogin:URL")) ?
+                $"{GetConfigValue("IndirectLogin:URL")}" :
                 $"//{context.Request.Headers["Host"].ToString().Replace("mb.", "mb2.")}/ex-main/_Authorization/IndirectLogin.aspx";
 
         public static IEnumerable<int> IndirectLoginSuperIds

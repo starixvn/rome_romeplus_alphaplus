@@ -157,20 +157,25 @@ public class AccountController(
     [HttpGet]
     public async Task<IActionResult> IndirectLogin(string parameter)
     {
-        var param = JsonSerializer.Deserialize<IndirectLoginParam>(aesService.Decrypt(parameter, SecretKey));
+        var reqParam = aesService.Decrypt(parameter, SecretKey);
+        var indirectLoginParams = reqParam.Split(['&']);
         var requestInfo = await deviceHelper.GetRequestInfo();
-        var signInResult = await accountService.IndirectLogin(new IndirectLoginParam
+        var param = new IndirectLoginParam
         {
-            CustId = param.CustId,
-            SubAccId = param.SubAccId,
-            UplineCustId = param.UplineSubAccId,
-            UplineUsername = param.UplineUsername,
-            UplineSubAccId = param.UplineSubAccId,
-            LoginTime = param.LoginTime,
-            Language = userSession.LangKey,
-            RequestInfo = requestInfo,
-            Username = param.Username
-        });
+            CustId = int.Parse(indirectLoginParams.ElementAt(0)),
+            SubAccId = int.Parse(indirectLoginParams.ElementAt(1)),
+            LoginTime = new DateTime(long.Parse(indirectLoginParams.ElementAt(2))),
+            Language = indirectLoginParams.ElementAt(3),
+            UplineCustId = int.Parse(indirectLoginParams.ElementAt(4)),
+            UplineSubAccId = int.Parse(indirectLoginParams.ElementAt(5)),
+            UplineUsername = indirectLoginParams.ElementAt(6),
+            Username = indirectLoginParams.ElementAt(7),
+            DarkModeName = indirectLoginParams.ElementAt(8),
+            AssetAppPath = indirectLoginParams.ElementAt(9),
+            RequestInfo = requestInfo
+        };
+
+        var signInResult = await accountService.IndirectLogin(param);
 
         if (signInResult.IsSuccessful)
         {

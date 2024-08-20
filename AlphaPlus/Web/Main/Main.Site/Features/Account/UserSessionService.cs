@@ -28,7 +28,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
             return;
         }
 
-
         userSession.CustId = signInResult.CustId;
         userSession.UserName = signInResult.UserName?.ToUpperInvariant().Trim();
         userSession.SubAccId = signInResult.SubAccId;
@@ -62,8 +61,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.IsForcedSecurityCode = signInResult.IsForcedChangeSecurityCode;
         userSession.SecurityCode = signInResult.SecurityCode;
 
-
-
         try
         {
             DateTime pwdExpiry = signInResult.PwdExpiry;
@@ -77,8 +74,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
             userSession.IsPasswordExpired = false;
             userSession.IsShowSkipForceChangePassword = false;
         }
-
-
 
         SetUserStatusToSession(signInResult.Status);
 
@@ -104,7 +99,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.SetProperty(CustomerDateLimitSessionKey, signInResult.DateLimit);
         userSession.SetProperty(IsAdminCanUpdateSubAccountSessionKey, signInResult.IsAdminCanUpdateSubAccount);
 
-
         userSession.IsEnabledSecurityCodeInBetLists = signInResult.IsEnabledSecurityCodeInBetLists;
         userSession.IsEnabledSecurityCodeInStatement = signInResult.IsEnabledSecurityCodeInStatement;
 
@@ -117,6 +111,15 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.IndirectCustId = signInResult.UplineCustId;
         userSession.IndirectSubAccId = signInResult.UplineSubAccId;
         userSession.IndirectUsername = signInResult.UplineUsername;
+
+        if (userSession.IsIndirectLoggedIn)
+        {
+            userSession.DarkModeName = signInResult.DarkModeName;
+            userSession.AssetAppPath = signInResult.AssetAppPath;
+        }
+
+        userSession.LangKey = signInResult.LanguageUsage;
+        userSession.Language = signInResult.LanguageUsage;
     }
 
     private static string GetSiteName(int roleId)

@@ -17,10 +17,6 @@
             AssetAppPath = viewer.AssetAppPath;
         }
 
-        public string BrowserSize { get; set; }
-
-        public string IBCPKey => "App_Data/IbcKeys/ibcpkey.snk";
-
         public string DarkModeName { get; }
 
         public string AssetAppPath { get; }

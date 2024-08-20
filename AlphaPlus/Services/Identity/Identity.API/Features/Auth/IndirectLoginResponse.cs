@@ -20,7 +20,7 @@ public class IndirectLoginResponse
 
     public string ErrMsg { get; set; }
 
-    public string ServerId { get; set; }
+    public int ServerId { get; set; }
 
     public string Site { get; set; }
 

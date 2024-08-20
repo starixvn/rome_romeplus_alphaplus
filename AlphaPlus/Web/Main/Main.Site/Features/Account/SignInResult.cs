@@ -67,5 +67,11 @@ namespace AlphaPlus.Main.Site.Features.Account
         public int UplineCustId { get; set; }
 
         public int UplineSubAccId { get; set; }
+
+        public string DarkModeName { get; set; }
+
+        public string AssetAppPath { get; set; }
+
+        public string LanguageUsage { get; set; }
     }
 }

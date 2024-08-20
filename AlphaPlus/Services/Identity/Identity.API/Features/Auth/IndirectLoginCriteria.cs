@@ -30,11 +30,9 @@ public class IndirectLoginCriteria : NonQueryCommand
 
     public string Platform { get; set; }
 
-    public string ServerId { get; set; }
+    public int ServerId { get; set; }
 
     public int RoleId { get; set; }
-
-    public int On_UserId { get; set; }
 
     public string Site { get; set; }
 

@@ -105,8 +105,6 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
                 message.ViewerId,
                 message.ViewerSubAccId,
                 message.ViewerUsername,
-                message.BrowserSize,
-                message.IBCPKey,
                 message.CustName,
                 message.DarkModeName,
                 message.AssetAppPath));
