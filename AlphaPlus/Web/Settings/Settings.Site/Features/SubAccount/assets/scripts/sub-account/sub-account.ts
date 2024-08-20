@@ -17,6 +17,7 @@ interface Window {
     passwordEmptyMsg: string;
     editInfoText: string;
     passwordFormatMsg: string;
+    hasnotPerm: boolean;
 }
 
 class SubAccount {
@@ -29,73 +30,75 @@ class SubAccount {
     }
 
     Init = () => {
-        this.$('#btn-add').click((item) => {
-            this.Add(this.$(item.currentTarget).text());
-        });
-        this.$('.info').click((item) => {
-            var subAccId = this.$(item.currentTarget).data('subaccid');
-            this.Edit(subAccId, window.editInfoText);
-        });
-        this.$('.pwd').click((item) => {
-            var subAccId = this.$(item.currentTarget).data('subaccid');
-            var username = this.$(item.currentTarget).data('username');
-            this.ResetPassword(subAccId, username);
-        });
-        this.$('.sc').click((item) => {
-            var subAccId = this.$(item.currentTarget).data('subaccid');
-            var username = this.$(item.currentTarget).data('username');
-            this.ResetSecurityCode(subAccId, username);
-        });
-        this.$('.otp').click((item) => {
-            var subAccId = this.$(item.currentTarget).data('subaccid');
-            var username = this.$(item.currentTarget).data('username');
-            this.RemoveOtp(subAccId, username);
-        });
-        this.$('.pageaccess').click((item) => {
-            var subAccId = this.$(item.currentTarget).data('subaccid');
-            this.UpdatePageAccess(subAccId, item);
-        });
-        this.$('.lMemInfo').click((item) => {
-            this.OpenUpdatePopup(item);
-        });
-        this.$("#btnEdit").click(() => {
-            this.UpdateInfo();
-        });
-        this.$("#btn-reset").click(() => {
-            this.Reset();
-        });
-        this.$('#MemInfo').click((item) => {
-            this.OpenAddPopup(item);
-        });
-        this.$('#btnAdd').click(() => {
-            if (this.ValidatePassword(this.$("#txtPwd").val())) {
-                this.AddSubAccount(0);
-            }
-            else {
-                this.$("#errMsg").html(this.$.trim(this.$("#txtPwd").val()) === "" ? window.passwordEmptyMsg : window.passwordFormatMsg)
-                    .css({
-                        border: "1px solid red",
-                        padding: "10px",
-                        color: "red"
-                    }).show();
-            }
-        });
-        this.$("#None").change((item) => {
-            this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
-        });
-        this.$("#View").change((item) => {
-            this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
-        });
-        this.$("#UpdateView").change((item) => {
-            this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
-        });
-        this.$("#FullControl").change((item) => {
-            this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
-        });
-        this.$("#txtPwd").keyup((item) => {
-            var pwd = this.$(item.currentTarget).val();
-            this.ValidatePassword(pwd);
-        });
+        if (!window.hasnotPerm) {
+            this.$('#btn-add').click((item) => {
+                this.Add(this.$(item.currentTarget).text());
+            });
+            this.$('.info').click((item) => {
+                var subAccId = this.$(item.currentTarget).data('subaccid');
+                this.Edit(subAccId, window.editInfoText);
+            });
+            this.$('.pwd').click((item) => {
+                var subAccId = this.$(item.currentTarget).data('subaccid');
+                var username = this.$(item.currentTarget).data('username');
+                this.ResetPassword(subAccId, username);
+            });
+            this.$('.sc').click((item) => {
+                var subAccId = this.$(item.currentTarget).data('subaccid');
+                var username = this.$(item.currentTarget).data('username');
+                this.ResetSecurityCode(subAccId, username);
+            });
+            this.$('.otp').click((item) => {
+                var subAccId = this.$(item.currentTarget).data('subaccid');
+                var username = this.$(item.currentTarget).data('username');
+                this.RemoveOtp(subAccId, username);
+            });
+            this.$('.pageaccess').click((item) => {
+                var subAccId = this.$(item.currentTarget).data('subaccid');
+                this.UpdatePageAccess(subAccId, item);
+            });
+            this.$('.lMemInfo').click((item) => {
+                this.OpenUpdatePopup(item);
+            });
+            this.$("#btnEdit").click(() => {
+                this.UpdateInfo();
+            });
+            this.$("#btn-reset").click(() => {
+                this.Reset();
+            });
+            this.$('#MemInfo').click((item) => {
+                this.OpenAddPopup(item);
+            });
+            this.$('#btnAdd').click(() => {
+                if (this.ValidatePassword(this.$("#txtPwd").val())) {
+                    this.AddSubAccount(0);
+                }
+                else {
+                    this.$("#errMsg").html(this.$.trim(this.$("#txtPwd").val()) === "" ? window.passwordEmptyMsg : window.passwordFormatMsg)
+                        .css({
+                            border: "1px solid red",
+                            padding: "10px",
+                            color: "red"
+                        }).show();
+                }
+            });
+            this.$("#None").change((item) => {
+                this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
+            });
+            this.$("#View").change((item) => {
+                this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
+            });
+            this.$("#UpdateView").change((item) => {
+                this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
+            });
+            this.$("#FullControl").change((item) => {
+                this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
+            });
+            this.$("#txtPwd").keyup((item) => {
+                var pwd = this.$(item.currentTarget).val();
+                this.ValidatePassword(pwd);
+            });
+        }
     };
 
     Add = (title: string) => {
@@ -203,7 +206,7 @@ class SubAccount {
 
         var pageAccess = this.$("#View").is(":checked") ? "[H]" :
             this.$("#UpdateView").is(":checked") ? "[B][H]" :
-            this.$("#FullControl").is(":checked") ? "[A][B][H]" : "";
+                this.$("#FullControl").is(":checked") ? "[A][B][H]" : "";
 
         if (this.$('#' + subAccId + '-D').is(':checked')) {
             pageAccess += '[D]';
@@ -390,9 +393,9 @@ class SubAccount {
         }
         else {
             this.$("#spnPwdIcon")
-            .removeClass("PwdError")
-            .removeClass("PwdSuccess")
-            .addClass("PwdError");
+                .removeClass("PwdError")
+                .removeClass("PwdSuccess")
+                .addClass("PwdError");
             return false;
         }
     };
@@ -402,14 +405,14 @@ class SubAccount {
         var regex2 = /^(?=.{8,100}$).*[a-z]/;
         var regex3 = /^(?=.{8,100}$).*[A-Z]/;
         var regex4 = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
-    
+
         var whiteSpace = /^\S*$/;
-    
+
         var case1 = str.search(regex1) != -1 ? 1 : 0;
         var case2 = str.search(regex2) != -1 ? 1 : 0;
         var case3 = str.search(regex3) != -1 ? 1 : 0;
         var case4 = str.search(regex4) != -1 ? 1 : 0;
-    
+
         var case5 = str.search(whiteSpace) != -1;
         return (case1 + case2 + case3 + case4 >= 3) && case5;
     };

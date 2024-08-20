@@ -89,9 +89,10 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.SiteDBGroupId = signInResult.SiteDB.SiteDBGroupId;
 
         var subAccountPermission_LockAdminAccounts = configuration.GetValue<string>("SubAccountPermission_LockAdminAccounts");
-        if (!string.IsNullOrWhiteSpace(subAccountPermission_LockAdminAccounts)
+        if ((!string.IsNullOrWhiteSpace(subAccountPermission_LockAdminAccounts)
             && Regex.IsMatch(string.Format(",{0},", subAccountPermission_LockAdminAccounts), string.Format(",{0},", userSession.AdminId), RegexOptions.IgnoreCase)
             && userSession.IsInternal)
+            || (!signInResult.IsAdminCanUpdateSubAccount && userSession.IsInternal))
         {
             userSession.IsLimitedHostPermissionOnSubAccountFunction = true;
         }
@@ -100,7 +101,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
             userSession.IsLimitedHostPermissionOnSubAccountFunction = false;
         }
 
-        // TODO: Internal Login
         userSession.SetProperty(CustomerDateLimitSessionKey, signInResult.DateLimit);
         userSession.SetProperty(IsAdminCanUpdateSubAccountSessionKey, signInResult.IsAdminCanUpdateSubAccount);
 
@@ -113,7 +113,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.SetProperty(EnableJackpotSessionKey, signInResult.OfferedJackpotProducts);
 
         userSession.IsInternalWebVPN = signInResult.AdminId > 0 && AlphaContext.Current.Request.Query["isVpn"] == "1";
-        
+
         userSession.IndirectCustId = signInResult.UplineCustId;
         userSession.IndirectSubAccId = signInResult.UplineSubAccId;
         userSession.IndirectUsername = signInResult.UplineUsername;
@@ -173,27 +173,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         AddIsProtectedModeToSession(status);
         AddMainDomainToSession();
         SetDisplayLanguage(status);
-    }
-
-    private void AddCustomerDateLimitToSession(int custId, bool isInternal)
-    {
-        // TODO: dateLimit for internal login
-        // var dateLimit = customerDateLimitService.GetCustomerDateLimit(custId, isInternal);
-
-        // if (dateLimit != DateTime.MinValue)
-        // {
-        //     userSession.SetProperty(SessionKey.CustomerDateLimitSessionKey, dateLimit);
-        // }
-    }
-
-    private void AddUpdateSubAccountPermissionToSession(int adminId, bool isInternal, string systemLogin)
-    {
-        // TODO: Internal Login
-        // var isAdminCanUpdateSubAccount =
-        //     !(isInternal && adminId > 0 && systemLogin.Equals("NAP", StringComparison.Ordinal))
-        //     || adminPermissionService.HasUpdateSubAccountPermission(adminId);
-
-        // userSession.SetProperty(SessionKey.IsAdminCanUpdateSubAccountSessionKey, isAdminCanUpdateSubAccount);
     }
 
     private void AddIsProtectedModeToSession(IDictionary<string, string> userData)

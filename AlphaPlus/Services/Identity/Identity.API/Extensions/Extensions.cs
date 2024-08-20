@@ -9,7 +9,8 @@ namespace AlphaPlus.Identity.API.Extensions
         {
             services
                 .AddSingleton<IEncryption, Encryption>()
-                .AddSingleton<IAuthenticateService, AuthenticateService>();
+                .AddSingleton<IAuthenticateService, AuthenticateService>()
+                .AddSingleton<IAdminPermissionService, AdminPermissionService>();
 
             return services;
         }

@@ -27,12 +27,14 @@ namespace AlphaPlus.Identity.API.Features.Auth
         IEncryption encryption,
         IDynamicRepository dynamicRepository,
         IOptions<AppSettings> appSettings,
-        IMemoryCache memoryCache) : IAuthenticateService
+        IMemoryCache memoryCache,
+        IAdminPermissionService adminPermissionService) : IAuthenticateService
     {
         private readonly IEncryption encryption = encryption;
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
         private readonly AppSettings appSettings = appSettings.Value;
         private readonly IMemoryCache memoryCache = memoryCache;
+        private readonly IAdminPermissionService adminPermissionService = adminPermissionService;
 
         public async Task<ReCheckInResponse> ReCheckIn(int onlineUserId)
         {
@@ -271,6 +273,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.AutoFollowBet = response.RoleId == RoleIdConstants.Agent
                     && appSettings.AutoFollowBetMasterId == masterId
                     && (await IsAutoFollowBetDummyAgent(response.CustId));
+
+                response.IsAdminCanUpdateSubAccount = await adminPermissionService.HasUpdateSubAccountPermission(response.AdminId);
             }
 
             return response;
