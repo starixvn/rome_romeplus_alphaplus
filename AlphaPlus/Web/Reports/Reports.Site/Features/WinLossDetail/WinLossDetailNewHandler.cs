@@ -28,9 +28,39 @@ public class WinLossDetailNewHandler(
     public async Task<WinLossDetailNewViewModel> Handle(WinLossDetailNewQuery message, CancellationToken cancellationToken)
     {
         var (productViewModel, _) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
-        var enteredResult = await enteredResultService.GetTotalEnteredResults(message.Site);
 
-        return new WinLossDetailNewViewModel(message, productViewModel, enteredResult);
+        var (isValidUsername, breadcrumbs) = await BuildWinLossDetailGetDataQuery(message);
+        var weekDataTask = Task.FromResult<IEnumerable<WinLossDetailWeekModel>>([]);
+        var winlossDetailTask = Task.FromResult(new ReportData<WinLossDetailModel>(null, null, 0));
+
+        if (isValidUsername)
+        {
+            var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+                message,
+                message.UserSelectedProductIds,
+                message.UserSelectedResourceIds);
+            winlossDetailTask = GetWinLossDetail(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml);
+            var weekDataParam = new WinLossDetailWeekParam(
+                message.ViewerId,
+                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+                message.ToDate,
+                validUserSelectedProductIds.JoinWithComma(),
+                productDetailXml,
+                string.IsNullOrWhiteSpace(message.Username) ? message.CustName : message.Username,
+                message.Site);
+            weekDataTask = winlossDetailService.GetWeekData(weekDataParam);
+        }
+
+        var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
+        await Task.WhenAll(enteredResultTask, winlossDetailTask);
+
+        return new WinLossDetailNewViewModel(
+            message,
+            await enteredResultTask,
+            await winlossDetailTask,
+            breadcrumbs,
+            productViewModel,
+            BuildWeekViewModels(await weekDataTask, message.FromDate, message.ToDate, message.WeekFromDate, message.WeekToDate));
     }
 
     public async Task<WinLossDetailGetDataViewModel> Handle(WinLossDetailGetDataQuery message, CancellationToken cancellationToken)
@@ -51,14 +81,14 @@ public class WinLossDetailNewHandler(
         await Task.WhenAll(enteredResultTask, winlossDetailTask);
 
         return new WinLossDetailGetDataViewModel(
-            message.CustLevelId,
+            message,
             await enteredResultTask,
             await winlossDetailTask,
             breadcrumbs);
     }
 
     private Task<ReportData<WinLossDetailModel>> GetWinLossDetail(
-        WinLossDetailNewQuery message,
+        WinLossDetailGetDataQuery message,
         string validUserSelectedProductIds,
         string productDetailXml)
     {
@@ -110,7 +140,7 @@ public class WinLossDetailNewHandler(
             }
         }
 
-        return (isValidUsername, breadcrumbs);
+        return (isValidUsername, breadcrumbs ?? BuildBreadcrumbViewModel(message).Breadcrumbs);
     }
 
     public async Task<IEnumerable<WinLossDetailWeekViewModel>> Handle(WinLossDetailGetWeeksQuery message, CancellationToken cancellationToken)

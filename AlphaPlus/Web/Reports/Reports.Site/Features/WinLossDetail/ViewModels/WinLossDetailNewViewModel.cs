@@ -2,6 +2,7 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
@@ -10,8 +11,11 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
 public class WinLossDetailNewViewModel(
     WinLossDetailNewQuery message,
+    EnteredResultSport totalEnteredResults,
+    ReportData<WinLossDetailModel> reportData,
+    IEnumerable<Breadcrumb> breadcrumbs,
     ProductMultiSelectionViewModel productViewModel,
-    EnteredResultSport totalEnteredResults)
+    IEnumerable<WinLossDetailWeekViewModel> weeks) : WinLossDetailGetDataViewModel(message, totalEnteredResults, reportData, breadcrumbs)
 {
     public UserLevel ViewerLevel { get; } = message.ViewerLevel;
 
@@ -35,6 +39,8 @@ public class WinLossDetailNewViewModel(
 
     public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 
+    public IEnumerable<WinLossDetailWeekViewModel> Weeks { get; } = weeks;
+
     public string Username { get; } = message.Username;
 
     public string VisibleColumns { get; } = message.VisibleColumns;
@@ -44,13 +50,6 @@ public class WinLossDetailNewViewModel(
 
     public string WeekToDate
         => message.WeekToDate == null ? null : message.WeekToDate.Value.ToShortDateWithSlash();
-
-    public string BreadcrumbLevel
-        => string.IsNullOrWhiteSpace(message.BreadcrumbsJson)
-        ? JsonHelper.ToJson(new Breadcrumb(message.ViewerId, CustName, message.ViewerLevelId))
-        : message.BreadcrumbsJson;
-
-    public bool CanDrilldown { get; } = !message.IsProtectedMode || !message.CustLevel.IsAgentLevel();
 
     private static string GetReportNameByLevel(UserLevel custLevel)
         => custLevel.IsSuperLevel()

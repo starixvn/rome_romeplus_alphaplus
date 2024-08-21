@@ -3896,5 +3896,27 @@ namespace AlphaPlus.Shared.AppResources.Report
                 return ResourceManager.GetString("SabaOtherSportsLegend", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Monitored Member.
+        /// </summary>
+        public static string MonitoredMember
+        {
+            get
+            {
+                return ResourceManager.GetString("MonitoredMember", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add to My Watchlist.
+        /// </summary>
+        public static string AddToMyWatchlist
+        {
+            get
+            {
+                return ResourceManager.GetString("AddToMyWatchlist", resourceCulture);
+            }
+        }
     }
 }

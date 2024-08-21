@@ -16,44 +16,16 @@
 @section Scripts {
     <script type="text/javascript">
         var viewResources = {
-            Username: '@Resources.Username',
-            FirstLastName: '@Resources.FirstLastName',
-            BetCount: '@Resources.BetCount',
-            Turnover: '@Resources.Turnover',
-            NetTurnover: '@Resources.NetTurnover',
-            GrossComm: '@Resources.GrossComm',
-            Member: '@Resources.Member',
-            Agent: '@Resources.Agent',
+            2: '@Resources.MemberWinLossDetail',
         @if (isMasterOrSuperLevel)
         {
-            @:Master: '@Resources.Master',
+            @:3: '@Resources.AgentWinLossDetail',
         }
         @if (isSuperLevel)
         {
-            @:Super: '@Resources.Super',
+            @:4: '@Resources.MasterWinLossDetail'
         }
-                    Company: '@Resources.Company',
-                    WinLoss: '@Resources.WinLoss',
-                    Comm: '@Resources.Comm',
-                    Total: '@Resources.Total',
-                    NoInformationIsAvailable: '@Resources.NoInformationIsAvailable',
-                    Total: '@Resources.Total',
-                    DormantAccounts: '@Resources.DormantAccounts',
-                    Copy: '@Resources.Copy',
-                    Copied: '@Resources.Copied',
-                    SummaryOfDormantAccounts: '@Resources.SummaryOfDormantAccounts'
-            };
-        var reportTitle = {
-            2: '@Resources.MemberWinLossDetail',
-            @if (isMasterOrSuperLevel)
-            {
-                @:3: '@Resources.AgentWinLossDetail',
-            }
-            @if (isSuperLevel)
-            {
-                @:4: '@Resources.MasterWinLossDetail'
-            }
-        };
+                        };
         var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
         var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
         var columnList = [
@@ -82,7 +54,6 @@
         }
             { value: "company", text: '@Resources.Company' }
         ];
-        var breadcrumbLevel = $.parseJSON('@Html.Raw(Model.BreadcrumbLevel)');
         var currentFromData = {
             custId: @Model.CustId,
             custName: '@Model.CustName',
@@ -90,8 +61,6 @@
             weekFromDate: '@Model.WeekFromDate',
             weekToDate: '@Model.WeekToDate'
         }
-        const visibleColumns = '@Model.VisibleColumns';
-        var betListUrl = '@MicroSites.TicketUrl("~/WinLoss/IndexNew")';
         var viewerLevelId = @Model.ViewerLevel.Value;
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail-new")
@@ -111,24 +80,22 @@
     <div class="form-group">
         <label class="label-form-control">@Resources.Username</label>
         <div>
-            <input type="text" id="txt-username-suggestion" placeholder="@Resources.UsernameOrFirstLastName" autocomplete="off" value="@Model.Username" />
+            <input type="text" id="txt-username-suggestion" placeholder="@Resources.UsernameOrFirstLastName"
+                autocomplete="off" value="@Model.Username" />
         </div>
     </div>
     <visible-column />
-    <div class="label-week-box" id="week-container"></div>
+    <div class="label-week-box" id="week-container">
+        <partial name="Weeks" model="@Model.Weeks" />
+    </div>
 </form>
-<div class="breadcrumb-table hide">
-    <div class="breadcrumb-container">
-        <ul class="breadcrumb" id="breadcrumb-level"></ul>
-    </div>
-    <div class="list-icon">
-        <ul>
-            <li><span id="icon-copy" class="icon icon-content-copy" data-toggle="tooltip" data-placement="top" title="@Resources.Copy"></span></li>
-            <li><a id="icon-excel" class="icon icon-excel icon-excel-new" data-toggle="tooltip" data-placement="top" title="@Resources.ExportToExcel" asp-action="ExcelNew"></a></li>
-        </ul>
-    </div>
+<div id="tbl-report-container" style="visibility: hidden">
+    <partial name="ReportDataNew" />
 </div>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per hide" id="tbl-report">
-</table>
-<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true" asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
+<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true"
+    asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
 <a class="hide" id="hidden-usernameSuggestionUrl" asp-action="Suggest" asp-controller="Customer"></a>
+<input type="hidden" id="hidden-betListUrl" value="@MicroSites.TicketUrl("~/WinLoss/IndexNew")" />
+<input type="hidden" asp-for="VisibleColumns" />
+<input type="hidden" id="hidden-copyText" value="@Resources.Copy" />
+<input type="hidden" id="hidden-copiedText" value="@Resources.Copied" />

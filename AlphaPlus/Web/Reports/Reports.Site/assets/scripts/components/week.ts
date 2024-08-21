@@ -1,28 +1,26 @@
 ﻿class WeekComponent {
     private $weekContainer: JQuery;
+    private onClick: Function;
 
-    constructor() {
-        this.$weekContainer = $('#week-container');
+    init($weekContainer: JQuery, onClick: Function) {
+        this.$weekContainer = $weekContainer;
+        this.onClick = onClick;
+        this.bindEvent();
     }
 
-    render(weeks, onClick: Function) {
-        const html = [];
-        weeks.forEach(function (week) {
-            html.push(
-                `<a href="javascript:;" class="label-week${week.IsEnable ? '' : ' disabled'}${
-                    week.IsActive ? ' active' : ''
-                }" data-fromdate="${week.FromDate}" data-todate="${week.ToDate}">${week.Display}</a>`
-            );
-        });
+    render(html: string) {
+        this.$weekContainer.html(html);
+        this.bindEvent();
+    }
 
-        this.$weekContainer.html(html.join(''));
+    private bindEvent() {
         const labelWeeks = this.$weekContainer.find('.label-week:not(.disabled)');
         labelWeeks.off().click((e) => {
             const $this = $(e.target);
             labelWeeks.removeClass('active');
             $this.addClass('active');
-            onClick &&
-                onClick({
+            this.onClick &&
+                this.onClick({
                     weekFromDate: $this.data('fromdate'),
                     weekToDate: $this.data('todate')
                 });

@@ -2,9 +2,6 @@
     $pageTitle: JQuery;
     $reportForm: JQuery;
 
-    $reportLegend: JQuery;
-    $iconInformation: JQuery;
-
     constructor() {
         this.initBaseReport();
     }
@@ -27,38 +24,35 @@
             const reportLegendUrl = $loadLegendURL.attr('href');
             $loadLegendURL.remove();
 
-            this.$iconInformation = $('#icon-information').click(this.showLegend);
+            const $iconInformation = $('#icon-information').click(() => this.showLegend($iconInformation));
             $.ajax({
                 method: 'GET',
                 url: reportLegendUrl,
                 cache: false,
-                success: this.renderLegend,
+                success: (html) => this.renderLegend($iconInformation, html),
                 complete: $.unblockUI
             });
         }
     }
 
-    private showLegend = () => {
-        this.$reportLegend.modal({ show: true, backdrop: false });
-        const iconHelpPosition = this.$iconInformation.position();
-        this.$reportLegend.css({
+    private showLegend($iconInformation: JQuery) {
+        const $reportLegend = $('#report-legend').modal({ show: true, backdrop: false });
+        const iconHelpPosition = $iconInformation.position();
+        $reportLegend.css({
             bottom: 'auto',
             top: $('.entered-non-entered').length > 0 ? iconHelpPosition.top + 90 : iconHelpPosition.top + 60
         });
-    };
+    }
 
-    private renderLegend = (html: string) => {
-        this.$reportLegend && this.$reportLegend.remove();
+    private renderLegend($iconInformation: JQuery, html: string) {
         $('body').append(html);
 
         if ($.trim(html) === '') {
-            this.$iconInformation.parent().remove();
+            $iconInformation.parent().remove();
         } else {
-            this.$iconInformation.parent().removeClass('hide');
+            $iconInformation.parent().removeClass('hide');
         }
-
-        this.$reportLegend = $('#report-legend');
-    };
+    }
 
     protected onClickIconFilter() {
         const isHideFilter = this.$reportForm.hasClass('hide');

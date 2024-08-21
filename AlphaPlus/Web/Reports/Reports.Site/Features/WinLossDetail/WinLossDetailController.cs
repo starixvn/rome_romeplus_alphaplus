@@ -12,13 +12,13 @@ public class WinLossDetailController(IMediator mediator) : ReportBaseController(
 
     public Task<IActionResult> Excel(WinLossDetailExcelQuery message) => ExcelView(message);
 
-    public Task<IActionResult> IndexNew(WinLossDetailNewQuery message) => View(message);
+    public Task<IActionResult> IndexNew(WinLossDetailNewQuery message)
+        => View<WinLossDetailNewViewModel>(message);
 
     public Task<IActionResult> GetData(WinLossDetailGetDataQuery message)
-        => Json<WinLossDetailGetDataViewModel>(message);
+        => View<WinLossDetailGetDataViewModel>(message, "ReportDataNew");
 
-    public Task<IActionResult> GetWeeks(WinLossDetailGetWeeksQuery message)
-        => Json<IEnumerable<WinLossDetailWeekViewModel>>(message);
+    public Task<IActionResult> GetWeeks(WinLossDetailGetWeeksQuery message) => View(message, "Weeks");
 
     public Task<IActionResult> ExcelNew(WinLossDetailExcelNewQuery message) => ExcelView(message);
 }

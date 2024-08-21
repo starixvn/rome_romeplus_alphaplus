@@ -1,0 +1,17 @@
+@using AlphaPlus.Reports.Site.Features.WinLossDetail
+@model IEnumerable<WinLossDetailWeekViewModel>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    if (item.IsEnable)
+    {
+        <a href="javascript:;" class="label-week@(item.IsActive ? " active" : string.Empty)" data-fromdate="@item.FromDate"
+            data-todate="@item.ToDate">@item.Display</a>
+    }
+    else
+    {
+        <a href="javascript:;" class="label-week disabled">@item.Display</a>
+    }
+}
