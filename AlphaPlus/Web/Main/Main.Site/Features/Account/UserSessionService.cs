@@ -3,7 +3,6 @@ using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
-using System.Security.Cryptography;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Main.Site.Shared.Constants;
 

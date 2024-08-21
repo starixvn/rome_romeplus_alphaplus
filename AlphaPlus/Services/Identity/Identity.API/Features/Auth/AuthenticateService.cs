@@ -95,7 +95,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 Nickname = command.Nickname,
                 IsNickName = command.IsNickname,
                 Code = command.ErrCode,
-                Message = command.ErrMsg
+                Message = command.ErrMsg,
+                LanguageUsage = command.LanguageUsage
             };
 
             if (command.ErrCode == 0)
