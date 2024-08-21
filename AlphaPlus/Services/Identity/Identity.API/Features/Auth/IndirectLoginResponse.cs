@@ -57,4 +57,14 @@ public class IndirectLoginResponse
     public bool AutoFollowBet { get; set; }
 
     public IList<int> OfferedJackpotProducts { get; set; }
+
+    public bool IsFirstLogin { get; set; }
+
+    public bool IsForcedChangeSecurityCode { get; set; }
+
+    public string SecurityCode { get; set; }
+
+    public DateTime PwdExpiry { get; set; }
+
+    public string Nickname { get; set; }
 }

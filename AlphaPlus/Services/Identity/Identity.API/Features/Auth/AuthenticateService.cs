@@ -318,7 +318,13 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 NicknameLoginOnly = criteria.NicknameLoginOnly,
                 ServerId = criteria.ServerId,
                 Site = criteria.Site,
-                SubPageAccess = criteria.SubPageAccess
+                SubPageAccess = criteria.SubPageAccess,
+                RoleId = criteria.RoleId,
+                IsFirstLogin = criteria.IsFirstLogin,
+                IsForcedChangeSecurityCode = criteria.IsForcedChangeSecurityCode,
+                SecurityCode = criteria.SecurityCode,
+                PwdExpiry = criteria.PwdExpiry,
+                Nickname = criteria.Nickname
             };
 
             if (criteria.ErrCode == 0)
@@ -330,7 +336,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
                 response.DateLimit = await GetDateLimit(response.CustId);
 
-                var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, 0);
+                var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, response.SubAccId);
                 response.IsEnabledSecurityCodeInBetLists = securityCodeFunction.BetList;
                 response.IsEnabledSecurityCodeInStatement = securityCodeFunction.Statement;
 

@@ -50,6 +50,16 @@ public class IndirectLoginCriteria : NonQueryCommand
 
     public string LanguageUsage { get; set; }
 
+    public bool IsFirstLogin { get; set; }
+
+    public bool IsForcedChangeSecurityCode { get; set; }
+
+    public string SecurityCode { get; set; }
+
+    public DateTime PwdExpiry { get; set; } = DateTime.Now;
+
+    public string Nickname { get; set; }
+
     public int ErrCode { get; set; }
 
     public string ErrMsg { get; set; }

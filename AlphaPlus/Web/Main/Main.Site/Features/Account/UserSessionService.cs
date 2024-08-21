@@ -3,6 +3,7 @@ using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
+using System.Security.Cryptography;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Main.Site.Shared.Constants;
 
@@ -118,8 +119,49 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
             userSession.AssetAppPath = signInResult.AssetAppPath;
         }
 
-        userSession.LangKey = signInResult.LanguageUsage;
-        userSession.Language = signInResult.LanguageUsage;
+        userSession.LangKey = GetUserLangKey(signInResult.LanguageUsage);
+        userSession.Language = GetUserLanguage(signInResult.LanguageUsage);
+    }
+
+    private static string GetUserLanguage(string langCodeUsage)
+    {
+        if (string.IsNullOrWhiteSpace(langCodeUsage))
+        {
+            var userLanguage = AlphaContext.Current.Request.Cookies["LANGUAGE"];
+            return userLanguage ?? "en-US";
+        }
+
+        return langCodeUsage.ToUpperInvariant()
+            switch
+            {
+                "CS" => "zh-CN",
+                "CT" => "zh-TW",
+                "TH" => "th-TH",
+                "VI" => "vi-VN",
+                "KO" => "ko-KR",
+                "JP" => "ja-JP",
+                _ => "en-US"
+            };
+    }
+
+    private static string GetUserLangKey(string langCodeUsage)
+    {
+        if (!string.IsNullOrWhiteSpace(langCodeUsage))
+        {
+            return langCodeUsage.ToUpperInvariant();
+        }
+
+        return AlphaContext.Current.Request.Cookies["LANGUAGE"]
+            switch
+            {
+                "zh-CN" => "CS",
+                "zh-TW" => "CT",
+                "th-TH" => "TH",
+                "vi-VN" => "VI",
+                "ko-KR" => "KO",
+                "ja-JP" => "JP",
+                _ => "E"
+            };
     }
 
     private static string GetSiteName(int roleId)
