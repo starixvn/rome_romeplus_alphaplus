@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Web;
     using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
     using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
     using AlphaPlus.Settings.Transfer.API.Services;

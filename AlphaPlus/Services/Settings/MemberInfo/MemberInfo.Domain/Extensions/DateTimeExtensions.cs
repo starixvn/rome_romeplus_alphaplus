@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlphaPlus.Settings.MemberInfo.Domain.Extensions
+﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Extensions
 {
     public static class DateTimeExtensions
     {

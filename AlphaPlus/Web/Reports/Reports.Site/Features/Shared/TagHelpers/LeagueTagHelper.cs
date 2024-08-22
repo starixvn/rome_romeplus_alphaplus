@@ -1,6 +1,5 @@
 using System.Text;
 using System.Text.Encodings.Web;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Site.Features.MatchWinLossDetail;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Razor.TagHelpers;

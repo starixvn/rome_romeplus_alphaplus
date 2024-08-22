@@ -1,5 +1,4 @@
-﻿using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
-using AlphaPlus.Settings.Site.Features.UserNameSuggestion.Models;
+﻿using AlphaPlus.Settings.Site.Features.UserNameSuggestion.Models;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion

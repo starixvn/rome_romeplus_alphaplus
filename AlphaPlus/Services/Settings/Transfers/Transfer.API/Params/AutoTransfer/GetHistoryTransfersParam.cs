@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlphaPlus.Settings.Transfer.API.Params.AutoTransfer
+﻿namespace AlphaPlus.Settings.Transfer.API.Params.AutoTransfer
 {
     public class GetHistoryTransfersParam
     {

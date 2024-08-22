@@ -8,7 +8,6 @@ using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.CancelledBets;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CancelledBets;
-using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Builder;

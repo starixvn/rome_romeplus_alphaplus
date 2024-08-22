@@ -2,7 +2,6 @@ using AlphaPlus.BetLists.CancelledBets;
 using AlphaPlus.BetLists.Shared.Services;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CancelledBets;
-using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using MediatR;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Requests.CancelledBets;

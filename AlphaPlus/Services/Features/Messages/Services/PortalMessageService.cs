@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Features.Messages.API.Services
 {
-    using System;
     using System.Collections.Generic;
     using Criteria.Message;
     using Fanex.Data.Repository;

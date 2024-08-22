@@ -1,5 +1,4 @@
 using AlphaPlus.Reports.Features.Shared.Criteria;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;

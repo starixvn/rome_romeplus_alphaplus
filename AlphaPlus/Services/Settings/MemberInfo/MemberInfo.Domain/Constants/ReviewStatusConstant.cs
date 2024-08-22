@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Constants
 {
-    using System.Collections;
     using System.Collections.Generic;
 
     public static class ReviewStatusConstant

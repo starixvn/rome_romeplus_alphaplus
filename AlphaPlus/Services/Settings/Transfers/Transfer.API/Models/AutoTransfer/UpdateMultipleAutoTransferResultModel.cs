@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
+﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Transfer.API.Extensions;
 
 namespace AlphaPlus.Settings.Transfer.API.Models.AutoTransfer

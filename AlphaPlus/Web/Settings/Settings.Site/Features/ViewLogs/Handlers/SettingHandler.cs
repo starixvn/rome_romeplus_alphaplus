@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
@@ -11,7 +10,6 @@
     using AlphaPlus.Settings.ViewLogs.API.Params;
     using AlphaPlus.Settings.ViewLogs.API.Services;
     using Fanex.Common;
-    using Fanex.Logging.Extensions.Web;
     using Helpers;
     using MediatR;
     using Requests.Setting;

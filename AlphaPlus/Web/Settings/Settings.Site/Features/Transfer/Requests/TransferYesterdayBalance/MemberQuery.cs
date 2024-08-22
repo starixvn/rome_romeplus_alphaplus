@@ -1,5 +1,4 @@
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferYesterdayBalance;
-using AlphaPlus.Settings.Transfer.API.Models;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;

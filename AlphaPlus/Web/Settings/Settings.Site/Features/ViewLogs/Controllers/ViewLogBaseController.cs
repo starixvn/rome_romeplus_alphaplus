@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
     using AlphaPlus.Core.Models;
     using Configurations;
     using Helpers;

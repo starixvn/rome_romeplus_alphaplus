@@ -1,7 +1,6 @@
 using System.Text.RegularExpressions;
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Shared.Constants;
-using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Shared.AppResources.Report;
 using Fanex.Caching;
 using Fanex.Data.Repository;

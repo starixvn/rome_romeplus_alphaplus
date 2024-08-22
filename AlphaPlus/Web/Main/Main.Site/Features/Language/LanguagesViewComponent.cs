@@ -1,7 +1,6 @@
 using AlphaPlus.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Main.Site.Features.Language
 {

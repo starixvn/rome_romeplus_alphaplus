@@ -5,7 +5,6 @@ using AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 using Fanex.Cryptography.Aes;
 using Fanex.Data.Repository;
-using RSACryptoPad;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Core.Models;
 
@@ -29,8 +28,6 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services.IndirectLoginAccount
     public class IndirectLoginAccountServiceImpl : IndirectLoginAccountService
     {
         private const int NeedToReEnterPassword = 5001;
-        private const int KeySize = 1024;
-
         private readonly IDynamicRepository dynamicRepository;
         private readonly IAesService aes;
         private readonly IEncryption encryption;

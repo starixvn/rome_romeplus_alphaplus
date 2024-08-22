@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Features.Messages.API.Criteria.NewMessage
 {
-    using Fanex.Data.Repository;
-
     public class GetUnreadMessagesOnUserCriteria : OnUserCriteriaBase
     {
         public GetUnreadMessagesOnUserCriteria(int custId)

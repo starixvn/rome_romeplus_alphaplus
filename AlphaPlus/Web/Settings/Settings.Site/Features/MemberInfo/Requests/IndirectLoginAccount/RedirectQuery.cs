@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount
 {
-    using AlphaPlus.Core.Helpers;
     using AlphaPlus.Core.Models;
     using AlphaPlus.Settings.MemberInfo.Domain.Models;
     using AlphaPlus.Settings.Site.Features.MemberInfo.Models;

@@ -3,7 +3,6 @@ using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
-using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
 

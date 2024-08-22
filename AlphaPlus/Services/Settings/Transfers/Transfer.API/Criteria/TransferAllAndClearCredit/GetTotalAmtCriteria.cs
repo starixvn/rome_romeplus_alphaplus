@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
 {
-    using Fanex.Data;
     using Fanex.Data.Repository;
 
     public class GetTotalAmtCriteria : CriteriaBase

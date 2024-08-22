@@ -1,5 +1,4 @@
 using Fanex.Result.Core.Sportsbook.DTO;
-using RazorEngine.Compilation.ImpromptuInterface.Dynamic;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.Normal;
 

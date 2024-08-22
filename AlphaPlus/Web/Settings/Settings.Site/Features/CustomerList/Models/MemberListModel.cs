@@ -1,5 +1,3 @@
-using System;
-
 namespace AlphaPlus.Settings.Site.Features.CustomerList.Models
 {
     public class MemberListModel : CustomerListModelBase

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlphaPlus.Features.Messages.API.Extensions
+﻿namespace AlphaPlus.Features.Messages.API.Extensions
 {
     public static class LongExtensions
     {

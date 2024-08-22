@@ -4,7 +4,6 @@ using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.CancelledBets;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
-using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;

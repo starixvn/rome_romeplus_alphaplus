@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Features.Messages.API.Criteria.Message
 {
-    using Fanex.Data;
     using Fanex.Data.Repository;
 
     public class MarkMessageAsReadCommand : NonQueryCommand

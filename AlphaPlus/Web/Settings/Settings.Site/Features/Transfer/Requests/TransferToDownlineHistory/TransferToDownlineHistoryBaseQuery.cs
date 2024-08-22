@@ -1,7 +1,6 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory
 {
     using System;
-    using Microsoft.AspNetCore.Mvc;
     using AlphaPlus.Settings.Transfer.API.Configurations;
     using AlphaPlus.Settings.Transfer.API.Models;
     using AlphaPlus.Settings.Site.Features.Transfer.Models;

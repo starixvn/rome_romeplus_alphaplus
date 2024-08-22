@@ -1,7 +1,6 @@
 using System.Net;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Shared.AppResources.Betlist.Site;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

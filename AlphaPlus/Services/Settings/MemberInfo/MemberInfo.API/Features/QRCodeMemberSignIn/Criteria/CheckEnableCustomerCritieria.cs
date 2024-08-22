@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn.Criteria
 {
-    using Fanex.Data;
     using Fanex.Data.Repository;
 
     public class CheckEnableCustomerCritieria : NonQueryCommand

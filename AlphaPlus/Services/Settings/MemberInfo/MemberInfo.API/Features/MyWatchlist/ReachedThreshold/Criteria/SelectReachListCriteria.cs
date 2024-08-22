@@ -1,7 +1,6 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold.Criteria
 {
     using Fanex.Data.Repository;
-    using System;
 
     public class SelectReachListCriteria : CriteriaBase
     {

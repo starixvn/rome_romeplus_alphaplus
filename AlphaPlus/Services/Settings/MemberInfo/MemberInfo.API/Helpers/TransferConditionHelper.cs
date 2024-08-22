@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace AlphaPlus.Settings.MemberInfo.API.Helpers
+﻿namespace AlphaPlus.Settings.MemberInfo.API.Helpers
 {
     public static class TransferConditionHelper
     {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AlphaPlus.Settings.Transfer.API.Models.AutoTransfer
+﻿namespace AlphaPlus.Settings.Transfer.API.Models.AutoTransfer
 {
     public class AutoTransferMonitoringPageModel
     {
