@@ -4,7 +4,6 @@ using AlphaPlus.Core.Models;
 namespace AlphaPlus.Main.Site.Features.Account;
 
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Main.Site.Shared.Constants;
 
 public interface IUserSessionService
 {
@@ -120,6 +119,9 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 
         userSession.LangKey = GetUserLangKey(signInResult.LanguageUsage);
         userSession.Language = GetUserLanguage(signInResult.LanguageUsage);
+        
+        userSession.SetProperty("languageusage", userSession.Language);
+        SetCookieLanguage(userSession.Language);
     }
 
     private static string GetUserLanguage(string langCodeUsage)
@@ -216,7 +218,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 
         AddIsProtectedModeToSession(status);
         AddMainDomainToSession();
-        SetDisplayLanguage(status);
     }
 
     private void AddIsProtectedModeToSession(IDictionary<string, string> userData)
@@ -270,31 +271,8 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
     {
         userSession.SetProperty(MainDomainSessionKey, $"//{httpContextAccessor.HttpContext.Request.Host}");
     }
-
-    private void SetDisplayLanguage(IDictionary<string, string> userData)
-    {
-        const string UsageLanguageKey = "languageusage";
-        var languageCode = string.Empty;
-
-        if (userData.TryGetValue(UsageLanguageKey, out string languageKey))
-        {
-            if (!string.IsNullOrWhiteSpace(languageKey))
-            {
-                languageCode = Language.CodeKeys[languageKey] ?? null;
-
-                if (!string.IsNullOrWhiteSpace(languageCode))
-                {
-                    userSession.Language = languageCode;
-                    userSession.LangKey = languageKey;
-                    SetCookieLanguage(languageCode);
-                }
-            }
-        }
-
-        userSession.SetProperty(UsageLanguageKey, languageCode);
-    }
-
-    private void SetCookieLanguage(string languageCode)
+    
+    private void SetCookieLanguage(string language)
     {
         var httpContext = httpContextAccessor.HttpContext;
         var domain = httpContext.Request.Host.ToString();
@@ -303,7 +281,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         var cookieExpires = DateTime.Now.AddDays(365);
         var cookieOptions = new CookieOptions { Expires = cookieExpires, Path = "/", Domain = mainDomain, HttpOnly = false };
 
-        httpContext.Response.Cookies.Append("LANGUAGE", languageCode, cookieOptions);
-        httpContext.Response.Cookies.Append("hidLanguage", languageCode, cookieOptions);
+        httpContext.Response.Cookies.Append("LANGUAGE", language, cookieOptions);
+        httpContext.Response.Cookies.Append("hidLanguage", language, cookieOptions);
     }
 }
