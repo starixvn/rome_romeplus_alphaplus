@@ -160,7 +160,7 @@
     <value>คุณได้รับอนุญาติให้ทำการโอน</value>
   </data>
   <data name="balance" xml:space="preserve">
-    <value>ยอดเงิน</value>
+    <value>บัญชีคงเหลือ</value>
   </data>
   <data name="Baseball" xml:space="preserve">
     <value>เบสบอล</value>
@@ -193,7 +193,7 @@
     <value>ปิด</value>
   </data>
   <data name="com" xml:space="preserve">
-    <value>ค่าคอมฯ</value>
+    <value>ความเสี่ยง</value>
   </data>
   <data name="commission" xml:space="preserve">
     <value>คอมมิชชั่น</value>
@@ -223,7 +223,7 @@
     <value>รายวัน</value>
   </data>
   <data name="dailystatement" xml:space="preserve">
-    <value>บัญชีรายวัน</value>
+    <value>รายการเดินบัญชีรายวัน</value>
   </data>
   <data name="date" xml:space="preserve">
     <value>วันที่</value>
@@ -436,7 +436,7 @@
     <value>กรุ๊ป D</value>
   </data>
   <data name="lblHandicapFC" xml:space="preserve">
-    <value>ราคาต่อรอง</value>
+    <value>แฮนดิแคป</value>
   </data>
   <data name="lblLive" xml:space="preserve">
     <value>สด!</value>
@@ -472,7 +472,7 @@
     <value>คี่</value>
   </data>
   <data name="lblOddEven" xml:space="preserve">
-    <value>คู่/คี่</value>
+    <value>คี่/คู่</value>
   </data>
   <data name="lblOtherComm" xml:space="preserve">
     <value>ค่าคอมมิชชั่นสำหรับประเภทการเดิมพันอื่นๆ</value>
@@ -481,7 +481,7 @@
     <value>การเดิมพันชนิดอื่นอื่น</value>
   </data>
   <data name="lblOutRight" xml:space="preserve">
-    <value>ทายผลผู้ชนะ</value>
+    <value>เอาท์ไรท์</value>
   </data>
   <data name="lblOverUnder" xml:space="preserve">
     <value>สูง/ต่ำ</value>
@@ -547,10 +547,10 @@
     <value>การทำนายผลล่วงหน้า ครึ่งแรก มากกว่า/น้อยกว่า</value>
   </data>
   <data name="lblViewHandicapForecast" xml:space="preserve">
-    <value>การทำนายผลล่วงหน้าของ แฮนดิแคป</value>
+    <value>ดูการทำนายผลล่วงหน้า แฮนดิแคป</value>
   </data>
   <data name="lblViewOverUnderForecast" xml:space="preserve">
-    <value>การทำนายผลล่วงหน้าของ มากกว่า น้อยกว่า</value>
+    <value>ดูการทำนายผลล่วงหน้า สูง/ต่ำ</value>
   </data>
   <data name="lblWinLoss" xml:space="preserve">
     <value>ได้ เสีย</value>
@@ -676,10 +676,10 @@
     <value>วันเสาร์</value>
   </data>
   <data name="selectagent" xml:space="preserve">
-    <value>เลือก Agent</value>
+    <value>เลือกเอเย่นต์</value>
   </data>
   <data name="selectmaster" xml:space="preserve">
-    <value>เลือก แบบหลัก</value>
+    <value>เลือกมาสเตอร์</value>
   </data>
   <data name="soccer" xml:space="preserve">
     <value>ฟุตบอล</value>
@@ -733,7 +733,7 @@
     <value>ยอดรวม</value>
   </data>
   <data name="totalbets" xml:space="preserve">
-    <value>จำนวนการวางเดิมพันทั้งหมด</value>
+    <value>ยอดเดิมพันทั้งหมด</value>
   </data>
   <data name="totalgoal" xml:space="preserve">
     <value>ประตูรวม</value>
@@ -799,7 +799,7 @@
     <value>ยอดคงเหลือเมื่อวาน</value>
   </data>
   <data name="yesterdaycashbalance" xml:space="preserve">
-    <value>ยอดเงินสดคงเหลือของเมื่อวาน</value>
+    <value>ยอดเงินสดถึงเมื่อวาน</value>
   </data>
   <data name="yesterdaytotalbalance" xml:space="preserve">
     <value>ยอดรวมบัญชีของเมื่อวาน</value>
@@ -1769,10 +1769,10 @@
     <value>ความเสี่ยงต่ำสุดของมาสเตอร์</value>
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าความเสี่ยงมาสเตอร์</value>
+    <value>ค่าคอมมาสเตอร์</value>
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าความเสี่ยงซุปเปอร์</value>
+    <value>ค่าคอมซุปเปอร์</value>
   </data>
   <data name="masterAutoPT" xml:space="preserve">
     <value>ค่าแบ่งสู้อัตโนมัติของมาสเตอร์</value>

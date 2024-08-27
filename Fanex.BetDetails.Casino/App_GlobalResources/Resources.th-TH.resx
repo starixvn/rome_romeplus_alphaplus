@@ -122,16 +122,16 @@
     <value>สถานะ</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>ค่าความเสี่ยงเอเย่นต์</value>
+    <value>ค่าคอมเอเย่นต์</value>
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าความเสี่ยงมาสเตอร์</value>
+    <value>ค่าคอมมาสเตอร์</value>
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าความเสี่ยงซุปเปอร์</value>
+    <value>ค่าคอมซุปเปอร์</value>
   </data>
   <data name="lblComm" xml:space="preserve">
-    <value>ค่าคอมฯ</value>
+    <value>ความเสี่ยง</value>
   </data>
   <data name="odds" xml:space="preserve">
     <value>อัตราต่อรอง</value>
