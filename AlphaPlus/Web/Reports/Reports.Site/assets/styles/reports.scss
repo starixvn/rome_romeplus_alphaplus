@@ -558,7 +558,10 @@ a {
     display: table;
     width: 100%;
     clear: both;
-    padding-right: 150px;
+    &.switch-new-view, &.switch-old-view{
+        padding-right: 150px;
+    }
+    
 
     .dropdown-menu {
         width: 250px;
@@ -911,13 +914,16 @@ a {
 // For mobile
 @media only screen and (max-device-width: $screen-device-lower768) {
     body {
-        background-color: #fff;
+        //background-color: #fff;
         font-size: var(--font-size-mobile);
     }
 
     .filter {
         padding-left: 6px;
         padding-right: 6px;
+        &.switch-new-view, &.switch-old-view{
+            padding-right: 6px;
+        }
 
         select,
         input[type='text'],
