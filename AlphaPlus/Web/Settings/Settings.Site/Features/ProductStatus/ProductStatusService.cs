@@ -18,6 +18,8 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
         Task<IEnumerable<ProductStatusModel>> GetProductStatus(ProductStatusAuthorizationParam param);
 
         Task<IEnumerable<Result>> UpdateProductStatus(ProductStatusCommandParam commandParam);
+
+        IEnumerable<ProductGroup> GetOfferedProductGroup(int custId, int roleId);
     }
 
     public class ProductStatusService(
@@ -416,6 +418,11 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
 
             errorMessages.Append(string.Format(errMsgTemplate, string.Join(", ", childSportTypesNames), cacheRefService.GetSportTypeName(Convert.ToInt32(parentSportType))));
             return errorMessages.ToString();
+        }
+
+        public IEnumerable<ProductGroup> GetOfferedProductGroup(int custId, int roleId)
+        {
+            return null;
         }
     }
 }

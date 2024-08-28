@@ -13,6 +13,10 @@ using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Constants;
 using AlphaPlus.Shared.AppResources.Settings;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Products.Models;
+using AlphaPlus.Products.Configurations;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.Site.Features.ProductStatus;
 
 namespace AlphaPlus.Settings.Site.Features.Customer
 {
@@ -25,21 +29,22 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly ISessionManager sessionManager;
         private readonly IAesService aesService;
         private readonly ICustomerService customerService;
-        private static string UrlMainPage = string.Empty;
-        private static string UrlMenu = string.Empty;
-
+        private readonly IProductStatusService productStatusService;
+        
         public CustomerController(
             IEncryption encryption,
             ISessionManager sessionManager,
             IAesService aesService,
             CustomerClientConfiguration clientConfiguration,
-            ICustomerService customerService)
+            ICustomerService customerService,
+            IProductStatusService productStatusService)
         {
             this.encryption = encryption;
             this.sessionManager = sessionManager;
             this.aesService = aesService;
             systemId = clientConfiguration.SystemId;
             this.customerService = customerService;
+            this.productStatusService = productStatusService;
         }
 
         private string CDNUri => sessionManager.Get<string>(DCSStaticSessionKey) ?? Core.Configurations.ConfigurationManager.GetValue<string>("Fanex.Customer:CdnUri");
@@ -225,24 +230,22 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         [HttpGet]
         public IActionResult RedirectPT(string username, int userId, int custId, int subAccId, bool isEdit, bool insert)
         {
-            string urlParam = "";
+            string urlParam = string.Empty;
+            string urlMainPage = string.Empty;
 
-            var newCustId = Request.Query["custid"].ToString();
-            var newUsername = Request.Query["username"].ToString();
-
-            urlParam += "?custid=" + newCustId;
-            urlParam += "&isedit=" + Request.Query["isedit"].ToString();
-            urlParam += "&insert=" + Request.Query["insert"].ToString();
-            urlParam += "&username=" + newUsername;
-            urlParam += "&userId=" + Request.Query["userId"].ToString();
-            urlParam += "&subAccId=" + Request.Query["subAccId"].ToString();
-            UrlMenu = "TabPT" + urlParam;
+            urlParam += "?custid=" + custId;
+            urlParam += "&isedit=" + isEdit;
+            urlParam += "&insert=" + insert;
+            urlParam += "&username=" + username;
+            urlParam += "&userId=" + userId;
+            urlParam += "&subAccId=" + subAccId;
+            string urlMenu = "TabPT" + urlParam;
 
             var session = UserSession.Current;
             var isDarkMode = !string.IsNullOrWhiteSpace(session.DarkModeName);
             
 
-            int customerLevel = 0;
+            int customerLevel;
             int? uplineLevel = new int?();
 
             if (session.IsSuper)
@@ -259,15 +262,15 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 uplineLevel = 2;
             }
 
-            var productPTTabs = InitProducGroupTabs(Request.Query["custid"], customerLevel, isDarkMode);
+            var productPTTabs = InitProducGroupTabs(custId, customerLevel, isDarkMode);
 
-            AddDCSProductPTTabs(productPTTabs, Request.Query["custid"], customerLevel, uplineLevel, isDarkMode);
+            AddDCSProductPTTabs(productPTTabs, custId, customerLevel, uplineLevel, isDarkMode);
 
             foreach (var product in productPTTabs)
             {
                 if (product.Enabled)
                 {
-                    UrlMainPage = product.URL;
+                    urlMainPage = product.URL;
                     break;
                 }
             }
@@ -288,27 +291,26 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         private ContentResult UnAuthorized() => Content(JsonSerializer.Serialize(Result.CreateErrorResult(Resources.NotAuthorized)));
 
-        private IList<ProductTab> InitProducGroupTabs(string customerId, int customerLevel, bool isDarkMode)
+        private IList<SettingProductTab> InitProducGroupTabs(int customerId, int customerLevel, bool isDarkMode)
         {
-            IList<ProductTab> productPTTabs = new List<ProductTab>();
-            //TODO:
-            // var offeredProductGroups = productService.GetOfferedProductGroup(UserSession.Current.CustId, UserSession.Current.RoleId);
-            // if (offeredProductGroups != null && offeredProductGroups.Any())
-            // {
-            //     foreach (var productGroup in offeredProductGroups.Where(x => x.Id != ProductGroupConstants.Sportsbook))
-            //     {
-            //         productPTTabs.Add(new ProductTab
-            //         {
-            //             URL = BuildProductGroupSettingUrl(customerId, customerLevel, productGroup.Id, isDarkMode),
-            //             Enabled = true,
-            //         });
-            //     }
-            // }
+            IList<SettingProductTab> productPTTabs = new List<SettingProductTab>();
+            var offeredProductGroups = productStatusService.GetOfferedProductGroup(UserSession.Current.CustId, UserSession.Current.RoleId);
+            if (offeredProductGroups != null && offeredProductGroups.Any())
+            {
+                foreach (var productGroup in offeredProductGroups.Where(x => x.Id != ProductGroupConstants.Sportsbook))
+                {
+                    productPTTabs.Add(new SettingProductTab
+                    {
+                        URL = BuildProductGroupSettingUrl(customerId, customerLevel, productGroup.Id, isDarkMode),
+                        Enabled = true,
+                    });
+                }
+            }
 
             return productPTTabs;
         }
 
-        private string BuildProductGroupSettingUrl(string customerId, int customerLevel, int productGroupId, bool isDarkMode)
+        private string BuildProductGroupSettingUrl(int customerId, int customerLevel, int productGroupId, bool isDarkMode)
         {
             return MicroSites.SettingUrl(
                 string.Format("~/Customer/EditCustomer?CustId={0}&roleId={1}&productGroupId={2}&lng={3}&isDarkMode={4}",
@@ -319,42 +321,34 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 isDarkMode));
         }
 
-        private void AddDCSProductPTTabs(IList<ProductTab> productPTTabs, string customerId, int customerLevel, int? uplineLevel, bool isDarkMode)
+        private void AddDCSProductPTTabs(IList<SettingProductTab> productPTTabs, int customerId, int customerLevel, int? uplineLevel, bool isDarkMode)
         {
-            //TODO:
-            // foreach (var product in ProductManager.Products)
-            // {
-            //     if (!string.IsNullOrEmpty(product.CustomerSettingLink))
-            //     {
-            //         var dcsLink = string.Format(
-            //                 "{0}?customerId={1}&customerLevel={2}&productId={3}&isDarkMode={4}",
-            //                 product.CustomerSettingLink,
-            //                 customerId,
-            //                 customerLevel,
-            //                 product.Id,
-            //                 isDarkMode.ToString().ToLowerInvariant());
+            foreach (var product in ProductManager.ProductViewModel.Products)
+            {
+                if (!string.IsNullOrEmpty(product.CustomerSettingLink))
+                {
+                    var dcsLink = string.Format(
+                            "{0}?customerId={1}&customerLevel={2}&productId={3}&isDarkMode={4}",
+                            product.CustomerSettingLink,
+                            customerId,
+                            customerLevel,
+                            product.Id,
+                            isDarkMode.ToString().ToLowerInvariant());
 
-            //         if (uplineLevel.HasValue)
-            //         {
-            //             dcsLink += "&uplineLevel=" + uplineLevel.Value;
-            //         }
+                    if (uplineLevel.HasValue)
+                    {
+                        dcsLink += "&uplineLevel=" + uplineLevel.Value;
+                    }
 
-            //         var productTab = new ProductTab
-            //         {
-            //             URL = dcsLink,
-            //             Enabled = product.ShowSettings
-            //         };
+                    var productTab = new SettingProductTab
+                    {
+                        URL = dcsLink,
+                        Enabled = product.ShowSettings
+                    };
 
-            //         productPTTabs.Add(productTab);
-            //     }
-            // }
-        }
-
-        class ProductTab
-        {
-            public string URL { get; set; }
-
-            public bool Enabled { get; set; }
+                    productPTTabs.Add(productTab);
+                }
+            }
         }
     }
 }
