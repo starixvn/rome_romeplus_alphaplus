@@ -7,9 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"Features/ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("Features/ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("Products.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables()
     .AddCommandLine(args);
 

@@ -1,0 +1,135 @@
+{
+    "Products": [
+      {
+        "id": "1",
+        "name": "Sportsbook",
+        "active": "true"
+      },
+      {
+        "id": "3",
+        "name": "Number Game",
+        "active": "true"
+      },
+      {
+        "id": "8",
+        "name": "Keno",
+        "active": "true"
+      },
+      {
+        "id": "21",
+        "name": "Allbet",
+        "active": "true"
+      },
+      {
+        "id": "39",
+        "name": "SA Gaming",
+        "active": "true"
+      },
+      {
+        "id": "45",
+        "name": "Sexy Gaming",
+        "active": "true"
+      },
+      {
+        "id": "46",
+        "name": "GT Casino",
+        "active": "true",
+        "sportId": "242"
+      },
+      {
+        "id": "47",
+        "name": "BBIN",
+        "active": "true"
+      },
+      {
+        "id": "52",
+        "name": "ION",
+        "active": "true"
+      },
+      {
+        "id": "51",
+        "name": "WM",
+        "active": "true"
+      },
+      {
+        "id": "59",
+        "name": "GDG",
+        "active": "true"
+      },
+      {
+        "id": "57",
+        "name": "BG",
+        "active": "true"
+      },
+      {
+        "id": "65",
+        "name": "PPLiveCasino",
+        "active": "true"
+      },
+      {
+        "id": "76",
+        "name": "YeeBet",
+        "active": "true"
+      },
+      {
+        "id": "41",
+        "name": "Live Casino",
+        "active": "true"
+      },
+      {
+        "id": "5",
+        "name": "VirtualSports",
+        "active": "true",
+        "customerSettingLink": "~/dcs/viewcustomersetting"
+      },
+      {
+        "id": "28",
+        "name": "Lottery",
+        "active": "true"
+      },
+      {
+        "id": "40",
+        "name": "Table Games",
+        "active": "true"
+      },
+      {
+        "id": "50",
+        "name": "RNG War",
+        "active": "true"
+      },
+      {
+        "id": "63",
+        "name": "Sports Lottery",
+        "active": "true"
+      },
+      {
+        "id": "44",
+        "name": "RNG Lottery",
+        "active": "true",
+        "customerSettingLink": "~/dcs/viewcustomersetting"
+      },
+      {
+        "id": "64",
+        "name": "VirtualGames",
+        "active": "true",
+        "customerSettingLink": "~/dcs/viewcustomersetting"
+      },
+      {
+        "id": "38",
+        "name": "Virtual Games",
+        "active": "true",
+        "customerSettingLink": "~/dcs/viewcustomersetting"
+      },
+      {
+        "id": "69",
+        "name": "Bitcoin",
+        "active": "true",
+        "customerSettingLink": "~/dcs/viewcustomersetting"
+      },
+      {
+        "id": "53",
+        "name": "RNG Casino",
+        "active": "true"
+      }
+    ]
+  }
