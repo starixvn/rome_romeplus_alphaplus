@@ -281,10 +281,8 @@ public class FilterBetsService(
     {
         var serializer = new XmlSerializer(typeof(FilterXml));
 
-        using (TextReader reader = new StringReader(xml))
-        {
-            return (FilterXml)serializer.Deserialize(reader);
-        }
+        using TextReader reader = new StringReader(xml);
+        return (FilterXml)serializer.Deserialize(reader);
     }
 
     private static IEnumerable<string> BuildBetTypeNames(string betTypes)

@@ -13,11 +13,9 @@ public static class ProductManager
     {
         if (settingProductViewModel == null)
         {
-            using (var sr = new StreamReader($"{AppDomain.CurrentDomain.BaseDirectory}/Products.json"))
-            {
-                string jsonString = sr.ReadToEnd();
-                settingProductViewModel = JsonConvert.DeserializeObject<SettingProductViewModel>(jsonString);
-            }
+            using var sr = new StreamReader($"{AppDomain.CurrentDomain.BaseDirectory}/Products.json");
+            string jsonString = sr.ReadToEnd();
+            settingProductViewModel = JsonConvert.DeserializeObject<SettingProductViewModel>(jsonString);
         }
 
         return settingProductViewModel;

@@ -19,41 +19,27 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Extensions
 
         public static async Task<string> GetAsStringAsync(this HttpClient httpClient, string requestUri)
         {
-            using (var response = await httpClient.GetAsync(requestUri).ConfigureAwait(false))
-            {
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
-            }
+            using var response = await httpClient.GetAsync(requestUri).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
         }
 
         public static async Task<string> PostAsStringAsync(this HttpClient httpClient, string requestUri, object? payload = null)
         {
-            using (var stringContent = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"))
-            {
-                using (var request = new HttpRequestMessage(HttpMethod.Post, requestUri) { Content = stringContent })
-                {
-                    using (var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false))
-                    {
-                        response.EnsureSuccessStatusCode();
-                        return await response.Content.ReadAsStringAsync();
-                    }
-                }
-            }
+            using var stringContent = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
+            using var request = new HttpRequestMessage(HttpMethod.Post, requestUri) { Content = stringContent };
+            using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
         }
 
         public static async Task<string> PutAsStringAsync(this HttpClient httpClient, string requestUri, object? payload = null)
         {
-            using (var stringContent = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json"))
-            {
-                using (var request = new HttpRequestMessage(HttpMethod.Put, requestUri) { Content = stringContent })
-                {
-                    using (var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false))
-                    {
-                        response.EnsureSuccessStatusCode();
-                        return await response.Content.ReadAsStringAsync();
-                    }
-                }
-            }
+            using var stringContent = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
+            using var request = new HttpRequestMessage(HttpMethod.Put, requestUri) { Content = stringContent };
+            using var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
         }
     }
 }

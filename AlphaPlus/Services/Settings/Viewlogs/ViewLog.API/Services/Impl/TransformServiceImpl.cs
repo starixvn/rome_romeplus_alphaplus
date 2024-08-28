@@ -48,15 +48,11 @@
             xsltArguments.AddExtensionObject("urn:LogFormat", logFormatter);
 
             // Transform xml must be lower case
-            using (MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(trackingValue.ToLowerInvariant())))
-            {
-                var document = new XPathDocument(stream);
-                using (var writer = new StringWriter())
-                {
-                    compiledTransform.Transform(document, xsltArguments, writer);
-                    return writer.ToString();
-                }
-            }
+            using MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(trackingValue.ToLowerInvariant()));
+            var document = new XPathDocument(stream);
+            using var writer = new StringWriter();
+            compiledTransform.Transform(document, xsltArguments, writer);
+            return writer.ToString();
         }
 
         private XslCompiledTransform? GetCompiledTransformTemplate(int actionId, string? trackingValueTransformTemplatePath)

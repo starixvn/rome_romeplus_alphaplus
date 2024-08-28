@@ -36,15 +36,13 @@
             string signatureRawData = $"{machineIP}{requestHttpMethod}{requestUri}{requestTimeStamp}{nonce}";
             var secretKeyByteArray = Convert.FromBase64String(AppSettings.AnnouncementSecretKey);
             byte[] signature = Encoding.UTF8.GetBytes(signatureRawData);
-            using (HMACSHA256 hmac = new HMACSHA256(secretKeyByteArray))
-            {
-                byte[] signatureBytes = hmac.ComputeHash(signature);
-                string requestSignatureBase64String = Convert.ToBase64String(signatureBytes);
+            using HMACSHA256 hmac = new HMACSHA256(secretKeyByteArray);
+            byte[] signatureBytes = hmac.ComputeHash(signature);
+            string requestSignatureBase64String = Convert.ToBase64String(signatureBytes);
 
-                // Setting the values in the Authorization header using custom scheme (amx)
-                string authHeader = $"amx {machineIP}:{requestSignatureBase64String}:{nonce}:{requestTimeStamp}";
-                request.AddParameter("Authorization", authHeader, ParameterType.HttpHeader);
-            }
+            // Setting the values in the Authorization header using custom scheme (amx)
+            string authHeader = $"amx {machineIP}:{requestSignatureBase64String}:{nonce}:{requestTimeStamp}";
+            request.AddParameter("Authorization", authHeader, ParameterType.HttpHeader);
         }
 
         public static string GetLocalIPAddress()
