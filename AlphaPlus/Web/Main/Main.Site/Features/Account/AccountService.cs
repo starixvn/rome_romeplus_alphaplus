@@ -80,11 +80,13 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
             SessionId = session.NetSessionId
         });
 
-
         if (result.IsFailed)
         {
             return result;
         }
+
+        result.DarkModeName = param.DarkModeName;
+        result.AssetAppPath = param.AssetAppPath;
 
         userSessionService.SetUserSessionValues(result);
 
@@ -141,6 +143,9 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
 
         if (result.IsSuccessful)
         {
+            result.DarkModeName = param.DarkModeName;
+            result.AssetAppPath = param.AssetAppPath;
+
             userSessionService.SetUserSessionValues(result);
         }
 

@@ -22,4 +22,8 @@ public class SignInParam
     public string Language { get; init; }
 
     public RequestInfo RequestInfo { get; init; }
+
+    public string DarkModeName { get; set; }
+
+    public string AssetAppPath { get; set; }
 }

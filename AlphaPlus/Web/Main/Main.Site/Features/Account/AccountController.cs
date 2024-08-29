@@ -99,7 +99,9 @@ public class AccountController(
             IsNickname = param.IsNickname,
             LoginTime = new DateTime(param.LoginTime),
             Language = userSession.LangKey,
-            RequestInfo = requestInfo
+            RequestInfo = requestInfo,
+            DarkModeName = param.DarkModeName,
+            AssetAppPath = param.AssetAppPath
         });
 
         if (signInResult.IsSuccessful)
