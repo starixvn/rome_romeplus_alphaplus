@@ -1,0 +1,33 @@
+@using System.Web
+@model RedirectPTViewModel
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    @* <link rel="stylesheet" href="../Scripts/_Libs/jQuery/Styles/jquery-ui-1.9.1.custom.min.css" />
+    <link rel="stylesheet" href="../App_Themes/Apo/MemberInfo/ReviewSetting/review-setting<%=Fanex.Razorbill.Module.Common.Helpers.DarkModeHelper.GetDarkModeName()%>.css" /> *@
+</head>
+<body>
+    <iframe src="@HttpUtility.HtmlEncode(Model.UrlMenu)" id="frmHeader" name="frmHeader" scrolling="no" noresize="noresize" frameborder="0"></iframe>
+    <div class="search-product hide" id="search-product">
+        <input id="txt-search" placeholder="<%=Resources.Lang.search%>" />        
+    </div>
+    <div class="content-main">
+        <iframe src="@HttpUtility.HtmlEncode(Model.UrlMainPage)" id="frmmain" name="frmmain" scrolling="auto" noresize="noresize" frameborder="0"></iframe>
+    </div>
+    @* <script type="text/javascript" src="../Js/opt/Core.js"></script>
+    <script type="text/javascript" src="../Scripts/_Libs/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="../Scripts/_Libs/jQuery/jquery-ui-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/_Libs/DragScroll/dragscroll.js"></script>
+    <script type="text/javascript" src="Scripts/RedirectPT.js?<%= AlphaPlus.Configurations.AppSettings.JsVersion %>"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var contentMain = $(".content-main");
+            contentMain.attr('height', $(window).height() - 35 + "px");
+        });
+    </script> *@
+</body>
+</html>

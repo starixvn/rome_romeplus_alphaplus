@@ -243,7 +243,6 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
             var session = UserSession.Current;
             var isDarkMode = !string.IsNullOrWhiteSpace(session.DarkModeName);
-            
 
             int customerLevel;
             int? uplineLevel = new int?();
@@ -275,7 +274,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 }
             }
 
-            return View();
+            return View(new RedirectPTViewModel(urlMainPage, urlMenu));
         }
 
         private string GetApplicationPath()

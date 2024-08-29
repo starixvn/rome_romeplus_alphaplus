@@ -422,7 +422,14 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
 
         public IEnumerable<ProductGroup> GetOfferedProductGroup(int custId, int roleId)
         {
-            return null;
+            var productSettings = repository.Fetch<ProductSetting>(new GetProductSettingCriteria(custId, roleId));
+
+            if (productSettings == null || !productSettings.Any())
+            {
+                return Enumerable.Empty<ProductGroup>();
+            }
+
+            return productSettings.Select(x => x.GroupId).Distinct().Select(x => new ProductGroup(x.Value, cacheRefService.GetProductGroupName(x.Value)));
         }
     }
 }
