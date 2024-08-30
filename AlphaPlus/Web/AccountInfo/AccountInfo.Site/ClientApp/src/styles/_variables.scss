@@ -2,6 +2,7 @@
 :root [data-theme='light'] {
     --font-family: Roboto, Arial, Tahoma, sans-serif;
     --font-size: 13px;
+    --body-bg:#fff;
 
     --text-color: #333;
     --text-red-color: #9d1c1c;
@@ -19,6 +20,7 @@
     --icon-color-dark: #333;
     --icon-hover-color: #e38514;
     --icon-disable-color: lighten(--icon-color, 20%);
+    --icon-ic_list-color: #67151b;
 
     --paging-bg: #fff;
     --paging-item-color: #131212;
@@ -44,11 +46,35 @@
 
     --suspended-color: #d45f12;
     --suspended-bgcolor: #f8ded7;
+
+    //react auto suggest
+    --auto-suggest-border: #dfdfdf;  
+    --auto-suggest-color: #333;  
+    --auto-suggest-background: #fff;
+    --auto-suggest-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+    --auto-suggest-background-hover: #ddd;
+    //tippy
+    --tippy-border: #ccc;
+    --tippy-background: #f2f2f2;    
+    --tippy-color: #333;
+    --tippy-box-shadow: none;
+    //panel
+    --panel-background1: #fff;
+    --panel-background2: #f9f9f9;     
+    --panel-color: #666;
+    --panel-border1: #dcdcdc;
+    --panel-border2: #666666;
+
 }
 
 :root [data-theme='dark'] {
+
+    
+
+
     --font-family: Roboto, Arial, Tahoma, sans-serif;
     --font-size: 13px;
+    --body-bg:#212223;
 
     --text-color: #cbcbcb;
     --text-red-color: #ff4f50;
@@ -66,6 +92,7 @@
     --icon-color-dark: #333;
     --icon-hover-color: #e38514;
     --icon-disable-color: lighten(--icon-color, 20%);
+    --icon-ic_list-color: #41A4FF;
 
     --paging-bg: #fff;
     --paging-item-color: #131212;
@@ -95,4 +122,21 @@
 
     --suspended-color: #cbcbcb;
     --suspended-bgcolor: #805757;
+    //react auto suggest
+    --auto-suggest-border: #474747;  
+    --auto-suggest-color: #e7e7e7;  
+    --auto-suggest-background: #2b2b2b;
+    --auto-suggest-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+    --auto-suggest-background-hover: #3c3c3c;
+    //tippy
+    --tippy-border: #2E2E2E;
+    --tippy-background: #2E2E2E;    
+    --tippy-color: #EDEDED;
+    --tippy-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    //panel
+    --panel-background1: #292A2B;
+    --panel-background2: #3A3A3A;      
+    --panel-color: #ededed;
+    --panel-border1: #575757;
+    --panel-border2: #EDEDED;
 }

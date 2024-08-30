@@ -7,7 +7,7 @@ body {
     height: auto;
     font-family: var(--font-family);
     font-size: var(--font-size);
-    background-color: #fff;
+    background-color: var(--body-bg); 
 }
 
 ol,
@@ -68,24 +68,24 @@ hr {
 // Customize UI for auto suggestion
 
 .react-autosuggest__suggestions-list {
-    border: 1px solid #dfdfdf;
+    border: 1px solid var(--auto-suggest-border);
     border-radius: 1px;
-    color: #333;
+    color: var(--auto-suggest-color);
     cursor: pointer;
-    background-color: #fff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background-color: var(--auto-suggest-background);
+    box-shadow: var(--auto-suggest-box-shadow);
 }
 
 .react-autosuggest__suggestion {
     padding: 8px 10px;
 
     &:hover {
-        background-color: #ddd;
+        background-color: var(--auto-suggest-background-hover);
     }
 }
 
 .react-autosuggest__suggestion--highlighted {
-    background-color: #ddd;
+    background-color: var(--auto-suggest-background-hover);
 }
 
 /* Customize tooltip*/
@@ -97,11 +97,12 @@ hr {
 
 .tippy-popper .tippy-tooltip.light-theme {
     @include box-shadow-multiple(none);
-    border: 1px solid #ccc;
+    border: 1px solid var(--tippy-border);
     min-width: 106px;
-    background-color: #f2f2f2;
-    color: var(--text-color);
+    background-color: var(--tippy-background);
+    color: var(--tippy-color);
     text-align: left;
+    box-shadow: var(--tippy-box-shadow);
 }
 
 .tippy-popper[x-placement^='top'] .tippy-tooltip.light-theme [x-arrow] {
@@ -144,7 +145,7 @@ hr {
     float: left;
     margin-right: 8px;
     line-height: 20px;
-    color: #67151b;
+    color: var(--icon-ic_list-color);
     font-size: 15px;
 }
 
@@ -239,7 +240,7 @@ hr {
     // Customize UI for auto suggestion
 
     .react-autosuggest__suggestions-list {
-        border: calculateScale(1px) solid #dfdfdf;
+        border-width: calculateScale(1px);
         border-radius: calculateScale(1px);
         box-shadow: 0 calculateScale(3px) calculateScale(6px) rgba(0, 0, 0, 0.16),
             0 calculateScale(3px) calculateScale(6px) rgba(0, 0, 0, 0.23);
@@ -322,8 +323,8 @@ hr {
     border-radius: 0;
     box-shadow: none;
     margin: 5px 0;
-    background: none;
-    border-color: #dcdcdc;
+    background: var(--panel-background1);
+    border-color: var(--panel-border1);
 }
 
 .panel {
@@ -333,8 +334,8 @@ hr {
         line-height: 30px;
         padding: 0 6px;
         border: none;
-        background-color: #f9f9f9;
-        color: #666;
+        background-color: var(--panel-border1);
+        color: var(--panel-color);
         font-weight: bold;
         font-size: 13px;
         cursor: pointer;
@@ -355,8 +356,8 @@ hr {
         .panel-title {
             padding: 0 20px;
             position: relative;
-            background-color: #f9f9f9;
-            color: #666;
+            background-color: var(--panel-background2);
+            color: var(--panel-color);
             font-weight: bold;
             font-size: 13px;
             cursor: pointer;
@@ -374,7 +375,7 @@ hr {
                 height: 0;
                 border-style: solid;
                 border-width: 5px 0 5px 6px;
-                border-color: transparent transparent transparent #666666;
+                border-color: transparent transparent transparent var(--panel-border2);
             }
         }
     }
@@ -382,8 +383,8 @@ hr {
     .panel-content {
         display: none;
         padding: 16px;
-        border-top: 1px solid #dcdcdc;
-        background-color: #fff;
+        border-top: 1px solid var(--panel-border1);
+        background-color: var(--panel-background1);
     }
 }
 
@@ -440,9 +441,9 @@ hr {
 
 .select-modal {
     .header {
-        border-bottom: 1px solid #d3d3d3;
+        border-bottom: 1px solid var(--select-modal-border);
         position: relative;
-        color: #545454;
+        color: var(--select-modal-color);
         height: 40px;
         line-height: 40px;
         padding: 0 12px;
