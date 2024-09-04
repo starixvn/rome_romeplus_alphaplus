@@ -125,21 +125,22 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
     {
         if (string.IsNullOrWhiteSpace(langCodeUsage))
         {
-            var userLanguage = AlphaContext.Current.Request.Cookies["LANGUAGE"];
+            var userLanguage = UserSession.Current.IsInternal ?
+                "en-US" : AlphaContext.Current.Request.Cookies["LANGUAGE"];
             return userLanguage ?? "en-US";
         }
 
         return langCodeUsage.ToUpperInvariant()
             switch
-        {
-            "CS" => "zh-CN",
-            "CT" => "zh-TW",
-            "TH" => "th-TH",
-            "VI" => "vi-VN",
-            "KO" => "ko-KR",
-            "JP" => "ja-JP",
-            _ => "en-US"
-        };
+            {
+                "CS" => "zh-CN",
+                "CT" => "zh-TW",
+                "TH" => "th-TH",
+                "VI" => "vi-VN",
+                "KO" => "ko-KR",
+                "JP" => "ja-JP",
+                _ => "en-US"
+            };
     }
 
     private static string GetUserLangKey(string langCodeUsage)
@@ -149,17 +150,18 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
             return langCodeUsage.ToUpperInvariant();
         }
 
-        return AlphaContext.Current.Request.Cookies["LANGUAGE"]
+        return UserSession.Current.IsInternal ? "E" :
+            AlphaContext.Current.Request.Cookies["LANGUAGE"]
             switch
-        {
-            "zh-CN" => "CS",
-            "zh-TW" => "CT",
-            "th-TH" => "TH",
-            "vi-VN" => "VI",
-            "ko-KR" => "KO",
-            "ja-JP" => "JP",
-            _ => "E"
-        };
+            {
+                "zh-CN" => "CS",
+                "zh-TW" => "CT",
+                "th-TH" => "TH",
+                "vi-VN" => "VI",
+                "ko-KR" => "KO",
+                "ja-JP" => "JP",
+                _ => "E"
+            };
     }
 
     private static string GetSiteName(int roleId)
