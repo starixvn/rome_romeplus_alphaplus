@@ -1,17 +1,28 @@
 @import '../../styles/mixins';
-
+:root,
+:root [data-theme='light'] {
+    --status-color-active: #045ace;
+    --status-color-closed: #fe0000;
+    --status-color-suspended: #ff6100;
+ 
+}
+:root [data-theme='dark'] {
+    --status-color-active: #41a4ff;
+    --status-color-closed: #e54748;
+    --status-color-suspended: #e57b2d;
+}
 // Total Downline
 .status {
     &-active {
-        color: #045ace;
+        color: var(--status-color-active);
     }
 
     &-closed {
-        color: #fe0000;
+        color: var(--status-color-closed);
     }
 
     &-suspended {
-        color: #ff6100;
+        color: var(--status-color-suspended);
     }
 }
 

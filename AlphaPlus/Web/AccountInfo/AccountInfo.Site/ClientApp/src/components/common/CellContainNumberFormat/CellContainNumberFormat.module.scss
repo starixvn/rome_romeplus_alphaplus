@@ -7,10 +7,10 @@
 }
 
 .number {
-    color: #004080;
+    color: var(--number-color);
 
     &-red {
-        color: #ff0000;
+        color: var(--number-red-color);
     }
 
     &-link {

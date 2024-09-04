@@ -76,7 +76,7 @@ export default function GivenCreditRow({ editable, givenCredit }: Props) {
                 <div className={classNames('col', styles['col'])}>{t('GivenCredit')}</div>
                 <div className={classNames('col', styles['col'], 'col-right')} onClick={handleOpenGivenCreditPopup}>
                     <div className={styles['given-credit']}>
-                        <span className="icon-border-color icon-edited" />
+                        <span className={classNames('icon-border-color', styles['icon-edited'])} />
                         <NumericFormat
                             className={styles['number-link']}
                             value={givenCredit}

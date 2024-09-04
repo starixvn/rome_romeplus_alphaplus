@@ -1,5 +1,17 @@
 @import '../../../styles/mixins';
-
+:root,
+:root [data-theme='light'] {
+    --accordion-feature-item-background: #ddd;
+    --accordion-feature-item-background2: #fafafa;
+    --accordion-feature-item-color: #333333;
+     
+    
+}
+:root [data-theme='dark'] {
+    --accordion-feature-item-background: #3a3a3a;
+    --accordion-feature-item-background2: #585858;
+    --accordion-feature-item-color: #ededed;    
+}
 .accordion-item {
     transition: all 0.3s;
     max-height: 36px;
@@ -16,11 +28,12 @@
         max-height: 500px;
 
         .feature-item {
-            background-color: #ddd;
-            color: var(--text-color);
+            background-color: var(--accordion-feature-item-background);
+            color: var(--accordion-feature-item-color);
             [class^='icon'] {
-                background-color: #fafafa;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+                background-color: var(--accordion-feature-item-background2);
+                color: var(--accordion-feature-item-color);
+                box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
             }
 
             &::after {
@@ -39,14 +52,15 @@
     text-transform: uppercase;
     border-radius: 5px;
     cursor: pointer;
-    color: #333333;
+    color: var(--custom-link-color);
 
     &:hover {
-        background-color: #e5e5e5;
-
+        background-color: var(--custom-link-background-hover);
+        color: var(--custom-link-color-hover);
         [class^='icon'] {
-            background: #fafafa;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+            color: var(--custom-link-color-hover);
+            background: var(--custom-link-icon-background-hover);            
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
         }
     }
 
@@ -69,8 +83,8 @@
         height: 24px;
         text-align: center;
         line-height: 24px;
-        background: #ededed;
-        color: #333333;
+        background: var(--custom-link-icon-background);
+        color: var(--custom-link-color);
         border-radius: 5px;
         font-size: 17px;
     }

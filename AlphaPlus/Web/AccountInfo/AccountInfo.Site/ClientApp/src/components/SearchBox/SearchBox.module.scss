@@ -1,18 +1,28 @@
 @import '../../styles/mixins';
-
+:root,
+:root [data-theme='light'] {
+    --search-box-background: #fff;
+    --search-box-background2: #f5f5f5;
+    --search-box-border: #e3e3e3;
+}
+:root [data-theme='dark'] {
+    --search-box-background: #212223;
+    --search-box-background2: #2E2E2E;
+    --search-box-border: #3A3A3A;
+}
 .container {
     position: fixed;
     left: 0;
     right: 0;
-    top: -1px;
+    top: 6px;
     height: 40px;
     z-index: 1000;
     padding: 10px;
-    background-color: #fff;
+    background-color: var(--search-box-background);
 
     .txt-search {
-        border: 1px solid #e3e3e3;
-        background: #f5f5f5;
+        border: 1px solid var(--search-box-border);
+        background: var(--search-box-background2);
         font-style: italic;
         height: 30px;
         margin-left: 0;
