@@ -64,7 +64,9 @@
     --panel-color: #666;
     --panel-border1: #dcdcdc;
     --panel-border2: #666666;
-
+    //select modal
+    --select-modal-border: #d3d3d3;
+    --select-modal-color: #545454;
 }
 
 :root [data-theme='dark'] {
@@ -139,4 +141,9 @@
     --panel-color: #ededed;
     --panel-border1: #575757;
     --panel-border2: #EDEDED;
+    //select modal
+    --select-modal-border: #474747;
+    --select-modal-color: inherit;
+    
+    
 }
