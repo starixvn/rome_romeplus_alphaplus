@@ -1,3 +1,23 @@
+:root,
+:root [data-theme='light'] {
+    --btn-from-device-color: #66151A;
+    --btn-from-device-background: #fff;
+    --btn-from-device-border: #66151A;
+
+    --choose-picture-color: #66151a;
+    --choose-picture-border: #ffb800;
+    --view-all-color: #0b589c;
+     
+}
+:root [data-theme='dark'] {
+    --btn-from-device-color: #EDEDED;
+    --btn-from-device-background: #313131;
+    --btn-from-device-border: #474747;
+
+    --choose-picture-color: #ededed;
+    --choose-picture-border: #ff4d00;
+    --view-all-color: #ededed;
+}
 .profile-picture {
     display: inline-block;
     font-size: 14px;
@@ -18,14 +38,13 @@
 
     .wrapper-right {
         position: relative;
-        bottom: -16px;
     }
 
     .btn-from-device {
         height: 32px;
-        color: #66151a;
-        border: 1px solid #66151a;
-        background-color: #fff;
+        color: var(--btn-from-device-color);
+        border: 1px solid var(--btn-from-device-border);
+        background-color: var(--btn-from-device-background);
         padding: 0 12px;
         display: table-cell;
         vertical-align: middle;
@@ -47,7 +66,7 @@
         }
 
         .txt {
-            color: #66151a;
+            color: var(--choose-picture-color);
         }
 
         .image-item {
@@ -69,7 +88,7 @@
         }
 
         .selected-image {
-            border: 3px solid #ffb800;
+            border: 3px solid var(--choose-picture-border);
         }
 
         .list-picture {
@@ -80,7 +99,7 @@
     .view-all {
         float: right;
         cursor: pointer;
-        color: #0b589c;
+        color: var(--view-all-color);
         position: absolute;
         white-space: nowrap;
         right: 0;
