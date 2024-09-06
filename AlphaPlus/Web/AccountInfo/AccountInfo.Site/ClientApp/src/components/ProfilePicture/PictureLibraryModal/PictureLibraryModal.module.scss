@@ -1,6 +1,15 @@
+:root,
+:root [data-theme='light'] {
+    --picture-library-background: #fff;     
+}
+:root [data-theme='dark'] {
+    --picture-library-background: #2B2B2B;
+    
+}
+
 .picture-library {
     height: 100%;
-    background-color: #fff !important;
+    background-color: var(--picture-library-background) !important;
 
     .library {
         overflow: auto;
