@@ -442,8 +442,7 @@ hr {
 .select-modal {
     .header {
         border-bottom: 1px solid var(--select-modal-border);
-        position: relative;
-        color: var(--select-modal-color);
+        position: relative;        
         height: 40px;
         line-height: 40px;
         padding: 0 12px;
@@ -468,7 +467,9 @@ hr {
         border: none;
         width: 72px;
     }
-
+    .btn-group {
+        padding: 0 12px;
+    }
     .btn-cancel {
         height: 30px;
     }
@@ -531,5 +532,14 @@ hr {
 
     .select-image {
         margin: 20px 0 20px 0;
+    }
+}
+// popup 
+.ReactModal__Overlay {
+    background-color: var(--ReactModal-background) !important;
+
+    .ReactModal__Content {
+        border-color: var(--ReactModal-border-color) !important;
+        background-color: transparent !important;
     }
 }

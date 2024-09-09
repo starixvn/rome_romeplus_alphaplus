@@ -69,6 +69,10 @@
     //select modal
     --select-modal-border: #d3d3d3;
     --select-modal-color: #545454;
+
+    //ReactModal
+    --ReactModal-background: rgba(255, 255, 255, 0.75) ;
+    --ReactModal-border-color: #d3d3d3 ;
 }
 
 :root [data-theme='dark'] {
@@ -148,6 +152,8 @@
     //select modal
     --select-modal-border: #474747;
     --select-modal-color: inherit;
-    
+    //ReactModal
+    --ReactModal-background: rgba(0, 0, 0, 0.75) ;
+    --ReactModal-border-color: #474747 ;
     
 }
