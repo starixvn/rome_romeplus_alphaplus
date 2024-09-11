@@ -833,5 +833,33 @@
       "Features/Transfer/assets/scripts/components/alert.js",
       "Features/Transfer/assets/scripts/transfer-condition/transfer-condition.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/redirectpt/index.js",
+    "inputFiles": [
+      "Features/PositionTaking/assets/scripts/jquery-1.8.2.min.js",
+      "Features/Customer/assets/scripts/jquery-ui-1.9.1.min.js",
+      "Features/Customer/assets/scripts/jquery.cookie.js",
+      "Features/Customer/assets/scripts/dragscroll.js",
+      "Features/Customer/assets/scripts/redirectpt.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/redirectpt/index.css",
+    "inputFiles": [
+      "Features/Customer/assets/styles/jquery-ui-1.9.1.custom.min.css",
+      "Features/Customer/assets/styles/tabmenu.css",
+      "Features/Customer/assets/styles/thickbox.css",
+      "Features/Customer/assets/styles/review-setting.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/redirectpt/index-dark.css",
+    "inputFiles": [
+      "Features/Customer/assets/styles/jquery-ui-1.9.1.custom.min.css",
+      "Features/Customer/assets/styles/tabmenu-dark.css",
+      "Features/Customer/assets/styles/thickbox.css",
+      "Features/Customer/assets/styles/review-setting-dark.css"
+    ]
   }
 ]
