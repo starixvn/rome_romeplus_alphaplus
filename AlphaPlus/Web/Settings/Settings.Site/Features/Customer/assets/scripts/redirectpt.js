@@ -105,13 +105,13 @@ var tabPT = {
     bindEvents: function () {
         $(window).resize(tabPT.disablePrevNext);
 
-        parent.onload = function () {
+        onload = function () {
             tabPT.iconMore.click(function () {
-                parent.redirectPT.showAutoComplete();
+                redirectPT.showAutoComplete();
                 $(this).addClass("hide");
             });
 
-            parent.redirectPT.bindAutoComplete(productList);
+            redirectPT.bindAutoComplete(productList);
         };
     },
     getCurrentTabIndex: function () {
@@ -122,21 +122,21 @@ var tabPT = {
         tabPT.iconPrev.unbind("click");
         tabPT.iconNext.unbind("click");
 
-        var isDisablePrev = tabPT.isOnScreen($("#IdCurr0"));
-        if (isDisablePrev) {
-            tabPT.iconPrev.attr("disabled", "disabled");
-        } else {
-            tabPT.iconPrev.attr("disabled", null);
-            tabPT.iconPrev.bind("click", tabPT.prevProduct);
-        }
+        // var isDisablePrev = tabPT.isOnScreen($("#IdCurr0"));
+        // if (isDisablePrev) {
+        //     tabPT.iconPrev.attr("disabled", "disabled");
+        // } else {
+        //     tabPT.iconPrev.attr("disabled", null);
+        //     tabPT.iconPrev.bind("click", tabPT.prevProduct);
+        // }
 
-        var isDisableNext = tabPT.isOnScreen($("#IdCurr" + (tabPT.numberOfProducts - 1)));
-        if (isDisableNext) {
-            tabPT.iconNext.attr("disabled", "disabled");
-        } else {
-            tabPT.iconNext.attr("disabled", null);
-            tabPT.iconNext.bind("click", tabPT.nextProduct);
-        }
+        // var isDisableNext = tabPT.isOnScreen($("#IdCurr" + (tabPT.numberOfProducts - 1)));
+        // if (isDisableNext) {
+        //     tabPT.iconNext.attr("disabled", "disabled");
+        // } else {
+        //     tabPT.iconNext.attr("disabled", null);
+        //     tabPT.iconNext.bind("click", tabPT.nextProduct);
+        // }
     },
     prevProduct: function () {
         tabPT.scrollTabList(false);
@@ -161,7 +161,7 @@ var tabPT = {
         tabPT.setReadProduct(index);
 
         var href = tab.find("> a");
-        parent.frmmain.location.href = href.attr("data-url") + "&isedit=" + $("#" + href.attr("data-isEdit")).val();
+        frmmain.location.href = href.attr("data-url") + "&isedit=" + $("#" + href.attr("data-isEdit")).val();
     },
     setReadProduct: function (index) {
         var key = "ReviewedSettingProduct_" + customerId;
@@ -200,7 +200,7 @@ var tabPT = {
             tab.addClass("current");
             tabPT.setReadProduct(tabPT.findIndexOfTab(tabName));
             var href = tab.find("> a");
-            parent.frmmain.location.href = href.attr("data-url") + "&isedit=" + $("#" + href.attr("data-isEdit")).val();
+            frmmain.location.href = href.attr("data-url") + "&isedit=" + $("#" + href.attr("data-isEdit")).val();
 
             break;
         }

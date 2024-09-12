@@ -422,7 +422,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
 
         public IEnumerable<ProductGroup> GetOfferedProductGroup(int custId, int roleId)
         {
-            var productSettings = repository.Fetch<ProductSetting>(new GetProductSettingCriteria(custId, roleId));
+            var productSettings = repository.Fetch<ProductSetting>(new GetProductSettingCriteria(custId, roleId))?.Where(x => x.GroupId != null && !x.IsHidden);
 
             if (productSettings == null || !productSettings.Any())
             {

@@ -274,7 +274,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 }
             }
 
-            return View(new RedirectPTViewModel(urlMainPage, urlMenu));
+            return View(new RedirectPTViewModel(urlMainPage, urlMenu, productPTTabs.Where(x => !string.IsNullOrWhiteSpace(x.Name)).Select(x => x.Name)));
         }
 
         private string GetApplicationPath()
@@ -302,6 +302,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                     {
                         URL = BuildProductGroupSettingUrl(customerId, customerLevel, productGroup.Id, isDarkMode),
                         Enabled = true,
+                        Name = productGroup.Name
                     });
                 }
             }
