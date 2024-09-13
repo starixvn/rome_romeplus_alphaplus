@@ -50,6 +50,10 @@
     --suspended-color: #d45f12;
     --suspended-bgcolor: #f8ded7;
 
+    //text input
+    --acc-info-input-border: #dfdfdf;
+    --acc-info-input-backgound: #ffffff;
+    --acc-info-input-color: #333;
     //react auto suggest
     --auto-suggest-border: #dfdfdf;  
     --auto-suggest-color: #333;  
@@ -72,11 +76,9 @@
     //select modal
     --select-modal-border: #d3d3d3;
     --select-modal-color: #545454;
-
     //ReactModal
     --ReactModal-background: rgba(255, 255, 255, 0.75) ;
-    --ReactModal-border-color: #d3d3d3 ;
-
+    --ReactModal-border-color: #d3d3d3;
     //note 
     --note-color: #666666;
     --note-text-color: #ff0302;
@@ -136,6 +138,11 @@
 
     --suspended-color: #cbcbcb;
     --suspended-bgcolor: #805757;
+
+    //text input
+    --acc-info-input-border: #474747;
+    --acc-info-input-backgound: #313131;
+    --acc-info-input-color: #cbcbcb;
     //react auto suggest
     --auto-suggest-border: #474747;  
     --auto-suggest-color: #e7e7e7;  

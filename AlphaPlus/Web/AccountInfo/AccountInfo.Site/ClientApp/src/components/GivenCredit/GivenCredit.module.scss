@@ -1,6 +1,8 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
-
+body{
+    background: transparent !important;
+}
 .given-credit {
     padding: 20px 0;
 
@@ -23,11 +25,11 @@
         .textbox {
             @include box-shadow-multiple(none);
             border: none;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--acc-info-input-border);
             width: 41.66667%;
             height: var(--height-normal);
-            background: none;
-            color: var(--text-color);
+            background: var(--acc-info-input-backgound);
+            color: var(--acc-info-input-color);
             text-align: right;
             padding-left: 8px;
             padding-right: 8px;
@@ -35,7 +37,11 @@
 
         .value {
             padding-right: 8px;
-            text-align: right;            
+            text-align: right;
+            color: inherit;
+            &.number{
+                color: inherit;
+            }        
         }
     }
 
@@ -46,6 +52,8 @@
         [class^='btn'] {
             float: right;
             line-height: 28px;
+            margin-right: 0;
+            margin-left: 8px;
         }
 
         .btn-submit {
