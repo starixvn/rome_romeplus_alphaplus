@@ -1,0 +1,20 @@
+@StaticResources.RenderStylesWithDarkMode("~/bundles/redirectpt/index")
+<div class="product-list">
+    <ul class="tab-list dragscroll" id="tab-list">
+        <!--menu-->
+        <li id="{id}" class="{curr}"><a href="#" onclick="ActiveMenuTab('{index}');" data-url="{url}" data-isEdit="IdIsEdit{hdisEdit}"><span>{text}</span></a></li>
+        <input type="hidden" id="IdIsEdit{hdisEdit}" name="IdIsEdit{hdisEdit}" value="False" />
+        <!--/menu-->
+    </ul>
+    <div class="list-action">
+        <span class="icon-previous" title="{label-previous}"></span>
+        <span class="icon-next" title="{label-next}"></span>
+        <span id="icon-more" class="icon-more" title="{label-more}"></span>
+    </div>
+</div>
+@StaticResources.RenderScripts("~/bundles/redirectpt/index")
+<script type="text/javascript">
+    function ActiveMenuTab(index) {
+        tabPT.chooseProduct(index);
+    }
+</script>

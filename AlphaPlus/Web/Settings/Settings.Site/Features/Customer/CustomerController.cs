@@ -277,6 +277,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return View(new RedirectPTViewModel(urlMainPage, urlMenu, productPTTabs.Where(x => !string.IsNullOrWhiteSpace(x.Name)).Select(x => x.Name)));
         }
 
+        [HttpGet]
+        public IActionResult TabPT(string username, int userId, int custId, int subAccId, bool isEdit, bool insert)
+        {
+            return View();
+        }
+
         private string GetApplicationPath()
         {
             var applicationPath = HttpContext.Request.PathBase.Value;
