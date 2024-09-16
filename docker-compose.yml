@@ -5,28 +5,28 @@ services:
         image: ${REGISTRY:-alphaplus}/settings.site:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/Settings/Settings.Site/Dockerfile
+            dockerfile: AlphaPlus/Web/Settings/Settings.Site/Dockerfile
         restart: always
 
     tickets-api:
         image: ${REGISTRY:-alphaplus}/tickets.api:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Services/Tickets/API/Dockerfile
+            dockerfile: AlphaPlus/Services/Tickets/API/Dockerfile
         restart: always
 
     identity-api:
         image: ${REGISTRY:-alphaplus}/identity.api:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Services/Identity/Identity.API/Dockerfile
+            dockerfile: AlphaPlus/Services/Identity/Identity.API/Dockerfile
         restart: always
 
     tickets-site:
         image: ${REGISTRY:-alphaplus}/tickets.site:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/Tickets/Tickets.Site/Dockerfile
+            dockerfile: AlphaPlus/Web/Tickets/Tickets.Site/Dockerfile
         restart: always
         depends_on:
             - tickets-api
@@ -35,21 +35,21 @@ services:
         image: ${REGISTRY:-alphaplus}/assets:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/assets/Dockerfile
+            dockerfile: AlphaPlus/Web/assets/Dockerfile
         restart: always
 
     account-info:
         image: ${REGISTRY:-alphaplus}/account-info:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/AccountInfo/AccountInfo.Site/Dockerfile
+            dockerfile: AlphaPlus/Web/AccountInfo/AccountInfo.Site/Dockerfile
         restart: always
 
     main:
         image: ${REGISTRY:-alphaplus}/main:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/Main/Main.Site/Dockerfile
+            dockerfile: AlphaPlus/Web/Main/Main.Site/Dockerfile
         restart: always
         depends_on:
             - identity-api
@@ -58,11 +58,11 @@ services:
         image: ${REGISTRY:-alphaplus}/login:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/Before/Fanex.Alpha.Before/Dockerfile
+            dockerfile: AlphaPlus/Web/Before/Fanex.Alpha.Before/Dockerfile
         restart: always
 
     proxy:
-        build: proxy
+        build: AlphaPlus/proxy
         restart: always
         ports:
             - 5100:80
@@ -73,12 +73,12 @@ services:
         image: ${REGISTRY:-alphaplus}/reports.site:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/Reports/Reports.Site/Dockerfile
+            dockerfile: AlphaPlus/Web/Reports/Reports.Site/Dockerfile
         restart: always
 
     features-site:
         image: ${REGISTRY:-alphaplus}/features.site:${PLATFORM:-linux}-${TAG:-latest}
         build:
             context: .
-            dockerfile: Web/Features/Features.Site/Dockerfile
+            dockerfile: AlphaPlus/Web/Features/Features.Site/Dockerfile
         restart: always

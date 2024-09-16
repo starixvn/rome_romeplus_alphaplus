@@ -2,13 +2,13 @@ FROM hub.nexdev.net/base/dotnet/core/sdk:7.0 AS builder
 WORKDIR /src
 EXPOSE 5000
 
-COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
-COPY "Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" "Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj"
-COPY "NuGet.config" "NuGet.config"
-RUN dotnet restore "Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" -v n
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
+COPY "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj"
+COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
+RUN dotnet restore "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" -v n
 
-COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
-COPY "Web/Before/Fanex.Alpha.Before" "Web/Before/Fanex.Alpha.Before"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
+COPY "AlphaPlus/Web/Before/Fanex.Alpha.Before" "AlphaPlus/Web/Before/Fanex.Alpha.Before"
 
 ARG TRANSFORM_CONFIG
 ARG CI_JOB_TOKEN
@@ -30,11 +30,11 @@ RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
     || [ "$TRANSFORM_CONFIG" = "STG4" ] \
     || [ "$TRANSFORM_CONFIG" = "STG5" ]; \
 	then cd /src/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
-		&& cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json; fi
+		&& cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json AlphaPlus/Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json; fi
 
 RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
 then \
-  cp "Web/Before/Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json" "Web/Before/Fanex.Alpha.Before/domainmappings.json"; \
+  cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/domainmappings.$TRANSFORM_CONFIG.json" "AlphaPlus/Web/Before/Fanex.Alpha.Before/domainmappings.json"; \
 fi
 
 RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
@@ -45,10 +45,10 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
   || [ "$TRANSFORM_CONFIG" = "AWS2" ] \
   || [ "$TRANSFORM_CONFIG" = "DR2" ]; \
 then \
-	cp "Web/Before/Fanex.Alpha.Before/wwwroot/favicon2.ico" "Web/Before/Fanex.Alpha.Before/wwwroot/favicon.ico"; \
+	cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/wwwroot/favicon2.ico" "AlphaPlus/Web/Before/Fanex.Alpha.Before/wwwroot/favicon.ico"; \
 fi
 
-WORKDIR /src/Web/Before/Fanex.Alpha.Before
+WORKDIR /src/AlphaPlus/Web/Before/Fanex.Alpha.Before
 RUN dotnet publish -r linux-x64 --self-contained false -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:7.0-slim AS base

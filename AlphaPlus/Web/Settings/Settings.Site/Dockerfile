@@ -7,38 +7,38 @@ RUN npm install -g yarn gulp-cli
 WORKDIR /src
 
 # copy .csproj files
-COPY "Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj" "Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj"
-COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
-COPY "Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
-COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
-COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
-COPY "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
-COPY "Modules/AlphaPlus.Products/AlphaPlus.Products.csproj" "Modules/AlphaPlus.Products/AlphaPlus.Products.csproj"
+COPY "AlphaPlus/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj" "AlphaPlus/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "AlphaPlus/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Products/AlphaPlus.Products.csproj" "AlphaPlus/Modules/AlphaPlus.Products/AlphaPlus.Products.csproj"
 
-COPY "Services/Settings/Transfers/Transfer.API/Transfer.API.csproj" "Services/Settings/Transfers/Transfer.API/Transfer.API.csproj"
-COPY "Services/Settings/Viewlogs/ViewLog.API/ViewLog.API.csproj" "Services/Settings/Viewlogs/ViewLog.API/ViewLog.API.csproj"
-COPY "Services/Settings/MemberInfo/MemberInfo.API/MemberInfo.API.csproj" "Services/Settings/MemberInfo/MemberInfo.API/MemberInfo.API.csproj"
-COPY "Services/Settings/MemberInfo/MemberInfo.Domain/MemberInfo.Domain.csproj" "Services/Settings/MemberInfo/MemberInfo.Domain/MemberInfo.Domain.csproj"
+COPY "AlphaPlus/Services/Settings/Transfers/Transfer.API/Transfer.API.csproj" "AlphaPlus/Services/Settings/Transfers/Transfer.API/Transfer.API.csproj"
+COPY "AlphaPlus/Services/Settings/Viewlogs/ViewLog.API/ViewLog.API.csproj" "AlphaPlus/Services/Settings/Viewlogs/ViewLog.API/ViewLog.API.csproj"
+COPY "AlphaPlus/Services/Settings/MemberInfo/MemberInfo.API/MemberInfo.API.csproj" "AlphaPlus/Services/Settings/MemberInfo/MemberInfo.API/MemberInfo.API.csproj"
+COPY "AlphaPlus/Services/Settings/MemberInfo/MemberInfo.Domain/MemberInfo.Domain.csproj" "AlphaPlus/Services/Settings/MemberInfo/MemberInfo.Domain/MemberInfo.Domain.csproj"
 
-COPY "Web/Settings/Settings.Site/Settings.Site.csproj" "Web/Settings/Settings.Site/Settings.Site.csproj"
+COPY "AlphaPlus/Web/Settings/Settings.Site/Settings.Site.csproj" "AlphaPlus/Web/Settings/Settings.Site/Settings.Site.csproj"
 
-COPY "NuGet.config" "NuGet.config"
-RUN dotnet restore "Web/Settings/Settings.Site/Settings.Site.csproj" -v n
+COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
+RUN dotnet restore "AlphaPlus/Web/Settings/Settings.Site/Settings.Site.csproj" -v n
 
 # copy src files
-COPY "Shared" "Shared"
-COPY "Modules/AlphaPlus.Products" "Modules/AlphaPlus.Products"
-COPY "Modules/AlphaPlus.Logging" "Modules/AlphaPlus.Logging"
-COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
-COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
-COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
-COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
-COPY "Modules/AlphaPlus.SecurityCode" "Modules/AlphaPlus.SecurityCode"
-COPY "Services/Settings" "Services/Settings"
+COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
+COPY "AlphaPlus/Modules/AlphaPlus.Products" "AlphaPlus/Modules/AlphaPlus.Products"
+COPY "AlphaPlus/Modules/AlphaPlus.Logging" "AlphaPlus/Modules/AlphaPlus.Logging"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
+COPY "AlphaPlus/Modules/AlphaPlus.PartialUM" "AlphaPlus/Modules/AlphaPlus.PartialUM"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
+COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode" "AlphaPlus/Modules/AlphaPlus.SecurityCode"
+COPY "AlphaPlus/Services/Settings" "AlphaPlus/Services/Settings"
 
-COPY "Web/Settings" "Web/Settings"
+COPY "AlphaPlus/Web/Settings" "AlphaPlus/Web/Settings"
 
-WORKDIR /src/Web/Settings/Settings.Site
+WORKDIR /src/AlphaPlus/Web/Settings/Settings.Site
 
 RUN yarn && yarn build
 RUN dotnet publish --use-current-runtime --self-contained -o /app

@@ -6,40 +6,40 @@ RUN npm install -g yarn gulp-cli
 
 WORKDIR /src
 
-COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
-COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
-COPY "Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj" "Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
+COPY "AlphaPlus/Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj" "AlphaPlus/Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj"
 
-COPY "Modules/AlphaPlus.IPInfo/AlphaPlus.IPInfo.csproj" "Modules/AlphaPlus.IPInfo/AlphaPlus.IPInfo.csproj"
-COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
-COPY "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj" "Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj"
-COPY "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
-COPY "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
-COPY "Services/Tickets/BetLists/AlphaPlus.BetLists.csproj" "Services/Tickets/BetLists/AlphaPlus.BetLists.csproj"
-COPY "Services/Tickets/Results/AlphaPlus.Results.csproj" "Services/Tickets/Results/AlphaPlus.Results.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.IPInfo/AlphaPlus.IPInfo.csproj" "AlphaPlus/Modules/AlphaPlus.IPInfo/AlphaPlus.IPInfo.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj" "AlphaPlus/Modules/AlphaPlus.SmartPunter/AlphaPlus.SmartPunter.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "AlphaPlus/Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
+COPY "AlphaPlus/Services/Tickets/BetLists/AlphaPlus.BetLists.csproj" "AlphaPlus/Services/Tickets/BetLists/AlphaPlus.BetLists.csproj"
+COPY "AlphaPlus/Services/Tickets/Results/AlphaPlus.Results.csproj" "AlphaPlus/Services/Tickets/Results/AlphaPlus.Results.csproj"
 
-COPY "Web/Tickets/BetLists.Builders/BetLists.Builders.csproj" "Web/Tickets/BetLists.Builders/BetLists.Builders.csproj"
-COPY "Web/Tickets/Tickets.Site/Tickets.Site.csproj" "Web/Tickets/Tickets.Site/Tickets.Site.csproj"
-COPY "NuGet.config" "NuGet.config"
-RUN dotnet restore "Web/Tickets/Tickets.Site/Tickets.Site.csproj" -v n
+COPY "AlphaPlus/Web/Tickets/BetLists.Builders/BetLists.Builders.csproj" "AlphaPlus/Web/Tickets/BetLists.Builders/BetLists.Builders.csproj"
+COPY "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj" "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj"
+COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
+RUN dotnet restore "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj" -v n
 
-COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
-COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
-COPY "Services/Tickets/BetsForecast/Domain" "Services/Tickets/BetsForecast/Domain"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
+COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
+COPY "AlphaPlus/Services/Tickets/BetsForecast/Domain" "AlphaPlus/Services/Tickets/BetsForecast/Domain"
 
-COPY "Modules/AlphaPlus.IPInfo" "Modules/AlphaPlus.IPInfo"
-COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
-COPY "Modules/AlphaPlus.SmartPunter" "Modules/AlphaPlus.SmartPunter"
-COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
-COPY "Modules/AlphaPlus.SecurityCode" "Modules/AlphaPlus.SecurityCode"
-COPY "Services/Tickets/BetLists" "Services/Tickets/BetLists"
-COPY "Services/Tickets/Results" "Services/Tickets/Results"
+COPY "AlphaPlus/Modules/AlphaPlus.IPInfo" "AlphaPlus/Modules/AlphaPlus.IPInfo"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
+COPY "AlphaPlus/Modules/AlphaPlus.SmartPunter" "AlphaPlus/Modules/AlphaPlus.SmartPunter"
+COPY "AlphaPlus/Modules/AlphaPlus.PartialUM" "AlphaPlus/Modules/AlphaPlus.PartialUM"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode" "AlphaPlus/Modules/AlphaPlus.SecurityCode"
+COPY "AlphaPlus/Services/Tickets/BetLists" "AlphaPlus/Services/Tickets/BetLists"
+COPY "AlphaPlus/Services/Tickets/Results" "AlphaPlus/Services/Tickets/Results"
 
-COPY "Web/Tickets/BetLists.Builders" "Web/Tickets/BetLists.Builders"
-COPY "Web/Tickets/Tickets.Site" "Web/Tickets/Tickets.Site/"
-COPY "Shared" "Shared"
+COPY "AlphaPlus/Web/Tickets/BetLists.Builders" "AlphaPlus/Web/Tickets/BetLists.Builders"
+COPY "AlphaPlus/Web/Tickets/Tickets.Site" "AlphaPlus/Web/Tickets/Tickets.Site/"
+COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
-WORKDIR /src/Web/Tickets/Tickets.Site
+WORKDIR /src/AlphaPlus/Web/Tickets/Tickets.Site
 
 RUN yarn
 RUN gulp default

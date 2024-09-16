@@ -7,27 +7,27 @@ RUN npm install -g yarn gulp-cli
 WORKDIR /src
 
 # copy .csproj files
-COPY "Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj" "Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj"
-COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
-COPY "Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
-COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
-COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
-COPY "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
-COPY "Web/Main/Main.Site/Main.Site.csproj" "Web/Main/Main.Site/Main.Site.csproj"
+COPY "AlphaPlus/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj" "AlphaPlus/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "AlphaPlus/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
+COPY "AlphaPlus/Web/Main/Main.Site/Main.Site.csproj" "AlphaPlus/Web/Main/Main.Site/Main.Site.csproj"
 
 # restore NuGet packages
-COPY "NuGet.config" "NuGet.config"
-RUN dotnet restore "Web/Main/Main.Site/Main.Site.csproj" -v n
+COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
+RUN dotnet restore "AlphaPlus/Web/Main/Main.Site/Main.Site.csproj" -v n
 
 # copy all source code
-COPY "Shared" "Shared"
-COPY "Modules/AlphaPlus.Logging" "Modules/AlphaPlus.Logging"
-COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
-COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
-COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
-COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
-COPY "Modules/AlphaPlus.SecurityCode" "Modules/AlphaPlus.SecurityCode"
-COPY "Web/Main/Main.Site" "Web/Main/Main.Site"
+COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
+COPY "AlphaPlus/Modules/AlphaPlus.Logging" "AlphaPlus/Modules/AlphaPlus.Logging"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
+COPY "AlphaPlus/Modules/AlphaPlus.PartialUM" "AlphaPlus/Modules/AlphaPlus.PartialUM"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
+COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode" "AlphaPlus/Modules/AlphaPlus.SecurityCode"
+COPY "AlphaPlus/Web/Main/Main.Site" "AlphaPlus/Web/Main/Main.Site"
 
 ARG TRANSFORM_CONFIG
 ARG CI_JOB_TOKEN
@@ -49,14 +49,14 @@ RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
     || [ "$TRANSFORM_CONFIG" = "STG4" ] \
 		|| [ "$TRANSFORM_CONFIG" = "STG5" ]; \
 	then cd /src/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
-		&& cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json Web/Main/Main.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json; fi
+		&& cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json AlphaPlus/Web/Main/Main.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json; fi
 
 RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
 then \
-  cp "Web/Main/Main.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json" "Web/Main/Main.Site/Domains/domainmappings.json"; \
+  cp "AlphaPlus/Web/Main/Main.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json" "AlphaPlus/Web/Main/Main.Site/Domains/domainmappings.json"; \
 fi
 
-WORKDIR /src/Web/Main/Main.Site
+WORKDIR /src/AlphaPlus/Web/Main/Main.Site
 
 RUN yarn && yarn build
 RUN dotnet publish --use-current-runtime --self-contained -o /app

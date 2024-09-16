@@ -5,14 +5,14 @@ WORKDIR /app
 EXPOSE 8080
 
 # Install dependencies based on the preferred package manager
-COPY Web/Assets/package.json ./
-COPY Web/Assets/yarn.lock ./
+COPY AlphaPlus/Web/Assets/package.json ./
+COPY AlphaPlus/Web/Assets/yarn.lock ./
 RUN --mount=type=cache,target=/root/.yarn yarn --frozen-lockfile
 
 FROM hub.nexdev.net/base/node:18.16-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY Web/Assets ./
+COPY AlphaPlus/Web/Assets ./
 # Register TRANSFORM_CONFIG argument for transforming by environment
 ARG TRANSFORM_CONFIG
 RUN echo $TRANSFORM_CONFIG

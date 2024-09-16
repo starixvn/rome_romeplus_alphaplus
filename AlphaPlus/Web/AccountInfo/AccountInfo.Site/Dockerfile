@@ -5,28 +5,28 @@ RUN apk add --update nodejs npm
 WORKDIR /src
 
 # copy .csproj files
-COPY "Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
-COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
-COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
-COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
-COPY "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
-COPY "Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" "Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "AlphaPlus/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
+COPY "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj"
 
 # restore NuGet packages
-COPY "NuGet.config" "NuGet.config"
-RUN dotnet restore "Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" -v n
+COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
+RUN dotnet restore "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" -v n
 
 # copy all source code
-COPY "Modules/AlphaPlus.Logging" "Modules/AlphaPlus.Logging"
-COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
-COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
-COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
-COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
-COPY "Modules/AlphaPlus.SecurityCode" "Modules/AlphaPlus.SecurityCode"
-COPY "Web/AccountInfo/AccountInfo.Site" "Web/AccountInfo/AccountInfo.Site"
-COPY "Shared" "Shared"
+COPY "AlphaPlus/Modules/AlphaPlus.Logging" "AlphaPlus/Modules/AlphaPlus.Logging"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
+COPY "AlphaPlus/Modules/AlphaPlus.PartialUM" "AlphaPlus/Modules/AlphaPlus.PartialUM"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
+COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode" "AlphaPlus/Modules/AlphaPlus.SecurityCode"
+COPY "AlphaPlus/Web/AccountInfo/AccountInfo.Site" "AlphaPlus/Web/AccountInfo/AccountInfo.Site"
+COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
-WORKDIR /src/Web/AccountInfo/AccountInfo.Site
+WORKDIR /src/AlphaPlus/Web/AccountInfo/AccountInfo.Site
 
 RUN dotnet publish --use-current-runtime --self-contained -o /app
 

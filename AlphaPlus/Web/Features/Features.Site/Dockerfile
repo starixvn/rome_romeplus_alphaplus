@@ -7,31 +7,31 @@ RUN npm install -g yarn gulp-cli
 WORKDIR /src
 
 # copy .csproj files
-COPY "Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj" "Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj"
-COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
-COPY "Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
-COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
-COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
+COPY "AlphaPlus/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj" "AlphaPlus/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj" "AlphaPlus/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 
-COPY "Services/Features/Messages/Messages.API.csproj" "Services/Features/Messages/Messages.API.csproj"
-COPY "Web/Features/Features.Site/Features.Site.csproj" "Web/Features/Features.Site/Features.Site.csproj"
+COPY "AlphaPlus/Services/Features/Messages/Messages.API.csproj" "AlphaPlus/Services/Features/Messages/Messages.API.csproj"
+COPY "AlphaPlus/Web/Features/Features.Site/Features.Site.csproj" "AlphaPlus/Web/Features/Features.Site/Features.Site.csproj"
 
-COPY "NuGet.config" "NuGet.config"
-RUN dotnet restore "Web/Features/Features.Site/Features.Site.csproj" -v n
+COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
+RUN dotnet restore "AlphaPlus/Web/Features/Features.Site/Features.Site.csproj" -v n
 
 # copy src files
-COPY "Shared" "Shared"
-COPY "Modules/AlphaPlus.Logging" "Modules/AlphaPlus.Logging"
-COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
-COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
-COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
-COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
+COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
+COPY "AlphaPlus/Modules/AlphaPlus.Logging" "AlphaPlus/Modules/AlphaPlus.Logging"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
+COPY "AlphaPlus/Modules/AlphaPlus.PartialUM" "AlphaPlus/Modules/AlphaPlus.PartialUM"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
+COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
 
-COPY "Services/Features" "Services/Features"
-COPY "Web/Features" "Web/Features"
-COPY ./Web/Features/Features.Site/assets/styles/feedback/images ./Web/Features/Features.Site/wwwroot/assets/bundles/feedback/images
+COPY "AlphaPlus/Services/Features" "AlphaPlus/Services/Features"
+COPY "AlphaPlus/Web/Features" "AlphaPlus/Web/Features"
+COPY ./AlphaPlus/Web/Features/Features.Site/assets/styles/feedback/images ./AlphaPlus/Web/Features/Features.Site/wwwroot/assets/bundles/feedback/images
 
-WORKDIR /src/Web/Features/Features.Site
+WORKDIR /src/AlphaPlus/Web/Features/Features.Site
 
 RUN yarn && yarn build
 RUN dotnet publish --use-current-runtime --self-contained -o /app

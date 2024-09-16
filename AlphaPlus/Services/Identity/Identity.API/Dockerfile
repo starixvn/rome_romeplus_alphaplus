@@ -1,14 +1,14 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS builder
 WORKDIR /src
 
-COPY "Services/Identity/Identity.API/Identity.API.csproj" "Services/Identity/Identity.API/Identity.API.csproj"
-COPY "NuGet.config" "NuGet.config"
-RUN dotnet restore "Services/Identity/Identity.API/Identity.API.csproj" -v n
+COPY "AlphaPlus/Services/Identity/Identity.API/Identity.API.csproj" "AlphaPlus/Services/Identity/Identity.API/Identity.API.csproj"
+COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
+RUN dotnet restore "AlphaPlus/Services/Identity/Identity.API/Identity.API.csproj" -v n
 
-COPY "Services/Identity/Identity.API" "Services/Identity/Identity.API"
-COPY "Shared" "Shared"
-WORKDIR /src/Services/Identity/Identity.API
-RUN dotnet publish --no-restore -o /app
+COPY "AlphaPlus/Services/Identity/Identity.API" "AlphaPlus/Services/Identity/Identity.API"
+COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
+WORKDIR /src/AlphaPlus/Services/Identity/Identity.API
+RUN dotnet publish -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 

@@ -7,32 +7,32 @@ RUN npm install -g yarn gulp-cli
 WORKDIR /src
 
 # copy .csproj files
-COPY "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
-COPY "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
-COPY "Services/Reports/AlphaPlus.Reports/AlphaPlus.Reports.csproj" "Services/Reports/AlphaPlus.Reports/AlphaPlus.Reports.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj" "AlphaPlus/Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj"
+COPY "AlphaPlus/Services/Reports/AlphaPlus.Reports/AlphaPlus.Reports.csproj" "AlphaPlus/Services/Reports/AlphaPlus.Reports/AlphaPlus.Reports.csproj"
 
-COPY "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
-COPY "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
-COPY "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
-COPY "Web/Reports/Reports.Site/Reports.Site.csproj" "Web/Reports/Reports.Site/Reports.Site.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
+COPY "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj" "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj"
 
 # restore NuGet packages
-COPY "NuGet.config" "NuGet.config"
-RUN dotnet restore "Web/Reports/Reports.Site/Reports.Site.csproj" -v n
+COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
+RUN dotnet restore "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj" -v n
 
 # copy all source code
-COPY "Modules/AlphaPlus.Utilities.IP" "Modules/AlphaPlus.Utilities.IP"
-COPY "Modules/AlphaPlus.PartialUM" "Modules/AlphaPlus.PartialUM"
-COPY "Services/Reports/AlphaPlus.Reports" "Services/Reports/AlphaPlus.Reports"
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
+COPY "AlphaPlus/Modules/AlphaPlus.PartialUM" "AlphaPlus/Modules/AlphaPlus.PartialUM"
+COPY "AlphaPlus/Services/Reports/AlphaPlus.Reports" "AlphaPlus/Services/Reports/AlphaPlus.Reports"
 
-COPY "Modules/AlphaPlus.RequestInfo" "Modules/AlphaPlus.RequestInfo"
-COPY "Modules/AlphaPlus.Core" "Modules/AlphaPlus.Core"
-COPY "Modules/AlphaPlus.SecurityCode" "Modules/AlphaPlus.SecurityCode"
+COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
+COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
+COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode" "AlphaPlus/Modules/AlphaPlus.SecurityCode"
 
-COPY "Web/Reports/Reports.Site" "Web/Reports/Reports.Site"
-COPY "Shared" "Shared"
+COPY "AlphaPlus/Web/Reports/Reports.Site" "AlphaPlus/Web/Reports/Reports.Site"
+COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
-WORKDIR /src/Web/Reports/Reports.Site
+WORKDIR /src/AlphaPlus/Web/Reports/Reports.Site
 
 RUN yarn
 RUN gulp default
