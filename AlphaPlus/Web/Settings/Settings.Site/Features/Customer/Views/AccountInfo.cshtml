@@ -1,0 +1,56 @@
+@* @using Alpha.MemberInfo.Site.Features.CreateAccount.ViewModels
+@model AccountInfoViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/account-info-tab")
+</head>
+<body>
+    <div class="result">
+        <div class="note"><span class="star"></span>@Resources.introCopyNote</div>
+        <div class="form-row">
+            <button class="btn-border" id="compact-copy-btn">@Resources.Copy</button>
+        </div>
+        <div class="form-row">
+            <label>@Resources.Usernames</label>
+            <div class="relative-input result-area">
+                <div class="form-value" readonly="readonly" name="member" id="usernames">@string.Join(", ", Model.Usernames)</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <label class="sub-label">@Resources.Credit</label>
+            <div class="relative-input result-area">
+                <input class="form-value" disabled="disabled" type="text" name="Credit" id="txtClonedCredit" value="@string.Format("{0:#,0.##}", Model.Credit)"/>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <label class="sub-label">@Resources.Domain</label>
+            <div class="relative-input result-area">
+                <div class="form-value" readonly="readonly" name="member" id="txtDomains">@string.Join(", ", Model.Domains.Take(3))</div>
+            </div>
+        </div>
+        <div class="result-submit">
+            <div class="btn-submit" id="redirect-full-mode">@Resources.CreateMore</div>
+        </div>
+    </div>
+@Html.Hidden("lbl-credit", Resources.Credit)
+@Html.Hidden("lbl-username", Resources.Username)
+@Html.Hidden("lbl-domain", Resources.Domain)
+@Html.Hidden("lbl-copied", Resources.Copied)
+@Html.AntiForgeryToken()
+
+</body>
+<script>
+    document.getElementById('redirect-full-mode').addEventListener('click', function() {
+        window.top.document.getElementById('main').src = "@Url.Action("Create", "Customer")" ;
+    });
+</script>
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/account-info-tab/index")
+}
+
+</html> *@

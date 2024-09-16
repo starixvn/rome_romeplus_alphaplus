@@ -75,6 +75,17 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return View(viewModel);
         }
 
+        public async Task<ActionResult> AccountInfo(int CustId)
+        {
+            //var accountInfo = await customerService.GetAccountInfo(CustId);
+            return View(new AccountInfoViewModel
+            {
+                // Credit = accountInfo.MaxCredit,
+                // Usernames = accountInfo.UserName,
+                // Domains = accountInfo.domains
+            });
+        }
+
         public ActionResult EditMultiple(EditMultipleCustomersQuery query)
         {
             var viewModel = new EditMultipleCustomersViewModel(
