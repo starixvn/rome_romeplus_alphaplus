@@ -189,4 +189,13 @@
   <data name="viewQuickGuideTitle" xml:space="preserve">
     <value>連接到您下線的賬戶</value>
   </data>
+  <data name="search" xml:space="preserve">
+    <value>搜尋</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>下一頁</value>
+  </data>
+  <data name="previous" xml:space="preserve">
+    <value>上一頁</value>
+  </data>
 </root>

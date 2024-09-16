@@ -1,3 +1,4 @@
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using Newtonsoft.Json
 @model RedirectPTViewModel
 
@@ -12,13 +13,13 @@
 <body>
     <iframe src="@Model.UrlMenu" id="frmHeader" name="frmHeader" scrolling="no" noresize="noresize" frameborder="0"></iframe>
     <div class="search-product hide" id="search-product">
-        <input id="txt-search" placeholder="Search" />
+        <input id="txt-search" placeholder="@Lang.search" />
     </div>
     <div class="content-main">
         <iframe src="@Model.UrlMainPage" id="frmmain" name="frmmain" scrolling="auto" noresize="noresize" frameborder="0"></iframe>
     </div>
     <script type="text/javascript">
-        var productList = @Html.Raw(JsonConvert.SerializeObject(Model.ProductList));
+        var productList = @Html.Raw(JsonConvert.SerializeObject(Model.ProductList.Select(product => product.Name)));
         var customerId = @AlphaPlus.Core.Helpers.AlphaContext.Current.Request.Query["custid"];
     </script>
     @StaticResources.RenderScripts("~/bundles/redirectpt/index")

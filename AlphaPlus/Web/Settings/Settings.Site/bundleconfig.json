@@ -845,6 +845,15 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/bundles/redirectpt/tabpt.js",
+    "inputFiles": [
+      "Features/PositionTaking/assets/scripts/jquery-1.8.2.min.js",
+      "Features/Customer/assets/scripts/jquery-ui-1.9.1.min.js",
+      "Features/Customer/assets/scripts/jquery.cookie.js",
+      "Features/Customer/assets/scripts/tabpt.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/bundles/redirectpt/index.css",
     "inputFiles": [
       "Features/Customer/assets/styles/jquery-ui-1.9.1.custom.min.css",

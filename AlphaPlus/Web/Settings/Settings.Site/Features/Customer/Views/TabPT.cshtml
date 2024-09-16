@@ -1,18 +1,30 @@
+@using AlphaPlus.Products.Models
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+@using Newtonsoft.Json
+@model IEnumerable<SettingProductTab>
+@{
+    var index = 0;
+}
 @StaticResources.RenderStylesWithDarkMode("~/bundles/redirectpt/index")
 <div class="product-list">
     <ul class="tab-list dragscroll" id="tab-list">
-        <!--menu-->
-        <li id="{id}" class="{curr}"><a href="#" onclick="ActiveMenuTab('{index}');" data-url="{url}" data-isEdit="IdIsEdit{hdisEdit}"><span>{text}</span></a></li>
-        <input type="hidden" id="IdIsEdit{hdisEdit}" name="IdIsEdit{hdisEdit}" value="False" />
-        <!--/menu-->
+        @foreach (var product in Model)
+        {
+        <li id="IdCurr@(index)" class="@(index == 0 ? "current" : string.Empty)"><a href="#" onclick="ActiveMenuTab(@index);" data-url="@product.URL"><span>@product.Name</span></a></li>
+        ++index;
+        }
     </ul>
     <div class="list-action">
-        <span class="icon-previous" title="{label-previous}"></span>
-        <span class="icon-next" title="{label-next}"></span>
-        <span id="icon-more" class="icon-more" title="{label-more}"></span>
+        <span class="icon-previous" title="@Lang.previous"></span>
+        <span class="icon-next" title="@Lang.next"></span>
+        <span id="icon-more" class="icon-more" title="@Lang.QuickSearch"></span>
     </div>
 </div>
-@StaticResources.RenderScripts("~/bundles/redirectpt/index")
+<script type="text/javascript">
+    var productList = @Html.Raw(JsonConvert.SerializeObject(Model.Select(product => product.Name)));
+    var customerId = @AlphaContext.Current.Request.Query["custid"];
+</script>
+@StaticResources.RenderScripts("~/bundles/redirectpt/tabpt")
 <script type="text/javascript">
     function ActiveMenuTab(index) {
         tabPT.chooseProduct(index);

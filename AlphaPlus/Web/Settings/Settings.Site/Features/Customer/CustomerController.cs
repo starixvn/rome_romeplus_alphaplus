@@ -274,13 +274,20 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 }
             }
 
-            return View(new RedirectPTViewModel(urlMainPage, urlMenu, productPTTabs.Where(x => !string.IsNullOrWhiteSpace(x.Name)).Select(x => x.Name)));
+            return View(new RedirectPTViewModel(urlMainPage, urlMenu, productPTTabs.Concat(GetProductList(custId, customerLevel, uplineLevel, isDarkMode))));
         }
 
         [HttpGet]
-        public IActionResult TabPT(string username, int userId, int custId, int subAccId, bool isEdit, bool insert)
+        public IActionResult TabPT(int custId)
         {
-            return View();
+            var customerLevel = UserSession.Current.RoleId - 1;
+            var isDarkMode = !string.IsNullOrWhiteSpace(UserSession.Current.DarkModeName);
+            var productPTTabs = InitProducGroupTabs(custId, customerLevel, isDarkMode);
+            var productList = GetProductList(custId, customerLevel, UserSession.Current.RoleId, isDarkMode).ToList();
+            
+            productList.Add(BuilAccountInfoTab(custId, customerLevel, isDarkMode));
+            
+            return View(productPTTabs.Concat(productList));
         }
 
         private string GetApplicationPath()
@@ -296,6 +303,21 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         private ContentResult UnAuthorized() => Content(JsonSerializer.Serialize(Result.CreateErrorResult(Resources.NotAuthorized)));
 
+        private SettingProductTab BuilAccountInfoTab(int customerId, int customerLevel, bool isDarkMode)
+        {
+            return new SettingProductTab
+            {
+                Enabled = true,
+                Id = "AccountInfo",
+                Name = "Account Info",//Resources.Lang.userinfo,
+                URL = MicroSites.SettingUrl(
+                    string.Format("~/Customer/AccountInfo?CustId={0}&roleId={1}&&lng={2}&isDarkMode={3}",
+                    customerId,
+                    customerLevel,
+                    UserSession.Current.Language,
+                    isDarkMode.ToString().ToLowerInvariant())),
+            };
+        }
         private IList<SettingProductTab> InitProducGroupTabs(int customerId, int customerLevel, bool isDarkMode)
         {
             IList<SettingProductTab> productPTTabs = new List<SettingProductTab>();
@@ -324,7 +346,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 customerLevel,
                 productGroupId,
                 UserSession.Current.Language,
-                isDarkMode));
+                isDarkMode.ToString().ToLowerInvariant()));
         }
 
         private void AddDCSProductPTTabs(IList<SettingProductTab> productPTTabs, int customerId, int customerLevel, int? uplineLevel, bool isDarkMode)
@@ -353,6 +375,30 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                     };
 
                     productPTTabs.Add(productTab);
+                }
+            }
+        }
+
+        private IEnumerable<SettingProductTab> GetProductList(int customerId, int customerLevel, int? uplineLevel, bool isDarkMode)
+        {
+            foreach (var product in ProductManager.ProductViewModel.Products)
+            {
+                if (!string.IsNullOrEmpty(product.CustomerSettingLink))
+                {
+                    var dcsLink = string.Format(
+                            "{0}?customerId={1}&customerLevel={2}&productId={3}&isDarkMode={4}",
+                            product.CustomerSettingLink,
+                            customerId,
+                            customerLevel,
+                            product.Id,
+                            isDarkMode.ToString().ToLowerInvariant());
+
+                    if (uplineLevel.HasValue)
+                    {
+                        dcsLink += "&uplineLevel=" + uplineLevel.Value;
+                    }
+
+                    yield return new SettingProductTab { Enabled = product.ShowSettings, Name = product.Name, URL = dcsLink };
                 }
             }
         }

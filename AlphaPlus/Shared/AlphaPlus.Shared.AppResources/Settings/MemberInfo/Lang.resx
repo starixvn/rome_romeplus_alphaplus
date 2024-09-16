@@ -189,4 +189,16 @@
   <data name="viewQuickGuideTitle" xml:space="preserve">
     <value>Connect to your downline account</value>
   </data>
+  <data name="search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="QuickSearch" xml:space="preserve">
+    <value>Click to search quickly</value>
+  </data>
 </root>

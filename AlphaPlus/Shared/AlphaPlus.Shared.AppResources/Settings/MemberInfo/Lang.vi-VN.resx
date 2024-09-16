@@ -189,4 +189,16 @@
   <data name="viewQuickGuideTitle" xml:space="preserve">
     <value>Kết nối với tài khoản cấp dưới</value>
   </data>
+  <data name="search" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
+  <data name="QuickSearch" xml:space="preserve">
+    <value>Bấm vào đây để tìm kiếm nhanh</value>
+  </data>
+  <data name="previous" xml:space="preserve">
+    <value>Trước đó</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Kế tiếp</value>
+  </data>
 </root>

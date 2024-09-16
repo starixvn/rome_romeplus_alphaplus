@@ -79,8 +79,7 @@
       {
         "id": "5",
         "name": "VirtualSports",
-        "active": "true",
-        "customerSettingLink": "~/dcs/viewcustomersetting"
+        "active": "true"
       },
       {
         "id": "28",
@@ -104,21 +103,18 @@
       },
       {
         "id": "44",
-        "name": "RNG Lottery",
-        "active": "true",
-        "customerSettingLink": "~/dcs/viewcustomersetting"
+        "name": "RNG Games",
+        "active": "true"
       },
       {
         "id": "64",
         "name": "VirtualGames",
-        "active": "true",
-        "customerSettingLink": "~/dcs/viewcustomersetting"
+        "active": "true"
       },
       {
         "id": "38",
         "name": "Virtual Games",
-        "active": "true",
-        "customerSettingLink": "~/dcs/viewcustomersetting"
+        "active": "true"
       },
       {
         "id": "69",

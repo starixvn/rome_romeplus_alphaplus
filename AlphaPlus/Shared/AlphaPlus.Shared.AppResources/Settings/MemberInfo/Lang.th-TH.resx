@@ -189,4 +189,13 @@
   <data name="viewQuickGuideTitle" xml:space="preserve">
     <value>เชื่อมต่อกับบัญชีดาวน์ไลน์ของคุณ</value>
   </data>
+  <data name="search" xml:space="preserve">
+    <value>ค้นหา</value>
+  </data>
+  <data name="previous" xml:space="preserve">
+    <value>ก่อนหน้า</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>ต่อไป</value>
+  </data>
 </root>
