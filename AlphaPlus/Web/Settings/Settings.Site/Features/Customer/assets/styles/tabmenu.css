@@ -51,7 +51,7 @@
 .icon-next:after {
     content:'\e903';
 }
-.list-action .icon-more:after {
+.list-action .icon-more:before {
     content:'\e973';
     color: #0077CA;
     font-size: 26px;

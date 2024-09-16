@@ -6,6 +6,7 @@
     var index = 0;
 }
 @StaticResources.RenderStylesWithDarkMode("~/bundles/redirectpt/index")
+@StaticResources.AssetStyles.Render("/bundles/common/icon-common")
 <div class="product-list">
     <ul class="tab-list dragscroll" id="tab-list">
         @foreach (var product in Model)

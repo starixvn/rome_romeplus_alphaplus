@@ -21,6 +21,12 @@
         ]
     },
     {
+        "outputFileName": "bundles/common/icon-common.css",
+        "inputFiles": [            
+            "styles/fonts/iconalpha/style.css"
+        ]
+    },
+    {
         "outputFileName": "bundles/common/pass-font.css",
         "inputFiles": [
             "styles/base/pass-font.css"
