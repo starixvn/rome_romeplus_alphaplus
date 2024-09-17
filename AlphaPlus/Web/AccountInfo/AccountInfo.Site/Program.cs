@@ -31,6 +31,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UsePathBase("/account-info");
+app.MapHealthChecks("/health");
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

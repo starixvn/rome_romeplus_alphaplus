@@ -42,6 +42,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UsePathBase("/main");
+app.MapHealthChecks("/health");
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
