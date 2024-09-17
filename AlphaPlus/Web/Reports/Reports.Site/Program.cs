@@ -17,12 +17,12 @@ var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    //.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "connectionStrings.json"), optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "authorization.json"), optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "securitycode.json"), optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "partialum.json"), optional: false, reloadOnChange: true)
-    .AddEnvironmentVariables()
+    //.AddEnvironmentVariables()
     .AddCommandLine(args);
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
 
