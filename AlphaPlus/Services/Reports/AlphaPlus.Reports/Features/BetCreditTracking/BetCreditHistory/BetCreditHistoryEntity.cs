@@ -30,7 +30,7 @@ public class BetCreditHistoryEntity
 
     public int ActionId { get; init; }
 
-    public byte IsUserLogActionId { get; init; }
+    public bool IsUserLogActionId { get; init; }
 
     public string ActionDateString => ActionDate.ToLongDate24HourWithSlash();
 

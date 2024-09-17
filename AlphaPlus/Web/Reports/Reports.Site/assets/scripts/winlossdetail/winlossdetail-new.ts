@@ -73,7 +73,7 @@ class WinLossDetailViewNew extends BaseReportNew {
             )
         );
         this.registerEvents();
-        this.winLossDetailColumns.init(this.$tblReport, () => this.updateQueryString());
+        this.winLossDetailColumns.init(() => this.updateQueryString());
         this.$tblReportContainer.removeAttr('style');
 
         setTimeout(function () {
@@ -140,6 +140,19 @@ class WinLossDetailViewNew extends BaseReportNew {
                         this.$reportTitle.text(viewResources[custInfo.custLevelId])
                     );
                 }
+            });
+        this.$tblReport
+            .find('.icon-plus-box')
+            .off('click')
+            .click((e) => {
+                window.top['reloadMyWatchlistDataTable'] = () => this.getData(this.globalFormData, undefined, true);
+                const custName = $(e.target).prev('.downline-link').data('custname');
+                const url = `${$(
+                    '#hidden-settingsUrl'
+                ).val()}MyWatchlistAccounts/ManageWatchlistAccounts?usernames=${custName}`;
+                const width = 820;
+                const height = 550;
+                window.top['popupManager'].open(url, undefined, width, height, 'modal-mobile-friendly');
             });
         this.stickyTableHeaders();
     }

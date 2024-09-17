@@ -50,7 +50,7 @@ public class BetCreditHistoryService(
         var rawdata = await repository.FetchAsync<BetCreditHistoryEntity>(criteria);
         foreach (var row in rawdata)
         {
-            row.Action = row.IsUserLogActionId == 1
+            row.Action = row.IsUserLogActionId
                 ? await GetLogActionName(row.Action, row.ActionId, param.Language)
                 : ConvertActionName(row.Action, row.ActionId);
         }

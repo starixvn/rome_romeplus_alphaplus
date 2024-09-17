@@ -32,11 +32,6 @@ public class ProductService(
     private const int ProductDetailsCacheInMinutes = 60 * 24; // 1 day
     private const string ProductDetailsCacheKey = "AlphaPlus.Reports.ProductDetails";
     private const int CustProductDetailsCacheInMinutes = 5;
-    private static readonly HashSet<int> IgnoreCheckProductStatusTypes =
-    [
-        ProductIdConstants.LiveCasino,
-        ProductIdConstants.DummyRNGProductId
-    ];
 
     public string ConcatProductNames(IEnumerable<int> productIds)
         => productIds.Select(cacheRefService.GetProductName).JoinWithComma(", ");
@@ -55,7 +50,7 @@ public class ProductService(
                 }).ToList(),
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
-        return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && (IgnoreCheckProductStatusTypes.Contains(i.Type) || canViewProduct(i.Id)));
+        return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && canViewProduct(i.Id));
     }
 
     private static bool IsRemainSupportProduct(Product product, DateTime? minReportDate)

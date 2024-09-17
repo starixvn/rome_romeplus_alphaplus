@@ -9,7 +9,7 @@ public class CustomerHandler(ICustomerClient customerClient)
     public Task<IEnumerable<UsernameSuggestion>> Handle(UsernameSuggestionQuery message, CancellationToken cancellationToken)
         => customerClient.GetUsernamesSuggestion(
             message.ViewerId,
-            message.CustName,
+            message.Query,
             message.IsInternal,
             message.DirectDownline,
             message.IsAccInfo);

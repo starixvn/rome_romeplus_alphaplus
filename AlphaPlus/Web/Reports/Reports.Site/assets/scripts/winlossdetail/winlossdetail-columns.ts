@@ -7,13 +7,11 @@ class WinLossDetailColumns {
         this.visibleColumnComponent = visibleColumnComponent;
     }
 
-    init($tblReport: JQuery, onDropdownHidden: Function) {
+    init(onDropdownHidden: Function) {
         this.visibleColumnComponent.render($('#VisibleColumns').val(), columnList, (columns) => {
             this.showHideColumns($('#tbl-report'), columns);
             onDropdownHidden();
         });
-
-        this.showHideColumns($tblReport);
     }
 
     showHideColumns($tblReport: JQuery, visibleColumn = undefined) {

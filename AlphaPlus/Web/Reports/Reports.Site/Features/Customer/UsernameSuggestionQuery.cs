@@ -9,6 +9,8 @@ public class UsernameSuggestionQuery : BaseQuery, IRequest<IEnumerable<UsernameS
     public UsernameSuggestionQuery() : base()
         => IsInternal = Viewer.IsInternal;
 
+    public string Query { get; set; }
+
     public bool DirectDownline { get; set; }
 
     public bool IsAccInfo { get; set; }

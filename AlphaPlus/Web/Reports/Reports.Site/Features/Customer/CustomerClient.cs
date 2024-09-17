@@ -7,7 +7,7 @@ public interface ICustomerClient
 {
     Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(
         int viewerId,
-        string custName,
+        string query,
         bool isInternal,
         bool directDownline,
         bool isAccInfo);
@@ -17,17 +17,17 @@ public class CustomerClient(HttpClient httpClient) : ICustomerClient
 {
     private readonly HttpClient httpClient = httpClient;
 
-    public Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int viewerId, string custName, bool isInternal, bool directDownline, bool isAccInfo)
+    public Task<IEnumerable<UsernameSuggestion>> GetUsernamesSuggestion(int viewerId, string query, bool isInternal, bool directDownline, bool isAccInfo)
     {
-        var query = QueryString.Create([
+        var queryString = QueryString.Create([
             KeyValuePair.Create("actorId", viewerId.ToString()),
-            KeyValuePair.Create("query", custName),
+            KeyValuePair.Create(nameof(query), query),
             KeyValuePair.Create(nameof(isInternal), ToString(isInternal)),
             KeyValuePair.Create("directDownlines", ToString(directDownline)),
             KeyValuePair.Create(nameof(isAccInfo), ToString(isAccInfo))
         ]);
 
-        return GetJson<IEnumerable<UsernameSuggestion>>($"customer/username-suggestion{query}");
+        return GetJson<IEnumerable<UsernameSuggestion>>($"customer/username-suggestion{queryString}");
     }
 
     private static string ToString(bool value) => value.ToString().ToLowerInvariant();
