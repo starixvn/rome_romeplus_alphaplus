@@ -35,8 +35,7 @@ public class CorrectScoreExcelHandler(
 
     public async Task<ExcelFileViewModel> Handle(CorrectScoreExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = new CorrectScoreParam(message.ViewerId, message.ViewerLevelId, message.DisplayVNIP, message.Site);
-
+        var param = CorrectScoreHandler.CreateCorrectScoreParam(message);
         var tickets = await correctScoreService.GetBetList(param);
         var viewModel = new CorrectScoreViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 

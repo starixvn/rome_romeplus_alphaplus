@@ -36,23 +36,18 @@ public class DailyStatementExcelHandler(
 
     public async Task<ExcelFileViewModel> Handle(DailyStatementExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = new DailyStatementParam(
-            message.CustId,
-            message.WinLossDate,
-            message.TransType,
-            message.DisplayVNIP,
-            message.Site);
+        var param = DailyStatementHandler.CreateDailyStatementParam(message);
         var betlistData = await dailyStatementService.GetBetList(param);
-        var dailyStatementViewModel = new DailyStatementViewModel(message, betlistData, Builder, TicketHelper);
+        var viewModel = new DailyStatementViewModel(message, betlistData, Builder, TicketHelper);
 
         workbook = workbook.UseTemplate(GetTemplateInfo(_UserLevel.Member));
         RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 
         var fileContent = workbook
             .Header(Resources.ResourceManager.GetString)
-            .Title(dailyStatementViewModel.Title)
-            .Body(betlistData.Tickets, GetBodyRowMapper(message.ViewerLevel, dailyStatementViewModel))
-            .Footer(new TicketDto(), GetFooterRowMapper(dailyStatementViewModel.Footer))
+            .Title(viewModel.Title)
+            .Body(betlistData.Tickets, GetBodyRowMapper(message.ViewerLevel, viewModel))
+            .Footer(new TicketDto(), GetFooterRowMapper(viewModel.Footer))
             .ExportToBytes();
 
         return new ExcelFileViewModel("BetList", fileContent);

@@ -34,7 +34,7 @@ public class JackpotDetailsExcelHandler(
 
     public async Task<ExcelFileViewModel> Handle(JackpotDetailsExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = new JackpotDetailsParam(message.TransId, message.CustId, message.BetType);
+        var param = JackpotDetailsHandler.CreateJackpotDetailsParam(message);
         var tickets = await jackpotDetailsService.GetBetList(param);
 
         var viewModel = new JackpotDetailsViewModel(message, new BetListData(tickets, null), null, TicketHelper);

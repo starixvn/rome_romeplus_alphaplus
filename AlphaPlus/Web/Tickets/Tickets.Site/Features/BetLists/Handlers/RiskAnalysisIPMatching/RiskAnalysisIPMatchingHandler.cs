@@ -25,14 +25,12 @@ public class RiskAnalysisIPMatchingHandler(
 
     public async Task<RiskAnalysisIPMatchingViewModel> Handle(RiskAnalysisIPMatchingQuery message, CancellationToken cancellationToken)
     {
-        var param = new RiskAnalysisIPMatchingParam(
-            message.CustId,
-            message.IP,
-            message.Date,
-            message.DisplayVNIP,
-            message.Site);
+        var param = CreateIPMatchingParamParam(message);
         var betlistData = await riskAnalysisIPMatchingService.GetBetList(param);
 
         return new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper);
     }
+
+    protected internal static RiskAnalysisIPMatchingParam CreateIPMatchingParamParam(RiskAnalysisIPMatchingQuery message)
+        => new RiskAnalysisIPMatchingParam(message.CustId, message.IP, message.Date, message.DisplayVNIP, message.Site);
 }

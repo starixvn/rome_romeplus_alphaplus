@@ -39,12 +39,7 @@ public class RiskAnalysisIPMatchingExcelHandler(
 
     public async Task<ExcelFileViewModel> Handle(RiskAnalysisIPMatchingExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = new RiskAnalysisIPMatchingParam(
-            message.CustId,
-            message.IP,
-            message.Date,
-            message.DisplayVNIP,
-            message.Site);
+        var param = RiskAnalysisIPMatchingHandler.CreateIPMatchingParamParam(message);
         var betlistData = await riskAnalysisIPMatchingService.GetBetList(param);
         var viewModel = new RiskAnalysisIPMatchingViewModel(message, betlistData, Builder, TicketHelper);
 

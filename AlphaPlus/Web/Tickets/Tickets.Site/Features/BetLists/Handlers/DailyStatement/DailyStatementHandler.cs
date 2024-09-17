@@ -28,12 +28,7 @@ public class DailyStatementHandler(
 
     public async Task<DailyStatementViewModel> Handle(DailyStatementQuery message, CancellationToken cancellationToken)
     {
-        var param = new DailyStatementParam(
-            message.CustId,
-            message.WinLossDate,
-            message.TransType,
-            message.DisplayVNIP,
-            message.Site);
+        var param = CreateDailyStatementParam(message);
         var betlistData = await dailyStatementService.GetBetList(param);
         var supportScoreMapBetTypeIds = betlistData.Total == 0
             ? []
@@ -43,4 +38,7 @@ public class DailyStatementHandler(
 
         return new DailyStatementViewModel(message, betlistData, Builder, TicketHelper, supportScoreMapBetTypeIds);
     }
+
+    protected internal static DailyStatementParam CreateDailyStatementParam(DailyStatementQuery message)
+        => new DailyStatementParam(message.CustId, message.WinLossDate, message.TransType, message.DisplayVNIP, message.Site);
 }

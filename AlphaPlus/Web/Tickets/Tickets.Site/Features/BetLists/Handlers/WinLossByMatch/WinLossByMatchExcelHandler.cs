@@ -38,20 +38,7 @@ public class WinLossByMatchExcelHandler(
 
     public async Task<ExcelFileViewModel> Handle(WinLossByMatchExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = new WinLossByMatchParam(
-            message.CustId,
-            message.LeagueId,
-            message.MatchId,
-            message.BetType,
-            message.Race,
-            message.LiveIndicator == 1,
-            message.Language,
-            message.CustName,
-            message.FromDate,
-            message.ToDate,
-            message.CustLevelId,
-            message.DisplayVNIP,
-            message.Site);
+        var param = WinLossByMatchHandler.CreateWinLossParam(message);
         var betlistData = await winLossByMatchService.GetBetList(param);
         var viewModel = new WinLossByMatchViewModel(message, betlistData, null, TicketHelper);
 

@@ -298,7 +298,7 @@ public class WinLossNewHandler(
 
     private static string GetDisplayWeek(DateTime fromDate, DateTime toDate)
     {
-        var displayToDate = $"{toDate.ToString("dd")} {Resources.ResourceManager.GetString($"_{toDate.ToString("MMM")}")}";
+        var displayToDate = $"{toDate.ToString("dd")} {Resources.ResourceManager.GetString($"{toDate.ToString("MMM")}")}";
 
         return fromDate == toDate ? displayToDate : $"{fromDate.ToString("dd")} - {displayToDate}";
     }

@@ -12,8 +12,7 @@ public class BetListByBetTypeAndMatchController : BetListBaseController
     }
 
     public Task<IActionResult> Index(BetListByBetTypeAndMatchQuery message)
-        => View<BetListByBetTypeAndMatchViewModel>(message);
+        => View<BetListByBetTypeAndMatchViewModel>(message, GetViewPath("BetListByBetTypeAndMatch", nameof(Index)));
 
-    public Task<FileContentResult> Excel(BetListByBetTypeAndMatchExcelQuery message)
-        => ExcelView(message);
+    public Task<FileContentResult> Excel(BetListByBetTypeAndMatchExcelQuery message) => ExcelView(message);
 }

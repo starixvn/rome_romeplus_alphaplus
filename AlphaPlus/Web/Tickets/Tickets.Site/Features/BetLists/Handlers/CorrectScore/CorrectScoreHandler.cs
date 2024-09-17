@@ -29,7 +29,7 @@ public class CorrectScoreHandler(
 
     public async Task<CorrectScoreViewModel> Handle(CorrectScoreQuery message, CancellationToken cancellationToken)
     {
-        var param = new CorrectScoreParam(message.ViewerId, message.ViewerLevelId, message.DisplayVNIP, message.Site);
+        var param = CreateCorrectScoreParam(message);
 
         var tickets = await correctScoreService.GetBetList(param);
         var supportScoreMapBetTypeIds = tickets.Any()
@@ -40,4 +40,7 @@ public class CorrectScoreHandler(
 
         return new CorrectScoreViewModel(message, new BetListData(tickets, null), Builder, TicketHelper, supportScoreMapBetTypeIds);
     }
+
+    protected internal static CorrectScoreParam CreateCorrectScoreParam(CorrectScoreQuery message)
+        => new CorrectScoreParam(message.ViewerId, message.ViewerLevelId, message.DisplayVNIP, message.Site);
 }

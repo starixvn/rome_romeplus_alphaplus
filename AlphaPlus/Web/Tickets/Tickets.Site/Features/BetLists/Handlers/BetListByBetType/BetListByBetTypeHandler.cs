@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.Running;
+using AlphaPlus.BetLists.RunningBetListByBetType;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.BetLists.Shared.Services;
 using AlphaPlus.SmartPunter.Services;
@@ -29,12 +29,7 @@ public class BetListByBetTypeHandler(
 
     public async Task<BetListByBetTypeViewModel> Handle(BetListByBetTypeQuery message, CancellationToken cancellationToken)
     {
-        var param = new RunningBetListByBetTypeParam(
-            message.ViewerId,
-            message.ViewerLevelId,
-            message.BetType,
-            message.DisplayVNIP,
-            message.Site);
+        var param = CreateRunningBetListByBetTypeParam(message);
         var tickets = await runningBetListByBetTypeService.GetBetList(param);
         var supportScoreMapBetTypeIds = tickets.Any()
             ? await forecastService.GetBetTypeIdsSupportScoreMap()
@@ -48,4 +43,12 @@ public class BetListByBetTypeHandler(
             TicketHelper,
             supportScoreMapBetTypeIds);
     }
+
+    protected internal static RunningBetListByBetTypeParam CreateRunningBetListByBetTypeParam(BetListByBetTypeQuery message)
+        => new RunningBetListByBetTypeParam(
+            message.ViewerId,
+            message.ViewerLevelId,
+            message.BetType,
+            message.DisplayVNIP,
+            message.Site);
 }

@@ -9,6 +9,5 @@ public class WinLossByMatchController(IMediator mediator) : BetListBaseControlle
     public Task<IActionResult> Index(WinLossByMatchQuery message)
         => View(message, GetViewPath("WinLossByMatch", nameof(Index)));
 
-    public Task<FileContentResult> Excel(WinLossByMatchExcelQuery message)
-        => ExcelView(message);
+    public Task<FileContentResult> Excel(WinLossByMatchExcelQuery message) => ExcelView(message);
 }

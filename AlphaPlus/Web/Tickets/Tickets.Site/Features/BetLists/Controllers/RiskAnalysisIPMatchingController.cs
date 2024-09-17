@@ -9,6 +9,5 @@ public class RiskAnalysisIPMatchingController(IMediator mediator) : BetListBaseC
     public Task<IActionResult> Index(RiskAnalysisIPMatchingQuery message)
         => View(message, GetViewPath("RiskAnalysisIPMatching", nameof(Index)));
 
-    public Task<FileContentResult> Excel(RiskAnalysisIPMatchingExcelQuery message)
-        => ExcelView(message);
+    public Task<FileContentResult> Excel(RiskAnalysisIPMatchingExcelQuery message) => ExcelView(message);
 }

@@ -13,7 +13,8 @@
     <Compile Include="..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Shared\Constants\BetTypeConstants.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.BetList.Core" Version="3.0.3.2" />
+    <PackageReference Include="Fanex.BetList.Core" Version="3.0.3.8" />
+    <PackageReference Include="Fanex.Logging" Version="2.0.1.1" />
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.4" />
   </ItemGroup>
   <ItemGroup>

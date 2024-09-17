@@ -39,19 +39,12 @@ public class CasinoDetailsExcelHandler(
 
     public async Task<ExcelFileViewModel> Handle(CasinoDetailsExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = new CasinoDetailsParam(
-            message.RefNo,
-            message.CustId,
-            message.TransType,
-            message.ProductId,
-            message.PageIndex,
-            message.PageSize,
-            message.DisplayVNIP);
-        var pagedBetListData = await casinoDetailsService.GetBetList(param);
+        var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
+        var betListData = await casinoDetailsService.GetBetList(param);
         var viewModel = new CasinoDetailsViewModel(
             message,
-            new BetListData(pagedBetListData.DataSource, null),
-            new PagerViewModel(pagedBetListData.PageIndex, pagedBetListData.PageSize, pagedBetListData.TotalRecords),
+            new BetListData(betListData.DataSource, null),
+            new PagerViewModel(betListData.PageIndex, betListData.PageSize, betListData.TotalRecords),
             null,
             TicketHelper);
 
@@ -61,7 +54,7 @@ public class CasinoDetailsExcelHandler(
         var fileContent = workbook
             .Header(Resources.ResourceManager.GetString)
             .Title(viewModel.Title)
-            .Body(pagedBetListData.DataSource, GetBodyRowMapper(message.ViewerLevel, message.DisplayVNIP))
+            .Body(betListData.DataSource, GetBodyRowMapper(message.ViewerLevel, message.DisplayVNIP))
             .ExportToBytes();
 
         return new ExcelFileViewModel(viewModel.Title, fileContent);

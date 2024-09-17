@@ -25,7 +25,16 @@ public class WinLossByMatchHandler(
 
     public async Task<WinLossByMatchViewModel> Handle(WinLossByMatchQuery message, CancellationToken cancellationToken)
     {
-        var param = new WinLossByMatchParam(
+        var param = CreateWinLossParam(message);
+        var betlistData = await winLossByMatchService.GetBetList(param);
+
+        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+
+        return new WinLossByMatchViewModel(message, betlistData, Builder, TicketHelper);
+    }
+
+    protected internal static WinLossByMatchParam CreateWinLossParam(WinLossByMatchQuery message)
+        => new WinLossByMatchParam(
             message.CustId,
             message.LeagueId,
             message.MatchId,
@@ -39,10 +48,4 @@ public class WinLossByMatchHandler(
             message.CustLevelId,
             message.DisplayVNIP,
             message.Site);
-        var betlistData = await winLossByMatchService.GetBetList(param);
-
-        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
-
-        return new WinLossByMatchViewModel(message, betlistData, Builder, TicketHelper);
-    }
 }

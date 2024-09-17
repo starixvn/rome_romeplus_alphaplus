@@ -9,6 +9,5 @@ public class JackpotDetailsController(IMediator mediator) : BetListBaseControlle
     public Task<IActionResult> Index(JackpotDetailsQuery message)
         => View(message, GetViewPath("JackpotDetails", nameof(Index)));
 
-    public Task<FileContentResult> Excel(JackpotDetailsExcelQuery message)
-        => ExcelView(message);
+    public Task<FileContentResult> Excel(JackpotDetailsExcelQuery message) => ExcelView(message);
 }

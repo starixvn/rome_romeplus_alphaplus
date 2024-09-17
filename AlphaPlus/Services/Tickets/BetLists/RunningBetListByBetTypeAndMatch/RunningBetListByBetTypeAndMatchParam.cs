@@ -1,4 +1,4 @@
-namespace AlphaPlus.BetLists.BetsForecast;
+namespace AlphaPlus.BetLists.RunningBetListByBetTypeAndMatch;
 
 public record RunningBetListByBetTypeAndMatchParam(
     int MatchId,

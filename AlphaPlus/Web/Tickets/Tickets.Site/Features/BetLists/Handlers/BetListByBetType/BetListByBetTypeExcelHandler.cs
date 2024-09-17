@@ -1,5 +1,5 @@
 using AlphaPlus.Shared.AppResources.Betlist.Services;
-using AlphaPlus.BetLists.Running;
+using AlphaPlus.BetLists.RunningBetListByBetType;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Models;
 using AlphaPlus.SmartPunter.Services;
@@ -34,12 +34,7 @@ public class BetListByBetTypeExcelHandler(
 
     public async Task<ExcelFileViewModel> Handle(BetListByBetTypeExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = new RunningBetListByBetTypeParam(
-            message.ViewerId,
-            message.ViewerLevelId,
-            message.BetType,
-            message.DisplayVNIP,
-            message.Site);
+        var param = BetListByBetTypeHandler.CreateRunningBetListByBetTypeParam(message);
         var tickets = await runningBetListByBetTypeService.GetBetList(param);
 
         var viewModel = new BetListByBetTypeViewModel(message, new BetListData(tickets, null), null, TicketHelper);

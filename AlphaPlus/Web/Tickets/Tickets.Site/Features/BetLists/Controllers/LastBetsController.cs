@@ -32,9 +32,9 @@ public class LastBetsController(
 
     public override void OnActionExecuting(ActionExecutingContext context)
     {
-        if (user.IsInternal
+        if ((user.IsInternal
         || appSettings.EnableBetsListMonitoring
-        || appSettings.UsersAlwaysAllowAccessBetsListMonitoring.Contains(user.Id))
+        || appSettings.UsersAlwaysAllowAccessBetsListMonitoring.Contains(user.Id)) && user.IsAgent)
         {
             base.OnActionExecuting(context);
         }

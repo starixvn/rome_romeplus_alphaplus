@@ -54,7 +54,7 @@ public class ProductService(
                 }).ToList(),
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
-        return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && (ProductIdConstants.IgnoreCheckProductStatusTypes.Contains(i.Type) || canViewProduct(i.Id)));
+        return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && canViewProduct(i.Id));
     }
 
     public async Task<IEnumerable<Product>> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param)

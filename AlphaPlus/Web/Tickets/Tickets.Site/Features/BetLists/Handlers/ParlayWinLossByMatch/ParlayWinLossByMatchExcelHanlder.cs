@@ -47,15 +47,7 @@ public class ParlayWinLossByMatchExcelHanlder(
 
     public async Task<ExcelFileViewModel> Handle(ParlayWinLossByMatchExcelQuery message, CancellationToken cancellationToken)
     {
-        var param = new ParlayWinLossByMatchParam(
-            message.CustId,
-            message.BetType,
-            message.LangKey,
-            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-            message.ToDate,
-            message.CustLevelId,
-            message.DisplayVNIP,
-            message.Site);
+        var param = ParlayWinLossByMatchHandler.CreateWinLossParam(message);
         var tickets = await parlayWinLossByMatchService.GetBetList(param);
         var viewModel = new ParlayWinLossByMatchViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 

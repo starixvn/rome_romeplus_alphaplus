@@ -7,5 +7,5 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 public class MoveStatementHistoryController(IMediator mediator) : BetListBaseController(mediator)
 {
     public Task<IActionResult> Index(MoveStatementHistoryQuery message)
-        => View(message, string.Format(BetListView, "MoveStatementHistory", nameof(Index)));
+        => View(message, GetViewPath("MoveStatementHistory", nameof(Index)));
 }

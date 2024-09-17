@@ -38,6 +38,8 @@ public interface IUser
     AddFilterParam GetUnsavedFilter(int custId, int subAccId);
 
     void SetUnsavedFilter(int custId, int subAccId, AddFilterParam value);
+
+    bool IsAgent { get; }
 }
 
 public class User(IUserSession userSession) : IUser
@@ -99,4 +101,6 @@ public class User(IUserSession userSession) : IUser
 
     private static string UnsavedFilterSessionKey(int custId, int subAccId)
         => string.Format(LastBetsMonitoringUnsavedFilter, custId, subAccId);
+
+    public bool IsAgent => userSession.IsAgent;
 }

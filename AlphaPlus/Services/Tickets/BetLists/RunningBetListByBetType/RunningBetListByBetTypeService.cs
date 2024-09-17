@@ -5,7 +5,7 @@ using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.BetLists.Running;
+namespace AlphaPlus.BetLists.RunningBetListByBetType;
 
 public interface IRunningBetListByBetTypeService
 {

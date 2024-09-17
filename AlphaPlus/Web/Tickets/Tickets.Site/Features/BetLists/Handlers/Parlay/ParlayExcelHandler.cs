@@ -34,7 +34,7 @@ public class ParlayExcelHandler(
 
     public async Task<ExcelFileViewModel> Handle(ComboParlayDetailExcelQuery message, CancellationToken cancellationToken)
     {
-        var comboParlayDetailViewModel = await GetComboParlayDetail(message, isExportingExcel: true);
+        var comboParlayDetailViewModel = await GetComboParlayDetail(message);
 
         var onebookWorkbook = workbook
             .SetData(comboParlayDetailViewModel)
@@ -135,13 +135,13 @@ public class ParlayExcelHandler(
         return rtfText;
     }
 
-    private async Task<ComboParlayDetailViewModel> GetComboParlayDetail(ComboParlayDetailQuery message, bool isExportingExcel = false)
+    private async Task<ComboParlayDetailViewModel> GetComboParlayDetail(ComboParlayDetailQuery message)
     {
         var comboParlayDetailData = await parlayService.GetComboParlayDetail(
             message.RefNo,
             message.CustId,
             message.Language);
 
-        return new ComboParlayDetailViewModel(message, comboParlayDetailData, TicketHelper, isExportingExcel);
+        return new ComboParlayDetailViewModel(message, comboParlayDetailData, TicketHelper, isMobile: false, isExportingExcel: true);
     }
 }

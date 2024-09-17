@@ -1,7 +1,8 @@
-using AlphaPlus.BetLists.Running;
+using AlphaPlus.BetLists.RunningBetListByBetType;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.BetLists.Shared.Services;
 using AlphaPlus.SmartPunter.Services;
+using AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetListByBetType;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.CombinationMixParlay;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CombinationMixParlay;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
@@ -29,7 +30,7 @@ public class CombinationMixParlayHandler(
 
     public async Task<CombinationMixParlayViewModel> Handle(CombinationMixParlayQuery message, CancellationToken cancellationToken)
     {
-        var param = new RunningBetListByBetTypeParam(message.ViewerId, message.ViewerLevelId, message.BetType, message.DisplayVNIP, message.Site);
+        var param = BetListByBetTypeHandler.CreateRunningBetListByBetTypeParam(message);
 
         var tickets = await runningBetListByBetTypeService.GetBetList(param);
         var supportScoreMapBetTypeIds = tickets.Any()

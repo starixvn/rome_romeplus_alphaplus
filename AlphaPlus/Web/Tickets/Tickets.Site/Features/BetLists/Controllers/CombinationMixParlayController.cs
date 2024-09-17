@@ -8,8 +8,7 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 public class CombinationMixParlayController(IMediator mediator) : BetListBaseController(mediator)
 {
     public Task<IActionResult> Index(CombinationMixParlayQuery message)
-        => View<CombinationMixParlayViewModel>(message, string.Format(BetListView, "CombinationMixParlay", nameof(Index)));
+        => View<CombinationMixParlayViewModel>(message, GetViewPath("CombinationMixParlay", nameof(Index)));
 
-    public Task<FileContentResult> Excel(CombinationMixParlayExcelQuery message)
-        => ExcelView(message);
+    public Task<FileContentResult> Excel(CombinationMixParlayExcelQuery message) => ExcelView(message);
 }

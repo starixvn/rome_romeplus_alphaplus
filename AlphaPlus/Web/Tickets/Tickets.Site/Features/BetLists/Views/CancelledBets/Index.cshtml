@@ -16,8 +16,7 @@
     <div class="box">
         <div>@Model.Title</div>
         <div>
-            <partial name="IconInformation"
-                model="new List<string>() { Resources.ipnote, Model.ViewDataInstructionMessage }" />
+            <partial name="IconInformation" model="new[] { Resources.ipnote, Model.ViewDataInstructionMessage }" />
         </div>
         <div class="push">
             <div class="list-icon" id="betlist-filter">

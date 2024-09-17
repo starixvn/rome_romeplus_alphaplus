@@ -54,7 +54,7 @@ public class BetListServiceBase(
         }
         catch (Exception ex)
         {
-            //ExceptionHandler.Handle(ex);
+            await Fanex.Logging.Logger.Log.ErrorAsync(ex.Message, ex);
         }
 
         return new Dictionary<string, string>();

@@ -7,7 +7,7 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 public class CasinoDetailsController(IMediator mediator) : BetListBaseController(mediator)
 {
     public Task<IActionResult> Index(CasinoDetailsQuery message)
-        => View(message, string.Format(BetListView, "CasinoDetails", nameof(Index)));
+        => View(message, GetViewPath("CasinoDetails", nameof(Index)));
 
     public Task<FileContentResult> Excel(CasinoDetailsExcelQuery message) => ExcelView(message);
 }

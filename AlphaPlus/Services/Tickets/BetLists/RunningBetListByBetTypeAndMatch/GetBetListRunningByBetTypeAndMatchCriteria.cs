@@ -1,7 +1,7 @@
 using Fanex.Data;
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.BetLists.BetsForecast;
+namespace AlphaPlus.BetLists.RunningBetListByBetTypeAndMatch;
 
 public class GetBetListRunningByBetTypeAndMatchCriteria(
     int matchId,

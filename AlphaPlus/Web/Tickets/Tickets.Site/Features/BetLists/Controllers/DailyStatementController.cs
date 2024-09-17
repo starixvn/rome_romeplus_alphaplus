@@ -7,7 +7,7 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 public class DailyStatementController(IMediator mediator) : BetListBaseController(mediator)
 {
     public Task<IActionResult> Index(DailyStatementQuery message)
-        => View(message, string.Format(BetListView, "DailyStatement", nameof(Index)));
+        => View(message, GetViewPath("DailyStatement", nameof(Index)));
 
     public Task<FileContentResult> Excel(DailyStatementExcelQuery message) => ExcelView(message);
 }

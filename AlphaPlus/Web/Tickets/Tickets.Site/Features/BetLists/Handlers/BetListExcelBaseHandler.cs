@@ -38,7 +38,6 @@ public class BetListExcelBaseHandler(
     protected internal RTFHelper RtfHelper { get; set; } = excelBuilder.RTFHelper;
     private readonly IWebHostEnvironment webHostEnvironment = webHostEnvironment;
 
-
     /// <summary>
     /// Inititalize RTFHelper for create Font of Workbook for rendering correct format.
     /// Need to call this method after calling UseTemplate method of ONEBook.SpreadSheet

@@ -10,7 +10,7 @@ using Fanex.BetList.Core.Entities;
 using MediatR;
 using Microsoft.Extensions.Options;
 
-namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetDetails;
+namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.JackpotDetails;
 
 public class JackpotDetailsHandler(
     IJackpotDetailsService jackpotDetailsService,
@@ -26,9 +26,12 @@ public class JackpotDetailsHandler(
 
     public async Task<JackpotDetailsViewModel> Handle(JackpotDetailsQuery message, CancellationToken cancellationToken)
     {
-        var param = new JackpotDetailsParam(message.TransId, message.CustId, message.BetType);
+        var param = CreateJackpotDetailsParam(message);
         var tickets = await jackpotDetailsService.GetBetList(param);
 
         return new JackpotDetailsViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
     }
+
+    protected internal static JackpotDetailsParam CreateJackpotDetailsParam(JackpotDetailsQuery message)
+        => new JackpotDetailsParam(message.TransId, message.CustId, message.BetType);
 }

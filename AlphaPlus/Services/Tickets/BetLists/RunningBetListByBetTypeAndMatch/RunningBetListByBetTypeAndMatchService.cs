@@ -4,7 +4,7 @@ using Fanex.Data.Repository;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.BetLists.Shared.Services;
 
-namespace AlphaPlus.BetLists.BetsForecast;
+namespace AlphaPlus.BetLists.RunningBetListByBetTypeAndMatch;
 
 public interface IRunningBetListByBetTypeAndMatchService
 {

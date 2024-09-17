@@ -7,9 +7,9 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using _Result = AlphaPlus.BetLists.Shared.Models.Result;
 
-namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.LastBets;
+namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.MonitoringBets;
 
-public class ManageFilterBetsHandler(
+public class MonitoringBetsHandler(
     IOptions<AppSettings> options,
     IUser user,
     IFilterBetsService filterBetsService) :

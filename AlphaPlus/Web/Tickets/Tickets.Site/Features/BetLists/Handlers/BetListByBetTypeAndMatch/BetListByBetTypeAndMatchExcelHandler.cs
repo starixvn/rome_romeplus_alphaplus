@@ -1,4 +1,4 @@
-using AlphaPlus.BetLists.BetsForecast;
+using AlphaPlus.BetLists.RunningBetListByBetTypeAndMatch;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Models;
 using AlphaPlus.SmartPunter.Services;

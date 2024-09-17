@@ -27,7 +27,16 @@ public class ParlayWinLossByMatchHandler(
 
     public async Task<ParlayWinLossByMatchViewModel> Handle(ParlayWinLossByMatchQuery message, CancellationToken cancellationToken)
     {
-        var param = new ParlayWinLossByMatchParam(
+        var param = CreateWinLossParam(message);
+        var tickets = await parlayWinLossByMatchService.GetBetList(param);
+
+        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
+
+        return new ParlayWinLossByMatchViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
+    }
+
+    protected internal static ParlayWinLossByMatchParam CreateWinLossParam(ParlayWinLossByMatchQuery message)
+        => new ParlayWinLossByMatchParam(
             message.CustId,
             message.BetType,
             message.LangKey,
@@ -36,10 +45,4 @@ public class ParlayWinLossByMatchHandler(
             message.CustLevelId,
             message.DisplayVNIP,
             message.Site);
-        var tickets = await parlayWinLossByMatchService.GetBetList(param);
-
-        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);
-
-        return new ParlayWinLossByMatchViewModel(message, new BetListData(tickets, null), Builder, TicketHelper);
-    }
 }

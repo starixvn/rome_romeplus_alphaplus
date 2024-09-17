@@ -1,4 +1,4 @@
-namespace AlphaPlus.BetLists.Running;
+namespace AlphaPlus.BetLists.RunningBetListByBetType;
 
 public record RunningBetListByBetTypeParam(
     int CustId,

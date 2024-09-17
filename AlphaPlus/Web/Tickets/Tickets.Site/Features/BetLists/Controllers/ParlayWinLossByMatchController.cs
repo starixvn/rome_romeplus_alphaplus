@@ -9,6 +9,5 @@ public class ParlayWinLossByMatchController(IMediator mediator) : BetListBaseCon
     public Task<IActionResult> Index(ParlayWinLossByMatchQuery message)
         => View(message, GetViewPath("ParlayWinLossByMatch", nameof(Index)));
 
-    public Task<FileContentResult> Excel(ParlayWinLossByMatchExcelQuery message)
-        => ExcelView(message);
+    public Task<FileContentResult> Excel(ParlayWinLossByMatchExcelQuery message) => ExcelView(message);
 }

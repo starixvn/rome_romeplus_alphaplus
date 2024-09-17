@@ -1,4 +1,4 @@
-using AlphaPlus.Core.Models;
+using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
@@ -12,10 +12,10 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 public class MonitoringBetsController(
     IMediator mediator,
     IOptions<AppSettings> options,
-    IUserSession userSession) : BetListBaseController(mediator)
+    IUser user) : BetListBaseController(mediator)
 {
     private readonly AppSettings appSettings = options.Value;
-    private readonly IUserSession userSession = userSession;
+    private readonly IUser user = user;
 
     // Filter Configuration
     public IActionResult FilterConfiguration(FilterConfigurationQuery message)
@@ -68,9 +68,9 @@ public class MonitoringBetsController(
 
     public override void OnActionExecuting(ActionExecutingContext context)
     {
-        if (userSession.IsInternal
+        if ((user.IsInternal
         || appSettings.EnableBetsListMonitoring
-        || appSettings.UsersAlwaysAllowAccessBetsListMonitoring.Contains(userSession.CustId))
+        || appSettings.UsersAlwaysAllowAccessBetsListMonitoring.Contains(user.Id)) && user.IsAgent)
         {
             base.OnActionExecuting(context);
         }

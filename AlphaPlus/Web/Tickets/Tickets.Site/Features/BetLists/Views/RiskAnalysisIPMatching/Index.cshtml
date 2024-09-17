@@ -9,8 +9,7 @@
     <div class="box">
         <div>@Model.Title</div>
         <div>
-            <partial name="IconInformation"
-                model="@new List<string> { Resources.ipnote, Resources.CommissionRoundNote }" />
+            <partial name="IconInformation" model="new[] { Resources.ipnote, Resources.CommissionRoundNote }" />
         </div>
         <div class="push">
             <div class="bl-export-excel">

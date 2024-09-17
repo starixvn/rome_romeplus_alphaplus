@@ -27,14 +27,7 @@ public class CasinoDetailsHandler(
 
     public async Task<CasinoDetailsViewModel> Handle(CasinoDetailsQuery message, CancellationToken cancellationToken)
     {
-        var param = new CasinoDetailsParam(
-            message.RefNo,
-            message.CustId,
-            message.TransType,
-            message.ProductId,
-            message.PageIndex,
-            message.PageSize,
-            message.DisplayVNIP);
+        var param = CreateCasinoDetailsParam(message);
         var pagedBetListData = await casinoDetailsService.GetBetList(param);
 
         return new CasinoDetailsViewModel(
@@ -44,4 +37,14 @@ public class CasinoDetailsHandler(
             Builder,
             TicketHelper);
     }
+
+    protected internal static CasinoDetailsParam CreateCasinoDetailsParam(CasinoDetailsQuery message)
+        => new CasinoDetailsParam(
+            message.RefNo,
+            message.CustId,
+            message.TransType,
+            message.ProductId,
+            message.PageIndex,
+            message.PageSize,
+            message.DisplayVNIP);
 }

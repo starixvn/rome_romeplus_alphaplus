@@ -9,8 +9,12 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 public class SearchTicketsController(IMediator mediator) : BetListBaseController(mediator)
 {
     public IActionResult Index(SearchTicketsQuery message)
-        => View(new SearchTicketsViewModel(message, new BetListData(null, null), null, null));
+    {
+        var viewModel = new SearchTicketsViewModel(message, new BetListData(null, null), null, null);
+
+        return View(GetViewPath("SearchTickets", nameof(Index)), viewModel);
+    }
 
     public Task<IActionResult> BetData(SearchTicketsQuery message)
-        => View(message, string.Format(BetListView, "Shared", "WinLossTableNew"));
+        => View(message, GetViewPath("Shared", "WinLossTableNew"));
 }
