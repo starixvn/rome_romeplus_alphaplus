@@ -20,7 +20,6 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true)
     .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile("partialum.json", optional: false, reloadOnChange: true)
     .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
