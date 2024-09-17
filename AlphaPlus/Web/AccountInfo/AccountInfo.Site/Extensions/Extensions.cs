@@ -54,6 +54,8 @@ public static class Extensions
             options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
         });
 
+        services.AddHealthChecks();
+
         return services;
     }
 
