@@ -16,7 +16,7 @@
             }
         };
 
-        var healthCheckUrl = assetAppPath + "/bundles/common/hc.css?v=" + (new Date()).getTime();
+        var healthCheckUrl = assetAppPath + "/bundles/common/pass-font.css?v=" + (new Date()).getTime();
         xmlhttp.open("GET", healthCheckUrl, true);
         xmlhttp.send();
     }
