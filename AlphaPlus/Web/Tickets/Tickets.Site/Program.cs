@@ -14,6 +14,7 @@ using AlphaPlus.BetLists.Shared.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.SecurityCode.Filters;
 using AlphaPlus.SecurityCode.Extensions;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
@@ -53,6 +54,11 @@ builder.Services
         options.ViewLocationFormats.Add("/Features/BetLists/Views/Shared/{0}.cshtml");
     });
 builder.Services
+    .Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders =
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    })
     .AddMediatR(assembly)
     .AddFanexLogging(configuration)
     .AddRemotingRef(configuration)
@@ -75,6 +81,7 @@ builder.Services.AddHealthChecks();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 app
+    .UseForwardedHeaders()
     .UseExceptionHandler("/Shared/Error")
     .UsePathBase("/tickets")
     .UseRouting()

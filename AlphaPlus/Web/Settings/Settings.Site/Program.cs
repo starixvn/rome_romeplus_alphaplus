@@ -1,6 +1,7 @@
 using AlphaPlus.Settings.Site.Features.Helpers;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,12 @@ builder.Configuration
 var configuration = builder.Configuration;
 
 builder.Services
-    .RegisterApplicationServices(configuration);
+    .RegisterApplicationServices(configuration)
+    .Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders =
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    });
 
 var app = builder.Build();
 
@@ -29,6 +35,7 @@ if (!app.Environment.IsDevelopment())
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
 
+app.UseForwardedHeaders();
 app.UsePathBase("/settings");
 app.MapHealthChecks("/health");
 app.UseStaticFiles();

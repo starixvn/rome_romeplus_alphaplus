@@ -3,6 +3,7 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,11 @@ AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
 LoggingConfig.Init(["password", "seccode", "securitycode"]);
 
 builder.Services
+    .Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders =
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    })
     .AddHttpContextAccessor()
     .AddApplicationServices(builder.Configuration)
     .AddAuthorization()
@@ -29,6 +35,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseForwardedHeaders();
 app.UsePathBase("/account-info");
 app.MapHealthChecks("/health");
 

@@ -6,6 +6,7 @@ using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
 using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,11 @@ builder.Services.AddControllersWithViews(options =>
 });
 
 builder.Services
+    .Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders =
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    })
     .AddHttpContextAccessor()
     .AddApplicationServices(builder.Configuration)
     .AddAuthorization()
@@ -40,6 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseForwardedHeaders();
 app.UsePathBase("/main");
 app.MapHealthChecks("/health");
 

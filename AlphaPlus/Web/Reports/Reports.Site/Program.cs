@@ -10,6 +10,7 @@ using Fanex.Data;
 using Fanex.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 
 const string App_Data = "App_Data";
@@ -49,6 +50,11 @@ builder.Services
         options.ViewLocationFormats.Add("/Features/Shared/Views/{0}.cshtml");
     });
 builder.Services
+    .Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders =
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    })
     .AddMediatR(assembly)
     .AddFanexLogging(configuration)
     .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>()
@@ -66,6 +72,7 @@ builder.Services.AddHealthChecks();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 app
+    .UseForwardedHeaders()
     .UseExceptionHandler("/Shared/Error")
     .UsePathBase("/reports")
     .UseRouting()
