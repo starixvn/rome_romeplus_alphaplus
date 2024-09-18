@@ -84,6 +84,8 @@ public static class Extensions
         services.AddHttpClient<IProtectionCodeService, ProtectionCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ILanguageService, LanguageService>(httpClient => httpClient.BaseAddress = customerServiceUri);
 
+        services.AddHealthChecks();
+
         return services;
     }
 
