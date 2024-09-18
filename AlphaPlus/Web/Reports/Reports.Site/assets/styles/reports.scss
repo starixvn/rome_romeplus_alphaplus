@@ -237,7 +237,24 @@ a {
             border-left: 0 !important;
             box-shadow: inset 1px 0px 0 var(--table-border-color);
             background-clip: padding-box;
+            padding-right: 24px;
 
+            .icon-plus-box, .icon-mywatchlist {
+                position: absolute;
+                font-size: 16px;
+                right: 4px;
+                top: 6px;
+                color: #919191;
+                cursor: pointer;
+
+                &:before {
+                    color: #919191;
+                }
+
+                + .tooltip {
+                    white-space: nowrap;
+                }
+            }
             &:before {
                 position: absolute;
                 content: '';
@@ -497,6 +514,7 @@ a {
         }
     }
 }
+
 .tooltip {
     &.in {
         opacity: 1;
@@ -504,7 +522,7 @@ a {
 
     .tooltip-inner {
         border: 1px solid #ccc;
-        color: var(--text-color);
+        color: $text-color;
         font-weight: bold;
         background-color: #f2f2f2;
         text-align: left;
@@ -517,12 +535,11 @@ a {
         }
 
         .tooltip-inner {
-            &:after,
-            &:before {
+            &:after, &:before {
                 bottom: 0;
                 left: 50%;
                 border: solid transparent;
-                content: ' ';
+                content: " ";
                 height: 0;
                 width: 0;
                 position: absolute;
@@ -543,6 +560,40 @@ a {
                 margin-left: -10px;
                 margin-bottom: -14px;
             }
+        }
+    }
+
+    &.right {
+        pointer-events: none;
+
+        .tooltip-arrow {
+            display: none;
+        }
+
+        &:after, &:before {
+            top: 0;
+            left: 0;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+        }
+
+        &:after {
+            border-color: transparent;
+            border-right-color: #f2f2f2;
+            border-width: 6px;
+            margin-left: -6px;
+            margin-top: 6px;
+        }
+
+        &:before {
+            border-color: transparent;
+            border-right-color: #ccc;
+            border-width: 8px;
+            margin-left: -10px;
+            margin-top: 4px;
         }
     }
 }
