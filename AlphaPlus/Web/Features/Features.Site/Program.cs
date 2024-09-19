@@ -38,6 +38,14 @@ app.UseAuthorization();
 app.UseSession();
 app.UseMiddleware<RequestCultureMiddleware>();
 
+app.Use(async (context, next) =>
+{
+    context.Request.EnableBuffering();
+    context.Request.PathBase = "/features";
+
+    await next(context);
+});
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=NewMessage}/{action=GetNumberOfNewAnnouncement}/{id?}");

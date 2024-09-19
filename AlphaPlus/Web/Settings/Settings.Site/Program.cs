@@ -52,7 +52,8 @@ app.MapControllerRoute(
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    await next();
+    context.Request.PathBase = "/settings";
+    await next(context);
 });
 
 app.Run();

@@ -60,6 +60,14 @@ app.UseAuthorization();
 
 app.UseMiddleware<RequestCultureMiddleware>();
 
+app.Use(async (context, next) =>
+{
+    context.Request.EnableBuffering();
+    context.Request.PathBase = "/main";
+
+    await next(context);
+});
+
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Default}/{action=Index}/{id?}");

@@ -87,11 +87,14 @@ app.MapHealthChecks("/health");
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 
-app.Use(next => context =>
+app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    return next(context);
+    context.Request.PathBase = "/reports";
+
+    await next(context);
 });
+
 app.MapDefaultControllerRoute();
 
 await Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");

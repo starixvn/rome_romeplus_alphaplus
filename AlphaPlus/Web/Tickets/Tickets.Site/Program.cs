@@ -91,7 +91,16 @@ app
     .UseAuthentication()
     .UseAuthorization()
     .UseMiddleware<RequestCultureMiddleware>();
+
 app.MapHealthChecks("/health");
+
+app.Use(async (context, next) =>
+{
+    context.Request.EnableBuffering();
+    context.Request.PathBase = "/tickets";
+
+    await next(context);
+});
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 app.MapDefaultControllerRoute();

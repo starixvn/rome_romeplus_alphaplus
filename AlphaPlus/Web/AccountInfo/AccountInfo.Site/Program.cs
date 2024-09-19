@@ -49,6 +49,14 @@ app.UseAuthorization();
 
 app.UseMiddleware<RequestCultureMiddleware>();
 
+app.Use(async (context, next) =>
+{
+    context.Request.EnableBuffering();
+    context.Request.PathBase = "/account-info";
+
+    await next(context);
+});
+
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 
 
