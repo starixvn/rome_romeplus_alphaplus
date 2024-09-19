@@ -2,6 +2,7 @@ using AlphaPlus.Settings.Site.Features.Helpers;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Builder.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,7 +53,8 @@ app.MapControllerRoute(
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = "/settings";
+    app.UseMiddleware<UsePathBaseMiddleware>([next, "/settings"]);
+    
     await next(context);
 });
 

@@ -7,6 +7,7 @@ using AlphaPlus.Logging;
 using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Builder.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,7 +64,7 @@ app.UseMiddleware<RequestCultureMiddleware>();
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = "/main";
+    app.UseMiddleware<UsePathBaseMiddleware>([next, "/main"]);
 
     await next(context);
 });

@@ -15,6 +15,7 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.SecurityCode.Filters;
 using AlphaPlus.SecurityCode.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Builder.Extensions;
 
 var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
@@ -97,7 +98,7 @@ app.MapHealthChecks("/health");
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = "/tickets";
+    app.UseMiddleware<UsePathBaseMiddleware>([next, "/tickets"]);
 
     await next(context);
 });

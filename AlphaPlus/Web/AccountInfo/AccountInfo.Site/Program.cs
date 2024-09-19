@@ -3,6 +3,7 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,13 +53,12 @@ app.UseMiddleware<RequestCultureMiddleware>();
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = "/account-info";
+    app.UseMiddleware<UsePathBaseMiddleware>([next, "/account-info"]);
 
     await next(context);
 });
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
-
 
 app.MapControllerRoute(
     name: "default",
