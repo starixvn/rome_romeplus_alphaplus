@@ -111,14 +111,14 @@ a {
 // Tables
 .tblRpt {
     &.alternative-row-table-new {
-        background-color: #7f3d1d;
+        background-color: var(--table-alternative-bg);
 
         tbody {
             tr {
-                background-color: #ffffff;
+                background-color: var(--table-alternative-tr-td-bg);
 
                 td {
-                    background-color: #ffffff;
+                    background-color: var(--table-alternative-tr-td-bg);
                 }
             }
 
@@ -165,11 +165,19 @@ a {
 .tblRpt-freeze-header {
     thead {
         tr {
+            &:first-child{
+                th{
+                    &:first-child{
+                        box-shadow: inset 1px 0 0 var(--table-border-color), inset 0 1px 0 var(--table-border-color)!important;
+                    }
+                }
+            }
             th {
                 position: sticky !important;
                 position: -webkit-sticky !important;
                 top: 0 !important;
                 border-top: 0 !important;
+                box-shadow: inset 0 1px 0 var(--table-border-color);
                 background-clip: padding-box;
 
                 &#groupColumnMember,
@@ -183,7 +191,7 @@ a {
             &.thead-row2 {
                 th {
                     top: 28px !important;
-                    box-shadow: inset 0 1px 0 #d1d1d1;
+                    box-shadow: inset 0 1px 0 var(--table-border-color);
                 }
             }
         }
@@ -321,10 +329,10 @@ a {
     }
 
     tfoot {
-        background-color: #7f3d1d;
+        background-color: var(--table-footer-bg);
 
         tr {
-            background-color: #7f3d1d;
+            background-color: var(--table-footer-bg);
 
             td {
                 border-bottom: 0 !important;

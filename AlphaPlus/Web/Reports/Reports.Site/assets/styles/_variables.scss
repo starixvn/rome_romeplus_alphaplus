@@ -52,12 +52,13 @@ $msg-error-color: #fe0000;
 :root [data-theme='light'] {
     --font-size: 13px;
     --font-size-mobile: 14px;
-    --font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;
+    --font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;    
+    --height-normal: 28px;
+    --height-mobile: 36px;
+
     --text-color: #333;
     --text-color2: #333;
     --border-color: #dfdfdf;
-    --height-normal: 28px;
-    --height-mobile: 36px;
 
     --popup-bg: #fff;
     --popup-border: #dfdfdf;
@@ -74,6 +75,9 @@ $msg-error-color: #fe0000;
     --table-odd-bg: #eae9ee;
     --table-footer-bg: #7f3d1d;
     --table-footer-color: #fff;
+
+    --table-alternative-bg: #7f3d1d;
+    --table-alternative-tr-td-bg: #ffffff;
 
     --link-color: #045ace;
     --link-hover-color: #f60;
@@ -106,19 +110,32 @@ $msg-error-color: #fe0000;
 
 }
 :root [data-theme='dark'] {
+
     --text-color: #CBCBCB;
     --text-color2: #fff;
     --border-color: #dfdfdf;
+
     --popup-border: #dfdfdf;
-    --table-td-hover-color: #f8eb95;
-    --link-color: #41A4FF;
+
+    --table-header-bg-color: #383838;
+    --table-border-color: #5f626b;
+    --table-alternative-bg: #4C2511;
+    --table-alternative-tr-td-bg: #181919;
+    --table-footer-bg: #4c2511;
+   
+    
+    --link-color: #41A4FF;    
     --link-hover-color: #F60;
+
     --chart-bg-color: #212223;  
     --chart-border-color: #3E3F41;
-    --bg-high-light-row-color: #2e2c1f;
+
+    --bg-high-light-row-color: #2e2c1f;    
     --bg-red-cell:#913939;
     --color-red2: #E54748;
+
     --color-note_title: #cbcbcb;
+
     --bg-sport-and-product-row: #2E2C1F;
     --bg-pt-row: #2e2c1f;
     --color-format-negative: #E54748;
