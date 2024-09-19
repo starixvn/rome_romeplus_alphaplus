@@ -10,7 +10,6 @@ using Fanex.Data;
 using Fanex.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 
@@ -91,7 +90,7 @@ StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    app.UseMiddleware<UsePathBaseMiddleware>([next, "/reports"]);
+    context.Request.PathBase = "/reports";
 
     await next(context);
 });

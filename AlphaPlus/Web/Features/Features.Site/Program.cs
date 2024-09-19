@@ -1,7 +1,6 @@
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Features.Site.Helpers;
-using Microsoft.AspNetCore.Builder.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,7 +41,7 @@ app.UseMiddleware<RequestCultureMiddleware>();
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    app.UseMiddleware<UsePathBaseMiddleware>([next, "/features"]);
+    context.Request.PathBase = "/features";
 
     await next(context);
 });
