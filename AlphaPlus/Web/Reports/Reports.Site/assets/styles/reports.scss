@@ -4,7 +4,7 @@
 @include keyframes-ripple;
 
 body {
-    background-color: transparent;
+    background-color: transparent;    
     font-size: var(--font-size);
     font-family: var(--font-family);
     line-height: 20px;
@@ -110,9 +110,27 @@ a {
 
 // Tables
 .tblRpt {
-    &.alternative-row-table-new {
-        background-color: var(--table-alternative-bg);
+    .col-username{
+        padding-right: 24px;
 
+            .icon-plus-box, .icon-mywatchlist {
+                position: absolute;
+                font-size: 16px;
+                right: 4px;
+                top: 6px;
+                color: #919191;
+                cursor: pointer;
+
+                &:before {
+                    color: #919191;
+                }
+
+                + .tooltip {
+                    white-space: nowrap;
+                }
+            }
+    }
+    &.alternative-row-table-new {
         tbody {
             tr {
                 background-color: var(--table-alternative-tr-td-bg);
@@ -165,13 +183,7 @@ a {
 .tblRpt-freeze-header {
     thead {
         tr {
-            &:first-child{
-                th{
-                    &:first-child{
-                        box-shadow: inset 1px 0 0 var(--table-border-color), inset 0 1px 0 var(--table-border-color)!important;
-                    }
-                }
-            }
+            
             th {
                 position: sticky !important;
                 position: -webkit-sticky !important;
@@ -205,151 +217,82 @@ a {
     white-space: nowrap;
 }
 .tblRpt-freeze-body {
-    thead {
-        tr {
-            &:first-child {
-                th {
-                    &:first-child {
-                        position: sticky;
-                        position: -webkit-sticky !important;
-                        left: 0;
-                        z-index: 40;
-                        border-left: 0 !important;
-                        border-right: 0 !important;
-                        box-shadow: inset 1px 0px 0 var(--table-border-color);
+    thead{
+        tr{
+            th,td{
+                &:first-child{
+                    position: sticky;
+                    position: -webkit-sticky !important;
+                    z-index: 2;
+                    left: 0;
+                    &:before{
+                        position: absolute;
+                        content: "";
+                        right: auto;                        
+                        top: 0;
+                        left: -1px;
+                        width: calc(100% + 2px);
                         height: 100%;
-
-                        &:before {
-                            position: absolute;
-                            content: '';
-                            right: -1px;
-                            top: 0;
-                            width: 1px;
-                            height: 100%;
-                            background-color: var(--table-border-color);
-                        }
+                        background: transparent;
+                        border-left: 1px solid var(--table-border-color);
+                        border-right: 1px solid var(--table-border-color);
                     }
                 }
             }
         }
     }
-
-    tbody {
-        .col-username {
-            position: sticky;
-            position: -webkit-sticky !important;
-            z-index: 2;
-            left: 0;
-            background: var(--table-even-bg);
-            border-right: 0 !important;
-            border-left: 0 !important;
-            box-shadow: inset 1px 0px 0 var(--table-border-color);
-            background-clip: padding-box;
-            padding-right: 24px;
-
-            .icon-plus-box, .icon-mywatchlist {
-                position: absolute;
-                font-size: 16px;
-                right: 4px;
-                top: 6px;
-                color: #919191;
-                cursor: pointer;
-
-                &:before {
-                    color: #919191;
-                }
-
-                + .tooltip {
-                    white-space: nowrap;
-                }
-            }
-            &:before {
-                position: absolute;
-                content: '';
-                right: -1px;
-                top: 0;
-                width: 1px;
-                height: 100%;
-                background-color: var(--table-border-color);
-            }
-
-            &:after {
-                position: absolute;
-                content: '';
-                right: -1px;
-                top: 0;
-                width: 1px;
-                height: 100%;
-                background-color: var(--table-border-color);
-            }
-        }
-
-        [data-colname='fullname'] {
-            max-width: 0;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            min-width: 160px;
-        }
-
-        tr {
-            &:nth-child(2n) {
-                .col-username {
-                    background-color: var(--table-odd-bg);
-
-                    &:before {
+    tbody{
+        tr{
+            td{
+                &:first-child{
+                    position: sticky;
+                    position: -webkit-sticky !important;
+                    z-index: 2;
+                    left: 0;
+                    
+                    &:before{
                         position: absolute;
-                        content: '';
+                        content: "";
                         left: -1px;
                         top: 0;
                         width: 1px;
                         height: 100%;
-                        background-color: var(--table-odd-bg);
+                        background-color: var(--table-border-color);
                     }
-                }
-            }
-
-            td {
-                &[colspan] {
-                    border-left: 0;
-                    box-shadow: inset 1px 0px 0 var(--table-border-color);
-                }
-
-                &:before {
-                    position: absolute;
-                    content: '';
-                    left: -1px;
-                    top: 0;
-                    width: 1px;
-                    height: 100%;
-                    background-color: #ffffff;
+                    &:after{
+                        position: absolute;
+                        content: "";
+                        right: -1px;
+                        top: 0;
+                        width: 1px;
+                        height: 100%;
+                        background-color: var(--table-border-color);
+                    }
                 }
             }
         }
     }
-
-    tfoot {
-        background-color: var(--table-footer-bg);
-
-        tr {
-            background-color: var(--table-footer-bg);
-
-            td {
-                border-bottom: 0 !important;
-
-                &:first-child {
+    tfoot{
+        tr{
+            td{
+                &:first-child{
                     position: sticky;
                     position: -webkit-sticky !important;
-                    z-index: 20;
+                    z-index: 2;
                     left: 0;
-                    box-shadow: inset 1px 0px 0 var(--table-border-color);
                     background-color: var(--table-footer-bg);
-                    border-right: 0 !important;
-                    border-left: 0 !important;
-
-                    &:before {
+                    &:before{
                         position: absolute;
-                        content: '';
+                        content: "";
+                        left: -1px;
+                        top: 0;
+                        width: 1px;
+                        height: 100%;
+                        background-color: var(--table-border-color);
+                    }
+                    &:after{
+                        position: absolute;
+                        content: "";
                         right: -1px;
                         top: 0;
                         width: 1px;
