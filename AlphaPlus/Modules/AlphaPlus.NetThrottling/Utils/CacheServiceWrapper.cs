@@ -1,4 +1,5 @@
 ﻿using Fanex.Caching;
+using Fanex.Logging;
 
 namespace AlphaPlus.NetThrottling.Utils
 {
@@ -25,26 +26,10 @@ namespace AlphaPlus.NetThrottling.Utils
         Task RemoveAsync(string key);
     }
 
-    public class CacheServiceWrapper : ICacheServiceWrapper
+    public class CacheServiceWrapper(ICacheService cacheService, ILogger logger) : ICacheServiceWrapper
     {
-        private readonly ICacheService cacheService;
-        private readonly ILogger logger;
-
-        public CacheServiceWrapper()
-            : this(null, null)
-        {
-        }
-
-        public CacheServiceWrapper(ICacheService cacheService)
-            : this(cacheService, null)
-        {
-        }
-
-        public CacheServiceWrapper(ICacheService cacheService, ILogger logger)
-        {
-            this.cacheService = cacheService ?? new CacheService();
-            this.logger = logger ?? Logger.Default;
-        }
+        private readonly ICacheService cacheService = cacheService;
+        private readonly ILogger logger = logger;
 
         public bool Contain(string key)
         {
@@ -54,7 +39,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
 
             return false;
@@ -68,7 +53,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
         }
 
@@ -80,7 +65,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
         }
 
@@ -93,7 +78,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
 
             return false;
@@ -107,7 +92,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
         }
 
@@ -119,7 +104,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
 
             return false;
@@ -133,7 +118,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
         }
 
@@ -145,7 +130,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
         }
 
@@ -157,7 +142,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
 
             return (false, default(T));
@@ -171,7 +156,7 @@ namespace AlphaPlus.NetThrottling.Utils
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                logger.Error(ex.Message, ex);
             }
         }
     }

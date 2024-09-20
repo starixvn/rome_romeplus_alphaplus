@@ -1,12 +1,13 @@
 ﻿using AlphaPlus.NetThrottling.Models;
 using AlphaPlus.NetThrottling.Utils;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.NetThrottling.Filters
 {
-    public class WhitelistSessionFilter(IEnumerable<int> custIds) : IFilter
+    public class WhitelistSessionFilter(IOptions<NetThrottlingConfiguration> options) : IFilter
     {
-        private readonly IEnumerable<int> custIds = custIds;
+        private readonly IEnumerable<int> custIds = options.Value.WhiteListCustIds;
 
         public CacheIdentity GetCacheIdentity(HttpContext httpContext, ThrottlePolicy policy)
         {

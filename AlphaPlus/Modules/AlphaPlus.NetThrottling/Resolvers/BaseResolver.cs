@@ -1,4 +1,5 @@
-﻿using AlphaPlus.Core.Helpers;
+﻿using System.Net;
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.NetThrottling.Resources;
 using AlphaPlus.NetThrottling.Utils;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +29,7 @@ namespace AlphaPlus.NetThrottling.Resolvers
         private static Task BlockRequest(HttpContext context)
         {
             var response = context.Response;
-            response.StatusCode = HttpStatusCodes.TooManyRequests;
+            response.StatusCode = (int)HttpStatusCode.TooManyRequests;
             return response.WriteAsync(Lang.BlockedContent);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.NetThrottling.Models;
+using AlphaPlus.NetThrottling.Resolvers;
 
 namespace AlphaPlus.NetThrottling
 {
@@ -6,7 +7,7 @@ namespace AlphaPlus.NetThrottling
     {
         public bool IsUseRedis { get; set; } = false;
 
-        public string Resolver { get; set; }
+        public string Resolver { get; set; } = ResolverTypes.Base;
 
         public string RedisConfigurationOptions { get; set; }
 

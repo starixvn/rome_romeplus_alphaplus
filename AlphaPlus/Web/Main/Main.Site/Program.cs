@@ -7,6 +7,7 @@ using AlphaPlus.Logging;
 using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
+using AlphaPlus.NetThrottling;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,7 @@ builder.Services
     })
     .AddHttpContextAccessor()
     .AddApplicationServices(builder.Configuration)
+    .AddNetThrottling(builder.Configuration)
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();
@@ -57,7 +59,7 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseNetThrottling();
 app.UseMiddleware<RequestCultureMiddleware>();
 
 app.Use(async (context, next) =>

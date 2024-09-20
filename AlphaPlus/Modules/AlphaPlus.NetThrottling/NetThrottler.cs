@@ -90,11 +90,11 @@ namespace AlphaPlus.NetThrottling
         private readonly ICacheServiceWrapper cacheService;
 
 
-        public NetThrottler(IOptions<NetThrottlingConfiguration> options, ICacheServiceFactory cacheServiceFactory, IClock clock)
+        public NetThrottler(IOptions<NetThrottlingConfiguration> options, ICacheServiceFactory cacheServiceFactory, IClock clock, IResolverFactory resolverFactory)
         {
             configuration = options.Value;
             this.clock = clock;
-            Resolver = string.IsNullOrEmpty(configuration.Resolver) ? new BaseResolver() : TypeFactory<IResolver>.Create(configuration.Resolver);
+            Resolver = resolverFactory.GetResolver(configuration.Resolver);
             Policies = configuration.Policies;
 
             if (configuration.IsUseRedis)

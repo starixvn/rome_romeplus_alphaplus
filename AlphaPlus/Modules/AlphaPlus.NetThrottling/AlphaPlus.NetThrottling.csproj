@@ -6,9 +6,7 @@
   <ItemGroup>
     <PackageReference Include="Fanex.Caching" Version="2.2.4" />
     <PackageReference Include="Fanex.Caching.Redis" Version="2.2.4" />
-    <PackageReference Include="Fanex.Logging.Extensions.Web" Version="1.0.8" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web" />
+    <PackageReference Include="Fanex.Logging" Version="2.0.1.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\Lang.Designer.cs">

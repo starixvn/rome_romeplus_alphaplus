@@ -1,6 +1,7 @@
 ﻿using Fanex.Caching;
 using Fanex.Caching.Memory;
 using Fanex.Caching.Redis;
+using Fanex.Logging;
 
 namespace AlphaPlus.NetThrottling.Utils
 {
@@ -11,11 +12,11 @@ namespace AlphaPlus.NetThrottling.Utils
         ICacheServiceWrapper Create();
     }
 
-    public class CacheServiceFactory : ICacheServiceFactory
+    public class CacheServiceFactory(IServiceProvider serviceProvider) : ICacheServiceFactory
     {
-        public static readonly ICacheServiceFactory Default = new CacheServiceFactory();
         private readonly Dictionary<string, ICacheServiceWrapper> cacheServices = [];
         private const string MemoryCacheKey = "MemoryCacheKey";
+        private readonly IServiceProvider serviceProvider = serviceProvider;
 
         public ICacheServiceWrapper Create(RedisCacheOptions options)
         {
@@ -23,7 +24,7 @@ namespace AlphaPlus.NetThrottling.Utils
             {
                 lock (cacheServices)
                 {
-                    var cacheService = new CacheServiceWrapper(new CacheService(new RedisCache(options)));
+                    var cacheService = new CacheServiceWrapper(new CacheService(new RedisCache(options)), (ILogger)serviceProvider.GetService(typeof(ILogger)));
                     cacheServices.Add(options.ApplicationName, cacheService);
                     return cacheService;
                 }
@@ -38,7 +39,7 @@ namespace AlphaPlus.NetThrottling.Utils
             {
                 lock (cacheServices)
                 {
-                    var cacheService = new CacheServiceWrapper(new CacheService(new MemoryCache(new MemoryCacheOptions())));
+                    var cacheService = new CacheServiceWrapper(new CacheService(new MemoryCache(new MemoryCacheOptions())), (ILogger)serviceProvider.GetService(typeof(ILogger)));
                     cacheServices.Add(MemoryCacheKey, cacheService);
                     return cacheService;
                 }

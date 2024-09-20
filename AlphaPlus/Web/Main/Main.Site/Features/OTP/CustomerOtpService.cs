@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Main.Site.Shared.Services;
 using ONEbook.OTP.Helpers;
 using ONEbook.OTP.Services;
 using PureOtp.Types;
@@ -24,7 +25,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
         Task<bool> IsDifferenceDevice(int custId, string deviceId, int subAccId = 0);
     }
 
-    public class CustomerOtpService(HttpClient httpClient, OtpService otpService, OtpAdapter otpAdapter) : ICustomerOtpService
+    public class CustomerOtpService(HttpClient httpClient, OtpService otpService, OtpAdapter otpAdapter, INetThrottlingService netThrottlingService) : ICustomerOtpService
     {
         private const int TimePeriod = 30;
         private const int OtpSize = 6;
@@ -34,9 +35,24 @@ namespace AlphaPlus.Main.Site.Features.OTP
         private readonly HttpClient httpClient = httpClient;
         private readonly OtpService otpService = otpService;
         private readonly OtpAdapter otpAdapter = otpAdapter;
+        private readonly INetThrottlingService netThrottlingService = netThrottlingService;
 
-        public Task<Result> ChangeOtpStatus(ChangeOtpStatusParam param)
-            => httpClient.PostAsJsonAsync<Result>("customer/otp/change-status", param);
+        public async Task<Result> ChangeOtpStatus(ChangeOtpStatusParam param)
+        {
+            if (netThrottlingService.IsBlacklist())
+            {
+                return Result.CreateErrorResult("Too many requests");
+            }
+
+            var result = await httpClient.PostAsJsonAsync<Result>("customer/otp/change-status", param);
+            if (result.IsSuccessful)
+            {
+                netThrottlingService.Throttle();
+            }
+
+            return result;
+        }
+
 
         public CustomerOtp GenerateCustomerOtp(int custId, string username, int subAccId = 0)
         {

@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.NetThrottling
 {
-    public class NetThrottlingMiddleware(RequestDelegate next, INetThrottler netThrottler)
+    public class NetThrottlingMiddleware(RequestDelegate next, INetThrottler netThrottler, IFilterFactory filterFactory)
     {
         private readonly RequestDelegate _next = next;
         private readonly INetThrottler _netThrottler = netThrottler;
+        private readonly IFilterFactory _filterFactory = filterFactory;
 
         public async Task InvokeAsync(HttpContext context)
         {
@@ -28,7 +29,7 @@ namespace AlphaPlus.NetThrottling
             {
                 if (httpContext.Request.IsMatchRequest(throttlePolicy))
                 {
-                    var filter = TypeFactory<IFilter>.Create(throttlePolicy.Filter);
+                    var filter = _filterFactory.GetFilter(throttlePolicy.Filter);
                     return await _netThrottler.ThrottleAsync(httpContext, throttlePolicy, filter);
                 }
             }
