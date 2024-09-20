@@ -127,74 +127,76 @@
         </ul>
     </div>
 </div>
-<table class="tblRpt tblRpt-bordered alternative-row-table-new width-100per tablesorter tblRpt-hover tblRpt-freeze-body tblRpt-freeze-header"
-    data-cansort="@Model.ReportData.MoreThanOne" id="tbl-report">
-    <thead>
-        <tr>
-            <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="username">@Resources.Username
-            </th>
-            <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="fullname">
-                @Resources.FirstLastName</th>
-            <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="betcount">@Resources.BetCount
-            </th>
-            <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="turnover">@Resources.Turnover
-            </th>
-            <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="netturnover">
-                @Resources.NetTurnover</th>
-            <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="grosscomm">
-                @Resources.GrossComm</th>
-            <th colspan="3" id="groupColumnMember">@Resources.Member</th>
-            <th colspan="3" id="groupColumnAgent">@Resources.Agent</th>
-            @if (isMasterOrSuperLevel)
-            {
-                <th colspan="3" id="groupColumnMaster">@Resources.Master</th>
-            }
-            @if (isSuperLevel)
-            {
-                <th colspan="3" id="groupColumnSuper">@Resources.Super</th>
-            }
-            <th class="sorting" rowspan="2" data-colindex="@(totalColumns - 1)" data-colname="company">
-                @Resources.Company</th>
-        </tr>
-        <tr class="thead-row2">
-            <th class="sorting" data-colindex="@(theadIndex++)" data-colname="pwinloss">@Resources.WinLoss</th>
-            <th class="sorting" data-colindex="@(theadIndex++)" data-colname="pcomm">@Resources.Comm</th>
-            <th class="sorting" data-colindex="@(theadIndex++)" data-colname="ptotal">@Resources.Total</th>
-            <th class="sorting" data-colindex="@(theadIndex++)" data-colname="awinloss">@Resources.WinLoss</th>
-            <th class="sorting" data-colindex="@(theadIndex++)" data-colname="acomm">@Resources.Comm</th>
-            <th class="sorting" data-colindex="@(theadIndex++)" data-colname="atotal">@Resources.Total</th>
-            @if (isMasterOrSuperLevel)
-            {
-                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="mwinloss">@Resources.WinLoss</th>
-                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="mcomm">@Resources.Comm</th>
-                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="mtotal">@Resources.Total</th>
-            }
-            @if (isSuperLevel)
-            {
-                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="swinloss">@Resources.WinLoss</th>
-                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="scomm">@Resources.Comm</th>
-                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="stotal">@Resources.Total</th>
-            }
-        </tr>
-    </thead>
-    @if (Model.ReportData.HasData)
-    {
-        <tbody>
-            @foreach (var data in Model.ReportData.DataSource)
-            {
-                RenderRow(data);
-            }
-        </tbody>
-        <tfoot>
-            @{
-                RenderRow(Model.ReportData.Total, true);
-            }
-        </tfoot>
-    }
-    else
-    {
-        <no-information colspan="@totalColumns" />
-    }
-</table>
+<div class="wrapper-table-scrollable">
+    <table class="tblRpt tblRpt-bordered alternative-row-table-new width-100per tablesorter tblRpt-hover tblRpt-freeze-body tblRpt-freeze-header"
+        data-cansort="@Model.ReportData.MoreThanOne" id="tbl-report">
+        <thead>
+            <tr>
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="username">@Resources.Username
+                </th>
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="fullname">
+                    @Resources.FirstLastName</th>
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="betcount">@Resources.BetCount
+                </th>
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="turnover">@Resources.Turnover
+                </th>
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="netturnover">
+                    @Resources.NetTurnover</th>
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="grosscomm">
+                    @Resources.GrossComm</th>
+                <th colspan="3" id="groupColumnMember">@Resources.Member</th>
+                <th colspan="3" id="groupColumnAgent">@Resources.Agent</th>
+                @if (isMasterOrSuperLevel)
+                {
+                    <th colspan="3" id="groupColumnMaster">@Resources.Master</th>
+                }
+                @if (isSuperLevel)
+                {
+                    <th colspan="3" id="groupColumnSuper">@Resources.Super</th>
+                }
+                <th class="sorting" rowspan="2" data-colindex="@(totalColumns - 1)" data-colname="company">
+                    @Resources.Company</th>
+            </tr>
+            <tr class="thead-row2">
+                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="pwinloss">@Resources.WinLoss</th>
+                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="pcomm">@Resources.Comm</th>
+                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="ptotal">@Resources.Total</th>
+                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="awinloss">@Resources.WinLoss</th>
+                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="acomm">@Resources.Comm</th>
+                <th class="sorting" data-colindex="@(theadIndex++)" data-colname="atotal">@Resources.Total</th>
+                @if (isMasterOrSuperLevel)
+                {
+                    <th class="sorting" data-colindex="@(theadIndex++)" data-colname="mwinloss">@Resources.WinLoss</th>
+                    <th class="sorting" data-colindex="@(theadIndex++)" data-colname="mcomm">@Resources.Comm</th>
+                    <th class="sorting" data-colindex="@(theadIndex++)" data-colname="mtotal">@Resources.Total</th>
+                }
+                @if (isSuperLevel)
+                {
+                    <th class="sorting" data-colindex="@(theadIndex++)" data-colname="swinloss">@Resources.WinLoss</th>
+                    <th class="sorting" data-colindex="@(theadIndex++)" data-colname="scomm">@Resources.Comm</th>
+                    <th class="sorting" data-colindex="@(theadIndex++)" data-colname="stotal">@Resources.Total</th>
+                }
+            </tr>
+        </thead>
+        @if (Model.ReportData.HasData)
+        {
+            <tbody>
+                @foreach (var data in Model.ReportData.DataSource)
+                {
+                    RenderRow(data);
+                }
+            </tbody>
+            <tfoot>
+                @{
+                    RenderRow(Model.ReportData.Total, true);
+                }
+            </tfoot>
+        }
+        else
+        {
+            <no-information colspan="@totalColumns" />
+        }
+    </table>
+</div>
 <input type="hidden" id="hidden-breadcrumbsJson" value="@JsonHelper.ToJson(Model.Breadcrumbs)" />
 <input type="hidden" id="hidden-totalEnteredResultsJson" value="@JsonHelper.ToJson(Model.TotalEnteredResults)" />

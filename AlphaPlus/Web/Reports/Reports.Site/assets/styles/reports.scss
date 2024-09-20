@@ -129,6 +129,12 @@ a {
                     white-space: nowrap;
                 }
             }
+            .icon-information-outline{
+                position: absolute;
+                font-size: 16px;
+                right: 4px;
+                top: 6px;
+            }
     }
     &.alternative-row-table-new {
         tbody {
@@ -162,15 +168,12 @@ a {
         overflow: auto;
         -webkit-overflow-scrolling: touch;
         will-change: scroll-position;
-    }
-}
-.wrapper-table-scrollable {
-    position: relative;
+        position: relative;
 
-    .scrollable {
-        position: unset !important;
+       
     }
 }
+ 
 .scrollable {
     .blockOverlay {
         opacity: 0 !important;
@@ -180,9 +183,39 @@ a {
         border: 0;
     }
 }
+.cover-week-selection{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: unset !important;
+    overflow: auto;
+}
+.breadcrumb-table{
+    position: relative;
+    z-index: 220;
+    &:after{
+        position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    left: 0;
+    bottom: 0px;
+    background-color: inherit;
+    }
+}
 .tblRpt-freeze-header {
     thead {
         tr {
+            &:first-child{
+                th{
+                    &[rowspan]{
+                        box-shadow: inset 0 1px 0 var(--table-border-color), inset 0 -1px 0 var(--table-border-color);
+                        border-bottom: 0 !important;
+                    }
+                    
+                }
+            }         
             
             th {
                 position: sticky !important;
@@ -198,12 +231,30 @@ a {
                 &#groupColumnSuper {
                     border-bottom: 0 !important;
                 }
+                &:first-child{
+                    z-index: 300!important;
+                }
             }
 
             &.thead-row2 {
                 th {
                     top: 28px !important;
                     box-shadow: inset 0 1px 0 var(--table-border-color);
+                    &:before{
+                        position: absolute;
+                        content: "";
+                        right: auto;
+                        top: 0;
+                        left: -1px;
+                        width: calc(100% + 2px);
+                        height: 100%;
+                        background: 0 0;
+                        top: 1px!important;
+                        border-bottom: 1px solid var(--table-border-color);
+                    }
+                    &:first-child{
+                        z-index: 10!important;
+                    }
                 }
             }
         }
@@ -243,11 +294,16 @@ a {
     }
     tbody{
         tr{
+            &:first-child{
+                td{
+                    border-top: 0!important;
+                }
+            }
             td{
                 &:first-child{
                     position: sticky;
                     position: -webkit-sticky !important;
-                    z-index: 2;
+                    z-index: 200;
                     left: 0;
                     
                     &:before{

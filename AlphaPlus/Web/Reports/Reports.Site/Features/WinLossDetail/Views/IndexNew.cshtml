@@ -67,30 +67,34 @@
     <script src="~/bundles/winlossdetail/winlossdetail-new.js" asp-append-version="true"></script>
 }
 @model WinLossDetailNewViewModel
-<report-title-new model="Model.PageHeader" />
-<form class="form-inline filter switch-old-view" role="form" id="report-form">
-    <div class="switch-version">
-        <a class="btn-switch-version" asp-action="Index">
-            <span class="icon-swap-horizontal"></span>
-            <span class="text">@Resources.ClassicView</span>
-        </a>
-    </div>
-    <daterange-picker-jquery model="@Model.DateRangePicker" />
-    <product-dropdown show-product-details="true" />
-    <div class="form-group">
-        <label class="label-form-control">@Resources.Username</label>
-        <div>
-            <input type="text" id="txt-username-suggestion" placeholder="@Resources.UsernameOrFirstLastName"
-                autocomplete="off" value="@Model.Username" />
+<div class="flex">
+    <report-title-new model="Model.PageHeader" />
+ 
+    <form class="form-inline filter switch-old-view" role="form" id="report-form">
+        <div class="switch-version">
+            <a class="btn-switch-version" asp-action="Index">
+                <span class="icon-swap-horizontal"></span>
+                <span class="text">@Resources.ClassicView</span>
+            </a>
         </div>
-    </div>
-    <visible-column />
-    <div class="label-week-box" id="week-container">
-        <partial name="Weeks" model="@Model.Weeks" />
-    </div>
-</form>
-<div id="tbl-report-container" style="visibility: hidden">
-    <partial name="ReportDataNew" />
+        <daterange-picker-jquery model="@Model.DateRangePicker" />
+        <product-dropdown show-product-details="true" />
+        <div class="form-group">
+            <label class="label-form-control">@Resources.Username</label>
+            <div>
+                <input type="text" id="txt-username-suggestion" placeholder="@Resources.UsernameOrFirstLastName"
+                    autocomplete="off" value="@Model.Username" />
+            </div>
+        </div>
+        <visible-column />
+        <div class="label-week-box" id="week-container">
+            <partial name="Weeks" model="@Model.Weeks" />
+        </div>
+    </form>   
+   
+    <div id="tbl-report-container" class="cover-week-selection" style="visibility: hidden">
+        <partial name="ReportDataNew" />
+    </div>           
 </div>
 <a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true"
     asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>

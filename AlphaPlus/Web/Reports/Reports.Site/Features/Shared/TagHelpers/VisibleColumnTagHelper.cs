@@ -24,7 +24,7 @@ public class VisibleColumnTagHelper : TagHelper
             .Append($"data-label-noneselected=\"{Resources.NoneSelected}\" ")
             .Append($"data-label-all=\"{Resources.All}\" ")
             .Append($"data-label-noitemfound=\"{Resources.NoColumnsFound}\" ")
-            .Append($"data-label-filterplaceholder=\"{Resources.SearchColumns}\"></div></div>");
+            .Append($"data-label-filterplaceholder=\"{Resources.SearchColumns}\"></div>");
 
         output.Content.SetHtmlContent(sb.ToString());
     }
