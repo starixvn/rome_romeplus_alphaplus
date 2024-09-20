@@ -3,6 +3,7 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
+using AlphaPlus.NetThrottling;
 using AlphaPlus.Reports.Site.Features.Shared.Extensions;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Filters;
@@ -64,6 +65,7 @@ builder.Services
     .AddAlphaPlusCore(configuration)
     .AddSharedSession(configuration)
     .AddApplicationServices(configuration)
+    .AddNetThrottling(configuration)
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();
@@ -81,6 +83,7 @@ app
     .UseSession()
     .UseAuthentication()
     .UseAuthorization()
+    .UseNetThrottling()
     .UseMiddleware<RequestCultureMiddleware>();
 app.MapHealthChecks("/health");
 
