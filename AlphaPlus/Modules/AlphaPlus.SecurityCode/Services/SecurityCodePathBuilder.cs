@@ -43,7 +43,7 @@ public class SecurityCodePathBuilder(IOptions<SecurityCodeOptions> options) : IS
         }
 
 
-        return MicroSites.MainUrl($"~/{BuildSecurityCheckingPath()}{queryString}").Replace("http%3a", string.Empty).Replace("http:", string.Empty);
+        return MicroSites.MainUrl($"~/{BuildSecurityCheckingPath()}{queryString}");
     }
 
     private string BuildSecurityCheckingPath()
