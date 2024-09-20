@@ -14,6 +14,7 @@ COPY "AlphaPlus/Services/Reports/AlphaPlus.Reports/AlphaPlus.Reports.csproj" "Al
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 COPY "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
 COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj" "AlphaPlus/Modules/AlphaPlus.SecurityCode/AlphaPlus.SecurityCode.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.NetThrottling/AlphaPlus.NetThrottling.csproj" "AlphaPlus/Modules/AlphaPlus.NetThrottling/AlphaPlus.NetThrottling.csproj"
 COPY "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj" "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj"
 
 # restore NuGet packages
@@ -28,7 +29,7 @@ COPY "AlphaPlus/Services/Reports/AlphaPlus.Reports" "AlphaPlus/Services/Reports/
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
 COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
 COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode" "AlphaPlus/Modules/AlphaPlus.SecurityCode"
-
+COPY "AlphaPlus/Modules/AlphaPlus.NetThrottling" "AlphaPlus/Modules/AlphaPlus.NetThrottling"
 COPY "AlphaPlus/Web/Reports/Reports.Site" "AlphaPlus/Web/Reports/Reports.Site"
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
