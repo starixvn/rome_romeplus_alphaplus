@@ -59,7 +59,6 @@ app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseNetThrottling();
 app.UseMiddleware<RequestCultureMiddleware>();
 
 app.Use(async (context, next) =>
