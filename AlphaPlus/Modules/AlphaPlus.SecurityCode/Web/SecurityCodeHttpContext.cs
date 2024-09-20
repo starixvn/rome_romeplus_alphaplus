@@ -72,7 +72,7 @@ public class SecurityCodeHttpContext(ISecurityCodePathBuilder securityCodePathBu
         }
         else
         {
-            var rawUrl = request.GetDisplayUrl();
+            var rawUrl = $"//{request.Host}/{request.GetEncodedPathAndQuery()}";
             response.Redirect(this.securityCodePathBuilder.BuildVerifyingSecurityCodePath(rawUrl), false, true);
         }
     }
