@@ -1,31 +1,17 @@
 ﻿using AlphaPlus.Core.Models;
+using AlphaPlus.RequestInfo;
 using Fanex.BetList.Core.Entities;
 
 namespace AlphaPlus.SmartPunter.Services
 {
-    public class SmartPunterBetListMonitor : ISmartPunterBetListMonitor
+    public class SmartPunterBetListMonitor(
+        IUserSession userSession,
+        ISmartPunterService smartPunterService,
+        IPHelper ipHelper) : ISmartPunterBetListMonitor
     {
-        private readonly IUserSession _userSession;
-        private readonly ISmartPunterService _smartPunterService;
-        private readonly Func<string> _clientIP;
-
-        public static ISmartPunterBetListMonitor CreateInstance(
-            IUserSession userSession,
-            ISmartPunterService smartPunterService,
-            Func<string> clientIP)
-        {
-            return new SmartPunterBetListMonitor(userSession, smartPunterService, clientIP);
-        }
-
-        internal SmartPunterBetListMonitor(
-            IUserSession userSession,
-            ISmartPunterService smartPunterService,
-            Func<string> clientIP)
-        {
-            _userSession = userSession ?? UserSession.Current;
-            _clientIP = clientIP;
-            _smartPunterService = smartPunterService;
-        }
+        private readonly IUserSession _userSession = userSession ?? UserSession.Current;
+        private readonly ISmartPunterService _smartPunterService = smartPunterService;
+        private readonly IPHelper _ipHelper = ipHelper;
 
         public void WriteLog(int customerId, IList<ITicket> tickets)
         {
@@ -57,11 +43,11 @@ namespace AlphaPlus.SmartPunter.Services
             {
                 if (isSmartPunter)
                 {
-                    _smartPunterService.WriteLogNoData(customerId, isRestricted, userId, _clientIP());
+                    _smartPunterService.WriteLogNoData(customerId, isRestricted, userId, _ipHelper.GetClientIP());
                 }
                 else if (hasDownlineSmartPunter)
                 {
-                    _smartPunterService.WriteLogNoData(null, isRestricted, userId, _clientIP());
+                    _smartPunterService.WriteLogNoData(null, isRestricted, userId, _ipHelper.GetClientIP());
                 }
             }
             else
@@ -70,11 +56,11 @@ namespace AlphaPlus.SmartPunter.Services
 
                 if (isSmartPunter)
                 {
-                    _smartPunterService.WriteLog(userNames, isRestricted, userId, _clientIP());
+                    _smartPunterService.WriteLog(userNames, isRestricted, userId, _ipHelper.GetClientIP());
                 }
                 else if (hasDownlineSmartPunter)
                 {
-                    _smartPunterService.CheckSmartPunterAndWriteLog(userNames, isRestricted, userId, _clientIP());
+                    _smartPunterService.CheckSmartPunterAndWriteLog(userNames, isRestricted, userId, _ipHelper.GetClientIP());
                 }
             }
         }

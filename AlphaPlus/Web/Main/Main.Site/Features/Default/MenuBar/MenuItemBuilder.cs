@@ -43,17 +43,6 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
 
         private void SetDataForMenuItem(IMenuItem menuItem, SiteMapNode node)
         {
-            var mainDomain = httpContextAccessor.HttpContext.Request.Host;
-
-            // TODO: IsCookieless
-            // if (HttpContext.Current != null && HttpContext.Current.Session.IsCookieless)
-            // {
-            //     var subDomain = mainDomain.Split('.').ElementAt(0);
-            //     mainDomain = mainDomain.Replace($"{subDomain}.", string.Empty);
-            // }
-
-            // useDomainConfigValue = useDomainConfigValue.IndexOf("{0}", StringComparison.OrdinalIgnoreCase) != -1 ? string.Format(useDomainConfigValue, mainDomain) : useDomainConfigValue;
-
             menuItem.ResourceKey = node.ResourceKey;
             menuItem.Link = node.Url;
             menuItem.IsBeta = node.IsBeta;

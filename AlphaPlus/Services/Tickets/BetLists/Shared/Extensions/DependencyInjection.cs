@@ -1,7 +1,6 @@
 using AlphaPlus.IPInfo.DataAccess;
 using AlphaPlus.IPInfo.Models;
 using AlphaPlus.IPInfo.Services;
-using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.SmartPunter.DataAccesses;
 using AlphaPlus.SmartPunter.Services;
@@ -46,10 +45,7 @@ public static class DependencyInjection
             .AddSingleton(_ => configuration.GetSection("IPInformationConfig").Get<IPInformationConfig>())
             .AddSingleton<IIPInfoService, IPInfoService>()
             .AddSingleton<ISmartPunterService, SmartPunterService>()
-            .AddSingleton(sp => SmartPunterBetListMonitor.CreateInstance(
-                sp.GetService<IUserSession>(),
-                sp.GetService<ISmartPunterService>(),
-                IPHelper.GetClientIP))
+            .AddSingleton<ISmartPunterBetListMonitor, SmartPunterBetListMonitor>()
             .AddSingleton<IAutoFollowBetService, AutoFollowBetService>()
             .AddSingleton<IForecastService, ForecastService>()
             .AddSingleton<IReportDateService, ReportDateService>()

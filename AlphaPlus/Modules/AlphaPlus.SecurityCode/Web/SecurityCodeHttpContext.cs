@@ -73,20 +73,6 @@ public class SecurityCodeHttpContext(ISecurityCodePathBuilder securityCodePathBu
         else
         {
             var rawUrl = request.GetDisplayUrl();
-
-            // TODO: Cookieless
-            // if (httpContext.Session.IsCookieless)
-            // {
-            //     // Modify Url with session id in it
-            //     rawUrl = response.ApplyAppPathModifier(rawUrl);
-
-            //     if (AppSettings.SecurityCodeConfig.IsStandaloneSite)
-            //     {
-            //         var routing = System.Configuration.ConfigurationManager.AppSettings["Routing"];
-            //         rawUrl = $"//{requestHeaders["Host"]}/{routing?.TrimEnd('/')}{rawUrl}";
-            //     }
-            // }
-
             response.Redirect(this.securityCodePathBuilder.BuildVerifyingSecurityCodePath(rawUrl), false, true);
         }
     }

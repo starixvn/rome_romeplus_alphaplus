@@ -43,7 +43,6 @@ namespace AlphaPlus.Main.Site.Features.NetworkSpeed
 
         internal virtual Task LogUserInformation(SaveNetworkSpeedCommand command)
         {
-            // TODO: network speed
             var context = AlphaContext.Current;
             var logMessage = new LogMessage(string.Join(
                                     "\r\n",
@@ -55,12 +54,9 @@ namespace AlphaPlus.Main.Site.Features.NetworkSpeed
                                     $"Sub Account Name: {userSession.SubUserName}"))
                                 .AddSection("request info", () => WebInfoGetters.GetRequestInfo(context))
                                 .AddSection("browser info", () => WebInfoGetters.GetBrowserInfo(context.Request))
-                                // .AddSection("server info", () => WebInfoGetters.GetRequestHeader(request.Headers))
                                 .ToString();
 
             return logger.InfoAsync(logMessage);
         }
-
-
     }
 }
