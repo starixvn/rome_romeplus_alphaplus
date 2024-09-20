@@ -63,5 +63,11 @@ public partial class ResultsController(IMediator mediator) : ResultBaseControlle
 
     public Task<IActionResult> UUSlotsResult(UUSlotsResultQuery message) => View(message, IndexView);
 
-    public ActionResult SabaxDResult(SabaxDResultQuery message) => View(IndexView, mediator.Send(message));
+    public Task<IActionResult> SabaxDResult(SabaxDResultQuery message) => View(message, IndexView);
+
+    public Task<IActionResult> FastSpinResult(FastSpinResultQuery message) => View(message, IndexView);
+
+    public Task<IActionResult> FACHAIResult(FACHAIResultQuery message) => View(message, IndexView);
+
+    public Task<IActionResult> NextspinResult(NextspinResultQuery message) => View(message, IndexView);
 }

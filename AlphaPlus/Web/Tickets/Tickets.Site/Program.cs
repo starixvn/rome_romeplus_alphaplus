@@ -16,14 +16,16 @@ using AlphaPlus.SecurityCode.Filters;
 using AlphaPlus.SecurityCode.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 
+const string App_Data = "App_Data";
 var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
     //.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("partialum.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
+    .AddJsonFile(Path.Combine(App_Data, "authorization.json"), optional: false, reloadOnChange: true)
+    .AddJsonFile(Path.Combine(App_Data, "partialum.json"), optional: false, reloadOnChange: true)
+    .AddJsonFile(Path.Combine(App_Data, "results.json"), optional: false, reloadOnChange: true)
+    .AddJsonFile(Path.Combine(App_Data, "securitycode.json"), optional: false, reloadOnChange: true)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);

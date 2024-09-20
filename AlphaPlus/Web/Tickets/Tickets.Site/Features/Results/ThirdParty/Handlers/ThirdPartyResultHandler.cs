@@ -36,7 +36,10 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<Live22ResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<WEResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<UUSlotsResultQuery, ThirdPartyProductViewModel>,
-    IRequestHandler<SabaxDResultQuery, ThirdPartyProductViewModel>
+    IRequestHandler<SabaxDResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<FastSpinResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<FACHAIResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<NextspinResultQuery, ThirdPartyProductViewModel>
 {
     public Task<ThirdPartyProductViewModel> Handle(MaxGameResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "MaxGameResultConfigs", "MaxGame");
@@ -136,6 +139,15 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
     public Task<ThirdPartyProductViewModel> Handle(SabaxDResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "SabaxDResultConfigs", "SabaxD");
+
+    public Task<ThirdPartyProductViewModel> Handle(FastSpinResultQuery message, CancellationToken cancellationToken)
+        => Handle(message, "FastSpinResultConfigs", "FastSpin");
+
+    public Task<ThirdPartyProductViewModel> Handle(FACHAIResultQuery message, CancellationToken cancellationToken)
+        => Handle(message, "FACHAIResultConfigs", "FACHAI");
+
+    public Task<ThirdPartyProductViewModel> Handle(NextspinResultQuery message, CancellationToken cancellationToken)
+        => Handle(message, "NextspinResultConfigs", "Nextspin");
 
     private Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, string sectionName, string gameName)
     {

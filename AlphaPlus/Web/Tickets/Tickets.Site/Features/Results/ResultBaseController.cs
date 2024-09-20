@@ -7,7 +7,7 @@ namespace AlphaPlus.Tickets.Site.Features.Results;
 
 public abstract class ResultBaseController(IMediator mediator) : BaseController
 {
-    protected const string ViewPath = "~/Features/Results/{0}/Views/{1}.cshtml";
+    private const string ViewPath = "~/Features/Results/{0}/Views/{1}.cshtml";
     protected readonly IMediator mediator = mediator;
 
     protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
@@ -19,4 +19,7 @@ public abstract class ResultBaseController(IMediator mediator) : BaseController
 
         return File(viewModel.Content, viewModel.ContentType, viewModel.Name);
     }
+
+    protected static string GetViewPath(string controllerName, string actionName)
+        => string.Format(ViewPath, controllerName, actionName);
 }

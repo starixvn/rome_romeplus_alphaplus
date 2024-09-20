@@ -154,7 +154,6 @@ class WinLossDetailViewNew extends BaseReportNew {
                 const height = 550;
                 window.top['popupManager'].open(url, undefined, width, height, 'modal-mobile-friendly');
             });
-        this.stickyTableHeaders();
     }
 
     getWinLossDetail(isClearActiveWeek = true) {
@@ -235,11 +234,6 @@ class WinLossDetailViewNew extends BaseReportNew {
     private clearUsername() {
         this.usernameSuggestionComponent.clearUsername();
         delete this.globalFormData.username;
-    }
-
-    private stickyTableHeaders() {
-        this.$tblReport.stickyTableHeaders('destroy');
-        this.$tblReport.stickyTableHeaders();
     }
 }
 
