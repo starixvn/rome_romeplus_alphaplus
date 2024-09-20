@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Main.Site.Helpers;
+using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -52,12 +53,17 @@ public class AccountController(
 
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
+        var session = AlphaContext.Current.Session;
         if (UserSession.Current.IsInternal || UserSession.Current.IsIndirectLoggedIn)
         {
             SignOut();
+            session.Clear();
+
             return Login();
         }
 
+        session.Clear();
+        
         return SignOut(new AuthenticationProperties { RedirectUri = Url.Action(nameof(Login), "Account") });
     }
 
