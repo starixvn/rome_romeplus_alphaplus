@@ -2,7 +2,14 @@
 @import '_mixins.scss';
 
 @include keyframes-ripple;
-
+:root [data-theme='light'] {
+    .breadcrumb-table:after{
+        bottom: -1px;
+    }
+    .tblRpt-freeze-header thead tr.thead-row2 th{
+        top: 29px!important;
+    }
+}
 body {
     background-color: transparent;    
     font-size: var(--font-size);
@@ -200,7 +207,7 @@ a {
         width: 100%;
         height: 3px;
         left: 0;
-        bottom: -2px;
+        bottom: 0;
         background-color: inherit;
     }
 }
@@ -238,7 +245,7 @@ a {
 
             &.thead-row2 {
                 th {
-                    top: 29px !important;
+                    top: 28px !important;
                     box-shadow: inset 0 1px 0 var(--table-border-color);
                     &:before{
                         position: absolute;
