@@ -48,8 +48,14 @@ export default function SearchBox() {
 
     const handleSearchClick = () => {
         if (username) {
+            getCustomerInfo?.(username);
             onSuggestionsClearRequested();
+            hideKeyboard();
         }
+    };
+
+    const hideKeyboard = () => {
+        $('.txt-search').blur();
     };
 
     const handleSearchKeyPress = (e: React.KeyboardEvent<HTMLElement>) => {
