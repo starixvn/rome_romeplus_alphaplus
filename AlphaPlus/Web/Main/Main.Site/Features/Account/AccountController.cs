@@ -132,7 +132,7 @@ public class AccountController(
             return RedirectToAction("Redirect", "Default");
         }
 
-        return new EmptyResult();
+        return Login(signInResult.Message);
     }
 
     [HttpGet]
@@ -207,6 +207,6 @@ public class AccountController(
             return RedirectToAction("Redirect", "Default");
         }
 
-        return Login(signInResult.Message);
+        return new EmptyResult();
     }
 }
