@@ -528,17 +528,19 @@ a {
         }
     }
 }
-
+// Customize tooltip
 .tooltip {
+    background-color: transparent;
+    border-color: transparent;
     &.in {
         opacity: 1;
     }
 
     .tooltip-inner {
-        border: 1px solid #ccc;
-        color: $text-color;
+        border: 1px solid var(--report-tooltip-border);
+        color: var(--report-tooltip-color);
         font-weight: bold;
-        background-color: #f2f2f2;
+        background-color: var(--report-tooltip-bg);
         text-align: left;
         @include border-radius(2px);
     }
@@ -561,7 +563,7 @@ a {
 
             &:after {
                 border-color: transparent;
-                border-top-color: #f2f2f2;
+                border-top-color: var(--report-tooltip-bg);
                 border-width: 8px;
                 margin-left: -8px;
                 margin-bottom: -10px;
@@ -569,7 +571,7 @@ a {
 
             &:before {
                 border-color: transparent;
-                border-top-color: #ccc;
+                border-top-color: var(--report-tooltip-border2);
                 border-width: 10px;
                 margin-left: -10px;
                 margin-bottom: -14px;
@@ -596,7 +598,7 @@ a {
 
         &:after {
             border-color: transparent;
-            border-right-color: #f2f2f2;
+            border-right-color: var(--report-tooltip-bg);
             border-width: 6px;
             margin-left: -6px;
             margin-top: 6px;
@@ -604,10 +606,44 @@ a {
 
         &:before {
             border-color: transparent;
-            border-right-color: #ccc;
+            border-right-color: var(--report-tooltip-border2);
             border-width: 8px;
             margin-left: -10px;
             margin-top: 4px;
+        }
+    }
+    &.bottom {
+        .tooltip-arrow {
+            display: none;
+        }
+
+        .tooltip-inner {
+            &:after,
+            &:before {
+                top: 0;
+                left: 50%;
+                border: solid transparent;
+                content: ' ';
+                height: 0;
+                width: 0;
+                position: absolute;
+            }
+
+            &:after {
+                border-color: transparent;
+                border-bottom-color: var(--report-tooltip-bg);
+                border-width: 8px;
+                margin-left: -8px;
+                margin-top: -10px;
+            }
+
+            &:before {
+                border-color: transparent;
+                border-bottom-color: var(--report-tooltip-border2);
+                border-width: 10px;
+                margin-left: -10px;
+                margin-top: -14px;
+            }
         }
     }
 }
@@ -623,6 +659,7 @@ a {
     display: table;
     width: 100%;
     clear: both;
+    z-index: 310;
     &.switch-new-view, &.switch-old-view{
         padding-right: 150px;
     }
@@ -1165,59 +1202,7 @@ table.dataTable {
     overflow-x: scroll;
 }
 
-// Customize tooltip
-.tooltip {
-    background: none;
-    border: 0;
 
-    &.in {
-        opacity: 1;
-    }
-
-    .tooltip-inner {
-        border: 1px solid #ccc;
-        color: var(--text-color);
-        font-weight: bold;
-        background-color: #f2f2f2;
-        text-align: left;
-        @include border-radius(2px);
-    }
-
-    &.bottom {
-        .tooltip-arrow {
-            display: none;
-        }
-
-        .tooltip-inner {
-            &:after,
-            &:before {
-                top: 0;
-                left: 50%;
-                border: solid transparent;
-                content: ' ';
-                height: 0;
-                width: 0;
-                position: absolute;
-            }
-
-            &:after {
-                border-color: transparent;
-                border-bottom-color: #f2f2f2;
-                border-width: 8px;
-                margin-left: -8px;
-                margin-top: -10px;
-            }
-
-            &:before {
-                border-color: transparent;
-                border-bottom-color: #ccc;
-                border-width: 10px;
-                margin-left: -10px;
-                margin-top: -14px;
-            }
-        }
-    }
-}
 //
 .note_title {
     text-transform: none;
@@ -1227,7 +1212,7 @@ table.dataTable {
     float: left;
     width: 100%;
     .require {
-        color: #fe0000;
+        color: var(--color-note_title-require);
     }
 }
 

@@ -101,11 +101,18 @@ $msg-error-color: #fe0000;
     --msg-error-color: #fe0000;
 
     --color-note_title: #333;
+    --color-note_title-require: #fe0000;
 
     --bg-sport-and-product-row: #f3f5e0;
     --bg-pt-row: #fbe0c5;
     --color-format-negative: #b50000;
     --color-note-opening-balance: #f6a4a4;
+
+    
+    --report-tooltip-border: #ccc;
+    --report-tooltip-border2: #ccc;
+    --report-tooltip-color: #333;
+    --report-tooltip-bg: #f2f2f2;
     
 
 }
@@ -136,9 +143,15 @@ $msg-error-color: #fe0000;
     --color-red2: #E54748;
 
     --color-note_title: #cbcbcb;
+    --color-note_title-require: #dd6161;
 
     --bg-sport-and-product-row: #2E2C1F;
     --bg-pt-row: #2e2c1f;
     --color-format-negative: #E54748;
     --color-note-opening-balance: #573538;
+
+    --report-tooltip-border: #5F626B;
+    --report-tooltip-border2: #5F626B;
+    --report-tooltip-color: #EDEDED;
+    --report-tooltip-bg: #2E2E2E;
 }
