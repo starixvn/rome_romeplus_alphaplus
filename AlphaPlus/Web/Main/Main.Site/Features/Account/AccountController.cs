@@ -39,7 +39,7 @@ public class AccountController(
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
         var loginResultMessage = string.IsNullOrWhiteSpace(r) ? string.Empty : $"?r={r}";
 
-        AlphaContext.Current.Session.Clear();
+        ClearSessionCookies();
 
         return Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
     }
@@ -56,7 +56,7 @@ public class AccountController(
 
         if (UserSession.Current.IsIndirectLoggedIn || UserSession.Current.IsInternal)
         {
-            AlphaContext.Current.Session.Clear();
+            ClearSessionCookies();
             
             return new EmptyResult();
         }
@@ -72,6 +72,16 @@ public class AccountController(
         return Json(result.IsKickedOut
             ? Result.CreateErrorResult(MapKickOutReasonToUserMessage(result.KickOutReason))
             : Result.CreateSuccessfulResult());
+    }
+
+    private void ClearSessionCookies()
+    {
+        AlphaContext.Current.Session.Clear();
+
+        foreach (var cookie in Request.Cookies.Keys)
+        {
+            Response.Cookies.Delete(cookie);
+        }
     }
 
     private static string MapKickOutReasonToUserMessage(byte kickOutReason)
