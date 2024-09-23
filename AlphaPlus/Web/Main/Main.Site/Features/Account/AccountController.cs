@@ -39,8 +39,9 @@ public class AccountController(
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
         var loginResultMessage = string.IsNullOrWhiteSpace(r) ? string.Empty : $"?r={r}";
 
-        return UserSession.Current.IsIndirectLoggedIn || UserSession.Current.IsInternal ?
-            new EmptyResult() : Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
+        AlphaContext.Current.Session.Clear();
+
+        return Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
     }
 
     [Authorize]
@@ -53,18 +54,14 @@ public class AccountController(
 
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-        var session = AlphaContext.Current.Session;
-        if (UserSession.Current.IsInternal || UserSession.Current.IsIndirectLoggedIn)
+        if (UserSession.Current.IsIndirectLoggedIn || UserSession.Current.IsInternal)
         {
-            SignOut();
-            session.Clear();
-
-            return Login();
+            AlphaContext.Current.Session.Clear();
+            
+            return new EmptyResult();
         }
-
-        session.Clear();
         
-        return SignOut(new AuthenticationProperties { RedirectUri = Url.Action(nameof(Login), "Account") });
+        return Login();
     }
 
     [HttpPost]
