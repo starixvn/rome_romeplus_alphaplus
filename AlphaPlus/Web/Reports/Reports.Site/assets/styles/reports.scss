@@ -197,6 +197,8 @@ a {
     height: 100%;
     position: unset !important;
     overflow: auto;
+    padding-top: 29px;
+    margin-top: -29px;
 }
 .breadcrumb-table{
     position: relative;
@@ -499,32 +501,13 @@ a {
             max-width: 100%;
 
             &:before,
-            &:after {
-                border: solid transparent;
-                content: ' ';
-                height: 0;
-                width: 0;
-                position: absolute;
+            &:after {                     
                 top: 4px;
-
                 @media only screen and (max-device-width: 767px) {
                     top: 8px;
                 }
             }
-
-            &:after {
-                border-color: transparent;
-                border-right-color: #f2f2f2;
-                border-width: 8px;
-                left: -9px;
-            }
-
-            &:before {
-                border-color: transparent;
-                border-right-color: #ccc;
-                border-width: 8px;
-                left: -10px;
-            }
+ 
         }
     }
 }
@@ -613,6 +596,7 @@ a {
         }
     }
     &.bottom {
+        margin-top: 1px;
         .tooltip-arrow {
             display: none;
         }
