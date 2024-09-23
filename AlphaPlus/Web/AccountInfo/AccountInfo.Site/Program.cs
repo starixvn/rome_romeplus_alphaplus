@@ -58,7 +58,7 @@ app.Use(async (context, next) =>
 });
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
-
+StaticResources.Init(app.Configuration.GetValue<string>("JsVersion"));
 
 app.MapControllerRoute(
     name: "default",

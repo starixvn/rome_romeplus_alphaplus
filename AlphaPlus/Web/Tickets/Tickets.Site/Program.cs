@@ -28,7 +28,9 @@ configuration
     .AddJsonFile(Path.Combine(App_Data, "securitycode.json"), optional: false, reloadOnChange: true)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
+    
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
+StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 
 // Add services to the container.
 builder.Services

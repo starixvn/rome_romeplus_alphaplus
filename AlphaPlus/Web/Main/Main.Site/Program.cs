@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using AlphaPlus.NetThrottling;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 builder.Configuration
     //.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -70,6 +71,7 @@ app.Use(async (context, next) =>
 });
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
+StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Default}/{action=Index}/{id?}");
 

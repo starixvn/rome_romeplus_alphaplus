@@ -27,6 +27,7 @@ if (!app.Environment.IsDevelopment())
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
+StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 
 app.UseForwardedHeaders();
 app.UsePathBase("/features");
