@@ -1,9 +1,10 @@
-﻿@using AlphaPlus.Main.Site.Features.Default
+﻿@inject AlphaPlus.Core.Models.IUserSession userSession
+@using AlphaPlus.Main.Site.Features.Default
 @model HeaderNavViewModel
 @{
     var changeNickNameUrl = $"{Model.MainRootPath}LoginOption?custId={Model.CustId}";
     var mainFrameName = "main";
-    var viewProfileUrl = $"{Model.AccountInfoRootPath}ProfilePicture";
+    var viewProfileUrl = $"{Model.AccountInfoRootPath}ProfilePicture?lng={userSession.Language}";
     var profileImageSrc = Model.IsDefaultAvatar ? Url.Content("~/assets/images/icon_user_default.png") : Model.EmbedImage;
 }
 

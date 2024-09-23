@@ -1,4 +1,5 @@
-﻿@model AlphaPlus.Main.Site.Features.ProtectionCode.ProtectionCodeViewModel
+﻿@inject AlphaPlus.Core.Models.IUserSession userSession
+@model AlphaPlus.Main.Site.Features.ProtectionCode.ProtectionCodeViewModel
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +29,8 @@
             </li>
         }
         <li role="presentation">
-            <a href="@MicroSites.AccountInfoUrl($"~/ProfilePicture/")">@Resources.EditProfilePicture</a>
+            <a
+                href="@MicroSites.AccountInfoUrl($"~/ProfilePicture?lng={userSession.Language}")">@Resources.EditProfilePicture</a>
         </li>
         <li role="presentation">
             @Html.ActionLink("OTP", "SetUpOtp", "OTP")

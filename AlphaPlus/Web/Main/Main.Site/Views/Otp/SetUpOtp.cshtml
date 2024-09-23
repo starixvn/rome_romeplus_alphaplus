@@ -1,4 +1,5 @@
-﻿@using AlphaPlus.Main.Site.Features.OTP
+﻿@inject AlphaPlus.Core.Models.IUserSession userSession
+@using AlphaPlus.Main.Site.Features.OTP
 @model OtpViewModel
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +36,7 @@
         }
         <li role="presentation">
             <a id="profilePicture"
-                href="@MicroSites.AccountInfoUrl($"~/ProfilePicture/")">@Resources.EditProfilePicture</a>
+                href="@MicroSites.AccountInfoUrl($"~/ProfilePicture?lng={userSession.Language}")">@Resources.EditProfilePicture</a>
         </li>
         <li role="presentation" class="active">
             <a aria-controls="home" role="tab" data-toggle="tab">OTP</a>
