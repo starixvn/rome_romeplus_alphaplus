@@ -59,5 +59,18 @@
     "Cancel": "ยกเลิก",
     "InvalidValue": "ยอดใหม่ของเครดิตสำหรับการวางเดิมพันอยู่นอกช่วงที่ใช้งานได้",
     "ThereIsNoChange": "ไม่มีการเปลี่ยนแปลงการอัพเดท",
-    "UpdateGivenCreditSuccessfully": "อัปเดตเครดิตสำเร็จแล้ว!"
+    "UpdateGivenCreditSuccessfully": "อัปเดตเครดิตสำเร็จแล้ว!",
+    "DisplayLanguage": "ภาษาสำหรับแสดงผล",
+    "DisplayLanguageIntro": "เลือกภาษาที่คุณต้องการใช้งานเมื่อเข้าสู่ระบบ",
+    "PleaseSelectDisplayLanguage": "กรุณาเลือกภาษาสำหรับแสดงผล",
+    "ProfilePicture": "รายละเอียดรูปภาพ",
+    "NotAuthorized": "คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้",
+    "UploadFromYourDevice": "อัปโหลดจากอุปกรณ์ของคุณ",
+    "OrChooseFromOurGallery": "หรือเลือกจากแกลเลอรี่ของเรา",
+    "ViewAll": "ดูทั้งหมด",
+    "Reset": "ตั้งค่าใหม่",
+    "ProfilePictureUpdatedSuccessfully": "ทำการอัพโหลดรายละเอียดรูปภาพเป็นที่เรียบร้อยแล้ว",
+    "FailByFileType": "ไฟล์ที่ทำการอัพโหลดไม่ใช่ไฟร์รูปภาพ กรุณาลองอีกครั้ง!",
+    "PictureLibrary": "ภาพโปรไฟล์แกลเลอรี่",
+    "Select": "เลือก"
 }

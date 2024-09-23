@@ -59,5 +59,18 @@
     "Cancel": "取消",
     "InvalidValue": "新設定的信用額度超出允許範圍。",
     "ThereIsNoChange": "沒有任何的變化更新。",
-    "UpdateGivenCreditSuccessfully": "信用額度更新成功！"
+    "UpdateGivenCreditSuccessfully": "信用額度更新成功！",
+    "DisplayLanguage": "語言顯示",
+    "DisplayLanguageIntro": "選擇您首選語言用於在登錄後顯示頁面",
+    "PleaseSelectDisplayLanguage": "請選擇顯示語言",
+    "ProfilePicture": "個人頭像",
+    "NotAuthorized": "您沒有使用此功能的權限",
+    "UploadFromYourDevice": "從您的設備上傳",
+    "OrChooseFromOurGallery": "或從我們的圖庫中選擇",
+    "ViewAll": "查看全部",
+    "Reset": "重填",
+    "ProfilePictureUpdatedSuccessfully": "您的個人頭像已成功上傳.",
+    "FailByFileType": "上傳的文件不是圖片, 請重試!",
+    "PictureLibrary": "個人資料圖片庫",
+    "Select": "選擇"
 }

@@ -59,5 +59,18 @@
     "Cancel": "Hủy",
     "InvalidValue": "Hạn mức khả dụng mới vượt quá mức cho phép.",
     "ThereIsNoChange": "Không có gì thay đổi để cập nhật.",
-    "UpdateGivenCreditSuccessfully": "Đã cập nhật hạn mức tín dụng thành công!"
+    "UpdateGivenCreditSuccessfully": "Đã cập nhật hạn mức tín dụng thành công!",
+    "DisplayLanguage": "Ngôn Ngữ Hiển Thị",
+    "DisplayLanguageIntro": "Hãy chọn ngôn ngữ mà bạn ưa thích để hiển thị.",
+    "PleaseSelectDisplayLanguage": "Vui lòng chọn ngôn ngữ hiển thị",
+    "ProfilePicture": "Hình đại diện",
+    "NotAuthorized": "Bạn không được cho phép sử dụng chức năng này.",
+    "UploadFromYourDevice": "Tải ảnh lên",
+    "OrChooseFromOurGallery": "hoặc chọn từ thư viện",
+    "ViewAll": "Xem tất cả",
+    "Reset": "Làm lại",
+    "ProfilePictureUpdatedSuccessfully": "Hình đại diện của bạn đã được tải lên thành công.",
+    "FailByFileType": "Tập tin đang tải lên không phải là một hình ảnh, vui lòng thử lại !",
+    "PictureLibrary": "Thư viện ảnh",
+    "Select": "Chọn"
 }
