@@ -196,12 +196,12 @@ a {
     z-index: 220;
     &:after{
         position: absolute;
-    content: "";
-    width: 100%;
-    height: 1px;
-    left: 0;
-    bottom: 0px;
-    background-color: inherit;
+        content: "";
+        width: 100%;
+        height: 3px;
+        left: 0;
+        bottom: -2px;
+        background-color: inherit;
     }
 }
 .tblRpt-freeze-header {
@@ -238,7 +238,7 @@ a {
 
             &.thead-row2 {
                 th {
-                    top: 28px !important;
+                    top: 29px !important;
                     box-shadow: inset 0 1px 0 var(--table-border-color);
                     &:before{
                         position: absolute;
