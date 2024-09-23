@@ -11,6 +11,7 @@ using Fanex.Data;
 using Fanex.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 
@@ -85,7 +86,7 @@ app
     .UseAuthorization()
     .UseNetThrottling()
     .UseMiddleware<RequestCultureMiddleware>();
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 StaticResources.Init(configuration.GetValue<string>("JsVersion"));

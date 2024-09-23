@@ -1,6 +1,7 @@
 using AlphaPlus.NetThrottling.Filters;
 using AlphaPlus.NetThrottling.Models;
 using AlphaPlus.NetThrottling.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.NetThrottling
@@ -13,6 +14,13 @@ namespace AlphaPlus.NetThrottling
 
         public async Task InvokeAsync(HttpContext context)
         {
+            var endpoint = context.GetEndpoint();
+            if (endpoint?.Metadata?.GetMetadata<IAllowAnonymous>() is object)
+            {
+                await _next(context);
+                return;
+            }
+
             var throttleResult = await ThrottleAsync(context);
             if (throttleResult == ThrottleResult.Blocked)
             {
