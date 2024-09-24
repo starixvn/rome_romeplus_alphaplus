@@ -29,7 +29,7 @@
         @Html.ActionLink(Resources.SearchAndCopy, "Index", "CopyAccount")
     </li>
     <li role="presentation">
-        <a href="@MicroSites.SettingUrl("~/_MemberInfo/SearchAndCopy/MasterPage.aspx")" role="tab"
+        <a href="@MicroSites.SettingUrl($"~/Customer/Create?lng={Model.Language}&isDarkMode={Model.IsDarkMode.ToString().ToLowerInvariant()}")" role="tab"
             data-toggle="tab">@Resources.FullMode</a>
     </li>
     <li role="presentation" class="has-icon active">
