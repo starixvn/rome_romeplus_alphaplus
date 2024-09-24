@@ -7,8 +7,7 @@ namespace AlphaPlus.NetThrottling.Resolvers
     {
         public override Task BlockNonAjaxRequest(HttpContext context)
         {
-            var blockedUrl = MicroSites.MainUrl($"~/error/blocked?path={context.Request.Path}");
-            context.Response.Redirect(blockedUrl);
+            context.Response.Redirect($"~/main/error/blocked?path={context.Request.Path}");
             return Task.CompletedTask;
         }
     }
