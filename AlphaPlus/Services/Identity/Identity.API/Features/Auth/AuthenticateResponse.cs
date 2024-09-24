@@ -65,5 +65,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
         public IList<int> OfferedJackpotProducts { get; set; }
 
         public string LanguageUsage { get; set; }
+
+        public string LoginIp { get; set; }
     }
 }

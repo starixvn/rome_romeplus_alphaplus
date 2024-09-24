@@ -96,7 +96,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 IsNickName = command.IsNickname,
                 Code = command.ErrCode,
                 Message = command.ErrMsg,
-                LanguageUsage = command.LanguageUsage
+                LanguageUsage = command.LanguageUsage,
+                LoginIp = command.LoginIp
             };
 
             if (command.ErrCode == 0)
@@ -251,7 +252,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 IsProtectedMode = criteria.IsProtectedMode,
                 LanguageUsage = criteria.LanguageUsage,
                 ServerId = criteria.ServerId,
-                Site = criteria.Site
+                Site = criteria.Site,
+                LoginIp = criteria.LoginIp
             };
 
             if (criteria.ErrCode == 0)
@@ -325,7 +327,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 IsForcedChangeSecurityCode = criteria.IsForcedChangeSecurityCode,
                 SecurityCode = criteria.SecurityCode,
                 PwdExpiry = criteria.PwdExpiry,
-                Nickname = criteria.Nickname
+                Nickname = criteria.Nickname,
+                LoginIp = criteria.LoginIp
             };
 
             if (criteria.ErrCode == 0)

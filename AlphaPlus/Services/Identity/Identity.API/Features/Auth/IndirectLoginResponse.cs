@@ -67,4 +67,6 @@ public class IndirectLoginResponse
     public DateTime PwdExpiry { get; set; }
 
     public string Nickname { get; set; }
+
+    public string LoginIp { get; set; }
 }

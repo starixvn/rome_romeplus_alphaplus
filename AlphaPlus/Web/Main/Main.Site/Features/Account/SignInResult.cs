@@ -73,5 +73,7 @@ namespace AlphaPlus.Main.Site.Features.Account
         public string AssetAppPath { get; set; }
 
         public string LanguageUsage { get; set; }
+
+        public string LoginIp { get; set; }
     }
 }

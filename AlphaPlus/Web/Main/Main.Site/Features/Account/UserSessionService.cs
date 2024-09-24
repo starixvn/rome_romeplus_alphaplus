@@ -116,6 +116,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 
         userSession.LangKey = GetUserLangKey(signInResult.LanguageUsage);
         userSession.Language = GetUserLanguage(signInResult.LanguageUsage);
+        userSession.UserLoginIp = signInResult.LoginIp;
 
         userSession.SetProperty("languageusage", !string.IsNullOrWhiteSpace(signInResult.LanguageUsage) ? GetUserLanguage(signInResult.LanguageUsage) : signInResult.LanguageUsage);
         SetCookieLanguage(userSession.Language);
