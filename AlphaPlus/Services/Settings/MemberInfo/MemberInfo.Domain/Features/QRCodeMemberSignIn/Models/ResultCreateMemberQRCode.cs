@@ -13,5 +13,9 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Model
         public int ErrCode { get; set; }
 
         public string? ErrMsg { get; set; }
+
+        public int MsgType { get; set; }
+
+        //TODO:public MessageContent MessageContent { get; set; }
     }
 }

@@ -9,6 +9,8 @@ using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Params;
 using MediatR;
 using AlphaPlus.Core.Models;
+using Fanex.Customer.Client.Services;
+using Fanex.Customer.Client.Params;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn
 {
@@ -23,26 +25,30 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
         private readonly QRCodeLoginConfigsHelper qrCodeLoginConfigsHelper;
         private readonly QrCodeAdapter qrCodeAdapter;
         private readonly QRCodeMemberSignInService qrCodeMemberSignInService;
+        private readonly ICustomerService customerService;
         private readonly PasswordService passwordService;
         private readonly CheckBelongingService checkBelongingService;
 
         public QRCodeMemberSignInHandler(
            QrCodeAdapter qrCodeAdapter,
+           ICustomerService customerService,
            QRCodeMemberSignInService qrCodeMemberSignInService,
            PasswordService passwordService,
            CheckBelongingService checkBelongingService)
-            : this(qrCodeAdapter, qrCodeMemberSignInService, passwordService, checkBelongingService, null)
+            : this(qrCodeAdapter, customerService, qrCodeMemberSignInService, passwordService, checkBelongingService, null)
         {
         }
 
         internal QRCodeMemberSignInHandler(
             QrCodeAdapter qrCodeAdapter,
+            ICustomerService customerService,
             QRCodeMemberSignInService qrCodeMemberSignInService,
             PasswordService passwordService,
             CheckBelongingService checkBelongingService,
             QRCodeLoginConfigsHelper qrCodeLoginConfigsHelper)
         {
             this.qrCodeAdapter = qrCodeAdapter;
+            this.customerService = customerService;
             this.qrCodeMemberSignInService = qrCodeMemberSignInService;
             this.passwordService = passwordService;
             this.checkBelongingService = checkBelongingService;
@@ -66,7 +72,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
 
             return new QRCodeMemberSignInViewModel(
                 message,
-                qrCodeMemberSignInService.GetSuggestUsername(message.CustName, message.CustId),
+                await customerService.GetSuggestUsername(message.CustName, message.CustLevelId),
                 onlyShowErrorMessage);
         }
 
@@ -85,7 +91,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                 };
             }
 
-            var model = qrCodeMemberSignInService.CheckBelongingByUsername(message.CustId, message.UsernameCopyFrom, message.SubAccId);
+            var model = await customerService.GetDownlineByUsername(message.CustId, message.SubAccId, message.UsernameCopyFrom);
             var custIdCopyFrom = model.CustId;
 
             if (custIdCopyFrom > 0 &&
@@ -94,31 +100,38 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
             {
                 var passwordModel = passwordService.CreateMemberPasswordRandom();
 
-                var result = await qrCodeMemberSignInService.CreateMemberByQRCode(
-                    new InsertMemberCommand(
-                        message.Username,
-                        message.FirstName ?? string.Empty,
-                        message.CustId,
-                        custIdCopyFrom,
-                        message.IP,
-                        message.Language,
-                        message.SubAccId,
-                        message.Credit,
-                        passwordModel.RawPassword,
-                        message.UsernameCopyFrom,
-                        message.CreditMax,
-                        message.SubUsername,
-                        message.SiteDBGroupIp,
-                        message.ActorUsername)).ConfigureAwait(false);
-
-                result.CustIdCopyFrom = custIdCopyFrom;
-
-                if (result.Success)
+                var param = new CopyCustomerParam(
+                    message.ViewerId,
+                    message.SubAccId,
+                    message.CustId,
+                    message.CustLevel.GetDirectDownLineLevel().Value,
+                    message.ActorUsername,
+                    message.Username,
+                    passwordModel.EncodePassword,
+                    message.Credit,
+                    message.CreditMax,
+                    custIdCopyFrom,
+                    message.Site,
+                    true,
+                    message.IP,
+                    message.Language)
                 {
-                    result.RawPassword = passwordModel.RawPassword;
-                }
+                    FirstName = message.FirstName
+                };
 
-                return result;
+                var result = await customerService.CopyCustomer(param).ConfigureAwait(false);
+
+                return new ResultCreateMemberQRCode
+                {
+                    CustIdCopyFrom = custIdCopyFrom,
+                    CustId = result.CustId,
+                    ErrCode = result.Code,
+                    ErrMsg = result.Message,
+                    Success = result.IsSuccessful,
+                    RawPassword = result.IsSuccessful ? passwordModel.RawPassword : string.Empty,
+                    MsgType = result.MsgType,
+                    //TODO:MessageContent = result.MessageContent,
+                };
             }
 
             return new ResultCreateMemberQRCode
