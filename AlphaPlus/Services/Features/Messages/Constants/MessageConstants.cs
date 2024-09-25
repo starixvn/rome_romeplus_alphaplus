@@ -24,7 +24,7 @@
         public const string ContentFontEndMarkup = "</font>";
         public const int DefaultTotalMessageHistory = 100;
         public const int DefaultTotalSpecialMessageHistory = 500;
-        public const string SiteMessageTag = "{site-message}";
+        public const string SiteMessageTag = "{features}";
         public const string ProductsTag = "{products}";
         public const int PageSize = 100;
         public const int PageIndex = 1;

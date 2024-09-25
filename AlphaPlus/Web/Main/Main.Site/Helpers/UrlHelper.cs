@@ -155,7 +155,7 @@ namespace AlphaPlus.Main.Site.Helpers
 
         public static string MapResultPath()
         {
-            return AppPathHelper.GetAppPath("site-results", "~/");
+            return AppPathHelper.GetAppPath("/tickets", "~/");
         }
     }
 }

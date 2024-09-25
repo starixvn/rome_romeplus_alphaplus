@@ -21,15 +21,15 @@ public static class AppSettings
 
     public static string AssetAppPath => ConfigurationManager.GetValue("AssetAppPath", "assets");
 
-    public static string ReportsAppPath => ConfigurationManager.GetValue("ReportsAppPath", "site-reports");
+    public static string ReportsAppPath => ConfigurationManager.GetValue("ReportsAppPath", "/reports");
 
-    public static string BetListsAppPath => ConfigurationManager.GetValue("BetListsAppPath", "site-betlists");
+    public static string BetListsAppPath => ConfigurationManager.GetValue("BetListsAppPath", "/tickets");
 
-    public static string MemberInfoAppPath => ConfigurationManager.GetValue("MemberInfoAppPath", "site-memberinfo");
+    public static string MemberInfoAppPath => ConfigurationManager.GetValue("MemberInfoAppPath", "/settings");
 
-    public static string MessageAppPath => ConfigurationManager.GetValue("MessageAppPath", "site-message");
+    public static string MessageAppPath => ConfigurationManager.GetValue("MessageAppPath", "/features");
 
-    public static string AccountInfoAppPath => ConfigurationManager.GetValue("AccountInfoAppPath", "site-accountinfo");
+    public static string AccountInfoAppPath => ConfigurationManager.GetValue("AccountInfoAppPath", "/account-info");
 
     public static string StaticResourcesVersion => ConfigurationManager.GetValue("AssetsApp:StaticResourcesVersion", "100");
 
@@ -39,11 +39,11 @@ public static class AppSettings
 
     public static string ExTotalBetsForecastAppPath => ConfigurationManager.GetValue("ExTotalBetsForecastAppPath", "ex-totalbetsforecast");
 
-    public static string HowToUseAppPath => ConfigurationManager.GetValue("HowToUseAppPath", "site-howtouse");
+    public static string HowToUseAppPath => ConfigurationManager.GetValue("HowToUseAppPath", "/features");
 
-    public static string TransferAppPath => ConfigurationManager.GetValue("TransferAppPath", "site-transfer");
+    public static string TransferAppPath => ConfigurationManager.GetValue("TransferAppPath", "/settings");
 
-    public static string ViewLogsAppPath => ConfigurationManager.GetValue("ViewLogsAppPath", "site-viewLogs");
+    public static string ViewLogsAppPath => ConfigurationManager.GetValue("ViewLogsAppPath", "/settings");
 
     public static DateTime? ForceLoginNicknameDate => forceLoginNicknameDate;
 

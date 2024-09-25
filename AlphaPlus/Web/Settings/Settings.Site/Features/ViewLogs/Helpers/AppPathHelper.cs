@@ -4,7 +4,7 @@
     {
         public static string GetAppPath(string appName, string virtualPath)
         {
-            return Core.Helpers.AppPathHelper.GetAppPath(appName, virtualPath, null, null);
+            return Core.Helpers.AppPathHelper.GetAppPath(appName, virtualPath);
         }
     }
 }
