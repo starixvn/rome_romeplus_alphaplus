@@ -39,6 +39,8 @@
         self.cachedData.positionTakingInfo = self.positionTakingInfo;
 
         self.renderPositionTakingInfo(self.positionTakingInfo);
+
+        $(".view-downline").unbind().bind('click', function (event) { self.viewDownlinePTList(event); });
     };
     self.cacheElement = function () {
         self.domElements.pagingControl = $("#tblHeader .pagingcontrol");
@@ -403,7 +405,7 @@
         switch (positionTakingInfo.viewedCustomerInfo.roleId) {
             case self.Enums.roleId.Super:
             case self.Enums.roleId.Master:
-                link = '<a onclick="viewPTManagement.viewDownlinePTList(\'' + customerInfo.custId + '\');" href="javascript:;">' +
+                link = '<a class="view-downline" data-custid="' + customerInfo.CustId + '" href="#">' +
                     customerInfo.custName +
                     '</a>';
                 break;
@@ -456,7 +458,8 @@
         return columns;
     };
 
-    self.viewDownlinePTList = function (custId) {
+    self.viewDownlinePTList = function (event) {
+        var custId = $(event.currentTarget).data("custid");
         var downlineId = self.getDirectDownlineId(self.cachedData.positionTakingInfo.viewedCustomerInfo.roleId);
         var criteria = {
             ProductId: self.cachedData.positionTakingInfo.product.id,
@@ -469,7 +472,18 @@
             ProductGroupId: self.cachedData.positionTakingInfo.product.groupId
         };
         self.cachedData.lastParam = criteria;
-        window.location.href = window.rootUrl + "PositionTaking?" + $.param(criteria);
+        self.viewDataURL(event, window.rootUrl + "PositionTaking?" + $.param(criteria));
+    };
+    self.viewDataURL = function (event, url) {
+        event.preventDefault();
+
+        const mainFrame = top.$('#main');
+        if (!top.alpha.core.isIe()) {
+            mainFrame.contents().find('head').append(top.$('#AssetCommonCssLink').val());
+            mainFrame.contents().find('body').empty().block();
+        }
+
+        mainFrame.attr('src', url);
     };
     self.getDirectDownlineId = function (roleId) {
         switch (roleId) {

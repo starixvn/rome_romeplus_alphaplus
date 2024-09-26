@@ -400,10 +400,10 @@ class CustomerListDataTable {
         return item.Locked
             ? `<div class='col-username' title='${this.$(
                   '#usernameTooltipText'
-              ).val()}'><a href="${viewDownlineLink}" >${content}</a>${this.renderLockedIcon(item)}</div>`
+              ).val()}'><a class="view-downline" data-url="${viewDownlineLink}" >${content}</a>${this.renderLockedIcon(item)}</div>`
             : `<div title='${this.$(
                   '#usernameTooltipText'
-              ).val()}'><a href="${viewDownlineLink}" >${content}</a></div>`;
+              ).val()}'><a class="view-downline" data-url="${viewDownlineLink}" >${content}</a></div>`;
     };
 
     private renderLockedIcon = (item) => {
@@ -571,7 +571,11 @@ class CustomerListDataTable {
 
         this.$('.icon-statement')
             .unbind()
-            .bind('click', (event) => this.viewStatement(event));
+            .bind('click', (event) => this.viewDataURL(event));
+
+            this.$('.view-downline')
+            .unbind()
+            .bind('click', (event) => this.viewDataURL(event));
 
         this.editSingleSetting.bindingEvent();
 
@@ -628,7 +632,7 @@ class CustomerListDataTable {
         this.$('thead tr th.control').parent().removeClass('parent');
     };
 
-    private viewStatement = (event) => {
+    private viewDataURL = (event) => {
         event.preventDefault();
 
         const mainFrame = this.topWindow.$('#main');
