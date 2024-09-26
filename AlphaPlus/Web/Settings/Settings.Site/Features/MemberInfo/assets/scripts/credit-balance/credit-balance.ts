@@ -57,6 +57,22 @@ class CreditBalance {
         this.$("#tbl-report")
             .removeClass("hide")
             .stickyTableHeaders();
+
+        this.$(".view-downline").unbind().bind('click', event => {
+            this.viewDataURL(event);
+        });
+    };
+
+    viewDataURL = event => {
+        event.preventDefault();
+
+        const mainFrame = this.topWindow.$('#main');
+        if (!this.topWindow.alpha.core.isIe()) {
+            mainFrame.contents().find('head').append(this.$('#AssetCommonCssLink').val());
+            mainFrame.contents().find('body').empty().block();
+        }
+
+        mainFrame.attr('src', this.$(event.currentTarget).data("url"));
     };
 
     cacheDOMElements = () => {

@@ -405,7 +405,7 @@
         switch (positionTakingInfo.viewedCustomerInfo.roleId) {
             case self.Enums.roleId.Super:
             case self.Enums.roleId.Master:
-                link = '<a class="view-downline" data-custid="' + customerInfo.CustId + '" href="#">' +
+                link = '<a class="view-downline" data-custid="' + customerInfo.custId + '" href="#">' +
                     customerInfo.custName +
                     '</a>';
                 break;
@@ -472,7 +472,7 @@
             ProductGroupId: self.cachedData.positionTakingInfo.product.groupId
         };
         self.cachedData.lastParam = criteria;
-        self.viewDataURL(event, window.rootUrl + "PositionTaking?" + $.param(criteria));
+        self.viewDataURL(event, "/settings/PositionTaking?" + $.param(criteria));
     };
     self.viewDataURL = function (event, url) {
         event.preventDefault();

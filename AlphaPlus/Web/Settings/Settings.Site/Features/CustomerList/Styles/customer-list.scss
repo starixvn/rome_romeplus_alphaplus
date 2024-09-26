@@ -163,10 +163,13 @@ body:not(.modal-open) {
     }
 
     .login-ip,
-    .icon-statement,
-    .view-downline {
+    .icon-statement {
         cursor: pointer;
     }
+}
+
+.view-downline {
+    cursor: pointer;
 }
 
 .modal-content .modal-header {

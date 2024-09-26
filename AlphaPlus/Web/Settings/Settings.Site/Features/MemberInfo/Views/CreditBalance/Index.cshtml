@@ -163,7 +163,7 @@
         }
         else
         {
-            return $"<a href='?custId={item.CustId}&custLevelId={Model.DownlineLevel.Value}&statusId={Model.StatusId}&PageSize={pageSize}' class='link'>{item.UserName}</a>";
+            return $"<a data-url='{MicroSites.SettingUrl("~/CreditBalance")}?custId={item.CustId}&custLevelId={Model.DownlineLevel.Value}&statusId={Model.StatusId}&PageSize={pageSize}' class='link view-downline'>{item.UserName}</a>";
         }
     }
 
@@ -219,7 +219,7 @@
     {
         if (Model.CanViewBetListsFromOutstanding)
         {
-            return $"<a href='{Model.GetRunningBetListLink(item)}' class='link'>{HtmlHelpers.FormatDecimal(item.Outstanding)}</a>";
+            return $"<a data-url='{Model.GetRunningBetListLink(item)}' class='link view-downline'>{HtmlHelpers.FormatDecimal(item.Outstanding)}</a>";
         }
         else
         {
