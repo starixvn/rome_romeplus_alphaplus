@@ -110,7 +110,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance
         public string GivenCreditLink => MicroSites.AccountInfoUrl($"~/SearchAccount/GivenCredit");
 
         public string GetMemberBalanceInfoLink(string custName)
-            => MicroSites.SettingUrl($"~/SearchAccount/GetMemberBalanceInfo?custname={custName}");
+            => MicroSites.AccountInfoUrl($"~/SearchAccount/GetMemberBalanceInfo?custname={custName}");
 
         public EnteredSportResult EnteredSportResult { get; }
     }
