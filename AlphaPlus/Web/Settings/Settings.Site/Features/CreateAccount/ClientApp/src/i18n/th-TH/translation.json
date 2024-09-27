@@ -110,5 +110,9 @@
   "GivenCredit": "เครดิตทั้งหมด",
   "givenMaxCreditInvalid": "เครดิตของสมาชิกต้องอยู่ระหว่าง {{min}} และ {{max}}",
   "creditRange": "ต่ำสุด: <strong>0</strong> - สูงสุด: <strong>{{max}}</strong>",
-  "creditNote": "ยอดคงเหลือที่ใช้ได้ {{availableCredit}}<br>เครดิตสมาชิกสูงสุดที่กำหนดโดยอัพไลน์ของคุณ: {{memberMaxCredit}}"
+  "creditNote": "ยอดคงเหลือที่ใช้ได้ {{availableCredit}}<br>เครดิตสมาชิกสูงสุดที่กำหนดโดยอัพไลน์ของคุณ: {{memberMaxCredit}}",
+  "credit": "เครดิต",
+  "domain": "โดเมน",
+  "introCopyNote": "คลิก 'คัดลอก' เพื่อคัดลอกและแบ่งปันรายละเอียดบัญชี",
+  "copy": "สำเนา"
 }

@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { StateCreator } from 'zustand';
 
 import { TransferOptions, UserLevel } from '@/constants';
+import Currencies from '@/constants/currencies';
 import { GeneralInfo, ProductGroup, ProductGroupDict } from '@/types/new-account';
 import { PTTemplate } from '@/types/position-taking';
 
@@ -34,7 +35,11 @@ export type NewAccountSlice = {
   submitCount: number;
   setTheme: (value: string) => void;
   showPopup: (popup: ReactNode) => void;
-  intiNewAccountState: (generalInfo: GeneralInfo, productGroups: ProductGroup[], ptTemplates: PTTemplate[]) => PTError[];
+  intiNewAccountState: (
+    generalInfo: GeneralInfo,
+    productGroups: ProductGroup[],
+    ptTemplates: PTTemplate[],
+  ) => PTError[];
   getProductGroupAndUISettings: () => {
     uiBehavior: object;
     generalInfo: GeneralInfo;
@@ -77,7 +82,7 @@ const createNewAccountSlice: StateCreator<NewAccountState, [], [], NewAccountSli
         uplineMaxCredit: generalInfo.maxCredit ?? 0,
         uplineMemberMaxCredit: generalInfo.memberMaxCredit ?? 0,
         maxCredit: 0,
-        group: 'a',
+        group: generalInfo.currency === Currencies.Won ? 'dea' : 'a',
       },
       disableAutoMPT: generalInfo.disableAutoMPT,
       userLevel: params.uplineRoleId,

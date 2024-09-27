@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
-{
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
-    using AlphaPlus.Settings.MemberInfo.Domain.Params;
-    using Components;
-    using Requests.WinLossLimit;
-    using System.Collections.Generic;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
+using AlphaPlus.Settings.MemberInfo.Domain.Params;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
+{
     public class WinLossLimitViewModel
     {
         private const int MaxItemToShowPager = 100;
@@ -31,7 +30,7 @@
             WinLossLimitParam param)
         {
             ViewerLevel = message.ActorLevel;
-            UserSelectedProductId = param.ProductId;
+            UserSelectedId = $"{param.ProductId}-{param.SportType}";
             Username = message.Username ?? string.Empty;
             PlayerId = message.PlayerId ?? string.Empty;
             MasterId = param.MasterId;
@@ -51,7 +50,7 @@
 
         public UserLevel ViewerLevel { get; }
 
-        public int UserSelectedProductId { get; }
+        public string UserSelectedId { get; }
 
         public IEnumerable<WinLossLimitGroupProductModel> GroupProducts { get; }
 
@@ -82,7 +81,7 @@
         public WinLossLimitPage WinLossLimitPage { get; }
 
         public PagerViewModel PagerViewModel =>
-            new PagerViewModel(PageIndex, PageSize, WinLossLimitPage.NumberOfRows);
+            new(PageIndex, PageSize, WinLossLimitPage.NumberOfRows);
 
         public bool HasData => WinLossLimitPage.NumberOfRows > 0;
 

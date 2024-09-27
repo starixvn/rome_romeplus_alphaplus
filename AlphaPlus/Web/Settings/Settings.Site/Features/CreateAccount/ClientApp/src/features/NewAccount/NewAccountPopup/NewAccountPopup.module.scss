@@ -1,32 +1,69 @@
-.icon {
+.IconthumbsUp {
   position: relative;
   display: inline-block;
-  margin: 0 auto 15px;
-  &:after {
-    position: absolute;
-    content: '';
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border: 1px solid var(--border-icon-success);
-    border-radius: 40px;
-  }
+  margin: 0 auto -3px;
+  
 }
 .success {
   font-weight: bold;
   font-size: 20px;
   line-height: 20px;
   color: var(--color-success);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .username {
   cursor: pointer;
   font-weight: bold;
   color: var(--color-name);
 }
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  text-align: left;
+  border-style: dashed ;
+  border-width: 2px;
+  border-color: transparent;
+  margin-bottom: 10px;
+
+}
+.account-info > div {
+  margin-bottom: 4px;
+}
+
+.copy-btn{
+  color: var(--bg-btn-create);
+  border: 1px solid var(--bg-btn-create);
+  border-radius: 2px;
+  background-color: transparent;
+  padding: 2px 8px;
+}
+
 .text {
   margin-bottom: 18px;
+}
+.info-copy{
+  padding: 3px 0 0;
+  .label{
+    z-index: 1;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+  .row-value {
+    flex: 1;
+    background: var(--bg-username);
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    font-size: 12px;
+    line-height: 15.23px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    font-size: 13px;
+    padding: 5px 7px;
+    min-height: 28px;
+  }
 }
 .buttonSuccess {
   color: var(--color-btn);
@@ -38,6 +75,8 @@
   border-radius: 3px;
   cursor: pointer;
   text-transform: uppercase;
+  margin-top: 12px;
+
   &:hover {
     background-color: var(--bg-btn-create-hover);
   }

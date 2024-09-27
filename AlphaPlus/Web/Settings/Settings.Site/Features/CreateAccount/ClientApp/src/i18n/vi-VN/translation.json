@@ -110,5 +110,9 @@
   "GivenCredit": "Hạn mức được cấp",
   "givenMaxCreditInvalid": "Hạn mức tín dụng của Member phải từ {{min}} đến {{max}}",
   "creditRange": "Nhỏ nhất: <strong>0</strong> - Lớn nhất: <strong>{{max}}</strong>",
-  "creditNote": "Hạn mức khả dụng: {{availableCredit}}<br>Hạn Mức Tín Dụng Tối Đa Của Member Cấp Bởi Cấp Trên: {{memberMaxCredit}}"
+  "creditNote": "Hạn mức khả dụng: {{availableCredit}}<br>Hạn Mức Tín Dụng Tối Đa Của Member Cấp Bởi Cấp Trên: {{memberMaxCredit}}",
+  "credit": "Hạn mức tín dụng",
+  "domain": "Tên Miền",
+  "introCopyNote": "Nhấn 'Sao chép' để sao chép và chia sẻ thông tin tài khoản",
+  "copy": "Sao chép"
 }

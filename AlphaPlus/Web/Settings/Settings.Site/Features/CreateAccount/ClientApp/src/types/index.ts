@@ -11,3 +11,9 @@ export interface SubMessagesResult extends Result {
     message: string;
   }[];
 }
+
+export interface CreateAccountResult extends SubMessagesResult {
+  availableAlphaDomain?: string[];
+  newUserName: string;
+  userName: string;
+}

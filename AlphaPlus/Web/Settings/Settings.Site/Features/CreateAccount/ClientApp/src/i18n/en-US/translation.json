@@ -110,5 +110,9 @@
   "GivenCredit": "Given Credit",
   "givenMaxCreditInvalid": "Member Given Credit must be between {{min}} and {{max}}",
   "creditRange": "Min: <strong>0</strong> - Max: <strong>{{max}}</strong>",
-  "creditNote": "Available Credit: {{availableCredit}}<br>The Maximum Member Credit set by your upline: {{memberMaxCredit}}"
+  "creditNote": "Available Credit: {{availableCredit}}<br>The Maximum Member Credit set by your upline: {{memberMaxCredit}}",
+  "credit": "Credit",
+  "domain": "Domain",
+  "introCopyNote": "Click 'Copy' to copy and share the account details",
+  "copy": "Copy"
 }

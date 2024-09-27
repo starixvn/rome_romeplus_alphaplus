@@ -110,5 +110,9 @@
   "GivenCredit": "信用额度",
   "givenMaxCreditInvalid": "会员信用额应在{{min}}和{{max}}之间",
   "creditRange": "最低: <strong>0</strong> - 最高: <strong>{{max}}</strong>",
-  "creditNote": "可用信用额: {{availableCredit}}<br>您的上线已设置会员最高信用: {{memberMaxCredit}}"
+  "creditNote": "可用信用额: {{availableCredit}}<br>您的上线已设置会员最高信用: {{memberMaxCredit}}",
+  "credit": "信用额度",
+  "domain": "域名",
+  "introCopyNote": "点击“复制”即可复制并分享账号详情",
+  "copy": "复制"
 }

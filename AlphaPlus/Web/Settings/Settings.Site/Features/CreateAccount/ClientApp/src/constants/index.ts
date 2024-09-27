@@ -11,6 +11,7 @@ declare global {
     alpha: {
       urls: {
         settingsRootPath: string;
+        oldMainRootPath: string;
       };
     };
     bootboxConfirm: any;

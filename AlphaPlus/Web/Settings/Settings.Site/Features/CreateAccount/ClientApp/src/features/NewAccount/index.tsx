@@ -25,6 +25,7 @@ import NewAccountSuccessPopup from './NewAccountPopup/NewAccountSuccessPopup';
 import Popup from './NewAccountPopup/Popup';
 import TransferCondition from './TransferCondition';
 
+
 export default function NewAccount() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -102,11 +103,13 @@ export default function NewAccount() {
           });
         }
         setLoading(false);
+
       })
       .catch((e) => {
         // console.log(e);
         setLoading(true);
       });
+
   }, [initNewAccountState, t]);
 
   const validateAllProduct = () => {
@@ -169,6 +172,11 @@ export default function NewAccount() {
       showPopup(
         <NewAccountSuccessPopup
           username={generalInfo.userName}
+          domain={result.availableAlphaDomain?.slice(0,3).join(', ') || ''}
+          credit={generalInfo.maxCredit?.toLocaleString("en-US", {
+            style: "decimal",
+            maximumFractionDigits: 2
+          })  || "0"}
           handleOk={() => {
             const { language } = i18next;
             window.location.replace(
@@ -177,7 +185,7 @@ export default function NewAccount() {
               }`,
             );
           }}
-        />,
+        />
       );
     }
   };

@@ -7,13 +7,12 @@
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
 @using AlphaPlus.Settings.MemberInfo.Domain.Models
 @using AlphaPlus.Settings.MemberInfo.Domain.Extensions
-
 @model WinLossLimitViewModel
 @{
     ViewBag.Title = "Member Win/Loss Limit";
 }
 @section Styles {
-    @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/win-loss-limit")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/win-loss-limit")
 }
 <div class="page-title">
     <span class="pull-left">@Resources.MemberWinLossLimit</span>
@@ -32,11 +31,11 @@
                                     data-product-id="@product.ProductId"
                                     data-sport-type="@product.SportType"
                                     data-bet-type="@product.BetType"
-                                    @(Model.UserSelectedProductId == product.ProductId ? " selected=\"selected\"" : string.Empty)
+                                    @(Model.UserSelectedId.Equals($"{product.ProductId}-{product.SportType}") ? " selected=\"selected\"" : string.Empty)
                                     data-isnested="1">
                                 @product.ProductName
-                                </option>
-                            }
+                            </option>
+                        }
                     </optgroup>
                 }
                 else
@@ -47,12 +46,12 @@
                                 data-product-id="@product.ProductId"
                                 data-sport-type="@product.SportType"
                                 data-bet-type="@product.BetType"
-                                @(Model.UserSelectedProductId == product.ProductId ? " selected=\"selected\"" : string.Empty)>
+                                @(Model.UserSelectedId.Equals($"{product.ProductId}-{product.SportType}") ? " selected=\"selected\"" : string.Empty)>
                             @product.ProductName
-                            </option>
-                        }
+                        </option>
                     }
                 }
+            }
         </select>
     </div>
     @if (Model.ViewerLevel.IsSuperLevel())
@@ -201,12 +200,12 @@
             </tfoot>
         }
     </table>
-    @Html.Hidden("UserSelectedProductId", Model.UserSelectedProductId)
+    @Html.Hidden("UserSelectedProductId", Model.UserSelectedId)
     @Html.Hidden("SportType", Model.SportType)
     @Html.Hidden("BetType", Model.BetType)
     @Html.Hidden("MasterId", Model.MasterId)
     @Html.Hidden("AgentId", Model.AgentId)
 </form>
 @section Scripts {
-    @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit")
+    @StaticResources.RenderScripts("~/assets/bundles/win-loss-limit/win-loss-limit")
 }
