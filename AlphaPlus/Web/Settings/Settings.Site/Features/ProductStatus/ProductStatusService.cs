@@ -150,7 +150,8 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
                 commandParam.CustId,
                 commandParam.CustRole,
                 commandParam.UplineId,
-                commandParam.UplineLevel);
+                commandParam.UplineLevel,
+                commandParam.OfferedProductGroupIds);
 
             if (!HasPermission(authorizationParam))
             {
@@ -296,7 +297,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
 
             return IsMasterAgentMemberOfViewerUser(customerInformation, param.UplineId, param.UplineLevel) &&
                 IsDirectDownlineOfViewerUser(customerInformation, param.UplineLevel) &&
-                canViewProduct(param.ProductId);
+                param.IsGroup ? param.OfferedProductGroupIds.Contains(param.ProductId) : canViewProduct(param.ProductId);
         }
 
         private static bool IsMasterAgentMemberOfViewerUser(CustomerInformation customerInformation, int uplineId, UserLevel uplineLevel)

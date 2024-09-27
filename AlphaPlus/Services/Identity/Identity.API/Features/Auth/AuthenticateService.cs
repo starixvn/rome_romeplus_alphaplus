@@ -120,6 +120,8 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.AutoFollowBet = response.RoleId == RoleIdConstants.Agent
                     && appSettings.AutoFollowBetMasterId == masterId
                     && (await IsAutoFollowBetDummyAgent(response.CustId));
+
+                response.OfferedProductGroupIds = await GetOfferedProductGroupIds(response.CustId, response.RoleId);
             }
 
             return response;
@@ -351,9 +353,23 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.AutoFollowBet = response.RoleId == RoleIdConstants.Agent
                     && appSettings.AutoFollowBetMasterId == masterId
                     && (await IsAutoFollowBetDummyAgent(response.CustId));
+
+                response.OfferedJackpotProducts = await GetOfferedProductGroupIds(response.CustId, response.RoleId);
             }
 
             return response;
+        }
+
+        private async Task<int[]> GetOfferedProductGroupIds(int custId, int roleId)
+        {
+            var productSettings = await dynamicRepository.FetchAsync<ProductSetting>(new GetProductSettingCriteria(custId, roleId, appSettings.SettingStatus));
+
+            if (productSettings == null || !productSettings.Any())
+            {
+                return [];
+            }
+
+            return productSettings.Select(x => x.GroupId).Distinct().Select(x => x.Value).ToArray();
         }
     }
 }

@@ -25,8 +25,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 
         public bool GetSyncedProduct(int productId) => viewer.GetSyncedProduct(productId);
 
-        public bool IsDisabledESports => viewer.IsDisabledESports;
-
         public override bool IsValid() => IsValidSearchAccount && IsValidUpline;
 
         internal bool IsValidSearchAccount =>

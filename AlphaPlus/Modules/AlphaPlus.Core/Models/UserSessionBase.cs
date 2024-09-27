@@ -75,7 +75,7 @@ public class UserSessionBase : IUserSession, IDisposable
     private const string ISHIDESPORTSBOOK2 = "ISHIDESPORTSBOOK2";
     private const string DISABLESPORTSBOOK2 = "DISABLESPORTSBOOK2";
     private const string ISDISABLEDESPORTS = "ISDISABLEDESPORTS";
-
+    private const string OFFEREDPRODUCTGROUPIDS = "OFFEREDPRODUCTGROUPIDS";
 
     public string NetSessionId => AlphaContext.Current.Session.Id;
 
@@ -437,22 +437,10 @@ public class UserSessionBase : IUserSession, IDisposable
         set => SetProperty(SITEDBGROUPIDSESSIONKEY, value);
     }
 
-    public bool IsHideSportsbook2
+    public int[] OfferedProductGroupIds
     {
-        get => GetProperty(ISHIDESPORTSBOOK2, true);
-        set => SetProperty(ISHIDESPORTSBOOK2, value);
-    }
-
-    public bool DisableSportsbook2
-    {
-        get => GetProperty(DISABLESPORTSBOOK2, true);
-        set => SetProperty(DISABLESPORTSBOOK2, value);
-    }
-
-    public bool IsDisabledESports
-    {
-        get => GetProperty(ISDISABLEDESPORTS, false);
-        set => SetProperty(ISDISABLEDESPORTS, value);
+        get => GetProperty<int[]>(OFFEREDPRODUCTGROUPIDS, []);
+        set => GetProperty(OFFEREDPRODUCTGROUPIDS, value);
     }
 
     public bool GetDisabledProduct(int productId) => GetProperty(DISABLEDPRODUCT + "_" + productId, true);

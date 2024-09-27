@@ -13,6 +13,7 @@
     <Setting Key="Age_LoginDownline_Admin" SpName="Age_LoginDownline_Admin" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
     <Setting Key="Age_IndirectLoginClaimDownline" SpName="Age_IndirectLoginClaimDownline" DbName="DBCust.CustDB.wsv_alp" />
     <Setting Key="Acc_Con_CheckPermission" SpName="Acc_Con_CheckPermission" DbName="DBPOL.NAP_UserControl.wsv_alp" Plain="0" />
+    <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
 
   <Function Name="Customer limit time range">

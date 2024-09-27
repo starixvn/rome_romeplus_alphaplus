@@ -15,7 +15,8 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.Params
         string langKey,
         string ip,
         IEnumerable<BetTypeStatusParam> productStatusParams,
-        string language)
+        string language,
+        int[] offeredProductGroupIds)
     {
         public bool IsGroup { get; } = isGroup;
 
@@ -42,5 +43,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.Params
         public IEnumerable<BetTypeStatusParam> ProductStatusParams { get; } = productStatusParams;
 
         public string Language { get; } = language;
+
+        public int[] OfferedProductGroupIds { get; } = offeredProductGroupIds;
     }
 }

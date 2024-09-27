@@ -13,7 +13,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.Requests
             UplineId = viewer.Id;
             UplineLevel = Enumeration.FromValue<UserLevel>(viewer.LevelId);
             IsViewOnly = viewer.IsInternal || !viewer.CanUpdateAccount;
-            Site = viewer.Site;
+            OfferedProductGroupIds = viewer.OfferedProductGroupIds;
         }
 
         public bool IsGroup { get; set; }
@@ -30,7 +30,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.Requests
 
         public bool IsViewOnly { get; }
 
-        public string Site { get; }
+        public int[] OfferedProductGroupIds { get; }
 
         public override bool IsValid()
             => ProductId > 0

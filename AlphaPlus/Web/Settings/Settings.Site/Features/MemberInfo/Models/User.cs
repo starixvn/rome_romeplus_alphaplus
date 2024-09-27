@@ -76,8 +76,6 @@
 
         public bool IsAllowedIndirectLogin => !userSession.IsIndirectLoggedIn && AppSettings.IsAllowedIndirectLogin(Srecommend);
 
-        public bool IsDisabledESports => userSession.IsDisabledESports;
-
         public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
 
         public bool IsShowMyanmarOdds => userSession.IsMyanmarOdds;

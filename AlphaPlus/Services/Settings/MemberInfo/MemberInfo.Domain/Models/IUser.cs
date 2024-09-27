@@ -56,7 +56,6 @@
 
         bool GetDisabledProduct(int productId);
 
-        bool IsDisabledESports { get; }
 
         bool AllowedTotalBalanceTransfer { get; }
 

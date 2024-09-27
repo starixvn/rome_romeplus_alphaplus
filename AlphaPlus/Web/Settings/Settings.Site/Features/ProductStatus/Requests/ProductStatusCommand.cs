@@ -11,8 +11,6 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.Requests
 
         public string ActorName { get; }
 
-        public int SubAccId { get; }
-
         public override bool IsValid()
             => base.IsValid() && BetTypeStatus?.Length > 0;
     }

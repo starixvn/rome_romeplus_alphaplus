@@ -53,4 +53,6 @@ public class InternalLoginResponse
     public IList<int> OfferedJackpotProducts { get; set; }
 
     public string LoginIp { get; set; }
+
+    public int[] OfferedProductGroupIds { get; set; }
 }

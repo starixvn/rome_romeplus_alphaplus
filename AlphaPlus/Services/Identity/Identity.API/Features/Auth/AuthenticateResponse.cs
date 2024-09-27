@@ -67,5 +67,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
         public string LanguageUsage { get; set; }
 
         public string LoginIp { get; set; }
+
+        public int[] OfferedProductGroupIds { get; set; }
     }
 }

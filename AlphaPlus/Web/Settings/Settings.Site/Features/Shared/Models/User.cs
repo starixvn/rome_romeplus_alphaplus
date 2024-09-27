@@ -72,8 +72,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
 
         // public bool IsAllowedIndirectLogin => !userSession.IsIndirectLoggedIn && AppSettings.IsAllowedIndirectLogin(Srecommend);
 
-        public bool IsDisabledESports => userSession.IsDisabledESports;
-
         public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
 
         public bool IsShowMyanmarOdds => userSession.IsMyanmarOdds;
@@ -101,5 +99,7 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
         public string LangKey => userSession.LangKey;
 
         public bool IsEnabledCustomerDateLimit => userSession.GetProperty<DateTime>("CustomerDateLimit") != default;
+
+        public int[] OfferedProductGroupIds => userSession.OfferedProductGroupIds;
     }
 }

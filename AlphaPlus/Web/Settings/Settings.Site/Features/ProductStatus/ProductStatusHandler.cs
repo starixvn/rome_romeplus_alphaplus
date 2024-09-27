@@ -21,7 +21,8 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
                 request.CustId,
                 request.CustRole,
                 request.UplineId,
-                request.UplineLevel));
+                request.UplineLevel,
+                request.OfferedProductGroupIds));
 
             return ToProductStatusViewModel(request, model);
         }
@@ -58,6 +59,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
                 message.LangKey,
                 message.IP,
                 message.BetTypeStatus.Select(status => new BetTypeStatusParam(status.SportType, status.BetType, status.IsDisabled)),
-                message.Language);
+                message.Language,
+                message.OfferedProductGroupIds);
     }
 }

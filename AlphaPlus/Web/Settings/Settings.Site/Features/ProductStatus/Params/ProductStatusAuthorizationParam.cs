@@ -8,7 +8,8 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.Params
         int custId,
         UserLevel custRole,
         int uplineId,
-        UserLevel uplineLevel)
+        UserLevel uplineLevel,
+        int[] offeredProductGroupIds)
     {
         public bool IsGroup { get; } = isGroup;
 
@@ -21,5 +22,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.Params
         public int UplineId { get; } = uplineId;
 
         public UserLevel UplineLevel { get; } = uplineLevel;
+
+        public int[] OfferedProductGroupIds { get; } = offeredProductGroupIds;
     }
 }

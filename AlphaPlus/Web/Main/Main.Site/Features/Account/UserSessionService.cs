@@ -117,6 +117,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.LangKey = GetUserLangKey(signInResult.LanguageUsage);
         userSession.Language = GetUserLanguage(signInResult.LanguageUsage);
         userSession.UserLoginIp = signInResult.LoginIp;
+        userSession.OfferedProductGroupIds = signInResult.OfferedProductGroupIds;
 
         userSession.SetProperty("languageusage", !string.IsNullOrWhiteSpace(signInResult.LanguageUsage) ? GetUserLanguage(signInResult.LanguageUsage) : signInResult.LanguageUsage);
         SetCookieLanguage(userSession.Language);
@@ -133,15 +134,15 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 
         return langCodeUsage.ToUpperInvariant()
             switch
-            {
-                "CS" => "zh-CN",
-                "CT" => "zh-TW",
-                "TH" => "th-TH",
-                "VI" => "vi-VN",
-                "KO" => "ko-KR",
-                "JP" => "ja-JP",
-                _ => "en-US"
-            };
+        {
+            "CS" => "zh-CN",
+            "CT" => "zh-TW",
+            "TH" => "th-TH",
+            "VI" => "vi-VN",
+            "KO" => "ko-KR",
+            "JP" => "ja-JP",
+            _ => "en-US"
+        };
     }
 
     private static string GetUserLangKey(string langCodeUsage)

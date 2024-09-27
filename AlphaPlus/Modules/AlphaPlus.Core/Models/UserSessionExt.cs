@@ -50,12 +50,6 @@ public class UserSessionExt : IUserSession
         set => UserSession.Current.CustId = value;
     }
 
-    public bool DisableSportsbook2
-    {
-        get => UserSession.Current.DisableSportsbook2;
-        set => UserSession.Current.DisableSportsbook2 = value;
-    }
-
     public string DisplayNickName
     {
         get => UserSession.Current.DisplayNickName;
@@ -94,18 +88,6 @@ public class UserSessionExt : IUserSession
         set => UserSession.Current.IsShowBetChoiceLimit = value;
     }
 
-    public bool IsDisabledESports
-    {
-        get => UserSession.Current.IsDisabledESports;
-        set => UserSession.Current.IsDisabledESports = value;
-    }
-
-    public bool IsDisabledSuperLive
-    {
-        get => UserSession.Current.IsDisabledSuperLive;
-        set => UserSession.Current.IsDisabledSuperLive = value;
-    }
-
     public bool IsDoubleCommLosing
     {
         get
@@ -124,12 +106,6 @@ public class UserSessionExt : IUserSession
         get => UserSession.Current.IsForcedSecurityCode;
 
         set => UserSession.Current.IsForcedSecurityCode = value;
-    }
-
-    public bool IsHideSportsbook2
-    {
-        get => UserSession.Current.IsHideSportsbook2;
-        set => UserSession.Current.IsHideSportsbook2 = value;
     }
 
     public bool IsInternal => UserSession.Current.IsInternal;
@@ -394,6 +370,12 @@ public class UserSessionExt : IUserSession
     {
         get => UserSession.Current.SiteDBGroupId;
         set => UserSession.Current.SiteDBGroupId = value;
+    }
+
+    public int[] OfferedProductGroupIds
+    {
+        get => UserSession.Current.OfferedProductGroupIds;
+        set => UserSession.Current.OfferedProductGroupIds = value;
     }
 
     public void SetProperty(string propertyName, object value) => UserSession.Current.SetProperty(propertyName, value);

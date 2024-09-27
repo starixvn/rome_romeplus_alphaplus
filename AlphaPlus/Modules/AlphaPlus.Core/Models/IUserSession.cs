@@ -102,8 +102,6 @@ public interface IUserSession
 
     bool IsMyanmarOdds { get; set; }
 
-    bool IsDisabledSuperLive { get; set; }
-
     bool GetHideProduct(int productId);
 
     void SetHideProduct(int productId, bool value);
@@ -144,11 +142,7 @@ public interface IUserSession
 
     int SiteDBGroupId { get; set; }
 
-    bool IsHideSportsbook2 { get; set; }
-
-    bool DisableSportsbook2 { get; set; }
-
-    bool IsDisabledESports { get; set; }
+    int[] OfferedProductGroupIds { get; set; }
 
     T GetProperty<T>(string propertyName, T defaultValue = default);
 

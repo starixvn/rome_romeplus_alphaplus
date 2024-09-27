@@ -75,5 +75,7 @@ namespace AlphaPlus.Main.Site.Features.Account
         public string LanguageUsage { get; set; }
 
         public string LoginIp { get; set; }
+
+        public int[] OfferedProductGroupIds { get; set; }
     }
 }

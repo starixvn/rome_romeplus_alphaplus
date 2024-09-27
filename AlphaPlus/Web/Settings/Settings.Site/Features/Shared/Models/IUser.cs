@@ -57,8 +57,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
 
         bool GetDisabledProduct(int productId);
 
-        bool IsDisabledESports { get; }
-
         bool AllowedTotalBalanceTransfer { get; }
 
         bool IsShowMyanmarOdds { get; }
@@ -83,5 +81,7 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
         string AGIP { get; }
 
         bool IsEnabledCustomerDateLimit { get; }
+
+        int[] OfferedProductGroupIds { get; }
     }
 }
