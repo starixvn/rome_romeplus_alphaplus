@@ -363,6 +363,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
         private async Task<int[]> GetOfferedProductGroupIds(int custId, int roleId)
         {
             var productSettings = await dynamicRepository.FetchAsync<ProductSetting>(new GetProductSettingCriteria(custId, roleId, appSettings.SettingStatus));
+            productSettings = productSettings?.Where(x => x.GroupId != null && !x.IsHidden);
 
             if (productSettings == null || !productSettings.Any())
             {
