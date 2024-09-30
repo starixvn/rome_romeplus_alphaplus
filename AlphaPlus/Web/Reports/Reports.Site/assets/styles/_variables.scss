@@ -114,6 +114,10 @@ $msg-error-color: #fe0000;
     --report-tooltip-color: #333;
     --report-tooltip-bg: #f2f2f2;
     
+    --btn-switch-version-background: #d3dfec;
+    --btn-switch-version-color: #0b599c;
+    --btn-switch-version-border: #d3dfec;
+
 
 }
 :root [data-theme='dark'] {
@@ -154,4 +158,8 @@ $msg-error-color: #fe0000;
     --report-tooltip-border2: #5F626B;
     --report-tooltip-color: #EDEDED;
     --report-tooltip-bg: #2E2E2E;
+
+    --btn-switch-version-background: #3b4652;
+    --btn-switch-version-color: #ededed;
+    --btn-switch-version-border: #3b4652;
 }
