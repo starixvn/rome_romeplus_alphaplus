@@ -30,7 +30,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly IAesService aesService;
         private readonly ICustomerService customerService;
         private readonly IProductStatusService productStatusService;
-        
+
         public CustomerController(
             IEncryption encryption,
             ISessionManager sessionManager,
@@ -77,12 +77,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         public async Task<ActionResult> AccountInfo(int CustId)
         {
-            //var accountInfo = await customerService.GetAccountInfo(CustId);
+            var accountInfo = await customerService.GetAccountInfo(CustId);
             return View(new AccountInfoViewModel
             {
-                // Credit = accountInfo.MaxCredit,
-                // Usernames = accountInfo.UserName,
-                // Domains = accountInfo.domains
+                Credit = accountInfo.MaxCredit,
+                Usernames = accountInfo.UserName,
+                Domains = accountInfo.domains
             });
         }
 
@@ -295,9 +295,9 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var isDarkMode = !string.IsNullOrWhiteSpace(UserSession.Current.DarkModeName);
             var productPTTabs = InitProducGroupTabs(custId, customerLevel, isDarkMode);
             var productList = GetProductList(custId, customerLevel, UserSession.Current.RoleId, isDarkMode).ToList();
-            
+
             productList.Add(BuilAccountInfoTab(custId, customerLevel, isDarkMode));
-            
+
             return View(productPTTabs.Concat(productList));
         }
 
