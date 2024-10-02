@@ -1,3 +1,5 @@
+using Fanex.Customer.Client.Models;
+
 namespace AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models
 {
     public class ResultCreateMemberQRCode
@@ -16,6 +18,6 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Model
 
         public int MsgType { get; set; }
 
-        //TODO:public MessageContent MessageContent { get; set; }
+        public MessageContent MessageContent { get; set; }
     }
 }

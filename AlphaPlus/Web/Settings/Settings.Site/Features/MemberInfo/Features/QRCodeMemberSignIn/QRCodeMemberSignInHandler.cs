@@ -130,7 +130,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                     Success = result.IsSuccessful,
                     RawPassword = result.IsSuccessful ? passwordModel.RawPassword : string.Empty,
                     MsgType = result.MsgType,
-                    //TODO:MessageContent = result.MessageContent,
+                    MessageContent = result.MessageContent,
                 };
             }
 

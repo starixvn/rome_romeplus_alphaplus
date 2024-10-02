@@ -10,4 +10,7 @@
     <ProjectReference Include="..\..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
     <ProjectReference Include="..\..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fanex.Customer.Client" Version="1.0.0.8-beta02" />
+  </ItemGroup>
 </Project>
