@@ -72,8 +72,8 @@ class WinLossDetailViewNew extends BaseReportNew {
                 this.$reportTitle.text(viewResources[custInfo.custLevelId])
             )
         );
-        this.registerEvents();
         this.winLossDetailColumns.init(() => this.updateQueryString());
+        this.registerEvents();
         this.$tblReportContainer.removeAttr('style');
 
         setTimeout(function () {
