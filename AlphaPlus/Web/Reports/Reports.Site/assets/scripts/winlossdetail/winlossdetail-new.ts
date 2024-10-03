@@ -154,6 +154,7 @@ class WinLossDetailViewNew extends BaseReportNew {
                 const height = 550;
                 window.top['popupManager'].open(url, undefined, width, height, 'modal-mobile-friendly');
             });
+        this.winLossDetailColumns.showHideColumns(this.$tblReport);
     }
 
     getWinLossDetail(isClearActiveWeek = true) {
@@ -210,7 +211,6 @@ class WinLossDetailViewNew extends BaseReportNew {
     getDataSuccess() {
         this.breadcrumbLevelComponent.bindEvents();
         this.registerEvents();
-        this.winLossDetailColumns.showHideColumns(this.$tblReport);
         this.totalEnteredNonEnteredComponent.render(JSON.parse($('#hidden-totalEnteredResultsJson').val()));
     }
 
