@@ -241,7 +241,7 @@ class QRCodeMemberSignIn {
             headers: this.getHeadersForPostRequest(),
             data: { username: username },
             dataType: 'json',
-            url: "QRCodeMemberSignIn/CheckExistedCustomer",
+            url: "/settings/QRCodeMemberSignIn/CheckExistedCustomer",
             success: (result) => {
                 this.showMessageIcon(iconId, result, checkCustomerCopyFrom);
             }

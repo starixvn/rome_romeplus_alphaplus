@@ -35,7 +35,12 @@
     }
 
     <li role="presentation" class="new-function">
-        <a class="open-link" data-url="@MicroSites.SettingUrl($"~/CreateAccount/Index?lng={Model.Language}&isDarkMode={Model.IsDarkMode.ToString().ToLowerInvariant()}")">@Resources.LiteMode</a>
+        @Html.ActionLink(Resources.LiteMode, "Index", "CreateAccount", new
+            {
+                lng = Model.Language,
+                isDarkMode =
+                 Model.IsDarkMode.ToString().ToLowerInvariant()
+            }, null)
         <span class="bage-new">@Resources.lblNew</span>
     </li>
 

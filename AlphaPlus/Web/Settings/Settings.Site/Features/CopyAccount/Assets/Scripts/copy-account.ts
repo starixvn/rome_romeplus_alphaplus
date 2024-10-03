@@ -277,7 +277,7 @@ class CopyAccount {
     bidingEasyAutoComplete = () => {
         const options = {
             url: (phrase) => {
-                return `UserNameSuggestion?Query=${phrase}`;
+                return `/settings/UserNameSuggestion?Query=${phrase}`;
             },
             getValue: 'UserName',
             requestDelay: 200,
@@ -364,7 +364,7 @@ class CopyAccount {
             headers: this.getHeadersForPostRequest(),
             data: data,
             dataType: 'text',
-            url: 'CopyAccount/Index',
+            url: '/settings/CopyAccount/Index',
             success: (data) => {
                 var result = this.safelyParseJSON(data);
                 if (result && result.IsFailed) {
@@ -439,7 +439,7 @@ class CopyAccount {
             headers: this.getHeadersForPostRequest(),
             data: { custName: username },
             dataType: 'json',
-            url: 'CopyAccount/CheckExistedCustomer',
+            url: '/settings/CopyAccount/CheckExistedCustomer',
             success: (result) => {
                 this.invalidUsername = result;
                 const iconClass = result ? 'icon-close' : 'icon-check';
@@ -463,7 +463,7 @@ class CopyAccount {
                 headers: this.getHeadersForPostRequest(),
                 data: { custName: sourceUsername },
                 dataType: 'json',
-                url: 'CopyAccount/CheckUsername',
+                url: '/settings/CopyAccount/CheckUsername',
                 success: (result) => {
                     const iconClass = result.IsOk ? 'icon-check' : 'icon-close';
                     this.$('#icon-message-SourceUsername').removeClass().addClass(iconClass);
@@ -494,7 +494,7 @@ class CopyAccount {
             headers: this.getHeadersForPostRequest(),
             data: { custName: username },
             dataType: 'json',
-            url: 'CopyAccount/GetCredit',
+            url: '/settings/CopyAccount/GetCredit',
             success: (result) => {
                 this.$.unblockUI();
 
