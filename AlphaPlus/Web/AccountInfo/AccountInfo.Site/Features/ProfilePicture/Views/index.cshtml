@@ -10,12 +10,12 @@
 }
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation">
-        <a href="@MicroSites.MainUrl("~/Password/ChangePassword")" role="tab" data-toggle="tab">@Resources.password</a>
+        <a class="open-link" data-url="@MicroSites.MainUrl("~/Password/ChangePassword")" role="tab" data-toggle="tab">@Resources.password</a>
     </li>
     @if (Model.EnableSecurityCode)
     {
         <li role="presentation" id="securityCodeNav">
-            <a href="@MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode")" role="tab"
+            <a class="open-link" data-url="@MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode")" role="tab"
                 data-toggle="tab">@Security.SecurityCode</a>
         </li>
     }
@@ -23,12 +23,12 @@
         <a role="tab" data-toggle="tab">@Resources.EditProfilePicture</a>
     </li>
     <li role="presentation" id="otpNav">
-        <a href="@MicroSites.MainUrl("~/Otp/SetupOtp")" role="tab" data-toggle="tab">OTP</a>
+        <a class="open-link" data-url="@MicroSites.MainUrl("~/Otp/SetupOtp")" role="tab" data-toggle="tab">OTP</a>
     </li>
     @if (Model.IsOfferProtectedMode)
     {
         <li role="presentation">
-            @Html.ActionLink(Resources.ProtectionCode, "Setup", "ProtectionCode")
+            <a class="open-link" data-url="@MicroSites.MainUrl("~/ProtectionCode/Setup")">@Resources.ProtectionCode</a>
         </li>
     }
 </ul>
@@ -56,4 +56,9 @@ window.__vite_plugin_react_preamble_installed__ = true
 </script>
 <script type="module" src=@("http://localhost:5173/@vite/client")></script>
 <script type="module" src="http://localhost:5173/src/profile-picture.tsx"></script> *@
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".open-link").unbind().bind('click', function(event) { window.top.alpha.viewDataURL(event); });
+        });
+    </script>
 }

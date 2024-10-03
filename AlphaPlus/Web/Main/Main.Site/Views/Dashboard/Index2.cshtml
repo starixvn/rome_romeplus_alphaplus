@@ -14,6 +14,8 @@
     @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/default-home")
     @StaticResources.RenderStylesWithMediaDarkMode(767, "~/assets/bundles/home-mobile-calculate-07")
     @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagScript()
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.Render("/bundles/site-main/dashboard/dashboard-default")
 </head>
 
 <body>
@@ -39,8 +41,6 @@
     <!--[if IE 8]><!-->
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/es5-shim")
     <!--<![endif]-->
-    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
-    @StaticResources.AssetScripts.Render("/bundles/site-main/dashboard/dashboard-default")
     @* @StaticResources.RenderScripts("~/assets/bundles/default-dashboard") *@
     <script src="~/assets/bundles/default-dashboard.js" type="text/javascript" asp-append-version="true"></script>
 </body>

@@ -12,7 +12,7 @@ public static class HtmlHelper
                 <div class='col-xs-7'>{label}</div>
                 <div class='col-xs-5 value {(value < 0 ? "text-red" : string.Empty)}'>
                     {(canViewReports
-                        ? $"<a id='{id}' href='{url}' class='btn-link'>{value.ToString("#,##0.00")}</a>"
+                        ? $"<a id='{id}' data-url='{url}' class='btn-link open-link'>{value.ToString("#,##0.00")}</a>"
                         : $"<strong>{value.ToString("#,##0.00")}</strong>")}
                 </div>
             </div>

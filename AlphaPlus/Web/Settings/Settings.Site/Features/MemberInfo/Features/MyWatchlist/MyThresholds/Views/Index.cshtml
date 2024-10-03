@@ -34,10 +34,10 @@
     {
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation">
-                @Html.ActionLink(Resources.ReachedThreshold, "Index", "ReachedThreshold")
+                <a class="open-link" data-url="@MicroSites.SettingUrl("~/ReachedThreshold/Index")">@Resources.ReachedThreshold</a>
             </li>
             <li role="presentation">
-                @Html.ActionLink(Resources.MyWatchlist, "Index", "MyWatchlistAccounts")
+                <a class="open-link" data-url="@MicroSites.SettingUrl("~/MyWatchListAccounts/Index")">@Resources.MyWatchlist</a>
             </li>
             <li role="presentation" class="active">
                 <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.MyThresholds</a>

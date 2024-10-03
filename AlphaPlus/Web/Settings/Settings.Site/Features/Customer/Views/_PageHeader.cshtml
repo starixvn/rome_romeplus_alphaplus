@@ -12,7 +12,7 @@
 
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation">
-        @Html.ActionLink(Resources.SearchAndCopy, "Index", "CopyAccount")
+        <a class="open-link" data-url="@MicroSites.SettingUrl("~/CopyAccount/Index")">@Resources.SearchAndCopy</a>
     </li>
     <li role="presentation" class="active">
         <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.FullMode</a>
@@ -20,16 +20,11 @@
     @if (Model.IsCreateMember)
     {
         <li class="has-icon" role="presentation">
-            @Html.ActionLink(Resources.QRCode, "Index", "QRCodeMemberSignIn")
+            <a class="open-link" data-url="@MicroSites.SettingUrl("~/QRCodeMemberSignIn/Index")">@Resources.QRCode</a>
         </li>
     }
     <li role="presentation" class="new-function">
-        @Html.ActionLink(Resources.LiteMode, "Index", "CreateAccount", new
-            {
-                lng = Model.Language,
-                isDarkMode =
-                 Model.IsDarkMode.ToString().ToLowerInvariant()
-            }, null)
+        <a class="open-link" data-url="@MicroSites.SettingUrl($"~/CreateAccount/Index?lng={Model.Language}&isDarkMode={Model.IsDarkMode.ToString().ToLowerInvariant()}")">@Resources.LiteMode</a>
         <span class="bage-new">@Resources.lblNew</span>
     </li>
 

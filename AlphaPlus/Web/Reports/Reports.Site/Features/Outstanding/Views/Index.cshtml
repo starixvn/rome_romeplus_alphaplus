@@ -113,7 +113,7 @@
                         <td class="text-left" data-islink="true">
                             @if (isAgentLevel)
                             {
-                                <a href="@Model.GetBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
+                                <a class="open-link" data-url="@Model.GetBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
                             }
                             else
                             {

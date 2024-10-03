@@ -26,6 +26,7 @@ class SetupOtp {
 
     isAlreadySetup: boolean;
     previousStatus: boolean;
+    topWindow: any;
 
     resources = {
         removeOtpWarning: (<HTMLInputElement>document.getElementById('RemoveOtpWarning')).value,
@@ -40,6 +41,7 @@ class SetupOtp {
         this.$ = $;
         this.bootbox = bootbox;
         this.clipboard = clipboard;
+        this.topWindow = window.top;
     }
 
     init = () => {
@@ -50,6 +52,7 @@ class SetupOtp {
         this.previousStatus = this.$cbkEnableSophosOtp.data('is-checked');
         var qrCode = new QRCode('qr-code', { width: 196, height: 196, correctLevel: QRCode.CorrectLevel.Q });
         qrCode.makeCode(this.$otpUrl);
+        this.$(".open-link").unbind().bind('click', event => { this.topWindow.alpha.viewDataURL(event); });
     };
 
     cachedDomElements = () => {

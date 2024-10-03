@@ -30,13 +30,13 @@
 <div class="my-watchlist-accounts">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation">
-            @Html.ActionLink(Resources.ReachedThreshold, "Index", "ReachedThreshold")
+            <a class="open-link" data-url="@MicroSites.SettingUrl("~/ReachedThreshold/Index")">@Resources.ReachedThreshold</a>
         </li>
         <li role="presentation" class="active">
             <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.MyWatchlist</a>
         </li>
         <li role="presentation">
-            @Html.ActionLink(Resources.MyThresholds, "Index", "MyThresholds")
+            <a class="open-link" data-url="@MicroSites.SettingUrl("~/MyThresholds/Index")">@Resources.MyThresholds</a>
         </li>
         @await Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/InfoUserGuideTabs.cshtml", Model.UserGuideLink)
     </ul>

@@ -25,27 +25,17 @@
         <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.SearchAndCopy</a>
     </li>
     <li role="presentation">
-        @Html.ActionLink(Resources.FullMode, "Create", "Customer", new
-            {
-                lng = Model.Language,
-                isDarkMode =
-                 Model.IsDarkMode.ToString().ToLowerInvariant()
-            }, null)
+        <a class="open-link" data-url="@MicroSites.SettingUrl($"~/Customer/Create?lng={Model.Language}&isDarkMode={Model.IsDarkMode.ToString().ToLowerInvariant()}")">@Resources.FullMode</a>
     </li>
     @if (Model.IsCreateMember)
     {
         <li class="has-icon" role="presentation">
-            @Html.ActionLink(Resources.QRCode, "Index", "QRCodeMemberSignIn")
+            <a class="open-link" data-url="@MicroSites.SettingUrl("~/QRCodeMemberSignIn/Index")">@Resources.QRCode</a>
         </li>
     }
 
     <li role="presentation" class="new-function">
-        @Html.ActionLink(Resources.LiteMode, "Index", "CreateAccount", new
-            {
-                lng = Model.Language,
-                isDarkMode =
-                 Model.IsDarkMode.ToString().ToLowerInvariant()
-            }, null)
+        <a class="open-link" data-url="@MicroSites.SettingUrl($"~/CreateAccount/Index?lng={Model.Language}&isDarkMode={Model.IsDarkMode.ToString().ToLowerInvariant()}")">@Resources.LiteMode</a>
         <span class="bage-new">@Resources.lblNew</span>
     </li>
 

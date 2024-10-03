@@ -18,22 +18,22 @@
     @GoogleAnalyticHelper.GtagNoScript()
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation">
-            <a href="@MicroSites.MainUrl($"~/Password/ChangePassword")" role="tab"
+            <a class="open-link" data-url="@MicroSites.MainUrl($"~/Password/ChangePassword")" role="tab"
                 data-toggle="tab">@Security.Password</a>
         </li>
         @if (Model.EnableSecurityCode)
         {
             <li role="presentation" id="securityCodeNav">
-                <a href="@MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode")" role="tab"
+                <a class="open-link" data-url="@MicroSites.MainUrl("~/SecurityCode/ChangeUserOwnSecurityCode")" role="tab"
                     data-toggle="tab">@Security.SecurityCode</a>
             </li>
         }
         <li role="presentation">
             <a
-                href="@MicroSites.AccountInfoUrl($"~/ProfilePicture?lng={userSession.Language}")">@Resources.EditProfilePicture</a>
+                class="open-link" data-url="@MicroSites.AccountInfoUrl($"~/ProfilePicture?lng={userSession.Language}")">@Resources.EditProfilePicture</a>
         </li>
         <li role="presentation">
-            @Html.ActionLink("OTP", "SetUpOtp", "OTP")
+            <a class="open-link" data-url="@MicroSites.MainUrl("~/OTP/SetUpOtp")">OTP</a>
         </li>
         <li role="presentation" class="active">
             <a href="#protectionCode" aria-controls="home" role="tab" data-toggle="tab">@Resources.ProtectionCode</a>

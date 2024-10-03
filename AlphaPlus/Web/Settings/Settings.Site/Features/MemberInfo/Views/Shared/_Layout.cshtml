@@ -22,5 +22,10 @@
     @StaticResources.AssetScripts.Render("/bundles/site-memberinfo/default")
     @RenderSection("Scripts", required: false)
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
+    <script>
+        $(document).ready(function () {
+            $(".open-link").unbind().bind('click', function (event) { top.alpha.viewDataURL(event); });
+        });
+    </script>
 </body>
 </html>

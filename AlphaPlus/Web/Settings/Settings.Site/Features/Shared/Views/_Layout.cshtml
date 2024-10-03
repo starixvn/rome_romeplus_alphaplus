@@ -20,6 +20,11 @@
     @StaticResources.AssetScripts.Render("/bundles/site-memberinfo/default")
     @StaticResources.RenderScripts("~/bundles/shared/settings")
     @RenderSection("Scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $(".open-link").unbind().bind('click', function (event) { top.alpha.viewDataURL(event); });
+        });
+    </script>
 </body>
 
 </html>

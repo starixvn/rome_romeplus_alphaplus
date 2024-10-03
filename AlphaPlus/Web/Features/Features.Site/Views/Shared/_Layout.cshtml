@@ -24,7 +24,7 @@
     <div class="scroll-tabs">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="@(Model.MessageType == MessageType.Normal ? "active" : string.Empty)">
-                <a href="@Url.Action("Index", "MessageHistory", new { messageType = MessageType.Normal })">
+                <a class="open-link" data-url="@Url.Action("Index", "MessageHistory", new { messageType = MessageType.Normal })">
                     <span class="hidden-mobile">
                         @Resources.normalAnnouncement
                     </span>
@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li role="presentation" class="@(Model.MessageType == MessageType.Special ? "active" : string.Empty)">
-                <a href="@Url.Action("Index", "MessageHistory", new { messageType = MessageType.Special })">
+                <a class="open-link" data-url="@Url.Action("Index", "MessageHistory", new { messageType = MessageType.Special })">
                     <span class="hidden-mobile">
                         @Resources.specialAnnouncement
                     </span>
@@ -52,7 +52,7 @@
                 </a>
             </li>
             <li role="presentation" class="@(Model.MessageType == MessageType.System ? "active" : string.Empty) ">
-                <a href="@Url.Action("Index", "Announcement", new { messageType = MessageType.System })">
+                <a class="open-link" data-url="@Url.Action("Index", "Announcement", new { messageType = MessageType.System })">
                     <span class="hidden-mobile">
                         @Resources.systemAnnouncement
                     </span>
@@ -68,7 +68,7 @@
             @if (isShowPersonalTab)
             {
                 <li role="presentation" class="@(Model.MessageType == MessageType.Personal ? "active" : string.Empty)">
-                    <a href="@Url.Action("Index", "MessageHistory", new { messageType = MessageType.Personal })">
+                    <a class="open-link" data-url="@Url.Action("Index", "MessageHistory", new { messageType = MessageType.Personal })">
                         <span class="hidden-mobile">
                             @Resources.personalMessage
                         </span>
@@ -91,5 +91,10 @@
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-messages/message-default")
     @RenderSection("Scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $(".open-link").unbind().bind('click', function (event) { top.alpha.viewDataURL(event); });
+        });
+    </script>
 </body>
 </html>

@@ -19,7 +19,7 @@
                     <div class="refno">
                         @if (Model.CanViewBetList)
                         {
-                            <a href="@Model.GetBetListUrl(row.CustId, row.Username, row.TransId)">@row.TransId</a>
+                            <a class="open-link" data-url="@Model.GetBetListUrl(row.CustId, row.Username, row.TransId)">@row.TransId</a>
                         }
                         else
                         {

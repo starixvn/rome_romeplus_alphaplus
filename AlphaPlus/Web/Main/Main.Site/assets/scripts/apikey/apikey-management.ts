@@ -25,6 +25,8 @@ class ApiKeyManagement {
 
     this.registerApiKeyEditEvent();
     this.registerApiKeyRevokeEvent();
+
+    this.$(".open-link").unbind().bind('click', event => { this.topWindow.alpha.viewDataURL(event); });
   };
 
   resources = {

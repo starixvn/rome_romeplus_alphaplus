@@ -83,3 +83,8 @@
     }
 </div>
 @Html.Hidden("SessionID", Model.SessionID)
+<script>
+	$(document).ready(function () {
+		$(".open-link").unbind().bind('click', function (event) { alpha.viewDataURL(event); });
+	});
+</script>

@@ -47,3 +47,8 @@
     @Html.NumericRow(Model.GivenCreditLabel, balanceInfo.GivenCredit)
     @Html.NumericRow(Model.TotalDownlineCreditLabel, balanceInfo.MemberCredit)
 </div>
+<script>
+	$(document).ready(function () {
+		$(".open-link").unbind().bind('click', function (event) { alpha.viewDataURL(event); });
+	});
+</script>
