@@ -17,6 +17,7 @@ class QRCodeMemberSignIn {
     credit: number;
     creditMin: number;
     creditMax: number;
+    availableCredit: number;
 
     $messageContainer: JQuery;
     $messageContent: JQuery;
@@ -37,6 +38,10 @@ class QRCodeMemberSignIn {
 
     showCreateFromUnopenedMemberMessage: boolean;
     cannotCreateClosedMemberQRCodeMessage: string;
+    liveText: string;
+    creditHint: string;
+    memberMaxCreditHint: string;
+    $creditHintTooltip: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -57,6 +62,29 @@ class QRCodeMemberSignIn {
         this.checkErrorAndShowMessage();
     };
 
+    registerTooltip = () => {
+        this.$('[data-toggle="tooltip"]').tooltip({ html: true });
+
+        this.hideTooltipOnTouchOutInMobile();
+    }
+
+    hideTooltipOnTouchOutInMobile = () => {
+        const $tooltip = this.$('[data-toggle="tooltip"]');
+
+        this.$(window.document).on('touchend', (event) => {
+            const target = this.$(event.target);
+
+            $tooltip.tooltip('hide');
+
+            if (target.attr('data-toggle') === 'tooltip') {
+                target.tooltip('show');
+            }
+            else if (target.parent().attr('data-toggle') === 'tooltip') {
+                target.parent().tooltip('show');
+            }
+        });
+    }
+
     bindingEvent = () => {
         this.bidingEasyAutoComplete();
         this.$('#qrCodeMemberSignInForm').submit(event => this.submitEvent(event));
@@ -74,6 +102,8 @@ class QRCodeMemberSignIn {
             numeralDecimalMark: '.',
             delimiter: ','
         });
+
+        this.registerTooltip();
     }
 
     checkExistedUsernameByChangeSuffix = () => {
@@ -99,6 +129,14 @@ class QRCodeMemberSignIn {
         this.usernameIsInvalid = this.$('#UsernameIsInvalid').val();
         this.iconMessageUsernameCopyFrom = 'icon-message-UsernameCopyFrom';
         this.cannotCreateClosedMemberQRCodeMessage = this.$('#CannotCreateClosedMemberQRCode').val();
+        this.liveText = this.$("#Live").val();
+        this.$creditHintTooltip = this.$("#credit-hint-tooltip");
+        this.creditHint = this.$("#CreditHint").val();
+        this.memberMaxCreditHint = this.$("#MemberMaxCreditHint").val();
+    }
+
+    formatNumber = (number: number) => {
+        return (Math.trunc(number * 100) / 100).toLocaleString("en-US");
     }
 
     getMemberCredit = () => {
@@ -118,15 +156,23 @@ class QRCodeMemberSignIn {
                     this.$(`#${this.iconMessageUsernameCopyFrom}`).removeClass().addClass('icon-close') :
                     this.$messageContainer.removeClass('msg msg-error').addClass('hidden');
 
-                const numberFormat = '0,0.##';
                 this.creditMin = result.CreditMin;
-                this.creditMax = result.CreditMax;
+                this.availableCredit = result.CreditMax
+                this.creditMax = result.MemberMaxCredit ? Math.min(result.MemberMaxCredit, result.CreditMax) : result.CreditMax;
                 this.givenCreditMustBeBetweenMinMaxMessage = result.GivenCreditMustBeBetweenMinMaxMessage;
 
                 this.$creditRange.removeClass('hidden');
-                this.$creditMinLabel.html(numeral(result.CreditMin).format(numberFormat));
-                this.$creditMaxLabel.html(numeral(result.CreditMax).format(numberFormat));
-                this.$creditInput.val(numeral(result.Credit).format(numberFormat));
+                this.$creditMinLabel.html(this.formatNumber(this.creditMin));
+                this.$creditMaxLabel.html(this.formatNumber(this.creditMax));
+                this.$creditInput.val(this.formatNumber(result.Credit));
+
+                console.log(result.MemberMaxCredit);
+                if (result.MemberMaxCredit) {
+                    const creditHint = `${this.creditHint.replace("{0}", this.formatNumber(this.availableCredit))}<br>${this.memberMaxCreditHint.replace("{0}", this.formatNumber(result.MemberMaxCredit))}`;
+                    this.$creditHintTooltip.removeClass("hidden").attr("data-original-title", creditHint);
+                } else {
+                    this.$creditHintTooltip.addClass("hidden");
+                }
 
                 this.validateCredit();
                 this.checkErrorAndShowMessage();
@@ -137,6 +183,21 @@ class QRCodeMemberSignIn {
     }
 
     showErrorMessage = (message) => {
+        this.$messageContainer.removeClass('hidden').addClass('msg msg-error');
+        this.$messageContent.html(message);
+    }
+
+    showMessageContent = (messageContent) => {
+        var message = `<div class="main-message">${messageContent.MainMessage}</div>`
+        if (messageContent.SubMessages && messageContent.SubMessages.length) {
+            messageContent.SubMessages.forEach((subMessage) => {
+                message += `<div class="sub-message">`
+                if (subMessage.IsLive) {
+                    message += `<span class="live-badge">${this.liveText}</span> `;
+                }
+                message += `${subMessage.Message}</div>`;
+            });
+        }
         this.$messageContainer.removeClass('hidden').addClass('msg msg-error');
         this.$messageContent.html(message);
     }
@@ -197,7 +258,11 @@ class QRCodeMemberSignIn {
                     }, 1000);
                 }
                 else {
-                    this.showErrorMessage(result.ErrMsg);
+                    if (result.MsgType) {
+                        this.showMessageContent(result.MessageContent);
+                    } else {
+                        this.showErrorMessage(result.ErrMsg);
+                    }
                     this.$.unblockUI();
                 }
             },
@@ -249,8 +314,11 @@ class QRCodeMemberSignIn {
     }
 
     blurEventCustomerCopyFrom = () => {
-        this.checkExistedCustomer(this.$usernameCopyFrom.val(), this.iconMessageUsernameCopyFrom);
-        this.getMemberCredit();
+        var sourceUsername: string = this.$usernameCopyFrom.val().trim();
+        if (sourceUsername && sourceUsername.length) {
+            this.checkExistedCustomer(this.$usernameCopyFrom.val(), this.iconMessageUsernameCopyFrom);
+            this.getMemberCredit();
+        }
     }
 
     bidingEasyAutoComplete = () => {
@@ -280,7 +348,13 @@ class QRCodeMemberSignIn {
             }, 300);
         });
 
-        this.$usernameCopyFrom.on('input', this.checkErrorAndShowMessage);
+        this.$usernameCopyFrom.on('input', () => {
+            this.$(`#${this.iconMessageUsernameCopyFrom}`).removeClass().addClass('hidden');
+            if (!this.$usernameCopyFrom.val()) {
+                this.inValidCustomerCopyFrom = true;
+                this.checkErrorAndShowMessage();
+            }
+        });
     }
 
     checkErrorAndShowMessage = () => {
