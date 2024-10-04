@@ -1,6 +1,7 @@
+using Fanex.Data;
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.Auth.Criteria;
+namespace AlphaPlus.Core.Criteria;
 
 public class CheckMultipleCustomerBelongingCommand(int sessionCustId, int subAccId, string custIds) : NonQueryCommand
 {
@@ -8,6 +9,7 @@ public class CheckMultipleCustomerBelongingCommand(int sessionCustId, int subAcc
 
     public int SubAccountId { get; } = subAccId;
 
+    [SpParam(SqlParamName = "custid")]
     public string CustIds { get; } = custIds;
 
     public byte RoleId { get; set; } = 0;
