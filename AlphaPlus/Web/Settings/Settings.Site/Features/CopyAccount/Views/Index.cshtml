@@ -188,12 +188,15 @@
                         @Html.Hidden("ActorUsername", Model.ActorUsername)
                         @Html.Hidden("CreditHint", Resources.creditHint)
                         @Html.Hidden("MemberMaxCreditHint", Resources.memberMaxCreditHint)
+                        @Html.Hidden("lbl-credit", Resources.Credit)
+                        @Html.Hidden("lbl-username", Resources.Username)
+                        @Html.Hidden("lbl-domain", Resources.Domain)
                         @Html.AntiForgeryToken()
                     </form>
                     <div id="result" class="result hidden">
                     </div>
                     @Html.Hidden("copy", Resources.Copy)
-                    @Html.Hidden("copied", Resources.Copied)
+                    @Html.Hidden("lbl-copied", Resources.Copied)
                 </div>
             </div>
         }
