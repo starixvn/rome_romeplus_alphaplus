@@ -147,7 +147,7 @@ class QRCodeMemberSignIn {
             headers: this.getHeadersForPostRequest(),
             data: { SearchAccountName: this.$usernameCopyFrom.val() },
             dataType: 'json',
-            url: "QRCodeMemberSignIn/GetMemberCreditAndStatus",
+            url: "/settings/QRCodeMemberSignIn/GetMemberCreditAndStatus",
             success: result => {
                 this.$.unblockUI();
                 this.showCreateFromUnopenedMemberMessage = result.Status !== null && result.Status.toUpperCase() !== 'OPEN';
@@ -249,7 +249,7 @@ class QRCodeMemberSignIn {
             headers: this.getHeadersForPostRequest(),
             data: data,
             dataType: 'json',
-            url: "QRCodeMemberSignIn/CreateAccount",
+            url: "/settings/QRCodeMemberSignIn/CreateAccount",
             success: (result, status, xqr) => {
                 if (result.ErrCode === 0 || status === "302" || xqr.status === 302) {
                     localStorage.setItem("memberNameCopyFrom", data.UsernameCopyFrom);
