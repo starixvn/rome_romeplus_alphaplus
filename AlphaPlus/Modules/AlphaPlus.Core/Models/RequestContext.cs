@@ -79,18 +79,21 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                     continue;
                 }
 
-                if (!string.IsNullOrEmpty(request.Query[custIdQueryStringParamName].ToString()))
+                if (!string.IsNullOrEmpty(request.Query[custIdQueryStringParamName]))
                 {
-                    _custId = Convert.ToInt32(request.Query[custIdQueryStringParamName].ToString());
+                    int.TryParse(request.Query[custIdQueryStringParamName], out _custId);
                     if (_custId > 0)
                     {
                         break;
                     }
 
-                    _custId = Convert.ToInt32(request.Form[custIdQueryStringParamName].ToString());
-                    if (_custId > 0)
+                    if (request.HasFormContentType)
                     {
-                        break;
+                        int.TryParse(request.Form[custIdQueryStringParamName], out _custId);
+                        if (_custId > 0)
+                        {
+                            break;
+                        }
                     }
                 }
             }
