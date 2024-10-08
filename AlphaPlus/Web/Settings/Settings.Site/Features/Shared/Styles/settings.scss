@@ -241,7 +241,19 @@ html {
 .not-reviewed {
     @extend %btn;
     width: 110px;
-    background: url('./images/not-reviewed.png');
+    background-color: #2489D7;
+    border-radius: 3px;
+    position: relative;
+    &:before{
+        position: absolute;
+        content: "";
+        width: 20px;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #ADADAD;
+        border-radius: 3px;
+    }
 }
 
 .nav-tabs {
