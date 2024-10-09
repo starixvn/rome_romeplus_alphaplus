@@ -1,6 +1,7 @@
 using System.Text.Json;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Shared.AppResources.Settings;
@@ -10,13 +11,13 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
     public abstract class BalanceInfoViewModelBase : IBalanceInfoViewModel
     {
         private readonly bool isAllDayBalanceInfo;
-        protected readonly Account account;
+        protected readonly CustomerInfoModel account;
         protected readonly CreditInfo creditInfo;
-        protected readonly GetAccountQuery message;
+        protected readonly CustomerInfoQuery message;
 
         protected BalanceInfoViewModelBase(
-            GetAccountQuery message,
-            Account account,
+            CustomerInfoQuery message,
+            CustomerInfoModel account,
             CreditInfo creditInfo,
             bool isAllDayBalanceInfo)
         {

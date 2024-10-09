@@ -1,4 +1,3 @@
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerStatus;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineList;
@@ -6,7 +5,9 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.G
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Transfer.Requests;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Utilities.IP;
 using MediatR;
@@ -15,13 +16,15 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 {
     public class SearchAccountHandler(ISearchAccountService searchAccountService, IPService ipService) :
         IRequestHandler<IndexQuery, IndexViewModel>,
-        IRequestHandler<GetAccountQuery, AccountViewModel>,
+        IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
         IRequestHandler<GetLastTxnQuery, string>,
         IRequestHandler<OnlineListQuery, IEnumerable<OnlineUser>>,
         IRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IRequestHandler<GivenCreditCommand, Result>,
-        IRequestHandler<CustomerNonProductStatusCommand, Result>
+        IRequestHandler<CustomerNonProductStatusCommand, Result>,
+        IRequestHandler<MemberBalanceInfoQuery, IBalanceInfoViewModel>,
+        IRequestHandler<UpdateAllDayBalanceTransferRequest, Result>
     {
         private readonly ISearchAccountService searchAccountService = searchAccountService;
         private readonly IPService ipService = ipService;
@@ -29,9 +32,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         public Task<IndexViewModel> Handle(IndexQuery request, CancellationToken cancellationToken)
             => Task.FromResult(new IndexViewModel(request));
 
-        public async Task<AccountViewModel> Handle(GetAccountQuery request, CancellationToken cancellationToken)
+        public async Task<CustomerInfoViewModel> Handle(CustomerInfoQuery request, CancellationToken cancellationToken)
         {
-            var account = await searchAccountService.GetAccount(request.Username, request.ViewerId, request.ViewerLevelId);
+            var account = await searchAccountService.GetCustomerInfo(request.SearchAccountName, request.ViewerId, request.ViewerLevelId);
             if (account != null)
             {
                 var balanceInfo = BuildBalanceInfoViewModel(request, account, await searchAccountService.GetCreditInfo(account.CustId),
@@ -43,19 +46,20 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
                 account.LastLoginIP = formatedIP.IP;
                 account.AllowOpenInfoPopup = formatedIP.AllowOpenInfoPopup;
 
-                return new AccountViewModel(
+                return new CustomerInfoViewModel(
                     request,
                     account,
                     balanceInfo,
-                    await searchAccountService.CheckFirstLoginByQRCode(account.CustId));
+                    await searchAccountService.CheckFirstLoginByQRCode(account.CustId),
+                    request.CanCreateAccount);
             }
 
             return null;
         }
 
         private static IBalanceInfoViewModel BuildBalanceInfoViewModel(
-            GetAccountQuery message,
-            Account customerInfo,
+            CustomerInfoQuery message,
+            CustomerInfoModel customerInfo,
             CreditInfo creditInfo,
             IBalanceInfoModel balanceInfoModel,
             bool isAllDayBalanceInfo)
@@ -116,5 +120,48 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 
         public Task<Result> Handle(CustomerNonProductStatusCommand request, CancellationToken cancellationToken)
             => searchAccountService.UpdateCustomerStatus(request);
+
+        public async Task<IBalanceInfoViewModel> Handle(MemberBalanceInfoQuery message, CancellationToken cancellationToken)
+        {
+            var customerInfoQuery = new CustomerInfoQuery
+            {
+                SearchAccountName = message.CustName
+            };
+            var customerInfo = await searchAccountService.GetCustomerInfo(
+                customerInfoQuery.SearchAccountName,
+                customerInfoQuery.ActorId,
+                customerInfoQuery.ActorRoleId);
+
+            if (customerInfo != null && Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel())
+            {
+                var creditInfoTask = searchAccountService.GetCreditInfo(customerInfo.CustId);
+                var balanceInfoTask = searchAccountService.GetBalanceInfo(customerInfo.CustId, UserLevel.Member.Value, message.AGIP);
+                var isAllDayBalanceTransferTask = searchAccountService.IsAllDayBalanceTransfer(customerInfoQuery.ActorId);
+                await Task.WhenAll(creditInfoTask, balanceInfoTask, isAllDayBalanceTransferTask);
+
+                return BuildMemberBalanceInfoViewModel(customerInfoQuery, customerInfo, await creditInfoTask, await balanceInfoTask, await isAllDayBalanceTransferTask);
+            }
+
+            return null;
+        }
+
+        public Task<Result> Handle(UpdateAllDayBalanceTransferRequest message, CancellationToken cancellationToken)
+            => searchAccountService.UpdateAllDayBalanceTransfer(
+               new UpdateAllDayBalanceTransferParam(
+                   message.CustId,
+                   message.ActorId,
+                   message.Language,
+                   message.IP,
+                   message.StatusValue,
+                   message.Currency,
+                   message.AGIP));
+
+        internal static IBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
+            CustomerInfoQuery message,
+            CustomerInfoModel customerInfo,
+            CreditInfo creditInfo,
+            IBalanceInfoModel balanceInfoModel,
+            bool isAllDayBalanceInfo)
+            => new MemberBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel, isAllDayBalanceInfo);
     }
 }

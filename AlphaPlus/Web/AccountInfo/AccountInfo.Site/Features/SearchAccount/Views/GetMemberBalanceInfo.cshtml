@@ -1,0 +1,74 @@
+﻿@using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
+@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@using AlphaPlus.Shared.AppResources.Common
+
+@{
+    ViewBag.Title = $"{CommonResx.BalanceInfo} - {AlphaContext.Current.Request.Query["custname"]}";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@model MemberBalanceInfoViewModel
+
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/SearchAccount/Bundles/member-balance-info")
+}
+
+@if (Model == null)
+{
+    <h2 class="text-center">@Resources.NoInformationIsAvailable</h2>
+}
+else
+{
+    <div class="member-balance-info">
+        <div class="col-xs-12 form-group">
+            <div class="col-xs-7">@CommonResx.TotalBalance</div>
+            <div class="value col-xs-5">@{
+                    FormatDecimal(Model.TotalBalance);
+                }</div>
+        </div>
+        <div class="col-xs-12 form-group">
+            <div class="col-xs-7">@Resources.YesterdayBalance</div>
+            <div class="value col-xs-5">@{
+                    FormatDecimal(Model.YesterdayBalance);
+                }</div>
+        </div>
+        <div class="col-xs-12 form-group">
+            <div class="col-xs-7">@Resources.Outstanding</div>
+            <div class="value col-xs-5">@{
+                    FormatDecimal(Model.Outstanding);
+                }</div>
+        </div>
+        <div class="col-xs-12 form-group">
+            <div class="col-xs-7">@Resources.PendingTransfer3rd</div>
+            <div class="value col-xs-5">@{
+                    FormatDecimal(Model.PendingTransfer3rd);
+                }</div>
+        </div>
+        <div class="col-xs-12 form-group">
+            <div class="col-xs-7">@Resources.GivenCredit</div>
+            <div class="value col-xs-5">@{
+                    FormatDecimal(Model.GivenCredit);
+                }</div>
+        </div>
+        <div class="col-xs-12 form-group">
+            <div class="col-xs-7">@CommonResx.NetPosition</div>
+            <div class="value col-xs-5">@{
+                    FormatDecimal(Model.NetPosition);
+                }</div>
+        </div>
+        <div class="col-xs-12 form-group">
+            <div class="col-xs-7">@Resources.BetCredit</div>
+            <div class="value col-xs-5">@{
+                    FormatDecimal(Model.BetCredit);
+                }</div>
+        </div>
+    </div>
+}
+
+@functions
+{
+    void FormatDecimal(decimal value)
+    {
+        <span class="bold @(value >= 0 ? "number" : "number-red")">@value.ToString("N2")</span>
+    }
+}

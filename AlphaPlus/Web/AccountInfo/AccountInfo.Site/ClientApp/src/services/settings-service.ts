@@ -37,7 +37,7 @@ const SettingsService = {
             .then((response) => response.data);
     },
     GetCustomerInfo: async (username: string) => {
-        const response = await axiosInstance.get<Customer>(`SearchAccount/GetAccount?username=${username}`);
+        const response = await axiosInstance.get<Customer>(`SearchAccount/GetCustomerInfo?SearchAccountName=${username}`);
         return response.data;
     },
     GetDownlineList: async (custId: number, roleId: number, pageIndex = 1, statusId = 1, totalPages = 0) => {

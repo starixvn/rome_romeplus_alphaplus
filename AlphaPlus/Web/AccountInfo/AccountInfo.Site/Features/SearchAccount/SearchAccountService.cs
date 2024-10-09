@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Resources;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance.Criteria;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Criteria;
@@ -8,16 +10,19 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.U
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.LoginInfo;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
+using Newtonsoft.Json;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 {
     public interface ISearchAccountService
     {
-        Task<Account> GetAccount(string username, int uplineId, int roleId);
+        Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId);
 
         Task<CreditInfo> GetCreditInfo(int custId);
 
@@ -38,6 +43,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         Task<Result> UpdateGivenCredit(GivenCreditCommand param);
 
         Task<Result> UpdateCustomerStatus(CustomerNonProductStatusCommand param);
+
+        Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal);
+
+        Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param);
     }
 
 
@@ -45,15 +54,21 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
     {
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
         private readonly IPService ipService = ipService;
+        private const string English = "en-US";
+        private const string ChineseTraditional = "zh-TW";
+        private const string ChineseSimplified = "zh-CN";
+        private const string Thai = "th-TH";
+        private const string Vietnamese = "vi-VN";
+
         private readonly int failErrorCode = 100;
         private readonly HttpClient httpClient = httpClient;
 
-        public async Task<Account> GetAccount(string username, int uplineId, int roleId)
+        public async Task<CustomerInfoModel> GetCustomerInfo(string username, int uplineId, int roleId)
         {
-            var customerInfo = await dynamicRepository.GetAsync<Account>(new SelectCustomerInfoCriteria(username, uplineId));
+            var customerInfo = await dynamicRepository.GetAsync<CustomerInfoModel>(new SelectCustomerInfoCriteria(username, uplineId));
             if (customerInfo != null)
             {
-                var custClosedReason = await dynamicRepository.GetAsync<CustomerClosedReason>(
+                var custClosedReason = await dynamicRepository.GetAsync<CustomerClosedReasonModel>(
                     new SelectClosedReasonCriteria(customerInfo.CustId, customerInfo.RoleId));
                 customerInfo.ClosedReason = custClosedReason?.ClosedReason ?? 0;
 
@@ -274,6 +289,151 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             };
             await dynamicRepository.ExecuteAsync(command);
             return new Result(command.ErrCode, command.ErrMsg);
+        }
+
+        public async Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal)
+        {
+            var criteria = new CheckMultipleCustomersBelongingCriteria(actorId, subAccountId, custIds);
+
+            await dynamicRepository.ExecuteAsync(criteria);
+
+            return criteria.RoleId > 0 && (isInternal || criteria.IsActive);
+        }
+
+        public async Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param)
+        {
+            if (!await IsAllDayBalanceTransfer(param.ActorId))
+            {
+                const int DisallowedAllDayBalanceTransferError = 6001;
+                return Result.CreateErrorResult(Resources.DisallowedAllDayBalanceTransferError, DisallowedAllDayBalanceTransferError);
+            }
+
+            if (IsAutoTransferAffect(param.Currency))
+            {
+                var autoTransferStatus = await GetAutoTransferJobStatus(param.AGIP);
+                if (autoTransferStatus)
+                {
+                    return Result.CreateErrorResult(AlphaPlus.Shared.AppResources.Settings.Resources.ADBTChangeFailed_AutoJobRunning, 1);
+                }
+            }
+
+            var command = new UpdateAllDayBalanceTransferCommand(
+                param.SearchAccountId,
+                param.ActorId,
+                param.Language,
+                param.IP,
+                param.StatusValue);
+            await dynamicRepository.ExecuteAsync(command);
+            var result = new Result(int.Parse(command.ErrCode), command.ErrMsg);
+
+            if (result.IsSuccessful)
+            {
+                TurnOffAutoTransfer(param);
+            }
+
+            return result;
+        }
+
+        private void TurnOffAutoTransfer(UpdateAllDayBalanceTransferParam param)
+        {
+            if (!param.StatusValue)
+            {
+                return;
+            }
+
+            var turnOffCriteria = new TurnOffAutoTransferCriteria
+            {
+                UplineId = param.SearchAccountId,
+                Creator = param.ActorId,
+                IsAllDownline = true,
+                IP = param.IP
+            };
+
+            var affects = dynamicRepository.Fetch<AffectedDownlinesInfoModel>(turnOffCriteria);
+
+            if (!affects.Any())
+            {
+                return;
+            }
+
+            var rm = Resources.ResourceManager;
+            foreach (var row in affects)
+            {
+                var uplineId = row.CustId;
+
+                var toastMessageCriteria = new InsertToastMessageCriteria(
+                    uplineId,
+                    param.ActorId,
+                    GetToastMessageContent(rm, English),
+                    GetToastMessageContent(rm, ChineseSimplified),
+                    GetToastMessageContent(rm, ChineseTraditional),
+                    GetToastMessageContent(rm, Thai),
+                    GetToastMessageContent(rm, Vietnamese));
+                dynamicRepository.Execute(toastMessageCriteria);
+
+                var uplineName = row.Username;
+                var downlines = row.Names;
+                var personalMessageCriteria = new InsertPersonalMessageCriteria(
+                    GetPersonalMessage(rm, English, downlines),
+                    GetPersonalMessage(rm, ChineseTraditional, downlines),
+                    GetPersonalMessage(rm, ChineseSimplified, downlines),
+                    GetPersonalMessage(rm, Thai, downlines),
+                    GetPersonalMessage(rm, Vietnamese, downlines));
+
+                dynamicRepository.Execute(personalMessageCriteria);
+
+                if (personalMessageCriteria.MessageIDOutput != 0)
+                {
+                    dynamicRepository.Execute(new AssignPersonalMessageCriteria(personalMessageCriteria.MessageIDOutput, uplineId, uplineName));
+                }
+            }
+        }
+
+        private static string GetToastMessageContent(ResourceManager rm, string languae)
+        {
+            var culture = CultureInfo.GetCultureInfo(languae);
+
+            var content = new ToastContentModel
+            {
+                Title = rm.GetString("ADBTChangeToastTitle", culture),
+                Body = rm.GetString("ADBTChangeToastMessage", culture)
+            };
+
+            return JsonConvert.SerializeObject(content, Formatting.None);
+        }
+
+        private static string GetPersonalMessage(ResourceManager rm, string languae, string downlines)
+        {
+            var culture = CultureInfo.GetCultureInfo(languae);
+
+            return string.Format(
+                rm.GetString("ADBTConditionChange_PersonalMessage", culture),
+                downlines);
+        }
+
+        private async Task<bool> GetAutoTransferJobStatus(string agIP)
+        {
+            var criteria = new GetAutoTransferJobStatusCriteria();
+            await dynamicRepository.ExecuteAsync(criteria, agIP);
+
+            return criteria.IsAutoJobRunning;
+        }
+
+        private bool IsAutoTransferAffect(string currency)
+        {
+            var s = Core.Configurations.ConfigurationManager.GetValue<string>("OfferAutoTransfer.Currencies");
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                return false;
+            }
+
+            if (s == "*")
+            {
+                return true;
+            }
+
+            return s.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                .Any(c => string.Equals(currency, c.Trim(), StringComparison.OrdinalIgnoreCase));
         }
     }
 }

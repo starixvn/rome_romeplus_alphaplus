@@ -1,6 +1,7 @@
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.LoginInfo;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Shared.AppResources.Settings;
@@ -9,13 +10,13 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModel
 {
     public class AccountViewModel
     {
-        private readonly GetAccountQuery message;
-        private readonly Account customerInfo;
+        private readonly CustomerInfoQuery message;
+        private readonly CustomerInfoModel customerInfo;
         private readonly bool showQRCode;
 
         public AccountViewModel(
-            GetAccountQuery message,
-            Account customerInfo,
+            CustomerInfoQuery message,
+            CustomerInfoModel customerInfo,
             IBalanceInfoViewModel balanceInfo,
             bool showQRCode)
         {

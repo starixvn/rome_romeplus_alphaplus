@@ -1,4 +1,5 @@
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
 {
@@ -7,8 +8,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
         private readonly MemberBalanceInfoModel balanceInfoModel;
 
         public MemberBalanceInfoViewModel(
-            GetAccountQuery message,
-            Account customerInfo,
+            CustomerInfoQuery message,
+            CustomerInfoModel customerInfo,
             CreditInfo creditInfo,
             IBalanceInfoModel balanceInfoModel,
             bool isAllDayBalanceInfo)
