@@ -69,4 +69,6 @@ public class IndirectLoginResponse
     public string Nickname { get; set; }
 
     public string LoginIp { get; set; }
+
+    public int[] OfferedProductGroupIds { get; set; }
 }

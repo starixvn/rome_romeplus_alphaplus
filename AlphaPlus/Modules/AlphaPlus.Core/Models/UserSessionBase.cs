@@ -440,7 +440,7 @@ public class UserSessionBase : IUserSession, IDisposable
     public int[] OfferedProductGroupIds
     {
         get => GetProperty<int[]>(OFFEREDPRODUCTGROUPIDS, []);
-        set => GetProperty(OFFEREDPRODUCTGROUPIDS, value);
+        set => SetProperty(OFFEREDPRODUCTGROUPIDS, value);
     }
 
     public bool GetDisabledProduct(int productId) => GetProperty(DISABLEDPRODUCT + "_" + productId, true);
