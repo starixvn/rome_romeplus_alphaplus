@@ -92,17 +92,17 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
 
     internal Link CustomerListLink =>
         new Link(SearchAccountLevel.IsMasterLevel() ? CommonResx.AgentList : CommonResx.MemberList,
-            $"{MemberInfoUrl}CustomerList/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}?CustId={CustId}&CustName={UserName}&CustLevelId={RoleId}");
+            $"{MemberInfoUrl}/CustomerList/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}?CustId={CustId}&CustName={UserName}&CustLevelId={RoleId}");
 
     internal Link BetListLink =>
-        new Link(CommonResx.BetList, $"{BetListsUrl}MemberBetList/Index?CustID={CustId}&CustName={UserName}");
+        new Link(CommonResx.BetList, $"{BetListsUrl}/MemberBetList/Index?CustID={CustId}&CustName={UserName}");
 
     internal Link StatemenLink
     {
         get
         {
             var actionName = SearchAccountLevel.IsMemberLevel() ? "MemberStatement" : "SMAStatement";
-            var link = $"{ReportsUrl}Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
+            var link = $"{ReportsUrl}/Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
             return new Link(CommonResx.Statement, link);
         }
     }
@@ -134,9 +134,9 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
 
     public bool CanViewLog => message.CanViewLog;
 
-    public string ViewLogLink => $"{ViewLogUrl}setting/index?username={UserName}";
+    public string ViewLogLink => $"{ViewLogUrl}/setting/index?username={UserName}";
 
-    public string ViewLoginIPLink => $"{OldMainUrl}_IPInfo/IpInfo.aspx";
+    public string ViewLoginIPLink => $"{MainUrl}/IPInfo";
 
     public bool IsShowCreateMemberByQRCode => ActorLevel.IsAgentLevel() && canCreateAccount && Core.Configurations.ConfigurationManager.GetValue<string>("QRCode:Hide") != "1";
 
