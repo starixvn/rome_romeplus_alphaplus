@@ -30,16 +30,6 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
         private readonly CheckBelongingService checkBelongingService;
 
         public QRCodeMemberSignInHandler(
-           QrCodeAdapter qrCodeAdapter,
-           ICustomerService customerService,
-           QRCodeMemberSignInService qrCodeMemberSignInService,
-           PasswordService passwordService,
-           CheckBelongingService checkBelongingService)
-            : this(qrCodeAdapter, customerService, qrCodeMemberSignInService, passwordService, checkBelongingService, null)
-        {
-        }
-
-        internal QRCodeMemberSignInHandler(
             QrCodeAdapter qrCodeAdapter,
             ICustomerService customerService,
             QRCodeMemberSignInService qrCodeMemberSignInService,

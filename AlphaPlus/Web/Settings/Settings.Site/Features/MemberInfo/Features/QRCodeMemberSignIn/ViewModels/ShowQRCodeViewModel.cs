@@ -57,12 +57,12 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
         public bool ShowPageTitle { get; }
 
         public string UpdateInformationUrl
-             => $"{MicroSites.SettingUrl()}/Customer/UpdateInfo?" +
-             $"Username={SearchAccountName}&CustId={SearchAccountId}";
+             => $"{MicroSites.SettingUrl("~/Customer/UpdateInfo?" +
+             $"Username={SearchAccountName}&CustId={SearchAccountId}")}";
 
         public string UpdateCreditUrl
-            => $"{MicroSites.AccountInfoUrl()}SearchAccount/GivenCredit" +
+            => $"{MicroSites.AccountInfoUrl("~/SearchAccount/GivenCredit" +
             $"?SearchAccountId={SearchAccountId}&SearchAccountName={SearchAccountName}&SearchAccountRoleId=1" +
-            $"&GivenCreditMin={CreditMin}&GivenCreditMax={CreditMax}";
+            $"&GivenCreditMin={CreditMin}&GivenCreditMax={CreditMax}")}";
     }
 }

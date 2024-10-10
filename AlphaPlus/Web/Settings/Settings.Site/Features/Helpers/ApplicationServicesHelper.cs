@@ -60,6 +60,7 @@ using AlphaPlus.Core.Utils;
 using AlphaPlus.Settings.Site.Features.PositionTaking.Services;
 using AlphaPlus.Settings.MemberInfo.API.Features.Commission;
 using AlphaPlus.SecurityCode.Extensions;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -218,7 +219,8 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<ITransferListService, TransferListService>()
                 .AddScoped<IYesterdayBalanceTransferService, YesterdayBalanceTransferService>()
                 .AddScoped<TransferAllAndClearCreditService, TransferAllAndClearCreditServiceImpl>()
-                .AddScoped<TransferToDownlineHistoryService, TransferToDownlineHistoryServiceImpl>();
+                .AddScoped<TransferToDownlineHistoryService, TransferToDownlineHistoryServiceImpl>()
+                .AddSingleton<QRCodeLoginConfigsHelper>((provider) => new QRCodeLoginConfigsHelperImpl(qrCodeMemberLoginConfig));
 
             services
                 .AddHttpClient<IPositionTakingService, PositionTakingService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
