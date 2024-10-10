@@ -7,9 +7,9 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.Requests
     {
         public BetTypeStatus[] BetTypeStatus { get; set; }
 
-        public int ActorId { get; }
+        public int ActorId => ViewerId;
 
-        public string ActorName { get; }
+        public string ActorName => ViewerUsername;
 
         public override bool IsValid()
             => base.IsValid() && BetTypeStatus?.Length > 0;
