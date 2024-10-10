@@ -135,7 +135,7 @@ export default function SearchAccountInfo() {
                     href={customer.CreateMemberByQRCodeUrl}
                     title={t('createMemberWithQRCode')}
                 >
-                    <span className={styles['icon-clone-account']} />
+                    <span className='icon-clone-account' />
                 </CustomAnchorTag>
             )}
         </div>
