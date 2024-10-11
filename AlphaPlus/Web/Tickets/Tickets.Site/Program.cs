@@ -17,18 +17,23 @@ using AlphaPlus.SecurityCode.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 
 const string App_Data = "App_Data";
+const string SharedSettings = "sharedSettings.json";
+var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
+
 var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
-    //.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true) // When running using dotnet run
+    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true) // When app is published or Docker
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "authorization.json"), optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "partialum.json"), optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "results.json"), optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "securitycode.json"), optional: false, reloadOnChange: true)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
-    
+
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
 StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 

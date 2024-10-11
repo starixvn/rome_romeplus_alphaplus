@@ -20,7 +20,8 @@ public class SportsbookResultService(
         SportType.ESport,
         SportType.Badminton,
         SportType.Cricket,
-        SportType.VolleyBall
+        SportType.VolleyBall,
+        SportType.BaseBall
     };
 
     public async Task<string> GetResult(NormalResultQuery message)

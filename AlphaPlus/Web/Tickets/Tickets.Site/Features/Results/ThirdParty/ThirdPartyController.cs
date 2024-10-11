@@ -70,4 +70,6 @@ public partial class ResultsController(IMediator mediator) : ResultBaseControlle
     public Task<IActionResult> FACHAIResult(FACHAIResultQuery message) => View(message, IndexView);
 
     public Task<IActionResult> NextspinResult(NextspinResultQuery message) => View(message, IndexView);
+
+    public Task<IActionResult> ONCasinoResult(ONCasinoResultQuery message) => View(message, IndexView);
 }

@@ -38,7 +38,8 @@ public class LengendService(
         ProductIdConstants.PPLiveCasino,
         ProductIdConstants.YeeBet,
         ProductIdConstants.FGG,
-        ProductIdConstants.WE
+        ProductIdConstants.WE,
+        ProductIdConstants.ONCasino
     ];
     private static readonly HashSet<int> RNGCasinoTooltips =
     [

@@ -36,6 +36,9 @@ public class UserLevel : Enumeration
     public bool IsEqualOrUplineOf(Enumeration custLevel)
         => GapBetweenTwoLevels(Value, custLevel.Value) >= 0;
 
+    public bool IsDirectUplineOf(byte downlineLevelValue)
+        => GapBetweenTwoLevels(Value, downlineLevelValue) == 1;
+
     private static int GapBetweenTwoLevels(byte uplineLevelValue, byte downlineLevelValue)
         => uplineLevelValue - downlineLevelValue;
 }

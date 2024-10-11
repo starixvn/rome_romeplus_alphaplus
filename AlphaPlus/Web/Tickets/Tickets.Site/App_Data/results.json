@@ -190,5 +190,10 @@
         "Url": "http://10.40.40.248:7023/api/NextSpinInternal/GetBetHistoryUrl",
         "VendorId": 85,
         "Debug": 0
+    },
+    "ONCasinoResultConfigs": {
+        "Url": "http://10.40.40.248:7090/api//OnGamingInternal/GetBetHistoryUrl",
+        "VendorId": 96,
+        "Debug": 0
     }
 }

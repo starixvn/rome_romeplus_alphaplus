@@ -32,4 +32,5 @@ public class SportsbookEntity
     public bool NoHTScore { get; init; }
     public byte MainType { get; init; }
     public int SubType { get; init; }
+    public int SessionTime { get; init; }
 }

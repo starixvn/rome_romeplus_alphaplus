@@ -49,7 +49,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -89,7 +89,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -126,7 +126,7 @@
             betId?: number,
             betCheck?: string
         ) => {
-            var params = `?custId=${this.CustId}&roleId=${this.ViewerLevelId}&gameId=${betCheck}&productId=24`;
+            const params = `?custId=${this.CustId}&roleId=${this.ViewerLevelId}&gameId=${betCheck}&productId=24`;
             Common.PopupDetails.Instance(window.top).Show(
                 Common.AppPath.TicketsAppPath + 'ThirdParty/Detail' + params,
                 '',
@@ -154,7 +154,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -196,7 +196,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -236,7 +236,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -276,7 +276,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -315,7 +315,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -354,7 +354,7 @@
             transDesc?: number,
             betcheck?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 transDesc || this.CustId,
                 '&roleId=',
@@ -396,7 +396,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -436,7 +436,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -476,7 +476,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -517,7 +517,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -562,7 +562,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -602,7 +602,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -643,7 +643,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -687,7 +687,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -732,7 +732,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -773,7 +773,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -814,7 +814,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -854,7 +854,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -895,7 +895,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -936,7 +936,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -977,7 +977,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1021,7 +1021,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1063,7 +1063,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1105,7 +1105,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1147,7 +1147,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1189,7 +1189,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1233,7 +1233,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1275,7 +1275,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1317,7 +1317,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1355,7 +1355,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1397,7 +1397,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1441,7 +1441,7 @@
             transId3rd?: string,
             siteId?: string
         ) => {
-            var params = [
+            const params = [
                 '?custId=',
                 custId,
                 '&transId3rd=',
@@ -1458,6 +1458,46 @@
             ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 `${Common.AppPath.TicketsAppPath}ThirdParty/NextspinResult${params}`,
+                '',
+                835,
+                675
+            );
+        };
+    }
+
+    export class ONCasinoResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string
+        ) => {
+            const params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&endtime=',
+                winLostDate,
+                '&productId=96'
+            ].join('');
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}ThirdParty/ONCasinoResult${params}`,
                 '',
                 835,
                 675

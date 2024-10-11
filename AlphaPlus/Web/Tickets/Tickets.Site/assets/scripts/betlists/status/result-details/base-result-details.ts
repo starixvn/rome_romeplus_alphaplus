@@ -40,6 +40,7 @@
         private static fastSpinResult: ResultDetails;
         private static faCHAIResult: ResultDetails;
         private static nextspinResult: ResultDetails;
+        private static onCasinoResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (betTypeId === 9 || betTypeId === 29 || betTypeId === 2799 || betTypeId === 10449) {
@@ -317,6 +318,13 @@
                     ? new NextspinResultDetails()
                     : this.nextspinResult;
                 return this.nextspinResult;
+            }
+
+            if (betTypeId >= 11850 && betTypeId <= 11899) {
+                this.onCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.onCasinoResult)
+                    ? new ONCasinoResultDetails()
+                    : this.onCasinoResult;
+                return this.onCasinoResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)

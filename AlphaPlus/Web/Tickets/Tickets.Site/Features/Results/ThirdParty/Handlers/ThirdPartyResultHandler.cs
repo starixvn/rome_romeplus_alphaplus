@@ -39,7 +39,8 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<SabaxDResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<FastSpinResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<FACHAIResultQuery, ThirdPartyProductViewModel>,
-    IRequestHandler<NextspinResultQuery, ThirdPartyProductViewModel>
+    IRequestHandler<NextspinResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<ONCasinoResultQuery, ThirdPartyProductViewModel>
 {
     public Task<ThirdPartyProductViewModel> Handle(MaxGameResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "MaxGameResultConfigs", "MaxGame");
@@ -148,6 +149,9 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
     public Task<ThirdPartyProductViewModel> Handle(NextspinResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "NextspinResultConfigs", "Nextspin");
+
+    public Task<ThirdPartyProductViewModel> Handle(ONCasinoResultQuery message, CancellationToken cancellationToken)
+        => Handle(message, "ONCasinoResultConfigs", "ONCasino");
 
     private Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, string sectionName, string gameName)
     {

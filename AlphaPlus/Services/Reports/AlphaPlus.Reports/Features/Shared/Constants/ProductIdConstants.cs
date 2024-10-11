@@ -23,4 +23,5 @@ internal static class ProductIdConstants
     public const int FGG = 70;
     public const int YeeBet = 76;
     public const int WE = 80;
+    public const int ONCasino = 96;
 }

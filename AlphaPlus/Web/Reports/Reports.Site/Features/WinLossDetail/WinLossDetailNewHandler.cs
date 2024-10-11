@@ -9,6 +9,7 @@ using AlphaPlus.Reports.Site.Features.Shared;
 using MediatR;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Reports.Site.Features.Customer;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
@@ -18,7 +19,8 @@ public class WinLossDetailNewHandler(
     IEnteredResultService enteredResultService,
     ICustomerService customerService,
     IWinLossDetailService winlossDetailService,
-    IWinLossDetailWorkbook workbook) :
+    IWinLossDetailWorkbook workbook,
+    ICustomerClient customerClient) :
         BaseHandler(productService, options),
         IRequestHandler<WinLossDetailNewQuery, WinLossDetailNewViewModel>,
         IRequestHandler<WinLossDetailGetDataQuery, WinLossDetailGetDataViewModel>,
@@ -117,18 +119,23 @@ public class WinLossDetailNewHandler(
 
             if (isValidUsername)
             {
+                if (!message.IsInternal)
+                {
+                    _ = Task.Run(async () =>
+                    {
+                        var nickname = message.ViewerLevel.IsDirectUplineOf(customerLevel.RoleId)
+                            ? customerLevel.Username2
+                            : string.Empty;
+                        await customerClient.UpdateUserSearch(
+                            message.ViewerId,
+                            customerLevel.Username,
+                            customerLevel.FirstName,
+                            customerLevel.LastName,
+                            nickname);
+                    });
+                }
+
                 var breadcrumb = customerService.BuildBreadcrumb(customerLevel);
-
-                // var nickname = message.ViewerLevel.IsDirectUplineOf(customerLevel.RoleId)
-                //     ? customerLevel.Username2
-                //     : string.Empty;
-                // customerService. (
-                //     message.ViewerId,
-                //     customerLevel.Username,
-                //     customerLevel.FirstName,
-                //     customerLevel.LastName,
-                //     nickname);
-
                 message.CustId = breadcrumb.CustId;
                 message.CustName = breadcrumb.CustName;
                 message.CustLevelId = breadcrumb.CustLevelId;

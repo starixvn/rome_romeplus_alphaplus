@@ -55,8 +55,9 @@
                 transdesc,
                 '&isViewResultFromBetList=true'
             ].join('');
-
-            Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, '', 730, 250);
+            const baseballSport = 8;
+            const width = sportTypeId === baseballSport ? 1000 : 730;
+            Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, '', width, 250);
         };
     }
 

@@ -8,9 +8,12 @@ public class WinLossDetailGetDataQuery : WinLossDetailGetWeeksQuery, IRequest<Wi
     {
         IsProtectedMode = Viewer.IsProtectedMode;
         CanUpdateAccount = Viewer.SubPageAccess.UpdateAccount;
+        IsInternal = Viewer.IsInternal;
     }
 
     public bool IsProtectedMode { get; }
 
     public bool CanUpdateAccount { get; }
+
+    public bool IsInternal { get; }
 }
