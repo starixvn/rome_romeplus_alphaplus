@@ -222,8 +222,14 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             => View(await customerService.GetCustomerInfo(custId));
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateInfo([FromBody] UpdateCustomerInfoRequest request)
-            => Json(await customerService.UpdateCustomerInfo(new UpdateCustomerInfoParam
+        public async Task<IActionResult> UpdateInfoPost(UpdateCustomerInfoRequest request)
+        {
+            if (request.IsInternal)
+            {
+                return UnAuthorized();
+            }
+
+            return Json(await customerService.UpdateCustomerInfo(new UpdateCustomerInfoParam
             {
                 CustId = request.CustId,
                 FirstName = request.FirstName?.Trim() ?? string.Empty,
@@ -237,6 +243,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 IP = request.IP,
                 Language = request.LangKey
             }));
+        }
 
         [HttpGet]
         public IActionResult RedirectPT(string username, int userId, int custId, int subAccId, bool isEdit, bool insert)

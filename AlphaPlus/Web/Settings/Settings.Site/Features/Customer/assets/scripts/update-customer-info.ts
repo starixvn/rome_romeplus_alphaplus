@@ -59,8 +59,12 @@ class UpdateCustomerInfoView {
 
     // Hide Title on top page, when open Popup.
     private showTitle() {
-        const popup = parent.document.getElementById('product-popup');
-        popup || $('.page-title').removeClass('hide');
+        let popup = window.parent.$('#product-popup');
+        if (!popup.length) {
+            popup = window.top.$('div[id^="page-popup-"]');
+        }
+
+        popup.length > 0 || $('.page-title').removeClass('hide');
     }
 }
 
