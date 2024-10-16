@@ -482,34 +482,7 @@ a {
         white-space: normal;
     }
 }
-// Customize tooltip
-.dormant-accounts-mark {
-    position: relative;
-    z-index: 40;
 
-    .tooltip {
-        z-index: 10;
-        white-space: nowrap;
-        pointer-events: none;
-
-        .tooltip-arrow {
-            display: none;
-        }
-
-        .tooltip-inner {
-            max-width: 100%;
-
-            &:before,
-            &:after {                     
-                top: 4px;
-                @media only screen and (max-device-width: 767px) {
-                    top: 8px;
-                }
-            }
- 
-        }
-    }
-}
 // Customize tooltip
 .tooltip {
     pointer-events: none;
@@ -593,7 +566,23 @@ a {
             }
         }
     }
+    &.right {
+        .tooltip-arrow {
+            &:after {
+                border-right-color: var(--report-tooltip-bg);
+                border-width: 9px;
+                margin-left: -11px;
+                bottom: -10px;
+            }
 
+            &:before {
+                border-right-color: var(--report-tooltip-border);
+                border-width: 9px;
+                margin-left: -12px;
+                bottom: -10px;
+            }
+        }
+    }
     &.bottom {
         .tooltip-arrow {
             &:after {
