@@ -32,6 +32,7 @@
     <ProjectReference Include="..\BetLists.Builders\BetLists.Builders.csproj" />
     <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.NetThrottling\AlphaPlus.NetThrottling.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.BetList.AdvantPlay" Version="2.0.0.2" />

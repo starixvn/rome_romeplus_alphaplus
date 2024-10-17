@@ -15,6 +15,7 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.SecurityCode.Filters;
 using AlphaPlus.SecurityCode.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using AlphaPlus.NetThrottling;
 
 const string App_Data = "App_Data";
 const string SharedSettings = "sharedSettings.json";
@@ -82,6 +83,7 @@ builder.Services
     .AddResultsServices(configuration)
     .AddResultsSiteServices(configuration)
     .AddApplicationServices(configuration)
+    .AddNetThrottling(configuration)
     .AddAuthorization()
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();

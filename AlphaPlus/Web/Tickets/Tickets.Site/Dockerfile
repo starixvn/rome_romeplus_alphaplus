@@ -8,6 +8,7 @@ WORKDIR /src
 
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 COPY "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj" "AlphaPlus/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj"
+COPY "AlphaPlus/Modules/AlphaPlus.NetThrottling/AlphaPlus.NetThrottling.csproj" "AlphaPlus/Modules/AlphaPlus.NetThrottling/AlphaPlus.NetThrottling.csproj"
 COPY "AlphaPlus/Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj" "AlphaPlus/Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj"
 
 COPY "AlphaPlus/Modules/AlphaPlus.IPInfo/AlphaPlus.IPInfo.csproj" "AlphaPlus/Modules/AlphaPlus.IPInfo/AlphaPlus.IPInfo.csproj"
@@ -25,6 +26,7 @@ RUN dotnet restore "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj" -v n
 
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
 COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
+COPY "AlphaPlus/Modules/AlphaPlus.NetThrottling" "AlphaPlus/Modules/AlphaPlus.NetThrottling"
 COPY "AlphaPlus/Services/Tickets/BetsForecast/Domain" "AlphaPlus/Services/Tickets/BetsForecast/Domain"
 
 COPY "AlphaPlus/Modules/AlphaPlus.IPInfo" "AlphaPlus/Modules/AlphaPlus.IPInfo"
