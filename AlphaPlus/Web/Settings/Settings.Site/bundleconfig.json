@@ -265,21 +265,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/Features/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout.css",
-    "inputFiles": [
-      "Features/MemberInfo/Features/ParlayMaxPayout/Styles/parlay-max-payout.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/Features/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout.js",
-    "inputFiles": [
-      "Features/MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-helper.js",
-      "Features/MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-alert.js",
-      "Features/MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout-service.js",
-      "Features/MemberInfo/Features/ParlayMaxPayout/Scripts/parlay-max-payout.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist.css",
     "inputFiles": [
       "Features/MemberInfo/assets/styles/common.css",
@@ -486,12 +471,6 @@
       "Features/MemberInfo/assets/styles/common-dark.css",
       "Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/easy-autocomplete.css",
       "Features/CustomerList/Styles/customer-list-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/Features/MemberInfo/Features/ParlayMaxPayout/bundles/parlay-max-payout-dark.css",
-    "inputFiles": [
-      "Features/MemberInfo/Features/ParlayMaxPayout/Styles/parlay-max-payout-dark.css"
     ]
   },
   {
