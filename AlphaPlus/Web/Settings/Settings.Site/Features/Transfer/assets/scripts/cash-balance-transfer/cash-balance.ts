@@ -3,7 +3,7 @@
 interface Window {
     indexManager: any;
     main: any;
-    OnPopupComplete(isReload: boolean): void;
+    closePopupAndReloadMainFrameAfterUpdateSuccess: Function;
 }
 
 class KeyboardValue {
@@ -238,7 +238,7 @@ class CashBalance {
             if (data.Code === error) {
                 setTimeout(function () { location.reload(); }, reloadTime);
             } else if (data.Code === 0) {
-                this.topWindow.OnPopupComplete(true);
+                this.topWindow.closePopupAndReloadMainFrameAfterUpdateSuccess(3000);
             }
         }
     };

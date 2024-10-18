@@ -1,7 +1,6 @@
 ﻿"use strict";
 
 interface Window {
-    OnPopupComplete(isReload: boolean): void;
     bootboxConfirm(message: string, handleElement: object, acceptCallback: Function, cancelCallback: Function): void;
     closePopupAndReloadMainFrameAfterUpdateSuccess: Function;
 }
