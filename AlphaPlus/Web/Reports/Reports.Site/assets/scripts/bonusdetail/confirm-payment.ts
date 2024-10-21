@@ -68,7 +68,7 @@ class ConfirmPayment {
             url: this.$formConfirmPayment.attr('action'),
             beforeSend: (xhr) =>
                 xhr.setRequestHeader(
-                    '__RequestVerificationToken',
+                    'RequestVerificationToken',
                     this.$formConfirmPayment.find('input[name="__RequestVerificationToken"]').val()
                 ),
             data: this.$formConfirmPayment.serialize(),

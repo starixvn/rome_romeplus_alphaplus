@@ -264,7 +264,7 @@ class CashBalance {
         }
 
         const postParams = {
-            __RequestVerificationToken: this.$token.val(),
+            RequestVerificationToken: this.$token.val(),
             custId: this.$custId.val(),
             amount: validationObject.Amount
         };
