@@ -18,6 +18,9 @@
     --choose-picture-border: #ff4d00;
     --view-all-color: #ededed;
 }
+body{
+    background-color: transparent!important;
+}
 .profile-picture {
     display: inline-block;
     font-size: 14px;
