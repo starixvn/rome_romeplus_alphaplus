@@ -30,6 +30,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly IAesService aesService;
         private readonly ICustomerService customerService;
         private readonly IProductStatusService productStatusService;
+        private readonly IUserSession userSession;
 
         public CustomerController(
             IEncryption encryption,
@@ -37,7 +38,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             IAesService aesService,
             CustomerClientConfiguration clientConfiguration,
             ICustomerService customerService,
-            IProductStatusService productStatusService)
+            IProductStatusService productStatusService,
+            IUserSession userSession)
         {
             this.encryption = encryption;
             this.sessionManager = sessionManager;
@@ -45,6 +47,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             systemId = clientConfiguration.SystemId;
             this.customerService = customerService;
             this.productStatusService = productStatusService;
+            this.userSession = userSession;
         }
 
         private string CDNUri => sessionManager.Get<string>(DCSStaticSessionKey) ?? Core.Configurations.ConfigurationManager.GetValue<string>("Fanex.Customer:CdnUri");
@@ -259,7 +262,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             urlParam += "&subAccId=" + subAccId;
             string urlMenu = "TabPT" + urlParam;
 
-            var session = UserSession.Current;
+            var session = userSession;
             var isDarkMode = !string.IsNullOrWhiteSpace(session.DarkModeName);
 
             int customerLevel;
@@ -279,7 +282,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 uplineLevel = 2;
             }
 
-            var productPTTabs = InitProducGroupTabs(custId, customerLevel, isDarkMode);
+            var productPTTabs = InitProductGroupTabs(custId, customerLevel, isDarkMode);
 
             AddDCSProductPTTabs(productPTTabs, custId, customerLevel, uplineLevel, isDarkMode);
 
@@ -298,12 +301,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         [HttpGet]
         public IActionResult TabPT(int custId)
         {
-            var customerLevel = UserSession.Current.RoleId - 1;
-            var isDarkMode = !string.IsNullOrWhiteSpace(UserSession.Current.DarkModeName);
-            var productPTTabs = InitProducGroupTabs(custId, customerLevel, isDarkMode);
-            var productList = GetProductList(custId, customerLevel, UserSession.Current.RoleId, isDarkMode).ToList();
+            var customerLevel = userSession.RoleId - 1;
+            var isDarkMode = !string.IsNullOrWhiteSpace(userSession.DarkModeName);
+            var productPTTabs = InitProductGroupTabs(custId, customerLevel, isDarkMode);
+            var productList = GetProductList(custId, customerLevel, userSession.RoleId, isDarkMode).ToList();
 
-            productList.Add(BuilAccountInfoTab(custId, customerLevel, isDarkMode));
+            productList.Add(BuildAccountInfoTab(custId, customerLevel, isDarkMode));
 
             return View(productPTTabs.Concat(productList));
         }
@@ -321,25 +324,25 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         private ContentResult UnAuthorized() => Content(JsonSerializer.Serialize(Result.CreateErrorResult(Resources.NotAuthorized)));
 
-        private SettingProductTab BuilAccountInfoTab(int customerId, int customerLevel, bool isDarkMode)
+        private SettingProductTab BuildAccountInfoTab(int customerId, int customerLevel, bool isDarkMode)
         {
             return new SettingProductTab
             {
                 Enabled = true,
                 Id = "AccountInfo",
-                Name = "Account Info",//Resources.Lang.userinfo,
+                Name = "Account Info",//TODO:Resources.Lang.userinfo,
                 URL = MicroSites.SettingUrl(
                     string.Format("~/Customer/AccountInfo?CustId={0}&roleId={1}&&lng={2}&isDarkMode={3}",
                     customerId,
                     customerLevel,
-                    UserSession.Current.Language,
+                    userSession.Language,
                     isDarkMode.ToString().ToLowerInvariant())),
             };
         }
-        private IList<SettingProductTab> InitProducGroupTabs(int customerId, int customerLevel, bool isDarkMode)
+        private IList<SettingProductTab> InitProductGroupTabs(int customerId, int customerLevel, bool isDarkMode)
         {
             IList<SettingProductTab> productPTTabs = new List<SettingProductTab>();
-            var offeredProductGroups = productStatusService.GetOfferedProductGroup(UserSession.Current.CustId, UserSession.Current.RoleId);
+            var offeredProductGroups = productStatusService.GetOfferedProductGroup(userSession.CustId, userSession.RoleId);
             if (offeredProductGroups != null && offeredProductGroups.Any())
             {
                 foreach (var productGroup in offeredProductGroups.Where(x => x.Id != ProductGroupConstants.Sportsbook))
@@ -363,7 +366,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 customerId,
                 customerLevel,
                 productGroupId,
-                UserSession.Current.Language,
+                userSession.Language,
                 isDarkMode.ToString().ToLowerInvariant()));
         }
 
