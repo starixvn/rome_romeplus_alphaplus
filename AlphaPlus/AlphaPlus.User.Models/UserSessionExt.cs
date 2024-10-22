@@ -403,6 +403,12 @@ namespace AlphaPlus.User.Models
             set => UserSession.Current.SiteDBGroupId = value;
         }
 
+        public int CustDBGroupId
+        {
+            get => UserSession.Current.CustDBGroupId;
+            set => UserSession.Current.CustDBGroupId = value;
+        }
+
         public void SetProperty(string propertyName, object value) => UserSession.Current.SetProperty(propertyName, value);
 
         public T GetProperty<T>(string propertyName, T defaultValue = default) => UserSession.Current.GetProperty(propertyName, defaultValue);

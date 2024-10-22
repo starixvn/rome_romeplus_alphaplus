@@ -72,6 +72,7 @@ namespace AlphaPlus.User.Models
         private const string ISINTERNALWEBVPN = "ISINTERNALWEBVPN";
         private const string AGIPSESSIONKEY = "AGIP";
         private const string SITEDBGROUPIDSESSIONKEY = "SITEDBGROUPID";
+        private const string CUSTDBGROUPIDSESSIONKEY = "CUSTDBGROUPID";
         private const string ISHIDESPORTSBOOK2 = "ISHIDESPORTSBOOK2";
         private const string DISABLESPORTSBOOK2 = "DISABLESPORTSBOOK2";
         private const string ISDISABLEDESPORTS = "ISDISABLEDESPORTS";
@@ -441,6 +442,12 @@ namespace AlphaPlus.User.Models
         {
             get => GetProperty<int>(SITEDBGROUPIDSESSIONKEY);
             set => SetProperty(SITEDBGROUPIDSESSIONKEY, value);
+        }
+
+        public int CustDBGroupId
+        {
+            get => GetProperty<int>(CUSTDBGROUPIDSESSIONKEY);
+            set => SetProperty(CUSTDBGROUPIDSESSIONKEY, value);
         }
 
         public bool IsHideSportsbook2

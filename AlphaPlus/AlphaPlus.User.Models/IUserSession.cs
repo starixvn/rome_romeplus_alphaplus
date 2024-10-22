@@ -148,6 +148,8 @@ namespace AlphaPlus.User.Models
 
         int SiteDBGroupId { get; set; }
 
+        int CustDBGroupId { get; set; }
+
         bool IsHideSportsbook2 { get; set; }
 
         bool DisableSportsbook2 { get; set; }

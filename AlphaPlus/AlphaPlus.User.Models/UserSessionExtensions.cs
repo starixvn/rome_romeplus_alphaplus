@@ -116,6 +116,7 @@ namespace AlphaPlus.User.Models
             session.IsShowBetChoiceLimit = (bool)values["isShowBetChoiceLimit"];
             session.AGIP = values["AGIP"].ToString();
             session.SiteDBGroupId = Convert.ToInt32(values["SiteDBGroupId"]);
+            session.CustDBGroupId = Convert.ToInt32(values["CustDBGroupId"]);
 
             bool isMyanmarOdds = false;
             if (values["ismyanmarodds"] != null && values["ismyanmarodds"] != DBNull.Value)
