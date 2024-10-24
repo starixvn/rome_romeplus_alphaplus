@@ -298,7 +298,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         private ContentResult UnAuthorized() => Content(JsonSerializer.Serialize(Result.CreateErrorResult(Resources.NotAuthorized)));
 
-        private static SettingProductTab BuildAccountInfoTab(int customerId, int customerLevel, bool isDarkMode)
+        private SettingProductTab BuildAccountInfoTab(int customerId, int customerLevel, bool isDarkMode)
         {
             return new SettingProductTab
             {
@@ -333,7 +333,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return productPTTabs;
         }
 
-        private static string BuildProductGroupSettingUrl(int customerId, int customerLevel, int productGroupId, bool isDarkMode)
+        private string BuildProductGroupSettingUrl(int customerId, int customerLevel, int productGroupId, bool isDarkMode)
         {
             return MicroSites.SettingUrl(
                 string.Format("~/Customer/EditCustomer?CustId={0}&roleId={1}&productGroupId={2}&lng={3}&isDarkMode={4}",
