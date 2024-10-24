@@ -159,6 +159,7 @@
             var siteDB = dao.GetSiteDBConfig(custId);
             outputs.Add("AGIP", siteDB.AGIP);
             outputs.Add("SiteDBGroupId", siteDB.SiteDBGroupId);
+            outputs.Add("CustDBGroupId", siteDB.CustDBGroupId);
 
             CurrentSession.SetUserSessionValues(outputs, setUserStatusAction);
 
@@ -245,6 +246,7 @@
             var siteDB = dao.GetSiteDBConfig(custId);
             outputs.Add("AGIP", siteDB.AGIP);
             outputs.Add("SiteDBGroupId", siteDB.SiteDBGroupId);
+            outputs.Add("CustDBGroupId", siteDB.CustDBGroupId);
 
             CurrentSession.SetUserSessionValues(outputs, setUserStatusAction);
 
@@ -321,6 +323,7 @@
             var siteDB = dao.GetSiteDBConfig(custId);
             outputs.Add("AGIP", siteDB.AGIP);
             outputs.Add("SiteDBGroupId", siteDB.SiteDBGroupId);
+            outputs.Add("CustDBGroupId", siteDB.CustDBGroupId);
 
             CurrentSession.SetUserSessionValues(outputs, setUserStatusAction);
 
@@ -429,6 +432,7 @@
             var siteDB = dao.GetSiteDBConfig(custId);
             outputs.Add("AGIP", siteDB.AGIP);
             outputs.Add("SiteDBGroupId", siteDB.SiteDBGroupId);
+            outputs.Add("CustDBGroupId", siteDB.CustDBGroupId);
 
             CurrentSession.SetUserSessionValues(outputs, setUserStatusAction);
 
