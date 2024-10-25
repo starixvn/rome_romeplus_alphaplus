@@ -35,8 +35,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Models
          decimal playerDiscountCS,
          decimal playerDiscount1x2,
          decimal discount,
-         decimal playerDiscountMyanmarOdds,
-         decimal adiscountMyanmarOdds,
          byte locked,
          bool autoTransfer)
             : base(custId,
@@ -70,8 +68,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Models
             PlayerDiscountCS = playerDiscountCS;
             PlayerDiscount1x2 = playerDiscount1x2;
             Discount = discount;
-            PlayerDiscountMyanmarOdds = playerDiscountMyanmarOdds;
-            AdiscountMyanmarOdds = adiscountMyanmarOdds;
         }
 
         public decimal PlayerDiscount { get; set; }
@@ -81,9 +77,5 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Models
         public decimal PlayerDiscount1x2 { get; set; }
 
         public decimal Discount { get; set; }
-
-        public decimal AdiscountMyanmarOdds { get; set; }
-
-        public decimal PlayerDiscountMyanmarOdds { get; set; }
     }
 }

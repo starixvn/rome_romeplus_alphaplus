@@ -90,21 +90,13 @@ public class UserSessionExt : IUserSession
 
     public bool IsDoubleCommLosing
     {
-        get
-        {
-            return UserSession.Current.IsDoubleCommLosing;
-        }
-
-        set
-        {
-            UserSession.Current.IsDoubleCommLosing = value;
-        }
+        get => UserSession.Current.IsDoubleCommLosing;
+        set => UserSession.Current.IsDoubleCommLosing = value;
     }
 
     public bool IsForcedSecurityCode
     {
         get => UserSession.Current.IsForcedSecurityCode;
-
         set => UserSession.Current.IsForcedSecurityCode = value;
     }
 
@@ -129,12 +121,6 @@ public class UserSessionExt : IUserSession
     }
 
     public bool IsMaster => UserSession.Current.IsMaster;
-
-    public bool IsMyanmarOdds
-    {
-        get => UserSession.Current.IsMyanmarOdds;
-        set => UserSession.Current.IsMyanmarOdds = value;
-    }
 
     public bool IsNickname
     {
@@ -370,6 +356,12 @@ public class UserSessionExt : IUserSession
     {
         get => UserSession.Current.SiteDBGroupId;
         set => UserSession.Current.SiteDBGroupId = value;
+    }
+
+    public int CustDBGroupId
+    {
+        get => UserSession.Current.CustDBGroupId;
+        set => UserSession.Current.CustDBGroupId = value;
     }
 
     public int[] OfferedProductGroupIds

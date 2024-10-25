@@ -16,6 +16,6 @@
 
         public Dictionary<string, int>? ResourcesBySportTypeCacheRef { get; set; }
 
-        public bool IsShowMyanmarOdds { get; set; }
+        public bool IsShowOdds { get; set; }
     }
 }

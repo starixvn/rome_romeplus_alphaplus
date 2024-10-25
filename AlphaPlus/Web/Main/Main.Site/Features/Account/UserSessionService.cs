@@ -81,6 +81,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.IsShowBetChoiceLimit = signInResult.IsShowBetChoiceLimit;
         userSession.AGIP = signInResult.SiteDB.AGIP;
         userSession.SiteDBGroupId = signInResult.SiteDB.SiteDBGroupId;
+        userSession.CustDBGroupId = signInResult.SiteDB.CustDBGroupId;
 
         var subAccountPermission_LockAdminAccounts = configuration.GetValue<string>("SubAccountPermission_LockAdminAccounts");
         if ((!string.IsNullOrWhiteSpace(subAccountPermission_LockAdminAccounts)
@@ -203,10 +204,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
             userSession.OnUserId = int.Parse(onUserId);
         }
 
-        if (status.TryGetValue("ismyanmarodds", out string isMyanmarOdds) && !string.IsNullOrEmpty(isMyanmarOdds))
-        {
-            userSession.IsMyanmarOdds = Convert.ToBoolean(isMyanmarOdds);
-        }
 
         userSession.IsDisabledAutoMPT = Convert.ToBoolean(status["disableautompt"]);
         userSession.SRecommendId = Convert.ToInt32(status["srecommend"]);

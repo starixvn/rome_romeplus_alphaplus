@@ -3,7 +3,7 @@
     using AlphaPlus.Settings.ViewLogs.API.Params;
 
     public interface LogFormatter
-    { 
+    {
         void Init(TransformParam transformParam, bool isHideNickname = false);
 
         string FormatIP(string ip);
@@ -35,8 +35,6 @@
         string FormatLanguage(string value);
 
         string FormatLanguageKey(string value);
-
-        bool IsShowMyanmarOdds();
 
         bool IsVisibleKeno(string hideKeno);
 
@@ -80,6 +78,6 @@
 
         string FormatWinLossLimit(decimal value);
 
-        string FormatAutoTransferSchedule(string schedulesDiff); 
+        string FormatAutoTransferSchedule(string schedulesDiff);
     }
 }

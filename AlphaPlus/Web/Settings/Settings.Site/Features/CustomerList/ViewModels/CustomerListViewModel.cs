@@ -43,7 +43,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
             UnconfirmSetting = request.UnconfirmSetting;
             IsMobileView = isMobile;
             LimitedDateToShowInfo = limitedDateToShowInfo;
-            IsShowMyanmarOdds = request.IsShowMyanmarOdds;
             CanViewReport = request.CanViewReports;
             CanUpdateAccount = request.CanUpdateAccount;
 
@@ -52,9 +51,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
             Language = request.Language;
 
             SearchAccountLevel = request.CustLevel;
-            CommissionColSpan = SearchAccountLevel.IsAgentLevel() ?
-                      (IsShowMyanmarOdds ? 8 : 6) :
-                     (IsShowMyanmarOdds ? 4 : 6);
+            CommissionColSpan = 6;
 
             CustomerListPagingViewModel = customerListPagingViewModel;
             AllowAutoTransfer = request.AllowAutoTransfer;
@@ -97,8 +94,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
         public bool CanUpdateAccount { get; }
 
         public bool LimitedDateToShowInfo { get; }
-
-        public bool IsShowMyanmarOdds { get; }
 
         public int CommissionColSpan { get; }
 

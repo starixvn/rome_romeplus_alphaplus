@@ -9,5 +9,7 @@ namespace AlphaPlus.Main.Site.Features.Account
         public string ClientAccessName { get; init; }
 
         public string AGIP { get; init; }
+
+        public int CustDBGroupId { get; init; }
     }
 }

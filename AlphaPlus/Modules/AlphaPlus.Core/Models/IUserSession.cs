@@ -100,8 +100,6 @@ public interface IUserSession
 
     bool IsShowBetChoiceLimit { get; set; }
 
-    bool IsMyanmarOdds { get; set; }
-
     bool GetHideProduct(int productId);
 
     void SetHideProduct(int productId, bool value);
@@ -141,6 +139,8 @@ public interface IUserSession
     string AGIP { get; set; }
 
     int SiteDBGroupId { get; set; }
+
+    int CustDBGroupId { get; set; }
 
     int[] OfferedProductGroupIds { get; set; }
 

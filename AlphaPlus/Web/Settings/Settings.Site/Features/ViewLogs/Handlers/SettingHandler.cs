@@ -22,7 +22,7 @@
         private readonly TransformService transformService;
 
         public SettingHandler(
-            [FromKeyedServices("settingLogSvc")]LogService logService,
+            [FromKeyedServices("settingLogSvc")] LogService logService,
             LogFormatter logFormatter,
             IDateTime dateTimeWrapper,
             TransformService transformService,
@@ -102,7 +102,6 @@
                 CustStatuses = message.SportBetTypeVisibilities,
                 ResourcesByBetTypeCacheRef = message.ResourcesByBetTypeCacheRef,
                 ResourcesProductCacheRef = message.ResourcesByProductCacheRef,
-                IsShowMyanmarOdds = message.IsShowMyanmarOdds,
                 ResourcesBySportTypeCacheRef = message.ResourcesBySportTypeCacheRef
             };
 

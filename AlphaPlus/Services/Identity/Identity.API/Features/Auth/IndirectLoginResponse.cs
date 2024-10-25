@@ -1,3 +1,5 @@
+using AlphaPlus.Identity.API.Features.Auth.SiteDb;
+
 namespace AlphaPlus.Identity.API.Features.Auth;
 
 public class IndirectLoginResponse
@@ -44,7 +46,7 @@ public class IndirectLoginResponse
 
     public bool IsShowBetChoiceLimit { get; set; }
 
-    public SiteDB SiteDB { get; set; }
+    public SiteDBConfig SiteDB { get; set; }
 
     public bool IsAllowTotalBalanceTransfer { get; set; }
 

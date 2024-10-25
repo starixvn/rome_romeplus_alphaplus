@@ -132,7 +132,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                     message.PageIndex,
                     message.LimitedDateToShowInfo,
                     message.ShowNickname,
-                    message.IsShowMyanmarOdds,
                     message.AllowAutoTransfer);
 
             return new CustomerListPagingViewModel(await customerListService.GetCustomerList(param), message, ipService);

@@ -59,8 +59,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
 
         bool AllowedTotalBalanceTransfer { get; }
 
-        bool IsShowMyanmarOdds { get; }
-
         bool CanViewReports { get; }
 
         bool IsOfferProtectedMode { get; }

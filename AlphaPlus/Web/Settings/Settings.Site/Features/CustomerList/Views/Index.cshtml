@@ -13,10 +13,11 @@
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
     ViewBag.Title = "Customer List";
 
-    var commissionGroupClass = Model.IsMobileView || (Model.SearchAccountLevel.IsAgentLevel() && Model.Language.Equals("th-TH")) ? "none" : "desktop";
+    var commissionGroupClass = Model.IsMobileView || (Model.SearchAccountLevel.IsAgentLevel() &&
+    Model.Language.Equals("th-TH")) ? "none" : "desktop";
     var userguideLink = AppSettings.IsSiteLabel789y ?
-        MicroSites.FeatureUrl("~/StaticMessage/Guide?id=137130") :
-        MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=137130");
+    MicroSites.FeatureUrl("~/StaticMessage/Guide?id=137130") :
+    MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=137130");
 }
 
 @section Styles {
@@ -59,7 +60,7 @@
                             {
                                 <li>
                                     <a class="breadcrumb-link view-downline"
-                                    data-url="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.GetEncodedPathAndQuery(), null, linkIndex))">
+                                        data-url="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.GetEncodedPathAndQuery(), null, linkIndex))">
                                         @(custinfo.CustName)
                                     </a>
                                 </li>
@@ -76,7 +77,8 @@
     <div class="form-inline filter form-report">
         <div class="form-group username-box">
             <label>@CustomerListResources.Username</label>
-            <input type="text" class="txt-search" id="txt-username" placeholder="@CustomerListResources.UsernamePlaceHolder" />
+            <input type="text" class="txt-search" id="txt-username"
+                placeholder="@CustomerListResources.UsernamePlaceHolder" />
         </div>
         <div class="form-group status-box">
             <label>@CustomerListResources.Status</label>
@@ -103,7 +105,8 @@
                 <select id="dautoTransferFilter" name="dautoTransferFilter">
                     @foreach (var option in Model.AllowAutoTransferOptions)
                     {
-                        <option value="@option.Value" selected="@option.Value.Equals(Model.AllowAutoTransfer)">@option.Text</option>
+                        <option value="@option.Value" selected="@option.Value.Equals(Model.AllowAutoTransfer)">@option.Text
+                        </option>
                     }
                 </select>
             </div>
@@ -135,20 +138,11 @@
                 @if (Model.SearchAccountLevel.IsAgentLevel())
                 {
                     <th></th>
-
-                    if (Model.IsShowMyanmarOdds)
-                    {
-                        <th></th>
-                        <th></th>
-                    }
                 }
                 else
                 {
-                    if (!Model.IsShowMyanmarOdds)
-                    {
-                        <th></th>
-                        <th></th>
-                    }
+                    <th></th>
+                    <th></th>
                 }
                 <th></th>
                 <th></th>
@@ -176,7 +170,8 @@
                 <th rowspan="2" class="header all padding-icon">
                     @if (!Model.HideEditMultiple)
                     {
-                        <div class="edit-multiple icon-table-edit" data-url="" title="@CustomerListResources.EditMultipleSetting" />
+                        <div class="edit-multiple icon-table-edit" data-url=""
+                            title="@CustomerListResources.EditMultipleSetting" />
                     }
                     else
                     {
@@ -217,7 +212,8 @@
                 <th rowspan="2" class="header ">
                     @CustomerListResources.LoginIP
                 </th>
-                <th rowspan="2" class="header control" style="width: 100px !important;" title="@CustomerListResources.ExpandAll">
+                <th rowspan="2" class="header control" style="width: 100px !important;"
+                    title="@CustomerListResources.ExpandAll">
                 </th>
             </tr>
             <tr class="thead-row2">
@@ -232,57 +228,37 @@
                     <th class="header commission @commissionGroupClass">
                         @CustomerListResources.AComm3
                     </th>
-                    if (Model.IsShowMyanmarOdds)
-                    {
-                        <th class="header commission @commissionGroupClass">
-                            @CustomerListResources.AccountMyanmarOdds
-                        </th>
-                    }
                     <th class="header commission @commissionGroupClass">
                         @CustomerListResources.PComm1
                     </th>
                     <th class="header commission @commissionGroupClass">
                         @CustomerListResources.PComm2
                     </th>
-                    <th class="header commission @commissionGroupClass @(Model.IsShowMyanmarOdds ? string.Empty : "endGroup") ">
+                    <th class="header commission @commissionGroupClass endGroup">
                         @CustomerListResources.PComm3
                     </th>
-                    if (Model.IsShowMyanmarOdds)
-                    {
-                        <th class="header commission @commissionGroupClass" @(Model.IsShowMyanmarOdds ? "endGroup" : string.Empty)>
-                            @CustomerListResources.PlayerMyanmarOdds
-                        </th>
-                    }
                 }
                 else
                 {
                     <th class="header @commissionGroupClass commission startGroup">
                         @CustomerListResources.GroupA
                     </th>
-                    if (!Model.IsShowMyanmarOdds)
-                    {
-                        <th class="header @commissionGroupClass commission">
-                            @CustomerListResources.GroupB
-                        </th>
-                        <th class="header @commissionGroupClass commission">
-                            @CustomerListResources.GroupC
-                        </th>
-                        <th class="header @commissionGroupClass commission">
-                            @CustomerListResources.GroupD
-                        </th>
-                    }
+                    <th class="header @commissionGroupClass commission">
+                        @CustomerListResources.GroupB
+                    </th>
+                    <th class="header @commissionGroupClass commission">
+                        @CustomerListResources.GroupC
+                    </th>
+                    <th class="header @commissionGroupClass commission">
+                        @CustomerListResources.GroupD
+                    </th>
                     <th class="header @commissionGroupClass commission">
                         @CustomerListResources.Group1X2
                     </th>
-                    <th class="header @commissionGroupClass commission @(Model.IsShowMyanmarOdds ? string.Empty : "endGroup") ">
+                    <th class="header @commissionGroupClass commission endGroup">
                         @CustomerListResources.Other
                     </th>
-                    if (Model.IsShowMyanmarOdds)
-                    {
-                        <th class="header @commissionGroupClass commission @(Model.IsShowMyanmarOdds ? "endGroup" : string.Empty) ">
-                            @CustomerListResources.MyanmarOdds
-                        </th>
-                    }
+
                 }
             </tr>
         </thead>
@@ -316,7 +292,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-product-popup">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        id="close-product-popup">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -345,7 +322,6 @@
     <input type="hidden" id="reportsUrl" value='@MicroSites.ReportsUrl()'>
     <input type="hidden" id="memberInfoUrl" value='@MicroSites.SettingUrl()'>
     <input type="hidden" id="limitedDateToShowInfo" value='@(Model.LimitedDateToShowInfo ? "true" : "false")'>
-    <input type="hidden" id="isShowMyanmarOdds" value='@(Model.IsShowMyanmarOdds ? "true" : "false")'>
     <input type="hidden" id="canViewReport" value='@(Model.CanViewReport ? "true" : "false")'>
     <input type="hidden" id="canUpdateAccount" value='@(Model.CanUpdateAccount ? "true" : "false")'>
     <input type="hidden" id="customerListResources" value='@Model.Resources'>
@@ -366,8 +342,10 @@
     <input type="hidden" id="collapseAllText" value='@CustomerListResources.CollapseAll'>
     <input type="hidden" id="expandAllText" value='@CustomerListResources.ExpandAll'>
     <input type="hidden" id="unlockTooltipText" value='@CustomerListResources.UnlockTooltip'>
-    <input type="hidden" id="confirmUnlockInCaseFalseOTPSC" value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalseOTPSC'>
-    <input type="hidden" id="confirmUnlockInCaseFalsePassword" value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalsePassword'>
+    <input type="hidden" id="confirmUnlockInCaseFalseOTPSC"
+        value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalseOTPSC'>
+    <input type="hidden" id="confirmUnlockInCaseFalsePassword"
+        value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalsePassword'>
     <input type="hidden" id="page" value='@CustomerListResources.Page'>
     <input type="hidden" id="of" value='@CustomerListResources.Of'>
     <input type="hidden" id="pageSize" value='@CustomerListResources.PageSize'>

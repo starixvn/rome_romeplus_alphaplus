@@ -18,7 +18,6 @@
             bool? isShowOldValue,
             Dictionary<string, bool> sportBetTypeVisibilities = null,
             Dictionary<string, int> resourcesByBetTypeCacheRef = null,
-            bool? isShowMyanmarOdds = null,
             Dictionary<string, int> resourcesByProudctCacheRef = null) :
             base(
                 currentUserSession,
@@ -26,7 +25,6 @@
                 isShowOldValue,
                 sportBetTypeVisibilities,
                 resourcesByBetTypeCacheRef,
-                isShowMyanmarOdds,
                 resourcesByProudctCacheRef)
         {
         }

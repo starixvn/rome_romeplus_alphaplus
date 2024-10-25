@@ -11,8 +11,5 @@ public class CommissionQuery : MemberInfoBaseQuery, IRequest<CommissionViewModel
     public bool IsShowDoubleComm
         => Id == ProductIdConstants.Sportsbook && viewer.IsDoubleCommLosing;
 
-    public bool IsShowMyanmarOdds
-        => Id == ProductIdConstants.Sportsbook && viewer.IsShowMyanmarOdds;
-
     public string DarkModeName => viewer.DarkModeName;
 }

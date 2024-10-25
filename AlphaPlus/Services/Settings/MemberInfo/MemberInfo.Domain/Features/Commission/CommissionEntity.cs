@@ -35,9 +35,6 @@ public class CommissionEntity
     public decimal DiscountCS { get; init; }
     public decimal PlayerDiscountCS { get; init; }
 
-    public decimal ADiscountMyanmarOdds { get; init; }
-    public decimal DiscountMyanmarOdds { get; init; }
-    public decimal PlayerDiscountMyanmarOdds { get; init; }
     // End of Properties of Sportsbook
 
     // Properties of DCS

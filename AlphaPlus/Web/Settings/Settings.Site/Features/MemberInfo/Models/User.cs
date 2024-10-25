@@ -78,8 +78,6 @@
 
         public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
 
-        public bool IsShowMyanmarOdds => userSession.IsMyanmarOdds;
-
         public bool IsDoubleCommLosing => userSession.IsDoubleCommLosing;
 
         public bool CanViewReports => userSession.SubPageAccess.ViewReports;

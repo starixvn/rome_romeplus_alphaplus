@@ -14,15 +14,12 @@ public class CommissionByBetTypeModel
 
     public decimal CasinoComm { get; set; }
 
-    public decimal MyanmarOddsComm { get; set; }
-
     public static CommissionByBetTypeModel operator +(CommissionByBetTypeModel model1, CommissionByBetTypeModel model2)
     {
         model1.Comm1 += model2.Comm1;
         model1.Comm2 += model2.Comm2;
         model1.Comm3 += model2.Comm3;
         model1.CasinoComm += model2.CasinoComm;
-        model1.MyanmarOddsComm += model2.MyanmarOddsComm;
 
         return model1;
     }

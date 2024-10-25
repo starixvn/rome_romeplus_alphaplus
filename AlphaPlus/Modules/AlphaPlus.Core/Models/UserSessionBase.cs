@@ -54,7 +54,6 @@ public class UserSessionBase : IUserSession, IDisposable
     private const string ISALLOWEDTOTALBALANCETRANSFER = "ISALLOWEDTOTALBALANCETRANSFER";
     private const string LANGUAGE = "LANGUAGE";
     private const string ISLIMITHOSTPERMISSIONONSUBACCOUNTFUNCTION = "ISLIMITHOSTPERMISSIONONSUBACCOUNTFUNCTION";
-    private const string ISMYANMARODDS = "ISMYANMARODDS";
     private const string DISABLESUPERLIVE = "DISABLESUPERLIVE";
     private const string HIDEPRODUCT = "HIDEPRODUCT";
     private const string DISABLEDPRODUCT = "DISABLEDPRODUCT";
@@ -72,9 +71,7 @@ public class UserSessionBase : IUserSession, IDisposable
     private const string ISINTERNALWEBVPN = "ISINTERNALWEBVPN";
     private const string AGIPSESSIONKEY = "AGIP";
     private const string SITEDBGROUPIDSESSIONKEY = "SITEDBGROUPID";
-    private const string ISHIDESPORTSBOOK2 = "ISHIDESPORTSBOOK2";
-    private const string DISABLESPORTSBOOK2 = "DISABLESPORTSBOOK2";
-    private const string ISDISABLEDESPORTS = "ISDISABLEDESPORTS";
+    private const string CUSTDBGROUPIDSESSIONKEY = "CUSTDBGROUPID";
     private const string OFFEREDPRODUCTGROUPIDS = "OFFEREDPRODUCTGROUPIDS";
 
     public string NetSessionId => AlphaContext.Current.Session.Id;
@@ -345,12 +342,6 @@ public class UserSessionBase : IUserSession, IDisposable
         set => SetProperty(ISSHOWBETCHOICELIMIT, value);
     }
 
-    public bool IsMyanmarOdds
-    {
-        get => GetProperty(ISMYANMARODDS, false);
-        set => SetProperty(ISMYANMARODDS, value);
-    }
-
     public bool IsDisabledSuperLive
     {
         get => GetProperty(DISABLESUPERLIVE, false);
@@ -435,6 +426,12 @@ public class UserSessionBase : IUserSession, IDisposable
     {
         get => GetProperty<int>(SITEDBGROUPIDSESSIONKEY);
         set => SetProperty(SITEDBGROUPIDSESSIONKEY, value);
+    }
+
+    public int CustDBGroupId
+    {
+        get => GetProperty<int>(CUSTDBGROUPIDSESSIONKEY);
+        set => SetProperty(CUSTDBGROUPIDSESSIONKEY, value);
     }
 
     public int[] OfferedProductGroupIds

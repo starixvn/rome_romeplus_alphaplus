@@ -1,6 +1,6 @@
-namespace AlphaPlus.Identity.API.Features.Auth
+namespace AlphaPlus.Identity.API.Features.Auth.SiteDb
 {
-    public class SiteDB
+    public class SiteDBConfig
     {
         public int SiteDBGroupId { get; init; }
 
@@ -9,5 +9,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
         public string ClientAccessName { get; init; }
 
         public string AGIP { get; init; }
+
+        public int CustDBGroupId { get; init; }
     }
 }

@@ -118,7 +118,6 @@ $(function () {
         $('#memberInfoUrl').val(),
         $('#accountInfoUrl').val(),
         JSON.parse($('#limitedDateToShowInfo').val()),
-        JSON.parse($('#isShowMyanmarOdds').val()),
         JSON.parse($('#canViewReport').val()),
         JSON.parse($('#canUpdateAccount').val()),
         window.customerListData

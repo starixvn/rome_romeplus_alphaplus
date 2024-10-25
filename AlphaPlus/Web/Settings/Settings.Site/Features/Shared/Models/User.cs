@@ -74,8 +74,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
 
         public bool AllowedTotalBalanceTransfer => userSession.IsAllowedTotalBalanceTransfer;
 
-        public bool IsShowMyanmarOdds => userSession.IsMyanmarOdds;
-
         public bool CanViewReports => userSession.SubPageAccess.ViewReports;
 
         public bool IsOfferProtectedMode => userSession.IsOfferProtectedMode;

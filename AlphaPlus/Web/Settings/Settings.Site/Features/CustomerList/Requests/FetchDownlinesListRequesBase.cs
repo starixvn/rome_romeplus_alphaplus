@@ -30,8 +30,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 
         public bool LimitedDateToShowInfo => viewer.LimitedDateToShowInfo != default;
 
-        public bool IsShowMyanmarOdds => viewer.IsShowMyanmarOdds;
-
         public bool ShowNickname => viewer.LevelId == CustLevelId;
 
         public int AllowAutoTransfer { get; set; } = 2;

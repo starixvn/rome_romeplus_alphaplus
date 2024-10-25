@@ -32,14 +32,14 @@ public class CommissionHandler(
         if (actorLevel.IsAgentLevel())
         {
             commReport = await commissionService.GetAgentComm(
-                new CommissionParam(message.Id, message.ViewerId, AppSettings.SettingStatus, message.IsShowMyanmarOdds));
+                new CommissionParam(message.Id, message.ViewerId, AppSettings.SettingStatus));
         }
         else if (actorLevel.IsMasterLevel())
         {
             agents = await accountService.GetAgentList(message.ViewerId);
             var firstAgentId = agents.FirstOrDefault()?.CustId ?? 0;
             commReport = await commissionService.GetAgentComm(
-                new CommissionParam(message.Id, firstAgentId, AppSettings.SettingStatus, message.IsShowMyanmarOdds));
+                new CommissionParam(message.Id, firstAgentId, AppSettings.SettingStatus));
         }
         else
         {
@@ -54,7 +54,7 @@ public class CommissionHandler(
 
             agents = agentList;
             commReport = await commissionService.GetMasterComm(
-                new CommissionParam(message.Id, firstMasterId, AppSettings.SettingStatus, message.IsShowMyanmarOdds));
+                new CommissionParam(message.Id, firstMasterId, AppSettings.SettingStatus));
         }
 
         return new CommissionViewModel(message, commReport, products, masters, agents);
@@ -65,9 +65,9 @@ public class CommissionHandler(
         var actorLevel = message.ActorLevel;
         var commReportTask = actorLevel.IsSuperLevel() && message.MasterId > 0
             ? commissionService.GetMasterComm(
-                new CommissionParam(message.Id, message.MasterId, AppSettings.SettingStatus, message.IsShowMyanmarOdds))
+                new CommissionParam(message.Id, message.MasterId, AppSettings.SettingStatus))
             : commissionService.GetAgentComm(
-                new CommissionParam(message.Id, message.CustId, AppSettings.SettingStatus, message.IsShowMyanmarOdds));
+                new CommissionParam(message.Id, message.CustId, AppSettings.SettingStatus));
 
         return new CommissionViewModel(message, await commReportTask);
     }

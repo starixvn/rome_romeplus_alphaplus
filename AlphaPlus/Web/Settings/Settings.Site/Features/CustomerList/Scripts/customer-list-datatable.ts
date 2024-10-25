@@ -278,13 +278,6 @@ class CustomerListDataTable {
                 }
             );
 
-            if (this.viewModel.IsShowMyanmarOdds) {
-                columns.push({
-                    className: 'center',
-                    data: 'AdiscountMyanmarOdds'
-                });
-            }
-
             columns.push(
                 {
                     className: 'left',
@@ -299,35 +292,26 @@ class CustomerListDataTable {
                     data: 'PlayerDiscountCS'
                 }
             );
-
-            if (this.viewModel.IsShowMyanmarOdds) {
-                columns.push({
-                    className: 'center',
-                    data: 'PlayerDiscountMyanmarOdds'
-                });
-            }
         } else {
             columns.push({
                 className: 'center',
                 data: 'GroupA'
             });
 
-            if (!this.viewModel.IsShowMyanmarOdds) {
-                columns.push(
-                    {
-                        className: 'center',
-                        data: 'GroupB'
-                    },
-                    {
-                        className: 'center',
-                        data: 'GroupC'
-                    },
-                    {
-                        className: 'center',
-                        data: 'GroupD'
-                    }
-                );
-            }
+            columns.push(
+                {
+                    className: 'center',
+                    data: 'GroupB'
+                },
+                {
+                    className: 'center',
+                    data: 'GroupC'
+                },
+                {
+                    className: 'center',
+                    data: 'GroupD'
+                }
+            );
 
             columns.push(
                 {
@@ -339,13 +323,6 @@ class CustomerListDataTable {
                     data: 'DiscountCS'
                 }
             );
-
-            if (this.viewModel.IsShowMyanmarOdds) {
-                columns.push({
-                    className: 'center',
-                    data: 'DiscountMyanmarOdds'
-                });
-            }
         }
 
         if (!this.viewModel.LimitedDateToShowInfo) {
@@ -400,7 +377,9 @@ class CustomerListDataTable {
         return item.Locked
             ? `<div class='col-username' title='${this.$(
                   '#usernameTooltipText'
-              ).val()}'><a class="view-downline" data-url="${viewDownlineLink}" >${content}</a>${this.renderLockedIcon(item)}</div>`
+              ).val()}'><a class="view-downline" data-url="${viewDownlineLink}" >${content}</a>${this.renderLockedIcon(
+                  item
+              )}</div>`
             : `<div title='${this.$(
                   '#usernameTooltipText'
               ).val()}'><a class="view-downline" data-url="${viewDownlineLink}" >${content}</a></div>`;
@@ -573,7 +552,7 @@ class CustomerListDataTable {
             .unbind()
             .bind('click', (event) => this.viewDataURL(event));
 
-            this.$('.view-downline')
+        this.$('.view-downline')
             .unbind()
             .bind('click', (event) => this.viewDataURL(event));
 

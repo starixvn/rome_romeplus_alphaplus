@@ -14,10 +14,6 @@
         <td>@commission.Comm1.FormatNumber()</td>
         <td>@commission.Comm2.FormatNumber()</td>
         <td>@commission.Comm3.FormatNumber()</td>
-        if (Model.IsShowMyanmarOdds)
-        {
-            <td>@commission.MyanmarOddsComm.FormatNumber()</td>
-        }
         <td>@commission.CasinoComm.FormatNumber()</td>
     }
 
@@ -56,11 +52,6 @@
             <th class="sorting" data-colindex="1" data-sortedname="Comm1">@Resources.Commission1</th>
             <th class="sorting" data-colindex="2" data-sortedname="Comm2">@Resources.Commission2</th>
             <th class="sorting" data-colindex="3" data-sortedname="Comm3">@Resources.Commission3</th>
-            @if (Model.IsShowMyanmarOdds)
-            {
-                <th class="sorting" data-colindex="@sortIndex++" data-sortedname="MyanmarOddsComm">
-                    @Resources.SymbolMyanmarOdds</th>
-            }
             <th class="sorting" data-colindex="@sortIndex" data-sortedname="CasinoComm">@Resources.Gaming</th>
         </tr>
     </thead>
@@ -99,7 +90,7 @@
     }
     else
     {
-        <no-information colspan="@(Model.IsShowMyanmarOdds ? 7 : 6)" />
+        <no-information colspan="6" />
     }
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="Index" asp-controller="Legends"

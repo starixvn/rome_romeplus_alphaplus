@@ -19,7 +19,7 @@
         private readonly TransformService transformService;
 
         public StatusHandler(
-            [FromKeyedServices("statusLogSvc")]LogService logService,
+            [FromKeyedServices("statusLogSvc")] LogService logService,
             LogFormatter logFormatter,
             IDateTime dateTimeWrapper,
             TransformService transformService,
@@ -54,7 +54,6 @@
                 TrackingValueTransformTemplatePath = message.TrackingValueTransformTemplatePath,
                 CustStatuses = message.SportBetTypeVisibilities,
                 ResourcesByBetTypeCacheRef = message.ResourcesByBetTypeCacheRef,
-                IsShowMyanmarOdds = message.IsShowMyanmarOdds,
                 ResourcesProductCacheRef = message.ResourcesByProductCacheRef,
                 ResourcesBySportTypeCacheRef = message.ResourcesBySportTypeCacheRef
             };

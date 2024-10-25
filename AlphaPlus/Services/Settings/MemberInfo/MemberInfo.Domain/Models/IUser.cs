@@ -59,8 +59,6 @@
 
         bool AllowedTotalBalanceTransfer { get; }
 
-        bool IsShowMyanmarOdds { get; }
-
         bool IsDoubleCommLosing { get; }
 
         bool CanViewReports { get; }

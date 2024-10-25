@@ -16,7 +16,6 @@ public class CommissionByBetTypeViewModel(
 
     public UserLevel CustLevel { get; } = message.CustLevel;
 
-    public bool IsShowMyanmarOdds { get; } = message.IsShowMyanmarOdds;
 
     public PageHeaderViewModel PageHeader { get; }
         = new PageHeaderViewModel(

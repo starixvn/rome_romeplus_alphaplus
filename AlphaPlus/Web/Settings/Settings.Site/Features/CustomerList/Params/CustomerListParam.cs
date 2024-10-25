@@ -18,7 +18,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Params
             int pageIndex,
             bool limitedDateToShowInfo,
             bool showNickname,
-            bool isShowMyanmarOdds,
             int allowAutoTransfer)
         {
             UserId = userId;
@@ -34,7 +33,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Params
             PageIndex = pageIndex;
             LimitedDateToShowInfo = limitedDateToShowInfo;
             ShowNickname = showNickname;
-            IsShowMyanmarOdds = isShowMyanmarOdds;
             AllowAutoTransfer = allowAutoTransfer;
         }
 
@@ -63,8 +61,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Params
         public bool LimitedDateToShowInfo { get; }
 
         public bool ShowNickname { get; }
-
-        public bool IsShowMyanmarOdds { get; }
 
         public int AllowAutoTransfer { get; }
     }

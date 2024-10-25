@@ -1,5 +1,6 @@
 using System.Data;
 using AlphaPlus.Identity.API.Constants;
+using AlphaPlus.Identity.API.Features.Auth.SiteDb;
 using AlphaPlus.Identity.API.Utils;
 using Fanex.Data;
 using Fanex.Data.Repository;
@@ -28,13 +29,15 @@ namespace AlphaPlus.Identity.API.Features.Auth
         IDynamicRepository dynamicRepository,
         IOptions<AppSettings> appSettings,
         IMemoryCache memoryCache,
-        IAdminPermissionService adminPermissionService) : IAuthenticateService
+        IAdminPermissionService adminPermissionService,
+        ISiteDBService siteDBService) : IAuthenticateService
     {
         private readonly IEncryption encryption = encryption;
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
         private readonly AppSettings appSettings = appSettings.Value;
         private readonly IMemoryCache memoryCache = memoryCache;
         private readonly IAdminPermissionService adminPermissionService = adminPermissionService;
+        private readonly ISiteDBService siteDBService = siteDBService;
 
         public async Task<ReCheckInResponse> ReCheckIn(int onlineUserId)
         {
@@ -105,7 +108,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.Status = await GetCustomerStatus(response.CustId, response.AdminId);
                 response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
                 response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
-                response.SiteDB = await GetSiteDB(response.CustId);
+                response.SiteDB = await siteDBService.GetSiteDBConfig(response.CustId);
                 response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
                 response.DateLimit = await GetDateLimit(response.CustId);
 
@@ -182,8 +185,6 @@ namespace AlphaPlus.Identity.API.Features.Auth
         private Task<bool> IsShowBetChoiceLimit(int custId)
             => dynamicRepository.GetAsync<bool>(new CheckShowBetChoiceLimitCriteria(custId));
 
-        private Task<SiteDB> GetSiteDB(int custId)
-            => dynamicRepository.GetAsync<SiteDB>(new GetSiteDBConfigCriteria(custId));
 
         private async Task<bool> IsAllowTotalBalanceTransfer(int custId)
         {
@@ -263,7 +264,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.Status = await GetCustomerStatus(response.CustId, response.AdminId);
                 response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
                 response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
-                response.SiteDB = await GetSiteDB(response.CustId);
+                response.SiteDB = await siteDBService.GetSiteDBConfig(response.CustId);
                 response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
                 response.DateLimit = await GetDateLimit(response.CustId);
 
@@ -339,7 +340,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.Status = await GetCustomerStatus(response.CustId, 0);
                 response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
                 response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
-                response.SiteDB = await GetSiteDB(response.CustId);
+                response.SiteDB = await siteDBService.GetSiteDBConfig(response.CustId);
                 response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
                 response.DateLimit = await GetDateLimit(response.CustId);
 

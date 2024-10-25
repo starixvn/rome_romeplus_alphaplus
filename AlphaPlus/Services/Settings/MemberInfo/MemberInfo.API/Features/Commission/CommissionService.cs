@@ -28,31 +28,24 @@ public class CommissionService(
         var rawData = await repository.FetchAsync<CommissionEntity>(criteria);
 
         return param.ProductId == ProductId.Sportsbook
-            ? BuildCommissionModels(rawData, param.IsShowMyanmarOdds)
+            ? BuildCommissionModels(rawData)
             : BuildDCSCommissionModels(rawData);
     }
 
-    private CommissionReport BuildCommissionModels(IEnumerable<CommissionEntity> commissions, bool isShowMyanmarOdds)
+    private CommissionReport BuildCommissionModels(IEnumerable<CommissionEntity> commissions)
     {
         var commissionModels = new List<CommissionModel>();
         var sportTypes = new List<string> { $"{Resources.Comm} 1(%)", $"{Resources.Comm} 2(%)", $"{Resources.Comm} 3(%)" };
-        if (isShowMyanmarOdds)
-        {
-            sportTypes.Add(Resources.MyanmarOdds);
-        }
+
 
         foreach (var item in commissions)
         {
             var sportCommModels = new List<SportCommissionModel>
             {
-                new SportCommissionModel(item.ADiscount, item.Discount, item.PlayerDiscount),
-                new SportCommissionModel(item.ADiscount1X2, item.Discount1X2, item.PlayerDiscount1X2),
-                new SportCommissionModel(item.ADiscountCS, item.DiscountCS, item.PlayerDiscountCS)
+                new(item.ADiscount, item.Discount, item.PlayerDiscount),
+                new(item.ADiscount1X2, item.Discount1X2, item.PlayerDiscount1X2),
+                new(item.ADiscountCS, item.DiscountCS, item.PlayerDiscountCS)
             };
-            if (isShowMyanmarOdds)
-            {
-                sportCommModels.Add(new SportCommissionModel(item.ADiscountMyanmarOdds, item.DiscountMyanmarOdds, item.PlayerDiscountMyanmarOdds));
-            }
 
             commissionModels.Add(BuildCommissionModel(item, sportCommModels));
         }
@@ -97,8 +90,8 @@ public class CommissionService(
         return new CommissionReport(sportTypes, commissionModels);
     }
 
-    private CommissionModel BuildCommissionModel(CommissionEntity entity, IEnumerable<SportCommissionModel> commissions)
-        => new CommissionModel(
+    private static CommissionModel BuildCommissionModel(CommissionEntity entity, IEnumerable<SportCommissionModel> commissions)
+        => new(
             entity.Closed,
             entity.Enabled,
             entity.Suspended,
@@ -114,6 +107,6 @@ public class CommissionService(
             entity.DoubleCommLosing,
             commissions);
 
-    private SportCommissionModel BuildSportCommissionModel(CommissionEntity entity)
-        => new SportCommissionModel(entity.MasterDiscount, entity.AgentDiscount, entity.PlayerDiscount);
+    private static SportCommissionModel BuildSportCommissionModel(CommissionEntity entity)
+        => new(entity.MasterDiscount, entity.AgentDiscount, entity.PlayerDiscount);
 }
