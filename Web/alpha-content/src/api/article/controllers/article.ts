@@ -420,7 +420,29 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     }
 
     if(result.length == 0) {
-      return await this.suggestEN(ctx, null);
+      var enSuggest:any = await this.suggestEN(ctx, null);
+      for(var i = 0; i<enSuggest.length; i++) {
+        const e = enSuggest[i];
+        const localizedEntity = await strapi.db.query('api::article.article').findOne({
+          where: {
+            locale: language,
+            publishedAt: (isProd ? { $null: false } : {}),
+            user_levels: {
+              levelId: { $eq: level }
+            },
+            markets: {
+              name: { $eqi: market }
+            },
+            slug: e.Id,
+          }
+        });
+
+        var r = (localizedEntity || e);
+        result.push({
+          Id: r.slug,
+          Value: r.title
+        });
+      }
     }
 
     return result;

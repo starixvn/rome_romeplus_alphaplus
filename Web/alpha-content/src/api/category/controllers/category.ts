@@ -32,7 +32,7 @@ export default factories.createCoreController('api::category.category', ({ strap
         },
         populate: {
           articles: {
-            fields: ['slug', 'title', 'publishedAt'],
+            fields: ['slug', 'title', 'publishedAt', 'referenceURL'],
             populate: {
               user_levels:{
                 fields: ['levelId']
@@ -73,7 +73,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       },
       populate: {
         articles: {
-          fields: ['slug', 'title', 'publishedAt', 'order'],
+          fields: ['slug', 'title', 'publishedAt', 'order', 'referenceURL'],
           populate: {
             user_levels:{
               fields: ['levelId']
@@ -117,7 +117,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       },
       populate: {
         articles: {
-          fields: ['slug', 'title', 'publishedAt', 'order'],
+          fields: ['slug', 'title', 'publishedAt', 'order', 'referenceURL'],
           populate: {
             user_levels:{
               fields: ['levelId']
@@ -162,7 +162,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       },
       populate:{
         articles: {
-          fields: ['slug', 'title', 'publishedAt', 'order'],
+          fields: ['slug', 'title', 'publishedAt', 'order', 'referenceURL'],
           populate: {
             user_levels:{
               fields: ['levelId']
@@ -212,7 +212,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       },
       populate: {
         articles: {
-          fields: ['slug', 'title', 'publishedAt', 'order'],
+          fields: ['slug', 'title', 'publishedAt', 'order', 'referenceURL'],
           populate: {
             user_levels:{
               fields: ['levelId']
