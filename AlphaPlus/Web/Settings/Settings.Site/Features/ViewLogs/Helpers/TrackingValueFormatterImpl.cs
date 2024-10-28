@@ -96,9 +96,11 @@
 
         private static string FormatValue(string newValue, string oldValue, bool isShowOldValue)
         {
+            var newValueReFormat = string.IsNullOrEmpty(newValue) ? "_" : newValue;
+            var oldValueReFormat = string.IsNullOrEmpty(oldValue) ? "_" : oldValue;
             string formattedValue = isShowOldValue
-                ? string.Format("<span class=\"valuechanged\">{0}</span><span class=\"valueold\">({1})</span>", newValue, oldValue)
-                : string.Format("<span class=\"valuechanged\" title=\"{0} --> {1}\">{1}</span>", oldValue, newValue);
+                ? string.Format("<span class=\"valuechanged\">{0}</span><span class=\"valueold\">({1})</span>", newValueReFormat, oldValueReFormat)
+                : string.Format("<span class=\"valuechanged\" title=\"{0} --> {1}\">{1}</span>", oldValueReFormat, newValueReFormat);
 
             return formattedValue;
         }

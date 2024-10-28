@@ -3426,4 +3426,7 @@
   <data name="MPPMv2Virtual" xml:space="preserve">
     <value>虛擬籃球-單場最高派彩</value>
   </data>
+  <data name="unassigned" xml:space="preserve">
+    <value>未分配</value>
+  </data>
 </root>

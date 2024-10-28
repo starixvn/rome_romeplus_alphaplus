@@ -3417,4 +3417,7 @@
   <data name="MPPMv2Virtual" xml:space="preserve">
     <value>บาสเกตบอล Virtual - การจ่ายเงินสูงสุดต่อคู่การแข่งขัน</value>
   </data>
+  <data name="unassigned" xml:space="preserve">
+    <value>ยังไม่ได้เลือก</value>
+  </data>
 </root>

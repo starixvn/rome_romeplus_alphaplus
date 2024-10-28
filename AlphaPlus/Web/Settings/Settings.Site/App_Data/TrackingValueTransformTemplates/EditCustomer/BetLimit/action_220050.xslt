@@ -2,6 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xslLogFormat="urn:LogFormat">
   <xsl:output method="html" indent="no" />
   <xsl:key name="groupid" match="stakelevel" use="@groupid" />
+  <xsl:include href="..\..\stringreplace.xslt" />
   <xsl:template match="root">
     <table class="tblDesc">
       <tr>
@@ -38,11 +39,16 @@
               <xsl:value-of select="xslLogFormat:GetDisplayName(@settinglevel,@sporttype,@bettype,@productid)" />
             </td>
             <td class="colW2" colspan="3">
-              <xsl:value-of select="@stakelevellist" />
+              <xsl:call-template name="string-replace-all">
+                <xsl:with-param name="text" select="@stakelevellist" />
+                <xsl:with-param name="replace" select="'_'" />
+                <xsl:with-param name="by" select="xslLogFormat:GetLogResource('unassigned')" />
+              </xsl:call-template>
             </td>
           </tr>
         </xsl:for-each>
       </xsl:for-each>
     </table>
   </xsl:template>
+  
 </xsl:stylesheet>

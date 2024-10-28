@@ -2,13 +2,13 @@
 {
     public interface RemotingRefWrapper
     {
-        string GetBetType(object betTypeId, object? betId = null);
+        string GetBetType(object betTypeId, object betId = null);
 
         string GetBetTypeName(object bettypeId);
 
         string GetSportName(object sportId);
 
-        string GetProductName(int productId);
+        string GetProductName(int productId, bool isSiteLabel777 = false);
 
         string GetSubProductGroupName(int subGroupId);
 

@@ -3168,4 +3168,7 @@
   <data name="Schedule" xml:space="preserve">
     <value>Lịch</value>
   </data>
+  <data name="unassigned" xml:space="preserve">
+    <value>Chưa chỉ định</value>
+  </data>
 </root>

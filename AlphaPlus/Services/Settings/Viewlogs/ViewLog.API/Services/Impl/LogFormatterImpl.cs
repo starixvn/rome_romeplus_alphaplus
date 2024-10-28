@@ -18,10 +18,10 @@
         private readonly ViewLogIPService ipService;
         private readonly RemotingRefWrapper remotingRef;
 
-        private Dictionary<string, bool>? custStatuses;
-        private Dictionary<string, int>? resourcesByProductCacheRef;
-        private Dictionary<string, int>? resourcesBySportTypeCacheRef;
-        private Dictionary<string, int>? resourcesByBetTypeCacheRef;
+        private Dictionary<string, bool> custStatuses;
+        private Dictionary<string, int> resourcesByProductCacheRef;
+        private Dictionary<string, int> resourcesBySportTypeCacheRef;
+        private Dictionary<string, int> resourcesByBetTypeCacheRef;
         private bool isHideNickname;
         private const int SevenDaysIndex = 8;
 
@@ -33,7 +33,7 @@
             this.remotingRef = remotingRef;
         }
 
-        public ResourceManager ResourceManager { get; set; } = TrackingValueResources.ResourceManager;
+        public ResourceManager ResourceManager { get; set; }
 
         /// <summary>
         /// Need be reviewed code here, AssignParams should not in formatter class
@@ -65,7 +65,7 @@
 
         public bool IsVisible(string key)
         {
-            return custStatuses != null && custStatuses.ContainsKey(key) && custStatuses[key];
+            return custStatuses.ContainsKey(key) && custStatuses[key];
         }
 
         public string GetLogResource(string key)
@@ -136,10 +136,10 @@
 
                 // title: "{oldValue} --> {newValue}" or empty
                 // old value = Split()[0]
-                oldValue = codes.First()?.Attribute("title")?.Value.Split()[0];
+                oldValue = codes.First().Attribute("title").Value.Split()[0];
 
                 dayCodesWithDiff = dayCodesWithDiff.Replace(newValue, CovertCodeCondition(newValue))
-                                                   .Replace(oldValue ?? string.Empty, CovertCodeCondition(oldValue ?? string.Empty));
+                                                   .Replace(oldValue, CovertCodeCondition(oldValue));
                 return dayCodesWithDiff;
             }
 
@@ -228,9 +228,9 @@
             var lowerCaseResourceName = name.ToLower();
 
             var resourceValue = string.Empty;
-            if (custStatuses != null && custStatuses.ContainsKey(lowerCaseResourceName)
+            if (custStatuses.ContainsKey(lowerCaseResourceName)
                 && custStatuses[lowerCaseResourceName]
-                && resourcesByProductCacheRef != null && resourcesByProductCacheRef.ContainsKey(lowerCaseResourceName))
+                && resourcesByProductCacheRef.ContainsKey(lowerCaseResourceName))
             {
                 resourceValue = $"{TrackingValueResources.disabled} {GetProductName(resourcesByProductCacheRef[lowerCaseResourceName])}";
             }
@@ -244,7 +244,7 @@
             {
                 resourceValue = $"{TrackingValueResources.disabled} {GetBetTypeName(resourcesByBetTypeCacheRef[lowerCaseResourceName])}";
             }
-            else if (custStatuses != null && custStatuses.ContainsKey(lowerCaseResourceName)
+            else if (custStatuses.ContainsKey(lowerCaseResourceName)
                 && custStatuses[lowerCaseResourceName])
             {
                 resourceValue = GetLogResource(name);
@@ -388,7 +388,7 @@
         {
             if (date.Equals("NULL", StringComparison.OrdinalIgnoreCase))
             {
-                return TrackingValueResources.ResourceManager.GetString("Never") ?? string.Empty;
+                return TrackingValueResources.ResourceManager.GetString("Never");
             }
 
             return DateTimeHelper.ToLongDateWithSlash(DateTime.Parse(date));
@@ -506,8 +506,8 @@
 
                 // title: "{oldValue} --> {newValue}" or empty
                 // old value = Split()[0]
-                oldValue = codes.First().Attribute("title")?.Value.Split()[0];
-                return ReplaceValues(oldValue ?? string.Empty, newValue, valuesDiff, formatDiffFunc);
+                oldValue = codes.First().Attribute("title").Value.Split()[0];
+                return ReplaceValues(oldValue, newValue, valuesDiff, formatDiffFunc);
             }
 
             return formatDiffFunc(result);
@@ -516,8 +516,7 @@
         public static string CovertSchedule(string schedule)
         {
             var dates = schedule.Trim().ToCharArray();
-
-            if (!dates.Any())
+            if (schedule == "_" || !dates.Any())
             {
                 return "-";
             }
@@ -527,7 +526,7 @@
                 return Resources.Daily;
             }
 
-            string[] dateNames = [
+            string[] dateNames = {
                 Resources.Sun,
                 Resources.Mon,
                 Resources.Tue,
@@ -535,7 +534,7 @@
                 Resources.Thurs,
                 Resources.Fri,
                 Resources.Sat
-            ];
+            };
 
             return string.Join("-", dates.Select(d => dateNames[int.Parse(d.ToString()) - 1]));
         }
