@@ -110,10 +110,10 @@
     <value>เวลาการดำเนินการ</value>
   </data>
   <data name="choice" xml:space="preserve">
-    <value>เลือก</value>
+    <value>ตัวเลือก</value>
   </data>
   <data name="stake" xml:space="preserve">
-    <value>เงินเดิมพัน </value>
+    <value>ยอดเดิมพัน</value>
   </data>
   <data name="lblWinLoss" xml:space="preserve">
     <value>ได้ เสีย</value>
@@ -122,18 +122,18 @@
     <value>สถานะ</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของเอเย่น</value>
+    <value>ค่าคอมเอเย่นต์</value>
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของมาสเตอร์</value>
+    <value>ค่าคอมมาสเตอร์</value>
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของซุปเปอร์</value>
+    <value>ค่าคอมซุปเปอร์</value>
   </data>
   <data name="lblComm" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ความเสี่ยง</value>
   </data>
   <data name="odds" xml:space="preserve">
-    <value>ราคา</value>
+    <value>อัตราต่อรอง</value>
   </data>
 </root>

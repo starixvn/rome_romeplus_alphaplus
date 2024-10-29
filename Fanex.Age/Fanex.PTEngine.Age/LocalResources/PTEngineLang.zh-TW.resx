@@ -181,7 +181,7 @@
     <value> 投注摘要</value>
   </data>
   <data name="btnAdd" xml:space="preserve">
-    <value>增加</value>
+    <value>添加</value>
   </data>
   <data name="cancel" xml:space="preserve">
     <value>取消</value>
@@ -1843,7 +1843,7 @@
     <value>虛擬網球</value>
   </data>
   <data name="agentList" xml:space="preserve">
-    <value>代理</value>
+    <value>代理名單</value>
   </data>
   <data name="memberList" xml:space="preserve">
     <value>會員</value>

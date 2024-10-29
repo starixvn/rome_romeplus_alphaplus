@@ -113,7 +113,7 @@
     <value>選擇</value>
   </data>
   <data name="stake" xml:space="preserve">
-    <value>投注額 </value>
+    <value>本金</value>
   </data>
   <data name="lblWinLoss" xml:space="preserve">
     <value>輸贏</value>
