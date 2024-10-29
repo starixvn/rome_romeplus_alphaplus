@@ -19,7 +19,7 @@
         <ul class="tab-list dragscroll" id="tab-list">
             @foreach (var product in Model.ProductList)
             {
-                <li class="@(index == 0 ? "current" : string.Empty)"><a href="#" onclick="ActiveMenuTab(@index);"
+                <li id="IdCurr@(index)" class="@(index == 0 ? "current" : string.Empty)"><a href="#" onclick="ActiveMenuTab(@index);"
                         data-url="@product.URL"><span>@product.Name</span></a></li>
                 ++index;
             }

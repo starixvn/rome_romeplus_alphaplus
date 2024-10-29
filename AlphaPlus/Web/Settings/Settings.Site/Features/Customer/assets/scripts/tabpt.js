@@ -15,11 +15,11 @@ var tabPT = {
         tabPT.disablePrevNext();
     },
     cacheElements: function () {
-        tabPT.iconPrev = $(".icon-previous");
-        tabPT.iconNext = $(".icon-next");
-        tabPT.iconMore = $("#icon-more");
-        tabPT.tabListContainer = $("#tab-list");
-        tabPT.tabsList = tabPT.tabListContainer.find("> li");
+        tabPT.iconPrev = $('.icon-previous');
+        tabPT.iconNext = $('.icon-next');
+        tabPT.iconMore = $('#icon-more');
+        tabPT.tabListContainer = $('#tab-list');
+        tabPT.tabsList = tabPT.tabListContainer.find('> li');
 
         tabPT.numberOfProducts = tabPT.tabsList.length;
     },
@@ -28,35 +28,35 @@ var tabPT = {
 
         onload = function () {
             tabPT.iconMore.click(function () {
-                parent.redirectPT.showAutoComplete();
-                $(this).addClass("hide");
+                window.redirectPT.showAutoComplete();
+                $(this).addClass('hide');
             });
 
-            parent.redirectPT.bindAutoComplete(productList);
+            window.redirectPT.bindAutoComplete(productList);
         };
     },
     getCurrentTabIndex: function () {
-        var current = tabPT.tabListContainer.find("> li.current");
+        var current = tabPT.tabListContainer.find('> li.current');
         return tabPT.tabsList.index(current);
     },
     disablePrevNext: function () {
-        tabPT.iconPrev.unbind("click");
-        tabPT.iconNext.unbind("click");
+        tabPT.iconPrev.unbind('click');
+        tabPT.iconNext.unbind('click');
 
-        var isDisablePrev = tabPT.isOnScreen($("#IdCurr0"));
+        var isDisablePrev = tabPT.isOnScreen($('#IdCurr0'));
         if (isDisablePrev) {
-            tabPT.iconPrev.attr("disabled", "disabled");
+            tabPT.iconPrev.attr('disabled', 'disabled');
         } else {
-            tabPT.iconPrev.attr("disabled", null);
-            tabPT.iconPrev.bind("click", tabPT.prevProduct);
+            tabPT.iconPrev.attr('disabled', null);
+            tabPT.iconPrev.bind('click', tabPT.prevProduct);
         }
 
-        var isDisableNext = tabPT.isOnScreen($("#IdCurr" + (tabPT.numberOfProducts - 1)));
+        var isDisableNext = tabPT.isOnScreen($('#IdCurr' + (tabPT.numberOfProducts - 1)));
         if (isDisableNext) {
-            tabPT.iconNext.attr("disabled", "disabled");
+            tabPT.iconNext.attr('disabled', 'disabled');
         } else {
-            tabPT.iconNext.attr("disabled", null);
-            tabPT.iconNext.bind("click", tabPT.nextProduct);
+            tabPT.iconNext.attr('disabled', null);
+            tabPT.iconNext.bind('click', tabPT.nextProduct);
         }
     },
     prevProduct: function () {
@@ -75,35 +75,35 @@ var tabPT = {
     chooseProduct: function (index) {
         tabPT.currentIndex = parseInt(index, 0);
 
-        var tab = $("#IdCurr" + index);
-        tabPT.tabsList.removeClass("current");
-        tab.addClass("current");
+        var tab = $('#IdCurr' + index);
+        tabPT.tabsList.removeClass('current');
+        tab.addClass('current');
 
         tabPT.setReadProduct(index);
 
-        var href = tab.find("> a");
-        parent.frmmain.location.href = href.attr("data-url");
+        var href = tab.find('> a');
+        window.frmmain.location.href = href.attr('data-url');
     },
     setReadProduct: function (index) {
-        var key = "ReviewedSettingProduct_" + customerId;
-        var products = $.cookie(key) || "";
-        if ((products + ",").indexOf("," + index + ",") == -1) {
-            $.cookie(key, products + "," + index);
+        var key = 'ReviewedSettingProduct_' + customerId;
+        var products = $.cookie(key) || '';
+        if ((products + ',').indexOf(',' + index + ',') == -1) {
+            $.cookie(key, products + ',' + index);
         }
 
         tabPT.setReadProductStyle();
     },
     setReadProductStyle: function () {
-        var key = "ReviewedSettingProduct_" + customerId;
-        var products = $.cookie(key) || "";
+        var key = 'ReviewedSettingProduct_' + customerId;
+        var products = $.cookie(key) || '';
         for (var i = 0; i < tabPT.numberOfProducts; i++) {
-            if ((products + ",").indexOf("," + i + ",") != -1) {
-                $("#IdCurr" + i).addClass("read");
+            if ((products + ',').indexOf(',' + i + ',') != -1) {
+                $('#IdCurr' + i).addClass('read');
             }
         }
     },
     showTabs: function (tabName) {
-        tabPT.iconMore.removeClass("hide");
+        tabPT.iconMore.removeClass('hide');
         tabPT.rotateProduct(tabName);
     },
     rotateProduct: function (tabName) {
@@ -111,22 +111,22 @@ var tabPT = {
         for (var i = 0; i < tabPT.numberOfProducts; i++) {
             var tab = $(tabPT.tabsList[i]);
 
-            if ($.trim(tab.find(">a>span").html()).toLowerCase() != tabName.toLowerCase()) {
+            if ($.trim(tab.find('>a>span').html()).toLowerCase() != tabName.toLowerCase()) {
                 tab.remove();
                 tabPT.tabListContainer.append(tab);
                 continue;
             }
 
-            tabPT.tabsList.removeClass("current");
-            tab.addClass("current");
+            tabPT.tabsList.removeClass('current');
+            tab.addClass('current');
             tabPT.setReadProduct(tabPT.findIndexOfTab(tabName));
-            var href = tab.find("> a");
-            parent.frmmain.location.href = href.attr("data-url");
+            var href = tab.find('> a');
+            window.frmmain.location.href = href.attr('data-url');
 
             break;
         }
 
-        tabPT.tabsList = tabPT.tabListContainer.find("> li");
+        tabPT.tabsList = tabPT.tabListContainer.find('> li');
     },
     findIndexOfTab: function (tabName) {
         var index = -1;

@@ -1,6 +1,5 @@
-﻿@import "/assets/styles/base/roboto-fonts.css";
-@import "/assets/styles/base/icon-fonts.css";
-
+﻿@import '/assets/styles/base/roboto-fonts.css';
+@import '/assets/styles/base/icon-fonts.css';
 
 .list-action {
     position: absolute;
@@ -8,7 +7,7 @@
     top: 5px;
 }
 
-.list-action [class ^="icon-"] {
+.list-action [class^='icon-'] {
     cursor: pointer;
     border: 1px solid #333;
     border-radius: 2px;
@@ -16,15 +15,16 @@
     width: 18px;
     height: 18px;
     display: inline-block;
-    margin-right: 8px;    
+    margin-right: 8px;
 }
-.list-action .icon-previous, .list-action .icon-next {
+.list-action .icon-previous,
+.list-action .icon-next {
     display: none;
 }
-.list-action [class ^="icon-"]:last-child {
+.list-action [class^='icon-']:last-child {
     margin-right: 4px;
 }
-.list-action [class ^="icon-"]:after {
+.list-action [class^='icon-']:after {
     font-family: 'Iconalpha' !important;
     color: #333;
     font-size: 15px;
@@ -32,7 +32,7 @@
     top: 1px;
     left: 2px;
 }
-.list-action [class ^="icon-"][disabled] {
+.list-action [class^='icon-'][disabled] {
     opacity: 0.4;
 }
 .list-action .icon-more {
@@ -46,14 +46,14 @@
     transform: rotate(180deg);
 }
 .icon-previous:after {
-    content:'\e903';
+    content: '\e903';
 }
 .icon-next:after {
-    content:'\e903';
+    content: '\e903';
 }
 .list-action .icon-more:before {
-    content:'\e973';
-    color: #0077CA;
+    content: '\e973';
+    color: #0077ca;
     font-size: 26px;
     top: -2px;
     left: 0;
@@ -83,14 +83,13 @@
 }
 
 .product-list {
-  font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;
-  font-size: 13px;
-  display: inline-block;
-  width: 100%; 
-  position: relative;
+    font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;
+    font-size: 13px;
+    display: inline-block;
+    width: 100%;
+    position: relative;
 }
 .tab-list {
-    position: absolute;
     right: 60px;
     left: 0;
     overflow: auto;
@@ -98,28 +97,29 @@
 }
 
 .tab-list ul {
-  font-weight: bold;
-  list-style-type: none;
-  margin: 0;
-  padding: 0; 
-  display: table;
+    font-weight: bold;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: table;
 }
 
 .tab-list li {
-  display: table-cell;
-  margin-right: 12px;
-  padding: 0;
-  position: relative; }
+    display: table-cell;
+    margin-right: 12px;
+    padding: 0;
+    position: relative;
+}
 
 .tab-list a {
-  color: #0B589C;
-  text-decoration: none;
-  white-space: nowrap;
+    color: #0b589c;
+    text-decoration: none;
+    white-space: nowrap;
 }
 .tab-list .read a span {
     color: #666;
 }
-  .tab-list a:after {
+.tab-list a:after {
     content: '';
     display: block;
     height: 3px;
@@ -132,20 +132,25 @@
     -khtml-transition: width 0.5s ease, background-color 0.5s ease;
     -moz-transition: width 0.5s ease, background-color 0.5s ease;
     -o-transition: width 0.5s ease, background-color 0.5s ease;
-    transition: width 0.5s ease, background-color 0.5s ease; }
-  .tab-list a span {
-    color: #3B80DF;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+.tab-list a span {
+    color: #3b80df;
     display: inline-block;
     padding: 6px 8px 7px;
     font-weight: 700;
-  }
+}
 
-.tab-list .current a span, .tab_hr a:hover span {
-  color: #666; }
+.tab-list .current a span,
+.tab_hr a:hover span {
+    color: #666;
+}
 
-.tab-list .current a:after, .tab_hr a:hover:after {
-  background: #666;
-  width: 100%; }
+.tab-list .current a:after,
+.tab_hr a:hover:after {
+    background: #666;
+    width: 100%;
+}
 
 .search-product {
     font-family: Roboto, Arial, sans-serif;
@@ -156,7 +161,8 @@
         display: none;
     }
 
-    .list-action .icon-previous, .list-action .icon-next {
+    .list-action .icon-previous,
+    .list-action .icon-next {
         display: inline-block;
     }
 
@@ -170,6 +176,3 @@
         right: 120px;
     }
 }
-
-
-

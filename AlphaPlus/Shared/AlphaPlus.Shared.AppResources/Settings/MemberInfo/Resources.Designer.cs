@@ -19,7 +19,7 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources
@@ -65,6 +65,61 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             set
             {
                 resourceCulture = value;
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string Product
+        {
+            get
+            {
+                return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Double Comm.
+        /// </summary>
+        public static string DoubleComm
+        {
+            get
+            {
+                return ResourceManager.GetString("DoubleComm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        public static string Group
+        {
+            get
+            {
+                return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Member Commission.
+        /// </summary>
+        public static string MemberCommission
+        {
+            get
+            {
+                return ResourceManager.GetString("MemberCommission", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Comm.
+        /// </summary>
+        public static string Comm
+        {
+            get
+            {
+                return ResourceManager.GetString("Comm", resourceCulture);
             }
         }
 
@@ -157,6 +212,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Active
+        {
+            get
+            {
+                return ResourceManager.GetString("Active", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to You can use Auto Transfer because upline has disabled All Day Balance Transfer for you. The page will refresh automatically..
         /// </summary>
         public static string ADBTOffError
@@ -186,6 +252,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Added Date.
+        /// </summary>
+        public static string AddedDate
+        {
+            get
+            {
+                return ResourceManager.GetString("AddedDate", resourceCulture);
             }
         }
 
@@ -443,6 +520,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Average.
+        /// </summary>
+        public static string Average
+        {
+            get
+            {
+                return ResourceManager.GetString("Average", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Balance.
         /// </summary>
         public static string Balance
@@ -465,6 +553,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Behavior Category.
+        /// </summary>
+        public static string BehaviorCategory
+        {
+            get
+            {
+                return ResourceManager.GetString("BehaviorCategory", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Count.
+        /// </summary>
+        public static string BetCount
+        {
+            get
+            {
+                return ResourceManager.GetString("BetCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Bet Credit.
         /// </summary>
         public static string BetCredit
@@ -472,6 +582,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("BetCredit", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Setting.
+        /// </summary>
+        public static string Betsetting
+        {
+            get
+            {
+                return ResourceManager.GetString("Betsetting", resourceCulture);
             }
         }
 
@@ -487,6 +608,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Betting Statistic.
+        /// </summary>
+        public static string BettingStatistic
+        {
+            get
+            {
+                return ResourceManager.GetString("BettingStatistic", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Type.
+        /// </summary>
+        public static string Bettype
+        {
+            get
+            {
+                return ResourceManager.GetString("Bettype", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel
@@ -494,6 +637,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        public static string Canceled
+        {
+            get
+            {
+                return ResourceManager.GetString("Canceled", resourceCulture);
             }
         }
 
@@ -564,6 +718,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Click to Set thresholds.
+        /// </summary>
+        public static string ClickToSetThresholds
+        {
+            get
+            {
+                return ResourceManager.GetString("ClickToSetThresholds", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Close Account.
         /// </summary>
         public static string CloseAccount
@@ -619,6 +784,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Commission.
+        /// </summary>
+        public static string Commission
+        {
+            get
+            {
+                return ResourceManager.GetString("Commission", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Commission Setting Follows.
         /// </summary>
         public static string CommissionSettingFollows
@@ -626,6 +802,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("CommissionSettingFollows", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Compact Copy.
+        /// </summary>
+        public static string CompactCopy
+        {
+            get
+            {
+                return ResourceManager.GetString("CompactCopy", resourceCulture);
             }
         }
 
@@ -795,6 +982,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Available Credit: {0}.
+        /// </summary>
+        public static string creditHint
+        {
+            get
+            {
+                return ResourceManager.GetString("creditHint", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Current Loss Limit (%).
         /// </summary>
         public static string CurrentLossLimit
@@ -828,6 +1026,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Member Profile.
+        /// </summary>
+        public static string CustomerProfile
+        {
+            get
+            {
+                return ResourceManager.GetString("CustomerProfile", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Date Notified.
         /// </summary>
         public static string DateNotified
@@ -846,6 +1055,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("DateNotifiedFrom", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRange
+        {
+            get
+            {
+                return ResourceManager.GetString("DateRange", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Data is summarized from {0} to {1}.
+        /// </summary>
+        public static string DateRangeNote
+        {
+            get
+            {
+                return ResourceManager.GetString("DateRangeNote", resourceCulture);
             }
         }
 
@@ -1022,6 +1253,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("DormantAccountList", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Draw.
+        /// </summary>
+        public static string Draw
+        {
+            get
+            {
+                return ResourceManager.GetString("Draw", resourceCulture);
             }
         }
 
@@ -1444,6 +1686,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Individual Copy.
+        /// </summary>
+        public static string IndividualCopy
+        {
+            get
+            {
+                return ResourceManager.GetString("IndividualCopy", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string Information
@@ -1462,6 +1715,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("InputExistingMemberAccount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click &apos;Copy&apos; to copy and share the account details.
+        /// </summary>
+        public static string introCopyNote
+        {
+            get
+            {
+                return ResourceManager.GetString("introCopyNote", resourceCulture);
             }
         }
 
@@ -1539,6 +1803,39 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("JackpotGames", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last 30 days.
+        /// </summary>
+        public static string Last30Days
+        {
+            get
+            {
+                return ResourceManager.GetString("Last30Days", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last 60 days.
+        /// </summary>
+        public static string Last60Days
+        {
+            get
+            {
+                return ResourceManager.GetString("Last60Days", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last 90 days.
+        /// </summary>
+        public static string Last90Days
+        {
+            get
+            {
+                return ResourceManager.GetString("Last90Days", resourceCulture);
             }
         }
 
@@ -1684,6 +1981,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Live.
+        /// </summary>
+        public static string Live
+        {
+            get
+            {
+                return ResourceManager.GetString("Live", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Locked.
         /// </summary>
         public static string Locked
@@ -1724,6 +2032,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("LoginIP", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Lose.
+        /// </summary>
+        public static string Lose
+        {
+            get
+            {
+                return ResourceManager.GetString("Lose", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Losing.
+        /// </summary>
+        public static string Losing
+        {
+            get
+            {
+                return ResourceManager.GetString("Losing", resourceCulture);
             }
         }
 
@@ -1772,6 +2102,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Max.
+        /// </summary>
+        public static string Max
+        {
+            get
+            {
+                return ResourceManager.GetString("Max", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Max Credit per Member.
         /// </summary>
         public static string MaxCreditPerMember
@@ -1816,6 +2157,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Max Payout Setting.
+        /// </summary>
+        public static string MaxPayoutSetting
+        {
+            get
+            {
+                return ResourceManager.GetString("MaxPayoutSetting", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
         public static string Member
@@ -1834,6 +2186,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("MemberAccountIsInvalid", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Member Betting Behavior.
+        /// </summary>
+        public static string MemberBettingBehavior
+        {
+            get
+            {
+                return ResourceManager.GetString("MemberBettingBehavior", resourceCulture);
             }
         }
 
@@ -1860,6 +2223,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to The Maximum Member Credit set by your upline: {0}.
+        /// </summary>
+        public static string memberMaxCreditHint
+        {
+            get
+            {
+                return ResourceManager.GetString("memberMaxCreditHint", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Member username is invalid.
+        /// </summary>
+        public static string MemberUsernameIsInvalid
+        {
+            get
+            {
+                return ResourceManager.GetString("MemberUsernameIsInvalid", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Member Win/Loss Limit.
         /// </summary>
         public static string MemberWinLossLimit
@@ -1871,6 +2256,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Min.
+        /// </summary>
+        public static string Min
+        {
+            get
+            {
+                return ResourceManager.GetString("Min", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mix.
+        /// </summary>
+        public static string Mix
+        {
+            get
+            {
+                return ResourceManager.GetString("Mix", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Mix Sports Parlay.
         /// </summary>
         public static string mixsports
@@ -1878,6 +2285,50 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("mixsports", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mix Turnover.
+        /// </summary>
+        public static string MixTurnover
+        {
+            get
+            {
+                return ResourceManager.GetString("MixTurnover", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Monitored.
+        /// </summary>
+        public static string Monitored
+        {
+            get
+            {
+                return ResourceManager.GetString("Monitored", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Monitored Member.
+        /// </summary>
+        public static string MonitoredMember
+        {
+            get
+            {
+                return ResourceManager.GetString("MonitoredMember", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Monitored Member.
+        /// </summary>
+        public static string MonitoredMember_Duplicate_1_
+        {
+            get
+            {
+                return ResourceManager.GetString("MonitoredMember_Duplicate[1]", resourceCulture);
             }
         }
 
@@ -1999,6 +2450,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("MyWinningThreshold", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Net Turnover.
+        /// </summary>
+        public static string NetTurnover
+        {
+            get
+            {
+                return ResourceManager.GetString("NetTurnover", resourceCulture);
             }
         }
 
@@ -2153,6 +2615,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("NonEntered", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Non-Live.
+        /// </summary>
+        public static string NonLive
+        {
+            get
+            {
+                return ResourceManager.GetString("NonLive", resourceCulture);
             }
         }
 
@@ -2520,6 +2993,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Profit Margin.
+        /// </summary>
+        public static string ProfitMargin
+        {
+            get
+            {
+                return ResourceManager.GetString("ProfitMargin", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Progressive Jackpot Games.
         /// </summary>
         public static string ProgressiveJackpotGames
@@ -2549,6 +3033,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("ProgressiveJackpotHandbookTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Position Taking Setting.
+        /// </summary>
+        public static string PTSetting
+        {
+            get
+            {
+                return ResourceManager.GetString("PTSetting", resourceCulture);
             }
         }
 
@@ -2675,6 +3170,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Reached Limit Today.
+        /// </summary>
+        public static string ReachedLimitToday
+        {
+            get
+            {
+                return ResourceManager.GetString("ReachedLimitToday", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Reached Threshold.
         /// </summary>
         public static string ReachedThreshold
@@ -2704,6 +3210,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Related to other accounts.
+        /// </summary>
+        public static string RelatedToOtherAccounts
+        {
+            get
+            {
+                return ResourceManager.GetString("RelatedToOtherAccounts", resourceCulture);
             }
         }
 
@@ -2825,6 +3342,17 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("ReviewStatus", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Risk Level.
+        /// </summary>
+        public static string RiskLevel
+        {
+            get
+            {
+                return ResourceManager.GetString("RiskLevel", resourceCulture);
             }
         }
 
@@ -3049,6 +3577,21 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to 
+        ///      Inputting all fields of bet setting = 0 means you do not set limit to the bet setting of this account.&lt;br/&gt;
+        ///      To prevent members from playing the game, set Min Bet = 0 and other fields = 0.1.&lt;br/&gt;
+        ///      Updating upline&apos;s bet setting might decrease all downlines&apos; bet settings to ensure that they are not greater than upline&apos;s bet setting.
+        ///    .
+        /// </summary>
+        public static string SMAUnlimitedBetSettingWarningMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("SMAUnlimitedBetSettingWarningMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Soccer Parlay.
         /// </summary>
         public static string soccerParlay
@@ -3067,6 +3610,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("SourceAccount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sports.
+        /// </summary>
+        public static string Sports
+        {
+            get
+            {
+                return ResourceManager.GetString("Sports", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Stake.
+        /// </summary>
+        public static string Stake
+        {
+            get
+            {
+                return ResourceManager.GetString("Stake", resourceCulture);
             }
         }
 
@@ -3258,6 +3823,83 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Total Turnover.
+        /// </summary>
+        public static string TotalTurnover
+        {
+            get
+            {
+                return ResourceManager.GetString("TotalTurnover", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover.
+        /// </summary>
+        public static string Turnover
+        {
+            get
+            {
+                return ResourceManager.GetString("Turnover", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover (Live).
+        /// </summary>
+        public static string Turnover__Live_
+        {
+            get
+            {
+                return ResourceManager.GetString("Turnover_(Live)", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover (Non-Live).
+        /// </summary>
+        public static string Turnover__NonLive_
+        {
+            get
+            {
+                return ResourceManager.GetString("Turnover_(NonLive)", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover &amp; Win/Loss by Date.
+        /// </summary>
+        public static string TurnoverAndWinLossByDate
+        {
+            get
+            {
+                return ResourceManager.GetString("TurnoverAndWinLossByDate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover by Bet Type.
+        /// </summary>
+        public static string TurnoverByBetType
+        {
+            get
+            {
+                return ResourceManager.GetString("TurnoverByBetType", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover by Sport.
+        /// </summary>
+        public static string TurnoverBySport
+        {
+            get
+            {
+                return ResourceManager.GetString("TurnoverBySport", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Unlimited.
         /// </summary>
         public static string Unlimited
@@ -3265,6 +3907,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("Unlimited", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Unlimited Threshold.
+        /// </summary>
+        public static string UnlimitedThreshold
+        {
+            get
+            {
+                return ResourceManager.GetString("UnlimitedThreshold", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Unlimited threshold means you ignore the threshold and do not receive notifications..
+        /// </summary>
+        public static string UnlimitedThresholdNote
+        {
+            get
+            {
+                return ResourceManager.GetString("UnlimitedThresholdNote", resourceCulture);
             }
         }
 
@@ -3390,6 +4054,28 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Watchlist Details.
+        /// </summary>
+        public static string WatchlistDetails
+        {
+            get
+            {
+                return ResourceManager.GetString("WatchlistDetails", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Watchlist Member Summary.
+        /// </summary>
+        public static string WatchlistMemberSummary
+        {
+            get
+            {
+                return ResourceManager.GetString("WatchlistMemberSummary", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Updated successfully.
         /// </summary>
         public static string WatchlistUpdateSuccessfully
@@ -3397,6 +4083,50 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("WatchlistUpdateSuccessfully", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Win.
+        /// </summary>
+        public static string Win
+        {
+            get
+            {
+                return ResourceManager.GetString("Win", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Win/Loss.
+        /// </summary>
+        public static string WinLoss
+        {
+            get
+            {
+                return ResourceManager.GetString("WinLoss", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Win Loss.
+        /// </summary>
+        public static string WinLossText
+        {
+            get
+            {
+                return ResourceManager.GetString("WinLossText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Winning.
+        /// </summary>
+        public static string Winning
+        {
+            get
+            {
+                return ResourceManager.GetString("Winning", resourceCulture);
             }
         }
 
@@ -3463,127 +4193,6 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("YourDownlineUsernameOrNickname", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Min.
-        /// </summary>
-        public static string Min
-        {
-            get
-            {
-                return ResourceManager.GetString("Min", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Max.
-        /// </summary>
-        public static string Max
-        {
-            get
-            {
-                return ResourceManager.GetString("Max", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Live.
-        /// </summary>
-        public static string Live
-        {
-            get
-            {
-                return ResourceManager.GetString("Live", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Available Credit: {0}.
-        /// </summary>
-        public static string creditHint
-        {
-            get
-            {
-                return ResourceManager.GetString("creditHint", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to The Maximum Member Credit set by your upline: {0}.
-        /// </summary>
-        public static string memberMaxCreditHint
-        {
-            get
-            {
-                return ResourceManager.GetString("memberMaxCreditHint", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Member Commission.
-        /// </summary>
-        public static string MemberCommission
-        {
-            get
-            {
-                return ResourceManager.GetString("MemberCommission", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Product.
-        /// </summary>
-        public static string Product
-        {
-            get
-            {
-                return ResourceManager.GetString("Product", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Comm.
-        /// </summary>
-        public static string Comm
-        {
-            get
-            {
-                return ResourceManager.GetString("Comm", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Myanmar Odds.
-        /// </summary>
-        public static string MyanmarOdds
-        {
-            get
-            {
-                return ResourceManager.GetString("MyanmarOdds", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Double Comm.
-        /// </summary>
-        public static string DoubleComm
-        {
-            get
-            {
-                return ResourceManager.GetString("DoubleComm", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Group.
-        /// </summary>
-        public static string Group
-        {
-            get
-            {
-                return ResourceManager.GetString("Group", resourceCulture);
             }
         }
     }

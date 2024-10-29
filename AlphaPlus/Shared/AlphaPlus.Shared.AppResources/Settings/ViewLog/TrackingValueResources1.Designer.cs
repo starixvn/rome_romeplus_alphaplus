@@ -45,7 +45,7 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alpha.ViewLogs.AppResources.TrackingValueResources", typeof(TrackingValueResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Settings.ViewLog.TrackingValueResources", typeof(TrackingValueResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
