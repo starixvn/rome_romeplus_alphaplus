@@ -33,7 +33,7 @@
             this.remotingRef = remotingRef;
         }
 
-        public ResourceManager ResourceManager { get; set; }
+        public ResourceManager ResourceManager { get; set; } = TrackingValueResources.ResourceManager;
 
         /// <summary>
         /// Need be reviewed code here, AssignParams should not in formatter class
