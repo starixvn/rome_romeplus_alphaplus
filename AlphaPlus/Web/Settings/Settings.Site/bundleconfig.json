@@ -1,5 +1,23 @@
 ﻿[
   {
+    "outputFileName": "wwwroot/assets/bundles/account-info-tab.css",
+    "inputFiles": [
+      "Features/Customer/assets/styles/account-info-tab.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/account-info-tab-dark.css",
+    "inputFiles": [
+      "Features/Customer/assets/styles/account-info-tab-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/account-info-tab/index.js",
+    "inputFiles": [
+      "Features/Customer/assets/scripts/account-info-tab.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/bundles/shared/settings.css",
     "inputFiles": [
       "Features/Shared/Styles/settings.css"

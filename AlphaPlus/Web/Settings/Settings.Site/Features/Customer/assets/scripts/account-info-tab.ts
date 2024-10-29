@@ -3,13 +3,11 @@ class AccountInfoTab {
     $userNames: JQuery;
     $givenCredit: JQuery;
     $domains: JQuery;
-    
-    
+
     constructor($: JQueryStatic) {
         this.$ = $;
     }
 
-   
     init = () => {
         this.cacheDOMElement();
         this.bindingEvent();
@@ -22,11 +20,11 @@ class AccountInfoTab {
     }
 
     cacheDOMElement() {
-        this.$userNames = this.$("#usernames");
-        this.$givenCredit = this.$("#txtClonedCredit");
-        this.$domains = this.$("#txtDomains");
+        this.$userNames = this.$('#usernames');
+        this.$givenCredit = this.$('#txtClonedCredit');
+        this.$domains = this.$('#txtDomains');
     }
-    
+
     formatUserInfo(username: string, credit: string, domain: string) {
         const lblUsername = this.$('#lbl-username').val();
         const lblCredit = this.$('#lbl-credit').val();
@@ -34,43 +32,44 @@ class AccountInfoTab {
 
         return `${lblUsername}: ${username}\n${lblCredit}: ${credit}\n${lblDomain}: ${domain}\n`;
     }
-    
+
     buildAccountInfoText = (isCompactFormat: boolean) => {
-        const userNames = this.$("#usernames").text();
-        const givenCredit = this.$("#txtClonedCredit").val();
-        const domain = this.$("#txtDomains").text();
+        const userNames = this.$('#usernames').text();
+        const givenCredit = this.$('#txtClonedCredit').val();
+        const domain = this.$('#txtDomains').text();
 
         const formatUserInfo = this.formatUserInfo;
 
         return isCompactFormat
             ? formatUserInfo(userNames, givenCredit, domain)
-            : userNames.replace(/\s/g, '')
-                .split(',')
-                .map((name: string) => formatUserInfo(name, givenCredit, domain))
-                .join("\n")
-    }
-    
+            : userNames
+                  .replace(/\s/g, '')
+                  .split(',')
+                  .map((name: string) => formatUserInfo(name, givenCredit, domain))
+                  .join('\n');
+    };
+
     copyAndShowTooltip(elementSelector: string, textToCopy: string, successMessage = 'Copied!') {
         const element = this.$(elementSelector);
-        
+
         function handleCopy() {
             if (copyToClipboard(textToCopy)) {
-                showTooltip(successMessage); 
+                showTooltip(successMessage);
             }
         }
 
         function createHiddenTextArea(text) {
-            const textArea = document.createElement("textarea");
+            const textArea = document.createElement('textarea');
             textArea.value = text;
-            textArea.style.position = "absolute";
-            textArea.style.left = "-999999px";
+            textArea.style.position = 'absolute';
+            textArea.style.left = '-999999px';
             return textArea;
         }
 
         function copyToClipboard(text) {
             try {
-                if (window.navigator["clipboard"] && window.isSecureContext) {
-                    return window.navigator["clipboard"].writeText(text)
+                if (window.navigator['clipboard'] && window.isSecureContext) {
+                    return window.navigator['clipboard'].writeText(text);
                 } else {
                     const textArea = createHiddenTextArea(text);
                     document.body.prepend(textArea);
@@ -96,7 +95,6 @@ class AccountInfoTab {
         }
         element.on('click', handleCopy);
     }
-    
 }
 
 const accountInfoTab = new AccountInfoTab($);
