@@ -62,7 +62,7 @@ class StatementView extends BaseReport {
             TransferDate: transferDate
         };
         const url = `${this.statementDetailsURL}?${$.param(param)}`;
-        const title = `Transfer Details (${this.custName})`;
+        const title = `${$('#TransferDetails').val()} (${this.custName})`;
         this.topWindow.popupManager.open(url, title, 900);
     };
 }

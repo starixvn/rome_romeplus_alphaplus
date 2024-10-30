@@ -63,7 +63,7 @@ public class WinLossAnalysisHandler(
         {
             WinLossAnalysisConstants.Daily => (Resources.DailyWinLossAnalysis, Resources.Daily),
             WinLossAnalysisConstants.Monthly => (Resources.MonthlyWinLossAnalysis, Resources.Monthly),
-            WinLossAnalysisConstants.Sport => (Resources.SportWinLossAnalysis, Resources.Sport),
+            WinLossAnalysisConstants.Product => (Resources.ProductWinLossAnalysis, Resources.Product),
             _ => (string.Empty, string.Empty)
         };
 }

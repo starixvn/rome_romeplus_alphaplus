@@ -1167,4 +1167,10 @@
   <data name="AddToMyWatchlist" xml:space="preserve">
     <value>Add to My Watchlist</value>
   </data>
+  <data name="Statement_WinLoss" xml:space="preserve">
+    <value>Win/Loss</value>
+  </data>
+  <data name="ProductWinLossAnalysis" xml:space="preserve">
+    <value>Product Win Loss Analysis</value>
+  </data>
 </root>

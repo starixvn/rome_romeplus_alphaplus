@@ -25,7 +25,7 @@
         {
             @:4: '@Resources.MasterWinLossDetail'
         }
-                        };
+                                };
         var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
         var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
         var columnList = [
@@ -69,14 +69,7 @@
 @model WinLossDetailNewViewModel
 <div class="flex">
     <report-title-new model="Model.PageHeader" />
- 
     <form class="form-inline filter switch-old-view" role="form" id="report-form">
-        <div class="switch-version">
-            <a class="btn-switch-version" asp-action="Index">
-                <span class="icon-swap-horizontal"></span>
-                <span class="text">@Resources.ClassicView</span>
-            </a>
-        </div>
         <daterange-picker-jquery model="@Model.DateRangePicker" />
         <product-dropdown show-product-details="true" />
         <div class="form-group">
@@ -90,11 +83,11 @@
         <div class="label-week-box" id="week-container">
             <partial name="Weeks" model="@Model.Weeks" />
         </div>
-    </form>   
-   
+    </form>
+
     <div id="tbl-report-container" class="cover-week-selection" style="visibility: hidden">
         <partial name="ReportDataNew" />
-    </div>           
+    </div>
 </div>
 <a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true"
     asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>

@@ -48,9 +48,9 @@ public class WinLossAnalysisViewModel(
                 WinLossAnalysisConstants.Monthly.ToString(),
                 WinLossAnalysisConstants.Monthly == message.ReportTypeId),
             new SelectListItem(
-                Resources.Sport,
-                WinLossAnalysisConstants.Sport.ToString(),
-                WinLossAnalysisConstants.Sport == message.ReportTypeId)
+                Resources.Product,
+                WinLossAnalysisConstants.Product.ToString(),
+                WinLossAnalysisConstants.Product == message.ReportTypeId)
         ];
 
     public DateRangePickerViewModel DateRangePicker { get; }

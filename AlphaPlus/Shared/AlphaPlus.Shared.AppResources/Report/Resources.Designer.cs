@@ -3918,5 +3918,27 @@ namespace AlphaPlus.Shared.AppResources.Report
                 return ResourceManager.GetString("AddToMyWatchlist", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Win/Loss.
+        /// </summary>
+        public static string Statement_WinLoss
+        {
+            get
+            {
+                return ResourceManager.GetString("Statement_WinLoss", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Product Win Loss Analysis.
+        /// </summary>
+        public static string ProductWinLossAnalysis
+        {
+            get
+            {
+                return ResourceManager.GetString("ProductWinLossAnalysis", resourceCulture);
+            }
+        }
     }
 }

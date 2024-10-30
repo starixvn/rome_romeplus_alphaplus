@@ -32,7 +32,7 @@ public class WinLossAnalysisService(
 
         var total = new WinLossAnalysisModel();
         var rawdata = await repository.FetchAsync<WinLossAnalysisModel>(criteria);
-        var isSport = param.ReportType == WinLossAnalysisConstants.Sport;
+        var isSport = param.ReportType == WinLossAnalysisConstants.Product;
 
         foreach (var item in rawdata)
         {

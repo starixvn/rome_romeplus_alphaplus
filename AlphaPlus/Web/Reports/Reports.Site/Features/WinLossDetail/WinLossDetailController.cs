@@ -8,7 +8,7 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 [AllowProtectedMode]
 public class WinLossDetailController(IMediator mediator) : ReportBaseController(mediator)
 {
-    public Task<IActionResult> Index(WinLossDetailQuery message) => View(message);
+    //public Task<IActionResult> Index(WinLossDetailQuery message) => View(message);
 
     public Task<IActionResult> Excel(WinLossDetailExcelQuery message) => ExcelView(message);
 

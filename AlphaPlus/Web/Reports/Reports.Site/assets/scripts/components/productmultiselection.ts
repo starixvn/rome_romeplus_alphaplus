@@ -43,6 +43,7 @@ class ProductMultiSelectionComponent {
                 : this.$dropdownProduct.data('label-nodata'),
             nSelectedText: ` ${this.$dropdownProduct.data('label-selected')}`,
             allSelectedText: this.$dropdownProduct.data('label-allproducts'),
+            selectAllText: this.$dropdownProduct.data('label-selectall'),
             includeSelectAllOption: hasData,
             onChange: (option: any, checked: boolean) => this.onChangeProduct(option, checked),
             onSelectAll: (option: any, checked: boolean) => this.onChangeProduct(option, checked),
