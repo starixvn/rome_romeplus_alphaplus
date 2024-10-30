@@ -13,9 +13,9 @@
         }
 
         public TransferResult(
-            IEnumerable<TransferStep>? transferSteps,
-            IEnumerable<ClearCreditStep>? clearCreditSteps,
-            IEnumerable<string?> conditions)
+            IEnumerable<TransferStep> transferSteps,
+            IEnumerable<ClearCreditStep> clearCreditSteps,
+            IEnumerable<string> conditions)
         {
             TransferSteps = transferSteps;
             ClearCreditSteps = clearCreditSteps;
@@ -32,13 +32,13 @@
             ErrMsgClearCredit = clearCreditResult.ErrMsg;
             SkipTransfer = skipTransfer;
 
-            var conditions = new List<string?>();
-            if(transferAllResult.Conditions.Any())
+            var conditions = new List<string>();
+            if (transferAllResult.Conditions.Any())
             {
                 conditions.AddRange(transferAllResult.Conditions);
             }
 
-            if(clearCreditResult.Conditions.Any())
+            if (clearCreditResult.Conditions.Any())
             {
                 conditions.AddRange(clearCreditResult.Conditions);
             }
@@ -48,18 +48,18 @@
 
         public int ErrCodeTransfer { get; set; }
 
-        public string? ErrMsgTransfer { get; set; }
+        public string ErrMsgTransfer { get; set; }
 
         public int ErrCodeClearCredit { get; set; }
 
-        public string? ErrMsgClearCredit { get; set; }
+        public string ErrMsgClearCredit { get; set; }
 
         public bool SkipTransfer { get; set; }
 
-        public IEnumerable<TransferStep>? TransferSteps { get; }
+        public IEnumerable<TransferStep> TransferSteps { get; }
 
-        public IEnumerable<ClearCreditStep>? ClearCreditSteps { get; }
+        public IEnumerable<ClearCreditStep> ClearCreditSteps { get; }
 
-        public IEnumerable<string?> Conditions { get; }
+        public IEnumerable<string> Conditions { get; }
     }
 }

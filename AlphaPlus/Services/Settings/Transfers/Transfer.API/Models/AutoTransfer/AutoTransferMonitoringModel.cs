@@ -2,13 +2,13 @@
 {
     public class AutoTransferMonitoringModel
     {
-        public string? Username { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
+        public string Username { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public decimal? TransferAmount { get; set; }
-        public string? Status { get; set; }
-        public string? Reason { get; set; }
-        public string? CompletedTime { get; set; }
+        public string Status { get; set; }
+        public string Reason { get; set; }
+        public string CompletedTime { get; set; }
         public int CustId { get; set; }
         public bool IsAllowCancel { get; set; }
 

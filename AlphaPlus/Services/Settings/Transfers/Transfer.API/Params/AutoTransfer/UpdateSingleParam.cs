@@ -6,18 +6,18 @@
 
         public int UplineId { get; set; }
 
-        public string? IP { get; set; }
+        public string IP { get; set; }
 
-        public string? Language { get; set; }
+        public string Language { get; set; }
 
-        public string? State { get; set; }
+        public string State { get; set; }
 
-        public string[]? Schedule { get; set; }
+        public string[] Schedule { get; set; }
 
         public int SubAccId { get; set; }
 
-        public string? Old_TransferOption { get; set; }
+        public string Old_TransferOption { get; set; }
 
-        public string? AGIP { get; set; }
+        public string AGIP { get; set; }
     }
 }

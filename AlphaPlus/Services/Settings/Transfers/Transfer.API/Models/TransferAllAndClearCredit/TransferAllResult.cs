@@ -13,7 +13,7 @@
             Conditions = Enumerable.Empty<string>();
         }
 
-        public TransferAllResult(IEnumerable<TransferStep> steps, int errCode, string errMsg, IEnumerable<string?> conditions)
+        public TransferAllResult(IEnumerable<TransferStep> steps, int errCode, string errMsg, IEnumerable<string> conditions)
         {
             Steps = steps;
             ErrCode = errCode;
@@ -27,7 +27,7 @@
 
         public IEnumerable<TransferStep> Steps { get; }
 
-        public IEnumerable<string?> Conditions { get; }
+        public IEnumerable<string> Conditions { get; }
 
         public bool IsSuccess => ErrCode == 0;
     }

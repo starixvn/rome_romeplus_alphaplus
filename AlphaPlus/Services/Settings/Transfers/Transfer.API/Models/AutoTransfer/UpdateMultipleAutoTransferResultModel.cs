@@ -15,9 +15,9 @@ namespace AlphaPlus.Settings.Transfer.API.Models.AutoTransfer
 
         public int? Code { get; set; }
 
-        public List<string> WarningCusts { get; set; } = new List<string>();
+        public List<string> WarningCusts { get; set; } = [];
 
-        public string? StopMessage { get; set; }
+        public string StopMessage { get; set; }
 
         public string WarningMessage
         {

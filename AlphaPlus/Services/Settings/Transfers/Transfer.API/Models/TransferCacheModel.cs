@@ -8,13 +8,13 @@
     {
         public int AdminId { get; set; }
 
-        public string? AdminName { get; set; }
+        public string AdminName { get; set; }
 
         public List<int> CustIds { get; set; }
 
         public TransferCacheModel()
         {
-            CustIds = new List<int>();
+            CustIds = [];
         }
 
         public bool Equals(TransferCacheModel obj)
