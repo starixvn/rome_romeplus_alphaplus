@@ -53,7 +53,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         public async Task<ActionResult> Create(CreateCustomerQuery query)
         {
-            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ViewerUsername, query.Language);
+            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, query.Language);
 
             var viewModel = limitedRulesResult.IsFailed
                 ? new CreateCustomerViewModel(query, true, limitedRulesResult.Message)
@@ -140,6 +140,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 request.IP,
                 request.Site,
                 AppSettings.SiteLabel,
+                request.CustDBGroupId,
                 CreationModes.FullMode,
                 request.Language));
 
@@ -165,6 +166,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                     request.RoleId,
                     request.UplineRoleId,
                     request.IP,
+                    request.CustDBGroupId,
                     request.Site,
                     AppSettings.SiteLabel,
                     request.Language));
@@ -190,6 +192,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                     request.RoleId,
                     request.UplineRoleId,
                     request.IP,
+                    request.CustDBGroupId,
                     request.CustomerIds,
                     request.CustomerNames,
                     request.Site,
@@ -248,7 +251,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         }
 
         [HttpGet]
-        public IActionResult RedirectPT(string username, int userId, int custId, int subAccId, bool isEdit, bool insert)
+        public IActionResult RedirectPT(int custId)
         {
             string urlMainPage = string.Empty;
 

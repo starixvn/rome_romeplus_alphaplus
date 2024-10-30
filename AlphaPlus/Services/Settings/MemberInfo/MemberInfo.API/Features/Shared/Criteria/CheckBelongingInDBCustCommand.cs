@@ -26,7 +26,7 @@
 
         public bool IsActive { get; set; }
 
-        public string? Username { get; set; }
+        public string Username { get; set; }
 
         public byte RoleId { get; set; }
 

@@ -99,5 +99,7 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
         public bool IsEnabledCustomerDateLimit => userSession.GetProperty<DateTime>("CustomerDateLimit") != default;
 
         public int[] OfferedProductGroupIds => userSession.OfferedProductGroupIds;
+
+        public int CustDBGroupId => userSession.CustDBGroupId;
     }
 }

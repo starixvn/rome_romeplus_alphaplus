@@ -5,11 +5,11 @@
     public class UpdatePersonalThresholdCommand : NonQueryCommand
     {
         public UpdatePersonalThresholdCommand(
-            int custId, 
-            decimal? winningThreshold, 
-            decimal? losingThreshold, 
-            int userId, 
-            int subAccId, 
+            int custId,
+            decimal? winningThreshold,
+            decimal? losingThreshold,
+            int userId,
+            int subAccId,
             string ip,
             int sporttype = 0)
         {
@@ -38,7 +38,7 @@
 
         public int ErrCode { get; set; }
 
-        public string? ErrMsg { get; set; }
+        public string ErrMsg { get; set; }
 
         public override string GetSettingKey() => "Acc_WLMonitored_Personal_Upd";
 

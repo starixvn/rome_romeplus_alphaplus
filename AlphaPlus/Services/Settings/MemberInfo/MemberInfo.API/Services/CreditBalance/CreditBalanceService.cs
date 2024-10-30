@@ -1,14 +1,11 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Criteria.CreditBalance;
-    using Fanex.Data.Repository;
-    using AlphaPlus.Utilities.IP;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance;
-    using AlphaPlus.Settings.MemberInfo.Domain.Params;
+﻿using AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance;
+using Fanex.Data.Repository;
+using AlphaPlus.Utilities.IP;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance;
+using AlphaPlus.Settings.MemberInfo.Domain.Params;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance
+{
     public interface CreditBalanceService
     {
         Task<PagedCreditBalance> GetPagedCreditBalancesAsync(CreditBalanceParam param);
@@ -63,7 +60,7 @@
 
         public async Task<PagedCreditBalance> GetCreditBalancesAsync(CreditBalanceParam param)
         {
-            GetPagedCreditBalanceCriteria? criteria = null;
+            GetPagedCreditBalanceCriteria criteria = null;
 
             if (param.CustLevel.IsSuperLevel())
             {

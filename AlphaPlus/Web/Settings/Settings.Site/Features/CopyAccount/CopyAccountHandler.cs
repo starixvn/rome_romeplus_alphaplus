@@ -41,14 +41,14 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
         public async Task<CopyAccountViewModel> Handle(CopyAccountQuery message, CancellationToken cancellation)
         {
             var limitNewDownlineResult = await customerService.CheckAllLimitedRules(
-                   message.ViewerId,
-                   message.ViewerLevelId,
-                   message.CustName,
-                   message.Language);
+                    message.ViewerId,
+                    message.ViewerLevelId,
+                    message.CustName,
+                    message.Language);
 
             if (limitNewDownlineResult.IsFailed)
             {
-                return new CopyAccountViewModel(isLimitNewDownline: true, limitNewDownlineResult.Message, message);
+                return new CopyAccountViewModel(true, limitNewDownlineResult.Message, message);
             }
 
             return new CopyAccountViewModel(
@@ -87,7 +87,7 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
                 message.SubAccId,
                 message.CustId,
                 message.CustLevel.GetDirectDownLineLevel().Value,
-                message.ViewerUsername,
+                message.ActorUsername,
                 message.Username,
                 message.Password,
                 message.Credit,
@@ -95,8 +95,10 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
                 sourceCustId,
                 message.NumberOfAccounts,
                 message.Site,
+                0,
                 false,
                 message.IP,
+                message.CustDBGroupId,
                 message.Language));
         }
 

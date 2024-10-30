@@ -19,7 +19,7 @@
             string loginDomain,
             string browserName,
             string platform,
-            string? countryCode)
+            string countryCode)
         {
             IndirectCustId = indirectCustId;
             IndirectSubAccId = indirectSubAccId;
@@ -70,11 +70,11 @@
 
         public string Platform { get; }
 
-        public string? CountryCode { get; }
+        public string CountryCode { get; }
 
         public int ErrCode { get; set; }
 
-        public string? ErrMsg { get; set; }
+        public string ErrMsg { get; set; }
 
         public override string GetSettingKey()
             => "Age_CustomerIndirectLoginAccountPwdCheck";

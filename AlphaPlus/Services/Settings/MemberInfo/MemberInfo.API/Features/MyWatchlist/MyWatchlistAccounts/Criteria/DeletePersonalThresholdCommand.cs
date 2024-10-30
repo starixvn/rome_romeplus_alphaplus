@@ -30,7 +30,7 @@
 
         public int ErrCode { get; set; }
 
-        public string? ErrMsg { get; set; }
+        public string ErrMsg { get; set; }
 
         public override string GetSettingKey() => "Acc_WLMonitored_Personal_Del";
 

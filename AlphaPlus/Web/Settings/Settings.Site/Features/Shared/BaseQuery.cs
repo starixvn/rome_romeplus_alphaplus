@@ -17,6 +17,8 @@ namespace AlphaPlus.Settings.Site.Features.Shared
             CustName = this.viewer.Name;
         }
 
+        public string ActorUsername => viewer.Name;
+
         public int CustId { get; set; }
 
         public byte CustLevelId { get; set; }
@@ -70,6 +72,8 @@ namespace AlphaPlus.Settings.Site.Features.Shared
         public int CurrencyId => viewer.CurrencyId;
 
         public string Site => viewer.Site;
+
+        public int CustDBGroupId => viewer.CustDBGroupId;
 
         public virtual bool IsValid() => ViewerId > 0;
     }

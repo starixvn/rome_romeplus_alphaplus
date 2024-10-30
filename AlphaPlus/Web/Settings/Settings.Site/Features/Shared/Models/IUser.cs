@@ -81,5 +81,7 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
         bool IsEnabledCustomerDateLimit { get; }
 
         int[] OfferedProductGroupIds { get; }
+
+        int CustDBGroupId { get; }
     }
 }

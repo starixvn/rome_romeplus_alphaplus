@@ -25,9 +25,7 @@ using Fanex.Cryptography.Aes;
 using Fanex.Data;
 using Fanex.RemotingRef;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using RestSharp;
 using MediatR;
-using Alpha.CopyAccount.Authentications;
 using AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs;
 using AlphaPlus.Settings.ViewLogs.API.Services;
 using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
@@ -131,7 +129,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             services.AddSingleton<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemViewModel>, SettingViewModelFactory>();
             services.AddSingleton<GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>, SettingMultipleViewModelFactory>();
 
-            services.AddSingleton<ICacheRefService, Features.Shared.Services.CacheRefService>()
+            services.AddSingleton<ICacheRefService, Shared.Services.CacheRefService>()
                 .AddSingleton<IProductStatusService>((provider) => new ProductStatusService(
                     provider.GetRequiredService<Fanex.Logging.ILogger>(),
                     provider.GetRequiredService<IDynamicRepository>(),
@@ -139,13 +137,13 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                     UserPermission.HasPermissionOnProduct));
 
             services.AddSingleton(new CustomerClientConfiguration().Initialize(configuration));
-            services.AddSingleton<Features.Shared.Models.IUser, Features.Shared.Models.User>();
+            services.AddSingleton<Shared.Models.IUser, Shared.Models.User>();
             services.AddSingleton<Fanex.Customer.Client.Services.ICustomerService, Fanex.Customer.Client.Services.CustomerService>();
 
             services
                 .AddSecurityCodeServices(configuration)
                 .AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>()
-                .AddScoped<IUser, Features.MemberInfo.Models.User>()
+                .AddScoped<IUser, MemberInfo.Models.User>()
                 .AddScoped<CustomerListService, CustomerListServiceImpl>()
                 .AddScoped<Settings.MemberInfo.API.Services.Transfer.TransferService, Settings.MemberInfo.API.Services.Transfer.TransferServiceImpl>();
 
@@ -175,8 +173,6 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddSingleton<QrCodeAdapter, QrCodeAdapterImpl>()
                 .AddScoped<PasswordService, PasswordServiceImpl>()
                 .AddScoped<CheckBelongingService, CheckBelongingServiceImpl>()
-                .AddSingleton<IRestClient>((provider) => new RestClient { Authenticator = new HmacAuthenticator(qrCodeMemberLoginKey), BaseUrl = qrCodeMemberLoginApi })
-                .AddSingleton<Alpha.CopyAccount.Services.ICopyAccountService>((provider) => new Alpha.CopyAccount.Services.CopyAccountService(provider.GetRequiredService<IRestClient>()))
                 .AddSingleton<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>();
 
             services
@@ -200,12 +196,12 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddSingleton<IDateTime, DateTimeWrap>()
                 .AddScoped<TransformService, TransformServiceImpl>()
                 .AddScoped<TrackingValueFormatter, TrackingValueFormatterImpl>()
-                .AddScoped<Features.ViewLogs.Helpers.MicroSites, MicroSitesImpl>()
+                .AddScoped<ViewLogs.Helpers.MicroSites, MicroSitesImpl>()
                 .AddScoped<LogFormatter, LogFormatterImpl>()
                 .AddScoped<LogDataAccess, LogDataAccessImpl>()
                 .AddScoped<ViewLogIPService, ViewLogIPServiceImpl>()
                 .AddScoped<RemotingRefWrapper, RemotingRefWrapperImpl>()
-                .AddScoped<Settings.ViewLogs.API.Services.CustomerService, CustomerServiceImpl>()
+                .AddScoped<CustomerService, CustomerServiceImpl>()
                 .AddKeyedScoped<LogService, SettingServiceImpl>("settingLogSvc")
                 .AddKeyedScoped<LogService, StatusServiceImpl>("statusLogSvc")
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")

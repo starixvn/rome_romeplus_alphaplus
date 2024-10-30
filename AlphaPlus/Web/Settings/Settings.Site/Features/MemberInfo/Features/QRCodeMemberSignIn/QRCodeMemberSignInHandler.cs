@@ -45,17 +45,17 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
             this.qrCodeLoginConfigsHelper = qrCodeLoginConfigsHelper;
         }
 
-        public async Task<QRCodeMemberSignInViewModel> Handle(QRCodeMemberSignInRequest message, CancellationToken cancellation)
+        public async Task<QRCodeMemberSignInViewModel> Handle(QRCodeMemberSignInRequest message, CancellationToken cancellationToken)
         {
             var onlyShowErrorMessage = false;
 
             if (string.IsNullOrWhiteSpace(message.ErrorMessage))
             {
-                var limitNewDownlineResult = qrCodeMemberSignInService.CheckLimitNewDownline(
+                var limitNewDownlineResult = await customerService.CheckAllLimitedRules(
                     message.ViewerId,
                     message.ViewerLevelId,
-                    message.Language,
-                    message.ActorUsername);
+                    message.ActorUsername,
+                    message.Language);
                 onlyShowErrorMessage = limitNewDownlineResult.IsFailed;
                 message.ErrorMessage = limitNewDownlineResult.Message;
             }
@@ -66,7 +66,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                 onlyShowErrorMessage);
         }
 
-        public async Task<ResultCreateMemberQRCode> Handle(CreateAccountByQRCodeRequest message, CancellationToken cancellation)
+        public async Task<ResultCreateMemberQRCode> Handle(CreateAccountByQRCodeRequest message, CancellationToken cancellationToken)
         {
             var creditAndStatusModel = qrCodeMemberSignInService.GetCreditAndStatus(message.UsernameCopyFrom);
 
@@ -82,11 +82,12 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
             }
 
             var model = await customerService.GetDownlineByUsername(message.CustId, message.SubAccId, message.UsernameCopyFrom);
+
             var custIdCopyFrom = model.CustId;
 
             if (custIdCopyFrom > 0 &&
-                Enumeration.FromValue<UserLevel>((byte)model.RoleId).IsMemberLevel() &&
-                qrCodeMemberSignInService.IsEnableCustomer(custIdCopyFrom))
+                Enumeration.FromValue<UserLevel>(model.RoleId).IsMemberLevel() &&
+                await customerService.IsCustomerEnabled(custIdCopyFrom))
             {
                 var passwordModel = passwordService.CreateMemberPasswordRandom();
 
@@ -102,8 +103,10 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                     message.CreditMax,
                     custIdCopyFrom,
                     message.Site,
+                    0,
                     true,
                     message.IP,
+                    message.CustDBGroupId,
                     message.Language)
                 {
                     FirstName = message.FirstName
@@ -132,15 +135,13 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
             };
         }
 
-        public async Task<CreditAndStatusModel> Handle(GetMemberCreditAndStatusRequest message, CancellationToken cancellation)
-            => IsValidBelongingByUsername(
-                message.CustId,
-                message.SearchAccountName,
-                message.SubAccId) ?
-                qrCodeMemberSignInService.GetCreditAndStatus(message.SearchAccountName) :
-                new CreditAndStatusModel();
+        public async Task<CreditAndStatusModel> Handle(GetMemberCreditAndStatusRequest message, CancellationToken cancellationToken)
+        {
+            var isValid = await IsValidBelongingByUsername(message.CustId, message.SearchAccountName, message.SubAccId);
+            return isValid ? qrCodeMemberSignInService.GetCreditAndStatus(message.SearchAccountName) : new CreditAndStatusModel();
+        }
 
-        public async Task<ShowQRCodeViewModel> Handle(ShowQRCodeRequest message, CancellationToken cancellation)
+        public Task<ShowQRCodeViewModel> Handle(ShowQRCodeRequest message, CancellationToken cancellationToken)
         {
             var belongingInfo = checkBelongingService.GetBelongingInfo(
                 new CheckBelongingParam(message.ViewerId, message.SearchAccountId, message.SubAccId));
@@ -174,7 +175,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                         message.SearchAccountName,
                         config.ExpireSeconds);
 
-                return new ShowQRCodeViewModel(
+                return Task.FromResult(new ShowQRCodeViewModel(
                     message.Credit,
                     message.CreditMin,
                     message.CreditMax,
@@ -186,13 +187,13 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                     config.Domains,
                     message.CreateMode,
                     message.ShowPageTitle,
-                    rawPassword);
+                    rawPassword));
             }
 
             return null;
         }
 
-        public async Task<QRCodeLinkViewModel> Handle(GenerateQRCodeRequest message, CancellationToken cancellation)
+        public Task<QRCodeLinkViewModel> Handle(GenerateQRCodeRequest message, CancellationToken cancellationToken)
         {
             if (qrCodeMemberSignInService.IsNotFirstLoginByQRCode(message.SearchAccountId))
             {
@@ -205,25 +206,20 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                     message.SearchAccountName,
                     config.ExpireSeconds);
 
-                return new QRCodeLinkViewModel(link, qrCodeAdapter.Generate(link));
+                return Task.FromResult(new QRCodeLinkViewModel(link, qrCodeAdapter.Generate(link)));
             }
 
-            return new QRCodeLinkViewModel();
+            return Task.FromResult(new QRCodeLinkViewModel());
         }
 
-        public async Task<bool> Handle(CheckExistedCustomerRequest message, CancellationToken cancellation)
-            => IsValidBelongingByUsername(
-                message.CustId,
-                message.Username,
-                message.SubAccId) &&
-            qrCodeMemberSignInService.CheckExistedCustomer(message.Username);
+        public async Task<bool> Handle(CheckExistedCustomerRequest message, CancellationToken cancellationToken)
+            => await IsValidBelongingByUsername(message.CustId, message.Username, message.SubAccId)
+            && await customerService.CheckExistedCustomer(message.Username);
 
-        internal bool IsValidBelongingByUsername(int custId, string username, int subAccountId)
+        internal async Task<bool> IsValidBelongingByUsername(int custId, string username, int subAccountId)
         {
-            var model = qrCodeMemberSignInService.CheckBelongingByUsername(custId, username, subAccountId);
-
-            return model.CustId > 0 &&
-                Enumeration.FromValue<UserLevel>((byte)model.RoleId).IsMemberLevel();
+            var model = await customerService.GetDownlineByUsername(custId, subAccountId, username);
+            return model.CustId > 0 && Enumeration.FromValue<UserLevel>(model.RoleId).IsMemberLevel();
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn
-{
-    using AlphaPlus.Core.Utils;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
-    using System;
-    using System.Text.RegularExpressions;
+﻿using AlphaPlus.Core.Utils;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
+using System.Text.RegularExpressions;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn
+{
     public interface PasswordService
     {
         PasswordModel CreateMemberPasswordRandom();

@@ -96,5 +96,7 @@
         public PageAccess SubPageAccess => userSession.SubPageAccess;
 
         public string AGIP => userSession.AGIP;
+
+        public int CustDBGroupId => userSession.CustDBGroupId;
     }
 }

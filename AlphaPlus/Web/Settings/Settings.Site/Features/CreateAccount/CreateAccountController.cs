@@ -22,15 +22,15 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
         private const string HashKeySessionKey = "AlphaPlus.MemberInfo.Site.Features.CreateAccount.CreateAccountController.PasswordHash";
 
         private readonly IUser viewer;
-        private readonly IEncryption encryption;
-        private readonly ISessionManager sessionManager;
+        private readonly Encryption encryption;
+        private readonly SessionManager sessionManager;
         private readonly IAesService aesService;
         private readonly ICustomerService customerService;
 
         public CreateAccountController(
             IUser viewer,
-            IEncryption encryption,
-            ISessionManager sessionManager,
+            Encryption encryption,
+            SessionManager sessionManager,
             IAesService aesService,
             ICustomerService customerService)
         {
@@ -79,12 +79,13 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Index([FromBody] CreateAccountRequest request)
+        public async Task<ActionResult> Index(CreateAccountRequest request)
         {
             if (viewer.IsInternal)
             {
                 return UnAuthorized();
             }
+
             var generalInfo = request.GeneralInfo;
             var rawPassword = aesService.Decrypt(generalInfo.Password, sessionManager.Get<string>(HashKeySessionKey));
             generalInfo.Password = encryption.CfsEnCode(rawPassword);
@@ -100,6 +101,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
                 viewer.IP,
                 viewer.Site,
                 AppSettings.SiteLabel,
+                viewer.CustDBGroupId,
                 CreationModes.LiteMode,
                 viewer.Language,
                 request.UIBehavior)));

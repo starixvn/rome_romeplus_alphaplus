@@ -78,6 +78,8 @@
 
         public string AGIP => viewer.AGIP;
 
+        public int CustDBGroupId => viewer.CustDBGroupId;
+
         public virtual bool IsValid() => CustId > 0 && ActorLevel.IsEqualOrUplineOf(CustLevel);
     }
 }
