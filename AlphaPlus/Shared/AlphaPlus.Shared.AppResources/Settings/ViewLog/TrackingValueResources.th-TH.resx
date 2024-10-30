@@ -2134,10 +2134,10 @@
     <value>ไอดีเอเย่น</value>
   </data>
   <data name="MinBet" xml:space="preserve">
-    <value>ค่าเดิมพันต้ำสุด</value>
+    <value>เดิมพันต่ำสุด</value>
   </data>
   <data name="MaxBet" xml:space="preserve">
-    <value>ค่าเดิมพันสูงสุด</value>
+    <value>เดิมพันสูงสุด</value>
   </data>
   <data name="MaxPerMatch" xml:space="preserve">
     <value>ค่าเดิมพันสูงสุดต่อคู่การแข่งขัน</value>
@@ -3283,10 +3283,10 @@
     <value>บัญชีที่มีปัญหา</value>
   </data>
   <data name="WinningThreshold" xml:space="preserve">
-    <value>เกณฑ์การชนะ</value>
+    <value>ขีดจำกัดการชนะ</value>
   </data>
   <data name="LosingThreshold" xml:space="preserve">
-    <value>เกณฑ์การแพ้</value>
+    <value>ขีดจำกัดการแพ้</value>
   </data>
   <data name="WrongPasswordAlert" xml:space="preserve">
     <value>แจ้งเตือนรหัสผ่านผิด</value>
@@ -3337,7 +3337,7 @@
     <value>คอมมิชชั่น</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
-    <value>การกำหนดการวางเดิมพัน</value>
+    <value>การตั้งค่าเดิมพัน</value>
   </data>
   <data name="ParlayMaxPayout" xml:space="preserve">
     <value>การจ่ายเงินสูงสุดของพาร์เลย์</value>
@@ -3373,7 +3373,7 @@
     <value>วงเงินแพ้ชนะ</value>
   </data>
   <data name="Unlimited" xml:space="preserve">
-    <value>ไม่จำกัด</value>
+    <value>ไม่จำกัดค่า</value>
   </data>
   <data name="BetLimit" xml:space="preserve">
     <value>วงเงินเดิมพัน</value>

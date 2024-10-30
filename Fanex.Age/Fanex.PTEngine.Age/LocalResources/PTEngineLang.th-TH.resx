@@ -310,7 +310,7 @@
     <value>นามสกุล</value>
   </data>
   <data name="lasttxn" xml:space="preserve">
-    <value>transaction ครั้งล่าสุด</value>
+    <value>ธุรกรรมล่าสุด</value>
   </data>
   <data name="lbl1stHdp" xml:space="preserve">
     <value>ราคาต่อรอง ครึ่งแรก</value>
@@ -358,7 +358,7 @@
     <value>รายการเดิมพัน</value>
   </data>
   <data name="lblBetSetting" xml:space="preserve">
-    <value>การกำหนดการวางเดิมพัน</value>
+    <value>การตั้งค่าเดิมพัน</value>
   </data>
   <data name="lblCashBalance" xml:space="preserve">
     <value>ยอดเงินสด</value>
@@ -1850,7 +1850,7 @@
     <value>รายชื่อเอเย่นต์</value>
   </data>
   <data name="memberList" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อสมาชิก</value>
   </data>
   <data name="lblPasswordExpired" xml:space="preserve">
     <value>ข้อมูลและความปลอดภัยของคุณเป็นสิ่งสำคัญที่สุดสำหรับเรา ฉะนั้น เราจึงไม่หยุดที่จะปรับปรุงมาตรการระบบรักษาความปลอดภัยของข้อมูลของคุณ  ด้วยเหตุนี้ เราขอให้คุณเปลี่ยนรหัสใหม่ 

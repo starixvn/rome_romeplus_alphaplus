@@ -240,7 +240,7 @@
     <value>賬戶許可</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>增加</value>
+    <value>添加</value>
   </data>
   <data name="editsubacc" xml:space="preserve">
     <value>修改子帳號</value>

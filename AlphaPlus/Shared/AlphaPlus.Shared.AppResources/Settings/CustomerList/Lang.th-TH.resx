@@ -142,7 +142,7 @@
     <value>วันพุธ</value>
   </data>
   <data name="AutoTransferPageHint_Member" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อสมาชิก</value>
   </data>
   <data name="AutoTransferPageHint_Agent" xml:space="preserve">
     <value>รายชื่อ เอเจนต์</value>

@@ -149,7 +149,7 @@
     <comment/>
   </data>
   <data name="BetSettingViewModelText" xml:space="preserve">
-    <value>การกำหนดการวางเดิมพัน</value>
+    <value>การตั้งค่าเดิมพัน</value>
     <comment/>
   </data>
   <data name="Cancel" xml:space="preserve">
@@ -253,7 +253,7 @@
     <comment/>
   </data>
   <data name="LastTxn" xml:space="preserve">
-    <value>transaction ครั้งล่าสุด</value>
+    <value>ธุรกรรมล่าสุด</value>
     <comment/>
   </data>
   <data name="LoginIP" xml:space="preserve">
@@ -277,7 +277,7 @@
     <comment/>
   </data>
   <data name="MemberList" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อสมาชิก</value>
     <comment/>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
@@ -289,7 +289,7 @@
     <comment/>
   </data>
   <data name="NetPosition" xml:space="preserve">
-    <value>สถานะเงินลงทุนสุทธิ</value>
+    <value>ยอดรวมสุทธิ</value>
     <comment/>
   </data>
   <data name="NoDataChange" xml:space="preserve">
@@ -473,7 +473,7 @@
     <comment/>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>ล่าสุด</value>
+    <value>อัปเดต</value>
     <comment/>
   </data>
   <data name="Agents" xml:space="preserve">

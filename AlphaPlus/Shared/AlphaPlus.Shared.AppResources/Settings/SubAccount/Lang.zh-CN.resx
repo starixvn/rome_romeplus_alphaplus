@@ -239,7 +239,7 @@
     <value>账户许可</value>
   </data>
   <data name="Add" xml:space="preserve">
-    <value>增加</value>
+    <value>添加</value>
   </data>
   <data name="editsubacc" xml:space="preserve">
     <value>修改子账号</value>

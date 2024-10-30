@@ -761,7 +761,7 @@
     <comment/>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>ล่าสุด</value>
+    <value>อัปเดต</value>
     <comment/>
   </data>
   <data name="UpdateProtectionCodeSuccessfully" xml:space="preserve">
@@ -809,11 +809,11 @@
     <comment/>
   </data>
   <data name="No" xml:space="preserve">
-    <value>ไม่มี</value>
+    <value>ไม่ใช่</value>
     <comment/>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>มี</value>
+    <value>ใช่</value>
     <comment/>
   </data>
   <data name="AdvertisementMyWatchlistGlobalThresholdDetailAgent" xml:space="preserve">

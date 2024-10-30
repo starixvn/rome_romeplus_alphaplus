@@ -151,7 +151,7 @@
     <value>ยอดเงิน</value>
   </data>
   <data name="BetCount" xml:space="preserve">
-    <value>นับเดิมพัน</value>
+    <value>จำนวนตั๋วเดิมพัน</value>
   </data>
   <data name="BetList" xml:space="preserve">
     <value>รายการวางเดิมพัน</value>

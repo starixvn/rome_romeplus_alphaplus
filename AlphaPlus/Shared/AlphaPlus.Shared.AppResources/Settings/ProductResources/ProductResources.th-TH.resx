@@ -151,7 +151,7 @@
     <value>รายการวางเดิมพัน</value>
   </data>
   <data name="BetSettingViewModelText" xml:space="preserve">
-    <value>การกำหนดการวางเดิมพัน</value>
+    <value>การตั้งค่าเดิมพัน</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>ยกเลิก</value>
@@ -274,7 +274,7 @@
     <value>เข้าระบบครั้งสุดท้าย</value>
   </data>
   <data name="LastTxn" xml:space="preserve">
-    <value>transaction ครั้งล่าสุด</value>
+    <value>ธุรกรรมล่าสุด</value>
   </data>
   <data name="LoginInfo" xml:space="preserve">
     <value>ข้อมูลการเข้าสู่ระบบ</value>
@@ -295,7 +295,7 @@
     <value>สมาชิก</value>
   </data>
   <data name="MemberList" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อสมาชิก</value>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
     <value>เครดิตโอนเงินสูงสุดของสมาชิก</value>
@@ -307,7 +307,7 @@
     <value>ชื่อ</value>
   </data>
   <data name="NetPosition" xml:space="preserve">
-    <value>สถานะเงินลงทุนสุทธิ</value>
+    <value>ยอดรวมสุทธิ</value>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>ชื่อเล่น</value>
@@ -409,7 +409,7 @@
     <value>ยกเลิกการระงับ &lt;username&gt;</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>ล่าสุด</value>
+    <value>อัปเดต</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>อัปเดตสำเร็จแล้ว!</value>

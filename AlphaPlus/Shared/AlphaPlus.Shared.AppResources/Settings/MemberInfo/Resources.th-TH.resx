@@ -286,10 +286,10 @@
     <value>คลิกขวาที่ด้านบนเพื่อแสดง / ซ่อนคอลัมน์</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>มี</value>
+    <value>ใช่</value>
   </data>
   <data name="No2" xml:space="preserve">
-    <value>ไม่มี</value>
+    <value>ไม่ใช่</value>
   </data>
   <data name="MemberWinLossLimit" xml:space="preserve">
     <value>จำกัด ได้/เสีย ของสมาชิก</value>
@@ -655,7 +655,7 @@
     <value>ถูกล็อก</value>
   </data>
   <data name="Unlimited" xml:space="preserve">
-    <value>ไม่จำกัด</value>
+    <value>ไม่จำกัดค่า</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>จาก</value>
@@ -667,37 +667,37 @@
     <value>ขนาดหน้า</value>
   </data>
   <data name="ReachedThreshold" xml:space="preserve">
-    <value>ถึงขีดกำจัดเกณฑ์การชนะ/แพ้</value>
+    <value>ถึงขีดกำจัด</value>
   </data>
   <data name="MyWatchlist" xml:space="preserve">
     <value>รายการเฝ้าดูของฉัน</value>
   </data>
   <data name="ThresholdType" xml:space="preserve">
-    <value>ประเภทเกณฑ์การชนะ/แพ้</value>
+    <value>ประเภทของขีดจำกัด</value>
   </data>
   <data name="SupportsSportsbookDataOnly" xml:space="preserve">
     <value>ฟังก์ชันนี้ใช้ได้เฉพาะกับ กีฬา</value>
   </data>
   <data name="GlobalWinningThreshold" xml:space="preserve">
-    <value>เกณฑ์การชนะสากล</value>
+    <value>ขีดจำกัดทั่วไปของการชนะ</value>
   </data>
   <data name="GlobalLosingThreshold" xml:space="preserve">
-    <value>เกณฑ์การแพ้สากล</value>
+    <value>ขีดจำกัดทั่วไปของการแพ้</value>
   </data>
   <data name="LastReach" xml:space="preserve">
     <value>ขีดจำกัดครั้งล่าสุด</value>
   </data>
   <data name="LastThresholdType" xml:space="preserve">
-    <value>ประเภทเกณฑ์การชนะ/แพ้ครั้งล่าสุด</value>
+    <value>ประเภทของขีดจำกัดล่าสุด</value>
   </data>
   <data name="WinningLosingAmount" xml:space="preserve">
     <value>จำนวนเงินที่ชนะ/แพ้</value>
   </data>
   <data name="LastWinningThreshold" xml:space="preserve">
-    <value>เกณฑ์การชนะครั้งล่าสุด</value>
+    <value>ขีดจำกัดการชนะครั้งล่าสุด</value>
   </data>
   <data name="LastLosingThreshold" xml:space="preserve">
-    <value>เกณฑ์การแพ้ครั้งล่าสุด</value>
+    <value>ขีดจำกัดการแพ้ครั้งล่าสุด</value>
   </data>
   <data name="ReachCount" xml:space="preserve">
     <value>จำนวนครั้งที่สมาชิกถึงขีดจำกัด</value>
@@ -709,28 +709,28 @@
     <value>เลือกเกณฑ์การชนะ/แพ้ที่ตั้งค่าไว้หรือกำหนดค่าเกณฑ์การชนะ/แพ้สำหรับสมาชิกด้านบน:</value>
   </data>
   <data name="Preset" xml:space="preserve">
-    <value>ที่ตั้งไว้</value>
+    <value>ค่าที่ตั้งไว้</value>
   </data>
   <data name="PersonalThresholdPresets" xml:space="preserve">
-    <value>ค่าที่ตั้งไว้สำหรับรายบุคคล</value>
+    <value>ค่าที่ตั้งไว้ของขีดจำกัดรายบุคคล</value>
   </data>
   <data name="PersonalThresholdPresetSettings" xml:space="preserve">
-    <value>การตั้งค่าสำหรับรายบุคคล</value>
+    <value>การตั้งค่าค่าที่ตั้งไว้ของขีดจำกัดรายบุคคล</value>
   </data>
   <data name="SelectPreset" xml:space="preserve">
     <value>เลือกที่ตั้งไว้</value>
   </data>
   <data name="WinningThreshold" xml:space="preserve">
-    <value>เกณฑ์การชนะ</value>
+    <value>ขีดจำกัดการชนะ</value>
   </data>
   <data name="LosingThreshold" xml:space="preserve">
-    <value>เกณฑ์การแพ้</value>
+    <value>ขีดจำกัดการแพ้</value>
   </data>
   <data name="GlobalThresholds" xml:space="preserve">
-    <value>เกณฑ์การชนะ/แพ้สากล</value>
+    <value>ขีดจำกัดทั่วไป</value>
   </data>
   <data name="GlobalThresholdSettings" xml:space="preserve">
-    <value>การตั้งค่าเกณฑ์การชนะ/แพ้สากล</value>
+    <value>การตั้งค่าขีดจำกัดทั่วไป</value>
   </data>
   <data name="GlobalThresholdWillBeAppliedForMembers" xml:space="preserve">
     <value>การตั้งค่าเกณฑ์การชนะ/แพ้สากลสำหรับสมาชิกที่ไม่ได้อยู่ในรายการเฝ้าดู</value>
@@ -739,19 +739,19 @@
     <value>คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีที่เลือก</value>
   </data>
   <data name="ThresholdPresetName" xml:space="preserve">
-    <value>ขีดจำกัดชื่อที่ตั้งไว้</value>
+    <value>ชื่อของค่าขีดจำกัดที่ตั้งไว้</value>
   </data>
   <data name="AddMember" xml:space="preserve">
     <value>เพิ่มสมาชิก</value>
   </data>
   <data name="EditMultiplePersonalThresholds" xml:space="preserve">
-    <value>แก้ไขเกณฑ์การชนะ/แพ้รายบุคคลหลายรายการ</value>
+    <value>แก้ไขขีดจำกัดการชนะ/แพ้รายบุคคลหลายรายการ</value>
   </data>
   <data name="RemoveMultipleAccounts" xml:space="preserve">
     <value>ลบบัญชีหลายรายการ</value>
   </data>
   <data name="EditPersonalThreshold" xml:space="preserve">
-    <value>แก้ไขเกณฑ์การชนะ/แพ้รายบุคคล</value>
+    <value>แก้ไขขีดจำกัดการชนะ/แพ้รายบุคคล</value>
   </data>
   <data name="RemoveAccount" xml:space="preserve">
     <value>ลบบัญชี</value>
@@ -799,7 +799,7 @@
     <value>วันเวลา</value>
   </data>
   <data name="Global" xml:space="preserve">
-    <value>สากล</value>
+    <value>ทั่วไป</value>
   </data>
   <data name="Personal" xml:space="preserve">
     <value>รายบุคคล</value>
@@ -811,13 +811,13 @@
     <value>ถูกลบเรียบร้อยแล้ว</value>
   </data>
   <data name="ReachHistory" xml:space="preserve">
-    <value>ประวัติรายการสมาชิกที่ถึงขีดจำกัด</value>
+    <value>ประวัติการถึงขีดจำกัด</value>
   </data>
   <data name="AreYouSureToRemovePreset" xml:space="preserve">
     <value>คุณแน่ใจหรือไม่ว่าต้องการลบค่าที่ตั้งไว้นี้</value>
   </data>
   <data name="AccumulatedMemberWinLossOnlyStartsCountingNote" xml:space="preserve">
-    <value>ยอดแพ้/ชนะสะสม จะเริ่มนับเมื่อมีการตั้งค่า เกณฑ์การแพ้/ชนะ แล้ว โดยระบบจะเคลียร์ยอดสะสมทุกวันหรือเมื่อปิดการใช้งานฟังก์ชันนี้</value>
+    <value>ยอดสะสมรวมชนะ/แพ้ จะเริ่มนับเมื่อมีการตั้งค่า เกณฑ์การแพ้/ชนะ แล้ว โดยระบบจะเคลียร์ยอดสะสมทุกวันหรือเมื่อปิดการใช้งานฟังก์ชันนี้</value>
   </data>
   <data name="AddMembersToWatchlist" xml:space="preserve">
     <value>เพิ่มสมาชิกในรายการเฝ้าดู</value>
@@ -829,7 +829,7 @@
     <value>เพิ่มเรียบร้อยแล้ว</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>ล่าสุด</value>
+    <value>อัปเดต</value>
   </data>
   <data name="Add" xml:space="preserve">
     <value>เพิ่ม</value>
@@ -841,7 +841,7 @@
     <value>ข้อมูล</value>
   </data>
   <data name="AccumulatedMemberWinLossWillBeCountedNote" xml:space="preserve">
-    <value>ยอดแพ้/ชนะสะสม จะถูกนับทันทีหลังจากตั๋วเดิมพันได้รับการคำนวณผล เมื่อตั๋วเดิมพันทำการนับยอดสะสมแล้วและมีการย้ายคู่แข่งขันที่ยังไม่ได้ตัดสินไปยังวันถัดไปจะไม่ทำให้ยอดสะสมเปลี่ยนแปลง</value>
+    <value>ยอดสะสมรวมชนะ/แพ้ จะถูกนับทันทีหลังจากตั๋วเดิมพันได้รับการคำนวณผล เมื่อตั๋วเดิมพันทำการนับยอดสะสมแล้วและมีการย้ายคู่แข่งขันที่ยังไม่ได้ตัดสินไปยังวันถัดไปจะไม่ทำให้ยอดสะสมเปลี่ยนแปลง</value>
   </data>
   <data name="MyThresholds" xml:space="preserve">
     <value>ขีดจำกัดของฉัน</value>
@@ -856,7 +856,7 @@
     <value>ขีดจำกัดการแพ้ของฉัน</value>
   </data>
   <data name="MyThresholdSettingsNote" xml:space="preserve">
-    <value>รับการแจ้งเตือนเมื่อการชนะ/แพ้ของคุณ (ขึ้นอยู่กับเปอร์เซ็นต์ที่รับความเสี่ยงของคุณจากสมาชิกทั้งหมด) ถึงขีดจำกัดการชนะ/แพ้ ที่คุณกำหนดไว้ด้านล่าง:</value>
+    <value>รับการแจ้งเตือนเมื่อการชนะ/แพ้ของคุณ (ตามค่าความเสี่ยงของคุณจากสมาชิกทั้งหมด) ถึงขีดจำกัดการชนะ/แพ้ ที่คุณกำหนดไว้ด้านล่าง:</value>
   </data>
   <data name="MyWinningThreshold" xml:space="preserve">
     <value>ขีดจำกัดการชนะของฉัน</value>

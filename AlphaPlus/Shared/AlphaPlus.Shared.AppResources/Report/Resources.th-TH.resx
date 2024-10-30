@@ -1051,7 +1051,7 @@
     <value>ค่าความเสี่ยงที่แสดงในรายงานคือค่าความเสี่ยงสูงสุดของระดับซูเปอร์</value>
   </data>
   <data name="VirtualSports" xml:space="preserve">
-    <value>กีฬาอนิเมชั่น</value>
+    <value>กีฬาเสมือนจริง</value>
   </data>
   <data name="Void" xml:space="preserve">
     <value>โมฆะ</value>

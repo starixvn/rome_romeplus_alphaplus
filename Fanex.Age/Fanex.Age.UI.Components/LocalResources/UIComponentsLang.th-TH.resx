@@ -410,7 +410,7 @@
     <comment />
   </data>
   <data name="lasttxn" xml:space="preserve">
-    <value>transaction ครั้งล่าสุด</value>
+    <value>ธุรกรรมล่าสุด</value>
     <comment />
   </data>
   <data name="lbl1stHdp" xml:space="preserve">
@@ -486,7 +486,7 @@
     <comment />
   </data>
   <data name="lblBetSetting" xml:space="preserve">
-    <value>การกำหนดการวางเดิมพัน</value>
+    <value>การตั้งค่าเดิมพัน</value>
     <comment />
   </data>
   <data name="lblCashBalance" xml:space="preserve">
@@ -2818,7 +2818,7 @@
     <comment />
   </data>
   <data name="memberList" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อสมาชิก</value>
     <comment />
   </data>
   <data name="level" xml:space="preserve">

@@ -625,10 +625,10 @@
     <value>เคล็ดลับ: คุณสามารถเปิดใช้งานระบบโอนอัตโนมัติสำหรับหลายบัญชีได้ใน [ข้อมูลสมาชิก &gt;&gt; รายการ {0} ] และติดตามความคืบหน้าของการดำเนินงานได้ใน [โอน &gt;&gt; การตรวจสอบการโอนอัตโนมัติ]</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>ล่าสุด</value>
+    <value>อัปเดต</value>
   </data>
   <data name="AutoTransfer_HintPath_2" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อสมาชิก</value>
   </data>
   <data name="AutoTransfer_HintPath_3" xml:space="preserve">
     <value>รายชื่อ เอเจนต์</value>
@@ -700,7 +700,7 @@
     <value>เข้าระบบครั้งสุดท้าย</value>
   </data>
   <data name="LastTxn" xml:space="preserve">
-    <value>transaction ครั้งล่าสุด</value>
+    <value>ธุรกรรมล่าสุด</value>
   </data>
   <data name="YouCanTransferUpTo" xml:space="preserve">
     <value>คุณสามารถโอนเงิน</value>

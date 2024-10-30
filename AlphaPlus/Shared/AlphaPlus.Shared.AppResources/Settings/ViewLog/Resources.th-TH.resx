@@ -133,7 +133,7 @@
     <value>ควบคุมทั้งหมด</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>ล่าสุด</value>
+    <value>อัปเดต</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>ดู</value>
@@ -172,7 +172,7 @@
     <value>วันศุกร์</value>
   </data>
   <data name="Unlimited" xml:space="preserve">
-    <value>ไม่จำกัด</value>
+    <value>ไม่จำกัดค่า</value>
   </data>
   <data name="DisabledVirtualSports" xml:space="preserve">
     <value>ปิดกีฬาอนิเมชั่น</value>
