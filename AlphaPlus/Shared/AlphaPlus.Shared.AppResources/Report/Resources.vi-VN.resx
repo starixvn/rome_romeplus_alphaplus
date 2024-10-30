@@ -638,7 +638,7 @@
     <value>Tháng 5</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value/>
+    <value>Member</value>
   </data>
   <data name="MemberCommNew" xml:space="preserve">
     <value>Hoa hồng của Member</value>

@@ -169,7 +169,7 @@
     <value>ตั้งค่าใหม่</value>
   </data>
   <data name="username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
   <data name="view" xml:space="preserve">
     <value>ดู</value>

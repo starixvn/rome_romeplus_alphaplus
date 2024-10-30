@@ -829,7 +829,7 @@
     <value>ภายใน</value>
   </data>
   <data name="a" xml:space="preserve">
-    <value>ตัวแทน</value>
+    <value>เอเย่นต์</value>
   </data>
   <data name="m" xml:space="preserve">
     <value>แบ่งสู้ของมาสเตอร์</value>
@@ -2017,7 +2017,7 @@
     <value>รายละเอียด</value>
   </data>
   <data name="actionname" xml:space="preserve">
-    <value>ปฏิบัติ</value>
+    <value>การดำเนินการ</value>
   </data>
   <data name="creditlog" xml:space="preserve">
     <value>เครดิต</value>
@@ -3049,7 +3049,7 @@
     <value>อัพเดตมาสเตอร์ทั้งหมด</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="TodayWinLoss" xml:space="preserve">
     <value>ยอดได้เสียวันนี้</value>
@@ -3205,7 +3205,7 @@
     <value>รายการวางเดิมพันที่เล่นไปแล้ว</value>
   </data>
   <data name="Statement" xml:space="preserve">
-    <value>บัญชี</value>
+    <value>รายการเดินบัญชี</value>
   </data>
   <data name="MPPM" xml:space="preserve">
     <value>ซ๊อกเกอร์ - การจ่ายเงินสูงสุดต่อคู่การแข่งขัน</value>
@@ -3322,13 +3322,13 @@
     <value>โอนอัตโนมัติ</value>
   </data>
   <data name="MasterPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของมาสเตอร์</value>
+    <value>ค่าความเสี่ยงมาสเตอร์</value>
   </data>
   <data name="SuperPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของซุปเปอร์</value>
+    <value>ค่าความเสี่ยงซุปเปอร์</value>
   </data>
   <data name="lblAgentPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของเอเย่น</value>
+    <value>ค่าความเสี่ยงเอเย่นต์</value>
   </data>
   <data name="IsAuto" xml:space="preserve">
     <value>คืออัตโนมัติ</value>

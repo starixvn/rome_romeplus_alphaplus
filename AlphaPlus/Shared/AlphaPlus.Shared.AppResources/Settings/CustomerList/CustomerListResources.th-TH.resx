@@ -235,7 +235,7 @@
     <value>เลือก</value>
   </data>
   <data name="Statement" xml:space="preserve">
-    <value>บัญชี</value>
+    <value>รายการเดินบัญชี</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>สถานะ</value>
@@ -250,7 +250,7 @@
     <value>Unconfirmed Setting</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
   <data name="UsernamePlaceHolder" xml:space="preserve">
     <value>ยูเซอร์เนม/ชื่อเล่น หรือ ชื่อ/นามสุกล</value>

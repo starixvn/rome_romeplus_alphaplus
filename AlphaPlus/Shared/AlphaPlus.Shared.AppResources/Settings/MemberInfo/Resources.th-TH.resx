@@ -139,19 +139,19 @@
     <value>ยอดเงิน</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
-    <value>เครดิตสำหรับการวางเดิมพัน</value>
+    <value>เครดิตสำหรับเดิมพัน</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>ไม่มีข้อมูล</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>ปฏิบัติ</value>
+    <value>การดำเนินการ</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>รีเฟรช</value>
@@ -160,7 +160,7 @@
     <value>แก้ไข</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>สินค้าทั้งหมด</value>
+    <value>ผลิตภัณฑ์ทั้งหมด</value>
   </data>
   <data name="NoSettingWarning" xml:space="preserve">
     <value>การตั้งค่าสินค้ายังไม่ได้รับการกำหนดค่าสำหรับบัญชีของคุณโปรดติดต่ออัพไลน์ของคุณ</value>
@@ -364,10 +364,10 @@
     <value>สมาชิก</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>ตัวแทน</value>
+    <value>เอเย่นต์</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>ตัวแทนหลัก</value>
+    <value>มาสเตอร์</value>
   </data>
   <data name="SelectedAccounts" xml:space="preserve">
     <value>เลือกบัญชี (s):</value>
@@ -388,19 +388,19 @@
     <value>วันที่จัดเตรียมข้อมูล</value>
   </data>
   <data name="DateNotified" xml:space="preserve">
-    <value>วันที่แจ้งเตือน</value>
+    <value>วันที่แจ้ง</value>
   </data>
   <data name="ReviewStatus" xml:space="preserve">
-    <value>ตรวจสอบสถานะ</value>
+    <value>สถานะการตรวจสอบ</value>
   </data>
   <data name="MarkAsReviewed" xml:space="preserve">
-    <value>บันทึกว่าตรวจสอบแล้ว</value>
+    <value>ทำเครื่องหมายว่าตรวจสอบแล้ว</value>
   </data>
   <data name="Reviewed" xml:space="preserve">
     <value>ตรวจสอบแล้ว</value>
   </data>
   <data name="NotReviewed" xml:space="preserve">
-    <value>ยังไม่ได้ตรวจสอบ</value>
+    <value>ยังไม่ตรวจสอบ</value>
   </data>
   <data name="DateNotifiedFrom" xml:space="preserve">
     <value>วันที่แจ้งเตือนจาก</value>
@@ -454,7 +454,7 @@
     <value>สร้างบัญชีสำเร็จแล้ว</value>
   </data>
   <data name="UpdateCredit" xml:space="preserve">
-    <value>อัพเดท เครดิตใหม่</value>
+    <value>อัปเดตเครดิตที่ได้รับ</value>
   </data>
   <data name="UpdateInformation" xml:space="preserve">
     <value>อัปเดตข้อมูล</value>
@@ -487,7 +487,7 @@
     <value>การสร้างคิวอาร์โค้ดนี้อีกครั้งไม่สามารถทำได้ เนื่องจากมีการใช้งานแล้ว</value>
   </data>
   <data name="Super" xml:space="preserve">
-    <value>สูงสุด</value>
+    <value>ซุปเปอร์</value>
   </data>
   <data name="ShowPassword" xml:space="preserve">
     <value>แสดง</value>
@@ -547,7 +547,7 @@
     <value>รหัสผ่านของบัญชีนี้มีการเปลี่ยนแปลง กรุณาบันทึกรหัสผ่านใหม่</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>อัพเดท เครดิตใหม่</value>
+    <value>อัปเดตเครดิตที่ได้รับ</value>
   </data>
   <data name="ArchiveDate" xml:space="preserve">
     <value>วันที่จัดเก็บถาวร</value>
@@ -945,7 +945,7 @@
     <value>สำเนา</value>
   </data>
   <data name="lblUsername" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
   <data name="pendingTransfer3rd" xml:space="preserve">
     <value>บุคคลที่สามรอการถ่ายโอน</value>
@@ -957,7 +957,7 @@
     <value>แก้ไขการตั้งค่าหลายรายการ</value>
   </data>
   <data name="AddToMyWatchlist" xml:space="preserve">
-    <value>เพิ่ิ่มเข้าสู่รายการเฝ้าดูของฉัน</value>
+    <value>เพิ่มไปยังรายการเฝ้าดูของฉัน</value>
   </data>
   <data name="AddMultipleAccountsToWatchlist" xml:space="preserve">
     <value>เพิ่มหลายบัญชีเข้าสู่รายการเฝ้าดูของฉัน</value>
@@ -1088,10 +1088,10 @@
     <value>สด</value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>เงินหมุนเวียน</value>
+    <value>มูลค่าการเดิมพัน</value>
   </data>
   <data name="WinLoss" xml:space="preserve">
-    <value>ชนะ</value>
+    <value>ยอดได้เสีย</value>
   </data>
   <data name="Min" xml:space="preserve">
     <value>ต่ำสุด</value>
@@ -1145,7 +1145,7 @@
     <value>มูลค่าการเดิมพันรวม</value>
   </data>
   <data name="NetTurnover" xml:space="preserve">
-    <value>เงินหมุนเวียน</value>
+    <value>มูลค่าการเดิมพัน</value>
   </data>
   <data name="Average" xml:space="preserve">
     <value>เฉลี่ย</value>
@@ -1166,7 +1166,7 @@
     <value>เงินเดิมพัน </value>
   </data>
   <data name="WinLossText" xml:space="preserve">
-    <value>ชนะ</value>
+    <value>ยอดได้เสีย</value>
   </data>
   <data name="Win" xml:space="preserve">
     <value>ชนะ</value>

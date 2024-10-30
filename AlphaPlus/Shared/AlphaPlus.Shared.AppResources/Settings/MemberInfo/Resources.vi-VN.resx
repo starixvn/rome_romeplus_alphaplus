@@ -361,7 +361,7 @@
     <value>Lưa chọn</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>Thành viên</value>
+    <value>Member</value>
   </data>
   <data name="SelectedAccounts" xml:space="preserve">
     <value>Tài khoản đã chọn:</value>

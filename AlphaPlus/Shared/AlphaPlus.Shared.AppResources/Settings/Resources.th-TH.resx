@@ -125,7 +125,7 @@
     <comment/>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>ตัวแทน</value>
+    <value>เอเย่นต์</value>
     <comment/>
   </data>
   <data name="AgentList" xml:space="preserve">
@@ -133,7 +133,7 @@
     <comment/>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
-    <value>เอเย่นต์ยอดคงค้าง</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของเอเย่นต์</value>
     <comment/>
   </data>
   <data name="BalanceInfo" xml:space="preserve">
@@ -141,7 +141,7 @@
     <comment/>
   </data>
   <data name="BetCredit" xml:space="preserve">
-    <value>เครดิตสำหรับการวางเดิมพัน</value>
+    <value>เครดิตสำหรับเดิมพัน</value>
     <comment/>
   </data>
   <data name="BetList" xml:space="preserve">
@@ -241,7 +241,7 @@
     <comment/>
   </data>
   <data name="GivenCredit" xml:space="preserve">
-    <value>เครดิตทั้งหมด</value>
+    <value>เครดิตที่ได้รับ</value>
     <comment/>
   </data>
   <data name="IP" xml:space="preserve">
@@ -265,11 +265,11 @@
     <comment/>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>ตัวแทนหลัก</value>
+    <value>มาสเตอร์</value>
     <comment/>
   </data>
   <data name="MasterOutstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุดของ Master</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของมาสเตอร์</value>
     <comment/>
   </data>
   <data name="Member" xml:space="preserve">
@@ -313,7 +313,7 @@
     <comment/>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
     <comment/>
   </data>
   <data name="Phone" xml:space="preserve">
@@ -325,7 +325,7 @@
     <comment/>
   </data>
   <data name="Statement" xml:space="preserve">
-    <value>บัญชี</value>
+    <value>รายการเดินบัญชี</value>
     <comment/>
   </data>
   <data name="Status" xml:space="preserve">
@@ -433,7 +433,7 @@
     <comment/>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
-    <value>อัพเดท เครดิตใหม่</value>
+    <value>อัปเดตเครดิตที่ได้รับ</value>
     <comment/>
   </data>
   <data name="LoginInfo" xml:space="preserve">

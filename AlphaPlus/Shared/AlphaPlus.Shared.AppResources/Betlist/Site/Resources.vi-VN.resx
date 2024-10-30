@@ -643,7 +643,7 @@
     <value>PT của Master/ Hoa hồng</value>
   </data>
   <data name="member" xml:space="preserve">
-    <value>Thành viên</value>
+    <value>Member</value>
   </data>
   <data name="memberBetList" xml:space="preserve">
     <value>Danh sách đặt cược của Member</value>

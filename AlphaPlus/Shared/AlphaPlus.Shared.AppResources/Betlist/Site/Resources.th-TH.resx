@@ -577,7 +577,7 @@
     <value>จำนวนรวมของทีมเจ้าบ้าน</value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>เงินหมุนเวียน</value>
+    <value>มูลค่าการเดิมพัน</value>
   </data>
   <data name="UCommaE" xml:space="preserve">
     <value>ต่ำ คู่</value>
@@ -622,7 +622,7 @@
     <value>สูง/ต่ำ ครึ่งแรก</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของเอเย่น</value>
+    <value>ค่าความเสี่ยงเอเย่นต์</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
     <value>ค่าแบ่งสู้ของเอเย่น/ คอมมิชชั่น</value>
@@ -637,7 +637,7 @@
     <value>คอมมิชชั่น</value>
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของมาสเตอร์</value>
+    <value>ค่าความเสี่ยงมาสเตอร์</value>
   </data>
   <data name="masterptcomm" xml:space="preserve">
     <value>ค่าแบ่งสู้ของมาสเตอร์/ คอมมิชชั่น</value>
@@ -667,7 +667,7 @@
     <value>สถานะ</value>
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของซุปเปอร์</value>
+    <value>ค่าความเสี่ยงซุปเปอร์</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
     <value>ค่าแบ่งสู้ของซุปเปอร์/ คอมมิชชั่น</value>

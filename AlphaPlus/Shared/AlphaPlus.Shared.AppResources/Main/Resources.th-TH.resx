@@ -205,15 +205,15 @@
     <comment/>
   </data>
   <data name="agent" xml:space="preserve">
-    <value>ตัวแทน</value>
+    <value>เอเย่นต์</value>
     <comment/>
   </data>
   <data name="master" xml:space="preserve">
-    <value>ตัวแทนหลัก</value>
+    <value>มาสเตอร์</value>
     <comment/>
   </data>
   <data name="super" xml:space="preserve">
-    <value>สูงสุด</value>
+    <value>ซุปเปอร์</value>
     <comment/>
   </data>
   <data name="agentGivenCredit" xml:space="preserve">
@@ -309,7 +309,7 @@
     <comment/>
   </data>
   <data name="superOutstanding" xml:space="preserve">
-    <value>ยอดคงค้างของซุปเปอร์</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของซุปเปอร์</value>
     <comment/>
   </data>
   <data name="top10WinningMembers" xml:space="preserve">
@@ -321,11 +321,11 @@
     <comment/>
   </data>
   <data name="agentOutstanding" xml:space="preserve">
-    <value>เอเย่นต์ยอดคงค้าง</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของเอเย่นต์เอเย่นต์ยอดคงค้าง</value>
     <comment/>
   </data>
   <data name="masterOutstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุดของ Master</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของมาสเตอร์</value>
     <comment/>
   </data>
   <data name="show" xml:space="preserve">
@@ -337,11 +337,11 @@
     <comment/>
   </data>
   <data name="turnover" xml:space="preserve">
-    <value>เงินหมุนเวียน</value>
+    <value>มูลค่าการเดิมพัน</value>
     <comment/>
   </data>
   <data name="username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
     <comment/>
   </data>
   <data name="winningAmount" xml:space="preserve">
@@ -353,7 +353,7 @@
     <comment/>
   </data>
   <data name="givenCredit" xml:space="preserve">
-    <value>เครดิตทั้งหมด</value>
+    <value>เครดิตที่ได้รับ</value>
     <comment/>
   </data>
   <data name="Notice_2" xml:space="preserve">
@@ -557,7 +557,7 @@
     <comment/>
   </data>
   <data name="outstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
     <comment/>
   </data>
   <data name="NoPermissionAccessPage" xml:space="preserve">

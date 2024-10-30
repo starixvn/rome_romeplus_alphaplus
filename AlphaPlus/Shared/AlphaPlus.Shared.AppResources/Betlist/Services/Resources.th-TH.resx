@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Action" xml:space="preserve">
-    <value>ปฏิบัติ</value>
+    <value>การดำเนินการ</value>
   </data>
   <data name="Activity" xml:space="preserve">
     <value>กิจกรรม</value>
@@ -127,7 +127,7 @@
     <value>เพิ่มเรียบร้อยแล้ว</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>ตัวแทน</value>
+    <value>เอเย่นต์</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>ทั้งหมด</value>
@@ -151,7 +151,7 @@
     <value>สมาชิกทั้งหมด</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>สินค้าทั้งหมด</value>
+    <value>ผลิตภัณฑ์ทั้งหมด</value>
   </data>
   <data name="AllSports" xml:space="preserve">
     <value>กีฬาทั้งหมด</value>
@@ -178,7 +178,7 @@
     <value/>
   </data>
   <data name="BetList" xml:space="preserve">
-    <value>ตั๋วเดิมพัน</value>
+    <value>รายการเดิมพัน</value>
   </data>
   <data name="BetListHistory" xml:space="preserve">
     <value>รายการวางเดิมพันที่เล่นไปแล้ว</value>
@@ -190,7 +190,7 @@
     <value>ประเภทการเดิมพัน</value>
   </data>
   <data name="BetlistRunning" xml:space="preserve">
-    <value>รายการการเดิมพัน ( ยอมรับการวางเดิมพันแล้ว )</value>
+    <value>รายการเดิมพัน (ที่รับแล้ว)</value>
   </data>
   <data name="Bets" xml:space="preserve">
     <value>bets</value>
@@ -358,7 +358,7 @@
     <value>เนื่องจากเซิร์ฟเวอร์ไม่ว่างในขณะนี้  ดังนั้นฟังก์ชันนี้ถูกปิดชั่วคราวโปรดลองใหม่ภายหลัง ขออภัยในความไม่สะดวกมา ณ ที่นี้ด้วย</value>
   </data>
   <data name="GetAll" xml:space="preserve">
-    <value>ได้รับทั้งหมด</value>
+    <value>แสดงทั้งหมด</value>
   </data>
   <data name="Handicap" xml:space="preserve">
     <value>ราคาต่อรอง</value>
@@ -700,7 +700,7 @@
     <value>อัพเดทเสร็จสมบูรณ์</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
   <data name="UsernameTagsInputPlaceHolder" xml:space="preserve">
     <value>ป้อนชื่อผู้ใช้/ชื่อเล่น (คั่นด้วยเครื่องหมายจุลภาค แท็บ หรือขึ้นบรรทัดใหม่)</value>
@@ -724,7 +724,7 @@
     <value>เมื่อวาน</value>
   </data>
   <data name="agentPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของเอเย่น</value>
+    <value>ค่าความเสี่ยงเอเย่นต์</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
     <value>ค่าแบ่งสู้ของเอเย่น/ คอมมิชชั่น</value>
@@ -763,7 +763,7 @@
     <value>ตั๋วทั้งหมดที่เสีย</value>
   </data>
   <data name="masterPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของมาสเตอร์</value>
+    <value>ค่าความเสี่ยงมาสเตอร์</value>
   </data>
   <data name="masterptcomm" xml:space="preserve">
     <value>ค่าแบ่งสู้ของมาสเตอร์/ คอมมิชชั่น</value>
@@ -787,7 +787,7 @@
     <value>ของ</value>
   </data>
   <data name="outstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="parlay" xml:space="preserve">
     <value>บอลชุด</value>
@@ -814,7 +814,7 @@
     <value>ผลการแข่งขัน</value>
   </data>
   <data name="running" xml:space="preserve">
-    <value>ยอมรับการวางเดิมพันแล้ว</value>
+    <value>ที่รับแล้ว</value>
   </data>
   <data name="selectStatuses" xml:space="preserve">
     <value>กรุณาเลือกสถานะ</value>
@@ -829,7 +829,7 @@
     <value>ยอดรวม</value>
   </data>
   <data name="superPT" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของซุปเปอร์</value>
+    <value>ค่าความเสี่ยงซุปเปอร์</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
     <value>ค่าแบ่งสู้ของซุปเปอร์/ คอมมิชชั่น</value>

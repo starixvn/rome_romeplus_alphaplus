@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccumTotal" xml:space="preserve">
-    <value>ยอดสะสมรวม</value>
+    <value>ยอดรวมสะสม</value>
   </data>
   <data name="AccumulatedTotal" xml:space="preserve">
-    <value>ยอดสะสมรวม</value>
+    <value>ยอดรวมสะสม</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>ปฏิบัติ</value>
+    <value>การดำเนินการ</value>
   </data>
   <data name="ActionDateTime" xml:space="preserve">
     <value>วันที่/เวลาดำเนินการ</value>
@@ -133,13 +133,13 @@
     <value>เงินเดิมพันจริง</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>ตัวแทน</value>
+    <value>เอเย่นต์</value>
   </data>
   <data name="AgentCommNew" xml:space="preserve">
     <value>ค่าคอม เอเย่นต์</value>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
-    <value>เอเย่นต์ยอดคงค้าง</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของเอเย่นต์</value>
   </data>
   <data name="AgentTotal" xml:space="preserve">
     <value>รวม เอเจนต์</value>
@@ -166,7 +166,7 @@
     <value>ลีคทั้งหมด</value>
   </data>
   <data name="AllProducts" xml:space="preserve">
-    <value>สินค้าทั้งหมด</value>
+    <value>ผลิตภัณฑ์ทั้งหมด</value>
   </data>
   <data name="Allbet" xml:space="preserve">
     <value/>
@@ -196,10 +196,10 @@
     <value>ตรวจสอบตัวเลือกการเดิมพัน</value>
   </data>
   <data name="BetCount" xml:space="preserve">
-    <value>นับเดิมพัน</value>
+    <value>จำนวนตั๋วเดิมพัน</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
-    <value>เครดิตสำหรับการวางเดิมพัน</value>
+    <value>เครดิตสำหรับเดิมพัน</value>
   </data>
   <data name="BetCreditHistory" xml:space="preserve">
     <value>ประวัติเครดิตเดิมพัน</value>
@@ -421,13 +421,13 @@
     <value>Gaming</value>
   </data>
   <data name="GivenCredit" xml:space="preserve">
-    <value>เครดิตทั้งหมด</value>
+    <value>เครดิตที่ได้รับ</value>
   </data>
   <data name="GoldDeluxe" xml:space="preserve">
     <value/>
   </data>
   <data name="GrandPrize" xml:space="preserve">
-    <value/>
+    <value>รางวัลใหญ่</value>
   </data>
   <data name="GrandPrize_Guidelines" xml:space="preserve">
     <value/>
@@ -463,7 +463,7 @@
     <value>การดูรายงานในระดับ มาสเตอร์: ค่าคอมมิชชั่นรวมคือจำนวนเงิน (โดยไม่มี PT) ที่ ซุปเปอร์สามารถได้รับจากอัพไลน์ในมาสเตอร์แต่ละราย</value>
   </data>
   <data name="GrossCommNoteForMember" xml:space="preserve">
-    <value>การดูรายงานในระดับสมาชิก: ค่าคอมมิชชั่นรวมคือจำนวนเงิน (โดยไม่มี PT) ที่เอเจนต์สามารถได้รับจากอัพไลน์ในสมาชิกแต่ละราย</value>
+    <value>การดูรายงานในระดับสมาชิก: ค่าคอมมิชชั่นรวมคือจำนวนเงิน (โดยไม่มีค่าความเสี่ยง) ที่เอเย่นต์สามารถได้รับจากอัพไลน์ในสมาชิกแต่ละราย</value>
   </data>
   <data name="GrossCommNoteForRoundingProblem" xml:space="preserve">
     <value>ค่ายอดรวมของคอมมิชชั่น อาจแตกต่างกันในแต่ละระดับเนื่องจากการปัดเศษของทศนิยม 4 ตำแหน่ง</value>
@@ -592,13 +592,13 @@
     <value>มี.ค.</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>ตัวแทนหลัก</value>
+    <value>มาสเตอร์</value>
   </data>
   <data name="MasterCommNew" xml:space="preserve">
     <value>ค่าคอม มาสเตอร์</value>
   </data>
   <data name="MasterOutstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุดของ Master</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของมาสเตอร์</value>
   </data>
   <data name="MasterTotal" xml:space="preserve">
     <value>รวม Master</value>
@@ -610,7 +610,7 @@
     <value>ตัวแทนหลัก ชนะ แพ้</value>
   </data>
   <data name="MasterWinLossDetail" xml:space="preserve">
-    <value>ตัวแทนหลัก ชนะ แพ้ รายละเอียด</value>
+    <value>รายละเอียดยอดได้เสียของมาสเตอร์</value>
   </data>
   <data name="MasterWinLossNew" xml:space="preserve">
     <value>ยอดได้เสีย มาสเตอร์</value>
@@ -649,7 +649,7 @@
     <value>Member Feedback</value>
   </data>
   <data name="MemberOutstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุดของ สมาชิก</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุดของสมาชิก</value>
   </data>
   <data name="MemberRefNo" xml:space="preserve">
     <value>สมาชิก/หมายเลขอ้างอิง</value>
@@ -664,7 +664,7 @@
     <value>สมาชิก (ชนะ แพ้)</value>
   </data>
   <data name="MemberWinLossDetail" xml:space="preserve">
-    <value>รายละเอียด</value>
+    <value>รายลรายละเอียดการได้เสียของสมาชิกะเอียด</value>
   </data>
   <data name="MemberWinLossNew" xml:space="preserve">
     <value>ยอดได้เสีย สมาชิก</value>
@@ -673,7 +673,7 @@
     <value>Member's Moved Event Date Report</value>
   </data>
   <data name="Month" xml:space="preserve">
-    <value>Month</value>
+    <value>เดือน</value>
   </data>
   <data name="Monthly" xml:space="preserve">
     <value>รายเดือน</value>
@@ -685,16 +685,16 @@
     <value>กราฟแผนภูมิได้/เสียประจำเดือน</value>
   </data>
   <data name="MoveStatementHistory" xml:space="preserve">
-    <value>ประวัติการโอน</value>
+    <value>ประวัติการย้ายสเตทเม้น</value>
   </data>
   <data name="MoveStatementHistoryNote" xml:space="preserve">
     <value>รายงานจะแสดงตั๋วเดิมพันทั้งหมดซึ่งมีวันที่แข่งขันทั้งเก่า/ใหม่ ภายในช่วงวันที่ที่ทำการค้นหา</value>
   </data>
   <data name="NetTurnover" xml:space="preserve">
-    <value>เงินหมุนเวียน (ไม่รวมยอดเสมอ)</value>
+    <value>มูลค่าการเดิมพันสุทธิ</value>
   </data>
   <data name="NetTurnoverAndGrossComm" xml:space="preserve">
-    <value>/เงินหมุนเวียน (ไม่รวมยอดเสมอ)/ยอดรวมของคอมมิชชั่น</value>
+    <value>/มูลค่าการเดิมพันสุทธิ/ยอดรวมของคอมมิชชั่น</value>
   </data>
   <data name="NetTurnoverAndTaxComm" xml:space="preserve">
     <value/>
@@ -769,10 +769,10 @@
     <value>มากกว่า 3 เดือน</value>
   </data>
   <data name="OpeningBal" xml:space="preserve">
-    <value>ยอดยกมา</value>
+    <value>ยอดเริ่มต้นบัญชี</value>
   </data>
   <data name="OpeningBalance" xml:space="preserve">
-    <value>ยอดยกมา</value>
+    <value>ยอดเริ่มต้นบัญชี</value>
   </data>
   <data name="Others" xml:space="preserve">
     <value>อื่นๆ</value>
@@ -781,7 +781,7 @@
     <value>ทายผลผู้ชนะ</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>การเดิมพันที่ยังไม่สิ้นสุด</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="Owner" xml:space="preserve">
     <value>เจ้าของ</value>
@@ -892,10 +892,10 @@
     <value>การวิเคราะห์ ผลได้เสีย รายการกีฬา</value>
   </data>
   <data name="Stake" xml:space="preserve">
-    <value>เงินเดิมพัน</value>
+    <value>ยอดเดิมพัน</value>
   </data>
   <data name="Statement" xml:space="preserve">
-    <value>บัญชี</value>
+    <value>รายการเดินบัญชี</value>
   </data>
   <data name="StatementGuidelines" xml:space="preserve">
     <value/>
@@ -916,7 +916,7 @@
     <value>สรุปบัญชีที่ไม่เคลื่อนไหว</value>
   </data>
   <data name="Super" xml:space="preserve">
-    <value>สูงสุด</value>
+    <value>ซุปเปอร์</value>
   </data>
   <data name="SuperCommNew" xml:space="preserve">
     <value>ค่าคอม ซุปเปอร์</value>
@@ -1018,16 +1018,16 @@
     <value/>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>เงินหมุนเวียน</value>
+    <value>มูลค่าการเดิมพัน</value>
   </data>
   <data name="TurnoverAbbr" xml:space="preserve">
-    <value>เงินหมุนเวียน</value>
+    <value>มูลค่าการเดิมพัน</value>
   </data>
   <data name="Upline" xml:space="preserve">
     <value>อัพไลน์</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ</value>
+    <value>ชื่อผู้ใช้</value>
   </data>
   <data name="UsernameIsRequired" xml:space="preserve">
     <value>จำเป็นต้องระบุชื่อผู้ใช้</value>
@@ -1036,7 +1036,7 @@
     <value>ยูเซอร์เนม หรือ ชื่อ/นามสุกล</value>
   </data>
   <data name="UsernamePTProduct" xml:space="preserve">
-    <value>ชื่อผู้ใช้ระบบ/ค่าความเสี่ยง/ผลิตภัณฑ์</value>
+    <value>ชื่อผู้ใช้/ค่าความเสี่ยง/ผลิตภัณฑ์</value>
   </data>
   <data name="VarianceFromSelectedDate" xml:space="preserve">
     <value>ความแปรปรวนจากวันที่เลือก</value>
@@ -1063,10 +1063,10 @@
     <value>ชนะ</value>
   </data>
   <data name="WinLoss" xml:space="preserve">
-    <value>ชนะ</value>
+    <value>ยอดได้เสีย</value>
   </data>
   <data name="WinLossAbbr" xml:space="preserve">
-    <value>ชนะ</value>
+    <value>ยอดได้เสีย</value>
   </data>
   <data name="WinLossAnalysis" xml:space="preserve">
     <value/>
@@ -1075,10 +1075,10 @@
     <value>ชนะ แพ้ โดยชนิดของการวางเดิมพัน</value>
   </data>
   <data name="WinLossByProduct" xml:space="preserve">
-    <value>ยอดได้เสียตามโปรดักส์</value>
+    <value>ยอดได้เสียตามผลิตภัณฑ์</value>
   </data>
   <data name="WinLossDate" xml:space="preserve">
-    <value>วันที่ ชนะ แพ้</value>
+    <value>วันที่ชนะ/แพ้</value>
   </data>
   <data name="WinLossDetail" xml:space="preserve">
     <value/>
@@ -1165,6 +1165,6 @@
     <value>สมาชิกที่กำลังเฝ้าดู</value>
   </data>
   <data name="AddToMyWatchlist" xml:space="preserve">
-    <value>เพิ่ิ่มเข้าสู่รายการเฝ้าดูของฉัน</value>
+    <value>เพิ่มไปยังรายการเฝ้าดูของฉัน</value>
   </data>
 </root>
