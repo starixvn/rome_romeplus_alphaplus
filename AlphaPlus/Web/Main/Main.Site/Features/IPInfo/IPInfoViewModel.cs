@@ -1,4 +1,4 @@
-using AlphaPlus.RequestInfo.Models;
+using AlphaPlus.Utilities.IP.Models;
 
 namespace AlphaPlus.Main.Site.Features.IPInfo
 {

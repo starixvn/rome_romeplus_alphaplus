@@ -1,5 +1,5 @@
 using System.Net;
-using AlphaPlus.RequestInfo;
+using AlphaPlus.Utilities.IP;
 using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.Models;
 using Fanex.Alpha.Before.Services;

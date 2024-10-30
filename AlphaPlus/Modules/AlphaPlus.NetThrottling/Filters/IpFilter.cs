@@ -1,5 +1,5 @@
 ﻿using AlphaPlus.NetThrottling.Models;
-using AlphaPlus.RequestInfo;
+using AlphaPlus.Utilities.IP;
 using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.NetThrottling.Filters

@@ -1,7 +1,6 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount
+﻿
+namespace AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount
 {
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount;
-
     public class NewAccountParam
     {
         public NewAccountParam(
@@ -12,7 +11,7 @@
             int actorSubAccId,
             byte actorLevelId,
             string languageKey,
-            RequestInfo requestInfo)
+            RequestInfo.Models.RequestInfo requestInfo)
         {
             CustName = custName;
             Password = password;
@@ -38,6 +37,6 @@
 
         public string LanguageKey { get; }
 
-        public RequestInfo RequestInfo { get; }
+        public RequestInfo.Models.RequestInfo RequestInfo { get; }
     }
 }

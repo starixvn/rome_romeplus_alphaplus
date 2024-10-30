@@ -26,10 +26,10 @@ namespace AlphaPlus.Features.Site.Helpers
         {
             services
                 .AddHealthChecks();
-                
+
             services
                 .AddControllersWithViews()
-                .AddNewtonsoftJson(option => 
+                .AddNewtonsoftJson(option =>
                 {
                     option.UseMemberCasing();
                 })
@@ -39,7 +39,7 @@ namespace AlphaPlus.Features.Site.Helpers
                     options.ViewLocationFormats.Add("/Views/{1}/{0}.cshtml");
                     options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
                 });
-            
+
             services
                 .AddMediatR(typeof(Program).Assembly)
                 .AddFanexData(configuration)
@@ -52,12 +52,8 @@ namespace AlphaPlus.Features.Site.Helpers
                 .AddSingleton<ISessionManager, SessionManager>();
 
             services
-                .AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>()
-                .AddSingleton<IPService, IPServiceImpl>()
-                .AddSingleton<RequestInfo.IPHelper, IPHelperImpl>()
-                .AddSingleton<RequestInfo.IPHelper, IPHelperImpl>()
+                .AddRequestInfo()
                 .AddSingleton<IBrowserHelper, BrowserHelper>()
-                .AddSingleton<IDeviceHelper, DeviceHelper>()
                 .AddScoped<IUserSession, UserSessionExt>();
 
             services

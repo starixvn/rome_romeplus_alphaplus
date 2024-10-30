@@ -1,4 +1,4 @@
-﻿using AlphaPlus.RequestInfo;
+﻿using AlphaPlus.Utilities.IP;
 using Fanex.Alpha.Before.Configurations;
 using FPS.Browserless.Detection.Client.NetStandard;
 using Microsoft.Extensions.Options;

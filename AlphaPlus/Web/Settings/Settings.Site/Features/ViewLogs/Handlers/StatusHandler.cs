@@ -1,46 +1,48 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Web;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers;
-    using AlphaPlus.Settings.ViewLogs.API.Models;
-    using AlphaPlus.Settings.ViewLogs.API.Params;
-    using AlphaPlus.Settings.ViewLogs.API.Services;
-    using Fanex.Logging.Extensions.Web;
-    using Helpers;
-    using MediatR;
-    using Requests.Status;
-    using ViewModels;
+﻿using System.Web;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Models;
+using AlphaPlus.Settings.ViewLogs.API.Params;
+using AlphaPlus.Settings.ViewLogs.API.Services;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Status;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
+{
     public class StatusHandler : BaseHandler, IRequestHandler<IndexQuery, LogViewModel>
     {
         private readonly TrackingValueFormatter trackingValueFormatter;
         private readonly TransformService transformService;
+        private readonly Fanex.Logging.ILogger logger;
 
         public StatusHandler(
             [FromKeyedServices("statusLogSvc")] LogService logService,
             LogFormatter logFormatter,
             IDateTime dateTimeWrapper,
             TransformService transformService,
-            TrackingValueFormatter trackingValueFormatter) :
+            TrackingValueFormatter trackingValueFormatter,
+            Fanex.Logging.ILogger logger) :
              base(logService, logFormatter, dateTimeWrapper)
         {
             this.trackingValueFormatter = trackingValueFormatter;
             this.transformService = transformService;
+            this.logger = logger;
         }
 
-        public async Task<LogViewModel> Handle(IndexQuery message, CancellationToken cancellation)
+        public Task<LogViewModel> Handle(IndexQuery message, CancellationToken cancellation)
         {
             var logsParam = CreateLogParam(message);
             var pagingLogs = LogService.GetPagingLogs(logsParam);
 
-            var viewModel = new LogViewModel(logsParam, pagingLogs.TotalRecords);
-            viewModel.ActionTypeId = message.ActionTypeId;
+            var viewModel = new LogViewModel(logsParam, pagingLogs.TotalRecords)
+            {
+                ActionTypeId = message.ActionTypeId
+            };
 
             TransformLogs(pagingLogs, message, viewModel);
 
-            return viewModel;
+            return Task.FromResult(viewModel);
         }
 
         private void TransformLogs(
@@ -90,7 +92,7 @@
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.Handle(ex);
+                    logger.Error(ex.Message, ex);
                 }
             }
 

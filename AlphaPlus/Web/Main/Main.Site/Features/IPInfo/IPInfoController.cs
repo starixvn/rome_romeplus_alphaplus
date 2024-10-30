@@ -1,6 +1,6 @@
 using System.Net;
 using AlphaPlus.Core;
-using AlphaPlus.RequestInfo;
+using AlphaPlus.Utilities.IP;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Main.Site.Features.IPInfo

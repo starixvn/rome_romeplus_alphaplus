@@ -1,5 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
-using AlphaPlus.RequestInfo;
+using AlphaPlus.Utilities.IP;
 using Fanex.BetList.Core.Entities;
 
 namespace AlphaPlus.SmartPunter.Services

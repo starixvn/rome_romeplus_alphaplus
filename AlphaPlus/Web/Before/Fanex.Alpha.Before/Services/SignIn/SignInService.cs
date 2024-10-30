@@ -18,6 +18,7 @@ using System.Text.Json;
 using Fanex.Data.Repository;
 using Fanex.Alpha.Before.Criteria;
 using AlphaPlus.RequestInfo.Models;
+using AlphaPlus.Utilities.IP;
 
 namespace Fanex.Alpha.Before.Services.SignIn
 {
@@ -243,7 +244,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             if (loginUserFailedCount >= commonOptions.LoginFailTimeToStartUsingCaptcha)
             {
                 signInResult.ErrCode = SignInErrorContants.CaptchaRequired;
-                Task.Run(async () => await notificationService.NotifyWrongPassword(verifySignInResult.CustId, verifySignInResult.SubAccId, signInResult.Ip));
+                _ = Task.Run(async () => await notificationService.NotifyWrongPassword(verifySignInResult.CustId, verifySignInResult.SubAccId, signInResult.Ip));
             }
 
             signInResult.ErrMsg = verifySignInResult.ErrorMessage;
@@ -320,7 +321,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
             if (verifySignInResult.IsKickoutDueToProtectedMode)
             {
-                Task.Run(() => kickoutCustomerService.KickoutDueToProtectedMode(
+                _ = Task.Run(() => kickoutCustomerService.KickoutDueToProtectedMode(
                     verifySignInResult.CustId,
                     verifySignInResult.RoleId,
                     verifySignInResult.ServerId,

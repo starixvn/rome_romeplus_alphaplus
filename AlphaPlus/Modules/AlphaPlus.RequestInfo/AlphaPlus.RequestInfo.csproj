@@ -7,7 +7,9 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.Data.ProxyClient" Version="0.0.3-alpha02" />
     <PackageReference Include="UAParser" Version="3.1.47" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlphaPlus.Utilities.IP\AlphaPlus.Utilities.IP.csproj" />
   </ItemGroup>
 </Project>

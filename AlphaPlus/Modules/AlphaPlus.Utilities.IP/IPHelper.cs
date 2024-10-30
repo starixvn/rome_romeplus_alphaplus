@@ -2,7 +2,7 @@ using System.Net;
 using System.Net.Sockets;
 using Microsoft.AspNetCore.Http;
 
-namespace AlphaPlus.RequestInfo;
+namespace AlphaPlus.Utilities.IP;
 
 public interface IPHelper
 {

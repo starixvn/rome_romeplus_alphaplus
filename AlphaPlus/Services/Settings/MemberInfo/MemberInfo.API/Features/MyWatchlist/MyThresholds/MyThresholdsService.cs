@@ -1,19 +1,16 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds.Criteria;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyThresholds.Params;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
-    using AlphaPlus.PartialUM.Services;
-    using Fanex.Data.Repository;
-    using Fanex.Logging.Extensions.Web;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds.Criteria;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyThresholds.Params;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
+using AlphaPlus.PartialUM.Services;
+using Fanex.Data.Repository;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+using AlphaPlus.Core.Models;
+using Fanex.Logging;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds
+{
     public interface MyThresholdsService
     {
         Task<IEnumerable<ReachHistoryModel>> GetMyThresholdHistory(SelectMyThresholdHistoryParam param);
@@ -27,13 +24,16 @@
     {
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPartialUMService partialUMService;
+        private readonly ILogger logger;
 
         public MyThresholdsServiceImpl(
             IDynamicRepository dynamicRepository,
-            IPartialUMService partialUMService)
+            IPartialUMService partialUMService,
+            ILogger logger)
         {
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
+            this.logger = logger;
         }
 
         public Task<IEnumerable<ReachHistoryModel>> GetMyThresholdHistory(SelectMyThresholdHistoryParam param)
@@ -103,7 +103,7 @@
             }
             catch (Exception ex)
             {
-                ExceptionHandler.Handle(ex);
+                await logger.ErrorAsync(ex.Message, ex);
             }
         }
     }

@@ -6,6 +6,7 @@
 using System.Reflection;
 using Alpha.SliderCaptcha.AspNetCore;
 using AlphaPlus.RequestInfo;
+using AlphaPlus.Utilities.IP;
 using Fanex.Alpha.Before.Extensions;
 using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.Services;
@@ -72,10 +73,8 @@ namespace Fanex.Alpha.Before
             services.AddSingleton<IDistributedCacheService, DistributedCacheService>();
 
             services.AddSingleton<IKickoutCustomerService, KickoutCustomerService>();
-            services.AddSingleton<IPHelper, IPHelperImpl>();
             services.AddSingleton<IFPSHelper, FPSHelper>();
             services.AddSingleton<IEncryptUrlHelper, EncryptUrlHelper>();
-            services.AddSingleton<IPService, IPServiceImpl>();
             services.AddHttpClient<INotificationService, NotificationService>(httpClient =>
             {
                 httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("TelegramBotUri"));

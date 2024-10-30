@@ -3,7 +3,7 @@ using Fanex.Alpha.Before.Models;
 using Fanex.Alpha.Before.Criteria.LimitedCountryAccess;
 using Fanex.Alpha.Before.Configurations;
 using Microsoft.Extensions.Caching.Memory;
-using AlphaPlus.RequestInfo;
+using AlphaPlus.Utilities.IP;
 
 namespace Fanex.Alpha.Before.Services
 {

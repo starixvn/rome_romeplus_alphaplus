@@ -1,5 +1,4 @@
-﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.IndirectLoginAccount;
 using AlphaPlus.Utilities.IP;
 using MediatR;
@@ -8,6 +7,7 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Core.Models;
+using AlphaPlus.RequestInfo;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
 {
@@ -27,17 +27,21 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
         private readonly ISessionManager sessionManager;
         private readonly IEncryption encryption;
         private readonly IPService ipService;
+        private readonly IDeviceHelper deviceHelper;
+
 
         public IndirectLoginAccountHandler(
             IndirectLoginAccountService service,
             ISessionManager sessionManager,
             IEncryption encryption,
-            IPService ipService)
+            IPService ipService,
+            IDeviceHelper deviceHelper)
         {
             this.service = service;
             this.sessionManager = sessionManager;
             this.encryption = encryption;
             this.ipService = ipService;
+            this.deviceHelper = deviceHelper;
         }
 
         public async Task<ManageAccountViewModel> Handle(ManageAccountQuery message, CancellationToken cancellation)
@@ -50,8 +54,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
 
         public async Task<Result> Handle(NewAccountCommand message, CancellationToken cancellation)
         {
-            var countryCode = GetCountryCode(message.IP);
-            var requestInfo = RequestInfoHelper.GetRequestInfo(AlphaContext.Current.Request, message.IP, message.BrowserSize, countryCode);
+            var requestInfo = await deviceHelper.GetRequestInfo();
 
             return await service.NewAccountAsync(new NewAccountParam(
                 message.CustName,
@@ -69,8 +72,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
 
         public async Task<Result> Handle(UpdatePasswordCommand message, CancellationToken cancellation)
         {
-            var countryCode = GetCountryCode(message.IP);
-            var requestInfo = RequestInfoHelper.GetRequestInfo(AlphaContext.Current.Request, message.IP, message.BrowserSize, countryCode);
+            var requestInfo = await deviceHelper.GetRequestInfo();
 
             return await service.UpdatePasswordAsync(new UpdatePasswordParam(
                 message.CustId,
@@ -115,18 +117,6 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
             sessionManager.Add(HashKeySessionKey, hashKey);
 
             return hashKey;
-        }
-
-        private string GetCountryCode(string ip)
-        {
-            var countryCode = string.Empty;
-            var ipInformation = ipService.GetIPInformation(ip);
-            if (ipInformation != null)
-            {
-                countryCode = ipInformation.CountryLong == "Reserved" ? null : ipInformation.CountryLong;
-            }
-
-            return countryCode;
         }
     }
 }

@@ -4,8 +4,6 @@ using AlphaPlus.Utilities.IP.Model;
 using Fanex.Data.Repository;
 using Fanex.Caching;
 using System.Net;
-using System.Net.Sockets;
-using System.Numerics;
 using System.Text.RegularExpressions;
 
 namespace AlphaPlus.Utilities.IP
@@ -16,14 +14,23 @@ namespace AlphaPlus.Utilities.IP
 
         FormatedIP FormatIP(string ip, bool isAdminCanViewVNIP);
 
-        IPInformationModel GetIPInformation(string ip);
+        Task<IPInformationModel> GetIPInformation(string ip);
+
+        Task<string> GetCountryCode(string ip);
     }
 
-    public class IPServiceImpl(IDynamicRepository dynamicRepository) : IPService
+    public class IPServiceImpl : IPService
     {
         private const string IPValidateRegex = @"(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)";
         private const string VNIPListCacheKey = "Alpha.BetLists.Service.IPService.VNIPList";
-        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
+        private readonly IDynamicRepository dynamicRepository;
+        private readonly IPHelper ipHelper;
+
+        public IPServiceImpl(IDynamicRepository dynamicRepository, IPHelper ipHelper)
+        {
+            this.dynamicRepository = dynamicRepository;
+            this.ipHelper = ipHelper;
+        }
 
         public bool IsVNIP(string ipAddress)
         {
@@ -33,14 +40,14 @@ namespace AlphaPlus.Utilities.IP
             }
             var ipVnRange = GetVNIPs();
 
-            var isIpv6 = IsIPV6(ipAddress);
+            var isIpv6 = ipHelper.IsIPV6(ipAddress);
             if (isIpv6)
             {
-                var ipv6Number = ConvertIpv6ToNumber(ipAddress);
+                var ipv6Number = ipHelper.ConvertIPV6ToNumber(ipAddress);
                 return ipVnRange.Item2.Any(ip => ip.FromNumber <= ipv6Number && ipv6Number <= ip.ToNumber);
             }
 
-            double ipNumber = ConvertIPToNumber(ipAddress);
+            double ipNumber = ipHelper.ConvertIPV4ToNumber(ipAddress);
             return ipVnRange.Item1.Any(ip => ip.From <= ipNumber && ipNumber <= ip.To);
         }
 
@@ -65,8 +72,8 @@ namespace AlphaPlus.Utilities.IP
             return new FormatedIP(ip, true);
         }
 
-        public IPInformationModel GetIPInformation(string ip)
-            => dynamicRepository.Get<IPInformationModel>(new GetIPInformationCriteria(ip));
+        public Task<IPInformationModel> GetIPInformation(string ip)
+            => dynamicRepository.GetAsync<IPInformationModel>(new GetIPInformationCriteria(ip));
 
         private (IEnumerable<Ipv4Range>, IEnumerable<Ipv6Range>) GetVNIPs()
         {
@@ -79,46 +86,24 @@ namespace AlphaPlus.Utilities.IP
             return vietnamIPs;
         }
 
-        private bool IsIPV6(string clientIP)
-            => IPAddress.TryParse(clientIP, out IPAddress address)
-                && address.AddressFamily == AddressFamily.InterNetworkV6;
-
-        private long ConvertIPToNumber(string ipAddress)
-        {
-            if (IPAddress.TryParse(ipAddress, out IPAddress parsedIpAddress))
-            {
-                var addressBytes = parsedIpAddress.GetAddressBytes();
-                Array.Reverse(addressBytes);
-
-                return BitConverter.ToUInt32(addressBytes, 0);
-            }
-
-            return 0;
-        }
-
-        public static BigInteger ConvertIpv6ToNumber(string ipv6)
-        {
-            BigInteger bigInteger = 0;
-            if (IPAddress.TryParse(ipv6, out IPAddress address))
-            {
-                byte[] numArray = address.GetAddressBytes();
-                if (BitConverter.IsLittleEndian)
-                {
-                    List<byte> byteList = new List<byte>(numArray);
-                    byteList.Reverse();
-                    numArray = byteList.ToArray();
-                }
-                bigInteger = numArray.Length <= 8 ? BitConverter.ToUInt32(numArray, 0) : ((BigInteger)BitConverter.ToUInt64(numArray, 8) << 64) + BitConverter.ToUInt64(numArray, 0);
-            }
-
-            return bigInteger;
-        }
 
         private static bool IsValidIP(string ipAddress)
         {
             IPAddress parsedIpAddress;
             return !string.IsNullOrWhiteSpace(ipAddress)
                 && IPAddress.TryParse(ipAddress, out parsedIpAddress);
+        }
+
+        public async Task<string> GetCountryCode(string ip)
+        {
+            var countryCode = "Unknown";
+            var ipInformation = await GetIPInformation(ip);
+            if (ipInformation != null)
+            {
+                countryCode = ipInformation.CountryLong == "Reserved" ? null : ipInformation.CountryLong;
+            }
+
+            return countryCode;
         }
     }
 }

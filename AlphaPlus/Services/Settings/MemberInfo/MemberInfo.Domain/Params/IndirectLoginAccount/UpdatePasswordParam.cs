@@ -1,6 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Params.IndirectLoginAccount
 {
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount;
 
     public class UpdatePasswordParam
     {
@@ -15,7 +14,7 @@
             int actorSubAccId,
             string actorUsername,
             string languageKey,
-            RequestInfo requestInfo)
+            RequestInfo.Models.RequestInfo requestInfo)
         {
             IndirectCustId = indirectCustId;
             IndirectSubAccId = indirectSubAccId;
@@ -53,6 +52,6 @@
 
         public string LanguageKey { get; }
 
-        public RequestInfo RequestInfo { get; }
+        public RequestInfo.Models.RequestInfo RequestInfo { get; }
     }
 }

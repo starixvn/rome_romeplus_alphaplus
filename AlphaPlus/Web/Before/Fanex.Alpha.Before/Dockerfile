@@ -2,11 +2,13 @@ FROM hub.nexdev.net/base/dotnet/core/sdk:7.0 AS builder
 WORKDIR /src
 EXPOSE 5000
 
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj"
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 COPY "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj"
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
 RUN dotnet restore "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" -v n
 
+COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
 COPY "AlphaPlus/Web/Before/Fanex.Alpha.Before" "AlphaPlus/Web/Before/Fanex.Alpha.Before"
 

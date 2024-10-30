@@ -1,3 +1,4 @@
+using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -10,8 +11,8 @@ public static class Extensions
     {
         services.AddHttpContextAccessor();
         services.TryAddSingleton<IDynamicRepository, DynamicRepository>();
-        services.AddSingleton<IPService, IPServiceImpl>();
-        services.AddSingleton<IPHelper, IPHelperImpl>();
+        services.TryAddSingleton<IPService, IPServiceImpl>();
+        services.TryAddSingleton<IPHelper, IPHelperImpl>();
         services.AddSingleton<IDeviceHelper, DeviceHelper>();
 
         return services;

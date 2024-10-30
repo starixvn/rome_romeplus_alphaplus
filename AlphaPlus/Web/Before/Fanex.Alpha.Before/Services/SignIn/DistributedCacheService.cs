@@ -1,4 +1,4 @@
-﻿using AlphaPlus.RequestInfo;
+﻿using AlphaPlus.Utilities.IP;
 using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.Constants;
 using Fanex.Alpha.Before.Helpers;
