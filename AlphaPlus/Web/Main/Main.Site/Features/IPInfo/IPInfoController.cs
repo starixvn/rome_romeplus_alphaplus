@@ -14,7 +14,7 @@ namespace AlphaPlus.Main.Site.Features.IPInfo
             if (IsValidIP(ip))
             {
                 var ipInfo = await ipService.GetIPInformation(ip);
-                return View(new IPInfoViewModel(ip, true, ipInfo));
+                return View(new IPInfoViewModel(ip, ipInfo != null, ipInfo));
             }
 
             return View(new IPInfoViewModel(ip, false));

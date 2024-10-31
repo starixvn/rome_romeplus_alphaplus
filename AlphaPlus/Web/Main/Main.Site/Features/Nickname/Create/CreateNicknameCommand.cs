@@ -30,6 +30,8 @@ namespace AlphaPlus.Main.Site.Features.Nickname
 
         public string LanguageKey => userSession.LangKey;
 
+        public int CustDBGroupId => userSession.CustDBGroupId;
+
         public bool IsValid()
             => nicknameChecker.IsOfferForceLoginFlow;
     }

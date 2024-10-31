@@ -22,7 +22,8 @@ namespace AlphaPlus.Main.Site.Features.Nickname
                     nickname,
                     message.IP,
                     message.LanguageKey,
-                    isEnableUpdateNickname));
+                    isEnableUpdateNickname,
+                    message.CustDBGroupId));
 
             if (result.IsSuccessful)
             {
