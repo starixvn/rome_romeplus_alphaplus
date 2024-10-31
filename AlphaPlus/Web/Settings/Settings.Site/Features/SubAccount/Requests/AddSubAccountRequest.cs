@@ -5,11 +5,11 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
 {
     public class AddSubAccountRequest : SubAccountBaseRequest, IRequest<Result>
     {
-        public string First { get; set;}
+        public string First { get; set; }
 
         public string Next { get; set; }
 
-        public string Username => $"{UserSession.Current.UserName}Sub{First}{Next}";
+        public string Username => $"{userSession.UserName}Sub{First}{Next}";
 
         public string Password { get; set; }
 
@@ -19,7 +19,9 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
 
         public string PageAccess { get; set; }
 
-        public int RoleId => UserSession.Current.RoleId;
+        public int RoleId => userSession.RoleId;
+
+        public int CustDBGroupId => userSession.CustDBGroupId;
 
         public override bool IsValid()
         {

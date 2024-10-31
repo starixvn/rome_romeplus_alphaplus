@@ -6,19 +6,14 @@ using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.SubAccount.Handlers
 {
-    public class SubAccountHandler : 
+    public class SubAccountHandler(ISubAccountService subAccountService) :
         IRequestHandler<SubAccountListRequest, IEnumerable<SubAccountViewModel>>,
         IRequestHandler<SubAccountRequest, SubAccountViewModel>,
         IRequestHandler<UpdateSubAccountPageAccessRequest, Result>,
         IRequestHandler<UpdateSubAccountInfoRequest, Result>,
         IRequestHandler<AddSubAccountRequest, Result>
     {
-        private readonly ISubAccountService subAccountService;
-
-        public SubAccountHandler(ISubAccountService subAccountService)
-        {
-            this.subAccountService = subAccountService;
-        }
+        private readonly ISubAccountService subAccountService = subAccountService;
 
         public async Task<IEnumerable<SubAccountViewModel>> Handle(SubAccountListRequest request, CancellationToken cancellationToken)
         {

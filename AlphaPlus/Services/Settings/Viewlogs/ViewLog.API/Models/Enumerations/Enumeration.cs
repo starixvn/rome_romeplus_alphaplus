@@ -79,7 +79,7 @@
 
             foreach (var info in fields)
             {
-                object? instance = Activator.CreateInstance(type);
+                object instance = Activator.CreateInstance(type);
                 yield return info.GetValue(instance);
             }
         }
@@ -127,7 +127,7 @@
             return left.Value <= right.Value;
         }
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             if (obj == null)
             {
@@ -157,7 +157,7 @@
             return DisplayName;
         }
 
-        public virtual int CompareTo(object? obj)
+        public virtual int CompareTo(object obj)
         {
             if (obj == null)
             {

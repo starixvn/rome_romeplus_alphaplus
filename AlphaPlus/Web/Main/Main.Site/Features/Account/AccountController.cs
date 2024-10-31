@@ -21,7 +21,7 @@ public class AccountController(
     IDeviceHelper deviceHelper,
     IAccountService accountService,
     IAesService aesService,
-    IOptions<AlphaPlus.Core.Configurations.AuthorizationOptions> options)
+    IOptions<Core.Configurations.AuthorizationOptions> options)
     : Controller
 {
     private readonly IUserSession userSession = userSession;
@@ -29,7 +29,7 @@ public class AccountController(
     private readonly IAccountService accountService = accountService;
     private readonly IAesService aesService = aesService;
     private readonly IDeviceHelper deviceHelper = deviceHelper;
-    private readonly AlphaPlus.Core.Configurations.AuthorizationOptions options = options.Value;
+    private readonly Core.Configurations.AuthorizationOptions options = options.Value;
 
     private const string SecretKey = "!@#$";
 
@@ -57,10 +57,10 @@ public class AccountController(
         if (UserSession.Current.IsIndirectLoggedIn || UserSession.Current.IsInternal)
         {
             ClearSessionCookies();
-            
+
             return new EmptyResult();
         }
-        
+
         return Login();
     }
 

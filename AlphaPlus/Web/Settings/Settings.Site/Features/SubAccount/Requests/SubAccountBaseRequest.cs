@@ -4,15 +4,27 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
 {
     public abstract class SubAccountBaseRequest
     {
-        public int CustId => UserSession.Current.CustId;
+        protected readonly IUserSession userSession;
+        public SubAccountBaseRequest() : this(null)
+        {
+        }
 
-        public int SubAccId { get; set; } = UserSession.Current.SubAccId;
+        internal SubAccountBaseRequest(IUserSession userSession)
+        {
+            this.userSession = userSession ?? new UserSessionExt();
+            CustId = userSession.CustId;
+            SubAccId = userSession.SubAccId;
+        }
 
-        public string IP => UserSession.Current.UserLoginIp;
+        public int CustId { get; set; }
 
-        public string Language => UserSession.Current.LangKey;
+        public int SubAccId { get; set; }
 
-        public bool HasUpdatePermission => !UserSession.Current.IsLimitedHostPermissionOnSubAccountFunction;
+        public string IP => userSession.UserLoginIp;
+
+        public string Language => userSession.LangKey;
+
+        public bool HasUpdatePermission => !userSession.IsLimitedHostPermissionOnSubAccountFunction;
 
         public virtual bool IsValid() => CustId > 0;
     }

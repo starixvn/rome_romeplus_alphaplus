@@ -8,7 +8,7 @@
     public class ViewLogIPServiceImpl : ViewLogIPService
     {
         private const string IPValidateRegex = @"(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)";
-        
+
 
         private readonly IUserSession userSession;
         private readonly IPService ipService;
@@ -27,7 +27,7 @@
                 return ip;
             }
 
-            Regex regex = new Regex(IPValidateRegex);
+            Regex regex = new(IPValidateRegex);
             if (!regex.IsMatch(ip, 0))
             {
                 return string.Format("<a class=\"iplink\" href=\"javascript:;\">{0}</a>", ip);
@@ -48,13 +48,12 @@
                 && (!ipService.IsVNIP(ip) || userSession.IsAdminCanViewVNIP);
 
             return isShowIP ? country : string.Empty;
-        }                
+        }
 
         private static bool IsValidIP(string ipAddress)
         {
-            IPAddress? ip;
             return !string.IsNullOrWhiteSpace(ipAddress)
-                && IPAddress.TryParse(ipAddress, out ip);
-        }       
+                && IPAddress.TryParse(ipAddress, out _);
+        }
     }
 }

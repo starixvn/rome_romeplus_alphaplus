@@ -19,23 +19,15 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
         public Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest);
     }
 
-    public class SubAccountService : ISubAccountService
+    public class SubAccountService(HttpClient httpClient, IAesService aesService, IEncryption encryption) : ISubAccountService
     {
         private const string subAccountApiGroup = "sub-account";
 
-        private readonly HttpClient httpClient;
+        private readonly HttpClient httpClient = httpClient;
 
-        private readonly IAesService aesService;
+        private readonly IAesService aesService = aesService;
 
-        private readonly IEncryption encryption;
-
-
-        public SubAccountService(HttpClient httpClient, IAesService aesService, IEncryption encryption)
-        {
-            this.httpClient = httpClient;
-            this.aesService = aesService;
-            this.encryption = encryption;
-        }
+        private readonly IEncryption encryption = encryption;
 
         public async Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest)
         {
@@ -49,21 +41,21 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
 
         public async Task<SubAccountViewModel> GetSubAccount(int custId, int subAccId)
         {
-            var queryString = QueryString.Create(new[]
-            {
+            var queryString = QueryString.Create(
+            [
                 KeyValuePair.Create("custId", custId.ToString()),
                 KeyValuePair.Create("subAccId", subAccId.ToString())
-            });
+            ]);
 
             return await httpClient.GetFromJsonAsync<SubAccountViewModel>($"{subAccountApiGroup}/get{queryString}");
         }
 
         public async Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountListRequest subAccountRequest)
         {
-            var queryString = QueryString.Create(new[]
-            {
+            var queryString = QueryString.Create(
+            [
                 KeyValuePair.Create("custId", subAccountRequest.CustId.ToString())
-            });
+            ]);
 
             return await httpClient.GetFromJsonAsync<IEnumerable<SubAccountViewModel>>($"{subAccountApiGroup}/index{queryString}");
         }
@@ -75,7 +67,7 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
 
         public async Task<Result> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest updateSubAccountPageAccessRequest)
         {
-            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/update-pageaccess", updateSubAccountPageAccessRequest);;
+            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/update-pageaccess", updateSubAccountPageAccessRequest); ;
         }
     }
 }
