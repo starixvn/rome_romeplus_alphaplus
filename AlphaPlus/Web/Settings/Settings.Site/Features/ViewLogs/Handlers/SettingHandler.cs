@@ -1,21 +1,19 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using AlphaPlus.Shared.AppResources.Settings.ViewLog;
-    using AlphaPlus.Settings.ViewLogs.API.Constants;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers;
-    using AlphaPlus.Settings.ViewLogs.API.Models;
-    using AlphaPlus.Settings.ViewLogs.API.Params;
-    using AlphaPlus.Settings.ViewLogs.API.Services;
-    using Fanex.Common;
-    using Helpers;
-    using MediatR;
-    using Requests.Setting;
-    using ViewModels;
-    using ViewModels.Setting;
+﻿using System.Web;
+using AlphaPlus.Shared.AppResources.Settings.ViewLog;
+using AlphaPlus.Settings.ViewLogs.API.Constants;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Models;
+using AlphaPlus.Settings.ViewLogs.API.Params;
+using AlphaPlus.Settings.ViewLogs.API.Services;
+using Fanex.Common;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Setting;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Setting;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
+{
     public class SettingHandler : BaseHandler, IRequestHandler<IndexQuery, IndexViewModel>
     {
         private readonly TrackingValueFormatter trackingValueFormatter;
@@ -64,22 +62,22 @@
                 LimitedDateToShowInfo = message.LimitedDateForShowInfo
             };
 
-            var pagingLogs = LogService.GetPagingLogs(logsParam);
+            var pagingLogs = await LogService.GetPagingLogs(logsParam);
 
             var viewModel = new IndexViewModel(logsParam, pagingLogs.TotalRecords)
             {
-                LogActionTypes = BuildLogActionTypeViewModels(message),
+                LogActionTypes = await BuildLogActionTypeViewModels(message),
                 ActionTypeId = message.ActionTypeId
             };
 
-            TransformLogs(pagingLogs, message, viewModel);
+            await TransformLogs(pagingLogs, message, viewModel);
 
             return viewModel;
         }
 
-        private IEnumerable<LogActionTypeViewModel> BuildLogActionTypeViewModels(IndexQuery message)
+        private async Task<IEnumerable<LogActionTypeViewModel>> BuildLogActionTypeViewModels(IndexQuery message)
         {
-            var logActionTypes = LogService.GetLogActionTypes();
+            var logActionTypes = await LogService.GetLogActionTypes();
 
             var logActionTypeViewModels = logActionTypes
                 .Select(logActionType => new LogActionTypeViewModel(logActionType, message.Language))
@@ -90,7 +88,7 @@
             return logActionTypeViewModels;
         }
 
-        private void TransformLogs(
+        private async Task TransformLogs(
             PagingLogs<Log> pagingLogs,
             IndexQuery message,
             LogViewModel viewModel)
@@ -117,7 +115,7 @@
                     logItems.Add(new LogItemViewModel
                     {
                         ActionId = log.ActionId,
-                        ActionName = LogService.GetLogActionName(log.ActionId, message.Language),
+                        ActionName = await LogService.GetLogActionName(log.ActionId, message.Language),
 
                         ActionTypeId = log.ActionTypeId,
                         CustId = log.CustId,

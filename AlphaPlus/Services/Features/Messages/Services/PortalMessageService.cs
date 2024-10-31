@@ -1,18 +1,17 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using System.Collections.Generic;
-    using Criteria.Message;
-    using Fanex.Data.Repository;
-    using Models.Message;
+﻿using AlphaPlus.Features.Messages.API.Criteria.Message;
+using Fanex.Data.Repository;
+using AlphaPlus.Features.Messages.API.Models.Message;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface PortalMessageService
     {
-        IEnumerable<PortalMessage> GetPortalMessages(
+        Task<IEnumerable<PortalMessage>> GetPortalMessages(
             int custId,
             string parentSites,
             int totalMessage,
             bool isTest);
-        bool MarkMessageAsRead(int custId, int messageId, bool isInternal);
+        Task<bool> MarkMessageAsRead(int custId, int messageId, bool isInternal);
     }
 
     public class PortalMessageServiceImpl : PortalMessageService
@@ -25,7 +24,7 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public IEnumerable<PortalMessage> GetPortalMessages(
+        public async Task<IEnumerable<PortalMessage>> GetPortalMessages(
             int custId,
             string parentSites,
             int totalMessage,
@@ -33,12 +32,12 @@
         {
             var criteria = new GetPortalMessagesCriteria(custId, parentSites, totalMessage, isTest);
 
-            var message = dynamicRepository.Fetch<PortalMessage>(criteria);
+            var message = await dynamicRepository.FetchAsync<PortalMessage>(criteria);
 
             return message;
         }
 
-        public bool MarkMessageAsRead(int custId, int messageId, bool isInternal)
+        public async Task<bool> MarkMessageAsRead(int custId, int messageId, bool isInternal)
         {
             var command = new MarkMessageAsReadCommand(custId, messageId.ToString());
 
@@ -47,7 +46,7 @@
                 return false;
             }
 
-            dynamicRepository.Execute(command);
+            await dynamicRepository.ExecuteAsync(command);
 
             return true;
         }

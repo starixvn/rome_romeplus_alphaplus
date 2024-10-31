@@ -1,16 +1,16 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
-{
-    using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using AlphaPlus.Settings.Transfer.API.Extensions;
-    using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
-    using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
-    using AlphaPlus.Settings.Transfer.API.Services;
-    using MediatR;
-    using ONEbook.SpreadSheets;
-    using Requests.TransferToDownlineHistory;
-    using AlphaPlus.Core.Utils;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using AlphaPlus.Settings.Transfer.API.Extensions;
+using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
+using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
+using AlphaPlus.Settings.Transfer.API.Services;
+using MediatR;
+using ONEbook.SpreadSheets;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory;
+using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
+{
     public class TransferToDownlineHistoryExcelHandler : TransferToDownlineHistoryBaseHandler, IRequestHandler<TransferToDownlineHistoryExcelQuery, ExcelFileViewModel>
     {
         private readonly Workbook<TransferToDownlineHistoryModel> workbook;
@@ -36,7 +36,7 @@
                 .UseTemplate(GetTemplateInfo(message))
                 .Title(GetSheetTitle(param))
                 .Header(Resources.ResourceManager.GetString)
-                .Body(GetTransferToDownlineHistory(param).Item1, GetBodyMapper)
+                .Body((await GetTransferToDownlineHistory(param)).Item1, GetBodyMapper)
                 .ExportToBytes();
 
             return new ExcelFileViewModel(GetExcelFileName(), content);
@@ -53,11 +53,11 @@
             .Map(Column.G, m => m.Description);
 
         private TemplateInfo GetTemplateInfo(TransferToDownlineHistoryExcelQuery message)
-            => new TemplateInfo(
+            => new(
                 GetExcelTemplatePath(message.CustLevel.GetDirectDownLineLevel().DisplayName),
                 Resources.NoInformationIsAvailable);
 
-        private string GetSheetTitle(TransferToDownlineHistoryParam param)
+        private static string GetSheetTitle(TransferToDownlineHistoryParam param)
         {
             string userName = string.IsNullOrWhiteSpace(param.UserName)
                 ? string.Empty
@@ -66,6 +66,6 @@
             return $"{Resources.TransferToDownlineHistory} {param.FromDate.ToShortDateWithSlash()} -> {param.ToDate.ToShortDateWithSlash()}{userName}";
         }
 
-        private string GetExcelFileName() => $"{Resources.TransferToDownlineHistory} - {SystemTime.Today.ToShortDateString()}";
+        private static string GetExcelFileName() => $"{Resources.TransferToDownlineHistory} - {SystemTime.Today.ToShortDateString()}";
     }
 }

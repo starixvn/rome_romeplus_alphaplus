@@ -203,9 +203,9 @@ public class AutoTransferController(
     }
 
     [HttpGet]
-    public IActionResult UpdateMultipleAutoTransfer(UpdateMultipleAutoTransferQuery message)
+    public async Task<IActionResult> UpdateMultipleAutoTransfer(UpdateMultipleAutoTransferQuery message)
     {
-        if (transferService.IsAllDayBalanceTransfer(userSession.CustId))
+        if (await transferService.IsAllDayBalanceTransfer(userSession.CustId))
         {
             return View(InvalidTransferStatusViewPath);
         }

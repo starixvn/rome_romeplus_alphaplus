@@ -21,10 +21,10 @@
             Outstanding = outstanding;
             BetCredit = betCredit;
         }
-        
+
         public int CustId { get; set; }
 
-        public string? Username { get; set; }
+        public string Username { get; set; }
 
         public bool Sync { get; set; }
 

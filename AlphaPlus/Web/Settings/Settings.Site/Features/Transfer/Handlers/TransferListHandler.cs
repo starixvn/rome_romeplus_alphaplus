@@ -20,7 +20,7 @@ public class TransferListHandler(
 
     public async Task<TransferListViewModel> Handle(TransferListQuery message, CancellationToken cancellation)
     {
-        var isAllDayBalanceTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
+        var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransfer(message.ViewerId);
         var isEnableAutoTransfer = !isAllDayBalanceTransfer && AppSettings.CheckOfferAutoTransferCurrencies(message.Currency);
 
         var prevADBT = message.ADBT ?? false;

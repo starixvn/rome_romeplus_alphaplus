@@ -19,7 +19,7 @@
 
         public int Sporttype { get; set; }
 
-        public string? PresetTitle { get; set; }
+        public string PresetTitle { get; set; }
 
         public decimal WinningThreshold { get; set; }
 

@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services
-{
-    using System.Collections.Generic;
-    using Models;
-    using Params;
+﻿using AlphaPlus.Settings.ViewLogs.API.Models;
+using AlphaPlus.Settings.ViewLogs.API.Params;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services
+{
     public interface LogService
     {
-        IEnumerable<LogActionType> GetLogActionTypes();
+        Task<IEnumerable<LogActionType>> GetLogActionTypes();
 
-        string? GetLogActionName(int actionId, string language);
+        Task<string> GetLogActionName(int actionId, string language);
 
-        PagingLogs<Log> GetPagingLogs(LogParam logParam);
+        Task<PagingLogs<Log>> GetPagingLogs(LogParam logParam);
     }
 }

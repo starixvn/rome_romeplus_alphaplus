@@ -31,7 +31,7 @@
         {
             var param = ProblemAccountHandler.CreateParam(message);
 
-            var problemAccounts = problemAccountService.Get(param);
+            var problemAccounts = await problemAccountService.Get(param);
 
             var fileContent = workbook
                 .SetData(problemAccounts)

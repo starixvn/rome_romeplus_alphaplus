@@ -1,18 +1,15 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using Constants;
-    using Criteria;
-    using DataAccesses;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Models;
-    using Params;
-    using AlphaPlus.Core.Models;
+﻿using System.Text.RegularExpressions;
+using AlphaPlus.Settings.ViewLogs.API.Constants;
+using AlphaPlus.Settings.ViewLogs.API.Criteria;
+using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+using AlphaPlus.Settings.ViewLogs.API.Models;
+using AlphaPlus.Settings.ViewLogs.API.Params;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
+{
     public abstract class BaseService
     {
         private const string LogActionCacheKey = "AlphaPlus.Settings.ViewLogs.API.Setting.LogAction";
@@ -39,37 +36,24 @@
 
         internal abstract ICriteria CreateGetTotalLogsCriteria(LogParam logParam);
 
-        public string? GetLogActionName(int actionId, string language)
+        public async Task<string> GetLogActionName(int actionId, string language)
         {
-            var logAction = GetLogAction(actionId);
-            switch (language)
+            var logAction = await GetLogAction(actionId);
+            return language switch
             {
-                case LanguageCode.ChineseTraditional:
-                    return logAction.ChineseTraditionalName;
-
-                case LanguageCode.ChineseSimplified:
-                    return logAction.ChineseSimplifiedName;
-
-                case LanguageCode.Japanese:
-                    return logAction.JapaneseName;
-
-                case LanguageCode.Thai:
-                    return logAction.ThaiName;
-
-                case LanguageCode.Korean:
-                    return logAction.KoreanName;
-
-                case LanguageCode.Vietnamese:
-                    return logAction.VietnameseName;
-
-                default:
-                    return logAction.EnglishName;
-            }
+                LanguageCode.ChineseTraditional => logAction.ChineseTraditionalName,
+                LanguageCode.ChineseSimplified => logAction.ChineseSimplifiedName,
+                LanguageCode.Japanese => logAction.JapaneseName,
+                LanguageCode.Thai => logAction.ThaiName,
+                LanguageCode.Korean => logAction.KoreanName,
+                LanguageCode.Vietnamese => logAction.VietnameseName,
+                _ => logAction.EnglishName,
+            };
         }
 
-        public IEnumerable<LogActionType> GetLogActionTypes()
+        public async Task<IEnumerable<LogActionType>> GetLogActionTypes()
         {
-            var logActionTypes = cacheService.Get<IEnumerable<LogActionType>>(LogActionTypesCacheKey);
+            var logActionTypes = await cacheService.GetAsync<IEnumerable<LogActionType>>(LogActionTypesCacheKey);
 
             if (logActionTypes != null
                 && logActionTypes.Any())
@@ -77,36 +61,35 @@
                 return logActionTypes;
             }
 
-            logActionTypes = dynamicRepository.Fetch<LogActionType>(new GetAllLogActionTypeCriteria());
+            logActionTypes = await dynamicRepository.FetchAsync<LogActionType>(new GetAllLogActionTypeCriteria());
 
-            cacheService.Set(LogActionTypesCacheKey, logActionTypes, new CacheItemOptions { SlidingExpiration = TimeSpan.FromHours(OneHour) });
+            await cacheService.SetAsync(LogActionTypesCacheKey, logActionTypes, new CacheItemOptions { SlidingExpiration = TimeSpan.FromHours(OneHour) });
 
             return logActionTypes;
         }
 
-        public LogAction GetLogAction(int actionId)
+        public async Task<LogAction> GetLogAction(int actionId)
         {
-            var logActionDictionary = cacheService.Get<Dictionary<int, LogAction>>(LogActionCacheKey);
+            var logActionDictionary = await cacheService.GetAsync<Dictionary<int, LogAction>>(LogActionCacheKey);
 
             if (logActionDictionary == null
-                || !logActionDictionary.Any())
+                || logActionDictionary.Count == 0)
             {
-                logActionDictionary = dynamicRepository
-                    .Fetch<LogAction>(new GetLogActionsCriteria())
+                logActionDictionary = (await dynamicRepository
+                    .FetchAsync<LogAction>(new GetLogActionsCriteria()))
                     .ToDictionary(logAction => logAction.Id);
 
-                cacheService.Set(LogActionCacheKey, logActionDictionary, DefaultVariables.CacheItemOptions);
+                await cacheService.SetAsync(LogActionCacheKey, logActionDictionary, DefaultVariables.CacheItemOptions);
             }
 
-            return logActionDictionary.ContainsKey(actionId) ?
-                logActionDictionary[actionId] :
+            return logActionDictionary.TryGetValue(actionId, out LogAction value) ? value :
                 new LogAction
                 {
                     Id = actionId
                 };
         }
 
-        public virtual PagingLogs<Log> GetPagingLogs(LogParam logParam)
+        public virtual async Task<PagingLogs<Log>> GetPagingLogs(LogParam logParam)
         {
             var pagingLogs = new PagingLogs<Log>();
             if (logParam == null)
@@ -114,7 +97,7 @@
                 return pagingLogs;
             }
 
-            var downlineInfo = customerService.GetDownlineInfoByUsername(logParam.Username ?? string.Empty, logParam.UplineId);
+            var downlineInfo = await customerService.GetDownlineInfoByUsername(logParam.Username ?? string.Empty, logParam.UplineId);
 
             // If search username is not belong to searcher, then return
             if (downlineInfo.CustId == 0)
@@ -124,28 +107,28 @@
 
             logParam.CustId = downlineInfo.CustId;
 
-            pagingLogs.Logs = GetLogs(logParam);
-            pagingLogs.TotalRecords = GetTotalLogs(logParam);
+            pagingLogs.Logs = await GetLogs(logParam);
+            pagingLogs.TotalRecords = await GetTotalLogs(logParam);
 
             foreach (var log in pagingLogs.Logs)
             {
                 var isHideNickname = IsHideNickName(IsSubAccFromLog(log), downlineInfo.RoleId, downlineInfo.CustId, SubAccNameFromLog(log));
                 log.IsHideNickname = isHideNickname;
             }
-            
+
             return pagingLogs;
         }
 
         protected DateTime GetGreaterDate(DateTime fromDate, DateTime limitedDate)
             => fromDate < limitedDate ? limitedDate : fromDate;
 
-        protected virtual IEnumerable<Log> GetLogs(LogParam logParam)
+        protected virtual Task<IEnumerable<Log>> GetLogs(LogParam logParam)
         {
             var criteria = CreateGetLogsCriteria(logParam);
-            return dynamicRepository.Fetch<Log>(criteria);
+            return dynamicRepository.FetchAsync<Log>(criteria);
         }
 
-        protected int GetTotalLogs(LogParam logParam)
+        protected Task<int> GetTotalLogs(LogParam logParam)
         {
             var criteria = CreateGetTotalLogsCriteria(logParam);
 
@@ -153,25 +136,25 @@
         }
 
         protected bool IsHideNickName(bool isSubAccount, int roleId, int custId, string subUsername)
-            => IsIndirect(roleId) 
-                || IsSubAccViewMainAcc(isSubAccount, custId) 
+            => IsIndirect(roleId)
+                || IsSubAccViewMainAcc(isSubAccount, custId)
                 || IsDirectUplineViewSubAcc(isSubAccount, roleId)
                 || IsSubAccViewOtherSubAcc(isSubAccount, subUsername);
 
-        private bool IsIndirect (int roleId)
+        private bool IsIndirect(int roleId)
             => session.RoleId - roleId != 1 && session.RoleId != roleId;
 
         private bool IsDirectUplineViewSubAcc(bool isSubAccount, int roleId)
             => session.RoleId - roleId == 1 && isSubAccount;
 
-        private bool IsSubAccViewMainAcc (bool isSubAccount, int custId)
+        private bool IsSubAccViewMainAcc(bool isSubAccount, int custId)
             => session.IsSubAcc && session.CustId == custId && !isSubAccount;
 
         private bool IsSubAccViewOtherSubAcc(bool isSubAccount, string subUsername)
             => session.IsSubAcc && isSubAccount && !session.SubUserName.Equals(subUsername, StringComparison.OrdinalIgnoreCase);
 
         protected static bool IsSubAccFromLog(Log log)
-            => Enum.GetValues(typeof(NicknameActions)).Cast<int>().Any(actionId => actionId == log.ActionId) 
+            => Enum.GetValues(typeof(NicknameActions)).Cast<int>().Any(actionId => actionId == log.ActionId)
                 && (new Regex($"(?:SubAccName=)(?<paramValue>[^&|^\\s]+)").IsMatch(log.TrackingValue ?? string.Empty)
                     || new Regex($"(?:SubAccount=)(?<paramValue>[^&|^\\s]+)").IsMatch(log.TrackingValue ?? string.Empty));
 

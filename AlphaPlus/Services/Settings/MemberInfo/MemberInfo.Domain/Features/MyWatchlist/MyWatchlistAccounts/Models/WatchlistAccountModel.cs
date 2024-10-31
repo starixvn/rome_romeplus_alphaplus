@@ -13,13 +13,13 @@
         public WatchlistAccountModel(
             int rowNumber,
             int custId,
-            int sporttype, 
-            string username, 
-            DateTime lastLogged, 
-            string status, 
-            decimal? winningThreshold, 
-            decimal? losingThreshold, 
-            byte closedReason, 
+            int sporttype,
+            string username,
+            DateTime lastLogged,
+            string status,
+            decimal? winningThreshold,
+            decimal? losingThreshold,
+            byte closedReason,
             byte locked,
             bool isPA)
         {
@@ -42,17 +42,17 @@
 
         public int Sporttype { get; set; }
 
-        public string? Username { get; set; }
+        public string Username { get; set; }
 
         public DateTime LastLogged { get; set; }
 
         public string LastLoggedString => LastLogged.ToLongDateTime12hWithHyphen();
 
-        public string? Status { get; set; }
+        public string Status { get; set; }
 
-        public string? TranslatedStatus => Resources.ResourceManager.GetString(Status ?? string.Empty);
+        public string TranslatedStatus => Resources.ResourceManager.GetString(Status ?? string.Empty);
 
-        public decimal? WinningThreshold { get; set; } 
+        public decimal? WinningThreshold { get; set; }
 
         public string WinningThresholdString => WinningThreshold.ToMoneyFormatWithUnlimited();
 

@@ -1,27 +1,20 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
-{
-    using System.IO;
-    using System.Text;
-    using System.Xml.XPath;
-    using System.Xml.Xsl;
-    using Constants;
-    using Fanex.Caching;
-    using Params;
+﻿using System.Text;
+using System.Xml.XPath;
+using System.Xml.Xsl;
+using AlphaPlus.Settings.ViewLogs.API.Constants;
+using Fanex.Caching;
+using AlphaPlus.Settings.ViewLogs.API.Params;
 
-    public class TransformServiceImpl : TransformService
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
+{
+    public class TransformServiceImpl(LogFormatter logFormatter, ICacheService cacheService) : TransformService
     {
         private const string TransformObjectCacheKey = "AlphaPlus.Settings.ViewLogs.API.TransformObject_{0}";
 
-        private readonly LogFormatter logFormatter;
-        private readonly ICacheService cacheService;
+        private readonly LogFormatter logFormatter = logFormatter;
+        private readonly ICacheService cacheService = cacheService;
 
-        public TransformServiceImpl(LogFormatter logFormatter, ICacheService cacheService)
-        {
-            this.logFormatter = logFormatter;
-            this.cacheService = cacheService;
-        }
-
-        public string? TransformTrackingValue(
+        public string TransformTrackingValue(
             string trackingValue,
             int logActionId,
             TransformParam transformParam,
@@ -55,7 +48,7 @@
             return writer.ToString();
         }
 
-        private XslCompiledTransform? GetCompiledTransformTemplate(int actionId, string? trackingValueTransformTemplatePath)
+        private XslCompiledTransform GetCompiledTransformTemplate(int actionId, string trackingValueTransformTemplatePath)
         {
             var cacheKey = string.Format(TransformObjectCacheKey, actionId);
             var cachedCompiledTransform = cacheService.Get<XslCompiledTransform>(cacheKey);
@@ -83,7 +76,7 @@
             return compiledTransform;
         }
 
-        private string FindTemplatePathInDirectoryByActionId(int actionId, string? directory)
+        private static string FindTemplatePathInDirectoryByActionId(int actionId, string directory)
         {
             if (!Directory.Exists(directory))
             {

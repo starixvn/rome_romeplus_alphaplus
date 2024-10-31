@@ -14,8 +14,8 @@
     using Params.Announcement;
     using Utils;
     using AlphaPlus.Features.Messages.API.Configurations;
-    using AlphaPlus.Features.Messages.API.Client;
     using Alpha.Announcements.Specs;
+    using AlphaPlus.Features.Messages.API;
 
     public interface AnnouncementService
     {

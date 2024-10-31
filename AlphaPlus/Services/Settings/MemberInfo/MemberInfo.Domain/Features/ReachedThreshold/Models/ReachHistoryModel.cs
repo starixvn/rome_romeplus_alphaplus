@@ -32,7 +32,7 @@
 
         public string CreatedDateString => CreatedDate.ToLongDateTime12hWithHyphen();
 
-        public string? LimitTypeReach { get; set; }
+        public string LimitTypeReach { get; set; }
 
         public string TranslatedLimitTypeReach
             => string.IsNullOrWhiteSpace(LimitTypeReach)

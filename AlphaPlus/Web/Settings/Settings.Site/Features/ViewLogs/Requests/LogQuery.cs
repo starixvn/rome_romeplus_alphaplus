@@ -1,15 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Requests
-{
-    using System;
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
-    using Configurations;
-    using Constants;
-    using Fanex.Common;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Helpers.Impl;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Configurations;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Constants;
+using Fanex.Common;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Requests
+{
     public class LogQuery
     {
         public const string CookieShowOldValue = "Alpha.ViewLogs.ShowOldValuesCookie";

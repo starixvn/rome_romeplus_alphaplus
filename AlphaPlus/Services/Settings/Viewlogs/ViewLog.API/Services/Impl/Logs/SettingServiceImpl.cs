@@ -1,18 +1,15 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.ViewLogs.API.Models;
-    using AlphaPlus.Core.Models;
-    using Criteria;
-    using Criteria.Setting;
-    using DataAccesses;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Helpers;
-    using Params;
+﻿using AlphaPlus.Settings.ViewLogs.API.Models;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.ViewLogs.API.Criteria;
+using AlphaPlus.Settings.ViewLogs.API.Criteria.Setting;
+using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Params;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
+{
     public class SettingServiceImpl : BaseService, LogService
     {
         private const int RNGSlotBetLimitActionId = 391;
@@ -27,9 +24,9 @@
         {
         }
 
-        protected override IEnumerable<Log> GetLogs(LogParam logParam)
+        protected override async Task<IEnumerable<Log>> GetLogs(LogParam logParam)
         {
-            var logs = base.GetLogs(logParam);
+            var logs = await base.GetLogs(logParam);
 
             return logs.Where(i => !IsBetLimitOfRNGSlot(i));
         }
@@ -74,7 +71,7 @@
         }
 
         static private bool IsBetLimitOfRNGSlot(Log log)
-            => log.ActionId == RNGSlotBetLimitActionId && 
+            => log.ActionId == RNGSlotBetLimitActionId &&
             (log.TrackingValue != null && log.TrackingValue.Contains("ProductID=\"18\"") || log.TrackingValue != null && log.TrackingValue.Contains("ProductID=\"22\""));
     }
 }

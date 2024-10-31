@@ -1,16 +1,13 @@
-﻿namespace AlphaPlus.Features.Messages.API.Client
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using Alpha.Announcements.Models;
-    using AlphaPlus.Features.Messages.API.Client.Helpers;
-    using AlphaPlus.Features.Messages.API.Client.Requests;
-    using Configurations;
-    using Newtonsoft.Json;
-    using RestSharp;
+﻿using System.Net;
+using Alpha.Announcements.Models;
+using AlphaPlus.Features.Messages.API.Client.Helpers;
+using AlphaPlus.Features.Messages.API.Client.Requests;
+using AlphaPlus.Features.Messages.API.Configurations;
+using Newtonsoft.Json;
+using RestSharp;
 
+namespace AlphaPlus.Features.Messages.API
+{
     public interface AnnouncementClient
     {
         Task<IEnumerable<Announcement>> GetAnnouncementsHistory(AnnouncementHistoryRequest request);

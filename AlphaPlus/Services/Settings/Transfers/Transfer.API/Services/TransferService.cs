@@ -15,7 +15,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public interface ITransferService
 {
-    bool IsAllDayBalanceTransfer(int custId);
+    Task<bool> IsAllDayBalanceTransfer(int custId);
 
     Task<bool> IsAllDayBalanceTransferAsync(int custId);
 
@@ -45,9 +45,9 @@ public class TransferService(IDynamicRepository repository) : ITransferService
     ];
     private readonly IDynamicRepository repository = repository;
 
-    public bool IsAllDayBalanceTransfer(int custId)
+    public async Task<bool> IsAllDayBalanceTransfer(int custId)
     {
-        var transferModel = repository.Get<TransferModel>(new GetIsAllDayBalTransferCriteria(custId));
+        var transferModel = await repository.GetAsync<TransferModel>(new GetIsAllDayBalTransferCriteria(custId));
 
         return transferModel?.IsAllDayBalTransfer == true;
     }

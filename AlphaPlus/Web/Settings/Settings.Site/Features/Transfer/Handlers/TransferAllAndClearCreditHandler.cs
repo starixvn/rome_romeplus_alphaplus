@@ -18,7 +18,7 @@ public class TransferAllAndClearCreditHandler(
 
     public async Task<CalculationViewModel> Handle(CalculationQuery message, CancellationToken cancellation)
     {
-        var isAllDayBalanceTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
+        var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransfer(message.ViewerId);
         var param = new GetCalculationResultParam(
             message.CustId,
             message.Username,
@@ -34,7 +34,7 @@ public class TransferAllAndClearCreditHandler(
 
     public async Task<TransferResultViewModel> Handle(TransferResultQuery message, CancellationToken cancellation)
     {
-        var isAllDayBalanceTransfer = transferService.IsAllDayBalanceTransfer(message.ViewerId);
+        var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransfer(message.ViewerId);
         var param = new GetTransferResultParam(
             message.CustId,
             message.UserId,

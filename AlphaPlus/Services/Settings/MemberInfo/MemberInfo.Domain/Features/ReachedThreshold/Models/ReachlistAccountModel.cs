@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models
-{
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
-    using System;
+﻿using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
 
+namespace AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models
+{
     public class ReachlistAccountModel
     {
         public ReachlistAccountModel()
@@ -66,11 +65,11 @@
 
         public string LastLimitTypeReach { get; set; } = string.Empty;
 
-        public string? TranslatedLastLimitTypeReach => Resources.ResourceManager.GetString(LastLimitTypeReach);
+        public string TranslatedLastLimitTypeReach => Resources.ResourceManager.GetString(LastLimitTypeReach);
 
         public string Status { get; set; } = string.Empty;
 
-        public string? TranslatedStatus => Resources.ResourceManager.GetString(Status);
+        public string TranslatedStatus => Resources.ResourceManager.GetString(Status);
 
         public bool IsOpen => Status.Equals("Open", StringComparison.OrdinalIgnoreCase);
 
@@ -114,7 +113,7 @@
                 }
                 else if (LosingReachedCnt > 0)
                 {
-                    winOrLoseText = $"({ LosingReachedCnt}L)";
+                    winOrLoseText = $"({LosingReachedCnt}L)";
                 }
 
                 return $"{ReachedCnt} {winOrLoseText}";

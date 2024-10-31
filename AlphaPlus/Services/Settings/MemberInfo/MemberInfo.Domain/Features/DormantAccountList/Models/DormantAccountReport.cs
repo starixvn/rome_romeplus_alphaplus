@@ -16,7 +16,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
 
         public IEnumerable<DormantAccount> DormantAccounts { get; }
 
-        public DormantAccount? TotalAccount { get; }
+        public DormantAccount TotalAccount { get; }
 
         public int TotalItems { get; }
 

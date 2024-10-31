@@ -21,7 +21,7 @@
 
         public async Task<IActionResult> Index(TransferToDownlineHistoryQuery message)
         {
-            if (message != null && transferService.IsAllDayBalanceTransfer(message.ViewerId))
+            if (message != null && await transferService.IsAllDayBalanceTransfer(message.ViewerId))
             {
                 return await View(message);
             }
@@ -31,7 +31,7 @@
 
         public async Task<ActionResult> Excel(TransferToDownlineHistoryExcelQuery message)
         {
-            if (message != null && transferService.IsAllDayBalanceTransfer(message.ViewerId))
+            if (message != null && await transferService.IsAllDayBalanceTransfer(message.ViewerId))
             {
                 return await ExcelView(message);
             }
@@ -41,7 +41,7 @@
 
         public async Task<JsonResult> GetTransferToDownlineHistoryData(TransferToDownlineHistoryPagingQuery message)
         {
-            if (transferService.IsAllDayBalanceTransfer(message.ViewerId))
+            if (await transferService.IsAllDayBalanceTransfer(message.ViewerId))
             {
                 return Json(await mediator.Send(message));
             }

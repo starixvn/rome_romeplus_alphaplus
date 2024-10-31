@@ -11,7 +11,7 @@
 
     public class LoginHandler : BaseHandler, IRequestHandler<IndexQuery, IndexViewModel>
     {
-        public LoginHandler([FromKeyedServices("loginLogSvc")]LogService logService, LogFormatter logFormatter, IDateTime dateTimeWrapper) :
+        public LoginHandler([FromKeyedServices("loginLogSvc")] LogService logService, LogFormatter logFormatter, IDateTime dateTimeWrapper) :
             base(logService, logFormatter, dateTimeWrapper)
         {
         }
@@ -19,11 +19,11 @@
         public async Task<IndexViewModel> Handle(IndexQuery message, CancellationToken cancellation)
         {
             var logsParam = CreateLogParam(message);
-            var pagingLogs = LogService.GetPagingLogs(logsParam);
+            var pagingLogs = await LogService.GetPagingLogs(logsParam);
 
             var viewModel = new IndexViewModel(logsParam, pagingLogs.TotalRecords);
 
-            TransformLogs(pagingLogs, message, viewModel);
+            await TransformLogs(pagingLogs, message, viewModel);
 
             viewModel.PreviousUsername = message.PreviousUsername;
             viewModel.ActionTypeId = message.ActionTypeId;
@@ -35,7 +35,7 @@
             return viewModel;
         }
 
-        private void TransformLogs(
+        private async Task TransformLogs(
             PagingLogs<Log> pagingLogs,
             IndexQuery message,
             LogViewModel viewModel)
@@ -47,7 +47,7 @@
                 logItems.Add(new LoginLogItemViewModel
                 {
                     ActionId = log.ActionId,
-                    ActionName = LogService.GetLogActionName(log.ActionId, message.Language),
+                    ActionName = await LogService.GetLogActionName(log.ActionId, message.Language),
 
                     ActionTypeId = log.ActionTypeId,
                     CustId = log.CustId,

@@ -1,27 +1,20 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Services
-{
-    using System;
-    using System.Collections.Generic;
-    using Criteria.TransferToDownlineHistory;
-    using Fanex.Data.Repository;
-    using Models.TransferToDownlineHistory;
-    using Params.TransferToDownlineHistory;
+﻿using AlphaPlus.Settings.Transfer.API.Criteria.TransferToDownlineHistory;
+using Fanex.Data.Repository;
+using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
+using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
 
+namespace AlphaPlus.Settings.Transfer.API.Services
+{
     public interface TransferToDownlineHistoryService
     {
-        Tuple<IEnumerable<TransferToDownlineHistoryModel>, int> GetTransferToDownlineHistory(TransferToDownlineHistoryPagingParam param);
+        Task<(IEnumerable<TransferToDownlineHistoryModel>, int)> GetTransferToDownlineHistory(TransferToDownlineHistoryPagingParam param);
     }
 
-    public class TransferToDownlineHistoryServiceImpl : TransferToDownlineHistoryService
+    public class TransferToDownlineHistoryServiceImpl(IDynamicRepository repository) : TransferToDownlineHistoryService
     {
-        private readonly IDynamicRepository repository;
+        private readonly IDynamicRepository repository = repository;
 
-        public TransferToDownlineHistoryServiceImpl(IDynamicRepository repository)
-        {
-            this.repository = repository;
-        }
-
-        public Tuple<IEnumerable<TransferToDownlineHistoryModel>, int> GetTransferToDownlineHistory(TransferToDownlineHistoryPagingParam param)
+        public async Task<(IEnumerable<TransferToDownlineHistoryModel>, int)> GetTransferToDownlineHistory(TransferToDownlineHistoryPagingParam param)
         {
             var criteria = new GetTransferToDownlineHistoryCriteria(
                 param.CustId,
@@ -30,9 +23,9 @@
                 param.ToDate,
                 param.PageSize,
                 param.PageIndex);
-            var transferToDownlines = repository.Fetch<TransferToDownlineHistoryModel>(criteria);
+            var transferToDownlines = await repository.FetchAsync<TransferToDownlineHistoryModel>(criteria);
 
-            return Tuple.Create(transferToDownlines, criteria.TotalRecords);
+            return (transferToDownlines, criteria.TotalRecords);
         }
     }
 }

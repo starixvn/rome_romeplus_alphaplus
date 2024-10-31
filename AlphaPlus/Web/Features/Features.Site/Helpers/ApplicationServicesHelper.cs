@@ -9,7 +9,6 @@ using Fanex.RemotingRef;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using MediatR;
 using AlphaPlus.Features.Messages.API.Services;
-using AlphaPlus.Features.Messages.API.Client;
 using RestSharp;
 using Alpha.Announcements.Services;
 using AlphaPlus.Features.Messages.API.Models.Announcement;
@@ -17,6 +16,7 @@ using Alpha.Announcements.Models;
 using AlphaPlus.Features.Site.Messages.Requests.Announcement;
 using AlphaPlus.Features.Messages.API.Configurations;
 using AlphaPlus.Features.Messages.API.Client.Helpers;
+using AlphaPlus.Features.Messages.API;
 
 namespace AlphaPlus.Features.Site.Helpers
 {

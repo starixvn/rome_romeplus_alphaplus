@@ -30,22 +30,22 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
             this.logger = logger;
         }
 
-        public Task<LogViewModel> Handle(IndexQuery message, CancellationToken cancellation)
+        public async Task<LogViewModel> Handle(IndexQuery message, CancellationToken cancellation)
         {
             var logsParam = CreateLogParam(message);
-            var pagingLogs = LogService.GetPagingLogs(logsParam);
+            var pagingLogs = await LogService.GetPagingLogs(logsParam);
 
             var viewModel = new LogViewModel(logsParam, pagingLogs.TotalRecords)
             {
                 ActionTypeId = message.ActionTypeId
             };
 
-            TransformLogs(pagingLogs, message, viewModel);
+            await TransformLogs(pagingLogs, message, viewModel);
 
-            return Task.FromResult(viewModel);
+            return viewModel;
         }
 
-        private void TransformLogs(
+        private async Task TransformLogs(
             PagingLogs<Log> pagingLogs,
             IndexQuery message,
             LogViewModel viewModel)
@@ -75,7 +75,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
                             new LogItemViewModel
                             {
                                 ActionId = log.ActionId,
-                                ActionName = LogService.GetLogActionName(log.ActionId, message.Language),
+                                ActionName = await LogService.GetLogActionName(log.ActionId, message.Language),
 
                                 ActionTypeId = log.ActionTypeId,
                                 CustId = log.CustId,

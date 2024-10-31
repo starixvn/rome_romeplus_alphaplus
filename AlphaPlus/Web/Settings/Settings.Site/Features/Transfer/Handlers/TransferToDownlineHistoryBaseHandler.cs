@@ -1,12 +1,9 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
-    using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
-    using AlphaPlus.Settings.Transfer.API.Services;
+﻿using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
+using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
+using AlphaPlus.Settings.Transfer.API.Services;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
+{
     public class TransferToDownlineHistoryBaseHandler
     {
         private readonly TransferToDownlineHistoryService transferToDownlineHistoryService;
@@ -20,7 +17,7 @@
             this.transferToDownlineHistoryService = transferToDownlineHistoryService;
         }
 
-        protected internal Tuple<IEnumerable<TransferToDownlineHistoryModel>, int> GetTransferToDownlineHistory(TransferToDownlineHistoryPagingParam param)
+        protected internal Task<(IEnumerable<TransferToDownlineHistoryModel>, int)> GetTransferToDownlineHistory(TransferToDownlineHistoryPagingParam param)
             => transferToDownlineHistoryService.GetTransferToDownlineHistory(param);
 
         protected internal virtual string GetExcelTemplatePath(string templateName, string fileExtension = "xls")

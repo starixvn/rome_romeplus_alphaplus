@@ -1,19 +1,18 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers;
-    using AlphaPlus.Settings.ViewLogs.API.Models;
-    using AlphaPlus.Settings.ViewLogs.API.Services;
-    using Fanex.Common;
-    using MediatR;
-    using Requests;
-    using Requests.Credit;
-    using ViewModels;
-    using AlphaPlus.Settings.ViewLogs.API.Extensions;
+﻿using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Models;
+using AlphaPlus.Settings.ViewLogs.API.Services;
+using Fanex.Common;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Credit;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
+using AlphaPlus.Settings.ViewLogs.API.Extensions;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
+{
     public class CreditHandler : BaseHandler, IRequestHandler<IndexQuery, LogViewModel>
     {
-        public CreditHandler([FromKeyedServices("creditLogSvc")]LogService logService, LogFormatter logFormatter, IDateTime dateTimeWrapper) :
+        public CreditHandler([FromKeyedServices("creditLogSvc")] LogService logService, LogFormatter logFormatter, IDateTime dateTimeWrapper) :
             base(logService, logFormatter, dateTimeWrapper)
         {
         }
@@ -21,17 +20,17 @@
         public async Task<LogViewModel> Handle(IndexQuery message, CancellationToken cancellation)
         {
             var logsParam = CreateLogParam(message);
-            var pagingLogs = LogService.GetPagingLogs(logsParam);
+            var pagingLogs = await LogService.GetPagingLogs(logsParam);
             var viewModel = new LogViewModel(logsParam, pagingLogs.TotalRecords);
 
-            TransformLogs(pagingLogs, message, viewModel);
+            await TransformLogs(pagingLogs, message, viewModel);
 
             viewModel.ActionTypeId = message.ActionTypeId;
 
             return viewModel;
         }
 
-        public void TransformLogs(
+        public async Task TransformLogs(
             PagingLogs<Log> pagingLogs,
             LogQuery message,
             LogViewModel viewModel)
@@ -43,7 +42,7 @@
                 logItems.Add(new LogItemViewModel
                 {
                     ActionId = log.ActionId,
-                    ActionName = LogService.GetLogActionName(log.ActionId, message.Language),
+                    ActionName = await LogService.GetLogActionName(log.ActionId, message.Language),
 
                     ActionTypeId = log.ActionTypeId,
                     CustId = log.CustId,

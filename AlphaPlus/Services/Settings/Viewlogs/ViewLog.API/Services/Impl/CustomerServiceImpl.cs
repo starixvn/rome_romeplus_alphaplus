@@ -1,19 +1,14 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
+﻿using AlphaPlus.Settings.ViewLogs.API.Criteria;
+using Fanex.Data.Repository;
+using AlphaPlus.Settings.ViewLogs.API.Models;
+
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 {
-    using Criteria;
-    using Fanex.Data.Repository;
-    using Models;
-
-    public class CustomerServiceImpl : CustomerService
+    public class CustomerServiceImpl(IDynamicRepository dynamicRepository) : CustomerService
     {
-        private readonly IDynamicRepository dynamicRepository;
+        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
 
-        public CustomerServiceImpl(IDynamicRepository dynamicRepository)
-        {
-            this.dynamicRepository = dynamicRepository;
-        }
-
-        public CustomerInfo GetDownlineInfoByUsername(string downlineUsername, int uplineId)
+        public async Task<CustomerInfo> GetDownlineInfoByUsername(string downlineUsername, int uplineId)
         {
             var criteria = new GetCustInfoByUsernameCommand
             {
@@ -21,7 +16,7 @@
                 UplineId = uplineId
             };
 
-            dynamicRepository.Execute(criteria);
+            await dynamicRepository.ExecuteAsync(criteria);
 
             var customerInfo = new CustomerInfo(criteria.CustId, criteria.IsSubAcc, criteria.RoleId);
 

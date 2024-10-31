@@ -1,26 +1,19 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Handlers
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Features.Messages.API.Services;
-    using AlphaPlus.Features.Messages.Site.Requests.PortalMessage;
-    using MediatR;
-    using ViewModels;
+﻿using AlphaPlus.Features.Messages.API.Services;
+using AlphaPlus.Features.Messages.Site.Requests.PortalMessage;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.ViewModels;
 
-    public class PortalMessageHandler :
+namespace AlphaPlus.Features.Site.Messages.Handlers
+{
+    public class PortalMessageHandler(PortalMessageService noticeService) :
         IRequestHandler<PortalMessageQuery, PortalMessagesViewModel>,
         IRequestHandler<MarkMessageAsReadQuery, bool>
-    {        
-        private readonly PortalMessageService noticeService;
-
-        public PortalMessageHandler(PortalMessageService noticeService)
-        {
-            this.noticeService = noticeService;
-        }
+    {
+        private readonly PortalMessageService noticeService = noticeService;
 
         public async Task<PortalMessagesViewModel> Handle(PortalMessageQuery message, CancellationToken cancellation)
         {
-            var noticeMessages = noticeService.GetPortalMessages(
+            var noticeMessages = await noticeService.GetPortalMessages(
                                     message.CustId,
                                     message.ParentSites,
                                     message.TotalMessage,
@@ -36,7 +29,7 @@
 
         public async Task<bool> Handle(MarkMessageAsReadQuery message, CancellationToken cancellation)
         {
-            var isSuccess = noticeService.MarkMessageAsRead(message.CustId, message.MessageId, message.IsInternal);
+            var isSuccess = await noticeService.MarkMessageAsRead(message.CustId, message.MessageId, message.IsInternal);
 
             return isSuccess;
         }

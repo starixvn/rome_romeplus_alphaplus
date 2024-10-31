@@ -1,23 +1,17 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Handlers
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.API.Models.ToastMessage;
-    using AlphaPlus.Features.Messages.API.Params.ToastMessage;
-    using AlphaPlus.Features.Messages.API.Services;
-    using AlphaPlus.Features.Site.Messages.Requests.ToastMessage;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Features.Messages.API.Models.ToastMessage;
+using AlphaPlus.Features.Messages.API.Params.ToastMessage;
+using AlphaPlus.Features.Messages.API.Services;
+using AlphaPlus.Features.Site.Messages.Requests.ToastMessage;
+using MediatR;
 
-    public class ToastMessageHandler :
+namespace AlphaPlus.Features.Site.Messages.Handlers
+{
+    public class ToastMessageHandler(ToastMessageService service) :
         IRequestHandler<ToastMessageQuery, IEnumerable<ToastMessageModel>>,
         IRequestHandler<MarkReadMessageQuery, Result>
     {
-        private readonly ToastMessageService service;
-
-        public ToastMessageHandler(ToastMessageService service)
-        {
-            this.service = service;
-        }
+        private readonly ToastMessageService service = service;
 
         public async Task<IEnumerable<ToastMessageModel>> Handle(ToastMessageQuery message, CancellationToken cancellation)
         {
@@ -29,12 +23,12 @@
                 LastToastId = message.LastToastId
             };
 
-            var messages = service.Get(messageParams);
+            var messages = await service.Get(messageParams);
 
             return messages;
         }
 
-        public async Task<Result> Handle(MarkReadMessageQuery message, CancellationToken cancellation)
+        public Task<Result> Handle(MarkReadMessageQuery message, CancellationToken cancellation)
         {
             var messageParams = new MarkReadMessageParams
             {

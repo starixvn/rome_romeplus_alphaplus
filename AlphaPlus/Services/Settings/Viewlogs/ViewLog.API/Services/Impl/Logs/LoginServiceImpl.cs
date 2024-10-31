@@ -1,17 +1,15 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
-{
-    using System;
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Models;
-    using Constants;
-    using Criteria.Login;
-    using DataAccesses;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Helpers;
-    using Models;
-    using Params;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.ViewLogs.API.Constants;
+using AlphaPlus.Settings.ViewLogs.API.Criteria.Login;
+using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Models;
+using AlphaPlus.Settings.ViewLogs.API.Params;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
+{
     public class LoginServiceImpl : BaseService, LogService
     {
         public LoginServiceImpl(
@@ -24,7 +22,7 @@
         {
         }
 
-        protected override IEnumerable<Log> GetLogs(LogParam logParam)
+        protected override Task<IEnumerable<Log>> GetLogs(LogParam logParam)
         {
             var criteria = CreateGetLogsCriteria(logParam);
 
@@ -44,7 +42,7 @@
                 logParam.CustId,
                 logParam.Username ?? string.Empty,
                 DateTimeHelper.GetBeginningOfDate(fromDate),
-                DateTimeHelper.GetEndingOfDate(logParam.ToDate),                
+                DateTimeHelper.GetEndingOfDate(logParam.ToDate),
                 logParam.IsInternal ? LoginLogType.InternalAlpha : LoginLogType.Alpha,
                 logParam.PageIndex,
                 logParam.PageSize);
@@ -63,7 +61,7 @@
                 logParam.CustId,
                 logParam.Username ?? string.Empty,
                 DateTimeHelper.GetBeginningOfDate(fromDate),
-                DateTimeHelper.GetEndingOfDate(logParam.ToDate),                
+                DateTimeHelper.GetEndingOfDate(logParam.ToDate),
                 logParam.IsInternal ? LoginLogType.InternalAlpha : LoginLogType.Alpha);
         }
     }

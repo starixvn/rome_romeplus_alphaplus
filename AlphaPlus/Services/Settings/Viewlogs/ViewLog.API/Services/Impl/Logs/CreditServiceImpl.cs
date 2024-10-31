@@ -22,7 +22,7 @@
         {
         }
 
-        public override PagingLogs<Log> GetPagingLogs(LogParam logParam)
+        public override async Task<PagingLogs<Log>> GetPagingLogs(LogParam logParam)
         {
             var pagingLogs = new PagingLogs<Log>();
             if (logParam == null)
@@ -30,8 +30,8 @@
                 return pagingLogs;
             }
 
-            pagingLogs.Logs = GetLogs(logParam);
-            pagingLogs.TotalRecords = GetTotalLogs(logParam);
+            pagingLogs.Logs = await GetLogs(logParam);
+            pagingLogs.TotalRecords = await GetTotalLogs(logParam);
 
             foreach (var log in pagingLogs.Logs)
             {
@@ -56,7 +56,7 @@
                 logParam.RoleId,
                 logParam.Username ?? string.Empty,
                 DateTimeHelper.GetBeginningOfDate(fromDate),
-                DateTimeHelper.GetEndingOfDate(logParam.ToDate),                
+                DateTimeHelper.GetEndingOfDate(logParam.ToDate),
                 logParam.PageIndex,
                 logParam.PageSize);
         }

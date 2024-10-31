@@ -6,8 +6,8 @@
 
     public interface LogDataAccess
     {
-        int GetTotalRecordsOfLogs(ICriteria criteria);
+        Task<int> GetTotalRecordsOfLogs(ICriteria criteria);
 
-        IEnumerable<Log> GetLogs(ICriteria criteria);
+        Task<IEnumerable<Log>> GetLogs(ICriteria criteria);
     }
 }

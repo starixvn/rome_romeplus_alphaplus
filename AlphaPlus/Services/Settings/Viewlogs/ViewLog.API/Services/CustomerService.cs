@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services
-{
-    using AlphaPlus.Settings.ViewLogs.API.Models;
+﻿using AlphaPlus.Settings.ViewLogs.API.Models;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services
+{
     public interface CustomerService
     {
-        CustomerInfo GetDownlineInfoByUsername(string downlineUsername, int uplineId);
+        Task<CustomerInfo> GetDownlineInfoByUsername(string downlineUsername, int uplineId);
     }
 }

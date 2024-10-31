@@ -1,12 +1,12 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
-{
-    using AlphaPlus.Settings.Transfer.API.Extensions;
-    using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
-    using AlphaPlus.Settings.Transfer.API.Services;
-    using MediatR;
-    using Requests.TransferToDownlineHistory;
-    using ViewModels.TransferToDownlineHistory;
+﻿using AlphaPlus.Settings.Transfer.API.Extensions;
+using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
+using AlphaPlus.Settings.Transfer.API.Services;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
+{
     public class TransferToDownlineHistoryHandler :
         TransferToDownlineHistoryBaseHandler,
         IRequestHandler<TransferToDownlineHistoryQuery, TransferToDownlineHistoryViewModel>,
@@ -17,18 +17,18 @@
         {
         }
 
-        public async Task<TransferToDownlineHistoryViewModel> Handle(TransferToDownlineHistoryQuery message, CancellationToken cancellation)
+        public Task<TransferToDownlineHistoryViewModel> Handle(TransferToDownlineHistoryQuery message, CancellationToken cancellation)
         {
-            return new TransferToDownlineHistoryViewModel(message, new TransferToDownlineHistoryParam(
+            return Task.FromResult(new TransferToDownlineHistoryViewModel(message, new TransferToDownlineHistoryParam(
                 message.CustId,
                 message.UserName,
                 message.FromDate,
-                message.ToDate));
+                message.ToDate)));
         }
 
         public async Task<TransferToDownlineHistoryPagingViewModel> Handle(TransferToDownlineHistoryPagingQuery message, CancellationToken cancellation)
         {
-            var data = GetTransferToDownlineHistory(new TransferToDownlineHistoryPagingParam(
+            var (transferToDownlines, totalRecords) = await GetTransferToDownlineHistory(new TransferToDownlineHistoryPagingParam(
                 message.CustId,
                 message.UserName,
                 message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
@@ -36,7 +36,7 @@
                 message.PageSize,
                 message.PageIndex));
 
-            return new TransferToDownlineHistoryPagingViewModel(data.Item1, data.Item2);
+            return new TransferToDownlineHistoryPagingViewModel(transferToDownlines, totalRecords);
         }
     }
 }

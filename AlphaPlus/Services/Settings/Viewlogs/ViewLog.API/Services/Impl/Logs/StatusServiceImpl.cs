@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
-{
-    using System;
-    using AlphaPlus.Core.Models;
-    using Criteria;
-    using Criteria.Status;
-    using DataAccesses;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Helpers;
-    using Params;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.ViewLogs.API.Criteria;
+using AlphaPlus.Settings.ViewLogs.API.Criteria.Status;
+using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Params;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
+{
     public class StatusServiceImpl : BaseService, LogService
     {
         private const int ActionTypeId = 5;
