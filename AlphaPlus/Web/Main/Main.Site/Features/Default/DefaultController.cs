@@ -89,7 +89,7 @@ namespace AlphaPlus.Main.Site.Features.Default
 
         private bool IsRedirectToNicknamePage(string action)
         {
-            if (nicknameChecker.IsRecommendLoginByNickname)
+            if (nicknameChecker.IsForceLoginByNickname)
             {
                 var displayUrl = Request.GetDisplayUrl();
                 return !displayUrl.Contains("nickname", StringComparison.OrdinalIgnoreCase)

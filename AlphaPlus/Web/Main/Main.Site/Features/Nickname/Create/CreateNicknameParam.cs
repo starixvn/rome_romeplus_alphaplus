@@ -33,7 +33,5 @@
         public bool IsEnableUpdateNickname { get; }
 
         public int CustDBGroupId { get; }
-
-        public bool IsSubAccount => SubAccountId > 0;
     }
 }

@@ -5,13 +5,13 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
     public abstract class SubAccountBaseRequest
     {
         protected readonly IUserSession userSession;
-        public SubAccountBaseRequest() : this(null)
+        public SubAccountBaseRequest() : this(new UserSessionExt())
         {
         }
 
-        internal SubAccountBaseRequest(IUserSession userSession)
+        protected SubAccountBaseRequest(IUserSession userSession)
         {
-            this.userSession = userSession ?? new UserSessionExt();
+            this.userSession = userSession;
             CustId = userSession.CustId;
             SubAccId = userSession.SubAccId;
         }

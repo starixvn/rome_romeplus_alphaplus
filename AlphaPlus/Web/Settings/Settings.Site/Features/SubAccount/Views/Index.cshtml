@@ -13,7 +13,8 @@
         <div class="title-page">
             <span class="txt-title">@Lang.subaccount</span>
             <button @(hasnotPerm ? "disabled" : string.Empty)
-                class="btn-refresh btn-add @(hasnotPerm ? "btn-add-disable" : string.Empty)" id="btn-add">@Lang.addsubaccount</button>
+                class="btn-refresh btn-add @(hasnotPerm ? "btn-add-disable" : string.Empty)"
+                id="btn-add">@Lang.addsubaccount</button>
         </div>
         <table class="tblRpt">
             <thead class="RptHeader">
@@ -22,9 +23,9 @@
                 <td>@Lang.nickname</td>
                 <td>@Lang.firstname</td>
                 <td>@Lang.lastname</td>
-                @if (!Model.FirstOrDefault().IsCustomerDateLimit)
+                @if (Model.Any() && !Model.FirstOrDefault().IsCustomerDateLimit)
                 {
-                <td>@Resources.CreatedDate</td>
+                    <td>@Resources.CreatedDate</td>
                 }
                 <td>@Lang.memberinfo</td>
                 <td>@Lang.BetsAndForecast</td>
@@ -38,51 +39,60 @@
                 <td>@CommonResx.RemoveOtpViewModelText</td>
             </thead>
             <tbody>
-                @foreach (var subAcc in Model)
+                @if (Model.Any())
                 {
-                    ++index;
-                    <tr>
-                        <td class="c" >@index</td>
-                        <td>@subAcc.Username</td>
-                        <td>@subAcc.Nickname</td>
-                        <td>@subAcc.Firstname</td>
-                        <td>@subAcc.Lastname</td>
-                        @if (!subAcc.IsCustomerDateLimit)
-                        {
-                        <td class="c">@subAcc.CreateDate</td>
-                        }
-                        <td class="c">
-                            <div class="@(hasnotPerm ? string.Empty : "pMemInfo lMemInfo")" data-subaccid="@subAcc.SubAccId"
-                                data-pageaccess="@subAcc.MemberInfoPermission" >@subAcc.GetPermission()</div>
-                        </td>
-                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-D")"
-                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
-                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetsForecastPermission ?
+                    foreach (var subAcc in Model)
+                    {
+                        ++index;
+                        <tr>
+                            <td class="c">@index</td>
+                            <td>@subAcc.Username</td>
+                            <td>@subAcc.Nickname</td>
+                            <td>@subAcc.Firstname</td>
+                            <td>@subAcc.Lastname</td>
+                            @if (!subAcc.IsCustomerDateLimit)
+                            {
+                                <td class="c">@subAcc.CreateDate</td>
+                            }
+                            <td class="c">
+                                <div class="@(hasnotPerm ? string.Empty : "pMemInfo lMemInfo")" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission">@subAcc.GetPermission()</div>
+                            </td>
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-D")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetsForecastPermission ?
                             "checked" : string.Empty) /></td>
-                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-E")"
-                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
-                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasReportPermission ? "checked" :
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-E")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasReportPermission ? "checked" :
                             string.Empty) /></td>
-                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-L")"
-                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
-                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetlistPermission ? "checked" :
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-L")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasBetlistPermission ? "checked" :
                             string.Empty) /></td>
-                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-C")"
-                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
-                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasTransferPermission ? "checked" :
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-C")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasTransferPermission ? "checked" :
                             string.Empty) /></td>
-                        <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-G")"
-                                type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
-                                data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasViewLogPermission ? "checked" :
+                            <td class="c"><input @(hasnotPerm ? "disabled" : string.Empty) id="@(subAcc.SubAccId + "-G")"
+                                    type="checkbox" class="pageaccess" data-subaccid="@subAcc.SubAccId"
+                                    data-pageaccess="@subAcc.MemberInfoPermission" @(subAcc.HasViewLogPermission ? "checked" :
                             string.Empty) /></td>
-                        <td class="c"><span class="icon-edit info @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
-                                data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
-                        <td class="c"><span class="icon-edit pwd @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
-                                data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
-                        <td class="c"><span class="icon-edit sc @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
-                                data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
-                        <td class="c"><span class="icon-edit otp @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
-                                data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                            <td class="c"><span class="icon-edit info @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                    data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                            <td class="c"><span class="icon-edit pwd @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                    data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                            <td class="c"><span class="icon-edit sc @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                    data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                            <td class="c"><span class="icon-edit otp @(hasnotPerm ? "editBtn-Disable" : string.Empty)"
+                                    data-subaccid="@subAcc.SubAccId" data-username="@subAcc.Username">&nbsp;</span></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="15" class="center">@Resources.NoInformationIsAvailable</td>
                     </tr>
                 }
             </tbody>
