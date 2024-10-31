@@ -12,13 +12,13 @@
             <th class="col-status">@Resources.status</th>
             @if (Model.AllowToViewSuperPT)
             {
-                <th class="col-pt">@Resources.superPT/ @Resources.lblComm</th>
+                <th class="col-pt">@Resources.superptcomm</th>
             }
             @if (Model.AllowToViewMasterPT)
             {
-                <th class="col-pt">@Resources.masterPT/ @Resources.lblComm</th>
+                <th class="col-pt">@Resources.masterptcomm</th>
             }
-            <th class="col-pt">@Resources.agentPT/ @Resources.lblComm</th>
+            <th class="col-pt">@Resources.agentptcomm</th>
             <th class="col-platform">@Resources.platform</th>
         </tr>
     </thead>
@@ -38,7 +38,8 @@
                         get-cache-property-by-id="Model.TicketHelper.GetOddsTypeNameById" />
                     <stake builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper" />
                     <status builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
-                        ticket-data="Model.BetListData.TicketData" is-show-vn-ip="Model.DisplayVNIP" />
+                        ticket-data="Model.BetListData.TicketData" is-show-vn-ip="Model.DisplayVNIP"
+                        country="@ticket.Country" />
                     @if (Model.AllowToViewSuperPT)
                     {
                         <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Super" />

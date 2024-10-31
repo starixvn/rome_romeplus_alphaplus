@@ -3,7 +3,7 @@ namespace AlphaPlus.IPInfo.Models;
 /// <summary>
 /// https://stackoverflow.com/questions/461439/how-would-i-search-a-range-of-ranged-values-using-c-sharp
 /// </summary>
-internal sealed class IPRange : IComparable<IPRange>
+public sealed class IPRange : IComparable<IPRange>
 {
     public IPRange(long lower, long upper, string country)
     {

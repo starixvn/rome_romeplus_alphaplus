@@ -75,7 +75,8 @@
                         get-cache-property-by-id="Model.TicketHelper.GetOddsTypeNameById" />
                     <stake builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper" />
                     <status builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
-                        ticket-data="Model.BetListData.TicketData" is-show-vn-ip="Model.DisplayVNIP" />
+                        ticket-data="Model.BetListData.TicketData" is-show-vn-ip="Model.DisplayVNIP"
+                        country="@ticket.Country" />
                     <platform value="@ticket.Platform" />
                 </tr>
             }

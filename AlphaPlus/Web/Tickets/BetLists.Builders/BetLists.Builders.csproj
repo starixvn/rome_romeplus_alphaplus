@@ -7,7 +7,7 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.BetList.Core" Version="3.0.4.2" />
+    <PackageReference Include="Fanex.BetList.Core" Version="3.0.4.3" />
     <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="1.0.0.3" />
   </ItemGroup>
   <ItemGroup>

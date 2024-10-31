@@ -55,7 +55,8 @@
                     <stake builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper" />
                     <winloss ticket="ticket" />
                     <status builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
-                        ticket-data="Model.BetListData.TicketData" is-show-vn-ip="Model.DisplayVNIP" />
+                        ticket-data="Model.BetListData.TicketData" is-show-vn-ip="Model.DisplayVNIP"
+                        country="@ticket.Country" />
                     <platform value="ticket.Platform" />
                 </tr>
             }

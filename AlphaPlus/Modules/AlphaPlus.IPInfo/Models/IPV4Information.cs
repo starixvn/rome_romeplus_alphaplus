@@ -2,13 +2,13 @@ namespace AlphaPlus.IPInfo.Models;
 
 public class IPV4Information
 {
-    public string IP { get; set; }
+    public string IP { get; init; }
 
-    public long IPFrom { get; set; }
+    public long IPFrom { get; init; }
 
-    public long IPTo { get; set; }
+    public long IPTo { get; init; }
 
-    public string CountryShort { get; set; }
+    public string CountryShort { get; init; }
 
-    public string CountryLong { get; set; }
+    public string CountryLong { get; init; }
 }

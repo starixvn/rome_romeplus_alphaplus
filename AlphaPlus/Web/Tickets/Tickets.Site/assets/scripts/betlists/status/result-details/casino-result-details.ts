@@ -405,6 +405,8 @@
                 gameId3rd,
                 '&currencyId=',
                 currencyId,
+                '&betType=',
+                betTypeId,
                 '&siteId=',
                 siteId,
                 '&productId=55'

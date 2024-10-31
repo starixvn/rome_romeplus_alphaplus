@@ -30,6 +30,7 @@ public class ProductTagHelper : TagHelper
             .Append($"data-label-selectproducts=\"{Resources.SelectProducts}\" ")
             .Append($"data-label-selected=\"{Resources.Selected}\" ")
             .Append($"data-label-allproducts=\"{Resources.AllProducts}\" ")
+            .Append($"data-label-selectall=\"{Resources.SelectAll}\" ")
             .Append($"data-label-nodata=\"{Resources.ThereIsNoProduct}\" ")
             .Append($"data-language=\"{Model.Language}\" multiple=\"multiple\" class=\"select-multiple\">");
         foreach (var product in Model.Products)
