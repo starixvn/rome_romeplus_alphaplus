@@ -294,7 +294,7 @@ module.exports = () => ({
             [0x2264, "lessorequal"],
             [0x2260, "notequal"],
             [0x2b9a, "bwarrow"],
-          ],
+          ]
         },
       },
     },

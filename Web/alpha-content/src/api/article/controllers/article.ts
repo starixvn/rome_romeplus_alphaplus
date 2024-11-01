@@ -274,10 +274,6 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       }
     });
 
-    if(entity == null) {
-      return await this.getBySlugEN(ctx, null);
-    }
-
     const output = await this.sanitizeOutput(entity, ctx);
     return output;
   },
@@ -344,9 +340,6 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     });
 
     const result = await this.sanitizeOutput(entities, ctx) as [];
-    if(result.length == 0) {
-      return await this.searchEN(ctx, null);
-    }
 
     return result.sort((a: any, b: any) => a.publishedAt - b.publishedAt); 
   },
@@ -417,32 +410,6 @@ export default factories.createCoreController('api::article.article', ({ strapi 
         Id: e.slug,
         Value: e.title
       });
-    }
-
-    if(result.length == 0) {
-      var enSuggest:any = await this.suggestEN(ctx, null);
-      for(var i = 0; i<enSuggest.length; i++) {
-        const e = enSuggest[i];
-        const localizedEntity = await strapi.db.query('api::article.article').findOne({
-          where: {
-            locale: language,
-            publishedAt: (isProd ? { $null: false } : {}),
-            user_levels: {
-              levelId: { $eq: level }
-            },
-            markets: {
-              name: { $eqi: market }
-            },
-            slug: e.Id,
-          }
-        });
-
-        var r = (localizedEntity || e);
-        result.push({
-          Id: r.slug,
-          Value: r.title
-        });
-      }
     }
 
     return result;

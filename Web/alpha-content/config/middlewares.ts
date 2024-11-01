@@ -1,6 +1,5 @@
 export default [
   'strapi::errors',
-  'strapi::cors',
   'strapi::poweredBy',
   'strapi::logger',
   'strapi::query',
@@ -8,13 +7,21 @@ export default [
   'strapi::favicon',
   'strapi::public',
   {
+    name: "strapi::cors",
+    config: {
+      enabled: true,
+      header: "*",
+      origin: "*",
+    },
+  },
+  {
     name: "strapi::security",
     config: {
       contentSecurityPolicy: {
         useDefaults: true,  
         directives: {
           "script-src": ["'self'", "*.tinymce.com", "*.tiny.cloud", "https:"],
-          "connect-src": ["'self'", "*.tinymce.com", "*.tiny.cloud", "blob:", "*.strapi.io"],
+          "connect-src": ["'self'", "*.tinymce.com", "*.tiny.cloud", "blob:", "*.strapi.io", "api.github.com"],
           "img-src": [
             "'self'",
             "*.tinymce.com",
@@ -25,6 +32,10 @@ export default [
             "strapi.io",
             "s3.amazonaws.com",
             "cdn.jsdelivr.net",
+            "alpha-content.oneops.net",
+            "alpha-content-2.oneops.net",
+            "http://alpha-content.oneops.net",
+            "http://alpha-content-2.oneops.net",
           ],
           "style-src": [
             "'self'",
