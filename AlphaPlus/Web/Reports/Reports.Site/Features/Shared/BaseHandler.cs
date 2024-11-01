@@ -220,6 +220,13 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return productService.GetProducts(param);
     }
 
+    protected Task<IEnumerable<Product>> GetProductsAsync(BaseQuery message)
+    {
+        var param = new GetProductsParam(message.Site, message.CurrencyId, appSettings.SettingStatus, message.Language, message.MinDate);
+
+        return productService.GetProductsAsync(param);
+    }
+
     protected virtual BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
     {
         var breadcrumbs = new List<Breadcrumb>();

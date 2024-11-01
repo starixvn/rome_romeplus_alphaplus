@@ -93,7 +93,7 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
         var productName = cacheRefService.GetProductName(message.ProductId);
         var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
         {
-            //Site = message.GameId3rd
+            Site = message.GameId3rd
         };
 
         var result = GetThirdPartyResult("SexyGamingResultConfigs", "SexyGaming").GetResultGET(request);

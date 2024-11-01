@@ -1,8 +1,7 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS builder
 
 #Installing npm & gulp global
-RUN apk add --update nodejs npm
-RUN npm install -g yarn gulp-cli
+RUN apk add --update nodejs npm && npm install -g yarn gulp-cli
 
 WORKDIR /src
 
@@ -43,9 +42,8 @@ COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
 WORKDIR /src/AlphaPlus/Web/Tickets/Tickets.Site
 
-RUN yarn
-RUN gulp default
-RUN dotnet publish --use-current-runtime --self-contained -o /app
+RUN yarn && gulp default
+RUN dotnet publish --use-current-runtime --self-contained -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 

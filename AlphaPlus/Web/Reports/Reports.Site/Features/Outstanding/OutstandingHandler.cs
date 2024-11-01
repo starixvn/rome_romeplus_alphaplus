@@ -21,7 +21,9 @@ public class OutstandingHandler(
 
     public async Task<OutstandingViewModel> Handle(OutstandingQuery message, CancellationToken cancellationToken)
     {
-        var products = GetProducts(message).Where(p => p.Id != SabaPromotionProductId);
+        var products = await GetProductsAsync(message);
+        products = products.Where(p => p.Id != SabaPromotionProductId);
+
         var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds, products);
         var outstandingParam = new OutstandingParam(
             message.CustLevel.Value,

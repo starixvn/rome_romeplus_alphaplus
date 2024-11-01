@@ -13,6 +13,8 @@ public interface IProductService
 
     IEnumerable<Product> GetProducts(GetProductsParam param);
 
+    Task<IEnumerable<Product>> GetProductsAsync(GetProductsParam param);
+
     IEnumerable<ProductDetail> GetProductDetails(int custId, IEnumerable<Product> products);
 
     string BuildProductDetailXml(ProductDetail productDetail);
@@ -48,6 +50,27 @@ public class ProductService(
                     product.TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type);
                     return product;
                 }).ToList(),
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
+
+        return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && canViewProduct(i.Id));
+    }
+
+    public async Task<IEnumerable<Product>> GetProductsAsync(GetProductsParam param)
+    {
+        var products = await cacheService.GetOrSetAsync(
+            $"{ProductsCacheKey}-{param.SiteName}-{param.CurrencyId}-{param.Language}",
+            async () =>
+            {
+                var products = await repository.FetchAsync<Product>(new GetProductsCriteria(param.SiteName, param.CurrencyId, param.SettingStatus));
+                return products
+                    .Where(product => !product.IsHide)
+                    .Select(product =>
+                    {
+                        product.Name = cacheRefService.GetProductName(product.Id);
+                        product.TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type);
+                        return product;
+                    }).ToList();
+            },
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
         return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && canViewProduct(i.Id));
