@@ -16,7 +16,7 @@ internal static class SportTypeConstants
     public const int AllBet = 211;
     public const int LGVirtualSports = 231;
     public const int WM = 233;
-    public const int SexyGaming = 243;
+    //public const int SexyGaming = 243;
     public const int SAGaming = 244;
     public const int GTCasino = 242;
 

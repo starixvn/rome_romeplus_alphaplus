@@ -105,7 +105,6 @@
     <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.3" />
     <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SAGaming" Version="2.0.0" />
-    <PackageReference Include="Fanex.Result.Core.SexyGaming" Version="2.0.0.1" />
     <PackageReference Include="Fanex.Result.Core.SportsLottery" Version="2.0.0-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1-upgrade-02" />
     <PackageReference Include="Fanex.Result.Core.WM" Version="2.0.0.1" />

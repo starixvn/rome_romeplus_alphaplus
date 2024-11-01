@@ -69,12 +69,6 @@ function copySAGamingImages() {
         .pipe(gulp.dest('wwwroot/bundles/results/SAGaming/template'));
 }
 
-function copySexyGamingImages() {
-    return gulp
-        .src('assets/styles/results/fanex.result/SexyGaming/template/**/*')
-        .pipe(gulp.dest('wwwroot/bundles/results/SexyGaming/template'));
-}
-
 function copyWMImages() {
     return gulp.src('assets/styles/results/fanex.result/WM/**/*').pipe(gulp.dest('wwwroot/bundles/results/WM'));
 }
@@ -109,15 +103,7 @@ gulp.task(
     gulp.series(
         clean,
         gulp.parallel(compileCss, compileJs),
-        gulp.parallel([
-            minCss,
-            minJs,
-            copyImages,
-            copyAllbetImages,
-            copySAGamingImages,
-            copySexyGamingImages,
-            copyWMImages
-        ])
+        gulp.parallel([minCss, minJs, copyImages, copyAllbetImages, copySAGamingImages, copyWMImages])
     )
 );
 
@@ -127,15 +113,7 @@ gulp.task('watch', () => {
         gulp.series(
             clean,
             gulp.parallel(compileCss, compileJs),
-            gulp.parallel([
-                minCss,
-                minJs,
-                copyImages,
-                copyAllbetImages,
-                copySAGamingImages,
-                copySexyGamingImages,
-                copyWMImages
-            ])
+            gulp.parallel([minCss, minJs, copyImages, copyAllbetImages, copySAGamingImages, copyWMImages])
         )
     );
 });

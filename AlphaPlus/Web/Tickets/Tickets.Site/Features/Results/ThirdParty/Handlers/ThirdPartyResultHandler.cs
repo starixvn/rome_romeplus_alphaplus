@@ -40,7 +40,8 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<FastSpinResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<FACHAIResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<NextspinResultQuery, ThirdPartyProductViewModel>,
-    IRequestHandler<ONCasinoResultQuery, ThirdPartyProductViewModel>
+    IRequestHandler<ONCasinoResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<SexyGamingResultQuery, ThirdPartyProductViewModel>
 {
     public Task<ThirdPartyProductViewModel> Handle(MaxGameResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "MaxGameResultConfigs", "MaxGame");
@@ -86,6 +87,20 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
     public Task<ThirdPartyProductViewModel> Handle(IONCasinoResultQuery message, CancellationToken cancellationToken)
        => Handle(message, "IONCasinoResultConfigs", "IONCasino");
+
+    public Task<ThirdPartyProductViewModel> Handle(SexyGamingResultQuery message, CancellationToken cancellationToken)
+    {
+        var productName = cacheRefService.GetProductName(message.ProductId);
+        var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
+        {
+            //Site = message.GameId3rd
+        };
+
+        var result = GetThirdPartyResult("SexyGamingResultConfigs", "SexyGaming").GetResultGET(request);
+        var viewModel = new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, productName), result);
+
+        return Task.FromResult(viewModel);
+    }
 
     public Task<ThirdPartyProductViewModel> Handle(PGSoftResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "PGSoftResultConfigs", "PGSoft");

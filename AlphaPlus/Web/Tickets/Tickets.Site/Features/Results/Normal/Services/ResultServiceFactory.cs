@@ -46,9 +46,6 @@ public class ResultServiceFactory(
             case SportTypeConstants.SAGaming:
                 return new SAGamingResultService();
 
-            case SportTypeConstants.SexyGaming:
-                return new SexyGamingResultService();
-
             case SportTypeConstants.GTCasino:
                 return new GTCasinoResultService();
 

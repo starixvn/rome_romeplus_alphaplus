@@ -2,7 +2,6 @@
     "AllbetResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
     "GTCasinoResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
     "SAGamingResultImagePath": "/tickets/bundles/results/SAGaming/template/public/game_result/",
-    "SexyGamingResultImagePath": "/tickets/bundles/results/SexyGaming/template/public/game_result/",
     "WMResultImagePath": "/tickets/bundles/results/WM/",
     "KenoResultConfigs": {
         "Url": "http://10.40.40.248:8124/api/KenoInternal/GetResultUrl",
@@ -194,6 +193,11 @@
     "ONCasinoResultConfigs": {
         "Url": "http://10.40.40.248:7090/api//OnGamingInternal/GetBetHistoryUrl",
         "VendorId": 96,
+        "Debug": 0
+    },
+    "SexyGamingResultConfigs": {
+        "Url": "http://10.40.40.248:7075/api//SexyCasinoInternal/GetBetHistoryUrl",
+        "VendorId": 45,
         "Debug": 0
     }
 }

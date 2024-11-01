@@ -1282,7 +1282,7 @@
                 custId,
                 '&transId3rd=',
                 transId3rd,
-                '&site=',
+                '&gameId3rd=',
                 gameId3rd,
                 '&currencyId=',
                 currencyId,
