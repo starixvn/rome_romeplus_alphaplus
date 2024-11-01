@@ -54,7 +54,7 @@ public class ProgressiveContributionHandler(
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
             message.ToDate,
             validUserSelectedProductIds,
-            message.ViewerLevel,
+            message.ViewerLevel.Value,
             message.Site);
         return progressiveContributionService.GetProgressiveContributions(param);
     }

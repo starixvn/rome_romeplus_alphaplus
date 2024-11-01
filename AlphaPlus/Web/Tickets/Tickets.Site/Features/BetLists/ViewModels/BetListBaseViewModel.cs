@@ -1,10 +1,11 @@
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
+using Fanex.BetList.Core.Utils;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 
@@ -13,7 +14,8 @@ public class BetListBaseViewModel(
     BetListData betListData,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
-    bool showMemberName = false)
+    bool showMemberName = false,
+    bool supportRiskAmount = false)
 {
     public BetListData BetListData { get; } = betListData;
 
@@ -23,13 +25,15 @@ public class BetListBaseViewModel(
 
     public bool ShowMemberName { get; } = showMemberName;
 
+    public bool SupportRiskAmount { get; } = supportRiskAmount;
+
     public int CustId { get; } = message.CustId;
 
     public string CustName { get; } = message.CustName;
 
     public byte ViewerLevelId { get; } = message.ViewerLevelId;
 
-    public _UserLevel ViewerLevel { get; } = message.ViewerLevel;
+    public UserLevel ViewerLevel { get; } = message.ViewerLevel;
 
     public int ViewerIdOrViewerAdminId { get; } = message.ViewerIdOrViewerAdminId;
 
@@ -72,10 +76,36 @@ public class BetListBaseViewModel(
                 totalColumn = 11;
             }
 
-            return totalColumn + (ShowMemberName ? 1 : 0);
+            return totalColumn + (ShowMemberName ? 1 : 0) + (SupportRiskAmount ? 2 : 0);
         }
     }
 
     // TODO: will implement here
     public virtual bool CanViewScoreMap(ITicket ticket) => false;
+
+    public string GetSMARiskAmount(TicketDto ticket)
+    {
+        var memberWin = ticket.MemberWin;
+
+        if (!memberWin.HasValue)
+        {
+            return Resources.Platform_NA;
+        }
+
+        var amount = 0M;
+        if (ViewerLevel.IsSuperLevel())
+        {
+            amount = memberWin.Value * ticket.SuperPositionTaking;
+        }
+        else if (ViewerLevel.IsMasterLevel())
+        {
+            amount = memberWin.Value * ticket.MasterPositionTaking;
+        }
+        else
+        {
+            amount = memberWin.Value * ticket.AgentPositionTaking;
+        }
+
+        return ConvertByBetType.Winloss(amount);
+    }
 }

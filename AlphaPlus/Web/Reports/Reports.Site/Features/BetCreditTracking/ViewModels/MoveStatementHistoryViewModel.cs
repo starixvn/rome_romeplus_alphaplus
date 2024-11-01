@@ -1,5 +1,6 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.BetCreditTracking.MoveStatementHistory;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;

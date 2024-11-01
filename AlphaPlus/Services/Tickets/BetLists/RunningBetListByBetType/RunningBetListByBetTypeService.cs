@@ -22,7 +22,7 @@ public class RunningBetListByBetTypeService(
 
     public async Task<IEnumerable<TicketDto>> GetBetList(RunningBetListByBetTypeParam param)
     {
-        var criteria = new GetBetListRunningByBetTypeCriteria(param.CustId, param.BetType, Enumeration.FromValue<UserLevel>(param.CustLevelId));
+        var criteria = new GetBetListRunningByBetTypeCriteria(param.CustId, param.BetType, param.CustLevelId);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var tickets = await repository.FetchAsync<TicketDto>(criteria);

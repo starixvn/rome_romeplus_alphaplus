@@ -2,7 +2,7 @@ namespace AlphaPlus.Reports.Features.WinLossByProduct;
 
 public record WinLossByProductParam(
     int CustId,
-    UserLevel CustLevel,
+    byte CustLevelId,
     DateTime FromDate,
     DateTime ToDate,
     string ProductIds,

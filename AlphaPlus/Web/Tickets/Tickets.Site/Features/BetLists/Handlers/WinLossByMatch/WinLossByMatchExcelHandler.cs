@@ -14,7 +14,6 @@ using MediatR;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
 using static ONEbook.SpreadSheets.Column;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
@@ -42,7 +41,7 @@ public class WinLossByMatchExcelHandler(
         var betlistData = await winLossByMatchService.GetBetList(param);
         var viewModel = new WinLossByMatchViewModel(message, betlistData, null, TicketHelper);
 
-        var custLevel = Core.Models.Enumeration.FromValue<_UserLevel>(message.CustLevelId);
+        var custLevel = Core.Models.Enumeration.FromValue<UserLevel>(message.CustLevelId);
         workbook = workbook.UseTemplate(GetTemplateInfo(custLevel));
         RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 
@@ -56,10 +55,10 @@ public class WinLossByMatchExcelHandler(
         return new ExcelFileViewModel(viewModel.Title, fileContent);
     }
 
-    protected internal override string ExcelTemplatePath(_UserLevel viewerLevel)
+    protected internal override string ExcelTemplatePath(UserLevel viewerLevel)
         => GetExcelTemplatePath(viewerLevel.DisplayName);
 
-    protected internal override Mapper<TicketDto> GetBodyRowMapper(_UserLevel viewerLevel, BetListBaseViewModel viewModel)
+    protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
     {
         var ticketData = viewModel.BetListData.TicketData;
         var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss: true);
@@ -68,14 +67,14 @@ public class WinLossByMatchExcelHandler(
 
         if (viewerLevel.IsMasterLevel())
         {
-            mapper.Map(J, ticket => BuildPtCommmission(ticket, ticketData, _UserLevel.Agent));
+            mapper.Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
         }
 
         if (viewerLevel.IsSuperLevel())
         {
             mapper
-                .Map(J, ticket => BuildPtCommmission(ticket, ticketData, _UserLevel.Master))
-                .Map(K, ticket => BuildPtCommmission(ticket, ticketData, _UserLevel.Agent));
+                .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
+                .Map(K, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
         }
 
         string platformColId = J;

@@ -1,15 +1,14 @@
-using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.RunningBetListByBetTypeAndMatch;
 
-public class GetBetListRunningByBetTypeAndMatchCriteria(
+internal class GetBetListRunningByBetTypeAndMatchCriteria(
     int matchId,
     int custId,
     int betType,
     int liveIndicator,
     string betTeam,
-    UserLevel custLevel) : CriteriaBase
+    byte custLevelId) : CriteriaBase
 {
     public int MatchId { get; } = matchId;
 
@@ -21,13 +20,10 @@ public class GetBetListRunningByBetTypeAndMatchCriteria(
 
     public string BetTeam { get; } = betTeam;
 
-    [SpParam(Ignored = true)]
-    public UserLevel CustLevel { get; } = custLevel;
-
     public override string GetSettingKey()
-       => CustLevel.IsAgentLevel()
+       => RoleIdConstants.IsAgentLevel(custLevelId)
         ? "Age_BetList_SelRunningByBettypeMatch_Ag"
-        : CustLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(custLevelId)
             ? "Age_BetList_SelRunningByBettypeMatch_MAg"
             : "Age_BetList_SelRunningByBettypeMatch_SAg";
 

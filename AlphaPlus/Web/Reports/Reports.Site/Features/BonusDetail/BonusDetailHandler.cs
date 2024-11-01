@@ -14,7 +14,7 @@ public class BonusDetailHandler(IBonusDetailService bonusDetailService) :
     {
         var report = await bonusDetailService.GetBonusDetail(new BonusDetailParam(
             message.ViewerId,
-            message.ViewerLevel,
+            message.ViewerLevel.Value,
             message.Member,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
             message.ToDate,

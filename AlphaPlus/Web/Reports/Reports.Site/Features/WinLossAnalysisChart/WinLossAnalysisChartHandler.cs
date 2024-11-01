@@ -20,7 +20,7 @@ public class WinLossAnalysisChartHandler(
         var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds);
         var param = new WinLossAnalysisChartParam(
             message.ViewerId,
-            message.ViewerLevel,
+            message.ViewerLevel.Value,
             message.Site,
             message.CurrencyId,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),

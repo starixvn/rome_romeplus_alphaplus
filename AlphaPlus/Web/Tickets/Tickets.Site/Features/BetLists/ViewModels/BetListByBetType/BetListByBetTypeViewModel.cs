@@ -11,8 +11,8 @@ public class BetListByBetTypeViewModel(
     BetListData betListData,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
-    HashSet<int> supportScoreMapBetTypeIds = null)
-        : BetListBaseViewModel(message, betListData, builder, ticketHelper, true)
+    HashSet<int> supportScoreMapBetTypeIds = null,
+    bool supportRiskAmount = true) : BetListBaseViewModel(message, betListData, builder, ticketHelper, true, supportRiskAmount)
 {
     private readonly IDictionary<int, string> BetTypes = new Dictionary<int, string>
     {

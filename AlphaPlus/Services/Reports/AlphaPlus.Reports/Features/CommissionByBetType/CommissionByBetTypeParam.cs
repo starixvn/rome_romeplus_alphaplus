@@ -1,7 +1,7 @@
 namespace AlphaPlus.Reports.Features.CommissionByBetType;
 
 public record CommissionByBetTypeParam(
-    UserLevel CustLevel,
+    byte CustLevelId,
     int CustId,
     DateTime FromDate,
     DateTime ToDate,

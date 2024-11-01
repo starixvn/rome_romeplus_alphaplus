@@ -29,7 +29,7 @@ public class WinLossByProductService(
             reportDate.BalanceUpDay,
             reportDate.MoveBetsDay,
             param.ProductIds,
-            param.CustLevel,
+            param.CustLevelId,
             param.ProductDetailXml);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 

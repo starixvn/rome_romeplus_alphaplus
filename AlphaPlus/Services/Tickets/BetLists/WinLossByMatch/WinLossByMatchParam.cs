@@ -13,7 +13,4 @@ public record WinLossByMatchParam(
     DateTime ToDate,
     byte CustLevelId,
     bool DisplayVNIP,
-    string SiteName)
-{
-    public UserLevel CustLevel => Enumeration.FromValue<UserLevel>(CustLevelId);
-}
+    string SiteName);

@@ -26,7 +26,7 @@ public class WinLossWorkbook(IWebHostEnvironment webHostEnvironment) :
 
         var fileContent = UseTemplate(
             new TemplateInfo(
-                GetExcelTemplatePath(message.CustLevel.GetDirectDownlineLevel().DisplayName),
+                GetExcelTemplatePath(message.CustLevel.GetDirectDownLineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable))
             .Title($"{Resources.WinLossTitle} {fromDate} --> {toDate} - {Resources.of2}: {productNames}")
             .Header(Resources.ResourceManager.GetString)

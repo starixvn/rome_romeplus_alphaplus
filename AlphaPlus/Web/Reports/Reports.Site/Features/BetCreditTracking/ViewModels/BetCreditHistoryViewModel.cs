@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 

@@ -13,7 +13,7 @@ public class CombinationMixParlayViewModel(
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
     HashSet<int> supportScoreMapBetTypeIds = null)
-        : BetListByBetTypeViewModel(message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds)
+        : BetListByBetTypeViewModel(message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds, supportRiskAmount: true)
 {
     protected override string GetTitle() => Resources.parlay;
 }

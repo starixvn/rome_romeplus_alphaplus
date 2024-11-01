@@ -19,6 +19,22 @@
                 <th class="col-pt">@Resources.masterptcomm</th>
             }
             <th class="col-pt">@Resources.agentptcomm</th>
+            @if (Model.SupportRiskAmount)
+            {
+                <th class="col-stake">@Resources.MemberRisk</th>
+                if (Model.ViewerLevel.IsSuperLevel())
+                {
+                    <th class="col-stake">@Resources.SuperRisk</th>
+                }
+                if (Model.ViewerLevel.IsMasterLevel())
+                {
+                    <th class="col-stake">@Resources.MasterRisk</th>
+                }
+                if (Model.ViewerLevel.IsAgentLevel())
+                {
+                    <th class="col-stake">@Resources.AgentRisk</th>
+                }
+            }
             <th class="col-platform">@Resources.platform</th>
         </tr>
     </thead>
@@ -49,6 +65,10 @@
                         <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Master" />
                     }
                     <position-taking ticket="ticket" ticket-data="Model.BetListData.TicketData" user-level="UserLevel.Agent" />
+                    @if (Model.SupportRiskAmount)
+                    {
+                        <risk-amount member-win="@ticket.MemberWinText" sma-risk-amount="@Model.GetSMARiskAmount(ticket)" />
+                    }
                     <platform value="@ticket.Platform" />
                 </tr>
             }

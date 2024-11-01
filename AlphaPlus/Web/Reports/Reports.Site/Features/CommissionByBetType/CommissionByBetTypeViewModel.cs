@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.CommissionByBetType;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
@@ -15,7 +16,6 @@ public class CommissionByBetTypeViewModel(
     public string CustName { get; } = message.CustName;
 
     public UserLevel CustLevel { get; } = message.CustLevel;
-
 
     public PageHeaderViewModel PageHeader { get; }
         = new PageHeaderViewModel(

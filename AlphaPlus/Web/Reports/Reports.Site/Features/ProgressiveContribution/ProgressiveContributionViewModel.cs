@@ -1,4 +1,5 @@
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.ProgressiveContribution;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;

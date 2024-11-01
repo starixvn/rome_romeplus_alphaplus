@@ -7,6 +7,11 @@
     {
         notes.Add(Resources.ContributionAmountRoundNote);
     }
+
+    if (Model.SupportRiskAmount)
+    {
+        notes.Add(Resources.MemberWinNote);
+    }
 }
 @section Scripts {
     <script src="~/bundles/betlists/icon-note.js" asp-append-version="true"></script>
@@ -36,6 +41,22 @@
             <th class="col-stake">@Resources.stake</th>
             <th class="col-winloss">@Resources.lblWinLoss</th>
             <th class="col-status">@Resources.status</th>
+            @if (Model.SupportRiskAmount)
+            {
+                <th class="col-stake">@Resources.MemberRisk</th>
+                if (Model.ViewerLevel.IsSuperLevel())
+                {
+                    <th class="col-stake">@Resources.SuperRisk</th>
+                }
+                if (Model.ViewerLevel.IsMasterLevel())
+                {
+                    <th class="col-stake">@Resources.MasterRisk</th>
+                }
+                if (Model.ViewerLevel.IsAgentLevel())
+                {
+                    <th class="col-stake">@Resources.AgentRisk</th>
+                }
+            }
             <th class="col-platform">@Resources.platform</th>
         </tr>
     </thead>
@@ -57,6 +78,10 @@
                     <status builder="Model.Builder" ticket="ticket" ticket-helper="Model.TicketHelper"
                         ticket-data="Model.BetListData.TicketData" is-show-vn-ip="Model.DisplayVNIP"
                         country="@ticket.Country" />
+                    @if (Model.SupportRiskAmount)
+                    {
+                        <risk-amount member-win="@ticket.MemberWinText" sma-risk-amount="@Model.GetSMARiskAmount(ticket)" />
+                    }
                     <platform value="ticket.Platform" />
                 </tr>
             }

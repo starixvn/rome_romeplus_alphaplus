@@ -1,5 +1,6 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AlphaPlus.Reports.Site
+@using AlphaPlus.Core.Models
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Reports.Features.Shared.Extensions
 @using AlphaPlus.Reports.Features.Outstanding
@@ -34,7 +35,7 @@
     {
         foreach (var level in Model.DisplayOutstandingLevels)
         {
-            <td>@data.GetValueByLevel(level).FormatNumber()</td>
+            <td>@data.GetValueByLevel(level.Value).FormatNumber()</td>
         }
     }
 
@@ -113,7 +114,8 @@
                         <td class="text-left" data-islink="true">
                             @if (isAgentLevel)
                             {
-                                <a class="open-link" data-url="@Model.GetBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
+                                <a class="open-link"
+                                    data-url="@Model.GetBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
                             }
                             else
                             {
@@ -132,7 +134,7 @@
                     @for (var i = 0; i < length; i++)
                     {
                         <td>
-                            @Model.ReportData.Total.GetValueByLevel(Model.DisplayOutstandingLevels[i]).FormatNumber()
+                            @Model.ReportData.Total.GetValueByLevel(Model.DisplayOutstandingLevels[i].Value).FormatNumber()
                         </td>
                     }
                     <td class="control"></td>

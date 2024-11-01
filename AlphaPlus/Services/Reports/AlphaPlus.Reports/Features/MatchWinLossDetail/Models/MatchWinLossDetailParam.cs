@@ -2,7 +2,7 @@ namespace AlphaPlus.Reports.Features.MatchWinLossDetail;
 
 public record MatchWinLossDetailParam(
     int ViewerId,
-    UserLevel ViewerLevel,
+    byte ViewerLevelId,
     DateTime FromDate,
     DateTime ToDate,
     string ProductIds,

@@ -49,7 +49,7 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
 
         var fileContent = UseTemplate(
             new TemplateInfo(
-                GetExcelTemplatePath($"{custLevel.GetDirectDownlineLevel().DisplayName}{(showFullName ? "New" : string.Empty)}"),
+                GetExcelTemplatePath($"{custLevel.GetDirectDownLineLevel().DisplayName}{(showFullName ? "New" : string.Empty)}"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 freezeRowIndex: 4,
                 freezeColumnName: B))

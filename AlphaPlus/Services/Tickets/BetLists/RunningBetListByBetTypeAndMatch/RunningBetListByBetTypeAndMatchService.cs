@@ -23,5 +23,5 @@ public class RunningBetListByBetTypeAndMatchService(
             param.BetType,
             param.LiveIndicator,
             param.BetTeam,
-            Enumeration.FromValue<UserLevel>(param.CustLevelId)), param.DisplayVNIP);
+            param.CustLevelId), param.DisplayVNIP);
 }

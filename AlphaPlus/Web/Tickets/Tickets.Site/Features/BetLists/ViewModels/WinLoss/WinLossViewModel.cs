@@ -18,7 +18,8 @@ public class WinLossViewModel(
     string[] excludingTicketStatus = null,
     bool showFooter = false,
     bool showOrder = false,
-    int startIndex = 1) : BetListBaseViewModel(message, betListData, builder, ticketHelper, showMemberName)
+    int startIndex = 1,
+    bool supportRiskAmount = false) : BetListBaseViewModel(message, betListData, builder, ticketHelper, showMemberName, supportRiskAmount)
 {
     public bool AllowToViewSuperPT { get; } = message.ViewerLevel.IsSuperLevel();
 

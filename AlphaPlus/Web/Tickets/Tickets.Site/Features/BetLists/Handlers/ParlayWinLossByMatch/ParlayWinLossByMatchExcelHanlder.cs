@@ -13,7 +13,6 @@ using Fanex.BetList.Core.Entities;
 using MediatR;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
@@ -51,7 +50,7 @@ public class ParlayWinLossByMatchExcelHanlder(
         var tickets = await parlayWinLossByMatchService.GetBetList(param);
         var viewModel = new ParlayWinLossByMatchViewModel(message, new BetListData(tickets, null), null, TicketHelper);
 
-        var custLevel = Core.Models.Enumeration.FromValue<_UserLevel>(message.CustLevelId);
+        var custLevel = Core.Models.Enumeration.FromValue<UserLevel>(message.CustLevelId);
         workbook = workbook.UseTemplate(winLossByMatchExcelHandler.GetTemplateInfo(custLevel));
         winLossByMatchExcelHandler.RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 

@@ -1,7 +1,7 @@
 namespace AlphaPlus.Reports.Features.Outstanding;
 
 public record OutstandingParam(
-    UserLevel CustLevel,
+    byte CustLevelId,
     int CustId,
     string ProductIds,
     bool AutoFollowBetIsDummyAgent,

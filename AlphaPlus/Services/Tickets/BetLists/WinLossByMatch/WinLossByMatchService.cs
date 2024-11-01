@@ -58,7 +58,7 @@ public class WinLossByMatchService(
             param.FromDate,
             param.ToDate,
             await reportDateService.GetMoveBetsDay(),
-            param.CustLevel);
+            param.CustLevelId);
 
     private async Task<ICriteria> GetWinLossRacingCriteria(WinLossByMatchParam param)
         => new GetWinLossRacingCriteria(
@@ -68,7 +68,7 @@ public class WinLossByMatchService(
             param.FromDate,
             param.ToDate,
             await reportDateService.GetMoveBetsDay(),
-            param.CustLevel);
+            param.CustLevelId);
 
     private async Task<ICriteria> GetWinLossByMatchCriteria(WinLossByMatchParam param)
         => new GetWinLossByMatchCriteria(

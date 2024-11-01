@@ -5,5 +5,5 @@ public record ProgressiveContributionParam(
     DateTime FromDate,
     DateTime ToDate,
     string ProductIds,
-    UserLevel ViewerLevel,
+    byte ViewerLevelId,
     string SiteName);

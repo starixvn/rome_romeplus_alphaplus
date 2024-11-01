@@ -57,7 +57,7 @@ public class MatchWinLossDetailHandler(
 
         var param = new MatchWinLossDetailParam(
             message.ViewerId,
-            message.ViewerLevel,
+            message.ViewerLevel.Value,
             fromDate,
             message.ToDate,
             productViewModel.UserSelectedProductIds,
@@ -91,7 +91,7 @@ public class MatchWinLossDetailHandler(
             : BuildLeagueIds(await FilterLeagueIds(leagueParam, message.UserSelectedLeagueIds)).JoinWithComma();
         var param = new MatchWinLossDetailParam(
             message.ViewerId,
-            message.ViewerLevel,
+            message.ViewerLevel.Value,
             fromDate,
             message.ToDate,
             productIdsString,

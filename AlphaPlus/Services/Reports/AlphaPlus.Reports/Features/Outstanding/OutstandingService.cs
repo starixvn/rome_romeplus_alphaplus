@@ -17,7 +17,7 @@ public class OutstandingService(
 {
     public async Task<ReportData<OutstandingModel>> GetOutstanding(OutstandingParam param)
     {
-        var criteria = new OutstandingCriteria(param.CustLevel, param.CustId, param.ProductIds);
+        var criteria = new OutstandingCriteria(param.CustLevelId, param.CustId, param.ProductIds);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var total = new OutstandingModel();
@@ -51,7 +51,7 @@ public class OutstandingService(
     {
         var (agentId, followBetAccountEntities) = followBetAccount;
         var outstandingModels = await repository.FetchAsync<OutstandingModel>(
-            new OutstandingCriteria(UserLevel.Agent, agentId, productIds));
+            new OutstandingCriteria(RoleIdConstants.Agent, agentId, productIds));
 
         return outstandingModels.Join(
             followBetAccountEntities,

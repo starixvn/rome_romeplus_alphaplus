@@ -27,7 +27,7 @@ public class WinLossAnalysisService(
             reportDate.BalanceUpDay,
             reportDate.MoveBetsDay,
             param.ProductIds,
-            param.ViewerLevel);
+            param.ViewerLevelId);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var total = new WinLossAnalysisModel();

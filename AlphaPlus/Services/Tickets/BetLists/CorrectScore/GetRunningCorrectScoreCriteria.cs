@@ -3,17 +3,14 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.CorrectScore;
 
-internal class GetRunningCorrectScoreCriteria(int custId, UserLevel custLevel) : CriteriaBase
+internal class GetRunningCorrectScoreCriteria(int custId, byte custLevelId) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
-    [SpParam(Ignored = true)]
-    public UserLevel CustLevel { get; } = custLevel;
-
     public override string GetSettingKey()
-        => CustLevel.IsAgentLevel()
+        => RoleIdConstants.IsAgentLevel(custLevelId)
         ? "Age_TotalBets_Sel430_Ag"
-        : CustLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(custLevelId)
             ? "Age_TotalBets_Sel430_MAg"
             : "Age_TotalBets_Sel430_SAg";
 

@@ -21,18 +21,17 @@ public class ConsolidationEntity
     {
         get
         {
-            var level = Enumeration.FromValue<UserLevel>(CustLevel);
-            if (level.IsSuperLevel())
+            if (RoleIdConstants.IsSuperLevel(CustLevel))
             {
                 return SharedResources.Super;
             }
 
-            if (level.IsMasterLevel())
+            if (RoleIdConstants.IsMasterLevel(CustLevel))
             {
                 return SharedResources.Master;
             }
 
-            if (level.IsAgentLevel())
+            if (RoleIdConstants.IsAgentLevel(CustLevel))
             {
                 return SharedResources.Agent;
             }

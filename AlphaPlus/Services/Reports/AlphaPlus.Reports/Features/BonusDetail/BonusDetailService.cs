@@ -18,7 +18,7 @@ public class BonusDetailService(IDynamicRepository repository) : IBonusDetailSer
         GetBonusDetailCriteria criteria = null;
         Func<string, IEnumerable<BonusEntity>, GroupBonus> getLevelBonus;
 
-        if (param.ViewerLevel.IsSuperLevel())
+        if (RoleIdConstants.IsSuperLevel(param.ViewerLevelId))
         {
             criteria = new GetSuperBonusCriteria(
                 param.Username,
@@ -31,7 +31,7 @@ public class BonusDetailService(IDynamicRepository repository) : IBonusDetailSer
                 param.ViewerId);
             getLevelBonus = GetSuperBonus;
         }
-        else if (param.ViewerLevel.IsMasterLevel())
+        else if (RoleIdConstants.IsMasterLevel(param.ViewerLevelId))
         {
             criteria = new GetMasterBonusCriteria(
                 param.Username,

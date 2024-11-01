@@ -48,7 +48,7 @@ public class WinLossAnalysisHandler(
     {
         var winLossAnalysisParam = new WinLossAnalysisParam(
             message.ViewerId,
-            message.ViewerLevel,
+            message.ViewerLevel.Value,
             message.Site,
             message.ReportTypeId,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),

@@ -9,7 +9,7 @@ public interface ICustomerService
 
     Breadcrumb BuildBreadcrumb(CustomerLevel customerLevel);
 
-    IEnumerable<Breadcrumb> BuildBreadcrumbs(CustomerLevel customerLevel, UserLevel viewerLevel);
+    IEnumerable<Breadcrumb> BuildBreadcrumbs(CustomerLevel customerLevel, byte viewerLevelId);
 
     Task UpdateUserSearch(int viewerId, UsernameSuggestion param);
 }
@@ -21,42 +21,38 @@ public class CustomerService(IDynamicRepository repository) : ICustomerService
 
     public Breadcrumb BuildBreadcrumb(CustomerLevel customerLevel)
     {
-        var custLevel = Enumeration.FromValue<UserLevel>(customerLevel.RoleId);
-
-        if (custLevel.IsMasterLevel())
+        if (RoleIdConstants.IsMasterLevel(customerLevel.RoleId))
         {
-            return new Breadcrumb(customerLevel.SuperId, customerLevel.SuperName, UserLevel.Super.Value);
+            return new Breadcrumb(customerLevel.SuperId, customerLevel.SuperName, RoleIdConstants.Super);
         }
 
-        if (custLevel.IsAgentLevel())
+        if (RoleIdConstants.IsAgentLevel(customerLevel.RoleId))
         {
-            return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, UserLevel.Master.Value);
+            return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, RoleIdConstants.Master);
         }
 
-        return new Breadcrumb(customerLevel.AgentId.Value, customerLevel.AgentName, UserLevel.Agent.Value);
+        return new Breadcrumb(customerLevel.AgentId.Value, customerLevel.AgentName, RoleIdConstants.Agent);
     }
 
-    public IEnumerable<Breadcrumb> BuildBreadcrumbs(CustomerLevel customerLevel, UserLevel viewerLevel)
+    public IEnumerable<Breadcrumb> BuildBreadcrumbs(CustomerLevel customerLevel, byte viewerLevelId)
     {
-        var custLevel = Enumeration.FromValue<UserLevel>(customerLevel.RoleId);
-
-        if (viewerLevel.IsSuperLevel())
+        if (RoleIdConstants.IsSuperLevel(viewerLevelId))
         {
-            yield return new Breadcrumb(customerLevel.SuperId, customerLevel.SuperName, UserLevel.Super.Value);
+            yield return new Breadcrumb(customerLevel.SuperId, customerLevel.SuperName, RoleIdConstants.Super);
 
-            if (custLevel.IsMemberOrAgentLevel())
+            if (RoleIdConstants.IsMemberOrAgentLevel(customerLevel.RoleId))
             {
-                yield return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, UserLevel.Master.Value);
+                yield return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, RoleIdConstants.Master);
             }
         }
-        else if (viewerLevel.IsMasterLevel())
+        else if (RoleIdConstants.IsMasterLevel(viewerLevelId))
         {
-            yield return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, UserLevel.Master.Value);
+            yield return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, RoleIdConstants.Master);
         }
 
-        if (custLevel.IsMemberLevel() && customerLevel.AgentId.HasValue && !string.IsNullOrWhiteSpace(customerLevel.AgentName))
+        if (RoleIdConstants.IsMemberLevel(customerLevel.RoleId) && customerLevel.AgentId.HasValue && !string.IsNullOrWhiteSpace(customerLevel.AgentName))
         {
-            yield return new Breadcrumb(customerLevel.AgentId.Value, customerLevel.AgentName, UserLevel.Agent.Value);
+            yield return new Breadcrumb(customerLevel.AgentId.Value, customerLevel.AgentName, RoleIdConstants.Agent);
         }
     }
 

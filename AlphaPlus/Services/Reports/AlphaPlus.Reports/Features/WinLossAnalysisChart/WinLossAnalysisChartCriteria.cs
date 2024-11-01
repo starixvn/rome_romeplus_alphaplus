@@ -1,5 +1,4 @@
 using AlphaPlus.Reports.Features.Shared.Criteria;
-using Fanex.Data;
 
 namespace AlphaPlus.Reports.Features.WinLossAnalysisChart;
 
@@ -10,15 +9,12 @@ internal class WinLossAnalysisChartCriteria(
     DateTime balanceUpDay,
     DateTime moveBetsDay,
     string productIds,
-    UserLevel reportLevel) : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
+    byte reportLevelId) : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
 {
-    [SpParam(Ignored = true)]
-    public UserLevel ReportLevel { get; } = reportLevel;
-
     public override string GetSettingKey()
-        => ReportLevel.IsAgentLevel()
+        => RoleIdConstants.IsAgentLevel(reportLevelId)
         ? "Age_Chart_WinlossAnalysis_Member"
-        : ReportLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(reportLevelId)
             ? "Age_Chart_WinlossAnalysis_Agent"
             : "Age_Chart_WinlossAnalysis_Master";
 }

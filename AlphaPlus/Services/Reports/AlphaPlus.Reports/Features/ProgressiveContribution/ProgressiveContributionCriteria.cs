@@ -1,5 +1,4 @@
 using AlphaPlus.Reports.Features.Shared.Criteria;
-using Fanex.Data;
 
 namespace AlphaPlus.Reports.Features.ProgressiveContribution;
 
@@ -10,16 +9,13 @@ internal class ProgressiveContributionCriteria(
     DateTime balanceUpDay,
     DateTime moveBetsDay,
     string productIds,
-    UserLevel viewerLevel)
+    byte viewerLevelId)
     : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
 {
-    [SpParam(Ignored = true)]
-    public UserLevel ViewerLevel { get; } = viewerLevel;
-
     public override string GetSettingKey()
-        => ViewerLevel.IsAgentLevel()
+        => RoleIdConstants.IsAgentLevel(viewerLevelId)
         ? "Age_Rpt_ProgressiveGamesContribution_Member"
-        : ViewerLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(viewerLevelId)
             ? "Age_Rpt_ProgressiveGamesContribution_Agent"
             : "Age_Rpt_ProgressiveGamesContribution_Master";
 }

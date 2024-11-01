@@ -35,7 +35,7 @@ public class CommissionByBetTypeHandler(
     private Task<ReportData<CommissionByBetTypeModel>> GetCommissionByBetTypes(CommissionByBetTypeQuery message)
     {
         var param = new CommissionByBetTypeParam(
-            message.CustLevel,
+            message.CustLevel.Value,
             message.CustId,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
             message.ToDate,

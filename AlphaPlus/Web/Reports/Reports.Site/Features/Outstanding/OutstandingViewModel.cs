@@ -1,4 +1,5 @@
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Outstanding;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
@@ -19,7 +20,7 @@ public class OutstandingViewModel
         CustId = message.CustId;
         CustName = message.CustName;
         CustLevel = message.CustLevel;
-        ReportLevel = CustLevel.GetDirectDownlineLevel();
+        ReportLevel = CustLevel.GetDirectDownLineLevel();
         PageHeader = new PageHeaderViewModel(
             Title: ReportLevel.IsMasterLevel()
                 ? Resources.MasterOutstanding
@@ -63,7 +64,7 @@ public class OutstandingViewModel
     {
         yield return UserLevel.Member;
 
-        for (var level = custLevel; level <= viewerLevel; level++)
+        for (byte level = custLevel; level <= viewerLevel; level++)
         {
             yield return Enumeration.FromValue<UserLevel>(level);
         }

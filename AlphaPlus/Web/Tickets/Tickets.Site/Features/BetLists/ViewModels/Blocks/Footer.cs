@@ -1,20 +1,20 @@
 using AlphaPlus.BetLists.Shared.Models;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Utils;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Blocks;
 
 public class Footer
 {
-    private static readonly IDictionary<_UserLevel, int> FooterStatusColSpanByViewLevelId = new Dictionary<_UserLevel, int>
+    private static readonly IDictionary<UserLevel, int> FooterStatusColSpanByViewLevelId = new Dictionary<UserLevel, int>
     {
-        [_UserLevel.Agent] = 3,
-        [_UserLevel.Master] = 4,
-        [_UserLevel.Super] = 5
+        [UserLevel.Agent] = 3,
+        [UserLevel.Master] = 4,
+        [UserLevel.Super] = 5
     };
 
-    public Footer(BetListData betListData, _UserLevel viewerLevel, bool showMemberName, string[] excludingTicketStatus = null)
+    public Footer(BetListData betListData, UserLevel viewerLevel, bool showMemberName, string[] excludingTicketStatus = null, bool supportRiksAmount = false)
     {
         if (betListData != null)
         {
@@ -26,7 +26,7 @@ public class Footer
                 NotContainExcludingStatus(ticket, excludingTicketStatus) ? ticket.PlayerComm : 0);
         }
 
-        StatusColSpan = FooterStatusColSpanByViewLevelId[viewerLevel];
+        StatusColSpan = FooterStatusColSpanByViewLevelId[viewerLevel] + (supportRiksAmount ? 2 : 0);
         SubTotalWinLoss = ConvertByBetType.Winloss(TotalWinLoss);
         SubTotalCommission = ConvertByBetType.Comm(TotalCommission);
         Total = ConvertByBetType.Winloss(TotalWinLoss + TotalCommission);

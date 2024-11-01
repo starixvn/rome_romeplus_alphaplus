@@ -96,7 +96,7 @@ public class WinLossDetailNewHandler(
     {
         var param = new WinLossDetailParam(
             message.CustId,
-            message.CustLevel,
+            message.CustLevel.Value,
             (message.WeekFromDate ?? message.FromDate).GetGreaterDate(message.LimitedDateToShowInfo),
             message.WeekToDate ?? message.ToDate,
             validUserSelectedProductIds,
@@ -139,7 +139,7 @@ public class WinLossDetailNewHandler(
                 message.CustId = breadcrumb.CustId;
                 message.CustName = breadcrumb.CustName;
                 message.CustLevelId = breadcrumb.CustLevelId;
-                breadcrumbs = customerService.BuildBreadcrumbs(customerLevel, message.ViewerLevel).ToList();
+                breadcrumbs = customerService.BuildBreadcrumbs(customerLevel, message.ViewerLevel.Value).ToList();
             }
             else
             {

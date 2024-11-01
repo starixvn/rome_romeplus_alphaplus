@@ -41,7 +41,7 @@ public class ProgressiveContributionWookbook(IWebHostEnvironment webHostEnvironm
 
         var fileContent = UseTemplate(
             new TemplateInfo(
-                GetExcelTemplatePath(message.ViewerLevel.GetDirectDownlineLevel().DisplayName),
+                GetExcelTemplatePath(message.ViewerLevel.GetDirectDownLineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyEndIndex: 6))
             .Title(GetTitle(fromDate, toDate, productNames))

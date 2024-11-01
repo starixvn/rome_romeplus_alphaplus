@@ -42,7 +42,7 @@ public class WinLossByProductWorkbook(IWebHostEnvironment webHostEnvironment) :
 
         var fileContent = UseTemplate(
             new TemplateInfo(
-                GetExcelTemplatePath(message.ViewerLevel.GetDirectDownlineLevel().DisplayName),
+                GetExcelTemplatePath(message.ViewerLevel.GetDirectDownLineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable))
             .Title($"{Resources.WinLossByProduct} {fromDate} --> {toDate} - {Resources.of2}: {productNames}")
             .Header(key => key.Equals(betTypeName) ? $"{Resources.Product}/{Resources.BetType}" : Resources.ResourceManager.GetString(key))

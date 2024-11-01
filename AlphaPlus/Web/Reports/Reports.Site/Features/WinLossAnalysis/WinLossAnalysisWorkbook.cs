@@ -36,7 +36,7 @@ public class WinLossAnalysisWorkbook(IWebHostEnvironment webHostEnvironment) :
         var fileContent = UseTemplate(
             new TemplateInfo(
                 GetExcelTemplatePath(
-                    message.ViewerLevel.GetDirectDownlineLevel().DisplayName),
+                    message.ViewerLevel.GetDirectDownLineLevel().DisplayName),
                     noInfomationText: Resources.NoInformationIsAvailable))
             .Title($"{reportTitle} {fromDate} --> {toDate} {Resources.of}: {productNames}")
             .Header(key => key.Equals("ReportTypeName") ? reportTypeName : Resources.ResourceManager.GetString(key))

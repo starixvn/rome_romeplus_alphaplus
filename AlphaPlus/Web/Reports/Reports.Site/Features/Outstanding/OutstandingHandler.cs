@@ -24,7 +24,7 @@ public class OutstandingHandler(
         var products = GetProducts(message).Where(p => p.Id != SabaPromotionProductId);
         var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds, products);
         var outstandingParam = new OutstandingParam(
-            message.CustLevel,
+            message.CustLevel.Value,
             message.CustId,
             productViewModel.UserSelectedProductIds,
             message.AutoFollowBetIsDummyAgent,

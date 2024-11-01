@@ -11,7 +11,7 @@ public class ComboParlayViewModel : BetListBaseViewModel
         ComboParlayQuery message,
         BetListData betListData,
         IBetListHTMLBuilder builder,
-        ITicketHelper ticketHelper) : base(message, betListData, builder, ticketHelper)
+        ITicketHelper ticketHelper) : base(message, betListData, builder, ticketHelper, supportRiskAmount: true)
     {
         TicketHelper.IsShowOddsWithChoice = true;
         HideOfferNameUnitStakes = string.IsNullOrEmpty(message.BetCheck);

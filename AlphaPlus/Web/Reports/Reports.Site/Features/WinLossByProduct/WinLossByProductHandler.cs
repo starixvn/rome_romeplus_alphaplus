@@ -45,7 +45,7 @@ public class WinLossByProductHandler(
     {
         var param = new WinLossByProductParam(
             message.ViewerId,
-            message.ViewerLevel,
+            message.ViewerLevel.Value,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
             message.ToDate,
             userSelectedProductIds,

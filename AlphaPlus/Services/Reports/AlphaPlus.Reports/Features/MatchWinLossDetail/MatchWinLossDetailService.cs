@@ -63,7 +63,7 @@ public class MatchWinLossDetailService(
             moveBetsDay,
             param.ProductIds,
             param.LeagueIds,
-            param.ViewerLevel);
+            param.ViewerLevelId);
 
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
         var rawdata = await repository.FetchAsync<MatchWinLossDetailEntity>(criteria);

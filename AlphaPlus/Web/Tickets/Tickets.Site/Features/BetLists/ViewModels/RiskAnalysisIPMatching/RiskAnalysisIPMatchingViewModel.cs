@@ -12,7 +12,7 @@ public class RiskAnalysisIPMatchingViewModel(
     RiskAnalysisIPMatchingQuery message,
     BetListData betListData,
     IBetListHTMLBuilder builder,
-    ITicketHelper ticketHelper) : WinLossViewModel(message, betListData, builder, ticketHelper, false, false, true, excludingTicketStatus)
+    ITicketHelper ticketHelper) : WinLossViewModel(message, betListData, builder, ticketHelper, false, false, true, excludingTicketStatus, supportRiskAmount: true)
 {
     public string IP { get; } = message.IP;
 

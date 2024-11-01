@@ -4,15 +4,12 @@ using Fanex.Data.Repository;
 namespace AlphaPlus.Reports.Features.CommissionByBetType;
 
 internal class CommissionByBetTypeCriteria(
-    UserLevel custLevel,
+    byte custLevelId,
     int custId,
     DateTime fromDate,
     DateTime toDate,
     DateTime moveBetsDay) : CriteriaBase
 {
-    [SpParam(Ignored = true)]
-    public UserLevel CustLevel { get; } = custLevel;
-
     public int CustId { get; } = custId;
 
     public DateTime FromDate { get; } = fromDate;
@@ -22,12 +19,11 @@ internal class CommissionByBetTypeCriteria(
     public DateTime MoveBetsDay { get; } = moveBetsDay;
 
     public override string GetSettingKey()
-        => CustLevel.IsAgentLevel()
+        => RoleIdConstants.IsAgentLevel(custLevelId)
         ? "Age_Rpt_CommByBettype_Member"
-        : CustLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(custLevelId)
             ? "Age_Rpt_CommByBettype_Agent"
             : "Age_Rpt_CommByBettype_Master";
 
-    public override bool IsValid()
-        => !CustLevel.IsMemberLevel() && CustId > 0 && FromDate <= ToDate;
+    public override bool IsValid() => CustId > 0 && FromDate <= ToDate;
 }

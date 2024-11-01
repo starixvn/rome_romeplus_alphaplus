@@ -1,23 +1,19 @@
-using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Outstanding;
 
-internal class OutstandingCriteria(UserLevel custLevel, int custId, string productIds) : CriteriaBase
+internal class OutstandingCriteria(byte custLevelId, int custId, string productIds) : CriteriaBase
 {
-    [SpParam(Ignored = true)]
-    public UserLevel CustLevel { get; } = custLevel;
-
     public int CustId { get; } = custId;
 
     public string ProductIds { get; } = productIds;
 
     public override string GetSettingKey()
-        => CustLevel.IsAgentLevel()
+        => RoleIdConstants.IsAgentLevel(custLevelId)
         ? "Age_Rpt_Outstanding_Member"
-        : CustLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(custLevelId)
             ? "Age_Rpt_Outstanding_Agent"
             : "Age_Rpt_Outstanding_Master";
 
-    public override bool IsValid() => CustLevel.IsNotMemberLevel();
+    public override bool IsValid() => CustId > 0 && !string.IsNullOrWhiteSpace(ProductIds);
 }

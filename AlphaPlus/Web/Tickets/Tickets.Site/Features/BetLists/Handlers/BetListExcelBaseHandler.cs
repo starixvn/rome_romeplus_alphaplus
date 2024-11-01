@@ -9,7 +9,7 @@ using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Utils;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
+using AlphaPlus.Core.Models;
 using AlphaPlus.BetLists.Builders;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
@@ -126,7 +126,7 @@ public class BetListExcelBaseHandler(
         return betListNamespace.Substring(lastIndexOfDot);
     }
 
-    protected internal virtual TemplateInfo GetTemplateInfo(_UserLevel viewerLevel)
+    protected internal virtual TemplateInfo GetTemplateInfo(UserLevel viewerLevel)
         => new TemplateInfo(
             ExcelTemplatePath(viewerLevel),
             noInfomationText: AlphaPlus.Shared.AppResources.Betlist.Site.Resources.NoInformationIsAvailable,
@@ -134,10 +134,10 @@ public class BetListExcelBaseHandler(
             bodyEndIndex: 4,
             footerEndIndex: 5);
 
-    protected internal virtual string ExcelTemplatePath(_UserLevel viewerLevel)
+    protected internal virtual string ExcelTemplatePath(UserLevel viewerLevel)
         => GetExcelTemplatePath(viewerLevel.DisplayName);
 
-    protected internal virtual Mapper<TicketDto> GetBodyRowMapper(_UserLevel viewerLevel, BetListBaseViewModel viewModel)
+    protected internal virtual Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
     {
         var ticketData = viewModel.BetListData.TicketData;
         var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
@@ -145,7 +145,7 @@ public class BetListExcelBaseHandler(
 
         if (viewerLevel.IsMasterLevel())
         {
-            mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, _UserLevel.Agent));
+            mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
         }
 
         AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
@@ -186,17 +186,17 @@ public class BetListExcelBaseHandler(
             .Map(F, ticket => BuildWinLoss(ticket))
             .Map(G, ticket => BuildStatus(ticket, viewModel));
 
-    protected void AddPtCommissionForSuper(Mapper<TicketDto> mapper, _UserLevel viewerLevel, List<ITicketData> ticketData)
+    protected void AddPtCommissionForSuper(Mapper<TicketDto> mapper, UserLevel viewerLevel, List<ITicketData> ticketData)
     {
         if (viewerLevel.IsSuperLevel())
         {
             mapper
-                .Map(I, ticket => BuildPtCommmission(ticket, ticketData, _UserLevel.Master))
-                .Map(J, ticket => BuildPtCommmission(ticket, ticketData, _UserLevel.Agent));
+                .Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
+                .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
         }
     }
 
-    protected void AddPlatform(Mapper<TicketDto> mapper, _UserLevel viewerLevel)
+    protected void AddPlatform(Mapper<TicketDto> mapper, UserLevel viewerLevel)
     {
         var platformColId = I;
         if (viewerLevel.IsSuperLevel())
@@ -261,7 +261,7 @@ public class BetListExcelBaseHandler(
             RtfHelper);
     }
 
-    protected virtual IRichTextString BuildPtCommmission(ITicket ticket, List<ITicketData> ticketData, _UserLevel userLevel)
+    protected virtual IRichTextString BuildPtCommmission(ITicket ticket, List<ITicketData> ticketData, UserLevel userLevel)
         => BetListExcelBuilderExt.BuildPtCommmission(ticket, ticketData, userLevel, RtfHelper);
 
     protected virtual IRichTextString BuildPlatform(string platform)

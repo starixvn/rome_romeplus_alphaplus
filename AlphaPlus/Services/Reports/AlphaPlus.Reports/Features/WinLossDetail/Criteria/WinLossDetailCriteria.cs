@@ -1,5 +1,3 @@
-using Fanex.Data;
-
 namespace AlphaPlus.Reports.Features.WinLossDetail;
 
 internal class WinLossDetailCriteria(
@@ -9,14 +7,11 @@ internal class WinLossDetailCriteria(
     DateTime balanceUpDay,
     DateTime moveBetsDay,
     string productIds,
-    UserLevel custLevel,
+    byte custLevelId,
     string productDetails,
     string username)
         : WinLossDetailWeekDataCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds, productDetails, username)
 {
-    [SpParam(Ignored = true)]
-    public UserLevel CustLevel { get; } = custLevel;
-
     public int PageIndex { get; } = 1;
 
     public int PageSize { get; } = 10000;
@@ -24,9 +19,9 @@ internal class WinLossDetailCriteria(
     public int TotalRecords { get; set; }
 
     public override string GetSettingKey()
-        => CustLevel.IsAgentLevel()
+        => RoleIdConstants.IsAgentLevel(custLevelId)
         ? "Age_Rpt_WinLossDetail_Member"
-        : CustLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(custLevelId)
             ? "Age_Rpt_WinLossDetail_Agent"
             : "Age_Rpt_WinLossDetail_Master";
 }

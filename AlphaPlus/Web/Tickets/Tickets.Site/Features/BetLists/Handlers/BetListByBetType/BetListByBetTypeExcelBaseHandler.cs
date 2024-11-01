@@ -1,4 +1,5 @@
 using AlphaPlus.BetLists.Shared.Models;
+using AlphaPlus.Core.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
@@ -8,7 +9,6 @@ using Fanex.BetList.Core.Entities;
 using Microsoft.Extensions.Options;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.BetListByBetType;
 
@@ -21,22 +21,33 @@ public class BetListByBetTypeExcelBaseHandler(
     IOptions<AppSettings> options,
     IWebHostEnvironment webHostEnvironment) : BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, options, webHostEnvironment)
 {
-    protected internal override Mapper<TicketDto> GetBodyRowMapper(_UserLevel viewerLevel, BetListBaseViewModel viewModel)
+    protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
     {
         var ticketData = viewModel.BetListData.TicketData;
 
         var mapper = GetTicketDtoRowMapperIncludeUsername(viewModel, showWinLoss: false);
-
         mapper.Map(H, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel));
 
-        if (viewerLevel.IsMasterLevel())
+        if (viewerLevel.IsSuperLevel())
         {
-            mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, _UserLevel.Agent));
+            AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
+            mapper.Map(K, ticket => ticket.MemberWinText);
+            mapper.Map(L, ticket => viewModel.GetSMARiskAmount(ticket));
+            mapper.Map(M, ticket => BuildPlatform(ticket.Platform));
         }
-
-        AddPtCommissionForSuper(mapper, viewerLevel, ticketData);
-
-        AddPlatform(mapper, viewerLevel);
+        else if (viewerLevel.IsMasterLevel())
+        {
+            mapper.Map(I, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent));
+            mapper.Map(J, ticket => ticket.MemberWinText);
+            mapper.Map(K, ticket => viewModel.GetSMARiskAmount(ticket));
+            mapper.Map(L, ticket => BuildPlatform(ticket.Platform));
+        }
+        else if (viewerLevel.IsAgentLevel())
+        {
+            mapper.Map(I, ticket => ticket.MemberWinText);
+            mapper.Map(J, ticket => viewModel.GetSMARiskAmount(ticket));
+            mapper.Map(K, ticket => BuildPlatform(ticket.Platform));
+        }
 
         return mapper;
     }

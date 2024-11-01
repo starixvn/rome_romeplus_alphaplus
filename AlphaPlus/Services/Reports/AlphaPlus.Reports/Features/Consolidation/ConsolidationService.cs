@@ -62,9 +62,8 @@ public class ConsolidationService(
 
         if (rawdata.Any())
         {
-            var memberValue = UserLevel.Member.Value;
             var smaCustIds = rawdata
-                .Where(c => c.CustLevel != memberValue)
+                .Where(c => RoleIdConstants.IsNotMemberLevel(c.CustLevel))
                 .Select(c => c.CustId)
                 .Distinct()
                 .JoinWithComma();

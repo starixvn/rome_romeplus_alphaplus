@@ -2,7 +2,7 @@ namespace AlphaPlus.Reports.Features.BonusDetail;
 
 public record BonusDetailParam(
     int ViewerId,
-    UserLevel ViewerLevel,
+    byte ViewerLevelId,
     string Username,
     DateTime FromDate,
     DateTime ToDate,

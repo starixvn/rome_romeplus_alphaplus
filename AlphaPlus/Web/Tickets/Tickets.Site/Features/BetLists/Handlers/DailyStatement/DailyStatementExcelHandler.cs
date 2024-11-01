@@ -12,9 +12,9 @@ using Fanex.BetList.Core.Entities;
 using MediatR;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
+using static ONEbook.SpreadSheets.Column;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.DailyStatement;
 
@@ -38,9 +38,9 @@ public class DailyStatementExcelHandler(
     {
         var param = DailyStatementHandler.CreateDailyStatementParam(message);
         var betlistData = await dailyStatementService.GetBetList(param);
-        var viewModel = new DailyStatementViewModel(message, betlistData, Builder, TicketHelper);
+        var viewModel = new DailyStatementViewModel(message, betlistData, Builder, TicketHelper, supportRiskAmount: message.SupportRiskAmount);
 
-        workbook = workbook.UseTemplate(GetTemplateInfo(_UserLevel.Member));
+        workbook = workbook.UseTemplate(message.SupportRiskAmount ? GetRiskAmountTemplateInfo(message.ViewerLevel) : GetTemplateInfo(message.ViewerLevel));
         RtfHelper = message.RtfHelper ?? InitRTFHelper((workbook as NpoiWorkbook<TicketDto>).Workbook);
 
         var fileContent = workbook
@@ -53,12 +53,29 @@ public class DailyStatementExcelHandler(
         return new ExcelFileViewModel("BetList", fileContent);
     }
 
-    protected internal override Mapper<TicketDto> GetBodyRowMapper(_UserLevel viewerLevel, BetListBaseViewModel viewModel)
+    protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
     {
         var mapper = GetTicketDtoRowMapperExcludeUsername(viewModel);
 
-        mapper.Map(Column.H, ticket => BuildPlatform(ticket.Platform));
+        if (viewModel.SupportRiskAmount)
+        {
+            mapper.Map(H, ticket => ticket.MemberWinText);
+            mapper.Map(I, ticket => viewModel.GetSMARiskAmount(ticket));
+            mapper.Map(J, ticket => BuildPlatform(ticket.Platform));
+        }
+        else
+        {
+            mapper.Map(H, ticket => BuildPlatform(ticket.Platform));
+        }
 
         return mapper;
     }
+
+    private TemplateInfo GetRiskAmountTemplateInfo(UserLevel viewerLevel)
+        => new TemplateInfo(
+            GetExcelTemplatePath($"{viewerLevel.DisplayName}-RiskAmount"),
+            noInfomationText: Resources.NoInformationIsAvailable,
+            bodyStartIndex: 3,
+            bodyEndIndex: 4,
+            footerEndIndex: 5);
 }

@@ -10,7 +10,7 @@ internal class MatchWinLossDetailCriteria(
     DateTime moveBetsDay,
     string productIds,
     string leagueIds,
-    UserLevel reportLevel) : CriteriaBase
+    byte reportLevelId) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
@@ -26,13 +26,10 @@ internal class MatchWinLossDetailCriteria(
 
     public bool IsGetAll => string.IsNullOrWhiteSpace(LeagueIds);
 
-    [SpParam(Ignored = true)]
-    public UserLevel ReportLevel { get; } = reportLevel;
-
     public override string GetSettingKey()
-        => ReportLevel.IsAgentLevel()
+        => RoleIdConstants.IsAgentLevel(reportLevelId)
         ? "Age_Rpt_MatchWinLossDetail_Member"
-        : ReportLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(reportLevelId)
             ? "Age_Rpt_MatchWinLossDetail_Agent"
             : "Age_Rpt_MatchWinlossDetail_Master";
 

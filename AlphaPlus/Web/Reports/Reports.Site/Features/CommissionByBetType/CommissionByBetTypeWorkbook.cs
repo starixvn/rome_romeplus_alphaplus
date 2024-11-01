@@ -25,7 +25,7 @@ public class CommissionByBetTypeWorkbook(IWebHostEnvironment webHostEnvironment)
 
         var fileContent = UseTemplate(
             new TemplateInfo(
-                GetExcelTemplatePath(message.CustLevel.GetDirectDownlineLevel().DisplayName),
+                GetExcelTemplatePath(message.CustLevel.GetDirectDownLineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3,
                 bodyEndIndex: 4))

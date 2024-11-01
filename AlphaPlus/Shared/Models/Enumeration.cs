@@ -2,7 +2,7 @@ using System.Collections;
 using System.Reflection;
 
 [Serializable]
-public abstract class Enumeration : IComparable
+internal abstract class Enumeration : IComparable
 {
     protected Enumeration()
     {

@@ -30,7 +30,7 @@ public class ParlayWinLossByMatchService(
             param.FromDate,
             param.ToDate,
             await reportDateService.GetMoveBetsDay(),
-            param.CustLevel);
+            param.CustLevelId);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var tickets = await repository.FetchAsync<TicketDto>(criteria);

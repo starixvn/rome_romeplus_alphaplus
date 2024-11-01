@@ -24,7 +24,7 @@ public class WinLossAnalysisChartService(
             reportDate.BalanceUpDay,
             reportDate.MoveBetsDay,
             param.ProductIds,
-            param.CustLevel);
+            param.CustLevelId);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var rawdata = await repository.FetchAsync<WinLossAnalysisChartModel>(criteria);

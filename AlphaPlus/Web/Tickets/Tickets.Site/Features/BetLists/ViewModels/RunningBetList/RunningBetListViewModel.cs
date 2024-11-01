@@ -16,7 +16,7 @@ public class RunningBetListViewModel(
     ProductMultiSelectionViewModel productViewModel,
     HashSet<int> supportScoreMapBetTypeIds,
     IBetListHTMLBuilder builder,
-    ITicketHelper ticketHelper) : BetListBaseViewModel(message, betListData, builder, ticketHelper)
+    ITicketHelper ticketHelper) : BetListBaseViewModel(message, betListData, builder, ticketHelper, supportRiskAmount: true)
 {
     public bool GetAll { get; } = message.GetAll;
 

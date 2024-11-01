@@ -12,7 +12,7 @@ public class SearchTicketsViewModel(
     SearchTicketsQuery message,
     BetListData betListData,
     IBetListHTMLBuilder builder,
-    ITicketHelper ticketHelper) : WinLossViewModel(message, betListData, builder, ticketHelper, message.IsEnabledJackpot, false, true)
+    ITicketHelper ticketHelper) : WinLossViewModel(message, betListData, builder, ticketHelper, message.IsEnabledJackpot, false, showMemberName: true, supportRiskAmount: true)
 {
     protected override string GetTitle() => Resources.SearchTickets;
 

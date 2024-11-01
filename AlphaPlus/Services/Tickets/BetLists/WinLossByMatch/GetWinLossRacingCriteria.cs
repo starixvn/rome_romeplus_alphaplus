@@ -10,7 +10,7 @@ internal class GetWinLossRacingCriteria(
     DateTime fromDate,
     DateTime toDate,
     DateTime moveBetsDate,
-    UserLevel custLevel) : CriteriaBase
+    byte custLevelId) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
@@ -25,9 +25,9 @@ internal class GetWinLossRacingCriteria(
     public DateTime MoveBetsDay { get; } = moveBetsDate;
 
     public override string GetSettingKey()
-        => custLevel.IsSuperLevel()
+        => RoleIdConstants.IsSuperLevel(custLevelId)
         ? "Age_BetList_SelWinlossHR_SAg"
-        : custLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(custLevelId)
             ? "Age_BetList_SelWinlossHR_MAg"
             : "Age_BetList_SelWinlossHR_Ag";
 

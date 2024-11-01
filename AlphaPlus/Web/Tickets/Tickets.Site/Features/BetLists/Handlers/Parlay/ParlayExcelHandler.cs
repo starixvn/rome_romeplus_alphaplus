@@ -7,7 +7,6 @@ using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
 using MediatR;
 using ONEbook.SpreadSheets;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 using static ONEbook.SpreadSheets.Column;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Parlay;
 using BetListNPOI.SS.UserModel;
@@ -56,7 +55,7 @@ public class ParlayExcelHandler(
         return new ExcelFileViewModel("SystemParlay_Details", fileContent);
     }
 
-    protected internal override TemplateInfo GetTemplateInfo(_UserLevel viewerLevel)
+    protected internal override TemplateInfo GetTemplateInfo(UserLevel viewerLevel)
         => new TemplateInfo(
             GetExcelTemplatePath("ComboParlayDetail"),
             noInfomationText: Resources.NoInformationIsAvailable,

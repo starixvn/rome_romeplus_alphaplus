@@ -2,7 +2,7 @@ namespace AlphaPlus.Reports.Features.WinLossAnalysis;
 
 public record WinLossAnalysisParam(
     int ViewerId,
-    UserLevel ViewerLevel,
+    byte ViewerLevelId,
     string SiteName,
     int ReportType,
     DateTime FromDate,

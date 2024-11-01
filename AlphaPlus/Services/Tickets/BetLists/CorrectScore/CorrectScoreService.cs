@@ -22,7 +22,7 @@ public class CorrectScoreService(
 
     public async Task<IEnumerable<TicketDto>> GetBetList(CorrectScoreParam param)
     {
-        var criteria = new GetRunningCorrectScoreCriteria(param.CustId, Enumeration.FromValue<UserLevel>(param.CustLevelId));
+        var criteria = new GetRunningCorrectScoreCriteria(param.CustId, param.CustLevelId);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var tickets = await repository.FetchAsync<TicketDto>(criteria);

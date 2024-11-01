@@ -14,7 +14,6 @@ using MediatR;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
 using static ONEbook.SpreadSheets.Column;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
@@ -56,7 +55,7 @@ public class RiskAnalysisIPMatchingExcelHandler(
         return new ExcelFileViewModel(viewModel.Title, fileContent);
     }
 
-    protected internal override Mapper<TicketDto> GetBodyRowMapper(_UserLevel viewerLevel, BetListBaseViewModel viewModel)
+    protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
     {
         var ticketData = viewModel.BetListData.TicketData;
         var mapper = new Mapper<TicketDto>()
@@ -69,9 +68,11 @@ public class RiskAnalysisIPMatchingExcelHandler(
             .Map(G, ticket => BuildWinLoss(ticket))
             .Map(H, ticket => BuildStatus(ticket, viewModel))
             .Map(I, ticket => BuildPtCommmission(ticket, ticketData, viewerLevel))
-            .Map(J, ticket => BuildPtCommmission(ticket, ticketData, _UserLevel.Master))
-            .Map(K, ticket => BuildPtCommmission(ticket, ticketData, _UserLevel.Agent))
-            .Map(L, ticket => BuildPlatform(ticket.Platform));
+            .Map(J, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Master))
+            .Map(K, ticket => BuildPtCommmission(ticket, ticketData, UserLevel.Agent))
+            .Map(L, ticket => ticket.MemberWinText)
+            .Map(M, ticket => viewModel.GetSMARiskAmount(ticket))
+            .Map(N, ticket => BuildPlatform(ticket.Platform));
 
         return mapper;
     }

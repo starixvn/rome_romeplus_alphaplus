@@ -14,7 +14,6 @@ using MediatR;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
 using static ONEbook.SpreadSheets.Column;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
 
@@ -60,7 +59,7 @@ public class CasinoDetailsExcelHandler(
         return new ExcelFileViewModel(viewModel.Title, fileContent);
     }
 
-    internal Mapper<TicketDto> GetBodyRowMapper(_UserLevel viewerLevel, bool displayVNIP)
+    internal Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, bool displayVNIP)
     {
         var mapper = new Mapper<TicketDto>()
             .Map(A, _ => currentRowIndex++)
@@ -74,14 +73,14 @@ public class CasinoDetailsExcelHandler(
 
         if (viewerLevel.IsMasterLevel())
         {
-            mapper.Map(I, ticket => BuildPtCommmission(ticket, null, _UserLevel.Agent));
+            mapper.Map(I, ticket => BuildPtCommmission(ticket, null, UserLevel.Agent));
         }
 
         if (viewerLevel.IsSuperLevel())
         {
             mapper
-                .Map(I, ticket => BuildPtCommmission(ticket, null, _UserLevel.Master))
-                .Map(J, ticket => BuildPtCommmission(ticket, null, _UserLevel.Agent));
+                .Map(I, ticket => BuildPtCommmission(ticket, null, UserLevel.Master))
+                .Map(J, ticket => BuildPtCommmission(ticket, null, UserLevel.Agent));
         }
 
         AddPlatform(mapper, viewerLevel);

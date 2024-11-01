@@ -55,7 +55,7 @@ public class ProgressiveContributionService(
             date.BalanceUpDay,
             date.MoveBetsDay,
             param.ProductIds,
-            param.ViewerLevel);
+            param.ViewerLevelId);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         return await repository.FetchAsync<ProgressiveContributionEntity>(criteria);

@@ -7,10 +7,9 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Shared\Models\Enumeration.cs" Link="Shared\Models\Enumeration.cs" />
-    <Compile Include="..\..\..\Shared\Models\UserLevel.cs" Link="Shared\Models\UserLevel.cs" />
     <Compile Include="..\..\..\Shared\Extensions\StringExtensions.cs" Link="Shared\Extensions\StringExtensions.cs" />
     <Compile Include="..\..\..\Shared\Constants\BetTypeConstants.cs" Link="Shared\Constants\BetTypeConstants.cs" />
+    <Compile Include="..\..\..\Shared\Constants\RoleIdConstants.cs" Link="Shared\Constants\RoleIdConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.BetList.Core" Version="3.0.4.3" />

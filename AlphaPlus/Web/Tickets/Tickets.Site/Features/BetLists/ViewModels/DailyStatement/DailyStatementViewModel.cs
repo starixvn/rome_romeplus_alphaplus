@@ -13,8 +13,9 @@ public class DailyStatementViewModel(
     BetListData betListData,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper,
-    HashSet<int> supportScoreMapBetTypeIds = null)
-        : BetListBaseViewModel(message, betListData, builder, ticketHelper, false)
+    HashSet<int> supportScoreMapBetTypeIds = null,
+    bool supportRiskAmount = false)
+        : BetListBaseViewModel(message, betListData, builder, ticketHelper, false, supportRiskAmount)
 {
     private static readonly string[] ExcludedTicketStatus =
     [
@@ -25,7 +26,7 @@ public class DailyStatementViewModel(
         BetStatus.Pending
     ];
 
-    public Footer Footer { get; } = new Footer(betListData, message.ViewerLevel, false, ExcludedTicketStatus);
+    public Footer Footer { get; } = new Footer(betListData, message.ViewerLevel, false, ExcludedTicketStatus, supportRiskAmount);
 
     public bool ShowContributionAmountRoundNote { get; } = message.IsEnabledJackpot;
 

@@ -9,7 +9,7 @@ internal class GetParlayWinLossByMatchCriteria(
     DateTime fromDate,
     DateTime toDate,
     DateTime moveBetsDate,
-    UserLevel custLevel) : CriteriaBase
+    byte custLevelId) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
@@ -22,9 +22,9 @@ internal class GetParlayWinLossByMatchCriteria(
     public DateTime MoveBetsDay { get; } = moveBetsDate;
 
     public override string GetSettingKey()
-        => custLevel.IsSuperLevel()
+        => RoleIdConstants.IsSuperLevel(custLevelId)
         ? "Age_BetList_SelWinlossParlay_SAg"
-        : custLevel.IsMasterLevel()
+        : RoleIdConstants.IsMasterLevel(custLevelId)
             ? "Age_BetList_SelWinlossParlay_MAg"
             : "Age_BetList_SelWinlossParlay_Ag";
 

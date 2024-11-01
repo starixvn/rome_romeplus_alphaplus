@@ -1,4 +1,5 @@
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared.Models;

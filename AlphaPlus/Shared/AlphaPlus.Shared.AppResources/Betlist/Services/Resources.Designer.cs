@@ -2807,5 +2807,60 @@ namespace AlphaPlus.Shared.AppResources.Betlist.Services
                 return ResourceManager.GetString("EnableChatBot_LastBets", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Risk.
+        /// </summary>
+        public static string AgentRisk
+        {
+            get
+            {
+                return ResourceManager.GetString("AgentRisk", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master Risk.
+        /// </summary>
+        public static string MasterRisk
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterRisk", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to To Win.
+        /// </summary>
+        public static string MemberRisk
+        {
+            get
+            {
+                return ResourceManager.GetString("MemberRisk", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;To Win&lt;/b&gt;: The potential net winning amount a Member can receive from a Sportsbook running bet ticket. &lt;b&gt;Your Risk Amount&lt;/b&gt;: The potential risk you bear if the Member wins the ticket, calculated as: &lt;b&gt;Your Risk Amount = To Win * Your Position Taking. &lt;/b&gt;These values do not apply to &lt;b&gt;Sportsbook settled tickets or other product tickets&lt;/b&gt; (both running and settled), and will be displayed as &lt;b&gt;&apos;N/A&apos;&lt;/b&gt; (Not Applicable)..
+        /// </summary>
+        public static string MemberWinNote
+        {
+            get
+            {
+                return ResourceManager.GetString("MemberWinNote", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Super Risk.
+        /// </summary>
+        public static string SuperRisk
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperRisk", resourceCulture);
+            }
+        }
     }
 }

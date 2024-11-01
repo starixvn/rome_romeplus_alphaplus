@@ -55,7 +55,7 @@ public class WinLossHandler(
     {
         var param = new WinLossParam(
             message.CustId,
-            message.CustLevel,
+            message.CustLevel.Value,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
             message.ToDate,
             validUserSelectedProductIds,

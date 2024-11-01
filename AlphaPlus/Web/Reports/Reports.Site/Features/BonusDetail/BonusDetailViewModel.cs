@@ -3,6 +3,7 @@ using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Reports.Site.Features.BonusDetail;
 

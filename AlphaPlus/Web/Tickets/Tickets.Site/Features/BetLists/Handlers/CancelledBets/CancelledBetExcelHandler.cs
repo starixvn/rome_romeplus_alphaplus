@@ -17,7 +17,6 @@ using Microsoft.Extensions.Options;
 using ONEbook.SpreadSheets;
 using ONEbook.SpreadSheets.BetListNPOI;
 using static ONEbook.SpreadSheets.Column;
-using _UserLevel = AlphaPlus.Core.Models.UserLevel;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.CancelledBets;
 
@@ -63,10 +62,10 @@ public class CancelledBetExcelHandler(
         return new ExcelFileViewModel(fileName, fileContent);
     }
 
-    protected internal override string ExcelTemplatePath(_UserLevel viewerLevel)
+    protected internal override string ExcelTemplatePath(UserLevel viewerLevel)
         => GetExcelTemplatePath(viewerLevel.DisplayName);
 
-    protected internal override Mapper<TicketDto> GetBodyRowMapper(_UserLevel viewerLevel, BetListBaseViewModel viewModel)
+    protected internal override Mapper<TicketDto> GetBodyRowMapper(UserLevel viewerLevel, BetListBaseViewModel viewModel)
         => GetTicketDtoRowMapperIncludeUsername(
             viewModel,
             showWinLoss: false).Map(H, ticket => BuildPlatform(ticket.Platform));

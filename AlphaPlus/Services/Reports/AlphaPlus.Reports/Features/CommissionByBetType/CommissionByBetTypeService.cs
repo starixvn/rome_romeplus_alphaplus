@@ -19,7 +19,7 @@ public class CommissionByBetTypeService(
     {
         var moveBetsDay = await reportDateService.GetMoveBetsDay();
         var criteria = new CommissionByBetTypeCriteria(
-            param.CustLevel,
+            param.CustLevelId,
             param.CustId,
             param.FromDate,
             param.ToDate,

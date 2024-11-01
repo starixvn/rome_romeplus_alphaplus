@@ -9,4 +9,4 @@ public record SuperWinLossDetailByPTParam(
     string ProductIds,
     string ProductDetailsXml,
     byte SettingStatus,
-    string SiteName) : WinLossParam(CustId, UserLevel.Super, FromDate, ToDate, ProductIds, ProductDetailsXml, SiteName);
+    string SiteName) : WinLossParam(CustId, RoleIdConstants.Super, FromDate, ToDate, ProductIds, ProductDetailsXml, SiteName);

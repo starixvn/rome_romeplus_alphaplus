@@ -24,12 +24,12 @@ public class OutstandingModel
         return model1;
     }
 
-    public decimal GetValueByLevel(UserLevel userLevel)
-        => userLevel.IsMemberLevel()
+    public decimal GetValueByLevel(byte userLevelId)
+    => RoleIdConstants.IsMemberLevel(userLevelId)
         ? MemberOutstanding
-        : userLevel.IsAgentLevel()
+        : RoleIdConstants.IsAgentLevel(userLevelId)
             ? AgentOutstanding
-            : userLevel.IsMasterLevel()
+            : RoleIdConstants.IsMasterLevel(userLevelId)
                 ? MasterOutstanding
                 : SuperOutstanding;
 }

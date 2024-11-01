@@ -12,7 +12,7 @@ public class LastBetsDataNewViewModel(
     BetListBaseQuery message,
     BetListData betListData,
     IBetListHTMLBuilder builder,
-    ITicketHelper ticketHelper) : BetListBaseViewModel(message, betListData, builder, ticketHelper, showMemberName: true)
+    ITicketHelper ticketHelper) : BetListBaseViewModel(message, betListData, builder, ticketHelper, showMemberName: true, supportRiskAmount: true)
 {
     public long LatestTransId { get; } = latestTransId;
 
