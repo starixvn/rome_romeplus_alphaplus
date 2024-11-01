@@ -1,8 +1,7 @@
 FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS builder
 
 #Installing npm & gulp global
-RUN apk add --update nodejs npm
-RUN npm install -g yarn gulp-cli
+RUN apk add --update nodejs npm && npm install -g yarn gulp-cli
 
 WORKDIR /src
 
@@ -61,7 +60,10 @@ fi
 WORKDIR /src/AlphaPlus/Web/Main/Main.Site
 
 RUN yarn && yarn build
-RUN dotnet publish --use-current-runtime --self-contained -o /app
+RUN dotnet publish --use-current-runtime -c Release -o /app \
+  --self-contained true \
+  /p:PublishTrimmed=true \
+  /p:PublishSingleFile=true
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 
