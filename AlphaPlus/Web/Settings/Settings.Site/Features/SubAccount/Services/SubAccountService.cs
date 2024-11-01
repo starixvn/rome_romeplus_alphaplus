@@ -21,7 +21,7 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
 
     public class SubAccountService(HttpClient httpClient, IAesService aesService, IEncryption encryption) : ISubAccountService
     {
-        private const string subAccountApiGroup = "sub-account";
+        private const string subAccountApiGroup = "customers";
 
         private readonly HttpClient httpClient = httpClient;
 
@@ -36,38 +36,27 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
 
             addSubAccountRequest.Password = encodePwd;
 
-            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/add", addSubAccountRequest);
+            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/{addSubAccountRequest.CustId}/sub-accounts/add", addSubAccountRequest);
         }
 
         public async Task<SubAccountViewModel> GetSubAccount(int custId, int subAccId)
         {
-            var queryString = QueryString.Create(
-            [
-                KeyValuePair.Create("custId", custId.ToString()),
-                KeyValuePair.Create("subAccId", subAccId.ToString())
-            ]);
-
-            return await httpClient.GetFromJsonAsync<SubAccountViewModel>($"{subAccountApiGroup}/get{queryString}");
+            return await httpClient.GetFromJsonAsync<SubAccountViewModel>($"{subAccountApiGroup}/{custId}/sub-accounts/{subAccId}");
         }
 
         public async Task<IEnumerable<SubAccountViewModel>> GetSubAccounts(SubAccountListRequest subAccountRequest)
         {
-            var queryString = QueryString.Create(
-            [
-                KeyValuePair.Create("custId", subAccountRequest.CustId.ToString())
-            ]);
-
-            return await httpClient.GetFromJsonAsync<IEnumerable<SubAccountViewModel>>($"{subAccountApiGroup}/index{queryString}");
+            return await httpClient.GetFromJsonAsync<IEnumerable<SubAccountViewModel>>($"{subAccountApiGroup}/{subAccountRequest.CustId}/sub-accounts");
         }
 
         public async Task<Result> UpdateSubAccountInfo(UpdateSubAccountInfoRequest updateSubAccountInfoRequest)
         {
-            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/update-info", updateSubAccountInfoRequest);
+            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/{updateSubAccountInfoRequest.CustId}/sub-accounts/update-info", updateSubAccountInfoRequest);
         }
 
         public async Task<Result> UpdateSubAccountPageAccess(UpdateSubAccountPageAccessRequest updateSubAccountPageAccessRequest)
         {
-            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/update-pageaccess", updateSubAccountPageAccessRequest); ;
+            return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/{updateSubAccountPageAccessRequest.CustId}/sub-accounts/update-pageaccess", updateSubAccountPageAccessRequest); ;
         }
     }
 }
