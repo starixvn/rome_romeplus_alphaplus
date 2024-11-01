@@ -60,10 +60,7 @@ fi
 WORKDIR /src/AlphaPlus/Web/Main/Main.Site
 
 RUN yarn && yarn build
-RUN dotnet publish --use-current-runtime -c Release -o /app \
-  --self-contained true \
-  /p:PublishTrimmed=true \
-  /p:PublishSingleFile=true
+RUN dotnet publish --use-current-runtime --self-contained -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 
