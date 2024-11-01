@@ -192,7 +192,7 @@ class SubAccount {
                         alert((result && result.Message) || 'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!');
                     }
 
-                    location.reload();
+                    (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src = (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src;
                 }
             },
             complete: () => {
@@ -232,8 +232,8 @@ class SubAccount {
             first: this.$("#FirstOptions_Value").val(),
             next: this.$("#NextOptions_Value").val(),
             password: encryptor.encrypt(this.$("#txtPwd").val(), this.$("#Code").val()),
-            firstName: this.$("#txtFname").val(),
-            lastName: this.$("#txtLname").val(),
+            firstName: this.$("#txtFname").val() || "-",
+            lastName: this.$("#txtLname").val() || "-",
             pageAccess: pageAccess || ""
         };
 
@@ -352,8 +352,8 @@ class SubAccount {
             url: "/settings/SubAccount/UpdateInfo",
             data: {
                 subAccId: subAccId,
-                firstName: firstName,
-                lastName: lastName,
+                firstName: firstName || "-",
+                lastName: lastName || "-",
                 closed: closed
             },
             type: "POST",

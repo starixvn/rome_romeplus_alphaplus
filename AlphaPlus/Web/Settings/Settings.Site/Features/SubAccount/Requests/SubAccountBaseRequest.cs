@@ -26,6 +26,8 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Requests
 
         public bool HasUpdatePermission => !userSession.IsLimitedHostPermissionOnSubAccountFunction;
 
+        public int UserId => userSession.UserId;
+
         public virtual bool IsValid() => CustId > 0;
     }
 }
