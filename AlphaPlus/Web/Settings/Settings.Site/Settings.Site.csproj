@@ -66,6 +66,9 @@
     <PackageReference Include="NPOI" Version="2.2.1" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\..\Shared\Configuration\sharedSettings.json" Link="sharedSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Extensions\RemotingRefExtensions.cs" />
     <Compile Include="..\..\..\Shared\Extensions\HttpClientExtensions.cs" Link="Extensions\HttpClientExtensions.cs" />

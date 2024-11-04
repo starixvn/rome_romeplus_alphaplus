@@ -1,4 +1,4 @@
-using AlphaPlus.Configurations;
+using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.Site.Features.Shared;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;

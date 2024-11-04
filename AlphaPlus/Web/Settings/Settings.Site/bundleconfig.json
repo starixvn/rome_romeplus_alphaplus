@@ -1,5 +1,11 @@
 ﻿[
   {
+    "outputFileName": "wwwroot/assets/bundles/member-betting-behavior/index.css",
+    "inputFiles": [
+      "Features/Customer/assets/styles/member-betting-behavior.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/assets/bundles/account-info-tab.css",
     "inputFiles": [
       "Features/Customer/assets/styles/account-info-tab.css"
