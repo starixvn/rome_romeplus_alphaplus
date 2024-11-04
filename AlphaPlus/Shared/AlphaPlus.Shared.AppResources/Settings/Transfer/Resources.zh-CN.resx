@@ -241,7 +241,7 @@
     <value>昨天</value>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
-    <value>昨天餘額</value>
+    <value>昨天余额</value>
   </data>
   <data name="MasterBalance" xml:space="preserve">
     <value>总代理馀额</value>
@@ -289,7 +289,7 @@
     <value>可转账的金额</value>
   </data>
   <data name="ClearableCredit" xml:space="preserve">
-    <value>可清除的额度</value>
+    <value>可清除信用额度</value>
   </data>
   <data name="ClearCreditConfirm" xml:space="preserve">
     <value>您是否确认要全数转账及清除信用额度？</value>

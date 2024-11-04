@@ -205,7 +205,7 @@
     <value>ยกเลิก</value>
   </data>
   <data name="CancelledBet" xml:space="preserve">
-    <value>ยกเลิกการวางเดิมพัน</value>
+    <value>การเดิมพันที่ยกเลิก</value>
   </data>
   <data name="CashOut" xml:space="preserve">
     <value>เงินสด</value>
@@ -250,7 +250,7 @@
     <value>วันที่สร้างขึ้น</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
-    <value>บัญชีรายวัน</value>
+    <value>รายการเดินบัญชีรายวัน</value>
   </data>
   <data name="DateRange" xml:space="preserve">
     <value>ช่วงของข้อมูล</value>
@@ -361,7 +361,7 @@
     <value>แสดงทั้งหมด</value>
   </data>
   <data name="Handicap" xml:space="preserve">
-    <value>ราคาต่อรอง</value>
+    <value>แฮนดิแคป</value>
   </data>
   <data name="HideFilter" xml:space="preserve">
     <value>ซ่อนตัวกรอง</value>
@@ -667,7 +667,7 @@
     <value>Sports</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="Subtotal_com" xml:space="preserve">
     <value>ผลรวมย่อย คอมมิชชั่น</value>
@@ -727,10 +727,10 @@
     <value>ค่าความเสี่ยงเอเย่นต์</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของเอเย่น/ คอมมิชชั่น</value>
+    <value>ความเสี่ยง/ค่าคอมเอเย่นต์</value>
   </data>
   <data name="choice" xml:space="preserve">
-    <value>เลือก</value>
+    <value>ตัวเลือก</value>
   </data>
   <data name="date" xml:space="preserve">
     <value>วันที่</value>
@@ -745,7 +745,7 @@
     <value>ข้อมูลประเทศ ได้รับมาจาก IP2Location™ และ DNSstuff ซึ่งใช้สำหรับการอ้างอิงเท่านั้น โดยไม่มีการรับประกัน หากท่านจำเป็นที่จะได้รับข้อมูลที่เป็นปัจจุบันและถูกต้อง โปรดตรวจสอบจากแหล่งข้อมูลที่เชื่อถือได้</value>
   </data>
   <data name="lblComm" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
     <value>บอลชุดผสม</value>
@@ -766,7 +766,7 @@
     <value>ค่าความเสี่ยงมาสเตอร์</value>
   </data>
   <data name="masterptcomm" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของมาสเตอร์/ คอมมิชชั่น</value>
+    <value>ความเสี่ยง/ค่าคอมมาสเตอร์</value>
   </data>
   <data name="member" xml:space="preserve">
     <value>สมาชิก</value>
@@ -826,13 +826,13 @@
     <value>สถานะ</value>
   </data>
   <data name="subTotal" xml:space="preserve">
-    <value>ยอดรวม</value>
+    <value>ยอดรวมย่อย</value>
   </data>
   <data name="superPT" xml:space="preserve">
     <value>ค่าความเสี่ยงซุปเปอร์</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
-    <value>ค่าแบ่งสู้ของซุปเปอร์/ คอมมิชชั่น</value>
+    <value>ความเสี่ยง/ค่าคอมซุปเปอร์</value>
   </data>
   <data name="total" xml:space="preserve">
     <value>ยอดรวม</value>

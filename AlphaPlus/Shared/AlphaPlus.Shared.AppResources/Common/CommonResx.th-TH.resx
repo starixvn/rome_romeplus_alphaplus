@@ -157,7 +157,7 @@
     <comment/>
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
     <comment/>
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
@@ -333,7 +333,7 @@
     <comment/>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
     <comment/>
   </data>
   <data name="Super" xml:space="preserve">
@@ -413,7 +413,7 @@
     <comment/>
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
-    <value>Reset Security Code</value>
+    <value>ตั้งค่ารหัสรักษาความปลอดภัยใหม่</value>
     <comment/>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">

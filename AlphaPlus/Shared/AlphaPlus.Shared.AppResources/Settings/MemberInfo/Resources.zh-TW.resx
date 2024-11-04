@@ -319,7 +319,7 @@
     <value>目前輸贏數額</value>
   </data>
   <data name="MaximumWin" xml:space="preserve">
-    <value>Maximum Win  (on given credit)</value>
+    <value>最高贏額 (根據信用額度)</value>
   </data>
   <data name="CurrentWinLimit" xml:space="preserve">
     <value>目前贏額（%）</value>
@@ -1155,7 +1155,7 @@
     <value>利潤率</value>
   </data>
   <data name="BetCount" xml:space="preserve">
-    <value>注單數額</value>
+    <value>投注統計</value>
   </data>
   <data name="Bettype" xml:space="preserve">
     <value>投注類別</value>

@@ -199,7 +199,7 @@
     <value>เพื่อเปิดใช้การแจ้งเตือนตามที่คุณต้องการ</value>
   </data>
   <data name="memberWinLoss" xml:space="preserve">
-    <value>สมาชิก (ชนะ แพ้)</value>
+    <value>ยอดได้เสียของสมาชิก</value>
   </data>
   <data name="normalAnnouncementSample" xml:space="preserve">
     <value>โปรดทราบ: [E-Sports] การแข่งขันถูกยกเลิกเงินเดิมพันทั้งหมดได้รับการชำระคืนแล้ว ขอบพระคุณ!</value>

@@ -136,10 +136,10 @@
     <value>ราคาต่อรองแบบแต้มต่อ สูงต่ำ และ คี่ คู่</value>
   </data>
   <data name="LabelHandicapFC" xml:space="preserve">
-    <value>ราคาต่อรอง</value>
+    <value>แฮนดิแคป</value>
   </data>
   <data name="LabelOddEven" xml:space="preserve">
-    <value>คู่/คี่</value>
+    <value>คี่/คู่</value>
   </data>
   <data name="LabelOtherTypes" xml:space="preserve">
     <value>การเดิมพันชนิดอื่นอื่น</value>

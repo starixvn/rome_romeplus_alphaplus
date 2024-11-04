@@ -292,7 +292,7 @@
     <value>Tất cả Agent</value>
   </data>
   <data name="AutoDailyResetLimit" xml:space="preserve">
-    <value>Tự Làm Mới Hạn Mức Mỗi Ngày</value>
+    <value>Tự làm mới hạn mức mỗi ngày</value>
   </data>
   <data name="CurrentWinLossAmount" xml:space="preserve">
     <value>Tiền thắng thua hiện tại</value>
@@ -301,10 +301,10 @@
     <value>Mức thắng lớn nhất (dựa trên hạn mức được cấp)</value>
   </data>
   <data name="CurrentWinLimit" xml:space="preserve">
-    <value>Hạn mức thắng (%) hiện tại</value>
+    <value>Hạn mức thắng hiện tại (%)</value>
   </data>
   <data name="CurrentLossLimit" xml:space="preserve">
-    <value>Giới hạn thua hiện tại (%)</value>
+    <value>Hạn mức thua hiện tại (%)</value>
   </data>
   <data name="MaximumLoss" xml:space="preserve">
     <value>Tiền thua cược lớn nhất</value>

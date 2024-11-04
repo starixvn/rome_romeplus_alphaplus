@@ -361,7 +361,7 @@
     <value>顯示全部</value>
   </data>
   <data name="Handicap" xml:space="preserve">
-    <value>亞洲盤</value>
+    <value>讓球盤</value>
   </data>
   <data name="HideFilter" xml:space="preserve">
     <value>隱藏篩選</value>
@@ -727,7 +727,7 @@
     <value>代理占成数</value>
   </data>
   <data name="agentptcomm" xml:space="preserve">
-    <value>代理占成数/ 佣金</value>
+    <value>代理佔成數/ 佣金</value>
   </data>
   <data name="choice" xml:space="preserve">
     <value>選擇</value>
@@ -766,7 +766,7 @@
     <value>总代理占成数</value>
   </data>
   <data name="masterptcomm" xml:space="preserve">
-    <value>总代理占成数/ 佣金</value>
+    <value>總代理佔成數/ 佣金</value>
   </data>
   <data name="member" xml:space="preserve">
     <value>會員</value>
@@ -832,7 +832,7 @@
     <value>超级总代理占成数</value>
   </data>
   <data name="superptcomm" xml:space="preserve">
-    <value>超级总代理占成数/ 佣金</value>
+    <value>超級總代理佔成數/ 佣金</value>
   </data>
   <data name="total" xml:space="preserve">
     <value>總和</value>

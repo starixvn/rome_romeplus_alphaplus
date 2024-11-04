@@ -715,6 +715,9 @@
   <data name="NoBadDebt_Description" xml:space="preserve">
     <value>- หมายเลขไอพี 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
   </data>
+    <data name="ipv62" xml:space="preserve">
+    <value> - หมายเลขไอพี 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+    <comment/>
   <data name="RichProductsCollection" xml:space="preserve">
     <value>คอลเลกชันผลิตภัณฑ์ที่หลากหลาย</value>
   </data>
@@ -746,5 +749,8 @@
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>เกิดข้อผิดพลาด โปรดติดต่อฝ่ายบริการลูกค้าเพื่อขอความช่วยเหลือ ขอบคุณ. [500]</value>
+  </data>
+  <data name="ipv6note" xml:space="preserve">
+    <value>สำหรับ IPv6 ที่อยู่ไอพีเดียวกันอาจจะแสดงต่างกัน</value>
   </data>
 </root>

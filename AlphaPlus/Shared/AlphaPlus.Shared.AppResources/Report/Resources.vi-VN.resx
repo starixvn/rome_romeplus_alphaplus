@@ -779,7 +779,7 @@
     <value>Khác</value>
   </data>
   <data name="Outright" xml:space="preserve">
-    <value>Cược Thắng</value>
+    <value>Theo môn thể thao</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
     <value>Tiền chưa xử lý</value>
@@ -887,7 +887,7 @@
     <value>Ngày riêng biệt</value>
   </data>
   <data name="Sport" xml:space="preserve">
-    <value>Sport</value>
+    <value>Môn thể thao</value>
   </data>
   <data name="SportWinLossAnalysis" xml:space="preserve">
     <value>Phân tích kết quả thắng thua của từng môn thể thao</value>

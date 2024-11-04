@@ -199,7 +199,7 @@
     <value>昵称</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No.</value>
+    <value>编号</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>没有</value>

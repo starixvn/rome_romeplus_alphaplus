@@ -1669,7 +1669,7 @@ Ví dụ: không cho phép 123456, 456789, 765432, v.v.</value>
     <value>Thông báo đăc biệt</value>
   </data>
   <data name="sport" xml:space="preserve">
-    <value>Sport</value>
+    <value>Môn thể thao</value>
   </data>
   <data name="sportBook" xml:space="preserve">
     <value>Sportsbook</value>

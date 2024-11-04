@@ -169,7 +169,7 @@
     <value>บัญชีนี้ถูกปิดโดยอับไลน์</value>
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>คุณแน่ใจหรือว่าต้องการปิดการใช้งานฟังก์ชันแบ่งสู้อัตโนมัติของมาสเตอร์</value>
@@ -352,7 +352,7 @@
     <value>แก้ไขรหัส</value>
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
-    <value>Reset Security Code</value>
+    <value>ตั้งค่ารหัสรักษาความปลอดภัยใหม่</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>ตั้งค่า</value>
@@ -373,7 +373,7 @@
     <value>สถานะ</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="Super" xml:space="preserve">
     <value>ที่สูงสุด ที่มีประสิทธิภาพ</value>

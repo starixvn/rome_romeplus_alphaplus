@@ -142,16 +142,16 @@
     <value>เดิมพันที่ยังไม่สิ้นสุดของเอเย่นต์</value>
   </data>
   <data name="AgentTotal" xml:space="preserve">
-    <value>รวม เอเจนต์</value>
+    <value>ยอดรวมเอเย่นต์</value>
   </data>
   <data name="AgentTotalNew" xml:space="preserve">
     <value>ยอดรวม เอเย่นต์</value>
   </data>
   <data name="AgentWinLoss" xml:space="preserve">
-    <value>เอเจนต์ ได้เสีย</value>
+    <value>ยอดได้เสียของเอเย่นต์</value>
   </data>
   <data name="AgentWinLossDetail" xml:space="preserve">
-    <value>รายละเอียดการชนะ แพ้ ของ </value>
+    <value>รายละเอียดยอดได้เสียของเอเย่นต์ </value>
   </data>
   <data name="AgentWinLossNew" xml:space="preserve">
     <value>ยอดได้เสีย เอเย่นต์</value>
@@ -256,31 +256,31 @@
     <value>คอลัมน์</value>
   </data>
   <data name="Comm" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="CommAndTotal" xml:space="preserve">
-    <value>/คอมมิชชั่น/ยอดรวม</value>
+    <value>/ค่าคอมฯ/ยอดรวม</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="Commission1" xml:space="preserve">
-    <value>คอมมิชชั่น 1</value>
+    <value>ค่าคอมฯ 1</value>
   </data>
   <data name="Commission2" xml:space="preserve">
-    <value>คอมมิชชั่น 2</value>
+    <value>ค่าคอมฯ 2</value>
   </data>
   <data name="Commission3" xml:space="preserve">
-    <value>คอมมิชชั่น 3</value>
+    <value>ค่าคอมฯ 3</value>
   </data>
   <data name="CommissionByBettype" xml:space="preserve">
-    <value>คอมมิชั่นจากประเภทพนัน</value>
+    <value>ค่าคอมมิชชั่นตามประเภทการเดิมพัน</value>
   </data>
   <data name="Company" xml:space="preserve">
     <value>บริษัท</value>
   </data>
   <data name="Completed" xml:space="preserve">
-    <value>Completed</value>
+    <value>สมบูรณ์</value>
   </data>
   <data name="ConfirmPayment" xml:space="preserve">
     <value>Confirm Payment</value>
@@ -322,7 +322,7 @@
     <value>สำเนา</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
-    <value>Created Date</value>
+    <value>สร้างขึ้นเมื่อ</value>
   </data>
   <data name="CreatedFrom" xml:space="preserve">
     <value>Created From</value>
@@ -334,7 +334,7 @@
     <value>รายวัน</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
-    <value>บัญชีรายวัน</value>
+    <value>รายการเดินบัญชีรายวัน</value>
   </data>
   <data name="DailyWinLossAnalysis" xml:space="preserve">
     <value>การวิเคราะห์ ผลได้เสีย รายวัน</value>
@@ -376,7 +376,7 @@
     <value>เปิดการใช้งาน</value>
   </data>
   <data name="Entered" xml:space="preserve">
-    <value>เข้า</value>
+    <value>มีผลแล้ว</value>
   </data>
   <data name="EventDateFrom" xml:space="preserve">
     <value>วันที่แข่งขันจาก</value>
@@ -409,7 +409,7 @@
     <value>ชื่อ/ นามสุกล</value>
   </data>
   <data name="Formular_Accumulated_Total" xml:space="preserve">
-    <value>ยอดสะสมรวม = งบดุลเริ่มต้น + ยอดได้/เสีย + คอมมิชชั่น + ยอดโอนเงิน</value>
+    <value>ยอดสะสมรวม = งบดุลเริ่มต้น + ยอดได้/เสีย + ค่าคอมฯ + ยอดโอนเงิน</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>จาก</value>
@@ -418,7 +418,7 @@
     <value>ประเภทชื่อเกม</value>
   </data>
   <data name="Gaming" xml:space="preserve">
-    <value>Gaming</value>
+    <value>เกม</value>
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>เครดิตที่ได้รับ</value>
@@ -433,13 +433,13 @@
     <value/>
   </data>
   <data name="GrandTotal" xml:space="preserve">
-    <value>รวมทั้งสิ้น</value>
+    <value>ยอมรวมทั้งหมด</value>
   </data>
   <data name="GrossComAndAgentTotal" xml:space="preserve">
-    <value>/ยอดรวมของคอมมิชชั่น/รวม เอเจนต์</value>
+    <value>/ยอดรวมของคอมมิชชั่น/ยอดรวมเอเย่นต์</value>
   </data>
   <data name="GrossComAndMasterTotal" xml:space="preserve">
-    <value>/ยอดรวมของคอมมิชชั่น/รวม Master</value>
+    <value>/ยอดรวมของคอมมิชชั่น/ยอดรวมของมาสเตอร์</value>
   </data>
   <data name="GrossComm" xml:space="preserve">
     <value>ยอดรวมของคอมมิชชั่น</value>
@@ -601,13 +601,13 @@
     <value>เดิมพันที่ยังไม่สิ้นสุดของมาสเตอร์</value>
   </data>
   <data name="MasterTotal" xml:space="preserve">
-    <value>รวม Master</value>
+    <value>ยอดรวมของมาสเตอร์</value>
   </data>
   <data name="MasterTotalNew" xml:space="preserve">
     <value>ยอดรวม มาสเตอร์</value>
   </data>
   <data name="MasterWinLoss" xml:space="preserve">
-    <value>ตัวแทนหลัก ชนะ แพ้</value>
+    <value>ยอดได้เสียของมาสเตอร์</value>
   </data>
   <data name="MasterWinLossDetail" xml:space="preserve">
     <value>รายละเอียดยอดได้เสียของมาสเตอร์</value>
@@ -625,7 +625,7 @@
     <value>ผลแพ้ชนะต่อแมตช์</value>
   </data>
   <data name="MatchWinLossDetail" xml:space="preserve">
-    <value>รายละเอียดการได้หรือเสีย</value>
+    <value>รายละเอียดการได้เสียตามคู่แข่งขัน</value>
   </data>
   <data name="MatchingBets" xml:space="preserve">
     <value>จำนวนข้อมูลที่ตรงกัน</value>
@@ -661,7 +661,7 @@
     <value>เงินหมุนเวียนของสมาชิก</value>
   </data>
   <data name="MemberWinLoss" xml:space="preserve">
-    <value>สมาชิก (ชนะ แพ้)</value>
+    <value>ยอดได้เสียของสมาชิก</value>
   </data>
   <data name="MemberWinLossDetail" xml:space="preserve">
     <value>รายลรายละเอียดการได้เสียของสมาชิกะเอียด</value>
@@ -724,7 +724,7 @@
     <value>ต่อไป</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value> ลำดับที่</value>
+    <value>ลำดับที่ </value>
   </data>
   <data name="NoColumnsFound" xml:space="preserve">
     <value>ไม่พบคอลัมน์</value>
@@ -739,7 +739,7 @@
     <value>ไม่พบผลิตภัณฑ์</value>
   </data>
   <data name="NonEntered" xml:space="preserve">
-    <value>ไม่สามารถเข้าได้</value>
+    <value>ยังไม่มีผล</value>
   </data>
   <data name="NoneSelected" xml:space="preserve">
     <value>ไม่ได้เลือก</value>
@@ -778,7 +778,7 @@
     <value>อื่นๆ</value>
   </data>
   <data name="Outright" xml:space="preserve">
-    <value>ทายผลผู้ชนะ</value>
+    <value>เอาท์ไรท์</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
     <value>เดิมพันที่ยังไม่สิ้นสุด</value>
@@ -904,10 +904,10 @@
     <value>สถานะ</value>
   </data>
   <data name="SubTotal" xml:space="preserve">
-    <value>ยอดรวม</value>
+    <value>ยอดรวมย่อย</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="SumOfMemberTotal" xml:space="preserve">
     <value>ยอดรวมทั้งหมด</value>
@@ -1015,7 +1015,7 @@
     <value>ยอดโอน</value>
   </data>
   <data name="TransferDetails" xml:space="preserve">
-    <value/>
+    <value>รายละเอียดการโอนเงิน</value>
   </data>
   <data name="Turnover" xml:space="preserve">
     <value>มูลค่าการเดิมพัน</value>

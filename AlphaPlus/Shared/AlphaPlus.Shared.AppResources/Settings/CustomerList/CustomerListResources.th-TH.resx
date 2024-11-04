@@ -139,7 +139,7 @@
     <value>ปิด</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>สร้างขึ้นเมื่อ</value>
@@ -199,7 +199,7 @@
     <value>ชื่อเล่น</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No.</value>
+    <value>ลำดับที่</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>ไม่ใช่</value>

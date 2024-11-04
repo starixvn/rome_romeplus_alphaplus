@@ -752,7 +752,7 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
     <value>Hoa hồng</value>
   </data>
   <data name="lblMixParlay" xml:space="preserve">
-    <value>Cược tổng hợp</value>
+    <value>Cược Xiên</value>
   </data>
   <data name="lblSystemParlay" xml:space="preserve">
     <value>System Parlay</value>
@@ -794,7 +794,7 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
     <value>Tiền chưa xử lý</value>
   </data>
   <data name="parlay" xml:space="preserve">
-    <value>Cược tổng hợp</value>
+    <value>Cược Xiên</value>
   </data>
   <data name="place" xml:space="preserve">
     <value>Place</value>

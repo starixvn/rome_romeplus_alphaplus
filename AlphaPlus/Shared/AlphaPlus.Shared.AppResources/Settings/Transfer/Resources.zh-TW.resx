@@ -289,7 +289,7 @@
     <value>可轉賬的金額</value>
   </data>
   <data name="ClearableCredit" xml:space="preserve">
-    <value>可清除的額度</value>
+    <value>可清除信用額度</value>
   </data>
   <data name="ClearCreditConfirm" xml:space="preserve">
     <value>您是否確認要全數轉賬及清除信用額度？</value>

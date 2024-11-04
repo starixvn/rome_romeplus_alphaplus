@@ -1015,7 +1015,7 @@
     <value>转帐余额</value>
   </data>
   <data name="TransferDetails" xml:space="preserve">
-    <value/>
+    <value>转账细节</value>
   </data>
   <data name="Turnover" xml:space="preserve">
     <value>投注额</value>

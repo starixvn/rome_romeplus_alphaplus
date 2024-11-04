@@ -2845,7 +2845,7 @@
     <value>แบ่งสู้ขั้นต่ำ</value>
   </data>
   <data name="v162discount_1101" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="maxPT" xml:space="preserve">
     <value>Max PT</value>
@@ -2974,10 +2974,10 @@
     <value>Is Forced Change Security Code</value>
   </data>
   <data name="v255playerdiscount_1701" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="v255discount_1701" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="Apply_downlines" xml:space="preserve">
     <value>Apply downlines</value>
@@ -3007,7 +3007,7 @@
     <value>ผลิตภัณฑ์</value>
   </data>
   <data name="MaximumLoss" xml:space="preserve">
-    <value>แพ้สูงสุด</value>
+    <value>การสูญเสียสูงสุด</value>
   </data>
   <data name="isa_v5spt_20" xml:space="preserve">
     <value>การทายผู้เล่นหรือทีมที่จะชนะ</value>
@@ -3334,7 +3334,7 @@
     <value>คืออัตโนมัติ</value>
   </data>
   <data name="Commision" xml:space="preserve">
-    <value>คอมมิชชั่น</value>
+    <value>ค่าคอมฯ</value>
   </data>
   <data name="BetSetting" xml:space="preserve">
     <value>การตั้งค่าเดิมพัน</value>
@@ -3388,7 +3388,7 @@
     <value>ชื่อเทมเพลต</value>
   </data>
   <data name="ParlayMaxPayoutPerBet" xml:space="preserve">
-    <value>การจ่ายเงินพาร์เลย์สูงสุดต่อการเดิมพัน</value>
+    <value>การจ่ายเงินสูงสุดต่อเดิมพันชุด</value>
   </data>
   <data name="Schedule" xml:space="preserve">
     <value>กำหนดการ</value>
