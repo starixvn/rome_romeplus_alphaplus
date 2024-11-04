@@ -715,9 +715,10 @@
   <data name="NoBadDebt_Description" xml:space="preserve">
     <value>- หมายเลขไอพี 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
   </data>
-    <data name="ipv62" xml:space="preserve">
+  <data name="ipv62" xml:space="preserve">
     <value> - หมายเลขไอพี 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
     <comment/>
+  </data>
   <data name="RichProductsCollection" xml:space="preserve">
     <value>คอลเลกชันผลิตภัณฑ์ที่หลากหลาย</value>
   </data>
