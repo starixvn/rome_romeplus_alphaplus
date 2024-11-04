@@ -8,7 +8,6 @@ using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
-using AlphaPlus.Settings.MemberInfo.API.Features.ParlayMaxPayout;
 using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.API.Services;
@@ -168,8 +167,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
 
             services
                 .AddSingleton<Settings.MemberInfo.API.Services.CacheRefService, CacheRefServiceImpl>()
-                .AddSingleton<CheckUMService, CheckUMServiceImpl>()
-                .AddScoped<ParlayMaxPayoutService, ParlayMaxPayoutServiceImpl>();
+                .AddSingleton<CheckUMService, CheckUMServiceImpl>();
 
             services
                 .AddSingleton<QrCodeAdapter, QrCodeAdapterImpl>()
