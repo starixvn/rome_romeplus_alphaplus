@@ -2,7 +2,6 @@
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Helpers
 {
     using System;
-    using ONEbook.Common.Auth;
     using QRCoder;
     using static QRCoder.PayloadGenerator;
 
@@ -10,11 +9,13 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
     {
         string Generate(string url);
         
-        string CreateMobileLoginUrl(bool isLocalTest, string domain, int siteid, string username, int tokenExpireSecond);
+        Task<string> CreateMobileLoginUrl(bool isLocalTest, string domain, int siteid, string username, int tokenExpireSecond);
     }
 
-    public class QrCodeAdapterImpl : QrCodeAdapter
+    public class QrCodeAdapterImpl(IQRCodeService qrCodeService) : QrCodeAdapter
     {
+        private readonly IQRCodeService qrCodeService = qrCodeService;
+
         private readonly string qrcodeLocalLinkTest = "http://ha.nexdev.net:7407/site-main/";
 
         public string Generate(string url)
@@ -26,7 +27,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
             return $"data:image/png;base64,{Convert.ToBase64String(graphic.ToArray())}";
         }
 
-        public string CreateMobileLoginUrl(
+        public async Task<string> CreateMobileLoginUrl(
             bool isLocalTest,
             string domain, 
             int siteid, 
@@ -34,6 +35,6 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
             int tokenExpireSecond)
        => isLocalTest ? 
             qrcodeLocalLinkTest : 
-            Authentication.Instance.CreateMobileLoginUrl(domain, siteid, username, tokenExpireSecond);
+            await qrCodeService.CreateMobileLoginUrl(domain, siteid, username, tokenExpireSecond);
     }
 }

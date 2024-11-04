@@ -54,7 +54,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.2" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
     <PackageReference Include="QRCoder" Version="1.4.3" />
-    <PackageReference Include="ONEbook.Common.Auth" Version="2.0.0" />
     <PackageReference Include="ONEbook.SpreadSheets" Version="1.0.0.1" />
     <PackageReference Include="ONEbook.SpreadSheets.NPOI" Version="1.0.0.3" />
     <PackageReference Include="Fanex.Common" Version="1.1.0.1" />

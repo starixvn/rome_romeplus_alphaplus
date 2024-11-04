@@ -141,7 +141,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
             return isValid ? qrCodeMemberSignInService.GetCreditAndStatus(message.SearchAccountName) : new CreditAndStatusModel();
         }
 
-        public Task<ShowQRCodeViewModel> Handle(ShowQRCodeRequest message, CancellationToken cancellationToken)
+        public async Task<ShowQRCodeViewModel> Handle(ShowQRCodeRequest message, CancellationToken cancellationToken)
         {
             var belongingInfo = checkBelongingService.GetBelongingInfo(
                 new CheckBelongingParam(message.ViewerId, message.SearchAccountId, message.SubAccId));
@@ -168,14 +168,14 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                 }
 
                 var config = qrCodeLoginConfigsHelper.GetQRCodeMemberSiteLoginConfigs();
-                var link = qrCodeAdapter.CreateMobileLoginUrl(
+                var link = await qrCodeAdapter.CreateMobileLoginUrl(
                          qrCodeLoginConfigsHelper.LocalTest(),
                         config.Domains[0],
                         config.SiteId,
                         message.SearchAccountName,
                         config.ExpireSeconds);
 
-                return Task.FromResult(new ShowQRCodeViewModel(
+                return new ShowQRCodeViewModel(
                     message.Credit,
                     message.CreditMin,
                     message.CreditMax,
@@ -187,29 +187,29 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                     config.Domains,
                     message.CreateMode,
                     message.ShowPageTitle,
-                    rawPassword));
+                    rawPassword);
             }
 
             return null;
         }
 
-        public Task<QRCodeLinkViewModel> Handle(GenerateQRCodeRequest message, CancellationToken cancellationToken)
+        public async Task<QRCodeLinkViewModel> Handle(GenerateQRCodeRequest message, CancellationToken cancellationToken)
         {
             if (qrCodeMemberSignInService.IsNotFirstLoginByQRCode(message.SearchAccountId))
             {
                 var config = qrCodeLoginConfigsHelper.GetQRCodeMemberSiteLoginConfigs();
 
-                var link = qrCodeAdapter.CreateMobileLoginUrl(
+                var link = await qrCodeAdapter.CreateMobileLoginUrl(
                     qrCodeLoginConfigsHelper.LocalTest(),
                     message.Domain,
                     config.SiteId,
                     message.SearchAccountName,
                     config.ExpireSeconds);
 
-                return Task.FromResult(new QRCodeLinkViewModel(link, qrCodeAdapter.Generate(link)));
+                return new QRCodeLinkViewModel(link, qrCodeAdapter.Generate(link));
             }
 
-            return Task.FromResult(new QRCodeLinkViewModel());
+            return new QRCodeLinkViewModel();
         }
 
         public async Task<bool> Handle(CheckExistedCustomerRequest message, CancellationToken cancellationToken)
