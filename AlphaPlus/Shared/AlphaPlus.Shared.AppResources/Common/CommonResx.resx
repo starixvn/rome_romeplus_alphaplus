@@ -273,7 +273,7 @@
     <comment/>
   </data>
   <data name="LastTxn" xml:space="preserve">
-    <value>Last Txn</value>
+    <value>Last transaction</value>
     <comment/>
   </data>
   <data name="LoginIP" xml:space="preserve">

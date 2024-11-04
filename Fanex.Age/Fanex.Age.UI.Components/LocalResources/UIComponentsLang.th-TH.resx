@@ -286,7 +286,7 @@
     <comment />
   </data>
   <data name="customerlist" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อดาวน์ไลน์</value>
     <comment />
   </data>
   <data name="daily" xml:space="preserve">
@@ -1634,7 +1634,7 @@
     <comment />
   </data>
   <data name="lblMaxPTAgent" xml:space="preserve">
-    <value>แบ่งสู้สูงสุดของเอเย่น</value>
+    <value>ความเสี่ยงสูงสุดของเอเย่นต์</value>
     <comment />
   </data>
   <data name="lblMaxPTMaster" xml:space="preserve">
@@ -2682,7 +2682,7 @@
     <comment />
   </data>
   <data name="agentMaxPT" xml:space="preserve">
-    <value>แบ่งสู้สูงสุดของเอเย่น</value>
+    <value>ความเสี่ยงสูงสุดของเอเย่นต์</value>
     <comment />
   </data>
   <data name="agentMinPT" xml:space="preserve">

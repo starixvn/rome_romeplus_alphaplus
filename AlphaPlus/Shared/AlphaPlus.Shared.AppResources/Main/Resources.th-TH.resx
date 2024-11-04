@@ -533,7 +533,7 @@
     <comment/>
   </data>
   <data name="active" xml:space="preserve">
-    <value>เปิด</value>
+    <value>ใช้งานอยู่</value>
     <comment/>
   </data>
   <data name="closed" xml:space="preserve">
@@ -913,11 +913,11 @@
     <comment/>
   </data>
   <data name="ipv61" xml:space="preserve">
-    <value>- ที่อยู่ไอพี 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
+    <value>- หมายเลขไอพี 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
     <comment/>
   </data>
   <data name="ipv62" xml:space="preserve">
-    <value> - ที่อยู่ไอพี 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+    <value> - หมายเลขไอพี 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
     <comment/>
   </data>
 </root>

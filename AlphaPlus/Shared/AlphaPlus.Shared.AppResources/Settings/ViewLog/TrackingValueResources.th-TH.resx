@@ -631,7 +631,7 @@
     <value>มากกว่า  น้อยกว่า</value>
   </data>
   <data name="loginIP" xml:space="preserve">
-    <value>IP สุดท้ายที่เข้าระบบ</value>
+    <value>ไอพีที่เข้าระบบ</value>
   </data>
   <data name="a_v8mpt_3" xml:space="preserve">
     <value>มากกว่า  น้อยกว่า</value>
@@ -2527,19 +2527,19 @@
     <value>บอลชุด</value>
   </data>
   <data name="MinBv99MP" xml:space="preserve">
-    <value>กีฬาบอลชุด-ค่าเดิมพันต้ำสุด</value>
+    <value>กีฬาบอลชุด-เดิมพันต่ำสุด</value>
   </data>
   <data name="MaxBv99MP" xml:space="preserve">
-    <value>กีฬาบอลชุด-ค่าเดิมพันสูงสุด</value>
+    <value>กีฬาบอลชุด-เดิมพันสูงสุด</value>
   </data>
   <data name="MPMv99MP" xml:space="preserve">
     <value>กีฬาบอลชุด-ค่าเดิมพันสูงสุดต่อคู่การแข่งขัน</value>
   </data>
   <data name="MinBv161" xml:space="preserve">
-    <value>เกมหมายเลข-ค่าเดิมพันต้ำสุด</value>
+    <value>เกมหมายเลข-เดิมพันต่ำสุด</value>
   </data>
   <data name="MaxBv161" xml:space="preserve">
-    <value>เกมหมายเลข-ค่าเดิมพันสูงสุด</value>
+    <value>เกมหมายเลข-เดิมพันสูงสุด</value>
   </data>
   <data name="MPMv161" xml:space="preserve">
     <value>เกมหมายเลข-ค่าเดิมพันสูงสุดต่อคู่การแข่งขัน</value>
@@ -2869,7 +2869,7 @@
     <value>เอี่ยของซุปเปรอ์ที่ตั้งไว้ก่อนหน้า</value>
   </data>
   <data name="lblMaxPTAgent" xml:space="preserve">
-    <value>แบ่งสู้สูงสุดของเอเย่น</value>
+    <value>ความเสี่ยงสูงสุดของเอเย่นต์</value>
   </data>
   <data name="masterAutoPT" xml:space="preserve">
     <value>ค่าแบ่งสู้อัตโนมัติของมาสเตอร์</value>
@@ -2923,10 +2923,10 @@
     <value>อัตราแบ่งสู้อัตโนมัติ ของเอเจนต์ คือ ?</value>
   </data>
   <data name="MinPTAgent" xml:space="preserve">
-    <value>แบ่งสู้ต่ำสุดของเอเย่น</value>
+    <value>ความเสี่ยงต่ำสุดของเอเย่นต์</value>
   </data>
   <data name="lblMinPTMaster" xml:space="preserve">
-    <value>แบ่งสู้ขั้นต่ำของมาสเตอร์</value>
+    <value>ความเสี่ยงต่ำสุดของมาสเตอร์</value>
   </data>
   <data name="Disablevirtualsports" xml:space="preserve">
     <value>ปิดกีฬาอนิเมชั่น</value>
@@ -3022,10 +3022,10 @@
     <value>Checked OTP</value>
   </data>
   <data name="MaxBv1MP" xml:space="preserve">
-    <value>บอลชุดฟุตบอล-ค่าเดิมพันสูงสุด</value>
+    <value>บอลชุดฟุตบอล-เดิมพันสูงสุด</value>
   </data>
   <data name="MinBv1MP" xml:space="preserve">
-    <value>บอลชุดฟุตบอล-ค่าเดิมพันต้ำสุด</value>
+    <value>บอลชุดฟุตบอล-เดิมพันต่ำสุด</value>
   </data>
   <data name="MPMv1MP" xml:space="preserve">
     <value>บอลชุดฟุตบอล-ค่าเดิมพันสูงสุดต่อคู่การแข่งขัน</value>
@@ -3136,10 +3136,10 @@
     <value>Happy 5-ค่าเดิมพันสูงสุดต่อคู่การแข่งขัน</value>
   </data>
   <data name="MaxBv164" xml:space="preserve">
-    <value>Happy 5-ค่าเดิมพันสูงสุด</value>
+    <value>Happy 5-เดิมพันสูงสุด</value>
   </data>
   <data name="MinBv164" xml:space="preserve">
-    <value>Happy 5-ค่าเดิมพันต้ำสุด</value>
+    <value>Happy 5-เดิมพันต่ำสุด</value>
   </data>
   <data name="AllbetNormalGames" xml:space="preserve">
     <value>บาคาร่า, รูเล็ต, Sicbo, มังกรเสือ, Win 3 Cards, Bull Bull</value>
@@ -3343,7 +3343,7 @@
     <value>การจ่ายเงินสูงสุดของพาร์เลย์</value>
   </data>
   <data name="AllowAutoPT" xml:space="preserve">
-    <value>อนุญาตให้มีแบ่งสู้อัตโนมัติ</value>
+    <value>อนุญาตให้ใช้ค่าความเสี่ยงอัตโนมัติ</value>
   </data>
   <data name="MaxPayoutPerMatch" xml:space="preserve">
     <value>การจ่ายเงินสูงสุดต่อคู่การแข่งขัน</value>

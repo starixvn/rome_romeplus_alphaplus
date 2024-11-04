@@ -127,7 +127,7 @@
     <value>代理佣金(3)</value>
   </data>
   <data name="AgentList" xml:space="preserve">
-    <value>代理</value>
+    <value>代理名单</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>全部</value>
@@ -193,7 +193,7 @@
     <value>总代理名单</value>
   </data>
   <data name="MemberList" xml:space="preserve">
-    <value>会员</value>
+    <value>会员名单</value>
   </data>
   <data name="NickName" xml:space="preserve">
     <value>昵称</value>

@@ -265,7 +265,7 @@
     <value>นามสกุล</value>
   </data>
   <data name="LoginIP" xml:space="preserve">
-    <value>IP สุดท้ายที่เข้าระบบ</value>
+    <value>ไอพีที่เข้าระบบ</value>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
     <value>ยอดคงเหลือเมื่อวาน</value>
@@ -909,7 +909,7 @@
     <value>ชื่อผู้ใช้</value>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
-    <value>เครดิตโอนเงินสูงสุดของสมาชิก</value>
+    <value>เครดิตสูงสุดของสมาชิก</value>
   </data>
   <data name="GivenCreditPerAccount" xml:space="preserve">
     <value>เครดิตที่ให้แต่ละบัญชี</value>

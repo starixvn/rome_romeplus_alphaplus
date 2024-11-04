@@ -727,7 +727,7 @@
     <value>Out. Txn</value>
   </data>
   <data name="LastTxn" xml:space="preserve">
-    <value>Last Txn</value>
+    <value>Last transaction</value>
   </data>
   <data name="YouCanTransferUpTo" xml:space="preserve">
     <value>You can transfer up to</value>

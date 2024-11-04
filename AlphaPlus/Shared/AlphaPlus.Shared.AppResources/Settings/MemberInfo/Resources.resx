@@ -963,7 +963,7 @@ Notes: your password is cAsE sEnSiTiVe&lt;br&gt;</value>
     <value>3rd Party Pending Transfer</value>
   </data>
   <data name="EditMutipleSetting" xml:space="preserve">
-    <value>Edit Multiple Setting</value>
+    <value>Edit Multiple Setting</value> 
   </data>
   <data name="EditSetting" xml:space="preserve">
     <value>Edit Setting</value>

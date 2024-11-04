@@ -121,13 +121,13 @@
     <value>ไม่พบบัญชี!</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>เปิด</value>
+    <value>ใช้งานอยู่</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>เอเย่นต์</value>
   </data>
   <data name="AgentList" xml:space="preserve">
-    <value>รายชื่อ เอเจนต์</value>
+    <value>รายชื่อเอเย่นต์</value>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
     <value>เดิมพันที่ยังไม่สิ้นสุดของเอเย่นต์</value>
@@ -178,7 +178,7 @@
     <value>คุณแน่ใจหรือว่าต้องการเปิดการใช้งานฟังก์ชันแบ่งสู้อัตโนมัติของมาสเตอร์</value>
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
-    <value>อนุญาตให้มีแบ่งสู้อัตโนมัติ</value>
+    <value>อนุญาตให้ใช้ค่าความเสี่ยงอัตโนมัติ</value>
   </data>
   <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>คุณแน่ใจหรือว่าไม่อนุญาตให้ลูกค้าท่านนี้พนันเอาท์ไรท์</value>
@@ -250,7 +250,7 @@
     <value>ลูกค้า</value>
   </data>
   <data name="DownlineList" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อดาวน์ไลน์</value>
   </data>
   <data name="EditInfoViewModelText" xml:space="preserve">
     <value>ข้อมูล</value>
@@ -280,10 +280,10 @@
     <value>ข้อมูลการเข้าสู่ระบบ</value>
   </data>
   <data name="LoginIP" xml:space="preserve">
-    <value>IP สุดท้ายที่เข้าระบบ</value>
+    <value>ไอพีที่เข้าระบบ</value>
   </data>
   <data name="LoginTime" xml:space="preserve">
-    <value>เวลาเข้าระบบ</value>
+    <value>เวลาเข้าสู่ระบบ</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>มาสเตอร์</value>
@@ -298,7 +298,7 @@
     <value>รายชื่อสมาชิก</value>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
-    <value>เครดิตโอนเงินสูงสุดของสมาชิก</value>
+    <value>เครดิตสูงสุดของสมาชิก</value>
   </data>
   <data name="Members" xml:space="preserve">
     <value>สมาชิก (เปิด/ปิด/ถูกระงับ)</value>

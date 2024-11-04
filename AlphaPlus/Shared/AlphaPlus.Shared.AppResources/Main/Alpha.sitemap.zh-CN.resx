@@ -163,7 +163,7 @@
     <value>独赢盘</value>
   </data>
   <data name="agentList" xml:space="preserve">
-    <value>代理</value>
+    <value>代理名单</value>
   </data>
   <data name="agentOutstanding" xml:space="preserve">
     <value>代理未结束交易</value>

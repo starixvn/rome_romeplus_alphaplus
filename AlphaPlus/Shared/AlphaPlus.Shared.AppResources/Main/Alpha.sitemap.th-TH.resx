@@ -142,7 +142,7 @@
     <value>เครดิต / บัญชีคงเหลือ</value>
   </data>
   <data name="customerlist" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อดาวน์ไลน์</value>
   </data>
   <data name="dailywinlossanalysisreport" xml:space="preserve">
     <value>การวิเคราะห์ ผลได้เสีย รายวัน</value>
@@ -160,10 +160,10 @@
     <value>ครึ่งเวลาแรก/ เต็มเวลา</value>
   </data>
   <data name="lbl1x2" xml:space="preserve">
-    <value>ราคาพูล</value>
+    <value>อัตราต่อรอง</value>
   </data>
   <data name="agentList" xml:space="preserve">
-    <value>รายชื่อ เอเจนต์</value>
+    <value>รายชื่อเอเย่นต์</value>
   </data>
   <data name="agentOutstanding" xml:space="preserve">
     <value>เดิมพันที่ยังไม่สิ้นสุดของเอเย่นต์</value>

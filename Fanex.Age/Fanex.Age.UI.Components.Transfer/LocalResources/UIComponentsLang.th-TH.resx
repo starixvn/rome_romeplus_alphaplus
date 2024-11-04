@@ -244,7 +244,7 @@
     <value>ลูกค้า</value>
   </data>
   <data name="customerlist" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อดาวน์ไลน์</value>
   </data>
   <data name="daily" xml:space="preserve">
     <value>รายวัน</value>
@@ -1255,7 +1255,7 @@
     <value>แบ่งสู้อัตโนมัติของซุปเปอร์</value>
   </data>
   <data name="lblMaxPTAgent" xml:space="preserve">
-    <value>แบ่งสู้สูงสุดของเอเย่น</value>
+    <value>ความเสี่ยงสูงสุดของเอเย่นต์</value>
   </data>
   <data name="lblMaxPTMaster" xml:space="preserve">
     <value>ความเสี่ยงสูงสุดของมาสเตอร์</value>
@@ -2043,7 +2043,7 @@
     <value>คุณต้องการที่จะเปิดกีฬาอนิเมชั่นสำหรับลูกค้ารายนี้?</value>
   </data>
   <data name="agentMaxPT" xml:space="preserve">
-    <value>แบ่งสู้สูงสุดของเอเย่น</value>
+    <value>ความเสี่ยงสูงสุดของเอเย่นต์</value>
   </data>
   <data name="agentMinPT" xml:space="preserve">
     <value>ความเสี่ยงต่ำสุดของเอเย่นต์</value>

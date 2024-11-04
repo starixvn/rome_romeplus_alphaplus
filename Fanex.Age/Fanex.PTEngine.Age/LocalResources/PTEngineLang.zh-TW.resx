@@ -1846,7 +1846,7 @@
     <value>代理名單</value>
   </data>
   <data name="memberList" xml:space="preserve">
-    <value>會員</value>
+    <value>會員名單</value>
   </data>
   <data name="lblPasswordExpired" xml:space="preserve">
     <value> 您的安全及隱私對我們非常重要。因此, 我們不斷努力的提高我們的安全預防措施以保護您的數據。基於此原因, 我們決定實施密碼重設。

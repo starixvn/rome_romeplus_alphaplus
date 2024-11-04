@@ -2144,7 +2144,7 @@
     <value>代理名單</value>
   </data>
   <data name="memberList" xml:space="preserve">
-    <value>會員</value>
+    <value>會員名單</value>
   </data>
   <data name="level" xml:space="preserve">
     <value>階層</value>

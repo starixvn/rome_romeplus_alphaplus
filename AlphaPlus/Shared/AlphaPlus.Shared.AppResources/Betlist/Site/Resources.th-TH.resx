@@ -652,7 +652,7 @@
     <value>#</value>
   </data>
   <data name="odds" xml:space="preserve">
-    <value>ราคา</value>
+    <value>อัตราต่อรอง</value>
   </data>
   <data name="place" xml:space="preserve">
     <value>วาง</value>

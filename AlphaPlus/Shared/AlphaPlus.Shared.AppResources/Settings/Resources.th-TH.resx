@@ -121,7 +121,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Active" xml:space="preserve">
-    <value>เปิด</value>
+    <value>ใช้งานอยู่</value>
     <comment/>
   </data>
   <data name="Agent" xml:space="preserve">
@@ -129,7 +129,7 @@
     <comment/>
   </data>
   <data name="AgentList" xml:space="preserve">
-    <value>รายชื่อ เอเจนต์</value>
+    <value>รายชื่อเอเย่นต์</value>
     <comment/>
   </data>
   <data name="AgentOutstanding" xml:space="preserve">
@@ -169,7 +169,7 @@
     <comment/>
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelText" xml:space="preserve">
-    <value>อนุญาตให้มีแบ่งสู้อัตโนมัติ</value>
+    <value>อนุญาตให้ใช้ค่าความเสี่ยงอัตโนมัติ</value>
     <comment/>
   </data>
   <data name="ConfirmAllowOutrightViewModelInCaseDisabledMessage" xml:space="preserve">
@@ -233,7 +233,7 @@
     <comment/>
   </data>
   <data name="DownlineList" xml:space="preserve">
-    <value>รายชื่อลูกค้า</value>
+    <value>รายชื่อดาวน์ไลน์</value>
     <comment/>
   </data>
   <data name="Fax" xml:space="preserve">
@@ -257,11 +257,11 @@
     <comment/>
   </data>
   <data name="LoginIP" xml:space="preserve">
-    <value>IP สุดท้ายที่เข้าระบบ</value>
+    <value>ไอพีที่เข้าระบบ</value>
     <comment/>
   </data>
   <data name="LoginTime" xml:space="preserve">
-    <value>เวลาเข้าระบบ</value>
+    <value>เวลาเข้าสู่ระบบ</value>
     <comment/>
   </data>
   <data name="Master" xml:space="preserve">
@@ -281,7 +281,7 @@
     <comment/>
   </data>
   <data name="MemberMaxCredit" xml:space="preserve">
-    <value>เครดิตโอนเงินสูงสุดของสมาชิก</value>
+    <value>เครดิตสูงสุดของสมาชิก</value>
     <comment/>
   </data>
   <data name="Name" xml:space="preserve">
