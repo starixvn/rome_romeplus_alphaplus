@@ -11,5 +11,9 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
         [HttpGet]
         public async Task<ActionResult> Index(UserNameSuggestionQuery message)
             => Json(await mediator.Send(message));
+
+        [HttpGet]
+        public ActionResult GetUsernamesSuggestionByRole(UserNameSuggestionByRoleQuery message)
+            => Json(mediator.Send(message));
     }
 }

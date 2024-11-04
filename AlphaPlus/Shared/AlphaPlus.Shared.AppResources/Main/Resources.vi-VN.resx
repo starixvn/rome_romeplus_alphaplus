@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,82 +26,79 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root"
-    xmlns=""
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -122,866 +119,652 @@
   </resheader>
   <data name="close" xml:space="preserve">
     <value>Đóng</value>
-    <comment/>
   </data>
   <data name="ProfileClickTootip" xml:space="preserve">
     <value>Nhấn vào đây để chỉnh sửa cài đặt hồ sơ</value>
-    <comment/>
   </data>
   <data name="subAcc" xml:space="preserve">
     <value>Tài khoản phụ</value>
-    <comment/>
   </data>
   <data name="admin" xml:space="preserve">
     <value>Người quản trị</value>
-    <comment/>
   </data>
   <data name="nickname" xml:space="preserve">
     <value>Biệt Danh</value>
-    <comment/>
   </data>
   <data name="configNow" xml:space="preserve">
     <value>Cấu hình ngay</value>
-    <comment/>
   </data>
   <data name="introNickname" xml:space="preserve">
     <value>&lt;div&gt;Chào những thành viên thân mến !.Bây giò bạn có thể đăng nhập bằng chính Biệt Danh của mình&lt;/div&gt;</value>
-    <comment/>
   </data>
   <data name="ProfileLoginTip" xml:space="preserve">
     <value>Kính gửi Quý khách hàng, Chúng tôi đã chọn một ảnh đại diện mặc định của bạn để phân biệt trang web của chúng tôi với các trang web giả mạo. Nếu muốn thay đổi ảnh, bạn có thể &lt;a class="change-picture-link" href="{0}" target="main" id="changePictureLink"&gt;nhấn vào đây&lt;/a&gt;.&lt;br&gt;Ngoài ra, bạn có thể đặt tùy chọn ngôn ngữ của mình &lt;a class="change-picture-link" href="{1}" target="main"&gt;tại đây&lt;/a&gt;. Trân trọng.</value>
-    <comment/>
   </data>
   <data name="clickHere" xml:space="preserve">
     <value>Nhấn vào đây</value>
-    <comment/>
   </data>
   <data name="uploadNow" xml:space="preserve">
     <value>để tải hình lên ngay bây giờ !</value>
-    <comment/>
   </data>
   <data name="strNotAccessPage" xml:space="preserve">
     <value>Xin lỗi, bạn không được phép truy cập vào trang này</value>
-    <comment/>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Giúp đỡ</value>
-    <comment/>
   </data>
   <data name="ContactUs" xml:space="preserve">
     <value>Liên hệ</value>
-    <comment/>
   </data>
   <data name="EditProfilePicture" xml:space="preserve">
     <value>Cài Đặt Hồ Sơ</value>
-    <comment/>
   </data>
   <data name="LoginOption" xml:space="preserve">
     <value>Tùy chọn đăng nhập</value>
-    <comment/>
   </data>
   <data name="password" xml:space="preserve">
     <value>Mật khẩu</value>
-    <comment/>
   </data>
   <data name="SecurityCode" xml:space="preserve">
     <value>Mã bảo mật</value>
-    <comment/>
   </data>
   <data name="OldView" xml:space="preserve">
     <value>Giao diện cũ</value>
-    <comment/>
   </data>
   <data name="accountInfo" xml:space="preserve">
     <value>Thông tin</value>
-    <comment/>
   </data>
   <data name="mainMenu" xml:space="preserve">
     <value>Menu chính</value>
-    <comment/>
   </data>
   <data name="balanceInfo" xml:space="preserve">
     <value>Tài Khoản</value>
-    <comment/>
   </data>
   <data name="agent" xml:space="preserve">
     <value>Agent</value>
-    <comment/>
   </data>
   <data name="master" xml:space="preserve">
     <value>Master</value>
-    <comment/>
   </data>
   <data name="super" xml:space="preserve">
     <value>Super</value>
-    <comment/>
   </data>
   <data name="agentGivenCredit" xml:space="preserve">
     <value>Tổng hạn mức tín dụng của  Agent</value>
-    <comment/>
   </data>
   <data name="masterGivenCredit" xml:space="preserve">
     <value>Tổng hạn mức tín dụng của  Master</value>
-    <comment/>
   </data>
   <data name="superGivenCredit" xml:space="preserve">
     <value>Tổng hạn mức tín dụng của  Super</value>
-    <comment/>
   </data>
   <data name="totalAgentCredit" xml:space="preserve">
     <value>Tổng mức tín dụng của Agent</value>
-    <comment/>
   </data>
   <data name="totalMasterCredit" xml:space="preserve">
     <value>Tổng mức tín dụng của Master</value>
-    <comment/>
   </data>
   <data name="totalMemberCredit" xml:space="preserve">
     <value>Tổng mức tín dụng của Member</value>
-    <comment/>
   </data>
   <data name="cashBalance" xml:space="preserve">
     <value>Số dư tài khoản</value>
-    <comment/>
   </data>
   <data name="currency" xml:space="preserve">
     <value>Tiền tệ</value>
-    <comment/>
   </data>
   <data name="todayWinLoss" xml:space="preserve">
     <value>Thắng thua trong ngày</value>
-    <comment/>
   </data>
   <data name="totalBalance" xml:space="preserve">
     <value>Tổng số tiền giao dịch</value>
-    <comment/>
   </data>
   <data name="yesterdayBalance" xml:space="preserve">
     <value>Giao dịch đến hết hôm qua</value>
-    <comment/>
   </data>
   <data name="yesterdayCashBalance" xml:space="preserve">
     <value>Số dư tài khoản đến hết  hôm qua</value>
-    <comment/>
   </data>
   <data name="yesterdayTotalBalance" xml:space="preserve">
     <value>Tổng tiền giao dịch đến hết hôm qua</value>
-    <comment/>
   </data>
   <data name="yesterdayWinLoss" xml:space="preserve">
     <value>Thắng thua hôm qua</value>
-    <comment/>
   </data>
   <data name="announcement" xml:space="preserve">
     <value>Thông báo</value>
-    <comment/>
   </data>
   <data name="noInfo" xml:space="preserve">
     <value>Thông tin chưa được cập nhật</value>
-    <comment/>
   </data>
   <data name="more" xml:space="preserve">
     <value>Thêm</value>
-    <comment/>
   </data>
   <data name="totalActiveClosedSuspended" xml:space="preserve">
     <value>Tổng số tài khoản đang Hoạt Động/Đóng/Đình Chỉ</value>
-    <comment/>
   </data>
   <data name="totalAgentActiveClosedSuspended" xml:space="preserve">
     <value>Số tài khoản Agent hiện đang: Kích hoạt/Đóng/Đình chỉ</value>
-    <comment/>
   </data>
   <data name="totalMasterACS" xml:space="preserve">
     <value>Số tài khoản Master hiện đang: Kích hoạt/Khóa/Đình chỉ</value>
-    <comment/>
   </data>
   <data name="statistics" xml:space="preserve">
     <value>Thống kê của bạn</value>
-    <comment/>
   </data>
   <data name="highestTurnoverOfTheMonth" xml:space="preserve">
     <value>Member đặt cược nhiều nhất trong tháng</value>
-    <comment/>
   </data>
   <data name="newMemberOfTheMonth" xml:space="preserve">
     <value>Member mới trong tháng</value>
-    <comment/>
   </data>
   <data name="superOutstanding" xml:space="preserve">
     <value>Tiền chưa xử lý của Super</value>
-    <comment/>
   </data>
   <data name="top10WinningMembers" xml:space="preserve">
     <value>10 member thắng nhiều nhất trong tháng</value>
-    <comment/>
   </data>
   <data name="totalOutstanding" xml:space="preserve">
     <value>Tổng tiền chưa xử lý</value>
-    <comment/>
   </data>
   <data name="agentOutstanding" xml:space="preserve">
     <value>Tiền chưa xử lý của Agent</value>
-    <comment/>
   </data>
   <data name="masterOutstanding" xml:space="preserve">
     <value>Tiền chưa xử lý của Master</value>
-    <comment/>
   </data>
   <data name="show" xml:space="preserve">
     <value>Hiển thị</value>
-    <comment/>
   </data>
   <data name="member" xml:space="preserve">
     <value>Member</value>
-    <comment/>
   </data>
   <data name="turnover" xml:space="preserve">
     <value>Tiền Cược</value>
-    <comment/>
   </data>
   <data name="username" xml:space="preserve">
     <value>Tài khoản</value>
-    <comment/>
   </data>
   <data name="winningAmount" xml:space="preserve">
     <value>Tiền thắng cược</value>
-    <comment/>
   </data>
   <data name="createdDate" xml:space="preserve">
     <value>Ngày tạo</value>
-    <comment/>
   </data>
   <data name="givenCredit" xml:space="preserve">
     <value>Hạn mức được cấp</value>
-    <comment/>
   </data>
   <data name="Notice_2" xml:space="preserve">
     <value>Giới hạn tiền đặt cược của bạn bị thay đổi bởi cấp trên ..&lt;br&gt;Vui lòng thông báo và kiểm tra chi tiết tất cả những thành viên cấp dưới trực thuộc bạn</value>
-    <comment/>
   </data>
   <data name="Notice_1_2" xml:space="preserve">
     <value>Giới hạn tiền đặt cược và giá trị PT nhỏ nhất của bạn bị thay đổi bởi cấp trên ..&lt;br&gt; Vui lòng thông báo và kiểm tra chi tiết tất cả những thành viên cấp dưới trực thuộc bạn</value>
-    <comment/>
   </data>
   <data name="Notice_1" xml:space="preserve">
     <value> Giá trị PT nhỏ nhất của bạn bị thay đổi bởi cấp trên .&lt;br&gt; Vui lòng thông báo và kiểm tra chi tiết tất cả những thành viên cấp dưới trực thuộc bạn</value>
-    <comment/>
   </data>
   <data name="doNotShowAgain" xml:space="preserve">
     <value>Không hiển thị lại</value>
-    <comment/>
   </data>
   <data name="PrivateMessage" xml:space="preserve">
     <value>Tin nhắn cá nhân</value>
-    <comment/>
   </data>
   <data name="less" xml:space="preserve">
     <value>Rút gọn</value>
-    <comment/>
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Đăng Xuất</value>
-    <comment/>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Tiếp tục </value>
-    <comment/>
   </data>
   <data name="Skip" xml:space="preserve">
     <value>Bỏ qua</value>
-    <comment/>
   </data>
   <data name="BrowserIsOutOfDate" xml:space="preserve">
     <value>Trình duyệt của bạn đã lỗi thời và có thể không tương thích tốt với website. Để được hỗ trợ tốt hơn, bạn nên nâng cấp lên một phiên bản mới. Vui lòng</value>
-    <comment/>
   </data>
   <data name="ClickToUpdateBrowser" xml:space="preserve">
     <value>nhấn vào đây để nâng cấp</value>
-    <comment/>
   </data>
   <data name="BackOldViewText" xml:space="preserve">
     <value>Chưa quen với các tính năng mới?</value>
-    <comment/>
   </data>
   <data name="ClickToBackOldView" xml:space="preserve">
     <value>Nhấn vào đây để quay lại phiên bản cũ</value>
-    <comment/>
   </data>
   <data name="WarningOldViewDate" xml:space="preserve">
     <value>Phiên bản cũ sẽ được duy trì đến hết ngày</value>
-    <comment/>
   </data>
   <data name="WarningText" xml:space="preserve">
     <value>Lưu ý: </value>
-    <comment/>
   </data>
   <data name="HomeIconIntroduction" xml:space="preserve">
     <value>Biểu tượng Trang Chủ - truy cập vào trang chủ</value>
-    <comment/>
   </data>
   <data name="QuickMenuIntroduction" xml:space="preserve">
     <value>Truy cập nhanh vào Thiết Lập Tài Khoản</value>
-    <comment/>
   </data>
   <data name="QuickMenu" xml:space="preserve">
     <value>Menu Nhanh</value>
-    <comment/>
   </data>
   <data name="SwitchView" xml:space="preserve">
     <value>Chuyển đổi giao diện</value>
-    <comment/>
   </data>
   <data name="BackOldViewIntroduction" xml:space="preserve">
     <value>Chưa quen với các tính năng mới?&lt;/p&gt;&lt;p&gt;Nhấn vào đây để quay lại phiên bản cũ.</value>
-    <comment/>
   </data>
   <data name="WarningOldVersionDeadline" xml:space="preserve">
     <value>Lưu ý: Phiên bản cũ sẽ được duy trì đến hết ngày &lt;/p&gt;&lt;p&gt;</value>
-    <comment/>
   </data>
   <data name="MainMenuIntroduction" xml:space="preserve">
     <value>Sắp xếp hợp lý, tất cả trong một nơi</value>
-    <comment/>
   </data>
   <data name="CollapseExpandIcon" xml:space="preserve">
     <value>Thu gọn/Mở rộng</value>
-    <comment/>
   </data>
   <data name="CollapseExpandIconIntroduction" xml:space="preserve">
     <value>Nhấn vào đây để giải phóng không gian</value>
-    <comment/>
   </data>
   <data name="MainIntroductionTitle" xml:space="preserve">
     <value>Trải nghiệm giao diện mới</value>
-    <comment/>
   </data>
   <data name="MainIntroductionDescription" xml:space="preserve">
     <value>Trực quan và thuận tiện hơn</value>
-    <comment/>
   </data>
   <data name="NotNow" xml:space="preserve">
     <value>Khi khác</value>
-    <comment/>
   </data>
   <data name="QuickTour" xml:space="preserve">
     <value>Bắt đầu</value>
-    <comment/>
   </data>
   <data name="TransferMenuIntroduction" xml:space="preserve">
     <value>Chuyển Khoản nằm trong Menu Chính</value>
-    <comment/>
   </data>
   <data name="ViewLogMenuIntroduction" xml:space="preserve">
     <value>Nhật Ký nằm trong Menu Chính</value>
-    <comment/>
   </data>
   <data name="GotIt" xml:space="preserve">
     <value>Đã rõ</value>
-    <comment/>
   </data>
   <data name="Replay" xml:space="preserve">
     <value>Xem lại</value>
-    <comment/>
   </data>
   <data name="ReplayInstruction" xml:space="preserve">
     <value>Bạn có thể xem lại hướng dẫn này bằng cách nhấn vào &lt;/p&gt;&lt;p&gt; biểu tượng này.</value>
-    <comment/>
   </data>
   <data name="TakeTourInstruction" xml:space="preserve">
     <value>Bạn có thể xem hướng dẫn bằng cách nhấn vào &lt;/p&gt;&lt;p&gt; biểu tượng này.</value>
-    <comment/>
   </data>
   <data name="QuickTourTooltip" xml:space="preserve">
     <value>Giới thiệu giao diện mới</value>
-    <comment/>
   </data>
   <data name="stats" xml:space="preserve">
     <value>Thống kê</value>
-    <comment/>
   </data>
   <data name="balance" xml:space="preserve">
     <value>Tài Khoản</value>
-    <comment/>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>đã kích hoạt</value>
-    <comment/>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>chưa kích hoạt</value>
-    <comment/>
   </data>
   <data name="normalAnnouncement" xml:space="preserve">
     <value>Thông báo chung</value>
-    <comment/>
   </data>
   <data name="specialNotice" xml:space="preserve">
     <value>Thông báo đăc biệt</value>
-    <comment/>
   </data>
   <data name="specialAnnouncement" xml:space="preserve">
     <value>Thông báo đăc biệt</value>
-    <comment/>
   </data>
   <data name="personalMessage" xml:space="preserve">
     <value>Tin nhắn cá nhân</value>
-    <comment/>
   </data>
   <data name="notice" xml:space="preserve">
     <value>Thông báo</value>
-    <comment/>
   </data>
   <data name="winloss" xml:space="preserve">
     <value>Thắng thua</value>
-    <comment/>
   </data>
   <data name="active" xml:space="preserve">
     <value>Hoạt Động</value>
-    <comment/>
   </data>
   <data name="closed" xml:space="preserve">
     <value>Đóng</value>
-    <comment/>
   </data>
   <data name="suspended" xml:space="preserve">
     <value>Đình Chỉ</value>
-    <comment/>
   </data>
   <data name="submit" xml:space="preserve">
     <value>Xác nhận</value>
-    <comment/>
   </data>
   <data name="to" xml:space="preserve">
     <value>Đến</value>
-    <comment/>
   </data>
   <data name="from" xml:space="preserve">
     <value>Từ</value>
-    <comment/>
   </data>
   <data name="outstanding" xml:space="preserve">
     <value>Tiền chưa xử lý</value>
-    <comment/>
   </data>
   <data name="NoPermissionAccessPage" xml:space="preserve">
     <value>Xin lỗi, bạn không được phép truy cập vào trang này</value>
-    <comment/>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>Thông tin chưa được cập nhật</value>
-    <comment/>
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>Mới</value>
-    <comment/>
   </data>
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>Cập nhật thành công.</value>
-    <comment/>
   </data>
   <data name="Notice_3" xml:space="preserve">
     <value>Cấp dưới của bạn đã được kích hoạt sản phẩm Fishing World. Vui lòng thiết lập thông số Position Taking của bản thân.</value>
-    <comment/>
   </data>
   <data name="highlights" xml:space="preserve">
     <value>HIGHLIGHTS</value>
-    <comment/>
   </data>
   <data name="systemUpdate" xml:space="preserve">
     <value>Cập nhật</value>
-    <comment/>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Tổng cộng</value>
-    <comment/>
   </data>
   <data name="ConfiguredNicknameSuccessfully" xml:space="preserve">
     <value>Biệt Danh của bạn đã được thiết lập xong</value>
-    <comment/>
   </data>
   <data name="NicknameRule" xml:space="preserve">
     <value>Biệt Danh không được giống nhau và chỉ chứa ký tự chữ cái và số đếm. Phải có ít nhất từ 5 đến 20 ký tự</value>
-    <comment/>
   </data>
   <data name="NicknameCompanyPolicy" xml:space="preserve">
     <value>Để tăng cường bảo mật và bảo vệ tài khoản của bạn, bạn được yêu cầu chỉ sử dụng Biệt Danh để đăng nhập.</value>
-    <comment/>
   </data>
   <data name="NicknameEffectedFrom" xml:space="preserve">
     <value>Chính sách mới có hiệu tực từ ngày {0}.</value>
-    <comment/>
   </data>
   <data name="NicknameNote1" xml:space="preserve">
     <value>Sau này bạn sẽ không được thay đổi Biệt Danh.</value>
-    <comment/>
   </data>
   <data name="NicknameNote2" xml:space="preserve">
     <value>Chỉ có cấp trên trực tiếp thấy được Biệt Danh của bạn.</value>
-    <comment/>
   </data>
   <data name="SubAccNicknameNote2" xml:space="preserve">
     <value>Chỉ có cấp trên trực tiếp thấy được biệt danh của bạn.</value>
-    <comment/>
   </data>
   <data name="NicknameOption1" xml:space="preserve">
     <value>Đăng nhập bằng tên đăng nhập hoặc Biệt Danh</value>
-    <comment/>
   </data>
   <data name="NicknameOption2" xml:space="preserve">
     <value>Chỉ đăng nhập bằng Biệt Danh</value>
-    <comment/>
   </data>
   <data name="NicknameSkipText" xml:space="preserve">
     <value>Bỏ qua bước này và đi đến Trang Chủ</value>
-    <comment/>
   </data>
   <data name="NicknameRules" xml:space="preserve">
     <value>Quy tắc Biệt Danh</value>
-    <comment/>
   </data>
   <data name="PleaseChooseNickname" xml:space="preserve">
     <value>Vui lòng đặt tên Biệt Danh mong muốn của bạn</value>
-    <comment/>
   </data>
   <data name="PleaseSelectLoginByNickname" xml:space="preserve">
     <value>Vui lòng chọn Chỉ đăng nhập bằng Biệt Danh</value>
-    <comment/>
   </data>
   <data name="DataProcessingIsInProgress" xml:space="preserve">
     <value>Đang xử lý dữ liệu.</value>
-    <comment/>
   </data>
   <data name="DataProcessingNotification" xml:space="preserve">
     <value>Thông báo xử lý dữ liệu</value>
-    <comment/>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Yêu cầu</value>
-    <comment/>
   </data>
   <data name="firstName" xml:space="preserve">
     <value>Họ</value>
-    <comment/>
   </data>
   <data name="lastName" xml:space="preserve">
     <value>Tên</value>
-    <comment/>
   </data>
   <data name="loading" xml:space="preserve">
     <value>Đang tải</value>
-    <comment/>
   </data>
   <data name="searchAccount" xml:space="preserve">
     <value>Tìm kiếm tài khoản</value>
-    <comment/>
   </data>
   <data name="viewMessage" xml:space="preserve">
     <value>Xem thông báo</value>
-    <comment/>
   </data>
   <data name="viewAnnouncement" xml:space="preserve">
     <value>Xem thông báo</value>
-    <comment/>
   </data>
   <data name="changeLanguage" xml:space="preserve">
     <value>Thay đổi ngôn ngữ</value>
-    <comment/>
   </data>
   <data name="ThereIsNoChange" xml:space="preserve">
     <value>Không có thay đổi để cập nhật</value>
-    <comment/>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Xóa</value>
-    <comment/>
   </data>
   <data name="message" xml:space="preserve">
     <value>Thông báo</value>
-    <comment/>
   </data>
   <data name="memberInfo" xml:space="preserve">
     <value>Thông tin Member</value>
-    <comment/>
   </data>
   <data name="credit" xml:space="preserve">
     <value>Tín dụng</value>
-    <comment/>
   </data>
   <data name="lblresetpassword" xml:space="preserve">
     <value>Thiết lập lại mật khẩu</value>
-    <comment/>
   </data>
   <data name="lblChangePassword" xml:space="preserve">
     <value>Thay đổi mật khẩu</value>
-    <comment/>
   </data>
   <data name="lblBack" xml:space="preserve">
     <value>Quay lại</value>
-    <comment/>
   </data>
   <data name="ShowMainMenu" xml:space="preserve">
     <value>Hiện Menu Chính</value>
-    <comment/>
   </data>
   <data name="TitleUnsupportBrowser" xml:space="preserve">
     <value>Yêu cầu cập nhật trình duyệt</value>
-    <comment/>
   </data>
   <data name="TransferAndViewLogIntroduction" xml:space="preserve">
     <value>Chuyển Khoản và Nhật Ký được đưa vào Menu Chính</value>
-    <comment/>
   </data>
   <data name="ReportMenuIntroduction" xml:space="preserve">
     <value>Có gì mới trong những Báo cáo này? Bấm vào đây</value>
-    <comment/>
   </data>
   <data name="WinLossAnalysisChartIntroduction" xml:space="preserve">
     <value>Biểu đồ phân tích thắng thua ở đây</value>
-    <comment/>
   </data>
   <data name="invalidCaptcha" xml:space="preserve">
     <value>Đoạn mã  bạn nhập không có thực</value>
-    <comment/>
   </data>
   <data name="IamNotARobot" xml:space="preserve">
     <value>Tôi không phải là người máy</value>
-    <comment/>
   </data>
   <data name="CreateMemberWithQRCode" xml:space="preserve">
     <value>Tạo Member với mã QR</value>
-    <comment/>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>Tiền Chưa Chuyển Về Từ Trò Chơi</value>
-    <comment/>
   </data>
   <data name="UMFrom" xml:space="preserve">
     <value>từ</value>
-    <comment/>
   </data>
   <data name="UMTo" xml:space="preserve">
     <value>đến</value>
-    <comment/>
   </data>
   <data name="UMAnnouncementTitle" xml:space="preserve">
     <value>Thông báo bảo trì</value>
-    <comment/>
   </data>
   <data name="UMCustomerSettingsPattern" xml:space="preserve">
     <value>&lt;strong&gt;_SettingType_&lt;/strong&gt; của &lt;strong&gt;_Product_&lt;/strong&gt;: Gián đoạn từ &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; đến &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
-    <comment/>
   </data>
   <data name="UMSorryForInconvenience" xml:space="preserve">
     <value>Chúng tôi xin lỗi vì sự bất tiện gây ra.</value>
-    <comment/>
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>Tất cả sản phẩm</value>
-    <comment/>
   </data>
   <data name="UMSchedule" xml:space="preserve">
     <value>Sau đây là lịch bảo trì hệ thống (theo GMT +8) và trong khoảng thời gian này, những tính năng sau tạm thời gián đoạn:</value>
-    <comment/>
   </data>
   <data name="UMTransferPattern" xml:space="preserve">
     <value>&lt;strong&gt;Chuyển khoản&lt;/strong&gt;: Gián đoạn từ &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; đến &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
-    <comment/>
   </data>
   <data name="UMNewAccountPattern" xml:space="preserve">
     <value>&lt;strong&gt;Tạo tài khoản&lt;/strong&gt;: Gián đoạn từ &lt;span class="um-message-time"&gt;{0}&lt;/span&gt; đến &lt;span class="um-message-time"&gt;{1}&lt;/span&gt;</value>
-    <comment/>
   </data>
   <data name="UMDearValuedCustomers" xml:space="preserve">
     <value>Kính gửi Quý khách hàng,</value>
-    <comment/>
   </data>
   <data name="DashboardViewOverallInformation" xml:space="preserve">
     <value>Vui lòng nhấn vào biểu tượng {0} để xem thông tin tổng quan.</value>
-    <comment/>
   </data>
   <data name="PartialUMAnnouncement" xml:space="preserve">
     <value>Chúng tôi đang nâng cấp chức năng này để có trải nghiệm tốt hơn. Do đó, chức năng này tạm gián đoạn ({0} - {1} (GMT+8)). Xin lỗi vì sự bất tiện này, vui lòng thử lại sau.</value>
-    <comment/>
   </data>
   <data name="LiveMessage" xml:space="preserve">
     <value>Live Message</value>
-    <comment/>
   </data>
   <data name="NewProtectionCode" xml:space="preserve">
     <value>Mã Bảo Vệ Mới</value>
-    <comment/>
   </data>
   <data name="ProtectionCode" xml:space="preserve">
     <value>Mã Bảo Vệ</value>
-    <comment/>
   </data>
   <data name="ConfirmProtectionCode" xml:space="preserve">
     <value>Xác Nhận Mã Bảo Vệ Mới</value>
-    <comment/>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Tạo Mã Bảo Vệ</value>
-    <comment/>
   </data>
   <data name="NotMatchedConfirmProtectionCode" xml:space="preserve">
     <value>Mã bảo vệ không khớp.</value>
-    <comment/>
   </data>
   <data name="ProtectionCodeRule" xml:space="preserve">
     <value>Mã Bảo Vệ phải có ít nhất 6 ký tự, CÓ THỂ giống với Mã Bảo Mật nhưng KHÔNG THỂ giống với Mật Khẩu.</value>
-    <comment/>
   </data>
   <data name="RequiredNewProtectionCode" xml:space="preserve">
     <value>Mã Bảo Vệ Mới là bắt buộc.</value>
-    <comment/>
   </data>
   <data name="ShowProtectionCode" xml:space="preserve">
     <value>Hiện Mã Bảo Vệ</value>
-    <comment/>
   </data>
   <data name="MinLengthNewProtectionCodeError" xml:space="preserve">
     <value>Mã bảo vệ phải có ít nhất 6 ký tự.</value>
-    <comment/>
   </data>
   <data name="RequiredConfirmProtectionCode" xml:space="preserve">
     <value>Xác Nhận Mã Bảo Vệ Mới là bắt buộc</value>
-    <comment/>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Cập nhật</value>
-    <comment/>
   </data>
   <data name="UpdateProtectionCodeSuccessfully" xml:space="preserve">
     <value>Mã Bảo Vệ đã được cập nhật thành công.</value>
-    <comment/>
   </data>
   <data name="ContainsSpaceOrUnicodeCharacterError" xml:space="preserve">
     <value>Mã bảo vệ không được chứa bất kỳ ký tự Unicode hoặc dấu cách nào.</value>
-    <comment/>
   </data>
   <data name="ContactUs_Content" xml:space="preserve">
     <value>Các chuyên viên tư vấn luôn sẵn sàng giải đáp mọi thắc mắc từ khách hàng.</value>
-    <comment/>
   </data>
   <data name="Download" xml:space="preserve">
     <value>Download</value>
-    <comment/>
   </data>
   <data name="LetstalkIMID" xml:space="preserve">
     <value>Letstalk IM ID</value>
-    <comment/>
   </data>
   <data name="SkypeID" xml:space="preserve">
     <value>Skype ID</value>
-    <comment/>
   </data>
   <data name="ContactUsLegend" xml:space="preserve">
     <value>For Better Security</value>
-    <comment/>
   </data>
   <data name="AdvertisementMyWatchlist" xml:space="preserve">
     <value>&lt;b&gt;Dễ dàng&lt;/b&gt; theo dõi thắng thua của bạn qua &lt;b&gt;Mức Thắng Thua&lt;/b&gt;</value>
-    <comment/>
   </data>
   <data name="AdvertisementMyWatchlistGlobalThreshold" xml:space="preserve">
     <value>Mức Thắng Thua: đặt giới hạn thắng thua trên Position Taking của bạn</value>
-    <comment/>
   </data>
   <data name="AdvertisementMyWatchlistGlobalThresholdDetail" xml:space="preserve">
     <value>Đi đến &lt;b&gt;Quản Lý Rủi Ro&lt;/b&gt; --&gt; Mức Thắng Thua --&gt; đặt Giới Hạn Thắng/Thua</value>
-    <comment/>
   </data>
   <data name="LearnMore" xml:space="preserve">
     <value>Tìm Hiểu Thêm</value>
-    <comment/>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Có</value>
-    <comment/>
   </data>
   <data name="No" xml:space="preserve">
     <value>Không</value>
-    <comment/>
   </data>
   <data name="AdvertisementMyWatchlistGlobalThresholdDetailAgent" xml:space="preserve">
     <value>Đi đến &lt;b&gt;Quản Lý Rủi Ro&lt;/b&gt; --&gt; Danh Sách Theo Dõi - Mức Thắng Thua --&gt; đặt Giới Hạn Thắng/Thua</value>
-    <comment/>
   </data>
   <data name="Feedback" xml:space="preserve">
     <value>Góp ý</value>
-    <comment/>
   </data>
   <data name="FeedbackTitle" xml:space="preserve">
     <value>Hãy giúp chúng tôi cải thiện!</value>
-    <comment/>
   </data>
   <data name="LoveToHear" xml:space="preserve">
     <value>Chúng tôi rất cần những ý kiến từ bạn.</value>
-    <comment/>
   </data>
   <data name="CheckOut" xml:space="preserve">
     <value>Xem ngay</value>
-    <comment/>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>&lt;b&gt;Tên miền của Member&lt;/b&gt; hiện đã được tích hợp. Giờ đây, bạn có thể &lt;b&gt;dễ dàng truy xuất tên miền&lt;/b&gt; trên Telegram Chatbot.</value>
-    <comment/>
+    <value>Hãy khám phá &lt;b&gt;Hồ Sơ Member&lt;/b&gt; và &lt;b&gt;Thống Kê Cược&lt;/b&gt; để hiểu rõ hơn về cách họ đặt cược. Điều này sẽ giúp bạn quản lý rủi ro một cách hiệu quả và đưa ra các quyết định chính xác hơn.</value>
   </data>
   <data name="GetStarted" xml:space="preserve">
     <value>Bắt đầu</value>
-    <comment/>
   </data>
   <data name="SessionExpired" xml:space="preserve">
     <value>Phiên làm việc đã hết hạn.</value>
-    <comment/>
   </data>
   <data name="HighlightPopupNewFeatureIntro3" xml:space="preserve">
     <value>Sao chép dữ liệu mà không cần xuất ra tệp</value>
-    <comment/>
   </data>
   <data name="HighlightPopupNewFeatureIntro4" xml:space="preserve">
     <value>Lọc vé cược trên Danh Sách Cược</value>
-    <comment/>
   </data>
   <data name="FeedbackOnFunctionTitle" xml:space="preserve">
     <value>Giúp chúng tôi cải thiện {0}</value>
-    <comment/>
   </data>
   <data name="WinLossDetailReport" xml:space="preserve">
     <value>Báo Cáo Chi Tiết Thắng Thua</value>
-    <comment/>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>Tên Miền Khả Dụng</value>
-    <comment/>
+    <value>Chào mừng bạn đến &lt;b&gt;Hành Vi Đặt Cược Member&lt;/b&gt;!</value>
   </data>
-  <data name="Country" xml:space="preserve">
-    <value>Quốc gia</value>
-    <comment/>
+  <data name="SetupChatbot" xml:space="preserve">
+    <value>Cài Đặt Chatbot</value>
   </data>
-  <data name="City" xml:space="preserve">
-    <value>Thành phố</value>
-    <comment/>
+  <data name="SyncedNovaCasinoPersonalMessage" xml:space="preserve">
+    <value>Kính gửi Qúy Khách Hàng,
+
+Cấp dưới của quý vị, "{0}", đã chính thức tham gia Nova Casino. Vui lòng cung cấp điểm số của họ sớm nhất có thể để quá trình xử lý diễn ra thuận lợi. 
+
+Nếu có bất kỳ thắc mắc nào, vui lòng liên hệ Bộ phận Chăm sóc Khách hàng.
+
+Trân trọng cảm ơn sự hợp tác của quý vị!</value>
   </data>
-  <data name="IPNote" xml:space="preserve">
-    <value>Thông tin chi tiết tại DNSstuff:&lt;a href="{0}" target="_blank"&gt; Xem tại đây&lt;/a&gt;. Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  IP2Location™ và DNSstuff, chỉ mang tính chất tham khảo và không được đảm bảo chính xác. Vui lòng tham khảo các nguồn đáng tin cậy khác để cập nhật thông tin mới nhất và chính xác nhất nếu cần.</value>
-    <comment/>
+  <data name="NovaCasinoBriefIntroduction" xml:space="preserve">
+    <value>Nova Casino là nền tảng mới hỗ trợ chế độ Đa Đại Lý.Tham gia ngay để phát triển nhiều cấp dưới và người chơi. 
+&lt;br&gt;&lt;br&gt;
+Lưu ý: Vui lòng thay đổi &lt;b&gt;mật khẩu&lt;/b&gt; Nova Casino Back Office của bạn ngay từ lần đầu tiên bạn nhấn "Đăng ký" trên Nova Casino Back Office từ trang Đại lý. Trân trọng.</value>
   </data>
-  <data name="ipv6note" xml:space="preserve">
-    <value>Đối với IPv6, cùng một địa chỉ IP có thể được hiển thị khác nhau.</value>
-    <comment/>
+  <data name="SystemUnderMaintenance" xml:space="preserve">
+    <value>Hệ thống hiện đang bảo trì. Thời gian bảo trì: {0} - {1} (GMT+8). Vui lòng thử lại sau. [503]</value>
   </data>
-  <data name="ForExample" xml:space="preserve">
-    <value>Ví dụ:</value>
-    <comment/>
-  </data>
-  <data name="ipv61" xml:space="preserve">
-    <value>- Địa chỉ IP 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
-    <comment/>
-  </data>
-  <data name="ipv62" xml:space="preserve">
-    <value>- Địa chỉ IP 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
-    <comment/>
+  <data name="InternalServerError" xml:space="preserve">
+    <value>Đã xảy ra lỗi. Vui lòng liên hệ Bộ phận Chăm Sóc Khách hàng để được hỗ trợ. Xin cảm ơn. [500]</value>
   </data>
 </root>

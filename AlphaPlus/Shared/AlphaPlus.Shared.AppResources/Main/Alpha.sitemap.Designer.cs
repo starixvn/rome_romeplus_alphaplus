@@ -20,7 +20,7 @@ namespace AlphaPlus.Shared.AppResources.Main
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Alpha_sitemap
@@ -45,7 +45,7 @@ namespace AlphaPlus.Shared.AppResources.Main
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Main.Alpha.sitemap", typeof(Alpha_sitemap).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.Main.sitemap", typeof(Alpha_sitemap).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -543,6 +543,17 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Apply Nova Casino Agent.
+        /// </summary>
+        public static string JoinNovaCasinoNow
+        {
+            get
+            {
+                return ResourceManager.GetString("JoinNovaCasinoNow", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Last Bets.
         /// </summary>
         public static string LastBets
@@ -649,6 +660,17 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("matchWinLostDetail", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Member Betting Behavior.
+        /// </summary>
+        public static string MemberBettingBehavior
+        {
+            get
+            {
+                return ResourceManager.GetString("MemberBettingBehavior", resourceCulture);
             }
         }
 
@@ -1016,6 +1038,28 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Settlement Report.
+        /// </summary>
+        public static string SettlementReport
+        {
+            get
+            {
+                return ResourceManager.GetString("SettlementReport", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in To Nova Casino.
+        /// </summary>
+        public static string SigninToNovaCasino
+        {
+            get
+            {
+                return ResourceManager.GetString("SigninToNovaCasino", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Soccer.
         /// </summary>
         public static string soccer
@@ -1166,6 +1210,17 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("viewLog", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to White Label.
+        /// </summary>
+        public static string WhiteLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("WhiteLabel", resourceCulture);
             }
         }
 

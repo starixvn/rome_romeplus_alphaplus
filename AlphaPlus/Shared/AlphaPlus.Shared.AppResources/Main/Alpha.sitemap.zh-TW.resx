@@ -142,7 +142,7 @@
     <value>信用額度/餘額</value>
   </data>
   <data name="customerlist" xml:space="preserve">
-    <value>會員</value>
+    <value>會員名單</value>
   </data>
   <data name="dailywinlossanalysisreport" xml:space="preserve">
     <value>每日輸贏分析</value>
@@ -262,7 +262,7 @@
     <value>單雙盤 + 1x2 + DND</value>
   </data>
   <data name="parlay" xml:space="preserve">
-    <value>过关</value>
+    <value>過關</value>
   </data>
   <data name="reports" xml:space="preserve">
     <value>报告</value>
@@ -422,5 +422,20 @@
   </data>
   <data name="PTTemplate" xml:space="preserve">
     <value>佔成數模板</value>
+  </data>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>會員投注模式</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>白牌</value>
+  </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>結算報告</value>
+  </data>
+  <data name="JoinNovaCasinoNow" xml:space="preserve">
+    <value>申請 Nova Casino 代理</value>
+  </data>
+  <data name="SigninToNovaCasino" xml:space="preserve">
+    <value>登录 Nova Casin</value>
   </data>
 </root>

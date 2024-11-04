@@ -59,10 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root"
-    xmlns=""
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -311,8 +308,8 @@
   <data name="DownloadGoogleAuthenticator" xml:space="preserve">
     <value>在您的设备上下载Google Authenticator。</value>
   </data>
-  <data name="SophosAuthenticator" xml:space="preserve">
-    <value>Sophos 验证器</value>
+  <data name="GoogleAuthenticator" xml:space="preserve">
+    <value>Google Authenticator 验证器</value>
   </data>
   <data name="OtherAuthenticators" xml:space="preserve">
     <value>还支持其他两个因素身份验证应用程序，如Sophos ，Microsoft Authenticator 等。</value>
@@ -338,7 +335,7 @@
   <data name="EnableDisableOtp" xml:space="preserve">
     <value>启用 / 禁用OTP</value>
   </data>
-  <data name="EnableOtpViaSophos" xml:space="preserve">
+  <data name="EnableOtpViaMobileAuthenticatorApp" xml:space="preserve">
     <value>通过Authenticator Mobile App启用 OTP</value>
   </data>
   <data name="OtpIsInvalidOrExpired" xml:space="preserve">

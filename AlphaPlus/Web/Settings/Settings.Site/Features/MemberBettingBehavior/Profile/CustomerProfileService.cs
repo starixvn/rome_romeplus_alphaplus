@@ -28,6 +28,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.Profile
             this.partialUMService = partialUMService;
             this.refService = refService;
             this.httpClient = httpClient;
+            this.logger = logger;
         }
 
         public async Task<CustomerProfile> GetCustomerProfile(int custId, string siteName)

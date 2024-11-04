@@ -429,4 +429,19 @@
   <data name="PTTemplate" xml:space="preserve">
     <value>Position Taking Template</value>
   </data>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>Member Betting Behavior</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>White Label</value>
+  </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>Settlement Report</value>
+  </data>
+  <data name="SigninToNovaCasino" xml:space="preserve">
+    <value>Sign in To Nova Casino</value>
+  </data>
+  <data name="JoinNovaCasinoNow" xml:space="preserve">
+    <value>Apply Nova Casino Agent</value>
+  </data>
 </root>

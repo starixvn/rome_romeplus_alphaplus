@@ -400,7 +400,7 @@
     <value>OTP หมดอายุ โปรด &lt;span id="btnResend" class="link resend-code"&gt;คลิกที่นี่&lt;/span&gt; เพื่อรับ OTP ใหม่</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>Outstanding</value>
+    <value>เดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="PersonalMessage" xml:space="preserve">
     <value>Personal Message</value>

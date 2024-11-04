@@ -59,6 +59,8 @@ using AlphaPlus.Settings.Site.Features.PositionTaking.Services;
 using AlphaPlus.Settings.MemberInfo.API.Features.Commission;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn;
+using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatistic;
+using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.Profile;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -217,6 +219,15 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<TransferAllAndClearCreditService, TransferAllAndClearCreditServiceImpl>()
                 .AddScoped<TransferToDownlineHistoryService, TransferToDownlineHistoryServiceImpl>()
                 .AddSingleton<QRCodeLoginConfigsHelper>((provider) => new QRCodeLoginConfigsHelperImpl(qrCodeMemberLoginConfig));
+
+            services
+                .AddSingleton<IMemberBettingBehaviorWorkbook, MemberBettingBehaviorWorkbook>()
+                .AddSingleton<IMemberBettingStatisticService, MemberBettingStatisticService>()
+                .AddHttpClient<ICustomerProfileService, CustomerProfileService>(httpClient =>
+                {
+                    httpClient.BaseAddress = new Uri(configuration["CTS_API"]);
+                    httpClient.DefaultRequestHeaders.Add("Accept-Language", Thread.CurrentThread.CurrentCulture.Name);
+                });
 
             services
                 .AddHttpClient<IPositionTakingService, PositionTakingService>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);

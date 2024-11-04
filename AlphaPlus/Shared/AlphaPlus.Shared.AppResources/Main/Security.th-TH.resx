@@ -59,10 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root"
-    xmlns=""
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -167,7 +164,7 @@
     <value>ตั้งค่าใหม่</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="titleVerifySecurityCode" xml:space="preserve">
     <value>ตรวจสอบรหัสรักษาความปลอดภัย</value>
@@ -317,8 +314,8 @@
   <data name="DownloadGoogleAuthenticator" xml:space="preserve">
     <value>ดาวน์โหลด Google Authenticator Mobile App สู่เครื่องของคุณ</value>
   </data>
-  <data name="SophosAuthenticator" xml:space="preserve">
-    <value>Sophos Authenticator</value>
+  <data name="GoogleAuthenticator" xml:space="preserve">
+    <value>Google Authenticator</value>
   </data>
   <data name="OtherAuthenticators" xml:space="preserve">
     <value>อีก 2 ตัวนอกเหนือจาก authenticator applications คือ Sophos หรือ Microsoft Authenticator ก็รอบรับเช่นเดียวกัน</value>
@@ -333,7 +330,7 @@
     <value>โปรดใส่ เงื่อนไขด้านล่างเพื่อเป็นการเพิ่มหน้าใน Google Authenticator และคลิ๊ก Add</value>
   </data>
   <data name="Enter6DigitsOtp" xml:space="preserve">
-    <value>ใส่ตัวเลข 6 ตัวที่สร้างโดย Google Authenticator ลงไปในกล่องข้อความด้านล่างแล้วคลิ๊กยืนยันเพื่อเป็นการลงทะเบียน</value>
+    <value> ใส่ตัวเลข 6 ตัวที่สร้างโดย Google Authenticator ลงไปในกล่องข้อความด้านล่างแล้วคลิ๊กยืนยันเพื่อเป็นการลงทะเบียน</value>
   </data>
   <data name="ClickToRemoveOtp" xml:space="preserve">
     <value>คลิกที่ปุ่มด้านล่างนี้เพื่อลบผู้ใช้ที่ลงทะเบียนอุปกรณ์และการตั้งค่า/ สถานะของผู้ใช้งาน OTP เพื่อปิดการใช้งาน</value>
@@ -344,7 +341,7 @@
   <data name="EnableDisableOtp" xml:space="preserve">
     <value>เปิดการใช้งาน/ปิดการใช้งาน OTP</value>
   </data>
-  <data name="EnableOtpViaSophos" xml:space="preserve">
+  <data name="EnableOtpViaMobileAuthenticatorApp" xml:space="preserve">
     <value>เปิดการใช้งาน OTP ทาง Authenticator Mobile App</value>
   </data>
   <data name="OtpIsInvalidOrExpired" xml:space="preserve">
@@ -508,6 +505,6 @@
     <value>สร้างรหัสผ่านครั้งเดียว (OTP)</value>
   </data>
   <data name="PositionTakingTemplate" xml:space="preserve">
-    <value>เทมเพลตค่าแบ่งสู้</value>
+    <value>เทมเพลตค่าความเสี่ยง</value>
   </data>
 </root>

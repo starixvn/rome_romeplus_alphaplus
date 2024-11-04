@@ -27,8 +27,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatisti
             IDynamicRepository dynamicRepository,
             ICacheService cacheService,
             IPartialUMService partialUMService,
-            CacheRefService refService,
-            HttpClient httpClient)
+            CacheRefService refService)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
@@ -74,7 +73,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatisti
 
             foreach (var item in turnOverByBettypes)
             {
-                int.TryParse(item.ProductID, out int productId);
+                _ = int.TryParse(item.ProductID, out int productId);
                 item.Bettype = GetMemberStatisticBetTypeName(item.Bettype);
                 item.ProductName = refService.GetProductName(productId);
             }
@@ -127,14 +126,14 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatisti
 
         private string GetMemberStatisticSportTypeName(string sportType)
         {
-            int.TryParse(sportType, out int sportTypeId);
+            _ = int.TryParse(sportType, out int sportTypeId);
             var sportTypeName = refService.GetSportTypeName(sportTypeId);
             return sportTypeName != "" ? sportTypeName : refService.GetCustBetBehavior(sportType);
         }
 
         private string GetMemberStatisticBetTypeName(string betType)
         {
-            int.TryParse(betType, out int betTypeId);
+            _ = int.TryParse(betType, out int betTypeId);
             var betTypeName = refService.GetBetTypeName(betTypeId);
             return betTypeName != "" ? betTypeName : refService.GetCustBetBehavior(betType);
         }

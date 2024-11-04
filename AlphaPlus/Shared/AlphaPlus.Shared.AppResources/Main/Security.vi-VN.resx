@@ -59,10 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root"
-    xmlns=""
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -315,8 +312,8 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="DownloadGoogleAuthenticator" xml:space="preserve">
     <value>Tải Google Authenticator về thiết bị.</value>
   </data>
-  <data name="SophosAuthenticator" xml:space="preserve">
-    <value>Sophos Authenticator</value>
+  <data name="GoogleAuthenticator" xml:space="preserve">
+    <value>Google Authenticator</value>
   </data>
   <data name="OtherAuthenticators" xml:space="preserve">
     <value>Các ứng dụng bảo mật 2 lớp khác như Sophos, Microsoft Authenticator, v..v... cũng được hỗ trợ.</value>
@@ -342,7 +339,7 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="EnableDisableOtp" xml:space="preserve">
     <value>Kích hoạt/tắt tính năng OTP</value>
   </data>
-  <data name="EnableOtpViaSophos" xml:space="preserve">
+  <data name="EnableOtpViaMobileAuthenticatorApp" xml:space="preserve">
     <value>Kích hoạt tính năng OTP thông qua ứng dụng Authenticator trên di động</value>
   </data>
   <data name="OtpIsInvalidOrExpired" xml:space="preserve">

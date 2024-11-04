@@ -20,7 +20,7 @@ namespace AlphaPlus.Shared.AppResources.Main
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources
@@ -66,6 +66,94 @@ namespace AlphaPlus.Shared.AppResources.Main
             set
             {
                 resourceCulture = value;
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to IP.
+        /// </summary>
+        public static string IP
+        {
+            get
+            {
+                return ResourceManager.GetString("IP", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country
+        {
+            get
+            {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string City
+        {
+            get
+            {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Additional info at DNSstuff:<a href="{0}" target="_blank"> click here</a>.Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required.
+        /// </summary>
+        public static string IPNote
+        {
+            get
+            {
+                return ResourceManager.GetString("IPNote", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For IPv6, the same IP address may be displayed differently.
+        /// </summary>
+        public static string ipv6note
+        {
+            get
+            {
+                return ResourceManager.GetString("ipv6note", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For example:.
+        /// </summary>
+        public static string ForExample
+        {
+            get
+            {
+                return ResourceManager.GetString("ForExample", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to - IP address 1: 2001:db8:3333:4444:5555:6666:1.2.3.4.
+        /// </summary>
+        public static string ipv61
+        {
+            get
+            {
+                return ResourceManager.GetString("ipv61", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to - IP address 2: 2001:0db8:3333:4444:5555:6666:0102:0304.
+        /// </summary>
+        public static string ipv62
+        {
+            get
+            {
+                return ResourceManager.GetString("ipv62", resourceCulture);
             }
         }
 
@@ -400,6 +488,17 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Contact our CSD for more details!.
+        /// </summary>
+        public static string ContactCSD
+        {
+            get
+            {
+                return ResourceManager.GetString("ContactCSD", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Contact Us.
         /// </summary>
         public static string ContactUs
@@ -719,13 +818,24 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to &lt;b&gt;Member domains&lt;/b&gt; now included. Enjoy &lt;b&gt;easy domain retrieval&lt;/b&gt; with Telegram chatbot..
+        ///   Looks up a localized string similar to Gain valuable insights into Members&apos; betting behaviors through &lt;b&gt;Member Profile&lt;/b&gt; and &lt;b&gt;Betting Statistics&lt;/b&gt; to effectively manage risk, and make informed decisions..
         /// </summary>
         public static string HighlightPopupNewFeatureIntro
         {
             get
             {
                 return ResourceManager.GetString("HighlightPopupNewFeatureIntro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Navigate&lt;/b&gt; effortlessly and &lt;b&gt;boost your proficiency&lt;/b&gt;!.
+        /// </summary>
+        public static string HighlightPopupNewFeatureIntro2
+        {
+            get
+            {
+                return ResourceManager.GetString("HighlightPopupNewFeatureIntro2", resourceCulture);
             }
         }
 
@@ -752,7 +862,7 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Available Domains.
+        ///   Looks up a localized string similar to Welcome to &lt;b&gt;Member Betting Behavior&lt;/b&gt;!.
         /// </summary>
         public static string HighlightPopupNewFeatureTitle
         {
@@ -803,6 +913,28 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("IamNotARobot", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Interested? .
+        /// </summary>
+        public static string Interested
+        {
+            get
+            {
+                return ResourceManager.GetString("Interested", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to An error has occurred. Please contact Customer Service Department for assistance. Thank you. [500].
+        /// </summary>
+        public static string InternalServerError
+        {
+            get
+            {
+                return ResourceManager.GetString("InternalServerError", resourceCulture);
             }
         }
 
@@ -1281,6 +1413,28 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to No Bad Debt.
+        /// </summary>
+        public static string NoBadDebt
+        {
+            get
+            {
+                return ResourceManager.GetString("NoBadDebt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Players deposit upfront, eliminating bad debt risks from your business..
+        /// </summary>
+        public static string NoBadDebt_Description
+        {
+            get
+            {
+                return ResourceManager.GetString("NoBadDebt_Description", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string noInfo
@@ -1398,6 +1552,19 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("NotNow", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Nova Casino is a new platform with an Multiple Agents mode. Apply now to create Multiple downlines and players.
+        ///&lt;br&gt;&lt;br&gt;
+        ///Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click &apos;Apply&apos; on the Nova Casino Back Office from the Agent site. Thanks.
+        /// </summary>
+        public static string NovaCasinoBriefIntroduction
+        {
+            get
+            {
+                return ResourceManager.GetString("NovaCasinoBriefIntroduction", resourceCulture);
             }
         }
 
@@ -1666,6 +1833,28 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Rich Products Collection.
+        /// </summary>
+        public static string RichProductsCollection
+        {
+            get
+            {
+                return ResourceManager.GetString("RichProductsCollection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Excite your players with our wide variety of games and products..
+        /// </summary>
+        public static string RichProductsCollection_Description
+        {
+            get
+            {
+                return ResourceManager.GetString("RichProductsCollection_Description", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Search Account.
         /// </summary>
         public static string searchAccount
@@ -1695,6 +1884,17 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("SessionExpired", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Set Up Chatbot.
+        /// </summary>
+        public static string SetupChatbot
+        {
+            get
+            {
+                return ResourceManager.GetString("SetupChatbot", resourceCulture);
             }
         }
 
@@ -1897,6 +2097,34 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Dear Valued Agents,
+        /// 
+        ///Your downline, “{0}” has successfully joined Nova Casino. Kindly provide their score promptly to ensure smooth processing.
+        /// 
+        ///Should you have any questions, please contact the Customer Service Department.
+        /// 
+        ///Thank you for your continued cooperation!.
+        /// </summary>
+        public static string SyncedNovaCasinoPersonalMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("SyncedNovaCasinoPersonalMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The system is currently under maintenance. Maintenance time: {0} - {1} (GMT+8). Please try again later. [503].
+        /// </summary>
+        public static string SystemUnderMaintenance
+        {
+            get
+            {
+                return ResourceManager.GetString("SystemUnderMaintenance", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to System.
         /// </summary>
         public static string systemUpdate
@@ -2091,6 +2319,28 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("TransferMenuIntroduction", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Turnkey Solution.
+        /// </summary>
+        public static string TurnkeySolution
+        {
+            get
+            {
+                return ResourceManager.GetString("TurnkeySolution", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Effortlessly launch and personalize your own gaming brand in less than 3 days..
+        /// </summary>
+        public static string TurnkeySolution_Description
+        {
+            get
+            {
+                return ResourceManager.GetString("TurnkeySolution_Description", resourceCulture);
             }
         }
 
@@ -2326,6 +2576,17 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Kickstart Your Own &lt;span&gt;White Label&lt;/span&gt; Platform In Less Than &lt;span&gt;&lt;strong&gt;3&lt;/strong&gt; Days&lt;/span&gt;.
+        /// </summary>
+        public static string WhiteLabel_Intro
+        {
+            get
+            {
+                return ResourceManager.GetString("WhiteLabel_Intro", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Win Loss.
         /// </summary>
         public static string winloss
@@ -2421,94 +2682,6 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("yesterdayWinLoss", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to IP.
-        /// </summary>
-        public static string IP
-        {
-            get
-            {
-                return ResourceManager.GetString("IP", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Country.
-        /// </summary>
-        public static string Country
-        {
-            get
-            {
-                return ResourceManager.GetString("Country", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to City.
-        /// </summary>
-        public static string City
-        {
-            get
-            {
-                return ResourceManager.GetString("City", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Additional info at DNSstuff:<a href="{0}" target="_blank"> click here</a>.Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required.
-        /// </summary>
-        public static string IPNote
-        {
-            get
-            {
-                return ResourceManager.GetString("IPNote", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to For IPv6, the same IP address may be displayed differently.
-        /// </summary>
-        public static string ipv6note
-        {
-            get
-            {
-                return ResourceManager.GetString("ipv6note", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to For example:.
-        /// </summary>
-        public static string ForExample
-        {
-            get
-            {
-                return ResourceManager.GetString("ForExample", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to - IP address 1: 2001:db8:3333:4444:5555:6666:1.2.3.4.
-        /// </summary>
-        public static string ipv61
-        {
-            get
-            {
-                return ResourceManager.GetString("ipv61", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to - IP address 2: 2001:0db8:3333:4444:5555:6666:0102:0304.
-        /// </summary>
-        public static string ipv62
-        {
-            get
-            {
-                return ResourceManager.GetString("ipv62", resourceCulture);
             }
         }
     }
