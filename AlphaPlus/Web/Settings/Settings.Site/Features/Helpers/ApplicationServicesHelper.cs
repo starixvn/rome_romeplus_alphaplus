@@ -61,7 +61,6 @@ using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatistic;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.Profile;
-using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -177,9 +176,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<PasswordService, PasswordServiceImpl>()
                 .AddScoped<CheckBelongingService, CheckBelongingServiceImpl>()
                 .AddSingleton<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>()
-                .AddHttpClient<IQRCodeService, QRCodeService>(httpClient => {
-                    httpClient.BaseAddress = new Uri(Core.Configurations.ConfigurationManager.GetValue<string>("ONEbook.Common.Auth.API"));
-                });
+                .AddHttpClient<IQRCodeService, QRCodeService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("ONEbook.Common.Auth.API")));
 
             services
                 .AddSingleton<ProblemAccountWorkbook, ProblemAccountWorkbookImpl>()

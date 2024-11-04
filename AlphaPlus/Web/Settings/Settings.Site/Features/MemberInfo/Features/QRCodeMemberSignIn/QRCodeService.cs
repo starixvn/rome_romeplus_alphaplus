@@ -23,7 +23,7 @@ public class QRCodeService(HttpClient httpClient) : IQRCodeService
 
     public async Task<string> CreateToken(int siteid, string username, int TokenExpireSecond)
     {
-        string data = await GetData(string.Format("{0}/GenerateQrLoginToken?siteId={1}&userName={2}&tokenExpireSecond={3}", httpClient.BaseAddress, siteid, username, TokenExpireSecond));
+        string data = await GetData(string.Format("/GenerateQrLoginToken?siteId={0}&userName={1}&tokenExpireSecond={2}", siteid, username, TokenExpireSecond));
         return !string.IsNullOrWhiteSpace(data) ? data : throw new Exception("CreateToken Erron , token is null");
     }
 
