@@ -1,0 +1,588 @@
+﻿@import '../../Shared/Styles/abstracts/variables-dark';
+
+.filter {
+    margin-top: 10px;
+
+    .form {
+        display: inline-block;
+        position: relative;
+
+        .easy-autocomplete-container {
+            margin-top: 2px;
+            z-index: 9999;
+        }
+
+        #txt-username {
+            box-shadow: none;
+            border: 1px solid #4f4f4f;
+            background: #292929;
+            border-radius: 5px;
+            padding-left: 32px;
+            width: 250px;
+            height: 28px;
+            color: #ededed;
+        }
+
+        .btn-search {
+            background: none;
+            border: 0;
+            appearance: none;
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+
+            span {
+                display: block;
+            }
+        }
+    }
+}
+
+.tipsy {
+    white-space: nowrap;
+
+    .tipsy-inner {
+        max-width: inherit;
+    }
+}
+
+.box-member {
+    border: 1px solid #2f2f2f;
+    margin-top: 12px;
+    border-radius: 5px;
+    width: 1200px;
+}
+
+.ttl-box-member {
+    background: #263041;
+    color: #fff;
+    font-size: 13px;
+    padding: 6px 11px 7px;
+    border-radius: 4px 4px 0 0;
+    font-family: 'Roboto Bold';
+    font-weight: bold;
+}
+
+.body-box-member {
+    padding: 12px 11px 10px 11px;
+    background: #171717;
+    border-radius: 0 0 5px 5px;
+
+    &-profile {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 0;
+
+        .item {
+            margin-left: 12px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+.body-box-member-profile .item {
+    display: flex;
+    align-items: center;
+    min-width: 225px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 8px;
+
+    &.status {
+        background: #161d26;
+
+        .left-icon {
+            background: #2e83cc;
+        }
+
+        .value {
+            color: #2e83cc;
+        }
+    }
+
+    &.level {
+        background: #2c2318;
+
+        .left-icon {
+            background: #cc9c70;
+        }
+
+        .value {
+            color: #cc9c70;
+        }
+    }
+
+    &.related-other-account {
+        background: #381949;
+
+        .left-icon {
+            background: #9a72b0;
+        }
+
+        .value {
+            color: #9a72b0;
+        }
+    }
+
+    &.problem-account {
+        background: #2c1818;
+
+        .left-icon {
+            background: #a51313;
+        }
+
+        .value {
+            color: #a51313;
+        }
+    }
+
+    &.monitored {
+        background: #212121;
+
+        .left-icon {
+            background: #a4a4a4;
+        }
+
+        .value {
+            color: #a4a4a4;
+        }
+    }
+
+    .left-icon {
+        margin-right: 10px;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+    }
+
+    .right-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        height: 100%;
+
+        .add-watchlist {
+            margin-left: 4px;
+        }
+
+        .sm {
+            display: none;
+        }
+
+        .icon-plus-circle {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 16px;
+            background: #0b599c;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            text-align: center;
+            line-height: 20px;
+        }
+    }
+
+    .info {
+        color: #a4a4a4;
+    }
+
+    .value {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    [data-tooltip] {
+        position: relative;
+
+        &:hover {
+            &:after,
+            &:before {
+                opacity: 1;
+            }
+        }
+
+        &:after,
+        &:before {
+            position: absolute;
+            transition: 0.35s;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        &:after {
+            content: attr(data-tooltip);
+            bottom: calc(100% + 11px);
+            left: -10px;
+            font-size: 13px;
+            padding: 12px;
+            border-radius: 5px;
+            background-color: rgba(51, 51, 51, 0.9);
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        &:before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 7px 6px 0 6px;
+            border-color: rgba(51, 51, 51, 0.9) transparent transparent transparent;
+            bottom: calc(100% + 5px);
+            left: 3px;
+        }
+    }
+}
+
+.body-box-member-chart {
+    padding-bottom: 30px;
+}
+
+.statistics {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+
+    .multiselect-container {
+        margin-top: 3px;
+    }
+}
+
+.range {
+    display: flex;
+    align-items: center;
+
+    > * {
+        margin-right: 10px;
+    }
+
+    .form-group {
+        margin-top: 0;
+        padding: 0;
+
+        .btn-group {
+            box-shadow: none;
+            border: 1px solid #4f4f4f;
+            border-radius: 5px;
+            margin: 0;
+
+            .multiselect .multiselect-selected-text {
+                text-transform: none;
+                width: 138px;
+            }
+
+            button {
+                box-shadow: none;
+                background: transparent;
+                margin: 0;
+
+                &.multiselect {
+                    border: none;
+                    background: #292929;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+
+    select {
+        width: 150px;
+    }
+
+    .label {
+        display: flex;
+        align-items: center;
+        background: transparent;
+        padding: 0;
+    }
+
+    label {
+        font-size: 13px;
+        color: #ededed;
+        margin-bottom: 0;
+        font-weight: bold;
+        line-height: 24px;
+    }
+
+    .icon-excel2 {
+        font-size: 24px;
+        margin-left: 12px;
+        vertical-align: middle;
+    }
+
+    .btn-group {
+        margin-top: 0;
+    }
+}
+
+.summary-statistic {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: 1px solid #4f4f4f;
+    border-radius: 5px;
+    padding: 3px 7px;
+    width: 14.456%;
+
+    .item {
+        flex: 1;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-bottom: 1px solid #4f4f4f;
+
+        &:last-child {
+            border: 0;
+        }
+
+        .text {
+            font-size: 16px;
+            line-height: 18px;
+        }
+
+        .redText {
+            color: #dd3333 !important;
+        }
+
+        .number {
+            font-size: 24px;
+            line-height: 30px;
+            font-weight: bold;
+            font-family: 'Roboto bold';
+            color: #2e83cc;
+        }
+    }
+}
+
+.chart {
+    display: flex;
+    flex-wrap: wrap;
+
+    &.space-between {
+        justify-content: space-between;
+    }
+
+    + .chart {
+        margin-top: 12px;
+    }
+}
+
+.turnover-by-sport-chart {
+    width: calc(31.633% - 12px);
+    height: 317px;
+    border: 1px solid #4f4f4f;
+    padding: 11px;
+    border-radius: 5px;
+}
+
+.turnover-by-bettype-chart {
+    width: calc(53.912% - 12px);
+    height: 317px;
+    border: 1px solid #4f4f4f;
+    padding: 11px;
+    border-radius: 5px;
+}
+
+.turnover-winloss-by-date-chart {
+    border: 1px solid #4f4f4f;
+    padding: 11px;
+    border-radius: 5px;
+    width: 100%;
+    height: 353px;
+}
+
+.nodata {
+    text-align: center;
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 20px;
+        color: #537090;
+        font-weight: bold;
+        margin: 0;
+    }
+}
+
+.easy-autocomplete-container {
+    margin-top: 2px;
+    z-index: 9999;
+
+    ul {
+        background-color: $autocomplete-background-color;
+        border-top-color: $autocomplete-border-color;
+
+        li {
+            border-color: $autocomplete-border-color;
+
+            &.selected {
+                background-color: $autocomplete-selected-color;
+            }
+        }
+    }
+}
+
+@media only screen and (max-device-width: 767px) {
+    .box-member {
+        width: 100%;
+    }
+
+    .body-box-member-profile {
+        gap: 0;
+
+        .item {
+            width: 48%;
+            min-width: 48%;
+            margin-right: 4%;
+            margin-left: 0;
+
+            &:nth-child(even) {
+                margin-right: 0;
+            }
+
+            &.monitored {
+                width: 100%;
+                margin-right: 0;
+
+                .value {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+
+            .right-text {
+                flex: 1;
+
+                .pc {
+                    display: none;
+                }
+
+                .sm {
+                    display: inline-block;
+                }
+
+                .text-add-watchlist {
+                    border: 1px solid #2e83cc;
+                    border-radius: 2px;
+                    color: #2e83cc;
+                    font-size: 13px;
+                    line-height: 18px;
+                    padding: 0 8px;
+                }
+            }
+        }
+    }
+
+    .range {
+        width: 100%;
+
+        .form-group {
+            width: 100%;
+            margin: 0;
+
+            .btn-group {
+                width: calc(100% - 40px);
+
+                button {
+                    display: block;
+                    width: 100%;
+                }
+
+                .multiselect .multiselect-selected-text {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .summary-statistic {
+        width: 100%;
+        flex-direction: row;
+        margin-bottom: 12px;
+
+        .item {
+            width: 48.5%;
+            margin-right: 3%;
+            flex: auto;
+            height: 66px;
+            position: relative;
+
+            &:nth-child(even) {
+                margin-right: 0;
+            }
+
+            &:nth-child(3) {
+                border: 0;
+            }
+
+            &:nth-child(2n + 1) {
+                &:after {
+                    position: absolute;
+                    content: '';
+                    top: 3px;
+                    right: -3%;
+                    height: calc(100% - 6px);
+                    width: 1px;
+                    background: #4f4f4f;
+                }
+            }
+        }
+    }
+
+    .turnover-by-sport-chart {
+        width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+    }
+
+    .turnover-by-bettype-chart {
+        width: 100%;
+        height: auto;
+
+        > * {
+            width: 100%;
+        }
+    }
+
+    .turnover-winloss-by-date-chart {
+        height: auto;
+        min-height: 300px;
+
+        > * {
+            width: 100%;
+        }
+    }
+
+    .body-box-member-chart {
+        padding-bottom: 70px;
+    }
+
+    .nodata {
+        padding: 40px 0 0;
+        height: auto;
+    }
+}

@@ -1,6 +1,6 @@
 ﻿[
   {
-    "outputFileName": "Features/MemberBettingBehavior/Bundles/member-betting-behavior.js",
+    "outputFileName": "wwwroot/assets/bundles/member-betting-behavior/index.js",
     "inputFiles": [
       "Features/Shared/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js",
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
@@ -20,14 +20,9 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/assets/bundles/member-betting-behavior/index.css",
-    "inputFiles": [
-      "Features/MemberBettingBehavior/Styles/member-betting-behavior.css"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/assets/bundles/member-betting-behavior/index-dark.css",
     "inputFiles": [
+      "Features/Shared/Scripts/EasyAutocomplete/easy-autocomplete.css",
       "Features/MemberBettingBehavior/Styles/member-betting-behavior-dark.css"
     ]
   },
