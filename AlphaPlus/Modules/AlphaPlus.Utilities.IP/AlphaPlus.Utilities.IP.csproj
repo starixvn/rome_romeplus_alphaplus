@@ -8,6 +8,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Caching" Version="2.2.4" />
-    <PackageReference Include="Fanex.Data.ProxyClient" Version="0.0.3-alpha02" />
+    <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.0" />
   </ItemGroup>
 </Project>

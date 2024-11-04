@@ -3,64 +3,44 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Outstanding;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Outstanding;
 
-public class OutstandingViewModel
-{
-    public OutstandingViewModel(
-        OutstandingQuery message,
-        ReportData<OutstandingModel> reportData,
-        ProductMultiSelectionViewModel productViewModel,
-        BreadcrumbViewModel breadcrumbLevel,
-        bool isMobile)
-    {
-        CustId = message.CustId;
-        CustName = message.CustName;
-        CustLevel = message.CustLevel;
-        ReportLevel = CustLevel.GetDirectDownLineLevel();
-        PageHeader = new PageHeaderViewModel(
-            Title: ReportLevel.IsMasterLevel()
-                ? Resources.MasterOutstanding
-                : ReportLevel.IsAgentLevel() ? Resources.AgentOutstanding : Resources.MemberOutstanding,
+public class OutstandingViewModel(
+    OutstandingQuery message,
+    ReportData<OutstandingModel> reportData,
+    ProductMultiSelectionViewModel productViewModel,
+    bool isMobile) : DrillDownableViewModel<OutstandingModel>(
+        message,
+        new PageHeaderViewModel(
+            Title: BuildTitle(message.CustLevel.GetDirectDownLineLevel()),
             IsFilterVisible: message.IsFilterVisible,
-            BreadcrumbLevel: breadcrumbLevel);
-        ProductViewModel = productViewModel;
-        ReportData = reportData;
-        SortPropertyName = message.SortPropertyName;
-        DescendingSort = message.DescendingSort;
-        IsMobileView = isMobile;
-        DisplayOutstandingLevels = GetDisplayOutstandingLevels(CustLevel.Value, message.ViewerLevelId).ToList();
-        DisplayOutstandingLevelsJson = JsonHelper.ToJson(DisplayOutstandingLevels);
-    }
+            BreadcrumbLevel: BuildBreadcrumbViewModel(message)),
+        reportData,
+        message.SortPropertyName,
+        message.DescendingSort)
+{
+    private static string BetListPath = MicroSites.TicketUrl("~/RunningBetList/Index");
 
-    public int CustId { get; }
+    public UserLevel ReportLevel { get; } = message.CustLevel.GetDirectDownLineLevel();
 
-    public string CustName { get; }
+    public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 
-    public UserLevel CustLevel { get; }
+    public IList<UserLevel> DisplayOutstandingLevels { get; } = GetDisplayOutstandingLevels(message.CustLevel.Value, message.ViewerLevelId).ToList();
 
-    public UserLevel ReportLevel { get; }
+    public string DisplayOutstandingLevelsJson => JsonHelper.ToJson(DisplayOutstandingLevels);
 
-    public PageHeaderViewModel PageHeader { get; }
+    public bool IsMobileView { get; } = isMobile;
 
-    public ProductMultiSelectionViewModel ProductViewModel { get; }
+    private static string BuildTitle(UserLevel reportTitle)
+        => reportTitle.IsMasterLevel()
+        ? Resources.MasterOutstanding
+        : reportTitle.IsAgentLevel() ? Resources.AgentOutstanding : Resources.MemberOutstanding;
 
-    public ReportData<OutstandingModel> ReportData { get; }
-
-    public IList<UserLevel> DisplayOutstandingLevels { get; }
-
-    public string DisplayOutstandingLevelsJson { get; }
-
-    public string SortPropertyName { get; }
-
-    public byte DescendingSort { get; }
-
-    public bool IsMobileView { get; }
-
-    private IEnumerable<UserLevel> GetDisplayOutstandingLevels(byte custLevel, byte viewerLevel)
+    private static IEnumerable<UserLevel> GetDisplayOutstandingLevels(byte custLevel, byte viewerLevel)
     {
         yield return UserLevel.Member;
 
@@ -82,6 +62,4 @@ public class OutstandingViewModel
 
         return $"{BetListPath}{queryString}";
     }
-
-    private static string BetListPath = MicroSites.TicketUrl("~/RunningBetList/Index");
 }

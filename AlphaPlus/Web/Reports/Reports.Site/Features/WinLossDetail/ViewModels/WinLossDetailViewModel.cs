@@ -31,8 +31,7 @@ public class WinLossDetailViewModel
             IsStackMode: message.IsStackMode,
             IsFilterVisible: message.IsFilterVisible,
             BreadcrumbLevel: breadcrumbLevel,
-            TotalEnteredResults: totalEnteredResults,
-            HasNewFeatureNote: true);
+            TotalEnteredResults: totalEnteredResults);
         if (message.IsHistoricReport)
         {
             MonthPicker = new MonthPickerViewModel(message.MinDate, message.FromDate, message.ToDate);

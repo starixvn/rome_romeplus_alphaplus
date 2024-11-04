@@ -1,7 +1,4 @@
-﻿/// <reference path="../core.ts" />
-/// <reference path="../base-report.ts" />
-
-interface Window {
+﻿interface Window {
     $: JQueryStatic;
 }
 

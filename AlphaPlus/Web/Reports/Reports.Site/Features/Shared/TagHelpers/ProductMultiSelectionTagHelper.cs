@@ -5,7 +5,8 @@ using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 
-public class ProductTagHelper : TagHelper
+[HtmlTargetElement("product-multiselection")]
+public class ProductMultiSelectionTagHelper : TagHelper
 {
     [HtmlAttributeName("model")]
     public ProductMultiSelectionViewModel Model { get; set; }

@@ -18,9 +18,9 @@
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/ajaxSetup")
     @StaticResources.AssetScripts.Render("/bundles/site-reports/default")
     @await RenderSectionAsync("Scripts", required: false)
-    <script>
-        $(document).ready(function () {
-            $(".open-link").unbind().bind('click', function (event) { top.alpha.viewDataURL(event); });
+    <script type="text/javascript">
+        $(function () {
+            $('.open-link').off().click(function (event) { top.alpha.viewDataURL(event); });
         });
     </script>
 </body>

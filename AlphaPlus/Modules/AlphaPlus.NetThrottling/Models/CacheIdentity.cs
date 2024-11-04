@@ -1,5 +1,4 @@
-﻿using AlphaPlus.NetThrottling.Utils;
-using AlphaPlus.Core.Configurations;
+﻿using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.NetThrottling.Models
 {
@@ -23,8 +22,8 @@ namespace AlphaPlus.NetThrottling.Models
 
             var prefix = $"{policyName}}}:{{{siteLabel}}}";
             var suffix = $"{{{string.Join("_", keys)}";
-            var throttleKey = $"{prefix}:{{{Constants.Throttle}}}:{suffix}";
-            var blockKey = $"{prefix}:{{{Constants.Block}}}:{suffix}";
+            var throttleKey = $"{prefix}:{{{Utils.Constants.Throttle}}}:{suffix}";
+            var blockKey = $"{prefix}:{{{Utils.Constants.Block}}}:{suffix}";
             return new CacheIdentity(throttleKey, blockKey);
         }
     }

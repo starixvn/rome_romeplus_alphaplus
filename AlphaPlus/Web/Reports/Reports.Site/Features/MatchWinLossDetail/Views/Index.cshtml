@@ -92,7 +92,7 @@
 @model MatchWinLossDetailViewModel
 <report-title model="Model.PageHeader" />
 <form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form">
-    <product model="@Model.ProductViewModel" />
+    <product-multiselection model="@Model.ProductViewModel" />
     <daterange-picker model="Model.DateRangePicker" />
     <league model="@Model.LeagueViewModel" />
     <div class="form-group hide">

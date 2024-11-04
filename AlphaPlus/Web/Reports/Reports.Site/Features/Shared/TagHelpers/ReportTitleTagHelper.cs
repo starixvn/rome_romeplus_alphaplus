@@ -23,7 +23,6 @@ public class ReportTitleTagHelper : TagHelper
 
         AppendBreadcrumbLevel(sb);
         AppendActionIcons(sb);
-        AppendNewFeatureNote(sb);
 
         output.Content.SetHtmlContent(sb.ToString());
     }
@@ -134,17 +133,6 @@ public class ReportTitleTagHelper : TagHelper
             }
 
             sb.Append("</ul>").Append("</div>");
-        }
-    }
-
-    private void AppendNewFeatureNote(StringBuilder sb)
-    {
-        if (Model.HasNewFeatureNote)
-        {
-            sb
-                .Append("<p class=\"note_title\"><span class=\"require\">*</span>&nbsp;&nbsp;")
-                .Append(Resources.NewViewTakesOverNote)
-                .Append("</p>");
         }
     }
 }

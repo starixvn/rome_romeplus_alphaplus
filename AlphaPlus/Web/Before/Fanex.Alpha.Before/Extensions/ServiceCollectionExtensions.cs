@@ -1,7 +1,6 @@
 using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.NetThrottling;
 using Fanex.Alpha.Before.Services;
-using Fanex.Data;
 using Fanex.Logging;
 using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.AspNetCore;
@@ -86,23 +85,6 @@ public static class ServiceCollectionExtensions
         services.Configure<ThrottlePolicy>(configuration.GetSection("ThrottlePolicy"));
         services.AddSingleton<INetThrottler, NetThrottler>();
 
-        return services;
-    }
-
-    public static IServiceCollection AddFanexDataWithSqlServer(this IServiceCollection services, IConfiguration configuration)
-    {
-        var connectionStrings = configuration
-            .GetSection("ConnectionStrings")
-            .GetChildren()
-            .ToDictionary(
-                connection => connection.Key,
-                connection => new ConnectionConfiguration(connection.Key, connection.Value, "System.Data.SqlClient"), StringComparer.OrdinalIgnoreCase);
-        DbSettingProviderManager
-            .StartNewSession()
-            .Use(connectionStrings)
-            .Use(configuration.GetValue<string>("FanexDataServiceApi"))
-            .Register(configuration.GetValue<string>("StoredProcedurePath"))
-            .Run();
         return services;
     }
 }

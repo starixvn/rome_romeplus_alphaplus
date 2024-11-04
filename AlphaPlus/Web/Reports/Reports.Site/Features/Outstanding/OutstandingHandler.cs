@@ -34,11 +34,6 @@ public class OutstandingHandler(
         var reportData = await outstandingService.GetOutstanding(outstandingParam);
         var isOnlyMobile = browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
 
-        return new OutstandingViewModel(
-            message,
-            reportData,
-            productViewModel,
-            BuildBreadcrumbViewModel(message),
-            isOnlyMobile);
+        return new OutstandingViewModel(message, reportData, productViewModel, isOnlyMobile);
     }
 }

@@ -10,7 +10,7 @@
 <report-title model="Model.PageHeader" />
 <form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form">
-    <product model="@Model.ProductViewModel" />
+    <product-multiselection model="@Model.ProductViewModel" />
     <div class="form-group dropdown-currencies-container">
         <select id="dropdown-currencies" name="UserSelectedCurrencyId" asp-items="Model.Currencies"></select>
     </div>

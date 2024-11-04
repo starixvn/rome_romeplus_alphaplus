@@ -62,6 +62,7 @@ public class ProductService(
             async () =>
             {
                 var products = await repository.FetchAsync<Product>(new GetProductsCriteria(param.SiteName, param.CurrencyId, param.SettingStatus));
+
                 return products
                     .Where(product => !product.IsHide)
                     .Select(product =>

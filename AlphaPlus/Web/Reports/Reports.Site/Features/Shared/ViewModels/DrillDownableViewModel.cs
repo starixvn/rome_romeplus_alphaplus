@@ -1,33 +1,53 @@
-// using AlphaPlus.Reports.Site.Features.Shared.Requests;
-// using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Reports.Site.Features.Shared.Helpers;
+using AlphaPlus.Reports.Site.Features.Shared.Requests;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 
-// namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels;
+namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 
-// public abstract class DrillDownableViewModel<T> where T : class
-// {
-//     protected DrillDownableViewModel(
-//         BaseQuery message,
-//         BreadcrumbViewModel breadcrumbLevel,
-//         string defaultBetListPath = null)
-//     {
-//         CustId = message.CustId;
-//         CustName = message.CustName;
-//         CustLevel = message.CustLevel;
-//         BreadcrumbLevel = breadcrumbLevel;
-//         BetListPath = defaultBetListPath;
-//     }
+public abstract class DrillDownableViewModel<T>(
+    BaseQuery message,
+    PageHeaderViewModel pageHeader,
+    ReportData<T> reportData,
+    string sortPropertyName,
+    byte descendingSort) where T : class
+{
+    public int CustId { get; } = message.CustId;
 
-//     public int CustId { get; }
+    public string CustName { get; } = message.CustName;
 
-//     public string CustName { get; }
+    public UserLevel CustLevel { get; } = message.CustLevel;
 
-//     public UserLevel CustLevel { get; }
+    public BreadcrumbViewModel BreadcrumbLevel { get; } = BuildBreadcrumbViewModel(message);
 
-//     public BreadcrumbViewModel BreadcrumbLevel { get; }
+    public PageHeaderViewModel PageHeader { get; } = pageHeader;
 
-//     protected string BetListPath { get; set; }
+    public ReportData<T> ReportData { get; } = reportData;
 
-//     protected abstract IDictionary<string, string> GetDownlineParams(T model);
+    public string SortPropertyName { get; } = sortPropertyName;
 
-//     protected abstract IDictionary<string, string> GetBetListParams(T model);
-// }
+    public byte DescendingSort { get; } = descendingSort;
+
+    protected static BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
+    {
+        var breadcrumbs = new List<Breadcrumb>();
+
+        if (JsonHelper.TryParse<Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList))
+        {
+            foreach (var item in breadcrumbList)
+            {
+                if (item.CustLevelId == message.CustLevelId)
+                {
+                    break;
+                }
+
+                breadcrumbs.Add(item);
+            }
+        }
+
+        breadcrumbs.Add(new Breadcrumb(message.CustId, message.CustName, message.CustLevelId));
+
+        return new BreadcrumbViewModel(breadcrumbs, JsonHelper.ToJson(breadcrumbs));
+    }
+}

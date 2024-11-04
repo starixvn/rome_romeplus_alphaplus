@@ -13,6 +13,7 @@ using Fanex.Alpha.Before.Services;
 using Fanex.Alpha.Before.Services.FPS;
 using Fanex.Alpha.Before.Services.SignIn;
 using Fanex.Caching.Redis;
+using Fanex.Data;
 using Fanex.Data.Repository;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -66,7 +67,7 @@ namespace Fanex.Alpha.Before
 
             services.AddAssetsBundle(Configuration);
 
-            services.AddFanexDataWithSqlServer(Configuration);
+            services.AddFanexData(Configuration);
             services.AddSingleton<IDynamicRepository, DynamicRepository>();
             services.AddSingleton<IRobotDetector, RobotDetector>();
             services.AddSingleton<IDistributedCacheHelper, DistributedCacheHelper>();
