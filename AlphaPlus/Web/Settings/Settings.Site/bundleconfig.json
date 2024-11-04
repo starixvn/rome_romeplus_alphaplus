@@ -1,8 +1,34 @@
 ﻿[
   {
+    "outputFileName": "Features/MemberBettingBehavior/Bundles/member-betting-behavior.js",
+    "inputFiles": [
+      "Features/Shared/Scripts/EasyAutocomplete/jquery.easy-autocomplete.js",
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
+      "Features/Shared/Scripts/site-helper.js",
+      "Features/Shared/Scripts/ajax-helper.js",
+      "Features/MemberBettingBehavior/Scripts/turnover-by-sport-chart.js",
+      "Features/MemberBettingBehavior/Scripts/turnover-by-bettype-chart.js",
+      "Features/MemberBettingBehavior/Scripts/turnover-winloss-by-date-chart.js",
+      "Features/MemberBettingBehavior/Scripts/member-betting-behavior.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/assets/bundles/member-betting-behavior/index.css",
     "inputFiles": [
-      "Features/Customer/assets/styles/member-betting-behavior.css"
+      "Features/Shared/Scripts/EasyAutocomplete/easy-autocomplete.css",
+      "Features/MemberBettingBehavior/Styles/member-betting-behavior.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/member-betting-behavior/index.css",
+    "inputFiles": [
+      "Features/MemberBettingBehavior/Styles/member-betting-behavior.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/member-betting-behavior/index-dark.css",
+    "inputFiles": [
+      "Features/MemberBettingBehavior/Styles/member-betting-behavior-dark.css"
     ]
   },
   {
@@ -149,7 +175,7 @@
       "Features/MemberInfo/assets/scripts/ProblemAccount/customer-list-helper.js",
       "Features/MemberInfo/assets/scripts/ProblemAccount/index.js",
       "Features/MemberInfo/assets/scripts/ProblemAccount/edit-setting-popup.js",
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js"
+      "Features/Shared/Scripts/ajax-helper.js"
     ]
   },
   {
@@ -308,7 +334,7 @@
       "Features/MemberInfo/assets/scripts/components/daterangepicker.js",
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/Shared/Scripts/ajax-helper.js",
       "Features/MemberInfo/assets/scripts/shared/customer-status-helper.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
       "Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/Scripts/reached-threshold-datatable.js",
@@ -318,14 +344,14 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold-datatable.js",
     "inputFiles": [
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js"
+      "Features/Shared/Scripts/ajax-helper.js"
     ]
   },
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reach-history.js",
     "inputFiles": [
       "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/Shared/Scripts/ajax-helper.js",
       "Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/Scripts/reach-history.js"
     ]
   },
@@ -346,7 +372,7 @@
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/my-watchlist-accounts.js",
     "inputFiles": [
       "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/Shared/Scripts/ajax-helper.js",
       "Features/MemberInfo/assets/scripts/shared/customer-status-helper.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
       "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/edit-setting-popup.js",
@@ -357,8 +383,8 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-presets.js",
     "inputFiles": [
-      "Features/MemberInfo/assets/scripts/shared/site-helper.js",
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/Shared/Scripts/site-helper.js",
+      "Features/Shared/Scripts/ajax-helper.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
       "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/manage-presets.js"
     ]
@@ -366,8 +392,8 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-global-threshold.js",
     "inputFiles": [
-      "Features/MemberInfo/assets/scripts/shared/site-helper.js",
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/Shared/Scripts/site-helper.js",
+      "Features/Shared/Scripts/ajax-helper.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/threshold-inputs-base.js",
       "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/manage-global-threshold.js"
@@ -377,8 +403,8 @@
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-watchlist-accounts.js",
     "inputFiles": [
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
-      "Features/MemberInfo/assets/scripts/shared/site-helper.js",
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/Shared/Scripts/site-helper.js",
+      "Features/Shared/Scripts/ajax-helper.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/threshold-inputs-base.js",
       "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/manage-watchlist-accounts.js"
@@ -389,7 +415,7 @@
     "inputFiles": [
       "Features/MemberInfo/assets/scripts/components/daterangepicker.js",
       "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/Shared/Scripts/ajax-helper.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
       "Features/MemberInfo/Features/MyWatchlist/MyThresholds/Scripts/my-thresholds.js"
     ]
@@ -397,8 +423,8 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds-settings.js",
     "inputFiles": [
-      "Features/MemberInfo/assets/scripts/shared/site-helper.js",
-      "Features/MemberInfo/assets/scripts/shared/ajax-helper.js",
+      "Features/Shared/Scripts/site-helper.js",
+      "Features/Shared/Scripts/ajax-helper.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-alert.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/threshold-inputs-base.js",
       "Features/MemberInfo/Features/MyWatchlist/MyThresholds/Scripts/my-thresholds-settings.js"

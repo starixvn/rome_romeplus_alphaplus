@@ -21,10 +21,10 @@ public class QRCodeService(HttpClient httpClient) : IQRCodeService
         return domain + "/Login/UrlLogin?token=" + token;
     }
 
-    public async Task<string> CreateToken(int siteid, string username, int TokenExpireSecond)
+    private async Task<string> CreateToken(int siteid, string username, int TokenExpireSecond)
     {
         string data = await GetData(string.Format("/GenerateQrLoginToken?siteId={0}&userName={1}&tokenExpireSecond={2}", siteid, username, TokenExpireSecond));
-        return !string.IsNullOrWhiteSpace(data) ? data : throw new Exception("CreateToken Erron , token is null");
+        return !string.IsNullOrWhiteSpace(data) ? data : throw new Exception("CreateToken Error , token is null");
     }
 
     private Task<string> GetData(string url) => httpClient.GetAsStringAsync(url);
