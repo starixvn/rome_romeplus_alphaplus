@@ -65,7 +65,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior
             return new ExcelFileViewModel(fileName, fileContent);
         }
 
-        protected override string GetExcelTemplateDir() => "~/App_Data/ExcelTemplates/MemberBettingBehavior";
+        protected override string GetExcelTemplateDir() => $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/ExcelTemplates/MemberBettingBehavior";
 
         private static Mapper<BettingStatisticExportRow> GetBodyRowMapper()
             => new Mapper<BettingStatisticExportRow>()
