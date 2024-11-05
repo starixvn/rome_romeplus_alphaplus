@@ -293,7 +293,7 @@
 .date-picker-wrapper {
     font-size: 13px;
     font-family: 'Roboto';
-    
+
     &.inline-wrapper {
         position: relative;
         box-shadow: none;
@@ -645,7 +645,8 @@
             border-radius: 5px;
             padding: 0 4px;
             line-height: 22px;
-            > *{
+
+            > * {
                 color: inherit;
             }
         }

@@ -87,9 +87,11 @@
     overflow: hidden auto;
     padding: 12px 0px 0 12px;
     z-index: 10;
-    .multiselect-nosearch & {
+
+    &.multiselect-nosearch {
         padding-top: 4px;
     }
+
     .high-light-item {
         color: #045ace;
 
@@ -202,6 +204,7 @@
                 margin: 0;
                 padding: 2px 2px 2px 3px;
                 line-height: 28px;
+                cursor: pointer;
 
                 &:hover {
                     font-weight: bold;

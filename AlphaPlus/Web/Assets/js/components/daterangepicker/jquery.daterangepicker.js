@@ -14,329 +14,261 @@
         // Browser globals
         factory(jQuery, moment);
     }
-})(function ($, moment) {
+}(function ($, moment) {
     'use strict';
     $.dateRangePickerLanguages = {
-        //default language: English
-        default: {
-            selected: 'Selected:',
-            day: 'Day',
-            days: 'Days',
-            apply: 'Apply',
-            'week-1': 'mo',
-            'week-2': 'tu',
-            'week-3': 'we',
-            'week-4': 'th',
-            'week-5': 'fr',
-            'week-6': 'sa',
-            'week-7': 'su',
-            'week-number': 'W',
-            'month-name': [
-                'january',
-                'february',
-                'march',
-                'april',
-                'may',
-                'june',
-                'july',
-                'august',
-                'september',
-                'october',
-                'november',
-                'december'
-            ],
-            shortcuts: 'Shortcuts',
-            'custom-values': 'Custom Values',
-            past: 'Past',
-            following: 'Following',
-            previous: 'Previous',
-            'prev-week': 'Week',
-            'prev-month': 'Month',
-            'prev-year': 'Year',
-            next: 'Next',
-            'next-week': 'Week',
-            'next-month': 'Month',
-            'next-year': 'Year',
-            'less-than': 'Date range should not be more than %d days',
-            'more-than': 'Date range should not be less than %d days',
-            'default-more': 'Please select a date range longer than %d days',
-            'default-single': 'Please select a date',
-            'default-less': 'Please select a date range less than %d days',
-            'default-range': 'Please select a date range between %d and %d days',
-            'default-default': 'Please select a date range',
-            time: 'Time',
-            hour: 'Hour',
-            minute: 'Minute'
+        "default": //default language: English
+        {
+            "selected": "Selected:",
+            "day": "Day",
+            "days": "Days",
+            "apply": "Apply",
+            "week-1": "mo",
+            "week-2": "tu",
+            "week-3": "we",
+            "week-4": "th",
+            "week-5": "fr",
+            "week-6": "sa",
+            "week-7": "su",
+            "week-number": "W",
+            "month-name": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+            "shortcuts": "Shortcuts",
+            "custom-values": "Custom Values",
+            "past": "Past",
+            "following": "Following",
+            "previous": "Previous",
+            "prev-week": "Week",
+            "prev-month": "Month",
+            "prev-year": "Year",
+            "next": "Next",
+            "next-week": "Week",
+            "next-month": "Month",
+            "next-year": "Year",
+            "less-than": "Date range should not be more than %d days",
+            "more-than": "Date range should not be less than %d days",
+            "default-more": "Please select a date range longer than %d days",
+            "default-single": "Please select a date",
+            "default-less": "Please select a date range less than %d days",
+            "default-range": "Please select a date range between %d and %d days",
+            "default-default": "Please select a date range",
+            "time": "Time",
+            "hour": "Hour",
+            "minute": "Minute"
         },
-        //simplified chinese
-        cn: {
-            selected: '已选:',
-            day: '天',
-            days: '天',
-            apply: '应用',
-            'week-1': '一',
-            'week-2': '二',
-            'week-3': '三',
-            'week-4': '四',
-            'week-5': '五',
-            'week-6': '六',
-            'week-7': '日',
-            'week-number': '周',
-            'month-name': [
-                '一月',
-                '二月',
-                '三月',
-                '四月',
-                '五月',
-                '六月',
-                '七月',
-                '八月',
-                '九月',
-                '十月',
-                '十一月',
-                '十二月'
-            ],
-            shortcuts: '快捷选择',
-            past: '过去',
-            following: '将来',
-            previous: '&nbsp;&nbsp;&nbsp;',
-            'prev-week': '上周',
-            'prev-month': '上个月',
-            'prev-year': '去年',
-            next: '&nbsp;&nbsp;&nbsp;',
-            'next-week': '下周',
-            'next-month': '下个月',
-            'next-year': '明年',
-            'less-than': '所选日期范围不能大于%d天',
-            'more-than': '所选日期范围不能小于%d天',
-            'default-more': '请选择大于%d天的日期范围',
-            'default-less': '请选择小于%d天的日期范围',
-            'default-range': '请选择%d天到%d天的日期范围',
-            'default-single': '请选择一个日期',
-            'default-default': '请选择一个日期范围',
-            time: '时间',
-            hour: '小时',
-            minute: '分钟'
+        "cn": //simplified chinese
+        {
+            "selected": "已选:",
+            "day": "天",
+            "days": "天",
+            "apply": "应用",
+            "week-1": "一",
+            "week-2": "二",
+            "week-3": "三",
+            "week-4": "四",
+            "week-5": "五",
+            "week-6": "六",
+            "week-7": "日",
+            "week-number": "周",
+            "month-name": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            "shortcuts": "快捷选择",
+            "past": "过去",
+            "following": "将来",
+            "previous": "&nbsp;&nbsp;&nbsp;",
+            "prev-week": "上周",
+            "prev-month": "上个月",
+            "prev-year": "去年",
+            "next": "&nbsp;&nbsp;&nbsp;",
+            "next-week": "下周",
+            "next-month": "下个月",
+            "next-year": "明年",
+            "less-than": "所选日期范围不能大于%d天",
+            "more-than": "所选日期范围不能小于%d天",
+            "default-more": "请选择大于%d天的日期范围",
+            "default-less": "请选择小于%d天的日期范围",
+            "default-range": "请选择%d天到%d天的日期范围",
+            "default-single": "请选择一个日期",
+            "default-default": "请选择一个日期范围",
+            "time": "时间",
+            "hour": "小时",
+            "minute": "分钟"
         },
-        // traditional chinese
-        tc: {
-            selected: '已選:',
-            day: '天',
-            days: '天',
-            apply: '應用',
-            'week-1': '一',
-            'week-2': '二',
-            'week-3': '三',
-            'week-4': '四',
-            'week-5': '五',
-            'week-6': '六',
-            'week-7': '日',
-            'week-number': '週',
-            'month-name': [
-                '一月',
-                '二月',
-                '三月',
-                '四月',
-                '五月',
-                '六月',
-                '七月',
-                '八月',
-                '九月',
-                '十月',
-                '十一月',
-                '十二月'
-            ],
-            shortcuts: '快速選擇',
-            past: '過去',
-            following: '將來',
-            previous: '&nbsp;&nbsp;&nbsp;',
-            'prev-week': '上週',
-            'prev-month': '上個月',
-            'prev-year': '去年',
-            next: '&nbsp;&nbsp;&nbsp;',
-            'next-week': '下週',
-            'next-month': '下個月',
-            'next-year': '明年',
-            'less-than': '所選日期範圍不能大於%d天',
-            'more-than': '所選日期範圍不能小於%d天',
-            'default-more': '請選擇大於%d天的日期範圍',
-            'default-less': '請選擇少於%d天的日期範圍',
-            'default-range': '請選擇%d天到%d天的日期範圍',
-            'default-single': '請選擇一個日期',
-            'default-default': '請選擇一個日期範圍',
-            time: '日期',
-            hour: '小時',
-            minute: '分鐘'
+        "tc": // traditional chinese
+        {
+            "selected": "已選:",
+            "day": "天",
+            "days": "天",
+            "apply": "應用",
+            "week-1": "一",
+            "week-2": "二",
+            "week-3": "三",
+            "week-4": "四",
+            "week-5": "五",
+            "week-6": "六",
+            "week-7": "日",
+            "week-number": "週",
+            "month-name": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            "shortcuts": "快速選擇",
+            "past": "過去",
+            "following": "將來",
+            "previous": "&nbsp;&nbsp;&nbsp;",
+            "prev-week": "上週",
+            "prev-month": "上個月",
+            "prev-year": "去年",
+            "next": "&nbsp;&nbsp;&nbsp;",
+            "next-week": "下週",
+            "next-month": "下個月",
+            "next-year": "明年",
+            "less-than": "所選日期範圍不能大於%d天",
+            "more-than": "所選日期範圍不能小於%d天",
+            "default-more": "請選擇大於%d天的日期範圍",
+            "default-less": "請選擇少於%d天的日期範圍",
+            "default-range": "請選擇%d天到%d天的日期範圍",
+            "default-single": "請選擇一個日期",
+            "default-default": "請選擇一個日期範圍",
+            "time": "日期",
+            "hour": "小時",
+            "minute": "分鐘"
         },
-        th: {
-            selected: 'ที่เลือกไว้:',
-            day: 'วัน',
-            days: 'วัน',
-            apply: 'นำไปใช้',
-            'week-1': 'จ.',
-            'week-2': 'อ.',
-            'week-3': 'พ.',
-            'week-4': 'พฤ.',
-            'week-5': 'ศ.',
-            'week-6': 'ส.',
-            'week-7': 'อา.',
-            'week-number': 'W',
-            'month-name': [
-                'มกราคม',
-                'กุมภาพันธ์',
-                'มีนาคม',
-                'เมษายน',
-                'พฤษภาคม',
-                'มิถุนายน',
-                'กรกฎาคม',
-                'สิงหาคม',
-                'กันยายน',
-                'ตุลาคม',
-                'พฤศจิการยน',
-                'ธันวาคม'
-            ],
-            shortcuts: 'Shortcuts',
-            'custom-values': 'Custom Values',
-            past: 'Past',
-            following: 'Following',
-            previous: 'Previous',
-            'prev-week': 'Week',
-            'prev-month': 'Month',
-            'prev-year': 'Year',
-            next: 'Next',
-            'next-week': 'Week',
-            'next-month': 'Month',
-            'next-year': 'Year',
-            'less-than': 'Date range should not be more than %d days',
-            'more-than': 'Date range should not be less than %d days',
-            'default-more': 'Please select a date range longer than %d days',
-            'default-single': 'Please select a date',
-            'default-less': 'Please select a date range less than %d days',
-            'default-range': 'Please select a date range between %d and %d days',
-            'default-default': 'Please select a date range',
-            time: 'Time',
-            hour: 'Hour',
-            minute: 'Minute'
+        "th":
+        {
+            "selected": "ที่เลือกไว้:",
+            "day": "วัน",
+            "days": "วัน",
+            "apply": "นำไปใช้",
+            "week-1": "จ.",
+            "week-2": "อ.",
+            "week-3": "พ.",
+            "week-4": "พฤ.",
+            "week-5": "ศ.",
+            "week-6": "ส.",
+            "week-7": "อา.",
+            "week-number": "W",
+            "month-name": ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิการยน", "ธันวาคม"],
+            "shortcuts": "Shortcuts",
+            "custom-values": "Custom Values",
+            "past": "Past",
+            "following": "Following",
+            "previous": "Previous",
+            "prev-week": "Week",
+            "prev-month": "Month",
+            "prev-year": "Year",
+            "next": "Next",
+            "next-week": "Week",
+            "next-month": "Month",
+            "next-year": "Year",
+            "less-than": "Date range should not be more than %d days",
+            "more-than": "Date range should not be less than %d days",
+            "default-more": "Please select a date range longer than %d days",
+            "default-single": "Please select a date",
+            "default-less": "Please select a date range less than %d days",
+            "default-range": "Please select a date range between %d and %d days",
+            "default-default": "Please select a date range",
+            "time": "Time",
+            "hour": "Hour",
+            "minute": "Minute"
         },
-        vi: {
-            selected: 'Đã chọn:',
-            day: 'ngày',
-            days: 'ngày',
-            apply: 'Áp dụng',
-            'week-1': 't2',
-            'week-2': 't3',
-            'week-3': 't4',
-            'week-4': 't5',
-            'week-5': 't6',
-            'week-6': 't7',
-            'week-7': 'CN',
-            'week-number': 'W',
-            'month-name': [
-                'tháng một',
-                'tháng hai',
-                'tháng ba',
-                'tháng tư',
-                'tháng năm',
-                'tháng sáu',
-                'tháng bảy',
-                'tháng tám',
-                'tháng chín',
-                'tháng mười',
-                'tháng mười một',
-                'tháng mười hai'
-            ],
-            shortcuts: 'Shortcuts',
-            'custom-values': 'Custom Values',
-            past: 'Past',
-            following: 'Following',
-            previous: 'Previous',
-            'prev-week': 'Week',
-            'prev-month': 'Month',
-            'prev-year': 'Year',
-            next: 'Next',
-            'next-week': 'Week',
-            'next-month': 'Month',
-            'next-year': 'Year',
-            'less-than': 'Date range should not be more than %d days',
-            'more-than': 'Date range should not be less than %d days',
-            'default-more': 'Please select a date range longer than %d days',
-            'default-single': 'Please select a date',
-            'default-less': 'Please select a date range less than %d days',
-            'default-range': 'Please select a date range between %d and %d days',
-            'default-default': 'Please select a date range',
-            time: 'Time',
-            hour: 'Hour',
-            minute: 'Minute'
+        "vi":
+        {
+            "selected": "Đã chọn:",
+            "day": "ngày",
+            "days": "ngày",
+            "apply": "Áp dụng",
+            "week-1": "t2",
+            "week-2": "t3",
+            "week-3": "t4",
+            "week-4": "t5",
+            "week-5": "t6",
+            "week-6": "t7",
+            "week-7": "CN",
+            "week-number": "W",
+            "month-name": ["tháng một", "tháng hai", "tháng ba", "tháng tư", "tháng năm", "tháng sáu", "tháng bảy", "tháng tám", "tháng chín", "tháng mười", "tháng mười một", "tháng mười hai"],
+            "shortcuts": "Shortcuts",
+            "custom-values": "Custom Values",
+            "past": "Past",
+            "following": "Following",
+            "previous": "Previous",
+            "prev-week": "Week",
+            "prev-month": "Month",
+            "prev-year": "Year",
+            "next": "Next",
+            "next-week": "Week",
+            "next-month": "Month",
+            "next-year": "Year",
+            "less-than": "Date range should not be more than %d days",
+            "more-than": "Date range should not be less than %d days",
+            "default-more": "Please select a date range longer than %d days",
+            "default-single": "Please select a date",
+            "default-less": "Please select a date range less than %d days",
+            "default-range": "Please select a date range between %d and %d days",
+            "default-default": "Please select a date range",
+            "time": "Time",
+            "hour": "Hour",
+            "minute": "Minute"
         }
     };
 
     $.fn.dateRangePicker = function (opt) {
         if (!opt) opt = {};
-        opt = $.extend(
-            true,
-            {
-                autoClose: false,
-                format: 'YYYY-MM-DD',
-                separator: ' to ',
-                language: 'auto',
-                startOfWeek: 'monday', // 'sunday' or 'monday'
-                getValue: function () {
-                    return $(this).val();
-                },
-                setValue: function (s) {
-                    if (!$(this).is(':disabled') && s != $(this).val()) {
-                        $(this).val(s);
-                    }
-                },
-                startDate: false,
-                endDate: false,
-                time: {
-                    enabled: false
-                },
-                minDays: 0,
-                maxDays: 0,
-                showShortcuts: false,
-                shortcuts: {
-                    //'prev-days': [1,3,5,7],
-                    // 'next-days': [3,5,7],
-                    //'prev' : ['week','month','year'],
-                    // 'next' : ['week','month','year']
-                },
-                customShortcuts: [],
-                inline: false,
-                container: 'body',
-                alwaysOpen: false,
-                singleDate: false,
-                lookBehind: false,
-                batchMode: false,
-                duration: 200,
-                stickyMonths: false,
-                dayDivAttrs: [],
-                dayTdAttrs: [],
-                selectForward: false,
-                selectBackward: false,
-                applyBtnClass: '',
-                singleMonth: 'auto',
-                hoveringTooltip: function (days, startTime, hoveringTime) {
-                    return days > 1 ? days + ' ' + translate('days') : '';
-                },
-                showTopbar: true,
-                swapTime: false,
-                showWeekNumbers: false,
-                getWeekNumber: function (
-                    date //date will be the first day of a week
-                ) {
-                    return moment(date).format('w');
-                },
-                customOpenAnimation: null,
-                customCloseAnimation: null,
-                customArrowPrevSymbol: null,
-                customArrowNextSymbol: null,
-                monthSelect: false,
-                yearSelect: false
+        opt = $.extend(true, {
+            autoClose: false,
+            format: 'YYYY-MM-DD',
+            separator: ' to ',
+            language: 'auto',
+            startOfWeek: 'monday', // 'sunday' or 'monday'
+            getValue: function () {
+                return $(this).val();
             },
-            opt
-        );
+            setValue: function (s) {
+                if (!$(this).is(':disabled') && s != $(this).val()) {
+                    $(this).val(s);
+                }
+            },
+            startDate: false,
+            endDate: false,
+            time: {
+                enabled: false
+            },
+            minDays: 0,
+            maxDays: 0,
+            showShortcuts: false,
+            shortcuts: {
+                //'prev-days': [1,3,5,7],
+                // 'next-days': [3,5,7],
+                //'prev' : ['week','month','year'],
+                // 'next' : ['week','month','year']
+            },
+            customShortcuts: [],
+            inline: false,
+            container: 'body',
+            alwaysOpen: false,
+            singleDate: false,
+            lookBehind: false,
+            batchMode: false,
+            duration: 200,
+            stickyMonths: false,
+            dayDivAttrs: [],
+            dayTdAttrs: [],
+            selectForward: false,
+            selectBackward: false,
+            applyBtnClass: '',
+            singleMonth: 'auto',
+            hoveringTooltip: function (days, startTime, hoveringTime) {
+                return days > 1 ? days + ' ' + translate('days') : '';
+            },
+            showTopbar: true,
+            swapTime: false,
+            showWeekNumbers: false,
+            getWeekNumber: function (date) //date will be the first day of a week
+            {
+                return moment(date).format('w');
+            },
+            customOpenAnimation: null,
+            customCloseAnimation: null,
+            customArrowPrevSymbol: null,
+            customArrowNextSymbol: null,
+            monthSelect: false,
+            yearSelect: false
+        }, opt);
 
         opt.start = false;
         opt.end = false;
@@ -355,14 +287,11 @@
 
         if (!opt.showTopbar) opt.autoClose = true;
 
-        if (opt.startDate && typeof opt.startDate == 'string')
-            opt.startDate = moment(opt.startDate, opt.format).toDate();
+        if (opt.startDate && typeof opt.startDate == 'string') opt.startDate = moment(opt.startDate, opt.format).toDate();
         if (opt.endDate && typeof opt.endDate == 'string') opt.endDate = moment(opt.endDate, opt.format).toDate();
 
         if (opt.yearSelect && typeof opt.yearSelect === 'boolean') {
-            opt.yearSelect = function (current) {
-                return [current - 5, current + 5];
-            };
+            opt.yearSelect = function (current) { return [current - 5, current + 5]; }
         }
 
         var languages = getLanguages();
@@ -372,23 +301,19 @@
         var selfDom = $(self).get(0);
         var domChangeTimer;
 
-        $(this)
-            .off('.datepicker')
-            .on('click.datepicker', function (evt) {
-                var isOpen = box.is(':visible');
-                if (!isOpen) open(opt.duration);
-            })
-            .on('change.datepicker', function (evt) {
+        $(this).off('.datepicker').on('click.datepicker', function (evt) {
+            var isOpen = box.is(':visible');
+            if (!isOpen) open(opt.duration);
+        }).on('change.datepicker', function (evt) {
+            checkAndSetDefaultValue();
+        }).on('keyup.datepicker', function () {
+            try {
+                clearTimeout(domChangeTimer);
+            } catch (e) { }
+            domChangeTimer = setTimeout(function () {
                 checkAndSetDefaultValue();
-            })
-            .on('keyup.datepicker', function () {
-                try {
-                    clearTimeout(domChangeTimer);
-                } catch (e) {}
-                domChangeTimer = setTimeout(function () {
-                    checkAndSetDefaultValue();
-                }, 2000);
-            });
+            }, 2000);
+        });
 
         init_datepicker.call(this);
 
@@ -445,11 +370,7 @@
         return this;
 
         function IsOwnDatePickerClicked(evt, selfObj) {
-            return (
-                selfObj.contains(evt.target) ||
-                evt.target == selfObj ||
-                (selfObj.childNodes != undefined && $.inArray(evt.target, selfObj.childNodes) >= 0)
-            );
+            return (selfObj.contains(evt.target) || evt.target == selfObj || (selfObj.childNodes != undefined && $.inArray(evt.target, selfObj.childNodes) >= 0));
         }
 
         function init_datepicker() {
@@ -493,11 +414,16 @@
             //showSelectedInfo();
 
             var defaultTopText = '';
-            if (opt.singleDate) defaultTopText = translate('default-single');
-            else if (opt.minDays && opt.maxDays) defaultTopText = translate('default-range');
-            else if (opt.minDays) defaultTopText = translate('default-more');
-            else if (opt.maxDays) defaultTopText = translate('default-less');
-            else defaultTopText = translate('default-default');
+            if (opt.singleDate)
+                defaultTopText = translate('default-single');
+            else if (opt.minDays && opt.maxDays)
+                defaultTopText = translate('default-range');
+            else if (opt.minDays)
+                defaultTopText = translate('default-more');
+            else if (opt.maxDays)
+                defaultTopText = translate('default-less');
+            else
+                defaultTopText = translate('default-default');
 
             box.find('.default-top').html(defaultTopText.replace(/\%d/, opt.minDays).replace(/\%d/, opt.maxDays));
             if (opt.singleMonth) {
@@ -519,19 +445,17 @@
             $(document).on('click.datepicker', outsideClickClose);
 
             box.find('.next').on('click', function () {
-                if (!opt.stickyMonths) gotoNextMonth(this);
-                else gotoNextMonth_stickily(this);
+                if (!opt.stickyMonths)
+                    gotoNextMonth(this);
+                else
+                    gotoNextMonth_stickily(this);
             });
 
             function gotoNextMonth(self) {
                 var isMonth2 = $(self).parents('table').hasClass('month2');
                 var month = isMonth2 ? opt.month2 : opt.month1;
                 month = nextMonth(month);
-                if (
-                    (!opt.singleMonth && !opt.singleDate && !isMonth2 && compare_month(month, opt.month2) >= 0) ||
-                    isMonthOutOfBounds(month)
-                )
-                    return;
+                if (!opt.singleMonth && !opt.singleDate && !isMonth2 && compare_month(month, opt.month2) >= 0 || isMonthOutOfBounds(month)) return;
                 showMonth(month, isMonth2 ? 'month2' : 'month1');
                 showGap();
             }
@@ -547,15 +471,17 @@
             }
 
             box.find('.prev').on('click', function () {
-                if (!opt.stickyMonths) gotoPrevMonth(this);
-                else gotoPrevMonth_stickily(this);
+                if (!opt.stickyMonths)
+                    gotoPrevMonth(this);
+                else
+                    gotoPrevMonth_stickily(this);
             });
 
             function gotoPrevMonth(self) {
                 var isMonth2 = $(self).parents('table').hasClass('month2');
                 var month = isMonth2 ? opt.month2 : opt.month1;
                 month = prevMonth(month);
-                if ((isMonth2 && compare_month(month, opt.month1) <= 0) || isMonthOutOfBounds(month)) return;
+                if (isMonth2 && compare_month(month, opt.month1) <= 0 || isMonthOutOfBounds(month)) return;
                 showMonth(month, isMonth2 ? 'month2' : 'month1');
                 showGap();
             }
@@ -581,9 +507,9 @@
                 closeDatePicker();
                 var dateRange = getDateString(new Date(opt.start)) + opt.separator + getDateString(new Date(opt.end));
                 $(self).trigger('datepicker-apply', {
-                    value: dateRange,
-                    date1: new Date(opt.start),
-                    date2: new Date(opt.end)
+                    'value': dateRange,
+                    'date1': new Date(opt.start),
+                    'date2': new Date(opt.end)
                 });
             });
 
@@ -611,16 +537,20 @@
                 } else if (shortcut.indexOf('week') != -1) {
                     dir = shortcut.indexOf('prev,') != -1 ? -1 : 1;
                     var stopDay;
-                    if (dir == 1) stopDay = opt.startOfWeek == 'monday' ? 1 : 0;
-                    else stopDay = opt.startOfWeek == 'monday' ? 0 : 6;
+                    if (dir == 1)
+                        stopDay = opt.startOfWeek == 'monday' ? 1 : 0;
+                    else
+                        stopDay = opt.startOfWeek == 'monday' ? 0 : 6;
 
                     end = new Date(end.getTime() - 86400000);
                     while (end.getDay() != stopDay) end = new Date(end.getTime() + dir * 86400000);
                     start = new Date(end.getTime() + dir * 86400000 * 6);
                 } else if (shortcut.indexOf('month') != -1) {
                     dir = shortcut.indexOf('prev,') != -1 ? -1 : 1;
-                    if (dir == 1) start = nextMonth(end);
-                    else start = prevMonth(end);
+                    if (dir == 1)
+                        start = nextMonth(end);
+                    else
+                        start = prevMonth(end);
                     start.setDate(1);
                     end = nextMonth(start);
                     end.setDate(1);
@@ -669,42 +599,22 @@
                     checkSelectionValid();
                 } else {
                     $(self).trigger('datepicker-change', {
-                        value: $(this).html()
+                        'value': $(this).html()
                     });
                 }
             });
 
             box.find('.time1 input[type=range]').on('change touchmove', function (e) {
                 var target = e.target,
-                    hour =
-                        target.name == 'hour'
-                            ? $(target)
-                                  .val()
-                                  .replace(/^(\d{1})$/, '0$1')
-                            : undefined,
-                    min =
-                        target.name == 'minute'
-                            ? $(target)
-                                  .val()
-                                  .replace(/^(\d{1})$/, '0$1')
-                            : undefined;
+                    hour = target.name == 'hour' ? $(target).val().replace(/^(\d{1})$/, '0$1') : undefined,
+                    min = target.name == 'minute' ? $(target).val().replace(/^(\d{1})$/, '0$1') : undefined;
                 setTime('time1', hour, min);
             });
 
             box.find('.time2 input[type=range]').on('change touchmove', function (e) {
                 var target = e.target,
-                    hour =
-                        target.name == 'hour'
-                            ? $(target)
-                                  .val()
-                                  .replace(/^(\d{1})$/, '0$1')
-                            : undefined,
-                    min =
-                        target.name == 'minute'
-                            ? $(target)
-                                  .val()
-                                  .replace(/^(\d{1})$/, '0$1')
-                            : undefined;
+                    hour = target.name == 'hour' ? $(target).val().replace(/^(\d{1})$/, '0$1') : undefined,
+                    min = target.name == 'minute' ? $(target).val().replace(/^(\d{1})$/, '0$1') : undefined;
                 setTime('time2', hour, min);
             });
         }
@@ -720,8 +630,8 @@
                         left: offset.left - containerOffset.left - leftIndent
                     });
                 } else {
-                    if (offset.left < 460) {
-                        //left to right
+                    if (offset.left < 460) //left to right
+                    {
                         box.css({
                             top: offset.top + $(self).outerHeight() + parseInt($('body').css('border-top') || 0, 10),
                             left: offset.left
@@ -772,6 +682,7 @@
             if (defaults && ((defaults.length == 1 && opt.singleDate) || defaults.length >= 2)) {
                 var ___format = opt.format;
                 if (___format.match(/Do/)) {
+
                     ___format = ___format.replace(/Do/, 'D');
                     defaults[0] = defaults[0].replace(/(\d+)(th|nd|st)/, '$1');
                     if (defaults.length >= 2) {
@@ -781,10 +692,7 @@
                 // set initiated  to avoid triggerring datepicker-change event
                 initiated = false;
                 if (defaults.length >= 2) {
-                    setDateRange(
-                        getValidValue(defaults[0], ___format, moment.locale(opt.language)),
-                        getValidValue(defaults[1], ___format, moment.locale(opt.language))
-                    );
+                    setDateRange(getValidValue(defaults[0], ___format, moment.locale(opt.language)), getValidValue(defaults[1], ___format, moment.locale(opt.language)));
                 } else if (defaults.length == 1 && opt.singleDate) {
                     setSingleDate(getValidValue(defaults[0], ___format, moment.locale(opt.language)));
                 }
@@ -820,8 +728,7 @@
             opt[name] = parseInt(
                 moment(parseInt(date))
                     .hour(moment(opt[name + 'Time']).format('HH'), 'h')
-                    .minute(moment(opt[name + 'Time']).format('mm'), 'm')
-                    .valueOf()
+                    .minute(moment(opt[name + 'Time']).format('mm'), 'm').valueOf()
             );
         }
 
@@ -831,8 +738,8 @@
         }
 
         function setTime(name, hour, minute) {
-            hour && box.find('.' + name + ' .hour-val').text(hour);
-            minute && box.find('.' + name + ' .minute-val').text(minute);
+            hour && (box.find('.' + name + ' .hour-val').text(hour));
+            minute && (box.find('.' + name + ' .minute-val').text(minute));
             switch (name) {
                 case 'time1':
                     if (opt.start) {
@@ -961,7 +868,7 @@
             clearHovering();
             if (opt.start && !opt.end) {
                 $(self).trigger('datepicker-first-date-selected', {
-                    date1: new Date(opt.start)
+                    'date1': new Date(opt.start)
                 });
                 dayHovering(day);
             }
@@ -980,23 +887,15 @@
                 opt.startWeek = thisTime;
                 weekNumberDom.addClass('week-number-selected');
                 date1 = new Date(thisTime);
-                opt.start = moment(date1)
-                    .day(opt.startOfWeek == 'monday' ? 1 : 0)
-                    .valueOf();
-                opt.end = moment(date1)
-                    .day(opt.startOfWeek == 'monday' ? 7 : 6)
-                    .valueOf();
+                opt.start = moment(date1).day(opt.startOfWeek == 'monday' ? 1 : 0).valueOf();
+                opt.end = moment(date1).day(opt.startOfWeek == 'monday' ? 7 : 6).valueOf();
             } else {
                 box.find('.week-number-selected').removeClass('week-number-selected');
                 date1 = new Date(thisTime < opt.startWeek ? thisTime : opt.startWeek);
                 date2 = new Date(thisTime < opt.startWeek ? opt.startWeek : thisTime);
                 opt.startWeek = false;
-                opt.start = moment(date1)
-                    .day(opt.startOfWeek == 'monday' ? 1 : 0)
-                    .valueOf();
-                opt.end = moment(date2)
-                    .day(opt.startOfWeek == 'monday' ? 7 : 6)
-                    .valueOf();
+                opt.start = moment(date1).day(opt.startOfWeek == 'monday' ? 1 : 0).valueOf();
+                opt.end = moment(date2).day(opt.startOfWeek == 'monday' ? 7 : 6).valueOf();
             }
             updateSelectableRange();
             checkSelectionValid();
@@ -1044,8 +943,10 @@
             if (opt.start && !opt.end) {
                 box.find('.day.toMonth.valid').each(function () {
                     var time = parseInt($(this).attr('time'), 10);
-                    if (!isValidTime(time)) $(this).addClass('invalid tmp').removeClass('valid');
-                    else $(this).addClass('valid tmp').removeClass('invalid');
+                    if (!isValidTime(time))
+                        $(this).addClass('invalid tmp').removeClass('valid');
+                    else
+                        $(this).addClass('valid tmp').removeClass('invalid');
                 });
             }
 
@@ -1075,9 +976,11 @@
                         }
 
                         if (
-                            opt.start &&
-                            !opt.end &&
-                            ((opt.start < time && hoverTime >= time) || (opt.start > time && hoverTime <= time))
+                            (opt.start && !opt.end) &&
+                            (
+                                (opt.start < time && hoverTime >= time) ||
+                                (opt.start > time && hoverTime <= time)
+                            )
                         ) {
                             $(this).addClass('hovering');
                         } else {
@@ -1106,14 +1009,12 @@
                 var _top = posDay.top - posBox.top;
                 _left += day.width() / 2;
 
+
                 var $tip = box.find('.date-range-length-tip');
-                var w = $tip
-                    .css({
-                        visibility: 'hidden',
-                        display: 'none'
-                    })
-                    .html(tooltip)
-                    .width();
+                var w = $tip.css({
+                    'visibility': 'hidden',
+                    'display': 'none'
+                }).html(tooltip).width();
                 var h = $tip.height();
                 _left -= w / 2;
                 _top -= h;
@@ -1122,7 +1023,7 @@
                         left: _left,
                         top: _top,
                         display: 'block',
-                        visibility: 'visible'
+                        'visibility': 'visible'
                     });
                 }, 10);
             } else {
@@ -1143,6 +1044,7 @@
             var startDate = opt.startDate ? moment(opt.startDate) : false;
             var endDate = opt.endDate ? moment(opt.endDate) : false;
             var newDate = moment(opt[type])[name](value);
+
 
             if (startDate && newDate.isSameOrBefore(startDate)) {
                 newDate = startDate.add(type === 'month2' ? 1 : 0, 'month');
@@ -1182,31 +1084,26 @@
         function checkSelectionValid() {
             //var days = Math.ceil((opt.end - opt.start) / 86400000) + 1;
             var days = Math.floor((opt.end - opt.start) / 86400000) + 1;
-            if (opt.singleDate) {
-                // Validate if only start is there
-                if (opt.start && !opt.end) box.find('.drp_top-bar').removeClass('error').addClass('normal');
-                else box.find('.drp_top-bar').removeClass('error').removeClass('normal');
+            if (opt.singleDate) { // Validate if only start is there
+                if (opt.start && !opt.end)
+                    box.find('.drp_top-bar').removeClass('error').addClass('normal');
+                else
+                    box.find('.drp_top-bar').removeClass('error').removeClass('normal');
             } else if (opt.maxDays && days > opt.maxDays) {
                 opt.start = false;
                 opt.end = false;
                 box.find('.day').removeClass('checked');
-                box.find('.drp_top-bar')
-                    .removeClass('normal')
-                    .addClass('error')
-                    .find('.error-top')
-                    .html(translate('less-than').replace('%d', opt.maxDays));
+                box.find('.drp_top-bar').removeClass('normal').addClass('error').find('.error-top').html(translate('less-than').replace('%d', opt.maxDays));
             } else if (opt.minDays && days < opt.minDays) {
                 opt.start = false;
                 opt.end = false;
                 box.find('.day').removeClass('checked');
-                box.find('.drp_top-bar')
-                    .removeClass('normal')
-                    .addClass('error')
-                    .find('.error-top')
-                    .html(translate('more-than').replace('%d', opt.minDays));
+                box.find('.drp_top-bar').removeClass('normal').addClass('error').find('.error-top').html(translate('more-than').replace('%d', opt.minDays));
             } else {
-                if (opt.start || opt.end) box.find('.drp_top-bar').removeClass('error').addClass('normal');
-                else box.find('.drp_top-bar').removeClass('error').removeClass('normal');
+                if (opt.start || opt.end)
+                    box.find('.drp_top-bar').removeClass('error').addClass('normal');
+                else
+                    box.find('.drp_top-bar').removeClass('error').removeClass('normal');
             }
 
             //if ((opt.singleDate && opt.start && !opt.end) || (!opt.singleDate && opt.start && opt.end)) {
@@ -1241,34 +1138,24 @@
             if (opt.start && opt.singleDate) {
                 //box.find('.apply-btn').removeClass('disabled');
                 dateRange = getDateString(new Date(opt.start));
-                opt.setValue.call(
-                    selfDom,
-                    dateRange,
-                    getDateString(new Date(opt.start)),
-                    getDateString(new Date(opt.end))
-                );
+                opt.setValue.call(selfDom, dateRange, getDateString(new Date(opt.start)), getDateString(new Date(opt.end)));
 
                 if (initiated && !silent) {
                     $(self).trigger('datepicker-change', {
-                        value: dateRange,
-                        date1: new Date(opt.start)
+                        'value': dateRange,
+                        'date1': new Date(opt.start)
                     });
                 }
             } else if (opt.start && opt.end) {
                 box.find('.selected-days').show().find('.selected-days-num').html(countDays(opt.end, opt.start));
                 //box.find('.apply-btn').removeClass('disabled');
                 dateRange = getDateString(new Date(opt.start)) + opt.separator + getDateString(new Date(opt.end));
-                opt.setValue.call(
-                    selfDom,
-                    dateRange,
-                    getDateString(new Date(opt.start)),
-                    getDateString(new Date(opt.end))
-                );
+                opt.setValue.call(selfDom, dateRange, getDateString(new Date(opt.start)), getDateString(new Date(opt.end)));
                 if (initiated && !silent) {
                     $(self).trigger('datepicker-change', {
-                        value: dateRange,
-                        date1: new Date(opt.start),
-                        date2: new Date(opt.end)
+                        'value': dateRange,
+                        'date1': new Date(opt.start),
+                        'date2': new Date(opt.end)
                     });
                 }
             } /*else if (forceValid) {
@@ -1339,6 +1226,7 @@
         }
 
         function setSingleDate(date1) {
+
             var valid = true;
             if (opt.startDate && compare_day(date1, opt.startDate) < 0) valid = false;
             if (opt.endDate && compare_day(date1, opt.endDate) > 0) valid = false;
@@ -1349,8 +1237,10 @@
 
             opt.start = date1.getTime();
 
+
             if (opt.time.enabled) {
                 renderTime('time1', date1);
+
             }
             showMonth(date1, 'month1');
             if (opt.singleMonth !== true) {
@@ -1370,12 +1260,8 @@
                     end = opt.end;
                 if (opt.time.enabled) {
                     time = moment(time).startOf('day').valueOf();
-                    start = moment(start || moment().valueOf())
-                        .startOf('day')
-                        .valueOf();
-                    end = moment(end || moment().valueOf())
-                        .startOf('day')
-                        .valueOf();
+                    start = moment(start || moment().valueOf()).startOf('day').valueOf();
+                    end = moment(end || moment().valueOf()).startOf('day').valueOf();
                 }
                 if (
                     (opt.start && opt.end && end >= time && start <= time) ||
@@ -1425,38 +1311,28 @@
             var currentMonthName = nameMonth(currentMonth);
             var nonSelectableMonth = '<div class="month-element">' + currentMonthName + '</div>';
 
-            if (!opt.monthSelect) {
-                return nonSelectableMonth;
-            }
+            if (!opt.monthSelect) { return nonSelectableMonth; }
 
-            var startDate = opt.startDate
-                ? moment(opt.startDate).add(!opt.singleMonth && month === 'month2' ? 1 : 0, 'month')
-                : false;
-            var endDate = opt.endDate
-                ? moment(opt.endDate).add(!opt.singleMonth && month === 'month1' ? -1 : 0, 'month')
-                : false;
+            var startDate = opt.startDate ? moment(opt.startDate).add(!opt.singleMonth && month === 'month2' ? 1 : 0, 'month') : false;
+            var endDate = opt.endDate ? moment(opt.endDate).add(!opt.singleMonth && month === 'month1' ? -1 : 0, 'month') : false;
 
             var minSelectableMonth = startDate && date.isSame(startDate, 'year') ? startDate.get('month') : 0;
             var maxSelectableMonth = endDate && date.isSame(endDate, 'year') ? endDate.get('month') : 11;
             var minVisibleMonth = Math.min(minSelectableMonth, currentMonth);
             var maxVisibleMonth = Math.max(maxSelectableMonth, currentMonth);
 
-            if (minVisibleMonth === maxVisibleMonth) {
-                return nonSelectableMonth;
-            }
+            if (minVisibleMonth === maxVisibleMonth) { return nonSelectableMonth; }
 
             var selectData = generateSelectData(
                 {
                     minSelectable: minSelectableMonth,
                     maxSelectable: maxSelectableMonth,
                     minVisible: minVisibleMonth,
-                    maxVisible: maxVisibleMonth
+                    maxVisible: maxVisibleMonth,
                 },
                 currentMonth,
-                function (value) {
-                    return nameMonth(value);
-                }
-            );
+                function (value) { return nameMonth(value); }
+            )
             return generateSelect('month', selectData);
         }
 
@@ -1465,56 +1341,42 @@
             var currentYear = date.get('year');
             var nonSelectableMonth = '<div class="month-element">' + currentYear + '</div>';
 
-            if (!opt.yearSelect) {
-                return nonSelectableMonth;
-            }
+            if (!opt.yearSelect) { return nonSelectableMonth; }
 
             var isYearFunction = opt.yearSelect && typeof opt.yearSelect === 'function';
-            var startDate = opt.startDate
-                ? moment(opt.startDate).add(!opt.singleMonth && month === 'month2' ? 1 : 0, 'month')
-                : false;
-            var endDate = opt.endDate
-                ? moment(opt.endDate).add(!opt.singleMonth && month === 'month1' ? -1 : 0, 'month')
-                : false;
+            var startDate = opt.startDate ? moment(opt.startDate).add(!opt.singleMonth && month === 'month2' ? 1 : 0, 'month') : false;
+            var endDate = opt.endDate ? moment(opt.endDate).add(!opt.singleMonth && month === 'month1' ? -1 : 0, 'month') : false;
             var range = isYearFunction ? opt.yearSelect(currentYear) : opt.yearSelect.slice();
 
-            var minSelectableYear = startDate
-                ? Math.max(range[0], startDate.get('year'))
-                : Math.min(range[0], currentYear);
+            var minSelectableYear = startDate ? Math.max(range[0], startDate.get('year')) : Math.min(range[0], currentYear);
             var maxSelectableYear = endDate ? Math.min(range[1], endDate.get('year')) : Math.max(range[1], currentYear);
             var minVisibleYear = Math.min(minSelectableYear, currentYear);
             var maxVisibleYear = Math.max(maxSelectableYear, currentYear);
 
-            if (minVisibleYear === maxVisibleYear) {
-                return nonSelectableMonth;
-            }
+            if (minVisibleYear === maxVisibleYear) { return nonSelectableMonth; }
 
             var selectData = generateSelectData(
                 {
                     minSelectable: minSelectableYear,
                     maxSelectable: maxSelectableYear,
                     minVisible: minVisibleYear,
-                    maxVisible: maxVisibleYear
+                    maxVisible: maxVisibleYear,
                 },
                 currentYear
-            );
+            )
             return generateSelect('year', selectData);
         }
 
         function generateSelectData(range, current, valueBeautifier) {
             var data = [];
-            valueBeautifier =
-                valueBeautifier ||
-                function (value) {
-                    return value;
-                };
+            valueBeautifier = valueBeautifier || function (value) { return value; };
 
             for (var i = range.minVisible; i <= range.maxVisible; i++) {
                 data.push({
                     value: i,
                     text: valueBeautifier(i),
                     selected: i === current,
-                    disabled: i < range.minSelectable || i > range.maxSelectable
+                    disabled: ((i < range.minSelectable) || (i > range.maxSelectable)),
                 });
             }
 
@@ -1527,15 +1389,10 @@
 
             for (var i = 0, l = data.length; i < l; i++) {
                 var item = data[i];
-                select +=
-                    '<option value="' +
-                    item.value +
-                    '"' +
+                select += '<option value="' + item.value + '"' +
                     (item.selected ? ' selected' : '') +
-                    (item.disabled ? ' disabled' : '') +
-                    '>' +
-                    item.text +
-                    '</option>';
+                    (item.disabled ? ' disabled' : '') + '>' +
+                    item.text + '</option>';
 
                 if (item.selected) {
                     current = item.text;
@@ -1548,44 +1405,32 @@
         }
 
         function bindEvents() {
-            box.find('.day')
-                .off('click')
-                .on('click', function (evt) {
-                    dayClicked($(this));
-                });
+            box.find('.day').off("click").on('click', function (evt) {
+                dayClicked($(this));
+            });
 
-            box.find('.day')
-                .off('mouseenter')
-                .on('mouseenter', function (evt) {
-                    dayHovering($(this));
-                });
+            box.find('.day').off("mouseenter").on('mouseenter', function (evt) {
+                dayHovering($(this));
+            });
 
-            box.find('.day')
-                .off('mouseleave')
-                .on('mouseleave', function (evt) {
-                    box.find('.date-range-length-tip').hide();
-                    if (opt.singleDate) {
-                        clearHovering();
-                    }
-                });
+            box.find('.day').off("mouseleave").on('mouseleave', function (evt) {
+                box.find('.date-range-length-tip').hide();
+                if (opt.singleDate) {
+                    clearHovering();
+                }
+            });
 
-            box.find('.week-number')
-                .off('click')
-                .on('click', function (evt) {
-                    weekNumberClicked($(this));
-                });
+            box.find('.week-number').off("click").on('click', function (evt) {
+                weekNumberClicked($(this));
+            });
 
-            box.find('.month')
-                .off('change')
-                .on('change', function (evt) {
-                    dateChanged($(this));
-                });
+            box.find('.month').off("change").on('change', function (evt) {
+                dateChanged($(this));
+            });
 
-            box.find('.year')
-                .off('change')
-                .on('change', function (evt) {
-                    dateChanged($(this));
-                });
+            box.find('.year').off("change").on('change', function (evt) {
+                dateChanged($(this));
+            });
         }
 
         function showTime(date, name) {
@@ -1606,7 +1451,7 @@
             var m1 = parseInt(moment(opt.month1).format('YYYYMM'));
             var m2 = parseInt(moment(opt.month2).format('YYYYMM'));
             var p = Math.abs(m1 - m2);
-            var shouldShow = p > 1 && p != 89;
+            var shouldShow = (p > 1 && p != 89);
             if (shouldShow) {
                 box.addClass('has-gap').removeClass('no-gap').find('.gap').css('visibility', 'visible');
             } else {
@@ -1665,23 +1510,15 @@
         }
 
         function getTimeHTML() {
-            return (
-                '<div>' +
-                '<span>' +
-                translate('Time') +
-                ': <span class="hour-val">00</span>:<span class="minute-val">00</span></span>' +
+            return '<div>' +
+                '<span>' + translate('Time') + ': <span class="hour-val">00</span>:<span class="minute-val">00</span></span>' +
                 '</div>' +
                 '<div class="hour">' +
-                '<label>' +
-                translate('Hour') +
-                ': <input type="range" class="hour-range" name="hour" min="0" max="23"></label>' +
+                '<label>' + translate('Hour') + ': <input type="range" class="hour-range" name="hour" min="0" max="23"></label>' +
                 '</div>' +
                 '<div class="minute">' +
-                '<label>' +
-                translate('Minute') +
-                ': <input type="range" class="minute-range" name="minute" min="0" max="59"></label>' +
-                '</div>'
-            );
+                '<label>' + translate('Minute') + ': <input type="range" class="minute-range" name="minute" min="0" max="59"></label>' +
+                '</div>';
         }
 
         function createDom() {
@@ -1700,29 +1537,17 @@
                     if (typeof opt.customTopBar == 'function') opt.customTopBar = opt.customTopBar();
                     html += '<div class="custom-top">' + opt.customTopBar + '</div>';
                 } else {
-                    html +=
-                        '<div class="normal-top">' +
-                        '<span class="selection-top">' +
-                        translate('selected') +
-                        ' </span><div class="selected-days-container"><b class="start-day">...</b>';
+                    html += '<div class="normal-top">' +
+                        '<span class="selection-top">' + translate('selected') + ' </span><div class="selected-days-container"><b class="start-day">...</b>';
                     if (!opt.singleDate) {
-                        html +=
-                            ' <span class="separator-day">' +
-                            opt.separator +
-                            '</span> <b class="end-day">...</b> <i class="selected-days">(<span class="selected-days-num">3</span> ' +
-                            translate('days') +
-                            ')</i>';
+                        html += ' <span class="separator-day">' + opt.separator + '</span> <b class="end-day">...</b> <i class="selected-days">(<span class="selected-days-num">3</span> ' + translate('days') + ')</i>';
                     }
                     html += '</div></div>';
-                    html += '<div class="error-top">error</div>' + '<div class="default-top">default</div>';
+                    html += '<div class="error-top">error</div>' +
+                        '<div class="default-top">default</div>';
                 }
 
-                html +=
-                    '<input type="button" class="apply-btn' +
-                    getApplyBtnClass() +
-                    '" value="' +
-                    translate('apply') +
-                    '" />';
+                html += '<input type="button" class="apply-btn' + getApplyBtnClass() + '" value="' + translate('apply') + '" />';
                 html += '</div>';
             }
 
@@ -1734,8 +1559,7 @@
             var arrowNext = '&gt;';
             if (opt.customArrowNextSymbol) arrowNext = opt.customArrowNextSymbol;
 
-            html +=
-                '<div class="month-wrapper">' +
+            html += '<div class="month-wrapper">' +
                 '   <table class="month1" cellspacing="0" border="0" cellpadding="0">' +
                 '       <thead>' +
                 '           <tr class="caption">' +
@@ -1744,53 +1568,47 @@
                 arrowPrev +
                 '                   </span>' +
                 '               </th>' +
-                '               <th colspan="' +
-                _colspan +
-                '" class="month-name">' +
+                '               <th colspan="' + _colspan + '" class="month-name">' +
                 '               </th>' +
                 '               <th>' +
                 (opt.singleDate || !opt.stickyMonths ? '<span class="next">' + arrowNext + '</span>' : '') +
                 '               </th>' +
                 '           </tr>' +
-                '           <tr class="week-name">' +
-                getWeekHead() +
+                '           <tr class="week-name">' + getWeekHead() +
                 '       </thead>' +
                 '       <tbody></tbody>' +
                 '   </table>';
 
             if (hasMonth2()) {
-                html +=
-                    '<div class="gap">' +
-                    getGapHTML() +
-                    '</div>' +
+                html += '<div class="gap">' + getGapHTML() + '</div>' +
                     '<table class="month2" cellspacing="0" border="0" cellpadding="0">' +
                     '   <thead>' +
                     '   <tr class="caption">' +
                     '       <th>' +
                     (!opt.stickyMonths ? '<span class="prev">' + arrowPrev + '</span>' : '') +
                     '       </th>' +
-                    '       <th colspan="' +
-                    _colspan +
-                    '" class="month-name">' +
+                    '       <th colspan="' + _colspan + '" class="month-name">' +
                     '       </th>' +
                     '       <th>' +
-                    '           <span class="next">' +
-                    arrowNext +
-                    '</span>' +
+                    '           <span class="next">' + arrowNext + '</span>' +
                     '       </th>' +
                     '   </tr>' +
-                    '   <tr class="week-name">' +
-                    getWeekHead() +
+                    '   <tr class="week-name">' + getWeekHead() +
                     '   </thead>' +
                     '   <tbody></tbody>' +
                     '</table>';
+
             }
             //+'</div>'
-            html += '<div class="dp-clearfix"></div>' + '<div class="time">' + '<div class="time1"></div>';
+            html += '<div class="dp-clearfix"></div>' +
+                '<div class="time">' +
+                '<div class="time1"></div>';
             if (!opt.singleDate) {
                 html += '<div class="time2"></div>';
             }
-            html += '</div>' + '<div class="dp-clearfix"></div>' + '</div>';
+            html += '</div>' +
+                '<div class="dp-clearfix"></div>' +
+                '</div>';
 
             html += '<div class="footer">';
             if (opt.showShortcuts) {
@@ -1804,9 +1622,8 @@
                         html += '&nbsp;<span class="prev-days">' + translate('past');
                         for (var i = 0; i < data['prev-days'].length; i++) {
                             name = data['prev-days'][i];
-                            name += data['prev-days'][i] > 1 ? translate('days') : translate('day');
-                            html +=
-                                ' <a href="javascript:;" shortcut="day,-' + data['prev-days'][i] + '">' + name + '</a>';
+                            name += (data['prev-days'][i] > 1) ? translate('days') : translate('day');
+                            html += ' <a href="javascript:;" shortcut="day,-' + data['prev-days'][i] + '">' + name + '</a>';
                         }
                         html += '</span>';
                     }
@@ -1815,9 +1632,8 @@
                         html += '&nbsp;<span class="next-days">' + translate('following');
                         for (var i = 0; i < data['next-days'].length; i++) {
                             name = data['next-days'][i];
-                            name += data['next-days'][i] > 1 ? translate('days') : translate('day');
-                            html +=
-                                ' <a href="javascript:;" shortcut="day,' + data['next-days'][i] + '">' + name + '</a>';
+                            name += (data['next-days'][i] > 1) ? translate('days') : translate('day');
+                            html += ' <a href="javascript:;" shortcut="day,' + data['next-days'][i] + '">' + name + '</a>';
                         }
                         html += '</span>';
                     }
@@ -1844,10 +1660,7 @@
                 if (opt.customShortcuts) {
                     for (var i = 0; i < opt.customShortcuts.length; i++) {
                         var sh = opt.customShortcuts[i];
-                        html +=
-                            '<span class="custom-shortcut"><a href="javascript:;" shortcut="custom">' +
-                            sh.name +
-                            '</a></span>';
+                        html += '<span class="custom-shortcut"><a href="javascript:;" shortcut="custom">' + sh.name + '</a></span>';
                     }
                 }
                 html += '</div>';
@@ -1860,17 +1673,13 @@
                 if (opt.customValues) {
                     for (var i = 0; i < opt.customValues.length; i++) {
                         var val = opt.customValues[i];
-                        html +=
-                            '&nbsp;<span class="custom-value"><a href="javascript:;" custom="' +
-                            val.value +
-                            '">' +
-                            val.name +
-                            '</a></span>';
+                        html += '&nbsp;<span class="custom-value"><a href="javascript:;" custom="' + val.value + '">' + val.name + '</a></span>';
                     }
                 }
             }
 
             html += '</div></div>';
+
 
             return $(html);
         }
@@ -1889,55 +1698,21 @@
         function getWeekHead() {
             var prepend = opt.showWeekNumbers ? '<th>' + translate('week-number') + '</th>' : '';
             if (opt.startOfWeek == 'monday') {
-                return (
-                    prepend +
-                    '<th>' +
-                    translate('week-1') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-2') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-3') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-4') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-5') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-6') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-7') +
-                    '</th>'
-                );
+                return prepend + '<th>' + translate('week-1') + '</th>' +
+                    '<th>' + translate('week-2') + '</th>' +
+                    '<th>' + translate('week-3') + '</th>' +
+                    '<th>' + translate('week-4') + '</th>' +
+                    '<th>' + translate('week-5') + '</th>' +
+                    '<th>' + translate('week-6') + '</th>' +
+                    '<th>' + translate('week-7') + '</th>';
             } else {
-                return (
-                    prepend +
-                    '<th>' +
-                    translate('week-7') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-1') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-2') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-3') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-4') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-5') +
-                    '</th>' +
-                    '<th>' +
-                    translate('week-6') +
-                    '</th>'
-                );
+                return prepend + '<th>' + translate('week-7') + '</th>' +
+                    '<th>' + translate('week-1') + '</th>' +
+                    '<th>' + translate('week-2') + '</th>' +
+                    '<th>' + translate('week-3') + '</th>' +
+                    '<th>' + translate('week-4') + '</th>' +
+                    '<th>' + translate('week-5') + '</th>' +
+                    '<th>' + translate('week-6') + '</th>';
             }
         }
 
@@ -1955,20 +1730,18 @@
         function getGapHTML() {
             var html = ['<div class="gap-top-mask"></div><div class="gap-bottom-mask"></div><div class="gap-lines">'];
             for (var i = 0; i < 20; i++) {
-                html.push(
-                    '<div class="gap-line">' +
-                        '<div class="gap-1"></div>' +
-                        '<div class="gap-2"></div>' +
-                        '<div class="gap-3"></div>' +
-                        '</div>'
-                );
+                html.push('<div class="gap-line">' +
+                    '<div class="gap-1"></div>' +
+                    '<div class="gap-2"></div>' +
+                    '<div class="gap-3"></div>' +
+                    '</div>');
             }
             html.push('</div>');
             return html.join('');
         }
 
         function hasMonth2() {
-            return !opt.singleMonth;
+            return (!opt.singleMonth);
         }
 
         function attributesCallbacks(initialObject, callbacksArray, today) {
@@ -2003,7 +1776,7 @@
             var now = new Date();
 
             var dayOfWeek = d.getDay();
-            if (dayOfWeek === 0 && opt.startOfWeek === 'monday') {
+            if ((dayOfWeek === 0) && (opt.startOfWeek === 'monday')) {
                 // add one week
                 dayOfWeek = 7;
             }
@@ -2044,7 +1817,7 @@
                 html.push('<tr>');
 
                 for (var day = 0; day < 7; day++) {
-                    var _day = opt.startOfWeek == 'monday' ? day + 1 : day;
+                    var _day = (opt.startOfWeek == 'monday') ? day + 1 : day;
                     today = days[week * 7 + _day];
                     var highlightToday = moment(today.time).format('L') == moment(now).format('L');
                     today.extraClass = '';
@@ -2060,36 +1833,14 @@
                     var todayDivAttr = {
                         time: today.time,
                         'data-tooltip': today.tooltip,
-                        class:
-                            'day ' +
-                            today.type +
-                            ' ' +
-                            today.extraClass +
-                            ' ' +
-                            (today.valid ? 'valid' : 'invalid') +
-                            ' ' +
-                            (highlightToday ? 'real-today' : '')
+                        'class': 'day ' + today.type + ' ' + today.extraClass + ' ' + (today.valid ? 'valid' : 'invalid') + ' ' + (highlightToday ? 'real-today' : '')
                     };
 
                     if (day === 0 && opt.showWeekNumbers) {
-                        html.push(
-                            '<td><div class="week-number" data-start-time="' +
-                                today.time +
-                                '">' +
-                                opt.getWeekNumber(today.date) +
-                                '</div></td>'
-                        );
+                        html.push('<td><div class="week-number" data-start-time="' + today.time + '">' + opt.getWeekNumber(today.date) + '</div></td>');
                     }
 
-                    html.push(
-                        '<td ' +
-                            attributesCallbacks({}, opt.dayTdAttrs, today) +
-                            '><div ' +
-                            attributesCallbacks(todayDivAttr, opt.dayDivAttrs, today) +
-                            '>' +
-                            showDayHTML(today.time, today.day) +
-                            '</div></td>'
-                    );
+                    html.push('<td ' + attributesCallbacks({}, opt.dayTdAttrs, today) + '><div ' + attributesCallbacks(todayDivAttr, opt.dayDivAttrs, today) + '>' + showDayHTML(today.time, today.day) + '</div></td>');
                 }
                 html.push('</tr>');
             }
@@ -2125,20 +1876,9 @@
          */
         function translate(translationKey) {
             var translationKeyLowerCase = translationKey.toLowerCase();
-            var result =
-                translationKey in languages
-                    ? languages[translationKey]
-                    : translationKeyLowerCase in languages
-                    ? languages[translationKeyLowerCase]
-                    : null;
+            var result = (translationKey in languages) ? languages[translationKey] : (translationKeyLowerCase in languages) ? languages[translationKeyLowerCase] : null;
             var defaultLanguage = $.dateRangePickerLanguages['default'];
-            if (result == null)
-                result =
-                    translationKey in defaultLanguage
-                        ? defaultLanguage[translationKey]
-                        : translationKeyLowerCase in defaultLanguage
-                        ? defaultLanguage[translationKeyLowerCase]
-                        : '';
+            if (result == null) result = (translationKey in defaultLanguage) ? defaultLanguage[translationKey] : (translationKeyLowerCase in defaultLanguage) ? defaultLanguage[translationKeyLowerCase] : '';
 
             return result;
         }
@@ -2147,22 +1887,16 @@
             var defaultTime = opt.defaultTime ? opt.defaultTime : new Date();
 
             if (opt.lookBehind) {
-                if (opt.startDate && compare_month(defaultTime, opt.startDate) < 0)
-                    defaultTime = nextMonth(moment(opt.startDate).toDate());
-                if (opt.endDate && compare_month(defaultTime, opt.endDate) > 0)
-                    defaultTime = moment(opt.endDate).toDate();
+                if (opt.startDate && compare_month(defaultTime, opt.startDate) < 0) defaultTime = nextMonth(moment(opt.startDate).toDate());
+                if (opt.endDate && compare_month(defaultTime, opt.endDate) > 0) defaultTime = moment(opt.endDate).toDate();
             } else {
-                if (opt.startDate && compare_month(defaultTime, opt.startDate) < 0)
-                    defaultTime = moment(opt.startDate).toDate();
-                if (opt.endDate && compare_month(nextMonth(defaultTime), opt.endDate) > 0)
-                    defaultTime = prevMonth(moment(opt.endDate).toDate());
+                if (opt.startDate && compare_month(defaultTime, opt.startDate) < 0) defaultTime = moment(opt.startDate).toDate();
+                if (opt.endDate && compare_month(nextMonth(defaultTime), opt.endDate) > 0) defaultTime = prevMonth(moment(opt.endDate).toDate());
             }
 
             if (opt.singleDate) {
-                if (opt.startDate && compare_month(defaultTime, opt.startDate) < 0)
-                    defaultTime = moment(opt.startDate).toDate();
-                if (opt.endDate && compare_month(defaultTime, opt.endDate) > 0)
-                    defaultTime = moment(opt.endDate).toDate();
+                if (opt.startDate && compare_month(defaultTime, opt.startDate) < 0) defaultTime = moment(opt.startDate).toDate();
+                if (opt.endDate && compare_month(defaultTime, opt.endDate) > 0) defaultTime = moment(opt.endDate).toDate();
             }
 
             return defaultTime;
@@ -2195,4 +1929,4 @@
             }
         }
     };
-});
+}));

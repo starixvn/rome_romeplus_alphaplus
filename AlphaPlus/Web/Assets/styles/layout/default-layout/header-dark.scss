@@ -1,5 +1,5 @@
-﻿@import '../../abstracts/_variables-dark.scss';
-@import '../../abstracts/_mixins.scss';
+﻿@import "../../abstracts/_variables-dark.scss";
+@import "../../abstracts/_mixins.scss";
 
 $text-color: #fff;
 
@@ -13,7 +13,7 @@ $text-color: #fff;
 /********************************** Header Navigation ************************************/
 .header-nav {
     @include border-radius(0);
-    background: url('../images/headerbg.png') no-repeat;
+    background: url('../../images/headerbg.png') no-repeat;
     height: 48px;
     margin-bottom: 0;
     min-height: unset;
@@ -35,23 +35,20 @@ $text-color: #fff;
         padding-left: 2px;
         color: white;
 
-        &:hover,
-        &:focus,
-        &:visited,
-        &:target {
+        &:hover, &:focus, &:visited, &:target {
             background: transparent;
         }
     }
 
     .list-top {
         float: right;
-        color: #ffffff;
+        color: #FFFFFF;
         font-size: 13px;
 
         .icon-squares,
         .icon-logout {
             margin-right: 0;
-            color: #ededed;
+            color: #EDEDED;
         }
 
         .icon-squares {
@@ -110,16 +107,14 @@ $text-color: #fff;
 
                 > a {
                     padding: 15px 15px 14px;
-                    color: #ffffff;
+                    color: #FFFFFF;
 
-                    &:hover,
-                    &:focus,
-                    &:visited,
-                    &:target {
+                    &:hover, &:focus, &:visited, &:target {
                         background: transparent;
                     }
 
                     &.language-selector-container {
+
                         .icon-flag {
                             margin-right: 8px;
                             position: relative;
@@ -148,7 +143,7 @@ $text-color: #fff;
 
                 > .icon-bell {
                     @include border-radius(50%);
-                    color: #ffffff;
+                    color: #FFFFFF;
                     position: relative;
                     top: -1px;
                     margin-right: 0;
@@ -168,7 +163,7 @@ $text-color: #fff;
                     font-size: 12px;
                     background: #e54748;
                     line-height: 16px;
-                    color: #ffffff;
+                    color: #FFFFFF;
                 }
             }
 
@@ -233,7 +228,7 @@ $text-color: #fff;
         top: 3px;
     }
 
-    input[type='checkbox'] {
+    input[type=checkbox] {
         height: 0;
         width: 0;
         visibility: hidden;
@@ -255,7 +250,7 @@ $text-color: #fff;
 
     .switch-mode {
         &:after {
-            content: url('../images/mode/light.svg');
+            content: url("../../images/mode/light.svg");
             transition: 0.3s;
             width: 24px;
             height: 24px;
@@ -263,7 +258,7 @@ $text-color: #fff;
 
         &:hover {
             &:after {
-                content: url('../images/mode/light-hover.svg');
+                content: url("../../images/mode/light-hover.svg");
             }
         }
 
@@ -277,30 +272,28 @@ $text-color: #fff;
         &.dark-mode {
             &:after {
                 transform: translateX(-100%);
-                content: url('../images/mode/light.svg');
+                content: url("../../images/mode/light.svg");
             }
 
             &:hover {
                 &:after {
-                    content: url('../images/mode/light-hover.svg');
+                    content: url("../../images/mode/light-hover.svg");
                 }
             }
         }
     }
 }
 
-.header-nav[class*='banner'] .list-top > .language:hover,
-.header-nav[class*='banner'] .list-top > .view-type:hover,
-.header-nav[class*='banner'] .list-top > .dropdown:active:focus,
-[class*='banner'] .nav .open > a,
-[class*='banner'] .nav .open > a:hover,
-.nav .open > a:focus {
+.header-nav[class*="banner"] .list-top>.language:hover, 
+.header-nav[class*="banner"] .list-top>.view-type:hover, 
+.header-nav[class*="banner"] .list-top>.dropdown:active:focus,
+[class*="banner"] .nav .open > a, [class*="banner"] .nav .open > a:hover, .nav .open > a:focus {
     background: transparent;
 }
 /********************************** Header Notification *************************************/
 .header-msg {
     @include box-shadow(1px, 0, 3px, rgba(0, 0, 0, 0.3));
-    background: #2a2a2a;
+    background: #2A2A2A;
     height: 40px;
     padding: 10px 0;
     position: relative;
@@ -310,7 +303,7 @@ $text-color: #fff;
         padding: 8px;
         margin: -8px 7px 2px;
         display: inline-block;
-        color: #ffffff;
+        color: #FFFFFF;
     }
 
     .nav-iconbox {
@@ -325,7 +318,7 @@ $text-color: #fff;
     }
 
     .maquee {
-        color: #41a4ff;
+        color: #41A4FF;
         font-size: 13px;
 
         &:hover {
@@ -333,8 +326,7 @@ $text-color: #fff;
         }
     }
 
-    .live-message,
-    .private-message {
+    .live-message, .private-message {
         cursor: pointer;
     }
 
@@ -347,7 +339,7 @@ $text-color: #fff;
             color: #38b038;
         }
 
-        font[color='red'] {
+        font[color="red"] {
             color: #e54748;
         }
     }
@@ -357,7 +349,7 @@ $text-color: #fff;
     .header-nav {
         .icon-collapse {
             font-size: 20px;
-        }
+        }        
 
         .list-top > li .txt-top {
             position: relative;
@@ -372,20 +364,19 @@ $text-color: #fff;
     }
 }
 
-@media \0screen\, screen\9 {
-    .header-nav .list-top > li.dropdown.language,
-    .header-nav .list-top > li.dropdown.setting {
+@media \0screen\,screen\9 {
+    .header-nav .list-top > li.dropdown.language, .header-nav .list-top > li.dropdown.setting  {
         .dropdown-toggle:hover {
             background: transparent;
         }
     }
 }
-@media only screen and (max-device-width: $screen-device-lower768) {
+@media only screen and (max-device-width : $screen-device-lower768) {
     .header-nav {
         .icon-collapse {
             float: left;
-        }
-
+        }        
+        
         .hidden-mobile {
             display: none !important;
         }
@@ -395,8 +386,8 @@ $text-color: #fff;
             margin: 0 4px;
 
             > li {
-                &.dropdown {
-                    &.setting {
+               &.dropdown {
+                   &.setting {
                         float: left;
                         padding: 0;
 
@@ -430,7 +421,7 @@ $text-color: #fff;
                         display: block;
                         @include transition(all 240ms ease-out);
                     }
-                }
+               }
 
                 &.visible-mobile {
                     display: inline-block !important;
@@ -475,7 +466,7 @@ $text-color: #fff;
 
             .icon-account-search,
             .icon-bell {
-                @include ripple-effect-icon($margin-left: 4px, $height: 40px, $width: 40px, $top: 8px);
+                 @include ripple-effect-icon($margin-left: 4px, $height: 40px, $width: 40px, $top: 8px);
             }
 
             .icon-bell:before {
@@ -483,21 +474,22 @@ $text-color: #fff;
             }
 
             .setting > a {
-                &:hover:after {
-                    width: 40px;
-                    height: 40px;
-                    margin-left: 0;
-                    margin-top: 2px;
-                }
-            }
+                  &:hover:after {
+                      width: 40px;
+                      height: 40px;
+                      margin-left: 0;
+                      margin-top: 2px;
+                  }
+             }         
         }
 
         .navbar-nav .open .dropdown-menu {
             position: absolute;
         }
+           
     }
 
     .header-msg {
         display: none;
-    }
+    } 
 }

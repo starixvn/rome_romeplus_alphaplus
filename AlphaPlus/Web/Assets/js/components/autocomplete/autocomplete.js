@@ -149,12 +149,12 @@ function getSuggestions() {
             cacheSuggestion.slice(1, maxCache - 1)
         };
 
-        requestData(url + '&Query=' + oldValue, lookAt, 'get');
+        requestData(url + '&query=' + oldValue, lookAt, 'get');
     }
 }
 
 function lookAt(data) {
-    window.suggestions = data;
+    window.suggestions = data.suggestions;
 
     if (findItemInArr(oldValue.toLowerCase(), cacheQuery) == -1) {
         try {
@@ -221,7 +221,7 @@ function getWord(beginning) {
 
     if (suggestions) {
         for (var i = 0; i < suggestions.length; ++i) {
-            words[words.length] = suggestions[i].UserName + (suggestions[i].UserName2 != null && suggestions[i].UserName2 != "" ? " (" + suggestions[i].UserName2 + ")" : "") + "<div class='opSpan'>" + suggestions[i].FirstName + ' ' + suggestions[i].LastName + '</div>';
+            words[words.length] = suggestions[i][0] + (suggestions[i][3] != null && suggestions[i][3] != "" ? " (" + suggestions[i][3] + ")" : "") + "<div class='opSpan'>" + suggestions[i][1] + ' ' + suggestions[i][2] + '</div>';
         }
     }
 
@@ -355,7 +355,8 @@ function requestData(url, successFunction, methodType) {
         data: {},
         responseType: "json",
         success: function (result) {
-            successFunction(result);
+            var data = eval('(' + result + ')');
+            successFunction(data);
         }
     });
 }
