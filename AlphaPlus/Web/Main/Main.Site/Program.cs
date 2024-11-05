@@ -9,11 +9,16 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using AlphaPlus.NetThrottling;
 
+const string SharedSettings = "sharedSettings.json";
+var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
+
+var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
-
-builder.Configuration
-    //.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+configuration
+    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
+    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
     //.AddEnvironmentVariables()

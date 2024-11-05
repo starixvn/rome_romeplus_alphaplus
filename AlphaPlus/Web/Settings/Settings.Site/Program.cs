@@ -9,8 +9,8 @@ var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../",
 
 
 builder.Configuration
-    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true) // When running using dotnet run
-    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true) // When app is published or Docker
+    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
+    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile("Features/ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: true)
     .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)

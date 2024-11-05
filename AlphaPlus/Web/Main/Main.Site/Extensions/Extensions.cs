@@ -77,7 +77,7 @@ public static class Extensions
                 AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
             });
 
-        var customerServiceUri = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUrl"));
+        var customerServiceUri = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUri"));
         services.AddHttpClient<IPasswordService, PasswordService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ISecurityCodeService, SecurityCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ICustomerOtpService, CustomerOtpService>(httpClient => httpClient.BaseAddress = customerServiceUri);

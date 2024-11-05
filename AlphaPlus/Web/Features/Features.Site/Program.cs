@@ -3,8 +3,16 @@ using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Features.Site.Helpers;
 using Microsoft.AspNetCore.HttpOverrides;
 
+const string SharedSettings = "sharedSettings.json";
+var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
+
+var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+configuration
+    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
+    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
 // Add services to the container.
 builder.Services
