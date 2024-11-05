@@ -25,17 +25,9 @@ public class UserPermission
         return CurrentUserSession.GetDisabledProduct(product);
     }
 
+    // sportsbook is always SHOW
     public static bool HasPermissionOnProduct(int productId)
-    {
-        return productId switch
-        {
-            // sportsbook
-            1 => true,
-            // Virtual Sports
-            5 or 44 => IsEnableProduct(productId),
-            _ => IsEnableProduct(productId) && IsSyncedProduct(productId),
-        };
-    }
+        => productId == 1 || IsEnableProduct(productId);
 
     public static bool IsShowOrNotExistProduct(int product)
         => IsEnableProduct(product) || !CurrentUserSession.HasProperty("HIDEPRODUCT_" + product);

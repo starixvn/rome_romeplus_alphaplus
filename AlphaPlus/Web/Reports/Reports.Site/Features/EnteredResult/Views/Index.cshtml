@@ -28,8 +28,8 @@
     DateTime today, yesterday;
     if (Model.ReportData.HasData)
     {
-        today = Model.ReportData.Total.EnteredResultYesterday.EventDate;
-        yesterday = Model.ReportData.Total.EnteredResultToday.EventDate;
+        today = Model.ReportData.Total.EnteredResultToday.EventDate;
+        yesterday = Model.ReportData.Total.EnteredResultYesterday.EventDate;
     }
     else
     {

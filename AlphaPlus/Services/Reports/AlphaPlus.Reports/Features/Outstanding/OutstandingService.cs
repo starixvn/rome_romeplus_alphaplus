@@ -15,6 +15,10 @@ public class OutstandingService(
     IPartialUMService partialUMService,
     IAutoFollowBetService autoFollowBetService) : IOutstandingService
 {
+    private readonly IDynamicRepository repository = repository;
+    private readonly IPartialUMService partialUMService = partialUMService;
+    private readonly IAutoFollowBetService autoFollowBetService = autoFollowBetService;
+
     public async Task<ReportData<OutstandingModel>> GetOutstanding(OutstandingParam param)
     {
         var criteria = new OutstandingCriteria(param.CustLevelId, param.CustId, param.ProductIds);

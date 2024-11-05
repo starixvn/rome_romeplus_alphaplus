@@ -15,6 +15,11 @@ public class ProgressiveContributionService(
     ICacheRefService cacheRefService,
     IReportDateService reportDateService) : IProgressiveContributionService
 {
+    private readonly IDynamicRepository repository = repository;
+    private readonly IPartialUMService partialUMService = partialUMService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IReportDateService reportDateService = reportDateService;
+
     public async Task<(IEnumerable<ProgressiveContributionModel>, ProgressiveContributionEntity)> GetProgressiveContributions(ProgressiveContributionParam param)
     {
         var models = new List<ProgressiveContributionModel>();
@@ -47,13 +52,13 @@ public class ProgressiveContributionService(
 
     private async Task<IEnumerable<ProgressiveContributionEntity>> GetRawData(ProgressiveContributionParam param)
     {
-        var date = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
+        var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
         var criteria = new ProgressiveContributionCriteria(
             param.CustId,
             param.FromDate,
             param.ToDate,
-            date.BalanceUpDay,
-            date.MoveBetsDay,
+            reportDate.BalanceUpDay,
+            reportDate.MoveBetsDay,
             param.ProductIds,
             param.ViewerLevelId);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);

@@ -1,6 +1,6 @@
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.Reports.Features.Legends;
+namespace AlphaPlus.Reports.Features.Shared.Criteria;
 
 internal class GetProductsByRefTableCriteria(string refTable) : CriteriaBase
 {

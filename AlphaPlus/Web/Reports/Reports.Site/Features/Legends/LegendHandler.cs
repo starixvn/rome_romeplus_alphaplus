@@ -1,5 +1,4 @@
 using AlphaPlus.Core.Extensions;
-using AlphaPlus.Reports.Features.Legends;
 using MediatR;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Microsoft.Extensions.Options;
@@ -12,18 +11,29 @@ namespace AlphaPlus.Reports.Site.Features.Legends;
 
 public class LegendHandler(
     IOptions<AppSettings> options,
-    ILengendService lengendService,
     IProductService productService,
-    ICacheRefService cacheRefService) :
+    ICacheRefService cacheRefService,
+    Fanex.Logging.ILogger logger) :
         IRequestHandler<LegendQuery, LegendViewModel>,
         IRequestHandler<WinLossLegendQuery, LegendViewModel>,
         IRequestHandler<WinLossDetailLegendQuery, LegendViewModel>,
         IRequestHandler<MatchWinLossDetailLegendQuery, LegendViewModel>
 {
+    private readonly AppSettings appSettings = options.Value;
+    private readonly IProductService productService = productService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly Fanex.Logging.ILogger logger = logger;
+
     public async Task<LegendViewModel> Handle(LegendQuery message, CancellationToken cancellationToken)
     {
         var legends = new List<string>();
-        await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
+        var productParam = new GetProductsParam(
+            message.Site,
+            message.CurrencyId,
+            appSettings.SettingStatus,
+            message.Language,
+            message.MinDate);
+        await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, productParam);
 
         return new LegendViewModel(legends);
     }
@@ -37,8 +47,14 @@ public class LegendHandler(
                 $"- {Resources.CanOnlyViewDataAfterTimeCurrentReport}", message.MinDate.ToShortDateWithSlash()));
         }
 
-        await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
-        legends.Add($"- {GetProductDetailsBelongSabaOtherSportsNote(message)}");
+        var productParam = new GetProductsParam(
+            message.Site,
+            message.CurrencyId,
+            appSettings.SettingStatus,
+            message.Language,
+            message.MinDate);
+        await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, productParam);
+        legends.Add($"- {await GetProductDetailsBelongSabaOtherSportsNote(message.ViewerId, productParam)}");
         legends.Add(GetGrossCommNotes(message.ViewerLevel));
         legends.Add(Resources.GrossCommRoundingNote);
         if (message.ShowDormantAccountsNote)
@@ -67,23 +83,23 @@ public class LegendHandler(
         var productParam = new GetProductsParam(
             message.Site,
             message.CurrencyId,
-            options.Value.SettingStatus,
+            appSettings.SettingStatus,
             message.Language,
             message.MinDate);
-        var productNames = lengendService.GetProductNamesForLiveCasinoTooltip(productParam);
-        if (!string.IsNullOrWhiteSpace(productNames))
+        var liveCasinoTooltip = await GetProductNamesForLiveCasinoTooltip(productParam);
+        if (!string.IsNullOrWhiteSpace(liveCasinoTooltip))
         {
-            legends.Add(string.Format(Resources.Tooltip_NetTurnover_livecasino, productNames));
+            legends.Add(string.Format(Resources.Tooltip_NetTurnover_livecasino, liveCasinoTooltip));
         }
 
-        productNames = lengendService.GetProductNamesForRNGCasinoTooltip(productParam);
-        if (!string.IsNullOrWhiteSpace(productNames))
+        var rngCasinoTooltip = await GetProductNamesForRNGCasinoTooltip(productParam);
+        if (!string.IsNullOrWhiteSpace(rngCasinoTooltip))
         {
-            legends.Add(string.Format(Resources.Tooltip_NetTurnover_RNGCasino, productNames));
+            legends.Add(string.Format(Resources.Tooltip_NetTurnover_RNGCasino, rngCasinoTooltip));
         }
 
-        await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, message);
-        legends.Add($"- {GetProductDetailsBelongSabaOtherSportsNote(message)}");
+        await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, productParam);
+        legends.Add($"- {await GetProductDetailsBelongSabaOtherSportsNote(message.ViewerId, productParam)}");
         legends.Add(GetGrossCommNotes(message.ViewerLevel));
         legends.Add(Resources.GrossCommRoundingNote);
         if (message.ShowDormantAccountsNote)
@@ -94,11 +110,14 @@ public class LegendHandler(
         return new LegendViewModel(legends);
     }
 
-    private string GetProductDetailsBelongSabaOtherSportsNote(LegendQuery message)
+    private async Task<string> GetProductDetailsBelongSabaOtherSportsNote(int custId, GetProductsParam param)
     {
-        var param = new GetProductsParam(message.Site, message.CurrencyId, options.Value.SettingStatus, message.Language, message.MinDate);
-        var products = productService.GetProducts(param);
-        var productDetailsBelongSabaOthers = productService.GetProductDetailsBelongSabaOtherSports(message.ViewerId, products).JoinWithComma(", ");
+        var products = await GetProducts(param);
+        var productDetailsBelongSabaOthers = (await GetProductDetails(custId, products))
+            .Where(i => i.ResourceId == ProductDetailIdConstants.SabaOtherSports)
+            .OrderBy(product => product.Order)
+            .Select(i => cacheRefService.GetProductDetailName(i.ChildResourceId))
+            .JoinWithComma(", ");
 
         return string.Format(
             Resources.SabaOtherSportsLegend,
@@ -116,20 +135,20 @@ public class LegendHandler(
 
     private async Task AddOfferedProductsNeedDelayTimeToSummarizeData(
         IList<string> legends,
-        LegendQuery message,
-        IEnumerable<int> enableJackpotProductIds = null)
+        GetProductsParam productParam)
     {
-        var productParam = new GetProductsParam(
-            message.Site,
-            message.CurrencyId,
-            options.Value.SettingStatus,
-            message.Language,
-            message.MinDate);
-        var productNames = await lengendService.GetOfferedProductsNeedDelayTimeToSummarizeData(productParam, enableJackpotProductIds);
-
-        if (!string.IsNullOrWhiteSpace(productNames))
+        try
         {
-            legends.Add(string.Format(Resources.DelayIssueLegend, productNames));
+            var productNames = await productService.GetProductsNeedDelayTimeToSummarizeData(productParam);
+
+            if (!string.IsNullOrWhiteSpace(productNames))
+            {
+                legends.Add(string.Format(Resources.DelayIssueLegend, productNames));
+            }
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync(ex.Message, ex);
         }
     }
 
@@ -169,4 +188,54 @@ public class LegendHandler(
 
         return [$"<li>{Resources.GrossCommNoteForMember}</li>"];
     }
+
+    #region Get Product Names
+    private async Task<string> GetProductNamesForLiveCasinoTooltip(GetProductsParam productsParam)
+    {
+        try
+        {
+            return await productService.GetProductNames(productsParam, LegendProductIdConstants.LiveCasinoProductIds);
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync(ex.Message, ex);
+            return string.Empty;
+        }
+    }
+
+    private async Task<string> GetProductNamesForRNGCasinoTooltip(GetProductsParam productsParam)
+    {
+        var productIds = (await GetProducts(productsParam))
+            .Where(product => product.Type == LegendProductIdConstants.DummyRNGProductId || LegendProductIdConstants.RNGCasinoProductIds.Contains(product.Id))
+            .Select(product => product.Id);
+
+        return productService.ConcatProductNames(productIds);
+    }
+
+    private async Task<IEnumerable<Product>> GetProducts(GetProductsParam param)
+    {
+        try
+        {
+            return await productService.GetProductsAsync(param);
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync(ex.Message, ex);
+            return [];
+        }
+    }
+
+    private async Task<IEnumerable<ProductDetail>> GetProductDetails(int custId, IEnumerable<Product> products)
+    {
+        try
+        {
+            return await productService.GetProductDetailsAsync(custId, products);
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync(ex.Message, ex);
+            return [];
+        }
+    }
+    #endregion
 }

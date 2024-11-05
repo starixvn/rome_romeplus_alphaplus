@@ -31,8 +31,7 @@ public static class DependencyInjection
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         => services
         .AddSecurityCodeServices(configuration)
-        .AddSingleton<Func<int, bool>>(_ => UserPermission.IsShowOrNotExistProduct)
-        .AddReportsServices(configuration)
+        .AddReportsServices(configuration, UserPermission.IsShowOrNotExistProduct)
         .AddTransient<IEnteredResultWorkbook, EnteredResultWorkbook>()
         .AddTransient<IWinLossWorkbook, WinLossWorkbook>()
         .AddTransient<IWinLossDetailWorkbook, WinLossDetailWorkbook>()

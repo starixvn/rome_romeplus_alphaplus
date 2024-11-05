@@ -78,9 +78,9 @@ class SortComponent {
     private textExtraction = (node: any) => {
         const $node = $(node);
 
-        if ($node.data('islink')) {
-            return $node.find('a').html();
-        }
+        // if ($node.data('islink')) {
+        //     return $node.find('a').html();
+        // }
 
         if ($node.data('sortedvalue')) {
             return String($node.data('sortedvalue'));

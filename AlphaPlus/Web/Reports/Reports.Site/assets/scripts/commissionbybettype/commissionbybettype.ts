@@ -1,8 +1,4 @@
-﻿/// <reference path="../core.ts" />
-/// <reference path="../components/daterangepicker.ts" />
-/// <reference path="../components/sort.ts" />
-
-class CommissionByBettype extends BaseReport {
+﻿class CommissionByBettype extends BaseReport {
     dateRangePicker: DateRangePickerComponent;
     sortComponent: SortComponent;
 

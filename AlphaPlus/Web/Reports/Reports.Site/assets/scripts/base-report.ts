@@ -12,6 +12,7 @@ class BaseReport {
     $iconInformation: JQuery;
 
     levels = ['member', 'agent', 'master', 'super'];
+    isProcessingDrilldownable = false;
 
     constructor(isSetStickyTableHeaders = true) {
         this.initBaseReport(isSetStickyTableHeaders);
@@ -120,6 +121,11 @@ class BaseReport {
     }
 
     private handleDrilldownable($element: JQuery) {
+        if (this.isProcessingDrilldownable) {
+            return;
+        }
+
+        this.isProcessingDrilldownable = true;
         const $custLevelId = $('#CustLevelId');
         const custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
 

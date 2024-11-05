@@ -17,16 +17,18 @@ public class OutstandingHandler(
         IRequestHandler<OutstandingQuery, OutstandingViewModel>
 {
     // Always hide Saba Promotion in Product List
-    private readonly int SabaPromotionProductId = 37;
+    private const int SabaPromotionProductId = 37;
+
+    private readonly IOutstandingService outstandingService = outstandingService;
+    private readonly IBrowserHelper browserHelper = browserHelper;
 
     public async Task<OutstandingViewModel> Handle(OutstandingQuery message, CancellationToken cancellationToken)
     {
-        var products = await GetProductsAsync(message);
-        products = products.Where(p => p.Id != SabaPromotionProductId);
-
+        var products = (await GetProductsAsync(message)).Where(p => p.Id != SabaPromotionProductId);
         var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds, products);
+
         var outstandingParam = new OutstandingParam(
-            message.CustLevel.Value,
+            message.CustLevelId,
             message.CustId,
             productViewModel.UserSelectedProductIds,
             message.AutoFollowBetIsDummyAgent,

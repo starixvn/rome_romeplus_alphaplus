@@ -5,7 +5,6 @@ using AlphaPlus.PartialUM.Extensions;
 using AlphaPlus.PartialUM.DataAccess;
 using AlphaPlus.Reports.Features.Outstanding;
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.Legends;
 using AlphaPlus.Reports.Features.ProgressiveContribution;
 using AlphaPlus.Reports.Features.Statement;
 using AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
@@ -24,12 +23,18 @@ using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 using AlphaPlus.Reports.Features.WinLossByProduct;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.Customer;
+using Fanex.Data.Repository;
+using Fanex.Caching;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddReportsServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddReportsServices(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        Func<int, bool> canViewProduct)
     {
         services
             .AddAllowedSitesToShareLoadConfig(configuration)
@@ -39,11 +44,15 @@ public static class DependencyInjection
             .AddSingleton<ICacheRefService, CacheRefService>()
             .AddSingleton<IPartialUMDataAccess, PartialUMDataAccess>()
             .AddPartialUM(configuration)
-            .AddSingleton<IProductService, ProductService>()
+            .AddSingleton<IProductService>(sp => new ProductService(
+                sp.GetRequiredService<IDynamicRepository>(),
+                sp.GetRequiredService<ICacheService>(),
+                canViewProduct,
+                sp.GetRequiredService<ICacheRefService>(),
+                sp.GetRequiredService<IOptions<AppSettings>>()))
             .AddSingleton<IReportDateService, ReportDateService>()
             .AddSingleton<ILeagueService, LeagueService>()
             .AddSingleton<ICustomerService, CustomerService>()
-            .AddSingleton<ILengendService, LengendService>()
             .AddSingleton<IOutstandingService, OutstandingService>()
             .AddSingleton<IEnteredResultService, EnteredResultService>()
             .AddSingleton<IWinLossService, WinLossService>()

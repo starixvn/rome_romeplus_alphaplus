@@ -1,4 +1,4 @@
-namespace AlphaPlus.Reports.Features.Legends;
+namespace AlphaPlus.Reports.Features.Shared.Models;
 
 public class ProductsByRefTable
 {

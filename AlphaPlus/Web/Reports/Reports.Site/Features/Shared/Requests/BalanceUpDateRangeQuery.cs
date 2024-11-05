@@ -4,6 +4,6 @@ namespace AlphaPlus.Reports.Site.Features.Shared.Requests;
 
 public class BalanceUpDateRangeQuery : DefaultDateRangeQuery
 {
-    public BalanceUpDateRangeQuery() : base()
+    public BalanceUpDateRangeQuery()
         => MinDate = ReportDateService.Instance.GetBalanceUpDay().GetAwaiter().GetResult();
 }

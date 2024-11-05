@@ -1,6 +1,5 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Reports.Features.Legends;
 using AlphaPlus.Reports.Features.ProgressiveContribution;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Models;
@@ -17,12 +16,16 @@ public class ProgressiveContributionHandler(
     IOptions<AppSettings> options,
     IProgressiveContributionService progressiveContributionService,
     IProgressiveContributionWookbook wookbook,
-    ILengendService lengendService) :
+    Fanex.Logging.ILogger logger) :
         BaseHandler(productService, options),
         IRequestHandler<ProgressiveContributionQuery, ProgressiveContributionViewModel>,
         IRequestHandler<ProgressiveContributionExcelQuery, ExcelFileViewModel>,
         IRequestHandler<ProgressiveContributionLegendQuery, LegendViewModel>
 {
+    private readonly IProgressiveContributionService progressiveContributionService = progressiveContributionService;
+    private readonly IProgressiveContributionWookbook wookbook = wookbook;
+    private readonly Fanex.Logging.ILogger logger = logger;
+
     public async Task<ProgressiveContributionViewModel> Handle(ProgressiveContributionQuery message, CancellationToken cancellationToken)
     {
         var products = GetProducts(message).Where(p => message.EnableJackpotProductIds.Contains(p.Id));
@@ -72,10 +75,18 @@ public class ProgressiveContributionHandler(
             appSettings.SettingStatus,
             message.Language,
             message.MinDate);
-        var productNames = await lengendService.GetOfferedProductsNeedDelayTimeToSummarizeData(productParam, message.EnableJackpotProductIds);
-        if (!string.IsNullOrWhiteSpace(productNames))
+        try
         {
-            legends.Add(string.Format(Resources.DelayIssueLegend, productNames));
+            var productNames = await productService.GetProductsNeedDelayTimeToSummarizeData(productParam, message.EnableJackpotProductIds);
+
+            if (!string.IsNullOrWhiteSpace(productNames))
+            {
+                legends.Add(string.Format(Resources.DelayIssueLegend, productNames));
+            }
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync(ex.Message, ex);
         }
 
         return new LegendViewModel(legends);

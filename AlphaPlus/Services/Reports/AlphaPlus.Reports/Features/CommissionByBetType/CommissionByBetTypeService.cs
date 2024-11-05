@@ -26,13 +26,20 @@ public class CommissionByBetTypeService(
             moveBetsDay);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
+        var rawData = await repository.FetchAsync<CommissionByBetTypeModel>(criteria);
+
+        return new ReportData<CommissionByBetTypeModel>(rawData, CalculateTotal(rawData));
+    }
+
+    private static CommissionByBetTypeModel CalculateTotal(IEnumerable<CommissionByBetTypeModel> rawData)
+    {
         var total = new CommissionByBetTypeModel();
-        var rawdata = await repository.FetchAsync<CommissionByBetTypeModel>(criteria);
-        foreach (var item in rawdata)
+
+        foreach (var item in rawData)
         {
             total += item;
         }
 
-        return new ReportData<CommissionByBetTypeModel>(rawdata, total);
+        return total;
     }
 }
