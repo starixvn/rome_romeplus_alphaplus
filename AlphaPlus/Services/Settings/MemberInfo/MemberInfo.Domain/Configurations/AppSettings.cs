@@ -92,7 +92,7 @@
 
         public static string JsVersion => GetConfigValue("JsVersion");
 
-        public static bool LocalTest => GetConfigValue("AppSettings:LocalTest") == "1";
+        public static bool LocalTest => GetConfigValue("LocalTest") == "1";
 
         public static bool IsMBCSite => !IsSiteLabel789y;
 
