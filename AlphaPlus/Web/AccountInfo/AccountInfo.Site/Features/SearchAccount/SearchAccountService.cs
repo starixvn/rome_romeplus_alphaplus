@@ -80,7 +80,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         }
 
         private async Task<bool> UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname)
-           => await httpClient.PostAsJsonAsync<bool>("customer/username-suggestion", new { userId, search, firstName, lastName, nickname });
+           => await httpClient.PutAsJsonAsync<bool>("customer/username-suggestion", new { userId, search, firstName, lastName, nickname });
 
         public Task<CreditInfo> GetCreditInfo(int custId)
             => dynamicRepository.GetAsync<CreditInfo>(new SelectCreditInfoCriteria(custId));
