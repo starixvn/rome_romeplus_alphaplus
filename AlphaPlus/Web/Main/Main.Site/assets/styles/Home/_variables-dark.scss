@@ -1,26 +1,25 @@
 ﻿$font-size: 13px;
 $font-size-mobile: 14px;
-$font-family: Roboto, Arial, Tahoma, helvetica, sans-serif;
-$text-color: #cbcbcb;
+$font-family: Roboto, Arial, Tahoma,helvetica,sans-serif;
+$text-color: #CBCBCB;
 $border-color: #dfdfdf;
 $border-color-dark: #cecece;
 $height-normal: 28px;
 $height-mobile: 36px;
-$table-border-color: #5f626b;
 
-$panel-background-color: #292a2b;
+$panel-background-color: #292A2B;
 
-$link-color: #41a4ff;
-$link-hover-color: #f60;
+$link-color: #41A4FF;
+$link-hover-color: #F60;
 
 /* Popup */
 /*******************************************/
 $popup-bg: #fff;
 $popup-border: $border-color;
-$popup-title-color: #ff6838;
-$popup-text-color: #ededed;
-$popup-button-color-text: #ededed;
-$popup-button-color-border: #ededed;
+$popup-title-color: #FF6838;
+$popup-text-color: #EDEDED;
+$popup-button-color-text: #EDEDED;
+$popup-button-color-border: #EDEDED;
 
 /*******************************************/
 /* Messages */
@@ -30,10 +29,10 @@ $msg-private: #18910b;
 $msg-special: #9d1c1c;
 $msg-public: #333;
 
-$table-td-hover-color: #36362e;
+$table-td-hover-color: #36362E;
 
-$link-color: #41a4ff;
-$link-hover-color: #f60;
+$link-color: #41A4FF;
+$link-hover-color: #F60;
 $msg-error-color: #fe0000;
 $msg-error-border: #ef2d2d;
 $msg-warning-color: #7e3d00;
@@ -62,16 +61,17 @@ $conent-device-greater1024: (1024px - $content-gutter-width);
 // width of sidebar
 $sidebar-width: 300px;
 
+
 // Menu
-$menu-color-text: #ededed; // lightmode: #222;
+$menu-color-text: #EDEDED; // lightmode: #222;
 $menu-color-icon: #fff; // lightmode: #333;
 
-$component-bg: #2b2b2b;
-$component-color: #e7e7e7;
+$component-bg: #2B2B2B;
+$component-color: #E7E7E7;
 $component-border-color: #474747;
 
 $color-slidebar: #919191;
 
 $popup-bg-black: $component-bg;
 $popup-border-black: $component-border-color;
-$text-color2: #ededed;
+$text-color2: #EDEDED;

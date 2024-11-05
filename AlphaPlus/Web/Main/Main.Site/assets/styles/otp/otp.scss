@@ -68,6 +68,7 @@ label {
     }
 }
 
+
 // OTP Steps
 .otp-config {
     padding: 20px 0;
@@ -141,8 +142,7 @@ label {
             }
 
             .example {
-                .col-left,
-                .col-right {
+                .col-left, .col-right {
                     float: left;
                 }
 
@@ -170,10 +170,7 @@ label {
             list-style-type: decimal;
         }
 
-        .download-content,
-        .manualQRCode,
-        .block,
-        .note {
+        .download-content, .manualQRCode, .block, .note {
             margin-left: -12px;
         }
 
@@ -185,7 +182,7 @@ label {
                 margin-bottom: 5px;
             }
         }
-        // Download Sophos
+
         .download-content {
             display: table;
             padding: 12px 0 16px;
@@ -214,13 +211,10 @@ label {
         }
 
         .qr-code {
-            margin-left: -13px;
-            margin-top: 15px;
-            margin-bottom: 15px;
+            margin-left: -27px;
         }
 
-        .block,
-        .username-customize {
+        .block, .username-customize {
             .txt {
                 @include box-shadow-multiple('0px 1px 3px rgba(0, 0, 0, 0.3)');
             }
@@ -279,7 +273,6 @@ label {
         margin-left: 20px;
         min-width: 350px;
     }*/
-
     .register-succeess {
         clear: both;
         padding: 0 16px;
@@ -403,9 +396,7 @@ label {
     }
 }
 
-#username-message,
-#change-status-message,
-#remove-otp-message {
+#username-message, #change-status-message, #remove-otp-message {
     .msg {
         margin-top: 0;
     }
@@ -416,7 +407,7 @@ label {
     margin: 100px auto 0;
 }
 
-@media only screen and (max-device-width: $conent-device-lower768) {
+@media only screen and (max-device-width : $conent-device-lower768) {
     body {
         background-color: #fff;
         font-size: $font-size-mobile;
@@ -475,8 +466,7 @@ label {
                 .example {
                     margin-top: 20px;
 
-                    .col-left,
-                    .col-right {
+                    .col-left, .col-right {
                         float: none;
                         text-align: center;
                     }

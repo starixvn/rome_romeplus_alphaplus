@@ -6,6 +6,7 @@ html {
     touch-action: manipulation;
 }
 
+
 %alphaIcon {
     font: {
         family: 'Iconalpha';
@@ -27,7 +28,7 @@ html {
     .txt {
         padding-top: 0;
         padding-bottom: 0;
-        width: 100%;
+        width: 100%;       
     }
 
     &.has-popup {
@@ -123,7 +124,7 @@ html {
         }
 
         .switch-on {
-            background: url('../../images/switch.png') no-repeat;
+            background: url("../../Images/switch.png") no-repeat;
             color: #fff;
             cursor: pointer;
             display: inline-block;
@@ -131,7 +132,6 @@ html {
             text-indent: 6px;
             height: 22px;
             width: 54px;
-            line-height: 22px;
         }
 
         .switch-off {
@@ -163,8 +163,7 @@ html {
             font-size: calculateScale(16px);
         }
 
-        .btn-submit,
-        input[type='reset'] {
+        .btn-submit, input[type=reset] {
             height: $height-mobile;
             width: 100%;
             margin-bottom: 12px;

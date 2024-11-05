@@ -246,9 +246,8 @@ body {
 
 // Customize tooltip
 .tooltip {
-    pointer-events: none;
     &.in {
-        opacity: 1; 
+        opacity: 1;
     }
 
     .tooltip-inner {
