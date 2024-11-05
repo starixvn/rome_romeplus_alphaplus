@@ -1192,9 +1192,6 @@
   <data name="Mix" xml:space="preserve">
     <value>รวมกัน</value>
   </data>
-  <data name="MonitoredMember_Duplicate[1]" xml:space="preserve">
-    <value>สมาชิกที่กำลังเฝ้าดู</value>
-  </data>
   <data name="Active" xml:space="preserve">
     <value>ใช้งานอยู่</value>
   </data>

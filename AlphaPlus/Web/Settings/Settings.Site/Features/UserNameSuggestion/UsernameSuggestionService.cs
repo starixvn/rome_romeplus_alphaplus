@@ -25,34 +25,30 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
             bool directDownline,
             bool isAccInfo)
         {
-            var query = QueryString.Create
-            (
-                [
-                    KeyValuePair.Create("actorId", actorId.ToString()),
-                    KeyValuePair.Create("query", suggestionQuery),
-                    KeyValuePair.Create("isInternal", isInternal.ToString().ToLowerInvariant()),
-                    KeyValuePair.Create("directDownlines", directDownline.ToString().ToLowerInvariant()),
-                    KeyValuePair.Create("isAccInfo", isAccInfo.ToString().ToLowerInvariant())
-                ]
-            );
-
-            var result = await httpClient.GetAsJsonAsync<IEnumerable<UsernameSuggestion>>($"customer/username-suggestion{query}");
+            var result = await httpClient.PostAsJsonAsync<IEnumerable<UsernameSuggestion>>(
+                $"customer/username-suggestion",
+                new
+                {
+                    actorId,
+                    query = suggestionQuery,
+                    isInternal,
+                    directDownlines = directDownline,
+                    isAccInfo
+                });
 
             return result;
         }
 
         public async Task<IEnumerable<UsernameSuggestion>> GetUsernameSuggestionByRole(int custId, string username, byte roleId)
         {
-            var query = QueryString.Create
-            (
-                [
-                    KeyValuePair.Create("custId", custId.ToString()),
-                    KeyValuePair.Create("username", username),
-                    KeyValuePair.Create("roleId", roleId.ToString())
-                ]
-            );
-
-            var result = await httpClient.GetAsJsonAsync<IEnumerable<UsernameSuggestion>>($"customer/username-suggestion-by-role{query}");
+            var result = await httpClient.PostAsJsonAsync<IEnumerable<UsernameSuggestion>>(
+                $"customer/username-suggestion-by-role",
+                new
+                {
+                    custId,
+                    username,
+                    roleId
+                });
 
             return result;
         }

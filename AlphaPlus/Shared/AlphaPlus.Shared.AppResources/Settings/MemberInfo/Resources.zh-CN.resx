@@ -1204,9 +1204,6 @@
   <data name="MixTurnover" xml:space="preserve">
     <value>混合投注额</value>
   </data>
-  <data name="MonitoredMember_Duplicate[1]" xml:space="preserve">
-    <value>监控会员</value>
-  </data>
   <data name="Active" xml:space="preserve">
     <value>活跃</value>
   </data>

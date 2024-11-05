@@ -963,7 +963,7 @@ Notes: your password is cAsE sEnSiTiVe&lt;br&gt;</value>
     <value>3rd Party Pending Transfer</value>
   </data>
   <data name="EditMutipleSetting" xml:space="preserve">
-    <value>Edit Multiple Setting</value> 
+    <value>Edit Multiple Setting</value>
   </data>
   <data name="EditSetting" xml:space="preserve">
     <value>Edit Setting</value>
@@ -1234,9 +1234,6 @@ Notes: your password is cAsE sEnSiTiVe.</value>
   </data>
   <data name="memberMaxCreditHint" xml:space="preserve">
     <value>The Maximum Member Credit set by your upline: {0}</value>
-  </data>
-  <data name="MonitoredMember_Duplicate[1]" xml:space="preserve">
-    <value>Monitored Member</value>
   </data>
   <data name="DateRangeNote" xml:space="preserve">
     <value>Data is summarized from {0} to {1}</value>

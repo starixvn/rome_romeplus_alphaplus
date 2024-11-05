@@ -1165,9 +1165,6 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="IndividualCopy" xml:space="preserve">
     <value>Sao chép lẻ</value>
   </data>
-  <data name="MonitoredMember" xml:space="preserve">
-    <value>Đang theo dõi</value>
-  </data>
   <data name="Active" xml:space="preserve">
     <value>Đang hoạt động</value>
   </data>

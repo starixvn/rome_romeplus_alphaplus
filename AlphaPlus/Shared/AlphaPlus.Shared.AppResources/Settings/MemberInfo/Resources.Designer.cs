@@ -2321,16 +2321,6 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             }
         }
 
-        /// <summary>
-        ///   Looks up a localized string similar to Monitored Member.
-        /// </summary>
-        public static string MonitoredMember_Duplicate_1_
-        {
-            get
-            {
-                return ResourceManager.GetString("MonitoredMember_Duplicate[1]", resourceCulture);
-            }
-        }
 
         /// <summary>
         ///   Looks up a localized string similar to The number of Members must not exceed 50.

@@ -13,7 +13,7 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
             => Json(await mediator.Send(message));
 
         [HttpGet]
-        public ActionResult GetUsernamesSuggestionByRole(UserNameSuggestionByRoleQuery message)
-            => Json(mediator.Send(message));
+        public async Task<ActionResult> GetUsernamesSuggestionByRole(UserNameSuggestionByRoleQuery message)
+            => Json(await mediator.Send(message));
     }
 }

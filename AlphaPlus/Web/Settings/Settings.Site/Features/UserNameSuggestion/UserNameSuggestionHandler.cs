@@ -4,7 +4,8 @@ using MediatR;
 namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
 {
     public class UserNameSuggestionHandler(UsernameSuggestionService usernameSuggestionService) :
-        IRequestHandler<UserNameSuggestionQuery, IEnumerable<UsernameSuggestion>>
+        IRequestHandler<UserNameSuggestionQuery, IEnumerable<UsernameSuggestion>>,
+        IRequestHandler<UserNameSuggestionByRoleQuery, IEnumerable<UsernameSuggestion>>
     {
         private readonly UsernameSuggestionService usernameSuggestionService = usernameSuggestionService;
 
@@ -16,7 +17,7 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
                 message.DirectDownlines,
                 message.IsAccInfo);
 
-        public Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionByRoleQuery message)
+        public Task<IEnumerable<UsernameSuggestion>> Handle(UserNameSuggestionByRoleQuery message, CancellationToken cancellation)
             => usernameSuggestionService.GetUsernameSuggestionByRole(message.CustId, message.SuggestionQuery, message.RoleId);
     }
 }

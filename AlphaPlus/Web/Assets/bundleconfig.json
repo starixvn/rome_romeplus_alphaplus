@@ -22,7 +22,7 @@
     },
     {
         "outputFileName": "bundles/common/icon-common.css",
-        "inputFiles": [            
+        "inputFiles": [
             "styles/fonts/iconalpha/style.css"
         ]
     },
@@ -1875,7 +1875,7 @@
             "styles-v3/base/utilities.css",
             "styles-v3/vendors/bootstrap-multiselect.css",
             "styles-v3/components/blockui.css",
-            "styles-v3/components/dropdown.css",            
+            "styles-v3/components/dropdown.css",
             "styles-v3/components/modal.css",
             "styles-v3/components/breadcrumd.css",
             "styles-v3/components/button.css",
@@ -1896,6 +1896,47 @@
             "js/components/countdown/jquery.countdown.js",
             "js/components/multiselect/bootstrap-multiselect.js",
             "js/components/select2/select2.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-handbook/common.js",
+        "inputFiles": [
+            "js/libs/jquery/jquery.cookie.js",
+            "js/components/draggable/tiny-draggable.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles-v2/site-memberinfo/member-betting-behavior.css",
+        "inputFiles": [
+            "styles-v2/vendors/tipsy.css",
+            "styles-v2/components/tipsy-modify.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles-v2/site-asset/chart_v4.4.2.js",
+        "inputFiles": [
+            "js-v2/components/chartjs/chart_v4.4.2.js",
+            "js-v2/components/chartjs/chartjs-plugin-datalabels.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles-v2/site-memberinfo/member-betting-behavior.js",
+        "inputFiles": [
+            "js-v2/components/tipsy/jquery.tipsy.js",
+            "js-v2/components/tipsy/tipsy-helper.js"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-main/anybody-fonts.css",
+        "inputFiles": [
+            "styles/base/anybody-fonts.css"
+        ]
+    },
+    {
+        "outputFileName": "bundles/site-reports/filter-new-dark.css",
+        "inputFiles": [
+            "styles/vendors/daterangepicker/jquery.daterangepicker.css",
+            "styles/components/daterangepicker-customize-dark.css"
         ]
     }
 ]

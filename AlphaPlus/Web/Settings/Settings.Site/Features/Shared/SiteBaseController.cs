@@ -8,6 +8,7 @@ namespace AlphaPlus.Settings.Site.Features.Shared
 {
     public class SiteBaseController : BaseController
     {
+        private const string InvalidExcelFileName = "Invalid";
         protected const string InvalidPageViewPath = "~/Features/MemberInfo/Views/Shared/InvalidPage.cshtml";
         protected const int BadRequestErrorCode = 999;
 
@@ -33,5 +34,13 @@ namespace AlphaPlus.Settings.Site.Features.Shared
             => (message as BaseQuery).IsValid() ?
                 Json(await mediator.Send(message)) :
                 Json(Result.CreateErrorResult(ProductResources.NotAuthorized, BadRequestErrorCode));
+
+        protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
+            => (message as BaseQuery).IsValid()
+                ? GetExcelContent(await mediator.Send(message))
+                : GetExcelContent(new ExcelFileViewModel(InvalidExcelFileName, []));
+
+        private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
+            => File(viewModel.Content, viewModel.ContentType, viewModel.Name);
     }
 }

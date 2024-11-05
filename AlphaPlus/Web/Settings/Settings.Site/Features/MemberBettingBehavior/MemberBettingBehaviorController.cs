@@ -2,7 +2,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatistic;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.Profile;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
+using AlphaPlus.Settings.Site.Features.Shared;
 using AlphaPlus.Settings.Site.Features.Shared.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,8 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior
         private readonly IUser viewer;
         private readonly CheckBelongingService checkBelongingService;
 
-        public MemberBettingBehaviorController(IMediator mediator, IUser viewer, CheckBelongingService checkBelongingService) : base(mediator)
+        public MemberBettingBehaviorController(IMediator mediator, IUser viewer, CheckBelongingService checkBelongingService)
+            : base(mediator)
         {
             this.viewer = viewer;
             this.checkBelongingService = checkBelongingService;
@@ -34,7 +35,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior
             if (memberCustId > 0)
             {
                 message.MemberCustId = memberCustId;
-                return await JsonAsync(message);
+                return await Json(message);
             }
             return Json(Result.CreateErrorResult(""));
         }
@@ -46,7 +47,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior
             if (memberCustId > 0)
             {
                 message.MemberCustId = memberCustId;
-                return await JsonAsync(message);
+                return await Json(message);
             }
 
             return Json(Result.CreateErrorResult(""));
@@ -59,7 +60,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior
             if (memberCustId > 0)
             {
                 message.MemberCustId = memberCustId;
-                return await ExcelViewAsync(message);
+                return await ExcelView(message);
             }
             return Json(Result.CreateErrorResult(""));
         }
