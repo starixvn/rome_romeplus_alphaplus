@@ -1,12 +1,13 @@
-﻿@import "_variables.scss";
-@import "_mixins.scss";
+﻿@import '_variables.scss';
+@import '_mixins.scss';
 
 // To remove the 300-350ms tap delay
 html {
     touch-action: manipulation;
 }
 
-body, html {
+body,
+html {
     height: 100%;
 }
 
@@ -145,7 +146,8 @@ html * {
         margin-bottom: 0;
     }
 
-    .panel > .panel-heading, .panel.panel-default > .panel-heading {
+    .panel > .panel-heading,
+    .panel.panel-default > .panel-heading {
         background: #f9f9f9;
     }
 
@@ -178,8 +180,9 @@ html * {
                 top: 50%;
             }
 
-            &.icon-signintonovacasino, &.icon-joinnovacasinonow {
-                background: url(Images/logintonovacasino.svg) no-repeat !important;
+            &.icon-signintonovacasino,
+            &.icon-joinnovacasinonow {
+                background: url(../images/logintonovacasino.svg) no-repeat !important;
                 box-shadow: none !important;
                 height: 20px;
                 width: 20px;
@@ -187,7 +190,8 @@ html * {
                 top: 6px;
                 position: absolute;
 
-                &:before, &:after {
+                &:before,
+                &:after {
                     content: '';
                     position: absolute;
                     border-radius: 50%;
@@ -209,7 +213,7 @@ html * {
             }
 
             &.icon-chatbot {
-                background: url(Images/chatbot-intro.svg) no-repeat !important;
+                background: url(../images/chatbot-intro.svg) no-repeat !important;
                 box-shadow: none !important;
                 height: 18px;
                 width: 18px;
@@ -217,7 +221,8 @@ html * {
                 top: 9px;
                 position: absolute;
 
-                &:before, &:after {
+                &:before,
+                &:after {
                     content: '';
                     position: absolute;
                     border-radius: 50%;
@@ -302,15 +307,18 @@ html * {
             }
         }
 
-        &#menu-MYWATCHLIST, &#menu-SERCURITYCODE,
-        &#menu-MYTHRESHOLDS, &#menu-BACKUPDOMAINS,
-        &#menu-SIGNINTONOVACASINO, &#menu-JOINNOVACASINONOW {
+        &#menu-MYWATCHLIST,
+        &#menu-SERCURITYCODE,
+        &#menu-MYTHRESHOLDS,
+        &#menu-BACKUPDOMAINS,
+        &#menu-SIGNINTONOVACASINO,
+        &#menu-JOINNOVACASINONOW {
             padding: 16px 0 0;
             margin-bottom: 0;
 
             a {
-                background: #F5F5F5;
-                border: 1px solid #E3E3E3;
+                background: #f5f5f5;
+                border: 1px solid #e3e3e3;
                 border-radius: 5px;
                 padding-top: 7px;
                 padding-bottom: 7px;
@@ -324,7 +332,8 @@ html * {
                     }
                 }
 
-                &:hover, &.active {
+                &:hover,
+                &.active {
                     background: #ededed;
 
                     .icon {
@@ -335,9 +344,10 @@ html * {
             }
         }
 
-        &#menu-SIGNINTONOVACASINO, &#menu-JOINNOVACASINONOW {
+        &#menu-SIGNINTONOVACASINO,
+        &#menu-JOINNOVACASINONOW {
             .txt-item {
-                color: #0389E2;
+                color: #0389e2;
             }
         }
 
@@ -352,7 +362,7 @@ html * {
             z-index: 1;
             width: 49px;
             height: 30px;
-            background: url(Images/bage_bg.svg) no-repeat center center / cover;
+            background: url(../images/bage_bg.svg) no-repeat center center / cover;
             padding: 4px 0 0 3px;
             text-align: center;
         }
@@ -401,7 +411,7 @@ html * {
         background: #fff;
 
         &:before {
-            content: "";
+            content: '';
             height: 1px;
             background-color: #d7d7d7;
             position: absolute;
@@ -417,9 +427,9 @@ html * {
 }
 
 .mainmenu-container .menu-item#menu-SERCURITYCODE:after {
-    content: "";
+    content: '';
     height: 1px;
-    background-color: #BDBDBD;
+    background-color: #bdbdbd;
     position: absolute;
     left: -10px;
     right: -10px;
@@ -533,7 +543,8 @@ html * {
         top: 0px;
     }
 
-    .icon-search, .icon-close {
+    .icon-search,
+    .icon-close {
         color: #7f7f7f;
         cursor: pointer;
         display: inline-block;
@@ -595,8 +606,8 @@ html * {
 .progress-box {
     background-color: #fff;
     width: 100%;
-    color: #FF5C00;
-    border-left: 4px solid #FF5C00;
+    color: #ff5c00;
+    border-left: 4px solid #ff5c00;
     height: 52px;
     line-height: 52px;
     margin-top: 10px;
@@ -607,7 +618,7 @@ html * {
     }
 
     &.collapsed {
-        border: 1px solid #FF5C00;
+        border: 1px solid #ff5c00;
         background-color: #fff;
         transition: width 0.5s linear;
         width: 52px;
@@ -646,7 +657,7 @@ html * {
         padding: 0;
         line-height: 51px;
 
-        [class*="icon-"] {
+        [class*='icon-'] {
             font-size: 16px;
             vertical-align: middle;
             padding-right: 12px;
@@ -654,7 +665,7 @@ html * {
 
         .modal-title {
             font-size: 14px;
-            color: #FF5C00;
+            color: #ff5c00;
         }
 
         .icon-close {
@@ -673,11 +684,11 @@ html * {
             line-height: 22px;
         }
 
-        @media screen and (max-device-width: $screen-device-greater768) and (orientation: "portrait") {
+        @media screen and (max-device-width: $screen-device-greater768) and (orientation: 'portrait') {
             max-height: 600px;
         }
 
-        @media screen and (max-device-width: $screen-device-greater768) and (orientation : landscape) {
+        @media screen and (max-device-width: $screen-device-greater768) and (orientation: landscape) {
             max-height: 320px;
         }
     }
@@ -695,7 +706,7 @@ html * {
             line-height: 18px;
 
             .um-message-time {
-                color: #FF0000;
+                color: #ff0000;
             }
 
             @media only screen and (max-device-width: $screen-device-greater768) {
@@ -713,7 +724,7 @@ html * {
             font-size: inherit;
             cursor: pointer;
 
-            input[type="checkbox"] {
+            input[type='checkbox'] {
                 padding-right: 12px;
             }
         }
@@ -722,17 +733,17 @@ html * {
 
 @keyframes float {
     0% {
-        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
         transform: translatey(0px);
     }
 
     50% {
-        box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+        box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
         transform: translatey(-20px);
     }
 
     100% {
-        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+        box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
         transform: translatey(0px);
     }
 }
@@ -820,7 +831,7 @@ html * {
     }
 }
 
-@media \0screen\,screen\9 {
+@media \0screen\, screen\9 {
     .accountinfo-container {
         #accountinfo-content {
             min-height: initial;
@@ -893,7 +904,7 @@ html * {
         li {
             width: 8px;
             height: 8px;
-            background: #D9D9D9;
+            background: #d9d9d9;
             border: 0;
             margin: 0 1px;
             vertical-align: top;
@@ -917,9 +928,9 @@ html * {
     .icon-feedback {
         position: relative;
         top: -4px;
-        mask: url('Images/feedback.svg');
-        -webkit-mask-image: url('Images/feedback.svg');
-        mask-image: url('Images/feedback.svg');
+        mask: url('../images/feedback.svg');
+        -webkit-mask-image: url('../images/feedback.svg');
+        mask-image: url('../images/feedback.svg');
         background-color: #fff;
         height: 25px;
         width: 24px;
@@ -929,8 +940,8 @@ html * {
         fill: #fff;
 
         &:hover {
-            background-color: #FFE65F;
-            fill: #FFE65F;
+            background-color: #ffe65f;
+            fill: #ffe65f;
         }
     }
 }
@@ -945,7 +956,7 @@ html * {
     margin: 0 !important;
 
     .feedback-box {
-        background-color: #38B038;
+        background-color: #38b038;
         border-radius: 14px;
         display: flex;
         text-align: left;
@@ -955,12 +966,12 @@ html * {
 
         &:hover {
             .txt-feedback {
-                color: #FFE65F;
+                color: #ffe65f;
             }
 
             .icon-feedback {
-                background-color: #FFE65F;
-                fill: #FFE65F;
+                background-color: #ffe65f;
+                fill: #ffe65f;
             }
         }
     }
@@ -1036,7 +1047,7 @@ html * {
 .popup-highlight {
     position: absolute;
     background: $popup-bg;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
     top: 310px;
     left: 15px;
     width: 400px;
@@ -1057,7 +1068,7 @@ html * {
 
     &:before {
         position: absolute;
-        content: "";
+        content: '';
         top: 74px;
         left: -15px;
         width: 0;
@@ -1092,7 +1103,7 @@ html * {
             margin: 0 0 7px 0;
 
             b {
-                color: #0B599C;
+                color: #0b599c;
             }
 
             strong {
@@ -1180,17 +1191,17 @@ html * {
         height: 28px !important;
         padding: 0 !important;
         min-width: 80px !important;
-        color: #EDEDED !important;
+        color: #ededed !important;
         font-weight: 500 !important;
         font-size: 13px !important;
         line-height: 15px !important;
     }
 
     .btn-primary {
-        background: #0B599C !important;
+        background: #0b599c !important;
 
         &:hover {
-            background: darken( #0B599C, 5%) !important;
+            background: darken(#0b599c, 5%) !important;
         }
     }
 

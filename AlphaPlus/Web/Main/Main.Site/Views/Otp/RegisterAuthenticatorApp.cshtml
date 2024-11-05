@@ -20,7 +20,7 @@
                     <strong>@Security.DownloadGoogleAuthenticator</strong>
                     <div class="download-content">
                         <div class="logo-otp-app">
-                            <img src="~/Assets/Styles/otp/images/logo.png?v=2" />
+                            <img src="~/assets/images/otp/logo.png?v=2" />
                         </div>
                         <div class="list-download">
                             <h2>Google Authenticator</h2>
@@ -28,10 +28,10 @@
                             <ul class="list-inline">
                                 <li><a href="https://apps.apple.com/us/app/google-authenticator/id388497605?mt=8"
                                         class="btn-download-ios" target="_parent"><img
-                                            src="~/Assets/Styles/otp/images/apple.png" /></a></li>
+                                            src="~/assets/images/otp/apple.png" /></a></li>
                                 <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US&pli=1"
                                         target="_blank" class="btn-download-android"><img
-                                            src="~/Assets/Styles/otp/images/google.png" /></a></li>
+                                            src="~/assets/images/otp/google.png" /></a></li>
                             </ul>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                 </li>
                 <li>
                     <strong>@Security.ScanQRCode</strong>
-                    <div class="qr-code otp-app-qr">
+                    <div id="qr-code" class="qr-code otp-app-qr">
                         @* <img src="@Html.Raw(Model.CustomerOtp.QRCode)" /> *@
                     </div>
                     <div class="username-customize">
@@ -83,11 +83,10 @@
                                     </p>
                                     <div class="example">
                                         <div class="col-left">
-                                            <img src="~/Assets/Styles/otp/images/manual-ios.png?v=2" title="IOS" />
+                                            <img src="~/assets/images/otp/manual-ios.png?v=2" title="IOS" />
                                         </div>
                                         <div class="col-right">
-                                            <img src="~/Assets/Styles/otp/images/manual-android.png?v=2"
-                                                title="Android" />
+                                            <img src="~/assets/images/otp/manual-android.png?v=2" title="Android" />
                                         </div>
                                     </div>
                                 </div>
@@ -116,3 +115,5 @@
         </div>
     </div>
 </div>
+
+@Html.Hidden("OTPUrl", Model.CustomerOtp.OTPUrl)
