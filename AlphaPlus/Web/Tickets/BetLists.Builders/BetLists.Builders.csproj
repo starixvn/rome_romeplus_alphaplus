@@ -8,7 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.BetList.Core" Version="3.0.4.3" />
-    <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="1.0.0.3" />
+    <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="2.0.0-netstandard01" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
