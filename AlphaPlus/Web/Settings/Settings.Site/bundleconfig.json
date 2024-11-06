@@ -125,12 +125,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/confirm-add-to-watchlist.css",
-    "inputFiles": [
-      "Features/MemberInfo/assets/styles/problem-account/confirm-add-to-watchlist.css"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/update.css",
     "inputFiles": [
       "Features/MemberInfo/assets/styles/problem-account/update.css"
@@ -171,12 +165,6 @@
       "Features/MemberInfo/assets/scripts/ProblemAccount/index.js",
       "Features/MemberInfo/assets/scripts/ProblemAccount/edit-setting-popup.js",
       "Features/Shared/Scripts/ajax-helper.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/confirm-add-to-watchlist.js",
-    "inputFiles": [
-      "Features/MemberInfo/assets/scripts/ProblemAccount/confirm-add-to-watchlist.js"
     ]
   },
   {
@@ -366,11 +354,14 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/my-watchlist-accounts.js",
     "inputFiles": [
-      "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
       "Features/Shared/Scripts/ajax-helper.js",
+      "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
+      "Features/MemberInfo/assets/scripts/components/daterangepicker-jquery.js",
+      "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/MemberInfo/assets/scripts/shared/customer-status-helper.js",
       "Features/MemberInfo/Features/MyWatchlist/Shared/Scripts/my-watchlist-base.js",
       "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/edit-setting-popup.js",
+      "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/my-watchlist-summary.js",
       "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/my-watchlist-accounts-datatable.js",
       "Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/Scripts/my-watchlist-accounts.js"
     ]
@@ -476,12 +467,6 @@
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/index-dark.css",
     "inputFiles": [
       "Features/MemberInfo/assets/styles/problem-account/index-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/confirm-add-to-watchlist-dark.css",
-    "inputFiles": [
-      "Features/MemberInfo/assets/styles/problem-account/confirm-add-to-watchlist-dark.css"
     ]
   },
   {

@@ -122,6 +122,7 @@
     <Setting Key="Acc_WLMonitored_SMA_Sel" SpName="Acc_WLMonitored_SMA_Sel" DbName="DBCust.CustDB.wsv_alp" />
     <Setting Key="Acc_WLMonitored_SMA_Adjust" SpName="Acc_WLMonitored_SMA_Adjust" DbName="DBCust.CustDB.wsv_alp" />
     <Setting Key="Acc_WLMonitored_CheckExistSettingByCust" SpName="Acc_WLMonitored_CheckExistSettingByCust" DbName="DBCust.CustDB.wsv_alp" />
+    <Setting Key="Acc_WLMonitored_Player_WatchListSummary_Sel" SpName="Acc_WLMonitored_Player_WatchListSummary_Sel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
   </Function>
   <Function Name="Partial UM">
     <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.wsv_alp" />

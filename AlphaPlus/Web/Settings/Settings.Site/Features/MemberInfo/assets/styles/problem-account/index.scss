@@ -140,6 +140,24 @@
         display: flex;
         align-items: center;
 
+        .icon-mywatchlist {
+            margin-left: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            &:before {
+                color: #6c6c6c;
+            }
+        }
+
+        .right-icon {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            > span{
+                margin-left: 5px;
+            }
+        }
+
         .pull-right {
             margin-left: auto;
         }
