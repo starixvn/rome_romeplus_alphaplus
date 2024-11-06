@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using Fanex.Common.Extensions;
-    using System;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Models;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using Fanex.Common.Extensions;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Models;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests
+{
     public class ReachHistoryQueryBase : MemberInfoBaseQuery
     {
-        public ReachHistoryQueryBase() : this(null){}
+        public ReachHistoryQueryBase() : this(null) { }
 
         public ReachHistoryQueryBase(IUser viewer) : base(viewer)
         {

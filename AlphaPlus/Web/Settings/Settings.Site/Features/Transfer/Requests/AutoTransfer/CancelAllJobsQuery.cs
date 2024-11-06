@@ -1,10 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
-{
-    using MediatR;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Transfer.API.Models;
+﻿using MediatR;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Transfer.API.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
+{
     public class CancelAllJobsQuery : IRequest<Result>
     {
         public CancelAllJobsQuery() : this(null) { }

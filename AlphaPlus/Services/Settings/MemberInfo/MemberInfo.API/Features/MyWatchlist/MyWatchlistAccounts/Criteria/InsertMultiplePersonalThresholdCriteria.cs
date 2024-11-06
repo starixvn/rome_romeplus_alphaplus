@@ -1,16 +1,16 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts.Criteria
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts.Criteria
+{
     public class InsertMultiplePersonalThresholdCriteria : CriteriaBase
     {
         public InsertMultiplePersonalThresholdCriteria(
-            string usernames, 
-            int agentId, 
-            decimal? winningThreshold, 
+            string usernames,
+            int agentId,
+            decimal? winningThreshold,
             decimal? losingThreshold,
             int userId,
-            int subAccId, 
+            int subAccId,
             string ip,
             int sporttype = 0)
         {

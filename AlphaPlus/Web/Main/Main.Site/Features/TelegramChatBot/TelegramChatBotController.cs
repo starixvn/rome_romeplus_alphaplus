@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.Core.Models;
 using MediatR;
 using AlphaPlus.Core;
 
 namespace AlphaPlus.Main.Site.Features.TelegramChatBot
 {
+    using AlphaPlus.Core.Models;
     using AlphaPlus.Main.Site.Shared.Models;
 
     public class TelegramChatBotController(IMediator mediator, IUserSession userSession) : BaseController

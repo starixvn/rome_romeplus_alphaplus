@@ -1,11 +1,8 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Models.Enumerations
-{
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
+﻿using System.Collections;
+using System.Reflection;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Models.Enumerations
+{
     /// <summary>
     /// <see cref="https://github.com/HeadspringLabs/Tarantino/blob/master/src/Tarantino.Core/Commons/Model/Enumerations/Enumeration.cs"/>
     /// </summary>

@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList.Criteria
-{
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList.Criteria
+{
     public class GetDormantAccountsCriteria : CriteriaBase
     {
         public GetDormantAccountsCriteria(
@@ -43,7 +43,7 @@
             => CustId > 0
             && FilterRoleId < UserLevel.Super.Value
             && (FilterStatusId == StatusIdentity.All ||
-            FilterStatusId == StatusIdentity.Closed || 
+            FilterStatusId == StatusIdentity.Closed ||
             FilterStatusId == StatusIdentity.Disabled ||
             FilterStatusId == StatusIdentity.Deleted);
     }

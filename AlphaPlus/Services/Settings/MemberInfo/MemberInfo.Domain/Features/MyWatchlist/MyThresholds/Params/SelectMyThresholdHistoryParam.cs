@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyThresholds.Params
 {
-    using System;
-
     public class SelectMyThresholdHistoryParam
     {
         public SelectMyThresholdHistoryParam(

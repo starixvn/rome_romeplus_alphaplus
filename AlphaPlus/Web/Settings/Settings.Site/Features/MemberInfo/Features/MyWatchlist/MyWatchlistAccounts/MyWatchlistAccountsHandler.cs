@@ -1,16 +1,15 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.Requests;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.ViewModels;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
-    using MediatR;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.ViewModels;
+using MediatR;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts
+{
     public class MyWatchlistAccountsHandler :
         IRequestHandler<MyWatchlistAccountsQuery, MyWatchlistAccountsViewModel>,
         IRequestHandler<WatchlistAccountsQuery, MyWatchlistAccountsPagingViewModel>,
@@ -37,55 +36,70 @@
             this.browserHelper = browserHelper;
         }
 
-        public async Task<MyWatchlistAccountsViewModel> Handle(MyWatchlistAccountsQuery message, CancellationToken cancellation)
+        public async Task<MyWatchlistAccountsViewModel> Handle(MyWatchlistAccountsQuery message, CancellationToken cancellationToken)
         {
             var isMobile = browserHelper.IsMobile(isOnlyTablet: false);
             var canUpdateAccount = message.CanUpdateAccount;
-            var query = new WatchlistAccountsQuery(message.Viewer)
+
+            var query = new WatchlistAccountsQuery()
             {
+                FromDate = message.FromDate,
+                ToDate = message.ToDate,
+                Status = message.Status,
+                ProblemAccount = message.ProblemAccount,
                 Username = message.Username,
                 SortType = message.SortType,
                 IsDesc = message.IsDesc,
                 PageIndex = message.PageIndex,
                 PageSize = message.PageSize
             };
-            var pagingViewModel = await Handle(query, cancellation);
+            var pagingViewModelTask = Handle(query, cancellationToken);
 
-            var param = new SelectGlobalThresholdParam(message.CustId, message.Site);
-            var globalThreshold = await service.GetGlobalThreshold(param);
+            var param = new SelectGlobalThresholdParam(message.ViewerId, message.Site);
+            var globalThresholdTask = service.GetGlobalThreshold(param);
+
+            await Task.WhenAll(pagingViewModelTask, globalThresholdTask);
 
             return new MyWatchlistAccountsViewModel(
                 message,
-                globalThreshold,
+                await globalThresholdTask,
                 isMobile,
                 canUpdateAccount,
-                pagingViewModel);
+                await pagingViewModelTask);
         }
 
-        public async Task<MyWatchlistAccountsPagingViewModel> Handle(WatchlistAccountsQuery message, CancellationToken cancellation)
+        public async Task<MyWatchlistAccountsPagingViewModel> Handle(WatchlistAccountsQuery message, CancellationToken cancellationToken)
         {
             var param = new SelectWatchlistAccountsParam(
-               message.CustId,
+               message.ViewerId,
+               message.FromDate,
+               message.ToDate,
+               message.Status != 0 ? ReachedThresholdStatusConstants.GetReachedThresholdStatus(message.Status) : string.Empty,
+               message.ProblemAccount,
                message.Username,
                message.Site,
                message.SortType,
                message.IsDesc,
                message.PageIndex,
                message.PageSize);
+            var watchlistAccountReportTask = service.GetWatchlistAccounts(param);
 
-            var watchlistAccountReport = await service.GetWatchlistAccounts(param);
+            var summaryParam = new SelectWatchlistSummaryParam(message.ViewerId, message.Site);
+            var summaryTask = service.GetWatchlistSummary(summaryParam);
 
-            return new MyWatchlistAccountsPagingViewModel(watchlistAccountReport, message);
+            await Task.WhenAll(watchlistAccountReportTask, summaryTask);
+
+            return new MyWatchlistAccountsPagingViewModel(await watchlistAccountReportTask, await summaryTask);
         }
 
-        public async Task<IEnumerable<PersonalPresetModel>> Handle(PersonalPresetQuery message, CancellationToken cancellation)
+        public async Task<IEnumerable<PersonalPresetModel>> Handle(PersonalPresetQuery message, CancellationToken cancellationToken)
         {
             var param = new SelectPresetsParam(message.CustId, message.Site);
 
             return await service.GetPresets(param);
         }
 
-        public async Task<IEnumerable<NamedResult>> Handle(AddPersonalThresholdCommand message, CancellationToken cancellation)
+        public async Task<IEnumerable<NamedResult>> Handle(AddPersonalThresholdCommand message, CancellationToken cancellationToken)
         {
             var param = new AddPersonalThresholdParam(
                 message.Usernames,
@@ -100,7 +114,7 @@
             return await service.AddPersonalThreshold(param);
         }
 
-        public async Task<IEnumerable<NamedResult>> Handle(UpdateMultiplePersonalThresholdCommand message, CancellationToken cancellation)
+        public async Task<IEnumerable<NamedResult>> Handle(UpdateMultiplePersonalThresholdCommand message, CancellationToken cancellationToken)
         {
             var tasks = new List<Task<NamedResult>>();
             var custIdArr = message.CustIds.Split(',');
@@ -124,7 +138,7 @@
             return await Task.WhenAll(tasks);
         }
 
-        public async Task<IEnumerable<NamedResult>> Handle(DeleteMultiplePersonalThresholdCommand message, CancellationToken cancellation)
+        public async Task<IEnumerable<NamedResult>> Handle(DeleteMultiplePersonalThresholdCommand message, CancellationToken cancellationToken)
         {
             var tasks = new List<Task<NamedResult>>();
             var custIdArr = message.CustIds.Split(',');
@@ -146,7 +160,7 @@
             return await Task.WhenAll(tasks);
         }
 
-        public async Task<Result> Handle(UpdateGlobalThresholdCommand message, CancellationToken cancellation)
+        public async Task<Result> Handle(UpdateGlobalThresholdCommand message, CancellationToken cancellationToken)
         {
             var param = new UpdateGlobalThresholdParam(
                 message.CustId,
@@ -160,7 +174,7 @@
             return await service.UpdateGlobalThreshold(param);
         }
 
-        public async Task<IEnumerable<NamedResult>> Handle(AddMultiplePersonalPresetCommand message, CancellationToken cancellation)
+        public async Task<IEnumerable<NamedResult>> Handle(AddMultiplePersonalPresetCommand message, CancellationToken cancellationToken)
         {
             var results = new List<NamedResult>();
 
@@ -179,7 +193,7 @@
             return results;
         }
 
-        public async Task<Result> Handle(UpdatePersonalPresetCommand message, CancellationToken cancellation)
+        public async Task<Result> Handle(UpdatePersonalPresetCommand message, CancellationToken cancellationToken)
         {
             var param = new UpdatePersonalPresetParam(
                 message.ID,
@@ -191,7 +205,7 @@
             return await service.UpdatePersonalPreset(param);
         }
 
-        public async Task<Result> Handle(DeletePersonalPresetCommand message, CancellationToken cancellation)
+        public async Task<Result> Handle(DeletePersonalPresetCommand message, CancellationToken cancellationToken)
         {
             var param = new DeletePersonalPresetParam(
                 message.ID,
@@ -201,13 +215,30 @@
             return await service.DeletePersonalPreset(param);
         }
 
-        public async Task<ManageWatchlistAccountsViewModel> Handle(ManageWatchlistAccountsQuery message, CancellationToken cancellation)
+        public async Task<ManageWatchlistAccountsViewModel> Handle(ManageWatchlistAccountsQuery message, CancellationToken cancellationToken)
         {
-            var personalPresets = await service.GetPresets(new SelectPresetsParam(message.CustId, message.Site));
-            return new ManageWatchlistAccountsViewModel(message, personalPresets);
+            ThresholdViewModel thresholdViewModel;
+            var personalPresets = await service.GetPresets(new SelectPresetsParam(message.ViewerId, message.Site));
+
+            if (message.IsEdit)
+            {
+                thresholdViewModel = new ThresholdViewModel(message.WinningThreshold, message.LosingThreshold);
+            }
+            else if (message.MyWatchlistPage)
+            {
+                thresholdViewModel = new ThresholdViewModel();
+            }
+            else
+            {
+                var globalThreshold = await service.GetGlobalThreshold(new SelectGlobalThresholdParam(message.ViewerId, message.Site));
+                globalThreshold ??= new GlobalThresholdModel();
+                thresholdViewModel = new ThresholdViewModel(globalThreshold.WinningThreshold, globalThreshold.LosingThreshold);
+            }
+
+            return new ManageWatchlistAccountsViewModel(message, personalPresets, thresholdViewModel);
         }
 
-        public async Task<ManageGlobalThresholdViewModel> Handle(ManageGlobalThresholdQuery message, CancellationToken cancellation)
+        public async Task<ManageGlobalThresholdViewModel> Handle(ManageGlobalThresholdQuery message, CancellationToken cancellationToken)
         {
             var param = new SelectGlobalThresholdParam(message.CustId, message.Site);
             var globalThreshold = await service.GetGlobalThreshold(param);
@@ -215,7 +246,7 @@
             return new ManageGlobalThresholdViewModel(globalThreshold);
         }
 
-        public async Task<ManagePersonalThresholdPresetViewModel> Handle(ManagePersonalThresholdPresetQuery message, CancellationToken cancellation)
+        public async Task<ManagePersonalThresholdPresetViewModel> Handle(ManagePersonalThresholdPresetQuery message, CancellationToken cancellationToken)
         {
             var param = new SelectPresetsParam(message.CustId, message.Site);
             var personalPresets = await service.GetPresets(param);

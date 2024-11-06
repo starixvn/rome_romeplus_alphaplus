@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Helpers
-{
-    using System;
-    using AlphaPlus.Shared.AppResources.Settings.ViewLog;
+﻿using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Helpers
+{
     public static class DateTimeHelper
     {
         private const string LongDateWithSlash = "MM/dd/yyyy hh:mm:ss tt";

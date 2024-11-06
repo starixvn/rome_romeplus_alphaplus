@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Core.Models;
-    using Helpers;
-    using MediatR;
-    using Requests.Login;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Login;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
+{
     public class LoginController : ViewLogBaseController
     {
         private readonly IMediator mediator;

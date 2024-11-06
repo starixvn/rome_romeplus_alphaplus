@@ -1,8 +1,4 @@
-﻿@using AlphaPlus.Core.Helpers
-@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
-@using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
-@using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
-@model ManageWatchlistAccountsViewModel
+﻿@model ManageWatchlistAccountsViewModel
 
 @{
     Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
@@ -11,11 +7,12 @@
 
 @section Styles {
     @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
+    @StaticResources.RenderStylesWithMedia(767,
+        "~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
 }
 
 @section Scripts {
-    @StaticResources.RenderScripts("~/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/manage-watchlist-accounts")
+    @StaticResources.RenderScripts("~/Features/MyWatchlist/MyWatchlistAccounts/Bundles/manage-watchlist-accounts")
 }
 
 <div class="box-settings">
@@ -32,7 +29,10 @@
         <div>
             <p class="note">@Resources.GlobalThresholdSettingsNote</p>
             <p>@Resources.EnterListOfMemberUsernames <span class="red">*</span> @Resources.MaximumMembers</p>
-            <textarea rows="3" class="txt-usernames" name="usernames" id="txt-usernames">@if(!string.IsNullOrWhiteSpace(Model.Usernames)){@Model.Usernames}</textarea>
+            <textarea rows="3" class="txt-usernames" name="usernames" id="txt-usernames">@if (!string.IsNullOrWhiteSpace(Model.Usernames))
+                {
+                    @Model.Usernames
+                }</textarea>
         </div>
     }
 
@@ -49,13 +49,7 @@
             }
         </select>
     </div>
-
-    @if (Model.IsEditWatchlistAccountsPopup)
-    {
-        @await Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
-        <button class="btn-submit" id="btn-update">@Resources.Update</button>
-    }
-    else
+    @if (Model.MyWatchlistPage)
     {
         <div class="form-group">
             <label class="lbl-threshold" for="winningThreshold">@Resources.WinningThreshold</label>
@@ -63,17 +57,27 @@
             <input type="checkbox" class="ckb-unlimited" id="winning-unlimited" />
             <label for="winning-unlimited" class="lbl-unlimited">@Resources.Unlimited</label>
         </div>
-
         <div class="form-group">
             <label class="lbl-threshold" for="losingThreshold">@Resources.LosingThreshold</label>
             <input type="text" class="txt-threshold text-right" id="losingThreshold" maxlength="18" autocomplete="off" />
             <input type="checkbox" class="ckb-unlimited" id="losing-unlimited" />
             <label for="losing-unlimited" class="lbl-unlimited">@Resources.Unlimited</label>
         </div>
+    }
+    else
+    {
+        @await Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml",
+                Model.Threshold)
+    }
+    @if (Model.IsEditWatchlistAccountsPopup)
+    {
+        <button class="btn-submit" id="btn-update">@Resources.Update</button>
+    }
+    else
+    {
         <button class="btn-submit" id="btn-add">@Resources.Add</button>
     }
 </div>
-
 @Html.AntiForgeryToken()
 <input type="hidden" id="member-info-url" value="@MicroSites.SettingUrl()">
 <input type="hidden" id="no-change-to-update-error" value="@Resources.NoChangeToUpdateError" />
@@ -85,7 +89,7 @@
 <input type="hidden" id="not-in-watchlist-any-longer-error" value="@Resources.NotInWatchlistAnyLongerError" />
 <input type="hidden" id="must-enter-username-error" value="@Resources.MustEnterUsernameError" />
 <input type="hidden" id="more-usernames-error" value="@Resources.MoreThan50UsernamesError" />
-
+<input type="hidden" id="account-was-disabled-error" value="@Resources.AccountWasDisabled" />
 @if (Model.IsEditWatchlistAccountsPopup)
 {
     <input type="hidden" id="old-winning-threshold" value="@Model.Threshold.WinningThreshold" />

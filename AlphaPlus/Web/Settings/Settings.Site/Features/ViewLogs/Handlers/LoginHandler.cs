@@ -1,14 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers;
-    using AlphaPlus.Settings.ViewLogs.API.Models;
-    using AlphaPlus.Settings.ViewLogs.API.Services;
-    using MediatR;
-    using Requests.Login;
-    using ViewModels;
-    using ViewModels.Login;
+﻿using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Models;
+using AlphaPlus.Settings.ViewLogs.API.Services;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Login;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Login;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
+{
     public class LoginHandler : BaseHandler, IRequestHandler<IndexQuery, IndexViewModel>
     {
         public LoginHandler([FromKeyedServices("loginLogSvc")] LogService logService, LogFormatter logFormatter, IDateTime dateTimeWrapper) :

@@ -1,10 +1,9 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Controllers
-{
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Controllers
+{
     public class IndirectLoginAccountController : SiteBaseController
     {
         public IndirectLoginAccountController(IMediator mediator)

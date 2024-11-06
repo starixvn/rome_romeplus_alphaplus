@@ -11,9 +11,8 @@ using AlphaPlus.Main.Site.Shared.Models;
 
 namespace AlphaPlus.Main.Site.Features.OTP
 {
-    using Fanex.Logging;
     using AlphaPlus.Main.Site.Shared.Constants;
-
+    using Fanex.Logging;
 
     public class CustomerOtpHandler :
         IRequestHandler<SetUpOtpQuery, OtpViewModel>,

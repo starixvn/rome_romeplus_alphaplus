@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.ApiKey
-{
-    using System;
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.ApiKey
+{
     public class UpdateApiKeyCommand : IRequest<Result>
     {
         public UpdateApiKeyCommand() : this(null)

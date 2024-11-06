@@ -1,8 +1,5 @@
 namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     public class DormantAccountReport
     {
         public DormantAccountReport(

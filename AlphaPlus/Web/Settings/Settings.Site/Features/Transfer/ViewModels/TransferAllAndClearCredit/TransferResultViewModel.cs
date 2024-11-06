@@ -1,13 +1,12 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using Requests.TransferAllAndClearCredit;
-    using Settings.Transfer.API.Models.TransferAllAndClearCredit;
-    using AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit;
-    using AlphaPlus.Settings.Transfer.API.Helpers;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClearCredit;
+using AlphaPlus.Settings.Transfer.API.Models.TransferAllAndClearCredit;
+using AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit;
+using AlphaPlus.Settings.Transfer.API.Helpers;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit
+{
     public class TransferResultViewModel
     {
         public TransferResultViewModel(

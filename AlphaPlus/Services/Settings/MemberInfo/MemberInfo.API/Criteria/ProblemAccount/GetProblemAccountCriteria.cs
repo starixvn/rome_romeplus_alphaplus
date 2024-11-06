@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.ProblemAccount
-{
-    using System;
-    using AlphaPlus.Core.Models;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Core.Models;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.ProblemAccount
+{
     public class GetProblemAccountCriteria : CriteriaBase
     {
         public GetProblemAccountCriteria(
@@ -48,6 +47,6 @@
         public override bool IsValid()
             => CustId > 0 &&
             SubAccId >= 0 &&
-            SearchRoleId <= UserLevel.Master.Value;            
+            SearchRoleId <= UserLevel.Master.Value;
     }
 }

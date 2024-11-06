@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.Theme
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.Theme
+{
     public class ChangeThemeQuery : IRequest<bool>
     {
         private readonly IUserSession userSession;

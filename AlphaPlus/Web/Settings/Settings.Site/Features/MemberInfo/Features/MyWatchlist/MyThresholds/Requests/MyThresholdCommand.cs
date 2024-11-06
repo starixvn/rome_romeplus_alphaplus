@@ -1,10 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests
-{
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests
+{
     public class MyThresholdCommand : MemberInfoBaseQuery, IRequest<Result>
     {
         public MyThresholdCommand() : this(null) { }

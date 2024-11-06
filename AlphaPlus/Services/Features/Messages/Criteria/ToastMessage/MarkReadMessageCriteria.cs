@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.ToastMessage
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.ToastMessage
+{
     public class MarkReadMessageCriteria : NonQueryCommand
     {
         public MarkReadMessageCriteria(int id, int targetId, int subAccId)

@@ -72,7 +72,8 @@ class ManageWatchlistAccounts extends ThresholdInputsBase {
                         const codeMessageMap = {
                             0: this.$("#add-successfully").val(),
                             101: this.$("#is-not-member-error").val(),
-                            103: this.$("#was-added-watchlist-already-error").val()
+                            103: this.$("#was-added-watchlist-already-error").val(),
+                            600: this.$("#account-was-disabled-error").val()
                         };
 
                         this.showResultMessages(result, codeMessageMap);
@@ -103,7 +104,8 @@ class ManageWatchlistAccounts extends ThresholdInputsBase {
                     const codeMessageMap = {
                         0: this.$("#update-successfully").val(),
                         102: this.$("#invalid-account-error").val(),
-                        103: this.$("#not-in-watchlist-any-longer-error").val()
+                        103: this.$("#not-in-watchlist-any-longer-error").val(),
+                        600: this.$("#account-was-disabled-error").val()
                     };
 
                     this.showResultMessages(result, codeMessageMap);
@@ -160,19 +162,17 @@ class ManageWatchlistAccounts extends ThresholdInputsBase {
             this.alert.showMultiple(resultAlerts);
 
             if (isFailed && isSuccessful) {
-                this.topWindow.reloadMyWatchlistDataTable();
+                setTimeout(() => {
+                    this.topWindow.reloadMyWatchlistDataTable();
+                }, 2000);
                 return;
             }
 
-            isFailed || this.reloadPage()
+            isFailed || setTimeout(() => {
+                this.topWindow.popupManager.close();
+                this.topWindow.reloadMyWatchlistDataTable();
+            }, 3000);
         }
-    }
-
-    private reloadPage() {
-        setTimeout(() => {
-            this.topWindow.$('#main').attr('src', `${this.baseUrl}MyWatchlistAccounts`);
-        }, 3000)
-
     }
 }
 

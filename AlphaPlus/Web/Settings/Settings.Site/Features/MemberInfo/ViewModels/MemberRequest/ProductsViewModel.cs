@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.MemberRequest
-{
-    using System.Collections.Generic;
-    using Components;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.MemberRequest
+{
     public class ProductsViewModel
     {
         public ProductsViewModel(

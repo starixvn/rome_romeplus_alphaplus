@@ -1,12 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.ViewLogs.API.Params;
-    using Helpers;
-    using Requests;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.ViewLogs.API.Params;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels
+{
     public class LogViewModel
     {
         private readonly MicroSites microSites;

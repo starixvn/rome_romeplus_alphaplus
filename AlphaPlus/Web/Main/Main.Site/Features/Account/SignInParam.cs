@@ -2,7 +2,6 @@ namespace AlphaPlus.Main.Site.Features.Account;
 
 using AlphaPlus.RequestInfo.Models;
 
-
 public class SignInParam
 {
     public int CustId { get; init; }

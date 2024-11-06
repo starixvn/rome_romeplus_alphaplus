@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.IndirectLoginAccount
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.IndirectLoginAccount
+{
     public class GetIndirectLoginAccountsCriteria : CriteriaBase
     {
         public GetIndirectLoginAccountsCriteria()

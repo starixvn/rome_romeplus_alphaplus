@@ -1,10 +1,9 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClearCredit;
+
+namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-    using MediatR;
-    using Requests.TransferAllAndClearCredit;
-    
-    
     public class TransferAllAndClearCreditController : TransferAllClearCreditControllerBase
     {
         public TransferAllAndClearCreditController(IMediator mediator)

@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Models
-{
-    using System;
-    using AlphaPlus.Core.Models;
-    using Settings.Transfer.API.Models;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Transfer.API.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Models
+{
     public class User : IUser
     {
         private readonly IUserSession userSession;

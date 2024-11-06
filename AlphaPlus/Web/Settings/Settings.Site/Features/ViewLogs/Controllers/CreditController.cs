@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Core.Models;
-    using Helpers;
-    using MediatR;
-    using Requests.Credit;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Credit;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
+{
     public class CreditController : ViewLogBaseController
     {
         private readonly IMediator mediator;

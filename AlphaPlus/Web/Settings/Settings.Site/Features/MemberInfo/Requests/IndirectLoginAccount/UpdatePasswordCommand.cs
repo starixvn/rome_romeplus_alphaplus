@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount
-{
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.IndirectLoginAccount
+{
     public class UpdatePasswordCommand : NewAccountCommand
     {
         public UpdatePasswordCommand() : this(null) { }

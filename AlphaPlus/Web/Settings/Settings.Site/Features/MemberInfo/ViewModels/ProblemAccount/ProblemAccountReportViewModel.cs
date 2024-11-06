@@ -1,16 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.ProblemAccount
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
-    using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.ProblemAccount
+{
     public class ProblemAccountReportViewModel
     {
         public ProblemAccountReportViewModel(

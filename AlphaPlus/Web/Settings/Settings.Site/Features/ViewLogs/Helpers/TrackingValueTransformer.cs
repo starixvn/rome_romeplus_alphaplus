@@ -1,11 +1,8 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Helpers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Xml;
-    using AlphaPlus.Settings.ViewLogs.API.Constants;
+﻿using System.Xml;
+using AlphaPlus.Settings.ViewLogs.API.Constants;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Helpers
+{
     public static class TrackingValueTransformer
     {
         private static readonly Dictionary<string, Func<string, string>> funcDictionary

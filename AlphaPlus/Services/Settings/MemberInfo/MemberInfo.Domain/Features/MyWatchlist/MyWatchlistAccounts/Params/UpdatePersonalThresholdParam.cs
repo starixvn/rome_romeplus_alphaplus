@@ -3,12 +3,12 @@
     public class UpdatePersonalThresholdParam
     {
         public UpdatePersonalThresholdParam(
-            int custId, 
+            int custId,
             string username,
-            decimal? winningThreshold, 
-            decimal? losingThreshold, 
-            int userId, 
-            int subAccId, 
+            decimal? winningThreshold,
+            decimal? losingThreshold,
+            int userId,
+            int subAccId,
             string ip,
             string siteName)
         {

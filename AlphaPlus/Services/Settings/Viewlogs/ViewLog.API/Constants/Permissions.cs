@@ -1,10 +1,9 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Constants
-{
-    using System.Collections;
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Shared.AppResources.Settings.ViewLog;
+﻿using System.Collections;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Constants
+{
     public static class Permissions
     {
         private const int ExcludeBracketIndex = 2;

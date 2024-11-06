@@ -1,12 +1,12 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using AlphaPlus.Settings.Transfer.API.Services;
-    using MediatR;
-    using Requests.TransferToDownlineHistory;
-    using AlphaPlus.Core.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using AlphaPlus.Settings.Transfer.API.Services;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
+{
     public class TransferToDownlineHistoryController : TransferBaseController
     {
         private const string InvalidTransferStatusViewPath = "~/Features/Transfer/Views/Shared/InvalidTransferStatus.cshtml";

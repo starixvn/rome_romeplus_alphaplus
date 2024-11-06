@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.Shared.Criteria
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.Shared.Criteria
+{
     public class CheckBelongingInDBCustCommand : NonQueryCommand
     {
         public CheckBelongingInDBCustCommand(

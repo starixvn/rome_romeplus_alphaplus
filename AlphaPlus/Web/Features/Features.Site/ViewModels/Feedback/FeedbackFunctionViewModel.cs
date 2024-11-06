@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Features.Site.Messages.ViewModels.Feedback
 {
-    using System.Collections.Generic;
-
     public class FeedbackFunctionViewModel
     {
         public FeedbackFunctionViewModel()

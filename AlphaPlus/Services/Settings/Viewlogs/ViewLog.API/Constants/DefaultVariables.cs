@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Constants
-{
-    using System;
-    using Fanex.Caching;
+﻿using Fanex.Caching;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Constants
+{
     public static class DefaultVariables
     {
         public const int PageSize = 50;

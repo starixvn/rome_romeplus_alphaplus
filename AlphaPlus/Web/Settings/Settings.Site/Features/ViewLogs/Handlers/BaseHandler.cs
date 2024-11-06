@@ -1,13 +1,12 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
-{
-    using System;
-    using AlphaPlus.Settings.ViewLogs.API.Constants;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers;
-    using AlphaPlus.Settings.ViewLogs.API.Params;
-    using AlphaPlus.Settings.ViewLogs.API.Services;
-    using Fanex.Common;
-    using Requests;
+﻿using AlphaPlus.Settings.ViewLogs.API.Constants;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Params;
+using AlphaPlus.Settings.ViewLogs.API.Services;
+using Fanex.Common;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
+{
     public class BaseHandler
     {
         public BaseHandler(

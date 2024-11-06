@@ -1,10 +1,10 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Services
-{
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Params;
-    using Criteria;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Params;
+using AlphaPlus.Settings.MemberInfo.API.Criteria;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Services
+{
     public interface CheckUMService
     {
         Result CheckUM(CheckUMParam param);

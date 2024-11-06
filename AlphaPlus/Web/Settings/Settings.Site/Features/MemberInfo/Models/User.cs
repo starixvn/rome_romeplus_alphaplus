@@ -1,14 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Core.Extensions;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+﻿using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Models
+{
     public class User : IUser
     {
         private const string Jackpot = "Jackpot";

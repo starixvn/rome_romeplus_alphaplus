@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Features.Messages.Utils
 {
-    using System;
-
     public static class MessageFormatter
     {
         private const string BoldTexten_US = "which affected are considered VOID";

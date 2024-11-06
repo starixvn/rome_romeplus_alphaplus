@@ -1,8 +1,5 @@
 ﻿namespace AlphaPlus.Settings.ViewLogs.API.Models
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     public class PagingLogs<LogType> where LogType : Log
     {
         public PagingLogs()

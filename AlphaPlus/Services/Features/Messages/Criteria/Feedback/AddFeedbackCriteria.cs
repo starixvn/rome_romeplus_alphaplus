@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.Feedback
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.Feedback
+{
     public class AddFeedbackCriteria : NonQueryCommand
     {
         private const int MaxCommentLength = 4000;

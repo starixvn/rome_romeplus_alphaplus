@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Criteria.Setting
-{
-    using System;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Criteria.Setting
+{
     public class GetSettingLogsCriteria : CriteriaBase
     {
 #pragma warning disable S107 // Methods should not have too many parameters
@@ -32,7 +31,7 @@
         public int CustId { get; }
 
         public string CustName { get; }
-     
+
         public int LoginUserId { get; }
 
         public int ActionTypeId { get; }

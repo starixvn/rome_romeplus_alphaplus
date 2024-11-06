@@ -1,13 +1,13 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Features.Site.Messages.Requests;
-    using Alpha.Announcements.Models;
-    using MediatR;
-    using Requests.NewMessage;
-    using AlphaPlus.Core.Filters;
-    using AlphaPlus.Features.Messages.API.Configurations;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Features.Site.Messages.Requests;
+using Alpha.Announcements.Models;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.Requests.NewMessage;
+using AlphaPlus.Core.Filters;
+using AlphaPlus.Features.Messages.API.Configurations;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     public class NewMessageController : SiteBaseController
     {
         private readonly IParam specificationParam;

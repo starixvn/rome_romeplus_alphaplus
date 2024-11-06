@@ -1,8 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     public class WinLossLimitPage
     {
         public WinLossLimitPage()

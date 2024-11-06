@@ -1,14 +1,11 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Services.Transfer
-{
-    using System;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using Criteria.Transfer;
-    using Fanex.Data.Repository;
+﻿using System.Text;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.MemberInfo.API.Criteria.Transfer;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Services.Transfer
+{
     public interface TransferService
     {
         Task<string> GetAllowTransfer(int custId);

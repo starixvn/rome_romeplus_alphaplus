@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.API.Client.Helpers
-{
-    using System;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
+namespace AlphaPlus.Features.Messages.API.Client.Helpers
+{
     public abstract class JsonCreationConverter<T> : JsonConverter
     {
         protected virtual T? Create(Type type, JObject obj)
@@ -43,7 +42,7 @@
                 return target;
             }
             catch
-            {              
+            {
                 return null;
             }
         }

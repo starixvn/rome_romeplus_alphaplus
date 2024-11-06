@@ -1,14 +1,11 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Services.MemberRequest
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.MemberRequests;
-    using AlphaPlus.Settings.MemberInfo.Domain.Params;
-    using Criteria.MemberRequests;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.MemberRequests;
+using AlphaPlus.Settings.MemberInfo.Domain.Params;
+using AlphaPlus.Settings.MemberInfo.API.Criteria.MemberRequests;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Services.MemberRequest
+{
     public interface MemberRequestService
     {
         IEnumerable<Product> GetPlayForFunProduct(int custId);

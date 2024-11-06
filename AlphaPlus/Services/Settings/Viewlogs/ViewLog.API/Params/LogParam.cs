@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.ViewLogs.API.Params
 {
-    using System;
-
     public class LogParam
     {
         public int CustId { get; set; }

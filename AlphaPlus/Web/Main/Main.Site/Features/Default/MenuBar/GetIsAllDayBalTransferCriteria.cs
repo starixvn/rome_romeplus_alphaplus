@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Main.Site.Features.Default.MenuBar
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Main.Site.Features.Default.MenuBar
+{
     public class GetIsAllDayBalTransferCriteria(int custId) : CriteriaBase
     {
         public int CustId { get; } = custId;

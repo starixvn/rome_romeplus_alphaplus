@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.ViewLogs.API.Constants
 {
-    using System.Collections.Generic;
-
     public static class AttributeName
     {
         public const string BetType = "BetType";

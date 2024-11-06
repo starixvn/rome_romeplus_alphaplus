@@ -1,14 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory
-{
-    using System;
-    using AlphaPlus.Settings.Transfer.API.Configurations;
-    using AlphaPlus.Settings.Transfer.API.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.Transfer.API.Configurations;
+using AlphaPlus.Settings.Transfer.API.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory
+{
     public class TransferToDownlineHistoryBaseQuery : TransferBaseQuery
     {
-        public TransferToDownlineHistoryBaseQuery() : this(null) {}
+        public TransferToDownlineHistoryBaseQuery() : this(null) { }
 
         public TransferToDownlineHistoryBaseQuery(IUser viewer) : base(viewer)
         {
@@ -17,7 +16,7 @@
             Site = viewer.Site;
         }
 
-        
+
         public string UserName { get; set; }
 
         public DateTime FromDate { get; set; }

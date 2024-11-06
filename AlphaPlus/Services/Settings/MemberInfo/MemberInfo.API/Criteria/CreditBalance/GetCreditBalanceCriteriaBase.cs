@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance
+{
     public abstract class GetCreditBalanceCriteriaBase : CriteriaBase
     {
         protected GetCreditBalanceCriteriaBase(

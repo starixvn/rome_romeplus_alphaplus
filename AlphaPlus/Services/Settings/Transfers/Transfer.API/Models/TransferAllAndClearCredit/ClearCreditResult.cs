@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Models.TransferAllAndClearCredit
 {
-    using System.Collections.Generic;
-
     public class ClearCreditResult
     {
         public ClearCreditResult(IEnumerable<ClearCreditStep> steps, int errCode, string errMsg, IEnumerable<string> conditions)

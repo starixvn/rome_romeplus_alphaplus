@@ -1,14 +1,12 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
-    using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold.Criteria;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params;
-    using AlphaPlus.PartialUM.Services;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold.Criteria;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params;
+using AlphaPlus.PartialUM.Services;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold
+{
     public interface ReachedThresholdService
     {
         Task<ReachlistAccountReport> GetReachlistAccounts(SelectReachListParam param);

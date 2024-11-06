@@ -1,15 +1,15 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.ProblemAccount;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.ProblemAccount;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount
+{
     public class UpdateProblemAccountRequest : MemberInfoBaseQuery, IRequest<UpdateReviewStatusViewModel>
     {
-        public UpdateProblemAccountRequest() : this(null){}
-        
-        public UpdateProblemAccountRequest(IUser viewer):base(viewer)
-        {            
+        public UpdateProblemAccountRequest() : this(null) { }
+
+        public UpdateProblemAccountRequest(IUser viewer) : base(viewer)
+        {
         }
 
         public string UserNames { get; set; }

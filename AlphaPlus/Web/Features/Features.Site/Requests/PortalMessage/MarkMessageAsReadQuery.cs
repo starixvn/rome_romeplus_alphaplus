@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.Site.Requests.PortalMessage
-{
-    using MediatR;
+﻿using MediatR;
 
+namespace AlphaPlus.Features.Messages.Site.Requests.PortalMessage
+{
     public class MarkMessageAsReadQuery : IRequest<bool>
     {
         public MarkMessageAsReadQuery(int custId, int messageId, bool isInternal)

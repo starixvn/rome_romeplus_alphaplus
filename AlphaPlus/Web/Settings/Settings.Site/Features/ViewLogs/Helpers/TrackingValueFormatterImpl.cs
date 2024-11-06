@@ -1,13 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Helpers
-{
-    using System;
-    using System.Linq;
-    using System.Web;
-    using System.Xml;
-    using AlphaPlus.Settings.ViewLogs.API.Constants;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers;
-    using AlphaPlus.Settings.ViewLogs.API.Models;
+﻿using System.Web;
+using System.Xml;
+using AlphaPlus.Settings.ViewLogs.API.Constants;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Models;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Helpers
+{
     public class TrackingValueFormatterImpl : TrackingValueFormatter
     {
         public string GetFormattedDiffTrackingValue(Log log, bool isShowOldValue)

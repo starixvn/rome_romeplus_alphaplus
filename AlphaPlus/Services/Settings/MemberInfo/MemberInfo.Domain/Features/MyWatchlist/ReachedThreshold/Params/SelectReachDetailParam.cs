@@ -1,13 +1,11 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params
 {
-    using System;
-
     public class SelectReachDetailParam
     {
         public SelectReachDetailParam(
-            int custId, 
-            DateTime fromDate, 
-            DateTime toDate, 
+            int custId,
+            DateTime fromDate,
+            DateTime toDate,
             byte limitType,
             byte sortType,
             bool isDesc,

@@ -1,10 +1,7 @@
-﻿namespace AlphaPlus.Features.Site.Messages.ViewModels
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Features.Messages.API.Constants;
+﻿using AlphaPlus.Features.Messages.API.Constants;
 
+namespace AlphaPlus.Features.Site.Messages.ViewModels
+{
     public class PortalMessagesViewModel
     {
         public PortalMessagesViewModel(List<PortalMessageWrapper> messages)

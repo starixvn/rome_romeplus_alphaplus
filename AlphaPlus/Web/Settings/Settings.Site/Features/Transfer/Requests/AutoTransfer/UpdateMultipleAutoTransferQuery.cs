@@ -1,11 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using AlphaPlus.Settings.Transfer.API.Helpers;
-    using Settings.Transfer.API.Models;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using AlphaPlus.Settings.Transfer.API.Helpers;
+using AlphaPlus.Settings.Transfer.API.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
+{
     public class UpdateMultipleAutoTransferQuery
     {
         public UpdateMultipleAutoTransferQuery() : this(null) { }

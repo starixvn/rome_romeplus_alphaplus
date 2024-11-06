@@ -1,10 +1,9 @@
 using System.Text.RegularExpressions;
 using AlphaPlus.Core.Models;
 
-namespace AlphaPlus.Main.Site.Features.Account;
-
 using AlphaPlus.Core.Helpers;
 
+namespace AlphaPlus.Main.Site.Features.Account;
 public interface IUserSessionService
 {
     void SetUserSessionValues(SignInResult signInResult);

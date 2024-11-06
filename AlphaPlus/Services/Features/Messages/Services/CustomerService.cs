@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using Criteria.Customer;
-    using Fanex.Data.Repository;
-    using Models.Customer;
+﻿using AlphaPlus.Features.Messages.API.Criteria.Customer;
+using Fanex.Data.Repository;
+using AlphaPlus.Features.Messages.API.Models.Customer;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface CustomerService
     {
         Customer GetCustomerInfo(int custId);

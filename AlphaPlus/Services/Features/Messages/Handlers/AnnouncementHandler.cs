@@ -1,22 +1,19 @@
-﻿namespace AlphaPlus.Features.Messages.API.Handlers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Alpha.Announcements.Specs;
-    using Configurations;
-    using Constants;
-    using Extensions;
-    using Fanex.Logging;
-    using MediatR;
-    using Messages.API.Models.Announcement;
-    using Models;
-    using Newtonsoft.Json;
-    using Params.Announcement;
-    using Requests;
-    using Services;
-    using ViewModels;
+﻿using Alpha.Announcements.Specs;
+using AlphaPlus.Features.Messages.API.Configurations;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Extensions;
+using Fanex.Logging;
+using MediatR;
+using AlphaPlus.Features.Messages.API.Models.Announcement;
+using AlphaPlus.Features.Messages.API.Models;
+using Newtonsoft.Json;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
+using AlphaPlus.Features.Messages.API.Requests;
+using AlphaPlus.Features.Messages.API.Services;
+using AlphaPlus.Features.Messages.API.ViewModels;
 
+namespace AlphaPlus.Features.Messages.API.Handlers
+{
     public class AnnouncementHandler : IRequestHandler<GetAnnouncementsQuery, IEnumerable<AnnouncementViewModel>>
     {
         private const byte UUSCurrencyId = 20;

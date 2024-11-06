@@ -1,13 +1,12 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Handlers
-{
-    using System;
-    using AlphaPlus.Features.Messages.API.Models.Message;
-    using AlphaPlus.Features.Messages.API.Params;
-    using AlphaPlus.Features.Messages.API.Services;
-    using MediatR;
-    using Requests.MessageHistory;
-    using ViewModels;
+﻿using AlphaPlus.Features.Messages.API.Models.Message;
+using AlphaPlus.Features.Messages.API.Params;
+using AlphaPlus.Features.Messages.API.Services;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.Requests.MessageHistory;
+using AlphaPlus.Features.Site.Messages.ViewModels;
 
+namespace AlphaPlus.Features.Site.Messages.Handlers
+{
     public class MessageHistoryHandler : IRequestHandler<MessageHistoryQuery, MessagesHistoryViewModel>
     {
         private readonly MessageHistoryService messageService;

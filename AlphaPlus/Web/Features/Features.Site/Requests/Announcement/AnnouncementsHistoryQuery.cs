@@ -1,14 +1,13 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Requests.Announcement
-{
-    using System;
-    using MediatR;
-    using ViewModels;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.API.Params.Announcement;
+﻿using MediatR;
+using AlphaPlus.Features.Site.Messages.ViewModels;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
 
+namespace AlphaPlus.Features.Site.Messages.Requests.Announcement
+{
     public class AnnouncementsHistoryQuery : MessageHistoryBaseRequest, IRequest<AnnouncementHistoryViewModel>
     {
-        public AnnouncementsHistoryQuery() : this(null) {}
+        public AnnouncementsHistoryQuery() : this(null) { }
 
         public AnnouncementsHistoryQuery(IUserSession userSession) : base(userSession)
         {

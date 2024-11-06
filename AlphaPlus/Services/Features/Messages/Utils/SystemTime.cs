@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Features.Messages.Utils
 {
-    using System;
-
     public static class SystemTime
     {
         [ThreadStatic]

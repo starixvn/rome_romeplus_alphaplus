@@ -1,13 +1,12 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount
-{
-    using System;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount
+{
     public class ProblemAccountRequestBase : MemberInfoBaseQuery
     {
-        public ProblemAccountRequestBase() : this(null){}
-        
+        public ProblemAccountRequestBase() : this(null) { }
+
         public ProblemAccountRequestBase(IUser viewer) : base(viewer)
         {
             FromDate = DateTime.Now.AddDays(-13);

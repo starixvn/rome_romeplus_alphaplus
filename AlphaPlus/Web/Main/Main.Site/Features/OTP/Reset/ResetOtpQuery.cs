@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Main.Site.Features.OTP
-{
-    using MediatR;
+﻿using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.OTP
+{
     public class ResetOtpQuery : IRequest<ResetOtpViewModel>
     {
         public int CustId { get; set; }

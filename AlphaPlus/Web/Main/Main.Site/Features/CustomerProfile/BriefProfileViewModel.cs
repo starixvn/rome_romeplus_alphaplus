@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Main.Site.Features.CustomerProfile
-{
-    using Helpers;
+﻿using AlphaPlus.Main.Site.Helpers;
 
+namespace AlphaPlus.Main.Site.Features.CustomerProfile
+{
     public class BriefProfileViewModel
     {
         public int CustId { get; set; }

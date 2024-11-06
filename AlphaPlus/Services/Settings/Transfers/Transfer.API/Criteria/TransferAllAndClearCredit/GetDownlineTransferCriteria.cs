@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
+{
     public class GetDownlineTransferCriteria : NonQueryCommand
     {
         public GetDownlineTransferCriteria(

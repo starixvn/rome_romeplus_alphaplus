@@ -8,7 +8,6 @@ class MyWatchlistAccounts extends MyWatchlistBase {
     private topWindow: any;
     private dataTable: MyWatchlistAccountsDataTable;
 
-
     constructor(
         $: JQueryStatic,
         topWindow: any,
@@ -27,8 +26,8 @@ class MyWatchlistAccounts extends MyWatchlistBase {
             this.topWindow.popupManager.open(
                 `${baseUrl}MyWatchlistAccounts/ManageGlobalThreshold`,
                 undefined,
-                600,
-                310,
+                620,
+                320,
                 "modal-mobile-friendly"));
         this.$("#btn-manage-preset").click(_ =>
             this.topWindow.popupManager.open(
@@ -39,18 +38,24 @@ class MyWatchlistAccounts extends MyWatchlistBase {
                 "modal-mobile-friendly"));
         this.$("#btn-add-members").click(_ =>
             this.topWindow.popupManager.open(
-                `${baseUrl}MyWatchlistAccounts/ManageWatchlistAccounts`,
+                `${baseUrl}MyWatchlistAccounts/ManageWatchlistAccounts?MyWatchlistPage=true`,
                 undefined,
                 820,
                 550,
                 "modal-mobile-friendly"));
 
-        this.dataTable.init(baseUrl);
+        const dateRangePicker = new DateRangePickerJQueryComponent(this.$);
+        dateRangePicker.render();
+        const statusDropdown = new SingleSelectionDropdownComponent(this.$);
+        statusDropdown.render(new SingleSelectionDropdownOption("status-dropdown"));
+        const problemAccountDropdown = new SingleSelectionDropdownComponent(this.$);
+        problemAccountDropdown.render(new SingleSelectionDropdownOption("pa-dropdown"));
+        this.dataTable.init(baseUrl, dateRangePicker, statusDropdown, problemAccountDropdown, new MyWatchlistSummary(this.$, this.topWindow, baseUrl));
     }
 
     private initUsernameAutoSuggestion(baseUrl: string, searchAccountId: string) {
         this.$('#txt-username').easyAutocomplete({
-            url: phrase => `${baseUrl}UserNameSuggestion?Query=${phrase}&CustId=${searchAccountId}&DirectDownlines=true&IsAccInfo=false`,
+            url: phrase => `${baseUrl}UserNameSuggestion/GetUsernamesSuggestion?SuggestionQuery=${phrase}&CustId=${searchAccountId}&DirectDownlines=true&IsAccInfo=false`,
             getValue: 'UserName',
             requestDelay: 200,
             minCharNumber: 2,
@@ -70,7 +75,7 @@ class MyWatchlistAccounts extends MyWatchlistBase {
 
 $(function () {
     const editSettingPopup = new EditSettingPopup($, window.top);
-    const dataTable = new MyWatchlistAccountsDataTable($, editSettingPopup, window.watchlistAccountData, window.top);
+    const dataTable = new MyWatchlistAccountsDataTable($, editSettingPopup, window.watchlistAccountData);
     window.top.reloadMyWatchlistDataTable = () => dataTable.reloadData();
 
     new MyWatchlistAccounts($, window.top, dataTable).init();

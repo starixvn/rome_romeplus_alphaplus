@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
 {
-    using System;
-
     public class DateRangePickerViewModel
     {
         public DateRangePickerViewModel(

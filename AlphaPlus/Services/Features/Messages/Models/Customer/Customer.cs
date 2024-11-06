@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Models.Customer
-{
-    using AlphaPlus.Core.Configurations;
+﻿using AlphaPlus.Core.Configurations;
 
+namespace AlphaPlus.Features.Messages.API.Models.Customer
+{
     public class Customer
     {
         public int CustId { get; set; }

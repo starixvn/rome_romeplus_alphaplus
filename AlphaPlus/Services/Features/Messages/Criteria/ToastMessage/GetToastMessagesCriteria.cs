@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.ToastMessage
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.ToastMessage
+{
     public class GetToastMessagesCriteria : CriteriaBase
     {
         public GetToastMessagesCriteria(int custId, int subAccId, string language, int lastToastId)

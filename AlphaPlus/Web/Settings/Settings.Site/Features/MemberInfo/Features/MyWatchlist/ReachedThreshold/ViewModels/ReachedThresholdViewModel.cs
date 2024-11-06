@@ -1,17 +1,14 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.ViewModels
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
-    using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.ViewModels
+{
     public class ReachedThresholdViewModel
     {
         public ReachedThresholdViewModel(

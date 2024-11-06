@@ -1,10 +1,9 @@
-﻿namespace AlphaPlus.Features.Site.Messages.ViewModels
-{
-    using System;
-    using AlphaPlus.Features.Messages.API.Constants;
-    using AlphaPlus.Features.Messages.API.Models.Message;
-    using AlphaPlus.Features.Messages.Utils;
+﻿using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Models.Message;
+using AlphaPlus.Features.Messages.Utils;
 
+namespace AlphaPlus.Features.Site.Messages.ViewModels
+{
     public class PortalMessageWrapper
     {
         private const int DefaultMaxContentLength = 100;

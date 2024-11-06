@@ -2,6 +2,10 @@
 {
     public class ThresholdViewModel
     {
+        public ThresholdViewModel()
+        {
+        }
+
         public ThresholdViewModel(decimal? winningThreshold, decimal? losingThreshold)
         {
             WinningThreshold = winningThreshold;

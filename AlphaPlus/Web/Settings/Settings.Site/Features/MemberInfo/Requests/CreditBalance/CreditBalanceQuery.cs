@@ -1,14 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.CreditBalance
-{
-    using System;
-    using System.Net;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Models;
-    using MediatR;
-    using ViewModels.CreditBalance;
+﻿using System.Net;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Models;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.CreditBalance
+{
     public class CreditBalanceQuery : IRequest<CreditBalanceViewModel>
     {
         private int custId;

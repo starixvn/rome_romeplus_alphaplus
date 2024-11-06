@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.SecurityCode
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.SecurityCode
+{
     public class ChangeUserOwnSecurityCodeCommand : IRequest<Result>
     {
         private readonly IUserSession userSession;

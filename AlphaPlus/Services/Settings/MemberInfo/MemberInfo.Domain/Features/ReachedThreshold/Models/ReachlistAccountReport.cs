@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models
 {
-    using System.Collections.Generic;
-
     public class ReachlistAccountReport
     {
         public ReachlistAccountReport(IEnumerable<ReachlistAccountModel> reachlistAccounts, int totalItems)

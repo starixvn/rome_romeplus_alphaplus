@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.ProblemAccount
-{
-    using AlphaPlus.Core.Models;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Core.Models;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.ProblemAccount
+{
     public class UpdateReviewStatusProblemAccountCriteria : NonQueryCommand
     {
         public UpdateReviewStatusProblemAccountCriteria(

@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Helpers
-{
-    using System;
-    using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
+namespace AlphaPlus.Settings.Transfer.API.Helpers
+{
     public static class JsonHelper
     {
         [ThreadStatic]

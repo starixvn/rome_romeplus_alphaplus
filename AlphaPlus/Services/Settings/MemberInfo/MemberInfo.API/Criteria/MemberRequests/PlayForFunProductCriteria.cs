@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.MemberRequests
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.MemberRequests
+{
     public class PlayForFunProductCriteria : CriteriaBase
     {
         public PlayForFunProductCriteria(int custId)

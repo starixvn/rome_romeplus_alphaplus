@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.Product
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.Product
+{
     public class UnsynchronizedSettingCriteria : CriteriaBase
     {
         public UnsynchronizedSettingCriteria(int custId)

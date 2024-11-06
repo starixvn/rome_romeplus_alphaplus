@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.Message
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.Message
+{
     public class GetPortalMessagesCriteria : CriteriaBase
     {
         public GetPortalMessagesCriteria(
@@ -21,7 +21,7 @@
         public int CustId { get; }
 
         [SpParam(SqlParamName = "targetId2")]
-        public string ParentSites { get; }        
+        public string ParentSites { get; }
 
         public int TotalMessage { get; }
 

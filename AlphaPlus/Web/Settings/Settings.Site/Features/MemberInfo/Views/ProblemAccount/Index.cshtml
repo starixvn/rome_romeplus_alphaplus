@@ -90,6 +90,7 @@
 @Html.Hidden("changeStatusToSuspendText", @ProductResources.ConfirmSuspendedViewModelInCaseSuspendedMemberMessage)
 @Html.Hidden("text-locked", Resources.Locked)
 
+@Html.Hidden("MonitoredMemberText", Resources.MonitoredMember)
 @Html.Hidden("memberInfoUrl", @MicroSites.SettingUrl())
 @Html.Hidden("accountInfoUrl", @MicroSites.SettingUrl())
 
@@ -254,6 +255,7 @@
             new { Text = level.IsMasterLevel()?Resources.ProblemAgentAccounts:Resources.ProblemMemberAccounts, ClassName = string.Empty, Show = !level.IsMemberLevel() },
             new { Text = Resources.ReviewStatus, ClassName = string.Empty, Show = true }
         };
+
 
     <div id="@($"container-{levelName}")">
         <table id="@($"tbl-{levelName}")" class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover @($"level-{levelName}")">

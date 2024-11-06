@@ -1,12 +1,12 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Requests.ToastMessage
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Features.Site.Messages.Requests.ToastMessage
+{
     public class MarkReadMessageQuery : IRequest<Result>
     {
-        public MarkReadMessageQuery() : this(null) {}
-        
+        public MarkReadMessageQuery() : this(null) { }
+
         private readonly IUserSession userSession;
 
         public MarkReadMessageQuery(IUserSession userSession)

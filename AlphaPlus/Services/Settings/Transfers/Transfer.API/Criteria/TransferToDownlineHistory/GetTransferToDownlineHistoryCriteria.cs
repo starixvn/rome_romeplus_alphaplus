@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferToDownlineHistory
-{
-    using Fanex.Data.Repository;
-    using System;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferToDownlineHistory
+{
     public class GetTransferToDownlineHistoryCriteria : CriteriaBase
     {
         public GetTransferToDownlineHistoryCriteria(

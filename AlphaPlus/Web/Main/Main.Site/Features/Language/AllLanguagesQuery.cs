@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.Language
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.Language
+{
     public class AllLanguagesQuery : IRequest<LanguageViewModel>
     {
         private readonly string languageCode;

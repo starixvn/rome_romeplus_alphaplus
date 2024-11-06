@@ -1,10 +1,8 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using Models.TransferAllAndClearCredit;
-    using Newtonsoft.Json;
+﻿using AlphaPlus.Settings.Transfer.API.Models.TransferAllAndClearCredit;
+using Newtonsoft.Json;
 
+namespace AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit
+{
     public class GetTransferResultParam
     {
         public GetTransferResultParam(

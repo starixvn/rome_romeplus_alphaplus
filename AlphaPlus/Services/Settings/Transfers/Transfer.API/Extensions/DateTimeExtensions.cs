@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Extensions
 {
-    using System;
-
     public static class DateTimeExtensions
     {
         private const string ShortDateWithSlash = "MM/dd/yyyy";

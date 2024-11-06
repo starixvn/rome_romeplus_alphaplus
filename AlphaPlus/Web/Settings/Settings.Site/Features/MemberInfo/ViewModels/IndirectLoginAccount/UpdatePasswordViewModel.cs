@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.IndirectLoginAccount
-{
-    using AlphaPlus.Core.Helpers;
+﻿using AlphaPlus.Core.Helpers;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.IndirectLoginAccount
+{
     public class UpdatePasswordViewModel
     {
         public UpdatePasswordViewModel(int custId, int subAccId, string custName, string hashKey)

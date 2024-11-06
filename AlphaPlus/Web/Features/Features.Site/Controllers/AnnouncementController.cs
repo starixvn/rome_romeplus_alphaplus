@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using Alpha.Announcements.Models;
-    using MediatR;
-    using Requests.Announcement;
-    using AlphaPlus.Core.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Alpha.Announcements.Models;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.Requests.Announcement;
+using AlphaPlus.Core.Filters;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     public class AnnouncementController : SiteBaseController
     {
         private readonly IParam specificationParam;

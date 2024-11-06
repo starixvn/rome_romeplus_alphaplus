@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds.Criteria
-{
-    using System;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds.Criteria
+{
     public class SelectMyThresholdHistoryCriteria : CriteriaBase
     {
         public SelectMyThresholdHistoryCriteria(

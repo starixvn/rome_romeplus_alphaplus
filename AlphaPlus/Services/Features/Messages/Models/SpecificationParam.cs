@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.API.Models
-{
-    using System.Collections.Generic;
-    using Alpha.Announcements.Models;
-    using Messages.API.Models.Constants;
+﻿using Alpha.Announcements.Models;
+using AlphaPlus.Features.Messages.API.Models.Constants;
 
+namespace AlphaPlus.Features.Messages.API.Models
+{
     public class SpecificationParam : IParam
     {
         private readonly Customer.Customer customer;

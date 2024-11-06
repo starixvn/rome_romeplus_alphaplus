@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Models.Enumerations
-{
-    using System;
-    using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Models.Enumerations
+{
     [Serializable]
     public class UserLevel : Enumeration
     {

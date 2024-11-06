@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
-{
-    using AlphaPlus.Core.Models;
-    using Configurations;
-    using Helpers;
-    using AlphaPlus.Core;
-    using Microsoft.AspNetCore.Mvc.Filters;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Configurations;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using AlphaPlus.Core;
+using Microsoft.AspNetCore.Mvc.Filters;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
+{
     public abstract class ViewLogBaseController : BaseController
     {
         private readonly MicroSites microSites;

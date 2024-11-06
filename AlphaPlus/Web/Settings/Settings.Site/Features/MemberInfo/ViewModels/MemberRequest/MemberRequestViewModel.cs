@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.MemberRequest
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.MemberRequests;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Models.MemberRequests;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.MemberRequest
+{
     public class MemberRequestViewModel
     {
         public MemberRequestViewModel(

@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance
 {
-    using System.Collections.Generic;
-
     public class PagedCreditBalance
     {
         private const int MinPageSize = 10;

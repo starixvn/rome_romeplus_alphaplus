@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using System.Threading;
-    using Fanex.RemotingRef;
+﻿using Fanex.RemotingRef;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public static class AlphaRemotingRefService
     {
         private static RemotingRefService service = new RemotingRefService();

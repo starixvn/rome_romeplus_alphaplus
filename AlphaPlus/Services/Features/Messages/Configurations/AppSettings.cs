@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Configurations
-{
-    using System;
-    using AlphaPlus.Core.Configurations;
+﻿using AlphaPlus.Core.Configurations;
 
+namespace AlphaPlus.Features.Messages.API.Configurations
+{
     public static class AppSettings
     {
         public static bool LocalTest => GetConfigValue("LocalTest") == "1";
@@ -38,7 +37,7 @@
         public static string AnnouncementSecretKey
             => string.IsNullOrEmpty(GetConfigValue("Announcement:SecretKey")) ?
             "ZDlhMWFmMDgtZGQ0ZC00NWY0LTg1ODItNzVkNTdhOTNjOTEx" :
-            GetConfigValue("Announcement:SecretKey");    
+            GetConfigValue("Announcement:SecretKey");
 
         public static void Verify()
         {

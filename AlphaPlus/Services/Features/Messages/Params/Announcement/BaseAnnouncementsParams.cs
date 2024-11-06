@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Params.Announcement
-{
-    using Alpha.Announcements.Models;
+﻿using Alpha.Announcements.Models;
 
+namespace AlphaPlus.Features.Messages.API.Params.Announcement
+{
     public class BaseAnnouncementsParams
     {
         public int SubAccId { get; set; }
@@ -13,7 +13,7 @@
         public bool IsAdminUser => AdminId != 0;
 
         public int CustId { get; set; }
-        
+
         public string Language { get; set; } = string.Empty;
 
         public string UserName { get; set; } = string.Empty;

@@ -1,16 +1,15 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using System;
-    using Microsoft.AspNetCore.Mvc;
-    using Alpha.Announcements.Models;
-    using MediatR;
-    using Requests.MessageHistory;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Core.Filters;
-    using AlphaPlus.Features.Messages.API.Constants;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Features.Messages.API.Configurations;
+﻿using Microsoft.AspNetCore.Mvc;
+using Alpha.Announcements.Models;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.Requests.MessageHistory;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Filters;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Features.Messages.API.Configurations;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     public class MessageHistoryController : SiteBaseController
     {
         private readonly IUserSession userSession;

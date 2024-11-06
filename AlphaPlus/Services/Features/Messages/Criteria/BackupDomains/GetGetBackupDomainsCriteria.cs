@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.BackupDomains
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.BackupDomains
+{
     public class GetGetBackupDomainsCriteria : CriteriaBase
     {
         public GetGetBackupDomainsCriteria(string site)

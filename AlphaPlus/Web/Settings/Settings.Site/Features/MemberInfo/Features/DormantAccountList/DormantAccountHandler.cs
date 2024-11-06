@@ -1,20 +1,18 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList
-{
-    using System;
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.Requests;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.ViewModels;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
-    using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Params;
-    using MediatR;
-    using ONEbook.SpreadSheets;
-    using static ONEbook.SpreadSheets.Column;
-    using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.ViewModels;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
+using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Params;
+using MediatR;
+using ONEbook.SpreadSheets;
+using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList
+{
     public class DormantAccountHandler :
         ExcelBaseHandler,
         IRequestHandler<DormantAccountQuery, DormantAccountViewModel>,

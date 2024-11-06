@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
 {
-    using System.Collections.Generic;
-
     public class ProductMultiSelectionViewModel
     {
         public ProductMultiSelectionViewModel(

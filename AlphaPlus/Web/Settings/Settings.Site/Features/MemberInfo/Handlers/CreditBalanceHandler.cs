@@ -1,14 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
-{
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.MemberInfo.API.Services;
-    using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
-    using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
-    using AlphaPlus.Settings.MemberInfo.Domain.Params;
-    using MediatR;
-    using Requests.CreditBalance;
-    using ViewModels.CreditBalance;
+﻿using AlphaPlus.Settings.MemberInfo.API.Services;
+using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
+using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
+using AlphaPlus.Settings.MemberInfo.Domain.Params;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.CreditBalance;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
+{
     public class CreditBalanceHandler
         : IRequestHandler<CreditBalanceQuery, CreditBalanceViewModel>
     {

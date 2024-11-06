@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services
-{
-    using AlphaPlus.Settings.ViewLogs.API.Params;
+﻿using AlphaPlus.Settings.ViewLogs.API.Params;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services
+{
     public interface LogFormatter
     {
         void Init(TransformParam transformParam, bool isHideNickname = false);

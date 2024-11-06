@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Models.Message
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Features.Messages.API.Constants;
+﻿using AlphaPlus.Features.Messages.API.Constants;
 
+namespace AlphaPlus.Features.Messages.API.Models.Message
+{
     public class MultiLanguague
     {
         internal readonly Dictionary<string, string> Contents = new Dictionary<string, string>();
@@ -55,7 +54,7 @@
             {
                 return GetContentByKey(Language.ChineseTraditional);
             }
-            
+
             set
             {
                 Contents[Language.ChineseTraditional] = value;
@@ -68,7 +67,7 @@
             {
                 return GetContentByKey(Language.Japanese);
             }
-            
+
             set
             {
                 Contents[Language.Japanese] = value;
@@ -94,7 +93,7 @@
             {
                 return GetContentByKey(Language.Korean);
             }
-            
+
             set
             {
                 Contents[Language.Korean] = value;
@@ -116,7 +115,8 @@
 
         public string GetContentByKey(string languageKey)
         {
-            if (Contents.ContainsKey(languageKey) && !string.IsNullOrEmpty(Contents[languageKey])) {
+            if (Contents.ContainsKey(languageKey) && !string.IsNullOrEmpty(Contents[languageKey]))
+            {
                 return Contents[languageKey];
             }
 

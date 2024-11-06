@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.IndirectLoginAccount
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.IndirectLoginAccount
+{
     public class NewAccountCriteria : NonQueryCommand
     {
         public NewAccountCriteria(

@@ -1,13 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests
+{
     public class GenerateQRCodeRequest : QRCodeBaseQuery, IRequest<QRCodeLinkViewModel>
     {
-        public GenerateQRCodeRequest() : this(null){}
-        
+        public GenerateQRCodeRequest() : this(null) { }
+
         public GenerateQRCodeRequest(IUser viewer) : base(viewer)
         {
         }
@@ -18,7 +18,7 @@
 
         public string Domain { get; set; }
 
-        public override bool IsValid() => 
+        public override bool IsValid() =>
             base.IsValid() &&
             !IsInternal &&
             SearchAccountId > 0 &&

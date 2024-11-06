@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss
 {
-    using System;
-
     public class DailyEnteredSport
     {
         public DailyEnteredSport()

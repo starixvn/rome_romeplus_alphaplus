@@ -1,22 +1,18 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Alpha.Announcements.Models;
-    using Alpha.Announcements.Services;
-    using AlphaPlus.Features.Messages.API.Client.Requests;
-    using Constants;
-    using Criteria.Announcement;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Models.Announcement;
-    using Params.Announcement;
-    using Utils;
-    using AlphaPlus.Features.Messages.API.Configurations;
-    using Alpha.Announcements.Specs;
-    using AlphaPlus.Features.Messages.API;
+﻿using Alpha.Announcements.Models;
+using Alpha.Announcements.Services;
+using AlphaPlus.Features.Messages.API.Client.Requests;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Criteria.Announcement;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+using AlphaPlus.Features.Messages.API.Models.Announcement;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
+using AlphaPlus.Features.Messages.Utils;
+using AlphaPlus.Features.Messages.API.Configurations;
+using Alpha.Announcements.Specs;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface AnnouncementService
     {
         Task<int> GetNumberOfNewAnnouncements(BaseAnnouncementsParams announcementParams);

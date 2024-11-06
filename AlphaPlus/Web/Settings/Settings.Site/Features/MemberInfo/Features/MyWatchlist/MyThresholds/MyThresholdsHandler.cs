@@ -1,17 +1,15 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.ViewModels;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.ViewModels;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyThresholds.Params;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using MediatR;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.ViewModels;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.ViewModels;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyThresholds;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyThresholds.Params;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+using MediatR;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds
+{
     public class MyThresholdsHandler :
         IRequestHandler<MyThresholdIndexPageQuery, MyThresholdIndexPageViewModel>,
         IRequestHandler<MyThresholdHistoryQuery, IEnumerable<ReachHistoryModel>>,

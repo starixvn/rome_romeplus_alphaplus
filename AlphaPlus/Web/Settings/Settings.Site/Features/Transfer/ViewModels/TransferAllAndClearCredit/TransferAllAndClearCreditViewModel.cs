@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit
-{
-    using AlphaPlus.Core.Helpers;
+﻿using AlphaPlus.Core.Helpers;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit
+{
     public static class TransferAllAndClearCreditViewModel
     {
         public static string GetOutstandingText(decimal? outstanding)

@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Params
-{
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 
+namespace AlphaPlus.Settings.MemberInfo.Domain.Params
+{
     public class CreditBalanceParam
     {
         public CreditBalanceParam(

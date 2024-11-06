@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.Main.Site.Helpers
-{
-    using System.Globalization;
-    using System.Resources;
-    using AlphaPlus.Shared.AppResources.Main;
+﻿using System.Globalization;
+using System.Resources;
+using AlphaPlus.Shared.AppResources.Main;
 
+namespace AlphaPlus.Main.Site.Helpers
+{
     public static class ResourceHelper
     {
         public static string GetResource(string key, string language)

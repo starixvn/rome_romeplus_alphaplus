@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Criteria.Status
-{
-    using System;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Criteria.Status
+{
     public class GetStatusLogsCriteria : CriteriaBase
     {
         public GetStatusLogsCriteria(

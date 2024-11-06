@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.Transfer
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.Transfer
+{
     public class GetTransferOptionCriteria : NonQueryCommand
     {
         public GetTransferOptionCriteria(int custId)

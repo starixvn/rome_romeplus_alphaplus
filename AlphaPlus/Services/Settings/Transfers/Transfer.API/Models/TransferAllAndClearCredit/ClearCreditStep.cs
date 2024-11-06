@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Models.TransferAllAndClearCredit
 {
-    using System;
-
     [Serializable]
     public class ClearCreditStep
     {

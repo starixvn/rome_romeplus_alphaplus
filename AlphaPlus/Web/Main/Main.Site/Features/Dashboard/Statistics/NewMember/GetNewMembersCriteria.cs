@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Main.Site.Features.Dashboard.Statistics
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Main.Site.Features.Dashboard.Statistics
+{
     public class GetNewMembersCriteria : CriteriaBase
     {
         public GetNewMembersCriteria(int custId)

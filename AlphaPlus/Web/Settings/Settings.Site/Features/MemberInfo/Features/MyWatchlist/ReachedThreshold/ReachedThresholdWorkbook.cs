@@ -1,13 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold
-{
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using ONEbook.SpreadSheets;
-    using ONEbook.SpreadSheets.NPOI;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+using ONEbook.SpreadSheets;
+using ONEbook.SpreadSheets.NPOI;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold
+{
     public interface ReachedThresholdWorkbook
     {
         Workbook<ReachlistAccountModel> UseTemplate(TemplateInfo templateInfo);

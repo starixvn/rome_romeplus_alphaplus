@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.NewMessage
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.NewMessage
+{
     public class AssignMessageToUserCriteria : CriteriaBase
     {
         public AssignMessageToUserCriteria(long messageId, int custId, string custName)
@@ -19,7 +19,7 @@
         public int CustId { get; }
 
         [SpParam(SqlParamName = "TargetName")]
-        public string CustName { get; }        
+        public string CustName { get; }
 
         public string BetTransId { get; }
 

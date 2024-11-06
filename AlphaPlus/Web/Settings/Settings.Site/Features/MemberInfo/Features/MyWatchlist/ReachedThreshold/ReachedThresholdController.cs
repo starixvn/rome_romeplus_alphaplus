@@ -1,13 +1,12 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold
-{
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold
+{
     public class ReachedThresholdController : SiteBaseController
     {
         private const string IndexPath = "~/Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/Views/Index.cshtml";

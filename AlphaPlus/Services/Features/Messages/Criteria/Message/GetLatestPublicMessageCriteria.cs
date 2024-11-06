@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.Message
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.Message
+{
     public class GetLatestPublicMessageCriteria : CriteriaBase
     {
         private const int IndexSite3 = 2;

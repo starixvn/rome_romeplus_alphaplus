@@ -1,7 +1,6 @@
 using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.ParlayWinLossByMatch;
 using AlphaPlus.BetLists.Shared.Models;
-using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Handlers.WinLossByMatch;

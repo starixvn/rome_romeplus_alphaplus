@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Models.ToastMessage
-{
-    using System;
-    using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
+namespace AlphaPlus.Features.Messages.API.Models.ToastMessage
+{
     public class ToastMessageModel
     {
         public int ToastId { get; set; }

@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Main.Site.Features.Theme
-{
-    using MediatR;
+﻿using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.Theme
+{
     public class ResetAssetAppPathQuery : IRequest<bool>
     {
     }

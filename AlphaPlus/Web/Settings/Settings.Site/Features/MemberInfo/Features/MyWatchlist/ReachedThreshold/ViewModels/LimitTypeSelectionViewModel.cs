@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.ViewModels
-{
-    using System.Collections.Generic;
-    using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.ViewModels
+{
     public class LimitTypeSelectionViewModel
     {
         public LimitTypeSelectionViewModel(IEnumerable<SelectListItem> limitType, int userSelectedId)

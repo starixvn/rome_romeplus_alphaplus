@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Main.Site.Features.Nickname
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Main.Site.Features.Nickname
+{
     public abstract class NicknameNonQueryCommand : NonQueryCommand
     {
         protected NicknameNonQueryCommand(

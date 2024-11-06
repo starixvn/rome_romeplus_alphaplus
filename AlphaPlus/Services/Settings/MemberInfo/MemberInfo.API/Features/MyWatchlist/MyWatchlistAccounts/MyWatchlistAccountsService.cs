@@ -1,22 +1,17 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts.Criteria;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
-    using AlphaPlus.PartialUM.Services;
-    using Fanex.Data.Repository;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts.Criteria;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
+using AlphaPlus.PartialUM.Services;
+using Fanex.Data.Repository;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts
+{
     public interface MyWatchlistAccountsService
     {
         Task<WatchlistAccountReport> GetWatchlistAccounts(SelectWatchlistAccountsParam param);
 
         Task<IEnumerable<PersonalPresetModel>> GetPresets(SelectPresetsParam param);
-
-        Task<MultipleWatchlistAccountModel> GetMultipleWatchlistAccount(SelectMultipleWatchlistParam param);
 
         Task<IEnumerable<NamedResult>> AddPersonalThreshold(AddPersonalThresholdParam param);
 
@@ -33,6 +28,8 @@
         Task<Result> UpdatePersonalPreset(UpdatePersonalPresetParam param);
 
         Task<Result> DeletePersonalPreset(DeletePersonalPresetParam param);
+
+        Task<WatchlistSummaryModel> GetWatchlistSummary(SelectWatchlistSummaryParam param);
     }
 
     public class MyWatchlistAccountsServiceImpl : MyWatchlistAccountsService
@@ -52,6 +49,10 @@
         {
             var criteria = new SelectWatchlistAccountsCriteria(
                 param.AgentId,
+                param.FromDate,
+                param.ToDate,
+                param.Status,
+                param.ProblemAccount,
                 param.Username,
                 param.SortType,
                 param.IsDesc,
@@ -70,24 +71,6 @@
             await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
             return await dynamicRepository.FetchAsync<PersonalPresetModel>(criteria);
-        }
-
-        public async Task<MultipleWatchlistAccountModel> GetMultipleWatchlistAccount(SelectMultipleWatchlistParam param)
-        {
-            var criteria = new SelectMultipleWatchlistCriteria(param.CustList);
-            await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
-            var rawdata = await dynamicRepository.FetchMultipleAsync<WatchlistAccountModel, WatchlistAccountModel>(criteria);
-            var alreadyAddedAccounts = new List<WatchlistAccountModel>();
-            var newlyAddedAccounts = new List<WatchlistAccountModel>();
-            if (rawdata.Item1.Any())
-            {
-                alreadyAddedAccounts.AddRange(rawdata.Item1);
-            }
-            if (rawdata.Item2.Any())
-            {
-                newlyAddedAccounts.AddRange(rawdata.Item2);
-            }
-            return new MultipleWatchlistAccountModel(alreadyAddedAccounts, newlyAddedAccounts);
         }
 
         public async Task<IEnumerable<NamedResult>> AddPersonalThreshold(AddPersonalThresholdParam param)
@@ -197,6 +180,20 @@
             await dynamicRepository.ExecuteAsync(command);
 
             return new Result { Code = command.ErrCode, Message = command.ErrMsg ?? string.Empty };
+        }
+
+        public async Task<WatchlistSummaryModel> GetWatchlistSummary(SelectWatchlistSummaryParam param)
+        {
+            var reachedMemberCountCriteria = new SelectReachedMemberCountCriteria(
+                param.AgentId, param.SportType, param.FromDate, param.ToDate, param.LimitType);
+            await partialUMService.ThrowIfUM(reachedMemberCountCriteria.GetSettingKey(), param.SiteName);
+            await dynamicRepository.ExecuteAsync(reachedMemberCountCriteria);
+
+            var summaryCriteria = new SelectWatchlistSummaryCriteria(
+                param.AgentId, reachedMemberCountCriteria.ReachedDailyLimitCount, param.SportType);
+            await partialUMService.ThrowIfUM(reachedMemberCountCriteria.GetSettingKey(), param.SiteName);
+
+            return await dynamicRepository.GetAsync<WatchlistSummaryModel>(summaryCriteria);
         }
     }
 }

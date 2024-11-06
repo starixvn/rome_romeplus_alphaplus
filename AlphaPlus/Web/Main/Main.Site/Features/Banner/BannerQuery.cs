@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.Banner
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.Banner
+{
     public class BannerQuery : IRequest<BannerViewModel>
     {
         public BannerQuery() : this(null)

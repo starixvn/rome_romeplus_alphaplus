@@ -1,15 +1,15 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests
+{
     public class QRCodeMemberSignInRequest :
         QRCodeBaseQuery,
         IRequest<QRCodeMemberSignInViewModel>
     {
-        public QRCodeMemberSignInRequest() : this(null){}
-        
+        public QRCodeMemberSignInRequest() : this(null) { }
+
         public QRCodeMemberSignInRequest(IUser viewer) : base(viewer)
         {
         }

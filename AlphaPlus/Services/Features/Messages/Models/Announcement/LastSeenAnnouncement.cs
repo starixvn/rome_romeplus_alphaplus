@@ -1,13 +1,11 @@
-﻿namespace AlphaPlus.Features.Messages.API.Models.Announcement
-{
-    using System;
-    using System.Collections.Generic;
-    using Messages.API.Constants;
+﻿using AlphaPlus.Features.Messages.API.Constants;
 
+namespace AlphaPlus.Features.Messages.API.Models.Announcement
+{
     public class LastSeenAnnouncement
     {
         private readonly Dictionary<int, DateTime> lastSeen = new Dictionary<int, DateTime>();
-        public LastSeenAnnouncement() : 
+        public LastSeenAnnouncement() :
             this(0, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue)
         {
         }

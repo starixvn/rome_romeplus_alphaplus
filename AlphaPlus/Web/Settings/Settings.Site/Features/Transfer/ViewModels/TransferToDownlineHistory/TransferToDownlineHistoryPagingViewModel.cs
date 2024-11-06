@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory
-{
-    using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
-    using System.Collections.Generic;
+﻿using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory
+{
     public class TransferToDownlineHistoryPagingViewModel
     {
         public TransferToDownlineHistoryPagingViewModel(

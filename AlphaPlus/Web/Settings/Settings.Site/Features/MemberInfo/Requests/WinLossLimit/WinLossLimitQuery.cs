@@ -1,13 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit
-{
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
-    using ViewModels.WinLossLimit;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit
+{
     public class WinLossLimitQuery : MemberInfoBaseQuery, IRequest<WinLossLimitViewModel>
     {
-        public WinLossLimitQuery() : this(null){}
-        
+        public WinLossLimitQuery() : this(null) { }
+
         public WinLossLimitQuery(IUser viewer) : base(viewer)
         {
             PageSize = 100;

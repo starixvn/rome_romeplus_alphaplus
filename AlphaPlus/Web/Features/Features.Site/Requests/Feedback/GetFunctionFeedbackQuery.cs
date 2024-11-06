@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Requests.Feedback
-{
-    using AlphaPlus.Features.Site.Messages.ViewModels.Feedback;
-    using MediatR;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Features.Site.Messages.ViewModels.Feedback;
+using MediatR;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Features.Site.Messages.Requests.Feedback
+{
     public class GetFunctionFeedbackQuery : IRequest<FeedbackFunctionViewModel>
     {
         public GetFunctionFeedbackQuery() : this(null) { }

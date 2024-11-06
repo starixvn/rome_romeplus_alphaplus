@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Extensions
-{
-    using System.Globalization;
+﻿using System.Globalization;
 
+namespace AlphaPlus.Settings.Transfer.API.Extensions
+{
     public static class NumberExtensions
     {
         private const string commasAlwaysWithDecimalPoint = "#,##0.00";

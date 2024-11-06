@@ -1,15 +1,15 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.MemberRequest
-{
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
-    using ViewModels.MemberRequest;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.MemberRequest;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.MemberRequest
+{
     public class ProductQuery :
         MemberInfoBaseQuery,
         IRequest<ProductsViewModel>
     {
-        public ProductQuery() : this(null){}
-        
+        public ProductQuery() : this(null) { }
+
         public ProductQuery(IUser viewer) : base(viewer)
         {
         }

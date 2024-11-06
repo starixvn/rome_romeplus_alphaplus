@@ -1,14 +1,11 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using AlphaPlus.Features.Messages.API.Criteria.Feedback;
-    using AlphaPlus.Features.Messages.API.Models.Feedback;
-    using AlphaPlus.Features.Messages.API.Params.Feedback;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Features.Messages.API.Criteria.Feedback;
+using AlphaPlus.Features.Messages.API.Models.Feedback;
+using AlphaPlus.Features.Messages.API.Params.Feedback;
+using Fanex.Caching;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface FeedbackService
     {
         Task<bool> CheckExistsAsync(int custId, int subAccId, int functionId);

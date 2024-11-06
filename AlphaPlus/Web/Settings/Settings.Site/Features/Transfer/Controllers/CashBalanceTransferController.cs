@@ -1,12 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
-{
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using MediatR;
-    using Requests.CashBalanceTransfer;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
+{
     public class CashBalanceTransferController : TransferBaseController
     {
         private readonly IUserSession userSession;

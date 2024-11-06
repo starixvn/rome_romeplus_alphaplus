@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
-{
-    using System;
-    using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
-    using MediatR;
-    using Settings.Transfer.API.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
+using MediatR;
+using AlphaPlus.Settings.Transfer.API.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
+{
     public class GetHistoryTransfersQuery : IRequest<AutoTransferMonitoringPageModel>
     {
-        public GetHistoryTransfersQuery() : this(null) {}
+        public GetHistoryTransfersQuery() : this(null) { }
 
         public GetHistoryTransfersQuery(IUser user)
         {
@@ -25,7 +24,7 @@
 
         public DateTime LimitedDateToShowInfo { get; }
 
-        
+
         public string Username { get; set; }
 
         public string Status { get; set; }

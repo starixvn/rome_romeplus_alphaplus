@@ -1,15 +1,15 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Requests
-{
-    using Alpha.Announcements.Models;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.API.Constants;
-    using AlphaPlus.Features.Messages.API.Params.Announcement;
+﻿using Alpha.Announcements.Models;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
 
+namespace AlphaPlus.Features.Site.Messages.Requests
+{
     public class MessageHistoryBaseRequest
     {
         protected readonly IUserSession userSession;
 
-        public MessageHistoryBaseRequest() : this(null) {}
+        public MessageHistoryBaseRequest() : this(null) { }
 
         public MessageHistoryBaseRequest(IUserSession userSession)
         {

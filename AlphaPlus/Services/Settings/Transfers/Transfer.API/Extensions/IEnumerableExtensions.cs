@@ -1,9 +1,7 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Extensions
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
+namespace AlphaPlus.Settings.Transfer.API.Extensions
+{
     public static class IEnumerableExtensions
     {
         public static IEnumerable<SelectListItem> GetSelectListItems(this string[] columns)

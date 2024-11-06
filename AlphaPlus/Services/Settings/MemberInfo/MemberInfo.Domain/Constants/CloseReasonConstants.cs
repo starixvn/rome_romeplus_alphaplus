@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Constants
 {
-    using System.Collections.Generic;
-
     public static class CloseReasonConstants
     {
         public const int ByAdmin = 1;

@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Main.Site.Features.Password
-{
-    using MediatR;
+﻿using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.Password
+{
     public class ResetSubAccountPasswordQuery : IRequest<PasswordViewModel>
     {
         public int SubAccountId { get; set; }

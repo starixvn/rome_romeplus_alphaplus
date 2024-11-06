@@ -1,12 +1,10 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Core.Helpers;
-    using Constants;
-    using Models.Announcement;
-    using Params.Announcement;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Models.Announcement;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface AnnouncementFormatService
     {
         IEnumerable<AlphaAnnouncement?> Format(IEnumerable<AlphaAnnouncement> announcements, BaseAnnouncementsParams message);

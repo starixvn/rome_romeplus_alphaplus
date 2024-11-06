@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Features.Site.Messages.ViewModels
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Features.Messages.API.Models.Constants;
+﻿using AlphaPlus.Features.Messages.API.Models.Constants;
 
+namespace AlphaPlus.Features.Site.Messages.ViewModels
+{
     public class BackupDomainsViewModel
     {
         public BackupDomainsViewModel(

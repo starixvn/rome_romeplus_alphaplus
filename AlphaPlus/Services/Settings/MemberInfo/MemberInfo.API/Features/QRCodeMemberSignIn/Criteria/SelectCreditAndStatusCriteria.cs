@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn.Criteria
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn.Criteria
+{
     public class SelectCreditAndStatusCriteria : CriteriaBase
     {
         public SelectCreditAndStatusCriteria(string searchAccountName)

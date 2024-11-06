@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Utilities.IP.Criteria
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Utilities.IP.Criteria
+{
     public class GetIPVNCriteria : CriteriaBase
     {
         public override string GetSettingKey() => "GetIPVN";

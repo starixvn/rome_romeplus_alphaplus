@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
-{
-    using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
-    using MediatR;
-    using Settings.Transfer.API.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
+using MediatR;
+using AlphaPlus.Settings.Transfer.API.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
+{
     public class GetTodayTransfersQuery : IRequest<AutoTransferMonitoringPageModel>
     {
         public GetTodayTransfersQuery() : this(null) { }
@@ -22,7 +22,7 @@
 
         public string Language { get; set; }
 
-        
+
         public string Username { get; set; }
 
         public string Status { get; set; }

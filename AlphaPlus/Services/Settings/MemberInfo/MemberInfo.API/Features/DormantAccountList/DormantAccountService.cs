@@ -1,13 +1,10 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList.Criteria;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Params;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList.Criteria;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Params;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.DormantAccountList
+{
     public interface DormantAccountService
     {
         Task<DormantAccountReport> GetDormantAccountsAsync(DormantAccountParam param);

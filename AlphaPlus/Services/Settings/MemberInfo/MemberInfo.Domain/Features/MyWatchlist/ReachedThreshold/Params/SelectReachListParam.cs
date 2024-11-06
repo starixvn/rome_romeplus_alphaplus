@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params
 {
-    using System;
-
     public class SelectReachListParam
     {
         public SelectReachListParam(

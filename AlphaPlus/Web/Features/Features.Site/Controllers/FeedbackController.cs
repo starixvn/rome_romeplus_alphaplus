@@ -1,12 +1,11 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Features.Site.Messages.Requests.Feedback;
-    using AlphaPlus.Features.Site.Messages.ViewModels.Feedback;
-    using MediatR;
-    using AlphaPlus.Core.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Features.Site.Messages.Requests.Feedback;
+using AlphaPlus.Features.Site.Messages.ViewModels.Feedback;
+using MediatR;
+using AlphaPlus.Core.Filters;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     public class FeedbackController : SiteBaseController
     {
         public FeedbackController(IMediator mediator) : base(mediator)

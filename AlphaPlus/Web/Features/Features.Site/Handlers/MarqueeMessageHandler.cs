@@ -1,12 +1,12 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Handlers
-{
-    using AlphaPlus.Features.Messages.API.Models.Message;
-    using AlphaPlus.Features.Messages.API.Services;
-    using MediatR;
-    using Requests.MarqueeMessage;
-    using ViewModels;
-    using AlphaPlus.Features.Messages.API.Configurations;
+﻿using AlphaPlus.Features.Messages.API.Models.Message;
+using AlphaPlus.Features.Messages.API.Services;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.Requests.MarqueeMessage;
+using AlphaPlus.Features.Site.Messages.ViewModels;
+using AlphaPlus.Features.Messages.API.Configurations;
 
+namespace AlphaPlus.Features.Site.Messages.Handlers
+{
     public class MarqueeMessageHandler :
         IRequestHandler<MarqueeMessageQuery, MarqueeMessageViewModel>
     {
@@ -35,10 +35,10 @@
             {
                 publicMessage = messageService.GetLatestPublicMessage(message.RoleId, message.CurrentLang, message.IsTest, message.CustomerSite);
                 privateMessage = messageService.GetLatestPrivateMessage(message.CustId, message.CurrentLang, message.IsTest);
-            }          
+            }
 
             return new MarqueeMessageViewModel(publicMessage, privateMessage);
         }
-        
+
     }
 }

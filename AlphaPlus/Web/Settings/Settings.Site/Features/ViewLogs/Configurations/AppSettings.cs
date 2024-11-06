@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Configurations
+﻿using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Configurations
 {
-    using System.Collections.Generic;
     using AlphaPlus.Core.Configurations;
-    using System.Linq;
-    using Helpers;
 
     public static class AppSettings
     {

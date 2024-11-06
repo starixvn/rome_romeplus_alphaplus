@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Criteria.Credit
-{
-    using System;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Criteria.Credit
+{
     public class GetCreditLogsCriteria : CriteriaBase
     {
         public GetCreditLogsCriteria(

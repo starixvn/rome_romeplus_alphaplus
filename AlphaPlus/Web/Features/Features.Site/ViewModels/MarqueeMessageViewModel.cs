@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Features.Site.Messages.ViewModels
-{
-    using AlphaPlus.Features.Messages.API.Models.Message;
+﻿using AlphaPlus.Features.Messages.API.Models.Message;
 
+namespace AlphaPlus.Features.Site.Messages.ViewModels
+{
     public class MarqueeMessageViewModel
-    {        
+    {
         public MarqueeMessageViewModel(
-            GeneralMarqueeMessage publicMessage, 
+            GeneralMarqueeMessage publicMessage,
             GeneralMarqueeMessage privateMessage)
         {
             PublicMessage = publicMessage;
@@ -15,6 +15,6 @@
         public GeneralMarqueeMessage PublicMessage { get; }
 
         public GeneralMarqueeMessage PrivateMessage { get; }
-       
+
     }
 }

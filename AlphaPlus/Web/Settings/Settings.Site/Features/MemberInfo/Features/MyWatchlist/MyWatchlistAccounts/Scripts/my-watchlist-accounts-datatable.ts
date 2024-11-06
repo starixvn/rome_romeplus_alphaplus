@@ -3,31 +3,42 @@
 class MyWatchlistAccountsDataTable {
     private $: JQueryStatic;
     private editSettingPopup: EditSettingPopup;
-    private topWindow: any;
 
     private isMobile: boolean;
     private isShowLastLoginColumn: boolean;
     private canUpdateAccount: boolean;
     private $username: JQuery;
+    private dateRangePicker: DateRangePickerJQueryComponent;
+    private statusDropdown: SingleSelectionDropdownComponent;
+    private problemAccountDropdown: SingleSelectionDropdownComponent;
+    private watchlistSummary: MyWatchlistSummary
 
     private $tableReport: JQuery;
     private $dataTable: JQuery;
     private myWatchlistAccountData: any;
 
-    constructor($: JQueryStatic, editSettingPopup: EditSettingPopup, myWatchlistAccountData: any, topWindow: any) {
+    constructor($: JQueryStatic, editSettingPopup: EditSettingPopup, myWatchlistAccountData: any) {
         this.$ = $;
         this.editSettingPopup = editSettingPopup;
         this.myWatchlistAccountData = myWatchlistAccountData;
-        this.topWindow = topWindow;
     }
 
     public reloadData() {
         this.$dataTable.ajax.reload();
     }
 
-    public init(baseUrl: string) {
+    public init(
+        baseUrl: string,
+        dateRangePicker: DateRangePickerJQueryComponent,
+        statusDropdown: SingleSelectionDropdownComponent,
+        problemAccountDropdown: SingleSelectionDropdownComponent,
+        watchlistSummary: MyWatchlistSummary) {
         this.cacheDOMElements();
         const $reportForm = this.$("#report-form");
+        this.dateRangePicker = dateRangePicker;
+        this.statusDropdown = statusDropdown;
+        this.problemAccountDropdown = problemAccountDropdown;
+        this.watchlistSummary = watchlistSummary;
 
         this.editSettingPopup.init(this.$tableReport, baseUrl);
         this.$dataTable = DataTableHelper.initDataTable(
@@ -55,12 +66,14 @@ class MyWatchlistAccountsDataTable {
             Status: 3,
             WinningThreshold: 4,
             LosingThreshold: 5,
-            IsPA: 7
+            IsPA: 7,
+            AddedDate: 8
         };
 
         return {
             ajax: (data, callback) => {
                 if (this.myWatchlistAccountData) {
+                    this.watchlistSummary.render(this.myWatchlistAccountData.WatchlistSummary, this.canUpdateAccount, () => this.reloadData());
                     callback({
                         data: this.myWatchlistAccountData.WatchlistAccounts,
                         recordsTotal: this.myWatchlistAccountData.TotalItems,
@@ -75,16 +88,21 @@ class MyWatchlistAccountsDataTable {
                         isDesc: data.order[0].dir === 'desc',
                         pageIndex: (data.start / data.length) + 1,
                         pageSize: data.length,
+                        status: this.statusDropdown.getSelectedItem(),
+                        problemAccount: this.problemAccountDropdown.getSelectedItem(),
                         username: this.$username.val().trim()
                     };
                     AJAXHelper.postJSON(
                         myWatchlistUrl,
-                        formData,
-                        jsonData => callback({
-                            data: jsonData.WatchlistAccounts,
-                            recordsTotal: jsonData.TotalItems,
-                            recordsFiltered: jsonData.TotalItems
-                        }));
+                        this.$.extend(formData, this.dateRangePicker.getDateRangeValues()),
+                        jsonData => {
+                            this.watchlistSummary.render(jsonData.WatchlistSummary, this.canUpdateAccount, () => this.reloadData());
+                            callback({
+                                data: jsonData.WatchlistAccounts,
+                                recordsTotal: jsonData.TotalItems,
+                                recordsFiltered: jsonData.TotalItems
+                            });
+                        });
                 }
             },
             columns: this.buildDataTableColumns(),
@@ -128,8 +146,10 @@ class MyWatchlistAccountsDataTable {
 
         columns.push({ className: 'left', data: "Username", name: "Username" });
 
-        this.isShowLastLoginColumn &&
+        if (this.isShowLastLoginColumn) {
             columns.push({ className: 'center', data: "LastLoggedString", name: "LastLogin" });
+            columns.push({ className: 'center', data: "AddedDateString", name: "AddedDate" });
+        }
 
         columns.push(
             { className: 'center', data: "TranslatedStatus", name: "Status" },
@@ -183,26 +203,5 @@ class MyWatchlistAccountsDataTable {
     private drawCallback() {
         this.$tableReport.removeClass("hidden");
         this.editSettingPopup.bindEvents(this.$tableReport);
-
-        const isOpenFromProblemAccount = this.$('#isOpenFromProblemAccount').val();
-        isOpenFromProblemAccount && JSON.parse(isOpenFromProblemAccount) && setTimeout(() => {
-            this.openAddMultiplePopup();
-            this.topWindow.menuBar.activeMyWatchlistSubMenuItem();
-        }, 1500);
-    }
-
-    private openAddMultiplePopup() {
-        const custIds = this.$('#custIds').val();
-        this.$('#custIds').val("");
-        this.$('#isOpenFromProblemAccount').val("");
-
-        const baseUrl = this.$('#member-info-url').val();
-
-        this.topWindow.popupManager.open(
-            `${baseUrl}MyWatchlistAccounts/ManageWatchlistAccounts?Usernames=${custIds}&isEdite=true`,
-            undefined,
-            820,
-            550,
-            "modal-mobile-friendly");
     }
 }

@@ -1,14 +1,13 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using System.Collections.Generic;
-    using System.Globalization;
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Features.Messages.API.Models.Announcement;
-    using AlphaPlus.Core.Filters;
-    using AlphaPlus.Core;
-    using AlphaPlus.Core.Models;
-    using UserLevel = Features.Messages.API.Models.Constants.UserLevel;
+﻿using System.Globalization;
+using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Features.Messages.API.Models.Announcement;
+using AlphaPlus.Core.Filters;
+using AlphaPlus.Core;
+using AlphaPlus.Core.Models;
+using UserLevel = AlphaPlus.Features.Messages.API.Models.Constants.UserLevel;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     [AllowProtectedMode]
     public class StaticMessageController : BaseController
     {
@@ -62,8 +61,8 @@
                 return new EmptyResult();
             }
 
-            var fileDownloadName = FileNameMapping.ContainsKey(id) 
-                ? $"{resourceManager.GetString(FileNameMapping[id], CultureInfo.CreateSpecificCulture(UserSession.Current.Language))}.pdf" 
+            var fileDownloadName = FileNameMapping.ContainsKey(id)
+                ? $"{resourceManager.GetString(FileNameMapping[id], CultureInfo.CreateSpecificCulture(UserSession.Current.Language))}.pdf"
                 : "Guide.pdf";
 
             Response.Headers.Append("Content-Disposition", "inline; filename=" + fileDownloadName);

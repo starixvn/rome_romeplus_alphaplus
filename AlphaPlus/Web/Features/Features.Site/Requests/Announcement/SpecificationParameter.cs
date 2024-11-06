@@ -1,11 +1,9 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Requests.Announcement
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using Alpha.Announcements.Models;
-    using AlphaPlus.Features.Messages.API.Services;
-    using AlphaPlus.Core.Models;
+﻿using Alpha.Announcements.Models;
+using AlphaPlus.Features.Messages.API.Services;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Features.Site.Messages.Requests.Announcement
+{
     public class SpecificationParameter : IParam
     {
         private readonly IUserSession userSession;

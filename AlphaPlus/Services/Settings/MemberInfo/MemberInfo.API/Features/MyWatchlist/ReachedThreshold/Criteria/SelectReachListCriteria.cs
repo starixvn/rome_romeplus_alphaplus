@@ -1,14 +1,14 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold.Criteria
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold.Criteria
+{
     public class SelectReachListCriteria : CriteriaBase
     {
         public SelectReachListCriteria(
             int agentId,
-            string username, 
-            string status, 
-            byte sortType, 
+            string username,
+            string status,
+            byte sortType,
             bool isDesc,
             int pageSize,
             int pageIndex,

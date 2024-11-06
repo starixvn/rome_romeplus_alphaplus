@@ -1,11 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Login
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers;
-    using MediatR;
-    using ViewModels.Login;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Login;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Login
+{
     public class IndexQuery : LogQuery, IRequest<IndexViewModel>
     {
         public IndexQuery() : this(null, null, null)

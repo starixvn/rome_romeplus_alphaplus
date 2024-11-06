@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
+{
     public class GetOutstandingCriteria : CriteriaBase
     {
         public GetOutstandingCriteria(

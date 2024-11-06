@@ -1,8 +1,5 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Models.TransferAllAndClearCredit
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     public class TransferAllResult
     {
         public TransferAllResult()

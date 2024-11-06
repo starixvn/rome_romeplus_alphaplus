@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Main.Site.Features.Language
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Main.Site.Features.Language
+{
     public class UpdateUsageLanguageCommand : NonQueryCommand
     {
         public UpdateUsageLanguageCommand(int custId, int subAccId, string languageKey, string ip)

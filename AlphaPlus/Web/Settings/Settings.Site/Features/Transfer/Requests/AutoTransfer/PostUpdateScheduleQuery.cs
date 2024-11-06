@@ -1,12 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
-{
-    using System;
-    using System.Linq;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using MediatR;
-    using Settings.Transfer.API.Models;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using MediatR;
+using AlphaPlus.Settings.Transfer.API.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
+{
     public class PostUpdateScheduleQuery : IRequest<Result>
     {
         public PostUpdateScheduleQuery() : this(null) { }

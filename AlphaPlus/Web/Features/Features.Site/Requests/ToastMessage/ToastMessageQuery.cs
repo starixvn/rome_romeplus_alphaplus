@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Requests.ToastMessage
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.API.Models.ToastMessage;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Features.Messages.API.Models.ToastMessage;
+using MediatR;
 
+namespace AlphaPlus.Features.Site.Messages.Requests.ToastMessage
+{
     public class ToastMessageQuery : IRequest<IEnumerable<ToastMessageModel>>
     {
         private readonly IUserSession userSession;
 
-        public ToastMessageQuery() : this(null) {}
+        public ToastMessageQuery() : this(null) { }
 
         public ToastMessageQuery(IUserSession userSession)
         {

@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.Default
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.Default
+{
     public class KickOutQuery(IUserSession userSession) : IRequest<bool>
     {
         public int OnlineUserId { get; } = userSession.OnUserId;

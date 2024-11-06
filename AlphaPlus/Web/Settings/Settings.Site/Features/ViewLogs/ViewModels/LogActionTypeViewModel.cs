@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels
-{
-    using AlphaPlus.Settings.ViewLogs.API.Constants;
-    using AlphaPlus.Settings.ViewLogs.API.Models;
+﻿using AlphaPlus.Settings.ViewLogs.API.Constants;
+using AlphaPlus.Settings.ViewLogs.API.Models;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels
+{
     public class LogActionTypeViewModel
     {
         public LogActionTypeViewModel(LogActionType logActionType, string language)

@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Models
-{
-    using System;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Transfer.API.Models
+{
     public interface IUser
     {
         int Id { get; }

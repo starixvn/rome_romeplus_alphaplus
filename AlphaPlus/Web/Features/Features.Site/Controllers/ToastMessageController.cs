@@ -1,13 +1,13 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using System.Net;
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Shared.AppResources.Features.Messages;
-    using AlphaPlus.Features.Site.Messages.Requests.ToastMessage;
-    using MediatR;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Core.Filters;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Shared.AppResources.Features.Messages;
+using AlphaPlus.Features.Site.Messages.Requests.ToastMessage;
+using MediatR;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Filters;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     public class ToastMessageController : SiteBaseController
     {
         private readonly IUserSession userSession;

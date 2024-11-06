@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.Criteria
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Site.Features.CustomerList.Criteria
+{
     public class SelectCustomerListCriteriaBase : CriteriaBase
     {
         public SelectCustomerListCriteriaBase(

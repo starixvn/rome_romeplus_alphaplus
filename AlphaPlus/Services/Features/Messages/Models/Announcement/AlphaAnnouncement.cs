@@ -1,10 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.API.Models.Announcement
-{
-    using Alpha.Announcements.Models;
-    using Alpha.Announcements.Specs;
-    using System;
-    using System.Collections.Generic;
+﻿using Alpha.Announcements.Models;
+using Alpha.Announcements.Specs;
 
+namespace AlphaPlus.Features.Messages.API.Models.Announcement
+{
     public class AlphaAnnouncement
     {
         public AlphaAnnouncement()
@@ -15,8 +13,8 @@
 
         public AlphaAnnouncement(
             int id,
-            string content, 
-            string code, 
+            string content,
+            string code,
             DateTime releasedDate,
             DateTime lastSeenDate,
             IEnumerable<ISpecification<IParam>> specifications)

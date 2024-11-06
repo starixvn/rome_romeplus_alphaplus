@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClearCredit
-{
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using MediatR;
-    using Settings.Transfer.API.Models;
-    using ViewModels.TransferAllAndClearCredit;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using MediatR;
+using AlphaPlus.Settings.Transfer.API.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClearCredit
+{
     public class CalculationQuery : TransferBaseQuery, IRequest<CalculationViewModel>
     {
         public CalculationQuery() : this(null) { }

@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.NewMessage
-{
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.NewMessage
+{
     public class InsertPersonalMessageCriteria : CriteriaBase
     {
         public InsertPersonalMessageCriteria(
@@ -25,7 +25,7 @@
             CreatorName = string.Empty;
             IsBatch = true;
         }
-       
+
         [SpParam(SqlParamName = "content_en")]
         public string ContentEN { get; set; }
 
@@ -55,9 +55,9 @@
 
         [SpParam(SqlParamName = "msgtype")]
         public int MessageType { get; set; }
-        
+
         public string CreatorName { get; }
-        
+
         public bool IsBatch { get; }
 
         public override string GetSettingKey() => "Age_Msg_SetMessage";

@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.CashBalanceTransfer
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Transfer.API.Criteria.CashBalanceTransfer
+{
     public class GetCashBalanceTransferCriteria : CriteriaBase
     {
         public GetCashBalanceTransferCriteria(int custId)

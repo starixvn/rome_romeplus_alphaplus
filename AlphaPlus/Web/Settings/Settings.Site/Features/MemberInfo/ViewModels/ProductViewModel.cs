@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels
-{
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.MemberRequests;
-    using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Models.MemberRequests;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels
+{
     public class ProductViewModel : SelectListItem
     {
         public ProductViewModel(

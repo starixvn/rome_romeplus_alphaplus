@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit
 {
-    using System.Collections.Generic;
-
     public class WinLossLimitGroupProductModel
     {
         public WinLossLimitGroupProductModel(string groupName, IEnumerable<WinLossLimitProductModel> products)

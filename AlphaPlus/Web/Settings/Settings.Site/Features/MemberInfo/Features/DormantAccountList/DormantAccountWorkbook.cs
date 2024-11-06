@@ -1,12 +1,9 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
-    using ONEbook.SpreadSheets;
-    using ONEbook.SpreadSheets.NPOI;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
+using ONEbook.SpreadSheets;
+using ONEbook.SpreadSheets.NPOI;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList
+{
     public interface DormantAccountWorkbook
     {
         DormantAccountWorkbook SetData(IEnumerable<DormantAccount> dormantAccounts, DormantAccount total);

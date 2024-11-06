@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Models.Feedback
-{
-    using AlphaPlus.Features.Messages.API.Constants;
+﻿using AlphaPlus.Features.Messages.API.Constants;
 
+namespace AlphaPlus.Features.Messages.API.Models.Feedback
+{
     public class FeedbackFunction
     {
         public int FuncId { get; set; }

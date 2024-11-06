@@ -1,13 +1,12 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using System;
-    using AlphaPlus.Features.Messages.API.Models;
-    using Constants;
-    using Criteria.Message;
-    using Fanex.Data.Repository;
-    using Models.Message;
-    using Params;
+﻿using AlphaPlus.Features.Messages.API.Models;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Criteria.Message;
+using Fanex.Data.Repository;
+using AlphaPlus.Features.Messages.API.Models.Message;
+using AlphaPlus.Features.Messages.API.Params;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface MessageHistoryService
     {
         PagedReportData<MessageHistory> GetMessagesHistory(MessageHistoryParams messageParams);

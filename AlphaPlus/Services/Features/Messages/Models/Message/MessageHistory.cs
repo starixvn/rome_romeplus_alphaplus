@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Features.Messages.API.Models.Message
-{
-    using System;
-    using AlphaPlus.Features.Messages.Utils;
-    using Messages.API.Constants;
+﻿using AlphaPlus.Features.Messages.Utils;
+using AlphaPlus.Features.Messages.API.Constants;
 
+namespace AlphaPlus.Features.Messages.API.Models.Message
+{
     public class MessageHistory : MultiLanguague
     {
         public MessageHistory()

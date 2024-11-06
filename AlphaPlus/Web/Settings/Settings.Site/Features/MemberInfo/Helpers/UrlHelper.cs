@@ -1,13 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+﻿using System.Text.RegularExpressions;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
+{
     public static class UrlHelper
     {
         [ThreadStatic]

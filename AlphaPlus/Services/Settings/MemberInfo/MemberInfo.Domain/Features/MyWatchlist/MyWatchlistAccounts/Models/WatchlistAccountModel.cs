@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models
-{
-    using System;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 
+namespace AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models
+{
     public class WatchlistAccountModel
     {
         public WatchlistAccountModel()
@@ -21,7 +20,8 @@
             decimal? losingThreshold,
             byte closedReason,
             byte locked,
-            bool isPA)
+            bool isPA,
+            DateTime addedDate)
         {
             RowNumber = rowNumber;
             CustId = custId;
@@ -34,6 +34,7 @@
             ClosedReason = closedReason;
             Locked = locked;
             IsPA = isPA;
+            AddedDate = addedDate;
         }
 
         public int RowNumber { get; set; }
@@ -46,11 +47,12 @@
 
         public DateTime LastLogged { get; set; }
 
-        public string LastLoggedString => LastLogged.ToLongDateTime12hWithHyphen();
+        public string LastLoggedString
+            => LastLogged == DateTime.MinValue ? "-" : LastLogged.ToLongDateTime12hWithHyphen();
 
         public string Status { get; set; }
 
-        public string TranslatedStatus => Resources.ResourceManager.GetString(Status ?? string.Empty);
+        public string TranslatedStatus => Resources.ResourceManager.GetString(Status);
 
         public decimal? WinningThreshold { get; set; }
 
@@ -67,5 +69,9 @@
         public bool IsPA { get; set; }
 
         public string IsPAText => IsPA ? Resources.Yes : Resources.No2;
+
+        public DateTime AddedDate { get; set; }
+
+        public string AddedDateString => AddedDate.ToLongDateTime12hWithHyphen();
     }
 }

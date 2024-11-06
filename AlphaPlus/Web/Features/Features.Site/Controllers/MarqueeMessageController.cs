@@ -1,13 +1,13 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Features.Site.Messages.ViewModels;
-    using MediatR;
-    using Requests.MarqueeMessage;
-    using AlphaPlus.Core.Filters;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.API.Models.Message;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Features.Site.Messages.ViewModels;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.Requests.MarqueeMessage;
+using AlphaPlus.Core.Filters;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Features.Messages.API.Models.Message;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     public class MarqueeMessageController : SiteBaseController
     {
         private readonly IUserSession userSession;

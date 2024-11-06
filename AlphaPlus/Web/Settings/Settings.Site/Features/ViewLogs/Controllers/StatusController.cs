@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Core.Models;
-    using Helpers;
-    using MediatR;
-    using Requests.Status;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Status;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
+{
     public class StatusController : ViewLogBaseController
     {
         private const string TemplatePath = "App_Data/TrackingValueTransformTemplates";

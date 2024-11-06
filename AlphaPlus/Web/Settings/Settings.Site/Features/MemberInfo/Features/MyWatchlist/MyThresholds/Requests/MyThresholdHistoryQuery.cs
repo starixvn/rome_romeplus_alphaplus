@@ -1,17 +1,15 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests
-{
-    using System;
-    using System.Collections.Generic;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Models;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Models;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests
+{
     public class MyThresholdHistoryQuery : MemberInfoBaseQuery, IRequest<IEnumerable<ReachHistoryModel>>
     {
-        public MyThresholdHistoryQuery() : this(null){}
+        public MyThresholdHistoryQuery() : this(null) { }
 
         public MyThresholdHistoryQuery(IUser viewer) : base(viewer)
         {

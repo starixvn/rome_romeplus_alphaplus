@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Login
-{
-    using AlphaPlus.Settings.ViewLogs.API.Params;
+﻿using AlphaPlus.Settings.ViewLogs.API.Params;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Login
+{
     public class IndexViewModel : LogViewModel
     {
         public IndexViewModel(LogParam logParam, int totalRecords) : base(logParam, totalRecords)

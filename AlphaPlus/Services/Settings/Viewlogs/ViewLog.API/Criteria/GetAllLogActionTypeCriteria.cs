@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Criteria
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Criteria
+{
     public class GetAllLogActionTypeCriteria : CriteriaBase
     {
         public override string GetSettingKey()

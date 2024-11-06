@@ -1,7 +1,5 @@
 namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models
 {
-    using System;
-
     public class DormantAccountEntity
     {
         public DormantAccountEntity()

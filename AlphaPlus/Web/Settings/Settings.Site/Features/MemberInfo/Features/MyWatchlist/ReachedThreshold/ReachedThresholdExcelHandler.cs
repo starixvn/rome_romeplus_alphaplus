@@ -1,21 +1,19 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
-    using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params;
-    using MediatR;
-    using ONEbook.SpreadSheets;
-    using System;
-    using System.Text;
-    using System.Threading.Tasks;
-    using static ONEbook.SpreadSheets.Column;
-    using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params;
+using MediatR;
+using ONEbook.SpreadSheets;
+using System.Text;
+using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold
+{
     public class ReachedThresholdExcelHandler : ExcelBaseHandler, IRequestHandler<ReachedThresholdExcelQuery, ExcelFileViewModel>
     {
         private readonly ReachedThresholdService service;

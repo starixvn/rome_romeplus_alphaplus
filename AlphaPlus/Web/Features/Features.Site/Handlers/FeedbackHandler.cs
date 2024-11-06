@@ -1,17 +1,15 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Handlers
-{
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Shared.AppResources.Features.Messages;
-    using AlphaPlus.Features.Messages.API.Models.Feedback;
-    using AlphaPlus.Features.Messages.API.Params.Feedback;
-    using AlphaPlus.Features.Messages.API.Services;
-    using AlphaPlus.Features.Site.Messages.Requests.Feedback;
-    using AlphaPlus.Features.Site.Messages.ViewModels.Feedback;
-    using MediatR;
+﻿using System.Text;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Features.Messages;
+using AlphaPlus.Features.Messages.API.Models.Feedback;
+using AlphaPlus.Features.Messages.API.Params.Feedback;
+using AlphaPlus.Features.Messages.API.Services;
+using AlphaPlus.Features.Site.Messages.Requests.Feedback;
+using AlphaPlus.Features.Site.Messages.ViewModels.Feedback;
+using MediatR;
 
+namespace AlphaPlus.Features.Site.Messages.Handlers
+{
     public class FeedbackHandler :
         IRequestHandler<CheckExistsFeedbackQuery, CheckExistsFeedbackViewModel>,
         IRequestHandler<GetFunctionFeedbackQuery, FeedbackFunctionViewModel>,

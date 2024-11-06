@@ -1,11 +1,9 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.Message
-{
-    using System;
-    using System.Collections.Generic;
-    using Constants;
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Features.Messages.API.Constants;
+using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.Message
+{
     public class GetMessagesHistoryCriteria : CriteriaBase
     {
         private static readonly Dictionary<int, string> SettingKeys = new Dictionary<int, string>
@@ -34,7 +32,7 @@
             ParentSites = parentSites;
             Special = specialType;
             PageIndex = pageIndex;
-            PageSize = pageSize; 
+            PageSize = pageSize;
             StartDate = startDate;
             EndDate = endDate;
             IsTest = isTest;
@@ -54,7 +52,7 @@
         public int PageIndex { get; }
 
         public int TotalRows { get; set; }
-        
+
         [SpParam(SqlParamName = "sdate")]
         public DateTime StartDate { get; }
 

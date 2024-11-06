@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.Settings.Site.Features.CustomerList.Criteria
-{
-    using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Site.Features.CustomerList.Criteria
+{
     public class SelectCustomerAllStatusModelCriteria : CriteriaBase
     {
         public SelectCustomerAllStatusModelCriteria(int searchAccountId)

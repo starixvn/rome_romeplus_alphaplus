@@ -1,11 +1,9 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using AlphaPlus.Features.Messages.API.Criteria.BackupDomains;
-    using AlphaPlus.Features.Messages.API.Models.BackupDomains;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Features.Messages.API.Criteria.BackupDomains;
+using AlphaPlus.Features.Messages.API.Models.BackupDomains;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface BackupDomainsService
     {
         Task<IEnumerable<BackupDomainModel>> GetBackupDomains(string site);

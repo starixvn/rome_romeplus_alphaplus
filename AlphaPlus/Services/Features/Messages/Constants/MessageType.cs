@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Features.Messages.API.Constants
 {
-    using System.Collections.Generic;
-
     public static class MessageType
     {
         private static readonly Dictionary<int, string> text = new Dictionary<int, string>

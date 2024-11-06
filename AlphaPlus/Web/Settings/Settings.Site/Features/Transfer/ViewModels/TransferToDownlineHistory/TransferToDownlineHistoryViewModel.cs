@@ -1,13 +1,12 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory
-{
-    using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
-    using Requests.TransferToDownlineHistory;
-    using System;
-    using ViewModels.Components;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Core.Utils;
+﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.Components;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Utils;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory
+{
     public class TransferToDownlineHistoryViewModel
     {
         private const int reportMonth = -2;

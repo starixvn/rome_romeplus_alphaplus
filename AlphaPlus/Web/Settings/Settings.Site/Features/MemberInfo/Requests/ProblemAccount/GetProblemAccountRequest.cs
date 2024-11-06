@@ -1,12 +1,10 @@
-﻿
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
+using MediatR;
+
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount
 {
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
-    using MediatR;
-
     public class GetProblemAccountRequest : ProblemAccountRequestBase, IRequest<IEnumerable<ProblemAccountModel>>
     {
         public GetProblemAccountRequest() : this(null) { }

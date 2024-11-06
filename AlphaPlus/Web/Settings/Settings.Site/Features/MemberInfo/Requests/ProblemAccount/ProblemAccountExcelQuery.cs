@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount
-{
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using MediatR;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount
+{
     public class ProblemAccountExcelQuery : ProblemAccountRequestBase, IRequest<ExcelFileViewModel>
     {
         public ProblemAccountExcelQuery() : this(null) { }

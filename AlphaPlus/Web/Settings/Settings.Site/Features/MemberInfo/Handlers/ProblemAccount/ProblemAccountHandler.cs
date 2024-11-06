@@ -3,20 +3,18 @@ using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.ProblemAccount;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
 using AlphaPlus.Settings.MemberInfo.API.Services;
-using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
 using AlphaPlus.Settings.MemberInfo.Domain.Params.ProblemAccount;
 using MediatR;
 using AlphaPlus.Core.Models;
 
-namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers.ProblemAccount
 {
     public class ProblemAccountHandler :
         IRequestHandler<IndexRequest, ProblemAccountReportViewModel>,
         IRequestHandler<GetProblemAccountRequest, IEnumerable<ProblemAccountModel>>,
         IRequestHandler<UpdateProblemAccountCommand, Result>,
-        IRequestHandler<UpdateProblemAccountRequest, UpdateReviewStatusViewModel>,
-        IRequestHandler<ConfirmAddToWatchlistQuery, ConfirmAddToWatchlistViewModel>
+        IRequestHandler<UpdateProblemAccountRequest, UpdateReviewStatusViewModel>
     {
         private readonly IProblemAccountService problemAccountService;
         private readonly MyWatchlistAccountsService myWatchlistAccountsService;
@@ -72,13 +70,5 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
                 SearchRoleId = message.SearchRoleId,
                 SearchUserName = message.UserName
             };
-
-        public async Task<ConfirmAddToWatchlistViewModel> Handle(ConfirmAddToWatchlistQuery message, CancellationToken cancellation)
-        {
-            var param = new SelectMultipleWatchlistParam(message.CustIds, message.Site);
-            var multipleWatchlistAccountModel = await myWatchlistAccountsService.GetMultipleWatchlistAccount(param);
-
-            return new ConfirmAddToWatchlistViewModel(multipleWatchlistAccountModel);
-        }
     }
 }

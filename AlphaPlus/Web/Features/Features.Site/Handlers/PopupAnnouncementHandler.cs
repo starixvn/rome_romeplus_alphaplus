@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Handlers
-{
-    using AlphaPlus.Features.Messages.API.Models.Announcement;
-    using AlphaPlus.Features.Messages.API.Params.Announcement;
-    using AlphaPlus.Features.Messages.API.Services;
-    using MediatR;
-    using Requests.Announcement;
+﻿using AlphaPlus.Features.Messages.API.Models.Announcement;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
+using AlphaPlus.Features.Messages.API.Services;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.Requests.Announcement;
 
+namespace AlphaPlus.Features.Site.Messages.Handlers
+{
     public class PopupAnnouncementHandler :
         IRequestHandler<PopupAnnouncementQuery, AlphaAnnouncement>
     {

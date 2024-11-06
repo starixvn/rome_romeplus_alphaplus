@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Constants
 {
-    using System.Collections.Generic;
-
     public static class ReachedThresholdStatusConstants
     {
         public const byte All = 0;
@@ -22,6 +20,6 @@
         };
 
         public static string GetReachedThresholdStatus(byte key)
-            => Items.ContainsKey(key) ? Items[key] : string.Empty;
+            => Items.TryGetValue(key, out var status) ? status : string.Empty;
     }
 }

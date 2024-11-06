@@ -1,10 +1,9 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using MediatR;
-    using AlphaPlus.Core;
+﻿using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using AlphaPlus.Core;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     public abstract class SiteBaseController : BaseController
     {
         protected readonly IMediator mediator;

@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Params.ProblemAccount
 {
-    using System;
-
     public class GetProblemAccountParam
     {
         public int CustId { get; set; }

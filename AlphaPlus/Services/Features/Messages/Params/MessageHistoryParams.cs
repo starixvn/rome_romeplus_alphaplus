@@ -1,10 +1,9 @@
-﻿namespace AlphaPlus.Features.Messages.API.Params
-{
-    using AlphaPlus.Features.Messages.API.Constants;
-    using Announcement;
-    using Alpha.Announcements.Models;
-    using System;
+﻿using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
+using Alpha.Announcements.Models;
 
+namespace AlphaPlus.Features.Messages.API.Params
+{
     public class MessageHistoryParams : BaseAnnouncementsParams
     {
         public MessageHistoryParams(

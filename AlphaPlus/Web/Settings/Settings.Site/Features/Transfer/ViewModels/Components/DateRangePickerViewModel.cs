@@ -1,11 +1,8 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.Components
-{
-    using AlphaPlus.Shared.AppResources.Settings.Transfer;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.Components
+{
     public class DateRangePickerViewModel
     {
         private const string TodayOptionValue = "0";

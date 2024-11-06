@@ -1,13 +1,11 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Services
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Criteria.TransferAllAndClearCredit;
-    using Fanex.Data.Repository;
-    using Models.TransferAllAndClearCredit;
-    using Params.TransferAllAndClearCredit;
+﻿using System.Text;
+using AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit;
+using Fanex.Data.Repository;
+using AlphaPlus.Settings.Transfer.API.Models.TransferAllAndClearCredit;
+using AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit;
 
+namespace AlphaPlus.Settings.Transfer.API.Services
+{
     public interface TransferAllAndClearCreditService
     {
         TransferResult GetCalculateResult(GetCalculationResultParam param);
@@ -31,10 +29,10 @@
             var netPositionModels = repository.Fetch<NetPositionModel>(getNetPositionCriteria, param.AGIP);
 
             var criteria = new GetCalculateResultCriteria(
-                param.CustId, 
-                param.Username, 
-                param.Language, 
-                param.AllowedTotalBalanceTransferSuperIds, 
+                param.CustId,
+                param.Username,
+                param.Language,
+                param.AllowedTotalBalanceTransferSuperIds,
                 param.IsAllDayBalanceTransfer,
                 BuildDownlineNetPositionXml(netPositionModels),
                 getDownlineCriteria.DownlineCustId);

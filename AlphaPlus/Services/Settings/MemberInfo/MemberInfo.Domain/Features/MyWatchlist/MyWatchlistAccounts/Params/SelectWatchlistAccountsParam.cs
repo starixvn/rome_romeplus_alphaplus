@@ -3,7 +3,11 @@
     public class SelectWatchlistAccountsParam
     {
         public SelectWatchlistAccountsParam(
-            int agentId, 
+            int agentId,
+            DateTime fromDate,
+            DateTime toDate,
+            string status,
+            byte problemAccount,
             string username,
             string siteName,
             byte sortType,
@@ -12,6 +16,10 @@
             int pageSize)
         {
             AgentId = agentId;
+            FromDate = fromDate;
+            ToDate = toDate;
+            Status = status;
+            ProblemAccount = problemAccount;
             Username = username;
             SortType = sortType;
             IsDesc = isDesc;
@@ -20,9 +28,15 @@
             SiteName = siteName;
         }
 
-        public string SiteName { get; }
-
         public int AgentId { get; }
+
+        public DateTime FromDate { get; }
+
+        public DateTime ToDate { get; }
+
+        public string Status { get; }
+
+        public byte ProblemAccount { get; }
 
         public string Username { get; }
 
@@ -33,5 +47,7 @@
         public int PageIndex { get; }
 
         public int PageSize { get; }
+
+        public string SiteName { get; }
     }
 }

@@ -1,10 +1,8 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.IndirectLoginAccount
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.IndirectLoginAccount
+{
     public class ManageAccountViewModel
     {
         public ManageAccountViewModel()

@@ -1,11 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList
-{
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.Requests;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.Requests;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList
+{
     public class DormantAccountController : SiteBaseController
     {
         public DormantAccountController(IMediator mediator)

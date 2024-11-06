@@ -1,14 +1,13 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Requests.MessageHistory
-{
-    using System;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.API.Constants;
-    using AlphaPlus.Features.Messages.API.Models.Message;
-    using AlphaPlus.Features.Messages.API.Params;
-    using AlphaPlus.Features.Messages.API.Params.Announcement;
-    using MediatR;
-    using ViewModels;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Models.Message;
+using AlphaPlus.Features.Messages.API.Params;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.ViewModels;
 
+namespace AlphaPlus.Features.Site.Messages.Requests.MessageHistory
+{
     public class MessageHistoryQuery : MessageHistoryBaseRequest, IRequest<MessagesHistoryViewModel>
     {
         public MessageHistoryQuery(
@@ -37,7 +36,7 @@
         public DateTime EndDate { get; }
 
         public bool IsTest { get; }
-        
+
         public int PageIndex { get; }
 
         public int PageSize { get; }
@@ -54,7 +53,7 @@
             {
                 userSession.SetProperty(SessionKey.NumberOfUnreadMessage, value);
             }
-        }        
+        }
 
         public override BaseAnnouncementsParams ConvertToParameters()
             => new MessageHistoryParams(
@@ -71,6 +70,6 @@
                      Specification,
                      PageIndex,
                      PageSize)
-                    { Site = Site};
+            { Site = Site };
     }
 }

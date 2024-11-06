@@ -1,17 +1,15 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using Constants;
-    using Criteria.Message;
-    using Criteria.NewMessage;
-    using Fanex.Data.Repository;
-    using Models.Announcement;
-    using Models.Constants;
-    using Models.Message;
-    using Params.Announcement;
+﻿using System.Globalization;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Criteria.Message;
+using AlphaPlus.Features.Messages.API.Criteria.NewMessage;
+using Fanex.Data.Repository;
+using AlphaPlus.Features.Messages.API.Models.Announcement;
+using AlphaPlus.Features.Messages.API.Models.Constants;
+using AlphaPlus.Features.Messages.API.Models.Message;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface NewMessageService
     {
         Task<NumberOfUnreadMessage> GetNumberOfUnreadMessage(BaseAnnouncementsParams announcementParams);

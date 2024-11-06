@@ -1,10 +1,10 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
-{
-    using System.Net;
-    using System.Text.RegularExpressions;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Utilities.IP;
+﻿using System.Net;
+using System.Text.RegularExpressions;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Utilities.IP;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
+{
     public class ViewLogIPServiceImpl : ViewLogIPService
     {
         private const string IPValidateRegex = @"(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)";

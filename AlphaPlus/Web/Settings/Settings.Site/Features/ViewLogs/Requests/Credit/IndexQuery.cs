@@ -1,11 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Credit
-{
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.ViewLogs.API.Helpers;
-    using MediatR;
-    using ViewModels;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using MediatR;
+using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
 
+namespace AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Credit
+{
     public class IndexQuery : LogQuery, IRequest<LogViewModel>
     {
         public IndexQuery() : this(null, null, null)

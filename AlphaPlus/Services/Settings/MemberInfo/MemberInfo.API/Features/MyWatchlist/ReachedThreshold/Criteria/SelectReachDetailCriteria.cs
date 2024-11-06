@@ -1,14 +1,13 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold.Criteria
-{
-    using Fanex.Data.Repository;
-    using System;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold.Criteria
+{
     public class SelectReachDetailCriteria : CriteriaBase
     {
         public SelectReachDetailCriteria(
-            int custId, 
-            DateTime fromDate, 
-            DateTime toDate, 
+            int custId,
+            DateTime fromDate,
+            DateTime toDate,
             byte limitType,
             byte sortType,
             bool isDesc,

@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Main.Site.Features.UMMessage
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Main.Site.Features.UMMessage
+{
     public class GetUMMessageCriteria : CriteriaBase
     {
         public GetUMMessageCriteria(int custId)

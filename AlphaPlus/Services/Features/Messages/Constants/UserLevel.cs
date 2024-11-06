@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Features.Messages.API.Models.Constants
 {
-    using System.Collections.Generic;
-
     public static class UserLevel
     {
         private static readonly Dictionary<int, string> levels = new Dictionary<int, string>
@@ -26,7 +24,7 @@
         public static bool IsSuper(int level) => Super == level;
 
         public static bool IsNotAgent(int level) => !IsAgent(level);
-        
+
         public static string GetDisplayName(int level) => levels[level];
     }
 }

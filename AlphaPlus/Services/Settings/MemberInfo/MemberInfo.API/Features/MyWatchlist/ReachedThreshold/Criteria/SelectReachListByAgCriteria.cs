@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold.Criteria
-{
-    using Fanex.Data.Repository;
-    using System;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold.Criteria
+{
     public class SelectReachListByAgCriteria : NonQueryCommand
     {
         public SelectReachListByAgCriteria(int agentId, DateTime fromDate, DateTime toDate, byte limitType, int sporttype = 0)

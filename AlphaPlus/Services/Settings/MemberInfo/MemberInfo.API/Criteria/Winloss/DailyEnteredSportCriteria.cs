@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLoss
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLoss
+{
     public class DailyEnteredSportCriteria : CriteriaBase
     {
         public DailyEnteredSportCriteria(bool includeTestData)

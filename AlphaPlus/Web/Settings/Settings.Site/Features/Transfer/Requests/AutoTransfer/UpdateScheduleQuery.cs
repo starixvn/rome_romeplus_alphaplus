@@ -1,13 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using AlphaPlus.Settings.Transfer.API.Helpers;
-    using Settings.Transfer.API.Models;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using AlphaPlus.Settings.Transfer.API.Helpers;
+using AlphaPlus.Settings.Transfer.API.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
+{
     public class UpdateScheduleQuery
     {
         public UpdateScheduleQuery() : this(null) { }

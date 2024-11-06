@@ -1,9 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
 {
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.Requests;
-    using Fanex.Common.Extensions;
-    using System;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
+    using AlphaPlus.Core.Configurations;
     using AlphaPlus.Core.Helpers;
 
     public class MyWatchlistAccountsViewModel
@@ -22,8 +26,11 @@
             MyWatchListAccountPagingViewModel = myWatchListAccountPagingViewModel;
             IsShowLastLoginColumn = request.IsShowLastLoginColumn;
             CustLevel = request.CustLevel.DisplayName;
-            IsOpenFromProblemAccount = request.IsOpenFromProblemAccount;
-            CustIds = request.CustIds;
+            DateRangePicker = new DateRangePickerJQueryViewModel(
+                Resources.AddedDate,
+                request.Language,
+                request.FromDate,
+                request.ToDate);
         }
 
         public int SearchAccountId { get; }
@@ -39,13 +46,29 @@
         public string CustLevel { get; }
 
         public bool CanUpdateAccount { get; }
-        public bool IsOpenFromProblemAccount { get; }
-        public string CustIds { get; }
 
-        public DateTime MinDate => DateTime.Today.AddMonths(-3).FirstDayOfMonth();
+        public DateRangePickerJQueryViewModel DateRangePicker { get; }
 
-        public string UserGuideLink => AlphaPlus.Core.Configurations.AppSettings.IsSiteLabel789y ?
-            MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179067") :
-            MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179067");
+        public IEnumerable<SelectListItem> Status
+            => ReachedThresholdStatusConstants.Items.Select(s => new SelectListItem
+            {
+                Text = Resources.ResourceManager.GetString(s.Value),
+                Value = s.Key.ToString(),
+                Selected = s.Key == ReachedThresholdStatusConstants.All
+            });
+
+        public IEnumerable<SelectListItem> ProblemAccounts
+        {
+            get
+            {
+                yield return new SelectListItem { Text = Resources.All, Value = "2", Selected = true };
+                yield return new SelectListItem { Text = Resources.Yes, Value = "1" };
+                yield return new SelectListItem { Text = Resources.No2, Value = "0" };
+            }
+        }
+
+        public string UserGuideLink => AppSettings.IsSiteLabel789y ?
+            MicroSites.SettingUrl("~/StaticMessage/Guide?id=179067") :
+            MicroSites.SettingUrl("~/Index.aspx?linktomessagesite=179067");
     }
 }

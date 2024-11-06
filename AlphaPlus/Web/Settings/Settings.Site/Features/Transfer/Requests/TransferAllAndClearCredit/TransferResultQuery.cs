@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClearCredit
-{
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using MediatR;
-    using Settings.Transfer.API.Models;
-    using ViewModels.TransferAllAndClearCredit;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using MediatR;
+using AlphaPlus.Settings.Transfer.API.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClearCredit
+{
     public class TransferResultQuery : TransferBaseQuery, IRequest<TransferResultViewModel>
     {
         public TransferResultQuery() : this(null) { }
@@ -26,7 +26,7 @@
 
         public bool IsClearCredit { get; set; }
 
-        
+
         public string Username { get; set; }
 
         public string AllowedTotalBalanceTransferSuperIds => Settings.Transfer.API.Configurations.AppSettings.AllowedTotalBalanceTransferSuperIds;

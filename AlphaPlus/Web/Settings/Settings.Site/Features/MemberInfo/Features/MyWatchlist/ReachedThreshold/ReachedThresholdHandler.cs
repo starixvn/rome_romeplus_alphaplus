@@ -1,19 +1,17 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.ViewModels;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
-    using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params;
-    using MediatR;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold.ViewModels;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.ReachedThreshold;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Params;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.ReachedThreshold.Params;
+using MediatR;
 
-    public class ReachedThresholdHandler : 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.ReachedThreshold
+{
+    public class ReachedThresholdHandler :
         IRequestHandler<ReachedThresholdQuery, ReachedThresholdViewModel>,
         IRequestHandler<ReachlistAccountsQuery, ReachedThresholdPagingViewModel>,
         IRequestHandler<ReachHistoryQuery, ReachHistoryViewModel>,
@@ -24,7 +22,7 @@
         private readonly IBrowserHelper browserHelper;
 
         public ReachedThresholdHandler(
-            ReachedThresholdService reachedThresholdService, 
+            ReachedThresholdService reachedThresholdService,
             MyWatchlistAccountsService myWatchlistAccountsService,
             IBrowserHelper browserHelper)
         {

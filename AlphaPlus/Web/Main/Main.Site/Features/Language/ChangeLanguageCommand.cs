@@ -1,8 +1,9 @@
-﻿namespace AlphaPlus.Main.Site.Features.Language
+﻿using AlphaPlus.Core.Models;
+using MediatR;
+
+namespace AlphaPlus.Main.Site.Features.Language
 {
     using AlphaPlus.Main.Site.Shared.Constants;
-    using AlphaPlus.Core.Models;
-    using MediatR;
 
     public class ChangeLanguageCommand : IRequest<string>
     {

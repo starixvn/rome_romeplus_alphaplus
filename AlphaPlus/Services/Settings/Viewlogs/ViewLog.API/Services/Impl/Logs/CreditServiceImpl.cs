@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
-{
-    using System;
-    using AlphaPlus.Settings.ViewLogs.API.Models;
-    using AlphaPlus.Core.Models;
-    using Criteria.Credit;
-    using DataAccesses;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Helpers;
-    using Params;
+﻿using AlphaPlus.Settings.ViewLogs.API.Models;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.ViewLogs.API.Criteria.Credit;
+using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Params;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
+{
     public class CreditServiceImpl : BaseService, LogService
     {
         public CreditServiceImpl(

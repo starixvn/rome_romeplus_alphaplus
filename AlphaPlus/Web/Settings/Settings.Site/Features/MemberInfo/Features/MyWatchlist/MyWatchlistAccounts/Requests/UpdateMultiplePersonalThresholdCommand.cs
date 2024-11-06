@@ -1,19 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.Requests
-{
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using MediatR;
-    using System.Collections.Generic;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Features.MyWatchlist.MyWatchlistAccounts.Models;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
+using MediatR;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.Requests
+{
     public class UpdateMultiplePersonalThresholdCommand : MemberInfoBaseQuery, IRequest<IEnumerable<NamedResult>>
     {
-        public UpdateMultiplePersonalThresholdCommand() : this(null){}
-        
-        public UpdateMultiplePersonalThresholdCommand(IUser viewer) : base(viewer)
-        {
-        }
-        
         public string CustIds { get; set; }
 
         public string Usernames { get; set; }

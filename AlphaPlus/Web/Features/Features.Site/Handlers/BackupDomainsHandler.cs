@@ -1,12 +1,10 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Handlers
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using AlphaPlus.Features.Messages.API.Services;
-    using AlphaPlus.Features.Site.Messages.Requests.BackupDomains;
-    using AlphaPlus.Features.Site.Messages.ViewModels;
-    using MediatR;
+﻿using AlphaPlus.Features.Messages.API.Services;
+using AlphaPlus.Features.Site.Messages.Requests.BackupDomains;
+using AlphaPlus.Features.Site.Messages.ViewModels;
+using MediatR;
 
+namespace AlphaPlus.Features.Site.Messages.Handlers
+{
     public class BackupDomainsHandler : IRequestHandler<BackupDomainsQuery, BackupDomainsViewModel>
     {
         private readonly BackupDomainsService backupDomainsService;

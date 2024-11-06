@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.Announcement
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.Announcement
+{
     public class GetLastSeenAnnouncementCriteria : CriteriaBase
     {
         public GetLastSeenAnnouncementCriteria(int custId, int subAccId)

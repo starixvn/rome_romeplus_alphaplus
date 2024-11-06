@@ -1,9 +1,9 @@
-﻿namespace AlphaPlus.Features.Messages.API.Criteria.Message
-{
-    using AlphaPlus.Features.Messages.API.Configurations;
-    using Fanex.Data;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Features.Messages.API.Configurations;
+using Fanex.Data;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Features.Messages.API.Criteria.Message
+{
     public class GetNumberOfUnreadMessageCriteria : CriteriaBase
     {
         public GetNumberOfUnreadMessageCriteria(int custId, int subAccId, string parentSites, string site)
@@ -25,7 +25,7 @@
         public string Site { get; }
 
         public bool IsTest { get; }
-        
+
         public override string GetSettingKey() => "Age_MsgCustReadStatus_SelUnread";
 
         public override bool IsValid() => CustId >= 0;

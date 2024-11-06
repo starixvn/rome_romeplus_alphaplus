@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Settings.ViewLogs.API.Params
 {
-    using System.Collections.Generic;
-
     public class TransformParam
     {
         public bool IsShowOldValue { get; set; }

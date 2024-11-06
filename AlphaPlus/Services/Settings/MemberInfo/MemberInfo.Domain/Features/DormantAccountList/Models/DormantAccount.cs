@@ -1,11 +1,9 @@
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Core.Models;
+
 namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Core.Models;
-
     public class DormantAccount
     {
         public DormantAccount() : this(null, null, 0)

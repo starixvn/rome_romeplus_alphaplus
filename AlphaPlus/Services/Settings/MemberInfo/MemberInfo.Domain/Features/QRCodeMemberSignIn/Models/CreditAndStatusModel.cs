@@ -1,7 +1,7 @@
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+
 namespace AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models
 {
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-
     public class CreditAndStatusModel
     {
         public CreditAndStatusModel()

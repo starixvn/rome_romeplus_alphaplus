@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.OTP
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.OTP
+{
     public class CheckDifferenceDeviceCommand : IRequest<bool>
     {
         private readonly IUserSession userSession;

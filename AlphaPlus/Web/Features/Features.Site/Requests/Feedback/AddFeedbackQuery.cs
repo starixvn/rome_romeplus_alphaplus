@@ -1,15 +1,13 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Requests.Feedback
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using MediatR;
-    using AlphaPlus.Core.Models;
+﻿using MediatR;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Features.Site.Messages.Requests.Feedback
+{
     public class AddFeedbackQuery : IRequest<Result>
     {
         private const int MaxMessageLength = 4000;
 
-        public AddFeedbackQuery() : this(null) {}
+        public AddFeedbackQuery() : this(null) { }
 
         public AddFeedbackQuery(IUserSession userSession)
         {

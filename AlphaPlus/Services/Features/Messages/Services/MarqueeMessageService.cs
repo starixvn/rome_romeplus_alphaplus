@@ -1,13 +1,12 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using AlphaPlus.Features.Messages.Utils;
-    using Constants;
-    using Criteria.Message;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Models.Message;
-    using System;
+﻿using AlphaPlus.Features.Messages.Utils;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Criteria.Message;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+using AlphaPlus.Features.Messages.API.Models.Message;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface MarqueeMessageService
     {
         GeneralMarqueeMessage GetLatestPublicMessage(byte roleId, string languageKey, bool isTest, string customerSite);

@@ -1,9 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount
-{
-    using System;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.MemberInfo.Domain.Models.IndirectLoginAccount
+{
     public class IndirectLoginAccountItem
     {
         public IndirectLoginAccountItem()

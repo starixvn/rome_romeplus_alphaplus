@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests
-{
-    using System;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.ViewModels;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using Fanex.Common.Extensions;
-    using MediatR;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.ViewModels;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using Fanex.Common.Extensions;
+using MediatR;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests
+{
     public class MyThresholdIndexPageQuery : MyThresholdHistoryQuery, IRequest<MyThresholdIndexPageViewModel>
     {
-        public MyThresholdIndexPageQuery() : this(null){}
-        
+        public MyThresholdIndexPageQuery() : this(null) { }
+
         public MyThresholdIndexPageQuery(IUser viewer) : base(viewer)
         {
             CurrentDate = DateTime.Today;

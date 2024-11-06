@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.TelegramChatBot
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.TelegramChatBot
+{
     public class UpdateLanguageCommand : IRequest<Result>
     {
         public UpdateLanguageCommand() : this(null)

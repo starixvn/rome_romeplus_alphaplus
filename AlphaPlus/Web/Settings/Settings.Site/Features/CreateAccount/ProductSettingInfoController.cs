@@ -1,14 +1,12 @@
+using AlphaPlus.Core;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.MemberInfo.API.Features.CreateAccount;
+using AlphaPlus.Settings.MemberInfo.API.Services;
+using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+
 namespace AlphaPlus.Settings.Site.Features.CreateAccount
 {
-    using System.Linq;
-    using System.Threading.Tasks;
-    using AlphaPlus.Core;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Settings.MemberInfo.API.Features.CreateAccount;
-    using AlphaPlus.Settings.MemberInfo.API.Services;
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
-
     public class ProductSettingInfoController : BaseController
     {
         private readonly IUser viewer;

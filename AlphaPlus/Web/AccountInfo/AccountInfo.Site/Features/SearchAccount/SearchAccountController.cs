@@ -1,4 +1,3 @@
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerStatus;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineList;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Get;

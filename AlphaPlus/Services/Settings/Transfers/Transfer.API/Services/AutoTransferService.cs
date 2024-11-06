@@ -1,18 +1,14 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Services
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Transfer.API.Constants;
-    using AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer;
-    using AlphaPlus.Settings.Transfer.API.Extensions;
-    using AlphaPlus.Settings.Transfer.API.Helpers;
-    using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
-    using AlphaPlus.Settings.Transfer.API.Params.AutoTransfer;
-    using Fanex.Data.Repository;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Transfer.API.Constants;
+using AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer;
+using AlphaPlus.Settings.Transfer.API.Extensions;
+using AlphaPlus.Settings.Transfer.API.Helpers;
+using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
+using AlphaPlus.Settings.Transfer.API.Params.AutoTransfer;
+using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Transfer.API.Services
+{
     public interface AutoTransferService
     {
         Task<Result> UpdateAsync(UpdateSingleParam param);

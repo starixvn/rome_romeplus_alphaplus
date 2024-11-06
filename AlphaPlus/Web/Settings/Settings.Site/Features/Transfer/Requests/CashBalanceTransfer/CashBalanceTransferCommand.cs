@@ -1,10 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer
-{
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using MediatR;
-    using Settings.Transfer.API.Models;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using MediatR;
+using AlphaPlus.Settings.Transfer.API.Models;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer
+{
     public class CashBalanceTransferCommand : IRequest<Result>
     {
         public CashBalanceTransferCommand() : this(null) { }

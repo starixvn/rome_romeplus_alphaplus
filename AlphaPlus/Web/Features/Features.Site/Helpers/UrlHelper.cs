@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Helpers
-{
-    using System;
-    using AlphaPlus.Core.Helpers;
+﻿using AlphaPlus.Core.Helpers;
 
+namespace AlphaPlus.Features.Site.Messages.Helpers
+{
     public static class UrlHelper
     {
         [ThreadStatic]

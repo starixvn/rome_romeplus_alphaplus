@@ -1,13 +1,10 @@
-﻿namespace AlphaPlus.Features.Messages.API.Services
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Criteria.Product;
-    using Fanex.Caching;
-    using Fanex.Data.Repository;
-    using Models.Product;
+﻿using AlphaPlus.Features.Messages.API.Criteria.Product;
+using Fanex.Caching;
+using Fanex.Data.Repository;
+using AlphaPlus.Features.Messages.API.Models.Product;
 
+namespace AlphaPlus.Features.Messages.API.Services
+{
     public interface ProductService
     {
         IEnumerable<Product> GetOfferedProductsByCustomer(int custId);

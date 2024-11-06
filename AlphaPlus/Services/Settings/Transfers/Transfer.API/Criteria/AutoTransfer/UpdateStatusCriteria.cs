@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer
+{
     public class UpdateStatusCriteria : NonQueryCommand
     {
         public UpdateStatusCriteria(

@@ -1,18 +1,15 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Resources;
-    using System.Text;
-    using System.Xml.Linq;
-    using AlphaPlus.Settings.ViewLogs.API.Extensions;
-    using AlphaPlus.Core.Configurations;
-    using Constants;
-    using Helpers;
-    using Params;
-    using AlphaPlus.Shared.AppResources.Settings.ViewLog;
+﻿using System.Resources;
+using System.Text;
+using System.Xml.Linq;
+using AlphaPlus.Settings.ViewLogs.API.Extensions;
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.Settings.ViewLogs.API.Constants;
+using AlphaPlus.Settings.ViewLogs.API.Helpers;
+using AlphaPlus.Settings.ViewLogs.API.Params;
+using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
+{
     public class LogFormatterImpl : LogFormatter
     {
         private readonly ViewLogIPService ipService;

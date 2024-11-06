@@ -1,12 +1,9 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Configurations
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Core.Helpers;
-    using AlphaPlus.Core.Models;
-    using Microsoft.AspNetCore.Http;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using Microsoft.AspNetCore.Http;
 
+namespace AlphaPlus.Settings.MemberInfo.Domain.Configurations
+{
     public static class AppSettings
     {
         [ThreadStatic]

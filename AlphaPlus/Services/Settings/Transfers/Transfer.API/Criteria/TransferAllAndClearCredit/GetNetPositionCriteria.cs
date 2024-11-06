@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
+{
     public class GetNetPositionCriteria : CriteriaBase
     {
         public GetNetPositionCriteria(

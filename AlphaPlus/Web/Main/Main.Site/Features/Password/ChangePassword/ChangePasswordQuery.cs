@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.Password
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.Password
+{
     public class ChangePasswordQuery : IRequest<PasswordViewModel>
     {
         private readonly IUserSession userSession;

@@ -1,14 +1,14 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer
-{
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.Site.Features.Transfer.Models;
-    using MediatR;
-    using Settings.Transfer.API.Models;
-    using ViewModels.CashBalanceTransfer;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using MediatR;
+using AlphaPlus.Settings.Transfer.API.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.CashBalanceTransfer;
 
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer
+{
     public class HintTransferQuery : IRequest<HintTransferViewModel>
     {
-        public HintTransferQuery() : this(null) {}
+        public HintTransferQuery() : this(null) { }
 
         public HintTransferQuery(IUser user)
         {

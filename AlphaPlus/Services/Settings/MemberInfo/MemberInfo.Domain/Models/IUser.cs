@@ -1,9 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Models
-{
-    using System;
-    using System.Collections.Generic;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.MemberInfo.Domain.Models
+{
     public interface IUser
     {
         int LoggedInUserId { get; }

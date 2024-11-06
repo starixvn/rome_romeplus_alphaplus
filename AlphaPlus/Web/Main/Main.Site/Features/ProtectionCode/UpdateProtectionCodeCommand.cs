@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Main.Site.Features.ProtectionCode
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
+namespace AlphaPlus.Main.Site.Features.ProtectionCode
+{
     public class UpdateProtectionCodeCommand : IRequest<Result>
     {
         private readonly IUserSession userSession;

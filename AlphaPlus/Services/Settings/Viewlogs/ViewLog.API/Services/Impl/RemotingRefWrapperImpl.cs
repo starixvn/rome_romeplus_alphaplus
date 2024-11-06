@@ -1,10 +1,9 @@
-﻿namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
-{
-    using System.Threading;
-    using AlphaPlus.Settings.ViewLogs.API.Constants;
-    using AlphaPlus.Core.Configurations;
-    using Fanex.RemotingRef;
+﻿using AlphaPlus.Settings.ViewLogs.API.Constants;
+using AlphaPlus.Core.Configurations;
+using Fanex.RemotingRef;
 
+namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
+{
     public class RemotingRefWrapperImpl : RemotingRefWrapper
     {
         private readonly IRemotingRefService remotingRefService;

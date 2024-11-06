@@ -1,12 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests
-{
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Models;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests
+{
     public class MemberInfoBaseQuery
     {
         protected readonly IUser viewer;
@@ -27,7 +25,7 @@
             CustLevelId = this.viewer.LevelId;
             SubAccId = this.viewer.SubAccId;
             SubUsername = this.viewer.SubAccName;
-            BreadcrumbLevel = Enumerable.Empty<CustInfo>();
+            BreadcrumbLevel = [];
         }
 
         public string ActorUsername => viewer.Name;

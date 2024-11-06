@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Extensions
-{
-    using System.Globalization;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+﻿using System.Globalization;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 
+namespace AlphaPlus.Settings.MemberInfo.Domain.Extensions
+{
     public static class NumberExtensions
     {
         private const string moneyFormat = "#,##0.##";

@@ -1,7 +1,5 @@
 ﻿namespace AlphaPlus.Features.Messages.API.Models.Message
 {
-    using System;
-
     public class PortalMessage : MultiLanguague
     {
         public PortalMessage()

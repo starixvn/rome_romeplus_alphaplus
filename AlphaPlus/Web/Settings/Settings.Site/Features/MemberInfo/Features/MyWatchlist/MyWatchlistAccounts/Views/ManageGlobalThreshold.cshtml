@@ -1,7 +1,4 @@
-﻿@using AlphaPlus.Core.Helpers
-@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
-@using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWatchlistAccounts.ViewModels
-@model ManageGlobalThresholdViewModel
+﻿@model ManageGlobalThresholdViewModel
 
 @{
     Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
@@ -10,7 +7,8 @@
 
 @section Styles {
     @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings")
-    @StaticResources.RenderStylesWithMedia(767, "~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
+    @StaticResources.RenderStylesWithMedia(767,
+        "~/Features/MemberInfo/Features/MyWatchlist/Shared/bundles/my-watchlist-settings-media")
 }
 
 @section Scripts {
@@ -21,7 +19,8 @@
     <div id="alert-message"></div>
     <p class="note">@Resources.GlobalThresholdSettingsNote</p>
     <p>@Resources.GlobalThresholdWillBeAppliedForMembers</p>
-    @await Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml", Model.Threshold)
+    @await Html.PartialAsync("~/Features/MemberInfo/Features/MyWatchlist/Shared/Views/ThresholdInputGroup.cshtml",
+            Model.Threshold)
     <p class="note">@Resources.ThresholdSettingsNote</p>
     <button class="btn-submit" id="btn-update">@Resources.Update</button>
 </div>

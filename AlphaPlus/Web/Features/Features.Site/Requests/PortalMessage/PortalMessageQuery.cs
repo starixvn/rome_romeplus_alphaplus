@@ -1,10 +1,10 @@
-﻿namespace AlphaPlus.Features.Messages.Site.Requests.PortalMessage
-{
-    using MediatR;
-    using Messages.API.Constants;
-    using AlphaPlus.Features.Site.Messages.ViewModels;
-    using AlphaPlus.Core.Models;
+﻿using MediatR;
+using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Site.Messages.ViewModels;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Features.Messages.Site.Requests.PortalMessage
+{
     public class PortalMessageQuery : IRequest<PortalMessagesViewModel>
     {
         public PortalMessageQuery(
@@ -22,13 +22,13 @@
         public byte Level { get; }
 
         public int CustId { get; }
-        
+
         public int TotalMessage { get; }
 
         public bool IsTest { get; }
 
         public string CurrentLang { get; }
 
-        public string ParentSites => MessageConstants.ParentSitesByLevel[Level];        
+        public string ParentSites => MessageConstants.ParentSitesByLevel[Level];
     }
 }

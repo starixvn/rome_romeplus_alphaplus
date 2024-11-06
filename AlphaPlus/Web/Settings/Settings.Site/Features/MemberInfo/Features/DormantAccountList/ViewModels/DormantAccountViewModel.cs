@@ -1,14 +1,12 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.ViewModels
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.Requests;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
-    using Microsoft.AspNetCore.Mvc.Rendering;
-    using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.Requests;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using AlphaPlus.Core.Models;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.DormantAccountList.ViewModels
+{
     public class DormantAccountViewModel
     {
         public DormantAccountViewModel(

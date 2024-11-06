@@ -1,13 +1,10 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
-    using ONEbook.SpreadSheets;
-    using ONEbook.SpreadSheets.NPOI;
+﻿using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
+using ONEbook.SpreadSheets;
+using ONEbook.SpreadSheets.NPOI;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
+{
     public interface ProblemAccountWorkbook
     {
         Workbook<ProblemAccountModel> UseTemplate(TemplateInfo templateInfo);

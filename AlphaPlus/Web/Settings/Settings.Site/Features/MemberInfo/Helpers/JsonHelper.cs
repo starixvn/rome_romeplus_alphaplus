@@ -1,8 +1,7 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
-{
-    using System;
-    using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
+{
     public static class JsonHelper
     {
         [ThreadStatic]

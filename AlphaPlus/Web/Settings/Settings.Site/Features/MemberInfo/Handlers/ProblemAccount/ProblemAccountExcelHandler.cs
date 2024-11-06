@@ -1,18 +1,18 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
-{
-    using System;
-    using System.Text;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount;
-    using AlphaPlus.Settings.MemberInfo.API.Services;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-    using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
-    using MediatR;
-    using ONEbook.SpreadSheets;
-    using static ONEbook.SpreadSheets.Column;
-    using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
-    using AlphaPlus.Core.Models;
+﻿using System.Text;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount;
+using AlphaPlus.Settings.MemberInfo.API.Services;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
+using MediatR;
+using ONEbook.SpreadSheets;
+using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.Settings.MemberInfo.Domain.Extensions;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers.ProblemAccount;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
+{
     public class ProblemAccountExcelHandler : ExcelBaseHandler, IRequestHandler<ProblemAccountExcelQuery, ExcelFileViewModel>
     {
         private int currentRowIndex = 1;

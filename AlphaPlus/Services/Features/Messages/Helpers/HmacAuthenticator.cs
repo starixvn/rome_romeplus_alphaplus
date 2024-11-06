@@ -1,15 +1,14 @@
-﻿namespace AlphaPlus.Features.Messages.API.Client.Helpers
-{
-    using System;
-    using System.Net;
-    using System.Net.Sockets;
-    using System.Security.Cryptography;
-    using System.Text;
-    using AlphaPlus.Features.Messages.API.Configurations;
-    using RestSharp;
-    using RestSharp.Authenticators;
-    using RestSharp.Extensions.MonoHttp;
+﻿using System.Net;
+using System.Net.Sockets;
+using System.Security.Cryptography;
+using System.Text;
+using AlphaPlus.Features.Messages.API.Configurations;
+using RestSharp;
+using RestSharp.Authenticators;
+using RestSharp.Extensions.MonoHttp;
 
+namespace AlphaPlus.Features.Messages.API.Client.Helpers
+{
     public class HmacAuthenticator : IAuthenticator
     {
         private readonly string machineIP;

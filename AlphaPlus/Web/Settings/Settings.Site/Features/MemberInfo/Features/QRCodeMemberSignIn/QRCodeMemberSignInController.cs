@@ -1,13 +1,12 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn
-{
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn
+{
     public class QRCodeMemberSignInController : SiteBaseController
     {
         private const string IndexPath = "~/Features/MemberInfo/Features/QRCodeMemberSignIn/Views/Index.cshtml";
@@ -65,7 +64,7 @@
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public  async Task<ActionResult> GetMemberCreditAndStatus(GetMemberCreditAndStatusRequest message)
+        public async Task<ActionResult> GetMemberCreditAndStatus(GetMemberCreditAndStatusRequest message)
             => Json(await mediator.Send(message));
 
         [HttpGet]

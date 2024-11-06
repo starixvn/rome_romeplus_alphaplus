@@ -1,12 +1,12 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Handlers
-{
-    using AlphaPlus.Features.Messages.API.Constants;
-    using AlphaPlus.Features.Messages.API.Params.Announcement;
-    using AlphaPlus.Features.Messages.API.Services;
-    using MediatR;
-    using Requests.Announcement;
-    using ViewModels;
+﻿using AlphaPlus.Features.Messages.API.Constants;
+using AlphaPlus.Features.Messages.API.Params.Announcement;
+using AlphaPlus.Features.Messages.API.Services;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.Requests.Announcement;
+using AlphaPlus.Features.Site.Messages.ViewModels;
 
+namespace AlphaPlus.Features.Site.Messages.Handlers
+{
     public class AnnouncementHandler :
         IRequestHandler<AnnouncementsHistoryQuery, AnnouncementHistoryViewModel>
     {

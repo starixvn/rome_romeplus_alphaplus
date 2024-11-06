@@ -1,10 +1,10 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Requests.MarqueeMessage
-{
-    using AlphaPlus.Core.Models;
-    using MediatR;
-    using ViewModels;
-    using AlphaPlus.Features.Messages.API.Configurations;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
+using AlphaPlus.Features.Site.Messages.ViewModels;
+using AlphaPlus.Features.Messages.API.Configurations;
 
+namespace AlphaPlus.Features.Site.Messages.Requests.MarqueeMessage
+{
     public class MarqueeMessageQuery : IRequest<MarqueeMessageViewModel>
     {
         private readonly bool? isTest;
@@ -32,7 +32,7 @@
         public int CustId { get; }
 
         public bool IsTest
-            => this.isTest ?? AppSettings.LocalTest; 
+            => this.isTest ?? AppSettings.LocalTest;
 
         public string CurrentLang { get; }
 

@@ -1,11 +1,9 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
-{
-    using System;
-    using System.IO;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-    using ONEbook.SpreadSheets;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using ONEbook.SpreadSheets;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers
+{
     public abstract class ExcelBaseHandler
     {
         private const int bodyStartIndex = 2;

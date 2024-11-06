@@ -1,4 +1,3 @@
-using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.CorrectScore;

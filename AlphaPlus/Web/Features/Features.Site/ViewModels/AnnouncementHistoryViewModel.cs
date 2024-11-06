@@ -1,10 +1,8 @@
-﻿namespace AlphaPlus.Features.Site.Messages.ViewModels
-{
-    using System;
-    using System.Collections.Generic;
-    using AlphaPlus.Features.Messages.API.Models.Announcement;
-    using AlphaPlus.Features.Messages.API.Models.Message;
+﻿using AlphaPlus.Features.Messages.API.Models.Announcement;
+using AlphaPlus.Features.Messages.API.Models.Message;
 
+namespace AlphaPlus.Features.Site.Messages.ViewModels
+{
     public class AnnouncementHistoryViewModel : MessageBase
     {
         public AnnouncementHistoryViewModel(

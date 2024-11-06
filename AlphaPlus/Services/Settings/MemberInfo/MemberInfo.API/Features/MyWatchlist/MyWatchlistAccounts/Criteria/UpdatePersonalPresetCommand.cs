@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts.Criteria
-{
-    using Fanex.Data.Repository;
+﻿using Fanex.Data.Repository;
 
+namespace AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts.Criteria
+{
     public class UpdatePersonalPresetCommand : NonQueryCommand
     {
         public UpdatePersonalPresetCommand(int agentId, int id, string presetTitle, decimal winningThreshold, decimal losingThreshold, int sporttype = 0)

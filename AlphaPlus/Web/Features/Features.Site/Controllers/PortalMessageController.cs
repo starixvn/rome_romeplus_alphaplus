@@ -1,11 +1,11 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Features.Messages.API.Configurations;
-    using MediatR;
-    using AlphaPlus.Core.Models;
-    using AlphaPlus.Features.Messages.Site.Requests.PortalMessage;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Features.Messages.API.Configurations;
+using MediatR;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Features.Messages.Site.Requests.PortalMessage;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     public class PortalMessageController : SiteBaseController
     {
         private const int DefaultNumberMessage = 10;

@@ -1,11 +1,10 @@
-﻿namespace AlphaPlus.Features.Site.Messages.Controllers
-{
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
-    using AlphaPlus.Features.Site.Messages.Requests.BackupDomains;
-    using MediatR;
-    using AlphaPlus.Core.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using AlphaPlus.Features.Site.Messages.Requests.BackupDomains;
+using MediatR;
+using AlphaPlus.Core.Filters;
 
+namespace AlphaPlus.Features.Site.Messages.Controllers
+{
     public class BackupDomainsController : SiteBaseController
     {
         public BackupDomainsController(IMediator mediator) : base(mediator)

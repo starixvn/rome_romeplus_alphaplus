@@ -1,12 +1,11 @@
-﻿namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds
-{
-    using System.Threading.Tasks;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests;
-    using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.ViewModels;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
+﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Controllers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds.ViewModels;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyThresholds
+{
     public class MyThresholdsController : SiteBaseController
     {
         private const string IndexPath = "~/Features/MemberInfo/Features/MyWatchlist/MyThresholds/Views/Index.cshtml";
