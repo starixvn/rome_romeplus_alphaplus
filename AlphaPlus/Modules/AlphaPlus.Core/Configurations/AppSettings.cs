@@ -91,6 +91,12 @@ public static class AppSettings
 
     public static bool IsEnabledProduct(int product) => ConfigurationManager.GetValue<string>("EnableProduct-" + product) == "1";
 
+    public static HashSet<int> ForcedHideProductIds { get; } = new HashSet<int>(
+        ConfigurationManager
+            .GetValue<string>("ForcedHideProductIds")
+            .Split(',')
+            .Select(v => int.Parse(v)));
+
     private static void GetForceLoginNicknameConfiguration()
     {
         var forceLoginNicknameDateValue = ConfigurationManager.GetValue<string>("ForceLoginNicknameDate");
