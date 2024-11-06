@@ -20,6 +20,10 @@ public class WinLossHandler(
         IRequestHandler<WinLossQuery, WinLossViewModel>,
         IRequestHandler<WinLossExcelQuery, ExcelFileViewModel>
 {
+    private readonly IWinLossService winlossService = winlossService;
+    private readonly IEnteredResultService enteredResultService = enteredResultService;
+    private readonly IWinLossWorkbook workbook = workbook;
+
     public async Task<WinLossViewModel> Handle(WinLossQuery message, CancellationToken cancellationToken)
     {
         var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
@@ -31,7 +35,6 @@ public class WinLossHandler(
         return new WinLossViewModel(
             message,
             productViewModel,
-            BuildBreadcrumbViewModel(message),
             await enteredResultTask,
             await reportDataTask);
     }

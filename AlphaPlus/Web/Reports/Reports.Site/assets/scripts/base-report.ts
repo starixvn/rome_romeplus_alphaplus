@@ -86,24 +86,38 @@ class BaseReport {
         this.$reportForm.addClass('hide');
     }
 
-    protected onSubmitReport(event, hasStackIcon: boolean = undefined, sortInfo: SortInfo = undefined) {
-        const isFilterVisibleValue = !this.$reportForm.hasClass('hide') && !alphaReports.screenSmallThan768();
-        let html = `<input type="hidden" name="IsFilterVisible" value="${isFilterVisibleValue}" />`;
+    protected onSubmitReport(event, sortInfo = undefined) {
+        const isFilterVisible = !this.$reportForm.hasClass('hide') && !alphaReports.screenSmallThan768();
+        const html = [`<input type="hidden" name="IsFilterVisible" value="${isFilterVisible}"/>`];
 
-        if (typeof hasStackIcon !== 'undefined') {
-            html += `<input type="hidden" name="IsStackMode" value="${this.isStackMode()}" />`;
+        const hasStackIcon = this.$pageTitle.find('#icon-stack-column').length > 0;
+        if (hasStackIcon) {
+            html.push(`<input type="hidden" name="IsStackMode" value="${this.isStackMode()}"/>`);
         }
 
+        sortInfo = sortInfo || this.getSortInfo();
         if (typeof sortInfo !== 'undefined') {
-            html +=
-                `<input type="hidden" name="SortPropertyName" value="${sortInfo.sortPropertyName}" />` +
-                `<input type="hidden" name="DescendingSort" value="${sortInfo.descendingSort}" />`;
+            html.push(
+                `<input type="hidden" name="SortPropertyName" value="${sortInfo.sortPropertyName}"/>`,
+                `<input type="hidden" name="DescendingSort" value="${sortInfo.descendingSort}"/>`
+            );
         }
 
-        this.$reportForm.append(html);
+        this.$reportForm.append(html.join(''));
     }
 
     protected isStackMode = () => this.$tableReport.hasClass('stack-mode');
+
+    private getSortInfo(): SortInfo {
+        const sortPropertyName = this.$tableReport.data('sortedcolumn');
+
+        if (sortPropertyName) {
+            return {
+                sortPropertyName,
+                descendingSort: this.$tableReport.data('descendingsort')
+            };
+        }
+    }
 
     protected registerHistoricReportEvent() {
         $('#historic-report').click((e) => {

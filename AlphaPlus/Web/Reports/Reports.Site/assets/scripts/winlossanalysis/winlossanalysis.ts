@@ -90,7 +90,7 @@ class WinLossAnalysisView extends BaseReport {
             return;
         }
 
-        super.onSubmitReport(event, undefined, this.sortComponent.getSortInfo());
+        super.onSubmitReport(event);
     };
 
     renderAtFirstSwitchMode = (isSwitchToNormalMode: boolean) =>

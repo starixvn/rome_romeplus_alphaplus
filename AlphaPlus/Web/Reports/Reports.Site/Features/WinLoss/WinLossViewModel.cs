@@ -4,40 +4,39 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLoss;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.WinLoss;
 
-public class WinLossViewModel
+public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
 {
+    private static string BetListPath = MicroSites.TicketUrl("~/WinLoss/Index");
+
     public WinLossViewModel(
         WinLossQuery message,
         ProductMultiSelectionViewModel productViewModel,
-        BreadcrumbViewModel breadcrumbLevel,
         EnteredResultSport totalEnteredResults,
-        ReportData<WinLossModel> reportData)
+        ReportData<WinLossModel> reportData) : base(
+            message,
+            new PageHeaderViewModel(
+                Title: GetTitle(message.CustLevel),
+                HasStackIcon: true,
+                IsStackMode: message.IsStackMode,
+                IsFilterVisible: message.IsFilterVisible,
+                BreadcrumbLevel: BuildBreadcrumbViewModel(message),
+                TotalEnteredResults: totalEnteredResults),
+            reportData,
+            message.SortPropertyName,
+            message.DescendingSort)
     {
-        CustId = message.CustId;
-        CustName = message.CustName;
-        CustLevel = message.CustLevel;
-        IsHistoricReport = message.IsHistoricReport;
-        var (title, custLevelName, downlineLevelName) = GetTitleCustLevelName(CustLevel);
+        var (custLevelName, downlineLevelName) = GetCustLevelAndDownlineLevelName(CustLevel);
         CustLevelName = custLevelName;
         DownlineLevelName = downlineLevelName;
-        SortPropertyName = message.SortPropertyName;
-        DescendingSort = message.DescendingSort;
         IsSetDefaultStackMode = message.IsSetDefaultStackMode;
-        FromDate = message.FromDate.ToShortDateWithSlash();
-        ToDate = message.ToDate.ToShortDateWithSlash();
-        PageHeader = new PageHeaderViewModel(
-            Title: title,
-            HasStackIcon: true,
-            IsStackMode: message.IsStackMode,
-            IsFilterVisible: message.IsFilterVisible,
-            BreadcrumbLevel: breadcrumbLevel,
-            TotalEnteredResults: totalEnteredResults);
         ProductViewModel = productViewModel;
+        IsHistoricReport = message.IsHistoricReport;
         if (IsHistoricReport)
         {
             MonthPicker = new MonthPickerViewModel(message.MinDate, message.FromDate, message.ToDate);
@@ -54,14 +53,7 @@ public class WinLossViewModel
                 isSupportHistoricReport: true,
                 isHistoricReport: IsHistoricReport);
         }
-        ReportData = reportData;
     }
-
-    public int CustId { get; }
-
-    public string CustName { get; }
-
-    public UserLevel CustLevel { get; }
 
     public string CustLevelName { get; }
 
@@ -69,17 +61,7 @@ public class WinLossViewModel
 
     public bool IsHistoricReport { get; }
 
-    public string SortPropertyName { get; }
-
-    public byte DescendingSort { get; }
-
     public bool IsSetDefaultStackMode { get; }
-
-    public string FromDate { get; }
-
-    public string ToDate { get; }
-
-    public PageHeaderViewModel PageHeader { get; }
 
     public ProductMultiSelectionViewModel ProductViewModel { get; }
 
@@ -89,7 +71,33 @@ public class WinLossViewModel
 
     public string ViewDataInstructionMessage { get; }
 
-    public ReportData<WinLossModel> ReportData { get; }
+    private static string GetTitle(UserLevel custLevel)
+        => custLevel.IsSuperLevel()
+        ? Resources.MasterWinLoss
+        : custLevel.IsMasterLevel() ? Resources.AgentWinLoss : Resources.MemberWinLoss;
+
+    private static (string, string) GetCustLevelAndDownlineLevelName(UserLevel custLevel)
+    {
+        string custLevelName, downlineLevelName;
+
+        if (custLevel.IsSuperLevel())
+        {
+            custLevelName = Resources.Super;
+            downlineLevelName = Resources.Master;
+        }
+        else if (custLevel.IsMasterLevel())
+        {
+            custLevelName = Resources.Master;
+            downlineLevelName = Resources.Agent;
+        }
+        else
+        {
+            custLevelName = Resources.Agent;
+            downlineLevelName = Resources.Member;
+        }
+
+        return (custLevelName, downlineLevelName);
+    }
 
     public IDictionary<string, string> GetExcelParams()
         => new Dictionary<string, string>
@@ -100,35 +108,9 @@ public class WinLossViewModel
             [nameof(ProductViewModel.UserSelectedProductIds)] = ProductViewModel.UserSelectedProductIds,
             [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
             [nameof(IsHistoricReport)] = IsHistoricReport.ToString(),
-            [nameof(FromDate)] = FromDate,
-            [nameof(ToDate)] = ToDate
+            [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
+            [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate,
         };
-
-    private static (string, string, string) GetTitleCustLevelName(UserLevel custLevel)
-    {
-        string title, custLevelName, downlineLevelName;
-
-        if (custLevel.IsSuperLevel())
-        {
-            title = Resources.MasterWinLoss;
-            custLevelName = Resources.Super;
-            downlineLevelName = Resources.Master;
-        }
-        else if (custLevel.IsMasterLevel())
-        {
-            title = Resources.AgentWinLoss;
-            custLevelName = Resources.Master;
-            downlineLevelName = Resources.Agent;
-        }
-        else
-        {
-            title = Resources.MemberWinLoss;
-            custLevelName = Resources.Agent;
-            downlineLevelName = Resources.Member;
-        }
-
-        return (title, custLevelName, downlineLevelName);
-    }
 
     public string GetBetListUrl(int custId, string custName)
     {
@@ -144,6 +126,4 @@ public class WinLossViewModel
 
         return $"{BetListPath}{queryString}";
     }
-
-    private static string BetListPath = MicroSites.TicketUrl("~/WinLoss/Index");
 }

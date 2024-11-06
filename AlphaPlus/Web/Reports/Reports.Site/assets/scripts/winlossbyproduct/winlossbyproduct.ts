@@ -188,7 +188,7 @@ class WinLossByProductView extends BaseReport {
             return;
         }
 
-        super.onSubmitReport(event, true);
+        super.onSubmitReport(event);
     };
 }
 

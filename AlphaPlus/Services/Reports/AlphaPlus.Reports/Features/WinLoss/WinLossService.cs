@@ -15,6 +15,10 @@ public class WinLossService(
     IReportDateService reportDateService,
     IPartialUMService partialUMService) : IWinLossService
 {
+    private readonly IDynamicRepository repository = repository;
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly IPartialUMService partialUMService = partialUMService;
+
     public async Task<ReportData<WinLossModel>> GetWinLoss(WinLossParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
@@ -29,13 +33,20 @@ public class WinLossService(
             param.ProductDetailsXml);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
+        var rawData = await repository.FetchAsync<WinLossModel>(criteria);
+
+        return new ReportData<WinLossModel>(rawData, CalculateTotal(rawData));
+    }
+
+    private static WinLossModel CalculateTotal(IEnumerable<WinLossModel> rawData)
+    {
         var total = new WinLossModel();
-        var rawdata = await repository.FetchAsync<WinLossModel>(criteria);
-        foreach (var item in rawdata)
+
+        foreach (var item in rawData)
         {
             total += item;
         }
 
-        return new ReportData<WinLossModel>(rawdata, total);
+        return total;
     }
 }

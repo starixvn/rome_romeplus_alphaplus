@@ -131,7 +131,7 @@ class ConsolidationView extends BaseReport {
             return;
         }
 
-        super.onSubmitReport(event, true);
+        super.onSubmitReport(event);
     };
 
     // replaceHrefParam = (paramName: string, paramValue: any) => {

@@ -43,6 +43,8 @@ public class ProductService(
     private const int CacheInMinutes = 5;
     private const string CacheKey = "AlphaPlus.Reports.Legends.ProductsNeedDelayTimeToSummarizeData";
 
+    private readonly IDynamicRepository repository = repository;
+
     public string ConcatProductNames(IEnumerable<int> productIds)
         => productIds.Select(cacheRefService.GetProductName).JoinWithComma(", ");
 

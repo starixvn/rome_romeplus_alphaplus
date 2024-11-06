@@ -204,7 +204,7 @@ class OutstandingView extends BaseReport {
             return;
         }
 
-        super.onSubmitReport(event, undefined, {
+        super.onSubmitReport(event, {
             sortPropertyName: this.getColumnSortName(),
             descendingSort: this.isDescendingSort() ? 1 : 0
         });

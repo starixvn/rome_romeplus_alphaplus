@@ -102,10 +102,10 @@ class SortComponent {
         dormantAccountsRow.length && this.$tableReport.append(dormantAccountsRow);
     };
 
-    getSortInfo = (): SortInfo => {
-        return {
-            sortPropertyName: this.$tableReport.data('sortedcolumn'),
-            descendingSort: this.$tableReport.data('descendingsort')
-        };
-    };
+    // getSortInfo = (): SortInfo => {
+    //     return {
+    //         sortPropertyName: this.$tableReport.data('sortedcolumn'),
+    //         descendingSort: this.$tableReport.data('descendingsort')
+    //     };
+    // };
 }

@@ -91,7 +91,7 @@ class MatchWinLossDetailView extends BaseReport {
             return;
         }
 
-        super.onSubmitReport(event, true);
+        super.onSubmitReport(event);
     };
 
     onSwitchMode = () => {

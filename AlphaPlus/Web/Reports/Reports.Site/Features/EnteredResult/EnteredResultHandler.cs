@@ -11,6 +11,9 @@ public class EnteredResultHandler(
         IRequestHandler<EnteredResultQuery, EnteredResultViewModel>,
         IRequestHandler<EnteredResultExcelQuery, ExcelFileViewModel>
 {
+    private readonly IEnteredResultService enteredResultService = enteredResultService;
+    private readonly IEnteredResultWorkbook workbook = workbook;
+
     public async Task<EnteredResultViewModel> Handle(EnteredResultQuery message, CancellationToken cancellationToken)
     {
         var reportData = await GetEnteredResults(message.Site);

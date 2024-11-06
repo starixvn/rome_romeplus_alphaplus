@@ -21,8 +21,6 @@
 
         $.unblockUI();
     }
-
-    onSubmitReport = (event) => super.onSubmitReport(event, undefined, this.sortComponent.getSortInfo());
 }
 
 $(function () {

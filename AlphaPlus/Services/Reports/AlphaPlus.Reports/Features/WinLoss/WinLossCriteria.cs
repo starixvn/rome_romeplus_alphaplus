@@ -10,8 +10,7 @@ internal class WinLossCriteria(
     DateTime moveBetsDay,
     string productIds,
     byte custLevelId,
-    string productDetails
-) : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
+    string productDetails) : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
 {
     public string ProductDetails { get; } = productDetails;
 

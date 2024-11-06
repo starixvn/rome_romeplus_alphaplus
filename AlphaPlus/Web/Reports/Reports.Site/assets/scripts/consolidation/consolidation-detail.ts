@@ -128,7 +128,7 @@ class ConsolidationDetailView extends BaseReport {
             return;
         }
 
-        super.onSubmitReport(event, true, this.sortComponent.getSortInfo());
+        super.onSubmitReport(event);
     };
 
     getSortedColumnName = () => {

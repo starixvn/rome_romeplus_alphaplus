@@ -26,6 +26,12 @@ public class EnteredResultService(
     private const int CacheInMinutes = 1;
     private const string CacheKey = "AlphaPlus.Reports.EnteredResult";
 
+    private readonly IDynamicRepository repository = repository;
+    private readonly ICacheService cacheService = cacheService;
+    private readonly IPartialUMService partialUMService = partialUMService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly AppSettings appSettings = options.Value;
+
     public async Task<EnteredResultSport> GetTotalEnteredResults(string siteName)
         => GetTotalEnteredResults(await GetEnteredResults(siteName));
 
@@ -69,7 +75,7 @@ public class EnteredResultService(
 
     internal async Task<IEnumerable<EnteredResultSport>> GetEnteredResultsFromDB(string siteName)
     {
-        var criteria = new EnteredResultCriteria(options.Value.LocalTest);
+        var criteria = new EnteredResultCriteria(appSettings.LocalTest);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), siteName);
 
         var dailyEnteredSports = await repository.FetchAsync<EnteredResultEntity>(criteria);
