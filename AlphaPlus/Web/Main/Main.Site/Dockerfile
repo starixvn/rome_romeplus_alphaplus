@@ -31,6 +31,9 @@ COPY "AlphaPlus/Modules/AlphaPlus.NetThrottling" "AlphaPlus/Modules/AlphaPlus.Ne
 COPY "AlphaPlus/Web/Main/Main.Site" "AlphaPlus/Web/Main/Main.Site"
 
 ARG TRANSFORM_CONFIG
+
+RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Main/Main.Site/sharedSettings.json; fi
+
 ARG CI_JOB_TOKEN
 RUN echo $TRANSFORM_CONFIG
 RUN mkdir /src/tmp

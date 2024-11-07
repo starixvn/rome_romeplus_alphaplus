@@ -38,6 +38,10 @@ COPY "AlphaPlus/Services/Settings" "AlphaPlus/Services/Settings"
 
 COPY "AlphaPlus/Web/Settings" "AlphaPlus/Web/Settings"
 
+ARG TRANSFORM_CONFIG
+
+RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Settings/Settings.Site/sharedSettings.json; fi
+
 WORKDIR /src/AlphaPlus/Web/Settings/Settings.Site
 
 RUN yarn && yarn build

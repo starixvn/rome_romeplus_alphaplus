@@ -32,6 +32,10 @@ COPY "AlphaPlus/Modules/AlphaPlus.NetThrottling" "AlphaPlus/Modules/AlphaPlus.Ne
 COPY "AlphaPlus/Web/Reports/Reports.Site" "AlphaPlus/Web/Reports/Reports.Site"
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
+ARG TRANSFORM_CONFIG
+
+RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Reports/Reports.Site/sharedSettings.json; fi
+
 WORKDIR /src/AlphaPlus/Web/Reports/Reports.Site
 
 RUN yarn && gulp default

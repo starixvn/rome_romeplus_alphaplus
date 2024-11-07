@@ -26,6 +26,10 @@ COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode" "AlphaPlus/Modules/AlphaPlus.Sec
 COPY "AlphaPlus/Web/AccountInfo/AccountInfo.Site" "AlphaPlus/Web/AccountInfo/AccountInfo.Site"
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
+ARG TRANSFORM_CONFIG
+
+RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/AccountInfo/AccountInfo.Site/sharedSettings.json; fi
+
 WORKDIR /src/AlphaPlus/Web/AccountInfo/AccountInfo.Site
 
 RUN dotnet publish --use-current-runtime --self-contained -o /app

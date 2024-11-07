@@ -40,6 +40,10 @@ COPY "AlphaPlus/Web/Tickets/BetLists.Builders" "AlphaPlus/Web/Tickets/BetLists.B
 COPY "AlphaPlus/Web/Tickets/Tickets.Site" "AlphaPlus/Web/Tickets/Tickets.Site/"
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
+ARG TRANSFORM_CONFIG
+
+RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Tickets/Tickets.Site/sharedSettings.json; fi
+
 WORKDIR /src/AlphaPlus/Web/Tickets/Tickets.Site
 
 RUN yarn && gulp default

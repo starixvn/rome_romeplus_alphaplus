@@ -31,6 +31,10 @@ COPY "AlphaPlus/Services/Features" "AlphaPlus/Services/Features"
 COPY "AlphaPlus/Web/Features" "AlphaPlus/Web/Features"
 COPY ./AlphaPlus/Web/Features/Features.Site/assets/styles/feedback/images ./AlphaPlus/Web/Features/Features.Site/wwwroot/assets/bundles/feedback/images
 
+ARG TRANSFORM_CONFIG
+
+RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Features/Features.Site/sharedSettings.json; fi
+
 WORKDIR /src/AlphaPlus/Web/Features/Features.Site
 
 RUN yarn && yarn build
