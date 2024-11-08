@@ -13,9 +13,6 @@
     <Compile Include="..\..\..\Shared\Extensions\RemotingRefExtensions.cs" Link="Features\Shared\Extensions\RemotingRefExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\Shared\Configuration\sharedSettings.json" Link="sharedSettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="App_Data\ExcelTemplates\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

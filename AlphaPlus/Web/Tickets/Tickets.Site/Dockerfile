@@ -42,12 +42,14 @@ COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
 ARG TRANSFORM_CONFIG
 
-RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Tickets/Tickets.Site/sharedSettings.json; fi
+RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.json AlphaPlus/Web/Tickets/Tickets.Site/sharedSettings.json; fi
+
+RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Tickets/Tickets.Site/sharedSettings.json; fi
 
 WORKDIR /src/AlphaPlus/Web/Tickets/Tickets.Site
 
 RUN yarn && gulp default
-RUN dotnet publish --use-current-runtime --self-contained -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 

@@ -15,9 +15,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Extensions\HttpClientExtensions.cs" Link="Extensions\HttpClientExtensions.cs" />
-    <Content Include="..\..\..\Shared\Configuration\sharedSettings.json" Link="sharedSettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Logging\AlphaPlus.Logging.csproj" />

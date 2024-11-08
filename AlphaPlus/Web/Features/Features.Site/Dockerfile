@@ -33,12 +33,14 @@ COPY ./AlphaPlus/Web/Features/Features.Site/assets/styles/feedback/images ./Alph
 
 ARG TRANSFORM_CONFIG
 
-RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Features/Features.Site/sharedSettings.json; fi
+RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.json AlphaPlus/Web/Features/Features.Site/sharedSettings.json; fi
+
+RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Features/Features.Site/sharedSettings.json; fi
 
 WORKDIR /src/AlphaPlus/Web/Features/Features.Site
 
 RUN yarn && yarn build
-RUN dotnet publish --use-current-runtime --self-contained -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS final
 

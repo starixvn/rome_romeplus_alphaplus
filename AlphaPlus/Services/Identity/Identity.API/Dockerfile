@@ -8,7 +8,7 @@ RUN dotnet restore "AlphaPlus/Services/Identity/Identity.API/Identity.API.csproj
 COPY "AlphaPlus/Services/Identity/Identity.API" "AlphaPlus/Services/Identity/Identity.API"
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 WORKDIR /src/AlphaPlus/Services/Identity/Identity.API
-RUN dotnet publish --use-current-runtime --self-contained -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 
