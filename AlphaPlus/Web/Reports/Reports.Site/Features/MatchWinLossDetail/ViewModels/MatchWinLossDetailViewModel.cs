@@ -12,6 +12,9 @@ public class MatchWinLossDetailViewModel(
     LeagueViewModel leagueViewModel,
     MatchWinLossDetailReport reportData)
 {
+    private static string WinLossByMatchBetListPath = MicroSites.TicketUrl("~/WinLossByMatch/Index");
+    private static string ParlayWinLossByMatchBetListPath = MicroSites.TicketUrl("~/ParlayWinLossByMatch/Index");
+
     public UserLevel CustLevel { get; } = message.ViewerLevel;
 
     public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
@@ -102,8 +105,4 @@ public class MatchWinLossDetailViewModel(
 
         return $"{WinLossByMatchBetListPath}{queryString}";
     }
-
-    private static string WinLossByMatchBetListPath = MicroSites.TicketUrl("~/WinLossByMatch/Index");
-
-    private static string ParlayWinLossByMatchBetListPath = MicroSites.TicketUrl("~/ParlayWinLossByMatch/Index");
 }
