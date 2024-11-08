@@ -1,7 +1,7 @@
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using MediatR;
 using Microsoft.Extensions.Options;
@@ -21,6 +21,9 @@ public class ConsolidationHandler(
         IRequestHandler<ConsolidationByProductQuery, ConsolidationByProductViewModel>,
         IRequestHandler<ConsolidationExcelQuery, ExcelFileViewModel>
 {
+    private readonly IConsolidationByUsernameWorkbook usernameWorkbook = usernameWorkbook;
+    private readonly IConsolidationWorkbook dateOrProductWorkbook = dateOrProductWorkbook;
+
     public async Task<ConsolidationByUsernameViewModel> Handle(ConsolidationByUsernameQuery message, CancellationToken cancellationToken)
     {
         var (productViewModel, currencies, enteredResult, reportData) = await GetConsolidationByUsername(message);

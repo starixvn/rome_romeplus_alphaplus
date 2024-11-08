@@ -13,6 +13,9 @@ public class LeagueService(
     ICacheRefService cacheRefService,
     IOptions<AppSettings> options) : ILeagueService
 {
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly AppSettings appSettings = options.Value;
+
     public string GetLeagueName(int leagueId, byte leagueType, int leagueGroupId)
     {
         if (leagueType == LeagueType.ThirdParty)
@@ -20,7 +23,7 @@ public class LeagueService(
             return cacheRefService.GetLeagueName3rd(leagueId);
         }
 
-        return options.Value.IsSiteLabel777
+        return appSettings.IsSiteLabel777
             ? cacheRefService.GetLeagueName(leagueId, leagueGroupId)
             : cacheRefService.GetLeagueName(leagueId);
     }

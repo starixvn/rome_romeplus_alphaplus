@@ -137,7 +137,7 @@
                         </div>
                     </li>
                     <li class="visible-mobile dropdown-submenu language">
-                        @Component.InvokeAsync("LanguageList")
+                        @await Component.InvokeAsync("LanguageList")
                     </li>
                     <li><a class="otp open-link" data-url="@viewProfileUrl"><span
                                 class="icon icon-account-circle"></span>@Resources.EditProfilePicture</a></li>
@@ -145,7 +145,8 @@
                                 class="icon icon-lock"></span>@Resources.password</a></li>
                     @if (Model.EnableSecurityCode)
                     {
-                        <li><a class="open-link" data-url="@($"{Model.MainRootPath}SecurityCode/ChangeUserOwnSecurityCode")"><span
+                        <li><a class="open-link"
+                                data-url="@($"{Model.MainRootPath}SecurityCode/ChangeUserOwnSecurityCode")"><span
                                     class="icon icon-sercuritycode"></span>@Resources.SecurityCode</a></li>
                     }
                     <li><a class="otp open-link" data-url="@($"{Model.MainRootPath}otp/SetUpOtp")"><span

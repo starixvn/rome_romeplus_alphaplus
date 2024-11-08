@@ -6,7 +6,7 @@ using AlphaPlus.Reports.Site.Features.Shared;
 using MediatR;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
-using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Products;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossAnalysis;
 
@@ -19,9 +19,12 @@ public class WinLossAnalysisHandler(
         IRequestHandler<WinLossAnalysisQuery, WinLossAnalysisViewModel>,
         IRequestHandler<WinLossAnalysisExcelQuery, ExcelFileViewModel>
 {
+    private readonly IWinLossAnalysisService winLossAnalysisService = winLossAnalysisService;
+    private readonly IWinLossAnalysisWorkbook workbook = workbook;
+
     public async Task<WinLossAnalysisViewModel> Handle(WinLossAnalysisQuery message, CancellationToken cancellationToken)
     {
-        var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds);
+        var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds);
         var reportData = await GetWinLossAnalysis(message, productViewModel.UserSelectedProductIds);
         var (reportTitle, reportTypeName) = GetReportTitleAndTypeName(message.ReportTypeId);
 
@@ -30,7 +33,7 @@ public class WinLossAnalysisHandler(
 
     public async Task<ExcelFileViewModel> Handle(WinLossAnalysisExcelQuery message, CancellationToken cancellationToken)
     {
-        var validUserSelectedProductIds = FilterProductIds(message, message.UserSelectedProductIds);
+        var validUserSelectedProductIds = await FilterProductIds(message, message.UserSelectedProductIds);
         var reportData = await GetWinLossAnalysis(message, validUserSelectedProductIds.JoinWithComma());
         var (reportTitle, reportTypeName) = GetReportTitleAndTypeName(message.ReportTypeId);
 

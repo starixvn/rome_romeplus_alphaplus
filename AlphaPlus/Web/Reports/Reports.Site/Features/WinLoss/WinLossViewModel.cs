@@ -31,6 +31,8 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
             message.SortPropertyName,
             message.DescendingSort)
     {
+        FromDate = message.FromDate.ToShortDateWithSlash();
+        ToDate = message.ToDate.ToShortDateWithSlash();
         var (custLevelName, downlineLevelName) = GetCustLevelAndDownlineLevelName(CustLevel);
         CustLevelName = custLevelName;
         DownlineLevelName = downlineLevelName;
@@ -71,6 +73,10 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
 
     public string ViewDataInstructionMessage { get; }
 
+    public string FromDate { get; }
+
+    public string ToDate { get; }
+
     private static string GetTitle(UserLevel custLevel)
         => custLevel.IsSuperLevel()
         ? Resources.MasterWinLoss
@@ -108,8 +114,8 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
             [nameof(ProductViewModel.UserSelectedProductIds)] = ProductViewModel.UserSelectedProductIds,
             [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
             [nameof(IsHistoricReport)] = IsHistoricReport.ToString(),
-            [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
-            [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate,
+            [nameof(FromDate)] = FromDate,
+            [nameof(ToDate)] = ToDate,
         };
 
     public string GetBetListUrl(int custId, string custName)
@@ -118,8 +124,8 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
         [
             KeyValuePair.Create(nameof(custId), custId.ToString()),
             KeyValuePair.Create(nameof(custName), custName),
-            KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
-            KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate),
+            KeyValuePair.Create(nameof(FromDate), FromDate),
+            KeyValuePair.Create(nameof(ToDate), ToDate),
             KeyValuePair.Create("ProductIds", ProductViewModel.UserSelectedProductIds),
             KeyValuePair.Create("ResourceIds", ProductViewModel.UserSelectedResourceIds),
         ]);

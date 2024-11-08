@@ -4,8 +4,8 @@ using AlphaPlus.Reports.Features.Shared.Models;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Reports.Features.Products;
 
 namespace AlphaPlus.Reports.Site.Features.Legends;
 
@@ -216,7 +216,7 @@ public class LegendHandler(
     {
         try
         {
-            return await productService.GetProductsAsync(param);
+            return await productService.GetProducts(param);
         }
         catch (Exception ex)
         {
@@ -229,7 +229,7 @@ public class LegendHandler(
     {
         try
         {
-            return await productService.GetProductDetailsAsync(custId, products);
+            return await productService.GetProductDetails(custId, products);
         }
         catch (Exception ex)
         {

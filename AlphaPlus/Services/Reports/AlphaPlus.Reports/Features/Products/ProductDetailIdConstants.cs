@@ -1,4 +1,4 @@
-namespace AlphaPlus.Reports.Features.Shared.Constants;
+namespace AlphaPlus.Reports.Features.Products;
 
 public static class ProductDetailIdConstants
 {

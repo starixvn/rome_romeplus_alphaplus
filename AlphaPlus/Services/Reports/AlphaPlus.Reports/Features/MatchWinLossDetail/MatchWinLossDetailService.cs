@@ -1,7 +1,7 @@
 using AlphaPlus.PartialUM.Services;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Constants;
-using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;
 
@@ -26,6 +26,13 @@ public class MatchWinLossDetailService(
 {
     private const int ProductsCacheInMinutes = 5;
     private const string ProductsCacheKey = "AlphaPlus.Reports.MatchWinLossDetail.Products";
+
+    private readonly IDynamicRepository repository = repository;
+    private readonly ICacheService cacheService = cacheService;
+    private readonly ILeagueService leagueService = leagueService;
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
 
     public Task<IEnumerable<int>> GetProducts()
         => cacheService.GetOrSetAsync(

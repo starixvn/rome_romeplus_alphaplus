@@ -13,7 +13,7 @@
     async Task RenderRow(IPMatchingModel data, bool isTotalRow)
     {
         <tr @(isTotalRow ? "class=tbl-footer" : string.Empty)>
-            <td data-islink="true" class="text-left col-username">
+            <td class="text-left col-username" @(isTotalRow ? string.Empty : $"data-sortedvalue={data.IP}")>
                 @if (isTotalRow)
                 {
                     @Resources.Total

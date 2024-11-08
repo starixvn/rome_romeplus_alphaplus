@@ -1,7 +1,7 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
@@ -15,6 +15,9 @@ public class ConsolidationBaseHandler(
     IEnteredResultService enteredResultService,
     IConsolidationService consolidationService) : BaseHandler(productService, options)
 {
+    private readonly IEnteredResultService enteredResultService = enteredResultService;
+    private readonly IConsolidationService consolidationService = consolidationService;
+
     protected async Task<(
         ProductMultiSelectionViewModel,
         IEnumerable<ConsolidationCurrency>,
@@ -130,7 +133,7 @@ public class ConsolidationBaseHandler(
         var currenciesTask = consolidationService.GetCurrencies(message.ViewerId, message.Site);
         await Task.WhenAll(enteredResultTask, productsTask, currenciesTask);
 
-        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
+        var (productViewModel, productDetailXml) = await BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
 
         return (productViewModel, productDetailXml, await currenciesTask, await enteredResultTask);
     }
@@ -141,7 +144,7 @@ public class ConsolidationBaseHandler(
         var currenciesTask = consolidationService.GetCurrencies(message.ViewerId, message.Site);
         await Task.WhenAll(productsTask, currenciesTask);
 
-        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds,

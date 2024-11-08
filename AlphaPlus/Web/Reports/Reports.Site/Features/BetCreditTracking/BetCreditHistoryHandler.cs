@@ -12,6 +12,9 @@ public class BetCreditHistoryHandler(
         IRequestHandler<BetCreditHistoryQuery, BetCreditHistoryViewModel>,
         IRequestHandler<BetCreditHistoryExcelQuery, ExcelFileViewModel>
 {
+    private readonly IBetCreditHistoryService betCreditHistoryService = betCreditHistoryService;
+    private readonly IBetCreditHistoryWorkbook workbook = workbook;
+
     public async Task<BetCreditHistoryViewModel> Handle(BetCreditHistoryQuery message, CancellationToken cancellationToken)
     {
         var model = await GetBetCreditHistory(message);

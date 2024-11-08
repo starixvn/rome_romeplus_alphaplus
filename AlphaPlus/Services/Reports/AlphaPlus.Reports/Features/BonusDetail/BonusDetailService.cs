@@ -13,6 +13,8 @@ public interface IBonusDetailService
 
 public class BonusDetailService(IDynamicRepository repository) : IBonusDetailService
 {
+    private readonly IDynamicRepository repository = repository;
+
     public async Task<PagedReportData<GroupBonus>> GetBonusDetail(BonusDetailParam param)
     {
         GetBonusDetailCriteria criteria = null;

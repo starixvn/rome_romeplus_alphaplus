@@ -16,6 +16,8 @@ public interface ICustomerService
 
 public class CustomerService(IDynamicRepository repository) : ICustomerService
 {
+    private readonly IDynamicRepository repository = repository;
+
     public Task<CustomerLevel> GetCustomerLevel(int viewerId, string username)
         => repository.GetAsync<CustomerLevel>(new GetCustomerLevelCriteria(viewerId, username));
 

@@ -2,7 +2,6 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Customer;
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
@@ -10,6 +9,7 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Reports.Site.Features.Customer;
+using AlphaPlus.Reports.Features.Products;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
@@ -27,9 +27,15 @@ public class WinLossDetailNewHandler(
         IRequestHandler<WinLossDetailGetWeeksQuery, IEnumerable<WinLossDetailWeekViewModel>>,
         IRequestHandler<WinLossDetailExcelNewQuery, ExcelFileViewModel>
 {
+    private readonly IEnteredResultService enteredResultService = enteredResultService;
+    private readonly ICustomerService customerService = customerService;
+    private readonly IWinLossDetailService winlossDetailService = winlossDetailService;
+    private readonly IWinLossDetailWorkbook workbook = workbook;
+    private readonly ICustomerClient customerClient = customerClient;
+
     public async Task<WinLossDetailNewViewModel> Handle(WinLossDetailNewQuery message, CancellationToken cancellationToken)
     {
-        var (productViewModel, _) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
+        var (productViewModel, _) = await BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
 
         var (isValidUsername, breadcrumbs) = await BuildWinLossDetailGetDataQuery(message);
         var weekDataTask = Task.FromResult<IEnumerable<WinLossDetailWeekModel>>([]);
@@ -37,7 +43,7 @@ public class WinLossDetailNewHandler(
 
         if (isValidUsername)
         {
-            var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+            var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
                 message,
                 message.UserSelectedProductIds,
                 message.UserSelectedResourceIds);
@@ -72,7 +78,7 @@ public class WinLossDetailNewHandler(
 
         if (isValidUsername)
         {
-            var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+            var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
                 message,
                 message.UserSelectedProductIds,
                 message.UserSelectedResourceIds);
@@ -162,7 +168,7 @@ public class WinLossDetailNewHandler(
 
         if (isValidUsername)
         {
-            var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+            var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
                 message,
                 message.UserSelectedProductIds,
                 message.UserSelectedResourceIds);
@@ -243,7 +249,7 @@ public class WinLossDetailNewHandler(
 
     public async Task<ExcelFileViewModel> Handle(WinLossDetailExcelNewQuery message, CancellationToken cancellationToken)
     {
-        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds);

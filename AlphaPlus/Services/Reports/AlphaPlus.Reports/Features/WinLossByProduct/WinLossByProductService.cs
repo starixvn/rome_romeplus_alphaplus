@@ -1,6 +1,6 @@
 using AlphaPlus.PartialUM.Services;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Shared.AppResources.Report;
 using Fanex.Data.Repository;
 
@@ -18,6 +18,11 @@ public class WinLossByProductService(
     IPartialUMService partialUMService) : IWinLossByProductService
 {
     private const string MMROddTypeId = "6";
+
+    private readonly IDynamicRepository repository = repository;
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
 
     public async Task<(IEnumerable<WinLossByProductModel>, WinLossByBetTypeModel)> GetWinLossByProduct(WinLossByProductParam param)
     {

@@ -19,8 +19,6 @@ public abstract class DrillDownableViewModel<T>(
 
     public UserLevel CustLevel { get; } = message.CustLevel;
 
-    public BreadcrumbViewModel BreadcrumbLevel { get; } = BuildBreadcrumbViewModel(message);
-
     public PageHeaderViewModel PageHeader { get; } = pageHeader;
 
     public ReportData<T> ReportData { get; } = reportData;

@@ -17,6 +17,12 @@ public class BetChoiceMatchingHandler(
         IRequestHandler<BetChoiceUplinesJsonQuery, BetChoiceMatchingUplinesModel>,
         IRequestHandler<BetChoiceMatchingExcelQuery, ExcelFileViewModel>
 {
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly IBetChoiceMatchingService betChoiceMatchingService = betChoiceMatchingService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly ILeagueService leagueService = leagueService;
+    private readonly IBetChoiceMatchingWorkbook workbook = workbook;
+
     public async Task<BetChoiceMatchingViewModel> Handle(BetChoiceMatchingQuery message, CancellationToken cancellationToken)
         => new BetChoiceMatchingViewModel(message, await reportDateService.GetBalanceUpDay());
 

@@ -1,4 +1,4 @@
-using AlphaPlus.Reports.Features.Shared.Constants;
+using AlphaPlus.Reports.Features.Products;
 
 namespace AlphaPlus.Reports.Features.WinLossByProduct;
 

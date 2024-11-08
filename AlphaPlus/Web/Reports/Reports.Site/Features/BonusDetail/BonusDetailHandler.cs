@@ -10,6 +10,8 @@ public class BonusDetailHandler(IBonusDetailService bonusDetailService) :
     IRequestHandler<BonusDetailQuery, BonusDetailViewModel>,
     IRequestHandler<ConfirmPaymentCommand, Result>
 {
+    private readonly IBonusDetailService bonusDetailService = bonusDetailService;
+
     public async Task<BonusDetailViewModel> Handle(BonusDetailQuery message, CancellationToken cancellationToken)
     {
         var report = await bonusDetailService.GetBonusDetail(new BonusDetailParam(

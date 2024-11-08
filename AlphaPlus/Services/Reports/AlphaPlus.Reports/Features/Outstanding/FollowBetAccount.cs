@@ -1,4 +1,4 @@
-namespace AlphaPlus.Reports.Features.Shared.Models;
+namespace AlphaPlus.Reports.Features.Outstanding;
 
 public class FollowBetAccount
 {

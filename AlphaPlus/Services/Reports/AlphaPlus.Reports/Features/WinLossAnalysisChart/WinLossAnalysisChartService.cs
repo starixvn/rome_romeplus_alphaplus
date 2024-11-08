@@ -14,6 +14,10 @@ public class WinLossAnalysisChartService(
     IDynamicRepository repository,
     IPartialUMService partialUMService) : IWinLossAnalysisChartService
 {
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly IDynamicRepository repository = repository;
+    private readonly IPartialUMService partialUMService = partialUMService;
+
     public async Task<IEnumerable<WinLossAnalysisChartModel>> GetWinLossAnalysisChart(WinLossAnalysisChartParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();

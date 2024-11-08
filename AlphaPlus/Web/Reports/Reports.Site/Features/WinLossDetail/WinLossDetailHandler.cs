@@ -1,7 +1,7 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
@@ -20,9 +20,13 @@ public class WinLossDetailHandler(
         IRequestHandler<WinLossDetailQuery, WinLossDetailViewModel>,
         IRequestHandler<WinLossDetailExcelQuery, ExcelFileViewModel>
 {
+    private readonly IEnteredResultService enteredResultService = enteredResultService;
+    private readonly IWinLossDetailService winlossDetailService = winlossDetailService;
+    private readonly IWinLossDetailWorkbook workbook = workbook;
+
     public async Task<WinLossDetailViewModel> Handle(WinLossDetailQuery message, CancellationToken cancellationToken)
     {
-        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
+        var (productViewModel, productDetailXml) = await BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
 
         var reportDataTask = GetWinLossDetail(message, productViewModel.UserSelectedProductIds, productDetailXml);
         var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
@@ -38,7 +42,7 @@ public class WinLossDetailHandler(
 
     public async Task<ExcelFileViewModel> Handle(WinLossDetailExcelQuery message, CancellationToken cancellationToken)
     {
-        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds);

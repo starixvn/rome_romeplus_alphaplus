@@ -15,6 +15,10 @@ public class CommissionByBetTypeService(
     IPartialUMService partialUMService,
     IReportDateService reportDateService) : ICommissionByBetTypeService
 {
+    private readonly IDynamicRepository repository = repository;
+    private readonly IPartialUMService partialUMService = partialUMService;
+    private readonly IReportDateService reportDateService = reportDateService;
+
     public async Task<ReportData<CommissionByBetTypeModel>> GetCommissionByBetTypes(CommissionByBetTypeParam param)
     {
         var moveBetsDay = await reportDateService.GetMoveBetsDay();

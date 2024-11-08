@@ -1,23 +1,19 @@
+using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Constants;
-using AlphaPlus.Reports.Features.Shared.Criteria;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Options;
 
-namespace AlphaPlus.Reports.Features.Shared;
+namespace AlphaPlus.Reports.Features.Products;
 
 public interface IProductService
 {
     string ConcatProductNames(IEnumerable<int> productIds);
 
-    IEnumerable<Product> GetProducts(GetProductsParam param);
+    Task<IEnumerable<Product>> GetProducts(GetProductsParam param);
 
-    Task<IEnumerable<Product>> GetProductsAsync(GetProductsParam param);
-
-    IEnumerable<ProductDetail> GetProductDetails(int custId, IEnumerable<Product> products);
-
-    Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(int custId, IEnumerable<Product> products);
+    Task<IEnumerable<ProductDetail>> GetProductDetails(int custId, IEnumerable<Product> products);
 
     string BuildProductDetailXml(ProductDetail productDetail);
 
@@ -44,28 +40,15 @@ public class ProductService(
     private const string CacheKey = "AlphaPlus.Reports.Legends.ProductsNeedDelayTimeToSummarizeData";
 
     private readonly IDynamicRepository repository = repository;
+    private readonly ICacheService cacheService = cacheService;
+    private readonly Func<int, bool> canViewProduct = canViewProduct;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly AppSettings appSettings = options.Value;
 
     public string ConcatProductNames(IEnumerable<int> productIds)
         => productIds.Select(cacheRefService.GetProductName).JoinWithComma(", ");
 
-    public IEnumerable<Product> GetProducts(GetProductsParam param)
-    {
-        var products = cacheService.GetOrSet(
-            $"{ProductsCacheKey}-{param.SiteName}-{param.CurrencyId}-{param.Language}",
-            () => repository.Fetch<Product>(new GetProductsCriteria(param.SiteName, param.CurrencyId, param.SettingStatus))
-                .Where(product => !product.IsHide)
-                .Select(product =>
-                {
-                    product.Name = cacheRefService.GetProductName(product.Id);
-                    product.TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type);
-                    return product;
-                }).ToList(),
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
-
-        return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && canViewProduct(i.Id));
-    }
-
-    public async Task<IEnumerable<Product>> GetProductsAsync(GetProductsParam param)
+    public async Task<IEnumerable<Product>> GetProducts(GetProductsParam param)
     {
         var products = await cacheService.GetOrSetAsync(
             $"{ProductsCacheKey}-{param.SiteName}-{param.CurrencyId}-{param.Language}",
@@ -92,39 +75,17 @@ public class ProductService(
         || !product.EndOfSupportDate.HasValue
         || minReportDate.Value <= product.EndOfSupportDate.Value;
 
-    public IEnumerable<ProductDetail> GetProductDetails(int custId, IEnumerable<Product> products)
-        => cacheService.GetOrSet(
-            $"{ProductDetailsCacheKey}-{custId}",
-            () =>
-            {
-                var productSupportDetail = products
-                    .Where(product => options.Value.ProductOfferProductDetail.Contains(product.Id))
-                    .Select(product => product.Id)
-                    .ToList();
-
-                return GetAllProductDetails()
-                    .Where(p => productSupportDetail.Contains(p.ProductId) && CanViewProductDetailByResourceId(p.ResourceId))
-                    .OrderBy(p => p.ProductId)
-                    .ThenBy(p => p.Order)
-                    .Select(product =>
-                    {
-                        product.DisplayName = cacheRefService.GetProductDetailName(product.ResourceId);
-                        return product;
-                    });
-            },
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
-
-    public Task<IEnumerable<ProductDetail>> GetProductDetailsAsync(int custId, IEnumerable<Product> products)
+    public Task<IEnumerable<ProductDetail>> GetProductDetails(int custId, IEnumerable<Product> products)
         => cacheService.GetOrSetAsync(
             $"{ProductDetailsCacheKey}-{custId}",
             async () =>
             {
                 var productSupportDetail = products
-                    .Where(product => options.Value.ProductOfferProductDetail.Contains(product.Id))
+                    .Where(product => appSettings.ProductOfferProductDetail.Contains(product.Id))
                     .Select(product => product.Id)
                     .ToList();
 
-                return (await GetAllProductDetailsAsync())
+                return (await GetAllProductDetails())
                     .Where(p => productSupportDetail.Contains(p.ProductId) && CanViewProductDetailByResourceId(p.ResourceId))
                     .OrderBy(p => p.ProductId)
                     .ThenBy(p => p.Order)
@@ -137,17 +98,11 @@ public class ProductService(
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
 
     private bool CanViewProductDetailByResourceId(int resourceId)
-        => options.Value.IsSiteLabel777
+        => appSettings.IsSiteLabel777
         ? !ProductDetailIdConstants.ExcludedProductDetailFor777.Contains(resourceId)
         : true;
 
-    private IEnumerable<ProductDetail> GetAllProductDetails()
-        => cacheService.GetOrSet(
-            ProductDetailsCacheKey,
-            () => repository.Fetch<ProductDetail>(new GetProductsDetailCriteria()).OrderBy(product => product.ProductId).ThenBy(product => product.Order),
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductDetailsCacheInMinutes)));
-
-    private async Task<IEnumerable<ProductDetail>> GetAllProductDetailsAsync()
+    private async Task<IEnumerable<ProductDetail>> GetAllProductDetails()
         => await cacheService.GetOrSetAsync(
             ProductDetailsCacheKey,
             async () => (await repository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria())).OrderBy(product => product.ProductId).ThenBy(product => product.Order),
@@ -182,7 +137,7 @@ public class ProductService(
 
     public async Task<string> GetProductNames(GetProductsParam productsParam, HashSet<int> offeredProductIds)
     {
-        var productIds = (await GetProductsAsync(productsParam))
+        var productIds = (await GetProducts(productsParam))
             .Where(product => offeredProductIds.Contains(product.Id))
             .Select(product => product.Id);
 

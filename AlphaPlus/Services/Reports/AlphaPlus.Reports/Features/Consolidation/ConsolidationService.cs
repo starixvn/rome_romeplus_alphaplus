@@ -1,6 +1,6 @@
 using AlphaPlus.PartialUM.Services;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
@@ -28,6 +28,13 @@ public class ConsolidationService(
     AllowedSitesToShareLoad allowedSitesToShareLoad) : IConsolidationService
 {
     private const int ProductsCacheTimeInMinutes = 2;
+
+    private readonly IDynamicRepository repository = repository;
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly ICacheService cacheService = cacheService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
+    private readonly AllowedSitesToShareLoad allowedSitesToShareLoad = allowedSitesToShareLoad;
 
     public Task<IEnumerable<ConsolidationCurrency>> GetCurrencies(int custId, string siteName)
         => repository.FetchAsync<ConsolidationCurrency>(new GetConsolidationCurrencyCriteria(custId), allowedSitesToShareLoad.GetIP(siteName));

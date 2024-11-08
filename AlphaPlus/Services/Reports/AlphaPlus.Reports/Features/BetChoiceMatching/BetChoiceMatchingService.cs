@@ -32,6 +32,12 @@ public class BetChoiceMatchingService(
     private const int USOddsTypeMultiply = 100;
     private const string OddsFormat = "{0:#,##0.###}";
 
+    private readonly IDynamicRepository repository = repository;
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly IPService ipService = ipService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
+
     public async Task<(IEnumerable<BetChoiceMatchingEventModel>, IEnumerable<BetChoiceMatchingSharedIPModel>)> GetBetChoiceMatching(BetChoiceMatchingParam param)
     {
         var moveBetsDay = await reportDateService.GetMoveBetsDay();

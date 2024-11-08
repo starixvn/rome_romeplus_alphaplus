@@ -17,6 +17,10 @@ public class StatementService(
     IDynamicRepository repository,
     IPartialUMService partialUMService) : IStatementService
 {
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly IDynamicRepository repository = repository;
+    private readonly IPartialUMService partialUMService = partialUMService;
+
     public async Task<IEnumerable<StatementModel>> GetStatements(GetStatementParam param)
     {
         var timeRangesTask = reportDateService.GetTimeRangesToGetReportDataBetweenTables(param.FromDate, param.ToDate);

@@ -1,7 +1,7 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.MatchWinLossDetail;
-using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
@@ -21,6 +21,9 @@ public class MatchWinLossDetailHandler(
         IRequestHandler<MatchWinLossDetailQuery, MatchWinLossDetailViewModel>,
         IRequestHandler<MatchWinLossDetailExcelQuery, ExcelFileViewModel>
 {
+    private readonly IMatchWinLossDetailService matchWinLossDetailService = matchWinLossDetailService;
+    private readonly IMatchWinLossDetailWorkbook workbook = workbook;
+
     public Task<LeagueViewModel> Handle(MatchWinLossDetailGetLeagueQuery message, CancellationToken cancellationToken)
     {
         var param = new GetLeaguesParam(
@@ -40,10 +43,10 @@ public class MatchWinLossDetailHandler(
         var fromDate = message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo);
 
         var offeredProductIds = (await matchWinLossDetailService.GetProducts()).ToList();
-        var productViewModel = BuildProductViewModel(
+        var productViewModel = await BuildProductViewModel(
             message,
             message.UserSelectedProductIds,
-            GetProducts(message).Where(p => offeredProductIds.Contains(p.Id)));
+            (await GetProducts(message)).Where(p => offeredProductIds.Contains(p.Id)));
 
         var leagueParam = new GetLeaguesParam(
             message.ViewerId,
@@ -71,7 +74,7 @@ public class MatchWinLossDetailHandler(
     public async Task<ExcelFileViewModel> Handle(MatchWinLossDetailExcelQuery message, CancellationToken cancellationToken)
     {
         var fromDate = message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo);
-        var productIds = FilterProductIds(
+        var productIds = await FilterProductIds(
             message,
             message.UserSelectedProductIds,
             (await matchWinLossDetailService.GetProducts()).ToList());

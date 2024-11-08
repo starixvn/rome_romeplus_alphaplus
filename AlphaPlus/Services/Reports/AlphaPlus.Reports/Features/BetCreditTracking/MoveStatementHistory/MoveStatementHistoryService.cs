@@ -12,6 +12,9 @@ public class MoveStatementHistoryService(
     IDynamicRepository repository,
     IPartialUMService partialUMService) : IMoveStatementHistoryService
 {
+    private readonly IDynamicRepository repository = repository;
+    private readonly IPartialUMService partialUMService = partialUMService;
+
     public async Task<MoveStatementHistoryModel> GetMoveStatementHistory(MoveStatementHistoryParam param)
     {
         var criteria = new MoveStatementHistoryCriteria(

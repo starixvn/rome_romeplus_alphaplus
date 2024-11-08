@@ -35,6 +35,10 @@ public class BetCreditHistoryService(
     private const string to0 = "to 0";
     private const string to1 = "to 1";
 
+    private readonly IDynamicRepository repository = repository;
+    private readonly IPartialUMService partialUMService = partialUMService;
+    private readonly ICacheService cacheService = cacheService;
+
     public async Task<BetCreditHistoryModel> GetBetCreditHistory(BetCreditHistoryParam param)
     {
         var criteria = new BetCreditHistoryCriteria(

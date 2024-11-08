@@ -1,4 +1,4 @@
-using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Reports.Features.Products;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 

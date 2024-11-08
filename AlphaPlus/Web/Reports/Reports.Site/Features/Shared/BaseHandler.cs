@@ -1,5 +1,5 @@
 using System.Text;
-using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
@@ -13,15 +13,15 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     protected readonly IProductService productService = productService;
     protected readonly AppSettings appSettings = options.Value;
 
-    protected (ProductMultiSelectionViewModel, string) BuildProductViewModel(
+    protected async Task<(ProductMultiSelectionViewModel, string)> BuildProductViewModel(
         BaseQuery message,
         string userSelectedProductIds,
         string userSelectedResourceIds,
         IEnumerable<Product> products = null)
     {
-        products = products ?? GetProducts(message);
+        products = products ?? await GetProducts(message);
         var (productGroups, validUserSelectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
-        var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = BuildProductDetailGroups(
+        var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = await BuildProductDetailGroups(
             message.ViewerId,
             products,
             validUserSelectedProductIds,
@@ -39,12 +39,12 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
             validUserSelectedResourceIds.JoinWithComma()), productDetailXml);
     }
 
-    protected ProductMultiSelectionViewModel BuildProductViewModel(
+    protected async Task<ProductMultiSelectionViewModel> BuildProductViewModel(
         BaseQuery message,
         string userSelectedProductIds,
         IEnumerable<Product> products = null)
     {
-        products = products ?? GetProducts(message);
+        products = products ?? await GetProducts(message);
         var (productGroups, validUserSelectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
 
         return new ProductMultiSelectionViewModel(productGroups, validUserSelectedProductIds.JoinWithComma(), message.Language);
@@ -93,7 +93,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return (productGroups, validUserSelectedProductIds);
     }
 
-    private (IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string) BuildProductDetailGroups(
+    private async Task<(IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string)> BuildProductDetailGroups(
         int custId,
         IEnumerable<Product> products,
         IEnumerable<int> validUserSelectedProductIds,
@@ -109,7 +109,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var selectedProductIds = new List<int>();
 
         var xml = new StringBuilder();
-        var allProductDetails = productService.GetProductDetails(custId, products);
+        var allProductDetails = await productService.GetProductDetails(custId, products);
         foreach (var item in allProductDetails)
         {
             var isChecked = isCheckedAll || (validUserSelectedProductIds.Contains(item.ProductId) && userSelectedResourceIdsList.Contains(item.ResourceId));
@@ -134,14 +134,14 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return (productDetails, validUserSelectedResourceIds, unselectedProductIds.ToList(), $"<ROOT>{xml}</ROOT>");
     }
 
-    protected (IEnumerable<int>, string) FilterProductAndProductDetailIds(
+    protected async Task<(IEnumerable<int>, string)> FilterProductAndProductDetailIds(
         BaseQuery message,
         string userSelectedProductIds,
         string userSelectedResourceIds,
         IEnumerable<Product> products = null)
     {
-        products = FilterProducts(products ?? GetProducts(message), userSelectedProductIds).ToList();
-        var (unselectedProductIds, productDetailXml) = FilterProductDetailIds(message.ViewerId, products, userSelectedProductIds, userSelectedResourceIds);
+        products = FilterProducts(products ?? await GetProducts(message), userSelectedProductIds).ToList();
+        var (unselectedProductIds, productDetailXml) = await FilterProductDetailIds(message.ViewerId, products, userSelectedProductIds, userSelectedResourceIds);
         var productIds = products.Select(product => product.Id);
 
         if (unselectedProductIds.Any())
@@ -152,9 +152,9 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return (productIds.ToList(), productDetailXml);
     }
 
-    protected IEnumerable<int> FilterProductIds(BaseQuery message, string userSelectedProductIds, IEnumerable<int> offeredProductIds = null)
+    protected async Task<IEnumerable<int>> FilterProductIds(BaseQuery message, string userSelectedProductIds, IEnumerable<int> offeredProductIds = null)
     {
-        var products = GetProducts(message);
+        var products = await GetProducts(message);
 
         if (offeredProductIds != null)
         {
@@ -175,7 +175,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return products;
     }
 
-    private (IEnumerable<int>, string) FilterProductDetailIds(
+    private async Task<(IEnumerable<int>, string)> FilterProductDetailIds(
         int custId,
         IEnumerable<Product> products,
         string userSelectedProductIds,
@@ -194,7 +194,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var selectedProductIds = new List<int>();
 
         var xml = new StringBuilder();
-        var productDetails = productService.GetProductDetails(custId, products);
+        var productDetails = await productService.GetProductDetails(custId, products);
         foreach (var item in productDetails)
         {
             var isChecked = isCheckedAll || (userSelectedProductIdsList.Contains(item.ProductId) && userSelectedResourceIdsList.Contains(item.ResourceId));
@@ -213,18 +213,11 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return (unselectedProductIds.ToList(), $"<ROOT>{xml}</ROOT>");
     }
 
-    protected IEnumerable<Product> GetProducts(BaseQuery message)
+    protected Task<IEnumerable<Product>> GetProducts(BaseQuery message)
     {
         var param = new GetProductsParam(message.Site, message.CurrencyId, appSettings.SettingStatus, message.Language, message.MinDate);
 
         return productService.GetProducts(param);
-    }
-
-    protected Task<IEnumerable<Product>> GetProductsAsync(BaseQuery message)
-    {
-        var param = new GetProductsParam(message.Site, message.CurrencyId, appSettings.SettingStatus, message.Language, message.MinDate);
-
-        return productService.GetProductsAsync(param);
     }
 
     protected virtual BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)

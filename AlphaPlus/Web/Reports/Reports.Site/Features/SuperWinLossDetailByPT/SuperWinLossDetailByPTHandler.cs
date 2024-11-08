@@ -1,7 +1,7 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 using AlphaPlus.Reports.Site.Features.Shared;
@@ -20,10 +20,14 @@ public class SuperWinLossDetailByPTHandler(
         IRequestHandler<SuperWinLossDetailByPTQuery, SuperWinLossDetailByPTViewModel>,
         IRequestHandler<SuperWinLossDetailByPTExcelQuery, ExcelFileViewModel>
 {
+    private readonly IBrowserHelper browserHelper = browserHelper;
+    private readonly ISuperWinLossDetailByPTService superWinLossDetailByPTService = superWinLossDetailByPTService;
+    private readonly ISuperWinLossDetailByWorkbook workbook = workbook;
+
     public async Task<SuperWinLossDetailByPTViewModel> Handle(SuperWinLossDetailByPTQuery message, CancellationToken cancellationToken)
     {
-        var products = GetProducts(message);
-        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, products);
+        var products = await GetProducts(message);
+        var (productViewModel, productDetailXml) = await BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, products);
         var (reportData, total, ptList) = await GetSuperWinLossDetailByPT(message, productViewModel.UserSelectedProductIds, productDetailXml);
         var isOnlyMobile = browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
 
@@ -38,7 +42,7 @@ public class SuperWinLossDetailByPTHandler(
 
     public async Task<ExcelFileViewModel> Handle(SuperWinLossDetailByPTExcelQuery message, CancellationToken cancellationToken)
     {
-        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds);

@@ -1,8 +1,6 @@
-using AlphaPlus.Reports.Features.Shared.Criteria;
-using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.Reports.Features.Shared;
+namespace AlphaPlus.Reports.Features.Outstanding;
 
 public interface IAutoFollowBetService
 {
@@ -11,11 +9,12 @@ public interface IAutoFollowBetService
 
 public class AutoFollowBetService(IDynamicRepository repository) : IAutoFollowBetService
 {
+    private readonly IDynamicRepository repository = repository;
+
     public async Task<IEnumerable<Tuple<int, IEnumerable<FollowBetAccount>>>> GetFollowBetAccounts(int agentId)
     {
         var followBetAccounts = await repository.FetchAsync<FollowBetAccount>(new GetFollowBetAccountsCriteria(agentId));
 
-        return followBetAccounts
-            .GroupBy(f => f.AgentId, (key, accounts) => Tuple.Create(key, accounts));
+        return followBetAccounts.GroupBy(f => f.AgentId, (key, accounts) => Tuple.Create(key, accounts));
     }
 }

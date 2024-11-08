@@ -1,6 +1,6 @@
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.Reports.Features.Shared.Criteria;
+namespace AlphaPlus.Reports.Features.Outstanding;
 
 internal class GetFollowBetAccountsCriteria(int agentId) : CriteriaBase
 {

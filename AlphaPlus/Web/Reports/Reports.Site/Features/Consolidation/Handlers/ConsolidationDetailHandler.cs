@@ -2,7 +2,6 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
@@ -13,6 +12,7 @@ using AlphaPlus.Reports.Site.Features.WinLossDetail;
 using MediatR;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Reports.Features.Products;
 
 namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
@@ -27,13 +27,18 @@ public class ConsolidationDetailHandler(
         IRequestHandler<ConsolidationDetailQuery, ConsolidationDetailViewModel>,
         IRequestHandler<ConsolidationDetailExcelQuery, ExcelFileViewModel>
 {
+    private readonly IEnteredResultService enteredResultService = enteredResultService;
+    private readonly IConsolidationService consolidationService = consolidationService;
+    private readonly IWinLossDetailService winlossDetailService = winlossDetailService;
+    private readonly IWinLossDetailWorkbook winLossDetailWorkbook = winLossDetailWorkbook;
+
     public async Task<ConsolidationDetailViewModel> Handle(ConsolidationDetailQuery message, CancellationToken cancellationToken)
     {
         var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
         var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
         await Task.WhenAll(enteredResultTask, productsTask);
 
-        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
+        var (productViewModel, productDetailXml) = await BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
         var reportData = await GetWinLossDetail(message, productViewModel.UserSelectedProductIds, productDetailXml);
 
         return new ConsolidationDetailViewModel(
@@ -47,7 +52,7 @@ public class ConsolidationDetailHandler(
     public async Task<ExcelFileViewModel> Handle(ConsolidationDetailExcelQuery message, CancellationToken cancellationToken)
     {
         var products = await consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
-        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds,

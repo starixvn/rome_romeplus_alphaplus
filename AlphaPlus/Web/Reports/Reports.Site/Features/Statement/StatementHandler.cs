@@ -17,6 +17,11 @@ public class StatementHandler(
         IRequestHandler<MemberStatementQuery, MemberStatementViewModel>,
         IRequestHandler<MemberStatementExcelQuery, ExcelFileViewModel>
 {
+    private readonly IStatementService statementService = statementService;
+    private readonly ISMAStatementWorkbook smaStatementWorkbook = smaStatementWorkbook;
+    private readonly IStatementDetailWorkbook statementDetailWorkbook = statementDetailWorkbook;
+    private readonly IMemberStatementWorkbook memberStatementWorkbook = memberStatementWorkbook;
+
     public async Task<SMAStatementViewModel> Handle(SMAStatementQuery message, CancellationToken cancellationToken)
         => new SMAStatementViewModel(message, await GetStatements(message));
 

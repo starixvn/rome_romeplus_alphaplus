@@ -11,6 +11,9 @@ public class MoveStatementHistoryHandler(
         IRequestHandler<MoveStatementHistoryQuery, MoveStatementHistoryViewModel>,
         IRequestHandler<MoveStatementHistoryExcelQuery, ExcelFileViewModel>
 {
+    private readonly IMoveStatementHistoryService moveStatementHistoryService = moveStatementHistoryService;
+    private readonly IMoveStatementHistoryWorkbook workbook = workbook;
+
     public async Task<MoveStatementHistoryViewModel> Handle(MoveStatementHistoryQuery message, CancellationToken cancellationToken)
         => new MoveStatementHistoryViewModel(message, await GetMoveStatementHistory(message));
 

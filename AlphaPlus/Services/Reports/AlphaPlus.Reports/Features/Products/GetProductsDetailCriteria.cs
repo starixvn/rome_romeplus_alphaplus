@@ -1,6 +1,6 @@
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.Reports.Features.Shared.Criteria;
+namespace AlphaPlus.Reports.Features.Products;
 
 internal class GetProductsDetailCriteria : CriteriaBase
 {

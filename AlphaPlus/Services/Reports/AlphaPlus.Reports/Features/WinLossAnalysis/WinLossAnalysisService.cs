@@ -16,6 +16,11 @@ public class WinLossAnalysisService(
     ICacheRefService cacheRefService,
     IPartialUMService partialUMService) : IWinLossAnalysisService
 {
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly IDynamicRepository repository = repository;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
+
     public async Task<ReportData<WinLossAnalysisModel>> GetWinLossAnalysis(WinLossAnalysisParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();

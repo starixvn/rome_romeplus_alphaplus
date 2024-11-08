@@ -1,6 +1,6 @@
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Reports.Features.Outstanding;
-using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
 using MediatR;
@@ -24,8 +24,8 @@ public class OutstandingHandler(
 
     public async Task<OutstandingViewModel> Handle(OutstandingQuery message, CancellationToken cancellationToken)
     {
-        var products = (await GetProductsAsync(message)).Where(p => p.Id != SabaPromotionProductId);
-        var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds, products);
+        var products = (await GetProducts(message)).Where(p => p.Id != SabaPromotionProductId);
+        var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds, products);
 
         var outstandingParam = new OutstandingParam(
             message.CustLevelId,

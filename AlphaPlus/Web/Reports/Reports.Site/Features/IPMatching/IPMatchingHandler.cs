@@ -11,6 +11,9 @@ public class IPMatchingHandler(
         IRequestHandler<IPMatchingQuery, IPMatchingViewModel>,
         IRequestHandler<IPMatchingExcelQuery, ExcelFileViewModel>
 {
+    private readonly IIPMatchingService ipMatchingService = ipMatchingService;
+    private readonly IIPMatchingWorkbook workbook = workbook;
+
     public async Task<IPMatchingViewModel> Handle(IPMatchingQuery message, CancellationToken cancellationToken)
     {
         var reportData = await GetIPMatching(message);

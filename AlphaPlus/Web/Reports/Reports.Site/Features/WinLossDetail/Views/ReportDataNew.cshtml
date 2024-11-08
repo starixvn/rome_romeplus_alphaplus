@@ -57,8 +57,7 @@
         }
         else
         {
-            var islink = !isDormantAccounts && Model.CanDrilldown;
-            <td class="text-left col-username" @(islink ? "data-islink=true" : string.Empty)>
+            <td class="text-left col-username" @(isDormantAccounts ? string.Empty : $"data-sortedvalue={data.CustName}")>
                 @if (isDormantAccounts)
                 {
                     <span class="pull-left">@Resources.DormantAccounts</span>
@@ -128,17 +127,21 @@
     </div>
 </div>
 <div class="wrapper-table-scrollable">
-    <table class="tblRpt tblRpt-bordered alternative-row-table-new width-100per tablesorter tblRpt-hover tblRpt-freeze-body tblRpt-freeze-header"
+    <table
+        class="tblRpt tblRpt-bordered alternative-row-table-new width-100per tablesorter tblRpt-hover tblRpt-freeze-body tblRpt-freeze-header"
         data-cansort="@Model.ReportData.MoreThanOne" id="tbl-report">
         <thead>
             <tr>
-                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="username">@Resources.Username
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="username">
+                    @Resources.Username
                 </th>
                 <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="fullname">
                     @Resources.FirstLastName</th>
-                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="betcount">@Resources.BetCount
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="betcount">
+                    @Resources.BetCount
                 </th>
-                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="turnover">@Resources.Turnover
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="turnover">
+                    @Resources.Turnover
                 </th>
                 <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="netturnover">
                     @Resources.NetTurnover</th>

@@ -26,6 +26,7 @@ using AlphaPlus.Reports.Features.Customer;
 using Fanex.Data.Repository;
 using Fanex.Caching;
 using Microsoft.Extensions.Options;
+using AlphaPlus.Reports.Features.Products;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 

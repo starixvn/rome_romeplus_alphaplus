@@ -1,13 +1,13 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.ProgressiveContribution;
-using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Legends;
 using AlphaPlus.Reports.Site.Features.Shared;
 using MediatR;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Reports.Features.Products;
 
 namespace AlphaPlus.Reports.Site.Features.ProgressiveContribution;
 
@@ -28,8 +28,8 @@ public class ProgressiveContributionHandler(
 
     public async Task<ProgressiveContributionViewModel> Handle(ProgressiveContributionQuery message, CancellationToken cancellationToken)
     {
-        var products = GetProducts(message).Where(p => message.EnableJackpotProductIds.Contains(p.Id));
-        var productViewModel = BuildProductViewModel(message, message.UserSelectedProductIds, products);
+        var products = (await GetProducts(message)).Where(p => message.EnableJackpotProductIds.Contains(p.Id));
+        var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds, products);
         var (progressiveContributions, total) = await GetProgressiveContributions(message, productViewModel.UserSelectedProductIds);
 
         return new ProgressiveContributionViewModel(
@@ -41,7 +41,7 @@ public class ProgressiveContributionHandler(
 
     public async Task<ExcelFileViewModel> Handle(ProgressiveContributionExcelQuery message, CancellationToken cancellationToken)
     {
-        var validUserSelectedProductIds = FilterProductIds(message, message.UserSelectedProductIds, message.EnableJackpotProductIds);
+        var validUserSelectedProductIds = await FilterProductIds(message, message.UserSelectedProductIds, message.EnableJackpotProductIds);
         var (progressiveContributions, total) = await GetProgressiveContributions(message, validUserSelectedProductIds.JoinWithComma());
         var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 

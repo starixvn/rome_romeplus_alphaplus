@@ -17,6 +17,11 @@ public class IPMatchingService(
     IPartialUMService partialUMService,
     IPService ipService) : IIPMatchingService
 {
+    private readonly IDynamicRepository repository = repository;
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly IPartialUMService partialUMService = partialUMService;
+    private readonly IPService ipService = ipService;
+
     public async Task<ReportData<IPMatchingModel>> GetIPMatching(IPMatchingParam param)
     {
         var moveBetsDay = await reportDateService.GetMoveBetsDay();

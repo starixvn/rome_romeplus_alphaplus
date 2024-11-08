@@ -16,6 +16,11 @@ public class SuperWinLossDetailByPTService(
     ICacheRefService cacheRefService,
     IPartialUMService partialUMService) : ISuperWinLossDetailByPTService
 {
+    private readonly IDynamicRepository repository = repository;
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
+
     public async Task<(IEnumerable<SuperWinLossDetailByPTModel>, SuperWinLossDetailByPTEntity, IEnumerable<PositionTakingModel>)> GetSuperWinLossDetailByPT(SuperWinLossDetailByPTParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();

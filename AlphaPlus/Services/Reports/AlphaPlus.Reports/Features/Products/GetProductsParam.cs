@@ -1,4 +1,4 @@
-namespace AlphaPlus.Reports.Features.Shared.Models;
+namespace AlphaPlus.Reports.Features.Products;
 
 public record GetProductsParam(
     string SiteName,

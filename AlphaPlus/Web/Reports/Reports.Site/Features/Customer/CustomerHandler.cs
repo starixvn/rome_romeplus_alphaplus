@@ -6,6 +6,8 @@ namespace AlphaPlus.Reports.Site.Features.Customer;
 public class CustomerHandler(ICustomerClient customerClient)
     : IRequestHandler<UsernameSuggestionQuery, IEnumerable<UsernameSuggestion>>
 {
+    private readonly ICustomerClient customerClient = customerClient;
+
     public Task<IEnumerable<UsernameSuggestion>> Handle(UsernameSuggestionQuery message, CancellationToken cancellationToken)
         => customerClient.GetUsernamesSuggestion(
             message.ViewerId,

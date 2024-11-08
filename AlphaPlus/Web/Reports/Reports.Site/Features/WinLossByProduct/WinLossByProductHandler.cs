@@ -1,6 +1,6 @@
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Reports.Features.Shared;
+using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossByProduct;
 using AlphaPlus.Reports.Site.Features.Shared;
@@ -18,9 +18,12 @@ public class WinLossByProductHandler(
         IRequestHandler<WinLossByProductQuery, WinLossByProductViewModel>,
         IRequestHandler<WinLossByProductExcelQuery, ExcelFileViewModel>
 {
+    private readonly IWinLossByProductService winLossByProductService = winLossByProductService;
+    private readonly IWinLossByProductWorkbook workbook = workbook;
+
     public async Task<WinLossByProductViewModel> Handle(WinLossByProductQuery message, CancellationToken cancellationToken)
     {
-        var (productViewModel, productDetailXml) = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
+        var (productViewModel, productDetailXml) = await BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
         var (reportData, total) = await GetWinLossByProduct(message, productViewModel.UserSelectedProductIds, productDetailXml);
 
         return new WinLossByProductViewModel(message, productViewModel, reportData, total);
@@ -28,7 +31,7 @@ public class WinLossByProductHandler(
 
     public async Task<ExcelFileViewModel> Handle(WinLossByProductExcelQuery message, CancellationToken cancellationToken)
     {
-        var (validUserSelectedProductIds, productDetailXml) = FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds);
