@@ -134,7 +134,7 @@
         "SystemId": 2
     },
     "SystemId": 2,
-    "AssetAppPath": "http://localhost:5101",
+    "AssetAppPath": "//localhost:5101",
     "JsVersion": "20240201",
     "AssetsApp:StaticResourcesVersion": "20240201",
     "LocalTest": true,
