@@ -172,7 +172,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
   },
 
   async cleanUnpublished(ctx) {
-    const { slug } = ctx.params;
+    const { vuid } = ctx.params;
 
     const { token } = JSON.parse(ctx.request.body);
     var isValid = isValidToken(token);
@@ -186,7 +186,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       },
       where: {
         publishedAt: null,
-        slug,
+        vuid,
       },
       orderBy: [{
         versionNumber: 'desc',
@@ -197,7 +197,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     var deleted = 0;
     for(var i=0; i<entities.length; i++) {
       var ent = entities[i];
-      if(ent.environment?.name === "PROD") {
+      if(ent.published_count == 1) {
         continue;
       }
 
@@ -296,7 +296,10 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       },
       filters: {
         publishedAt: (isProd ? { $null: false } : {}),
-        $or: [{title: { $containsi: escapeMySQLString(s) }}, {summary: { $containsi: escapeMySQLString(s) }}],
+        $or: [
+          {title: { $containsi: escapeMySQLString(s) }}, 
+          {summary: { $containsi: escapeMySQLString(s) }}
+        ],
         user_levels: {
           levelId: { $eq: level }
         },
@@ -419,7 +422,7 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     const { token } = JSON.parse(ctx.request.body);
     var isValid = isValidToken(token);
     if(!isValid) { return "Expired Token!"; }
-
+ 
     // published_at
     let command;
     const resultMessages = ['Done!'];
@@ -431,8 +434,8 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       for(var i=0; i<rows.length; i++) {
         const r = rows[i];
         let result =  await strapi.db.connection.raw(
-          `SELECT DISTINCT a.vuid FROM articles a, environments e, articles_environment_links ae\
-            WHERE a.locale='${r.locale}' AND e.name='PROD' AND ae.article_id = a.id AND ae.environment_id = e.id\
+          `SELECT DISTINCT a.vuid FROM articles a\
+            WHERE a.locale='${r.locale}' AND a.published_count=1\
             AND NOT EXISTS(SELECT b.id FROM articles b WHERE b.vuid=a.vuid AND b.locale=a.locale AND b.published_at IS NOT NULL)`
         );
 
@@ -441,8 +444,8 @@ export default factories.createCoreController('api::article.article', ({ strapi 
           for(var j=0; j<as.length; j++) {
             const a = as[j];
             const latest = await strapi.db.connection.raw(
-              `SELECT a.vuid, MAX(a.version_number) as max_version  FROM articles a, environments e, articles_environment_links ae\
-                  WHERE a.vuid='${a.vuid}' AND locale='${ r.locale}' AND e.name='PROD' AND ae.article_id = a.id AND ae.environment_id = e.id`
+              `SELECT a.vuid, MAX(a.version_number) as max_version FROM articles a\
+                  WHERE a.vuid='${a.vuid}' AND a.locale='${r.locale}' AND a.published_count=1`
             );
 
             afftectedRows =  await strapi.db.connection.raw(
@@ -523,8 +526,28 @@ export default factories.createCoreController('api::article.article', ({ strapi 
       }
     }
 
-    var message = resultMessages.join('\r\n');
+    // categories_articles_links
+    const cals = await strapi.db.connection.raw(`SELECT * FROM categories_articles_links cal WHERE (SELECT a1.locale FROM articles a1 WHERE a1.id = cal.article_id) <> (SELECT c1.locale FROM categories c1 WHERE c1.id = cal.category_id) AND NOT EXISTS (SELECT cal2.id FROM categories_articles_links cal2, categories c2, articles a2, articles a3 WHERE c2.id=category_id AND a2.id=article_id AND a3.vuid=a2.vuid AND a3.locale=c2.locale AND cal2.article_id=a3.id)`);
+    if(cals.length) {
+      const rows = cals[0];
+      for(var i=0; i<rows.length; i++) {
+        const r = rows[i];
+        resultMessages.push(`Correct article_id for categories_articles_links ${r.id}, ${r.category_id}, ${r.article_id}`);
+        command = `CALL FixCategoryArticleLink(${r.id}, ${r.category_id}, ${r.article_id})`;
+        await strapi.db.connection.raw(command);
+      }
+    }
 
+    const dup_cals = await strapi.db.connection.raw(`SELECT * FROM categories_articles_links cal WHERE (SELECT a1.locale FROM articles a1 WHERE a1.id = cal.article_id) <> (SELECT c1.locale FROM categories c1 WHERE c1.id = cal.category_id) AND EXISTS (SELECT cal2.id FROM categories_articles_links cal2, categories c2, articles a2, articles a3 WHERE c2.id=category_id AND a2.id=article_id AND a3.vuid=a2.vuid AND a3.locale=c2.locale AND cal2.article_id=a3.id)`);
+    if(dup_cals.length) {
+      const rows = dup_cals[0];
+      for(var i=0; i<rows.length; i++) {
+        const r = rows[i];
+        resultMessages.push(`Error duplicate categories_articles_links: ${r.id}, ${r.category_id}, ${r.article_id}`);
+      }
+    }
+
+    var message = resultMessages.join('\r\n');
     if(resultMessages.length > 1) {
       await strapi.db.connection.raw(`
         INSERT INTO admin_actions (actor_id, created_at, action, target_collection, target_info, message)
@@ -542,8 +565,29 @@ export default factories.createCoreController('api::article.article', ({ strapi 
     if(!isValid) { return "Expired Token!"; }
     if(!mysql.endsWith('BBBB')) { return "Not Authorized!"; }
 
-    const command = mysql.substring(0, mysql.length - 4);
+    // const command = mysql.substring(0, mysql.length - 4);
     // await strapi.db.connection.raw(command);
-    return command;
+    const command = `SELECT inv_article_id FROM articles_versions_links WHERE article_id=2283`;
+    const output = await strapi.db.connection.raw(command);
+    return JSON.stringify(output);
+  },
+
+  
+  async stopSupport(ctx) {
+    const { vuid } = ctx.params;
+
+    const { token } = JSON.parse(ctx.request.body);
+    var isValid = isValidToken(token);
+    if(!isValid) {
+      return "Expired Token!";
+    }
+
+    let command = `UPDATE articles SET published_at = null WHERE vuid ='${vuid}'`;
+    await strapi.db.connection.raw(command);
+
+    command = `UPDATE articles SET published_count=0 WHERE vuid ='${vuid}'`;
+    await strapi.db.connection.raw(command);
+
+    return `Done remove [Published Status, published_count] for all article and also with its locales`;
   },
  }));

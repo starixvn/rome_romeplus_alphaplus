@@ -224,6 +224,12 @@ img {
     position: sticky;
     top: 80px;
 }
+
+
+.right-container:not(.body-en) .list-content li a {
+	 font-weight: 700!important;
+}
+
 .article-body .title-page {
     font-weight: 500;
     font-size: 32px;
@@ -345,13 +351,23 @@ img {
  .article-content ul li ul {
 	 padding-left: 17px;
 }
- .article-content ul li li:before {
+.article-content ul li li:before {
 	 content: "\e90d";
 	 top: 7px;
 	 left: -1px;
 }
- .article-content ul li li li:before {
+.article-content ul li li li:before {
 	 content: "\e90e";
+	 top: 7px;
+	 left: -2px;
+}
+.article-content ul li li li li:before {
+	 content: "\e910";
+	 top: 7px;
+	 left: -2px;
+}
+.article-content ul li li li li li:before {
+	 content: "\e911";
 	 top: 7px;
 	 left: -2px;
 }
@@ -438,6 +454,9 @@ img {
  .box-tip {
 	 border-color: #a3c696;
 	 background: #eefbe9;
+}
+.box .box-content{
+	margin-bottom: 0!important;
 }
  .box-tip .box-title {
 	 color: #1e661e;

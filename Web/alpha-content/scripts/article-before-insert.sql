@@ -7,12 +7,12 @@ CREATE TRIGGER article_before_insert
 BEFORE INSERT ON articles
 FOR EACH ROW
 BEGIN
-  IF (new.slug is null) THEN
+  IF (new.slug IS NULL) THEN
 	  SET new.slug = REPLACE(LOWER(new.title), ' ', '-');
 	  SET new.slug = REPLACE(LOWER(new.slug), '/', '-');
   END IF;
 
-  IF (new.info_in_english is null) THEN
+  IF (new.info_in_english IS NULL) THEN
 	  SET new.info_in_english = CONCAT("[", new.locale, "] ", new.name);
   END IF;
   
@@ -28,5 +28,7 @@ BEGIN
     SET @newExtendVuid = @extendVuid + 1;
     SET new.vuid = CONCAT(@orgVuid, '-', LPAD(@newExtendVuid, 12, '0'));
   END IF;
+
+  SET new.published_count = 0;
 END$$   
 DELIMITER ; 

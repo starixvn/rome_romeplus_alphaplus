@@ -118,7 +118,7 @@ export default function Page({ article, isPreview }: { article: Article; isPrevi
       </div>
     </div>
     {
-      headings.length > 0 && <div className="right-container">
+      headings.length > 0 && <div className={"right-container body-" + locale}>
           <div className="inner">
               <h2 className="title-content">Contents</h2>
               <div id="float-content">

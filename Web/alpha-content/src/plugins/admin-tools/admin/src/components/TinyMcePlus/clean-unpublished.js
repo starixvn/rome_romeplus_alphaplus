@@ -8,7 +8,7 @@ function getCleanUnpublishedButton() {
 }
 
 async function cleanUnpublished(initialData) {
-  const { slug } = initialData;
+  const { vuid } = initialData;
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -17,7 +17,7 @@ async function cleanUnpublished(initialData) {
       }
   };
 
-  xhttp.open("PUT", `${strapi.backendURL}/api/articles/clean-unpublished/${slug}`, true);
+  xhttp.open("PUT", `${strapi.backendURL}/api/articles/clean-unpublished/${vuid}`, true);
 
   var data = JSON.stringify({ token: getEditorToken() });
   xhttp.send(data);

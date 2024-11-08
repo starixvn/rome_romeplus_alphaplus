@@ -7,7 +7,7 @@ CREATE TRIGGER category_before_insert
 BEFORE INSERT ON categories
 FOR EACH ROW
 BEGIN
-  IF (new.slug is null) THEN
+  IF (new.slug IS NULL) THEN
 	  SET new.slug = REPLACE(LOWER(new.name), ' ', '-');
 	  SET new.slug = REPLACE(LOWER(new.name), '/', '-');
   END IF;
