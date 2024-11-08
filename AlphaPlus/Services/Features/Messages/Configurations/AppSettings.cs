@@ -4,7 +4,7 @@ namespace AlphaPlus.Features.Messages.API.Configurations
 {
     public static class AppSettings
     {
-        public static bool LocalTest => GetConfigValue("LocalTest") == "1";
+        public static bool LocalTest => ConfigurationManager.GetValue<bool>("LocalTest");
 
         public static string SiteLabel => GetConfigValue("SiteLabel");
 

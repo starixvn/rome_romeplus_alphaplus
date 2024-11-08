@@ -48,6 +48,7 @@ USER dotnetuser
 # final stage/image
 ENV COMPlus_EnableDiagnostics=0
 WORKDIR /app
+ENV ASPNETCORE_URLS=http://0.0.0.0:5000
 COPY --from=builder /app ./
 ENV TZ="America/La_Paz"
 

@@ -85,7 +85,7 @@ public static class AppSettings
 
     public static string JsVersion => ConfigurationManager.GetValue<string>("JsVersion");
 
-    public static bool LocalTest => ConfigurationManager.GetValue<string>("LocalTest") == "1";
+    public static bool LocalTest => ConfigurationManager.GetValue<bool>("LocalTest");
 
     public static int PageSize => ConfigurationManager.GetValue<int>("PageSize");
 

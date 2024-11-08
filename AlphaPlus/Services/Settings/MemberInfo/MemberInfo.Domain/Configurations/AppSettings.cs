@@ -1,4 +1,5 @@
-﻿using AlphaPlus.Core.Helpers;
+﻿using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Http;
 
@@ -89,7 +90,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Configurations
 
         public static string JsVersion => GetConfigValue("JsVersion");
 
-        public static bool LocalTest => GetConfigValue("LocalTest").Equals("true", StringComparison.OrdinalIgnoreCase);
+        public static bool LocalTest => ConfigurationManager.GetValue<bool>("LocalTest");
 
         public static bool IsMBCSite => !IsSiteLabel789y;
 
