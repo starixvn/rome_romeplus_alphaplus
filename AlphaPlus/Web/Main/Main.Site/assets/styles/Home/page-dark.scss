@@ -367,7 +367,7 @@ html * {
             z-index: 1;
             width: 48px;
             height: 32px;
-            background: url(Images/bage_bg_dark.svg) no-repeat center center / cover;
+            background: url(../images/bage_bg_dark.svg) no-repeat center center / cover;
             padding: 5px 0 0 3px;
             text-align: center;
         }
@@ -1039,9 +1039,9 @@ html * {
 
     .icon-feedback {
         position: relative;
-        mask: url('Images/feedback-report.svg');
-        -webkit-mask-image: url('Images/feedback-report.svg');
-        mask-image: url('Images/feedback-report.svg');
+        mask: url('../images/feedback-report.svg');
+        -webkit-mask-image: url('../images/feedback-report.svg');
+        mask-image: url('../images/feedback-report.svg');
         height: 31px;
         width: 30px;
         display: inline-block;

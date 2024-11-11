@@ -978,9 +978,9 @@ html * {
 
     .icon-feedback {
         position: relative;
-        mask: url('Images/feedback-report.svg');
-        -webkit-mask-image: url('Images/feedback-report.svg');
-        mask-image: url('Images/feedback-report.svg');
+        mask: url('../images/feedback-report.svg');
+        -webkit-mask-image: url('../images/feedback-report.svg');
+        mask-image: url('../images/feedback-report.svg');
         height: 31px;
         width: 30px;
         display: inline-block;
