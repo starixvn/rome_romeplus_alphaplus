@@ -17,6 +17,8 @@ public class ConsolidationEntity
 
     public byte CustLevel { get; init; }
 
+    public bool IsMemberLevel() => RoleIdConstants.IsMemberLevel(CustLevel);
+
     public string CustLevelName
     {
         get

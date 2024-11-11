@@ -1,12 +1,3 @@
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@addTagHelper *, AlphaPlus.Reports.Site
-@using AlphaPlus.Core.Models
-@using AlphaPlus.Core.Helpers
-@using AlphaPlus.Reports.Features.Shared.Extensions
-@using AlphaPlus.Reports.Features.Consolidation
-@using AlphaPlus.Reports.Site
-@using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components
-@using AlphaPlus.Reports.Site.Features.Consolidation
 @{
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
@@ -110,7 +101,7 @@
             @foreach (var dataByUsername in Model.ReportData)
             {
                 var total = dataByUsername.Total;
-                var isShowPT = total.CustLevel != UserLevel.Member.Value;
+                var isShowPT = !total.IsMemberLevel();
                 <tr class="username-row" data-custid="@total.CustId">
                     <td class="text-left bold">
                         <span class="icon-arrow-right" id="icon-@total.CustId"></span>
@@ -118,12 +109,17 @@
                     </td>
                     <td class="text-left bold">
                         <div style="position:relative">
-                            <a class="downline-link" asp-action="ConsolidationDetail"
-                                asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
                             @if (isShowPT)
                             {
+                                <a class="downline-link" asp-action="ConsolidationDetail"
+                                    asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
                                 <span class="view-product-pt-list" data-custid="@total.CustId" data-username="@total.Username"
                                     data-userlevel="@total.CustLevelName"></span>
+                            }
+                            else
+                            {
+                                <a class="open-link"
+                                    data-url="@Model.BuildBetListUrl(total.CustId, total.Username)">@total.CustLevelName</a>
                             }
                         </div>
                     </td>

@@ -28,4 +28,7 @@ public class ConsolidationByProductViewModel(
 
         return drillDownParams;
     }
+
+    public string BuildBetListUrl(int custId, string custName, string productId)
+        => BuildBaseBetListParams(custId, custName, productIds: productId);
 }

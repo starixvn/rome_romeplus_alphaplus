@@ -28,4 +28,7 @@ public class ConsolidationByDateViewModel(
 
         return drillDownParams;
     }
+
+    public string BuildBetListUrl(int custId, string custName, string date)
+        => BuildBaseBetListParams(custId, custName, fromDate: date, toDate: date);
 }

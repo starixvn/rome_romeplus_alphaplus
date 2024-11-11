@@ -3,6 +3,7 @@ using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
@@ -12,6 +13,8 @@ public abstract class ConsolidationViewModel(
     IEnumerable<ConsolidationCurrency> currencies,
     EnteredResultSport totalEnteredResults)
 {
+    private static string BetListPath = MicroSites.TicketUrl("~/WinLoss/Index");
+
     public string ReportType { get; } = message.ReportType;
 
     public bool IsSetDefaultStackMode { get; } = message.IsSetDefaultStackMode;
@@ -60,4 +63,20 @@ public abstract class ConsolidationViewModel(
             ["ConsolidationToDate"] = DateRangePicker.ToDate,
             ["ConsolidationUserSelectedDateRangeOption"] = DateRangePicker.UserSelectedDateRangeOption.ToString(),
         };
+
+    protected string BuildBaseBetListParams(int custId, string custName, string productIds = null, string fromDate = null, string toDate = null)
+    {
+        var queryString = QueryString.Create(
+        [
+            KeyValuePair.Create(nameof(custId), custId.ToString()),
+            KeyValuePair.Create(nameof(custName), custName),
+            KeyValuePair.Create(nameof(DateRangePicker.FromDate), fromDate ?? DateRangePicker.FromDate),
+            KeyValuePair.Create(nameof(DateRangePicker.ToDate), toDate ?? DateRangePicker.ToDate),
+            KeyValuePair.Create("ProductIds", productIds ?? ProductViewModel.UserSelectedProductIds),
+            KeyValuePair.Create("ResourceIds", ProductViewModel.UserSelectedResourceIds),
+            KeyValuePair.Create("IsGroupHeadline", "true")
+        ]);
+
+        return $"{BetListPath}{queryString}";
+    }
 }

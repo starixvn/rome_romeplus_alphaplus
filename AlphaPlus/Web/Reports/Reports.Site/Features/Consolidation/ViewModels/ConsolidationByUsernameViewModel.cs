@@ -28,4 +28,6 @@ public class ConsolidationByUsernameViewModel(
 
         return drillDownParams;
     }
+
+    public string BuildBetListUrl(int custId, string custName) => BuildBaseBetListParams(custId, custName);
 }
