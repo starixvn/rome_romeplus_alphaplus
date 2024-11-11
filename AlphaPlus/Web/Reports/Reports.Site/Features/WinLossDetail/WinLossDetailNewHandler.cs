@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Reports.Site.Features.Customer;
 using AlphaPlus.Reports.Features.Products;
+using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
@@ -153,7 +154,7 @@ public class WinLossDetailNewHandler(
             }
         }
 
-        return (isValidUsername, breadcrumbs ?? BuildBreadcrumbViewModel(message).Breadcrumbs);
+        return (isValidUsername, breadcrumbs ?? BreadcrumbHelper.BuildBreadcrumbs(message));
     }
 
     public async Task<IEnumerable<WinLossDetailWeekViewModel>> Handle(WinLossDetailGetWeeksQuery message, CancellationToken cancellationToken)

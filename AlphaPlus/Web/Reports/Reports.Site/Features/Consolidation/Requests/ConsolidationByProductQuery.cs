@@ -5,6 +5,6 @@ namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
 public class ConsolidationByProductQuery : ConsolidationQuery, IRequest<ConsolidationByProductViewModel>
 {
-    public ConsolidationByProductQuery() : base()
+    public ConsolidationByProductQuery()
         => ReportType = ConsolidationReportType.ByProduct;
 }

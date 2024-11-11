@@ -5,7 +5,7 @@ namespace AlphaPlus.Reports.Site.Features.BetChoiceMatching;
 
 public class BetChoiceMatchingJsonQuery : BetChoiceMatchingQuery, IRequest<BetChoiceMatchingJsonModel>
 {
-    public BetChoiceMatchingJsonQuery() : base()
+    public BetChoiceMatchingJsonQuery()
     {
         IsAdminCanViewVNIP = Viewer.IsAdminCanViewVNIP;
         MinDate = ReportDateService.Instance.GetBalanceUpDay().GetAwaiter().GetResult();

@@ -5,7 +5,7 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
 public class WinLossDetailQuery : ProductDetailDateRangeQuery, IRequest<WinLossDetailViewModel>
 {
-    public WinLossDetailQuery() : base()
+    public WinLossDetailQuery()
         => IsProtectedMode = Viewer.IsProtectedMode;
 
     public bool IsProtectedMode { get; }

@@ -5,6 +5,6 @@ namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
 public class ConsolidationByDateQuery : ConsolidationQuery, IRequest<ConsolidationByDateViewModel>
 {
-    public ConsolidationByDateQuery() : base()
+    public ConsolidationByDateQuery()
         => ReportType = ConsolidationReportType.ByDate;
 }

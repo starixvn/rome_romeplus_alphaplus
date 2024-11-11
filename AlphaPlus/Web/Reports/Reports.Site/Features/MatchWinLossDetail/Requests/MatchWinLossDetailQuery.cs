@@ -5,7 +5,7 @@ namespace AlphaPlus.Reports.Site.Features.MatchWinLossDetail;
 
 public class MatchWinLossDetailQuery : BalanceUpDateRangeQuery, IRequest<MatchWinLossDetailViewModel>
 {
-    public MatchWinLossDetailQuery() : base()
+    public MatchWinLossDetailQuery()
         => LanguageKey = Viewer.LangKey;
 
     public string UserSelectedProductIds { get; set; } = "*";

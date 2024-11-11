@@ -7,7 +7,7 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
 public class WinLossDetailGetWeeksQuery : ProductDetailDateRangeQuery, IRequest<IEnumerable<WinLossDetailWeekViewModel>>
 {
-    public WinLossDetailGetWeeksQuery() : base()
+    public WinLossDetailGetWeeksQuery()
         => MinDate = SystemTime.Today.AddYears(-3).FirstDayOfYear();
 
     public string Username { get; set; }
@@ -17,7 +17,10 @@ public class WinLossDetailGetWeeksQuery : ProductDetailDateRangeQuery, IRequest<
     public DateTime? WeekToDate { get; set; }
 
     public override bool IsValid()
-        => IsValidWeekRange() && base.IsValid() && ToDate.Subtract(FromDate).TotalDays <= 92;
+        => CustLevel.IsNotMemberLevel()
+        && IsValidWeekRange()
+        && base.IsValid()
+        && ToDate.Subtract(FromDate).TotalDays <= 92;
 
     private bool IsValidWeekRange()
     {

@@ -35,12 +35,16 @@ public class SuperWinLossDetailByPTService(
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var grandTotal = new SuperWinLossDetailByPTEntity();
-        var rawdata = await repository.FetchAsync<SuperWinLossDetailByPTEntity>(criteria);
+        var rawDataTask = repository.FetchAsync<SuperWinLossDetailByPTEntity>(criteria);
+        var ptListTask = GetSuperPT(param.CustId, param.SettingStatus);
+        await Task.WhenAll(rawDataTask, ptListTask);
 
-        if (rawdata.Any())
+        var rawData = await rawDataTask;
+        var ptList = await ptListTask;
+
+        if (rawData.Any())
         {
-            var ptList = await GetSuperPT(param.CustId, param.SettingStatus);
-            var reportData = rawdata.Join(
+            var reportData = rawData.Join(
                 ptList,
                 winloss => winloss.ProductId,
                 pt => pt.ProductId,
@@ -71,7 +75,7 @@ public class SuperWinLossDetailByPTService(
             return (reportData, grandTotal, ptList);
         }
 
-        return ([], grandTotal, []);
+        return ([], grandTotal, ptList);
     }
 
     private Task<IEnumerable<PositionTakingModel>> GetSuperPT(int superId, byte settingStatus)

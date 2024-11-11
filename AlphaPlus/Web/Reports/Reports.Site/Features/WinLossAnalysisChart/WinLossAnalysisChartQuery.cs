@@ -9,7 +9,7 @@ public class WinLossAnalysisChartQuery : DefaultDateRangeQuery, IRequest<WinLoss
 {
     private const int DefaultLoadingMonths = 2;
 
-    public WinLossAnalysisChartQuery() : base()
+    public WinLossAnalysisChartQuery()
     {
         var today = SystemTime.Today;
         if (today.IsEndOfMonth())

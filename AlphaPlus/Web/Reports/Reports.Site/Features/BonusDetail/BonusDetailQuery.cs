@@ -8,7 +8,7 @@ namespace AlphaPlus.Reports.Site.Features.BonusDetail;
 
 public class BonusDetailQuery : DefaultDateRangeQuery, IRequest<BonusDetailViewModel>
 {
-    public BonusDetailQuery() : base()
+    public BonusDetailQuery()
     {
         FromDate = SystemTime.Today.AddMonths(-1).FirstDayOfMonth();
         MinDate = new DateTime(2021, 1, 1);

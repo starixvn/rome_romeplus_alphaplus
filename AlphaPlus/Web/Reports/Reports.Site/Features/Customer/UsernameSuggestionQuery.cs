@@ -6,7 +6,7 @@ namespace AlphaPlus.Reports.Site.Features.Customer;
 
 public class UsernameSuggestionQuery : BaseQuery, IRequest<IEnumerable<UsernameSuggestion>>
 {
-    public UsernameSuggestionQuery() : base()
+    public UsernameSuggestionQuery()
         => IsInternal = Viewer.IsInternal;
 
     public string Query { get; set; }

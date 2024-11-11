@@ -7,7 +7,7 @@ namespace AlphaPlus.Reports.Site.Features.Statement;
 
 public class StatementDetailsQuery : BaseQuery, IRequest<StatementDetailViewModel>
 {
-    public StatementDetailsQuery() : base()
+    public StatementDetailsQuery()
         => MinDate = SystemTime.Today.AddYears(-3).FirstDayOfYear();
 
     public DateTime TransferDate { get; set; }

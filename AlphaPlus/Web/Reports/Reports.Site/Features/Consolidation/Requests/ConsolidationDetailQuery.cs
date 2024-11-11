@@ -4,7 +4,7 @@ namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
 public class ConsolidationDetailQuery : ConsolidationQuery, IRequest<ConsolidationDetailViewModel>
 {
-    public ConsolidationDetailQuery() : base()
+    public ConsolidationDetailQuery()
         => IsProtectedMode = Viewer.IsProtectedMode;
 
     public bool IsProtectedMode { get; }

@@ -7,7 +7,7 @@ public class ProgressiveContributionQuery : DefaultDateRangeQuery, IRequest<Prog
 {
     private const string GameEnableJackpot = "GameEnable_Jackpot";
 
-    public ProgressiveContributionQuery() : base()
+    public ProgressiveContributionQuery()
     {
         EnableJackpotProductIds = Viewer.GetProperty<IList<int>>(GameEnableJackpot) ?? [];
         IsEnabledJackpot = EnableJackpotProductIds.Any();

@@ -36,6 +36,8 @@ public class UserLevel : Enumeration
 
     public bool IsMemberLevel() => this == Member;
 
+    public bool IsNotMemberLevel() => !IsMemberLevel();
+
     public bool IsDirectUplineOf(byte downlineLevelValue)
         => GapBetweenTwoLevels(this.Value, downlineLevelValue) == 1;
 

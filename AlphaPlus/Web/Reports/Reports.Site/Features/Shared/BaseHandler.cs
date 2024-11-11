@@ -222,22 +222,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
 
     protected virtual BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
     {
-        var breadcrumbs = new List<Breadcrumb>();
-
-        if (JsonHelper.TryParse<Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList))
-        {
-            foreach (var item in breadcrumbList)
-            {
-                if (item.CustLevelId == message.CustLevelId)
-                {
-                    break;
-                }
-
-                breadcrumbs.Add(item);
-            }
-        }
-
-        breadcrumbs.Add(new Breadcrumb(message.CustId, message.CustName, message.CustLevelId));
+        var breadcrumbs = BreadcrumbHelper.BuildBreadcrumbs(message);
 
         return new BreadcrumbViewModel(breadcrumbs, JsonHelper.ToJson(breadcrumbs));
     }

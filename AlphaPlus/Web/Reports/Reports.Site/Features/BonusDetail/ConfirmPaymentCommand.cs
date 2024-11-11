@@ -6,7 +6,7 @@ namespace AlphaPlus.Reports.Site.Features.BonusDetail;
 
 public class ConfirmPaymentCommand : BaseQuery, IRequest<Result>
 {
-    public ConfirmPaymentCommand() : base()
+    public ConfirmPaymentCommand()
     {
         SubAccId = Viewer.SubAccId;
         IP = Viewer.UserLoginIp;

@@ -4,7 +4,7 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
 public class WinLossDetailGetDataQuery : WinLossDetailGetWeeksQuery, IRequest<WinLossDetailGetDataViewModel>
 {
-    public WinLossDetailGetDataQuery() : base()
+    public WinLossDetailGetDataQuery()
     {
         IsProtectedMode = Viewer.IsProtectedMode;
         CanUpdateAccount = Viewer.SubPageAccess.UpdateAccount;

@@ -8,7 +8,7 @@ namespace AlphaPlus.Reports.Site.Features.WinLossAnalysis;
 
 public class WinLossAnalysisQuery : DefaultDateRangeQuery, IRequest<WinLossAnalysisViewModel>
 {
-    public WinLossAnalysisQuery() : base()
+    public WinLossAnalysisQuery()
         => MinDate = SystemTime.Today.AddMonths(-18).FirstDayOfMonth();
 
     public string UserSelectedProductIds { get; set; } = "*";

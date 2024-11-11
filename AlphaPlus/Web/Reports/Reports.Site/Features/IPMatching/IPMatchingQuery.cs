@@ -7,7 +7,7 @@ namespace AlphaPlus.Reports.Site.Features.IPMatching;
 
 public class IPMatchingQuery : BaseQuery, IRequest<IPMatchingViewModel>
 {
-    public IPMatchingQuery() : base()
+    public IPMatchingQuery()
     {
         MinDate = ReportDateService.Instance.GetBalanceUpDay().GetAwaiter().GetResult();
         IsAdminCanViewVNIP = Viewer.IsAdminCanViewVNIP;

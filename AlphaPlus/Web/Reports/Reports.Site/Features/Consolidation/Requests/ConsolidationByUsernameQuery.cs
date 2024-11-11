@@ -5,6 +5,6 @@ namespace AlphaPlus.Reports.Site.Features.Consolidation;
 
 public class ConsolidationByUsernameQuery : ConsolidationQuery, IRequest<ConsolidationByUsernameViewModel>
 {
-    public ConsolidationByUsernameQuery() : base()
+    public ConsolidationByUsernameQuery()
         => ReportType = ConsolidationReportType.ByUsername;
 }
