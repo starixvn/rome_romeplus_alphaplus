@@ -12,7 +12,7 @@ public class ConsolidationController(IMediator mediator) : ReportBaseController(
 
     public Task<IActionResult> ConsolidationByProduct(ConsolidationByProductQuery message) => View(message);
 
-    public Task<IActionResult> ConsolidationExcel(ConsolidationExcelQuery message) => ExcelView(message);
+    public Task<IActionResult> Excel(ConsolidationExcelQuery message) => ExcelView(message);
 
     public Task<IActionResult> ConsolidationDetail(ConsolidationDetailQuery message) => View(message);
 

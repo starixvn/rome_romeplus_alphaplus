@@ -7,4 +7,7 @@ public class ConsolidationByUsernameQuery : ConsolidationQuery, IRequest<Consoli
 {
     public ConsolidationByUsernameQuery()
         => ReportType = ConsolidationReportType.ByUsername;
+
+    public override bool IsValid()
+        => ReportType == ConsolidationReportType.ByUsername && base.IsValid();
 }

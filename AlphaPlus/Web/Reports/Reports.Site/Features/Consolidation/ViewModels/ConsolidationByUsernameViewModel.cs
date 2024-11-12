@@ -18,16 +18,7 @@ public class ConsolidationByUsernameViewModel(
     public IEnumerable<ConsolidationByUsername> ReportData { get; } = reportData;
 
     public IDictionary<string, string> BuildDrillDownParams(int custId, string custName, byte custLevelId)
-    {
-        var drillDownParams = BuildBaseDrillDownParams(custId, custName, custLevelId);
-
-        drillDownParams.Add(nameof(ProductViewModel.UserSelectedProductIds), ProductViewModel.UserSelectedProductIds);
-        drillDownParams.Add(nameof(ProductViewModel.UserSelectedResourceIds), ProductViewModel.UserSelectedResourceIds);
-        drillDownParams.Add(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate);
-        drillDownParams.Add(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate);
-
-        return drillDownParams;
-    }
+        => BuildBaseDrillDownParams(custId, custName, custLevelId);
 
     public string BuildBetListUrl(int custId, string custName) => BuildBaseBetListParams(custId, custName);
 }

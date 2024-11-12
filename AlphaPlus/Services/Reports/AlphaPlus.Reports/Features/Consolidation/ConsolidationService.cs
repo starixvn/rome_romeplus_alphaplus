@@ -113,15 +113,18 @@ public class ConsolidationService(
 
                 foreach (var item in winloss)
                 {
-                    if (total == null)
+                    total = total ?? new ConsolidationEntity
                     {
-                        total = item;
-                        total.CurrencyName = currencyHash.TryGetValue(item.CurrencyId, out var currencyName) ? currencyName : string.Empty;
-                    }
-                    else
-                    {
-                        total += item;
-                    }
+                        BreakDown = item.BreakDown,
+                        PositionTaking = item.PositionTaking,
+                        CustId = item.CustId,
+                        CustLevel = item.CustLevel,
+                        Username = item.Username,
+                        CurrencyId = item.CurrencyId,
+                        CurrencyName = currencyHash.TryGetValue(item.CurrencyId, out var currencyName) ? currencyName : string.Empty
+                    };
+
+                    total += item;
                 }
 
                 return new ConsolidationByUsername(total, BuildConsolidationByPTs(sortedWinLoss).ToList());

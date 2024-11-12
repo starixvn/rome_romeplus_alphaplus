@@ -1,59 +1,93 @@
 @{
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
+    var isSuperLevel = Model.ViewerLevel.IsSuperLevel();
+    var isMasterOrSuperLevel = Model.ViewerLevel.IsMasterOrSuperLevel();
+}
+@section Styles {
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-reports/winlossdetail")
 }
 @section Scripts {
+    <script type="text/javascript">
+        var viewResources = {
+            2: '@Resources.MemberWinLossDetail',
+        @if (isMasterOrSuperLevel)
+        {
+            @:3: '@Resources.AgentWinLossDetail',
+        }
+        @if (isSuperLevel)
+        {
+            @:4: '@Resources.MasterWinLossDetail'
+        }
+                                                        };
+        var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
+        var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
+        var columnList = [
+            { value: "fullname", text: '@Resources.FirstLastName', checked: false },
+            { value: "betcount", text: '@Resources.BetCount' },
+            { value: "turnover", text: '@Resources.Turnover' },
+            { value: "netturnover", text: '@Resources.NetTurnover' },
+            { value: "grosscomm", text: '@Resources.GrossComm' },
+            { value: "pwinloss", text: '@Resources.Member @Resources.WinLoss' },
+            { value: "pcomm", text: '@Resources.Member @Resources.Comm' },
+            { value: "ptotal", text: '@Resources.Member @Resources.Total' },
+            { value: "awinloss", text: '@Resources.Agent @Resources.WinLoss' },
+            { value: "acomm", text: '@Resources.Agent @Resources.Comm' },
+            { value: "atotal", text: '@Resources.Agent @Resources.Total' },
+        @if (isMasterOrSuperLevel)
+        {
+            @:{ value: "mwinloss", text: '@Resources.Master @Resources.WinLoss' },
+            @:{ value: "mcomm", text: '@Resources.Master @Resources.Comm' },
+            @:{ value: "mtotal", text: '@Resources.Master @Resources.Total' },
+        }
+        @if (isSuperLevel)
+        {
+            @:{ value: "swinloss", text: '@Resources.Super @Resources.WinLoss' },
+            @:{ value: "scomm", text: '@Resources.Super @Resources.Comm' },
+            @:{ value: "stotal", text: '@Resources.Super @Resources.Total' },
+        }
+            { value: "company", text: '@Resources.Company' }
+        ];
+        var currentFromData = {
+            custId: @Model.CustId,
+            custName: '@Model.CustName',
+            custLevelId: @Model.CustLevelId,
+            weekFromDate: '@Model.WeekFromDate',
+            weekToDate: '@Model.WeekToDate'
+        }
+        var viewerLevelId = @Model.ViewerLevel.Value;
+    </script>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail")
     <script src="~/bundles/winlossdetail/winlossdetail.js" asp-append-version="true"></script>
 }
 @model WinLossDetailViewModel
-<report-title model="Model.PageHeader" />
-<form class="form-inline filter switch-new-view@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
-    id="report-form">
-    <div class="switch-version">
-        <a class="btn-switch-version" target="main" asp-action="IndexNew">
-            <span class="icon-swap-horizontal"></span>
-            <span class="text">@Resources.NewView</span>
-        </a>
-    </div>
-    <product-multiselection model="@Model.ProductViewModel" />
-    @if (Model.IsHistoricReport)
-    {
-        <month-picker model="Model.MonthPicker" />
+<div class="flex">
+    <report-title-new model="Model.PageHeader" />
+    <form class="form-inline filter switch-old-view" role="form" id="report-form">
+        <daterange-picker-jquery model="@Model.DateRangePicker" />
+        <product-dropdown show-product-details="true" />
         <div class="form-group">
-            <input type="submit" value="@Resources.Submit" class="btn-submit" />
+            <label class="label-form-control">@Resources.Username</label>
+            <div>
+                <input type="text" id="txt-username-suggestion" placeholder="@Resources.UsernameOrFirstLastName"
+                    autocomplete="off" value="@Model.Username" />
+            </div>
         </div>
-    }
-    else
-    {
-        <daterange-picker model="Model.DateRangePicker" />
-    }
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
-    </div>
-    <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
-            asp-all-route-data="Model.GetExcelParams()"></a>
-    </div>
-    @if (Model.IsHistoricReport)
-    {
-        <div class="note">
-            <span class="star">*</span>@Model.ViewDataInstructionMessage
-            <a href="javascript:;" id="historic-report" data-is-historic-report="true">@Resources.BackToCurrentReport</a>
+        <visible-column />
+        <div class="label-week-box" id="week-container">
+            <partial name="Weeks" model="@Model.Weeks" />
         </div>
-    }
-    else
-    {
-        <a href="javascript:;" class="hide" id="historic-report" data-is-historic-report="false"></a>
-    }
-    <input type="hidden" asp-for="CustId" />
-    <input type="hidden" asp-for="CustName" />
-    <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
-    <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
-    <input type="hidden" asp-for="IsHistoricReport" />
-</form>
-<partial name="ReportData" model="Model" />
-<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends"
-    asp-route-MinDate="@(Model.DateRangePicker != null ? Model.DateRangePicker.MinDate : Model.MonthPicker.MinDate.ToShortDateWithSlash())"
-    asp-route-IsHistoricReport="@Model.IsHistoricReport" asp-route-ShowDormantAccountsNote="True"></a>
-<input type="hidden" asp-for="IsSetDefaultStackMode" />
-<input type="hidden" id="hidden-betListUrl" value="@MicroSites.TicketUrl("~/WinLoss/Index")">
+    </form>
+
+    <div id="tbl-report-container" class="cover-week-selection" style="visibility: hidden">
+        <partial name="ReportData" />
+    </div>
+</div>
+<a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true"
+    asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
+<a class="hide" id="hidden-usernameSuggestionUrl" asp-action="Suggest" asp-controller="Customer"></a>
+<input type="hidden" id="hidden-betListUrl" value="@MicroSites.TicketUrl("~/WinLoss/IndexNew")" />
+<input type="hidden" asp-for="VisibleColumns" />
+<input type="hidden" id="hidden-copyText" value="@Resources.Copy" />
+<input type="hidden" id="hidden-copiedText" value="@Resources.Copied" />
+<input type="hidden" id="hidden-settingsUrl" value="@MicroSites.SettingUrl()" />

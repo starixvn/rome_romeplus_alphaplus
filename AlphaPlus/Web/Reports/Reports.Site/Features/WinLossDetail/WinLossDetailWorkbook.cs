@@ -4,15 +4,13 @@ using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using AlphaPlus.Reports.Site.Features.Shared;
 using ONEbook.SpreadSheets;
-using static ONEbook.SpreadSheets.Column;
 using AlphaPlus.Shared.AppResources.Report;
+using static ONEbook.SpreadSheets.Column;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
 public interface IWinLossDetailWorkbook
 {
-    ExcelFileViewModel BuildExcelFile(WinLossDetailExcelNewQuery message, ReportData<WinLossDetailModel> reportData, string productNames);
-
     ExcelFileViewModel BuildExcelFile(WinLossDetailExcelQuery message, ReportData<WinLossDetailModel> reportData, string productNames);
 
     ExcelFileViewModel BuildExcelFile(
@@ -29,11 +27,8 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
     ReportNpoiWorkbook<WinLossDetailModel>(webHostEnvironment),
     IWinLossDetailWorkbook
 {
-    public ExcelFileViewModel BuildExcelFile(WinLossDetailExcelNewQuery message, ReportData<WinLossDetailModel> reportData, string productNames)
-        => BuildExcelFile(message.FromDate, message.ToDate, message.CustName, message.CustLevel, message.ShowFullName, reportData, productNames);
-
     public ExcelFileViewModel BuildExcelFile(WinLossDetailExcelQuery message, ReportData<WinLossDetailModel> reportData, string productNames)
-        => BuildExcelFile(message.FromDate, message.ToDate, message.CustName, message.CustLevel, false, reportData, productNames);
+        => BuildExcelFile(message.FromDate, message.ToDate, message.CustName, message.CustLevel, message.ShowFullName, reportData, productNames);
 
     public ExcelFileViewModel BuildExcelFile(
         DateTime fromDate,

@@ -31,7 +31,7 @@
     <input type="hidden" asp-for="ConsolidationUserSelectedDateRangeOption" />
     <input type="hidden" asp-for="ReportType" />
 </form>
-<partial name="~/Features/WinLossDetail/Views/ReportData.cshtml" model="Model" />
+<partial name="ConsolidationDetailReportData" model="Model" />
 <a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends"
     asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
 @if (Model.ReportType == "username")

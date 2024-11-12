@@ -43,8 +43,8 @@ public class ConsolidationDetailHandler(
 
         return new ConsolidationDetailViewModel(
             message,
-            productViewModel,
             BuildBreadcrumbViewModel(message),
+            productViewModel,
             await enteredResultTask,
             reportData);
     }
@@ -85,20 +85,20 @@ public class ConsolidationDetailHandler(
             message.ToDate,
             validUserSelectedProductIds,
             productDetailXml,
-            null,
-            message.Site);
+            Username: null,
+            SiteName: message.Site);
 
         return winlossDetailService.GetWinLossDetail(param);
     }
 
-    protected override BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
+    private static BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
     {
         var breadcrumbs = new List<Breadcrumb>
         {
             new Breadcrumb(message.ViewerId, Resources.Consolidation, message.ViewerLevelId, IsConsolidation: true)
         };
 
-        if (JsonHelper.TryParse<Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList))
+        if (JsonHelper.TryParse<Breadcrumb[]>(message.BreadcrumbsJson, out var breadcrumbList) && breadcrumbList != null)
         {
             for (int i = 1, max = breadcrumbList.Length; i < max; i++)
             {

@@ -1,7 +1,6 @@
 using System.Text;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
-using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.Extensions.Options;
@@ -218,12 +217,5 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var param = new GetProductsParam(message.Site, message.CurrencyId, appSettings.SettingStatus, message.Language, message.MinDate);
 
         return productService.GetProducts(param);
-    }
-
-    protected virtual BreadcrumbViewModel BuildBreadcrumbViewModel(BaseQuery message)
-    {
-        var breadcrumbs = BreadcrumbHelper.BuildBreadcrumbs(message);
-
-        return new BreadcrumbViewModel(breadcrumbs, JsonHelper.ToJson(breadcrumbs));
     }
 }

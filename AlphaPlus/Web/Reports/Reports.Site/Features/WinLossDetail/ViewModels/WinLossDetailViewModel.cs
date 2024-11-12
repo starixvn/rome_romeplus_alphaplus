@@ -1,120 +1,55 @@
 using AlphaPlus.Core.Extensions;
-using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
-using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 
-public class WinLossDetailViewModel
+public class WinLossDetailViewModel(
+    WinLossDetailQuery message,
+    EnteredResultSport totalEnteredResults,
+    ReportData<WinLossDetailModel> reportData,
+    IEnumerable<Breadcrumb> breadcrumbs,
+    ProductMultiSelectionViewModel productViewModel,
+    IEnumerable<WinLossDetailWeekViewModel> weeks) : WinLossDetailGetDataViewModel(message, totalEnteredResults, reportData, breadcrumbs)
 {
-    public WinLossDetailViewModel()
-    {
-    }
+    public UserLevel ViewerLevel { get; } = message.ViewerLevel;
 
-    public WinLossDetailViewModel(
-        WinLossDetailQuery message,
-        ProductMultiSelectionViewModel productViewModel,
-        BreadcrumbViewModel breadcrumbLevel,
-        EnteredResultSport totalEnteredResults,
-        ReportData<WinLossDetailModel> reportData)
-            : this(message, productViewModel, reportData)
-    {
-        IsHistoricReport = message.IsHistoricReport;
-        PageHeader = new PageHeaderViewModel(
-            Title: GetReportNameByLevel(message.CustLevel),
-            HasStackIcon: true,
-            IsStackMode: message.IsStackMode,
-            IsFilterVisible: message.IsFilterVisible,
-            BreadcrumbLevel: breadcrumbLevel,
-            TotalEnteredResults: totalEnteredResults);
-        if (message.IsHistoricReport)
-        {
-            MonthPicker = new MonthPickerViewModel(message.MinDate, message.FromDate, message.ToDate);
-            ViewDataInstructionMessage = string.Format(Resources.CanOnlyViewDataAfterTimeHistoryReport, message.MinDate.ToShortDateWithSlash());
-        }
-        else
-        {
-            DateRangePicker = new DateRangePickerViewModel(
-                message.MinDate,
-                DateTime.MaxValue,
-                message.FromDate,
-                message.ToDate,
-                message.UserSelectedDateRangeOption,
-                isSupportHistoricReport: true,
-                isHistoricReport: message.IsHistoricReport);
-        }
+    public int CustId { get; } = message.CustId;
 
-        CanDrilldown = !message.IsProtectedMode || !message.CustLevel.IsAgentLevel();
-    }
+    public string CustName { get; } = message.CustName;
 
-    protected WinLossDetailViewModel(
-        ProductDetailDateRangeQuery message,
-        ProductMultiSelectionViewModel productViewModel,
-        ReportData<WinLossDetailModel> reportData)
-    {
-        CustId = message.CustId;
-        CustName = message.CustName;
-        CustLevel = message.CustLevel;
-        SortPropertyName = message.SortPropertyName;
-        DescendingSort = message.DescendingSort;
-        IsSetDefaultStackMode = message.IsSetDefaultStackMode;
-        FromDate = message.FromDate.ToShortDateWithSlash();
-        ToDate = message.ToDate.ToShortDateWithSlash();
-        ProductViewModel = productViewModel;
-        ReportData = reportData;
-    }
+    public byte CustLevelId { get; } = message.CustLevelId;
 
-    public int CustId { get; }
+    public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
+        Title: GetReportNameByLevel(message.CustLevel),
+        IsFilterVisible: message.IsFilterVisible,
+        TotalEnteredResults: totalEnteredResults);
 
-    public string CustName { get; }
+    public DateRangePickerJQueryViewModel DateRangePicker { get; } = new DateRangePickerJQueryViewModel(
+        message.FromDate,
+        message.ToDate,
+        message.MinDate,
+        SystemTime.Today.AddDays(1),
+        message.Language);
 
-    public UserLevel CustLevel { get; }
+    public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 
-    public string SortPropertyName { get; }
+    public IEnumerable<WinLossDetailWeekViewModel> Weeks { get; } = weeks;
 
-    public byte DescendingSort { get; }
+    public string Username { get; } = message.Username;
 
-    public bool IsSetDefaultStackMode { get; }
+    public string VisibleColumns { get; } = message.VisibleColumns;
 
-    public bool IsHistoricReport { get; }
+    public string WeekFromDate
+        => message.WeekFromDate == null ? null : message.WeekFromDate.Value.ToShortDateWithSlash();
 
-    public string FromDate { get; }
-
-    public string ToDate { get; }
-
-    public string ViewDataInstructionMessage { get; }
-
-    public PageHeaderViewModel PageHeader { get; protected set; }
-
-    public ProductMultiSelectionViewModel ProductViewModel { get; }
-
-    public DateRangePickerViewModel DateRangePicker { get; protected set; }
-
-    public MonthPickerViewModel MonthPicker { get; }
-
-    public ReportData<WinLossDetailModel> ReportData { get; }
-
-    public bool CanDrilldown { get; protected set; }
-
-    public bool IsGroupHeadline { get; protected set; }
-
-    public IDictionary<string, string> GetExcelParams()
-        => new Dictionary<string, string>
-        {
-            [nameof(CustId)] = CustId.ToString(),
-            [nameof(CustName)] = CustName,
-            ["CustLevelId"] = CustLevel.Value.ToString(),
-            [nameof(ProductViewModel.UserSelectedProductIds)] = ProductViewModel.UserSelectedProductIds,
-            [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
-            [nameof(IsHistoricReport)] = IsHistoricReport.ToString(),
-            [nameof(FromDate)] = FromDate,
-            [nameof(ToDate)] = ToDate
-        };
+    public string WeekToDate
+        => message.WeekToDate == null ? null : message.WeekToDate.Value.ToShortDateWithSlash();
 
     private static string GetReportNameByLevel(UserLevel custLevel)
         => custLevel.IsSuperLevel()
@@ -122,22 +57,4 @@ public class WinLossDetailViewModel
         : custLevel.IsMasterLevel()
             ? Resources.AgentWinLossDetail
             : Resources.MemberWinLossDetail;
-
-    public string GetBetListUrl(int custId, string custName)
-    {
-        var queryString = QueryString.Create(
-        [
-            KeyValuePair.Create(nameof(custId), custId.ToString()),
-            KeyValuePair.Create(nameof(custName), custName),
-            KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
-            KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate),
-            KeyValuePair.Create("ProductIds", ProductViewModel.UserSelectedProductIds),
-            KeyValuePair.Create("ResourceIds", ProductViewModel.UserSelectedResourceIds),
-            KeyValuePair.Create(nameof(IsGroupHeadline), IsGroupHeadline.ToString())
-        ]);
-
-        return $"{BetListPath}{queryString}";
-    }
-
-    private static string BetListPath = MicroSites.TicketUrl("~/WinLoss/Index");
 }

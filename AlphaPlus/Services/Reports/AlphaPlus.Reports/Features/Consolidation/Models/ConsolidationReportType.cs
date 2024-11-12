@@ -12,6 +12,7 @@ public static class ConsolidationReportType
     public static bool IsValidReportType(string reportType)
         => ByUsername == reportType || ByDate == reportType || ByProduct == reportType;
 
-    public static byte MapReportType(string reportType)
+    // For @ReportType param of GetConsolidationCriteria
+    internal static byte MapReportType(string reportType)
         => ByDate == reportType ? Daily : Product;
 }

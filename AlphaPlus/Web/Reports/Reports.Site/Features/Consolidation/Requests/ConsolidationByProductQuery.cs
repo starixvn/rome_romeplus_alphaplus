@@ -7,4 +7,7 @@ public class ConsolidationByProductQuery : ConsolidationQuery, IRequest<Consolid
 {
     public ConsolidationByProductQuery()
         => ReportType = ConsolidationReportType.ByProduct;
+
+    public override bool IsValid()
+        => ReportType == ConsolidationReportType.ByProduct && base.IsValid();
 }

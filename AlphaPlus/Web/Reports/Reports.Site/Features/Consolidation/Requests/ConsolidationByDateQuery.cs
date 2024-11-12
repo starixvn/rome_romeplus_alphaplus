@@ -7,4 +7,7 @@ public class ConsolidationByDateQuery : ConsolidationQuery, IRequest<Consolidati
 {
     public ConsolidationByDateQuery()
         => ReportType = ConsolidationReportType.ByDate;
+
+    public override bool IsValid()
+        => ReportType == ConsolidationReportType.ByDate && base.IsValid();
 }

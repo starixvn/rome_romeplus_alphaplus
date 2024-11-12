@@ -46,10 +46,11 @@ public abstract class ConsolidationViewModel(
             [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
             [nameof(message.UserSelectedCurrencyId)] = message.UserSelectedCurrencyId.ToString(),
             [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
-            [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate
+            [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate,
+            [nameof(message.ReportType)] = message.ReportType
         };
 
-    protected IDictionary<string, string> BuildBaseDrillDownParams(int custId, string custName, byte custLevelId)
+    protected IDictionary<string, string> BuildBaseDrillDownParams(int custId, string custName, byte custLevelId, string productIds = null, string fromDate = null, string toDate = null)
         => new Dictionary<string, string>
         {
             [nameof(custId)] = custId.ToString(),
@@ -62,6 +63,10 @@ public abstract class ConsolidationViewModel(
             ["ConsolidationFromDate"] = DateRangePicker.FromDate,
             ["ConsolidationToDate"] = DateRangePicker.ToDate,
             ["ConsolidationUserSelectedDateRangeOption"] = DateRangePicker.UserSelectedDateRangeOption.ToString(),
+            [nameof(ProductViewModel.UserSelectedProductIds)] = productIds ?? ProductViewModel.UserSelectedProductIds,
+            [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
+            [nameof(DateRangePicker.FromDate)] = fromDate ?? DateRangePicker.FromDate,
+            [nameof(DateRangePicker.ToDate)] = toDate ?? DateRangePicker.ToDate,
         };
 
     protected string BuildBaseBetListParams(int custId, string custName, string productIds = null, string fromDate = null, string toDate = null)

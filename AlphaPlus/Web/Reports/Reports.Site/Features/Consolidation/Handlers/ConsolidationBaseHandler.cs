@@ -42,7 +42,7 @@ public class ConsolidationBaseHandler(
         var (validUserSelectedProductIds, productDetailXml, productNames, currencies) = await GetConsolidationFilterExcel(message);
         var reportData = await GetConsolidationByUsername(
             message,
-            validUserSelectedProductIds.JoinWithComma(),
+            validUserSelectedProductIds,
             productDetailXml,
             currencies);
 
@@ -73,7 +73,7 @@ public class ConsolidationBaseHandler(
         var (validUserSelectedProductIds, productDetailXml, productNames, currencies) = await GetConsolidationFilterExcel(message);
         var reportData = await GetConsolidationByDateOrProduct(
             message,
-            validUserSelectedProductIds.JoinWithComma(),
+            validUserSelectedProductIds,
             productDetailXml,
             currencies);
 

@@ -1058,7 +1058,7 @@
         ]
     },
     {
-        "outputFileName": "bundles/site-reports/winlossdetail-new.js",
+        "outputFileName": "bundles/site-reports/winlossdetail.js",
         "inputFiles": [
             "js/libs/moment/locale/en-gb.js",
             "js/libs/moment/locale/ja.js",
@@ -1074,7 +1074,7 @@
         ]
     },
     {
-        "outputFileName": "bundles/site-reports/winlossdetail-new.css",
+        "outputFileName": "bundles/site-reports/winlossdetail.css",
         "inputFiles": [
             "styles/vendors/daterangepicker/jquery.daterangepicker.css",
             "styles/components/daterangepicker-customize.css"
@@ -1769,7 +1769,7 @@
         ]
     },
     {
-        "outputFileName": "bundles/site-reports/winlossdetail-new-dark.css",
+        "outputFileName": "bundles/site-reports/winlossdetail-dark.css",
         "inputFiles": [
             "styles/vendors/daterangepicker/jquery.daterangepicker.css",
             "styles/components/daterangepicker-customize-dark.css"

@@ -1,179 +1,252 @@
-﻿/// <reference path="../../../assets/scripts/core.ts" />
-/// <reference path="../../../assets/scripts/base-report.ts" />
-/// <reference path="../../../assets/scripts/components/daterangepicker.ts" />
-/// <reference path="../../../assets/scripts/components/monthpicker.ts" />
-/// <reference path="../../../assets/scripts/components/pager.ts" />
-/// <reference path="../../../assets/scripts/components/productmultiselection.ts" />
-/// <reference path="../../../assets/scripts/components/sort.ts" />
-/// <reference path="../../../assets/scripts/components/tooltip.ts" />
+interface Object {
+    entries: any;
+}
+interface Window {
+    indexManager: any;
+}
 
-class WinLossDetailView extends BaseReport {
-    productComponent: ProductMultiSelectionComponent;
-    dateRangePickerComponent: DateRangePickerComponent;
-    reportTooltip: ReportTooltip;
-    sortComponent: SortComponent;
-    monthPickerComponent: MonthPickerComponent;
+declare var viewResources: any;
+declare var productList: any;
+declare var productDetailList: any;
+declare var currentFromData: any;
+declare var viewerLevelId: number;
 
-    isFirstSwitchMode = true;
+class WinLossDetailView extends BaseReportNew {
+    private totalEnteredNonEnteredComponent: TotalEnteredNonEnteredComponent;
+    private dateRangeComponent: DateRangePickerJQueryComponent;
+    private productComponent: ProductDropdownComponent;
+    private usernameSuggestionComponent: UsernameSuggestionComponent;
+    private weekComponent: WeekComponent;
+    private breadcrumbLevelComponent: BreadcrumbLevelComponent;
+    private $reportTitle: JQuery;
+    private globalFormData: any;
+    private isGettingData = false;
+
+    private MemberLevel = 1;
+    private winLossDetailColumns: WinLossDetailColumns;
+    private winLossDetailCopyHtml: WinLossDetailCopyHtml;
+    private winLossDetailSort: WinLossDetailSort;
+    private $tblReportContainer: JQuery;
+    private $tblReport: JQuery;
 
     constructor(
-        productComponent: ProductMultiSelectionComponent,
-        dateRangePickerComponent: DateRangePickerComponent,
-        reportTooltip: ReportTooltip,
-        sortComponent: SortComponent,
-        monthPickerComponent: MonthPickerComponent
+        totalEnteredNonEnteredComponent: TotalEnteredNonEnteredComponent,
+        dateRangeComponent: DateRangePickerJQueryComponent,
+        productComponent: ProductDropdownComponent,
+        usernameSuggestionComponent: UsernameSuggestionComponent,
+        weekComponent: WeekComponent,
+        breadcrumbLevelComponent: BreadcrumbLevelComponent,
+        winLossDetailColumns: WinLossDetailColumns,
+        winLossDetailCopyHtml: WinLossDetailCopyHtml,
+        winLossDetailSort: WinLossDetailSort
     ) {
         super();
-
+        this.totalEnteredNonEnteredComponent = totalEnteredNonEnteredComponent;
+        this.dateRangeComponent = dateRangeComponent;
         this.productComponent = productComponent;
-        this.dateRangePickerComponent = dateRangePickerComponent;
-        this.reportTooltip = reportTooltip;
-        this.sortComponent = sortComponent;
-        this.monthPickerComponent = monthPickerComponent;
+        this.usernameSuggestionComponent = usernameSuggestionComponent;
+        this.weekComponent = weekComponent;
+        this.breadcrumbLevelComponent = breadcrumbLevelComponent;
+        this.winLossDetailColumns = winLossDetailColumns;
+        this.winLossDetailCopyHtml = winLossDetailCopyHtml;
+        this.winLossDetailSort = winLossDetailSort;
     }
 
     init() {
-        $.blockUI();
+        this.$reportTitle = $('#report-title');
+        this.globalFormData = currentFromData;
+        this.$tblReportContainer = $('#tbl-report-container');
+        this.$tblReport = this.$tblReportContainer.find('#tbl-report');
 
-        this.initComponents();
-        this.registerEvents();
-
-        $.unblockUI();
-    }
-
-    initComponents() {
-        this.productComponent.render();
-
-        if ($('#IsHistoricReport').val().toLowerCase() === 'true') {
-            this.monthPickerComponent.render();
-        } else {
-            this.dateRangePickerComponent.render();
-        }
-
-        if (
-            $('#IsSetDefaultStackMode').val().toString().toLowerCase() === 'true' &&
-            alphaReports.screenSmallThan768()
-        ) {
-            this.setStackMode();
-            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winlossdetail'));
-            super.hideFilter();
-        }
-
-        this.sortComponent.initSort(
-            this.$tableReport,
-            { 0: { sorter: 'text' } },
-            this.sortComponent.handleDormantAccountsAfterSort
+        this.dateRangeComponent.render({ maxDays: 92 }, () => this.getWinLossDetail());
+        this.productComponent.render(productList, productDetailList, () => this.getWinLossDetail());
+        this.usernameSuggestionComponent.init(
+            new UsernameSuggestionOption($('#hidden-usernameSuggestionUrl').attr('href'), () => {
+                this.clearCurrentCust();
+                this.getWinLossDetail();
+            })
         );
-        // remove style="visibility:hidden"
-        // TableSorter cannot run with style="display:none"
-        this.$tableReport.removeAttr('style');
+        this.weekComponent.init($('#week-container'), (dateRange) => this.getData(dateRange, undefined, false));
+        this.breadcrumbLevelComponent.init((custInfo) =>
+            this.getWinLossDetailUpOrDownline(custInfo, () =>
+                this.$reportTitle.text(viewResources[custInfo.custLevelId])
+            )
+        );
+        this.winLossDetailColumns.init(() => this.updateQueryString());
+        this.registerEvents();
+        this.$tblReportContainer.removeAttr('style');
+
+        setTimeout(function () {
+            window.top.indexManager && window.top.indexManager.initFeedbackFunction(2);
+        }, 1000);
     }
 
     registerEvents() {
-        $('.icon-switchmode').click(this.onSwitchMode);
-        super.registerHistoricReportEvent();
-        super.registerDrilldownableEvents();
+        this.winLossDetailCopyHtml.bindEvent(this.$tblReport);
+
+        const $iconExcel = $('#icon-excel');
+        const excelUrl = $iconExcel.attr('href');
+        $iconExcel
+            .click((e) => {
+                if (
+                    this.globalFormData.userSelectedProductIds.length === 0 ||
+                    this.globalFormData.custLevelId > viewerLevelId ||
+                    this.isGettingData
+                ) {
+                    e.preventDefault();
+                    return;
+                }
+
+                let excelParams = {
+                    showFullName: this.winLossDetailColumns.isShowFullName()
+                };
+                $.extend(excelParams, this.globalFormData, excelParams);
+                $iconExcel.attr('href', `${excelUrl}?${$.param(excelParams)}`);
+                setTimeout(function () {
+                    $iconExcel.attr('href', 'javascript:;');
+                }, 1000);
+            })
+            .tooltip()
+            .attr('href', 'javascript:;');
+
+        this.winLossDetailSort.init(this.$tblReport);
+
+        this.$tblReport.find('[data-toggle="tooltip"]').tooltip();
+        this.$tblReport
+            .find('.downline-link')
+            .off()
+            .click((e) => {
+                const $this = $(e.target);
+                const custId = $this.data('custid');
+                const custName = $this.data('custname');
+                const custLevelId = $this.data('custlevelid');
+                const custInfo: any = { custId, custName, custLevelId };
+                const breadcrumbs = this.breadcrumbLevelComponent.getBreadcrumbs();
+
+                if (custLevelId === this.MemberLevel) {
+                    $.blockUI();
+                    breadcrumbs.push(custInfo);
+                    const breadcrumbsJson = JSON.stringify(breadcrumbs);
+                    const visibleColumns = this.winLossDetailColumns.getShowColumns().join(',');
+                    const betListParams = $.extend({}, this.globalFormData, custInfo, {
+                        breadcrumbsJson,
+                        visibleColumns
+                    });
+                    $this.attr('href', `${$('#hidden-betListUrl').val()}?${$.param(betListParams)}`);
+                } else {
+                    e.preventDefault();
+                    custInfo.breadcrumbsJson = JSON.stringify(breadcrumbs);
+                    this.getWinLossDetailUpOrDownline(custInfo, () =>
+                        this.$reportTitle.text(viewResources[custInfo.custLevelId])
+                    );
+                }
+            });
+        this.$tblReport
+            .find('.icon-plus-box')
+            .off('click')
+            .click((e) => {
+                window.top['reloadMyWatchlistDataTable'] = () => this.getData(this.globalFormData, undefined, true);
+                const custName = $(e.target).prev('.downline-link').data('custname');
+                const url = `${$(
+                    '#hidden-settingsUrl'
+                ).val()}MyWatchlistAccounts/ManageWatchlistAccounts?usernames=${custName}`;
+                const width = 820;
+                const height = 550;
+                window.top['popupManager'].open(url, undefined, width, height, 'modal-mobile-friendly');
+            });
+        this.winLossDetailColumns.showHideColumns(this.$tblReport);
     }
 
-    setStackMode() {
-        $.blockUI();
+    getWinLossDetail(isClearActiveWeek = true) {
+        isClearActiveWeek && this.clearActiveWeek();
+        const dateRange = this.dateRangeComponent.getDateRangeValues();
+        const productsAndResources = this.productComponent.getCheckedValues();
+        const username = this.usernameSuggestionComponent.getUsername();
 
-        this.$pageTitle.addClass('stack-mode');
-        this.$tableReport.addClass('stack-mode');
-
-        alphaReports.combineConsecutiveCells($('td.col-turnover'), 3, 'col-turnover-combined');
-
-        this.levels.forEach(function (level: string, index: number) {
-            const cellCss = `col-${level}-winloss-combined${index % 2 ? ' altercol' : ''}`;
-            alphaReports.combineConsecutiveCells($(`td.col-${level}-winloss`), 3, cellCss);
-        });
-
-        this.isFirstSwitchMode = false;
-        this.sortComponent.bindTableSorter(this.getSortedColumnName());
-
-        $.unblockUI();
-    }
-
-    onSwitchMode = () => {
-        $.blockUI();
-        const isStackMode = this.isStackMode();
-
-        if (isStackMode) {
-            this.$pageTitle.removeClass('stack-mode');
-            this.$tableReport.removeClass('stack-mode');
-        } else {
-            this.$pageTitle.addClass('stack-mode');
-            this.$tableReport.addClass('stack-mode');
-        }
-
-        if (this.isFirstSwitchMode) {
-            if (isStackMode) {
-                alphaReports.splitCell('col-turnover');
-
-                this.levels.forEach(function (level: string, index: number) {
-                    alphaReports.splitCell(`col-${level}-winloss`, index % 2 ? ' altercol' : '');
-                });
-            } else {
-                alphaReports.combineConsecutiveCells($('td.col-turnover'), 3, 'col-turnover-combined');
-
-                this.levels.forEach(function (level: string, index: number) {
-                    const cellCss = `col-${level}-winloss-combined${index % 2 ? ' altercol' : ''}`;
-                    alphaReports.combineConsecutiveCells($(`td.col-${level}-winloss`), 3, cellCss);
-                });
-            }
-
-            this.isFirstSwitchMode = false;
-        }
-
-        this.sortComponent.bindTableSorter(this.getSortedColumnName());
-        $.unblockUI();
-    };
-
-    onSubmitReport = (event: any) => {
-        if (!this.productComponent.validateProductIds()) {
-            event.preventDefault();
+        const formData = $.extend({}, dateRange, productsAndResources, { username });
+        if (
+            formData.userSelectedProductIds.length === 0 ||
+            formData.custLevelId > viewerLevelId ||
+            this.isGettingData
+        ) {
             return;
         }
 
-        super.onSubmitReport(event);
-    };
+        this.getData(formData, undefined, true);
+    }
 
-    getSortedColumnName = () => {
-        const sortedColumn = this.$tableReport.data('sortedcolumn');
-        if (!this.isStackMode()) {
-            return sortedColumn;
-        }
+    getWinLossDetailUpOrDownline(custInfo, callback: Function) {
+        this.clearUsername();
+        this.getData(custInfo, callback, true);
+    }
 
-        if (sortedColumn === 'NetTurnover' || sortedColumn === 'GrossComm') {
-            return 'Turnover';
-        }
+    getData(formData, callback: Function, isGetWeeks: boolean) {
+        this.$tblReportContainer.block();
+        this.isGettingData = true;
+        const queryStringObject = $.extend({}, this.globalFormData, formData);
+        const queryString = $.param(queryStringObject);
+        isGetWeeks && this.getWeeks(queryString);
+        $.get(`GetData?${queryString}`, (html) => {
+            this.$tblReportContainer.html(html);
+            this.$tblReport = this.$tblReportContainer.find('#tbl-report');
+            this.getDataSuccess();
+            callback && callback();
+            this.globalFormData = queryStringObject;
+            this.updateQueryString(queryString);
+            this.isGettingData = false;
+            this.$tblReportContainer.unblock();
+        }).fail((jqXHR) => {
+            alphaReports.ajaxFail(jqXHR);
+            this.isGettingData = false;
+            this.$tblReportContainer.unblock();
+        });
+    }
 
-        if (sortedColumn === 'MemberComm' || sortedColumn === 'MemberTotal') {
-            return 'MemberWinLoss';
-        }
+    getWeeks(queryString: string) {
+        $.get(`GetWeeks?${queryString}`, (html) => this.weekComponent.render(html)).fail((jqXHR) =>
+            alphaReports.ajaxFail(jqXHR)
+        );
+    }
 
-        if (sortedColumn === 'AgComm' || sortedColumn === 'AgTotal') {
-            return 'AgWinLoss';
-        }
+    getDataSuccess() {
+        this.breadcrumbLevelComponent.bindEvents();
+        this.registerEvents();
+        this.totalEnteredNonEnteredComponent.render(JSON.parse($('#hidden-totalEnteredResultsJson').val()));
+    }
 
-        if (sortedColumn === 'MAgComm' || sortedColumn === 'MAgTotal') {
-            return 'MAgWinLoss';
-        }
+    private updateQueryString(queryString: string = undefined) {
+        queryString = queryString || $.param(this.globalFormData);
+        const visibleColumns = this.winLossDetailColumns.getShowColumns().join(',');
+        alphaReports.updateQueryString(`${queryString}&visibleColumns=${visibleColumns}`);
+    }
 
-        if (sortedColumn === 'SAgComm' || sortedColumn === 'SAgTotal') {
-            return 'SAgWinLoss';
-        }
+    private clearActiveWeek() {
+        delete this.globalFormData.weekFromDate;
+        delete this.globalFormData.weekToDate;
+    }
 
-        return sortedColumn;
-    };
+    private clearCurrentCust() {
+        delete this.globalFormData.custId;
+        delete this.globalFormData.custName;
+        delete this.globalFormData.custLevelId;
+    }
+
+    private clearUsername() {
+        this.usernameSuggestionComponent.clearUsername();
+        delete this.globalFormData.username;
+    }
 }
 
 $(function () {
     new WinLossDetailView(
-        new ProductMultiSelectionComponent(),
-        new DateRangePickerComponent(),
-        new ReportTooltip(),
-        new SortComponent(),
-        new MonthPickerComponent()
+        new TotalEnteredNonEnteredComponent(),
+        new DateRangePickerJQueryComponent(),
+        new ProductDropdownComponent(),
+        new UsernameSuggestionComponent(),
+        new WeekComponent(),
+        new BreadcrumbLevelComponent(),
+        new WinLossDetailColumns(new VisibleColumnComponent()),
+        new WinLossDetailCopyHtml(Clipboard),
+        new WinLossDetailSort()
     ).init();
 });
