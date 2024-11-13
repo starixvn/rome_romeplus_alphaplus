@@ -56,7 +56,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
                     {UserLevel.Member, Resources.Outstanding },
                 };
 
-                var betListLink = MicroSites.TicketUrl($"~/RunningBetList/Index?CustID={account.CustId}&amp;CustName={account.UserName}&amp;GetAll=True");
+                var betListLink = MicroSites.TicketUrl($"~/RunningBetList/Index?CustID={account.CustId}&CustName={account.UserName}&GetAll=True");
 
                 var outstandingLink = MicroSites.ReportsUrl($"~/outstanding/index?" +
                         $"CustId={account.CustId}&CustName={account.UserName}" +
