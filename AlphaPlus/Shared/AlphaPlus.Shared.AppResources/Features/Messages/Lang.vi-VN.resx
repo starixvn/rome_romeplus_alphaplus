@@ -189,4 +189,13 @@
   <data name="NoCommission" xml:space="preserve">
     <value>Không có hoa hồng</value>
   </data>
+  <data name="TwoWayMarket" xml:space="preserve">
+    <value>Cược với 2 cửa</value>
+  </data>
+  <data name="ThreeWayMarket" xml:space="preserve">
+    <value>Cược với 3 cửa</value>
+  </data>
+  <data name="NewBetTypeOfBaseball" xml:space="preserve">
+    <value>Các loại cược mới của Bóng Chày:</value>
+  </data>
 </root>

@@ -41,7 +41,12 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
 
             if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{viewName}.cshtml"))
             {
-                return new EmptyResult();
+                if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{id}.cshtml"))
+                {
+                    return new EmptyResult();
+                }
+
+                return PartialView(id);
             }
 
             return PartialView(viewName);

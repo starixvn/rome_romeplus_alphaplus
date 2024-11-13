@@ -186,4 +186,13 @@
   <data name="NewBetTypeOfCricketTitle" xml:space="preserve">
     <value>ประเภทการเดิมพันใหม่ของคริกเก็ต</value>
   </data>
+  <data name="TwoWayMarket" xml:space="preserve">
+    <value>เดิมพันที่มี 2 ตัวเลือก</value>
+  </data>
+  <data name="ThreeWayMarket" xml:space="preserve">
+    <value>เดิมพันที่มี 3 ตัวเลือก</value>
+  </data>
+  <data name="NewBetTypeOfBaseball" xml:space="preserve">
+    <value>ประเภทการเดิมพันใหม่ของเบสบอล:</value>
+  </data>
 </root>

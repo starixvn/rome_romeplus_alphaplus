@@ -284,5 +284,32 @@ namespace AlphaPlus.Shared.AppResources.Features.Messages {
                 return ResourceManager.GetString("PositionTakingSettingFollows", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 3-way Market.
+        /// </summary>
+        public static string ThreeWayMarket {
+            get {
+                return ResourceManager.GetString("ThreeWayMarket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2-way Market.
+        /// </summary>
+        public static string TwoWayMarket {
+            get {
+                return ResourceManager.GetString("TwoWayMarket", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to New bet types of Baseball:.
+        /// </summary>
+        public static string NewBetTypeOfBaseball {
+            get {
+                return ResourceManager.GetString("NewBetTypeOfBaseball", resourceCulture);
+            }
+        }
     }
 }

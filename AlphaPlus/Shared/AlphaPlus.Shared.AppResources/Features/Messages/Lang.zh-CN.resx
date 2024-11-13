@@ -186,4 +186,13 @@
   <data name="NewBetTypeOfCricketTitle" xml:space="preserve">
     <value>新板球投注类型</value>
   </data>
+  <data name="TwoWayMarket" xml:space="preserve">
+    <value>双项投注盘口</value>
+  </data>
+  <data name="ThreeWayMarket" xml:space="preserve">
+    <value>三项投注盘口</value>
+  </data>
+  <data name="NewBetTypeOfBaseball" xml:space="preserve">
+    <value>棒球的新投注类型:</value>
+  </data>
 </root>

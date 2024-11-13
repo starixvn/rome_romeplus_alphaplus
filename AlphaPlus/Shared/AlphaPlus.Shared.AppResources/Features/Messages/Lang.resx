@@ -192,4 +192,13 @@
   <data name="NewBetTypeOfVolleyball" xml:space="preserve">
     <value>New bet types of Volleyball:</value>
   </data>
+  <data name="TwoWayMarket" xml:space="preserve">
+    <value>2-way Market</value>
+  </data>
+  <data name="ThreeWayMarket" xml:space="preserve">
+    <value>3-way Market</value>
+  </data>
+  <data name="NewBetTypeOfBaseball" xml:space="preserve">
+    <value>New bet types of Baseball:</value>
+  </data>
 </root>
