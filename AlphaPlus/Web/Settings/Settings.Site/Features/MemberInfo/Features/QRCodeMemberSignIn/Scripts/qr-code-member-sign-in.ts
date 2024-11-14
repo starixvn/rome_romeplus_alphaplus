@@ -258,11 +258,7 @@ class QRCodeMemberSignIn {
                     }, 1000);
                 }
                 else {
-                    if (result.MsgType) {
-                        this.showMessageContent(result.MessageContent);
-                    } else {
-                        this.showErrorMessage(result.ErrMsg);
-                    }
+                    this.showMessageContent(result.MessageContent);
                     this.$.unblockUI();
                 }
             },
