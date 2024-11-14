@@ -1,9 +1,6 @@
 interface Object {
     entries: any;
 }
-interface Window {
-    indexManager: any;
-}
 
 declare var viewResources: any;
 declare var productList: any;

@@ -14,10 +14,15 @@ interface StoreJSStatic {
     enabled: boolean;
 }
 
+interface Window {
+    indexManager: any;
+    alpha: any;
+}
+
 declare var store: StoreJSStatic;
 
 class AlphaReports {
-    store: StoreJSStatic;
+    private store: StoreJSStatic;
     private defaultLocale = 'en-US';
     private localeStringOptions = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
 
@@ -41,19 +46,20 @@ class AlphaReports {
         combinedCells.each(function (index: number) {
             const oldValues = $(this).find('li');
             const cellsLength = oldValues.length;
-            let oldCells = '';
+            const oldCells = [];
 
             for (let i = 0, lastCellIndex = cellsLength - 1; i < cellsLength; i++) {
-                oldCells +=
-                    '<td class="hidden-stack-mode ' +
-                    cellClass +
-                    (i === lastCellIndex ? ' ' + lastCellStyle : '') +
-                    '">' +
-                    $(oldValues[i]).html() +
-                    '</td>';
+                oldCells.push(
+                    '<td class="hidden-stack-mode ',
+                    cellClass,
+                    i === lastCellIndex ? ' ' + lastCellStyle : '',
+                    '">',
+                    $(oldValues[i]).html(),
+                    '</td>'
+                );
             }
 
-            $(combinedCells[index]).before(oldCells);
+            $(combinedCells[index]).before(oldCells.join(''));
         });
     };
 
@@ -68,16 +74,18 @@ class AlphaReports {
         }
 
         firstCells.each(function (index: number) {
-            let newCell =
-                '<td class="visible-stack-mode combinedcell ' +
-                combinedCellClass +
-                '" colspan="' +
-                combinedCellColSpan +
-                '"><ul>';
+            const newCell = [
+                '<td class="visible-stack-mode combinedcell ',
+                combinedCellClass,
+                '" colspan="',
+                combinedCellColSpan,
+                '"><ul>'
+            ];
             let currentCell = $(firstCells[index]);
+            const currentCellHtml = currentCell.html();
             let isLastCell = false;
             for (let i = 0; i < numberOfCombinedCells; i++) {
-                newCell += '<li>' + currentCell.html() + '</li>';
+                newCell.push('<li>', currentCellHtml, '</li>');
 
                 if (currentCell.next().length) {
                     currentCell = currentCell.next();
@@ -86,12 +94,12 @@ class AlphaReports {
                 }
             }
 
-            newCell += '</ul></td>';
+            newCell.push('</ul></td>');
 
             if (isLastCell) {
-                currentCell.after(newCell);
+                currentCell.after(newCell.join(''));
             } else {
-                currentCell.prev().after(newCell);
+                currentCell.prev().after(newCell.join(''));
             }
         });
     }
@@ -129,23 +137,23 @@ class AlphaReports {
 
     formatDecimal = (value: number) => (value || 0).toLocaleString(this.defaultLocale, this.localeStringOptions);
 
-    formatCurrency(value: number) {
-        return value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-    }
+    formatCurrency = (value: number) => value.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 
     updateQueryString(queryString: string) {
         try {
-            window.top['indexManager'].updateCurrentUrl(queryString);
+            window.top.indexManager.updateCurrentUrl(queryString);
         } catch {}
     }
 
     ajaxFail(jqXHR) {
         if (jqXHR.status === 429) {
-            window.location.href = `${$('#main-url').val()}error/blocked`;
+            window.location.href = `${window.top.alpha.urls.mainRootPath}error/blocked`;
         } else if (jqXHR.status === 500 && jqXHR.responseText) {
             const responseObject = JSON.parse(jqXHR.responseText);
             if (responseObject.UMFrom && responseObject.UMTo) {
-                window.location.href = `${$('#main-url').val()}partialum/index?${$.param(responseObject)}`;
+                window.location.href = `${window.top.alpha.urls.mainRootPath}partialum/index?${$.param(
+                    responseObject
+                )}`;
             }
         }
     }
