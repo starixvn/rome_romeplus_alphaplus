@@ -243,7 +243,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
         private static Dictionary<string, IList<string>> GetPartialUMConfig(IConfiguration configuration)
         {
             var partialUMConfig = new Dictionary<string, IList<string>>(StringComparer.OrdinalIgnoreCase);
-            var partialUMArray = configuration.GetSection("PartialUMOptions:PartialUM").Get<UMConfig[]>();
+            var partialUMArray = configuration.GetSection("PartialUMOptions:PartialUM").Get<UMConfig[]>() ?? Enumerable.Empty<UMConfig>();
 
             foreach (var partialUM in partialUMArray)
             {
