@@ -67,8 +67,19 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.Reach
 
         public bool CanUpdateAccount { get; }
 
-        public string UserGuideLink => AppSettings.IsSiteLabel789y ?
-            MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179067") :
-            MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179067");
+        public string UserGuideLink
+        {
+            get
+            {
+                if (AlphaPlus.Core.Configurations.AppSettings.SupportedNewHandbook)
+                {
+                    return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=my-watchlist");
+                }
+
+                return AlphaPlus.Core.Configurations.AppSettings.IsSiteLabel789y ?
+                    MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179067") :
+                    MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179067");
+            }
+        }
     }
 }

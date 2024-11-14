@@ -44,9 +44,18 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
             ? Shared.Constants.Language.Default
             : languageCode;
 
-        public string HowToUseLink
-            => AppSettings.IsSiteLabel789y ?
-                MicroSites.FeatureUrl("~/StaticMessage/Guide?id=167819") :
-                MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=167819");
+        public string HowToUseLink {
+            get
+            {
+                if (AlphaPlus.Core.Configurations.AppSettings.SupportedNewHandbook)
+                {
+                    return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=telegram-chatbot");
+                }
+
+                return AppSettings.IsSiteLabel789y ?
+                    MicroSites.FeatureUrl("~/StaticMessage/Guide?id=167819") :
+                    MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=167819");
+            }
+        }
     }
 }

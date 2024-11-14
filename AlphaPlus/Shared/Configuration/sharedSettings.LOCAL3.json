@@ -209,5 +209,7 @@
             "ConnectRetry": 5
         },
         "ApplicationName": "Alpha.After.IBC.LOCAL"
-    }
+    },
+    "MarketsSupportedNewHandbook": "IBC,MBC",
+    "GoogleAnalyticId": "UA-93265717-1"
 }

@@ -1,3 +1,5 @@
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
@@ -43,4 +45,17 @@ public class BetCreditHistoryViewModel(BetCreditHistoryQuery message, BetCreditH
         [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
         [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate
     };
+
+    public string GetUserGuideLink()
+    {
+        if (AppSettings.SupportedNewHandbook)
+        {
+            var handbookPath = "HandbookDefault/GetBySlug?slug=bet-credit-tracking";
+            return MicroSites.FeatureUrl($"~/{handbookPath}");
+        }
+
+        return AppSettings.IsSiteLabel789y
+            ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=167296")
+            : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=167296");
+    }
 }

@@ -46,8 +46,19 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer
                 new SelectListItem(Resources.CompletedTime, "7" )
             ];
 
-        public string UserGuideLink => AppSettings.IsMBCSite
-            ? MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=184099")
-            : MicroSites.FeatureUrl("~/StaticMessage/Guide?id=184099");
+        public string UserGuideLink
+        {
+            get
+            {
+                if (AlphaPlus.Core.Configurations.AppSettings.SupportedNewHandbook)
+                {
+                    return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=auto-transfer");
+                }
+
+                return AlphaPlus.Core.Configurations.AppSettings.IsSiteLabel789y
+                    ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=184099")
+                    : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=184099");
+            }
+        }
     }
 }

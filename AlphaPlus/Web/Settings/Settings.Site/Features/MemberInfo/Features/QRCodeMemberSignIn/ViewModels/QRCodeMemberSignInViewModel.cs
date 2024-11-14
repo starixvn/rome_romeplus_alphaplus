@@ -1,6 +1,8 @@
 ﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels
 {
@@ -23,11 +25,14 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                 : (request.CustLevel.IsMasterLevel() ? Resources.AddNewAgent : Resources.AddNewMember);
             Language = request.Language;
             IsDarkMode = request.IsDarkMode;
+            ActorLevel = request.CustLevel;
         }
 
         public string MemberNameCopyFrom { get; }
 
         public string ActorName { get; }
+
+        public UserLevel ActorLevel { get; }
 
         public decimal Credit { get; }
 
@@ -60,5 +65,17 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
 
         public bool IsDarkMode { get; }
 
+        public string GetUserGuideLink()
+        {
+            if (AppSettings.SupportedNewHandbook)
+            {
+                var handbookPath = UserLevel.GetDisplayName(ActorLevel.GetDirectDownLineLevel().Value).ToLowerInvariant();
+                return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=create-new-{handbookPath}");
+            }
+
+            return AppSettings.IsSiteLabel789y
+                ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159")
+                : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
+        }
     }
 }

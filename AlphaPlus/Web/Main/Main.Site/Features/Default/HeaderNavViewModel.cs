@@ -84,5 +84,10 @@ namespace AlphaPlus.Main.Site.Features.Default
         //     => !IsSubAccount
         //     && (AppSettings.APISuperIds.Any(s => string.Equals(s, "*"))
         //         || AppSettings.APISuperIds.Any(s => string.Equals(s, SuperId.ToString())));
+
+        public string HowToUseIndexPath
+            => AlphaPlus.Core.Configurations.AppSettings.SupportedNewHandbook
+            ? UrlHelper.MapHowToUsePath("~/HandbookDefault/Index")
+            : UrlHelper.MapHowToUsePath("~/Index.aspx");
     }
 }

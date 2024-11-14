@@ -10,4 +10,4 @@ namespace AlphaPlus.AccountInfo.Site.Features.ProfilePicture.GetLibrary
 
         public override bool IsValid() => Mode > 0;
     }
-}
+} 

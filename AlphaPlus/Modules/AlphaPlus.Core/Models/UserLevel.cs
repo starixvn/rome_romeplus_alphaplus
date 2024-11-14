@@ -7,6 +7,13 @@ public class UserLevel : Enumeration
     public static readonly UserLevel Master = new(3, "Master");
     public static readonly UserLevel Agent = new(2, "Agent");
     public static readonly UserLevel Member = new(1, "Member");
+    private static readonly Dictionary<int, string> levels = new Dictionary<int, string>
+    {
+        [1] = "Member",
+        [2] = "Agent",
+        [3] = "Master",
+        [4] = "Super"
+    };
 
     public UserLevel()
     {
@@ -94,6 +101,8 @@ public class UserLevel : Enumeration
 
     public bool IsUplineOf(Enumeration downlineLevel)
         => (downlineLevel is not null) && IsUplineOf(downlineLevel.Value);
+
+    public static string GetDisplayName(int level) => levels[level];
 
     private static int GapBetweenTwoLevels(byte uplineLevelValue, byte downlineLevelValue)
         => uplineLevelValue - downlineLevelValue;

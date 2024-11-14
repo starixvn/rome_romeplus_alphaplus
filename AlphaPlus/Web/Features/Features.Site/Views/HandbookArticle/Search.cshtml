@@ -1,0 +1,61 @@
+﻿@using AlphaPlus.Features.Site.Handbook.ViewModels
+@using AlphaPlus.Shared.AppResources.Features.Handbook
+@using AlphaPlus.Core.Helpers
+@model SearchArticleViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.AngencyHandbook</title>
+    @StaticResources.RenderStyles("~/assets/bundles/handbook/common")
+</head>
+<body>
+    <div class="container">
+        <div class="left-container"></div> <!-- keep this this to prevent break layout -->
+        <div class="center-container">
+            <h2 class="title-page">@Resources.Search</h2>
+
+            <div class="main-article" id="main-article">
+                @if (Model.Articles == null || !Model.Articles.Any())
+                {
+                    @Resources.NoRecords
+                }
+                else
+                {
+                    <div class="block-item">
+                        @foreach (var a in Model.Articles)
+                        {
+                            <div class="item-article">
+                                <div class="info-article">
+                                    <div class="left-title">
+                                        <a href="@a.GetUrl("../")" target="@a.GetTargetFrame()">
+                                            <span class="icon-article"></span>
+                                            @a.Title
+                                        </a>
+                                    </div>
+                                    <div class="right-info">
+                                        <div class="item-info">
+                                            <span class="icon-calendar"></span>
+                                            @Resources.PublishedOn @a.PublishedAtStr
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    @Html.Raw(a.Summary)
+                                </div>
+                                <a href="@a.GetUrl("../")" class="read-more" target="@a.GetTargetFrame()">@Resources.ReadMore</a>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="right-container"></div>
+    </div>
+</body>
+</html>

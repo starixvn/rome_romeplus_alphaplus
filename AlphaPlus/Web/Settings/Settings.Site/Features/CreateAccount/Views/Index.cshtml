@@ -5,9 +5,7 @@
 @model CreateAccountViewModel
 @{
     Layout = "~/Features/CreateAccount/Views/_Layout.cshtml";
-    var userguideLink = AppSettings.IsSiteLabel789y ?
-    MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159") :
-    MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
+    var userguideLink = Model.GetUserGuideLink();
 
     var userSession = AlphaPlus.Core.Models.UserSession.Current;
 }

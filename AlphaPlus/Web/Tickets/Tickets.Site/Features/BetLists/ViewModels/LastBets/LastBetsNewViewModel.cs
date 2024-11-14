@@ -1,5 +1,7 @@
 using AlphaPlus.BetLists.LastBets;
 using AlphaPlus.BetLists.Shared.Models;
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using Fanex.BetList.Core.Builder;
 using Fanex.BetList.Core.Entities;
@@ -48,8 +50,16 @@ public class LastBetsNewViewModel(
     private static SelectListItem BuildSelectListItem(int value, bool selected)
         => new SelectListItem { Text = value.ToString(), Value = value.ToString(), Selected = selected };
 
-    // public string UserGuideLink
-    //     => AppSettings.IsMBCSite
-    //     ? MicroSites.HowToUseUrl("~/Index.aspx?linktomessagesite=186142")
-    //     : MicroSites.FeatureUrl("~/StaticMessage/Guide?id=186142");
+    public string UserGuideLink {
+        get {
+            if (AppSettings.SupportedNewHandbook)
+            {
+                return MicroSites.FeatureUrl("~/HandbookDefault/GetBySlug?slug=last-bets");
+            }
+
+            return AppSettings.IsSiteLabel789y
+                ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=186142") 
+                : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=186142");
+        }
+    }
 }

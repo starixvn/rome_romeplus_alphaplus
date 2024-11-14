@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
 {
@@ -24,6 +26,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
                 : (userLevel.IsMasterLevel() ? Resources.AddNewAgent : Resources.AddNewMember);
             Params = JsonConvert.SerializeObject(new { uplineId = custId, suggestUsername, uplineRoleId = levelId },
                 new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+           ActorLevel = userLevel;
         }
 
         public string ErrorMessage { get; }
@@ -31,6 +34,8 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
         public bool IsLimitNewDownline { get; }
 
         public bool IsCreateMember { get; }
+
+        public UserLevel ActorLevel { get; }
 
         public string CustLevel { get; }
 
@@ -43,5 +48,18 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels
         public bool IsDarkMode { get; }
 
         public string Params { get; }
+
+        public string GetUserGuideLink()
+        {
+            if (AppSettings.SupportedNewHandbook)
+            {
+                var handbookPath = UserLevel.GetDisplayName(ActorLevel.GetDirectDownLineLevel().Value).ToLowerInvariant();
+                return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=create-new-{handbookPath}");
+            }
+
+            return AppSettings.IsSiteLabel789y
+                ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159")
+                : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
+        }
     }
 }

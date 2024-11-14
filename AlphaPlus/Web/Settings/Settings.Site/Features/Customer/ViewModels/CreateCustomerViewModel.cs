@@ -1,4 +1,6 @@
 using System.Text.Json;
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Customer.Requests;
 using AlphaPlus.Shared.AppResources.Settings;
@@ -50,5 +52,18 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
         public bool IsLimitNewDownline { get; }
 
         public string Message { get; }
+
+        public string GetUserGuideLink()
+        {
+            if (AppSettings.SupportedNewHandbook)
+            {
+                var handbookPath = UserLevel.GetDisplayName(ActorLevel.GetDirectDownLineLevel().Value).ToLowerInvariant();
+                return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=create-new-{handbookPath}");
+            }
+
+            return AppSettings.IsSiteLabel789y
+                ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159")
+                : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
+        }
     }
 }

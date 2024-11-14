@@ -12,4 +12,7 @@
       <Mapping DataField="ProductName" ObjectProperty="name" />
     </Setting>
   </Function>
+  <Function Name="Profile Picture">
+    <Setting Key="Age_CustomerSelProfilePicture" SpName="Age_CustomerSelProfilePicture" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
+  </Function>
 </Functions>

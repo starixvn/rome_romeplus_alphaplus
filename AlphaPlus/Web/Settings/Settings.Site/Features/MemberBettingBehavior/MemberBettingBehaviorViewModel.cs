@@ -29,9 +29,20 @@ namespace AlphaPlus.Settings.Site.Features.MemberBettingBehavior
 
         public DateTime EndDate => DateTime.Now.AddDays(-2);
 
-        public string UserGuideLink => AppSettings.IsSiteLabel789y
-           ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=204089")
-           : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=204089");
+        public string UserGuideLink
+        {
+            get
+            {
+                if (AppSettings.SupportedNewHandbook)
+                {
+                    return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=member-betting-behavior");
+                }
+
+                return AppSettings.IsSiteLabel789y
+                   ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=204089")
+                   : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=204089");
+            }
+        }
 
         public string Language { get; }
     }

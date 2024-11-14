@@ -14,6 +14,7 @@ COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "A
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 
 COPY "AlphaPlus/Services/Features/Messages/Messages.API.csproj" "AlphaPlus/Services/Features/Messages/Messages.API.csproj"
+COPY "AlphaPlus/Services/Features/Handbook/Handbook.API.csproj" "AlphaPlus/Services/Features/Handbook/Handbook.API.csproj"
 COPY "AlphaPlus/Web/Features/Features.Site/Features.Site.csproj" "AlphaPlus/Web/Features/Features.Site/Features.Site.csproj"
 
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
@@ -30,6 +31,8 @@ COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
 COPY "AlphaPlus/Services/Features" "AlphaPlus/Services/Features"
 COPY "AlphaPlus/Web/Features" "AlphaPlus/Web/Features"
 COPY ./AlphaPlus/Web/Features/Features.Site/assets/styles/feedback/images ./AlphaPlus/Web/Features/Features.Site/wwwroot/assets/bundles/feedback/images
+COPY ./AlphaPlus/Web/Features/Features.Site/assets/styles/handbook/images ./AlphaPlus/Web/Features/Features.Site/wwwroot/assets/bundles/handbook/images
+COPY ./AlphaPlus/Web/Features/Features.Site/assets/styles/handbook/base/fonts ./AlphaPlus/Web/Features/Features.Site/wwwroot/assets/bundles/handbook/base/fonts
 
 ARG TRANSFORM_CONFIG
 

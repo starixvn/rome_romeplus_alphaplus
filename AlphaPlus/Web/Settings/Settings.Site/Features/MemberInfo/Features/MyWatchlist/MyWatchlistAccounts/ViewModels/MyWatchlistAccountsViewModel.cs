@@ -67,8 +67,19 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.MyWatchlist.MyWat
             }
         }
 
-        public string UserGuideLink => AppSettings.IsSiteLabel789y ?
-            MicroSites.SettingUrl("~/StaticMessage/Guide?id=179067") :
-            MicroSites.SettingUrl("~/Index.aspx?linktomessagesite=179067");
+        public string UserGuideLink
+        {
+            get
+            {
+                if (AppSettings.SupportedNewHandbook)
+                {
+                    return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=my-watchlist");
+                }
+
+                return AppSettings.IsSiteLabel789y ?
+                    MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179067") :
+                    MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179067");
+            }
+        }
     }
 }

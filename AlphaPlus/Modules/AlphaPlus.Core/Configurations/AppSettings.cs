@@ -97,6 +97,28 @@ public static class AppSettings
             .Split(',')
             .Select(v => int.Parse(v)));
 
+    public static bool SupportedNewHandbook
+    {
+        get
+        {
+            var marketsSupportedNewHandbook = ConfigurationManager.GetValue<string>("MarketsSupportedNewHandbook");
+            if (string.IsNullOrWhiteSpace(marketsSupportedNewHandbook))
+            {
+                return false;
+            }
+
+            if (string.Equals("*", marketsSupportedNewHandbook, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            var label = SiteLabel;
+            return marketsSupportedNewHandbook
+                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Any(s => string.Equals(s, label, StringComparison.OrdinalIgnoreCase));
+        }
+    }   
+
     private static void GetForceLoginNicknameConfiguration()
     {
         var forceLoginNicknameDateValue = ConfigurationManager.GetValue<string>("ForceLoginNicknameDate");

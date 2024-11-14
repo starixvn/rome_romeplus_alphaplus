@@ -174,7 +174,7 @@ html * {
 
             &.icon-signintonovacasino,
             &.icon-joinnovacasinonow {
-                background: url(../images/logintonovacasino.svg) no-repeat !important;
+                background: url(../handbook/images/logintonovacasino.svg) no-repeat !important;
                 box-shadow: none !important;
                 height: 20px;
                 width: 20px;
@@ -205,7 +205,7 @@ html * {
             }
 
             &.icon-chatbot {
-                background: url(../images/chatbot-intro.svg) no-repeat !important;
+                background: url(../handbook/images/chatbot-intro.svg) no-repeat !important;
                 box-shadow: none !important;
                 height: 18px;
                 width: 18px;
@@ -367,7 +367,7 @@ html * {
             z-index: 1;
             width: 48px;
             height: 32px;
-            background: url(../images/bage_bg_dark.svg) no-repeat center center / cover;
+            background: url(../handbook/images/bage_bg_dark.svg) no-repeat center center / cover;
             padding: 5px 0 0 3px;
             text-align: center;
         }
@@ -954,9 +954,9 @@ html * {
     .icon-feedback {
         position: relative;
         top: -4px;
-        mask: url('../images/feedback.svg');
-        -webkit-mask-image: url('../images/feedback.svg');
-        mask-image: url('../images/feedback.svg');
+        mask: url('../handbook/images/feedback.svg');
+        -webkit-mask-image: url('../handbook/images/feedback.svg');
+        mask-image: url('../handbook/images/feedback.svg');
         background-color: #fff;
         height: 25px;
         width: 24px;
@@ -1039,9 +1039,9 @@ html * {
 
     .icon-feedback {
         position: relative;
-        mask: url('../images/feedback-report.svg');
-        -webkit-mask-image: url('../images/feedback-report.svg');
-        mask-image: url('../images/feedback-report.svg');
+        mask: url('../handbook/images/feedback-report.svg');
+        -webkit-mask-image: url('../handbook/images/feedback-report.svg');
+        mask-image: url('../handbook/images/feedback-report.svg');
         height: 31px;
         width: 30px;
         display: inline-block;
@@ -1052,7 +1052,7 @@ html * {
 }
 
 .icon-close-feedback {
-    background: url(../images/icon-close-feedback2.png) no-repeat;
+    background: url(../handbook/images/icon-close-feedback2.png) no-repeat;
     height: 20px;
     width: 20px;
     display: inline-block;

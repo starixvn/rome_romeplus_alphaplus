@@ -7,9 +7,18 @@
 @{
     ViewBag.Title = Resources.IndirectLoginAccount;
 
-    var userguideLink = AppSettings.IsSiteLabel789y ?
-        MicroSites.FeatureUrl("~/StaticMessage/Guide?id=132782") :
-        MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=132782");
+    var userguideLink = string.Empty;
+
+    if (AlphaPlus.Core.Configurations.AppSettings.SupportedNewHandbook)
+    {
+        userguideLink = MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=indirect-login-account");
+    }
+    else
+    {
+        userguideLink = AppSettings.IsSiteLabel789y ?
+           MicroSites.FeatureUrl("~/StaticMessage/Guide?id=132782") :
+           MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=132782");
+    }
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-totalbetsforecast/default")

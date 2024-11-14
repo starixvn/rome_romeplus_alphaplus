@@ -17,6 +17,7 @@ using AlphaPlus.Features.Site.Messages.Requests.Announcement;
 using AlphaPlus.Features.Messages.API.Configurations;
 using AlphaPlus.Features.Messages.API.Client.Helpers;
 using AlphaPlus.Features.Messages.API;
+using AlphaPlus.Features.Handbook.API.Services;
 
 namespace AlphaPlus.Features.Site.Helpers
 {
@@ -74,6 +75,7 @@ namespace AlphaPlus.Features.Site.Helpers
                 .AddScoped<ProductService, ProductServiceImpl>()
                 .AddScoped<ToastMessageService, ToastMessageServiceImpl>()
                 .AddScoped<AnnouncementClient, AnnouncementClientImpl>()
+                .AddScoped<IProfileService, ProfileService>()
                 .AddSingleton<IRestClient>(client => new RestClient(new Uri(AppSettings.AnnouncementApi)) { Authenticator = new HmacAuthenticator() })
                 .AddSingleton<ICacheService, CacheService>();
 

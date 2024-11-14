@@ -7,9 +7,7 @@
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
     ViewBag.Title = Resources.SearchAndCopy;
     var errorMessageClass = string.IsNullOrEmpty(Model.ErrorMessage) ? "hidden" : "msg msg-error";
-    var userguideLink = AppSettings.IsSiteLabel789y ?
-    MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159") :
-    MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
+    var userguideLink = Model.GetUserGuideLink();
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")

@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
@@ -55,6 +56,19 @@ public class MoveStatementHistoryViewModel(MoveStatementHistoryQuery message, Mo
         ]);
 
         return $"{BetListPath}{queryString}";
+    }
+
+    public string GetUserGuideLink()
+    {
+        if (AppSettings.SupportedNewHandbook)
+        {
+            var handbookPath = "HandbookDefault/GetBySlug?slug=bet-credit-tracking";
+            return MicroSites.FeatureUrl($"~/{handbookPath}");
+        }
+
+        return AppSettings.IsSiteLabel789y
+            ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=167296")
+            : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=167296");
     }
 
     private static string BetListPath = MicroSites.TicketUrl("~/MoveStatementHistory/Index");

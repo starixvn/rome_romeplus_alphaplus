@@ -2,6 +2,7 @@
 @{
     Layout = "_Layout";
     ViewData["Title"] = Resources.MoveStatementHistory;
+    var userguideLink = Model.GetUserGuideLink();
     async Task BuildMoveStatementHistory(MoveStatementHistoryByMember item)
     {
         <tr class="member-row">
@@ -53,7 +54,7 @@
             <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.MoveStatementHistory</a>
         </li>
         <li>
-            <a href="javascript:;" target="_blank"><span class="icon icon-information-outline"></span></a>
+            <a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
         </li>
     </ul>
     <div class="list-icon">

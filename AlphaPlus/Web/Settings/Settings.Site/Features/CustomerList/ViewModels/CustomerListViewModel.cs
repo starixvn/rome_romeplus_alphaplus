@@ -3,6 +3,8 @@ using AlphaPlus.Shared.AppResources.Settings.CustomerList;
 using AlphaPlus.Settings.Site.Features.CustomerList.Models;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers;
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {
@@ -139,6 +141,22 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
                 ];
 
         public CustomerListPagingViewModel CustomerListPagingViewModel { get; }
+
+        public string GetUserGuideLink()
+        {
+            if (AppSettings.SupportedNewHandbook)
+            {
+                var handbookPath =
+                    UplineRoleId == UserLevel.Super.Value ? "master-agent-list"
+                    : UplineRoleId == UserLevel.Master.Value ? "agent-list"
+                    : "member-list";
+                return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug={handbookPath}");
+            }
+
+            return AppSettings.IsSiteLabel789y ?
+                MicroSites.FeatureUrl("~/StaticMessage/Guide?id=137130") :
+                MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=137130");
+        }
     }
 
     public class CustomerListOption(int value, string text)

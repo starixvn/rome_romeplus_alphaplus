@@ -1,4 +1,6 @@
-﻿using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.CopyAccount.Request;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 
@@ -60,5 +62,17 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
 
         public bool IsDarkMode { get; }
 
+        public string GetUserGuideLink()
+        {
+            if (AppSettings.SupportedNewHandbook)
+            {
+                var handbookPath = UserLevel.GetDisplayName(ActorLevel.GetDirectDownLineLevel().Value).ToLowerInvariant();
+                return MicroSites.FeatureUrl($"~/Default/GetBySlug?slug=create-new-{handbookPath}");
+            }
+
+            return AppSettings.IsSiteLabel789y
+                ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=179159")
+                : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=179159");
+        }
     }
 }

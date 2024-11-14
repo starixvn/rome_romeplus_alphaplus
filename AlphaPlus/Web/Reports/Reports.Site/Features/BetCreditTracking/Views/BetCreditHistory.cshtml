@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "_Layout";
     ViewData["Title"] = Resources.BetCreditHistory;
+    var userguideLink = Model.GetUserGuideLink();
     string FormatNullableNumber(decimal? number)
     {
         return number.HasValue ? number.Value.FormatNumber() : string.Empty;
@@ -41,7 +42,7 @@
             <a class="open-link" data-url="@MicroSites.ReportsUrl("~/BetCreditTracking/MoveStatementHistory")">@Resources.MoveStatementHistory</a>
         </li>
         <li>
-            <a href="javascript:;" target="_blank"><span class="icon icon-information-outline"></span></a>
+            <a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
         </li>
     </ul>
     <div class="list-icon">

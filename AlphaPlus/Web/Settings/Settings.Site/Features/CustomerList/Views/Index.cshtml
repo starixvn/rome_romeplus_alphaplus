@@ -15,9 +15,7 @@
 
     var commissionGroupClass = Model.IsMobileView || (Model.SearchAccountLevel.IsAgentLevel() &&
     Model.Language.Equals("th-TH")) ? "none" : "desktop";
-    var userguideLink = AppSettings.IsSiteLabel789y ?
-    MicroSites.FeatureUrl("~/StaticMessage/Guide?id=137130") :
-    MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=137130");
+    var userguideLink = Model.GetUserGuideLink();
 }
 
 @section Styles {
