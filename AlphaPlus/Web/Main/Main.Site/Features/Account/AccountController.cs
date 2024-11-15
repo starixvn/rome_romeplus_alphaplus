@@ -17,7 +17,6 @@ namespace AlphaPlus.Main.Site.Features.Account;
 [AllowAnonymous]
 public class AccountController(
     IUserSession userSession,
-    IConfiguration configuration,
     IDeviceHelper deviceHelper,
     IAccountService accountService,
     IAesService aesService,
@@ -25,7 +24,6 @@ public class AccountController(
     : Controller
 {
     private readonly IUserSession userSession = userSession;
-    private readonly IConfiguration configuration = configuration;
     private readonly IAccountService accountService = accountService;
     private readonly IAesService aesService = aesService;
     private readonly IDeviceHelper deviceHelper = deviceHelper;
@@ -39,9 +37,12 @@ public class AccountController(
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
         var loginResultMessage = string.IsNullOrWhiteSpace(r) ? string.Empty : $"?r={r}";
 
+        IActionResult result = userSession.IsIndirectLoggedIn || userSession.IsInternal || loginUrl == null || string.IsNullOrWhiteSpace(loginUrl.Before) ?
+            new EmptyResult() : Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
+
         ClearSessionCookies();
 
-        return Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
+        return result;
     }
 
     [Authorize]
@@ -54,7 +55,7 @@ public class AccountController(
 
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-        if (UserSession.Current.IsIndirectLoggedIn || UserSession.Current.IsInternal)
+        if (userSession.IsIndirectLoggedIn || userSession.IsInternal)
         {
             ClearSessionCookies();
 
