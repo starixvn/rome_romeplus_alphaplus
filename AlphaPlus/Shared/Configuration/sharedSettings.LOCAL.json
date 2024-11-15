@@ -208,6 +208,6 @@
             "AbortOnConnectFail": false,
             "ConnectRetry": 5
         },
-        "ApplicationName": "Alpha.After.LOCAL"
+        "ApplicationName": "Alpha.After.MBC.LOCAL"
     }
 }

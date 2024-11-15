@@ -26,7 +26,7 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "NAPINTERNAL2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "MNL2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "MNLNAP2" ]; \
-	then COPY Web/Assets/bundleconfig2.json ./bundleconfig; \
+	then cp ./bundleconfig2.json ./bundleconfig.json; \
 	fi
 
 RUN yarn gulp
