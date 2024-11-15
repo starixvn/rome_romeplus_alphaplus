@@ -36,16 +36,8 @@ FROM hub.nexdev.net/base/nginxinc/nginx-unprivileged:1.22-alpine-slim
 # Set root user has full permissions of read/write files/folders to copy needed things
 USER root
 
-# Copy needed files/folders
-# RUN cp -r styles/ /usr/share/nginx/html/styles
-
-# RUN cp -r styles-v2/ /usr/share/nginx/html/styles-v2
-
 COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /usr/share/nginx/html
-COPY --from=builder /app/bundles ./bundles
-COPY --from=builder /app/bundles-v2 ./bundles-v2
-COPY --from=builder /app/bundles3 ./bundles3
 COPY --from=builder /app/styles/fonts/iconalpha/fonts ./bundles/common/fonts
 COPY --from=builder /app/styles/fonts ./bundles/fonts
 COPY --from=builder /app/styles-v2/fonts ./bundles-v2/common/fonts
@@ -54,21 +46,7 @@ COPY --from=builder /app/styles/images ./bundles/images
 COPY --from=builder /app/styles/vendors ./bundles/vendors
 COPY --from=builder /app/styles-v3/images ./bundles3/images
 COPY --from=builder /app/styles/vendors/jqueryui/images ./bundles/site-viewlogs/images
-
-# RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
-# 		|| [ "$TRANSFORM_CONFIG" = "SIT2" ] \
-# 		|| [ "$TRANSFORM_CONFIG" = "UAT2" ] \
-# 		|| [ "$TRANSFORM_CONFIG" = "PRO2" ] \
-# 		|| [ "$TRANSFORM_CONFIG" = "AWS2" ] \
-# 		|| [ "$TRANSFORM_CONFIG" = "NAPAWS2" ] \
-# 		|| [ "$TRANSFORM_CONFIG" = "NAPINTERNAL2" ] \
-# 		|| [ "$TRANSFORM_CONFIG" = "MNL2" ] \
-# 		|| [ "$TRANSFORM_CONFIG" = "MNLNAP2" ]; \
-# 	then cp -r assets/bundles2/ /usr/share/nginx/html/bundles; \
-# 		 cp -r assets/bundles2-v2/ /usr/share/nginx/html/bundles-v2; \
-# 	else cp -r assets/bundles/ /usr/share/nginx/html/bundles; \
-# 		 cp -r assets/bundles-v2/ /usr/share/nginx/html/bundles-v2; \
-# 	fi
+COPY --from=builder /app ./
 
 # Remove default page of nginx
 RUN rm /usr/share/nginx/html/index.html
