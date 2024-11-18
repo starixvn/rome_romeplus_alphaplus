@@ -48,4 +48,8 @@ public static class ExceptionHelper
 
     private static string GetCookiesValues(HttpRequest request)
         => string.Join(BreakLine, request.Cookies.Select(header => $"{header.Key}:{header.Value}"));
+
+    private static string GetSpParameters(IDictionary<string, object> parameters)
+        => string.Join(BreakLine, parameters.Select(p => $"{p.Key}={p.Value}"));
+
 }

@@ -4,6 +4,7 @@
 // For more information on ASP.NET Core startup files, see https://docs.microsoft.com/aspnet/core/fundamentals/startup
 
 using System.Reflection;
+using System.Text;
 using Alpha.SliderCaptcha.AspNetCore;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.Utilities.IP;
@@ -34,6 +35,8 @@ namespace Fanex.Alpha.Before
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
             var redisConfiguration = Configuration.GetValue<string>("RedisConfiguration");
             services.AddStackExchangeRedisCache(options =>
             {
@@ -74,15 +77,21 @@ namespace Fanex.Alpha.Before
             services.AddSingleton<IDistributedCacheService, DistributedCacheService>();
 
             services.AddSingleton<IKickoutCustomerService, KickoutCustomerService>();
+            services.AddSingleton<IPHelper, IPHelperImpl>();
             services.AddSingleton<IFPSHelper, FPSHelper>();
             services.AddSingleton<IEncryptUrlHelper, EncryptUrlHelper>();
+            services.AddSingleton<IPService, IPServiceImpl>();
             services.AddHttpClient<INotificationService, NotificationService>(httpClient =>
             {
                 httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("TelegramBotUri"));
                 httpClient.Timeout = TimeSpan.FromMinutes(5);
             });
             services.AddSingleton<ILimitedCountryAccessService, LimitedCountryAccessService>();
-            services.AddSingleton<ISignInService, SignInService>();
+            services.AddHttpClient<ISignInService, SignInService>(httpClient =>
+            {
+                httpClient.BaseAddress = new Uri(Configuration.GetValue<string>("PasswordService:Uri"));
+                httpClient.Timeout = TimeSpan.FromMinutes(5);
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,5 +1,7 @@
 using System.Net;
 using AlphaPlus.Utilities.IP;
+using Fanex.Alpha.Before.Configurations;
+using Fanex.Alpha.Before.Constants;
 using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.Models;
 using Fanex.Alpha.Before.Services;
@@ -53,9 +55,15 @@ public class CommonController : Controller
         }
 
         ViewData["DarkModeName"] = AppSession.DarkModeName;
+        var viewName = AppSetting.SiteGroup switch
+        {
+            SiteGroupConstants.Site789y => "Offline2",
+            SiteGroupConstants.IBCIndo => "Offline3",
+            _ => "Offline"
+        };
 
         var umModel = new UnderMaintenanceModel(umInfo.IsUnderMaintenanceTime, umInfo.From, umInfo.To, umInfo.ConnectionResult.IsNotOk);
-        return View(umModel);
+        return View($"{viewName}", umModel);
     }
 
     public IActionResult LimitedCountryAccess()
@@ -64,7 +72,7 @@ public class CommonController : Controller
         if (_limitedCountryAccessService.IsLimitedAccess(clientIP))
         {
             ViewData["DarkModeName"] = AppSession.DarkModeName;
-            return View("LimitedCountryAccess", _ipHelper.GetClientIP());
+            return View("LimitedCountryAccess", clientIP);
         }
         else
         {

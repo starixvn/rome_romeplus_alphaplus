@@ -1,7 +1,7 @@
-﻿using Fanex.Data.Repository;
-
-namespace Fanex.Alpha.Before.Criteria.LimitedCountryAccess
+﻿namespace Fanex.Alpha.Before.Criteria.LimitedCountryAccess
 {
+    using Data.Repository;
+
     public class GetIpRangesByCountryCriteria : CriteriaBase
     {
         public GetIpRangesByCountryCriteria(bool isIpV6, string countryCodes)

@@ -1,6 +1,7 @@
 using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.NetThrottling;
 using Fanex.Alpha.Before.Services;
+using Fanex.Data;
 using Fanex.Logging;
 using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.AspNetCore;
@@ -55,8 +56,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(Logger.Log);
 
         ExceptionHandler
-            .UseConfig(new LoggingConfiguration())
-            .GetHttpHeaderInfo();
+            .UseConfig(new LoggingConfiguration()
+            .GetHttpHeaderInfo());
 
         return services;
     }

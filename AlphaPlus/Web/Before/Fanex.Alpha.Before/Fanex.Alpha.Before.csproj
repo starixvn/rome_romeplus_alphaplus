@@ -28,9 +28,9 @@
   <ItemGroup>
     <PackageReference Include="Fanex.Caching.Redis.AspNetCore" Version="2.2.3" />
     <PackageReference Include="Fanex.Common" Version="1.1.1" />
+    <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.0" />
     <PackageReference Include="FPS.Browserless.Detection.Client.NetStandard" Version="1.0.4" />
-    <PackageReference Include="FPS.Client.NetStandard" Version="1.0.9" />
-    <PackageReference Include="FPS.Device.FingerPrint.Net.Standard.Client" Version="1.0.3" />
+    <PackageReference Include="FPS.Client.NetStandard" Version="1.0.15" />
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.21.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.21.3" />
     <PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.99" />
@@ -40,8 +40,10 @@
     <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-x64" Version="7.4.2" />
     <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.3" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
     <PackageReference Include="TelegramBot.Client" Version="1.0.1" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
+    <PackageReference Include="UAParser" Version="3.1.47" />
     <PackageReference Include="Alpha.SliderCaptcha.AspNetCore" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Extensions.AspNetCore" Version="1.0.0" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
@@ -50,6 +52,7 @@
     <PackageReference Include="ONEbook.UM.AspNetCore.Filters" Version="3.1.0" />
     <PackageReference Include="ONEbook.UM.Transport" Version="3.1.1" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.RequestInfo\AlphaPlus.RequestInfo.csproj" />
   </ItemGroup>

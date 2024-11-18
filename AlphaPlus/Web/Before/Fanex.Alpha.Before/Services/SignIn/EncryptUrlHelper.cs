@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using Fanex.Alpha.Before.Configurations;
+﻿using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.Models;
 using Fanex.Cryptography.Aes;
 
@@ -20,7 +19,8 @@ namespace Fanex.Alpha.Before.Services.SignIn
             string browserSize,
             string encryptCode,
             string darkModeName,
-            string assetAppPath);
+            string assetAppPath,
+             string dcsStaticAppPath);
     }
 
     public class EncryptUrlHelper : IEncryptUrlHelper
@@ -57,7 +57,8 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 AppSession.BrowserSize,
                 AppSession.EncryptCode,
                 AppSession.DarkModeName,
-                AppSession.AssetAppPath);
+                AppSession.AssetAppPath,
+                AppSession.DCSStaticAppPath);
 
             AppSession.ResetRobotCaptchaSession();
 
@@ -73,34 +74,34 @@ namespace Fanex.Alpha.Before.Services.SignIn
             string browserSize,
             string encryptCode,
             string darkModeName,
-            string assetAppPath)
+            string assetAppPath,
+            string dcsStaticAppPath)
         {
             WriteLoginLogs(verifySignInResult.SuperId, $"Build after url, sessionId: {httpContext.Session.Id}, custId:{verifySignInResult.CustId}");
 
-            var parameter = new SSOParam
-            {
-                CustId = verifySignInResult.CustId,
-                SubAccId = verifySignInResult.SubAccId,
-                LoginTime = verifySignInResult.LoginTime.Ticks,
-                EncryptPassword = encryptPassword,
-                Nickname = verifySignInResult.Nickname,
-                IsNickname = verifySignInResult.IsNickname,
-                Language = language,
-                NumberCrossCookie = NumberCrossCookie(httpContext),
-                DeviceId = deviceId,
-                BrowserSize = browserSize,
-                EncryptCode = encryptCode,
-                DarkModeName = darkModeName,
-                AssetAppPath = assetAppPath,
-                UMToken = GetUMToken(httpContext)
-            };
+            var parameter = string.Format(
+                "{0}&{1}&{2}&{3}&{4}&{5}&__utms&{6}&{7}&{8}&{9}&{10}&{11}&{12}&{13}",
+                verifySignInResult.CustId,
+                verifySignInResult.SubAccId,
+                verifySignInResult.LoginTime.Ticks,
+                encryptPassword,
+                verifySignInResult.Nickname,
+                verifySignInResult.IsNickname,
+                language,
+                NumberCrossCookie(httpContext),
+                deviceId,
+                browserSize,
+                encryptCode,
+                darkModeName,
+                assetAppPath,
+                dcsStaticAppPath);
 
             var host = httpContext.Request.Host.Value.TrimEnd('.');
             var afterUrl = AppSetting.DomainMappings[host];
 
-            var url = $"{afterUrl}/Account/SSO?parameter={EncryptParameter(JsonSerializer.Serialize(parameter))}";
+            var url = $"{afterUrl}{AppSetting.AfterLoginAuthorizationPage}?params={EncryptParameter(parameter)}";
 
-            return url;
+            return AddUMToken(httpContext, url);
         }
 
         private static bool NumberCrossCookie(HttpContext httpContext)
@@ -113,7 +114,13 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private static string EncryptParameter(string parameter)
             => AesService.Default.Encrypt(parameter, SecretKey);
 
-        private static string GetUMToken(HttpContext httpContext)
-            => httpContext.Session.GetString("UMToken");
+        private static string AddUMToken(HttpContext httpContext, string url)
+        {
+            var umToken = httpContext.Session.GetString("UMToken");
+
+            return umToken == null
+                ? url
+                : $"{url}&UMToken={umToken}";
+        }
     }
 }

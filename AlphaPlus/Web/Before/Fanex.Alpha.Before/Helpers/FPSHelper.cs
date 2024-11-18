@@ -1,9 +1,5 @@
-﻿using AlphaPlus.Utilities.IP;
-using Fanex.Alpha.Before.Configurations;
+﻿using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.Models;
-using FPS.Device.FingerPrint.Net.Standard.Client;
-using FPS.Device.FingerPrint.Net.Standard.Client.Model;
-using Microsoft.AspNetCore.Http.Extensions;
 using ILogger = Fanex.Logging.ILogger;
 
 namespace Fanex.Alpha.Before.Helpers
@@ -12,17 +8,15 @@ namespace Fanex.Alpha.Before.Helpers
     {
         void FPSTracking(HttpRequest request, SignInResult loginResult);
 
-        void NewFPSTracking(HttpRequest request, SignInResult loginResult);
+        string GetDeviceID(HttpRequest request);
     }
 
     public class FPSHelper : IFPSHelper
     {
-        private readonly IPHelper ipHelper;
         private readonly ILogger logger;
 
-        public FPSHelper(IPHelper ipHelper, ILogger logger)
+        public FPSHelper(ILogger logger)
         {
-            this.ipHelper = ipHelper;
             this.logger = logger;
         }
 
@@ -34,9 +28,11 @@ namespace Fanex.Alpha.Before.Helpers
                 {
                     return;
                 }
-                var fpsClient = new FPS.Client.NetStandard.Service(AppSetting.FpsApi, request);
+                var fpsClient = new FPS.Client.NetStandard.Service();
 
-                fpsClient.CheckTransaction(
+                fpsClient
+                    .InitialRequest(AppSetting.FpsApi, request)
+                    .CheckTransaction(
                     loginResult.Username,
                     AppSetting.FpsSubscriber,
                     "login",
@@ -49,35 +45,24 @@ namespace Fanex.Alpha.Before.Helpers
             }
         }
 
-        public void NewFPSTracking(HttpRequest request, SignInResult loginResult)
+        public string GetDeviceID(HttpRequest request)
         {
             try
             {
-                if (!AppSetting.NewFPSEnabled)
+                if (!AppSetting.IsEnableFPS)
                 {
-                    return;
+                    return "N/A";
                 }
 
-                var fpsClient = new TransactionServices(AppSetting.FpsSubscriber, AppSetting.NewFPSPortalAPI);
+                var fpsClient = new FPS.Client.NetStandard.Service().InitialRequest(AppSetting.FpsApi, request);
+                var deviceId = fpsClient.GetDeviceID();
+                return deviceId;
 
-                var data = new TransactionModel
-                {
-                    Action = "Login",
-                    ClientIp = ipHelper.GetClientIP(),
-                    CustId = loginResult.CustId,
-                    LoginName = loginResult.Username,
-                    SessionKey = request.Form["__fdi"].ToString() ?? string.Empty,
-                    LoginTime = loginResult.LoginTime,
-                    SubAccId = loginResult.CustSubId,
-                    Url = request.GetDisplayUrl(),
-                    UserAgent = request.Headers["User-Agent"].ToString() ?? string.Empty
-                };
-
-                fpsClient.CheckTransaction(data);
             }
             catch (Exception ex)
             {
                 logger.Warn(ex.ToString());
+                return "N/A";
             }
         }
     }

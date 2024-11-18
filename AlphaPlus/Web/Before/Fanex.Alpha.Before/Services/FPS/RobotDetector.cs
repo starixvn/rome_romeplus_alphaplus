@@ -14,8 +14,8 @@ namespace Fanex.Alpha.Before.Services.FPS
     {
         private readonly Logging.ILogger logger;
         private readonly RobotOptions robotOptions;
-        private readonly IPService ipService;
         private readonly IPHelper ipHelper;
+        private readonly IPService ipService;
 
         public RobotDetector(
             Logging.ILogger logger,

@@ -1,9 +1,13 @@
 ﻿using System.Net;
+using System.Text.Json;
 using Alpha.Captcha.Core;
 using Alpha.Captcha.Core.Services;
 using AlphaPlus.RequestInfo;
+using AlphaPlus.RequestInfo.Models;
+using AlphaPlus.Utilities.IP;
 using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.Constants;
+using Fanex.Alpha.Before.Criteria;
 using Fanex.Alpha.Before.Extensions;
 using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.Models;
@@ -12,13 +16,9 @@ using Fanex.Alpha.Before.NetThrottling.Models;
 using Fanex.Alpha.Before.Resources;
 using Fanex.Alpha.Before.Services.FPS;
 using Fanex.Cryptography.Aes;
+using Fanex.Data.Repository;
 using Microsoft.Extensions.Options;
 using TelegramBot.Client.Services;
-using System.Text.Json;
-using Fanex.Data.Repository;
-using Fanex.Alpha.Before.Criteria;
-using AlphaPlus.RequestInfo.Models;
-using AlphaPlus.Utilities.IP;
 
 namespace Fanex.Alpha.Before.Services.SignIn
 {
@@ -39,6 +39,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private readonly CommonOptions commonOptions;
         private readonly AutomationTestOptions automationTestOptions;
         private readonly IPHelper ipHelper;
+        private readonly IPService ipService;
         private readonly IDynamicRepository repository;
         private readonly IDistributedCacheService cacheService;
         private readonly IRobotDetector robotDetector;
@@ -51,6 +52,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private readonly INetThrottler netThrottler;
         private readonly IEncryptUrlHelper encryptUrlHelper;
         private readonly IDeviceHelper deviceHelper;
+        private readonly HttpClient httpClient;
 
         public SignInService(
             IOptions<ManualUMOptions> manualUMOptions,
@@ -66,16 +68,19 @@ namespace Fanex.Alpha.Before.Services.SignIn
             ICaptchaService captchaService,
             IKickoutCustomerService kickoutCustomerService,
             IDeviceHelper deviceHelper,
+            IPService ipService,
             INotificationService notificationService,
             IOptions<ThrottlePolicy> throttlePolicy,
             INetThrottler netThrottler,
-            IEncryptUrlHelper encryptUrlHelper)
+            IEncryptUrlHelper encryptUrlHelper,
+            HttpClient httpClient)
         {
             this.manualUMOptions = manualUMOptions.Value;
             this.commonOptions = commonOptions.Value;
             this.automationTestOptions = automationTestOptions.Value;
             this.logger = logger;
             this.ipHelper = ipHelper;
+            this.ipService = ipService;
             this.repository = repository;
             this.cacheService = cacheService;
             this.robotDetector = robotDetector;
@@ -86,8 +91,8 @@ namespace Fanex.Alpha.Before.Services.SignIn
             this.throttlePolicy = throttlePolicy.Value;
             this.netThrottler = netThrottler;
             this.encryptUrlHelper = encryptUrlHelper;
+            this.httpClient = httpClient;
             this.deviceHelper = deviceHelper;
-
             var loginThemeOpt = loginThemeOptions.Value;
             _loginTheme = loginThemeOpt.DefaultTheme;
             if (DateTime.Now >= loginThemeOpt.StartDate &&
@@ -193,6 +198,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             }
 
             var assetAppPath = AssetAppPathHelper.IsValidAssetAppPath(model.AssetAppPath) ? model.AssetAppPath : string.Empty;
+            var dcsStaticAppPath = AssetAppPathHelper.IsValidDCSStaticAppPath(model.DCSStaticAppPath) ? model.DCSStaticAppPath : string.Empty;
             await VerifyDownlineLogin(
                 model.Username,
                 password,
@@ -202,6 +208,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 signInResult,
                 DarkModeHelper.GetDarkModeValue(httpContext.Request),
                 assetAppPath,
+                dcsStaticAppPath,
                 httpContext);
 
             return signInResult;
@@ -227,7 +234,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 return signInResult;
             }
 
-            await VerifyDownlineLogin(username, password, LanguageHelper.DefaultLanguage, deviceId, browserSize, signInResult, null, string.Empty, httpContext);
+            await VerifyDownlineLogin(username, password, LanguageHelper.DefaultLanguage, deviceId, browserSize, signInResult, null, string.Empty, string.Empty, httpContext);
 
             return signInResult;
         }
@@ -259,6 +266,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             string browserSize,
             string darkModeName,
             string assetAppPath,
+            string dcsStaticAppPath,
             HttpContext httpContext)
         {
             await cacheService.ResetLoginSession(signInResult.Username);
@@ -279,7 +287,8 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     browserSize,
                     signInResult.Captcha,
                     darkModeName,
-                    assetAppPath);
+                    assetAppPath,
+                    dcsStaticAppPath);
             }
             else
             {
@@ -297,7 +306,8 @@ namespace Fanex.Alpha.Before.Services.SignIn
                    robotResult.ToString(),
                    deviceId,
                    browserSize,
-                   assetAppPath);
+                   assetAppPath,
+                   dcsStaticAppPath);
 
                 encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"After set sessionId: {httpContext.Session.Id}, custId:{verifySignInResult.CustId}");
 
@@ -330,6 +340,32 @@ namespace Fanex.Alpha.Before.Services.SignIn
             }
         }
 
+        private async Task<string> HashPassword(string username, string password)
+        {
+            var newHash = EncryptExtension.CfsEnCode(password);
+            try
+            {
+                if (AppSetting.EnabledCallHashPasswordAPI)
+                {
+                    var oldHash = await httpClient.PostAsJsonAsync<string>("password/hash", new { password });
+
+                    if (!oldHash.Equals(newHash))
+                    {
+                        await logger.InfoAsync($"Username: {username} - Old Hash: {oldHash} - New Hash: {newHash}");
+                    }
+
+                    return oldHash;
+                }
+
+                return newHash;
+            }
+            catch (Exception ex)
+            {
+                await logger.ErrorAsync(ex.Message, ex);
+                return newHash;
+            }
+        }
+
         private async Task VerifyDownlineLogin(
             string username,
             string password,
@@ -339,6 +375,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             SignInResult signInResult,
             string darkModeName,
             string assetAppPath,
+            string dcsStaticAppPath,
             HttpContext httpContext)
         {
             var verifySignInResult = new VerifySignInResult();
@@ -357,7 +394,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     }
 
                     var requestInfo = await deviceHelper.GetRequestInfo();
-                    verifySignInResult = await VerifyDownlineLogin(username, password, requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
+                    verifySignInResult = await VerifyDownlineLogin(username, await HashPassword(username, password), requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
                     encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"Call DB result: {JsonSerializer.Serialize(verifySignInResult)}");
 
                     if (verifySignInResult.ErrorCode == 0)
@@ -371,7 +408,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
                         signInResult.LoginTime = verifySignInResult.LoginTime;
 
-                        await UpdateResultAfterLoginSuccessfully(password, signInResult, verifySignInResult, language, deviceId, browserSize, darkModeName, assetAppPath, httpContext);
+                        await UpdateResultAfterLoginSuccessfully(password, signInResult, verifySignInResult, language, deviceId, browserSize, darkModeName, assetAppPath, dcsStaticAppPath, httpContext);
 
                         if (throttlePolicy.WhitelistSuperIds.Contains(verifySignInResult.SuperId))
                         {
@@ -404,7 +441,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
         {
             var criteria = new VerifyDownlineLoginCommand(
                 username,
-                EncryptExtension.CfsEnCode(password),
+                password,
                 requestInfo.LoginIp,
                 requestInfo.LoginDomain,
                 AppSession.LangKey,
