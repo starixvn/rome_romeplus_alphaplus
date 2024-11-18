@@ -29,4 +29,6 @@ public class SSOParam
     public string AssetAppPath { get; init; }
 
     public string UMToken { get; init; }
+
+    public string DCSStaticAppPath { get; init; }
 }

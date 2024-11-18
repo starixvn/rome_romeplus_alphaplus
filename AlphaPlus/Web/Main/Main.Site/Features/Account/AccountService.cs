@@ -87,6 +87,7 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
 
         result.DarkModeName = param.DarkModeName;
         result.AssetAppPath = param.AssetAppPath;
+        result.DCSStaticAppPath = param.DCSStaticAppPath;
 
         userSessionService.SetUserSessionValues(result);
 

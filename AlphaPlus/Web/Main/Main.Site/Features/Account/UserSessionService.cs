@@ -11,6 +11,7 @@ public interface IUserSessionService
 
 public class UserSessionService(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IUserSession userSession) : IUserSessionService
 {
+    private const string DCSStaticAppPathSessionKey = "DCSStaicAppPathSessionKey";
     private const string CustomerDateLimitSessionKey = "CustomerDateLimit";
     private const string IsAdminCanUpdateSubAccountSessionKey = "IsAdminCanUpdateSubAccount";
     private const string MainDomainSessionKey = "MainDomain";
@@ -113,6 +114,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 
         userSession.DarkModeName = signInResult.DarkModeName;
         userSession.AssetAppPath = signInResult.AssetAppPath;
+        userSession.SetProperty(DCSStaticAppPathSessionKey, signInResult.DCSStaticAppPath);
 
         userSession.LangKey = GetUserLangKey(signInResult.LanguageUsage);
         userSession.Language = GetUserLanguage(signInResult.LanguageUsage);

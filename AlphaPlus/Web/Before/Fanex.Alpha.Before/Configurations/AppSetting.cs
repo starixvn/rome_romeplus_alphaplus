@@ -51,8 +51,6 @@ namespace Fanex.Alpha.Before.Configurations
 
         public static string DCSStaticAppPaths => GetValue<string>("DCSStaticAppPaths");
 
-        public static string AfterLoginAuthorizationPage => GetValue<string>("AfterLoginPage");
-
         public static bool EnabledCallHashPasswordAPI => GetValue<bool>("PasswordService:IsEnabled");
 
         public static T GetValue<T>(string key)

@@ -25,4 +25,6 @@ public class SignInParam
     public string DarkModeName { get; set; }
 
     public string AssetAppPath { get; set; }
+
+    public string DCSStaticAppPath { get; set; }
 }

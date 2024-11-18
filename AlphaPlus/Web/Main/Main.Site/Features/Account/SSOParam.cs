@@ -29,5 +29,7 @@ namespace AlphaPlus.Main.Site.Features.Account
         public string AssetAppPath { get; set; }
 
         public string UMToken { get; set; }
+
+        public string DCSStaticAppPath { get; set; }
     }
 }

@@ -115,7 +115,8 @@ public class AccountController(
             Language = userSession.LangKey,
             RequestInfo = requestInfo,
             DarkModeName = param.DarkModeName,
-            AssetAppPath = param.AssetAppPath
+            AssetAppPath = param.AssetAppPath,
+            DCSStaticAppPath = param.DCSStaticAppPath
         });
 
         if (signInResult.IsSuccessful)

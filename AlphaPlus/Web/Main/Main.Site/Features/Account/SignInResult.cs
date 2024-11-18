@@ -77,5 +77,7 @@ namespace AlphaPlus.Main.Site.Features.Account
         public string LoginIp { get; set; }
 
         public int[] OfferedProductGroupIds { get; set; }
+
+        public string DCSStaticAppPath { get; set; }
     }
 }
