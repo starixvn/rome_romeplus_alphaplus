@@ -3,7 +3,7 @@ var Sphinx = Sphinx || {};
 
 Sphinx.AssetAppPaths = {
   globalAssetAppPaths: null,
-  healthCheckPage: "/bundles/common/hc.css?v=",
+  healthCheckPage: "/bundles/common/pass-font.css?v=",
   initGlobalAssetAppPaths: function () {
     Sphinx.AssetAppPaths.globalAssetAppPaths = [];
     var urlsValue = $("#hiddenAssetAppPaths").val();

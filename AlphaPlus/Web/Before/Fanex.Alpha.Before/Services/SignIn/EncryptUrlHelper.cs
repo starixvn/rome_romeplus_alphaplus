@@ -99,7 +99,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             var host = httpContext.Request.Host.Value.TrimEnd('.');
             var afterUrl = AppSetting.DomainMappings[host];
 
-            var url = $"{afterUrl}{AppSetting.AfterLoginAuthorizationPage}?params={EncryptParameter(parameter)}";
+            var url = $"{afterUrl}{AppSetting.AfterLoginAuthorizationPage}?parameter={EncryptParameter(parameter)}";
 
             return AddUMToken(httpContext, url);
         }
