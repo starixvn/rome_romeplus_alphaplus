@@ -34,7 +34,7 @@ function minJs() {
         return gulp
             .src(bundle.inputFiles, { base: '.' })
             .pipe(concat(bundle.outputFileName))
-            // .pipe(uglify())
+            .pipe(uglify())
             .pipe(gulp.dest('.'));
     });
     return merge(tasks);
