@@ -92,7 +92,7 @@ namespace AlphaPlus.Features.Handbook.API.Models
             switch (ReferenceURL)
             {
                 case ReferenceURLConsts.CustomerSettingInformation:
-                    return MicroSites.SettingUrl() + cookieless + "SettingHandbook/SportBookInformation?tabindex=0";
+                    return MicroSites.FeatureUrl() + cookieless + "SettingHandbook/SportBookInformation?tabindex=0";
                 default:
                     return $"{relativePath}HandbookArticle/GetBySlug?slug=" + Slug;
             }

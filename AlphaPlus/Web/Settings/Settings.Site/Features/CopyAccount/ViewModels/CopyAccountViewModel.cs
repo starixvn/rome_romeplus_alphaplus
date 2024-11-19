@@ -67,7 +67,7 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount.ViewModels
             if (AppSettings.SupportedNewHandbook)
             {
                 var handbookPath = UserLevel.GetDisplayName(ActorLevel.GetDirectDownLineLevel().Value).ToLowerInvariant();
-                return MicroSites.FeatureUrl($"~/Default/GetBySlug?slug=create-new-{handbookPath}");
+                return MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=create-new-{handbookPath}");
             }
 
             return AppSettings.IsSiteLabel789y

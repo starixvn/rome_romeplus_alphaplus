@@ -19,6 +19,7 @@ namespace AlphaPlus.Features.Site.Handbook.Requests
             Language = userSession.Language;
             RoleId = userSession.RoleId;
             SessionID = userSession.NetSessionId;
+            Site = userSession.Site;
         }
 
         public int CustId { get; }
@@ -30,5 +31,7 @@ namespace AlphaPlus.Features.Site.Handbook.Requests
         public byte RoleId { get; }
         public string SessionID { get; }
         public string Language { get; }
+
+        public string Site { get; set; }
     }
 }
