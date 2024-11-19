@@ -18,7 +18,7 @@ COPY "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj" "AlphaPlus/Web/Rep
 
 # restore NuGet packages
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-#RUN dotnet restore "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj" -v n
+RUN dotnet restore "AlphaPlus/Web/Reports/Reports.Site/Reports.Site.csproj" --packages /root/.nuget/packages -v d
 
 # copy all source code
 COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
@@ -41,7 +41,7 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuratio
 WORKDIR /src/AlphaPlus/Web/Reports/Reports.Site
 
 RUN yarn && gulp default
-RUN dotnet restore --packages /root/.nuget/packages -v d && dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 

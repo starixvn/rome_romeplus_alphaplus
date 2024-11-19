@@ -6,7 +6,7 @@ COPY "AlphaPlus/Services/Tickets/BetsForecast/Domain/BetsForecast.Domain.csproj"
 COPY "AlphaPlus/Services/Tickets/BetsForecast/Infrastructure/BetsForecast.Infrastructure.csproj" "AlphaPlus/Services/Tickets/BetsForecast/Infrastructure/BetsForecast.Infrastructure.csproj"
 COPY "AlphaPlus/Services/Tickets/API/Tickets.API.csproj" "AlphaPlus/Services/Tickets/API/Tickets.API.csproj"
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-#RUN dotnet restore "AlphaPlus/Services/Tickets/API/Tickets.API.csproj" -v n
+RUN dotnet restore "AlphaPlus/Services/Tickets/API/Tickets.API.csproj" --packages /root/.nuget/packages -v d
 
 COPY "AlphaPlus/Modules/AlphaPlus.PartialUM" "AlphaPlus/Modules/AlphaPlus.PartialUM"
 COPY "AlphaPlus/Services/Tickets/BetsForecast/Domain" "AlphaPlus/Services/Tickets/BetsForecast/Domain"
@@ -15,7 +15,7 @@ COPY "AlphaPlus/Services/Tickets/API" "AlphaPlus/Services/Tickets/API"
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
 WORKDIR /src/AlphaPlus/Services/Tickets/API
-RUN dotnet restore --packages /root/.nuget/packages -v d && dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 

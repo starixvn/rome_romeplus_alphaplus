@@ -14,7 +14,7 @@ COPY "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" "Alpha
 
 # restore NuGet packages
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-#RUN dotnet restore "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" -v n
+RUN dotnet restore "AlphaPlus/Web/AccountInfo/AccountInfo.Site/AccountInfo.Site.csproj" --packages /root/.nuget/packages -v d
 
 # copy all source code
 COPY "AlphaPlus/Modules/AlphaPlus.Logging" "AlphaPlus/Modules/AlphaPlus.Logging"
@@ -34,7 +34,7 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuratio
 
 WORKDIR /src/AlphaPlus/Web/AccountInfo/AccountInfo.Site
 
-RUN dotnet restore --packages /root/.nuget/packages -v d && dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS final
 

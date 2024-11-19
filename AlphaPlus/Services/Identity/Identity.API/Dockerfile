@@ -3,12 +3,12 @@ WORKDIR /src
 
 COPY "AlphaPlus/Services/Identity/Identity.API/Identity.API.csproj" "AlphaPlus/Services/Identity/Identity.API/Identity.API.csproj"
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-#RUN dotnet restore "AlphaPlus/Services/Identity/Identity.API/Identity.API.csproj" -v n
+RUN dotnet restore "AlphaPlus/Services/Identity/Identity.API/Identity.API.csproj" --packages /root/.nuget/packages -v d
 
 COPY "AlphaPlus/Services/Identity/Identity.API" "AlphaPlus/Services/Identity/Identity.API"
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 WORKDIR /src/AlphaPlus/Services/Identity/Identity.API
-RUN dotnet restore --packages /root/.nuget/packages -v d && dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 

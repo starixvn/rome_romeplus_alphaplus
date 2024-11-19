@@ -21,7 +21,7 @@ COPY "AlphaPlus/Services/Tickets/Results/AlphaPlus.Results.csproj" "AlphaPlus/Se
 COPY "AlphaPlus/Web/Tickets/BetLists.Builders/BetLists.Builders.csproj" "AlphaPlus/Web/Tickets/BetLists.Builders/BetLists.Builders.csproj"
 COPY "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj" "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj"
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-#RUN dotnet restore "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj" -v n
+RUN dotnet restore "AlphaPlus/Web/Tickets/Tickets.Site/Tickets.Site.csproj" --packages /root/.nuget/packages -v d
 
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
 COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
@@ -49,7 +49,7 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuratio
 WORKDIR /src/AlphaPlus/Web/Tickets/Tickets.Site
 
 RUN yarn && gulp default
-RUN dotnet restore --packages /root/.nuget/packages -v d && dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
 

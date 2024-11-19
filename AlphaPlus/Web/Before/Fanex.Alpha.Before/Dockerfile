@@ -6,7 +6,7 @@ COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj" "A
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj" "AlphaPlus/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj"
 COPY "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj"
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-#RUN dotnet restore "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" -v n
+RUN dotnet restore "AlphaPlus/Web/Before/Fanex.Alpha.Before/Fanex.Alpha.Before.csproj" --packages /root/.nuget/packages -v d
 
 COPY "AlphaPlus/Modules/AlphaPlus.Utilities.IP" "AlphaPlus/Modules/AlphaPlus.Utilities.IP"
 COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.RequestInfo"
@@ -51,7 +51,7 @@ then \
 fi
 
 WORKDIR /src/AlphaPlus/Web/Before/Fanex.Alpha.Before
-RUN dotnet restore --packages /root/.nuget/packages -v d && dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:7.0-slim AS base
 

@@ -23,7 +23,7 @@ COPY "AlphaPlus/Services/Settings/MemberInfo/MemberInfo.Domain/MemberInfo.Domain
 COPY "AlphaPlus/Web/Settings/Settings.Site/Settings.Site.csproj" "AlphaPlus/Web/Settings/Settings.Site/Settings.Site.csproj"
 
 COPY "AlphaPlus/NuGet.config" "AlphaPlus/NuGet.config"
-#RUN dotnet restore "AlphaPlus/Web/Settings/Settings.Site/Settings.Site.csproj" -v d
+RUN dotnet restore "AlphaPlus/Web/Settings/Settings.Site/Settings.Site.csproj" -v d
 
 # copy src files
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
@@ -47,7 +47,7 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuratio
 WORKDIR /src/AlphaPlus/Web/Settings/Settings.Site
 
 RUN yarn && yarn build
-RUN dotnet restore --packages /root/.nuget/packages -v d && dotnet publish -c Release -o /app
+RUN dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS final
 
