@@ -168,7 +168,7 @@
       "productName": "Cash Out",
       "accountInfoProperties": {
         "setting": false,
-        "status": true,
+        "status": false,
         "statusOnProductLevel": true
       },
       "reportProperties": {
