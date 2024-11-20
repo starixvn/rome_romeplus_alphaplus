@@ -205,7 +205,7 @@ html * {
             }
 
             &.icon-chatbot {
-                background: url(../handbook/images/chatbot-intro.svg) no-repeat !important;
+                background: url(../images/chatbot-intro.svg) no-repeat !important;
                 box-shadow: none !important;
                 height: 18px;
                 width: 18px;
@@ -367,7 +367,7 @@ html * {
             z-index: 1;
             width: 48px;
             height: 32px;
-            background: url(../handbook/images/bage_bg_dark.svg) no-repeat center center / cover;
+            background: url(../images/bage_bg_dark.svg) no-repeat center center / cover;
             padding: 5px 0 0 3px;
             text-align: center;
         }
@@ -954,9 +954,9 @@ html * {
     .icon-feedback {
         position: relative;
         top: -4px;
-        mask: url('../handbook/images/feedback.svg');
-        -webkit-mask-image: url('../handbook/images/feedback.svg');
-        mask-image: url('../handbook/images/feedback.svg');
+        mask: url('../images/feedback.svg');
+        -webkit-mask-image: url('../images/feedback.svg');
+        mask-image: url('../images/feedback.svg');
         background-color: #fff;
         height: 25px;
         width: 24px;

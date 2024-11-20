@@ -5,7 +5,7 @@ using AlphaPlus.Features.Handbook.API.Helpers;
 using AlphaPlus.Features.Site.Handbook.Requests;
 using MediatR;
 
-namespace Alpha.HowToUse.Handbook.Handlers
+namespace AlphaPlus.Features.Site.Handbook.Handlers
 {
     public class LanguageHandler :
         IRequestHandler<ChangeLanguageRequest, string>

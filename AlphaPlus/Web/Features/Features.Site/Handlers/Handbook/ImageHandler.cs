@@ -2,7 +2,7 @@
 using AlphaPlus.Features.Site.Handbook.Requests;
 using MediatR;
 
-namespace Alpha.HowToUse.Handbook.Handlers
+namespace AlphaPlus.Features.Site.Handbook.Handlers
 {
     public class ImageHandler:
         APIHandler,

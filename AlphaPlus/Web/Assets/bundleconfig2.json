@@ -1430,7 +1430,6 @@
   {
     "outputFileName": "bundles/site-main/dashboard/dashboard-super-dark.css",
     "inputFiles": [
-      "styles/base/roboto-fonts.css",
       "styles/components/tables-dark.css",
       "styles/themes/components/tabs/tab-super2-dark.css"
     ]
