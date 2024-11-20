@@ -17,7 +17,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
 
         public ArticleHandler(Fanex.Logging.ILogger logger) : base(logger) { }
 
-        public async Task<SearchArticleViewModel> Handle(SearchArticlesRequest request, CancellationToken cancellation)
+        public Task<SearchArticleViewModel> Handle(SearchArticlesRequest request, CancellationToken cancellation)
         {
             var langKey = request.LanguageKey.ToLowerInvariant();
             var url = contentAPIUrl + "/api/articles/search" +
@@ -40,10 +40,10 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
                 Articles = articles.OrderBy(a => a.Title)
             };
 
-            return viewModel;
+            return Task.FromResult(viewModel);
         }
 
-        public async Task<ArticleViewModel> Handle(GetArticleBySlugRequest request, CancellationToken cancellation)
+        public Task<ArticleViewModel> Handle(GetArticleBySlugRequest request, CancellationToken cancellation)
         {
             var langKey = request.LanguageKey.ToLowerInvariant();
             var url = contentAPIUrl + "/api/articles/get/" + request.Slug +
@@ -63,10 +63,10 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
                 Language = request.Language
             };
 
-            return viewModel;
+            return Task.FromResult(viewModel);
         }
 
-        public async Task<IEnumerable<SuggestionModel>> Handle(SuggestArticleRequest request, CancellationToken cancellation)
+        public Task<IEnumerable<SuggestionModel>> Handle(SuggestArticleRequest request, CancellationToken cancellation)
         {
             var langKey = request.LanguageKey.ToLowerInvariant();
             var url = contentAPIUrl + "/api/articles/suggest" +
@@ -78,7 +78,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
 
             var articles = Get<IEnumerable<SuggestionModel>>(url) ?? new List<SuggestionModel>();
 
-            return articles.Take(SuggestedLimit).OrderBy(r => r.Value);
+            return Task.FromResult<IEnumerable<SuggestionModel>>(articles.Take(SuggestedLimit).OrderBy(r => r.Value));
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AlphaPlus.Features.Handbook.API.Constants;
 using AlphaPlus.Features.Handbook.API.Helpers;
 using AlphaPlus.Features.Handbook.API.Models;
-using AlphaPlus.Features.Site.Handbook.Handlers;
 using AlphaPlus.Features.Site.Handbook.Requests;
 using AlphaPlus.Features.Site.Handbook.ViewModels;
 using MediatR;
@@ -15,7 +14,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
     {
         public CategoryHandler(Fanex.Logging.ILogger logger) : base(logger) { }
 
-        public async Task<IEnumerable<CategoryModel>> Handle(GetAllCategoriesRequest request, CancellationToken cancellation)
+        public Task<IEnumerable<CategoryModel>> Handle(GetAllCategoriesRequest request, CancellationToken cancellation)
         {
             var langKey = request.LanguageKey.ToLowerInvariant();
             var url = contentAPIUrl + "/api/categories/latest/all" +
@@ -24,10 +23,10 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
                 "/" + request.RoleId +
                 "/" + AppSettingsHelper.ContentAPIEnvironment;
             var categories = Get<IEnumerable<CategoryModel>>(url) ?? new List<CategoryModel>();
-            return categories;
+            return Task.FromResult(categories);
         }
 
-        public async Task<CategoryViewModel> Handle(GetCategoryBySlugRequest request, CancellationToken cancellation)
+        public Task<CategoryViewModel> Handle(GetCategoryBySlugRequest request, CancellationToken cancellation)
         {
             var langKey = request.LanguageKey.ToLowerInvariant();
             var url = contentAPIUrl + "/api/categories/latest" +
@@ -45,7 +44,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
                 Category = category
             };
 
-            return viewModel;
+            return Task.FromResult(viewModel);
         }
     }
 }

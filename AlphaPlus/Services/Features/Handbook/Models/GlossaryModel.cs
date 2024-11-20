@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace AlphaPlus.Features.Handbook.API.Models
+﻿namespace AlphaPlus.Features.Handbook.API.Models
 {
     public class GlossaryModel
     {

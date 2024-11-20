@@ -1,7 +1,6 @@
 ﻿using AlphaPlus.Features.Handbook.API.Constants;
 using AlphaPlus.Features.Handbook.API.Helpers;
 using AlphaPlus.Features.Handbook.API.Models;
-using AlphaPlus.Features.Site.Handbook.Handlers;
 using AlphaPlus.Features.Site.Handbook.Requests;
 using AlphaPlus.Features.Site.Handbook.ViewModels;
 using MediatR;
@@ -14,7 +13,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
     {
         public GlossaryHandler(Fanex.Logging.ILogger logger) : base(logger) { }
 
-        public async Task<GlossaryViewModel> Handle(GetGlossaryByGroupRequest request, CancellationToken cancellation)
+        public Task<GlossaryViewModel> Handle(GetGlossaryByGroupRequest request, CancellationToken cancellation)
         {
             var group = request.Group ?? string.Empty;
             var url = contentAPIUrl + "/api/glossaries/latest/g" + group +
@@ -29,7 +28,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
                 Glossaries = glossaries
             };
 
-            return viewModel;
+            return Task.FromResult(viewModel);
         }
     }
 }

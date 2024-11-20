@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using AlphaPlus.Core.Helpers;
-using AlphaPlus.Features.Handbook.API.Constants;
-
+﻿
 namespace AlphaPlus.Features.Handbook.API.Models
 {
     public class CategoryModel

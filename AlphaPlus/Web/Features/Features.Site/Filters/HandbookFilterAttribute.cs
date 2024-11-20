@@ -1,9 +1,9 @@
-﻿using AlphaPlus.Features.Handbook.API.Helpers;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using AlphaPlus.Core.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Features.Site.Handbook.Filters;
 
@@ -23,7 +23,7 @@ public class HandbookFilterAttribute : TypeFilterAttribute
                 return;
             }
 
-            if (AppSettingsHelper.SupportedNewHandbook)
+            if (AppSettings.SupportedNewHandbook)
             {
                 return;
             }

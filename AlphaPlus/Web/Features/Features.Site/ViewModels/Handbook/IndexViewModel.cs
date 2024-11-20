@@ -14,8 +14,8 @@ namespace AlphaPlus.Features.Site.Handbook.ViewModels
         public string LanguageName => LanguageConsts.LanguageNames[LanguageKey];
         public string Locale => LanguageConsts.Locales[LanguageKey];
         public string LanguageCode => LanguageConsts.Codes[LanguageKey];
-        public string MainRootPath => MicroSites.GetMicroSiteUrl("Main", "~/");
-        public string MessageRootPath => MicroSites.GetMicroSiteUrl("Message", "~/");
+        public string MainRootPath => MicroSites.MainUrl();
+        public string MessageRootPath => MicroSites.FeatureUrl();
 
         public BriefProfileViewModel BriefProfile { get; set; }
 

@@ -7,11 +7,11 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
     public class HomeHandler :
         IRequestHandler<HomeRequest, HomeViewModel>
     {
-        public async Task<HomeViewModel> Handle(HomeRequest request, CancellationToken cancellation)
+        public Task<HomeViewModel> Handle(HomeRequest request, CancellationToken cancellation)
         {
             var viewModel = new HomeViewModel();
 
-            return viewModel;
+            return Task.FromResult(viewModel);
         }
     }
 }

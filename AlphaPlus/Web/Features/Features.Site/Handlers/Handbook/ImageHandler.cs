@@ -1,5 +1,4 @@
-﻿using AlphaPlus.Features.Site.Handbook.Handlers;
-using AlphaPlus.Features.Site.Handbook.Requests;
+﻿using AlphaPlus.Features.Site.Handbook.Requests;
 using MediatR;
 
 namespace AlphaPlus.Features.Site.Handbook.Handlers
@@ -10,11 +9,11 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
     {
         public ImageHandler(Fanex.Logging.ILogger logger) : base(logger) { }
 
-        public async Task<string> Handle(GetImageByNameRequest request, CancellationToken cancellation)
+        public Task<string> Handle(GetImageByNameRequest request, CancellationToken cancellation)
         {
             var url = contentAPIUrl + "/api/images/base64/" + request.Name;
             var result = Get(url);
-            return result;
+            return Task.FromResult(result);
         }
     }
 }

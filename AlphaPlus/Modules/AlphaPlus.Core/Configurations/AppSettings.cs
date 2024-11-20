@@ -113,8 +113,9 @@ public static class AppSettings
             }
 
             var label = SiteLabel;
+            var separators = new[] { ',' };
             return marketsSupportedNewHandbook
-                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Split(separators, StringSplitOptions.RemoveEmptyEntries)
                 .Any(s => string.Equals(s, label, StringComparison.OrdinalIgnoreCase));
         }
     }   

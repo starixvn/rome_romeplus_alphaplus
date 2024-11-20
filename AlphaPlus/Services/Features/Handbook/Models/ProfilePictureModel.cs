@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace AlphaPlus.Features.Handbook.API.Models
 {
     public class ProfilePictureModel

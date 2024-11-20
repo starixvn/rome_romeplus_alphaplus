@@ -18,7 +18,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
             this.userSession = userSession;
         }
 
-        public async Task<string> Handle(ChangeLanguageRequest request, CancellationToken cancellation)
+        public Task<string> Handle(ChangeLanguageRequest request, CancellationToken cancellation)
         {
             var languageKey = Standardize(request.Selected);
             var supportVietnamese = AppSettingsHelper.SupportVietnamese;
@@ -32,7 +32,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
             userSession.Language = code;
             userSession.LangKey = languageKey;
 
-            return languageKey;
+            return Task.FromResult(languageKey);
         }
 
         private string Standardize(string languageKey)

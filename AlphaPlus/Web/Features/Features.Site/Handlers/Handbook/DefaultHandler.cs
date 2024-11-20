@@ -2,7 +2,6 @@
 using AlphaPlus.Features.Handbook.API.Helpers;
 using AlphaPlus.Features.Handbook.API.Models;
 using AlphaPlus.Features.Handbook.API.Services;
-using AlphaPlus.Features.Site.Handbook.Handlers;
 using AlphaPlus.Features.Site.Handbook.Requests;
 using AlphaPlus.Features.Site.Handbook.ViewModels;
 using MediatR;
@@ -20,7 +19,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
             this.profileService = profileService;
         }
 
-        public async Task<GetBySlugViewModel> Handle(HandbookGetBySlugRequest request, CancellationToken cancellation)
+        public Task<GetBySlugViewModel> Handle(HandbookGetBySlugRequest request, CancellationToken cancellation)
         {
             var profilePicture = profileService.GetProfilePicture(request.CustId);
             var briefProfile = new BriefProfileViewModel
@@ -59,7 +58,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
                 SubAccId = request.SubAccId
             };
 
-            return viewModel;
+            return Task.FromResult(viewModel);
         }
     }
 }
