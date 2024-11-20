@@ -211,5 +211,12 @@
         "ApplicationName": "Alpha.After.MBC.LOCAL"
     },
     "MarketsSupportedNewHandbook": "IBC,MBC",
-    "GoogleAnalyticId": "UA-93265717-1"
+    "GoogleAnalyticId": "UA-93265717-1",
+    "OfferAutoTransfer.Currencies": "*",
+    "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
+    "OfferClearGivenCredit:Sites": "KORIBC,INDO",
+    "IndirectLogin": {
+      "AllowSuperIds": "*",
+      "URL": "https://indp1.nexdev.net/main/Account/IndirectLogin"
+    }
 }

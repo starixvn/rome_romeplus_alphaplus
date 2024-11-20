@@ -119,8 +119,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         }
 
         private static string[] AllowedSitesToViewBonusDetail
-            => Core.Configurations.ConfigurationManager.GetValue<string>("AllowedSitesToViewBonusDetail")
-                .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            => Core.Configurations.ConfigurationManager.GetSection<string[]>("AllowedSitesToViewBonusDetail");
 
         private static bool IsAllowedTransferToDownlineHistorySite(string site)
         {

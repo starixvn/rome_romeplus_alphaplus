@@ -19,4 +19,16 @@ public static class ConfigurationManager
             throw new InvalidCastException($"Key: {key}", ex);
         }
     }
+
+    public static T GetSection<T>(string section, T defaultValue = default)
+    {
+        try
+        {
+            return _config.GetSection(section).Get<T>() ?? defaultValue;
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidCastException($"Section: {section}", ex);
+        }
+    }
 }
