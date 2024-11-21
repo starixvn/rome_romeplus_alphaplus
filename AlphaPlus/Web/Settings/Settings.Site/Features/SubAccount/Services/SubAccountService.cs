@@ -19,7 +19,7 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
         public Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest);
     }
 
-    public class SubAccountService(HttpClient httpClient, IAesService aesService, IEncryption encryption) : ISubAccountService
+    public class SubAccountService(HttpClient httpClient, IAesService aesService, IEncryption encryption, IUserSession userSession) : ISubAccountService
     {
         private const string subAccountApiGroup = "customers";
 
@@ -29,9 +29,11 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
 
         private readonly IEncryption encryption = encryption;
 
+        private readonly IUserSession userSession = userSession;
+
         public async Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest)
         {
-            var plainTextPwd = aesService.Decrypt(addSubAccountRequest.Password, UserSession.Current.CaptchaCode);
+            var plainTextPwd = aesService.Decrypt(addSubAccountRequest.Password, userSession.CaptchaCode);
             var encodePwd = encryption.CfsEnCode(plainTextPwd);
 
             addSubAccountRequest.Password = encodePwd;

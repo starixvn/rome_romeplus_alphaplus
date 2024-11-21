@@ -109,7 +109,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Configurations
                 var betlistDomain = string.Empty + GetConfigValue("Betlist:Domain");
                 var mainDomain = context.Request.Headers["Host"].ToString();
 
-                if (UserSession.Current.IsInternal == true)
+                if (UserSession.Current.IsInternal)
                 {
                     mainDomain = mainDomain.Replace($"{mainDomain.Split('.')?.ElementAt(0)}.", string.Empty);
                 }

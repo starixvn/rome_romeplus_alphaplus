@@ -20,9 +20,15 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
 
         private readonly ResourceManager resourceManager;
 
-        public StaticMessageController(ResourceManager resourceManager)
+        private readonly IUserSession userSession;
+
+        private readonly string baseDirectory;
+
+        public StaticMessageController(ResourceManager resourceManager, IUserSession userSession)
         {
             this.resourceManager = resourceManager;
+            this.userSession = userSession;
+            baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         }
 
         public ActionResult NewSportType()
@@ -33,15 +39,15 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
 
         public ActionResult File(string id)
         {
-            string viewName = $"{id}.{UserSession.Current.Language}";
-            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{viewName}.cshtml"))
+            string viewName = $"{id}.{userSession.Language}";
+            if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{viewName}.cshtml"))
             {
                 viewName = $"{id}.en-US";
             }
 
-            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{viewName}.cshtml"))
+            if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{viewName}.cshtml"))
             {
-                if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{id}.cshtml"))
+                if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{id}.cshtml"))
                 {
                     return new EmptyResult();
                 }
@@ -54,47 +60,47 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
 
         public ActionResult Guide(string id)
         {
-            var roleName = UserLevel.GetDisplayName(UserSession.Current.RoleId);
-            string fileName = $"{id}.{roleName}.{UserSession.Current.Language}";
-            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf"))
+            var roleName = UserLevel.GetDisplayName(userSession.RoleId);
+            string fileName = $"{id}.{roleName}.{userSession.Language}";
+            if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{fileName}.pdf"))
             {
                 fileName = $"{id}.{roleName}.en-US";
             }
 
-            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf"))
+            if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{fileName}.pdf"))
             {
                 return new EmptyResult();
             }
 
             var fileDownloadName = FileNameMapping.ContainsKey(id)
-                ? $"{resourceManager.GetString(FileNameMapping[id], CultureInfo.CreateSpecificCulture(UserSession.Current.Language))}.pdf"
+                ? $"{resourceManager.GetString(FileNameMapping[id], CultureInfo.CreateSpecificCulture(userSession.Language))}.pdf"
                 : "Guide.pdf";
 
             Response.Headers.Append("Content-Disposition", "inline; filename=" + fileDownloadName);
 
-            return base.PhysicalFile($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf", "application/pdf");
+            return base.PhysicalFile($"{baseDirectory}/Views/StaticMessage/{fileName}.pdf", "application/pdf");
         }
 
         public ActionResult Help(string id)
         {
-            string fileName = $"{id}.{UserSession.Current.Language}";
-            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf"))
+            string fileName = $"{id}.{userSession.Language}";
+            if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{fileName}.pdf"))
             {
                 fileName = $"{id}.en-US";
             }
 
-            if (!System.IO.File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf"))
+            if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{fileName}.pdf"))
             {
                 return new EmptyResult();
             }
 
             var fileDownloadName = FileNameMapping.ContainsKey(id)
-                ? $"{resourceManager.GetString(FileNameMapping[id], CultureInfo.CreateSpecificCulture(UserSession.Current.Language))}.pdf"
+                ? $"{resourceManager.GetString(FileNameMapping[id], CultureInfo.CreateSpecificCulture(userSession.Language))}.pdf"
                 : "Guide.pdf";
 
             Response.Headers.Append("Content-Disposition", "inline; filename=" + fileDownloadName);
 
-            return base.PhysicalFile($"{AppDomain.CurrentDomain.BaseDirectory}/Views/StaticMessage/{fileName}.pdf", "application/pdf");
+            return base.PhysicalFile($"{baseDirectory}/Views/StaticMessage/{fileName}.pdf", "application/pdf");
         }
     }
 }
