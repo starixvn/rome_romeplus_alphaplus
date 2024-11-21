@@ -32,7 +32,7 @@
             if (!AppSettings.IsMBCSite)
             {
                 yield return new ImageRedirectUrlViewModel(
-                    GetSabaSportMarketingAppImageSource(),
+                    GetSabaSportMarketingAppImageSource(AppSettings.SiteLabel),
                     "https://www.sabavn.com/");
             }
         }
@@ -64,11 +64,8 @@
                 Type == BannerType.Mobile ? "600x140" : "280x70",
                 Shared.Constants.Language.MapToMainLanguageCode(Language));
 
-        private string GetSabaSportMarketingAppImageSource()
-            => string.Format(
-                "~/assets/images/MenuBarBanner/789Y/{0}_ssma_{1}.jpg",
-                Type == BannerType.Mobile ? "600x140" : "280x70",
-                MapSabaSportMarketingAppLanguage());
+        private string GetSabaSportMarketingAppImageSource(string siteGroup)
+            => $"~/assets/images/MenuBarBanner/{siteGroup}/{(Type == BannerType.Mobile ? "600x140" : "280x70")}_ssma_{MapSabaSportMarketingAppLanguage()}.jpg";
 
         private string MapSabaSportMarketingAppLanguage()
             => Language.Equals(Shared.Constants.Language.Vietnamese, StringComparison.OrdinalIgnoreCase)
