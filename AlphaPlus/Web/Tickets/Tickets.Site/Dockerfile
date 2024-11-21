@@ -41,6 +41,7 @@ COPY "AlphaPlus/Web/Tickets/Tickets.Site" "AlphaPlus/Web/Tickets/Tickets.Site/"
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
 ARG TRANSFORM_CONFIG
+RUN echo $TRANSFORM_CONFIG
 
 RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.json AlphaPlus/Web/Tickets/Tickets.Site/sharedSettings.json; fi
 

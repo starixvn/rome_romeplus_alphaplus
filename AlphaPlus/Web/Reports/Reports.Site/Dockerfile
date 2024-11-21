@@ -33,6 +33,7 @@ COPY "AlphaPlus/Web/Reports/Reports.Site" "AlphaPlus/Web/Reports/Reports.Site"
 COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 
 ARG TRANSFORM_CONFIG
+RUN echo $TRANSFORM_CONFIG
 
 RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.json AlphaPlus/Web/Reports/Reports.Site/sharedSettings.json; fi
 

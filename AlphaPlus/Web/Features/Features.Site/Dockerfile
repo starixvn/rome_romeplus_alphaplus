@@ -35,6 +35,7 @@ COPY ./AlphaPlus/Web/Features/Features.Site/assets/styles/handbook/images ./Alph
 COPY ./AlphaPlus/Web/Features/Features.Site/assets/styles/handbook/base/fonts ./AlphaPlus/Web/Features/Features.Site/wwwroot/assets/bundles/handbook/base/fonts
 
 ARG TRANSFORM_CONFIG
+RUN echo $TRANSFORM_CONFIG
 
 RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.json AlphaPlus/Web/Features/Features.Site/sharedSettings.json; fi
 
