@@ -13,10 +13,14 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Controllers
     {
         private readonly IMediator mediator;
 
-        public SubAccountController(IMediator mediator, IEncryption encryption)
+        private readonly IUserSession userSession;
+
+        public SubAccountController(IMediator mediator, IEncryption encryption, IUserSession userSession)
         {
             this.mediator = mediator;
-            UserSession.Current.CaptchaCode = encryption.RandomString(4);
+            this.userSession = userSession;
+            
+            userSession.CaptchaCode = encryption.RandomString(4);
         }
 
         public async Task<IActionResult> Index(SubAccountListRequest subAccountListRequest)
@@ -33,7 +37,7 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Controllers
         {
             var model = new SubAccountViewModel
             {
-                Username = $"{UserSession.Current.UserName}Sub",
+                Username = $"{userSession.UserName}Sub",
                 PageAccess = string.Empty
             };
 
