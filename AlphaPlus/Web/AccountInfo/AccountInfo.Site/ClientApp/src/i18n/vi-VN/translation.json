@@ -72,5 +72,7 @@
     "ProfilePictureUpdatedSuccessfully": "Hình đại diện của bạn đã được tải lên thành công.",
     "FailByFileType": "Tập tin đang tải lên không phải là một hình ảnh, vui lòng thử lại !",
     "PictureLibrary": "Thư viện ảnh",
-    "Select": "Chọn"
+    "Select": "Chọn",
+    "CreditHint": "Hạn mức khả dụng: {0}",
+    "MemberMaxCreditHint": "Hạn Mức Tín Dụng Tối Đa Của Member Cấp Bởi Cấp Trên：{0}"
 }

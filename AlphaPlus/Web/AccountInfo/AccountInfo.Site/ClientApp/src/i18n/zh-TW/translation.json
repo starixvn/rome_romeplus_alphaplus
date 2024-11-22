@@ -72,5 +72,7 @@
     "ProfilePictureUpdatedSuccessfully": "您的個人頭像已成功上傳.",
     "FailByFileType": "上傳的文件不是圖片, 請重試!",
     "PictureLibrary": "個人資料圖片庫",
-    "Select": "選擇"
+    "Select": "選擇",
+    "CreditHint": "可用信用額: {0}",
+    "MemberMaxCreditHint": "您的上線已設置會員最高信用：{0}"
 }

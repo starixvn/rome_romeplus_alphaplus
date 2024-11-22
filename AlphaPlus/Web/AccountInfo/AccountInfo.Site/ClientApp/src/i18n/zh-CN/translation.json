@@ -72,5 +72,7 @@
     "ProfilePictureUpdatedSuccessfully": "您的个人头像已成功上传.",
     "FailByFileType": "上传的文件不是图片, 请重试!",
     "PictureLibrary": "个人资料图片库",
-    "Select": "选择"
+    "Select": "选择",
+    "CreditHint": "可用信用额: {0}",
+    "MemberMaxCreditHint": "您的上线已设置会员最高信用：{0}"
 }
