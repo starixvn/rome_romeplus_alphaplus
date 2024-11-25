@@ -79,7 +79,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Index(CreateAccountRequest request)
+        public async Task<ActionResult> Index([FromBody] CreateAccountRequest request)
         {
             if (viewer.IsInternal)
             {
