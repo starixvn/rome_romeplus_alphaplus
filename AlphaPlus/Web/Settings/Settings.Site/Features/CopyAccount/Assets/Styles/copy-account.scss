@@ -794,3 +794,36 @@ select:-webkit-autofill:focus {
     margin-right: 3px;
     border-radius: 3px;
 }
+
+.btn-border {
+    padding: 2px 5px;
+    color: #0b589c;
+    background: transparent;
+    border: 1px solid #0b589c;
+    font-size: 13px;
+    outline: none;
+    border-radius: 3px;
+    &:hover {
+        color: #fff;
+        background: #0b589c;
+    }
+}
+
+// result copy account
+.result {
+    .note {
+        font-size: 13px;
+    }
+
+    .form-value {
+        border: 1px solid #d1d1d1;
+        padding: 5px 7px;
+        background: #e6e6e6 !important;
+        border-radius: 3px;
+        min-height: 33px;
+        height: auto;
+        line-height: 22px;
+        width: 100% !important;
+        font-size: 13px !important;
+    }
+}

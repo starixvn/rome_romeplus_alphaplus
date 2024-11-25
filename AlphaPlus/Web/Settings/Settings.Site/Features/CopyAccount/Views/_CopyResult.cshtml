@@ -3,19 +3,33 @@
 @model CopyAccountResultViewModel
 <p class="msg msg-success msg-result">@string.Format(Resources.CreateCustomerSuccessMessage,
     Model.Result.Usernames.Count())</p>
+<div class="note"><span class="star"></span>@Resources.introCopyNote</div>
 <div class="form-row">
-    <label>@Resources.Usernames:</label>
+    <button class="btn-border" id="compact-copy-btn" style="margin-right: 8px"
+        data-clipboard-target="#content-copy">@Resources.CompactCopy</button>
+    <button class="btn-border" id="individual-copy-btn"
+        data-clipboard-target="#content-copy">@Resources.IndividualCopy</button>
+</div>
+<div class="form-row">
+    <label>@Resources.Usernames</label>
     <div class="relative-input result-area">
-        <textarea readonly="readonly" type="text" name="member"
-            id="usernames">@string.Join(", ", Model.Result.Usernames)</textarea>
-        <span class="icon icon-content-copy" data-clipboard-target="#usernames" title="@Resources.Copy"></span>
+        <div class="form-value" readonly="readonly" type="text" name="member" id="usernames">@string.Join(", ",
+            Model.Result.Usernames)</div>
     </div>
 </div>
 <div class="form-row">
     <label class="sub-label">@Resources.GivenCreditPerAccount</label>
-    <div class="relative-input result-input">
-        <input disabled="disabled" type="text" name="Credit" id="txtClonedCredit"
+    <div class="relative-input result-area">
+        <input class="form-value" disabled="disabled" type="text" name="Credit" id="txtClonedCredit"
             value="@string.Format("{0:#,0.##}", Model.Credit)" />
+    </div>
+
+</div>
+<div class="form-row">
+    <label class="sub-label">@Resources.Domain</label>
+    <div class="relative-input result-area">
+        <div class="form-value" readonly="readonly" type="text" name="member" id="txtDomains">@string.Join(", ",
+            Model.Result.Domains.Take(3))</div>
     </div>
 </div>
 
@@ -35,7 +49,6 @@
                         {
                             foreach (var subMessage in subMessages)
                             {
-
                             <div class="sub-message">
                                     @if (subMessage.IsLive)
                                     {
@@ -47,7 +60,6 @@
                         }
                     }
             </div>
-
             }
             else
             {
@@ -58,5 +70,5 @@
 }
 
 <div class="result-submit">
-    <a class="open-link" data-url="@Url.Action("Index","CopyAccount")" class="btn-submit" id="btnCreateMore">@Resources.CreateMore</a>
+    <a href="@Url.Action("Index", "CopyAccount")" class="btn-submit" id="btnCreateMore">@Resources.CreateMore</a>
 </div>
