@@ -21,7 +21,7 @@ public class BonusDetailController(
     {
         base.OnActionExecuting(context);
 
-        if (!options.Value.AllowedSitesToViewBonusDetail.Contains(UserSession.Current.Site))
+        if (!options.Value.AllowedSitesToViewBonusDetail.Contains(UserSession.Current.Site, StringComparer.OrdinalIgnoreCase))
         {
             context.Result = new RedirectResult("/reports/shared/invalidreport");
         }
