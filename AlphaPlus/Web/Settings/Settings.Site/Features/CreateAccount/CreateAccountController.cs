@@ -22,15 +22,15 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
         private const string HashKeySessionKey = "AlphaPlus.MemberInfo.Site.Features.CreateAccount.CreateAccountController.PasswordHash";
 
         private readonly IUser viewer;
-        private readonly Encryption encryption;
-        private readonly SessionManager sessionManager;
+        private readonly IEncryption encryption;
+        private readonly ISessionManager sessionManager;
         private readonly IAesService aesService;
         private readonly ICustomerService customerService;
 
         public CreateAccountController(
             IUser viewer,
-            Encryption encryption,
-            SessionManager sessionManager,
+            IEncryption encryption,
+            ISessionManager sessionManager,
             IAesService aesService,
             ICustomerService customerService)
         {
