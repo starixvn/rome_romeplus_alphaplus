@@ -82,10 +82,9 @@ class AlphaReports {
                 '"><ul>'
             ];
             let currentCell = $(firstCells[index]);
-            const currentCellHtml = currentCell.html();
             let isLastCell = false;
             for (let i = 0; i < numberOfCombinedCells; i++) {
-                newCell.push('<li>', currentCellHtml, '</li>');
+                newCell.push('<li>', currentCell.html(), '</li>');
 
                 if (currentCell.next().length) {
                     currentCell = currentCell.next();

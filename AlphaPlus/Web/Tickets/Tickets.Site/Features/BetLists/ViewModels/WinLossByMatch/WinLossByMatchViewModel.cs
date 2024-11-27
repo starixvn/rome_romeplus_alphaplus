@@ -12,7 +12,7 @@ public class WinLossByMatchViewModel(
     BetListData betListData,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper)
-        : WinLossViewModel(message, betListData, builder, ticketHelper, message.IsEnabledJackpot, showMemberName: true)
+        : WinLossViewModel(message, betListData, builder, ticketHelper, message.IsEnabledJackpot, showMemberName: true, showFooter: true)
 {
     public int BetType { get; } = message.BetType;
 

@@ -1,4 +1,5 @@
 using AlphaPlus.BetLists.LastBets;
+using AlphaPlus.Tickets.Site.Features.BetLists.Handlers.Customer;
 using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets;
@@ -12,7 +13,8 @@ namespace AlphaPlus.Tickets.Site.Features.BetLists.Handlers.MonitoringBets;
 public class MonitoringBetsHandler(
     IOptions<AppSettings> options,
     IUser user,
-    IFilterBetsService filterBetsService) :
+    IFilterBetsService filterBetsService,
+    ICustomerClient customerClient) :
         IRequestHandler<FilterBySportsQuery, IEnumerable<Sport>>,
         IRequestHandler<GetMyWatchlistMembersQuery, IEnumerable<MyWatchlistMember>>,
         IRequestHandler<ApplyFilterCommand, _Result>,
@@ -20,11 +22,13 @@ public class MonitoringBetsHandler(
         IRequestHandler<ManageFiltersQuery, ManageFiltersViewModel>,
         IRequestHandler<AddUnsavedFilterCommand, _Result>,
         IRequestHandler<UpdateFilterCommand, _Result>,
-        IRequestHandler<DeleteFiltersCommand, IEnumerable<_Result>>
+        IRequestHandler<DeleteFiltersCommand, IEnumerable<_Result>>,
+        IRequestHandler<CheckUsernamesQuery, IEnumerable<UsernameErrCode>>
 {
     private readonly AppSettings appSettings = options.Value;
     private readonly IUser user = user;
     private readonly IFilterBetsService filterBetsService = filterBetsService;
+    private readonly ICustomerClient customerClient = customerClient;
 
     public Task<IEnumerable<Sport>> Handle(FilterBySportsQuery message, CancellationToken cancellationToken)
     {
@@ -147,5 +151,27 @@ public class MonitoringBetsHandler(
         }
 
         return results;
+    }
+
+    public async Task<IEnumerable<UsernameErrCode>> Handle(CheckUsernamesQuery message, CancellationToken cancellationToken)
+    {
+        var usernames = await filterBetsService.CheckUsernames(message.ViewerId, message.Usernames);
+
+        if (message.FromSuggestion)
+        {
+            var validUsernames = usernames.Where(u => u.ErrCode == 0);
+
+            foreach (var item in validUsernames)
+            {
+                await customerClient.UpdateUserSearch(
+                    message.ViewerId,
+                    item.Username,
+                    item.FirstName,
+                    item.LastName,
+                    item.Username2);
+            }
+        }
+
+        return usernames;
     }
 }

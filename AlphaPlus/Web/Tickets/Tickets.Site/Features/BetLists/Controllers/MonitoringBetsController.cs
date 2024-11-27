@@ -33,6 +33,9 @@ public class MonitoringBetsController(
     public Task<IActionResult> AddFilter(AddFilterCommand message)
         => ValidateAndDoAction(message);
 
+    [HttpPost]
+    public Task<IActionResult> CheckUsernames(CheckUsernamesQuery message) => JsonData(message);
+
     // Manage Filters
     public Task<IActionResult> ManageFilters(ManageFiltersQuery message)
         => View(message, GetViewPath("MonitoringBets", nameof(ManageFilters)));

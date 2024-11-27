@@ -11,6 +11,7 @@ class UsernameTagsInputOption {
         public limitText = 'Max: # member(s)',
         public duplicatedUsernameText = 'Member already exists',
         public usernameSuggestionUrl = '',
+        public checkUsernamesUrl = '',
         public delimiter = [',']
     ) {
         this.selectorId = selectorId;
@@ -18,6 +19,7 @@ class UsernameTagsInputOption {
         this.limitText = limitText;
         this.duplicatedUsernameText = duplicatedUsernameText;
         this.usernameSuggestionUrl = usernameSuggestionUrl;
+        this.checkUsernamesUrl = checkUsernamesUrl;
         this.delimiter = delimiter;
     }
 }
@@ -90,13 +92,13 @@ class UsernameTagsInputComponent {
                 return `${parts[0]}<br/>${parts[1]}`;
             },
             displayText: function (item) {
-                const nickname = item.UserName2 ? ` (${item.UserName2})` : '';
-                return `<strong>${item.UserName}${nickname}</strong>∞${item.FirstName} ${item.LastName}`;
+                const nickname = item.Username2 ? ` (${item.Username2})` : '';
+                return `<strong>${item.Username}${nickname}</strong>∞${item.FirstName} ${item.LastName}`;
             },
             autoSelect: false,
             afterSelect: (item) => {
                 this.realInput.val('');
-                this.addTag(item.UserName, true);
+                this.addTag(item.Username, true);
             },
             delay: 200
         };
@@ -125,7 +127,7 @@ class UsernameTagsInputComponent {
             });
 
             const formData = { usernames: uniqueTagsList.join(), fromSuggestion };
-            //$.post(`${this.tagsInputOption.baseUrl}/CheckUsernames`, formData, (results) => this.appendTags(results));
+            $.post(`${this.tagsInputOption.checkUsernamesUrl}`, formData, (results) => this.appendTags(results));
         }
     }
 
@@ -137,15 +139,15 @@ class UsernameTagsInputComponent {
 
     private appendTags(results) {
         results.forEach((result) => {
-            if (!result.Code && this.tagsBox.find(`.tag[data-custid=${result.CustId}]`).length) {
-                result.Code = 1;
-                result.Message = this.tagsInputOption.duplicatedUsernameText;
+            if (!result.ErrCode && this.tagsBox.find(`.tag[data-custid=${result.CustId}]`).length) {
+                result.ErrCode = 1;
+                result.ErrMsg = this.tagsInputOption.duplicatedUsernameText;
             }
 
             this.tagsBox.append(
                 $('<span>', {
-                    class: `tag${result.Code ? ' error' : ''}`,
-                    title: result.Message,
+                    class: `tag${result.ErrCode ? ' error' : ''}`,
+                    title: result.ErrMsg,
                     'data-custid': result.CustId,
                     'data-toggle': 'tooltip',
                     'data-placement': 'top'

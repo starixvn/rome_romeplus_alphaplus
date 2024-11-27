@@ -24,6 +24,8 @@ public interface IFilterBetsService
     Task<IEnumerable<FilterConfiguration>> GetFilters(int custId, int subAccId, string siteName, AddFilterParam unsavedFilter);
 
     Task<IEnumerable<SavedFilter>> GetSavedFilters(int custId, int subAccId, string siteName, AddFilterParam unsavedFilter);
+
+    Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames);
 }
 
 public class FilterBetsService(
@@ -424,4 +426,7 @@ public class FilterBetsService(
 
         return criteria.Status;
     }
+
+    public Task<IEnumerable<UsernameErrCode>> CheckUsernames(int agentId, string usernames)
+        => repository.FetchAsync<UsernameErrCode>(new CheckUsernamesCriteria(agentId, usernames));
 }

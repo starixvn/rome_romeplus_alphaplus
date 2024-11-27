@@ -27,6 +27,17 @@
                         "Permission": "[D]"
                     },
                     {
+                        "Url": "WinLossByMatch",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "ParlayWinLossByMatch",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true
+                    },
+                    {
                         "Url": "Winloss",
                         "Permission": "[E]",
                         "IsCheckBelonging": true,
@@ -45,9 +56,8 @@
                         "IsSupportedAutoFollowBetTool": true
                     },
                     {
-                        "Url": "ParlayWinLossByMatch",
-                        "Permission": "[E]",
-                        "IsCheckBelonging": true
+                        "Url": "CombinationMixParlay",
+                        "Permission": "[L]"
                     },
                     {
                         "Url": "Parlay",
@@ -66,25 +76,16 @@
                         "IsCheckBelonging": true
                     },
                     {
-                        "Url": "WinLossByMatch",
-                        "Permission": "[E]",
-                        "IsCheckBelonging": true
-                    },
-                    {
                         "Url": "CorrectScore",
-                        "Permission": "[L]"
-                    },
-                    {
-                        "Url": "BetListByBetType",
-                        "Permission": "[L]"
-                    },
-                    {
-                        "Url": "CombinationMixParlay",
                         "Permission": "[L]"
                     },
                     {
                         "Url": "BetListByBetTypeAndMatch",
                         "Permission": "[D],[L]"
+                    },
+                    {
+                        "Url": "BetListByBetType",
+                        "Permission": "[L]"
                     },
                     {
                         "Url": "CasinoDetails",

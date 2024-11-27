@@ -23,8 +23,17 @@ public class LastBetsController(
     public Task<IActionResult> BetsData(GetLastBetsDataQuery message)
         => View<LastBetsDataViewModel>(message, GetViewPath("LastBets", nameof(BetsData)));
 
-    public Task<IActionResult> IndexNew(LastBetsNewQuery message)
-        => View(message, GetViewPath("LastBets", nameof(IndexNew)));
+    public async Task<IActionResult> IndexNew(LastBetsNewQuery message)
+    {
+        var viewModel = await mediator.Send(message);
+
+        if (viewModel.Filters.Any())
+        {
+            return View(GetViewPath("LastBets", nameof(IndexNew)), viewModel);
+        }
+
+        return RedirectToActionPermanent("FilterConfiguration", "MonitoringBets", new { welcome = true });
+    }
 
     [HttpPost]
     public Task<IActionResult> BetsDataNew(GetLastBetsDataNewQuery message)

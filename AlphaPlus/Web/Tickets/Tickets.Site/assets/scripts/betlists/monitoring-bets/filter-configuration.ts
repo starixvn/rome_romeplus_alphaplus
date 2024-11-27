@@ -75,7 +75,8 @@ class FilterConfigurationView {
                 100,
                 $('#hidden-MaxNoUsernames').val(),
                 $('#hidden-UsernameAlreadyExists').val(),
-                $('#hidden-UsernameSuggestionUrl').val()
+                $('#hidden-UsernameSuggestionUrl').val(),
+                $('#hidden-CheckUsernamesUrl').val()
             )
         );
     }

@@ -1167,4 +1167,10 @@
   <data name="AddToMyWatchlist" xml:space="preserve">
     <value>添加至我的监控列表</value>
   </data>
+  <data name="Statement_WinLoss" xml:space="preserve">
+    <value>輸贏</value>
+  </data>
+  <data name="ProductWinLossAnalysis" xml:space="preserve">
+    <value>产品输赢分析</value>
+  </data>
 </root>

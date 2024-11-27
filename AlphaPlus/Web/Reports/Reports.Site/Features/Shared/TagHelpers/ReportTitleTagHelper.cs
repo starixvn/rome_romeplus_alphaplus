@@ -38,14 +38,13 @@ public class ReportTitleTagHelper : TagHelper
             if (linkLength > 1)
             {
                 sb.Append("<ul class=\"breadcrumb\">");
-
                 var linkIndex = 0;
                 var lastLinkIndex = linkLength - 1;
                 foreach (var item in breadcrumbs)
                 {
                     if (linkIndex == lastLinkIndex)
                     {
-                        sb.Append("<li>").Append(item.CustName).Append("</li>");
+                        sb.Append($"<li>&nbsp{item.CustName}&nbsp</li>");
                     }
                     else
                     {
@@ -59,7 +58,9 @@ public class ReportTitleTagHelper : TagHelper
                             .Append($"data-custid=\"{item.CustId}\" ")
                             .Append($"data-custname=\"{item.CustName}\" ")
                             .Append($"data-custlevelid=\"{item.CustLevelId}\">")
+                            .Append("&nbsp")
                             .Append(item.CustName)
+                            .Append("&nbsp")
                             .Append("</a></li>");
                     }
 
