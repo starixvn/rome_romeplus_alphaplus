@@ -175,7 +175,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<ActionResult> UpdateMultipleCustomers([FromBody] UpdateMultipleCustomerRequest request)
+        public async Task<ActionResult> UpdateMultipleCustomers(UpdateMultipleCustomerRequest request)
         {
             if (request.IsInternal)
             {
