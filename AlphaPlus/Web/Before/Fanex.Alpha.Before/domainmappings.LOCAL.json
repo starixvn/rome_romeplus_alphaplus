@@ -31,14 +31,6 @@
     {
       "Before": "alp8.nexdev.net",
       "After": "http://mbp8.nexdev.net/main"
-    },
-    {
-      "Before": "alp9.nexdev.net",
-      "After": "http://mbp9.nexdev.net/main"
-    },
-    {
-      "Before": "alp10.nexdev.net",
-      "After": "http://mbp10.nexdev.net/main"
     }
   ]
 }
