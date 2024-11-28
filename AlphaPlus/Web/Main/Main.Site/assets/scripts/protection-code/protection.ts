@@ -10,15 +10,18 @@ class ProtectionCode {
     txtNewProtectionCode: JQuery;
     txtConfirmProtectionCode: JQuery;
     resources: any;
+    topWindow: any;
 
-    constructor($: JQueryStatic) {
+    constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
+        this.topWindow = topWindow;
     }
 
     public init() {
         this.cacheElements();
         this.bindEvents();
         this.txtNewProtectionCode.focus();
+        this.$(".open-link").unbind().bind('click', event => { this.topWindow.alpha.viewDataURL(event); });
     }
 
     private cacheElements() {
@@ -156,6 +159,6 @@ class ProtectionCode {
 }
 
 $(function () {
-    const protectionCode = new ProtectionCode($);
+    const protectionCode = new ProtectionCode($, top);
     protectionCode.init();
 })

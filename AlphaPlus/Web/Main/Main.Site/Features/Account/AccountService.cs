@@ -99,7 +99,7 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
     [HttpGet]
     public async Task<SignInResult> InternalLogin(InternalLoginParam param)
     {
-        var query = QueryString.Create(new[] {
+        var query = QueryString.Create([
             KeyValuePair.Create(nameof(param.AdminId), param.AdminId.ToString()),
             KeyValuePair.Create(nameof(param.Language), param.Language),
             KeyValuePair.Create(nameof(param.RequestInfo.CountryCode), param.RequestInfo.CountryCode),
@@ -109,7 +109,7 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
             KeyValuePair.Create(nameof(param.RequestInfo.LoginIp), param.RequestInfo.LoginIp),
             KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
             KeyValuePair.Create(nameof(param.RequestInfo.Platform), param.RequestInfo.Platform)
-        });
+        ]);
 
         var result = await client.GetAsJsonAsync<SignInResult>($"api/auth/internal-login{query}");
 
@@ -124,7 +124,7 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
     [HttpGet]
     public async Task<SignInResult> IndirectLogin(IndirectLoginParam param)
     {
-        var query = QueryString.Create(new[] {
+        var query = QueryString.Create([
             KeyValuePair.Create(nameof(param.CustId), param.CustId.ToString()),
             KeyValuePair.Create(nameof(param.UplineCustId), param.UplineCustId.ToString()),
             KeyValuePair.Create(nameof(param.UplineSubAccId), param.UplineSubAccId.ToString()),
@@ -138,7 +138,7 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
             KeyValuePair.Create(nameof(param.RequestInfo.LoginIp), param.RequestInfo.LoginIp),
             KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
             KeyValuePair.Create(nameof(param.RequestInfo.Platform), param.RequestInfo.Platform)
-        });
+        ]);
 
         var result = await client.GetAsJsonAsync<SignInResult>($"api/auth/indirect-login{query}");
 

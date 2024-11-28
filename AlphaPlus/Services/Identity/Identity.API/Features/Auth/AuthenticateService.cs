@@ -74,7 +74,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 CountryCode = request.CountryCode,
                 LoginDomain = request.LoginDomain,
                 BrowserName = request.BrowserName,
-                Platform = request.Platform,
+                Platform = request.Platform
             };
 
             await dynamicRepository.ExecuteAsync(command);
@@ -106,6 +106,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
             if (command.ErrCode == 0)
             {
                 response.Status = await GetCustomerStatus(response.CustId, response.AdminId);
+                response.Status.Add(nameof(command.IsProtectedMode).ToLowerInvariant(), command.IsProtectedMode.ToString());
                 response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
                 response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
                 response.SiteDB = await siteDBService.GetSiteDBConfig(response.CustId);
@@ -262,6 +263,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
             if (criteria.ErrCode == 0)
             {
                 response.Status = await GetCustomerStatus(response.CustId, response.AdminId);
+                response.Status.Add(nameof(criteria.IsProtectedMode).ToLowerInvariant(), criteria.IsProtectedMode.ToString());
                 response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
                 response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
                 response.SiteDB = await siteDBService.GetSiteDBConfig(response.CustId);
@@ -338,6 +340,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
             if (criteria.ErrCode == 0)
             {
                 response.Status = await GetCustomerStatus(response.CustId, 0);
+                response.Status.Add(nameof(criteria.IsProtectedMode).ToLowerInvariant(), criteria.IsProtectedMode.ToString());
                 response.IsShowConsolidatedReport = await IsShowConsolidateReport(response.CustId);
                 response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
                 response.SiteDB = await siteDBService.GetSiteDBConfig(response.CustId);

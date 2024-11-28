@@ -62,7 +62,6 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public string LanguageUsage { get; set; }
 
-
         public string GetSettingKey() => "Age_LoginClaimDownline";
 
         public bool IsValid() => CustId > 0;
