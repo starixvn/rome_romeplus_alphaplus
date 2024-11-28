@@ -1162,7 +1162,7 @@
     ]
   },
   {
-    "outputFileName": "bundles2-v2/site-betlists/monitoring-bets.js",
+    "outputFileName": "bundles-v2/site-betlists/monitoring-bets.js",
     "inputFiles": [
       "js/components/multiselect/bootstrap-multiselect.js",
       "js/libs/clipboard/clipboard.js"
@@ -1841,7 +1841,7 @@
     ]
   },
   {
-    "outputFileName": "bundles2-v2/common/common.css",
+    "outputFileName": "bundles-v2/common/common.css",
     "inputFiles": [
       "styles-v2/base/reset.css",
       "styles-v2/fonts/iconalpha/style.css",
@@ -1856,7 +1856,7 @@
     ]
   },
   {
-    "outputFileName": "bundles2-v2/site-betlists/search-tickets.css",
+    "outputFileName": "bundles-v2/site-betlists/search-tickets.css",
     "inputFiles": [
       "styles-v2/vendors/tipsy.css",
       "styles-v2/components/tables.css",
@@ -1865,7 +1865,7 @@
     ]
   },
   {
-    "outputFileName": "bundles2-v2/site-betlists/monitoring-bets.css",
+    "outputFileName": "bundles-v2/site-betlists/monitoring-bets.css",
     "inputFiles": [
       "styles/vendors/bootstrap-multiselect.css",
       "styles/components/bootstrap-multiselect.css",
@@ -1877,7 +1877,7 @@
     ]
   },
   {
-    "outputFileName": "bundles2-v2/site-betlists/monitoring-bets.js",
+    "outputFileName": "bundles-v2/site-betlists/monitoring-bets.js",
     "inputFiles": [
       "js/components/multiselect/bootstrap-multiselect.js",
       "js/components/select2/select2.js",
@@ -1888,14 +1888,14 @@
     ]
   },
   {
-    "outputFileName": "bundles2-v2/site-assets/tipsy.css",
+    "outputFileName": "bundles-v2/site-assets/tipsy.css",
     "inputFiles": [
       "styles-v2/vendors/tipsy.css",
       "styles-v2/components/tipsy-modify.css"
     ]
   },
   {
-    "outputFileName": "bundles2-v2/site-assets/tipsy.js",
+    "outputFileName": "bundles-v2/site-assets/tipsy.js",
     "inputFiles": [
       "js-v2/components/tipsy/jquery.tipsy.js",
       "js-v2/components/tipsy/tipsy-helper.js"
@@ -1909,21 +1909,21 @@
     ]
   },
   {
-    "outputFileName": "bundles2-v2/site-memberinfo/member-betting-behavior.css",
+    "outputFileName": "bundles-v2/site-memberinfo/member-betting-behavior.css",
     "inputFiles": [
       "styles-v2/vendors/tipsy.css",
       "styles-v2/components/tipsy-modify.css"
     ]
   },
   {
-    "outputFileName": "bundles2-v2/site-asset/chart_v4.4.2.js",
+    "outputFileName": "bundles-v2/site-asset/chart_v4.4.2.js",
     "inputFiles": [
       "js-v2/components/chartjs/chart_v4.4.2.js",
       "js-v2/components/chartjs/chartjs-plugin-datalabels.js"
     ]
   },
   {
-    "outputFileName": "bundles2-v2/site-memberinfo/member-betting-behavior.js",
+    "outputFileName": "bundles-v2/site-memberinfo/member-betting-behavior.js",
     "inputFiles": [
       "js-v2/components/tipsy/jquery.tipsy.js",
       "js-v2/components/tipsy/tipsy-helper.js"
@@ -1943,57 +1943,57 @@
     ]
   },
   {
-      "outputFileName": "bundles3/site-totalbetsforecast/default.css",
-      "inputFiles": [
-          "styles-v3/base/reset.css",
-          "styles-v3/base/fonts/iconalpha/style.css",
-          "styles-v3/base/fonts/roboto/roboto.css",
-          "styles-v3/base/scaffolding.css",
-          "styles-v3/base/utilities.css",
-          "styles-v3/vendors-extensions/common/bootstrap-ex.css",
-          "styles-v3/vendors/select2.css",
-          "styles-v3/components/table.css",
-          "styles-v3/components/title.css",
-          "styles-v3/components/tab-nav.css",
-          "styles-v3/components/form.css",
-          "styles-v3/components/button.css",
-          "styles-v3/components/modal.css",
-          "styles-v3/components/icon.css",
-          "styles-v3/components/alert.css",
-          "styles-v3/components/breadcrumd.css"
-      ]
+    "outputFileName": "bundles3/site-totalbetsforecast/default.css",
+    "inputFiles": [
+      "styles-v3/base/reset.css",
+      "styles-v3/base/fonts/iconalpha/style.css",
+      "styles-v3/base/fonts/roboto/roboto.css",
+      "styles-v3/base/scaffolding.css",
+      "styles-v3/base/utilities.css",
+      "styles-v3/vendors-extensions/common/bootstrap-ex.css",
+      "styles-v3/vendors/select2.css",
+      "styles-v3/components/table.css",
+      "styles-v3/components/title.css",
+      "styles-v3/components/tab-nav.css",
+      "styles-v3/components/form.css",
+      "styles-v3/components/button.css",
+      "styles-v3/components/modal.css",
+      "styles-v3/components/icon.css",
+      "styles-v3/components/alert.css",
+      "styles-v3/components/breadcrumd.css"
+    ]
   },
   {
-      "outputFileName": "bundles3/site-totalbetsforecast/soccer.css",
-      "inputFiles": [
-          "styles-v3/base/reset.css",
-          "styles-v3/base/fonts/iconalpha/style.css",
-          "styles-v3/base/fonts/roboto/roboto.css",
-          "styles-v3/base/scaffolding.css",
-          "styles-v3/base/utilities.css",
-          "styles-v3/vendors/bootstrap-multiselect.css",
-          "styles-v3/components/blockui.css",
-          "styles-v3/components/dropdown.css",
-          "styles-v3/components/modal.css",
-          "styles-v3/components/breadcrumd.css",
-          "styles-v3/components/button.css",
-          "styles-v3/components/tooltip.css",
-          "styles-v3/components/table.css",
-          "styles-v3/components/form.css",
-          "styles-v3/components/carousel.css",
-          "styles-v3/components/icon.css"
-      ]
+    "outputFileName": "bundles3/site-totalbetsforecast/soccer.css",
+    "inputFiles": [
+      "styles-v3/base/reset.css",
+      "styles-v3/base/fonts/iconalpha/style.css",
+      "styles-v3/base/fonts/roboto/roboto.css",
+      "styles-v3/base/scaffolding.css",
+      "styles-v3/base/utilities.css",
+      "styles-v3/vendors/bootstrap-multiselect.css",
+      "styles-v3/components/blockui.css",
+      "styles-v3/components/dropdown.css",
+      "styles-v3/components/modal.css",
+      "styles-v3/components/breadcrumd.css",
+      "styles-v3/components/button.css",
+      "styles-v3/components/tooltip.css",
+      "styles-v3/components/table.css",
+      "styles-v3/components/form.css",
+      "styles-v3/components/carousel.css",
+      "styles-v3/components/icon.css"
+    ]
   },
   {
-      "outputFileName": "bundles3/site-totalbetsforecast/soccer.js",
-      "inputFiles": [
-          "js/libs/jquery/jquery.cookie.js",
-          "js/libs/numeral/numeral.js",
-          "js/components/coloranimation/jquery.animate-colors.js",
-          "js/components/highlight/jquery.pulse.js",
-          "js/components/countdown/jquery.countdown.js",
-          "js/components/multiselect/bootstrap-multiselect.js",
-          "js/components/select2/select2.js"
-      ]
+    "outputFileName": "bundles3/site-totalbetsforecast/soccer.js",
+    "inputFiles": [
+      "js/libs/jquery/jquery.cookie.js",
+      "js/libs/numeral/numeral.js",
+      "js/components/coloranimation/jquery.animate-colors.js",
+      "js/components/highlight/jquery.pulse.js",
+      "js/components/countdown/jquery.countdown.js",
+      "js/components/multiselect/bootstrap-multiselect.js",
+      "js/components/select2/select2.js"
+    ]
   }
 ]
