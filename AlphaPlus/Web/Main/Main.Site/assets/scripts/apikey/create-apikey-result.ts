@@ -1,82 +1,68 @@
 ﻿/// <reference path="../core.ts" />
-"use strict";
+'use strict';
 
 class CreateApiKeyResult {
-  $: JQueryStatic;
-  topWindow: any;
-  clipboardKey: any;
-  clipboardSecret: any;
-  $showURL: JQuery;
-  $urlMask: JQuery;
+    $: JQueryStatic;
+    topWindow: any;
+    clipboardKey: any;
+    clipboardSecret: any;
+    $showURL: JQuery;
+    $urlMask: JQuery;
 
-  constructor(
-    $: JQueryStatic,
-    topWindow: any,
-    clipboardKey: any,
-    clipboardSecret: any
-  ) {
-    this.$ = $;
-    this.topWindow = topWindow;
-    this.clipboardKey = clipboardKey;
-    this.clipboardSecret = clipboardSecret;
-  }
-
-  init = () => {
-    this.$showURL = this.$(".dummy-text");
-    this.$urlMask = this.$(".service-url-mask");
-
-    this.registerEvents();
-  };
-
-  registerEvents = () => {
-    const self = this;
-    this.$showURL.click(this.showURL);
-
-    if (
-      window.document.queryCommandSupported &&
-      window.document.queryCommandSupported("copy")
-    ) {
-      this.clipboardKey
-        .on("success", function (e) {
-          self.$(e.trigger).tooltip("show");
-        })
-        .on("error", function (e) {
-          self.$(e.trigger).remove();
-          window.console.error("Action:", e.action);
-          window.console.error("Trigger:", e.trigger);
-        });
-
-      this.clipboardSecret
-        .on("success", function (e) {
-          self.$(e.trigger).tooltip("show");
-        })
-        .on("error", function (e) {
-          self.$(e.trigger).remove();
-          window.console.error("Action:", e.action);
-          window.console.error("Trigger:", e.trigger);
-        });
+    constructor($: JQueryStatic, topWindow: any, clipboard: any) {
+        this.$ = $;
+        this.topWindow = topWindow;
+        this.clipboardKey = new clipboard('.icon-content-copy');
+        this.clipboardSecret = new clipboard('.icon-copy-secret');
     }
 
-    this.$("#btnOk").click(this.handleBtnOk);
-  };
+    init = () => {
+        this.$showURL = this.$('.dummy-text');
+        this.$urlMask = this.$('.service-url-mask');
 
-  handleBtnOk = () => {
-    this.topWindow.popupManager.close();
-  };
+        this.registerEvents();
+    };
 
-  showURL = () => {
-    this.$urlMask.removeClass("close");
-    this.$urlMask.addClass("open");
-  };
+    registerEvents = () => {
+        const self = this;
+        this.$showURL.click(this.showURL);
+
+        if (window.document.queryCommandSupported && window.document.queryCommandSupported('copy')) {
+            this.clipboardKey
+                .on('success', function (e) {
+                    self.$(e.trigger).tooltip('show');
+                })
+                .on('error', function (e) {
+                    self.$(e.trigger).remove();
+                    window.console.error('Action:', e.action);
+                    window.console.error('Trigger:', e.trigger);
+                });
+
+            this.clipboardSecret
+                .on('success', function (e) {
+                    self.$(e.trigger).tooltip('show');
+                })
+                .on('error', function (e) {
+                    self.$(e.trigger).remove();
+                    window.console.error('Action:', e.action);
+                    window.console.error('Trigger:', e.trigger);
+                });
+        }
+
+        this.$('#btnOk').click(this.handleBtnOk);
+    };
+
+    handleBtnOk = () => {
+        this.topWindow.popupManager.close();
+    };
+
+    showURL = () => {
+        this.$urlMask.removeClass('close');
+        this.$urlMask.addClass('open');
+    };
 }
 
 $(function () {
-  // TODO:
-  // const createApiKeyResult = new CreateApiKeyResult(
-  //   $,
-  //   window.top,
-  //   new Clipboard(".icon-content-copy"),
-  //   new Clipboard(".icon-copy-secret")
-  // );
-  // createApiKeyResult.init();
+    const createApiKeyResult = new CreateApiKeyResult($, window.top, Clipboard);
+    createApiKeyResult.init();
 });
