@@ -219,5 +219,8 @@
         "AllowSuperIds": "*",
         "URL": "https://indp1.nexdev.net/main/Account/IndirectLogin"
     },
-    "APISuperIds": [ "*" ]
+    "APISuperIds": [
+        "*"
+    ],
+    "ApiKeyServiceUri": "http://alpha-apikey.nexdev.net"
 }

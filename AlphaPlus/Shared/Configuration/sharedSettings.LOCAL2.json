@@ -222,5 +222,8 @@
     "ProtectedMode": {
         "OfferSites": "*"
     },
-    "APISuperIds": [ "*" ]
+    "APISuperIds": [
+        "*"
+    ],
+    "ApiKeyServiceUri": "http://alpha-apikey.nexdev.net"
 }
