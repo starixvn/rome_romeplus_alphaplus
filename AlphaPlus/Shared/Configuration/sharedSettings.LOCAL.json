@@ -216,7 +216,8 @@
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
     "OfferClearGivenCredit:Sites": "KORIBC,INDO",
     "IndirectLogin": {
-      "AllowSuperIds": "*",
-      "URL": "https://indp1.nexdev.net/main/Account/IndirectLogin"
-    }
+        "AllowSuperIds": "*",
+        "URL": "https://indp1.nexdev.net/main/Account/IndirectLogin"
+    },
+    "APISuperIds": [ "*" ]
 }

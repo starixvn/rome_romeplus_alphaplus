@@ -78,12 +78,10 @@ namespace AlphaPlus.Main.Site.Features.Default
 
         public int SuperId { get; }
 
-        public bool ShowAPIKeyFunction => false;
-        //TODO: ShowAPIKeyFunction
-        // public bool ShowAPIKeyFunction
-        //     => !IsSubAccount
-        //     && (AppSettings.APISuperIds.Any(s => string.Equals(s, "*"))
-        //         || AppSettings.APISuperIds.Any(s => string.Equals(s, SuperId.ToString())));
+        public bool ShowAPIKeyFunction
+            => !IsSubAccount
+            && (AppSettings.APISuperIds.Any(s => string.Equals(s, "*"))
+                || AppSettings.APISuperIds.Any(s => string.Equals(s, SuperId.ToString())));
 
         public string HowToUseIndexPath
             => AlphaPlus.Core.Configurations.AppSettings.SupportedNewHandbook

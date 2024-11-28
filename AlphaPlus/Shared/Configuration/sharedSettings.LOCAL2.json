@@ -221,5 +221,6 @@
     },
     "ProtectedMode": {
         "OfferSites": "*"
-    }
+    },
+    "APISuperIds": [ "*" ]
 }

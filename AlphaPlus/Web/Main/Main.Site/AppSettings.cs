@@ -20,7 +20,7 @@ namespace AlphaPlus.Main.Site
 
         public static bool ShowHelpLink => IsMBCSite;
 
-        public static int[] TrackingConnectionCustIds => GetValue<int[]>("TrackingConnectionCustIds", []);
+        public static int[] TrackingConnectionCustIds => GetSectionValue<int[]>("TrackingConnectionCustIds", []);
 
         public static bool BannerIsHide => GetValue<bool>("Banner:IsHide");
 
@@ -38,7 +38,7 @@ namespace AlphaPlus.Main.Site
 
         public static int UMAnnouncementPopupClientIntervalInMinutes => GetValue<int>("UMAnnouncementPopup:ClientIntervalInMinutes");
 
-        public static string[] DomainsWithViva88ContactInfo => GetValue<string[]>("newdomains");
+        public static string[] DomainsWithViva88ContactInfo => GetSectionValue<string[]>("newdomains");
 
         public static bool IsViva88Domain
             => DomainsWithViva88ContactInfo.Any(domain => domain.Equals(AlphaContext.Current.Request.Host.Value, StringComparison.OrdinalIgnoreCase));
@@ -65,10 +65,12 @@ namespace AlphaPlus.Main.Site
 
         public static string APIGatewaysURL => GetValue<string>("APIGatewaysURL");
 
-        public static string[] APISuperIds => GetValue<string[]>("APISuperIds");
+        public static string[] APISuperIds => GetSectionValue<string[]>("APISuperIds");
 
         public static bool HideQRCode => GetValue<bool>("QRCode:Hide");
 
         private static T GetValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetValue<T>(key, defaultValue);
+
+        private static T GetSectionValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetSection<T>(key, defaultValue);
     }
 }
