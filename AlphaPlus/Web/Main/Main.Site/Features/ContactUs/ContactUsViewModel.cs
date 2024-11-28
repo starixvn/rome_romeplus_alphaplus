@@ -15,9 +15,8 @@
             IsShowSkypeId = AppSettings.SiteLabel.Equals("MBC", StringComparison.OrdinalIgnoreCase);
             _skypeId = AppSettings.ContactUsSkypeId;
 
-            var newDomains = AppSettings.ContactUsNewDomains ?? string.Empty;
+            var newDomains = AppSettings.ContactUsNewDomains ?? [];
             var isNewDomain = newDomains
-                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .Contains(domain, StringComparer.OrdinalIgnoreCase);
 
             if (isNewDomain)

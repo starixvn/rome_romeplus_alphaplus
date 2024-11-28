@@ -55,7 +55,7 @@ namespace AlphaPlus.Main.Site
 
         public static string ContactUsLetstalkUrlNew => GetValue<string>("letstalkurlNew");
 
-        public static string ContactUsNewDomains => GetValue<string>("newdomains");
+        public static string[] ContactUsNewDomains => GetSectionValue<string[]>("newdomains");
 
         public static int CDNReCheckinIntervalInSeconds => GetValue("DNReCheckin:IntervalInSeconds", 60);
 
@@ -63,7 +63,7 @@ namespace AlphaPlus.Main.Site
 
         public static string JsVersion => GetValue<string>("JsVersion");
 
-        public static string APIGatewaysURL => GetValue<string>("APIGatewaysURL");
+        public static string APIGatewaysURL => GetValue<string>("ApiKeyServiceUri");
 
         public static string[] APISuperIds => GetSectionValue<string[]>("APISuperIds");
 
