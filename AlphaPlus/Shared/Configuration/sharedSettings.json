@@ -166,6 +166,24 @@
                 "ThrottleDuration": 30,
                 "BlockDuration": 60,
                 "Filter": "Whitelist"
+            },
+            {
+                "Name": "Main",
+                "Path": "*",
+                "Method": "POST",
+                "MaxRequests": 60,
+                "ThrottleDuration": 120,
+                "BlockDuration": 600,
+                "Filter": ""
+            },
+            {
+                "Name": "NewCustomer",
+                "Path": "*",
+                "Method": "POST",
+                "MaxRequests": 10,
+                "ThrottleDuration": 600,
+                "BlockDuration": 1800,
+                "Filter": ""
             }
         ],
         "WhiteListCustIds": [
