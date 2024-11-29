@@ -51,7 +51,7 @@ public class BetTypeWinLossModel : NetWinLoss
         };
 
     private string GetBetTypeSuffix()
-        => Id == BetTypeConstants.MixParlayBetRadarVirtualSports || Id == BetTypeConstants.MixParlayEdgeGamingVirtualSports
+        => Id == BetTypeConstants.MixParlayBetRadarVirtualSports || Id == BetTypeConstants.MixParlayEdgeGamingVirtualSports || Id == BetTypeConstants.MixParlayVirtuallySports
         ? $" ({SharedResources.VirtualSports})"
         : string.Empty;
 }

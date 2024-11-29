@@ -5,4 +5,9 @@ namespace AlphaPlus.Reports.Site.Features.SuperWinLossDetailByPT;
 
 public class SuperWinLossDetailByPTQuery : ProductDetailDateRangeQuery, IRequest<SuperWinLossDetailByPTViewModel>
 {
+    public SuperWinLossDetailByPTQuery()
+    {
+        SortPropertyName = "Turnover";
+        DescendingSort = 1;
+    }
 }

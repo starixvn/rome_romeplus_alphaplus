@@ -85,11 +85,7 @@ class WinLossDetailView extends BaseReportNew {
         const excelUrl = $iconExcel.attr('href');
         $iconExcel
             .click((e) => {
-                if (
-                    this.globalFormData.userSelectedProductIds.length === 0 ||
-                    this.globalFormData.custLevelId > viewerLevelId ||
-                    this.isGettingData
-                ) {
+                if (this.globalFormData.custLevelId > viewerLevelId || this.isGettingData) {
                     e.preventDefault();
                     return;
                 }
@@ -143,7 +139,7 @@ class WinLossDetailView extends BaseReportNew {
             .off('click')
             .click((e) => {
                 window.top['reloadMyWatchlistDataTable'] = () => this.getData(this.globalFormData, undefined, true);
-                const custName = $(e.target).prev('.downline-link').data('custname');
+                const custName = $(e.target).data('custname');
                 const url = `${$(
                     '#hidden-settingsUrl'
                 ).val()}MyWatchlistAccounts/ManageWatchlistAccounts?usernames=${custName}`;

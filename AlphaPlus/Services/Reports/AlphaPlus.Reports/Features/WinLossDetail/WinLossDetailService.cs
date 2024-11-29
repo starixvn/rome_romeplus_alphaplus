@@ -34,7 +34,8 @@ public class WinLossDetailService(
             reportDate.MoveBetsDay,
             param.ProductIds,
             param.ProductDetailsXml,
-            param.Username);
+            param.Username,
+            param.IsReward);
 
         var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
 
@@ -53,7 +54,8 @@ public class WinLossDetailService(
             param.ProductIds,
             param.CustLevelId,
             param.ProductDetailsXml,
-            param.Username);
+            param.Username,
+            param.IsReward);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var ip = allowedSitesToShareLoad.GetIP(param.SiteName);

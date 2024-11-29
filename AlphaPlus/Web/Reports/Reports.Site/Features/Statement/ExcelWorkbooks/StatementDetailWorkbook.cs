@@ -40,13 +40,13 @@ public class StatementDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
                 bodyStartIndex: 3,
                 bodyEndIndex: 4,
                 footerEndIndex: 5))
-            .Title($"{Resources.TransferDetails} ({message.CustName}): {transferDate})")
+            .Title($"{Resources.TransferDetails} ({message.CustName}): {transferDate}")
             .Header(Resources.ResourceManager.GetString)
             .Body(reportData.DataSource, BodyRowMapper)
             .Footer(reportData.Total, FooterRowMapper)
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{Resources.TransferDetails}-{message.CustName}-{transferDate})", fileContent);
+        return new ExcelFileViewModel($"{Resources.TransferDetails}-{message.CustName}-{transferDate}", fileContent);
     }
 }

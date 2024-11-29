@@ -19,7 +19,7 @@
         {
             @:4: '@Resources.MasterWinLossDetail'
         }
-                                                        };
+                                                            };
         var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
         var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
         var columnList = [
@@ -46,7 +46,8 @@
             @:{ value: "scomm", text: '@Resources.Super @Resources.Comm' },
             @:{ value: "stotal", text: '@Resources.Super @Resources.Total' },
         }
-            { value: "company", text: '@Resources.Company' }
+            { value: "company", text: '@Resources.Company' },
+            { value: "reward", text: '@Resources.Reward' }
         ];
         var currentFromData = {
             custId: @Model.CustId,

@@ -98,27 +98,12 @@ public static class AppSettings
             .Select(v => int.Parse(v)));
 
     public static bool SupportedNewHandbook
-    {
-        get
-        {
-            var marketsSupportedNewHandbook = ConfigurationManager.GetValue<string>("MarketsSupportedNewHandbook");
-            if (string.IsNullOrWhiteSpace(marketsSupportedNewHandbook))
-            {
-                return false;
-            }
+        => MarketsSupportedNewHandbook.Contains("*") || MarketsSupportedNewHandbook.Contains(SiteLabel);
 
-            if (string.Equals("*", marketsSupportedNewHandbook, StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-
-            var label = SiteLabel;
-            var separators = new[] { ',' };
-            return marketsSupportedNewHandbook
-                .Split(separators, StringSplitOptions.RemoveEmptyEntries)
-                .Any(s => string.Equals(s, label, StringComparison.OrdinalIgnoreCase));
-        }
-    }   
+    private static HashSet<string> MarketsSupportedNewHandbook { get; } = new HashSet<string>(
+        ConfigurationManager
+            .GetValue<string>("MarketsSupportedNewHandbook")
+            .Split(','), StringComparer.OrdinalIgnoreCase);
 
     private static void GetForceLoginNicknameConfiguration()
     {

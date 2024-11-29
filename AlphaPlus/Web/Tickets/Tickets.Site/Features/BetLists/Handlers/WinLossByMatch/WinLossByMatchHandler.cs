@@ -38,6 +38,7 @@ public class WinLossByMatchHandler(
             message.CustId,
             message.LeagueId,
             message.MatchId,
+            message.LeagueType,
             message.BetType,
             message.Race,
             message.LiveIndicator == 1,

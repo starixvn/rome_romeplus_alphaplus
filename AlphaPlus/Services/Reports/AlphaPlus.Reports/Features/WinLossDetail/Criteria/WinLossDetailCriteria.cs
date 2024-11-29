@@ -9,8 +9,9 @@ internal class WinLossDetailCriteria(
     string productIds,
     byte custLevelId,
     string productDetails,
-    string username)
-        : WinLossDetailWeekDataCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds, productDetails, username)
+    string username,
+    bool isReward)
+        : WinLossDetailWeekDataCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds, productDetails, username, isReward)
 {
     public int PageIndex { get; } = 1;
 

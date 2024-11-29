@@ -3940,5 +3940,16 @@ namespace AlphaPlus.Shared.AppResources.Report
                 return ResourceManager.GetString("ProductWinLossAnalysis", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reward.
+        /// </summary>
+        public static string Reward
+        {
+            get
+            {
+                return ResourceManager.GetString("Reward", resourceCulture);
+            }
+        }
     }
 }

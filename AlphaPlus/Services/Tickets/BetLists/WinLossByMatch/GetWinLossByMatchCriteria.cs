@@ -9,6 +9,7 @@ internal class GetWinLossByMatchCriteria(
     DateTime toDate,
     DateTime moveBetsDay,
     int matchId,
+    byte eventType,
     int betType,
     string custName,
     bool liveIndicator,
@@ -17,6 +18,8 @@ internal class GetWinLossByMatchCriteria(
     public int CustId { get; } = custId;
 
     public int MatchId { get; } = matchId;
+
+    public byte EventType { get; } = eventType;
 
     public int BetType { get; } = betType;
 

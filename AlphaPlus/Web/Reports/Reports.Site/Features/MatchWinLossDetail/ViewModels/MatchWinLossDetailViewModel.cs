@@ -66,6 +66,7 @@ public class MatchWinLossDetailViewModel(
             KeyValuePair.Create("BetType", betType.Id.ToString()),
             KeyValuePair.Create("LiveIndicator", betType.IsLive ? "1" : "0"),
             KeyValuePair.Create(nameof(match.LeagueId), match.LeagueId.ToString()),
+            KeyValuePair.Create(nameof(match.LeagueType), match.LeagueType.ToString()),
             KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
             KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate),
             match.Race > 0

@@ -58,13 +58,15 @@ public class MatchWinLossDetailHandler(
             appSettings.LocalTest);
         var leagueViewModel = await BuildLeagueViewModel(leagueParam, message.UserSelectedLeagueIds, message.IsUserSelectsAllLeagues);
 
+        var (leagueIds, league3rdIds) = BuildLeagueIds(leagueViewModel.UserSelectedLeagueIds);
         var param = new MatchWinLossDetailParam(
             message.ViewerId,
             message.ViewerLevel.Value,
             fromDate,
             message.ToDate,
             productViewModel.UserSelectedProductIds,
-            BuildLeagueIds(leagueViewModel.UserSelectedLeagueIds).JoinWithComma(),
+            leagueIds,
+            league3rdIds,
             message.Site);
         var reportData = await matchWinLossDetailService.GetMatchWinLossDetail(param);
 
@@ -88,10 +90,13 @@ public class MatchWinLossDetailHandler(
             message.Language,
             message.LanguageKey,
             appSettings.LocalTest);
+        var leagueIds = string.Empty;
+        var league3rdIds = string.Empty;
+        if (!message.IsUserSelectsAllLeagues)
+        {
+            (leagueIds, league3rdIds) = BuildLeagueIds(await FilterLeagueIds(leagueParam, message.UserSelectedLeagueIds));
+        }
 
-        var leagueIds = message.IsUserSelectsAllLeagues
-            ? string.Empty
-            : BuildLeagueIds(await FilterLeagueIds(leagueParam, message.UserSelectedLeagueIds)).JoinWithComma();
         var param = new MatchWinLossDetailParam(
             message.ViewerId,
             message.ViewerLevel.Value,
@@ -99,6 +104,7 @@ public class MatchWinLossDetailHandler(
             message.ToDate,
             productIdsString,
             leagueIds,
+            league3rdIds,
             message.Site);
         var reportData = await matchWinLossDetailService.GetMatchWinLossDetail(param);
 
@@ -146,22 +152,30 @@ public class MatchWinLossDetailHandler(
             .Select(l => l.Id);
     }
 
-    private static IEnumerable<int> BuildLeagueIds(IEnumerable<string> leagues)
+    private static (string, string) BuildLeagueIds(IEnumerable<string> leagues)
     {
         const int ValidLeagueArrayLength = 2;
+        var leagueIds = new List<int>();
+        var league3rdIds = new List<int>();
 
         foreach (var item in leagues)
         {
             var leagueArray = item.Split('_');
-            if (leagueArray.Length == ValidLeagueArrayLength)
+            if (leagueArray.Length == ValidLeagueArrayLength
+                && int.TryParse(leagueArray[0], out var leagueId)
+                && int.TryParse(leagueArray[1], out var leagueType))
             {
-                if (int.TryParse(leagueArray[0], out var leagueId)
-                && int.TryParse(leagueArray[1], out var leagueType)
-                && leagueType == LeagueType.Self)
+                if (leagueType == LeagueType.Self)
                 {
-                    yield return leagueId;
+                    leagueIds.Add(leagueId);
+                }
+                else if (leagueType == LeagueType.ThirdParty)
+                {
+                    league3rdIds.Add(leagueId);
                 }
             }
         }
+
+        return (leagueIds.JoinWithComma(), league3rdIds.JoinWithComma());
     }
 }

@@ -7,4 +7,5 @@ public record MatchWinLossDetailParam(
     DateTime ToDate,
     string ProductIds,
     string LeagueIds,
+    string League3rdIds,
     string SiteName);

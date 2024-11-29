@@ -38,7 +38,7 @@ public class MatchWinLossDetailEntity : NetWinLoss
 
     public decimal CompanyComm
     {
-        get => -(MemberComm + AgComm + MAgComm + SAgComm);
+        get => MemberComm + AgComm + MAgComm + SAgComm;
         private set => _ = value;
     }
 

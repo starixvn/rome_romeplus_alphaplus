@@ -1173,4 +1173,7 @@
   <data name="ProductWinLossAnalysis" xml:space="preserve">
     <value>产品输赢分析</value>
   </data>
+  <data name="Reward" xml:space="preserve">
+    <value>奖金</value>
+  </data>
 </root>

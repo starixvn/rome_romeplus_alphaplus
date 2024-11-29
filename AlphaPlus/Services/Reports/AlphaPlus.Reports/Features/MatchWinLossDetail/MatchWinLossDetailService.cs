@@ -70,6 +70,7 @@ public class MatchWinLossDetailService(
             moveBetsDay,
             param.ProductIds,
             param.LeagueIds,
+            param.League3rdIds,
             param.ViewerLevelId);
 
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
@@ -202,7 +203,8 @@ public class MatchWinLossDetailService(
                 betTypeWinLoss,
                 new BetTypeWinLossModel(total),
                 GetTeamName(firstWinLoss.HomeId, firstWinLoss.LeagueType),
-                GetTeamName(firstWinLoss.AwayId, firstWinLoss.LeagueType));
+                GetTeamName(firstWinLoss.AwayId, firstWinLoss.LeagueType),
+                firstWinLoss.LeagueType);
         }
     }
 

@@ -56,6 +56,7 @@ public class WinLossDetailHandler(
                 validUserSelectedProductIds.JoinWithComma(),
                 productDetailXml,
                 string.IsNullOrWhiteSpace(message.Username) ? message.CustName : message.Username,
+                true,
                 message.Site);
             weekDataTask = winlossDetailService.GetWeekData(weekDataParam);
         }
@@ -109,6 +110,7 @@ public class WinLossDetailHandler(
             validUserSelectedProductIds,
             productDetailXml,
             message.Username,
+            true,
             message.Site);
 
         return winlossDetailService.GetWinLossDetail(param);
@@ -181,6 +183,7 @@ public class WinLossDetailHandler(
                 validUserSelectedProductIds.JoinWithComma(),
                 productDetailXml,
                 string.IsNullOrWhiteSpace(message.Username) ? message.CustName : message.Username,
+                true,
                 message.Site);
             var weekData = await winlossDetailService.GetWeekData(weekDataParam);
 

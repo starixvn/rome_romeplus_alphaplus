@@ -962,6 +962,72 @@
             );
         };
     }
+
+    export class PlaytechTicketDetails extends BaseTicketDetails {
+        private static instance: PlaytechTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new PlaytechTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowPlaytechTicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=Playtech&productId=100`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                'Playtech - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                width,
+                800
+            );
+        };
+    }
+
+    export class GPIRNGTicketDetails extends BaseTicketDetails {
+        private static instance: GPIRNGTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new GPIRNGTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowGPIBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=GPI&productId=48`;
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                'GPI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                width,
+                800
+            );
+        };
+    }
 }
 
 let showRnGCasinoDetails: Function;
@@ -1006,6 +1072,8 @@ let showFastSpinBetDetails: Function;
 let showFACHAIBetDetails: Function;
 let showNextspinBetDetails: Function;
 let showONLiveCasinoBetDetails: Function;
+let showPlaytechBetDetails: Function;
+let showGPIBetDetails: Function;
 
 $(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -1053,4 +1121,6 @@ $(function () {
     showFACHAIBetDetails = BetList.Choice.TicketDetails.FACHAITicketDetails.Instance.ShowFACHAITicketDetails;
     showNextspinBetDetails = BetList.Choice.TicketDetails.NextspinTicketDetails.Instance.ShowNextspinTicketDetails;
     showONLiveCasinoBetDetails = BetList.Choice.TicketDetails.ONCasinoTicketDetails.Instance.ShowONCasinoTicketDetails;
+    showPlaytechBetDetails = BetList.Choice.TicketDetails.PlaytechTicketDetails.Instance.ShowPlaytechTicketDetails;
+    showGPIBetDetails = BetList.Choice.TicketDetails.GPIRNGTicketDetails.Instance.ShowGPIBetDetails;
 });

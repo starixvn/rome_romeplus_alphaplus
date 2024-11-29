@@ -45,7 +45,7 @@ public class WinLossAnalysisWorkbook(IWebHostEnvironment webHostEnvironment) :
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{reportTitle}{message.CustName}-{fromDate}-{toDate}", fileContent);
+        return new ExcelFileViewModel($"{reportTitle}-{message.CustName}-{fromDate}-{toDate}", fileContent);
     }
 
     private static Mapper<WinLossAnalysisModel> GetRowMapper(UserLevel custLevel, bool isTotal = false)

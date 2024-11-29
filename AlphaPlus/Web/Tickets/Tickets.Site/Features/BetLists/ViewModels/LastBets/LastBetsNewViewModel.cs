@@ -50,15 +50,17 @@ public class LastBetsNewViewModel(
     private static SelectListItem BuildSelectListItem(int value, bool selected)
         => new SelectListItem { Text = value.ToString(), Value = value.ToString(), Selected = selected };
 
-    public string UserGuideLink {
-        get {
+    public string UserGuideLink
+    {
+        get
+        {
             if (AppSettings.SupportedNewHandbook)
             {
                 return MicroSites.FeatureUrl("~/HandbookDefault/GetBySlug?slug=last-bets");
             }
 
             return AppSettings.IsSiteLabel789y
-                ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=186142") 
+                ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=186142")
                 : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=186142");
         }
     }

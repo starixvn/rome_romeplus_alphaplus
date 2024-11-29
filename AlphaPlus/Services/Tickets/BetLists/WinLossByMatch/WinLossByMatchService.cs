@@ -77,6 +77,7 @@ public class WinLossByMatchService(
             param.ToDate,
             await reportDateService.GetMoveBetsDay(),
             param.MatchId,
+            BetTypeHelper.GetEventType(param.LeagueType),
             param.BetType,
             param.CustName,
             param.LiveIndicator,

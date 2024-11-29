@@ -10,11 +10,14 @@ internal class WinLossDetailWeekDataCriteria(
     DateTime moveBetsDay,
     string productIds,
     string productDetails,
-    string username) : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
+    string username,
+    bool isReward) : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
 {
     public string ProductDetails { get; } = productDetails;
 
     public string Username { get; } = username;
+
+    public bool IsReward { get; } = isReward;
 
     public override string GetSettingKey() => "Age_Rpt_WinlossDetail_WeekDataSel";
 }

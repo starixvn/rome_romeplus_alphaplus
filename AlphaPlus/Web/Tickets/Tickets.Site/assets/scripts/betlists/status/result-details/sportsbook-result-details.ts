@@ -12,10 +12,11 @@
             league?: number,
             isOutright?: boolean,
             betId?: number,
-            betCheck?: string,
+            gameId3rd?: string,
             custId?: number,
-            transDesc?: string,
-            siteId?: string
+            transId3rd?: string,
+            siteId?: string,
+            transdesc?: string
         ): void;
     }
 

@@ -86,6 +86,7 @@ public class ConsolidationDetailHandler(
             validUserSelectedProductIds,
             productDetailXml,
             Username: null,
+            IsReward: false,
             SiteName: message.Site);
 
         return winlossDetailService.GetWinLossDetail(param);

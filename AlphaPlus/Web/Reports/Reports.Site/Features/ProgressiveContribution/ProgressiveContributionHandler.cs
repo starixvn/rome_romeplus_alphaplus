@@ -8,6 +8,7 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Reports.Features.Products;
+using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 
 namespace AlphaPlus.Reports.Site.Features.ProgressiveContribution;
 
@@ -28,8 +29,7 @@ public class ProgressiveContributionHandler(
 
     public async Task<ProgressiveContributionViewModel> Handle(ProgressiveContributionQuery message, CancellationToken cancellationToken)
     {
-        var products = (await GetProducts(message)).Where(p => message.EnableJackpotProductIds.Contains(p.Id));
-        var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds, products);
+        var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds);
         var (progressiveContributions, total) = await GetProgressiveContributions(message, productViewModel.UserSelectedProductIds);
 
         return new ProgressiveContributionViewModel(
@@ -41,7 +41,7 @@ public class ProgressiveContributionHandler(
 
     public async Task<ExcelFileViewModel> Handle(ProgressiveContributionExcelQuery message, CancellationToken cancellationToken)
     {
-        var validUserSelectedProductIds = await FilterProductIds(message, message.UserSelectedProductIds, message.EnableJackpotProductIds);
+        var validUserSelectedProductIds = await FilterProductIds(message, message.UserSelectedProductIds);
         var (progressiveContributions, total) = await GetProgressiveContributions(message, validUserSelectedProductIds.JoinWithComma());
         var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 
@@ -90,5 +90,52 @@ public class ProgressiveContributionHandler(
         }
 
         return new LegendViewModel(legends);
+    }
+
+    private async Task<ProductMultiSelectionViewModel> BuildProductViewModel(
+        ProgressiveContributionQuery message,
+        string userSelectedProductIds)
+    {
+        var products = (await GetProducts(message)).Where(p => message.EnableJackpotProductIds.Contains(p.Id));
+        var (productGroups, validUserSelectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
+
+        return new ProductMultiSelectionViewModel(productGroups, validUserSelectedProductIds.JoinWithComma(), message.Language);
+    }
+
+    private static (IEnumerable<ProductGroupDTO>, IEnumerable<int>) BuildProductGroups(
+        IEnumerable<Product> products,
+        string userSelectedProductIds)
+    {
+        var productGroups = new List<ProductGroupDTO>();
+        var validUserSelectedProductIds = new List<int>();
+
+        var isCheckedAll = "*" == userSelectedProductIds;
+        var userSelectedProductIdsList = isCheckedAll ? [] : userSelectedProductIds.ToListInt().ToList();
+
+        foreach (var item in products)
+        {
+            var isChecked = isCheckedAll || userSelectedProductIdsList.Contains(item.Id);
+            if (isChecked)
+            {
+                validUserSelectedProductIds.Add(item.Id);
+            }
+
+            productGroups.Add(new ProductGroupDTO(item.Id, item.Name, isChecked, null));
+        }
+
+        return (productGroups, validUserSelectedProductIds);
+    }
+
+    private async Task<IEnumerable<int>> FilterProductIds(ProgressiveContributionExcelQuery message, string userSelectedProductIds)
+    {
+        var products = (await GetProducts(message)).Where(p => message.EnableJackpotProductIds.Contains(p.Id));
+
+        if ("*" != userSelectedProductIds)
+        {
+            var userSelectedProductIdsList = userSelectedProductIds.ToListInt().ToList();
+            products = products.Where(product => userSelectedProductIdsList.Contains(product.Id));
+        }
+
+        return products.Select(product => product.Id).ToList();
     }
 }

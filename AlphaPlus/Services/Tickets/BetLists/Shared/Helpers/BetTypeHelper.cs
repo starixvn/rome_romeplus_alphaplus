@@ -38,4 +38,12 @@ public static class BetTypeHelper
         => betTypeId == MonitoringBetsOthers
         ? Resources.Others
         : CacheRefServiceHelper.GetBetTypeName(betTypeId);
+
+    public static byte GetEventType(byte leagueType)
+        => leagueType switch
+        {
+            1 => 5,
+            0 => 1,
+            _ => 1
+        };
 }

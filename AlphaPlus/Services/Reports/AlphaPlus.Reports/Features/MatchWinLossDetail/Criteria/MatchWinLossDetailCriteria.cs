@@ -9,6 +9,7 @@ internal class MatchWinLossDetailCriteria(
     DateTime moveBetsDay,
     string productIds,
     string leagueIds,
+    string league3rdIds,
     byte reportLevelId) : CriteriaBase
 {
     public int CustId { get; } = custId;
@@ -23,7 +24,9 @@ internal class MatchWinLossDetailCriteria(
 
     public string LeagueIds { get; } = leagueIds;
 
-    public bool IsGetAll => string.IsNullOrWhiteSpace(LeagueIds);
+    public string League3rdIds { get; } = league3rdIds;
+
+    public bool IsGetAll => string.IsNullOrWhiteSpace(LeagueIds) && string.IsNullOrEmpty(League3rdIds);
 
     public override string GetSettingKey()
         => RoleIdConstants.IsAgentLevel(reportLevelId)

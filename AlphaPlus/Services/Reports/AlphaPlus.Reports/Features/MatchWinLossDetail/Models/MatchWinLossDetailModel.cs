@@ -11,7 +11,8 @@ public class MatchWinLossDetailModel
         IEnumerable<BetTypeWinLossModel> betTypeWinLoss,
         BetTypeWinLossModel total,
         string homeName,
-        string awayName)
+        string awayName,
+        byte leagueType)
     {
         LeagueId = entity.LeagueId;
         HomeName = homeName;
@@ -24,9 +25,12 @@ public class MatchWinLossDetailModel
         var (matchName, leagueName2) = BuildMatchAndLeagueName(entity, leagueName);
         LeagueName = leagueName2;
         MatchName = matchName;
+        LeagueType = leagueType;
     }
 
     public int LeagueId { get; }
+
+    public byte LeagueType { get; }
 
     public string LeagueName { get; }
 

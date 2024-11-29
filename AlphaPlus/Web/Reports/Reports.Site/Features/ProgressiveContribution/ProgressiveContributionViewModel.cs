@@ -37,7 +37,7 @@ public class ProgressiveContributionViewModel(
             message.FromDate,
             message.ToDate,
             message.UserSelectedDateRangeOption,
-            isSupportHistoricReport: true,
+            isSupportHistoricReport: false,
             isHistoricReport: message.IsHistoricReport);
 
     public MonthPickerViewModel MonthPicker { get; }
@@ -50,7 +50,7 @@ public class ProgressiveContributionViewModel(
                 : Resources.CanOnlyViewDataAfterTimeCurrentReport,
             message.MinDate.ToShortDateWithSlash());
 
-    public string ViewActionMessage => IsHistoricReport ? Resources.BackToCurrentReport : string.Empty;
+    public string ViewActionMessage => IsHistoricReport ? Resources.BackToCurrentReport : Resources.ViewHistoryReport;
 
     public IEnumerable<ProgressiveContributionModel> ReportData { get; } = reportData;
 

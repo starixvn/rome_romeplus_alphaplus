@@ -4,6 +4,7 @@ public record WinLossByMatchParam(
     int CustId,
     int LeagueId,
     int MatchId,
+    byte LeagueType,
     int BetType,
     string Race,
     bool LiveIndicator,

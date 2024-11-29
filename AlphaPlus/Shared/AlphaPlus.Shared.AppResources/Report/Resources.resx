@@ -1173,4 +1173,7 @@
   <data name="ProductWinLossAnalysis" xml:space="preserve">
     <value>Product Win Loss Analysis</value>
   </data>
+  <data name="Reward" xml:space="preserve">
+    <value>Reward</value>
+  </data>
 </root>

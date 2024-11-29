@@ -75,7 +75,9 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
 
         if (custLevel.IsAgentLevel())
         {
-            mapper.Map(L, winLossDetail => winLossDetail.Company);
+            mapper
+                .Map(L, winLossDetail => winLossDetail.Company)
+                .Map(M, winLossDetail => winLossDetail.RewardAmount);
         }
 
         if (custLevel.IsMasterOrSuperLevel())
@@ -88,7 +90,9 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
 
         if (custLevel.IsMasterLevel())
         {
-            mapper.Map(O, winLossDetail => winLossDetail.Company);
+            mapper
+                .Map(O, winLossDetail => winLossDetail.Company)
+                .Map(P, winLossDetail => winLossDetail.RewardAmount);
         }
 
         if (custLevel.IsSuperLevel())
@@ -97,7 +101,8 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
                 .Map(O, winLossDetail => winLossDetail.SAgWinLoss)
                 .Map(P, winLossDetail => winLossDetail.SAgComm)
                 .Map(Q, winLossDetail => winLossDetail.SAgTotal)
-                .Map(R, winLossDetail => winLossDetail.Company);
+                .Map(R, winLossDetail => winLossDetail.Company)
+                .Map(S, winLossDetail => winLossDetail.RewardAmount);
         }
 
         return mapper;

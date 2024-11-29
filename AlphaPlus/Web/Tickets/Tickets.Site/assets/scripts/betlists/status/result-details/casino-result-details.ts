@@ -1147,7 +1147,8 @@
             gameId3rd?: string,
             custId?: number,
             transId3rd?: string,
-            siteId?: string
+            siteId?: string,
+            transDesc?: string
         ) => {
             const params = [
                 '?custId=',
@@ -1162,6 +1163,8 @@
                 siteId,
                 '&BetType=',
                 betTypeId,
+                '&TransDesc=',
+                transDesc,
                 '&productId=75'
             ].join('');
             Common.PopupDetails.Instance(window.top).Show(
@@ -1272,7 +1275,7 @@
             league?: number,
             isOutright?: boolean,
             currencyId?: number,
-            gameId3rd?: string,
+            site?: string,
             custId?: number,
             transId3rd?: string,
             siteId?: string
@@ -1282,8 +1285,8 @@
                 custId,
                 '&transId3rd=',
                 transId3rd,
-                '&gameId3rd=',
-                gameId3rd,
+                '&site=',
+                site,
                 '&currencyId=',
                 currencyId,
                 '&siteId=',
@@ -1540,6 +1543,90 @@
             ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 `${Common.AppPath.TicketsAppPath}ThirdParty/ONCasinoResult${params}`,
+                '',
+                835,
+                675
+            );
+        };
+    }
+
+    export class PlaytechResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string
+        ) => {
+            const params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&gameId3rd=',
+                gameId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&endtime=',
+                winLostDate,
+                '&productId=100'
+            ].join('');
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}ThirdParty/PlaytechResult${params}`,
+                '',
+                835,
+                675
+            );
+        };
+    }
+
+    export class GPIResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string
+        ) => {
+            const params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                transId3rd,
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&productId=48'
+            ].join('');
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}ThirdParty/GPIResult${params}`,
                 '',
                 835,
                 675

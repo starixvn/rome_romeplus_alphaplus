@@ -29,6 +29,8 @@ internal class GetWinLossWeekDataCriteria(
 
     public string Username { get; } = username;
 
+    public bool IsReward { get; } = false;
+
     public override string GetSettingKey() => "Age_Rpt_WinlossDetail_WeekDataSel";
 
     public override bool IsValid()

@@ -10,4 +10,5 @@ public record WinLossDetailParam(
     string ProductIds,
     string ProductDetailsXml,
     string Username,
+    bool IsReward,
     string SiteName) : WinLossParam(CustId, CustLevelId, FromDate, ToDate, ProductIds, ProductDetailsXml, SiteName);
