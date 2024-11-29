@@ -16,6 +16,6 @@ public class MoveStatementHistoryViewModel(
 
     public bool AllowToViewMasterPT { get; } = message.ViewerLevel.IsMasterOrSuperLevel();
 
-    protected new string GetTitle()
+    protected override string GetTitle()
         => $"{CustName.ToUpperInvariant()} - {Resources.TicketDetails.ToUpperInvariant()}";
 }

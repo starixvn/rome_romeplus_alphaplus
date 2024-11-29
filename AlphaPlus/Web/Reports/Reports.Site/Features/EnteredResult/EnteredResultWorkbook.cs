@@ -61,7 +61,7 @@ public class EnteredResultWorkbook(IWebHostEnvironment webHostEnvironment) :
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{Resources.MatchResultEntered}-{yesterday}-{today}", fileContent);
+        return new ExcelFileViewModel($"{Resources.MatchResultEntered}-{resources["Yesterday"]}-{resources["Today"]}", fileContent);
     }
 
     protected override void FillBodyRows(Sheet sheet)
