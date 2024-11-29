@@ -38,7 +38,9 @@ class ConsolidationDetailView extends BaseReport {
 
     initComponents() {
         this.productComponent.render();
-        this.dateRangePickerComponent.render();
+        this.dateRangePickerComponent.render(
+            new DateRangePickerOption(undefined, undefined, undefined, this.resetConsolidationParams)
+        );
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"

@@ -67,6 +67,7 @@ public abstract class ConsolidationViewModel(
             [nameof(ProductViewModel.UserSelectedResourceIds)] = ProductViewModel.UserSelectedResourceIds,
             [nameof(DateRangePicker.FromDate)] = fromDate ?? DateRangePicker.FromDate,
             [nameof(DateRangePicker.ToDate)] = toDate ?? DateRangePicker.ToDate,
+            [nameof(DateRangePicker.UserSelectedDateRangeOption)] = DateRangePicker.UserSelectedDateRangeOption.ToString()
         };
 
     protected string BuildBaseBetListParams(int custId, string custName, string productIds = null, string fromDate = null, string toDate = null)

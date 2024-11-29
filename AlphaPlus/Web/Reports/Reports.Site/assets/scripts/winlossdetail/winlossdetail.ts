@@ -64,11 +64,7 @@ class WinLossDetailView extends BaseReportNew {
             })
         );
         this.weekComponent.init($('#week-container'), (dateRange) => this.getData(dateRange, undefined, false));
-        this.breadcrumbLevelComponent.init((custInfo) =>
-            this.getWinLossDetailUpOrDownline(custInfo, () =>
-                this.$reportTitle.text(viewResources[custInfo.custLevelId])
-            )
-        );
+        this.breadcrumbLevelComponent.init((custInfo) => this.getWinLossDetailUpOrDownline(custInfo));
         this.winLossDetailColumns.init(() => this.updateQueryString());
         this.registerEvents();
         this.$tblReportContainer.removeAttr('style');
@@ -134,9 +130,7 @@ class WinLossDetailView extends BaseReportNew {
                 } else {
                     e.preventDefault();
                     custInfo.breadcrumbsJson = JSON.stringify(breadcrumbs);
-                    this.getWinLossDetailUpOrDownline(custInfo, () =>
-                        this.$reportTitle.text(viewResources[custInfo.custLevelId])
-                    );
+                    this.getWinLossDetailUpOrDownline(custInfo);
                 }
             });
         this.$tblReport
@@ -173,9 +167,9 @@ class WinLossDetailView extends BaseReportNew {
         this.getData(formData, undefined, true);
     }
 
-    getWinLossDetailUpOrDownline(custInfo, callback: Function) {
+    getWinLossDetailUpOrDownline(custInfo) {
         this.clearUsername();
-        this.getData(custInfo, callback, true);
+        this.getData(custInfo, undefined, true);
     }
 
     getData(formData, callback: Function, isGetWeeks: boolean) {
@@ -184,10 +178,12 @@ class WinLossDetailView extends BaseReportNew {
         const queryStringObject = $.extend({}, this.globalFormData, formData);
         const queryString = $.param(queryStringObject);
         isGetWeeks && this.getWeeks(queryString);
-        $.get(`GetData?${queryString}`, (html) => {
+        const url = $('#hidden-getReportDataUrl').attr('href') || 'GetData';
+        $.get(`${url}?${queryString}`, (html) => {
             this.$tblReportContainer.html(html);
             this.$tblReport = this.$tblReportContainer.find('#tbl-report');
             this.getDataSuccess();
+            this.updateReportTitle();
             callback && callback();
             this.globalFormData = queryStringObject;
             this.updateQueryString(queryString);
@@ -201,7 +197,8 @@ class WinLossDetailView extends BaseReportNew {
     }
 
     getWeeks(queryString: string) {
-        $.get(`GetWeeks?${queryString}`, (html) => this.weekComponent.render(html)).fail((jqXHR) =>
+        const url = $('#hidden-getReportWeeksUrl').attr('href') || 'GetWeeks';
+        $.get(`${url}?${queryString}`, (html) => this.weekComponent.render(html)).fail((jqXHR) =>
             alphaReports.ajaxFail(jqXHR)
         );
     }
@@ -210,6 +207,11 @@ class WinLossDetailView extends BaseReportNew {
         this.breadcrumbLevelComponent.bindEvents();
         this.registerEvents();
         this.totalEnteredNonEnteredComponent.render(JSON.parse($('#hidden-totalEnteredResultsJson').val()));
+    }
+
+    private updateReportTitle() {
+        const custLevelId = +$('#hidden-custLevelId').val();
+        this.$reportTitle.text(viewResources[custLevelId]);
     }
 
     private updateQueryString(queryString: string = undefined) {

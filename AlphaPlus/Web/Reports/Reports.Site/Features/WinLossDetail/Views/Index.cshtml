@@ -19,7 +19,7 @@
         {
             @:4: '@Resources.MasterWinLossDetail'
         }
-                                                                    };
+                                                                                };
         var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
         var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
         var columnList = [
@@ -87,6 +87,8 @@
         <partial name="ReportData" />
     </div>
 </div>
+<a class="hide" id="hidden-getReportDataUrl" asp-action="GetData"></a>
+<a class="hide" id="hidden-getReportWeeksUrl" asp-action="GetWeeks"></a>
 <a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends" asp-route-IsNew="true"
     asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-ShowDormantAccountsNote="True"></a>
 <a class="hide" id="hidden-usernameSuggestionUrl" asp-action="Suggest" asp-controller="Customer"></a>
