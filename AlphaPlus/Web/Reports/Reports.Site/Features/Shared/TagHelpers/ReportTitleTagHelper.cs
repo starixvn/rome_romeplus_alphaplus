@@ -2,6 +2,7 @@ using System.Text;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 
@@ -29,45 +30,48 @@ public class ReportTitleTagHelper : TagHelper
 
     private void AppendBreadcrumbLevel(StringBuilder sb)
     {
-        var breadcrumbs = Model.BreadcrumbLevel?.Breadcrumbs;
-
-        if (breadcrumbs != null)
+        if (AlphaContext.Current?.Request?.Query?.Count > 0)
         {
-            var linkLength = breadcrumbs.Count();
+            var breadcrumbs = Model.BreadcrumbLevel?.Breadcrumbs;
 
-            if (linkLength > 1)
+            if (breadcrumbs != null)
             {
-                sb.Append("<ul class=\"breadcrumb\">");
-                var linkIndex = 0;
-                var lastLinkIndex = linkLength - 1;
-                foreach (var item in breadcrumbs)
+                var linkLength = breadcrumbs.Count();
+
+                if (linkLength > 0)
                 {
-                    if (linkIndex == lastLinkIndex)
+                    sb.Append("<ul class=\"breadcrumb\">");
+                    var linkIndex = 0;
+                    var lastLinkIndex = linkLength - 1;
+                    foreach (var item in breadcrumbs)
                     {
-                        sb.Append($"<li>&nbsp{item.CustName}&nbsp</li>");
-                    }
-                    else
-                    {
-                        sb
-                            .Append("<li><a class=\"breadcrumb-link\" href=\"javascript:;\" ");
-                        if (item.IsConsolidation)
+                        if (linkIndex == lastLinkIndex)
                         {
-                            sb.Append($"data-consolidation=\"true\" ");
+                            sb.Append($"<li>&nbsp{item.CustName}&nbsp</li>");
                         }
-                        sb
-                            .Append($"data-custid=\"{item.CustId}\" ")
-                            .Append($"data-custname=\"{item.CustName}\" ")
-                            .Append($"data-custlevelid=\"{item.CustLevelId}\">")
-                            .Append("&nbsp")
-                            .Append(item.CustName)
-                            .Append("&nbsp")
-                            .Append("</a></li>");
+                        else
+                        {
+                            sb
+                                .Append("<li><a class=\"breadcrumb-link\" href=\"javascript:;\" ");
+                            if (item.IsConsolidation)
+                            {
+                                sb.Append($"data-consolidation=\"true\" ");
+                            }
+                            sb
+                                .Append($"data-custid=\"{item.CustId}\" ")
+                                .Append($"data-custname=\"{item.CustName}\" ")
+                                .Append($"data-custlevelid=\"{item.CustLevelId}\">")
+                                .Append("&nbsp")
+                                .Append(item.CustName)
+                                .Append("&nbsp")
+                                .Append("</a></li>");
+                        }
+
+                        linkIndex++;
                     }
 
-                    linkIndex++;
+                    sb.Append("</ul>");
                 }
-
-                sb.Append("</ul>");
             }
         }
     }

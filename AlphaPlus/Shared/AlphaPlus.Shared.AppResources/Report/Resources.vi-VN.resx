@@ -132,9 +132,6 @@
   <data name="ActualStake" xml:space="preserve">
     <value>Tiền cược thực</value>
   </data>
-  <data name="Agent" xml:space="preserve">
-    <value/>
-  </data>
   <data name="AgentCommNew" xml:space="preserve">
     <value>Hoa hồng của Agent</value>
   </data>
@@ -592,9 +589,6 @@
   <data name="March" xml:space="preserve">
     <value>Tháng 3</value>
   </data>
-  <data name="Master" xml:space="preserve">
-    <value/>
-  </data>
   <data name="MasterCommNew" xml:space="preserve">
     <value>Hoa hồng của Master</value>
   </data>
@@ -915,9 +909,6 @@
   </data>
   <data name="SummaryOfDormantAccounts" xml:space="preserve">
     <value>Tổng hợp tài khoản không hoạt động</value>
-  </data>
-  <data name="Super" xml:space="preserve">
-    <value/>
   </data>
   <data name="SuperCommNew" xml:space="preserve">
     <value>Hoa hồng của Super</value>

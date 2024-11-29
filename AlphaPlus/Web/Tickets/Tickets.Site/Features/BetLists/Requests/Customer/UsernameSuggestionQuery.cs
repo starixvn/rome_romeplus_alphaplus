@@ -9,5 +9,5 @@ public class UsernameSuggestionQuery : BetListBaseQuery, IRequest<IEnumerable<Us
 
     public bool DirectDownline { get; set; }
 
-    public bool IsAccInfo { get; set; }
+    public bool IsAccInfo { get; set; } = true;
 }

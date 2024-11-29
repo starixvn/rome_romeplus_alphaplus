@@ -618,9 +618,6 @@
   <data name="Match" xml:space="preserve">
     <value>赛事</value>
   </data>
-  <data name="MatchResultEntered" xml:space="preserve">
-    <value/>
-  </data>
   <data name="MatchWinLoss" xml:space="preserve">
     <value>球赛输赢</value>
   </data>

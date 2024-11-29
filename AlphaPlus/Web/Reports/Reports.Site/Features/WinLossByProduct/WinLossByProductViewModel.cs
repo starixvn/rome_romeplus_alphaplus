@@ -13,7 +13,7 @@ public class WinLossByProductViewModel(
 {
     public UserLevel CustLevel { get; } = message.ViewerLevel;
 
-    public string CustLevelName { get; } = message.ViewerLevel.DisplayName;
+    public string CustLevelName { get; } = SharedResources.ResourceManager.GetString(message.ViewerLevel.DisplayName);
 
     public bool IsSetDefaultStackMode { get; } = message.IsSetDefaultStackMode;
 

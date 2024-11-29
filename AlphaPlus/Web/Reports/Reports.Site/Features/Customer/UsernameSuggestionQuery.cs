@@ -13,7 +13,7 @@ public class UsernameSuggestionQuery : BaseQuery, IRequest<IEnumerable<UsernameS
 
     public bool DirectDownline { get; set; }
 
-    public bool IsAccInfo { get; set; }
+    public bool IsAccInfo { get; set; } = true;
 
     public bool IsInternal { get; }
 

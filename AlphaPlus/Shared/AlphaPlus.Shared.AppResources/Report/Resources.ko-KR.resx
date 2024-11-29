@@ -618,9 +618,6 @@
   <data name="Match" xml:space="preserve">
     <value>매치</value>
   </data>
-  <data name="MatchResultEntered" xml:space="preserve">
-    <value/>
-  </data>
   <data name="MatchWinLoss" xml:space="preserve">
     <value>매치 승리 패배</value>
   </data>
