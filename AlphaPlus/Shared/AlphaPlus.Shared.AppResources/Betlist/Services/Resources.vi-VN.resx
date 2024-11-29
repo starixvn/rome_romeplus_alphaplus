@@ -174,9 +174,6 @@
   <data name="Back" xml:space="preserve">
     <value>Trở Lại</value>
   </data>
-  <data name="BadRequest" xml:space="preserve">
-    <value/>
-  </data>
   <data name="BetList" xml:space="preserve">
     <value>Danh sách cược</value>
   </data>
@@ -207,9 +204,6 @@
   <data name="CancelledBet" xml:space="preserve">
     <value>Cược bị hủy</value>
     <comment>Not found</comment>
-  </data>
-  <data name="CashOut" xml:space="preserve">
-    <value/>
   </data>
   <data name="CashOutAmount" xml:space="preserve">
     <value>Số Tiền Bán Vé Cược</value>
@@ -356,9 +350,6 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="FromMonitoredList" xml:space="preserve">
     <value>Từ danh sách theo dõi</value>
   </data>
-  <data name="FunctionTurnOffError" xml:space="preserve">
-    <value/>
-  </data>
   <data name="GetAll" xml:space="preserve">
     <value>Chọn hết</value>
   </data>
@@ -425,9 +416,6 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="Mar" xml:space="preserve">
     <value>Th03</value>
   </data>
-  <data name="Master" xml:space="preserve">
-    <value/>
-  </data>
   <data name="MaxDataRetrieveHistoryError" xml:space="preserve">
     <value>Vui lòng xem lại thời gian báo cáo vì dữ liệu từ trước ngày {0} chỉ có thể được truy xuất trong vòng 31 ngày.</value>
   </data>
@@ -460,9 +448,6 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   </data>
   <data name="NetworkLatency" xml:space="preserve">
     <value>Không có thông tin do kết nối mạng không ổn định. Vui lòng thử lại sau vài phút.</value>
-  </data>
-  <data name="Neutral" xml:space="preserve">
-    <value/>
   </data>
   <data name="NewView" xml:space="preserve">
     <value>Phiên bản mới</value>
@@ -542,9 +527,6 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="Pager_DisplayItems" xml:space="preserve">
     <value>Hiển thị {from} đến {to} của {total}</value>
   </data>
-  <data name="Platform_0" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Platform_1" xml:space="preserve">
     <value>Máy tính</value>
   </data>
@@ -556,9 +538,6 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   </data>
   <data name="Platform_99" xml:space="preserve">
     <value>Chưa phân loại</value>
-  </data>
-  <data name="Platform_NA" xml:space="preserve">
-    <value/>
   </data>
   <data name="Platform_Uncategorized" xml:space="preserve">
     <value>Chưa phân loại</value>
@@ -780,9 +759,6 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   </data>
   <data name="nSelected" xml:space="preserve">
     <value>Đã chọn #</value>
-  </data>
-  <data name="number" xml:space="preserve">
-    <value/>
   </data>
   <data name="odds" xml:space="preserve">
     <value>Tỷ lệ</value>

@@ -126,9 +126,6 @@
   <data name="Happy5" xml:space="preserve">
     <value>快樂5</value>
   </data>
-  <data name="LiveGame" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Master" xml:space="preserve">
     <value>總代理</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="PT" xml:space="preserve">
     <value>占成數</value>
-  </data>
-  <data name="PreGame" xml:space="preserve">
-    <value/>
   </data>
   <data name="Super" xml:space="preserve">
     <value>超級</value>

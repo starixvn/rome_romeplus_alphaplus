@@ -165,14 +165,8 @@
   <data name="AllProducts" xml:space="preserve">
     <value>Tất cả sản phẩm</value>
   </data>
-  <data name="Allbet" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Amount" xml:space="preserve">
     <value>Số lượng</value>
-  </data>
-  <data name="AppStart_Message" xml:space="preserve">
-    <value/>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Apply</value>
@@ -300,9 +294,6 @@
   <data name="ConsolidationReportByProduct" xml:space="preserve">
     <value>Tổng kết báo cáo của Sport</value>
   </data>
-  <data name="ConsolidationReportByUsername" xml:space="preserve">
-    <value/>
-  </data>
   <data name="ContributionAmount" xml:space="preserve">
     <value>Tổng tích lũy</value>
   </data>
@@ -347,9 +338,6 @@
   </data>
   <data name="December" xml:space="preserve">
     <value>Tháng 12</value>
-  </data>
-  <data name="DefaultSheetName" xml:space="preserve">
-    <value/>
   </data>
   <data name="DelayIssueLegend" xml:space="preserve">
     <value>- Số liệu của {0} sẽ bị trì hoãn 5 phút kể từ khi hoàn thành các vé cược. </value>
@@ -419,9 +407,6 @@
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>Hạn mức được cấp</value>
-  </data>
-  <data name="GoldDeluxe" xml:space="preserve">
-    <value/>
   </data>
   <data name="GrandPrize" xml:space="preserve">
     <value>Giải đặc biệt</value>
@@ -510,17 +495,11 @@
   <data name="HT" xml:space="preserve">
     <value>Hiệp 1</value>
   </data>
-  <data name="Happy5" xml:space="preserve">
-    <value/>
-  </data>
   <data name="HideFilter" xml:space="preserve">
     <value>Ẩn bộ lọc dữ liệu</value>
   </data>
   <data name="HistoryDataCanViewNote" xml:space="preserve">
     <value>Dữ liệu báo cáo trước ngày {0} chỉ có thể được tra cứu đến 31 ngày.</value>
-  </data>
-  <data name="HorseRacing" xml:space="preserve">
-    <value/>
   </data>
   <data name="HttpError_Default" xml:space="preserve">
     <value>Rất tiếc, đã xảy ra lỗi không mong muốn với máy chủ. Vui lòng liên hệ với bộ phận chăm sóc khách hàng của chúng tôi để được hỗ trợ. [{0}]</value>
@@ -694,9 +673,6 @@
   <data name="NetTurnoverAndTaxComm" xml:space="preserve">
     <value>/Tiền cược thực/Tống phí hoa hồng</value>
   </data>
-  <data name="Neutral" xml:space="preserve">
-    <value/>
-  </data>
   <data name="NewBalance" xml:space="preserve">
     <value>Số dư mới</value>
   </data>
@@ -748,12 +724,6 @@
   <data name="November" xml:space="preserve">
     <value>Tháng 11</value>
   </data>
-  <data name="NumberGame" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="NumberGameNo" xml:space="preserve">
-    <value/>
-  </data>
   <data name="October" xml:space="preserve">
     <value>Tháng 10</value>
   </data>
@@ -778,9 +748,6 @@
   <data name="Outstanding" xml:space="preserve">
     <value>Tiền chưa xử lý</value>
   </data>
-  <data name="Owner" xml:space="preserve">
-    <value/>
-  </data>
   <data name="PT" xml:space="preserve">
     <value>PT</value>
   </data>
@@ -804,9 +771,6 @@
   </data>
   <data name="PlayerComm" xml:space="preserve">
     <value>Hoa hồng</value>
-  </data>
-  <data name="PositionTaking" xml:space="preserve">
-    <value/>
   </data>
   <data name="PreGame" xml:space="preserve">
     <value>Chưa bắt đầu</value>
@@ -913,9 +877,6 @@
   <data name="SuperCommNew" xml:space="preserve">
     <value>Hoa hồng của Super</value>
   </data>
-  <data name="SuperTotal" xml:space="preserve">
-    <value/>
-  </data>
   <data name="SuperTotalNew" xml:space="preserve">
     <value>Tổng cộng của Super</value>
   </data>
@@ -927,12 +888,6 @@
   </data>
   <data name="SuperWinLossNew" xml:space="preserve">
     <value>Thắng thua của Super</value>
-  </data>
-  <data name="SymbolMyanmarOdds" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="Symbol_NoDataNumber" xml:space="preserve">
-    <value/>
   </data>
   <data name="TaxComm" xml:space="preserve">
     <value>Tổng phí hoa hồng</value>
@@ -1042,14 +997,8 @@
   <data name="ViewProductPTListNoteMessage" xml:space="preserve">
     <value>Giá trị PT hiển thị trong báo cáo là PT lớn nhất của Super</value>
   </data>
-  <data name="VirtualSports" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Void" xml:space="preserve">
     <value>Hủy</value>
-  </data>
-  <data name="Voidbridge" xml:space="preserve">
-    <value/>
   </data>
   <data name="Win" xml:space="preserve">
     <value>Win</value>
@@ -1147,9 +1096,6 @@
   </data>
   <data name="under" xml:space="preserve">
     <value>Under</value>
-  </data>
-  <data name="vs" xml:space="preserve">
-    <value/>
   </data>
   <data name="SabaOtherSportsLegend" xml:space="preserve">
     <value>Dữ liệu {0} đã bao gồm trong {1}</value>

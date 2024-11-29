@@ -144,9 +144,6 @@
   <data name="AwayNoBet" xml:space="preserve">
     <value>Khách Không Tính</value>
   </data>
-  <data name="BadRequest" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Balance" xml:space="preserve">
     <value>Số dư tài khoản</value>
   </data>
@@ -209,9 +206,6 @@
   </data>
   <data name="ExportToExcel" xml:space="preserve">
     <value>Xuất sang Excel</value>
-  </data>
-  <data name="FGSlashLG" xml:space="preserve">
-    <value/>
   </data>
   <data name="FT" xml:space="preserve">
     <value>Cả trận</value>
@@ -306,9 +300,6 @@
   <data name="Home" xml:space="preserve">
     <value>Đội Nhà</value>
   </data>
-  <data name="HomeDrawAwayNoBet" xml:space="preserve">
-    <value/>
-  </data>
   <data name="HomeNoBet" xml:space="preserve">
     <value>Nhà Không Tính</value>
   </data>
@@ -353,9 +344,6 @@
   </data>
   <data name="MixParlay" xml:space="preserve">
     <value>Cá cược tổng hợp</value>
-  </data>
-  <data name="MoneyLine" xml:space="preserve">
-    <value/>
   </data>
   <data name="NextBall" xml:space="preserve">
     <value>Banh kế tiếp</value>
@@ -432,9 +420,6 @@
   <data name="PartialUMAnnouncement" xml:space="preserve">
     <value>Chúng tôi đang nâng cấp chức năng này để có trải nghiệm tốt hơn. Do đó, chức năng này tạm gián đoạn ({0} - {1} (GMT+8)). Xin lỗi vì sự bất tiện này, vui lòng thử lại sau.</value>
   </data>
-  <data name="Platform_0" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Platform_1" xml:space="preserve">
     <value>Máy tính</value>
   </data>
@@ -446,9 +431,6 @@
   </data>
   <data name="Platform_99" xml:space="preserve">
     <value>Chưa phân loại</value>
-  </data>
-  <data name="Platform_NA" xml:space="preserve">
-    <value/>
   </data>
   <data name="Platform_Uncategorized" xml:space="preserve">
     <value>Chưa phân loại</value>

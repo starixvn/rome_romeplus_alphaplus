@@ -144,9 +144,6 @@
   <data name="AwayNoBet" xml:space="preserve">
     <value>Away No Bet</value>
   </data>
-  <data name="BadRequest" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Balance" xml:space="preserve">
     <value>บัญชีคงเหลือ</value>
   </data>
@@ -209,9 +206,6 @@
   </data>
   <data name="ExportToExcel" xml:space="preserve">
     <value>ส่งออกไปที่โปรแกรมเอกเซล</value>
-  </data>
-  <data name="FGSlashLG" xml:space="preserve">
-    <value/>
   </data>
   <data name="FT" xml:space="preserve">
     <value>เต็มเวลา</value>
@@ -305,9 +299,6 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>ทีมเหย้า</value>
-  </data>
-  <data name="HomeDrawAwayNoBet" xml:space="preserve">
-    <value/>
   </data>
   <data name="HomeNoBet" xml:space="preserve">
     <value>Home No Bet</value>
@@ -432,9 +423,6 @@
   <data name="PartialUMAnnouncement" xml:space="preserve">
     <value>เรากำลังอัปเดตฟังก์ชันนี้เพื่อประสบการณ์ที่ดีขึ้น ดังนั้น ฟังก์ชันนี้จึงถูกปิดชั่วคราว ({0} - {1} (GMT+8)) โปรดลองอีกครั้งในภายหลังและขออภัยในความไม่สะดวก</value>
   </data>
-  <data name="Platform_0" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Platform_1" xml:space="preserve">
     <value>เดสก์ทอป</value>
   </data>
@@ -446,9 +434,6 @@
   </data>
   <data name="Platform_99" xml:space="preserve">
     <value>ไม่มีหมวดหมู่</value>
-  </data>
-  <data name="Platform_NA" xml:space="preserve">
-    <value/>
   </data>
   <data name="Platform_Uncategorized" xml:space="preserve">
     <value>ไม่มีหมวดหมู่</value>

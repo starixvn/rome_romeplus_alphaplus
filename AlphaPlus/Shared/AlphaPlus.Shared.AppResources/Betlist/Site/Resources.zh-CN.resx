@@ -144,9 +144,6 @@
   <data name="AwayNoBet" xml:space="preserve">
     <value>Away No Bet</value>
   </data>
-  <data name="BadRequest" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Balance" xml:space="preserve">
     <value>现金</value>
   </data>
@@ -209,9 +206,6 @@
   </data>
   <data name="ExportToExcel" xml:space="preserve">
     <value>导出到Excel</value>
-  </data>
-  <data name="FGSlashLG" xml:space="preserve">
-    <value/>
   </data>
   <data name="FT" xml:space="preserve">
     <value>全场</value>
@@ -305,9 +299,6 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>主</value>
-  </data>
-  <data name="HomeDrawAwayNoBet" xml:space="preserve">
-    <value/>
   </data>
   <data name="HomeNoBet" xml:space="preserve">
     <value>Home No Bet</value>
@@ -432,9 +423,6 @@
   <data name="PartialUMAnnouncement" xml:space="preserve">
     <value>我们正在更新此功能以获得更好的体验。 因此，此功能将暂时关闭（{0} - {1} (GMT+8)）。 请稍后再试，给您带来不便,敬请谅解。</value>
   </data>
-  <data name="Platform_0" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Platform_1" xml:space="preserve">
     <value>桌机</value>
   </data>
@@ -446,9 +434,6 @@
   </data>
   <data name="Platform_99" xml:space="preserve">
     <value>未分类</value>
-  </data>
-  <data name="Platform_NA" xml:space="preserve">
-    <value/>
   </data>
   <data name="Platform_Uncategorized" xml:space="preserve">
     <value>未分类</value>

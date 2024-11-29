@@ -168,14 +168,8 @@
   <data name="AllProducts" xml:space="preserve">
     <value>所有產品</value>
   </data>
-  <data name="Allbet" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Amount" xml:space="preserve">
     <value>金額</value>
-  </data>
-  <data name="AppStart_Message" xml:space="preserve">
-    <value/>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Apply</value>
@@ -248,9 +242,6 @@
   </data>
   <data name="ClassicView" xml:space="preserve">
     <value>經典版</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value/>
   </data>
   <data name="Columns" xml:space="preserve">
     <value>專欄</value>
@@ -351,9 +342,6 @@
   <data name="December" xml:space="preserve">
     <value>十二月</value>
   </data>
-  <data name="DefaultSheetName" xml:space="preserve">
-    <value/>
-  </data>
   <data name="DelayIssueLegend" xml:space="preserve">
     <value>- 在 {0} 結算後，數據庫將會在大約5分鐘內更新。</value>
   </data>
@@ -422,15 +410,6 @@
   </data>
   <data name="GivenCredit" xml:space="preserve">
     <value>信用額度</value>
-  </data>
-  <data name="GoldDeluxe" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="GrandPrize" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="GrandPrize_Guidelines" xml:space="preserve">
-    <value/>
   </data>
   <data name="GrandTotal" xml:space="preserve">
     <value>總和</value>
@@ -540,15 +519,6 @@
   <data name="IP_used_by" xml:space="preserve">
     <value>IP使用</value>
   </data>
-  <data name="Include" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="Insurance_GemsWinLoss" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="Insurance_GemsWinLossAbbr" xml:space="preserve">
-    <value/>
-  </data>
   <data name="InvalidRefNo" xml:space="preserve">
     <value>注單號碼無效</value>
   </data>
@@ -564,9 +534,6 @@
   <data name="June" xml:space="preserve">
     <value>六月</value>
   </data>
-  <data name="KoreanWon" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Last3Months" xml:space="preserve">
     <value>過去3個月</value>
   </data>
@@ -581,9 +548,6 @@
   </data>
   <data name="Level" xml:space="preserve">
     <value>階層</value>
-  </data>
-  <data name="LiveGame" xml:space="preserve">
-    <value/>
   </data>
   <data name="MainReport" xml:space="preserve">
     <value>主報表</value>
@@ -692,12 +656,6 @@
   </data>
   <data name="NetTurnoverAndGrossComm" xml:space="preserve">
     <value>/淨投注額/淨投注額</value>
-  </data>
-  <data name="NetTurnoverAndTaxComm" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="Neutral" xml:space="preserve">
-    <value/>
   </data>
   <data name="NewBalance" xml:space="preserve">
     <value>最新餘額</value>
@@ -810,9 +768,6 @@
   <data name="PositionTaking" xml:space="preserve">
     <value>佔成數</value>
   </data>
-  <data name="PreGame" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Product" xml:space="preserve">
     <value>產品</value>
   </data>
@@ -842,9 +797,6 @@
   </data>
   <data name="Results" xml:space="preserve">
     <value>賽果</value>
-  </data>
-  <data name="RoundCount" xml:space="preserve">
-    <value/>
   </data>
   <data name="SearchColumns" xml:space="preserve">
     <value>搜索專欄</value>
@@ -894,9 +846,6 @@
   <data name="Statement" xml:space="preserve">
     <value>帳目</value>
   </data>
-  <data name="StatementGuidelines" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Status" xml:space="preserve">
     <value>狀態</value>
   </data>
@@ -918,9 +867,6 @@
   <data name="SuperCommNew" xml:space="preserve">
     <value>超級代理退水</value>
   </data>
-  <data name="SuperTotal" xml:space="preserve">
-    <value/>
-  </data>
   <data name="SuperTotalNew" xml:space="preserve">
     <value>超級代理總額</value>
   </data>
@@ -936,20 +882,8 @@
   <data name="SymbolMyanmarOdds" xml:space="preserve">
     <value>緬甸盤</value>
   </data>
-  <data name="Symbol_NoDataNumber" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="TaxComm" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="ThereIsNoLeague" xml:space="preserve">
-    <value/>
-  </data>
   <data name="ThereIsNoProduct" xml:space="preserve">
     <value>沒有產品</value>
-  </data>
-  <data name="ThereIsNoSelectedProduct" xml:space="preserve">
-    <value/>
   </data>
   <data name="ThisMonth" xml:space="preserve">
     <value>本月</value>
@@ -1053,9 +987,6 @@
   <data name="Void" xml:space="preserve">
     <value>作廢</value>
   </data>
-  <data name="Voidbridge" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Win" xml:space="preserve">
     <value>獨贏</value>
   </data>
@@ -1065,9 +996,6 @@
   <data name="WinLossAbbr" xml:space="preserve">
     <value>輸贏</value>
   </data>
-  <data name="WinLossAnalysis" xml:space="preserve">
-    <value/>
-  </data>
   <data name="WinLossByBetType" xml:space="preserve">
     <value>投注類別輸贏</value>
   </data>
@@ -1076,9 +1004,6 @@
   </data>
   <data name="WinLossDate" xml:space="preserve">
     <value>輸贏日期</value>
-  </data>
-  <data name="WinLossDetail" xml:space="preserve">
-    <value/>
   </data>
   <data name="WinLossTitle" xml:space="preserve">
     <value>輸贏</value>
@@ -1151,9 +1076,6 @@
   </data>
   <data name="under" xml:space="preserve">
     <value>小</value>
-  </data>
-  <data name="vs" xml:space="preserve">
-    <value/>
   </data>
   <data name="SabaOtherSportsLegend" xml:space="preserve">
     <value>數據{0} 將低於 {1}</value>

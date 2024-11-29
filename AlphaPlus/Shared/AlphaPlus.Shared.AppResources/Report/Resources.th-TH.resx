@@ -168,14 +168,8 @@
   <data name="AllProducts" xml:space="preserve">
     <value>ผลิตภัณฑ์ทั้งหมด</value>
   </data>
-  <data name="Allbet" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Amount" xml:space="preserve">
     <value>จำนวนเงิน</value>
-  </data>
-  <data name="AppStart_Message" xml:space="preserve">
-    <value/>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Apply</value>
@@ -248,9 +242,6 @@
   </data>
   <data name="ClassicView" xml:space="preserve">
     <value>กลับเป็นมุมมองคลาสสิก</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value/>
   </data>
   <data name="Columns" xml:space="preserve">
     <value>คอลัมน์</value>
@@ -351,9 +342,6 @@
   <data name="December" xml:space="preserve">
     <value>ธ.ค.</value>
   </data>
-  <data name="DefaultSheetName" xml:space="preserve">
-    <value/>
-  </data>
   <data name="DelayIssueLegend" xml:space="preserve">
     <value>- ข้อมูล {0} จะล่าช้าไม่เกิน 5 นาทีหลังจากเคลียร์ตั๋ว</value>
   </data>
@@ -423,14 +411,8 @@
   <data name="GivenCredit" xml:space="preserve">
     <value>เครดิตที่ได้รับ</value>
   </data>
-  <data name="GoldDeluxe" xml:space="preserve">
-    <value/>
-  </data>
   <data name="GrandPrize" xml:space="preserve">
     <value>รางวัลใหญ่</value>
-  </data>
-  <data name="GrandPrize_Guidelines" xml:space="preserve">
-    <value/>
   </data>
   <data name="GrandTotal" xml:space="preserve">
     <value>ยอมรวมทั้งหมด</value>
@@ -513,9 +495,6 @@
   <data name="HT" xml:space="preserve">
     <value>ครึ่งเวลาแรก</value>
   </data>
-  <data name="Happy5" xml:space="preserve">
-    <value/>
-  </data>
   <data name="HideFilter" xml:space="preserve">
     <value>ซ่อนตัวกรอง</value>
   </data>
@@ -540,15 +519,6 @@
   <data name="IP_used_by" xml:space="preserve">
     <value>ไอพีใช้งานโดย</value>
   </data>
-  <data name="Include" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="Insurance_GemsWinLoss" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="Insurance_GemsWinLossAbbr" xml:space="preserve">
-    <value/>
-  </data>
   <data name="InvalidRefNo" xml:space="preserve">
     <value>หมายเลขอ้างอิงไม่ถูกต้อง</value>
   </data>
@@ -564,9 +534,6 @@
   <data name="June" xml:space="preserve">
     <value>มิ.ย.</value>
   </data>
-  <data name="KoreanWon" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Last3Months" xml:space="preserve">
     <value>3 เดือนที่ผ่านมา</value>
   </data>
@@ -581,9 +548,6 @@
   </data>
   <data name="Level" xml:space="preserve">
     <value>ระดับ</value>
-  </data>
-  <data name="LiveGame" xml:space="preserve">
-    <value/>
   </data>
   <data name="MainReport" xml:space="preserve">
     <value>รายงานหลัก</value>
@@ -692,12 +656,6 @@
   </data>
   <data name="NetTurnoverAndGrossComm" xml:space="preserve">
     <value>/มูลค่าการเดิมพันสุทธิ/ยอดรวมของคอมมิชชั่น</value>
-  </data>
-  <data name="NetTurnoverAndTaxComm" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="Neutral" xml:space="preserve">
-    <value/>
   </data>
   <data name="NewBalance" xml:space="preserve">
     <value>ยอดเงินใหม่</value>
@@ -810,9 +768,6 @@
   <data name="PositionTaking" xml:space="preserve">
     <value>ค่าความเสี่ยง</value>
   </data>
-  <data name="PreGame" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Product" xml:space="preserve">
     <value>ผลิตภัณฑ์</value>
   </data>
@@ -842,9 +797,6 @@
   </data>
   <data name="Results" xml:space="preserve">
     <value>ผลการแข่งขัน</value>
-  </data>
-  <data name="RoundCount" xml:space="preserve">
-    <value/>
   </data>
   <data name="SearchColumns" xml:space="preserve">
     <value>ค้นหาคอลัมน์</value>
@@ -894,9 +846,6 @@
   <data name="Statement" xml:space="preserve">
     <value>รายการเดินบัญชี</value>
   </data>
-  <data name="StatementGuidelines" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Status" xml:space="preserve">
     <value>สถานะ</value>
   </data>
@@ -918,9 +867,6 @@
   <data name="SuperCommNew" xml:space="preserve">
     <value>ค่าคอม ซุปเปอร์</value>
   </data>
-  <data name="SuperTotal" xml:space="preserve">
-    <value/>
-  </data>
   <data name="SuperTotalNew" xml:space="preserve">
     <value>ยอดรวม ซุปเปอร์</value>
   </data>
@@ -933,23 +879,8 @@
   <data name="SuperWinLossNew" xml:space="preserve">
     <value>ยอดได้เสีย ซุปเปอร์</value>
   </data>
-  <data name="SymbolMyanmarOdds" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="Symbol_NoDataNumber" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="TaxComm" xml:space="preserve">
-    <value/>
-  </data>
-  <data name="ThereIsNoLeague" xml:space="preserve">
-    <value/>
-  </data>
   <data name="ThereIsNoProduct" xml:space="preserve">
     <value>ไม่มีสินค้า</value>
-  </data>
-  <data name="ThereIsNoSelectedProduct" xml:space="preserve">
-    <value/>
   </data>
   <data name="ThisMonth" xml:space="preserve">
     <value>เดือนนี้</value>
@@ -1053,9 +984,6 @@
   <data name="Void" xml:space="preserve">
     <value>โมฆะ</value>
   </data>
-  <data name="Voidbridge" xml:space="preserve">
-    <value/>
-  </data>
   <data name="Win" xml:space="preserve">
     <value>ชนะ</value>
   </data>
@@ -1065,9 +993,6 @@
   <data name="WinLossAbbr" xml:space="preserve">
     <value>ยอดได้เสีย</value>
   </data>
-  <data name="WinLossAnalysis" xml:space="preserve">
-    <value/>
-  </data>
   <data name="WinLossByBetType" xml:space="preserve">
     <value>ชนะ แพ้ โดยชนิดของการวางเดิมพัน</value>
   </data>
@@ -1076,9 +1001,6 @@
   </data>
   <data name="WinLossDate" xml:space="preserve">
     <value>วันที่ชนะ/แพ้</value>
-  </data>
-  <data name="WinLossDetail" xml:space="preserve">
-    <value/>
   </data>
   <data name="WinLossTitle" xml:space="preserve">
     <value>ชนะ แพ้</value>
@@ -1151,9 +1073,6 @@
   </data>
   <data name="under" xml:space="preserve">
     <value>น้อยกว่า</value>
-  </data>
-  <data name="vs" xml:space="preserve">
-    <value/>
   </data>
   <data name="SabaOtherSportsLegend" xml:space="preserve">
     <value>ข้อมูลของ {0} จะอยู่ภายใต้ {1}</value>
