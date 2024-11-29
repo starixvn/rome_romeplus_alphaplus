@@ -4,6 +4,10 @@
 
 @include keyframes-ripple;
 
+.closed {
+    background-color: #4d4f52 !important;
+}
+
 .infoIco:before,.usernameIsValid:before,.PwdSuccess:before,.tick:before,.usernameIsNotValid:before,.PwdError:before,.crossError:before,.icon-print:before {
     font-family: 'Iconalpha';
     font-size: 18px;

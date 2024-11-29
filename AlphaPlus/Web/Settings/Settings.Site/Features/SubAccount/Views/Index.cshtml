@@ -44,7 +44,7 @@
                     foreach (var subAcc in Model)
                     {
                         ++index;
-                        <tr>
+                        <tr class='@(subAcc.Closed ? "closed" : string.Empty)'>
                             <td class="c">@index</td>
                             <td>@subAcc.Username</td>
                             <td>@subAcc.Nickname</td>
