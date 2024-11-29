@@ -15,7 +15,8 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
     {
         base.OnActionExecuting(filterContext);
 
-        if (IsValidSession(filterContext))
+        if (IsValidSession(filterContext) 
+            && filterContext.RouteData.Values["action"].ToString().IndexOf("Logout", StringComparison.OrdinalIgnoreCase) != -1)
         {
             var redirectUrl = GetAfterLoginFlowUrl(filterContext);
 
