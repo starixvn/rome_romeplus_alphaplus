@@ -19,7 +19,7 @@
         {
             @:4: '@Resources.MasterWinLossDetail'
         }
-                                                            };
+                                                                    };
         var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
         var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
         var columnList = [
@@ -54,7 +54,10 @@
             custName: '@Model.CustName',
             custLevelId: @Model.CustLevelId,
             weekFromDate: '@Model.WeekFromDate',
-            weekToDate: '@Model.WeekToDate'
+            weekToDate: '@Model.WeekToDate',
+            fromDate: '@Model.DateRangePicker.FromDate',
+            toDate: '@Model.DateRangePicker.ToDate',
+            username: '@Model.Username'
         }
         var viewerLevelId = @Model.ViewerLevel.Value;
     </script>

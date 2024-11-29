@@ -72,6 +72,7 @@ class WinLossDetailView extends BaseReportNew {
         this.winLossDetailColumns.init(() => this.updateQueryString());
         this.registerEvents();
         this.$tblReportContainer.removeAttr('style');
+        $.extend(this.globalFormData, this.productComponent.getCheckedValues());
 
         setTimeout(function () {
             window.top.indexManager && window.top.indexManager.initFeedbackFunction(2);
@@ -85,7 +86,11 @@ class WinLossDetailView extends BaseReportNew {
         const excelUrl = $iconExcel.attr('href');
         $iconExcel
             .click((e) => {
-                if (this.globalFormData.custLevelId > viewerLevelId || this.isGettingData) {
+                if (
+                    this.globalFormData.userSelectedProductIds.length === 0 ||
+                    this.globalFormData.custLevelId > viewerLevelId ||
+                    this.isGettingData
+                ) {
                     e.preventDefault();
                     return;
                 }

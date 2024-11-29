@@ -120,7 +120,9 @@ class UsernameTagsInputComponent {
             const uniqueTagsList = [];
             tagsList.forEach((item) => {
                 if (this.tagExist(usernames, item)) {
-                    this.appendTags([{ Username: item, Code: 1, ErrMsg: this.tagsInputOption.duplicatedUsernameText }]);
+                    this.appendTags([
+                        { Username: item, ErrCode: 1, ErrMsg: this.tagsInputOption.duplicatedUsernameText }
+                    ]);
                 } else {
                     uniqueTagsList.push(item);
                 }

@@ -15,8 +15,6 @@ class ProductMultiSelectionComponent {
     $multiSelectButtonProductDetail: JQuery;
 
     isReady = false;
-    numberDisplayed: 1;
-
     onChangeProductCallback: Function;
 
     render(onChangeProduct: Function = null) {
@@ -37,7 +35,7 @@ class ProductMultiSelectionComponent {
 
         this.$dropdownProduct.multiselect({
             maxHeight: 300,
-            numberDisplayed: this.numberDisplayed,
+            numberDisplayed: 1,
             nonSelectedText: hasData
                 ? this.$dropdownProduct.data('label-selectproducts')
                 : this.$dropdownProduct.data('label-nodata'),
@@ -118,7 +116,7 @@ class ProductMultiSelectionComponent {
 
             this.$dropdownProductDetail.multiselect({
                 maxHeight: 300,
-                numberDisplayed: this.numberDisplayed,
+                numberDisplayed: 1,
                 nonSelectedText: this.$dropdownProductDetail.data('label-selectnone'),
                 nSelectedText: ` ${this.$dropdownProductDetail.data('label-selected')}`,
                 allSelectedText: selectAllText,

@@ -33,8 +33,8 @@ public class EnteredResultWorkbook(IWebHostEnvironment webHostEnvironment) :
         DateTime today, yesterday;
         if (reportData.HasData)
         {
-            today = reportData.Total.EnteredResultYesterday.EventDate;
-            yesterday = reportData.Total.EnteredResultToday.EventDate;
+            today = reportData.Total.EnteredResultToday.EventDate;
+            yesterday = reportData.Total.EnteredResultYesterday.EventDate;
         }
         else
         {
