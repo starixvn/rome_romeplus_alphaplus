@@ -15,8 +15,7 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
     {
         base.OnActionExecuting(filterContext);
 
-        if (IsValidSession(filterContext) 
-            && filterContext.RouteData.Values["action"].ToString().IndexOf("Logout", StringComparison.OrdinalIgnoreCase) != -1)
+        if (IsValidSession(filterContext))
         {
             var redirectUrl = GetAfterLoginFlowUrl(filterContext);
 
@@ -79,12 +78,12 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
         {
             return currentUrl.Equals("SecurityCode/ChangeSecurityCodeFirstLogin", StringComparison.OrdinalIgnoreCase)
                 ? null
-                : "~/SecurityCode/ChangeSecurityCodeFirstLogin";
+                : MicroSites.MainUrl("~/SecurityCode/ChangeSecurityCodeFirstLogin");
         }
 
         return currentUrl.Equals("SecurityCode/ChangeSecurityCodeByForcing", StringComparison.OrdinalIgnoreCase)
             ? null
-            : "~/SecurityCode/ChangeSecurityCodeByForcing";
+            : MicroSites.MainUrl("~/SecurityCode/ChangeSecurityCodeByForcing");
     }
 
     private bool IsForceLoginByNickname => nicknameChecker.IsForceLoginByNickname;
