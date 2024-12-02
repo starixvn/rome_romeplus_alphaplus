@@ -14,7 +14,7 @@ type CustomerSettingResponse = {
 const getCustomerSetting = async () => axios.get<CustomerSettingResponse>(`${createAccountRootUrl}/GetCustomerInfo`);
 
 const checkExistedCustomer = async (username: string) =>
-  axios.get<boolean>(`${siteMemberInfoUrl}/Customer/CheckExistedCustomer?userName=${username}`);
+  axios.get<boolean>(`${siteMemberInfoUrl}Customer/CheckExistedCustomer?userName=${username}`);
 
 const createAccount = async (uiBehavior: object, generalInfo: GeneralInfo, productGroups: ProductGroup[]) =>
   axios.post<CreateAccountResult>(
