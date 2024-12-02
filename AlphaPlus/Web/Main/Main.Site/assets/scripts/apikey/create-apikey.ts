@@ -34,31 +34,39 @@ class CreateApiKey {
         this.renderDatetimePicker();
         this.registerEvents();
 
-        this.$(".open-link").unbind().bind('click', event => { this.topWindow.alpha.viewDataURL(event); });
-    }
+        this.$('.open-link')
+            .unbind()
+            .bind('click', (event) => {
+                this.topWindow.alpha.viewDataURL(event);
+            });
+    };
 
     resources = {
         apiKey: (<HTMLInputElement>document.getElementById('APIKey')).value,
         pleaseInputAPIKeyName: (<HTMLInputElement>document.getElementById('PleaseInputAPIKeyName')).value,
-        apiKeyNameCanNotContainSpecialCharacters: (<HTMLInputElement>document.getElementById('APIKeyNameCanNotContainSpecialCharacters')).value,
+        apiKeyNameCanNotContainSpecialCharacters: (<HTMLInputElement>(
+            document.getElementById('APIKeyNameCanNotContainSpecialCharacters')
+        )).value,
         noMoreThan50Characters: (<HTMLInputElement>document.getElementById('NoMoreThan50Characters')).value,
         pleaseInputPassPhrase: (<HTMLInputElement>document.getElementById('PleaseInputPassPhrase')).value,
         APIKey_PassphraseValidate: (<HTMLInputElement>document.getElementById('APIKey_PassphraseValidate')).value,
-        apiPassPhraseMustBeBetweenCharacters: (<HTMLInputElement>document.getElementById('APIPassPhraseMustBeBetweenCharacters')).value,
+        apiPassPhraseMustBeBetweenCharacters: (<HTMLInputElement>(
+            document.getElementById('APIPassPhraseMustBeBetweenCharacters')
+        )).value,
         cantSelectTimeFromPast: (<HTMLInputElement>document.getElementById('CantSelectTimeFromPast')).value,
         scopesIsRequired: (<HTMLInputElement>document.getElementById('ScopesIsRequired')).value,
-        currentDate: (<HTMLInputElement>document.getElementById('CurrentDate')).value,
-    }
+        currentDate: (<HTMLInputElement>document.getElementById('CurrentDate')).value
+    };
 
     cachedDOMElements = () => {
-        this.$form = this.$("#apikey-form");
-        this.$datePicker = this.$("#dpkContainer");
-        this.$ckbAll = this.$("#ckbAll");
-        this.$showPass = this.$(".show-pass");
-        this.$errorMessage = this.$("#error-message");
-        this.$showURL = this.$(".dummy-text");
-        this.$urlMask = this.$(".service-url-mask");
-    }
+        this.$form = this.$('#apikey-form');
+        this.$datePicker = this.$('#dpkContainer');
+        this.$ckbAll = this.$('#ckbAll');
+        this.$showPass = this.$('.show-pass');
+        this.$errorMessage = this.$('#error-message');
+        this.$showURL = this.$('.dummy-text');
+        this.$urlMask = this.$('.service-url-mask');
+    };
 
     registerEvents = () => {
         this.$ckbAll.click(this.handleSelectAllScopes);
@@ -66,34 +74,32 @@ class CreateApiKey {
         this.$showPass.click(this.showPass);
         this.$showURL.click(this.showURL);
         this.handleSubmitForm();
-    }
+    };
 
     showPass = () => {
-        var inputPass = this.$("#passphrase");
+        var inputPass = this.$('#passphrase');
         this.changeEyeIcon(this.$showPass);
-        if (inputPass.hasClass("input-pass")) {
-            inputPass.removeClass("input-pass")
+        if (inputPass.hasClass('input-pass')) {
+            inputPass.removeClass('input-pass');
+        } else {
+            inputPass.addClass('input-pass');
         }
-        else {
-            inputPass.addClass("input-pass")
-        }
-    }
+    };
 
     showURL = () => {
         this.$urlMask.removeClass('close');
         this.$urlMask.addClass('open');
-    }
+    };
 
     changeEyeIcon = (eyeElm) => {
-        if (eyeElm.hasClass("icon-eye-close")) {
-            eyeElm.removeClass("icon-eye-close");
-            eyeElm.addClass("icon-eye");
+        if (eyeElm.hasClass('icon-eye-close')) {
+            eyeElm.removeClass('icon-eye-close');
+            eyeElm.addClass('icon-eye');
+        } else {
+            eyeElm.removeClass('icon-eye');
+            eyeElm.addClass('icon-eye-close');
         }
-        else {
-            eyeElm.removeClass("icon-eye");
-            eyeElm.addClass("icon-eye-close");
-        }
-    }
+    };
 
     renderDatetimePicker = () => {
         const minDate = new Date(this.resources.currentDate);
@@ -101,30 +107,29 @@ class CreateApiKey {
             minDate: new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate()),
             useCurrent: false,
             allowInputToggle: true,
-            format: "MM/DD/YYYY",
+            format: 'MM/DD/YYYY',
             defaultDate: null
         };
         this.$datePicker.datepicker(options);
-    }
+    };
 
     handleSubmitForm = () => {
         const self = this;
         this.$form.submit(function (e) {
             self.handleCreateApiKey();
             e.preventDefault();
-        })
-    }
+        });
+    };
 
     handleCreateApiKey = () => {
-        const apiName = this.$("#apiname").val();
-        const passPhrase = this.$("#passphrase").val();
-        const expirationDate = this.$("#expirationdate").val();
+        const apiName = this.$('#apiname').val();
+        const passPhrase = this.$('#passphrase').val();
+        const expirationDate = this.$('#expirationdate').val();
         const scopes = this.getScopeValue();
         const error = this.validateFormInput(apiName, passPhrase, expirationDate, scopes);
         if (error) {
-            alpha.showMessage(this.$errorMessage, new Result({ Code: 1, Message: error }));
-        }
-        else {
+            alpha.showMessage(this.$errorMessage, new Result({ code: 1, message: error }));
+        } else {
             const self = this;
             this.$.ajax({
                 type: 'POST',
@@ -132,29 +137,44 @@ class CreateApiKey {
                 data: { apiName, passPhrase, expirationDate, scopes },
                 dataType: 'json',
                 success: function (data, textStatus, jqXHR) {
-                    if (data.ApiKeyResult) {
+                    if (data.apiKeyResult) {
                         self.resetForm();
-                        const url = alpha.urls.mainRootPath + `ApiKey/CreateApiKeyResult?apiname=` + encodeURIComponent(data.ApiKeyResult.ApiName)
-                            + `&key=` + encodeURIComponent(data.ApiKeyResult.Key)
-                            + `&secret=` + encodeURIComponent(data.ApiKeyResult.ApiSecret)
-                        self.topWindow.popupManager.open(url, self.resources.apiKey, 380, 550, null, null, null, null, null, null, { customClass: 'api-modal' });
+                        const url =
+                            alpha.urls.mainRootPath +
+                            `ApiKey/CreateApiKeyResult?apiname=` +
+                            encodeURIComponent(data.apiKeyResult.apiName) +
+                            `&key=` +
+                            encodeURIComponent(data.apiKeyResult.key) +
+                            `&secret=` +
+                            encodeURIComponent(data.apiKeyResult.apiSecret);
+                        self.topWindow.popupManager.open(
+                            url,
+                            self.resources.apiKey,
+                            380,
+                            550,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            { customClass: 'api-modal' }
+                        );
                     } else {
-                        alpha.showMessage(self.$errorMessage, new Result(data.Result));
+                        alpha.showMessage(self.$errorMessage, new Result(data.result));
                     }
                 },
-                complete: function (jqXHR, textStatus) {
-
-                }
-            })
+                complete: function (jqXHR, textStatus) {}
+            });
         }
-    }
+    };
 
     resetForm = () => {
-        this.$("#apiname").val("");
-        this.$("#passphrase").val("");
-        this.$("#expirationdate").val("");
-        this.$("#error-message").empty();
-    }
+        this.$('#apiname').val('');
+        this.$('#passphrase').val('');
+        this.$('#expirationdate').val('');
+        this.$('#error-message').empty();
+    };
 
     validateFormInput = (apiName: string, passPhrase: string, expirationDate: Date, scopes: string) => {
         const regexName = /^[a-zA-Z0-9\s]+$/m;
@@ -178,16 +198,18 @@ class CreateApiKey {
             return this.resources.apiPassPhraseMustBeBetweenCharacters;
         }
         const currentDate = new Date(this.resources.currentDate);
-        const isPastDate = new Date(expirationDate.toString()) < new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+        const isPastDate =
+            new Date(expirationDate.toString()) <
+            new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
         if (isPastDate) {
             return this.resources.cantSelectTimeFromPast;
         }
-        if (scopes == "") {
+        if (scopes == '') {
             return this.resources.scopesIsRequired;
         }
 
         return null;
-    }
+    };
 
     getScopeValue = () => {
         const self = this;
@@ -196,21 +218,20 @@ class CreateApiKey {
             scopes.push(self.$(checkbox).val());
         });
 
-        return scopes.join(",");
-    }
+        return scopes.join(',');
+    };
 
     handleSelectAllScopes = () => {
         const self = this;
-        var isChecked = this.$ckbAll.is(":checked");
+        var isChecked = this.$ckbAll.is(':checked');
         this.$.each(this.$("input[name='scope']"), function (index, checkbox) {
             if (isChecked) {
                 self.$(checkbox).prop('checked', true).attr('checked', 'checked');
-            }
-            else {
+            } else {
                 self.$(checkbox).prop('checked', false).removeAttr('checked');
             }
         });
-    }
+    };
 
     handleSelectScopes = () => {
         if (this.isSelectAllScopes()) {
@@ -218,19 +239,19 @@ class CreateApiKey {
             return;
         }
         this.$ckbAll.prop('checked', false).removeAttr('checked');
-    }
+    };
 
     isSelectAllScopes = () => {
         const self = this;
         let isCheckAll = true;
         this.$.each(this.$("input[name='scope']"), function (index, checkbox) {
-            if (!self.$(checkbox).is(":checked")) {
+            if (!self.$(checkbox).is(':checked')) {
                 isCheckAll = false;
             }
         });
 
         return isCheckAll;
-    }
+    };
 }
 
 $(function () {

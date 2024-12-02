@@ -106,7 +106,7 @@ class EditApiKey {
         }
         const error = this.validateFormInput(apiName, expirationDate, scopes);
         if (error) {
-            alpha.showMessage(this.$errorMessage, new Result({ Code: 1, Message: error }));
+            alpha.showMessage(this.$errorMessage, new Result({ code: 1, message: error }));
         } else {
             const self = this;
             this.$.ajax({
@@ -120,7 +120,7 @@ class EditApiKey {
                     } else {
                         alpha.showMessage(
                             self.$errorMessage,
-                            new Result({ Code: 0, Message: self.resources.updateSuccessful })
+                            new Result({ code: 0, message: self.resources.updateSuccessful })
                         );
                         parent.window.location.href = self.removeBookmarksInUrl(parent.window.location.href);
                     }
