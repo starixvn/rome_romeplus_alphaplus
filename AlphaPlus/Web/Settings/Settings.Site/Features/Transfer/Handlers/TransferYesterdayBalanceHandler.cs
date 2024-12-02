@@ -75,7 +75,7 @@ public class TransferYesterdayBalanceHandler(
             AppSettings.AllowedListSuperAccounts,
             message.CustId.ToString(),
             false,
-            -message.Amount,
+            message.Amount,
             string.Empty,
             AutoTransferConstant.All,
             message.LangKey,

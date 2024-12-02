@@ -12,9 +12,7 @@ class SingleTransferView {
     init() {
         this.showTitle();
         const $amount = $('#Amount');
-        $amount.on('input', function () {
-            this.value = this.value.replace(/\D/g, '').replace(/^0+(?!$)/, '');
-        });
+        alphaTransfer.bindForceDecimalInputWithFormat($amount);
 
         $('#form-update').submit((event) => {
             event.preventDefault();

@@ -20,7 +20,7 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
         var criteria = BuildTransferListCriteria(param);
         var customers = await repository.FetchAsync<CustomerTransfer>(criteria, param.AGIP);
 
-        return new CustomerTransferReport(customers, BuildTotal(criteria), criteria.TotalPages);
+        return new CustomerTransferReport(customers, BuildTotal(criteria), criteria.TotalPages ?? 0);
     }
 
     private static GetTransferListCriteria BuildTransferListCriteria(TransferListParam param)

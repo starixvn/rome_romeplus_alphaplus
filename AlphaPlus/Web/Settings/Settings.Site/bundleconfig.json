@@ -629,6 +629,7 @@
   {
     "outputFileName": "wwwroot/bundles/transfer/transfer-yesterday-balance-single.js",
     "inputFiles": [
+      "Features/Transfer/assets/scripts/core.js",
       "Features/Transfer/assets/scripts/components/alert.js",
       "Features/Transfer/assets/scripts/transfer-yesterday-balance/single.js"
     ]

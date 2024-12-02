@@ -140,6 +140,8 @@ class WinLossBetListView {
     }
 
     private buildWinLossReportUrl(reportFormData) {
+        reportFormData = this.changeObjectKey(reportFormData, 'productIds', 'userSelectedProductIds');
+        reportFormData = this.changeObjectKey(reportFormData, 'resourceIds', 'userSelectedResourceIds');
         return `${$('#winloss-detail-report-path').val()}?${$.param(reportFormData)}`;
     }
 
@@ -206,6 +208,15 @@ class WinLossBetListView {
         //     breadcrumbsJson: JSON.stringify(this.breadcrumbLevelComponent.getBreadcrumbLevels())
         // });
         alphaBetLists.updateQueryString(queryString);
+    }
+
+    private changeObjectKey(obj, oldKey, newKey) {
+        if (oldKey !== newKey && obj.hasOwnProperty(oldKey)) {
+            obj[newKey] = obj[oldKey];
+            delete obj[oldKey];
+        }
+
+        return obj;
     }
 
     // private addUnselectedProductAndProductDetailForStatistic() {

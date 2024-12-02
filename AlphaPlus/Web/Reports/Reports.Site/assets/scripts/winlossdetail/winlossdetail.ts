@@ -122,10 +122,12 @@ class WinLossDetailView extends BaseReportNew {
                     breadcrumbs.push(custInfo);
                     const breadcrumbsJson = JSON.stringify(breadcrumbs);
                     const visibleColumns = this.winLossDetailColumns.getShowColumns().join(',');
-                    const betListParams = $.extend({}, this.globalFormData, custInfo, {
+                    let betListParams = $.extend({}, this.globalFormData, custInfo, {
                         breadcrumbsJson,
                         visibleColumns
                     });
+                    betListParams = this.changeObjectKey(betListParams, 'userSelectedProductIds', 'productIds');
+                    betListParams = this.changeObjectKey(betListParams, 'userSelectedResourceIds', 'resourceIds');
                     $this.attr('href', `${$('#hidden-betListUrl').val()}?${$.param(betListParams)}`);
                 } else {
                     e.preventDefault();
@@ -234,6 +236,15 @@ class WinLossDetailView extends BaseReportNew {
     private clearUsername() {
         this.usernameSuggestionComponent.clearUsername();
         delete this.globalFormData.username;
+    }
+
+    private changeObjectKey(obj, oldKey, newKey) {
+        if (oldKey !== newKey && obj.hasOwnProperty(oldKey)) {
+            obj[newKey] = obj[oldKey];
+            delete obj[oldKey];
+        }
+
+        return obj;
     }
 }
 

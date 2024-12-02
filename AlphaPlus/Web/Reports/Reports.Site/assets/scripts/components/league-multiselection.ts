@@ -42,33 +42,33 @@ class LeagueMultiSelectionComponent {
     private onChange() {
         this.validateLeagueIds();
         const leagueIds = this.getLeagueIds();
-        this.$hiddenInput.val(leagueIds.length === 0 ? '-1' : leagueIds);
+        this.$hiddenInput.val(leagueIds.length === 0 ? '-1' : leagueIds.join(','));
         this.$isUserSelectsAllLeagues.val('false');
     }
 
     private onSelectAll(checked: boolean) {
-        checked ? this.$multiSelectButton.removeClass('error') : this.$multiSelectButton.addClass('error');
-        this.$hiddenInput.val(checked ? '' : '-1');
-        this.$isUserSelectsAllLeagues.val(checked.toString());
+        this.validateLeagueIds();
+
+        const leagueIds = this.getLeagueIds();
+        const isSelectAll = leagueIds.length === this.$dropdownLeague.find('option').length;
+
+        this.$hiddenInput.val(isSelectAll ? '' : leagueIds.length ? leagueIds.join(',') : '-1');
+        this.$isUserSelectsAllLeagues.val(isSelectAll.toString());
     }
 
     validateLeagueIds = (): boolean => {
-        if (this.$isUserSelectsAllLeagues.val().toLowerCase() === 'true') {
-            return true;
-        }
-
         const isValid = this.$dropdownLeague.find('option:selected').length > 0;
         isValid ? this.$multiSelectButton.removeClass('error') : this.$multiSelectButton.addClass('error');
 
         return isValid;
     };
 
-    getLeagueIds = (): string => {
+    getLeagueIds = () => {
         const selected = [];
         this.$dropdownLeague.find('option:selected').each(function (_, item) {
             selected.push($(item).val());
         });
 
-        return selected.join(',');
+        return selected;
     };
 }
