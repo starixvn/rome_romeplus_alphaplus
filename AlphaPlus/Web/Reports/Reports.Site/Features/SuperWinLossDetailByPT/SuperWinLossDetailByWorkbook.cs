@@ -42,7 +42,7 @@ public class SuperWinLossDetailByWorkbook(IWebHostEnvironment webHostEnvironment
             new TemplateInfo(
                 GetExcelTemplatePath(message.ViewerLevel.DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable))
-            .Title($"{Resources.SuperWinLossDetailByPT} {fromDate} --> {toDate} - {Resources.of2}: {productNames}")
+            .Title($"{Resources.SuperWinLossDetailByPT} {fromDate} --> {toDate} {Resources.of2} {productNames}")
             .Header(key => key.Equals(PTProductName) ? $"{Resources.PT}/{Resources.Product}" : Resources.ResourceManager.GetString(key))
             .Footer(total, null)
             .Sheet(Resources.DefaultSheetName)

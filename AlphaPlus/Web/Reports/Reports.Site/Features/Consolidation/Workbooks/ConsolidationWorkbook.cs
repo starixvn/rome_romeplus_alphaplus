@@ -44,7 +44,7 @@ public class ConsolidationWorkbook(IWebHostEnvironment webHostEnvironment) :
                 noInfomationText: Resources.NoInformationIsAvailable,
                 freezeRowIndex: 4,
                 freezeColumnName: C))
-            .Title($"{reportTypeName} {fromDate} --> {toDate} - {Resources.of2} {productNames} - {currencyName}")
+            .Title($"{reportTypeName} {fromDate} --> {toDate} {Resources.of2} {productNames} - {currencyName}")
             .Header(Resources.ResourceManager.GetString)
             .Body(reportData, null)
             .Sheet(Resources.DefaultSheetName)

@@ -88,8 +88,7 @@ public class ProgressiveContributionWookbook(IWebHostEnvironment webHostEnvironm
     }
 
     private string GetTitle(string fromDate, string toDate, string productNames)
-        => $"{Resources.ProgressiveGamesContribution} {fromDate} --> {toDate}" +
-            $" {Resources.of2} {productNames}";
+        => $"{Resources.ProgressiveGamesContribution} {fromDate} --> {toDate} {Resources.of2} {productNames}";
 
     protected override Sheet LoadTemplateSheet()
     {

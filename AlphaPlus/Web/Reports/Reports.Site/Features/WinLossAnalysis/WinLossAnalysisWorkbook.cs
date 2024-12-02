@@ -38,7 +38,7 @@ public class WinLossAnalysisWorkbook(IWebHostEnvironment webHostEnvironment) :
                 GetExcelTemplatePath(
                     message.ViewerLevel.GetDirectDownLineLevel().DisplayName),
                     noInfomationText: Resources.NoInformationIsAvailable))
-            .Title($"{reportTitle} {fromDate} --> {toDate} {Resources.of}: {productNames}")
+            .Title($"{reportTitle} {fromDate} --> {toDate} {Resources.of} {productNames}")
             .Header(key => key.Equals("ReportTypeName") ? reportTypeName : Resources.ResourceManager.GetString(key))
             .Body(reportData.DataSource, GetRowMapper(message.ViewerLevel))
             .Footer(reportData.Total, GetRowMapper(message.ViewerLevel, isTotal: true))

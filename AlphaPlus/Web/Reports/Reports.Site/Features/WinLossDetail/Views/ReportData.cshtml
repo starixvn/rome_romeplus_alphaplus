@@ -167,7 +167,7 @@
                 <th class="sorting" rowspan="2" data-colindex="@(totalColumns - 2)" data-colname="company">
                     @Resources.Company</th>
                 <th class="sorting" rowspan="2" data-colindex="@(totalColumns - 1)" data-colname="reward">
-                    @Resources.Reward</th>
+                    @Html.Raw(rewardColumnName)</th>
             </tr>
             <tr class="thead-row2">
                 <th class="sorting" data-colindex="@(theadIndex++)" data-colname="pwinloss">@Resources.WinLoss</th>

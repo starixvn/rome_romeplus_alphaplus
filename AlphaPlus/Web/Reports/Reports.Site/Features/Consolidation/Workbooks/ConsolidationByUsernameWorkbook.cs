@@ -94,7 +94,7 @@ public class ConsolidationByUsernameWorkbook(IWebHostEnvironment webHostEnvironm
                 noInfomationText: Resources.NoInformationIsAvailable,
                 freezeRowIndex: 4,
                 freezeColumnName: C))
-            .Title($"{Resources.ConsolidationReportByUsername} {fromDate} --> {toDate} - {Resources.of2} {productNames} - {currencyName}")
+            .Title($"{Resources.ConsolidationReportByUsername} {fromDate} --> {toDate} {Resources.of2} {productNames} - {currencyName}")
             .Header(Resources.ResourceManager.GetString)
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();

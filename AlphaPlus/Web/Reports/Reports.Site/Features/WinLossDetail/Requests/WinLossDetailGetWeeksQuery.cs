@@ -8,7 +8,9 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 public class WinLossDetailGetWeeksQuery : ProductDetailDateRangeQuery, IRequest<IEnumerable<WinLossDetailWeekViewModel>>
 {
     public WinLossDetailGetWeeksQuery()
-        => MinDate = SystemTime.Today.AddYears(-3).FirstDayOfYear();
+        => MinDate = LimitedDateToShowInfo == DateTime.MinValue
+        ? SystemTime.Today.AddYears(-3).FirstDayOfYear()
+        : LimitedDateToShowInfo;
 
     public string Username { get; set; }
 

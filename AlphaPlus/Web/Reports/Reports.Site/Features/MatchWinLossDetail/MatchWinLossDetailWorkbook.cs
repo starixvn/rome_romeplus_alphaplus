@@ -60,7 +60,7 @@ public class MatchWinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) 
             new TemplateInfo(
                 GetExcelTemplatePath(message.ViewerLevel.GetDirectDownLineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable))
-            .Title($"{Resources.MatchWinLossDetail} {fromDate} --> {toDate} - {Resources.of}: {productNames}")
+            .Title($"{Resources.MatchWinLossDetail} {fromDate} --> {toDate} {Resources.of} {productNames}")
             .Header(Resources.ResourceManager.GetString)
             .Footer(reportData.GrandTotal, null)
             .ExportToBytes();

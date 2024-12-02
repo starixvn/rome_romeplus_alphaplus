@@ -28,7 +28,7 @@ public class WinLossWorkbook(IWebHostEnvironment webHostEnvironment) :
             new TemplateInfo(
                 GetExcelTemplatePath(message.CustLevel.GetDirectDownLineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable))
-            .Title($"{Resources.WinLossTitle} {fromDate} --> {toDate} - {Resources.of2}: {productNames}")
+            .Title($"{Resources.WinLossTitle} {fromDate} --> {toDate} {Resources.of2} {productNames}")
             .Header(Resources.ResourceManager.GetString)
             .Body(reportData.DataSource, GetRowMapper(isAgentLevel))
             .Footer(reportData.Total, GetRowMapper(isAgentLevel, true))

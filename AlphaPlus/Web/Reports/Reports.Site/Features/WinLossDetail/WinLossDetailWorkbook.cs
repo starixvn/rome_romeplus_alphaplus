@@ -28,7 +28,13 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
     IWinLossDetailWorkbook
 {
     public ExcelFileViewModel BuildExcelFile(WinLossDetailExcelQuery message, ReportData<WinLossDetailModel> reportData, string productNames)
-        => BuildExcelFile(message.FromDate, message.ToDate, message.CustName, message.CustLevel, message.ShowFullName, reportData, productNames);
+        => BuildExcelFile(
+            message.WeekFromDate ?? message.FromDate,
+            message.WeekToDate ?? message.ToDate,
+            message.CustName,
+            message.CustLevel,
+            message.ShowFullName,
+            reportData, productNames);
 
     public ExcelFileViewModel BuildExcelFile(
         DateTime fromDate,
@@ -48,7 +54,7 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
                 noInfomationText: Resources.NoInformationIsAvailable,
                 freezeRowIndex: 4,
                 freezeColumnName: B))
-            .Title($"{Resources.WinLossDetail} {fromDateString} --> {toDateString} - {Resources.of2}: {productNames}")
+            .Title($"{Resources.WinLossDetail} {fromDateString} --> {toDateString} {Resources.of2} {productNames}")
             .Header(Resources.ResourceManager.GetString)
             .Body(reportData.DataSource, showFullName ? GetRowMapperWithFullName(custLevel) : GetRowMapper(custLevel))
             .Footer(reportData.Total, showFullName ? GetRowMapperWithFullName(custLevel, true) : GetRowMapper(custLevel, true))

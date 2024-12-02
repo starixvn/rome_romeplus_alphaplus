@@ -59,20 +59,8 @@ public class WinLossDetailService(
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
-        var rawData = await repository.FetchAsync<WinLossDetailModel>(criteria, ip);
+        var (rawData, totals) = await repository.FetchMultipleAsync<WinLossDetailModel, WinLossDetailModel>(criteria, ip);
 
-        return new ReportData<WinLossDetailModel>(rawData, CalculateTotal(rawData), criteria.TotalRecords);
-    }
-
-    private static WinLossDetailModel CalculateTotal(IEnumerable<WinLossDetailModel> rawData)
-    {
-        var total = new WinLossDetailModel();
-
-        foreach (var item in rawData)
-        {
-            total += item;
-        }
-
-        return total;
+        return new ReportData<WinLossDetailModel>(rawData, totals.FirstOrDefault(), criteria.TotalRecords);
     }
 }
