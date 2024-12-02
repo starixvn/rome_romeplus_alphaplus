@@ -7,6 +7,8 @@ using AlphaPlus.Features.Messages.API.Models.Announcement;
 using AlphaPlus.Features.Messages.API.Models.Constants;
 using AlphaPlus.Features.Messages.API.Models.Message;
 using AlphaPlus.Features.Messages.API.Params.Announcement;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Features.Messages.API.Services
 {
@@ -24,15 +26,18 @@ namespace AlphaPlus.Features.Messages.API.Services
         private const int FishingWorld = 3;
         private readonly IDynamicRepository dynamicRepository;
         private readonly AnnouncementService announcementService;
+        private readonly AuthorizationOptions authorizationOptions;
 
         private readonly ResourceManager resourceManager;
         public NewMessageServiceImpl(IDynamicRepository dynamicRepository
             , ResourceManager resourceManager
-            , AnnouncementService announcementService)
+            , AnnouncementService announcementService
+            , IOptions<AuthorizationOptions> options)
         {
             this.dynamicRepository = dynamicRepository;
             this.resourceManager = resourceManager;
             this.announcementService = announcementService;
+            this.authorizationOptions = options.Value;
         }
 
         public Task MoveNewMessage(int custId, string custName, int levelId, bool isUserAdmin)
@@ -88,7 +93,7 @@ namespace AlphaPlus.Features.Messages.API.Services
             => unreadMessage != null;
 
         private void UpdateMessageAsReadOnUser(int custId, int messageType)
-            => dynamicRepository.Fetch<bool>(new UpdateMessageAsReadOnUserCritria(custId, messageType));
+            => dynamicRepository.Fetch<bool>(new UpdateMessageAsReadOnUserCritria(custId, messageType, authorizationOptions.DisabledCheckDuplicationLogin));
 
         private void InsertMessageToAlpha(string key, int custId, string custName)
         {
@@ -116,7 +121,7 @@ namespace AlphaPlus.Features.Messages.API.Services
             if (!isUserAdmin)
             {
                 newMessage = dynamicRepository
-                    .Fetch<int>(new GetUnreadMessagesOnUserCriteria(custId));
+                    .Fetch<int>(new GetUnreadMessagesOnUserCriteria(custId, authorizationOptions.DisabledCheckDuplicationLogin));
 
                 if (UserLevel.IsNotAgent(levelId))
                 {

@@ -26,8 +26,6 @@ namespace AlphaPlus.Features.Messages.API.Configurations
 
         public static bool EnableLogInfo => GetConfigValue("EnableLogInfo") == "1";
 
-        public static bool IsDisabledRecheckin => GetConfigValue("DisabledCheckDuplicationLogin") == "1";
-
         public static bool DisableMessages => "1" == GetConfigValue("DisableMessages");
 
         public static string JsVersion => GetConfigValue("JsVersion");

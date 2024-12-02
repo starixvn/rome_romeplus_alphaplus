@@ -2,7 +2,7 @@
 {
     public class GetUnreadMessagesOnUserCriteria : OnUserCriteriaBase
     {
-        public GetUnreadMessagesOnUserCriteria(int custId)
+        public GetUnreadMessagesOnUserCriteria(int custId, bool isDisabledRecheckin) : base(isDisabledRecheckin)
         {
             CustId = custId;
         }

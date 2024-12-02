@@ -240,5 +240,11 @@
     "APISuperIds": [
         "*"
     ],
-    "ApiKeyServiceUri": "http://alpha-apikey.nexdev.net"
+    "ApiKeyServiceUri": "http://alpha-apikey.nexdev.net",
+    "Authorization": {
+        "cachedExpireTime": 30,
+        "EnableCheckBelonging": true,
+        "DisabledCheckDuplicationLogin": false,
+        "KickOutUrl": "~/default/kickout"
+    }
 }

@@ -46,6 +46,7 @@ namespace AlphaPlus.Features.Site.Helpers
                 .AddFanexData(configuration)
                 .AddFanexLogging(configuration)
                 .AddRemotingRef(configuration)
+                .AddAlphaPlusCore(configuration)
                 .AddSingleton<IDynamicRepository, DynamicRepository>();
 
             services
@@ -55,7 +56,7 @@ namespace AlphaPlus.Features.Site.Helpers
             services
                 .AddRequestInfo()
                 .AddSingleton<IBrowserHelper, BrowserHelper>()
-                .AddScoped<IUserSession, UserSessionExt>();
+                .AddSingleton<IUserSession, UserSessionExt>();
 
             services
                 .AddScoped<IParam, SpecificationParameter>()

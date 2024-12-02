@@ -81,8 +81,6 @@ public static class AppSettings
 
     public static string AllowedListSuperAccounts => ConfigurationManager.GetValue<string>("AllowedListSuperAccounts");
 
-    public static bool DisabledCheckDuplicationLogin => ConfigurationManager.GetValue<string>("DisabledCheckDuplicationLogin") == "1";
-
     public static string JsVersion => ConfigurationManager.GetValue<string>("JsVersion");
 
     public static bool LocalTest => ConfigurationManager.GetValue<bool>("LocalTest");

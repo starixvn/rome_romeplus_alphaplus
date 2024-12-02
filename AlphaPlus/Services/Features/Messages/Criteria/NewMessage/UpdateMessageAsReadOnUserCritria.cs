@@ -2,7 +2,7 @@
 {
     public class UpdateMessageAsReadOnUserCritria : OnUserCriteriaBase
     {
-        public UpdateMessageAsReadOnUserCritria(int custId, int typeId)
+        public UpdateMessageAsReadOnUserCritria(int custId, int typeId, bool isDisabledRecheckin) : base(isDisabledRecheckin)
         {
             CustId = custId;
             TypeId = typeId;
