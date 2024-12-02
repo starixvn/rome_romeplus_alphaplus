@@ -17,8 +17,9 @@ class WinLossDetailSort {
                 sortList: [[this.mapSortColumnNameToIndex($tblReport), this.sortIndicator]],
                 textExtraction: (node: any) => {
                     const $node = $(node);
+                    const sortedValue = $node.data('sortedvalue');
 
-                    return $node.data('islink') ? $node.find('a').html() : $node.html();
+                    return sortedValue ? String(sortedValue) : $node.html();
                 }
             });
             $tblReport.off('sortEnd').on('sortEnd', () => {

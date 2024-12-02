@@ -253,11 +253,29 @@ public class WinLossDetailHandler(
 
     public async Task<ExcelFileViewModel> Handle(WinLossDetailExcelQuery message, CancellationToken cancellationToken)
     {
+        var isValidUsername = true;
+
+        if (!string.IsNullOrWhiteSpace(message.Username))
+        {
+            var customerLevel = await customerService.GetCustomerLevel(message.ViewerId, message.Username);
+            isValidUsername = customerLevel != null;
+
+            if (isValidUsername)
+            {
+                var breadcrumb = customerService.BuildBreadcrumb(customerLevel);
+                message.CustId = breadcrumb.CustId;
+                message.CustName = breadcrumb.CustName;
+                message.CustLevelId = breadcrumb.CustLevelId;
+            }
+        }
+
         var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds);
-        var reportData = await GetWinLossDetail(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml);
+        var reportData = isValidUsername
+            ? await GetWinLossDetail(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml)
+            : new ReportData<WinLossDetailModel>(null, null, 0);
         var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 
         return workbook.BuildExcelFile(message, reportData, productNames);

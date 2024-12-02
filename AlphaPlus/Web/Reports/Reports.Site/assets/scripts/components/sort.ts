@@ -81,9 +81,9 @@ class SortComponent {
         // if ($node.data('islink')) {
         //     return $node.find('a').html();
         // }
-
-        if ($node.data('sortedvalue')) {
-            return String($node.data('sortedvalue'));
+        const sortedValue = $node.data('sortedvalue');
+        if (sortedValue) {
+            return String(sortedValue);
         }
 
         const html = $node.hasClass('combinedcell') ? $node.find('ul>li:first-child').html() : $node.html();

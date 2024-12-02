@@ -55,7 +55,7 @@ public class LegendHandler(
             message.MinDate);
         await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, productParam);
         legends.Add($"- {await GetProductDetailsBelongSabaOtherSportsNote(message.ViewerId, productParam)}");
-        legends.Add(GetGrossCommNotes(message.ViewerLevel));
+        legends.Add(GetGrossCommNotes(message.ViewerLevel, message.IsConsolidation));
         legends.Add(Resources.GrossCommRoundingNote);
         if (message.ShowDormantAccountsNote)
         {
@@ -100,7 +100,7 @@ public class LegendHandler(
 
         await AddOfferedProductsNeedDelayTimeToSummarizeData(legends, productParam);
         legends.Add($"- {await GetProductDetailsBelongSabaOtherSportsNote(message.ViewerId, productParam)}");
-        legends.Add(GetGrossCommNotes(message.ViewerLevel));
+        legends.Add(GetGrossCommNotes(message.ViewerLevel, false));
         legends.Add(Resources.GrossCommRoundingNote);
         if (message.ShowDormantAccountsNote)
         {
@@ -152,9 +152,10 @@ public class LegendHandler(
         }
     }
 
-    private static string GetGrossCommNotes(UserLevel viewerLevel)
+    private static string GetGrossCommNotes(UserLevel viewerLevel, bool isConsolidation)
     {
-        var grossCommNotes = new List<string>(GetGrossCommNotesByUserLevel(viewerLevel))
+        var grossCommNotes = new List<string>(
+            isConsolidation ? GetConsolidationReportGrossCommNotes() : GetGrossCommNotesByUserLevel(viewerLevel))
         {
             $"<li>{Resources.GrossCommNoteForCasino}</li>"
         };
@@ -187,6 +188,13 @@ public class LegendHandler(
         }
 
         return [$"<li>{Resources.GrossCommNoteForMember}</li>"];
+    }
+
+    private static IEnumerable<string> GetConsolidationReportGrossCommNotes()
+    {
+        yield return $"<li>{Resources.GrossCommNoteForConsolidationReportSuper}</li>";
+        yield return $"<li>{Resources.GrossCommNoteForConsolidationReportMaster}</li>";
+        yield return $"<li>{Resources.GrossCommNoteForConsolidationReportAgent}</li>";
     }
 
     #region Get Product Names
