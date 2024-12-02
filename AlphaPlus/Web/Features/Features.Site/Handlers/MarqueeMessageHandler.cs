@@ -3,7 +3,7 @@ using AlphaPlus.Features.Messages.API.Services;
 using MediatR;
 using AlphaPlus.Features.Site.Messages.Requests.MarqueeMessage;
 using AlphaPlus.Features.Site.Messages.ViewModels;
-using AlphaPlus.Features.Messages.API.Configurations;
+using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Features.Site.Messages.Handlers
 {

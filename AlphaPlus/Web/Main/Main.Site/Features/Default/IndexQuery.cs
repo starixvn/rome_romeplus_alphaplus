@@ -20,7 +20,7 @@ namespace AlphaPlus.Main.Site.Features.Default
         {
             this.userSession = userSession;
             this.isEnableSecurityCode = isEnableSecurityCode;
-            this.disableMessages = disableMessages ?? AppSettings.DisableMessages;
+            this.disableMessages = disableMessages ?? Core.Configurations.AppSettings.DisableMessages;
             IsProtectedMode = userSession.IsProtectedMode;
             IsOfferProtectedMode = userSession.IsOfferProtectedMode;
             this.options = options;

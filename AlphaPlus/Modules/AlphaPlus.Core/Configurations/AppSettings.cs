@@ -87,6 +87,8 @@ public static class AppSettings
 
     public static int PageSize => ConfigurationManager.GetValue<int>("PageSize");
 
+    public static bool DisableMessages => ConfigurationManager.GetValue<bool>("DisableMessages");
+
     public static bool IsEnabledProduct(int product) => ConfigurationManager.GetValue<string>("EnableProduct-" + product) == "1";
 
     public static HashSet<int> ForcedHideProductIds { get; } = new HashSet<int>(

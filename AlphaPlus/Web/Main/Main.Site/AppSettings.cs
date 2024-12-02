@@ -10,8 +10,6 @@ namespace AlphaPlus.Main.Site
 
         public static bool IsDisabledContactUsLink => GetValue<bool>("IsDisabledContactUsLink");
 
-        public static bool DisableMessages => GetValue<bool>("DisableMessages");
-
         public static bool IsMBCSite => !IsSiteLabel789y;
 
         public static bool IsSiteLabel789y => SiteLabel.Equals("789y");

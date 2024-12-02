@@ -4,7 +4,7 @@ using Alpha.Announcements.Models;
 using MediatR;
 using AlphaPlus.Features.Site.Messages.Requests.NewMessage;
 using AlphaPlus.Core.Filters;
-using AlphaPlus.Features.Messages.API.Configurations;
+using AlphaPlus.Core.Configurations;
 
 namespace AlphaPlus.Features.Site.Messages.Controllers
 {

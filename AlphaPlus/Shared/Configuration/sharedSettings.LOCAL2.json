@@ -249,5 +249,6 @@
         "EnableCheckBelonging": true,
         "DisabledCheckDuplicationLogin": false,
         "KickOutUrl": "~/default/kickout"
-    }
+    },
+    "DisableMessages": false
 }

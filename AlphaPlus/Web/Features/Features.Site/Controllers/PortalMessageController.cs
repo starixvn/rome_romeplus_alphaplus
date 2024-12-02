@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.Features.Messages.API.Configurations;
+using AlphaPlus.Core.Configurations;
 using MediatR;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Features.Messages.Site.Requests.PortalMessage;
