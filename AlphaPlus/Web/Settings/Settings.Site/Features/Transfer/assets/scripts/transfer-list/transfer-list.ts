@@ -137,7 +137,7 @@
     private initComponents($formTransfer: JQuery, $tableTransfer: JQuery) {
         this.transferListPaging.init(() => $formTransfer.submit());
         this.usernameSuggestionComponent.init(
-            new UsernameSuggestionOption($('#Username'), $('#hidden-usernameSuggestionUrl').val(), true)
+            new UsernameSuggestionOption($('#Username'), $('#hidden-usernameSuggestionUrl').val(), true, false)
         );
         this.statusDropdownComponent.render('Status');
         this.autoTransferDropdownComponent.render('AutoTransfer');
