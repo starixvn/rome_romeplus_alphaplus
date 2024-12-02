@@ -28,7 +28,7 @@ configuration
     .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true) // When running using dotnet run
     .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true) // When app is published or Docker
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile(Path.Combine(App_Data, "authorization.json"), optional: false, reloadOnChange: true)
+    .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "partialum.json"), optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "results.json"), optional: false, reloadOnChange: true)
     .AddJsonFile(Path.Combine(App_Data, "securitycode.json"), optional: false, reloadOnChange: true)
