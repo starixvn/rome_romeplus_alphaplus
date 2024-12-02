@@ -16,8 +16,7 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
         IRequestHandler<CopyAccountQuery, CopyAccountViewModel>,
         IRequestHandler<CopyAccountCommand, CopyMultipleCustomersResult>,
         IRequestHandler<CreditQuery, CreditInfo>,
-        IRequestHandler<CheckUsernameQuery, AlphaPlus.Core.Models.Result>,
-        IRequestHandler<CheckExistedCustomerQuery, bool>
+        IRequestHandler<CheckUsernameQuery, Core.Models.Result>
     {
         private const string HashKeySessionKey = "AlphaPlus.Settings.Site.Features.CopyAccount.CopyAccountHandler.PasswordHash";
 
@@ -131,11 +130,6 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
             }
 
             return Core.Models.Result.CreateErrorResult(Resources.UserNotExist);
-        }
-
-        public Task<bool> Handle(CheckExistedCustomerQuery message, CancellationToken cancellation)
-        {
-            return customerService.CheckExistedCustomer(message.CustName);
         }
     }
 }

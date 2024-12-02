@@ -483,11 +483,9 @@ class CopyAccount {
         }
 
         this.$.ajax({
-            method: 'POST',
-            headers: this.getHeadersForPostRequest(),
-            data: { custName: username },
+            method: 'GET',
             dataType: 'json',
-            url: '/settings/CopyAccount/CheckExistedCustomer',
+            url: `/settings/Customer/CheckExistedCustomer?userName=${username}`,
             success: (result) => {
                 this.invalidUsername = result;
                 const iconClass = result ? 'icon-close' : 'icon-check';

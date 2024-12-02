@@ -43,11 +43,5 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
 
         public Task<ActionResult> CheckUsername(CheckUsernameQuery query)
             => Json(query);
-
-        public Task<ActionResult> CheckExistedCopyCustomer(CheckExistedCustomerQuery query)
-            => Json(query);
-
-        public Task<ActionResult> CheckExistedCustomer(CheckExistedCustomerQuery query)
-            => Json(query);
     }
 }

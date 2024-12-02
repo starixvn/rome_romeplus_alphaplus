@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { copyAccountRootUrl, createAccountRootUrl } from '@/constants';
-import { CreateAccountResult } from "@/types";
+import { createAccountRootUrl, siteMemberInfoUrl } from '@/constants';
+import { CreateAccountResult } from '@/types';
 import { GeneralInfo, ProductGroup } from '@/types/new-account';
 
 import apiHelpers from './api-helpers';
@@ -14,7 +14,7 @@ type CustomerSettingResponse = {
 const getCustomerSetting = async () => axios.get<CustomerSettingResponse>(`${createAccountRootUrl}/GetCustomerInfo`);
 
 const checkExistedCustomer = async (username: string) =>
-  axios.post<boolean>(`${copyAccountRootUrl}/CheckExistedCustomer`, { custName: username });
+  axios.get<boolean>(`${siteMemberInfoUrl}/Customer/CheckExistedCustomer?userName=${username}`);
 
 const createAccount = async (uiBehavior: object, generalInfo: GeneralInfo, productGroups: ProductGroup[]) =>
   axios.post<CreateAccountResult>(

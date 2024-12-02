@@ -26,8 +26,6 @@ export const createAccountRootUrl = `${siteMemberInfoUrl}CreateAccount`;
 
 export const customerSettingInfoRootUrl = `${siteMemberInfoUrl}Customer/SportBookInformation`;
 
-export const copyAccountRootUrl = `${siteMemberInfoUrl}CopyAccount`;
-
 export const bootBoxConfirm = window.top?.bootboxConfirm;
 export const bootBoxAlert = window.top?.bootboxAlert;
 
