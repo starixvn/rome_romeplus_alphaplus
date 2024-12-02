@@ -115,7 +115,7 @@ class EditApiKey {
                 data: { apikey, apiName, expirationDate, scopes },
                 dataType: 'json',
                 success: function (data, textStatus, jqXHR) {
-                    if (data.IsFailed) {
+                    if (data.isFailed) {
                         alpha.showMessage(self.$errorMessage, new Result(data));
                     } else {
                         alpha.showMessage(
