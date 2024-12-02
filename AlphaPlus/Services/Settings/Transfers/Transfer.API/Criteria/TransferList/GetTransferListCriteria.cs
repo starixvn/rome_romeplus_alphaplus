@@ -28,5 +28,5 @@ public abstract class GetTransferListCriteria(
 
     public int PageSize { get; } = pageSize;
 
-    public int? TotalPages { get; set; }
+    public int TotalPages { get; set; }
 }
