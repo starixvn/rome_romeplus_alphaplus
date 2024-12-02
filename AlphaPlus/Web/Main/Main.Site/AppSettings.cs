@@ -57,7 +57,7 @@ namespace AlphaPlus.Main.Site
 
         public static int CDNReCheckinIntervalInSeconds => GetValue("DNReCheckin:IntervalInSeconds", 60);
 
-        public static int RecheckinIntervalMiliseconds => GetValue("Recheckin:IntervalMiliseconds", 3000);
+        public static int RecheckinIntervalMiliseconds => GetValue("Recheckin:IntervalMiliseconds", 30000);
 
         public static string JsVersion => GetValue<string>("JsVersion");
 
