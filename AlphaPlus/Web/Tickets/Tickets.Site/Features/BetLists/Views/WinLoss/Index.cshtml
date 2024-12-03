@@ -10,6 +10,10 @@
     <script src="~/bundles/betlists/icon-note.js" asp-append-version="true"></script>
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.WinLoss.WinLossViewModel
+@if (!string.IsNullOrWhiteSpace(Model.BetListData.OutputParams.ErrMsg))
+{
+    <div style="border: 1px solid #f00; color: #f00; padding: 10px">@Model.BetListData.OutputParams.ErrMsg</div>
+}
 <div class="bl_title">
     <div class="box">
         <div>@Model.Title</div>

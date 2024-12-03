@@ -42,6 +42,7 @@ public static class DependencyInjection
         .AddTransient<ICommissionByBetTypeWorkbook, CommissionByBetTypeWorkbook>()
         .AddTransient<IConsolidationByUsernameWorkbook, ConsolidationByUsernameWorkbook>()
         .AddTransient<IConsolidationWorkbook, ConsolidationWorkbook>()
+        .AddTransient<IConsolidationDetailWorkbook, ConsolidationDetailWorkbook>()
         .AddTransient<ISMAStatementWorkbook, SMAStatementWorkbook>()
         .AddTransient<IStatementDetailWorkbook, StatementDetailWorkbook>()
         .AddTransient<IMemberStatementWorkbook, MemberStatementWorkbook>()

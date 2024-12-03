@@ -12,15 +12,6 @@ namespace AlphaPlus.Reports.Site.Features.WinLossDetail;
 public interface IWinLossDetailWorkbook
 {
     ExcelFileViewModel BuildExcelFile(WinLossDetailExcelQuery message, ReportData<WinLossDetailModel> reportData, string productNames);
-
-    ExcelFileViewModel BuildExcelFile(
-        DateTime fromDate,
-        DateTime toDate,
-        string custName,
-        UserLevel custLevel,
-        bool showFullName,
-        ReportData<WinLossDetailModel> reportData,
-        string productNames);
 }
 
 public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
@@ -28,26 +19,10 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
     IWinLossDetailWorkbook
 {
     public ExcelFileViewModel BuildExcelFile(WinLossDetailExcelQuery message, ReportData<WinLossDetailModel> reportData, string productNames)
-        => BuildExcelFile(
-            message.WeekFromDate ?? message.FromDate,
-            message.WeekToDate ?? message.ToDate,
-            message.CustName,
-            message.CustLevel,
-            message.ShowFullName,
-            reportData, productNames);
-
-    public ExcelFileViewModel BuildExcelFile(
-        DateTime fromDate,
-        DateTime toDate,
-        string custName,
-        UserLevel custLevel,
-        bool showFullName,
-        ReportData<WinLossDetailModel> reportData,
-        string productNames)
     {
-        var fromDateString = fromDate.ToShortDateWithSlash();
-        var toDateString = toDate.ToShortDateWithSlash();
-
+        var fromDateString = (message.WeekFromDate ?? message.FromDate).ToShortDateWithSlash();
+        var toDateString = (message.WeekToDate ?? message.ToDate).ToShortDateWithSlash();
+        var custLevel = message.CustLevel;
         var rewardCurrency = reportData.Total?.RewardCurrency;
         var rewardColumnName = string.Format(
             "{0}{1}",
@@ -56,18 +31,18 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
 
         var fileContent = UseTemplate(
             new TemplateInfo(
-                GetExcelTemplatePath($"{custLevel.GetDirectDownLineLevel().DisplayName}{(showFullName ? "New" : string.Empty)}"),
+                GetExcelTemplatePath($"{custLevel.GetDirectDownLineLevel().DisplayName}{(message.ShowFullName ? "New" : string.Empty)}"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 freezeRowIndex: 4,
                 freezeColumnName: B))
             .Title($"{Resources.WinLossDetail} {fromDateString} --> {toDateString} {Resources.of2} {productNames}")
             .Header(key => key.Equals("Reward", StringComparison.OrdinalIgnoreCase) ? rewardColumnName : Resources.ResourceManager.GetString(key))
-            .Body(reportData.DataSource, showFullName ? GetRowMapperWithFullName(custLevel) : GetRowMapper(custLevel))
-            .Footer(reportData.Total, showFullName ? GetRowMapperWithFullName(custLevel, true) : GetRowMapper(custLevel, true))
+            .Body(reportData.DataSource, message.ShowFullName ? GetRowMapperWithFullName(custLevel) : GetRowMapper(custLevel))
+            .Footer(reportData.Total, message.ShowFullName ? GetRowMapperWithFullName(custLevel, true) : GetRowMapper(custLevel, true))
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{Resources.WinLossDetail}-{custName}-{fromDateString}-{toDateString}", fileContent);
+        return new ExcelFileViewModel($"{Resources.WinLossDetail}-{message.CustName}-{fromDateString}-{toDateString}", fileContent);
     }
 
     private static Mapper<WinLossDetailModel> GetRowMapper(UserLevel custLevel, bool isTotal = false)

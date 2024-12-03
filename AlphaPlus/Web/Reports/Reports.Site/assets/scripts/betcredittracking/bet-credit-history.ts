@@ -46,8 +46,7 @@
         $('.btn-submit').click(this.resetPaging());
         $('.range-option').click(this.resetPaging());
 
-        const $iconExcel = $('#icon-excel');
-        $iconExcel.click((event) => this.onExportExcel(event, $iconExcel));
+        $('#icon-excel').click((event) => this.onExportExcel(event));
     }
 
     resetPaging = () => {
@@ -55,11 +54,10 @@
         $('#PageSize').val('');
     };
 
-    onExportExcel = (event, $iconExcel: JQuery) => {
+    onExportExcel = (event) => {
         $.blockUI();
         if (this.validateUsername()) {
             this.hideValidationMsgError();
-            $iconExcel.trigger('click');
         } else {
             event.preventDefault();
             this.showValidationMsgError(this.resources.usernameIsRequired);

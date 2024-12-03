@@ -8,7 +8,6 @@ using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
-using AlphaPlus.Reports.Site.Features.WinLossDetail;
 using MediatR;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Shared.AppResources.Report;
@@ -22,7 +21,7 @@ public class ConsolidationDetailHandler(
     IEnteredResultService enteredResultService,
     IConsolidationService consolidationService,
     IWinLossDetailService winlossDetailService,
-    IWinLossDetailWorkbook winLossDetailWorkbook) :
+    IConsolidationDetailWorkbook consolidationDetailWorkbook) :
         BaseHandler(productService, options),
         IRequestHandler<ConsolidationDetailQuery, ConsolidationDetailViewModel>,
         IRequestHandler<ConsolidationDetailExcelQuery, ExcelFileViewModel>
@@ -30,7 +29,7 @@ public class ConsolidationDetailHandler(
     private readonly IEnteredResultService enteredResultService = enteredResultService;
     private readonly IConsolidationService consolidationService = consolidationService;
     private readonly IWinLossDetailService winlossDetailService = winlossDetailService;
-    private readonly IWinLossDetailWorkbook winLossDetailWorkbook = winLossDetailWorkbook;
+    private readonly IConsolidationDetailWorkbook consolidationDetailWorkbook = consolidationDetailWorkbook;
 
     public async Task<ConsolidationDetailViewModel> Handle(ConsolidationDetailQuery message, CancellationToken cancellationToken)
     {
@@ -63,14 +62,7 @@ public class ConsolidationDetailHandler(
             productDetailXml);
         var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 
-        return winLossDetailWorkbook.BuildExcelFile(
-            message.FromDate,
-            message.ToDate,
-            message.CustName,
-            message.CustLevel,
-            false,
-            reportData,
-            productNames);
+        return consolidationDetailWorkbook.BuildExcelFile(message, reportData, productNames);
     }
 
     private Task<ReportData<WinLossDetailModel>> GetWinLossDetail(

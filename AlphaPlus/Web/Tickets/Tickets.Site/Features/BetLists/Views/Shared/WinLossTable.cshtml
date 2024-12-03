@@ -97,7 +97,18 @@
             }
             else
             {
-                <no-infomation colspan="Model.TotalColumn" hastbody="false" />
+                if (string.IsNullOrWhiteSpace(Model.BetListData.OutputParams.ErrMsg))
+                {
+                    <no-infomation colspan="Model.TotalColumn" hastbody="false" />
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="@Model.TotalColumn" class="text-center error-exceed-row">
+                            @Model.BetListData.OutputParams.ErrMsg
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
