@@ -48,9 +48,7 @@ class UsernameSuggestionComponent {
             queryString.push(`directdownlines=${options.directDownlines}`);
         }
 
-        if (options.isAccInfo) {
-            queryString.push(`isaccinfo=${options.isAccInfo}`);
-        }
+        queryString.push(`isaccinfo=${options.isAccInfo}`);
 
         return queryString.length === 0 ? '' : queryString.join('&');
     }

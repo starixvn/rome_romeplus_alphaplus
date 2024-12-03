@@ -11,7 +11,6 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
 
         public UserNameSuggestionQuery(IUser viewer) : base(viewer)
         {
-            DirectDownlines = false;
         }
 
         public string Query { get; set; }
