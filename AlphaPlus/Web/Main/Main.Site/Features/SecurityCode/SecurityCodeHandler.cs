@@ -286,7 +286,7 @@ namespace AlphaPlus.Main.Site.Features.SecurityCode
                 return new CustomResult { Code = CustomResult.ErrorCode, Message = Security.NotAuthorized };
             }
 
-            if (isResetSubAccount && !user.IsAdminCanUpdateSubAccount)
+            if (isResetSubAccount && userSession.IsInternal && !user.IsAdminCanUpdateSubAccount)
             {
                 return new CustomResult { Code = CustomResult.ErrorCode, Message = Security.NotAuthorized };
             }
