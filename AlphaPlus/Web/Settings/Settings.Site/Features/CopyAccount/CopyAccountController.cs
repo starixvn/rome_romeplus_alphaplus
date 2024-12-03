@@ -34,7 +34,7 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
             }
             else
             {
-                return Json(Result.CreateErrorResult(result.Message, result.Code));
+                return Json(result);
             }
         }
 
