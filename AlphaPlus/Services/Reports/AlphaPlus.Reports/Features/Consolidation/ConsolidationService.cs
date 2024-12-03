@@ -142,15 +142,17 @@ public class ConsolidationService(
                 foreach (var item in sortedWinLoss)
                 {
                     item.ProductName = cacheRefService.GetProductName(item.BreakDown);
+                    total = total ?? new ConsolidationEntity
+                    {
+                        BreakDown = item.BreakDown,
+                        PositionTaking = item.PositionTaking,
+                        CustId = item.CustId,
+                        CustLevel = item.CustLevel,
+                        Username = item.Username,
+                        CurrencyId = item.CurrencyId
+                    };
 
-                    if (total == null)
-                    {
-                        total = item;
-                    }
-                    else
-                    {
-                        total += item;
-                    }
+                    total += item;
                 }
 
                 return new ConsolidationByPT(total, sortedWinLoss);

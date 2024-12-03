@@ -48,6 +48,12 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
         var fromDateString = fromDate.ToShortDateWithSlash();
         var toDateString = toDate.ToShortDateWithSlash();
 
+        var rewardCurrency = reportData.Total?.RewardCurrency;
+        var rewardColumnName = string.Format(
+            "{0}{1}",
+            Resources.Reward,
+            string.IsNullOrWhiteSpace(rewardCurrency) ? string.Empty : $" ({rewardCurrency})");
+
         var fileContent = UseTemplate(
             new TemplateInfo(
                 GetExcelTemplatePath($"{custLevel.GetDirectDownLineLevel().DisplayName}{(showFullName ? "New" : string.Empty)}"),
@@ -55,7 +61,7 @@ public class WinLossDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
                 freezeRowIndex: 4,
                 freezeColumnName: B))
             .Title($"{Resources.WinLossDetail} {fromDateString} --> {toDateString} {Resources.of2} {productNames}")
-            .Header(Resources.ResourceManager.GetString)
+            .Header(key => key.Equals("Reward", StringComparison.OrdinalIgnoreCase) ? rewardColumnName : Resources.ResourceManager.GetString(key))
             .Body(reportData.DataSource, showFullName ? GetRowMapperWithFullName(custLevel) : GetRowMapper(custLevel))
             .Footer(reportData.Total, showFullName ? GetRowMapperWithFullName(custLevel, true) : GetRowMapper(custLevel, true))
             .Sheet(Resources.DefaultSheetName)

@@ -49,7 +49,7 @@ public class BetListBaseViewModel(
 
     public bool DisplayVNIP { get; } = message.DisplayVNIP;
 
-    public string Title => GetTitle();
+    public string Title => GetTitle().ToUpperInvariant();
 
     protected virtual string GetTitle()
         => HasDateParam()
