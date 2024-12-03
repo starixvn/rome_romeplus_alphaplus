@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="TotalBets" xml:space="preserve">
-    <value>จำนวนการวางเดิมพันทั้งหมด</value>
+    <value>ยอดเดิมพันทั้งหมด</value>
   </data>
   <data name="Forecast" xml:space="preserve">
     <value>การทำนายผลล่วงหน้า</value>
@@ -316,7 +316,7 @@
     <value>ยอดการเล่นและคำนวณผล</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>เลขที่.</value>
+    <value>ลำดับที่ </value>
   </data>
   <data name="Schedule" xml:space="preserve">
     <value>กำหนดการ</value>

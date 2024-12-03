@@ -3429,4 +3429,7 @@
   <data name="unassigned" xml:space="preserve">
     <value>未分配</value>
   </data>
+  <data name="IsApplied" xml:space="preserve">
+    <value>已申请</value>
+  </data>
 </root>

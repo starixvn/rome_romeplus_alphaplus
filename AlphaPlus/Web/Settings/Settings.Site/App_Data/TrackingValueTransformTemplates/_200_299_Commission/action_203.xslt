@@ -3,267 +3,121 @@
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
   <xsl:template match="acc_customerinsmember_ag">
-    <xsl:if test="xslLogFormat:IsShowMyanmarOdds() != 'True'">
-      <table class="tblDesc">
-        <tr>
-          <!--<td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('custid')" /></td>
+    <table class="tblDesc">
+      <tr>
+        <!--<td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('custid')" /></td>
                 <td class="colW2">
                     <xsl:value-of select="@custid" />
                 </td>-->
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('discount')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@discount" />
-          </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('discount')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@discount" />
+        </td>
 
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscount" />
-          </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@playerdiscount" />
+        </td>
 
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('discountcs')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@discountcs" />
-          </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('discountcs')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@discountcs" />
+        </td>
+      </tr>
+      <tr>
 
-        </tr>
-        <tr>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscountcs')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@playerdiscountcs" />
+        </td>
 
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscountcs')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscountcs" />
-          </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('discount1x2')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@discount1x2" />
+        </td>
 
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('discount1x2')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@discount1x2" />
-          </td>
-
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount1x2')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscount1x2" />
-          </td>
-        </tr>
-      </table>
-    </xsl:if>
-    <xsl:if test="xslLogFormat:IsShowMyanmarOdds() = 'True'">
-      <table class="tblDesc">
-        <tr>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('discount')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@discount" />
-          </td>
-
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscount" />
-          </td>
-
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('discountcs')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@discountcs" />
-          </td>
-
-        </tr>
-        <tr>
-
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscountcs')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscountcs" />
-          </td>
-
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('discount1x2')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@discount1x2" />
-          </td>
-
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount1x2')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscount1x2" />
-          </td>
-        </tr>
-        <tr>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('DiscountMyanmarOdds')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@myanmarodds" />
-          </td>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('PlayerDiscountMyanmarOdds')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscountmyanmarodds" />
-          </td>
-          <td class="colW1"></td>
-          <td class="colW2"></td>
-        </tr>
-      </table>
-    </xsl:if>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount1x2')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@playerdiscount1x2" />
+        </td>
+      </tr>
+    </table>
   </xsl:template>
 
   <xsl:template match="acc_customerupdmember_commission">
-    <xsl:if test="xslLogFormat:IsShowMyanmarOdds() != 'True'">
-      <table class="tblDesc">
-        <tr>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscount" />
-          </td>
 
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscountcs')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscountcs" />
-          </td>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount1x2')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscount1x2" />
-          </td>
-        </tr>
-        <tr>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('subaccname')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@subaccname" />
-          </td>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('language')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@language" />
-          </td>
-          <td class="colW1">
-          </td>
-          <td class="colW2">
-          </td>
-        </tr>
-        <tr>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('errcode')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@errcode" />
-          </td>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('errmsg')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@errmsg" />
-          </td>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('ip')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-          </td>
-        </tr>
-      </table>
-    </xsl:if>
-    <xsl:if test="xslLogFormat:IsShowMyanmarOdds() = 'True'">
-      <table class="tblDesc">
-        <tr>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscount" />
-          </td>
+    <table class="tblDesc">
+      <tr>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@playerdiscount" />
+        </td>
 
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscountcs')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscountcs" />
-          </td>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount1x2')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@playerdiscount1x2" />
-          </td>
-        </tr>
-        <tr>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('DiscountMyanmarOdds')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@discountmyanmarodds" />
-          </td>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('subaccname')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@subaccname" />
-          </td>
-          <td class="colW1">
-          </td>
-          <td class="colW2">
-          </td>
-        </tr>
-        <tr>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('language')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@language" />
-          </td>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('errcode')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@errcode" />
-          </td>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('errmsg')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="@errmsg" />
-          </td>
-        </tr>
-        <tr>
-          <td class="colW1">
-            <xsl:value-of select="xslLogFormat:GetLogResource('ip')" />
-          </td>
-          <td class="colW2">
-            <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-          </td>
-          <td class="colW1"></td>
-          <td class="colW2"></td>
-          <td class="colW1"></td>
-          <td class="colW2"></td>
-        </tr>
-      </table>
-    </xsl:if>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscountcs')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@playerdiscountcs" />
+        </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('playerdiscount1x2')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@playerdiscount1x2" />
+        </td>
+      </tr>
+      <tr>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('subaccname')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@subaccname" />
+        </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('language')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@language" />
+        </td>
+        <td class="colW1">
+        </td>
+        <td class="colW2">
+        </td>
+      </tr>
+      <tr>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('errcode')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@errcode" />
+        </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('errmsg')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="@errmsg" />
+        </td>
+        <td class="colW1">
+          <xsl:value-of select="xslLogFormat:GetLogResource('ip')" />
+        </td>
+        <td class="colW2">
+          <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
+        </td>
+      </tr>
+    </table>
   </xsl:template>
-
 </xsl:stylesheet>

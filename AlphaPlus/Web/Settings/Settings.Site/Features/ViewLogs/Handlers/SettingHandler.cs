@@ -18,17 +18,20 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
     {
         private readonly TrackingValueFormatter trackingValueFormatter;
         private readonly TransformService transformService;
+        private readonly Fanex.Logging.ILogger logger;
 
         public SettingHandler(
             [FromKeyedServices("settingLogSvc")] LogService logService,
             LogFormatter logFormatter,
             IDateTime dateTimeWrapper,
             TransformService transformService,
-            TrackingValueFormatter trackingValueFormatter) :
+            TrackingValueFormatter trackingValueFormatter,
+            Fanex.Logging.ILogger logger) :
              base(logService, logFormatter, dateTimeWrapper)
         {
             this.trackingValueFormatter = trackingValueFormatter;
             this.transformService = transformService;
+            this.logger = logger;
         }
 
         public async Task<IndexViewModel> Handle(IndexQuery message, CancellationToken cancellation)
@@ -107,27 +110,34 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 
             foreach (var log in pagingLogs.Logs)
             {
-                var formattedTrackingValue = trackingValueFormatter.GetFormattedDiffTrackingValue(log, message.IsShowOldValue);
-                var htmlTrackingValue = transformService.TransformTrackingValue(formattedTrackingValue, log.ActionId, transformParam, log.IsHideNickname);
-
-                if (htmlTrackingValue != null)
+                try
                 {
-                    logItems.Add(new LogItemViewModel
-                    {
-                        ActionId = log.ActionId,
-                        ActionName = await LogService.GetLogActionName(log.ActionId, message.Language),
+                    var formattedTrackingValue = trackingValueFormatter.GetFormattedDiffTrackingValue(log, message.IsShowOldValue);
+                    var htmlTrackingValue = transformService.TransformTrackingValue(formattedTrackingValue, log.ActionId, transformParam, log.IsHideNickname);
 
-                        ActionTypeId = log.ActionTypeId,
-                        CustId = log.CustId,
-                        CustName = log.CustName,
-                        LogDate = DateTimeHelper.ToLongDateWithSlash(log.LogDate),
-                        LogId = log.LogId,
-                        SPName = log.StoreProcedureName,
-                        UserId = log.UserId,
-                        Username = log.Username,
-                        TrackingValue = HttpUtility.HtmlDecode(htmlTrackingValue),
-                        IP = LogFormatter.FormatIP(log.IP)
-                    });
+                    if (htmlTrackingValue != null)
+                    {
+                        logItems.Add(new LogItemViewModel
+                        {
+                            ActionId = log.ActionId,
+                            ActionName = await LogService.GetLogActionName(log.ActionId, message.Language),
+
+                            ActionTypeId = log.ActionTypeId,
+                            CustId = log.CustId,
+                            CustName = log.CustName,
+                            LogDate = DateTimeHelper.ToLongDateWithSlash(log.LogDate),
+                            LogId = log.LogId,
+                            SPName = log.StoreProcedureName,
+                            UserId = log.UserId,
+                            Username = log.Username,
+                            TrackingValue = HttpUtility.HtmlDecode(htmlTrackingValue),
+                            IP = LogFormatter.FormatIP(log.IP)
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.Message, ex);
                 }
             }
 

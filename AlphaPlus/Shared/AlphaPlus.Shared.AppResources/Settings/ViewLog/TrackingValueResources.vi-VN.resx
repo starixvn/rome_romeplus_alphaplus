@@ -238,7 +238,7 @@
     <value>Hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="isa_v2smpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="AccountRemark" xml:space="preserve">
     <value>Account Remark</value>
@@ -280,7 +280,7 @@
     <value>Cược Chấp</value>
   </data>
   <data name="isa_mpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="isa_mpt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -289,7 +289,7 @@
     <value>Tên của Master mới</value>
   </data>
   <data name="isa_spt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="isa_spt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -418,7 +418,7 @@
     <value>PT lớn nhất cho hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="maxv2pt_9" xml:space="preserve">
-    <value>PT lớn nhất cho thể loại Cược Xiên</value>
+    <value>PT lớn nhất cho thể loại Cược tổng hợp</value>
   </data>
   <data name="maxv2pt_7" xml:space="preserve">
     <value>PT lớn nhất cho hiệp 1 - hdp</value>
@@ -610,13 +610,13 @@
     <value>Tỷ Số Chính Xác</value>
   </data>
   <data name="a_spt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="a_spt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="a_mpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="a_mpt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -712,13 +712,13 @@
     <value>Cược Chấp</value>
   </data>
   <data name="a_v2spt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="a_v2spt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="a_v2mpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="a_v2mpt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -850,7 +850,7 @@
     <value>Email</value>
   </data>
   <data name="apt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="apt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -907,7 +907,7 @@
     <value>Tỷ Số Chính Xác</value>
   </data>
   <data name="mpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="mpt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -955,7 +955,7 @@
     <value>Tiểu bang</value>
   </data>
   <data name="spt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="spt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -1117,7 +1117,7 @@
     <value>Hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="isa_smpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="playerdiscountcs" xml:space="preserve">
     <value>Chiết khấu khác cho người chơi</value>
@@ -1213,13 +1213,13 @@
     <value>Hiệp 1 -  Cược Chấp</value>
   </data>
   <data name="isa_v2mpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="isa_v2mpt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="isa_v2spt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="isa_v2spt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -1561,7 +1561,7 @@
     <value>PT của Master mới </value>
   </data>
   <data name="v2apt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="v2apt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -1591,7 +1591,7 @@
     <value>Cược Chấp</value>
   </data>
   <data name="v2mpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="v2mpt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -1606,7 +1606,7 @@
     <value>Cược Chấp</value>
   </data>
   <data name="v2spt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="v2spt_8" xml:space="preserve">
     <value>Hiệp 1 - Tài/Xỉu</value>
@@ -2023,7 +2023,7 @@
     <value>Hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="a_mpt_mem_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="a_v10mpt_mem_1" xml:space="preserve">
     <value>Cược Chấp</value>
@@ -2053,7 +2053,7 @@
     <value>Hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="a_v2mpt_mem_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="a_v3mpt_mem_1" xml:space="preserve">
     <value>Cược Chấp</value>
@@ -2128,7 +2128,7 @@
     <value>Hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="isa_mpt_mem_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="isa_v10mpt_mem_1" xml:space="preserve">
     <value>Cược Chấp</value>
@@ -2158,7 +2158,7 @@
     <value>Hiệp 1 - Tài/Xỉu</value>
   </data>
   <data name="isa_v2mpt_mem_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="isa_v3mpt_mem_1" xml:space="preserve">
     <value>Cược Chấp</value>
@@ -2242,7 +2242,7 @@
     <value>Mix Sports Parlay</value>
   </data>
   <data name="v99spt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="a_v161spt_81" xml:space="preserve">
     <value>Banh đầu/ Banh cuối - Tài/Xỉu</value>
@@ -2266,7 +2266,7 @@
     <value>Banh kế tiếp - Cao/Thấp</value>
   </data>
   <data name="a_v99spt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="isa_v161spt_81" xml:space="preserve">
     <value>Banh đầu/ Banh cuối - Tài/Xỉu</value>
@@ -2290,7 +2290,7 @@
     <value>Banh kế tiếp - Cao/Thấp</value>
   </data>
   <data name="isa_v99spt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="v161mpt_81" xml:space="preserve">
     <value>Banh đầu/ Banh cuối - Tài/Xỉu</value>
@@ -2314,7 +2314,7 @@
     <value>Banh kế tiếp - Cao/Thấp</value>
   </data>
   <data name="v99mpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="MinBv99MP" xml:space="preserve">
     <value>Tiền cược nhỏ nhất cho Mix Sports Parlay</value>
@@ -2365,7 +2365,7 @@
     <value>Banh kế tiếp - Cao/Thấp</value>
   </data>
   <data name="v99apt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="a_v161mpt_81" xml:space="preserve">
     <value>Banh đầu/ Banh cuối - Tài/Xỉu</value>
@@ -2389,7 +2389,7 @@
     <value>Banh kế tiếp - Cao/Thấp</value>
   </data>
   <data name="a_v99mpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="isa_v161mpt_81" xml:space="preserve">
     <value>Banh đầu/ Banh cuối - Tài/Xỉu</value>
@@ -2413,7 +2413,7 @@
     <value>Banh kế tiếp - Cao/Thấp</value>
   </data>
   <data name="isa_v99mpt_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="Updptv99MP" xml:space="preserve">
     <value>Cập nhật giá trị PT của Mix Sports Parlay</value>
@@ -2488,7 +2488,7 @@
     <value>Banh kế tiếp - Cao/Thấp</value>
   </data>
   <data name="isa_v99mpt_mem_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="a_v161mpt_mem_81" xml:space="preserve">
     <value>Banh đầu/ Banh cuối - Tài/Xỉu</value>
@@ -2512,13 +2512,13 @@
     <value>Banh kế tiếp - Cao/Thấp</value>
   </data>
   <data name="a_v99mpt_mem_9" xml:space="preserve">
-    <value>Cược Xiên</value>
+    <value>Cược tổng hợp</value>
   </data>
   <data name="minv99pt_9" xml:space="preserve">
-    <value>PT nhỏ nhất cho Cược Xiên</value>
+    <value>PT nhỏ nhất cho Cược tổng hợp</value>
   </data>
   <data name="maxv99pt_9" xml:space="preserve">
-    <value>PT lớn nhất cho thể loại Cược Xiên</value>
+    <value>PT lớn nhất cho thể loại Cược tổng hợp</value>
   </data>
   <data name="DisableCasino" xml:space="preserve">
     <value>Không cho phép chơi Casino</value>
@@ -2788,7 +2788,7 @@
     <value>is Sync</value>
   </data>
   <data name="Sport" xml:space="preserve">
-    <value>Môn thể thao</value>
+    <value>Sport</value>
   </data>
   <data name="product" xml:space="preserve">
     <value>Sản Phẩm</value>
@@ -3170,5 +3170,8 @@
   </data>
   <data name="unassigned" xml:space="preserve">
     <value>Chưa chỉ định</value>
+  </data>
+  <data name="IsApplied" xml:space="preserve">
+    <value>Được thực hiện</value>
   </data>
 </root>
