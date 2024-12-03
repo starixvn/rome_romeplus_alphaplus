@@ -111,6 +111,28 @@
         }
       },
       "type": "biginteger"
+    },
+    "referenceURL": {
+      "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "published_count": {
+      "pluginOptions": {
+        "versions": {
+          "versioned": true
+        },
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
     }
   }
 }

@@ -13,6 +13,7 @@ import { getUpdateImageButton, updateImage } from './update-image';
 import { getUploadIconButton, uploadIcon } from './upload-icon';
 import { correctDropdownLocales } from './multi-languages';
 import { getFixDataButton, fixData } from './fix-data';
+import { getStopSupportButton, stopSupport } from './stop-support';
 import { getRunMySQLButton, showRunMySQL } from './run-mysql';
 
 var addedCss = false;
@@ -49,7 +50,9 @@ function addCustomedButtons(initialData, demoUrl, slug) {
 
   addedCss = true;
   var supportDemo = configs.showDemo.some(c => c === slug);
+  var showStopSupport = configs.showDemo.some(c => c === slug);
   var r =  document.createElement('div');
+
   r.innerHTML  = '<div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group">'
   + getUploadImageButton()
   + getUploadIconButton()
@@ -60,7 +63,7 @@ function addCustomedButtons(initialData, demoUrl, slug) {
   + getAutoSaveButton()
   + getCleanUnpublishedButton()
   + getFixDataButton()
-  + getRunMySQLButton()
+  + (showStopSupport ? getStopSupportButton() : "")
   ;
 
   t.append(r.firstChild);
@@ -80,7 +83,13 @@ function addCustomedButtons(initialData, demoUrl, slug) {
   document.getElementById('btn-update-image').onclick = () => { updateImage(adminUrl); };
   document.getElementById('btn-upload-icon').onclick = () => { uploadIcon(adminUrl); };
   document.getElementById('btn-fix-data').onclick = () => { fixData(); };
-  document.getElementById('btn-run-mysql').onclick = () => { };
+
+  // document.getElementById('btn-run-mysql').onclick = () => { showRunMySQL(); };
+
+  if(showStopSupport) {
+    document.getElementById('btn-stop-support').onclick = () => { stopSupport(initialData); };
+  }
+
   cleanUpEditor();
 }
 

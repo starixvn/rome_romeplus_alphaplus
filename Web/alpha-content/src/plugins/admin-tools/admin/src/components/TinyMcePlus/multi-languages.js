@@ -1,30 +1,45 @@
 import qs from "qs";
 
 function correctDropdownLocales(initialData, slug) {
+  switch(slug) {
+    case 'api::article.article':
+    case 'api::category.category':
+      setTimeout(() => { correctLocale(initialData); }, 300);
+      break;
+    default:
+      break;
+    }
+}
+
+function correctLocale(initialData) {
   let query = window.location.search;
   if(query.indexOf('?') == 0) {
     query = query.substring(1);
   }
 
   const urlParamsObject = qs.parse(query);
-  if(urlParamsObject.plugins?.i18n?.locale || initialData.locale == 'en') {
+  const iquery = location.href.indexOf('?');
+  let uri = location.href.substring(0, iquery === -1 ? location.href.length : iquery);
+
+  const iId = uri.lastIndexOf('/');
+  const qid = uri.substring(iId + 1, uri.length);
+  uri = uri.substring(0, iId);
+
+  const queryLocale = urlParamsObject.plugins?.i18n?.locale;
+  if(!parseInt(qid) || (queryLocale && queryLocale == initialData.locale)) {
     return;
   }
 
-  switch(slug) {
-    case 'api::article.article':
-    case 'api::category.category':
-      urlParamsObject.plugins = {
-        i18n: {
-          locale: initialData.locale,
-          relatedEntityId: initialData.id
-        }
-      };
-      location.href = location.href + "?" + qs.stringify(urlParamsObject);
-      break;
-    default:
-      break;
+  urlParamsObject.plugins = {
+    i18n: {
+      locale: initialData.locale,
+      relatedEntityId: urlParamsObject.plugins?.i18n?.relatedEntityId
     }
+  };
+
+  location.href = `${uri}/${qid}?${qs.stringify(urlParamsObject)}`;
 }
+
+
 
 export { correctDropdownLocales };

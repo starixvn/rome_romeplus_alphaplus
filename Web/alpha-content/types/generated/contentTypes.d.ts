@@ -904,6 +904,24 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    referenceURL: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        versions: {
+          versioned: true;
+        };
+        i18n: {
+          localized: true;
+        };
+      }>;
+    published_count: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        versions: {
+          versioned: true;
+        };
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

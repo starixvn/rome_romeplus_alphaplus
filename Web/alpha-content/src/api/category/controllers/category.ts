@@ -32,7 +32,7 @@ export default factories.createCoreController('api::category.category', ({ strap
         },
         populate: {
           articles: {
-            fields: ['slug', 'title', 'publishedAt'],
+            fields: ['slug', 'title', 'publishedAt', 'referenceURL'],
             populate: {
               user_levels:{
                 fields: ['levelId']
@@ -73,7 +73,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       },
       populate: {
         articles: {
-          fields: ['slug', 'title', 'publishedAt', 'order'],
+          fields: ['slug', 'title', 'publishedAt', 'order', 'referenceURL'],
           populate: {
             user_levels:{
               fields: ['levelId']
@@ -117,7 +117,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       },
       populate: {
         articles: {
-          fields: ['slug', 'title', 'publishedAt', 'order'],
+          fields: ['slug', 'title', 'publishedAt', 'order', 'referenceURL'],
           populate: {
             user_levels:{
               fields: ['levelId']
@@ -138,9 +138,6 @@ export default factories.createCoreController('api::category.category', ({ strap
 
     const result = await this.sanitizeOutput(entities, ctx) as [any];
     const categories = filterCategoriesHasData(result, market, level, isProd);
-    if(categories.length === 0) {
-      return await this.findManyEN(ctx, null);
-    }
 
     return categories;
   },
@@ -162,7 +159,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       },
       populate:{
         articles: {
-          fields: ['slug', 'title', 'publishedAt', 'order'],
+          fields: ['slug', 'title', 'publishedAt', 'order', 'referenceURL'],
           populate: {
             user_levels:{
               fields: ['levelId']
@@ -212,7 +209,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       },
       populate: {
         articles: {
-          fields: ['slug', 'title', 'publishedAt', 'order'],
+          fields: ['slug', 'title', 'publishedAt', 'order', 'referenceURL'],
           populate: {
             user_levels:{
               fields: ['levelId']
@@ -230,11 +227,6 @@ export default factories.createCoreController('api::category.category', ({ strap
         }
       }
     });
-
-    if(entities.length === 0) 
-    {
-      return await this.getBySlugEN(ctx, null);
-    }
 
     const result = await this.sanitizeOutput(entities, ctx) as [any];
     filterCategoriesHasData(result, market, level, isProd);

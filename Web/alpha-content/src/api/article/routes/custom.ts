@@ -22,7 +22,7 @@ export default {
     },
     {
       method: 'PUT',
-      path: '/articles/clean-unpublished/:slug',
+      path: '/articles/clean-unpublished/:vuid',
       handler: 'article.cleanUnpublished',
     },
     {
@@ -49,7 +49,12 @@ export default {
       method: 'PUT',
       path: '/articles/run-mysql/post',
       handler: 'article.runMySQL',
-    }
+    },
+    {
+      method: 'PUT',
+      path: '/articles/stop-support/:vuid',
+      handler: 'article.stopSupport',
+    },
   ]
 }
 
