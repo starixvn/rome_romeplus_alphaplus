@@ -20,7 +20,8 @@ namespace AlphaPlus.Features.Site.Handbook.Controllers
                 + "&roleId=" + request.RoleId
                 + "&site=" + request.Site
                 + "&siteLabel=" + request.SiteLabel
-                + "&currency=" + request.Currency;
+                + "&currency=" + request.Currency
+                + "&lng=" + request.Language;
 
             return Redirect(url);
         }
