@@ -36,6 +36,8 @@ class ManageFiltersView {
             self.handleToggleCollapseExpand($(this));
         });
 
+        table.find('.div-notify').click((e) => this.handleOnClickDivNotify(e, radioDefaultFilter));
+
         table.find('.ic-edit').click((e) => this.handleOnClickIconEdit(e, iconCloseList, radioDefaultFilter));
 
         table.find('.ic-delete').click((e) => this.handleOnClickIconDelete(e));
@@ -243,7 +245,7 @@ class ManageFiltersView {
         } else {
             const url = AJAXHelper.buildURL('MonitoringBets/UpdateFilter');
             AJAXHelper.post(url, formData, (result) => {
-                this.inlineMessageComponent.show(result);
+                this.inlineMessageComponent.show(result.Message, result.Code);
                 result.Code || Common.Utils.ReloadPageAfterTimeout();
             });
         }

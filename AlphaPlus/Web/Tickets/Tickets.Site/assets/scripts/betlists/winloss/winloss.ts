@@ -190,9 +190,7 @@ class WinLossBetListView {
             `${AJAXHelper.buildURL('WinLoss/BetList')}?${queryString}`,
             (html) => {
                 this.globalFormData = formData;
-
                 this.tableBetList.find('tbody').html(html);
-                this.updateCurrentUrl(queryString);
             },
             this.tableBetList
         );

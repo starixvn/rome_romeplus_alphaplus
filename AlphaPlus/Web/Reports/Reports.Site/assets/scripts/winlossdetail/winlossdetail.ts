@@ -68,7 +68,9 @@ class WinLossDetailView extends BaseReportNew {
         this.winLossDetailColumns.init(() => this.updateQueryString());
         this.registerEvents();
         this.$tblReportContainer.removeAttr('style');
-        $.extend(this.globalFormData, this.productComponent.getCheckedValues());
+
+        const breadcrumbsJson = JSON.stringify(this.breadcrumbLevelComponent.getBreadcrumbs());
+        $.extend(this.globalFormData, this.productComponent.getCheckedValues(), { breadcrumbsJson });
 
         setTimeout(function () {
             window.top.indexManager && window.top.indexManager.initFeedbackFunction(2);

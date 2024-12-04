@@ -45,7 +45,7 @@ public class WinLossBaseHandler(
             message.CustId,
             productViewModel.UserSelectedProductIds,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo).ToStartOfDay(),
-            message.ToDate.ToEndOfDay(),
+            message.ToDate,
             productDetailsXml,
             message.DisplayVNIP,
             message.Site,
