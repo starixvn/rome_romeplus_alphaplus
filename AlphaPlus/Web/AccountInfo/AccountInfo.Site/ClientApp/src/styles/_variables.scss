@@ -83,10 +83,14 @@
     --note-color: #666666;
     --note-text-color: #ff0302;
     --note-number-color: #333;
+    //popup
+    --member-balance-number-red: #ff0000;
+    --member-balance-number: #004080;
+
 }
 
 :root [data-theme='dark'] {
-
+    
     --body-bg:#212223;
 
     --text-color: #cbcbcb;
@@ -172,6 +176,8 @@
     --note-color: #fff;
     --note-text-color: #FF4F50;
     --note-number-color: #9c9c9c;
-    
+    //popup
+    --member-balance-number-red: #e54748;
+    --member-balance-number: #0f7ddb;
     
 }

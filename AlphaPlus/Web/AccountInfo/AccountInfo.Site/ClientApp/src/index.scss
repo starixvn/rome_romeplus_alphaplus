@@ -543,3 +543,20 @@ hr {
         background-color: transparent !important;
     }
 }
+body[data-theme='dark'] {
+    background: transparent;
+}
+.member-balance-info{
+    &:after{
+        content: "";
+        clear: both;
+        display: table;
+    }
+    padding-top: 10px;
+    .number-red{
+        color: var(--member-balance-number-red);
+    }
+    .number{
+        color: var(--member-balance-number);
+    }
+}
