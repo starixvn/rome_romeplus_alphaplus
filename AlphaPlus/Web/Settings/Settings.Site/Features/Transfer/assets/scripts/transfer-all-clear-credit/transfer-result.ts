@@ -27,7 +27,7 @@ class TransferResult {
     init = () => {
         this.cacheElements();
 
-        const queryUsernameURL = `${this.$usernameAutoSuggestionPath.val()}?${this.$.param({ isDir: 1, ismember: 0, issub: 0 })}`;
+        const queryUsernameURL = `${this.$usernameAutoSuggestionPath.val()}?${this.$.param({ directDownlines: true, isAccInfo: false })}`;
 
         initAutoComplete(this.$username[0], queryUsernameURL);
 

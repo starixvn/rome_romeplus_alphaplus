@@ -37,9 +37,8 @@ class TransferAllAndClearCredit {
         this.cacheElements();
 
         const queryUsernameURL = `${this.$usernameAutoSuggestionPath.val()}?${this.$.param({
-            isDir: 1,
-            issub: 0,
-            ismember: 0
+            directDownlines: true,
+            isAccInfo: false
         })}`;
 
         initAutoComplete(this.$username[0], queryUsernameURL);
