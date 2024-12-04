@@ -57,7 +57,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
         public override string PopupHeaderText => IsPopup ? Request.GetResource("OpenCustomerPopupHeaderText") : base.PopupHeaderText;
 
         public override string Url => IsPopup
-            ? MicroSites.SettingUrl($"~/OpenDownlines/EditSingle?SearchAccountId={SearchAccount.Id}&SearchAccountName={SearchAccount.Username}")
+            ? MicroSites.AccountInfoUrl($"~/OpenDownlines/EditSingle?SearchAccountId={SearchAccount.Id}&SearchAccountName={SearchAccount.Username}")
             : base.Url;
     }
 }
