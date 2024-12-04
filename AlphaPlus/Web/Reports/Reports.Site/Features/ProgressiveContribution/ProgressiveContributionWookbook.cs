@@ -58,7 +58,7 @@ public class ProgressiveContributionWookbook(IWebHostEnvironment webHostEnvironm
         var mapper = new Mapper<ProgressiveContributionEntity>()
             .Map(A, pc => pc.ProductId == 0 && pc.BetType == 0
                 ? Resources.Total
-                : pc.BetType)
+                : pc.BetTypeName)
             .Map(B, pc => pc.Turnover)
             .Map(C, pc => pc.Contribution);
 

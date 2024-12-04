@@ -183,7 +183,7 @@
     {
         if (Model.CanTransferOnBalanceColumn && item.Balance != 0)
         {
-            return $"<a href='javascript:;' class='link balancelink' data-custid='{item.CustId}'>{HtmlHelpers.FormatDecimal(item.Balance, true)}</a>";
+            return $"<a href='javascript:;' class='link balancelink' data-url='{Model.GetMemberTransferLink(item.CustId)}'>{HtmlHelpers.FormatDecimal(item.Balance, true)}</a>";
         }
         else
         {
@@ -195,7 +195,7 @@
     {
         if (Model.CanTransferOnYesterdayBalanceColumn && item.Yesterday_Balance != 0)
         {
-            return $"<a href='javascript:;' class='link yesterdaybalancelink' data-custid='{item.CustId}'>{HtmlHelpers.FormatDecimal(item.Yesterday_Balance, true)}</a>";
+            return $"<a href='javascript:;' class='link yesterdaybalancelink' data-url='{Model.GetMemberTransferLink(item.CustId)}'>{HtmlHelpers.FormatDecimal(item.Yesterday_Balance, true)}</a>";
         }
         else
         {

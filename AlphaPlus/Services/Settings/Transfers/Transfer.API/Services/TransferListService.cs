@@ -78,7 +78,8 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
                 YesterdayBalance = agentCriteria.TotalYesterdayBalance ?? 0,
                 Balance = agentCriteria.TotalBalance ?? 0,
                 Outstanding = agentCriteria.TotalOutStanding ?? 0,
-                GivenCredit = agentCriteria.TotalCredit ?? 0
+                GivenCredit = agentCriteria.TotalCredit ?? 0,
+                PendingTransfer3rd = agentCriteria.TotalPendingTransfer3rd ?? 0
             };
         }
 
@@ -92,7 +93,8 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
                 CashBalance = masterCriteria.TotalAgentCashBalance ?? 0,
                 Outstanding = masterCriteria.TotalOutStanding ?? 0,
                 GivenCredit = masterCriteria.TotalCredit ?? 0,
-                UsedCredit = masterCriteria.TotalUsedCredit ?? 0
+                UsedCredit = masterCriteria.TotalUsedCredit ?? 0,
+                PendingTransfer3rd = masterCriteria.TotalPendingTransfer3rd ?? 0
             };
         }
 
@@ -106,7 +108,8 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
                 CashBalance = superCriteria.TotalMAgentCashBalance ?? 0,
                 Outstanding = superCriteria.TotalOutStanding ?? 0,
                 GivenCredit = superCriteria.TotalCredit ?? 0,
-                UsedCredit = superCriteria.TotalUsedCredit ?? 0
+                UsedCredit = superCriteria.TotalUsedCredit ?? 0,
+                PendingTransfer3rd = superCriteria.TotalPendingTransfer3rd ?? 0
             };
         }
 

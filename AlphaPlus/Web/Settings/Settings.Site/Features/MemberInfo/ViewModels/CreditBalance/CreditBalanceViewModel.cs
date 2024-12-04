@@ -112,6 +112,9 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance
         public string GetMemberBalanceInfoLink(string custName)
             => MicroSites.AccountInfoUrl($"~/SearchAccount/GetMemberBalanceInfo?custname={custName}");
 
+        public string GetMemberTransferLink(int custId)
+            => MicroSites.SettingUrl($"~/TransferYesterdayBalance/Member?custId={custId}");
+
         public EnteredSportResult EnteredSportResult { get; }
     }
 }

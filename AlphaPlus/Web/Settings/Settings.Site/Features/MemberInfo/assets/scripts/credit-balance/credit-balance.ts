@@ -118,8 +118,8 @@ class CreditBalance {
 			self.topWindow.popupManager.openWithHanlder(self.topWindow.updateGivenCreditPopup, url, popupTitle, 470, 360);
         });
 
-        this.$(".balancelink, .yesterdaybalancelink").click(function () {
-            const url: string = "_Transfer/Agent/MemberTransfer.aspx?custid=" + self.$(this).data("custid");
+        this.$(".balancelink, .yesterdaybalancelink").click((e) => {
+            const url: string = this.$(e.target).data("url");
             const popH: number = navigator.userAgent.match(/iPad/i) != null ? 430 : 534;
             self.topWindow.popupManager.openByRelativeUrl(url, "", 520, popH);
         });
