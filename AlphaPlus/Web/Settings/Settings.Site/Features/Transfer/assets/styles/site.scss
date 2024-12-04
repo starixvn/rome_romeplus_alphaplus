@@ -391,6 +391,22 @@ a.transfer-link {
 }
 .wrapper-transfer-condition{
     max-width: 600px;
+    &.right-content{
+        padding-top: 13px;
+        .justify-content-space-between{
+            justify-content: flex-start;
+            label{
+                width: 100px;
+            }
+            input[type=text]{
+                margin-left: 10px;
+            }
+        }
+        .justify-content-flex-end{
+            justify-content: flex-start;
+            padding-left: 100px;
+        }
+    }
 }
 .ttl-form-transfer-condition{
     font-weight: bold;

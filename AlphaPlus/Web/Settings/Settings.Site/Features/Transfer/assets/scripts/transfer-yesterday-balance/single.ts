@@ -72,6 +72,7 @@ class SingleTransferView {
             $('.btn-cancel').removeClass('hide');
         } else {
             $('.page-title').removeClass('hide');
+            $('#form-update').addClass('right-content');
         }
     }
 }
