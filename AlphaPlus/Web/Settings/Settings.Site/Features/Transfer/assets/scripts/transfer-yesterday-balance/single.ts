@@ -73,6 +73,7 @@ class SingleTransferView {
         } else {
             $('.page-title').removeClass('hide');
             $('#form-update').addClass('right-content');
+            $('#right-content').addClass('right-form-transfer');
         }
     }
 }

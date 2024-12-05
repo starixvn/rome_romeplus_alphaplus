@@ -389,6 +389,9 @@ a.transfer-link {
         justify-content: space-between;
     }
 }
+.right-form-transfer{
+    max-width: 500px;
+}
 .wrapper-transfer-condition{
     max-width: 600px;
     &.right-content{
@@ -396,7 +399,8 @@ a.transfer-link {
         .justify-content-space-between{
             justify-content: flex-start;
             label{
-                width: 100px;
+                min-width: 70px;
+                padding: 0;
             }
             input[type=text]{
                 margin-left: 10px;
@@ -404,7 +408,7 @@ a.transfer-link {
         }
         .justify-content-flex-end{
             justify-content: flex-start;
-            padding-left: 100px;
+            padding-left: 70px;
         }
     }
 }
