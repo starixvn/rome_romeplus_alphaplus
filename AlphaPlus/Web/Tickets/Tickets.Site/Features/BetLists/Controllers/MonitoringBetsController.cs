@@ -26,10 +26,12 @@ public class MonitoringBetsController(
     public Task<IActionResult> GetMyWatchlistMembers(GetMyWatchlistMembersQuery message) => JsonData(message);
 
     [HttpPost]
+    [RequestFormLimits(ValueCountLimit = int.MaxValue)]
     public async Task<IActionResult> ApplyFilter(ApplyFilterCommand message)
         => message.IsValid() ? await JsonData(message) : JsonBadRequest();
 
     [HttpPost]
+    [RequestFormLimits(ValueCountLimit = int.MaxValue)]
     public Task<IActionResult> AddFilter(AddFilterCommand message)
         => ValidateAndDoAction(message);
 

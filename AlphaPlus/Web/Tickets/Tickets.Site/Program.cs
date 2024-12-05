@@ -40,6 +40,10 @@ StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 
 // Add services to the container.
 builder.Services
+    .Configure<MvcOptions>(options =>
+    {
+        options.MaxModelBindingCollectionSize = int.MaxValue;
+    })
     .Configure<JsonOptions>(options =>
     {
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
