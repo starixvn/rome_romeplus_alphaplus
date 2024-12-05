@@ -86,6 +86,7 @@ public class ConsolidationService(
                           on new { consolidation.CustId, ProductId = consolidation.BreakDown }
                           equals new { pt.CustId, ProductId = pt.ProductId.ToString() } into joinData
                       from joinRecord in joinData.DefaultIfEmpty()
+                      orderby consolidation.Username
                       select UpdatePTValueHandler(consolidation, joinRecord == null ? 0 : joinRecord.ValuePT);
 
             return BuildConsolidationByUsername(rawdata, param.Currencies);
