@@ -18,7 +18,7 @@ public class MemberBetListViewModel(
     HashSet<int> supportScoreMapBetTypeIds,
     IBetListHTMLBuilder builder,
     ITicketHelper ticketHelper)
-        : WinLossViewModel(message, betListData, builder, ticketHelper, message.IsEnabledJackpot, false, false, ExcludingTicketStatus, supportRiskAmount: true)
+        : WinLossViewModel(message, betListData, builder, ticketHelper, message.IsEnabledJackpot, false, false, ExcludingTicketStatus, showFooter: true, supportRiskAmount: true)
 {
     private static readonly string[] ExcludingTicketStatus =
     [

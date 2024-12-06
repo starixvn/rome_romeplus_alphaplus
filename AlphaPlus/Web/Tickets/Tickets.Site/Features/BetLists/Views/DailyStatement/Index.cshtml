@@ -82,12 +82,12 @@
                     {
                         <risk-amount member-win="@ticket.MemberWinText" sma-risk-amount="@Model.GetSMARiskAmount(ticket)" />
                     }
-                    <platform value="ticket.Platform" />
+                    <platform value="@ticket.Platform" />
                 </tr>
             }
-            <footer subtotal-colspan="Model.Footer.SubTotalColSpan" status-colspan="Model.Footer.StatusColSpan"
-                subtotal-winloss="Model.Footer.SubTotalWinLoss" subtotal-commission="Model.Footer.SubTotalCommission"
-                total="Model.Footer.Total" />
+            <footer subtotal-colspan="@Model.Footer.SubTotalColSpan" status-colspan="@Model.Footer.StatusColSpan"
+                subtotal-winloss="@Model.Footer.SubTotalWinLoss" subtotal-commission="@Model.Footer.SubTotalCommission"
+                total="@Model.Footer.Total" />
         }
         else
         {

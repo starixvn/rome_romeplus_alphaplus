@@ -31,11 +31,11 @@ public class OutrightResultHandler(
         var balanceUpDate = await resultsService.GetBalanceUpDate();
         IEnumerable<SelectListItem> sports = [];
         IEnumerable<SelectListItem> leagues = [];
-        var htmlResults = string.Empty;
+        var outrights = new List<OutrightDTO>();
 
         if (message.FromDate >= balanceUpDate)
         {
-            var outrights = (await outrightService.GetOutrights(new OutrightParam(
+            outrights = (await outrightService.GetOutrights(new OutrightParam(
                 message.FromDate,
                 message.ToDate,
                 options.Value.LocalTest,
@@ -47,21 +47,20 @@ public class OutrightResultHandler(
             {
                 message.SportType = message.SportType > 0 ? message.SportType : outrights[0].SportType;
                 (sports, leagues) = GetSportsAndLeagues(outrights, message.SportType, message.LeagueId);
-
-                var resultSetting = new ResultSetting
-                {
-                    LanguageCode = message.Language,
-                    IsOutright = true,
-                    IsPopUp = false,
-                    VisibleMatchCodeIDColumn = false,
-                    HighlightWinnerTeam = true
-                };
-
-                htmlResults = resultEngineAdatper.HtmlParser(
-                    outrightService.FilterOutrights(outrights, message.SportType, message.LeagueId).ToList(),
-                    resultSetting);
             }
         }
+
+        var resultSetting = new ResultSetting
+        {
+            LanguageCode = message.Language,
+            IsOutright = true,
+            IsPopUp = false,
+            VisibleMatchCodeIDColumn = false,
+            HighlightWinnerTeam = true
+        };
+        var htmlResults = resultEngineAdatper.HtmlParser(
+            outrightService.FilterOutrights(outrights, message.SportType, message.LeagueId).ToList(),
+            resultSetting);
 
         return new OutrightResultViewModel(
             message.FromDate,

@@ -29,7 +29,7 @@ public class WinLossViewModel(
 
     public bool IsGroupHeadline { get; } = isGroupHeadline;
 
-    public Footer Footer { get; } = showFooter ? new Footer(betListData, message.ViewerLevel, showMemberName, excludingTicketStatus) : null;
+    public Footer Footer { get; } = showFooter ? new Footer(betListData, message.ViewerLevel, showMemberName, excludingTicketStatus, supportRiskAmount) : null;
 
     public BetListOutputParams OutputParams { get; } = betListData.OutputParams ?? new BetListOutputParams();
 

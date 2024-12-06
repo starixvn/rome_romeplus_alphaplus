@@ -29,9 +29,9 @@ public class MemberStatementWorkbook(IWebHostEnvironment webHostEnvironment) :
         row.SetCellValue(colIndex, Resources.AccumulatedTotal);
     }
 
-    protected new int GetNotedBalanceCellIndex() => 10;
+    protected override int GetNotedBalanceCellIndex() => 10;
 
-    protected new void ExportWinLoss(Row row, StatementModel data, int currentColIndex)
+    protected override void ExportWinLoss(Row row, StatementModel data, int currentColIndex)
     {
         var colIndex = currentColIndex;
         row.SetCellValue(colIndex++, GetCellValue(data.Turnover));
