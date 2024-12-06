@@ -11,5 +11,17 @@ public class ExcelFileViewModel(string name, byte[] content)
     private static string GetValidFileName(string fileName)
         => string.IsNullOrWhiteSpace(fileName)
         ? "no-name.xls"
-        : Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty)) + ".xls";
+        : GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty)) + ".xls";
+
+    private static IEnumerable<char> GetInvalidFileNameChars()
+    {
+        var invalidFileNameChars = Path.GetInvalidFileNameChars();
+
+        if (!invalidFileNameChars.Contains('>'))
+        {
+            return invalidFileNameChars.Concat(['>']);
+        }
+
+        return invalidFileNameChars;
+    }
 }
