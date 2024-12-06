@@ -1,8 +1,6 @@
 using AlphaPlus.Core.Models;
-using AlphaPlus.Core.Utils;
 using AlphaPlus.Settings.Site.Features.SubAccount.Models;
 using AlphaPlus.Settings.Site.Features.SubAccount.Requests;
-using Fanex.Cryptography.Aes;
 
 namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
 {
@@ -19,25 +17,14 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Services
         public Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest);
     }
 
-    public class SubAccountService(HttpClient httpClient, IAesService aesService, IEncryption encryption, IUserSession userSession) : ISubAccountService
+    public class SubAccountService(HttpClient httpClient) : ISubAccountService
     {
         private const string subAccountApiGroup = "customers";
 
         private readonly HttpClient httpClient = httpClient;
 
-        private readonly IAesService aesService = aesService;
-
-        private readonly IEncryption encryption = encryption;
-
-        private readonly IUserSession userSession = userSession;
-
         public async Task<Result> AddSubAccount(AddSubAccountRequest addSubAccountRequest)
         {
-            var plainTextPwd = aesService.Decrypt(addSubAccountRequest.Password, userSession.CaptchaCode);
-            var encodePwd = encryption.CfsEnCode(plainTextPwd);
-
-            addSubAccountRequest.Password = encodePwd;
-
             return await httpClient.PostAsJsonAsync<Result>($"{subAccountApiGroup}/{addSubAccountRequest.CustId}/sub-accounts/add", addSubAccountRequest);
         }
 

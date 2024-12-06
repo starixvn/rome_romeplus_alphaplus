@@ -4,6 +4,7 @@ using AlphaPlus.Core.Utils;
 using AlphaPlus.Settings.Site.Features.SubAccount.Models;
 using AlphaPlus.Settings.Site.Features.SubAccount.Requests;
 using AlphaPlus.Shared.AppResources.Settings.SubAccount;
+using Fanex.Cryptography.Aes;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,12 +16,17 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Controllers
 
         private readonly IUserSession userSession;
 
-        public SubAccountController(IMediator mediator, IEncryption encryption, IUserSession userSession)
+        private readonly IAesService aesService;
+
+        public SubAccountController(IMediator mediator, IEncryption encryption, IUserSession userSession, IAesService aesService)
         {
             this.mediator = mediator;
             this.userSession = userSession;
+            this.aesService = aesService;
             
-            userSession.CaptchaCode = encryption.RandomString(4);
+            userSession.CaptchaCode = string.IsNullOrWhiteSpace(userSession.CaptchaCode) 
+                ? encryption.RandomString(4)
+                : userSession.CaptchaCode;
         }
 
         public async Task<IActionResult> Index(SubAccountListRequest subAccountListRequest)
@@ -52,15 +58,19 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Controllers
                 return Json(new Result(1, Lang.lblNotAuthorized));
             }
 
-            if (string.Compare(subAccountRequest.Password, "59D7!4$h", true) == 0 || string.Compare(subAccountRequest.Password, "493abcDE", true) == 0)
+            var rawPassword = aesService.Decrypt(subAccountRequest.Password, userSession.CaptchaCode);
+
+            if (string.Compare(rawPassword, "59D7!4$h", true) == 0 || string.Compare(rawPassword, "493abcDE", true) == 0)
             {
                 return Json(new Result(1, Lang.lblPasswordCSample));
             }
 
-            if (subAccountRequest.Password.Contains($"{subAccountRequest.Username}{subAccountRequest.First}{subAccountRequest.Next}", StringComparison.OrdinalIgnoreCase))
+            if (rawPassword.Contains($"{subAccountRequest.Username}{subAccountRequest.First}{subAccountRequest.Next}", StringComparison.OrdinalIgnoreCase))
             {
                 return Json(new Result(1, Lang.lblPasswordDAccountName));
             }
+
+            subAccountRequest.Password = rawPassword;
 
             return Json(await mediator.Send(subAccountRequest));
         }
