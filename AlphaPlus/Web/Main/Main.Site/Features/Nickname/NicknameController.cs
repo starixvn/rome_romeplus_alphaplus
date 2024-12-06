@@ -39,6 +39,6 @@ namespace AlphaPlus.Main.Site.Features.Nickname
         }
 
         private IActionResult ToDefaultPage()
-            => RedirectToAction("Index", "Default");
+            => RedirectToAction("Redirect", "Default");
     }
 }
