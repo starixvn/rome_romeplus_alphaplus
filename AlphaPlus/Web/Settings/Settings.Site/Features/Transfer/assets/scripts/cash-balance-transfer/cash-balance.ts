@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿'use strict';
 
 interface Window {
     indexManager: any;
@@ -32,14 +32,26 @@ class KeyboardValue {
     readonly NegativeKeyCode = 109;
 
     isEditNumber = function (keyCode: number, isCtrl: boolean) {
-        const editNumberKeys =
-            [this.Delete, this.BackSpace, this.Tab, this.Escape, this.Enter, this.LowercaseN,
-            this.YEN, this.Thron, this.Cent, this.LowercaseM, this.ExclamationMarks];
+        const editNumberKeys = [
+            this.Delete,
+            this.BackSpace,
+            this.Tab,
+            this.Escape,
+            this.Enter,
+            this.LowercaseN,
+            this.YEN,
+            this.Thron,
+            this.Cent,
+            this.LowercaseM,
+            this.ExclamationMarks
+        ];
 
-        return editNumberKeys.indexOf(keyCode) !== -1 ||
+        return (
+            editNumberKeys.indexOf(keyCode) !== -1 ||
             ([this.CapitalA, this.CapitalC, this.CapitalX].indexOf(keyCode) !== -1 && isCtrl) ||
             // allow: home, end, left, right
-            (this.End <= keyCode && keyCode <= this.Right);
+            (this.End <= keyCode && keyCode <= this.Right)
+        );
     };
 }
 
@@ -82,27 +94,26 @@ class CashBalance {
     };
 
     cacheDOMElements = () => {
-        this.$msgContainer = this.$("#status-message");
-        this.$msgContent = this.$("#status-message-content");
-        this.$formTransfer = this.$("#form-transfer");
-        this.$amount = this.$("#amount");
-        this.$custId = this.$("#custId");
-        this.$token = this.$("input[name=\"__RequestVerificationToken\"]", this.$formTransfer);
+        this.$msgContainer = this.$('#status-message');
+        this.$msgContent = this.$('#status-message-content');
+        this.$formTransfer = this.$('#form-transfer');
+        this.$amount = this.$('#amount');
+        this.$custId = this.$('#custId');
+        this.$token = this.$('input[name="__RequestVerificationToken"]', this.$formTransfer);
 
-        this.availableAmountFrom = parseFloat(this.$("#availableAmountFrom").val());
-        this.availableAmountTo = parseFloat(this.$("#availableAmountTo").val());
-        this.availableRangeTransfer = this.$("#availableRangeTransfer").val();
-        this.confirmTransfer = this.$("#confirmTransfer").val();
-        this.transferAmountIs = this.$("#transferAmountIs").val();
-        this.invalidValue = this.$("#invalidValue").val();
+        this.availableAmountFrom = parseFloat(this.$('#availableAmountFrom').val());
+        this.availableAmountTo = parseFloat(this.$('#availableAmountTo').val());
+        this.availableRangeTransfer = this.$('#availableRangeTransfer').val();
+        this.confirmTransfer = this.$('#confirmTransfer').val();
+        this.transferAmountIs = this.$('#transferAmountIs').val();
+        this.invalidValue = this.$('#invalidValue').val();
 
         this.$amount.focus();
     };
 
     registerEvents = () => {
         this.$formTransfer.submit(this.doTransfer);
-        this.$amount.keydown(this.amountKeyDown)
-            .keyup(this.amountKeyUp);
+        this.$amount.keydown(this.amountKeyDown).keyup(this.amountKeyUp);
     };
 
     amountKeyDown = (e: JQueryKeyEventObject) => {
@@ -114,8 +125,10 @@ class CashBalance {
         }
 
         // ensure that it is not a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < this.keyboardValue.Number0 || this.keyboardValue.Number9 < e.keyCode))
-            && (e.keyCode < this.keyboardValue.Numpad0 || this.keyboardValue.Numpad9 < e.keyCode)) {
+        if (
+            (e.shiftKey || e.keyCode < this.keyboardValue.Number0 || this.keyboardValue.Number9 < e.keyCode) &&
+            (e.keyCode < this.keyboardValue.Numpad0 || this.keyboardValue.Numpad9 < e.keyCode)
+        ) {
             e.preventDefault();
         }
     };
@@ -128,11 +141,11 @@ class CashBalance {
             this.$amount.val('-');
         }
 
-        if (amountValue.length === 0 || amountValue === "-") {
+        if (amountValue.length === 0 || amountValue === '-') {
             return;
         }
 
-        const amount = parseFloat(amountValue.replace(/\,/g, ""));
+        const amount = parseFloat(amountValue.replace(/\,/g, ''));
 
         if (!isNaN(amount) && amount !== this.oldAmount) {
             this.oldAmount = amount;
@@ -145,21 +158,19 @@ class CashBalance {
     };
 
     showMessage = (code: number, message: string) => {
-        const className: string = code === 0 ? "msg msg-success" : "msg msg-error";
+        const className: string = code === 0 ? 'msg msg-success' : 'msg msg-error';
 
         this.$msgContent.removeClass().html(message).addClass(className);
-        this.$msgContainer.removeClass("hidden");
+        this.$msgContainer.removeClass('hidden');
     };
 
     hideMessage = () => {
-        this.$msgContainer.addClass("hidden");
-        this.$msgContent.removeClass().html("");
+        this.$msgContainer.addClass('hidden');
+        this.$msgContent.removeClass().html('');
     };
 
     countDecimals = (value: number): number => {
-        return Math.floor(value) === value ?
-            0 :
-            value.toString().split(".")[1].length || 0;
+        return Math.floor(value) === value ? 0 : value.toString().split('.')[1].length || 0;
     };
 
     amountEqualTo = (amount: number, comparedValue: number): boolean => {
@@ -169,9 +180,9 @@ class CashBalance {
             const percent = 100;
 
             if (decimals === 1 || decimals === decimalDigits) {
-                return comparedValue > 0 ?
-                    Math.floor(amount * percent) === Math.ceil(comparedValue * percent) :
-                    Math.floor(amount * percent) === Math.floor(comparedValue * percent);
+                return comparedValue > 0
+                    ? Math.floor(amount * percent) === Math.ceil(comparedValue * percent)
+                    : Math.floor(amount * percent) === Math.floor(comparedValue * percent);
             }
         }
 
@@ -179,11 +190,11 @@ class CashBalance {
     };
 
     toString4Digits = (value: number): string => {
-        return value.toLocaleString("en-US", { maximumFractionDigits: 4 });
+        return value.toLocaleString('en-US', { maximumFractionDigits: 4 });
     };
 
     isNumeric = (value: string) => {
-        value = value.replace(/\,/g, "");
+        value = value.replace(/\,/g, '');
         const regExp = /^-?(\d+|\d+\.\d*|\d*\.\d+)$/;
         return value.match(regExp);
     };
@@ -199,15 +210,15 @@ class CashBalance {
             return validationObject;
         }
 
-        let confirmMessage = "";
-        let amount = amountValue.length === 0 ? 0 : parseFloat(amountValue.replace(/\,/g, ""));
+        let confirmMessage = '';
+        let amount = amountValue.length === 0 ? 0 : parseFloat(amountValue.replace(/\,/g, ''));
 
         if (this.amountEqualTo(amount, this.availableAmountFrom)) {
             amount = this.availableAmountFrom;
-            confirmMessage = this.transferAmountIs + " " + this.toString4Digits(amount) + "\n";
+            confirmMessage = this.transferAmountIs + ' ' + this.toString4Digits(amount) + '\n';
         } else if (this.amountEqualTo(amount, this.availableAmountTo)) {
             amount = this.availableAmountTo;
-            confirmMessage = this.transferAmountIs + " " + this.toString4Digits(amount) + "\n";
+            confirmMessage = this.transferAmountIs + ' ' + this.toString4Digits(amount) + '\n';
         }
 
         if (confirmMessage.length === 0 && !this.validateAmount(amount)) {
@@ -228,7 +239,7 @@ class CashBalance {
     afterAddTransferSuccessfully = (data: ResultTransfer) => {
         if (data.Code === 6001) {
             this.topWindow.indexManager.addCustomCookies('messageForReloadSite', data.Message);
-            this.topWindow.indexManager.updateCurrentUrl("adbt=False");
+            this.topWindow.indexManager.updateCurrentUrl('adbt=False');
             this.topWindow.location.reload();
         } else {
             this.showMessage(data.Code, data.Message);
@@ -236,7 +247,9 @@ class CashBalance {
             const error = 105;
             const reloadTime = 3000;
             if (data.Code === error) {
-                setTimeout(function () { location.reload(); }, reloadTime);
+                setTimeout(function () {
+                    location.reload();
+                }, reloadTime);
             } else if (data.Code === 0) {
                 this.topWindow.closePopupAndReloadMainFrameAfterUpdateSuccess(3000);
             }
@@ -268,11 +281,18 @@ class CashBalance {
             custId: this.$custId.val(),
             amount: validationObject.Amount
         };
-
-        const this$ = this.$;
-
-        this.$.post(this.$formTransfer.attr("action"), postParams, this.afterAddTransferSuccessfully, "json")
-            .always(function () { this$.unblockUI(); });
+        this.$.ajax({
+            headers: {
+                RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: 'POST',
+            url: this.$formTransfer.attr('action'),
+            data: postParams,
+            dataType: 'json',
+            success: this.afterAddTransferSuccessfully,
+            complete: this.$.unblockUI
+        });
     };
 }
 

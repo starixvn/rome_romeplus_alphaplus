@@ -49,12 +49,12 @@ public class BetListBaseViewModel(
 
     public bool DisplayVNIP { get; } = message.DisplayVNIP;
 
-    public string Title => GetTitle().ToUpperInvariant();
+    public string Title => GetTitle();
 
     protected virtual string GetTitle()
         => HasDateParam()
-        ? $"{Resources.memberBetList} {FromDate.ToShortDateWithSlash()} --> {ToDate.ToShortDateWithSlash()} - {CustName}"
-        : Resources.memberBetList;
+        ? $"{Resources.memberBetList} {FromDate.ToShortDateWithSlash()} --> {ToDate.ToShortDateWithSlash()} - {CustName}".ToUpperInvariant()
+        : Resources.memberBetList.ToUpperInvariant();
 
     protected bool HasDateParam() => FromDate != DateTime.MinValue && ToDate != DateTime.MinValue;
 

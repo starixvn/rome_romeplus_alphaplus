@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Constants;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;
@@ -31,7 +32,7 @@ public class MultipleMemberCommand : TransferBaseQuery, IRequest<Result>
 
     public string Status { get; set; }
 
-    public byte AutoTransfer { get; set; }
+    public byte AutoTransfer { get; set; } = AutoTransferConstant.All;
 
     public bool AllYesterdayBalance { get; set; }
 

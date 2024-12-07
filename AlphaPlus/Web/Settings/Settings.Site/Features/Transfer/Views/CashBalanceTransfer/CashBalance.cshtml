@@ -1,10 +1,11 @@
 ﻿@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
+@using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.CashBalanceTransfer;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
 }
-@using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.CashBalanceTransfer;
 @model CashBalanceTransferViewModel
 
 <!DOCTYPE html>
@@ -68,23 +69,16 @@
             </div>
             <div class="section">
                 <div class="row">
-                    @using (Html.BeginForm("CashBalance", "CashBalanceTransfer", FormMethod.Post, new
-                    {
-                        @class =
-                   "form-inline col-xs-12",
-                        role = "form",
-                        id = "form-transfer"
-                    }))
-                    {
-                        @Html.AntiForgeryToken()
+                    <form method="post" asp-action="CashBalance" asp-controller="CashBalanceTransfer" role="form"
+                        id="form-transfer" class="form-inline col-xs-12">
                         <div class="form-group">
                             <label for="amount">@Resources.Amount</label>
                             <input type="text" class="textbox hasBorder text-right" id="amount" maxlength="22"
                                 autocomplete="off">
                             <button type="submit" class="btn-submit" @(Model.DisableTransfer ? "disabled=disabled" :
-                        string.Empty)>@Resources.TransferButton</button>
+                            string.Empty)>@Resources.TransferButton</button>
                         </div>
-                    }
+                    </form>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 note">@Model.Hint</div>
