@@ -31,7 +31,6 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
             .ToDictionary(jproperty => jproperty.Name, jproperty => jproperty.Value.ToString());
 
             return new QRCodeLoginConfigs(
-                jsonObject["API"],
                 jsonObject["Domain"].Split(',').ToArray(),
                 int.Parse(jsonObject["SiteId"]),
                 int.Parse(jsonObject["ExpireSeconds"]));

@@ -81,8 +81,6 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddHttpClient<ISubAccountService, SubAccountService>
                     (httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
-            var qrCodeMemberLoginApi = new Uri(configuration.GetValue<string>("QRCodeMemberLogin:Api"));
-            var qrCodeMemberLoginKey = configuration.GetValue<string>("QRCodeMemberLogin:Key");
             var qrCodeMemberLoginConfig = AppDomain.CurrentDomain.BaseDirectory + "/Features/QRCodeMemberSiteLoginConfigs/QRCodeMemberSiteLoginConfig.json";
 
             services
