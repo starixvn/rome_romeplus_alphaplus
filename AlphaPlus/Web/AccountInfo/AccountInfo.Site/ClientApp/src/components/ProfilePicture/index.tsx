@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Result from '../../models/result';
-import SettingsService, { handleError } from '../../services/settings-service';
+import { handleError } from '../../services/axios-helper';
+import SettingsService from '../../services/settings-service';
 import CreateProfilePictureModal from './CreateProfilePictureModal';
 import DisplayLanguage from './DisplayLanguage';
 import PictureLibraryModal from './PictureLibraryModal';

@@ -16,7 +16,10 @@ export default defineConfig({
             input: {
                 main: '/src/main.tsx',
                 givenCredit: '/src/given-credit.tsx',
-                profilePicture: '/src/profile-picture.tsx'
+                profilePicture: '/src/profile-picture.tsx',
+                unsuspendSingle: '/src/unsuspend-single.tsx',
+                unsuspendMultiple: '/src/unsuspend-multiple.tsx',
+                suspendMultipleConfirm: '/src/suspend-multiple-confirm.tsx'
             },
             output: {
                 entryFileNames: '[name].js',

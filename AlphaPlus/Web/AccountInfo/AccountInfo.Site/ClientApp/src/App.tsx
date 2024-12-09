@@ -21,7 +21,8 @@ import DownlineListResponse from './models/DownlineListReponse';
 import OnlineUser from './models/online-user';
 import SettingItem from './models/setting-item';
 import StatusItem from './models/status-item';
-import SettingsService, { handleError } from './services/settings-service';
+import { handleError } from './services/axios-helper';
+import SettingsService from './services/settings-service';
 
 function App() {
     const { actorName, actorRoleId, mobileView } = params;

@@ -16,7 +16,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
 
         public override string Text => Request.GetResource("EditMultipleSuspendedStatusText");
 
-        protected override string BaseAddress => MicroSites.SettingUrl("~/UnsuspendDownlines/EditMultiple");
+        protected override string BaseAddress => MicroSites.AccountInfoUrl("~/UnsuspendDownlines/EditMultiple");
 
         public override string Url => BaseAddress;
 

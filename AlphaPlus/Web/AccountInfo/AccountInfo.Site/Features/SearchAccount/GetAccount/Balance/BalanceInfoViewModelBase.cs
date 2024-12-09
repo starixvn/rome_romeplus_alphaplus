@@ -69,11 +69,11 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
 
         public bool ShowTotalBalanceTransferLink => ShowTransferLink && message.AllowedTotalBalanceTransfer && !TotalBalance.Equals(0);
 
-        public string TotalBalanceTransferLink => BuildTransferLink(TotalBalance);
+        public string TotalBalanceTransferLink => BuildTransferLink();
 
         public bool ShowYesterdayBalanceTransferLink => ShowTransferLink && !message.AllowedTotalBalanceTransfer && !YesterdayBalance.Equals(0);
 
-        public string YesterdayBalanceTransferLink => BuildTransferLink(YesterdayBalance);
+        public string YesterdayBalanceTransferLink => BuildTransferLink();
 
         public bool CanUpdateAccount => message.CanUpdateAccount;
 
@@ -103,7 +103,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
 
         protected UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(account.RoleId);
 
-        internal string BuildTransferLink(decimal transferValue)
+        internal string BuildTransferLink()
             => MicroSites.SettingUrl(
                 string.Format("~/TransferYesterdayBalance/{0}?custId={1}&custName={2}",
                     SearchAccountLevel.IsMemberLevel() ? "Member" : "Single",

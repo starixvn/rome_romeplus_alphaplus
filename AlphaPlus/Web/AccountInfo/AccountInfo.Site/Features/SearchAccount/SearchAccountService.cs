@@ -42,7 +42,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 
         Task<Result> UpdateGivenCredit(GivenCreditCommand param);
 
-        Task<Result> UpdateCustomerStatus(CustomerNonProductStatusCommand param);
+        Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param);
 
         Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal);
 
@@ -227,62 +227,62 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             }
         }
 
-        public async Task<Result> UpdateCustomerStatus(CustomerNonProductStatusCommand param)
+        public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param)
         {
             UpdateCustomerStatusCommand command = param.StatusName switch
             {
                 StatusNames.Closed => new UpdateClosedStatusCommand(
                                         param.SearchAccountId,
-                                        param.ViewerId,
+                                        param.ActorId,
                                         param.SubAccountId,
-                                        param.LangKey,
+                                        param.Language,
                                         param.IP,
                                         param.StatusName,
                                         param.StatusValue),
                 StatusNames.DisableAutoMasterPT => new UpdateDisableAutoMPTStatusCommand(
                                         param.SearchAccountId,
-                                        param.ViewerId,
+                                        param.ActorId,
                                         param.SubAccountId,
-                                        param.LangKey,
+                                        param.Language,
                                         param.IP,
                                         param.StatusName,
                                         param.StatusValue),
                 StatusNames.DoubleComm => new UpdateDoubleCommLosingStatusCommand(
                                         param.SearchAccountId,
-                                        param.ViewerId,
+                                        param.ActorId,
                                         param.SubAccountId,
-                                        param.LangKey,
+                                        param.Language,
                                         param.IP,
                                         param.StatusName,
                                         param.StatusValue),
                 StatusNames.DisableOutright => new UpdateDisableOutrightStatusCommand(
                                         param.SearchAccountId,
-                                        param.ViewerId,
+                                        param.ActorId,
                                         param.SubAccountId,
-                                        param.LangKey,
+                                        param.Language,
                                         param.IP,
                                         param.StatusName,
                                         param.StatusValue),
                 StatusNames.Suspended => new UpdateSuspendedStatusCommand(
                                         param.SearchAccountId,
-                                        param.ViewerId,
+                                        param.ActorId,
                                         param.SubAccountId,
-                                        param.LangKey,
+                                        param.Language,
                                         param.IP,
                                         param.StatusName,
                                         param.StatusValue),
                 StatusNames.Unlock => new UpdateUnlockedCommand(
                                         param.SearchAccountId,
-                                        param.ViewerId,
+                                        param.ActorId,
                                         param.SubAccountId,
-                                        param.LangKey,
+                                        param.Language,
                                         param.IP,
                                         param.StatusName),
                 _ => new UpdateDisableProtectedStatusCommand(
                                         param.SearchAccountId,
-                                        param.ViewerId,
+                                        param.ActorId,
                                         param.SubAccountId,
-                                        param.LangKey,
+                                        param.Language,
                                         param.IP,
                                         param.StatusName,
                                         param.StatusValue),

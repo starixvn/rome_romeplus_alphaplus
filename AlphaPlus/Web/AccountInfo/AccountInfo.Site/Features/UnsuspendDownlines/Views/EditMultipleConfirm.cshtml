@@ -1,0 +1,21 @@
+﻿@model SuspendMultipleConfirmViewModel
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+
+@section Styles {
+    @* @StaticResources.RenderStylesWithDarkMode("~/Features/UnsuspendDownlines/Bundles/suspend-multiple-confirm") *@
+}
+
+@Html.AntiForgeryToken()
+
+<div id="container" class="suspend-confirm-container" />
+
+@section Scripts {
+    @* @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/suspend-multiple-confirm") *@
+    <script type="module" src="~/suspendMultipleConfirm.js" asp-append-version="true"></script>
+    <script>
+        window.renderSuspendMultipleConfirm(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Data)));
+    </script>
+}

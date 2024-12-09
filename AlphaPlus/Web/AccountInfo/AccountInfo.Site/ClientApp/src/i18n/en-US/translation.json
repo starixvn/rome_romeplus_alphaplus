@@ -74,5 +74,11 @@
     "PictureLibrary": "Profile picture gallery",
     "Select": "Select",
     "CreditHint": "Available Credit: {0}",
-    "MemberMaxCreditHint": "The Maximum Member Credit set by your upline: {0}"
+    "MemberMaxCreditHint": "The Maximum Member Credit set by your upline: {0}",
+    "NumberColumn": "No.",
+    "Level": "Level",
+    "Username": "Username",
+    "Page": "Page",
+    "of": "of",
+    "Displaying": "Displaying"
 }

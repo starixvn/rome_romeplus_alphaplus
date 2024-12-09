@@ -119,7 +119,15 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             => searchAccountService.UpdateGivenCredit(request);
 
         public Task<Result> Handle(CustomerNonProductStatusCommand request, CancellationToken cancellationToken)
-            => searchAccountService.UpdateCustomerStatus(request);
+            => searchAccountService.UpdateCustomerStatus(new UpdateCustomerStatusParam(
+                     request.SearchAccountId,
+                     request.ViewerId,
+                     request.SubAccountId,
+                     request.Language,
+                     request.IP,
+                     request.StatusValue,
+                     request.StatusName,
+                     request.ViewerName));
 
         public async Task<IBalanceInfoViewModel> Handle(MemberBalanceInfoQuery message, CancellationToken cancellationToken)
         {

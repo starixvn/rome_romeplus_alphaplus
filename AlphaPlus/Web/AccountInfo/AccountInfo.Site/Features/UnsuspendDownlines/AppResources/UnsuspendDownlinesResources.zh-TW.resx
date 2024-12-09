@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AffectedDownlines" xml:space="preserve">
+    <value>受影響的下線</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>退回</value>
+  </data>
+  <data name="Displaying" xml:space="preserve">
+    <value>顯示</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>階層</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>總代理</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>之第</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>頁</value>
+  </data>
+  <data name="RemainUnchangedDownlines" xml:space="preserve">
+    <value>下線列表保持不變</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>重填</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="SuspendedSuccessfully" xml:space="preserve">
+    <value>{0}及其下線已成功暫停。</value>
+  </data>
+  <data name="SuspendStatus" xml:space="preserve">
+    <value>暫停狀態</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>總和</value>
+  </data>
+  <data name="Unsuspended" xml:space="preserve">
+    <value>取消暫停</value>
+  </data>
+  <data name="UnsuspendedSuccessfully" xml:space="preserve">
+    <value>{0}及其受影響下線已成功取消暫停。</value>
+  </data>
+  <data name="UnsuspendSingleNote" xml:space="preserve">
+    <value>下線列表的狀態在 &lt;username&gt; 取消暫停後</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>更新成功！</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="AffectedViewListNote" xml:space="preserve">
+    <value>&lt;username&gt; 取消暫停後，下線列表的狀態有更改</value>
+  </data>
+  <data name="AffectedDownlinesAgentMember" xml:space="preserve">
+    <value>受影響的下線 &lt;br/&gt;  (代理/會員)</value>
+  </data>
+  <data name="AffectedDownlinesMember" xml:space="preserve">
+    <value>受影響的下線 &lt;br/&gt;  (會員)</value>
+  </data>
+  <data name="ViewInformation1" xml:space="preserve">
+    <value>-當客戶被暫停時，所有的下線也將會被暫停。</value>
+  </data>
+  <data name="ViewInformation2" xml:space="preserve">
+    <value>- 當客戶被取消暫停:</value>
+  </data>
+  <data name="ViewInformation3" xml:space="preserve">
+    <value>+ 只有那些下線間接地被上線導致暫停狀態,應被取消暫停。您可以點擊受影響下線數量去查看列表。</value>
+  </data>
+  <data name="ViewInformation4" xml:space="preserve">
+    <value>+ 其余賬號的現狀將不會有所改變。您可以點擊下線維持不變數量去查看列表。</value>
+  </data>
+  <data name="ViewInformation5" xml:space="preserve">
+    <value>- 受影響的下線：上線被取消暫停後狀態已更換的用戶列表。</value>
+  </data>
+  <data name="ViewInformation6" xml:space="preserve">
+    <value>- 保持不變的下線：上線被取消暫停後狀態依然保持不變的用戶列表。</value>
+  </data>
+  <data name="RemainUnchangedDownlinesAgentMember" xml:space="preserve">
+    <value>下線列表保持不變 &lt;br/&gt; (代理/會員)</value>
+  </data>
+  <data name="RemainUnchangedDownlinesMember" xml:space="preserve">
+    <value>下線列表保持不變 &lt;br/&gt;  (會員)</value>
+  </data>
+  <data name="UnchangedViewListNote" xml:space="preserve">
+    <value>&lt;username&gt; 取消暫停後，下線列表的狀態沒有更改</value>
+  </data>
+  <data name="SubmitMultipleConfirm1" xml:space="preserve">
+    <value>&lt;username&gt; 已被取消暫停。</value>
+  </data>
+  <data name="SubmitMultipleConfirm2" xml:space="preserve">
+    <value>&lt;username&gt; 已被暫停。警告：他們將無法進行投註。</value>
+  </data>
+  <data name="SubmitMultipleConfirm3" xml:space="preserve">
+    <value>您確定要繼續嗎？</value>
+  </data>
+  <data name="MultipleConfirm" xml:space="preserve">
+    <value>您確定要暫停/取消暫停已選定的用戶嗎？所有受影響的下線也將被暫停/取消暫停。</value>
+  </data>
+  <data name="NumberColumn" xml:space="preserve">
+    <value> 編號</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>沒有數據</value>
+  </data>
+  <data name="UnsuspendedWithNoDownlinesMessages" xml:space="preserve">
+    <value>您確定要更改這個客戶暫停狀態嗎？</value>
+  </data>
+  <data name="UnsuspendMultipleConfirmMessage" xml:space="preserve">
+    <value>&lt;username&gt; 將會取消暫停。</value>
+  </data>
+  <data name="SuspendMultipleConfirmMessage" xml:space="preserve">
+    <value>&lt;username&gt; 將會被暫停及無法進行投註。</value>
+  </data>
+  <data name="SuspendedMemberSuccessfully" xml:space="preserve">
+    <value>{0} 已成功暫停。</value>
+  </data>
+  <data name="UnsuspendedMemberSuccessfully" xml:space="preserve">
+    <value>{0} 已成功取消暫停。</value>
+  </data>
+  <data name="SelectedAccounts" xml:space="preserve">
+    <value>所選賬號：</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+</root>

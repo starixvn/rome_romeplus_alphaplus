@@ -7,7 +7,7 @@ import { Tooltip } from 'react-tippy';
 import { UserLevel } from '../../constants';
 import { formatNumber } from '../../helpers';
 import Result from '../../models/result';
-import { handleError } from '../../services/settings-service';
+import { handleError } from '../../services/axios-helper';
 import CellContainNumberFormat from '../common/CellContainNumberFormat';
 import styles from './GivenCredit.module.scss';
 

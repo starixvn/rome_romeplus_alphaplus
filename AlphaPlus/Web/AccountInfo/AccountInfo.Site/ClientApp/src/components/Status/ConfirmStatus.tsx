@@ -5,7 +5,8 @@ import { LoadCustomerAllStatus, LoadCustomerInfo } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
 import { formatMessage, resizeBootboxOnMobile, resizePopupOnMobile, usernameRegExp } from '../../helpers';
 import StatusItem from '../../models/status-item';
-import SettingsService, { handleError } from '../../services/settings-service';
+import { handleError } from '../../services/axios-helper';
+import SettingsService from '../../services/settings-service';
 
 type Props = {
     status: StatusItem;

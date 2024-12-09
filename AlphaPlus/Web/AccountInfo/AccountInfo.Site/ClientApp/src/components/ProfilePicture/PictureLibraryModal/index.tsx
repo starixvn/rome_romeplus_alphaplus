@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Modal from 'react-modal';
 
-import SettingsService, { handleError } from '../../../services/settings-service';
+import { handleError } from '../../../services/axios-helper';
+import SettingsService from '../../../services/settings-service';
 import { ProfilePictureModel } from '../type';
 import styles from './PictureLibraryModal.module.scss';
 

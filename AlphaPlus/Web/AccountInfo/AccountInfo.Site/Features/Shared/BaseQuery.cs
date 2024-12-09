@@ -49,6 +49,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.Shared
 
         public string LangKey => userSession.LangKey;
 
+        public string Language => userSession.Language;
+
         public string IP => userSession.UserLoginIp;
 
         public virtual bool IsValid() => ViewerId > 0;

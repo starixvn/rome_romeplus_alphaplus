@@ -8,25 +8,7 @@ import OnlineUser from '../models/online-user';
 import Result from '../models/result';
 import StatusItem from '../models/status-item';
 import UsernameSuggestion from '../models/username-suggestion';
-
-const axiosInstance = axios.create({
-    baseURL: window.top?.alpha.urls['accountInfoRootPath']
-});
-
-export const handleError = (err: any) => {
-    if (axios.isCancel(err)) {
-        return undefined;
-    }
-
-    if (err.response?.status === 403) {
-        return {
-            IsSuccess: false,
-            Message: $('#NotAuthorized').val()
-        };
-    }
-
-    throw err;
-};
+import { axiosInstance } from './axios-helper';
 
 const settingsRootPath = window.top?.alpha.urls['settingsRootPath'];
 
