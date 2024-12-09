@@ -61,9 +61,9 @@ namespace AlphaPlus.Main.Site
 
         public static string JsVersion => GetValue<string>("JsVersion");
 
-        public static string APIGatewaysURL => GetValue<string>("ApiKeyServiceUri");
+        public static string APIGatewaysURL => GetValue<string>("ApiKey:Gateway");
 
-        public static string[] APISuperIds => GetSectionValue<string[]>("APISuperIds");
+        public static string[] APISuperIds => GetSectionValue<string[]>("ApiKey:AllowSuperIds");
 
         public static bool HideQRCode => GetValue<bool>("QRCode:Hide");
 

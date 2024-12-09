@@ -12,6 +12,8 @@ namespace AlphaPlus.Logging.Configurations
 
         public static string SentryBackendUrl => ConfigurationManager.GetValue<string>("Fanex.Logging:SentryBackendUrl");
 
+        public static string SentryUrl => ConfigurationManager.GetValue<string>("Fanex.Logging:SentryUrl");
+
         public static string AssetAppPath => ConfigurationManager.GetValue<string>("AssetAppPath");
 
     }
