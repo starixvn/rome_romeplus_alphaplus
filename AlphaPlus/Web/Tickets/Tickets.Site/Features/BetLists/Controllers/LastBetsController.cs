@@ -1,3 +1,4 @@
+using AlphaPlus.NetThrottling;
 using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.LastBets;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Controllers;
 
+[DisableNetThrottling]
 public class LastBetsController(
     IMediator mediator,
     IOptions<AppSettings> options,

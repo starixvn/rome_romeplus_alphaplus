@@ -14,7 +14,7 @@
 
 @section Scripts {
     @* @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple") *@
-    <script type="module" src="~/unsuspendMultiple.js" asp-append-version="true"></script>
+    <script async src="~/unsuspendMultiple.js" asp-append-version="true"></script>
     <script>
         window.renderUnsuspendMultiple(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model)));
     </script>
