@@ -1,0 +1,21 @@
+﻿@model OpenSingleViewModel
+
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/OpenDownlines/Bundles/open-single")
+}
+
+@Html.AntiForgeryToken()
+
+<div id="container" class="unsuspend-container" />
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/OpenDownlines/Bundles/open-single")
+
+    <script>
+        renderOpenSingle(@Html.Raw(JsonSerializer.Serialize(Model.Data))));
+    </script>
+}

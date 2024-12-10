@@ -10,8 +10,6 @@ public class UpdateAllDayBalanceTransferRequest : BaseQuery, IRequest<Result>
 
     public int ActorId => userSession.CustId;
 
-    public string Language => userSession.LangKey;
-
     public string Currency => userSession.Currency;
 
     public override bool IsValid()

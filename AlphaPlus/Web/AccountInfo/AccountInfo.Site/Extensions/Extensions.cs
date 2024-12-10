@@ -1,3 +1,4 @@
+using AlphaPlus.AccountInfo.Site.Features.OpenDownlines;
 using AlphaPlus.AccountInfo.Site.Features.ProfilePicture;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount;
 using AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines;
@@ -36,6 +37,7 @@ public static class Extensions
         services.AddHttpClient<ISearchAccountService, SearchAccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUri")));
         services.AddSingleton<IProfilePictureService, ProfilePictureService>();
         services.AddSingleton<IUnsuspendDownlinesService, UnsuspendDownlinesService>();
+        services.AddSingleton<OpenDownlinesService, OpenDownlinesServiceImpl>();
 
         services
         .AddControllersWithViews(options =>

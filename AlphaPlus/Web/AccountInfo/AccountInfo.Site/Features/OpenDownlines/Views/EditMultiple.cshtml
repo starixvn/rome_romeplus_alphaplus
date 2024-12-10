@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@model OpenMultipleViewModel
+
+@section Styles {
+    @StaticResources.RenderStylesWithDarkMode("~/Features/OpenDownlines/Bundles/open-multiple")
+}
+
+@Html.AntiForgeryToken()
+<div id="container" class="unsuspend-container" />
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/Features/OpenDownlines/Bundles/open-multiple")
+
+    <script>
+        renderOpenMultiple(@Html.Raw(JsonSerializer.Serialize(Model)));
+    </script>
+}
