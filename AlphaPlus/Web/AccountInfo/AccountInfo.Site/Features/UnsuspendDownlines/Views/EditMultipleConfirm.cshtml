@@ -14,8 +14,10 @@
 
 @section Scripts {
     @* @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/suspend-multiple-confirm") *@
-    <script type="module" async src="~/suspendMultipleConfirm.js" asp-append-version="true"></script>
+    <script type="module" src="~/suspendMultipleConfirm.js" asp-append-version="true"></script>
     <script>
-        window.renderSuspendMultipleConfirm(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Data)));
+        $(document).ready(() => {
+            window.renderSuspendMultipleConfirm(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Data)));
+        })
     </script>
 }

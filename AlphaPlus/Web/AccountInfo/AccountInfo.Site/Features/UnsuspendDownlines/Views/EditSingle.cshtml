@@ -16,6 +16,8 @@
     @* @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-single") *@
     <script type="module" async src="~/unsuspendSingle.js" asp-append-version="true"></script>
     <script>
-        window.renderUnsuspendSingle(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Data)));
+        $(document).ready(() => {
+            window.renderUnsuspendSingle(@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Data)));
+        })
     </script>
 }
