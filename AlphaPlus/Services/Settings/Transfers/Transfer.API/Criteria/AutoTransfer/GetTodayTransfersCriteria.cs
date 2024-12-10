@@ -6,11 +6,11 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer
     {
         public int FromCustId { get; set; }
 
-        public string Language { get; set; } = string.Empty;
+        public string Language { get; set; }
 
-        public string Searchname { get; set; } = string.Empty;
+        public string Searchname { get; set; }
 
-        public string ViewStatus { get; set; } = string.Empty;
+        public string ViewStatus { get; set; }
 
         public int SortBy { get; set; }
 
