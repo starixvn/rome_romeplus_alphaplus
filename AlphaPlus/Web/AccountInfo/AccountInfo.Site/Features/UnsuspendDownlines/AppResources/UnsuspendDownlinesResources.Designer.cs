@@ -45,7 +45,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.AppResources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Alpha.AccountInfo.Side.Features.UnsuspendDownlines.AppResources.UnsuspendDownlinesReso" +
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.AppResources.UnsuspendDownlinesReso" +
                             "urces", typeof(UnsuspendDownlinesResources).Assembly);
                     resourceMan = temp;
                 }

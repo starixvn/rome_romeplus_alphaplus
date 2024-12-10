@@ -2,7 +2,11 @@ import { axiosInstance } from './axios-helper';
 
 const UnsuspendAPI = {
     async updateSuspend<T>(action: string, data: object) {
-        const response = await axiosInstance.post<T>(action, data);
+        const response = await axiosInstance.post<T>(action, data, {
+            headers: {
+                RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
+            }
+        });
         return response.data;
     },
     fetchCustomerList: async (

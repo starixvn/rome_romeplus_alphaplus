@@ -1,3 +1,6 @@
+import './unsuspend-downlines.scss';
+import './i18n/config';
+
 import ReactDOM from 'react-dom/client';
 
 import UnsuspendSingleContainer from './components/UnsuspendSingle/container';

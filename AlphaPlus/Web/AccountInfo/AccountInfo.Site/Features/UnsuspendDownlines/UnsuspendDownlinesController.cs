@@ -22,11 +22,11 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines
            => Json(message);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public Task<ActionResult> UnsuspendSingle(UnsuspendSingleCommand command)
+        public Task<ActionResult> UnsuspendSingle([FromBody] UnsuspendSingleCommand command)
           => Json(command);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public Task<ActionResult> UnsuspendMultiple(UnsuspendMultipleCommand command)
+        public Task<ActionResult> UnsuspendMultiple([FromBody] UnsuspendMultipleCommand command)
           => Json(command);
 
         [HttpGet]

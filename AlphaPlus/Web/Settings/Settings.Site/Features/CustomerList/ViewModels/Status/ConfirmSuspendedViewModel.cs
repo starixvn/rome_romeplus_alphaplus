@@ -52,7 +52,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
         public override string PopupHeaderText => IsPopup ? Request.GetResource("UnuspendStatusPopupHeaderText") : base.PopupHeaderText;
 
         public override string Url => IsPopup ?
-            MicroSites.AccountInfoUrl($"~/UnsuspendDownlines/EditSingle?SearchAccountId={SearchAccount.Id}&SearchAccountName={SearchAccount.Username}") :
+            MicroSites.AccountInfoUrl($"~/UnsuspendDownlines/EditSingle?CustId={SearchAccount.Id}&SearchAccountName={SearchAccount.Username}") :
             base.Url;
     }
 }

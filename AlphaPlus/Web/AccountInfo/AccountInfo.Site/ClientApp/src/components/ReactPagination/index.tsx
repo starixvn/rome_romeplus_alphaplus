@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 
 import AutosizeInput from '../AutosizeInput';
+import styles from './ReactPagination.module.scss';
 
 const limit = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
@@ -117,11 +118,11 @@ export default function ReactPagination(props: Props) {
     const nextPageDisabled = page >= totalPages;
 
     return (
-        <div {...props} className={classNames(className, 'table-pagination')}>
-            <div className="table-pagination-block">
+        <div {...props} className={classNames(className, styles['table-pagination'])}>
+            <div className={styles['table-pagination-block']}>
                 <div>
                     <select
-                        className="pagination-page-list"
+                        className={styles['pagination-page-list']}
                         value={pageLength}
                         onChange={(event) => {
                             const pageSize = parseFloat(event.currentTarget.value);
@@ -142,7 +143,7 @@ export default function ReactPagination(props: Props) {
                         ))}
                     </select>
                 </div>
-                <div className="pagination">
+                <div className={styles['pagination']}>
                     <PaginationButton
                         disabled={prevPageDisabled}
                         page={1}
@@ -158,7 +159,7 @@ export default function ReactPagination(props: Props) {
                         setCurrentPage={setCurrentPage}
                     />
 
-                    <div className="pagination-input">
+                    <div className={styles['pagination-input']}>
                         {`${pageResource} `}
                         <AutosizeInput
                             value={currentPage}
@@ -190,7 +191,7 @@ export default function ReactPagination(props: Props) {
                         setCurrentPage={setCurrentPage}
                     />
                 </div>
-                <div className="pagination-records">{pageRecordsRenderer({ totalRecords, from, to })}</div>
+                <div className={styles['pagination-records']}>{pageRecordsRenderer({ totalRecords, from, to })}</div>
             </div>
         </div>
     );

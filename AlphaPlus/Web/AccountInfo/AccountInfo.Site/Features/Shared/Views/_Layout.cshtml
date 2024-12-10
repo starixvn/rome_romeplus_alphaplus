@@ -11,15 +11,18 @@
 
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-accountinfo/index")
+    <link rel="stylesheet" href="~/react-tippy.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/index.css" asp-append-version="true" />
     @RenderSection("Styles", required: false)
 </head>
 
 <body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
-    <link rel="stylesheet" href="~/react-tippy.css" asp-append-version="true" />
     <script type="module" src="~/react-tippy.js" asp-append-version="true"></script>
-    <link rel="stylesheet" href="~/settings-service.css" asp-append-version="true" />
+    <script type="module" src="~/axios-helper.js" asp-append-version="true"></script>
+    <script type="module" src="~/helpers.js" asp-append-version="true"></script>
+    <script type="module" src="~/index2.js" asp-append-version="true"></script>
     <script type="module" src="~/settings-service.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

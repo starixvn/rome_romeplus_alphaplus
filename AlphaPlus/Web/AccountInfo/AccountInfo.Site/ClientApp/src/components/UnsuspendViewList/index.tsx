@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { usernameRegExp } from '../../helpers';
 import { handleError } from '../../services/axios-helper';
 import UnsuspendAPI from '../../services/UnsuspendAPI';
 import UserLevelName from '../common/UserLevelName';
@@ -52,6 +53,10 @@ export default function UnsuspendViewList({
             .catch(handleError);
     };
 
+    useEffect(() => {
+        fetchCustomerListFromServer({ page: activePage, pageLength });
+    }, [activePage, pageLength]);
+
     const Back = (
         <div>
             <a className="btn-cancel" href="#" onClick={redirectMainPage}>
@@ -60,6 +65,8 @@ export default function UnsuspendViewList({
         </div>
     );
 
+    const viewListNote = isAffected ? t('AffectedViewListNote') : t('UnchangedViewListNote');
+
     if (viewModel === null) {
         return null;
     }
@@ -67,6 +74,7 @@ export default function UnsuspendViewList({
     return (
         <div>
             {showPaging && Back}
+            <p className="note">{usernameRegExp(viewListNote, viewModel.SearchAccountName)}</p>
             <table className="tblRpt tblRpt-bordered width-100per">
                 <thead>
                     <tr>

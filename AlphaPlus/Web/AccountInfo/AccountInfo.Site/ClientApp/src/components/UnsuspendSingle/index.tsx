@@ -22,7 +22,7 @@ export default function UnsuspendSingle({ viewModel, redirectViewListDetail }: P
         $.blockUI?.();
 
         UnsuspendAPI.updateSuspend<Result>('UnsuspendDownlines/UnsuspendSingle', {
-            SearchAccountId: viewModel.SearchAccountId
+            CustId: viewModel.SearchAccountId
         })
             .then((data) => {
                 const message = (
