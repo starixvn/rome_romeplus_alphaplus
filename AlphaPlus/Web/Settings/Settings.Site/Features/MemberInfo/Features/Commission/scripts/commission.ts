@@ -41,7 +41,7 @@ class CommissionView {
                 onChange: ($option: JQuery) => {
                     $.blockUI();
                     const custId = $option.val();
-                    if (typeof custId === 'undefined' || custId === '0') {
+                    if (custId === 'undefined') {
                         this.getMasterComm($ddlProduct.val(), $ddlMaster.val(), $tblContainer);
                     } else {
                         $.get(
