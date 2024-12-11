@@ -244,5 +244,10 @@
         "DisabledCheckDuplicationLogin": false,
         "KickOutUrl": "~/default/kickout"
     },
-    "DisableMessages": false
+    "DisableMessages": false,
+    "Message": {
+        "Super": "3000,3500,3501",
+        "Master": "3000,3500,3502",
+        "Agent": "3000,3500,3503"
+    }
 }
