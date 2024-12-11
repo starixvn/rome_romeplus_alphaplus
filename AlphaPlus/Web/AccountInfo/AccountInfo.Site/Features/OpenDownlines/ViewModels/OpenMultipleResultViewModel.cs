@@ -62,7 +62,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines.ViewModels
                 var successfullyResults = new List<Result>();
                 if (successfullyOpenUsernames.Count > 0)
                 {
-                    successfullyResults.Add(BuildSussesfullyMessage(
+                    successfullyResults.Add(BuildSuccessfullyMessage(
                         RoleId > UserLevel.Member.Value
                         ? OpenDownlinesResources.OpenedSuccessfully
                         : OpenDownlinesResources.OpenedMemberSuccessfully,
@@ -71,7 +71,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines.ViewModels
 
                 if (successfullyCloseUsernames.Count > 0)
                 {
-                    successfullyResults.Add(BuildSussesfullyMessage(
+                    successfullyResults.Add(BuildSuccessfullyMessage(
                         RoleId > UserLevel.Member.Value
                         ? OpenDownlinesResources.ClosedSuccessfully
                         : OpenDownlinesResources.ClosedMemberSuccessfully,
@@ -82,7 +82,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines.ViewModels
             }
         }
 
-        private static Result BuildSussesfullyMessage(string formatedMessages, IEnumerable<string> usernames)
+        private static Result BuildSuccessfullyMessage(string formatedMessages, IEnumerable<string> usernames)
             => Result.CreateSuccessfulResult(string.Format(formatedMessages, string.Join(", ", usernames)));
     }
 }

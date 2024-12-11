@@ -6,12 +6,12 @@ import { UnsuspendMultipleModel } from '../models/UnsuspenDownlines/UnsuspendMul
 export const viewInformation = (t: TFunction) => {
     const style = `style='padding-left: 15px;'`;
     const messages = `<div>
-            <div> ${t('ViewInformation1')}</div>
-            <div> ${t('ViewInformation2')}</div>
-            <div ${style}> ${t('ViewInformation3')}</div>
-            <div ${style}> ${t('ViewInformation4')}</div>
-            <div> ${t('ViewInformation5')}</div>
-            <div> ${t('ViewInformation6')}</div>
+            <div> ${t('UnsuspendedNote:ViewInformation1')}</div>
+            <div> ${t('UnsuspendedNote:ViewInformation2')}</div>
+            <div ${style}> ${t('UnsuspendedNote:ViewInformation3')}</div>
+            <div ${style}> ${t('UnsuspendedNote:ViewInformation4')}</div>
+            <div> ${t('UnsuspendedNote:ViewInformation5')}</div>
+            <div> ${t('UnsuspendedNote:ViewInformation6')}</div>
         </div>`;
 
     window.top?.bootboxAlert(messages);
@@ -24,7 +24,7 @@ export const getMultipleConfirmMessage = (
     originalViewModel: UnsuspendMultipleModel[]
 ) => {
     if (searchAccountRoleId > 1) {
-        return t('MultipleConfirm');
+        return t('UnsuspendedNote:MultipleConfirm');
     }
 
     const unsuspendUsernames: string[] = [],
@@ -50,7 +50,7 @@ export const getMultipleConfirmMessage = (
             ? usernameRegExp(t('SuspendMultipleConfirmMessage'), suspendUsernames.join(', ')) + '<br />'
             : '';
 
-    message += t('SubmitMultipleConfirm3');
+    message += t('UnsuspendedNote:SubmitMultipleConfirm3');
 
     return message;
 };

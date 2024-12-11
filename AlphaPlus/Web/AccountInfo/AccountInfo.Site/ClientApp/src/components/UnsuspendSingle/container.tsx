@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { UnsuspendSingleDataViewModel } from '../../models/UnsuspenDownlines/UnsuspendSingleDataViewModel';
+import UnsuspendAPI from '../../services/UnsuspendAPI';
 import UnsuspendViewList from '../UnsuspendViewList';
 import UnsuspendSingle from './';
 
@@ -25,7 +26,8 @@ export default function UnsuspendSingleContainer({ viewModel }: { viewModel: Uns
                     downlineRoleId,
                     searchAccountId: viewModel.SearchAccountId,
                     searchAccountName: viewModel.SearchAccountName,
-                    redirectMainPage
+                    redirectMainPage,
+                    fetchCustomerList: UnsuspendAPI.fetchCustomerList
                 }}
             />
         );

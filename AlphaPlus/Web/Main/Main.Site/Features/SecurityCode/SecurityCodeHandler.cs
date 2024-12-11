@@ -222,6 +222,8 @@ namespace AlphaPlus.Main.Site.Features.SecurityCode
                 MustVerifyCurrentSecurityCode = true
             };
 
+            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(param));
+
             var result = await ChangeSecurityCode(param);
 
             if (result.IsSuccessful)

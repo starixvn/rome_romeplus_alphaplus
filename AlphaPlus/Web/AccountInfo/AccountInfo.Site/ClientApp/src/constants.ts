@@ -65,6 +65,7 @@ declare global {
         reloadCustomerList: any;
         renderUnsuspendMultiple: any;
         renderSuspendMultipleConfirm: any;
+        renderOpenSingle: any;
     }
 }
 

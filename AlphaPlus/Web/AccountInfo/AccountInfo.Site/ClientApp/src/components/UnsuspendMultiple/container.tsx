@@ -2,6 +2,7 @@ import { cloneDeep, forEach } from 'lodash';
 import { useEffect, useState } from 'react';
 
 import { UnsuspendMultipleModel } from '../../models/UnsuspenDownlines/UnsuspendMultipleViewModel';
+import UnsuspendAPI from '../../services/UnsuspendAPI';
 import UnsuspendViewList from '../UnsuspendViewList';
 import UnsuspendMultiple from './';
 
@@ -83,7 +84,8 @@ export default function UnsuspendMultipleContainer(props: {
                     downlineRoleId,
                     searchAccountId,
                     searchAccountName,
-                    redirectMainPage
+                    redirectMainPage,
+                    fetchCustomerList: UnsuspendAPI.fetchCustomerList
                 }}
             />
         );

@@ -86,13 +86,18 @@
     "SuspendStatus": "Trạng thái bị đình chỉ",
     "Unsuspended": "Huỷ đình chỉ",
     "All": "Tất cả",
-    "ViewInformation1": "- Khi tài khoản bị đình chỉ, tất cả cấp dưới của họ cũng bị đình chỉ theo.",
-    "ViewInformation2": "- Khi tài khoản được huỷ đình chỉ:",
-    "ViewInformation3": "+ Chỉ những tài khoản cấp dưới gián tiếp bị ảnh hưởng bởi lệnh đình chỉ trước đó, mới được huỷ đình chỉ theo. Nhấn vào số lượng tài khoản bị ảnh hưởng để xem danh sách chi tiết.",
-    "ViewInformation4": "+ Đối với những trường hợp còn lại, trạng thái của những tài khoản đó sẽ không được thay đổi. Nhấn vào số lượng tài khoản không bị ảnh hưởng để xem danh sách chi tiết.",
-    "ViewInformation5": "- Tài khoản bị ảnh hưởng: danh sách những tài khoản có trạng thái bị thay đổi sau khi cấp trên của họ được huỷ đình chỉ.",
-    "ViewInformation6": "- Tài khoản không bị ảnh hưởng: danh sách những tài khoản có trạng thái không bị thay đổi khi cấp trên của họ được huỷ đình chỉ.",
-    "MultipleConfirm": "Bạn có muốn đình chỉ/huỷ đình chỉ người dùng này? Các cấp dưới bị ảnh hưởng của họ cũng sẽ bị đình chỉ/huỷ đình chỉ theo.",
+    "UnsuspendedNote": {
+        "ViewInformation1": "- Khi tài khoản bị đình chỉ, tất cả cấp dưới của họ cũng bị đình chỉ theo.",
+        "ViewInformation2": "- Khi tài khoản được huỷ đình chỉ:",
+        "ViewInformation3": "+ Chỉ những tài khoản cấp dưới gián tiếp bị ảnh hưởng bởi lệnh đình chỉ trước đó, mới được huỷ đình chỉ theo. Nhấn vào số lượng tài khoản bị ảnh hưởng để xem danh sách chi tiết.",
+        "ViewInformation4": "+ Đối với những trường hợp còn lại, trạng thái của những tài khoản đó sẽ không được thay đổi. Nhấn vào số lượng tài khoản không bị ảnh hưởng để xem danh sách chi tiết.",
+        "ViewInformation5": "- Tài khoản bị ảnh hưởng: danh sách những tài khoản có trạng thái bị thay đổi sau khi cấp trên của họ được huỷ đình chỉ.",
+        "ViewInformation6": "- Tài khoản không bị ảnh hưởng: danh sách những tài khoản có trạng thái không bị thay đổi khi cấp trên của họ được huỷ đình chỉ.",
+        "MultipleConfirm": "Bạn có muốn đình chỉ/huỷ đình chỉ người dùng này? Các cấp dưới bị ảnh hưởng của họ cũng sẽ bị đình chỉ/huỷ đình chỉ theo.",
+        "SubmitMultipleConfirm3": "Bạn có chắc muốn tiến hành?",
+        "AffectedViewListNote": "Danh sách tài khoản cấp dưới có trạng thái thay đổi sau khi <username> được huỷ đình chỉ",
+        "UnchangedViewListNote": "Danh sách tài khoản cấp dưới có trạng thái không thay đổi sau khi <username> được huỷ đình chỉ"
+    },
     "UnsuspendSingleNote": "Trạng thái của tài khoản cấp dưới sau khi <username> được huỷ đình chỉ",
     "AffectedDownlines": "Tài khoản bị ảnh hưởng",
     "RemainUnchangedDownlines": "Tài khoản không bị ảnh hưởng",
@@ -100,7 +105,5 @@
     "NoData": "Không có dữ liệu",
     "Master": "Master",
     "Agent": "Agent",
-    "Member": "Member",
-    "AffectedViewListNote": "Danh sách tài khoản cấp dưới có trạng thái thay đổi sau khi <username> được huỷ đình chỉ",
-    "UnchangedViewListNote": "Danh sách tài khoản cấp dưới có trạng thái không thay đổi sau khi <username> được huỷ đình chỉ"
+    "Member": "Member"
 }
