@@ -6,10 +6,10 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.Commission;
 
 public class CommissionQuery : MemberInfoBaseQuery, IRequest<CommissionViewModel>
 {
-    public int Id { get; set; } = ProductIdConstants.Sportsbook;
+    public int ProductId { get; set; } = ProductIdConstants.Sportsbook;
 
     public bool IsShowDoubleComm
-        => Id == ProductIdConstants.Sportsbook && viewer.IsDoubleCommLosing;
+        => ProductId == ProductIdConstants.Sportsbook && viewer.IsDoubleCommLosing;
 
     public string DarkModeName => viewer.DarkModeName;
 }

@@ -7,5 +7,5 @@ public class CommDataQuery : CommissionQuery, IRequest<CommissionViewModel>
     public int MasterId { get; set; }
 
     public override bool IsValid()
-        => Id > 0 && ActorLevel.IsMasterOrSuperLevel() && base.IsValid();
+        => ProductId > 0 && ActorLevel.IsMasterOrSuperLevel() && base.IsValid();
 }

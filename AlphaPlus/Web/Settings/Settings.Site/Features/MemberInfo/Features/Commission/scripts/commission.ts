@@ -11,7 +11,7 @@ class CommissionView {
             maxHeight: 300,
             onChange: ($option: JQuery) => {
                 $.blockUI();
-                window.location.href = this.buildUrl(`index?id=${$option.val()}`);
+                window.location.href = this.buildUrl(`index?productId=${$option.val()}`);
             }
         });
 
@@ -44,10 +44,13 @@ class CommissionView {
                     if (custId === '0') {
                         this.getMasterComm($ddlProduct.val(), $ddlMaster.val(), $tblContainer);
                     } else {
-                        $.get(this.buildUrl(`GetData?id=${$ddlProduct.val()}&custid=${$option.val()}`), (html) => {
-                            $tblContainer.html(html);
-                            this.setStickyTableHeaders();
-                        }).always($.unblockUI);
+                        $.get(
+                            this.buildUrl(`GetData?productId=${$ddlProduct.val()}&custid=${$option.val()}`),
+                            (html) => {
+                                $tblContainer.html(html);
+                                this.setStickyTableHeaders();
+                            }
+                        ).always($.unblockUI);
                     }
                 }
             });
@@ -60,7 +63,7 @@ class CommissionView {
     }
 
     private getMasterComm(productId, masterId, $tblContainer: JQuery) {
-        $.get(this.buildUrl(`GetData?id=${productId}&masterId=${masterId}`), (html) => {
+        $.get(this.buildUrl(`GetData?productId=${productId}&masterId=${masterId}`), (html) => {
             $tblContainer.html(html);
             this.setStickyTableHeaders();
         }).always($.unblockUI);

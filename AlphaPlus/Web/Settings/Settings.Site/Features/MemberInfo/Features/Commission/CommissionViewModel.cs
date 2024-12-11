@@ -16,12 +16,12 @@ public class CommissionViewModel(
 {
     public bool IsAgentLevel { get; } = message.ActorLevel.IsAgentLevel();
 
-    public bool IsShowGroup { get; } = message.Id == ProductIdConstants.Sportsbook;
+    public bool IsShowGroup { get; } = message.ProductId == ProductIdConstants.Sportsbook;
 
     public bool IsShowDoubleComm { get; } = message.IsShowDoubleComm;
 
     public IEnumerable<SelectListItem> Products
-        => products?.Select(p => new SelectListItem(p.Name, p.Id.ToString(), p.Id == message.Id));
+        => products?.Select(p => new SelectListItem(p.Name, p.Id.ToString(), p.Id == message.ProductId));
 
     public IEnumerable<SelectListItem> Masters
         => masters?.Select(c => new SelectListItem(c.CustName, c.CustId.ToString()));

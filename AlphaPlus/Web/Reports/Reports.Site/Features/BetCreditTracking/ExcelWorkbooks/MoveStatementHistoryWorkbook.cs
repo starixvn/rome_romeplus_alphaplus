@@ -45,7 +45,7 @@ public class MoveStatementHistoryWorkbook(IWebHostEnvironment webHostEnvironment
                 GetExcelTemplatePath("MoveStatementHistory"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3))
-            .Title($"{Resources.MoveStatementHistory} {fromDate} --> {fromDate}")
+            .Title($"{Resources.MoveStatementHistory} {fromDate} --> {toDate}")
             .Header(Resources.ResourceManager.GetString)
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
