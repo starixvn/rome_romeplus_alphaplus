@@ -95,7 +95,7 @@ app
     .UseAuthorization()
     .UseNetThrottling()
     .UseMiddleware<RequestCultureMiddleware>();
-app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
+app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 StaticResources.Init(configuration.GetValue<string>("JsVersion"));

@@ -3,6 +3,7 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Logging;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 
 const string SharedSettings = "sharedSettings.json";
@@ -43,7 +44,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseForwardedHeaders();
 app.UsePathBase("/account-info");
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

@@ -2,6 +2,7 @@ using AlphaPlus.Settings.Site.Features.Helpers;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 const string SharedSettings = "sharedSettings.json";
@@ -43,7 +44,7 @@ StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 
 app.UseForwardedHeaders();
 app.UsePathBase("/settings");
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute());
 app.UseStaticFiles();
 
 app.UseRouting();

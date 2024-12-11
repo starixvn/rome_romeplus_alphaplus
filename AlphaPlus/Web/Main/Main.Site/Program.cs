@@ -8,6 +8,7 @@ using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using AlphaPlus.NetThrottling;
+using Microsoft.AspNetCore.Authorization;
 
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
@@ -56,7 +57,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseForwardedHeaders();
 app.UsePathBase("/main");
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
