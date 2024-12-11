@@ -628,4 +628,7 @@
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>Updated successfully</value>
   </data>
+  <data name="CustomerInformation" xml:space="preserve">
+    <value>Customer Information</value>
+  </data>
 </root>

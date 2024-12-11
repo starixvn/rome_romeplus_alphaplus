@@ -632,4 +632,7 @@
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>修改成功</value>
   </data>
+  <data name="CustomerInformation" xml:space="preserve">
+    <value>會員資料</value>
+  </data>
 </root>

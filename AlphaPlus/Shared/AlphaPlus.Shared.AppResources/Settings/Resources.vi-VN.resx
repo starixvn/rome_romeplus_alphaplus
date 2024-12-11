@@ -620,4 +620,7 @@
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>Cập nhật thành công</value>
   </data>
+  <data name="CustomerInformation" xml:space="preserve">
+    <value>Thông tin thành viên</value>
+  </data>
 </root>

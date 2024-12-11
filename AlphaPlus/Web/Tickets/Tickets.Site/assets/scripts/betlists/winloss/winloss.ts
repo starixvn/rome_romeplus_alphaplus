@@ -114,12 +114,12 @@ class WinLossBetListView {
             this.getBetListData(dateRange);
         });
 
-        // const activeWeek = this.weekComponent.getActiveWeek();
-        // // update fromDate/toDate of globalFormData if activeWeek is NOT empty
-        // if (activeWeek) {
-        //     this.globalFormData.fromDate = activeWeek.weekFromDate;
-        //     this.globalFormData.toDate = activeWeek.weekToDate;
-        // }
+        const activeWeek = this.weekComponent.getActiveWeek();
+        // update fromDate/toDate of globalFormData if activeWeek is NOT empty
+        if (activeWeek) {
+            this.globalFormData.fromDate = activeWeek.weekFromDate;
+            this.globalFormData.toDate = activeWeek.weekToDate;
+        }
 
         this.breadcrumbLevelComponent.init(($element, breadcrumbParam) => {
             if (this.isInvalidGlobalFormData()) {

@@ -1487,5 +1487,16 @@ namespace AlphaPlus.Shared.AppResources.Settings
                 return ResourceManager.GetString("UpdatedSuccessfully", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Information.
+        /// </summary>
+        public static string CustomerInformation
+        {
+            get
+            {
+                return ResourceManager.GetString("CustomerInformation", resourceCulture);
+            }
+        }
     }
 }
