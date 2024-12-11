@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Functions SiteId="105" SiteName="Alpha">
+    <Function Name="IP">
+        <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCust.IPDB.wsv_alp" Plain="0">
+            <Mapping DataField="ipfrom" ObjectProperty="From" />
+            <Mapping DataField="ipto" ObjectProperty="To" />
+        </Setting>
+        <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBCust.IPDB.wsv_alp" Plain="0" />
+    </Function>
+</Functions>

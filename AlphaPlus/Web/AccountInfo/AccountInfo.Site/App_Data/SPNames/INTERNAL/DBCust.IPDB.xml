@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="IP">
+    <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCust.IPDB.wsv_alp" Plain="0">
+      <Mapping DataField="ipFROM" ObjectProperty="From" />
+      <Mapping DataField="ipTO" ObjectProperty="To" />
+    </Setting>
+  </Function>
+</Functions>

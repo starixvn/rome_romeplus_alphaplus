@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="Message">
+    <Setting Key="Age_Msg_SetMessage" SpName="Age_Msg_SetMessage" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0">
+      <Mapping DataField="messageId" ObjectProperty="Id" />
+    </Setting>
+    <Setting Key="Age_Msg_SetUsrMessage" SpName="Age_Msg_SetUsrMessage" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0">
+    </Setting>
+
+    <Setting Key="Age_Msg_GetTopPriMessage24" SpName="Age_Msg_GetTopPriMessage24" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0">
+      <Mapping DataField="MessageId" ObjectProperty="Id" />
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN" />
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS" />
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH" />
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP" />
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH" />
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO" />
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVI" />
+      <Mapping DataField="TargetId" ObjectProperty="UserId" />
+      <Mapping DataField="MsgType" ObjectProperty="MsgType" />
+      <Mapping DataField="IsSticky" ObjectProperty="IsSticky" />
+    </Setting>
+    <Setting Key="Acc_Msg_GetTopPubMessage" SpName="Acc_Msg_GetTopPubMessage" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0" >
+      <Mapping DataField="MessageId" ObjectProperty="Id" />
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN" />
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS" />
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH" />
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP" />
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH" />
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO" />
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVI" />
+      <Mapping DataField="TargetId" ObjectProperty="UserId" />
+      <Mapping DataField="MsgType" ObjectProperty="MsgType" />
+      <Mapping DataField="IsSticky" ObjectProperty="IsSticky" />
+    </Setting>
+    <Setting Key="Age_Msg_HasPriMessage24" SpName="Age_Msg_HasPriMessage24" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0" />
+
+  </Function>
+  <Function Name="MessageHistory">
+    <Setting Key="Age_Msg_GetPublicMessage" SpName="Age_Msg_GetPublicMessage" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0">
+      <Mapping DataField="MessageId" ObjectProperty="Id" />
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN" />
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS" />
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH" />
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP" />
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH" />
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO" />
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVI" />
+      <Mapping DataField="TargetId" ObjectProperty="UserId" />
+      <Mapping DataField="MsgType" ObjectProperty="MessageType" />
+    </Setting>
+    <Setting Key="Age_Msg_GetSpecialMessage" SpName="Age_Msg_GetSpecialMessage" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0">
+      <Mapping DataField="MessageId" ObjectProperty="Id" />
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN" />
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS" />
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH" />
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP" />
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH" />
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO" />
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVI" />
+      <Mapping DataField="TargetId" ObjectProperty="UserId" />
+      <Mapping DataField="MsgType" ObjectProperty="MessageType" />
+    </Setting>
+    <Setting Key="Age_Msg_GetPrivateMessage" SpName="Age_Msg_GetPrivateMessage" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0">
+      <Mapping DataField="MessageId" ObjectProperty="Id" />
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN" />
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS" />
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH" />
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP" />
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH" />
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO" />
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVI" />
+      <Mapping DataField="TargetId" ObjectProperty="UserId" />
+      <Mapping DataField="MsgType" ObjectProperty="MessageType" />
+    </Setting>
+  </Function>
+  <Function Name="Portal">
+    <Setting Key="Age_CustomerSelMessages" SpName="Age_CustomerSelMessages" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0">
+      <Mapping DataField="MessageId" ObjectProperty="Id" />
+      <Mapping DataField="Content_en" ObjectProperty="ContentEN" />
+      <Mapping DataField="Content_cs" ObjectProperty="ContentCS" />
+      <Mapping DataField="Content_ch" ObjectProperty="ContentCH" />
+      <Mapping DataField="Content_jp" ObjectProperty="ContentJP" />
+      <Mapping DataField="Content_th" ObjectProperty="ContentTH" />
+      <Mapping DataField="Content_ko" ObjectProperty="ContentKO" />
+      <Mapping DataField="Content_vn" ObjectProperty="ContentVI" />
+      <Mapping DataField="MsgType" ObjectProperty="Type" />
+      <Mapping DataField="bettransid" ObjectProperty="BetTransId" />
+      <Mapping DataField="isRead" ObjectProperty="IsRead" />
+    </Setting>
+    <Setting Key="Age_CustomerUpdMessagesRead" SpName="Age_CustomerUpdMessagesRead" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0">
+    </Setting>
+  </Function>
+  <Function Name="Announcement">
+    <Setting Key="Age_MsgCustReadStatus_Sel" SpName="Age_MsgCustReadStatus_Sel" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0"></Setting>
+    <Setting Key="Age_MsgCustReadStatus_Upd" SpName="Age_MsgCustReadStatus_Upd" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0"></Setting>
+    <Setting Key="Age_MsgCustReadStatus_SelUnread" SpName="Age_MsgCustReadStatus_SelUnread" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0"></Setting>
+  </Function>
+  <Function Name="Toast Message">
+    <Setting Key="Age_ToastMessage_Sel" SpName="Age_ToastMessage_Sel" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0"></Setting>
+    <Setting Key="Age_ToastMessage_SetRead" SpName="Age_ToastMessage_SetRead" DbName="DBMSG.bodb_Message.wsv_alpv" Plain="0"></Setting>
+  </Function>
+</Functions>
