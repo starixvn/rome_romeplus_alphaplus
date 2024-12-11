@@ -89,9 +89,9 @@ namespace AlphaPlus.Settings.Transfer.API.Services
             var criteria = new GetHistoryTransfersCriteria
             {
                 FromCustId = param.CustId,
-                Language = param.Language ?? string.Empty,
-                Searchname = param.Username ?? string.Empty,
-                ViewStatus = param.Status ?? string.Empty,
+                Language = param.Language,
+                Searchname = param.Username,
+                ViewStatus = param.Status,
                 SortBy = param.SortedBy,
                 SortType = param.Direction,
                 PageSize = param.PageSize,
