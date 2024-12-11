@@ -31,8 +31,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer
                 new SelectListItem { Text = Resources.TransferAmount, Value = "4" },
                 new SelectListItem { Text = Resources.Status, Value = "5" },
                 new SelectListItem { Text = Resources.Reason, Value = "6" },
-                new SelectListItem { Text = Resources.CompletedTime, Value = "7" },
-                new SelectListItem { Text = Resources.Cancel, Value = "8" },
+                new SelectListItem { Text = Resources.CompletedTime, Value = "7" }
             };
 
         public string UserGuideLink

@@ -15,7 +15,7 @@ public class DefaultDateRangeQuery : BaseQuery
 
     public override bool IsValid() => base.IsValid() && CheckDateRangeConstraint();
 
-    protected bool CheckDateRangeConstraint()
+    public bool CheckDateRangeConstraint()
     {
         //// TODO: Side effect here
         AssignFromDateValue();

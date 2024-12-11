@@ -18,4 +18,12 @@ public class ConsolidationDetailQuery : ConsolidationQuery, IRequest<Consolidati
     public DateTime ConsolidationToDate { get; set; }
 
     public int ConsolidationUserSelectedDateRangeOption { get; set; }
+
+    public override bool IsValid() => Viewer.IsShowConsolidatedReport && CanViewReport();
+
+    public bool CanViewReport()
+        => CustId > 0
+        && ViewerId > 0
+        && !string.IsNullOrWhiteSpace(CustName)
+        && CheckDateRangeConstraint();
 }
