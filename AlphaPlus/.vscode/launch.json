@@ -1,0 +1,57 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Reports Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-reports",
+      "program": "${workspaceFolder}/Web/Reports/Reports.Site/bin/Debug/net8.0/AlphaPlus.Reports.Site.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Web/Reports/Reports.Site",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "Tickets Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-tickets",
+      "program": "${workspaceFolder}/Web/Tickets/Tickets.Site/bin/Debug/net8.0/AlphaPlus.Tickets.Site.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Web/Tickets/Tickets.Site",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
+    }
+  ],
+  "compounds": [
+      {
+          "name": "Alpha+All",
+          "configurations": [
+              "Reports Launch (Docker)",
+              "Tickets Launch (Docker)"
+          ]
+      }
+  ]
+}
