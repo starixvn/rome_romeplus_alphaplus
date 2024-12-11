@@ -14,11 +14,11 @@ public static class BetListsDIExtensions
     public static IServiceCollection AddBetListsCore(this IServiceCollection services)
         => services
         .AddSingleton<ICacheRef, CacheRef>()
-        .AddSingleton<ITicketHelper, TicketHelper>()
+        .AddScoped<ITicketHelper, TicketHelper>()
         .AddScoped(typeof(Workbook<>), typeof(NpoiWorkbook<>))
-        .AddSingleton<IBetListFactory<BetListHTMLBuilder>, BetListHTMLFactory>()
-        .AddSingleton<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>()
-        .AddSingleton<IBetListHTMLBuilder>(sp => sp.GetService<IBetListFactory<BetListHTMLBuilder>>().CreateBuilder())
-        .AddSingleton<IBetListExcelBuilder>(sp => sp.GetService<IBetListFactory<BetListExcelBuilder>>().CreateBuilder())
+        .AddScoped<IBetListFactory<BetListHTMLBuilder>, BetListHTMLFactory>()
+        .AddScoped<IBetListFactory<BetListExcelBuilder>, BetListExcelFactory>()
+        .AddScoped<IBetListHTMLBuilder>(sp => sp.GetService<IBetListFactory<BetListHTMLBuilder>>().CreateBuilder())
+        .AddScoped<IBetListExcelBuilder>(sp => sp.GetService<IBetListFactory<BetListExcelBuilder>>().CreateBuilder())
         .AddSingleton<IComboParlayDetailWorkbook, ComboParlayDetailWorkbook>();
 }
