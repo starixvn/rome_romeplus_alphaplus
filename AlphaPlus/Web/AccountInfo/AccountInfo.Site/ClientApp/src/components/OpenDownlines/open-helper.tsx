@@ -1,6 +1,7 @@
 ﻿import { TFunction } from 'i18next';
 
 import { usernameRegExp } from '../../helpers';
+import { OpenMultipleModel } from './open-api';
 
 export const viewInformation = (t: TFunction) => {
     const style = `style='padding-left: 15px;'`;
@@ -16,7 +17,12 @@ export const viewInformation = (t: TFunction) => {
     window.top?.bootboxAlert(messages);
 };
 
-export const getMultipleConfirmMessage = (t: TFunction, searchAccountRoleId: number, viewModel, originalViewModel) => {
+export const getMultipleConfirmMessage = (
+    t: TFunction,
+    searchAccountRoleId: number,
+    viewModel: OpenMultipleModel[],
+    originalViewModel: OpenMultipleModel[]
+) => {
     if (searchAccountRoleId > 1) {
         return t('OpenDownlinesNote:MultipleConfirm');
     }

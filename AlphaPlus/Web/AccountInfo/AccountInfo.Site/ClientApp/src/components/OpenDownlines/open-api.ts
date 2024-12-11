@@ -1,3 +1,4 @@
+import Result from '../../models/result';
 import { axiosInstance } from '../../services/axios-helper';
 
 export interface OpenSingleModel {
@@ -12,6 +13,30 @@ export interface OpenSingleDataViewModel {
     Levels: OpenSingleModel[];
     AffectedDownlinesTotal: number;
     UnchangedDownlinesTotal: number;
+}
+
+export interface OpenDownlineModel {
+    SearchAccountId: number;
+    DownlineRoleId: number;
+    AffectedDownlines: number;
+    UnchangedDownlines: number;
+}
+
+export interface OpenMultipleModel {
+    SearchAccountId: number;
+    Username: string;
+    IsClosed: boolean;
+    Downlines: OpenDownlineModel[];
+}
+
+export interface OpenMultipleResultViewModel {
+    RoleId: number;
+    Results: Result[];
+}
+
+export interface OpenMultipleViewModel {
+    SearchAccountRoleId: number;
+    Data: OpenMultipleModel[];
 }
 
 const OpenAPI = {

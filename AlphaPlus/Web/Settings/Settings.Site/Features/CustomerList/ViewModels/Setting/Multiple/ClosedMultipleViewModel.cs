@@ -18,7 +18,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
 
         public string Title => Request.GetResource("UpdateMultipleClosedStatusText");
 
-        protected override string BaseAddress => MicroSites.SettingUrl("~/OpenDownlines/EditMultiple");
+        protected override string BaseAddress => MicroSites.AccountInfoUrl("~/OpenDownlines/EditMultiple");
 
         public override string Url => BaseAddress;
 

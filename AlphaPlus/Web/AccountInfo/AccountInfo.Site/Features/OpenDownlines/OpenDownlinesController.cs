@@ -21,11 +21,11 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines
        => await Json(message).ConfigureAwait(false);
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<ActionResult> OpenSingle(OpenSingleCommand command)
+    public async Task<ActionResult> OpenSingle([FromBody] OpenSingleCommand command)
       => await Json(command).ConfigureAwait(false);
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<ActionResult> OpenMultiple(OpenMultipleCommand command)
+    public async Task<ActionResult> OpenMultiple([FromBody] OpenMultipleCommand command)
       => await Json(command).ConfigureAwait(false);
   }
 }

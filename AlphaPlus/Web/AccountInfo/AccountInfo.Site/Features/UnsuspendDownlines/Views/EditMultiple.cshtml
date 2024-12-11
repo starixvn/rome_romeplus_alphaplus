@@ -6,8 +6,7 @@
 
 @section Styles {
     @* @StaticResources.RenderStylesWithDarkMode("~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple") *@
-    <link rel="stylesheet" href="~/unsuspend-helper.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/UnsuspendAPI.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/unsuspend-downlines.css" asp-append-version="true" />
 }
 
 @Html.AntiForgeryToken()
@@ -16,6 +15,8 @@
 
 @section Scripts {
     @* @StaticResources.RenderScripts("~/Features/UnsuspendDownlines/Bundles/unsuspend-multiple") *@
+    <script type="module" src="~/UnsuspendAPI.js" asp-append-version="true"></script>
+    <script type="module" src="~/unsuspend-helper.js" asp-append-version="true"></script>
     <script type="module" src="~/unsuspendMultiple.js" asp-append-version="true"></script>
     <script>
         $(document).ready(() => {

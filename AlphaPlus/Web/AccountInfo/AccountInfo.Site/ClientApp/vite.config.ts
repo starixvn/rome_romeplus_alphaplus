@@ -19,7 +19,9 @@ export default defineConfig({
                 profilePicture: '/src/profile-picture.tsx',
                 unsuspendSingle: '/src/unsuspend-single.tsx',
                 unsuspendMultiple: '/src/unsuspend-multiple.tsx',
-                suspendMultipleConfirm: '/src/suspend-multiple-confirm.tsx'
+                suspendMultipleConfirm: '/src/suspend-multiple-confirm.tsx',
+                openSingle: '/src/open-single.tsx',
+                openMultiple: '/src/open-multiple.tsx'
             },
             output: {
                 entryFileNames: '[name].js',
