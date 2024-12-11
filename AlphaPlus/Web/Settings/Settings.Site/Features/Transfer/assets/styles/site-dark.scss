@@ -436,56 +436,61 @@ a.transfer-link {
         }
     }
 }
-.ttl-form-transfer-condition{
-    font-weight: bold;
-}
 .form-transfer-condition{
-    display: flex;
-    flex-wrap: nowrap;
-    height: 28px;
-    align-items: center;
-    margin-bottom: 5px;
-    &-daily{
-        position: relative;
-        &:after{
-            position: absolute;
-            content: "";
-            width: 100%;
-            height: 1px;
-            background-color: #5F626B;
-            bottom: -3px;
-            left: 0;
-
+    padding-top: 12px;
+    .tb{
+        font-size: 13px;
+        border-collapse: collapse;
+            border: 1px solid #A6A6A6 ;
+        thead{
+            th,td{
+                color: #ededed;
+                background-color: #344259;
+            }
         }
-    }
-    &-daily, &-weekly{
-        .left{
-            border-right: 1px solid #5F626B;
-            margin-right: 10px;
-        }
-    }
-    label{
-        margin: 0;
-    }
-    .left{
-        min-width: 100px;
-        padding-right: 5px;
-    }
-    .weekly{
-        display: flex;
-        flex-wrap: nowrap;
-         
-        label, input{
-            display: inline-block;
+        th,td{
+            border-collapse: collapse;
+            border: 1px solid #737373 ;
+            height: 32px;
             vertical-align: middle;
+            padding: 3px 5px;           
+         
+            label{
+                color: #ededed;
+                margin: 0;
+                display: inline-block;
+                text-align: left;
+                font-size: 13px;                
+            }
+            .block-weekly{
+                display: flex;
+                flex-wrap: nowrap;
+            }
+            .left{
+                min-width: 75px;
+                margin-right: 10px;
+            }
+            .weekly{
+                display: flex;
+                flex-wrap: nowrap;
+                 
+                label, input{
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                input{
+                    position: relative;
+                    top: -1px;
+                    margin-right: 5px;
+                }
+                label{
+                    margin-right: 10px;
+                }
+            }
         }
-        input{
-            position: relative;
-            top: -1px;
-            margin-right: 5px;
-        }
-        label{
-            margin-right: 15px;
-        }
+    }
+    .btn-submit{
+        border-radius: 5px;
+        box-shadow: none;
     }
 }

@@ -338,28 +338,46 @@ html {
 // update info 
 .update-info{
     padding-top: 12px;
-    .form{
-        display: flex;
-        margin-bottom: 12px;
-        label{
-            width: 130px;
-            line-height: 28px;
-            margin: 0;
-            color: #cbcbcb;
-            font-size: 13px;
+    .tb{
+        font-size: 13px;
+        border-collapse: collapse;
+            border: 1px solid #737373 ;
+        thead{
+            th,td{
+                color: #ededed;
+                background-color: #344259;
+            }
         }
-        input[type="text"]{
-            border: 1px solid #474747;
-            min-width: 260px;
-            margin-left: 0;
-            margin-right: 4px;
-            width: 250px;
-            height: 28px;
-            line-height: 28px;
-            padding-left: 4px;
-            padding-right: 4px;
-            appearance: none;           
+        th,td{
+            border-collapse: collapse;
+            border: 1px solid #737373 ;
+            height: 32px;
+            vertical-align: middle;
+            padding: 3px 5px;
+            input[type=text]{
+                border: 1px solid #404040;
+                background: #262626;
+                border-radius: 5px;
+                box-shadow: none;
+                width: 188px;
+            }
+            label{
+                color: #ededed;
+                margin: 0;
+                display: block;
+                text-align: right;
+                font-size: 13px;
+                min-width: 150px;
+            }
         }
+    }
+    .form-btn{
+        padding: 11px 0;
+        .btn-submit, .btn-reset{
+            border-radius: 5px;
+            box-shadow: none;
+            margin-right: 20px;
+        }    
     }
 }
 input[type=reset], input[type=button].btn-reset {
