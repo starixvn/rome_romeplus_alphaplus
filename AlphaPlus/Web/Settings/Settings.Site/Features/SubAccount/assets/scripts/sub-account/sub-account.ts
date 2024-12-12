@@ -4,7 +4,7 @@ declare var encryptor: Encryptor;
 
 interface Window {
     age: {
-        SignOut: Function
+        SignOut: Function;
     };
     clearPopupSubtitle: Function;
     ShowSecCodePopup: Function;
@@ -60,41 +60,46 @@ class SubAccount {
             this.$('.lMemInfo').click((item) => {
                 this.OpenUpdatePopup(item);
             });
-            this.$("#btnEdit").click(() => {
+            this.$('#btnEdit').click(() => {
                 this.UpdateInfo();
             });
-            this.$("#btn-reset").click(() => {
+            this.$('#btn-reset').click(() => {
                 this.Reset();
             });
             this.$('#MemInfo').click((item) => {
                 this.OpenAddPopup(item);
             });
             this.$('#btnAdd').click(() => {
-                if (this.ValidatePassword(this.$("#txtPwd").val())) {
+                if (this.ValidatePassword(this.$('#txtPwd').val())) {
                     this.AddSubAccount(0);
-                }
-                else {
-                    this.$("#errMsg").html(this.$.trim(this.$("#txtPwd").val()) === "" ? window.passwordEmptyMsg : window.passwordFormatMsg)
+                } else {
+                    this.$('#errMsg')
+                        .html(
+                            this.$.trim(this.$('#txtPwd').val()) === ''
+                                ? window.passwordEmptyMsg
+                                : window.passwordFormatMsg
+                        )
                         .css({
-                            border: "1px solid red",
-                            padding: "10px",
-                            color: "red"
-                        }).show();
+                            border: '1px solid red',
+                            padding: '10px',
+                            color: 'red'
+                        })
+                        .show();
                 }
             });
-            this.$("#None").change((item) => {
-                this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
+            this.$('#None').change((item) => {
+                this.$('#MemInfo').text(this.$(item.currentTarget).next().text());
             });
-            this.$("#View").change((item) => {
-                this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
+            this.$('#View').change((item) => {
+                this.$('#MemInfo').text(this.$(item.currentTarget).next().text());
             });
-            this.$("#UpdateView").change((item) => {
-                this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
+            this.$('#UpdateView').change((item) => {
+                this.$('#MemInfo').text(this.$(item.currentTarget).next().text());
             });
-            this.$("#FullControl").change((item) => {
-                this.$("#MemInfo").text(this.$(item.currentTarget).next().text());
+            this.$('#FullControl').change((item) => {
+                this.$('#MemInfo').text(this.$(item.currentTarget).next().text());
             });
-            this.$("#txtPwd").keyup((item) => {
+            this.$('#txtPwd').keyup((item) => {
                 var pwd = this.$(item.currentTarget).val();
                 this.ValidatePassword(pwd);
             });
@@ -177,7 +182,7 @@ class SubAccount {
             },
             url: updateUrl,
             data: data,
-            type: "POST",
+            type: 'POST',
             success: (result) => {
                 if (result && result.code === 999991) {
                     var $top = this;
@@ -186,13 +191,17 @@ class SubAccount {
                     };
 
                     this.topWindow.ShowSecCodePopup(updateUrl, this.topWindow.age);
-                }
-                else {
+                } else {
                     if (result && result.Code !== 0) {
-                        alert((result && result.Message) || 'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!');
+                        alert(
+                            (result && result.Message) ||
+                                'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!'
+                        );
                     }
 
-                    (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src = (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src;
+                    (<HTMLIFrameElement>this.topWindow.$('#main')[0]).src = (<HTMLIFrameElement>(
+                        this.topWindow.$('#main')[0]
+                    )).src;
                 }
             },
             complete: () => {
@@ -204,9 +213,13 @@ class SubAccount {
     AddSubAccount = (subAccId: number) => {
         this.$.blockUI();
 
-        var pageAccess = this.$("#View").is(":checked") ? "[H]" :
-            this.$("#UpdateView").is(":checked") ? "[B][H]" :
-                this.$("#FullControl").is(":checked") ? "[A][B][H]" : "";
+        var pageAccess = this.$('#View').is(':checked')
+            ? '[H]'
+            : this.$('#UpdateView').is(':checked')
+            ? '[B][H]'
+            : this.$('#FullControl').is(':checked')
+            ? '[A][B][H]'
+            : '';
 
         if (this.$('#' + subAccId + '-D').is(':checked')) {
             pageAccess += '[D]';
@@ -229,12 +242,12 @@ class SubAccount {
         }
 
         var data = {
-            first: this.$("#FirstOptions_Value").val(),
-            next: this.$("#NextOptions_Value").val(),
-            password: encryptor.encrypt(this.$("#txtPwd").val(), this.$("#Code").val()),
-            firstName: this.$("#txtFname").val() || "-",
-            lastName: this.$("#txtLname").val() || "-",
-            pageAccess: pageAccess || ""
+            first: this.$('#FirstOptions_Value').val(),
+            next: this.$('#NextOptions_Value').val(),
+            password: encryptor.encrypt(this.$('#txtPwd').val(), this.$('#Code').val()),
+            firstName: this.$('#txtFname').val() || '-',
+            lastName: this.$('#txtLname').val() || '-',
+            pageAccess: pageAccess || ''
         };
 
         var updateUrl = '/settings/SubAccount/Add';
@@ -246,18 +259,25 @@ class SubAccount {
             },
             url: updateUrl,
             data: data,
-            type: "POST",
+            type: 'POST',
             success: (result) => {
                 if (result && result.IsSuccessful) {
-                    (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src = (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src;
+                    (<HTMLIFrameElement>this.topWindow.$('#main')[0]).src = (<HTMLIFrameElement>(
+                        this.topWindow.$('#main')[0]
+                    )).src;
                     this.topWindow.popupManager.close();
-                }
-                else {
-                    this.$("#errMsg").html((result && result.Message) || 'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!').css({
-                        border: "1px solid red",
-                        padding: "10px",
-                        color: "red"
-                    }).show();
+                } else {
+                    this.$('#errMsg')
+                        .html(
+                            (result && result.Message) ||
+                                'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!'
+                        )
+                        .css({
+                            border: '1px solid red',
+                            padding: '10px',
+                            color: 'red'
+                        })
+                        .show();
                 }
             },
             complete: () => {
@@ -339,35 +359,42 @@ class SubAccount {
     UpdateInfo = () => {
         this.$.blockUI();
 
-        var subAccId = this.$("#SubAccId").val();
-        var firstName = this.$("#txtFirstname").val();
-        var lastName = this.$("#txtLastname").val();
-        var closed = this.$("#chkClosed").is(":checked");
+        var subAccId = this.$('#SubAccId').val();
+        var firstName = this.$('#txtFirstName').val();
+        var lastName = this.$('#txtLastName').val();
+        var closed = this.$('#chkClosed').is(':checked');
 
         this.$.ajax({
             headers: {
                 RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),
                 'X-Requested-With': 'XMLHttpRequest'
             },
-            url: "/settings/SubAccount/UpdateInfo",
+            url: '/settings/SubAccount/UpdateInfo',
             data: {
                 subAccId: subAccId,
-                firstName: firstName || "-",
-                lastName: lastName || "-",
+                firstName: firstName || '-',
+                lastName: lastName || '-',
                 closed: closed
             },
-            type: "POST",
+            type: 'POST',
             success: (result) => {
                 if (result && result.IsSuccessful) {
-                    (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src = (<HTMLIFrameElement>this.topWindow.$("#main")[0]).src;
+                    (<HTMLIFrameElement>this.topWindow.$('#main')[0]).src = (<HTMLIFrameElement>(
+                        this.topWindow.$('#main')[0]
+                    )).src;
                     this.topWindow.popupManager.close();
-                }
-                else {
-                    this.$("#errMsg").html((result && result.Message) || 'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!').css({
-                        border: "1px solid red",
-                        padding: "10px",
-                        color: "red"
-                    }).show();
+                } else {
+                    this.$('#errMsg')
+                        .html(
+                            (result && result.Message) ||
+                                'Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [5000]!'
+                        )
+                        .css({
+                            border: '1px solid red',
+                            padding: '10px',
+                            color: 'red'
+                        })
+                        .show();
                 }
             },
             complete: () => {
@@ -377,25 +404,18 @@ class SubAccount {
     };
 
     Reset = () => {
-        this.$("#txtFirstname").val(this.$("#Firstname").val());
-        this.$("#txtLastname").val(this.$("#Lastname").val());
-        this.$("#chkClosed").prop("checked", this.$("#Closed").val() === "True" ? true : false);
+        this.$('#txtFirstName').val(this.$('#Firstname').val());
+        this.$('#txtLastName').val(this.$('#Lastname').val());
+        this.$('#chkClosed').prop('checked', this.$('#Closed').val() === 'True' ? true : false);
     };
 
     ValidatePassword = (password: string): boolean => {
         var validPwd = this.IsPassword(password);
         if (validPwd) {
-            this.$("#spnPwdIcon")
-                .removeClass("PwdError")
-                .removeClass("PwdSuccess")
-                .addClass("PwdSuccess");
+            this.$('#spnPwdIcon').removeClass('PwdError').removeClass('PwdSuccess').addClass('PwdSuccess');
             return true;
-        }
-        else {
-            this.$("#spnPwdIcon")
-                .removeClass("PwdError")
-                .removeClass("PwdSuccess")
-                .addClass("PwdError");
+        } else {
+            this.$('#spnPwdIcon').removeClass('PwdError').removeClass('PwdSuccess').addClass('PwdError');
             return false;
         }
     };
@@ -414,7 +434,7 @@ class SubAccount {
         var case4 = str.search(regex4) != -1 ? 1 : 0;
 
         var case5 = str.search(whiteSpace) != -1;
-        return (case1 + case2 + case3 + case4 >= 3) && case5;
+        return case1 + case2 + case3 + case4 >= 3 && case5;
     };
 }
 
