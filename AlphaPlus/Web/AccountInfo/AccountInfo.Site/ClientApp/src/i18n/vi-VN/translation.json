@@ -105,5 +105,21 @@
     "NoData": "Không có dữ liệu",
     "Master": "Master",
     "Agent": "Agent",
-    "Member": "Member"
+    "Member": "Member",
+    "Open": "Mở",
+    "OpenSingleNote": "Danh sách trạng thái của cấp dưới sau khi mở <username>",
+    "OpenDownlines": {
+        "AffectedViewListNote": "Danh sách cấp dưới bị thay đổi trạng thái sau khi mở <username>",
+        "ViewInformation1": "- Khi tài khoản bị đóng, tất cả cấp dưới trực thuộc cũng sẽ bị đóng.",
+        "ViewInformation2": "- Khi tài khoản được mở:",
+        "ViewInformation3": "+ Chỉ có cấp dưới bị đóng <b>gián tiếp</b> bởi cấp trên mới được mở. Bạn có thể nhấn vào số cấp dưới bị ảnh hưởng để xem danh sách.",
+        "ViewInformation4": "+ Trạng thái của các tài khoản còn lại sẽ không thay đổi. Bạn có thể nhấn vào số cấp dưới không bị ảnh hưởng để xem danh sách.",
+        "ViewInformation5": "- Cấp dưới bị ảnh hưởng: danh sách người dùng bị thay đổi trạng thái sau khi cấp trên của họ được mở.",
+        "ViewInformation6": "- Cấp dưới không bị ảnh hưởng: danh sách người dùng không bị thay đổi trạng thái sau khi cấp trên của họ được mở.",
+        "UnchangedViewListNote": "Danh sách cấp dưới không bị thay đổi trạng thái sau khi mở <username>",
+        "SubmitMultipleConfirm3": "Bạn có chắc muốn tiếp tục?"
+    },
+    "SingleConfirm": "Bạn có chắc muốn mở tài khoản này? Tất cả tài khoản cấp dưới trực thuộc cũng sẽ được mở.",
+    "CloseStatus": "Trạng Thái Đóng",
+    "Opened": "Đã Mở"
 }

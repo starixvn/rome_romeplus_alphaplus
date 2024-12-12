@@ -62,7 +62,7 @@ export default function UnsuspendSingle({ viewModel, redirectViewListDetail }: P
         const message =
             viewModel.AffectedDownlinesTotal + viewModel.UnchangedDownlinesTotal === 0
                 ? t('UnsuspendedWithNoDownlinesMessages')
-                : t('MultipleConfirm');
+                : t('UnsuspendedNote.MultipleConfirm');
 
         window?.top?.bootboxConfirm(message, undefined, doUpdate);
     };

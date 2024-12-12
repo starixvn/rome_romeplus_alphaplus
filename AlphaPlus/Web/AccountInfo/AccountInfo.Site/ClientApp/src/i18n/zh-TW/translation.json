@@ -105,5 +105,22 @@
     "NoData": "沒有數據",
     "Master": "總代理",
     "Agent": "代理",
-    "Member": "會員"
+    "Member": "會員",
+    "Open": "開啟",
+    "OpenSingleNote": "開啟 <username> 後下線狀態列表。",
+    "OpenDownlines": {
+        "AffectedViewListNote": "開啟 <username> 後下線狀態會改變的列表。",
+        "ViewInformation1": "- 當一個賬號被關閉，他/她的所有下線賬號也將被關閉。",
+        "ViewInformation2": "- 當一個賬號被開啟：",
+        "ViewInformation3": "只有被該上線間接關閉的下線會被開啟。您可以點擊該列表查看受影響的下線賬號。",
+        "ViewInformation4": "其餘的目前狀態不會改變。您可以點擊該數額查看未受影響的下線賬號列表。",
+        "ViewInformation5": "- 受影響的下線：上線開啟後狀態改變的用戶列表。",
+        "ViewInformation6": "- 未受影響的下線：上線開啟後狀態保持不變的用户列表。",
+        "UnchangedViewListNote": "開啟 <username> 下線狀態後保持不變的列表。",
+        "SubmitMultipleConfirm3": "您確定要進行嗎？"
+    },
+    "SingleConfirm": "您確定要開啟此賬號？他/她的所有下線賬號將被開啟。",
+    "CloseStatus": "關閉狀態",
+    "Opened": "開啟",
+    "to": "到"
 }

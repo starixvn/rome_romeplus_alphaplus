@@ -66,8 +66,8 @@ export default function UnsuspendViewList({
     );
 
     const viewListNote = isAffected
-        ? t('UnsuspendedNote:AffectedViewListNote')
-        : t('UnsuspendedNote:UnchangedViewListNote');
+        ? t('UnsuspendedNote.AffectedViewListNote')
+        : t('UnsuspendedNote.UnchangedViewListNote');
 
     if (viewModel === null) {
         return null;

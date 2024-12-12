@@ -105,5 +105,22 @@
     "NoData": "没有数据",
     "Master": "总代理",
     "Agent": "代理",
-    "Member": "会员"
+    "Member": "会员",
+    "Open": "开启",
+    "OpenSingleNote": "开启 <username> 后下线状态列表。",
+    "OpenDownlines": {
+        "AffectedViewListNote": "开启 <username> 后下线状态会改变的列表。",
+        "ViewInformation1": "- 当一个账号被关闭，他/她的所有下线账号也将被关闭。",
+        "ViewInformation2": "- 当一个账号被开启：",
+        "ViewInformation3": "只有被该上线间接关闭的下线会被开启。您可以点击该列表查看受影响的下线账号。",
+        "ViewInformation4": "其余的目前状态不会改变。您可以点击该数额查看未受影响的下线账号列表。",
+        "ViewInformation5": "- 受影响的下线：上线开启后状态改变的用户列表",
+        "ViewInformation6": "- 未受影响的下线：上线账开启后状态保持不变的用户列表。",
+        "UnchangedViewListNote": "开启 <username> 下 线状态后保持不变的列表。",
+        "SubmitMultipleConfirm3": "您确定要进行吗？"
+    },
+    "SingleConfirm": "您确定要开启此账号？他/她的所有下线账号将被开启。",
+    "CloseStatus": "关闭状态",
+    "Opened": "开启",
+    "to": "到"
 }

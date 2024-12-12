@@ -66,8 +66,8 @@ export default function OpenViewList({
     );
 
     const viewListNote = isAffected
-        ? t('OpenDownlines:AffectedViewListNote')
-        : t('OpenDownlines:UnchangedViewListNote');
+        ? t('OpenDownlines.AffectedViewListNote')
+        : t('OpenDownlines.UnchangedViewListNote');
 
     if (viewModel === null) {
         return null;

@@ -105,5 +105,22 @@
     "NoData": "There is no data.",
     "Master": "Master",
     "Agent": "Agent",
-    "Member": "Member"
+    "Member": "Member",
+    "Open": "Open",
+    "OpenSingleNote": "List of downlines' statuses after opening <username>",
+    "OpenDownlines": {
+        "AffectedViewListNote": "List of downlines whose statuses are changed after opening <username>",
+        "ViewInformation1": "- When an account is closed, all his/her downlines will be closed as well.",
+        "ViewInformation2": "- When an account is opened:",
+        "ViewInformation3": "+ Only the downlines who are <b>indirectly</b> closed by the upline will be opened. You can click on the number of affected downlines to view the list.",
+        "ViewInformation4": "+ For the rest, their current statuses will not change. You can click on the number of unaffected downlines to view the list.",
+        "ViewInformation5": "- Affected Downlines: list of users whose statuses are changed after their upline is opened.",
+        "ViewInformation6": "- Unaffected Downlines: list of users whose statuses remain unchanged after their upline is opened.",
+        "UnchangedViewListNote": "List of downlines whose statuses remain unchanged after opening <username>",
+        "SubmitMultipleConfirm3": "Are you sure you want to proceed?"
+    },
+    "SingleConfirm": "Are you sure you want to open this account? All of his/her downlines will be opened as well.",
+    "CloseStatus": "Closed Status",
+    "Opened": "Opened",
+    "to": "to"
 }
