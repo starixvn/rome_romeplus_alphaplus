@@ -52,7 +52,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.AdminId = signInResult.AdminId;
         userSession.AdminName = signInResult.AccUserName;
         userSession.IsLogged = userSession.IsInternal || !signInResult.IsFirstLogin;
-        userSession.NickName = signInResult.Nickname.ToUpperInvariant();
+        userSession.NickName = signInResult.Nickname;
         userSession.IsNickname = signInResult.IsNickName;
         userSession.DisplayNickName = userSession.IsNickname ? userSession.NickName : userSession.UserName;
 
