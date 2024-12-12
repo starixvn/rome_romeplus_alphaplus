@@ -127,7 +127,7 @@
     "Fanex.Customer": {
         "ServiceUri": "http://vn-staging-customer.nebula.prod/api/",
         "CdnUri": "//dcscdn11.gatonic.com/",
-        "SystemId": 2
+        "SystemId": 7
     },
     "SystemId": 2,
     "AssetAppPath": "//alp2-cdn.gatonic.com",
@@ -237,6 +237,9 @@
     "IndirectLogin": {
         "AllowSuperIds": "*",
         "URL": "https://idp2.gatonic.com/main/Account/IndirectLogin"
+    },
+    "ProtectedMode": {
+        "OfferSites": "*"
     },
     "Authorization": {
         "cachedExpireTime": 30,

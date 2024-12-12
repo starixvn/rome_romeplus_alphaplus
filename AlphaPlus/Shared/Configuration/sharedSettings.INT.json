@@ -127,7 +127,7 @@
     "Fanex.Customer": {
         "ServiceUri": "http://vn-staging-customer.nebula.prod/api/",
         "CdnUri": "//dcscdn11.gatonic.com/",
-        "SystemId": 2
+        "SystemId": 3
     },
     "SystemId": 2,
     "AssetAppPath": "//alp1-cdn.gatonic.com",
