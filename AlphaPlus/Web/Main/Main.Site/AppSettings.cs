@@ -36,7 +36,7 @@ namespace AlphaPlus.Main.Site
 
         public static int UMAnnouncementPopupClientIntervalInMinutes => GetValue<int>("UMAnnouncementPopup:ClientIntervalInMinutes");
 
-        public static string[] DomainsWithViva88ContactInfo => GetSectionValue<string[]>("newdomains");
+        public static string[] DomainsWithViva88ContactInfo => GetSectionValue<string[]>("newdomains", []);
 
         public static bool IsViva88Domain
             => DomainsWithViva88ContactInfo.Any(domain => domain.Equals(AlphaContext.Current.Request.Host.Value, StringComparison.OrdinalIgnoreCase));
@@ -53,7 +53,7 @@ namespace AlphaPlus.Main.Site
 
         public static string ContactUsLetstalkUrlNew => GetValue<string>("letstalkurlNew");
 
-        public static string[] ContactUsNewDomains => GetSectionValue<string[]>("newdomains");
+        public static string[] ContactUsNewDomains => GetSectionValue<string[]>("newdomains", []);
 
         public static int CDNReCheckinIntervalInSeconds => GetValue("DNReCheckin:IntervalInSeconds", 60);
 
@@ -63,7 +63,7 @@ namespace AlphaPlus.Main.Site
 
         public static string APIGatewaysURL => GetValue<string>("ApiKey:Gateway");
 
-        public static string[] APISuperIds => GetSectionValue<string[]>("ApiKey:AllowSuperIds");
+        public static string[] APISuperIds => GetSectionValue<string[]>("ApiKey:AllowSuperIds", []);
 
         public static bool HideQRCode => GetValue<bool>("QRCode:Hide");
 
