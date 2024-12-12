@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
-public partial class ResultsController(IMediator mediator) : ResultBaseController(mediator)
+public class ThirdPartyController(IMediator mediator) : ResultBaseController(mediator)
 {
     protected const string IndexView = "~/Features/Results/ThirdParty/Views/Index.cshtml";
 
