@@ -249,5 +249,15 @@
         "Super": "3000,3100",
         "Master": "3000,3200",
         "Agent": "3000,3300"
+    },
+    "QRCode": {
+        "Domains": [
+            "https://www.nova88.com/api",
+            "https://www.starbook88.com/api",
+            "https://www.newbook88.com/api",
+            "https://www.webook88.com/api"
+        ],
+        "SiteId": 4120,
+        "ExpireSeconds": 900
     }
 }

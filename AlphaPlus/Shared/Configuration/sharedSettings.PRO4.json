@@ -249,5 +249,14 @@
         "Super": "3000,3100",
         "Master": "3000,3200",
         "Agent": "3000,3300"
+    },
+    "QRCode": {
+        "Domains": [
+            "https://www.taraplays.com/api",
+            "https:/www.taraplays.net/api",
+            "https://www.letsgofuns.com/api"
+        ],
+        "SiteId": 4140,
+        "ExpireSeconds": 900
     }
 }

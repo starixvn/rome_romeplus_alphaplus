@@ -13,7 +13,6 @@ builder.Configuration
     .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
     .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("Features/ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: true)
     .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
     .AddJsonFile("Products.json", optional: false, reloadOnChange: true)

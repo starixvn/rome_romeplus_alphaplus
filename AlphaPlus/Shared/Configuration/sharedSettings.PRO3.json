@@ -249,5 +249,16 @@
         "Super": "3000,3500,3501",
         "Master": "3000,3500,3502",
         "Agent": "3000,3500,3503"
+    },
+    "QRCode": {
+        "Domains": [
+            "https://www.669969.com/api",
+            "https://www.668891.net/api",
+            "https://www.668894.net/api",
+            "https://www.668897.net/api",
+            "https://www.33166133.net/api"
+        ],
+        "SiteId": 4120,
+        "ExpireSeconds": 900
     }
 }

@@ -81,8 +81,6 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddHttpClient<ISubAccountService, SubAccountService>
                     (httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 
-            var qrCodeMemberLoginConfig = AppDomain.CurrentDomain.BaseDirectory + "/Features/QRCodeMemberSiteLoginConfigs/QRCodeMemberSiteLoginConfig.json";
-
             services
                 .AddHealthChecks();
 
@@ -215,7 +213,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<IYesterdayBalanceTransferService, YesterdayBalanceTransferService>()
                 .AddScoped<TransferAllAndClearCreditService, TransferAllAndClearCreditServiceImpl>()
                 .AddScoped<TransferToDownlineHistoryService, TransferToDownlineHistoryServiceImpl>()
-                .AddSingleton<QRCodeLoginConfigsHelper>((provider) => new QRCodeLoginConfigsHelperImpl(qrCodeMemberLoginConfig));
+                .AddSingleton<QRCodeLoginConfigsHelper, QRCodeLoginConfigsHelperImpl>();
 
             services
                 .AddSingleton<IMemberBettingBehaviorWorkbook, MemberBettingBehaviorWorkbook>()

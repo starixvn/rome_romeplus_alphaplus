@@ -249,5 +249,12 @@
         "Super": "3000,3100",
         "Master": "3000,3200",
         "Agent": "3000,3300"
+    },
+    "QRCode": {
+        "Domains": [
+            "http://ha.nexdev.net:7400/Local01"
+        ],
+        "SiteId": 4120,
+        "ExpireSeconds": 900
     }
 }

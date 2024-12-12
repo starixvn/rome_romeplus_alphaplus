@@ -252,5 +252,15 @@
         "Super": "3000,3110",
         "Master": "3000,3210",
         "Agent": "3000,3310"
+    },
+    "QRCode": {
+        "Domains": [
+            "https://www.viva88.net/api",
+            "https://www.viva88.com/api",
+            "https://www.sporty88.com/api",
+            "https://www.viva24x7.com/api"
+        ],
+        "SiteId": 4120,
+        "ExpireSeconds": 900
     }
 }

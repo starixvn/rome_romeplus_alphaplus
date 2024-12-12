@@ -2,11 +2,7 @@
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn
 {
     using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
-    using Newtonsoft.Json.Linq;
-    using System.Collections.Generic;
-    using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
-    using System.IO;
-    using System.Linq;
+    using AlphaPlus.Core.Configurations;
 
     public interface QRCodeLoginConfigsHelper
     {
@@ -17,25 +13,8 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
 
     public class QRCodeLoginConfigsHelperImpl : QRCodeLoginConfigsHelper
     {
-        private readonly string configPath;
+        public QRCodeLoginConfigs GetQRCodeMemberSiteLoginConfigs() => ConfigurationManager.GetSection<QRCodeLoginConfigs>("QRCode");
 
-        public QRCodeLoginConfigsHelperImpl(string configPath)
-        {
-            this.configPath = configPath;
-        }
-
-        public QRCodeLoginConfigs GetQRCodeMemberSiteLoginConfigs()
-        {
-            IDictionary<string, string> jsonObject = JObject.Parse(File.ReadAllText(configPath))
-            .Properties()
-            .ToDictionary(jproperty => jproperty.Name, jproperty => jproperty.Value.ToString());
-
-            return new QRCodeLoginConfigs(
-                jsonObject["Domain"].Split(',').ToArray(),
-                int.Parse(jsonObject["SiteId"]),
-                int.Parse(jsonObject["ExpireSeconds"]));
-        }
-
-        public bool LocalTest() => AppSettings.LocalTest;
+        public bool LocalTest() => Core.Configurations.AppSettings.LocalTest;
     }
 }
