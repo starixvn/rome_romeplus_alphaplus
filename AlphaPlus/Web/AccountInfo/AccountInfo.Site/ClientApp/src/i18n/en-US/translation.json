@@ -117,7 +117,8 @@
         "ViewInformation5": "- Affected Downlines: list of users whose statuses are changed after their upline is opened.",
         "ViewInformation6": "- Unaffected Downlines: list of users whose statuses remain unchanged after their upline is opened.",
         "UnchangedViewListNote": "List of downlines whose statuses remain unchanged after opening <username>",
-        "SubmitMultipleConfirm3": "Are you sure you want to proceed?"
+        "SubmitMultipleConfirm3": "Are you sure you want to proceed?",
+        "MultipleConfirm": "Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well."
     },
     "SingleConfirm": "Are you sure you want to open this account? All of his/her downlines will be opened as well.",
     "CloseStatus": "Closed Status",

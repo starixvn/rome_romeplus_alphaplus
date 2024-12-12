@@ -117,7 +117,8 @@
         "ViewInformation5": "- 受影响的下线：上线开启后状态改变的用户列表",
         "ViewInformation6": "- 未受影响的下线：上线账开启后状态保持不变的用户列表。",
         "UnchangedViewListNote": "开启 <username> 下 线状态后保持不变的列表。",
-        "SubmitMultipleConfirm3": "您确定要进行吗？"
+        "SubmitMultipleConfirm3": "您确定要进行吗？",
+        "MultipleConfirm": "您确定要开启/关闭已选定的用户吗？ 所有受影响的下线也将被开启/关闭。"
     },
     "SingleConfirm": "您确定要开启此账号？他/她的所有下线账号将被开启。",
     "CloseStatus": "关闭状态",

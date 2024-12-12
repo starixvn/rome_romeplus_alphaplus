@@ -117,7 +117,8 @@
         "ViewInformation5": "- 受影響的下線：上線開啟後狀態改變的用戶列表。",
         "ViewInformation6": "- 未受影響的下線：上線開啟後狀態保持不變的用户列表。",
         "UnchangedViewListNote": "開啟 <username> 下線狀態後保持不變的列表。",
-        "SubmitMultipleConfirm3": "您確定要進行嗎？"
+        "SubmitMultipleConfirm3": "您確定要進行嗎？",
+        "MultipleConfirm": "您確定要開啟/關閉已選定的用戶嗎？ 所有受影響的下線也將被開啟/關閉。"
     },
     "SingleConfirm": "您確定要開啟此賬號？他/她的所有下線賬號將被開啟。",
     "CloseStatus": "關閉狀態",

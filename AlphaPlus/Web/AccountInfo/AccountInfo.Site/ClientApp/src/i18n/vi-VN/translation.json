@@ -117,9 +117,11 @@
         "ViewInformation5": "- Cấp dưới bị ảnh hưởng: danh sách người dùng bị thay đổi trạng thái sau khi cấp trên của họ được mở.",
         "ViewInformation6": "- Cấp dưới không bị ảnh hưởng: danh sách người dùng không bị thay đổi trạng thái sau khi cấp trên của họ được mở.",
         "UnchangedViewListNote": "Danh sách cấp dưới không bị thay đổi trạng thái sau khi mở <username>",
-        "SubmitMultipleConfirm3": "Bạn có chắc muốn tiếp tục?"
+        "SubmitMultipleConfirm3": "Bạn có chắc muốn tiếp tục?",
+        "MultipleConfirm": "Bạn có chắc muốn mở/đóng các tài khoản này? Tất cả cấp dưới bị ảnh hưởng sẽ được mở/đóng theo."
     },
     "SingleConfirm": "Bạn có chắc muốn mở tài khoản này? Tất cả tài khoản cấp dưới trực thuộc cũng sẽ được mở.",
     "CloseStatus": "Trạng Thái Đóng",
-    "Opened": "Đã Mở"
+    "Opened": "Đã Mở",
+    "to": "to"
 }
