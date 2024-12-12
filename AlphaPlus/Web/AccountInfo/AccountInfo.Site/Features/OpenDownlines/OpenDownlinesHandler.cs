@@ -28,10 +28,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines
 
         public async Task<OpenListViewModel> Handle(OpenViewListRequest message, CancellationToken cancellationToken)
             => new OpenListViewModel(
-                message.CustId,
+                message.SearchAccountId,
                 message.SearchAccountName,
                 await openDownlinesService.GetOpenViewListModel(
-                    message.CustId,
+                    message.SearchAccountId,
                     message.IsAffected,
                     message.DownlineRoleId,
                     message.PageSize,
@@ -40,9 +40,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines
         public async Task<OpenSingleViewModel> Handle(OpenSingleRequest message, CancellationToken cancellationToken)
             => new OpenSingleViewModel(
                 new OpenSingleDataViewModel(
-                    message.CustId,
+                    message.SearchAccountId,
                     message.SearchAccountName,
-                    await openDownlinesService.GetOpenInfoModel(message.CustId)
+                    await openDownlinesService.GetOpenInfoModel(message.SearchAccountId)
                     .ConfigureAwait(false)));
 
         public async Task<OpenMultipleViewModel> Handle(OpenMultipleRequest message, CancellationToken cancellationToken)
@@ -53,7 +53,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines
         public async Task<Result> Handle(OpenSingleCommand message, CancellationToken cancellationToken)
         => await searchAccountService.UpdateCustomerStatus(
               new UpdateCustomerStatusParam(
-                  message.CustId,
+                  message.SearchAccountId,
                   message.ViewerId,
                   message.SubAccountId,
                   message.Language,
@@ -82,9 +82,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines
 
             return new OpenMultipleResultViewModel(
                 message.RoleId,
-                new List<OpenResult> {
+                [
                     new OpenResult("", true, new Result(StatusCodes.Status403Forbidden,"You are not authorized on this function."))
-                });
+                ]);
         }
 
         internal async Task<OpenResult> UpdateCloseAsync(OpenMultipleCommand message, OpenCustomerInfo customer)

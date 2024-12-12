@@ -49,7 +49,7 @@ const OpenAPI = {
         return response.data;
     },
     fetchCustomerList: async (
-        custId: number,
+        SearchAccountId: number,
         searchAccountName: string,
         pageSize: number,
         pageIndex: number,
@@ -58,7 +58,7 @@ const OpenAPI = {
     ) => {
         return axiosInstance
             .get('OpenDownlines/FetchCustomerList', {
-                params: { custId, searchAccountName, pageSize, pageIndex, isAffected, downlineRoleId }
+                params: { SearchAccountId, searchAccountName, pageSize, pageIndex, isAffected, downlineRoleId }
             })
             .then((response) => response.data);
     }

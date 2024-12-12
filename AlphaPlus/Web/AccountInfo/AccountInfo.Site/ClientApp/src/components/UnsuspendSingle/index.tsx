@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { usernameRegExp } from '../../helpers';
 import Result from '../../models/result';
-import { UnsuspendSingleDataViewModel } from '../../models/UnsuspenDownlines/UnsuspendSingleDataViewModel';
+import {
+    UnsuspendSingleDataViewModel
+} from '../../models/UnsuspenDownlines/UnsuspendSingleDataViewModel';
 import { handleError } from '../../services/axios-helper';
 import UnsuspendAPI from '../../services/UnsuspendAPI';
 import { viewInformation } from '../unsuspend-helper';
@@ -22,7 +24,7 @@ export default function UnsuspendSingle({ viewModel, redirectViewListDetail }: P
         $.blockUI?.();
 
         UnsuspendAPI.updateSuspend<Result>('UnsuspendDownlines/UnsuspendSingle', {
-            CustId: viewModel.SearchAccountId
+            SearchAccountId: viewModel.SearchAccountId
         })
             .then((data) => {
                 const message = (

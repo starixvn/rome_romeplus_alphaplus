@@ -6,6 +6,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines.Requests
 {
     public class OpenViewListRequest : BaseQuery, IRequest<OpenListViewModel>
     {
+        public int SearchAccountId { get; set; }
+
         public string SearchAccountName { get; set; }
 
         public bool IsAffected { get; set; }

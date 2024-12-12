@@ -6,6 +6,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.Requests
 {
     public class UnsuspendViewListRequest : BaseQuery, IRequest<UnsuspendListViewModel>
     {
+        public int SearchAccountId { get; set; }
         public string SearchAccountName { get; set; }
 
         public bool IsAffected { get; set; }

@@ -33,7 +33,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base
         internal IDictionary<string, object> Params =>
             new Dictionary<string, object>
                     {
-                        {"CustId", SearchAccount.Id.ToString()},
+                        {"SearchAccountId", SearchAccount.Id.ToString()},
                         {"SearchAccountName", SearchAccount.Username},
                         {"SearchAccountRoleId", SearchAccount.CustomerLevelValue.ToString()},
                         {"StatusName", StatusName ?? string.Empty},

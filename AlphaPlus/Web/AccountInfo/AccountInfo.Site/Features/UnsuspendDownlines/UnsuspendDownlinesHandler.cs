@@ -30,38 +30,37 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines
         public async Task<UnsuspendSingleViewModel> Handle(UnsuspendSingleRequest message, CancellationToken cancellationToken)
             => new UnsuspendSingleViewModel(
                 new UnsuspendSingleDataViewModel(
-                message.CustId,
+                message.SearchAccountId,
                 message.SearchAccountName,
-                await unsuspendDownlinesService.GetUnsuspendInfoModel(message.CustId)
-                .ConfigureAwait(false)));
+                await unsuspendDownlinesService.GetUnsuspendInfoModel(message.SearchAccountId)));
 
         public async Task<UnsuspendListViewModel> Handle(UnsuspendViewListRequest message, CancellationToken cancellationToken)
              => new UnsuspendListViewModel(
-                 message.CustId,
+                 message.SearchAccountId,
                  message.SearchAccountName,
                  await unsuspendDownlinesService.GetUnsuspendViewListModel(
-                     message.CustId,
+                     message.SearchAccountId,
                      message.IsAffected,
                      message.DownlineRoleId,
                      message.PageSize,
-                     message.PageIndex).ConfigureAwait(false));
+                     message.PageIndex));
 
         public async Task<UnsuspendMultipleViewModel> Handle(UnsuspendMultipleRequest message, CancellationToken cancellationToken)
             => new UnsuspendMultipleViewModel(
                 message.RoleId,
-                await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId).ConfigureAwait(false));
+                await unsuspendDownlinesService.GetUnsuspendMultipleModel(message.CustIds, message.RoleId));
 
         public async Task<Result> Handle(UnsuspendSingleCommand message, CancellationToken cancellationToken)
           => await accountInfoService.UpdateCustomerStatus(
               new UpdateCustomerStatusParam(
-                  message.CustId,
+                  message.SearchAccountId,
                   message.ViewerId,
                   message.SubAccountId,
                   message.Language,
                   message.IP,
                   false,
                   StatusNames.Suspended,
-                  message.ViewerName)).ConfigureAwait(false);
+                  message.ViewerName));
 
         public async Task<UnsuspendMultipleResultViewModel> Handle(UnsuspendMultipleCommand message, CancellationToken cancellationToken)
         {

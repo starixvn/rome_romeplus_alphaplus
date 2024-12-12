@@ -10,7 +10,7 @@ const UnsuspendAPI = {
         return response.data;
     },
     fetchCustomerList: async (
-        custId: number,
+        searchAccountId: number,
         searchAccountName: string,
         pageSize: number,
         pageIndex: number,
@@ -19,7 +19,7 @@ const UnsuspendAPI = {
     ) => {
         return axiosInstance
             .get('UnsuspendDownlines/FetchCustomerList', {
-                params: { custId, searchAccountName, pageSize, pageIndex, isAffected, downlineRoleId }
+                params: { searchAccountId, searchAccountName, pageSize, pageIndex, isAffected, downlineRoleId }
             })
             .then((response) => response.data);
     }
