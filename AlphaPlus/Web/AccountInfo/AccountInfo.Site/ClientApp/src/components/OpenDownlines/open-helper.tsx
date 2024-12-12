@@ -6,12 +6,12 @@ import { OpenMultipleModel } from './open-api';
 export const viewInformation = (t: TFunction) => {
     const style = `style='padding-left: 15px;'`;
     const messages = `<div>
-            <div> ${t('OpenDownlines:ViewInformation1')}</div>
-            <div> ${t('OpenDownlines:ViewInformation2')}</div>
-            <div ${style}> ${t('OpenDownlines:ViewInformation3')}</div>
-            <div ${style}> ${t('OpenDownlines:ViewInformation4')}</div>
-            <div> ${t('OpenDownlines:ViewInformation5')}</div>
-            <div> ${t('OpenDownlines:ViewInformation6')}</div>
+            <div> ${t('OpenDownlines.ViewInformation1')}</div>
+            <div> ${t('OpenDownlines.ViewInformation2')}</div>
+            <div ${style}> ${t('OpenDownlines.ViewInformation3')}</div>
+            <div ${style}> ${t('OpenDownlines.ViewInformation4')}</div>
+            <div> ${t('OpenDownlines.ViewInformation5')}</div>
+            <div> ${t('OpenDownlines.ViewInformation6')}</div>
         </div>`;
 
     window.top?.bootboxAlert(messages);
@@ -24,7 +24,7 @@ export const getMultipleConfirmMessage = (
     originalViewModel: OpenMultipleModel[]
 ) => {
     if (searchAccountRoleId > 1) {
-        return t('OpenDownlines:MultipleConfirm');
+        return t('OpenDownlines.MultipleConfirm');
     }
 
     const openingUsernames: string[] = [],
@@ -50,7 +50,7 @@ export const getMultipleConfirmMessage = (
             ? usernameRegExp(t('CloseMultipleMemberConfirmMessage'), closingUsernames.join(', ')) + '<br />'
             : '';
 
-    message += t('OpenDownlines:SubmitMultipleConfirm3');
+    message += t('OpenDownlines.SubmitMultipleConfirm3');
 
     return message;
 };
