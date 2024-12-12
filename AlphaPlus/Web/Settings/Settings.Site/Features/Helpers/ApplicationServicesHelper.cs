@@ -118,7 +118,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
 
             services
                 .AddSingleton<IAesService, AesService>()
-                .AddSingleton<ISessionManager, SessionManager>()
+                .AddScoped<ISessionManager, SessionManager>()
                 .AddSingleton<IEncryption, Encryption>()
                 .AddHttpClient<UsernameSuggestionService, UsernameSuggestionServiceImpl>(httpClient => httpClient.BaseAddress = customerSettingApiUrl);
 

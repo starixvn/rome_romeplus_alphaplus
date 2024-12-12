@@ -103,7 +103,7 @@ namespace AlphaPlus.Main.Site.Features.SecurityCode
         {
             var securityCodeToken = GenerateSecurityToken();
 
-            sessionManager.Add(SecurityCodeTokenSessionKey, securityCodeToken);
+            userSession.SetProperty(SecurityCodeTokenSessionKey, securityCodeToken);
 
             var profile = await customerProfileService.GetActorProfilePicture(userSession.CustId);
 

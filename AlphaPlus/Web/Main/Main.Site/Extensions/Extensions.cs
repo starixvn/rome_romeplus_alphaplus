@@ -52,7 +52,7 @@ public static class Extensions
         services.AddSingleton<IUserSessionService, UserSessionService>();
 
         services.AddSingleton<ISiteMenuService, SiteMenuService>();
-        services.AddSingleton<ISessionManager, SessionManager>();
+        services.AddScoped<ISessionManager, SessionManager>();
         services.AddSingleton<ISiteMapReader, SiteMapReader>();
         services.AddSingleton<IEncryption, Encryption>();
         services.AddSingleton<IBalanceInfoService, BalanceInfoService>();

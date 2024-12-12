@@ -51,7 +51,7 @@ namespace AlphaPlus.Features.Site.Helpers
 
             services
                 .AddSingleton<IRemotingRefService, RemotingRefService>()
-                .AddSingleton<ISessionManager, SessionManager>();
+                .AddScoped<ISessionManager, SessionManager>();
 
             services
                 .AddRequestInfo()
