@@ -30,6 +30,11 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         private readonly ICustomerService customerService;
         private readonly IProductStatusService productStatusService;
         private readonly IUserSession userSession;
+        private readonly JsonSerializerOptions serializeOptions = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            WriteIndented = true
+        };
 
         public CustomerController(
             IEncryption encryption,
@@ -299,7 +304,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return applicationPath;
         }
 
-        private ContentResult UnAuthorized() => Content(JsonSerializer.Serialize(Result.CreateErrorResult(Resources.NotAuthorized)));
+        private ContentResult UnAuthorized() => Content(JsonSerializer.Serialize(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions));
 
         private SettingProductTab BuildAccountInfoTab(int customerId, int customerLevel, bool isDarkMode)
         {
