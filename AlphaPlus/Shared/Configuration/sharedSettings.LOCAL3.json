@@ -251,6 +251,7 @@
         "Agent": "3000,3500,3503"
     },
     "QRCode": {
+        "API": "http://10.40.40.146/",
         "Domains": [
             "http://ha.nexdev.net:7400/Local01"
         ],

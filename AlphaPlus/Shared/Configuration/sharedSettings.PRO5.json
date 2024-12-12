@@ -251,6 +251,7 @@
         "Agent": "3000,3300"
     },
     "QRCode": {
+        "API": "http://account-service-credit.membersite-service.t2p.nebula.prod:22080/Login/",
         "Domains": [
             "https://www.bettha88.com/api",
             "https://www.bettha88.net/api",

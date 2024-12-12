@@ -170,7 +170,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<PasswordService, PasswordServiceImpl>()
                 .AddScoped<CheckBelongingService, CheckBelongingServiceImpl>()
                 .AddSingleton<QRCodeMemberSignInService, QRCodeMemberSignInServiceImpl>()
-                .AddHttpClient<IQRCodeService, QRCodeService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("ONEbook.Common.Auth.API")));
+                .AddHttpClient<IQRCodeService, QRCodeService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("QRCode:API")));
 
             services
                 .AddSingleton<ProblemAccountWorkbook, ProblemAccountWorkbookImpl>()
