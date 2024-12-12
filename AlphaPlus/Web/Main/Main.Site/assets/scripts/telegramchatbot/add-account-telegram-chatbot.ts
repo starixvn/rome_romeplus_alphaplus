@@ -20,68 +20,67 @@ class AddAccountTelegramChatBot extends BaseTelegramChatBot {
 
     resources = {
         language: (<HTMLInputElement>document.getElementById('Language')).value
-    }
+    };
 
     init = () => {
         this.cachedDOMElements();
         this.registerEvents();
-    }
+    };
 
     cachedDOMElements = () => {
-        this.$registerTelegramPanel = this.$("#registerTelegramPanel");
-        this.$addAccountMessage = this.$("#add-account-message");
-        this.$btnGenQRCode = this.$("#btnGenQRCode");
+        this.$registerTelegramPanel = this.$('#registerTelegramPanel');
+        this.$addAccountMessage = this.$('#add-account-message');
+        this.$btnGenQRCode = this.$('#btnGenQRCode');
 
-        this.$logoTelegram = this.$("#logoTelegram");
-        this.$imgQRCode = this.$("#imgQRCode");
-        this.$linkShowQRCode = this.$("#showQRCode");
-        this.$linkHideQRCode = this.$("#hideQRCode");
-    }
+        this.$logoTelegram = this.$('#logoTelegram');
+        this.$imgQRCode = this.$('#imgQRCode');
+        this.$linkShowQRCode = this.$('#showQRCode');
+        this.$linkHideQRCode = this.$('#hideQRCode');
+    };
 
     registerEvents = () => {
         this.$btnGenQRCode.click(this.genQRCodeEvent);
 
         this.$linkShowQRCode.click(() => {
-            this.$logoTelegram.addClass("hide");
-            this.$imgQRCode.removeClass("hide");
-            this.$linkShowQRCode.addClass("hide");
-            this.$linkHideQRCode.removeClass("hide");
+            this.$logoTelegram.addClass('hide');
+            this.$imgQRCode.removeClass('hide');
+            this.$linkShowQRCode.addClass('hide');
+            this.$linkHideQRCode.removeClass('hide');
         });
 
         this.$linkHideQRCode.click(() => {
-            this.$imgQRCode.addClass("hide");
-            this.$logoTelegram.removeClass("hide");
-            this.$linkHideQRCode.addClass("hide");
-            this.$linkShowQRCode.removeClass("hide");
+            this.$imgQRCode.addClass('hide');
+            this.$logoTelegram.removeClass('hide');
+            this.$linkHideQRCode.addClass('hide');
+            this.$linkShowQRCode.removeClass('hide');
         });
-    }
+    };
 
     genQRCodeEvent = (e: any) => {
         e.preventDefault();
 
         this.$.blockUI();
         this.$.ajax({
-            type: "POST",
-            url: alpha.urls.mainRootPath + "TelegramChatBot/GenerateQRCode",
-            dataType: "text",
+            type: 'POST',
+            url: alpha.urls.mainRootPath + 'TelegramChatBot/GenerateQRCode',
+            dataType: 'text',
             success: this.onGenQRCodeSuccess,
             complete: this.onComplete
-        })
-
-    }
+        });
+    };
 
     onGenQRCodeSuccess = (data: any) => {
         var result = this.safelyParseJSON(data);
 
-        if (result && result.IsNotAuthorized) {
-            this.topWindow.bootboxAlert(result.Message);
+        if (result && result.isNotAuthorized) {
+            this.topWindow.bootboxAlert(result.message);
             return;
         }
 
-        this.$btnGenQRCode.attr("disabled", "disabled");
+        this.$btnGenQRCode.attr('disabled', 'disabled');
         this.$registerTelegramPanel.append(data);
         this.verifyAccountTelegramChatbot.init();
-    }
+    };
 }
 
 $(function () {
