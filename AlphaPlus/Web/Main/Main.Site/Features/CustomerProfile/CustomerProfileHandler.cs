@@ -26,7 +26,7 @@ namespace AlphaPlus.Main.Site.Features.CustomerProfile
                 CustId = request.CustId,
                 Username = HttpUtility.HtmlEncode(request.UserName),
                 IsInternal = request.IsInternal,
-                NickName = BuildNickName(request).ToUpperInvariant(),
+                NickName = BuildNickName(request),
                 IntroduceNickNameTooltipCookieName = encryption.CfsEnCode($"ToolTip_{request.CustId}"),
                 IsEnableOtp = request.IsEnabledOtp,
                 SubAccountTooltip = request.IsSubAcc ? $"{Resources.subAcc} {HttpUtility.HtmlEncode(request.SubUserName)}" : string.Empty,
