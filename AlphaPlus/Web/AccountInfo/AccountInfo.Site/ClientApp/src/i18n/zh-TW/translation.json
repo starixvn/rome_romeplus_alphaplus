@@ -121,6 +121,7 @@
         "MultipleConfirm": "您確定要開啟/關閉已選定的用戶嗎？ 所有受影響的下線也將被開啟/關閉。"
     },
     "SingleConfirm": "您確定要開啟此賬號？他/她的所有下線賬號將被開啟。",
+    "OpenedWithNoDownlinesMessages": "您確定要開啟此賬號？",
     "CloseStatus": "關閉狀態",
     "Opened": "開啟",
     "to": "到"

@@ -121,6 +121,7 @@
         "MultipleConfirm": "Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well."
     },
     "SingleConfirm": "Are you sure you want to open this account? All of his/her downlines will be opened as well.",
+    "OpenedWithNoDownlinesMessages": "Are you sure you want to open this account?",
     "CloseStatus": "Closed Status",
     "Opened": "Opened",
     "to": "to"

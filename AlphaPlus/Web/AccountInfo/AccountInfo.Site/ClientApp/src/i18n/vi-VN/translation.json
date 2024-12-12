@@ -121,6 +121,7 @@
         "MultipleConfirm": "Bạn có chắc muốn mở/đóng các tài khoản này? Tất cả cấp dưới bị ảnh hưởng sẽ được mở/đóng theo."
     },
     "SingleConfirm": "Bạn có chắc muốn mở tài khoản này? Tất cả tài khoản cấp dưới trực thuộc cũng sẽ được mở.",
+    "OpenedWithNoDownlinesMessages": "Bạn có chắc muốn mở tài khoản này?",
     "CloseStatus": "Trạng Thái Đóng",
     "Opened": "Đã Mở",
     "to": "to"

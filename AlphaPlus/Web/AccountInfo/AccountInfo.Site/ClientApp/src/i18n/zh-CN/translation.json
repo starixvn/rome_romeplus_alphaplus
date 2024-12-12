@@ -121,6 +121,7 @@
         "MultipleConfirm": "您确定要开启/关闭已选定的用户吗？ 所有受影响的下线也将被开启/关闭。"
     },
     "SingleConfirm": "您确定要开启此账号？他/她的所有下线账号将被开启。",
+    "OpenedWithNoDownlinesMessages": "您确定要开启此账号？",
     "CloseStatus": "关闭状态",
     "Opened": "开启",
     "to": "到"
