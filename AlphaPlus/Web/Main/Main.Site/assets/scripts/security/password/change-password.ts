@@ -40,7 +40,12 @@ var changePassword = {
             changePassword.domElements.container.addClass('has-popup');
         }
 
-        $(".open-link").unbind().bind('click', event => { alpha.viewDataURL(event); topWindow.alpha.viewDataURL(event); });
+        $('.open-link')
+            .unbind()
+            .bind('click', (event) => {
+                alpha.viewDataURL(event);
+                topWindow.alpha.viewDataURL(event);
+            });
     },
 
     registerEvents: function () {
@@ -118,7 +123,7 @@ var changePassword = {
                     return;
                 }
 
-                securityHelper.showFailMessage($messageContainer, data.Message);
+                securityHelper.showFailMessage($messageContainer, data.message);
                 $txtOldPassword.focus();
             },
             complete: function (jqXHR, textStatus) {

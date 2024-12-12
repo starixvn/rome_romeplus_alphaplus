@@ -117,10 +117,10 @@ var forceChangePassword = {
                     securityHelper.signOut();
                 } else if (data.code === 101) {
                     $txtOldPassword.addClass('error').focus();
-                    $('#txtOldPwd-error').empty().html(data.Message);
+                    $('#txtOldPwd-error').empty().html(data.message);
                 } else {
                     $txtPassword.addClass('error').focus();
-                    $('#txtNewPwd-error').empty().html(data.Message);
+                    $('#txtNewPwd-error').empty().html(data.message);
                 }
             },
             complete: function (jqXHR, textStatus) {
