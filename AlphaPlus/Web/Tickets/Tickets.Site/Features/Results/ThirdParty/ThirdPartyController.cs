@@ -5,7 +5,7 @@ namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
 public class ThirdPartyController(IMediator mediator) : ResultBaseController(mediator)
 {
-    protected const string IndexView = "~/Features/Results/ThirdParty/Views/Index.cshtml";
+    private const string IndexView = "~/Features/Results/ThirdParty/Views/Index.cshtml";
 
     public Task<IActionResult> MaxGameResult(MaxGameResultQuery message) => View(message, IndexView);
 
