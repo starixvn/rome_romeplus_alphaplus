@@ -2,7 +2,6 @@ using System.Net;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.PartialUM.Exceptions;
 using Fanex.Logging;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
@@ -31,13 +30,11 @@ public class ExceptionMiddleware
 
     private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-        var ex = exceptionHandlerFeature.Error;
-        await _logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception, exceptionHandlerFeature.Path));
+        await _logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception));
 
-        if (ex is PartialUMException partialUMException)
+        if (exception is PartialUMException partialUMException)
         {
             context.Response.Redirect(MicroSites.MainUrl($"~/partialum?umfrom={partialUMException.StartTime}&umto={partialUMException.EndTime}"));
         }

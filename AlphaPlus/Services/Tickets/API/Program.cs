@@ -41,5 +41,5 @@ app
 app.MapHealthChecks("/health");
 app.MapEndpoints();
 
-await Fanex.Logging.Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
+// await Fanex.Logging.Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
 await app.RunAsync();
