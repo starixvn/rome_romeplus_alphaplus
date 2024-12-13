@@ -73,6 +73,10 @@ function copyWMImages() {
     return gulp.src('assets/styles/results/fanex.result/WM/**/*').pipe(gulp.dest('wwwroot/bundles/results/WM'));
 }
 
+function copyResultCoreImages() {
+    return gulp.src('assets/styles/results/fanex.result/images/*').pipe(gulp.dest('wwwroot/bundles/results/images'));
+}
+
 function compileJs() {
     const tsProject = ts.createProject('tsconfig.json');
     return gulp
@@ -103,7 +107,7 @@ gulp.task(
     gulp.series(
         clean,
         gulp.parallel(compileCss, compileJs),
-        gulp.parallel([minCss, minJs, copyImages, copyAllbetImages, copySAGamingImages, copyWMImages])
+        gulp.parallel([minCss, minJs, copyImages, copyAllbetImages, copySAGamingImages, copyWMImages, copyResultCoreImages])
     )
 );
 
@@ -113,7 +117,7 @@ gulp.task('watch', () => {
         gulp.series(
             clean,
             gulp.parallel(compileCss, compileJs),
-            gulp.parallel([minCss, minJs, copyImages, copyAllbetImages, copySAGamingImages, copyWMImages])
+            gulp.parallel([minCss, minJs, copyImages, copyAllbetImages, copySAGamingImages, copyWMImages, copyResultCoreImages])
         )
     );
 });
