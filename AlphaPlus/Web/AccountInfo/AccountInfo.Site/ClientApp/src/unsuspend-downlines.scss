@@ -76,6 +76,11 @@
 // Update multiple Unsuspend Status
 .unsuspend-container {
     padding-top: 16px;
+    table{  
+        tbody:empty {
+            display: none;
+        }
+    }
 }
 
 .btn-cancel {
