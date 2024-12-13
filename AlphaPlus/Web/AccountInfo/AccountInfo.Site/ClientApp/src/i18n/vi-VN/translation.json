@@ -83,6 +83,8 @@
     "Displaying": "Hiển thị",
     "AffectedDownlinesAgentMember": "Tài khoản bị ảnh hưởng <br/> (Agent/Member)",
     "RemainUnchangedDownlinesAgentMember": "Tài khoản không bị ảnh hưởng <br/> (Agent/Member)",
+    "AffectedDownlinesMember": "Tài khoản bị ảnh hưởng <br/> (Member)",
+    "RemainUnchangedDownlinesMember": "Tài khoản không bị ảnh hưởng <br/> (Member)",
     "SuspendStatus": "Trạng thái bị đình chỉ",
     "Unsuspended": "Huỷ đình chỉ",
     "All": "Tất cả",

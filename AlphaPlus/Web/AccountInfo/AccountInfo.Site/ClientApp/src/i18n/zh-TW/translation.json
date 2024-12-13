@@ -83,6 +83,8 @@
     "Displaying": "顯示",
     "AffectedDownlinesAgentMember": "受影響的下線 <br/>  (代理/會員)",
     "RemainUnchangedDownlinesAgentMember": "下線列表保持不變 <br/> (代理/會員)",
+    "AffectedDownlinesMember": "受影響的下線 <br/>  (會員)",
+    "RemainUnchangedDownlinesMember": "下線列表保持不變 <br/>  (會員)",
     "SuspendStatus": "暫停狀態",
     "Unsuspended": "取消暫停",
     "All": "全部",

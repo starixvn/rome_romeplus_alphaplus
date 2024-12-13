@@ -83,6 +83,8 @@
     "Displaying": "Displaying",
     "AffectedDownlinesAgentMember": "Affected Downlines <br/>  (Agent/Member)",
     "RemainUnchangedDownlinesAgentMember": "Remain Unchanged Downlines <br/> (Agent/Member)",
+    "AffectedDownlinesMember": "Affected Downlines <br/> (Member)",
+    "RemainUnchangedDownlinesMember": "Remain Unchanged Downlines <br/> (Member)",
     "SuspendStatus": "Suspend Status",
     "Unsuspended": "Unsuspended",
     "All": "All",

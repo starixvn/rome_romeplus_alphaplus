@@ -83,6 +83,8 @@
     "Displaying": "แสดง",
     "AffectedDownlinesAgentMember": "ดาวน์ไลน์ที่ได้รับผลกระทบ  <br/> (ตัวแทน/สมาชิก)",
     "RemainUnchangedDownlinesAgentMember": "สถานะดาวน์ไลน์ยังคงไมเปลี่ยน <br/> (ตัวแทน/สมาชิก)",
+    "AffectedDownlinesMember": "ดาวน์ไลน์ที่ได้รับผลกระทบ <br/> (สมาชิก)",
+    "RemainUnchangedDownlinesMember": "สถานะดาวน์ไลน์ยังคงไมเปลี่ยน <br/> (สมาชิก)",
     "SuspendStatus": "สถานะระงับ",
     "Unsuspended": "ยกเลิกการระงับ",
     "All": "ทั้งหมด",
