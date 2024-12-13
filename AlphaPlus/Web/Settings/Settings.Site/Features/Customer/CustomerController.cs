@@ -236,7 +236,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         {
             if (request.IsInternal)
             {
-                return UnAuthorized();
+                return Json(Result.CreateErrorResult(Resources.NotAuthorized));
             }
 
             return Json(await customerService.UpdateCustomerInfo(new UpdateCustomerInfoParam
