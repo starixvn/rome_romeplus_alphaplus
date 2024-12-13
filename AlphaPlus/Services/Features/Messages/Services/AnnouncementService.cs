@@ -195,7 +195,7 @@ namespace AlphaPlus.Features.Messages.API.Services
 
         private static string GetMessageContentByLanguage(IEnumerable<MessageContent> messages, string languageKey)
         {
-            var message = messages?.FirstOrDefault(i => i.LanguageKey.Equals(languageKey) && !string.IsNullOrEmpty(i.Text));
+            var message = messages == null ? default : messages?.FirstOrDefault(i => i.LanguageKey.Equals(languageKey) && !string.IsNullOrEmpty(i.Text));
 
             message = message ?? messages?.FirstOrDefault(i => i.LanguageKey.Equals(DefaultLanguage) && !string.IsNullOrEmpty(i.Text));
 
