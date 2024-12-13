@@ -96,7 +96,8 @@
         "MultipleConfirm": "Are you sure you want to suspend/unsuspend selected account(s)? All affected downlines will be suspended/unsuspended as well.",
         "SubmitMultipleConfirm3": "Do you want to proceed?",
         "AffectedViewListNote": "List of downlines whose status are changed after <username> is unsuspended.",
-        "UnchangedViewListNote": "List of downlines whose status are unchanged after <username> is unsuspended."
+        "UnchangedViewListNote": "List of downlines whose status are unchanged after <username> is unsuspended.",
+        "UpdateSuccessfully": "Successfully updated!"
     },
     "UnsuspendSingleNote": "List of downlines' status after <username> is unsuspended.",
     "AffectedDownlines": "Affected Downlines",
@@ -118,12 +119,12 @@
         "ViewInformation6": "- Unaffected Downlines: list of users whose statuses remain unchanged after their upline is opened.",
         "UnchangedViewListNote": "List of downlines whose statuses remain unchanged after opening <username>",
         "SubmitMultipleConfirm3": "Are you sure you want to proceed?",
-        "MultipleConfirm": "Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well."
+        "MultipleConfirm": "Are you sure you want to open/close these accounts? All of their affected downlines will be opened/closed as well.",
+        "UpdateSuccessfully": "The statuses of the selected account and his/her downlines have been successfully updated."
     },
     "SingleConfirm": "Are you sure you want to open this account? All of his/her downlines will be opened as well.",
     "OpenedWithNoDownlinesMessages": "Are you sure you want to open this account?",
     "CloseStatus": "Closed Status",
     "Opened": "Opened",
-    "to": "to",
-    "UpdateSuccessfully": "Successfully updated!"
+    "to": "to"
 }

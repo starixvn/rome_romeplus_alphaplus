@@ -96,7 +96,8 @@
         "MultipleConfirm": "Bạn có muốn đình chỉ/huỷ đình chỉ người dùng này? Các cấp dưới bị ảnh hưởng của họ cũng sẽ bị đình chỉ/huỷ đình chỉ theo.",
         "SubmitMultipleConfirm3": "Bạn có chắc muốn tiến hành?",
         "AffectedViewListNote": "Danh sách tài khoản cấp dưới có trạng thái thay đổi sau khi <username> được huỷ đình chỉ",
-        "UnchangedViewListNote": "Danh sách tài khoản cấp dưới có trạng thái không thay đổi sau khi <username> được huỷ đình chỉ"
+        "UnchangedViewListNote": "Danh sách tài khoản cấp dưới có trạng thái không thay đổi sau khi <username> được huỷ đình chỉ",
+        "UpdateSuccessfully": "Đã cập nhật thành công!"
     },
     "UnsuspendSingleNote": "Trạng thái của tài khoản cấp dưới sau khi <username> được huỷ đình chỉ",
     "AffectedDownlines": "Tài khoản bị ảnh hưởng",
@@ -118,12 +119,12 @@
         "ViewInformation6": "- Cấp dưới không bị ảnh hưởng: danh sách người dùng không bị thay đổi trạng thái sau khi cấp trên của họ được mở.",
         "UnchangedViewListNote": "Danh sách cấp dưới không bị thay đổi trạng thái sau khi mở <username>",
         "SubmitMultipleConfirm3": "Bạn có chắc muốn tiếp tục?",
-        "MultipleConfirm": "Bạn có chắc muốn mở/đóng các tài khoản này? Tất cả cấp dưới bị ảnh hưởng sẽ được mở/đóng theo."
+        "MultipleConfirm": "Bạn có chắc muốn mở/đóng các tài khoản này? Tất cả cấp dưới bị ảnh hưởng sẽ được mở/đóng theo.",
+        "UpdateSuccessfully": "The statuses of the selected account and his/her downlines have been successfully updated."
     },
     "SingleConfirm": "Bạn có chắc muốn mở tài khoản này? Tất cả tài khoản cấp dưới trực thuộc cũng sẽ được mở.",
     "OpenedWithNoDownlinesMessages": "Bạn có chắc muốn mở tài khoản này?",
     "CloseStatus": "Trạng Thái Đóng",
     "Opened": "Đã Mở",
-    "to": "to",
-    "UpdateSuccessfully": "Đã cập nhật thành công!"
+    "to": "to"
 }

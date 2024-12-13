@@ -96,7 +96,8 @@
         "MultipleConfirm": "您确定要暂停/取消暂停已选定的用户吗？ 所有受影响的下线也将被暂停/取消暂停。",
         "SubmitMultipleConfirm3": "您确定要继续吗？",
         "AffectedViewListNote": "<username> 取消暂停后，下线列表的状态有更改",
-        "UnchangedViewListNote": "<username> 取消暂停后，下线列表的状态沒有更改"
+        "UnchangedViewListNote": "<username> 取消暂停后，下线列表的状态沒有更改",
+        "UpdateSuccessfully": "更新成功！"
     },
     "UnsuspendSingleNote": "下线列表的状态在 <username> 取消暂停",
     "AffectedDownlines": "受影响的下线",
@@ -118,12 +119,12 @@
         "ViewInformation6": "- 未受影响的下线：上线账开启后状态保持不变的用户列表。",
         "UnchangedViewListNote": "开启 <username> 下 线状态后保持不变的列表。",
         "SubmitMultipleConfirm3": "您确定要进行吗？",
-        "MultipleConfirm": "您确定要开启/关闭已选定的用户吗？ 所有受影响的下线也将被开启/关闭。"
+        "MultipleConfirm": "您确定要开启/关闭已选定的用户吗？ 所有受影响的下线也将被开启/关闭。",
+        "UpdateSuccessfully": "所选账号及他/她下线的状态已成功更新。"
     },
     "SingleConfirm": "您确定要开启此账号？他/她的所有下线账号将被开启。",
     "OpenedWithNoDownlinesMessages": "您确定要开启此账号？",
     "CloseStatus": "关闭状态",
     "Opened": "开启",
-    "to": "到",
-    "UpdateSuccessfully": "更新成功！"
+    "to": "到"
 }

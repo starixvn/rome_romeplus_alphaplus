@@ -96,7 +96,8 @@
         "MultipleConfirm": "您確定要暫停/取消暫停已選定的用戶嗎？所有受影響的下線也將被暫停/取消暫停。",
         "SubmitMultipleConfirm3": "您確定要繼續嗎？",
         "AffectedViewListNote": "<username> 取消暫停後，下線列表的狀態有更改",
-        "UnchangedViewListNote": "<username> 取消暫停後，下線列表的狀態沒有更改"
+        "UnchangedViewListNote": "<username> 取消暫停後，下線列表的狀態沒有更改",
+        "UpdateSuccessfully": "更新成功！"
     },
     "UnsuspendSingleNote": "下線列表的狀態在 <username> 取消暫停後",
     "AffectedDownlines": "受影響的下線",
@@ -118,12 +119,12 @@
         "ViewInformation6": "- 未受影響的下線：上線開啟後狀態保持不變的用户列表。",
         "UnchangedViewListNote": "開啟 <username> 下線狀態後保持不變的列表。",
         "SubmitMultipleConfirm3": "您確定要進行嗎？",
-        "MultipleConfirm": "您確定要開啟/關閉已選定的用戶嗎？ 所有受影響的下線也將被開啟/關閉。"
+        "MultipleConfirm": "您確定要開啟/關閉已選定的用戶嗎？ 所有受影響的下線也將被開啟/關閉。",
+        "UpdateSuccessfully": "所選賬號及他/她下線的狀態已成功更新。"
     },
     "SingleConfirm": "您確定要開啟此賬號？他/她的所有下線賬號將被開啟。",
     "OpenedWithNoDownlinesMessages": "您確定要開啟此賬號？",
     "CloseStatus": "關閉狀態",
     "Opened": "開啟",
-    "to": "到",
-    "UpdateSuccessfully": "更新成功！"
+    "to": "到"
 }

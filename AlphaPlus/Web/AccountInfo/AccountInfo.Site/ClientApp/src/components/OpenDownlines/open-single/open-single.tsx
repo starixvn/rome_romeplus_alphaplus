@@ -25,7 +25,7 @@ export default function OpenSingle({ viewModel, redirectViewListDetail }: Props)
                 const message = (
                     <div className="msg-container">
                         <div className={`msg ${data.IsSuccessful ? 'msg-success' : 'msg msg-error'}`}>
-                            {data.IsSuccessful ? t('UpdateSuccessfully') : data.Message.trim()}
+                            {data.IsSuccessful ? t('OpenDownlines.UpdateSuccessfully') : data.Message.trim()}
                         </div>
                     </div>
                 );

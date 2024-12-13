@@ -30,7 +30,7 @@ export default function UnsuspendSingle({ viewModel, redirectViewListDetail }: P
                 const message = (
                     <div className="msg-container">
                         <div className={`msg ${data.IsSuccessful ? 'msg-success' : 'msg msg-error'}`}>
-                            {data.IsSuccessful ? t('UpdateSuccessfully') : data.Message.trim()}
+                            {data.IsSuccessful ? t('UnsuspendedNote.UpdateSuccessfully') : data.Message.trim()}
                         </div>
                     </div>
                 );
