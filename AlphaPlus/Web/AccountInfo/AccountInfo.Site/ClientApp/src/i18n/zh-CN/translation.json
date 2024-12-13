@@ -124,5 +124,6 @@
     "OpenedWithNoDownlinesMessages": "您确定要开启此账号？",
     "CloseStatus": "关闭状态",
     "Opened": "开启",
-    "to": "到"
+    "to": "到",
+    "UpdateSuccessfully": "更新成功！"
 }

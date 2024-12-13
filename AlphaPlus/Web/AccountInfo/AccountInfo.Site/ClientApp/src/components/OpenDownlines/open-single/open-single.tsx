@@ -20,7 +20,7 @@ export default function OpenSingle({ viewModel, redirectViewListDetail }: Props)
     const doUpdate = () => {
         $.blockUI?.();
 
-        OpenAPI.updateClose<Result>('OpenDownlines/OpenSingle', { custId: viewModel.SearchAccountId })
+        OpenAPI.updateClose<Result>('OpenDownlines/OpenSingle', { SearchAccountId: viewModel.SearchAccountId })
             .then((data) => {
                 const message = (
                     <div className="msg-container">

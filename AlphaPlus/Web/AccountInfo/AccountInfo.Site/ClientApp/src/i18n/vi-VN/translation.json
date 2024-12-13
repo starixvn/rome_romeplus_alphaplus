@@ -124,5 +124,6 @@
     "OpenedWithNoDownlinesMessages": "Bạn có chắc muốn mở tài khoản này?",
     "CloseStatus": "Trạng Thái Đóng",
     "Opened": "Đã Mở",
-    "to": "to"
+    "to": "to",
+    "UpdateSuccessfully": "Đã cập nhật thành công!"
 }

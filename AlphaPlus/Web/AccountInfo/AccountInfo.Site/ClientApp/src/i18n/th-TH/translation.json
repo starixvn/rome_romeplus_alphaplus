@@ -124,5 +124,6 @@
     "OpenedWithNoDownlinesMessages": "คุณแน่ใจหรือไม่ว่าต้องการเปิดบัญชีนี้",
     "CloseStatus": "สถานะปิด",
     "Opened": "เปิด",
-    "to": "ถึง"
+    "to": "ถึง",
+    "UpdateSuccessfully": "อัปเดตสำเร็จแล้ว!"
 }

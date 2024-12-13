@@ -124,5 +124,6 @@
     "OpenedWithNoDownlinesMessages": "Are you sure you want to open this account?",
     "CloseStatus": "Closed Status",
     "Opened": "Opened",
-    "to": "to"
+    "to": "to",
+    "UpdateSuccessfully": "Successfully updated!"
 }
