@@ -33,6 +33,15 @@ class UpdateCustomerInfoView {
                 complete: $.unblockUI
             });
         });
+
+        $('.btn-reset').click(function () {
+            $('#FirstName').val('');
+            $('#LastName').val('');
+            $('#Phone').val('');
+            $('#MobilePhone').val('');
+            $('#Email').val('');
+            $('#Fax').val('');
+        });
     }
 
     private validateEmail(email) {
