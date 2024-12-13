@@ -21,7 +21,7 @@
     "SportsLotteryResultConfigs": {
         "UrlPage": "http://10.40.40.248:7038/api/SportsLotteryInternal/Result",
         "SiteId": "4100200",
-        "Debug": 1
+        "Debug": 0
     },
     "VirtualGamesResultConfigs": {
         "Url": "http://10.40.40.248:7035/api/VirtualGamesInternal/GetResultUrl",
