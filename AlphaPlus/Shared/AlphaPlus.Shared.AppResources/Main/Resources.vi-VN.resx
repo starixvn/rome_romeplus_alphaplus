@@ -767,4 +767,29 @@ Lưu ý: Vui lòng thay đổi &lt;b&gt;mật khẩu&lt;/b&gt; Nova Casino Back 
   <data name="InternalServerError" xml:space="preserve">
     <value>Đã xảy ra lỗi. Vui lòng liên hệ Bộ phận Chăm Sóc Khách hàng để được hỗ trợ. Xin cảm ơn. [500]</value>
   </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Quốc gia</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Thành phố</value>
+  </data>
+  <data name="IPNote" xml:space="preserve">
+    <value>Thông tin chi tiết tại DNSstuff:&lt;a href="{0}" target="_blank"&gt; Xem tại đây&lt;/a&gt;.
+Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  IP2Location™ và DNSstuff, chỉ mang tính chất tham khảo và không được đảm bảo chính xác. Vui lòng tham khảo các nguồn đáng tin cậy khác để cập nhật thông tin mới nhất và chính xác nhất nếu cần.</value>
+  </data>
+  <data name="ipv6note" xml:space="preserve">
+    <value>Đối với IPv6, cùng một địa chỉ IP có thể được hiển thị khác nhau.</value>
+  </data>
+  <data name="ForExample" xml:space="preserve">
+    <value>Ví dụ:</value>
+  </data>
+  <data name="ipv61" xml:space="preserve">
+    <value>- Địa chỉ IP 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
+  </data>
+  <data name="ipv62" xml:space="preserve">
+    <value>- Địa chỉ IP 1: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+  </data>
 </root>

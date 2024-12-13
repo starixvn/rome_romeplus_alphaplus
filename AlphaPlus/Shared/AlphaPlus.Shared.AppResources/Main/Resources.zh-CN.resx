@@ -723,4 +723,29 @@
   <data name="InternalServerError" xml:space="preserve">
     <value>发生错误。请联系客户服务部寻求协助。谢谢。[500]</value>
   </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>国家</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>城市</value>
+  </data>
+  <data name="IPNote" xml:space="preserve">
+    <value>附加信息于DNSstuff: &lt;a href="{0}" target="_blank"&gt;点击这里&lt;/a&gt;.
+注意: 由IP2Location™ 和 DNSstuff提供的国家与城市的信息只供参考, 并无保证. 如有需要, 请咨询其他可靠来源以获得最新的及准确的信息.</value>
+  </data>
+  <data name="ipv6note" xml:space="preserve">
+    <value>对于IPv6，相同的 IP 地址可能会以不同的方式显示。</value>
+  </data>
+  <data name="ForExample" xml:space="preserve">
+    <value>例如：</value>
+  </data>
+  <data name="ipv61" xml:space="preserve">
+    <value> - IP 地址 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
+  </data>
+  <data name="ipv62" xml:space="preserve">
+    <value> - IP 地址 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+  </data>
 </root>

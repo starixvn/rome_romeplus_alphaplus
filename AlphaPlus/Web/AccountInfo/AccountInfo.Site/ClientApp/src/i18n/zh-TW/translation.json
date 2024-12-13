@@ -126,6 +126,10 @@
     },
     "SingleConfirm": "您確定要開啟此賬號？他/她的所有下線賬號將被開啟。",
     "OpenedWithNoDownlinesMessages": "您確定要開啟此賬號？",
+    "UnsuspendMultipleConfirmMessage": "<username> 將會取消暫停。",
+    "SuspendMultipleConfirmMessage": "<username> 將會被暫停及無法進行投註。",
+    "OpenMultipleMemberConfirmMessage": "<username> 將被開啟。",
+    "CloseMultipleMemberConfirmMessage": "<username> 將被關閉和無法下注。",
     "CloseStatus": "關閉狀態",
     "Opened": "開啟",
     "to": "到"

@@ -717,7 +717,7 @@
   </data>
   <data name="ipv62" xml:space="preserve">
     <value> - หมายเลขไอพี 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
-    <comment/>
+    <comment />
   </data>
   <data name="RichProductsCollection" xml:space="preserve">
     <value>คอลเลกชันผลิตภัณฑ์ที่หลากหลาย</value>
@@ -753,5 +753,24 @@
   </data>
   <data name="ipv6note" xml:space="preserve">
     <value>สำหรับ IPv6 ที่อยู่ไอพีเดียวกันอาจจะแสดงต่างกัน</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>ไอพี</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>ประเทศ</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>เมือง</value>
+  </data>
+  <data name="IPNote" xml:space="preserve">
+    <value>หาข้อมูลเพิ่มเติมได้จาก  DNS stuff:&lt;a href="{0}" target="_blank"&gt; คลิ๊กที่นี่&lt;/a&gt;.
+หมายเหตุ : ประเทศและชื่อเมืองได้ข้อมูลจาก IP2Location and DNS stuff ซึ่งเป็นเพียงข้อมูลอ้างอิงเท่านั้นไม่สามารถรับประกันได้ กรุณาศึกษาหาข้อมูลอื่นๆได้จากแหล่งผู้ให้ข้อมูลที่สามารถเชื่อถือได้ หากท่านต้องการ</value>
+  </data>
+  <data name="ForExample" xml:space="preserve">
+    <value>ตัวอย่างเช่น:</value>
+  </data>
+  <data name="ipv61" xml:space="preserve">
+    <value>- หมายเลขไอพี 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
   </data>
 </root>

@@ -126,6 +126,10 @@
     },
     "SingleConfirm": "คุณแน่ใจที่จะเปิดบัญชีนี้หรือไม่ บัญชีทั้งหมดของเขา/เธอ จะถูกเปิดทั้งหมดเช่นกัน",
     "OpenedWithNoDownlinesMessages": "คุณแน่ใจหรือไม่ว่าต้องการเปิดบัญชีนี้",
+    "UnsuspendMultipleConfirmMessage": "<username> จะยกเลิกการระงับ",
+    "SuspendMultipleConfirmMessage": "<username> จะถูกระงับและไม่สามารถวางเดิมพันได้",
+    "OpenMultipleMemberConfirmMessage": "<username> จะถูกเปิด",
+    "CloseMultipleMemberConfirmMessage": "<username> จะถูกปิดและไม่สามารถวางเดิมพันได้",
     "CloseStatus": "สถานะปิด",
     "Opened": "เปิด",
     "to": "ถึง"

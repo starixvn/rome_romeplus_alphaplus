@@ -126,6 +126,10 @@
     },
     "SingleConfirm": "Are you sure you want to open this account? All of his/her downlines will be opened as well.",
     "OpenedWithNoDownlinesMessages": "Are you sure you want to open this account?",
+    "UnsuspendMultipleConfirmMessage": "<username> will be unsuspended.",
+    "SuspendMultipleConfirmMessage": "<username> will be suspended and cannot place bet.",
+    "OpenMultipleMemberConfirmMessage": "<username> will be opened.",
+    "CloseMultipleMemberConfirmMessage": "<username> will be closed and cannot place bet.",
     "CloseStatus": "Closed Status",
     "Opened": "Opened",
     "to": "to"
