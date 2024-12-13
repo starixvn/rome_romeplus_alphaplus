@@ -46,7 +46,12 @@
         this.initComponents($formTransfer, $tableTransfer);
 
         $('#AllYesterdayBalance').change(function () {
+            $('#PageIndex').val(1);
             $formTransfer.submit();
+        });
+
+        $('#btn-submit').click(function () {
+            $('#PageIndex').val(1);
         });
 
         const $btnTransfer = $('#btn-transfer');
