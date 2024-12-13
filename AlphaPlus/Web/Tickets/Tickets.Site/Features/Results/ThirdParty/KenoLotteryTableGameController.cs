@@ -1,8 +1,9 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;
 
-public partial class ResultsController : ResultBaseController
+public partial class ResultsController(IMediator mediator) : ResultBaseController(mediator)
 {
     private const string KenoLotteryTableGameView = "~/Features/Results/ThirdParty/Views/KenoLotteryTableGame.cshtml";
 
