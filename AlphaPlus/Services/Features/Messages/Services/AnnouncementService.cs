@@ -74,9 +74,9 @@ namespace AlphaPlus.Features.Messages.API.Services
 
             var newAnnouncements = await GetNewAnnouncements(fromDate);
 
-            var announcements = GetAnnouncementsByUser(newAnnouncements, announcementParams, lastSeenAnnouncement.LastSeenSystem).ToList();
+            var announcements = GetAnnouncementsByUser(newAnnouncements, announcementParams, lastSeenAnnouncement.LastSeenSystem);
 
-            return announcements.Count(i => i.ReleasedDate >= lastSeenAnnouncement.LastSeenSystem);
+            return announcements == null ? 0 : announcements.Count(i => i.ReleasedDate >= lastSeenAnnouncement.LastSeenSystem);
         }
 
         public async Task<IEnumerable<AlphaAnnouncement>> GetAnnouncementsHistory(AnnouncementsHistoryParams announcementParams)
@@ -90,7 +90,7 @@ namespace AlphaPlus.Features.Messages.API.Services
 
             UpdateLastSeenAnnouncement(announcementParams.CustId, MessageType.System, announcementParams.IsAdminUser, announcementParams.SubAccId);
 
-            return announcements.OrderByDescending(i => i.ReleasedDate);
+            return announcements == null ? Enumerable.Empty<AlphaAnnouncement>() : announcements.OrderByDescending(i => i.ReleasedDate);
         }
 
         public async Task<AlphaAnnouncement?> GetPopUpAnnouncements(PopupAnnouncementParams announcementParams)
