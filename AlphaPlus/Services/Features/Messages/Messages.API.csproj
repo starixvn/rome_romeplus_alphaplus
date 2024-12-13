@@ -13,8 +13,8 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
-    <PackageReference Include="Alpha.Announcements" Version="1.0.0.5" />
-    <PackageReference Include="Alpha.Announcements.UplineIdRule" Version="1.0.0.1" />
+    <PackageReference Include="Alpha.Announcements" Version="1.0.1" />
+    <PackageReference Include="Alpha.Announcements.UplineIdRule" Version="1.0.1" />
     <PackageReference Include="RestSharp" Version="105.2.3" />
   </ItemGroup>
   <ItemGroup>
