@@ -76,7 +76,7 @@ namespace AlphaPlus.Features.Messages.API.Services
 
             var announcements = GetAnnouncementsByUser(newAnnouncements, announcementParams, lastSeenAnnouncement.LastSeenSystem);
 
-            return announcements == null ? 0 : announcements.Count(i => i.ReleasedDate >= lastSeenAnnouncement.LastSeenSystem);
+            return announcements == null || !announcements.Any() ? 0 : announcements.Count(i => i.ReleasedDate >= lastSeenAnnouncement.LastSeenSystem);
         }
 
         public async Task<IEnumerable<AlphaAnnouncement>> GetAnnouncementsHistory(AnnouncementsHistoryParams announcementParams)
