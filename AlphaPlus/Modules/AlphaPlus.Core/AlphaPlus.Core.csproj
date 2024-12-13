@@ -12,5 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AlphaPlus.RequestInfo\AlphaPlus.RequestInfo.csproj" />
+    <ProjectReference Include="..\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
   </ItemGroup>
 </Project>
