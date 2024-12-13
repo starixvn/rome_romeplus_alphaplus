@@ -54,6 +54,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseMiddleware<ExceptionMiddleware>();
+}
 
 app.UseForwardedHeaders();
 app.UsePathBase("/main");

@@ -98,9 +98,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseForwardedHeaders();
 
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Shared/Error");
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseMiddleware<ExceptionMiddleware>();
 }
 
 app
@@ -129,5 +133,5 @@ app.MapDefaultControllerRoute();
 //     "results/{controller}/{action}",
 //     new { controller = "normal", action = "index" });
 
-await Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
+// await Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
 await app.RunAsync();

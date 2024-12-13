@@ -32,10 +32,13 @@ builder.Services
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseMiddleware<ExceptionMiddleware>();
 }
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
