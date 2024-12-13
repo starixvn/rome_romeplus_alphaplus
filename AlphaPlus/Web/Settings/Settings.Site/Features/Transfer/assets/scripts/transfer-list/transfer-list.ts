@@ -137,6 +137,14 @@
         });
 
         $tableTransfer.removeClass('hide').stickyTableHeaders();
+
+        const isEnableAutoTransfer = $btnAutoTransfer.length > 0;
+        isEnableAutoTransfer &&
+            setTimeout(function () {
+                try {
+                    window.top.indexManager.initFeedbackFunction(5, undefined, 470);
+                } catch {}
+            }, 1000);
     }
 
     private initComponents($formTransfer: JQuery, $tableTransfer: JQuery) {
