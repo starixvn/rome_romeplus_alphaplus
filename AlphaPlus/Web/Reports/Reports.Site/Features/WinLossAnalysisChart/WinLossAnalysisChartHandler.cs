@@ -1,4 +1,5 @@
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossAnalysisChart;
@@ -20,13 +21,21 @@ public class WinLossAnalysisChartHandler(
     public async Task<WinLossAnalysisChartViewModel> Handle(WinLossAnalysisChartQuery message, CancellationToken cancellationToken)
     {
         var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds);
+
+        const int DefaultPreviousMonths = -2;
+        var fromDate = message.FromDate == DateTime.MinValue
+            ? SystemTime.Today.AddMonths(DefaultPreviousMonths).FirstDayOfMonth()
+            : message.FromDate.FirstDayOfMonth();
+        var toDate = message.ToDate == DateTime.MinValue || message.ToDate.IsSameMonthWith(SystemTime.Today)
+            ? SystemTime.Today
+            : message.ToDate.LastDayOfMonth();
         var param = new WinLossAnalysisChartParam(
             message.ViewerId,
             message.ViewerLevel.Value,
             message.Site,
             message.CurrencyId,
-            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-            message.ToDate,
+            fromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+            toDate,
             productViewModel.UserSelectedProductIds);
         var reportData = await winLossAnalysisChartService.GetWinLossAnalysisChart(param);
 
