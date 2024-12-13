@@ -43,8 +43,8 @@
     <a href="@($"{Model.MainRootPath}SecurityCode/LearnMore")" target="_blank">@Security.LearnMore</a>
 </div>
 @Html.Hidden("hashkey", Model.HashKey)
-@Html.Hidden("custid", Model.CustId)
-@Html.Hidden("subaccid", Model.SubAccId)
+@Html.Hidden("custid", Context.Request.Query["custid"])
+@Html.Hidden("subaccid", Context.Request.Query["subaccid"])
 @* @Html.Hidden("oldMainRootPath", Model.OldMainRootPath) *@
 @Html.Hidden("mainRootPath", Model.MainRootPath)
 @section js {
