@@ -9,7 +9,7 @@ export const handleError = (err: any) => {
         return undefined;
     }
 
-    if (err.response?.status === 403) {
+    if (err.response?.status === 403 || err.Code === 403) {
         return {
             IsSuccess: false,
             Message: $('#NotAuthorized').val()
