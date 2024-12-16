@@ -18,64 +18,46 @@ public class ResultServiceFactory(
     IVirtualRacingService virtualRacingService,
     IVirtualSportsService virtualSportsService,
     IBitcoinService bitcoinService,
+    IParlay3rdService parlay3rdService,
     IResultEngineAdapter resultEngineAdapter) : IResultServiceFactory
 {
     public IProductResultService CreateProductResultService(int sportId, int betTypeId)
     {
-        if (betTypeId == BetTypeConstants.MixParlay
-            || betTypeId == BetTypeConstants.CombineMixParlay
-            || betTypeId == BetTypeConstants.MixParlayBetRadarVirtualSports
-            || betTypeId == BetTypeConstants.MixParlayEdgeGamingVirtualSports)
+        if (IsMatchParlayTicket())
         {
             return new ParlayResultService(options, parlayService, resultEngineAdapter);
         }
 
-        switch (sportId)
+        if (betTypeId == BetTypeConstants.MixParlayVirtuallySports)
         {
-            case SportTypeConstants.Soccer:
-                return new SportsbookResultService(options, sportsbookService, resultEngineAdapter);
-
-            case SportTypeConstants.NumberGame:
-                return new NumberGameResultService(options, numberGameService, resultEngineAdapter);
-
-            case SportTypeConstants.Happy5:
-                return new Happy5ResultService(options, numberGameService, resultEngineAdapter);
-
-            case SportTypeConstants.AllBet:
-                return new AllBetCasinoResultService(options);
-
-            case SportTypeConstants.SAGaming:
-                return new SAGamingResultService();
-
-            case SportTypeConstants.GTCasino:
-                return new GTCasinoResultService();
-
-            case SportTypeConstants.WM:
-            case SportTypeConstants.YeeBet:
-                return new WMResultService();
-
-            case SportTypeConstants.VirtualHorsesRacing:
-            case SportTypeConstants.VirtualGreyhounds:
-            case SportTypeConstants.VirtualMotors:
-            case SportTypeConstants.VirtualCycling:
-            case SportTypeConstants.VirtualSpeedway:
-                return new VirtualRacingResultService(options, virtualRacingService, resultEngineAdapter);
-
-            case SportTypeConstants.LGVirtualSports:
-                return new LeapGamingResultService(resultEngineAdapter);
-
-            case SportTypeConstants.Bitcoin:
-                return new BitcoinResultService(bitcoinService, resultEngineAdapter);
-
-             case SportTypeConstants.VirtuallySports:
-                    return new VirtuallySportsResultService(options, virtualSportsService, resultEngineAdapter);
-            default:
-                if (betTypeId == BetTypeConstants.BetBuilder)
-                {
-                    return new BetBuilderResultService(sportsbookService, resultEngineAdapter);
-                }
-
-                return new SportsbookResultService(options, sportsbookService, resultEngineAdapter);
+            return new Parlay3rdResultService(options, parlay3rdService, resultEngineAdapter);
         }
+
+        return sportId switch
+        {
+            SportTypeConstants.Soccer => new SportsbookResultService(options, sportsbookService, resultEngineAdapter),
+            SportTypeConstants.NumberGame => new NumberGameResultService(options, numberGameService, resultEngineAdapter),
+            SportTypeConstants.Happy5 => new Happy5ResultService(options, numberGameService, resultEngineAdapter),
+            SportTypeConstants.AllBet => new AllBetCasinoResultService(options),
+            SportTypeConstants.SAGaming => new SAGamingResultService(),
+            SportTypeConstants.GTCasino => new GTCasinoResultService(),
+            SportTypeConstants.WM or SportTypeConstants.YeeBet => new WMResultService(),
+            SportTypeConstants.LGVirtualSports => new LeapGamingResultService(resultEngineAdapter),
+            SportTypeConstants.Bitcoin => new BitcoinResultService(bitcoinService, resultEngineAdapter),
+            SportTypeConstants.VirtuallySports => new VirtuallySportsResultService(options, virtualSportsService, resultEngineAdapter),
+            SportTypeConstants.VirtualHorsesRacing or
+            SportTypeConstants.VirtualGreyhounds or
+            SportTypeConstants.VirtualMotors or
+            SportTypeConstants.VirtualCycling or
+            SportTypeConstants.VirtualSpeedway => new VirtualRacingResultService(options, virtualRacingService, resultEngineAdapter),            
+            _=> betTypeId == BetTypeConstants.BetBuilder ?
+                    new BetBuilderResultService(sportsbookService, resultEngineAdapter) : new SportsbookResultService(options, sportsbookService, resultEngineAdapter)
+        };
+
+        bool IsMatchParlayTicket()
+        => betTypeId == BetTypeConstants.MixParlay
+            || betTypeId == BetTypeConstants.CombineMixParlay
+            || betTypeId == BetTypeConstants.MixParlayBetRadarVirtualSports
+            || betTypeId == BetTypeConstants.MixParlayEdgeGamingVirtualSports;
     }
 }

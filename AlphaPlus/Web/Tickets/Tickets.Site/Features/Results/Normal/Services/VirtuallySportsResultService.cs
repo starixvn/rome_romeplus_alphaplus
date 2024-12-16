@@ -32,6 +32,7 @@ public class VirtuallySportsResultService(
             SportType = (SportType)message.SportId,
             LanguageCode = message.Language,
             ExcelTitle = message.ExcelTitle,
+            VisibleMatchCodeIDColumn = true,
             ExcelTemplatePath = message.TemplatePath
         };
 
