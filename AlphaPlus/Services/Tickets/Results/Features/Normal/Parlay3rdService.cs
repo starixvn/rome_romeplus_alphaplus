@@ -13,7 +13,7 @@ public class Parlay3rdService(IDynamicRepository repository) : IParlay3rdService
     public async Task<IList<Parlay>> GetResults(long refNo)
     {
         var (sportsbooks, gameDetails) = await repository.FetchMultipleAsync<SportsbookEntity, GameDetail>(
-            new GetParlayResultCriteria(refNo)
+            new GetParlay3rdResultCriteria(refNo)
         );
 
         var results = GetParlays(sportsbooks);
