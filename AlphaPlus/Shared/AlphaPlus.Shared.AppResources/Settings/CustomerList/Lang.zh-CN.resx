@@ -198,4 +198,7 @@
   <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
     <value>*一旦禁用，当前的自动转账日程表将被清除。</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>更改</value>
+  </data>
 </root>

@@ -198,4 +198,7 @@
   <data name="AutoTransfer_ClearSchedule" xml:space="preserve">
     <value>*เมื่อปิดใช้งานแล้ว ตารางการโอนอัตโนมัติปัจจุบันจะถูกล้าง</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>อัปเดต</value>
+  </data>
 </root>

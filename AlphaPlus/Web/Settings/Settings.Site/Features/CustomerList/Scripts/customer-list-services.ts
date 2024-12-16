@@ -61,24 +61,12 @@ class CustomerListServices {
             params = $target.data("params"),
             reloadcustomerlist = JSON.parse($target.data("reloadcustomerlist"));
 
-        if (params.Func === "UpdateAutoTransfer") {
-            var schedule = [];
-            var chks = this.topWindow.$('.opt-schedule:checked');
-            chks.each((_, e) => {
-                schedule.push(this.topWindow.$(e).attr("data-val"));
-            });
-
-            params.Schedule = schedule.join(',');
-        }
-
         this.callAjax(
             params.UseDifferentSite ? action : this.viewModel.MemberInfoUrl + 'CustomerList/' + action,
             'POST',
             params,
             data => {
                 this.$.unblockUI();
-
-                data.UseDifferentSite = params.UseDifferentSite;
                 updateCustomerStatusSuccess(currentTarget, parentTarget, data, reloadcustomerlist);
             });
     }

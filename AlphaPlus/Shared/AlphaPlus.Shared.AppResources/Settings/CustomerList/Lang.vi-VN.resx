@@ -189,4 +189,7 @@
   <data name="TurnOnTransferBalanceDailyNoteMessage" xml:space="preserve">
     <value>&lt;div style="font-weight:normal"&gt;&lt;b&gt;Lưu ý：&lt;/b&gt;Kích hoạt Chuyển Khoản Tổng Số Dư sẽ TẮT Chuyển Khoản Tự Động và XÓA tất cả lịch Chuyển Khoản Tự Động do {0} đặt cho cấp dưới của mình.&lt;/div&gt;</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
 </root>

@@ -68,6 +68,11 @@ class EditStatus {
         this.$('.edit-status-popup').click(event => {
             const isOpenPopup = JSON.parse(this.$(event.currentTarget).data("ispopup"));
             if (isOpenPopup) {
+                if (this.$(event.currentTarget).data("message") == 'ShowCheckboxOnCustInfo_AutoTransfer'
+                    && JSON.parse(this.$(event.currentTarget).data("disabled"))) {
+                    return;
+                }
+
                 const popupHeaderText = this.$(event.currentTarget).data("popupheadertext");
                 const username = this.$(event.currentTarget).data("username");
                 this.$(event.currentTarget).data('title', popupHeaderText.replace('<username>', username));
@@ -85,10 +90,6 @@ class EditStatus {
                             event.currentTarget,
                             this.$(parentElement).context,
                             this.updateCustomerStatusSuccess));
-
-                    if (params.Func === "UpdateAutoTransfer") {
-                        this.bindEditAutoTransferEvents();
-                    }
                 }
             }
         })
@@ -96,10 +97,6 @@ class EditStatus {
 
     private updateCustomerStatusSuccess = (currentTarget, parentTarget, data, reloadcustomerlist) => {
         if (data.IsSuccessful) {
-            if (data.UseDifferentSite && data.Code == 0) {
-                this.topWindow.bootboxAlert(data.Message, this.isMobile ? currentTarget : parentTarget);
-            }
-
             if (reloadcustomerlist && this.topWindow.customerListNew) {
                 this.topWindow.successfulUpdatingCallbackAndReloadMainFrame(true);
             }

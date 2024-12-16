@@ -365,5 +365,16 @@ namespace AlphaPlus.Shared.AppResources.Settings.CustomerList
                 return ResourceManager.GetString("Wednesday", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Update
+        {
+            get
+            {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
     }
 }
