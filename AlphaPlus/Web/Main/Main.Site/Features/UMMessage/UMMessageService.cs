@@ -87,6 +87,11 @@ namespace AlphaPlus.Main.Site.Features.UMMessage
 
         private string GetProductOrSportType(int productId, int sportTypeId)
         {
+            if (productId == 1)
+            {
+                return $"{GetProductName(productId)} {GetSportName(sportTypeId)}";
+            }
+
             if (sportTypeId > 0)
             {
                 return GetSportName(sportTypeId);
