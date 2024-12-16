@@ -28,10 +28,11 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
 
     public async Task CheckIn()
     {
+        var SubAccId = session.IsInternal ? -session.AdminId : session.SubAccId;
         var onlineUserId = await client.PostAsJsonAsync<int>("api/auth/check-in", new
         {
             session.CustId,
-            session.SubAccId,
+            SubAccId,
             SessionId = session.NetSessionId,
             session.ServerId,
             IP = session.UserLoginIp
