@@ -11,9 +11,11 @@ namespace AlphaPlus.Main.Site.Features.OTP
 {
     using AlphaPlus.Main.Site.Shared.Models;
 
-    public class OtpController(IMediator mediator, IUserSession userSession) : BaseController
+    public class OtpController(IMediator mediator, IUserSession userSession, IUser user) : BaseController
     {
         private readonly IMediator mediator = mediator;
+
+        private readonly IUser user = user;
 
         public async Task<IActionResult> SetUpOtp(SetUpOtpQuery query)
         {
@@ -85,9 +87,9 @@ namespace AlphaPlus.Main.Site.Features.OTP
         [HttpPost, ValidateAntiForgeryToken, AllowProtectedMode]
         public async Task<IActionResult> ResetOtp(ResetOtpCommand command)
         {
-            if (userSession.IsInternal)
+            if (userSession.IsInternal && !user.IsAdminCanUpdateSubAccount)
             {
-                return UnauthorizedResponse();
+                return View(UnauthorizedResult.CreateUnauthorizedResult());
             }
 
             var result = await mediator.Send(command);
@@ -98,7 +100,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<JsonResult> RemoveOtp()
         {
-            if (userSession.IsInternal)
+            if (userSession.IsInternal && !user.IsAdminCanUpdateSubAccount)
             {
                 return UnauthorizedResponse();
             }
