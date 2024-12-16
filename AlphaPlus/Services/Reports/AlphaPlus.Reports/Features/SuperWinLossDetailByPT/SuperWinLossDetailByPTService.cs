@@ -69,7 +69,6 @@ public class SuperWinLossDetailByPTService(
 
                     return new SuperWinLossDetailByPTModel(pt, winlossSortedList, total);
                 })
-            .OrderByDescending(wl => wl.SuperPT)
             .ToList();
 
             return (reportData, grandTotal, ptList);
