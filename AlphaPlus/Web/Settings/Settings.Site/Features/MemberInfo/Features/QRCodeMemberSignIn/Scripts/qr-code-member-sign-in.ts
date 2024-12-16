@@ -257,6 +257,11 @@ class QRCodeMemberSignIn {
                         this.reloadFrame(result);
                     }, 1000);
                 }
+                else if (result.ErrCode === 998)
+                {
+                    this.showErrorMessage(result.ErrMsg);
+                    this.$.unblockUI();
+                }
                 else {
                     this.showMessageContent(result.MessageContent);
                     this.$.unblockUI();
