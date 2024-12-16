@@ -67,6 +67,8 @@ namespace AlphaPlus.Main.Site
 
         public static bool HideQRCode => GetValue<bool>("QRCode:Hide");
 
+        public static string OfferAutoTransferCurrencies => GetValue<string>("OfferAutoTransfer.Currencies");
+
         private static T GetValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetValue<T>(key, defaultValue);
 
         private static T GetSectionValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetSection<T>(key, defaultValue);

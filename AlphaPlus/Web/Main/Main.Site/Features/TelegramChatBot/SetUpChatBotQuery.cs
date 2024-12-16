@@ -25,5 +25,7 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
         public int SubAccId { get; }
 
         public string Language { get; }
+
+        public string Currency { get; }
     }
 }

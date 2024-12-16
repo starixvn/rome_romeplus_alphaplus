@@ -17,6 +17,7 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
             NotificationFunctions = chatBotViewModel.CustBotMessenger.Functions.Where(function => function.Type == 2);
             Language = chatBotViewModel.CustBotMessenger.Language;
             CustLevel = query.CustLevel.DisplayName;
+            IsEnableAutoTransfer = chatBotViewModel.IsEnableAutoTransfer;
         }
 
         public ChatBotViewModel ChatBotViewModel { get; }
@@ -34,6 +35,8 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
         public string Language { get; }
 
         public string CustLevel { get; }
+
+        public bool IsEnableAutoTransfer { get; }
 
         public LanguageViewModel LanguageViewModel => new(
                 AppSettings.DisabledVietnamese ? Shared.Constants.Language.TelegramChatBotCodeNamesWithoutVietNamese : Shared.Constants.Language.TelegramChatBotCodeNames,

@@ -81,7 +81,6 @@ class EditStatus {
             else {
                 if (!JSON.parse(this.$(event.currentTarget).data("disabled"))) {
                     var chkbox = this.$(event.currentTarget);
-                    var params = chkbox.data("params");
 
                     this.topWindow.bootboxConfirm(
                         chkbox.data("message"),
@@ -113,39 +112,6 @@ class EditStatus {
             if (data.Code === 100) {
                 window.location.reload();
             }
-        }
-    }
-
-    private bindEditAutoTransferEvents= () => {
-        var self = this;
-        this.topWindow.$("#opt-schedule-all").click(() => { this.checkAllAutoTransferSchedule(); });
-        this.topWindow.$(".opt-schedule").click(function () { self.scheduleChanged(this); });
-        this.validateAutoTransferSchedule();
-    }
-    private checkAllAutoTransferSchedule = () => {
-        var chkAll = this.topWindow.$("#opt-schedule-all");
-        var isCheck = chkAll.is(":checked");
-
-        var chks = this.topWindow.$('.opt-schedule');
-        chks.each((_, e) => {
-            this.topWindow.$(e).prop("checked", isCheck);
-        });
-
-        this.validateAutoTransferSchedule();
-    };
-    private scheduleChanged = (elm) => {
-        var $this = this.topWindow.$(elm);
-        var checkedCount = this.topWindow.$(".opt-schedule:checked").length;
-        this.topWindow.$('.opt-schedule-all').prop("checked", checkedCount === this.topWindow.$(".opt-schedule").length);
-        this.validateAutoTransferSchedule();
-    };
-    private validateAutoTransferSchedule = () => {
-        var btnOk = this.topWindow.$("#opt-schedule-all").closest('.modal-content').find(".btn-primary");
-
-        if (this.topWindow.$(".opt-schedule:checked").length === 0) {
-            btnOk.attr('disabled', 'disabled');
-        } else {
-            btnOk.attr('disabled', null);
         }
     }
 }

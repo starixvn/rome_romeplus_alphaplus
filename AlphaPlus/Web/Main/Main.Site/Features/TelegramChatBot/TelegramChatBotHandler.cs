@@ -5,11 +5,13 @@ using TelegramBot.Client.Services;
 
 namespace AlphaPlus.Main.Site.Features.TelegramChatBot
 {
+    using AlphaPlus.Main.Site.Features.Default.MenuBar;
     using AlphaPlus.Main.Site.Shared.Constants;
 
     public class TelegramChatBotHandler(
         ISettingService settingService,
-        IBotService botService) :
+        IBotService botService,
+        ITransferService transferService) :
         IRequestHandler<SetUpChatBotQuery, ChatBotViewModel>,
         IRequestHandler<GenerateQRCodeCommand, VerifyAccountViewModel>,
         IRequestHandler<VerifyOTPCommand, Result>,
@@ -21,6 +23,7 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
         private const int UnlinkedErrorCode = 102;
         private readonly ISettingService settingService = settingService;
         private readonly IBotService botService = botService;
+        private readonly ITransferService transferService = transferService;
 
         public async Task<ChatBotViewModel> Handle(SetUpChatBotQuery message, CancellationToken cancellationToken)
         {
@@ -28,6 +31,8 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
                 message.CustId,
                 message.SubAccId,
                 Language.MapNewChineseLanguageCode(message.Language));
+            var isEnableAutoTransfer = transferService.IsEnableAutoTransfer(
+                message.Currency, message.CustId, AppSettings.OfferAutoTransferCurrencies);
 
             return new ChatBotViewModel(custBotMessenger);
         }

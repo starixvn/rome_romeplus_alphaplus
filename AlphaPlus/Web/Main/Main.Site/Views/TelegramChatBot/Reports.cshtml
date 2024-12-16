@@ -1,4 +1,5 @@
-﻿@model AlphaPlus.Main.Site.Features.TelegramChatBot.ChatBotSettingViewModel
+﻿@using AlphaPlus.Main.Site.Constants
+@model AlphaPlus.Main.Site.Features.TelegramChatBot.ChatBotSettingViewModel
 
 @if (Model.ReportFunctions.Any())
 {
@@ -22,8 +23,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @Html.Hidden("IsEnableAutoTransfer", Model.IsEnableAutoTransfer)
                         @foreach (var function in Model.ReportFunctions)
                         {
+                            if (function.FunctionId == ChatBotFunctionIds.AutoTransferSettings && !Model.IsEnableAutoTransfer)
+                            {
+                                continue;
+                            }
                                     <tr>
                                         <td class="text-center bold">@function.FunctionName</td>
                                         <td>@Html.Raw(function.Description)</td>

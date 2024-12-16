@@ -6,7 +6,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
     {
         bool IsAllDayBalanceTransfer(int custId);
 
-        bool IsEnableAutoTransfer(string currency, int custId);
+        bool IsEnableAutoTransfer(string currency, int custId, string offerCurrencies);
     }
 
     public class TransferService(IDynamicRepository dynamicRepository) : ITransferService
@@ -20,14 +20,12 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             return transferModel != null && transferModel.IsAllDayBalTransfer;
         }
 
-        public bool IsEnableAutoTransfer(string currency, int custId)
+        public bool IsEnableAutoTransfer(string currency, int custId, string offerCurrencies)
         {
             if (IsAllDayBalanceTransfer(custId))
             {
                 return false;
             }
-
-            var offerCurrencies = AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string>("OfferAutoTransfer.Currencies");
 
             if (string.IsNullOrWhiteSpace(offerCurrencies))
             {

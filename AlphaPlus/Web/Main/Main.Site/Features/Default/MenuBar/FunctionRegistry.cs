@@ -67,7 +67,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             => IsAllowedTransferToDownlineHistorySite(Current.Site) && transferService.IsAllDayBalanceTransfer(Current.CustId);
 
         private static bool AutoTransferMonitoringMenuItemVisible
-            => transferService.IsEnableAutoTransfer(Current.Currency, Current.CustId);
+            => transferService.IsEnableAutoTransfer(Current.Currency, Current.CustId, AppSettings.OfferAutoTransferCurrencies);
 
         private static bool SingleTransferMenuItemVisible
         {
