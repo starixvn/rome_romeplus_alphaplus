@@ -9,6 +9,7 @@
       "assets/scripts/old-main.js",
       "assets/scripts/home/header-nav.js",
       "assets/scripts/home/header-msg.js",
+      "assets/scripts/home/um-message.js",
       "assets/scripts/home/menu-bar.js",
       "assets/scripts/customer-profiles/brief-profile.js",
       "assets/scripts/dashboard/popup-announcement.js"

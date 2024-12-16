@@ -23,10 +23,10 @@ public class WinLossAnalysisChartHandler(
         var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds);
 
         const int DefaultPreviousMonths = -2;
-        var fromDate = message.FromDate == DateTime.MinValue
+        message.FromDate = message.FromDate == DateTime.MinValue
             ? SystemTime.Today.AddMonths(DefaultPreviousMonths).FirstDayOfMonth()
             : message.FromDate.FirstDayOfMonth();
-        var toDate = message.ToDate == DateTime.MinValue || message.ToDate.IsSameMonthWith(SystemTime.Today)
+        message.ToDate = message.ToDate == DateTime.MinValue || message.ToDate.IsSameMonthWith(SystemTime.Today)
             ? SystemTime.Today
             : message.ToDate.LastDayOfMonth();
         var param = new WinLossAnalysisChartParam(
@@ -34,8 +34,8 @@ public class WinLossAnalysisChartHandler(
             message.ViewerLevel.Value,
             message.Site,
             message.CurrencyId,
-            fromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-            toDate,
+            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
+            message.ToDate,
             productViewModel.UserSelectedProductIds);
         var reportData = await winLossAnalysisChartService.GetWinLossAnalysisChart(param);
 
