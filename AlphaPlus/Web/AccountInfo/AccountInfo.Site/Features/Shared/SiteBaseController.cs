@@ -30,6 +30,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.Shared
         protected async Task<ActionResult> Json<TResponse>(IRequest<TResponse> message)
             => (message as BaseQuery).IsValid() ?
                 Json(await mediator.Send(message)) :
-                StatusCode(StatusCodes.Status403Forbidden, Result.CreateErrorResult("You are not authorized on this function.", StatusCodes.Status403Forbidden));
+                Json(Result.CreateErrorResult("You are not authorized on this function.", StatusCodes.Status403Forbidden));
     }
 }
