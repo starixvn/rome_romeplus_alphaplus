@@ -104,6 +104,9 @@ public class AccountController(
     {
         var param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey));
         var requestInfo = await deviceHelper.GetRequestInfo();
+        requestInfo.BrowserName = !string.IsNullOrWhiteSpace(param.BrowserSize) ?
+            $"{requestInfo.BrowserName}, {param.BrowserSize}" : requestInfo.BrowserName;
+            
         var signInResult = await accountService.AfterSignIn(new SignInParam
         {
             CustId = param.CustId,
