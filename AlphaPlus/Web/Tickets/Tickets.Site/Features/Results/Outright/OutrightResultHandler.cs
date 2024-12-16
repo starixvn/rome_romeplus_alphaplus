@@ -45,7 +45,14 @@ public class OutrightResultHandler(
 
             if (outrights.Any())
             {
-                message.SportType = message.SportType > 0 ? message.SportType : outrights[0].SportType;
+                message.SportType = message.SportType > 0 && outrights.Any(outright => outright.SportType == message.SportType)
+                    ? message.SportType
+                    : outrights[0].SportType;
+                if (!outrights.Any(outright => outright.LeagueId == message.LeagueId && outright.SportType == message.SportType))
+                {
+                    message.LeagueId = 0;
+                }
+
                 (sports, leagues) = GetSportsAndLeagues(outrights, message.SportType, message.LeagueId);
             }
         }
