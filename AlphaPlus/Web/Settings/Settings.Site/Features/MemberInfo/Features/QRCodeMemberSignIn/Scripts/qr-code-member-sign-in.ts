@@ -366,13 +366,13 @@ class QRCodeMemberSignIn {
             this.$submitBtn.prop('disabled', true);
         }
 
-        if (this.showCreateFromUnopenedMemberMessage && this.cannotCreateClosedMemberQRCodeMessage) {
-            this.showErrorMessage(this.cannotCreateClosedMemberQRCodeMessage);
+        if (this.inValidCustomerCopyFrom && this.memberAccountInvalidMessage) {
+            this.showErrorMessage(this.memberAccountInvalidMessage);
             return true;
         }
 
-        if (this.inValidCustomerCopyFrom && this.memberAccountInvalidMessage) {
-            this.showErrorMessage(this.memberAccountInvalidMessage);
+        if (this.showCreateFromUnopenedMemberMessage && this.cannotCreateClosedMemberQRCodeMessage) {
+            this.showErrorMessage(this.cannotCreateClosedMemberQRCodeMessage);
             return true;
         }
 
