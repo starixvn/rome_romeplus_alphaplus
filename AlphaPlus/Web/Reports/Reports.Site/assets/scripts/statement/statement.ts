@@ -53,6 +53,7 @@ class StatementView extends BaseReport {
         this.statementDetailView = new StatementDetailView(this.popupStatementDetails);
         $('.column-transfer-amount').on('click', (e) => this.loadStatementDetail($(e.target).data('transfer-date')));
         this.popupStatementDetails.draggable({ handle: '.modal-header' });
+        $('#btn-submit').click(() => $('#PageIndex').val(1));
     }
 
     loadStatementDetail = (transferDate: string) => {

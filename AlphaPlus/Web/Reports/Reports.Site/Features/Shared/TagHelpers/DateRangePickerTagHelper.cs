@@ -49,7 +49,7 @@ public class DateRangePickerTagHelper : TagHelper
         {
             sb
                 .Append("<div class=\"form-group submit-container\">")
-                .Append($"<input type=\"submit\" value=\"{Resources.Submit}\" class=\"btn-submit\"/>")
+                .Append($"<input type=\"submit\" value=\"{Resources.Submit}\" class=\"btn-submit\" id=\"btn-submit\"/>")
                 .Append("</div>");
         }
 
