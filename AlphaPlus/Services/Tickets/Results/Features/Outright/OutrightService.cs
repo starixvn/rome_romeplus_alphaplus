@@ -19,7 +19,7 @@ public class OutrightService(
     {
         var criteria = new GetOutRightResultCriteria(
             param.FromDate.Date,
-            param.ToDate.Date.AddDays(1).AddTicks(-1),
+            new DateTime(param.ToDate.Year, param.ToDate.Month, param.ToDate.Day, 23, 59, 59),
             param.IsShowAll);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
