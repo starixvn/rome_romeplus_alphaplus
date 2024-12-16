@@ -29,13 +29,6 @@ export default function SearchAccountInfo() {
     const maxLength = 15;
 
     useEffect(() => {
-        if (username.length > maxLength) {
-            setIsTruncate(true);
-            setTooltip(username);
-        }
-    }, [username]);
-
-    useEffect(() => {
         const getStatusInfo = (customerInfo: Customer) => {
             const statusInfo = {
                 Closed: [
@@ -95,7 +88,14 @@ export default function SearchAccountInfo() {
         if (customer) {
             const statusInfo = getStatusInfo(customer);
             setCSS(statusInfo?.Css ?? '');
-            setTooltip(statusInfo?.Tootltip ?? '');
+            const username = customer.UserName;
+            const isTruncate = username.length > maxLength;
+            setIsTruncate(isTruncate);
+            if (statusInfo?.Tootltip === '' && isTruncate) {
+                setTooltip(username);
+            } else {
+                setTooltip(statusInfo?.Tootltip ?? '');
+            }
         }
     }, [customer, t]);
 
@@ -135,7 +135,7 @@ export default function SearchAccountInfo() {
                     href={customer.CreateMemberByQRCodeUrl}
                     title={t('createMemberWithQRCode')}
                 >
-                    <span className='icon-clone-account' />
+                    <span className="icon-clone-account" />
                 </CustomAnchorTag>
             )}
         </div>
