@@ -4,18 +4,12 @@ namespace AlphaPlus.Results.Features.Normal;
 
 public class GetVirtuallySportResultCriteria(
     DateTime fromDate,
-    int sportType,
     int leagueId,
-    bool isShowAll,
     DateTime moveBetsDay) : CriteriaBase
 {
     public DateTime FromDate { get; } = fromDate;
 
-    public int SportType { get; } = sportType;
-
     public int LeagueId { get; } = leagueId;
-
-    public bool IsShowAll { get; } = isShowAll;
 
     public DateTime MoveBetsDay { get; } = moveBetsDay;
 

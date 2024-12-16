@@ -21,7 +21,7 @@ public class VirtualSportsService(
     {
         var moveBetsDay = await resultsService.GetMoveBetsDate();
         var criteria = new GetVirtuallySportResultCriteria(
-            param.FromDate, param.SportType, param.LeagueId, param.IsShowAll, moveBetsDay);
+            param.FromDate, param.LeagueId, moveBetsDay);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var (matchs, details) = await repository.FetchMultipleAsync<Sportsbook, GameDetail>(criteria);
