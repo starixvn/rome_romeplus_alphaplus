@@ -16,6 +16,7 @@ public class ResultServiceFactory(
     ISportsbookService sportsbookService,
     INumberGameService numberGameService,
     IVirtualRacingService virtualRacingService,
+    IVirtualSportsService virtualSportsService,
     IBitcoinService bitcoinService,
     IResultEngineAdapter resultEngineAdapter) : IResultServiceFactory
 {
@@ -66,6 +67,8 @@ public class ResultServiceFactory(
             case SportTypeConstants.Bitcoin:
                 return new BitcoinResultService(bitcoinService, resultEngineAdapter);
 
+             case SportTypeConstants.VirtuallySports:
+                    return new VirtuallySportsResultService(options, virtualSportsService, resultEngineAdapter);
             default:
                 if (betTypeId == BetTypeConstants.BetBuilder)
                 {

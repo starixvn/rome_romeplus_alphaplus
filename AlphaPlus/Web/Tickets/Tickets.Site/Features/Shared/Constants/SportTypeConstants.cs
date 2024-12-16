@@ -19,6 +19,6 @@ internal static class SportTypeConstants
     //public const int SexyGaming = 243;
     public const int SAGaming = 244;
     public const int GTCasino = 242;
-
-    public static readonly HashSet<int> SportListUsingLeague3rd = [Bitcoin];
+    public const int VirtuallySports = 147;
+    public static readonly HashSet<int> SportListUsingLeague3rd = [Bitcoin, VirtuallySports];
 }

@@ -58,6 +58,18 @@
     </Setting>
     <Setting Key="Acc_BetList_Match3rdResultSel" SpName="Acc_BetList_Match3rdResultSel" DbName="DBAGE.bodb02.wsv_alp" />
     <Setting Key="Age_Result_Match3rdSelByLeague" SpName="Age_Result_Match3rdSelByLeague" DbName="DBAGE.bodb02.wsv_alp" />
+
+    <Setting Key="Acc_BetList_VS5_Match3rdResultSel" SpName="Acc_BetList_Match3rdResultSel" DbName="DBAGE.bodb02.wsv_alp" Plain="0">
+      <Mapping ObjectProperty="KickOffTime" DataField="eventdate" />
+    </Setting>
+    <Setting Key="Age_Result_VS5_Match3rdSelByLeague" SpName="Age_Result_Match3rdSelByLeague" DbName="DBAGE.bodb02.wsv_alp" Plain="0">
+      <Mapping ObjectProperty="LeagueId" DataField="league3rdid" />
+      <Mapping ObjectProperty="MatchId" DataField="match3rdid" />
+      <Mapping ObjectProperty="KickOffTime" DataField="eventdate" />
+    </Setting>
+    <Setting Key="Age_BetList_SelMatch3rdResultParlay" SpName="Age_BetList_SelMatch3rdResultParlay" DbName="DBACC.bodb02.wsv_alp" Plain="0">
+      <Mapping ObjectProperty="KickOffTime" DataField="eventdate" />
+    </Setting>
   </Function>
   <Function Name="Check Belonging">
     <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.wsv_alp" />

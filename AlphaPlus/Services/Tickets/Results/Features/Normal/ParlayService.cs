@@ -6,6 +6,8 @@ namespace AlphaPlus.Results.Features.Normal;
 public interface IParlayService
 {
     Task<IList<Parlay>> GetResults(long refNo);
+
+    Task<IList<Parlay>> GetParlay3rdResults(GetParlay3rdResultCriteria criteria);
 }
 
 public class ParlayService(IDynamicRepository repository) : IParlayService
@@ -22,6 +24,13 @@ public class ParlayService(IDynamicRepository repository) : IParlayService
         return results;
     }
 
+    public async Task<IList<Parlay>> GetParlay3rdResults(GetParlay3rdResultCriteria criteria)
+    {
+        var sportsbooks = await repository.FetchAsync<SportsbookEntity>(criteria);
+        var results = GetParlays(sportsbooks);
+
+        return results;
+    }
     private static List<Parlay> GetParlays(IEnumerable<SportsbookEntity> sportsbookList)
     {
         var sportType = 0;
