@@ -80,7 +80,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.ViewModels
         {
             get
             {
-                if (CustRole.IsSuperLevel())
+                if (CustRole.IsMemberLevel())
                 {
                     return Resources.Member;
                 }
