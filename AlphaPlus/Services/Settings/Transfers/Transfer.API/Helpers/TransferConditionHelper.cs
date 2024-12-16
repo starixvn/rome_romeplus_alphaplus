@@ -9,16 +9,6 @@ public static class TransferConditionHelper
     private const string DailyOption = "00000000";
     private const int DateInWeek = 7;
     private const int indexOfWeeklyCondition = 7;
-    private static readonly string[] DaysOfWeek =
-    [
-        Resources.Sun,
-        Resources.Mon,
-        Resources.Tue,
-        Resources.Wed,
-        Resources.Thurs,
-        Resources.Fri,
-        Resources.Sat
-    ];
 
     public static List<int> GetTransferrableDatesFromSchedule(string schedule)
         => (schedule ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
@@ -36,7 +26,20 @@ public static class TransferConditionHelper
         .Select(s => int.Parse(s))
         .ToList();
 
-    public static string GetDateName(int dateIndex) => DaysOfWeek[dateIndex - 1];
+    public static string GetDateName(int dateIndex)
+    {
+        string[] dates = [
+            Resources.Sun,
+            Resources.Mon,
+            Resources.Tue,
+            Resources.Wed,
+            Resources.Thurs,
+            Resources.Fri,
+            Resources.Sat
+        ];
+
+        return dates[dateIndex - 1];
+    }
 
     public static string GetTransferOption(List<int> selectedDates)
     {
