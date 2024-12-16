@@ -8,7 +8,7 @@ public class RequestInfo
 
     public string LoginDomain { get; init; }
 
-    public string BrowserName { get; init; }
+    public string BrowserName { get; set; }
 
     public string Platform { get; init; }
 }

@@ -352,7 +352,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     if (!oldHash.Equals(newHash))
                     {
                         await logger.InfoAsync($"Username: {username} - Old Hash: {oldHash} - New Hash: {newHash}");
-                        
+
                         return newHash;
                     }
 
@@ -372,7 +372,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
         {
             var newHash = EncryptExtension.CfsEnCode(password);
             try
-            {  
+            {
                 if (AppSetting.EnabledCallHashPasswordAPI)
                 {
                     var oldHash = await httpClient.PostAsJsonAsync<string>("password/hash", new { password });
@@ -417,8 +417,11 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     }
 
                     var requestInfo = await deviceHelper.GetRequestInfo();
+                    requestInfo.BrowserName = !string.IsNullOrWhiteSpace(browserSize) ?
+                        $"{requestInfo.BrowserName}, {browserSize}" : requestInfo.BrowserName;
+
                     verifySignInResult = await VerifyDownlineLogin(username, await HashPassword(username, password), requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
-                    
+
                     if (verifySignInResult.ErrorCode != 0)
                     {
                         verifySignInResult = await VerifyDownlineLogin(username, await HashPassword32Bit(username, password), requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
