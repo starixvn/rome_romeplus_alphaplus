@@ -20,6 +20,6 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public string GetSettingKey() => "Acc_Checkin";
 
-        public bool IsValid() => CustId > 0 && SubAccId >= 0 && !string.IsNullOrWhiteSpace(NetSessionId);
+        public bool IsValid() => CustId > 0 && !string.IsNullOrWhiteSpace(NetSessionId);
     }
 }
