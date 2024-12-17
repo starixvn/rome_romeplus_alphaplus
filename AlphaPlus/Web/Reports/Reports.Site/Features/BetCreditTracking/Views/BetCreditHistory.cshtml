@@ -39,7 +39,8 @@
             <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.BetCreditHistory</a>
         </li>
         <li role="presentation">
-            <a class="open-link" data-url="@MicroSites.ReportsUrl("~/BetCreditTracking/MoveStatementHistory")">@Resources.MoveStatementHistory</a>
+            <a class="open-link"
+                data-url="@MicroSites.ReportsUrl("~/BetCreditTracking/MoveStatementHistory")">@Resources.MoveStatementHistory</a>
         </li>
         <li>
             <a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
@@ -75,7 +76,6 @@
             <div id="validation-msg-error"
                 class="msg msg-error@(string.IsNullOrWhiteSpace(Model.ErrorMessage) ? " hide" : string.Empty)">
                 @Model.ErrorMessage</div>
-            <input type="hidden" asp-for="IsFilterVisible" />
         </form>
         @if (Model.ReportData != null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
         {

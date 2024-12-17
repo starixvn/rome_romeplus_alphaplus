@@ -60,7 +60,7 @@ class ConsolidationView extends BaseReport {
 
     registerEvents() {
         $('.icon-switchmode').on('click', this.onSwitchMode);
-        super.registerDrilldownableEvents();
+        //super.registerDrilldownableEvents();
 
         const self = this;
         this.$reportForm.find('[name="ReportType"]').change(function () {
@@ -72,8 +72,9 @@ class ConsolidationView extends BaseReport {
             self.collapseExpandRows($(this));
         });
 
-        this.$tableReport.find('.downline-link').click(function (event) {
+        this.$tableReport.find('.downline-link').click((event) => {
             event.stopPropagation();
+            this.assignDrilldownUrl($(event.target));
         });
 
         this.$tableReport.find('.view-product-pt-list').click(function (event) {
@@ -150,6 +151,18 @@ class ConsolidationView extends BaseReport {
             this.$tableReport.find('.child-row-' + custId).addClass('hide');
         }
     };
+
+    assignDrilldownUrl($downlineLink: JQuery) {
+        let url = $downlineLink.attr('href');
+        const isFilterVisible = !this.$reportForm.hasClass('hide') && !alphaReports.screenSmallThan768();
+        url += `&IsFilterVisible=${isFilterVisible}`;
+        const hasStackIcon = this.$pageTitle.find('#icon-stack-column').length > 0;
+        if (hasStackIcon) {
+            url += `&IsStackMode=${this.isStackMode()}`;
+        }
+
+        $downlineLink.attr('href', url);
+    }
 
     viewProductPTList = ($icon) => {
         $('#product-pt-list-username').html($icon.data('username'));

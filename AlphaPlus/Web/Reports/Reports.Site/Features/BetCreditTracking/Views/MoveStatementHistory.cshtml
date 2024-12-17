@@ -48,7 +48,8 @@
 <div class="page-title@(Model.IsFilterVisible ? string.Empty : " hide-filter")">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation">
-            <a class="open-link" data-url="@MicroSites.ReportsUrl("~/BetCreditTracking/BetCreditHistory")">@Resources.BetCreditHistory</a>
+            <a class="open-link"
+                data-url="@MicroSites.ReportsUrl("~/BetCreditTracking/BetCreditHistory")">@Resources.BetCreditHistory</a>
         </li>
         <li role="presentation" class="active">
             <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.MoveStatementHistory</a>
@@ -93,7 +94,6 @@
             {
                 <div id="msg-error" class="msg msg-error">@Model.ErrorMessage</div>
             }
-            <input type="hidden" asp-for="IsFilterVisible" />
             <input type="hidden" asp-for="IsMainReport" />
         </form>
         @if (Model.IsMainReport)
