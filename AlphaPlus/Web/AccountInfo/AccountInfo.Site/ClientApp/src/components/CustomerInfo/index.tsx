@@ -17,10 +17,10 @@ export default function CustomerInfo({ searchCounter }: Props) {
     const { t } = useTranslation();
     const { mobileView, customer } = useGlobalContext();
 
-    if (searchCounter === 0 && ((mobileView && customer === null) || !mobileView)) {
+    if (searchCounter === 0 && ((mobileView && customer === undefined) || !mobileView)) {
         return null;
     }
-    if (searchCounter > 0 && customer === null) {
+    if (searchCounter > 0 && customer === undefined) {
         return <NoInformation text={t('accountNotFound')} />;
     }
 
