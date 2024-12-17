@@ -68,7 +68,7 @@ function App() {
                     if (responseData) {
                         const unAuthorizeResult = responseData as Result;
                         if (unAuthorizeResult && unAuthorizeResult.Code === 403) {
-                            setMessage(unAuthorizeResult.Message);
+                            setMessage('');
                             setCustomer(undefined);
                             setOnlineUsers(undefined);
                             setDownlineListData(undefined);
