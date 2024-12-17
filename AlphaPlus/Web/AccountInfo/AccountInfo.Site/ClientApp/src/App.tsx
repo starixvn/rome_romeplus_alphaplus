@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './App.module.scss';
 import BalanceInfo from './components/BalanceInfo';
+import NoInformation from './components/common/NoInformation';
 import ContactInfo from './components/ContactInfo';
 import CustomerInfo from './components/CustomerInfo';
 import AccountInfoDesktop from './components/Desktop';
@@ -19,6 +20,7 @@ import { GlobalContext } from './context/global-context';
 import Customer from './models/customer';
 import DownlineListResponse from './models/DownlineListReponse';
 import OnlineUser from './models/online-user';
+import Result from './models/result';
 import SettingItem from './models/setting-item';
 import StatusItem from './models/status-item';
 import { handleError } from './services/axios-helper';
@@ -41,15 +43,17 @@ function App() {
     const lastSearchUsernameCacheKey = `${actorName}-lastSearchUsername`;
     const { t } = useTranslation();
     const [redirectToBalanceInfoPage, setRedirectToBalanceInfoPage] = useState(false);
+    const [message, setMessage] = useState('');
 
     const getCustomerInfo = (username: string, requestId: string = LoadCustomerInfo.ByClick) => {
+        setMessage('');
         setRequestType(requestId);
         const loadCustomerInfoByClick = requestId === LoadCustomerInfo.ByClick;
         const resetSetting = requestId !== LoadCustomerInfo.ByUpdateStatus;
 
         $.blockUI?.();
         SettingsService.GetCustomerInfo(username)
-            .then((result) => {
+            .then((responseData) => {
                 if (loadCustomerInfoByClick) {
                     source.cancel(LoadCustomerInfo.ByUpdateGivenCredit);
                     source.cancel(LoadCustomerInfo.ByUpdateStatus);
@@ -57,24 +61,38 @@ function App() {
                     source.cancel(LoadCustomerAllStatus.ByUpdateStatus);
                 }
 
-                if (typeof result !== 'undefined') {
+                if (typeof responseData !== 'undefined') {
                     setSearchCounter(searchCounter + 1);
                     setLastTxn('');
 
-                    if (result) {
-                        setUsername(username);
-                        setSearchAccountRoleId(result.RoleId);
-                        setCustomer(result);
-                        setRedirectToBalanceInfoPage(loadCustomerInfoByClick);
-                        setOnlineUsers(undefined);
-                        setDownlineListData(undefined);
-
-                        if (resetSetting) {
+                    if (responseData) {
+                        const unAuthorizeResult = responseData as Result;
+                        if (unAuthorizeResult && unAuthorizeResult.Code === 403) {
+                            setMessage(unAuthorizeResult.Message);
+                            setUsername('');
+                            setCustomer(undefined);
+                            setOnlineUsers(undefined);
+                            setDownlineListData(undefined);
                             setStatusData(undefined);
                             setSettingData(undefined);
-                        }
 
-                        localStorage.setItem(lastSearchUsernameCacheKey, username);
+                            localStorage.removeItem(lastSearchUsernameCacheKey);
+                        } else {
+                            const result = responseData as Customer;
+                            setUsername(username);
+                            setSearchAccountRoleId(result.RoleId);
+                            setCustomer(result);
+                            setRedirectToBalanceInfoPage(loadCustomerInfoByClick);
+                            setOnlineUsers(undefined);
+                            setDownlineListData(undefined);
+
+                            if (resetSetting) {
+                                setStatusData(undefined);
+                                setSettingData(undefined);
+                            }
+
+                            localStorage.setItem(lastSearchUsernameCacheKey, username);
+                        }
                     } else {
                         setUsername('');
                         setCustomer(undefined);
@@ -265,6 +283,7 @@ function App() {
 
     return (
         <div className={styles.container}>
+            {message && <NoInformation text={message} />}
             <GlobalContext.Provider
                 value={{
                     requestType,

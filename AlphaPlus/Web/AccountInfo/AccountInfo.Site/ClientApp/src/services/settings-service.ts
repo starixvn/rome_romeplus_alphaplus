@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { GetPictureLibraryResponse } from '../components/ProfilePicture/type';
-import Customer from '../models/customer';
 import CustomerStatus from '../models/customer-status';
 import DownlineListResponse from '../models/DownlineListReponse';
 import OnlineUser from '../models/online-user';
@@ -19,9 +18,7 @@ const SettingsService = {
             .then((response) => response.data);
     },
     GetCustomerInfo: async (username: string) => {
-        const response = await axiosInstance.get<Customer>(
-            `SearchAccount/GetCustomerInfo?SearchAccountName=${username}`
-        );
+        const response = await axiosInstance.get(`SearchAccount/GetCustomerInfo?SearchAccountName=${username}`);
         return response.data;
     },
     GetDownlineList: async (custId: number, roleId: number, pageIndex = 1, statusId = 1, totalPages = 0) => {
