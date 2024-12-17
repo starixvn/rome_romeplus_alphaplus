@@ -57,19 +57,34 @@ function App() {
                     source.cancel(LoadCustomerAllStatus.ByUpdateStatus);
                 }
 
-                setSearchCounter(searchCounter + 1);
-                setCustomer(result);
-                if (result) {
-                    setUsername(username);
-                    setSearchAccountRoleId(result.RoleId);
-                    localStorage.setItem(lastSearchUsernameCacheKey, username);
-                    setRedirectToBalanceInfoPage(loadCustomerInfoByClick);
-                } else {
-                    if (resetSetting) {
+                if (typeof result !== 'undefined') {
+                    setSearchCounter(searchCounter + 1);
+                    setLastTxn('');
+
+                    if (result) {
+                        setUsername(username);
+                        setSearchAccountRoleId(result.RoleId);
+                        setCustomer(result);
+                        setRedirectToBalanceInfoPage(loadCustomerInfoByClick);
+                        setOnlineUsers(undefined);
+                        setDownlineListData(undefined);
+
+                        if (resetSetting) {
+                            setStatusData(undefined);
+                            setSettingData(undefined);
+                        }
+
+                        localStorage.setItem(lastSearchUsernameCacheKey, username);
+                    } else {
+                        setUsername('');
                         setCustomer(undefined);
+                        setOnlineUsers(undefined);
+                        setDownlineListData(undefined);
+                        setStatusData(undefined);
+                        setSettingData(undefined);
+
+                        localStorage.removeItem(lastSearchUsernameCacheKey);
                     }
-                    setUsername('');
-                    localStorage.removeItem(lastSearchUsernameCacheKey);
                 }
             })
             .catch(handleError)
@@ -270,7 +285,12 @@ function App() {
                         redirectToBalanceInfoPage={redirectToBalanceInfoPage}
                     />
                 ) : (
-                    customer && <AccountInfoDesktop accordionItems={accordionItems} />
+                    customer && (
+                        <AccountInfoDesktop
+                            accordionItems={accordionItems}
+                            redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                        />
+                    )
                 )}
             </GlobalContext.Provider>
         </div>

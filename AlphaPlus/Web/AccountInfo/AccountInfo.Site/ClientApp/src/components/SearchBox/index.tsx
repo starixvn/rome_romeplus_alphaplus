@@ -3,6 +3,7 @@ import AutoSuggest from 'react-autosuggest';
 import { useTranslation } from 'react-i18next';
 
 import { useGlobalContext } from '../../context/global-context';
+import { zoomDisable, zoomEnable } from '../../helpers';
 import UsernameSuggestion from '../../models/username-suggestion';
 import SettingsService from '../../services/settings-service';
 import styles from './SearchBox.module.scss';
@@ -70,8 +71,8 @@ export default function SearchBox() {
         onChange: onChange,
         onKeyPress: handleSearchKeyPress,
         placeholder: t('userNamePlaceHolder'),
-        // onFocus: zoomDisable,
-        // onBlur: zoomEnable,
+        onFocus: zoomDisable,
+        onBlur: zoomEnable,
         value: username ?? ''
     };
 

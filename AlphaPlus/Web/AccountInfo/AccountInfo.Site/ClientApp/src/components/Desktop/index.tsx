@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { BlockIds } from '../../constants';
 import { useGlobalContext } from '../../context/global-context';
@@ -7,9 +7,21 @@ import AccordionItem from '../common/AccordionItem';
 import QRCode from '../QRCode';
 import styles from './Desktop.module.scss';
 
-export default function AccountInfoDesktop({ accordionItems }: { accordionItems: ContentItem[] }) {
+export default function AccountInfoDesktop({
+    accordionItems,
+    redirectToBalanceInfoPage
+}: {
+    accordionItems: ContentItem[];
+    redirectToBalanceInfoPage: boolean;
+}) {
     const [expandedBlockId, setExpandedBlockId] = useState<BlockIds | undefined>(BlockIds.BalanceInfo);
     const { customer } = useGlobalContext();
+
+    useEffect(() => {
+        if (redirectToBalanceInfoPage) {
+            setExpandedBlockId(BlockIds.BalanceInfo);
+        }
+    }, [redirectToBalanceInfoPage]);
 
     const handleBlockClick = (blockId: BlockIds, fetchDataFromServer?: (...arg: any[]) => void) => {
         if (blockId === expandedBlockId) {

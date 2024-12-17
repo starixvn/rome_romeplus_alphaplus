@@ -28,6 +28,29 @@ export const resizePopupOnMobile = () => {
 export const Scale = 0.7;
 export const mobileScale = (value: number) => value / Scale;
 
+const viewportMetaData = 'head meta[name=viewport]';
+
+const buildViewportMetaContent = (initialScale: string, userScalable: string) =>
+    `<meta name='viewport' content='width=device-width, initial-scale=${initialScale}, user-scalable=${userScalable}' />`;
+
+export const zoomDisable = () => {
+    $(viewportMetaData).remove();
+    $('head').prepend(buildViewportMetaContent('1.0', 'no'));
+
+    window.top?.$(viewportMetaData).remove();
+    window.top?.$('head').prepend(buildViewportMetaContent('0.7', 'no'));
+};
+
+export const zoomEnable = () => {
+    const metaDataContent = buildViewportMetaContent('0.7', 'yes');
+
+    $(viewportMetaData).remove();
+    $('head').prepend(metaDataContent);
+
+    window.top?.$(viewportMetaData).remove();
+    window.top?.$('head').prepend(metaDataContent);
+};
+
 export const formatNumber = (value: number) => {
     const number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(value);
 
