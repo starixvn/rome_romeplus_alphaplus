@@ -45,6 +45,7 @@
 
   <ItemGroup>
     <Compile Include="..\..\..\Shared\Extensions\HttpClientExtensions.cs" Link="Extensions\HttpClientExtensions.cs" />
+    <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
   </ItemGroup>
 
   <ItemGroup>

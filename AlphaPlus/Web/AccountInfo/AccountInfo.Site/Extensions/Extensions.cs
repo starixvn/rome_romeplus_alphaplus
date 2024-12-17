@@ -22,6 +22,7 @@ public static class Extensions
         services
             .AddMediatR()
             .AddFanexData(configuration)
+            .AddFanexLogging(configuration)
             .AddRequestInfo();
 
         services.AddSingleton<ICacheService, CacheService>();

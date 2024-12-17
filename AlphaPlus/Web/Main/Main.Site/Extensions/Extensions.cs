@@ -38,6 +38,7 @@ public static class Extensions
         services
             .AddMediatR()
             .AddFanexData(configuration)
+            .AddFanexLogging(configuration)
             .AddRemotingRef(configuration)
             .AddRequestInfo()
             .AddSecurityCodeServices(configuration);

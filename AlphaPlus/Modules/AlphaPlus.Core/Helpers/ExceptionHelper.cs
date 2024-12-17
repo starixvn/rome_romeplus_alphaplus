@@ -16,6 +16,8 @@ public static class ExceptionHelper
             .Append("PATH: ")
             .Append($"{request.Scheme}://{request.Host}{request.PathBase}{request.Path}{request.QueryString}")
             .Append(TwoBreakLine)
+            .Append($"Referer: {request.Headers.Referer}")
+            .Append(TwoBreakLine)
             .Append("BODY: ")
             .Append(await GetRawBodyStringAsync(request))
             .Append(TwoBreakLine)
