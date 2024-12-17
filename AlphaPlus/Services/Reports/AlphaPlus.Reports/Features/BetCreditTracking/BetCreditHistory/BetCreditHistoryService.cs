@@ -305,7 +305,7 @@ public class BetCreditHistoryService(
             BetCreditHistoryResources.to,
             " ",
             BetCreditHistoryResources.ResourceManager.GetString(toStatus)
-        }.JoinWithComma();
+        }.JoinWithComma(string.Empty);
     }
 
     private static string GetBetUpdatedVoidToStatus(string action)
@@ -321,7 +321,7 @@ public class BetCreditHistoryService(
             BetCreditHistoryResources.to,
             " ",
             BetCreditHistoryResources.ResourceManager.GetString(status)
-        }.JoinWithComma("");
+        }.JoinWithComma(string.Empty);
     }
 
     private static string GetBetUpdatedRunningToVoid()
@@ -334,7 +334,7 @@ public class BetCreditHistoryService(
             BetCreditHistoryResources.to,
             " ",
             BetCreditHistoryResources._void
-        }.JoinWithComma("");
+        }.JoinWithComma(string.Empty);
 
     private static string GetTransferSubmitted(string action)
     {
@@ -372,7 +372,7 @@ public class BetCreditHistoryService(
             BetCreditHistoryResources.to,
             " ",
             BetCreditHistoryResources.ResourceManager.GetString(s2)
-        }.JoinWithComma("");
+        }.JoinWithComma(string.Empty);
     }
 
     private static string GetActionName10(string action)
