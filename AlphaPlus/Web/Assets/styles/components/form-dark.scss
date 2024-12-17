@@ -53,7 +53,9 @@
         &.product-detail-multiselect-container {
             z-index: 10000;
         }
-
+        select{
+            background-color: #171717;
+        }
         .label-form-control {
             display: block;
             font-weight: bold;
