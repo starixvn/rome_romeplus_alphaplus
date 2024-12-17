@@ -69,7 +69,6 @@ function App() {
                         const unAuthorizeResult = responseData as Result;
                         if (unAuthorizeResult && unAuthorizeResult.Code === 403) {
                             setMessage(unAuthorizeResult.Message);
-                            setUsername('');
                             setCustomer(undefined);
                             setOnlineUsers(undefined);
                             setDownlineListData(undefined);
@@ -78,6 +77,7 @@ function App() {
 
                             localStorage.removeItem(lastSearchUsernameCacheKey);
                         } else {
+                            const result = responseData as Customer;
                             const result = responseData as Customer;
                             setUsername(username);
                             setSearchAccountRoleId(result.RoleId);
@@ -94,7 +94,6 @@ function App() {
                             localStorage.setItem(lastSearchUsernameCacheKey, username);
                         }
                     } else {
-                        setUsername('');
                         setCustomer(undefined);
                         setOnlineUsers(undefined);
                         setDownlineListData(undefined);
@@ -296,20 +295,26 @@ function App() {
                 }}
             >
                 <SearchBox />
-                <CustomerInfo searchCounter={searchCounter} />
-                {mobileView ? (
-                    <AccountInfoMobile
-                        customerInfo={customer}
-                        accordionItems={accordionItems}
-                        redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-                    />
+                {message ? (
+                    <NoInformation text={message} />
                 ) : (
-                    customer && (
-                        <AccountInfoDesktop
-                            accordionItems={accordionItems}
-                            redirectToBalanceInfoPage={redirectToBalanceInfoPage}
-                        />
-                    )
+                    <>
+                        <CustomerInfo searchCounter={searchCounter} />
+                        {mobileView ? (
+                            <AccountInfoMobile
+                                customerInfo={customer}
+                                accordionItems={accordionItems}
+                                redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                            />
+                        ) : (
+                            customer && (
+                                <AccountInfoDesktop
+                                    accordionItems={accordionItems}
+                                    redirectToBalanceInfoPage={redirectToBalanceInfoPage}
+                                />
+                            )
+                        )}
+                    </>
                 )}
             </GlobalContext.Provider>
         </div>
