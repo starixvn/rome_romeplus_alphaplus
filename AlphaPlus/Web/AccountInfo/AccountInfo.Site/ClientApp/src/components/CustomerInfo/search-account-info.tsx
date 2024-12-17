@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tooltip } from 'react-tippy';
@@ -135,7 +136,7 @@ export default function SearchAccountInfo() {
                     href={customer.CreateMemberByQRCodeUrl}
                     title={t('createMemberWithQRCode')}
                 >
-                    <span className="icon-clone-account" />
+                    <span className={classNames('icon-clone-account', styles['icon-clone-account'])} />
                 </CustomAnchorTag>
             )}
         </div>
