@@ -179,6 +179,7 @@ namespace AlphaPlus.Features.Messages.API.Services
             {
                 if (announcement.Specifications == null
                     || !announcement.Specifications.Any()
+                    || announcement.Specifications.Any(s => s == null)
                     || specificationService.IsSatisfied(announcement.Specifications, announcementParams.SpecificationParamter))
                 {
                     var messageContent = GetMessageContentByLanguage(announcement.Contents, announcementParams.Language);
