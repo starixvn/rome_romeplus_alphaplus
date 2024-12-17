@@ -46,7 +46,7 @@ public class AccountController(
     }
 
     [Authorize]
-    public async Task<IActionResult> Logout()
+    public async Task<IActionResult> Logout(string r = null)
     {
         if (!options.DisabledCheckDuplicationLogin)
         {
@@ -62,7 +62,7 @@ public class AccountController(
             return new EmptyResult();
         }
 
-        return Login();
+        return Login(r);
     }
 
     [HttpPost]

@@ -78,7 +78,6 @@ function App() {
                             localStorage.removeItem(lastSearchUsernameCacheKey);
                         } else {
                             const result = responseData as Customer;
-                            const result = responseData as Customer;
                             setUsername(username);
                             setSearchAccountRoleId(result.RoleId);
                             setCustomer(result);

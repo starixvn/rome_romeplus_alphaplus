@@ -7,7 +7,7 @@ top.errCodes = [];
 top.errMsgs = [];
 top.userNames = [];
 
-top.baseUrl = alpha.urls.oldMainRootPath;
+top.baseUrl = alpha.urls.mainRootPath;
 top.exTotalBetsForecastRootPath = alpha.urls.exTotalBetsForecastRootPath;
 top.mainRootPath = alpha.urls.mainRootPath;
 top.isEnableOtp = alpha.user.isEnableOtp;
@@ -141,7 +141,7 @@ window.age = window.age || {
 
         var isInternal = index.$("#isInternal").val();
         isInternal = isInternal || "0";
-        var signOutUrl = alpha.urls.oldMainRootPath + '_Authorization/Handlers/SignOut2.ashx';
+        var signOutUrl = alpha.urls.mainRootPath + 'Account/Logout';
 
         if (isInternal.toString() !== "0") {
             $.ajax(signOutUrl, {
