@@ -30,7 +30,9 @@ class StatementView extends BaseReport {
 
     init() {
         this.cacheElements();
-        this.dateRangePickerComponent.render();
+        this.dateRangePickerComponent.render(
+            new DateRangePickerOption(undefined, undefined, undefined, () => $('#PageIndex').val('1'))
+        );
 
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
         this.pagerComponent.render();

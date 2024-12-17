@@ -36,16 +36,16 @@
     }
 
     public initComponents() {
-        this.dateRangePickerComponent.render(new DateRangePickerOption('daterange-picker', 'report-form', null));
+        this.dateRangePickerComponent.render(
+            new DateRangePickerOption('daterange-picker', 'report-form', null, this.resetPaging)
+        );
 
         this.pagerComponent.pageList = [10, 50, 100, 500];
         this.pagerComponent.render();
     }
 
     public bindEvents() {
-        $('.btn-submit').click(this.resetPaging());
-        $('.range-option').click(this.resetPaging());
-
+        $('.btn-submit').click(this.resetPaging);
         $('#icon-excel').click((event) => this.onExportExcel(event));
     }
 

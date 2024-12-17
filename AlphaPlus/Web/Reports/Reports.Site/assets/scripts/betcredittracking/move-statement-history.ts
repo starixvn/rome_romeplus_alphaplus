@@ -29,17 +29,19 @@
 
         $('.btn-submit').click(() => {
             $('#IsMainReport').val('true');
-            $('#PageIndex').val('');
+            $('#PageIndex').val('1');
             $('#PageSize').val('');
         });
 
         $('#back-link').click(() => {
             $('#IsMainReport').val('true');
+            $('#PageIndex').val('1');
             this.$reportForm.submit();
         });
 
         $('#detail-link').click(() => {
             $('#IsMainReport').val('false');
+            $('#PageIndex').val('1');
             this.$reportForm.submit();
         });
     }
