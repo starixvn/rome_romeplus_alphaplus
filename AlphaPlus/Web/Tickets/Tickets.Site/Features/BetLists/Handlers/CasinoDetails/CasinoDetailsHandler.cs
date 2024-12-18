@@ -21,7 +21,9 @@ public class CasinoDetailsHandler(
     IPService ipService,
     IOptions<AppSettings> options) :
         BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
-        IRequestHandler<CasinoDetailsQuery, CasinoDetailsViewModel>
+        IRequestHandler<CasinoDetailsQuery, CasinoDetailsViewModel>,
+        IRequestHandler<LiveCasinoDetailsExcelQuery, CasinoDetailsViewModel>,
+        IRequestHandler<RNGCasinoDetailsExcelQuery, CasinoDetailsViewModel>
 {
     private readonly ICasinoDetailsService casinoDetailsService = casinoDetailsService;
 
@@ -35,7 +37,36 @@ public class CasinoDetailsHandler(
             new BetListData(pagedBetListData.DataSource, null),
             new PagerViewModel(pagedBetListData.PageIndex, pagedBetListData.PageSize, pagedBetListData.TotalRecords),
             Builder,
-            TicketHelper);
+            TicketHelper,
+            "BBinExcel");
+    }
+
+    public async Task<CasinoDetailsViewModel> Handle(LiveCasinoDetailsExcelQuery message, CancellationToken cancellationToken)
+    {
+        var param = CreateCasinoDetailsParam(message);
+        var pagedBetListData = await casinoDetailsService.GetLiveCasinoBetList(param);
+
+        return new CasinoDetailsViewModel(
+            message,
+            new BetListData(pagedBetListData.DataSource, null),
+            new PagerViewModel(pagedBetListData.PageIndex, pagedBetListData.PageSize, pagedBetListData.TotalRecords),
+            Builder,
+            TicketHelper,
+            "LiveCasinoExcel");
+    }
+
+    public async Task<CasinoDetailsViewModel> Handle(RNGCasinoDetailsExcelQuery message, CancellationToken cancellationToken)
+    {
+        var param = CreateCasinoDetailsParam(message);
+        var pagedBetListData = await casinoDetailsService.GetRNGBetList(param);
+
+        return new CasinoDetailsViewModel(
+            message,
+            new BetListData(pagedBetListData.DataSource, null),
+            new PagerViewModel(pagedBetListData.PageIndex, pagedBetListData.PageSize, pagedBetListData.TotalRecords),
+            Builder,
+            TicketHelper,
+            "RNGExcel");
     }
 
     protected internal static CasinoDetailsParam CreateCasinoDetailsParam(CasinoDetailsQuery message)

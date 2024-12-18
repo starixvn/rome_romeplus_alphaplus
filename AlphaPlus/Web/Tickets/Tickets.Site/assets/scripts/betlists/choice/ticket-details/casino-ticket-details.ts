@@ -107,7 +107,7 @@
 
         private ShowDetailsPopup = (params: string) =>
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 '',
                 1500
             );

@@ -12,10 +12,12 @@ public class CasinoDetailsViewModel(
     BetListData betListData,
     PagerViewModel pager,
     IBetListHTMLBuilder builder,
-    ITicketHelper ticketHelper)
+    ITicketHelper ticketHelper,
+    string exportExcelURl = "Excel")
         : WinLossViewModel(message, betListData, builder, ticketHelper, false, startIndex: pager.PageSize * (pager.PageIndex - 1) + 1)
 {
     public PagerViewModel Pager { get; } = pager;
+    public string ExportExcelUrl { get; } = exportExcelURl;
 
     protected override string GetTitle()
         => $"{(!string.IsNullOrWhiteSpace(message.SportName) ? message.SportName : "RNG Casino")} Details";

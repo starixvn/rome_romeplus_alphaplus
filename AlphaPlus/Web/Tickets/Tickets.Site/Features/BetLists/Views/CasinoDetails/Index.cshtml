@@ -12,7 +12,7 @@
 <div class="space-fixed-title"></div>
 <div class="bl_title no-border-bottom fixed-top">
     <div class="bl-export-excel">
-        <a asp-action="Excel" asp-all-route-data="@Model.GetExcelParams()" class="icon icon-excel"
+        <a asp-action="@Model.ExportExcelUrl" asp-all-route-data="@Model.GetExcelParams()" class="icon icon-excel"
             title="@Resources.ExportToExcel"></a>
         </a>
     </div>

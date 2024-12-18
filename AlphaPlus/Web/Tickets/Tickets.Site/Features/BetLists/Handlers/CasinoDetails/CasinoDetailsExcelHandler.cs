@@ -30,7 +30,9 @@ public class CasinoDetailsExcelHandler(
     IWebHostEnvironment webHostEnvironment,
     Workbook<TicketDto> workbook) :
         BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, options, webHostEnvironment),
-        IRequestHandler<CasinoDetailsExcelQuery, ExcelFileViewModel>
+        IRequestHandler<CasinoDetailsExcelQuery, ExcelFileViewModel>,
+        IRequestHandler<LiveCasinoDetailsExcelQuery, ExcelFileViewModel>,
+        IRequestHandler<RNGCasinoDetailsExcelQuery, ExcelFileViewModel>
 {
     private int currentRowIndex = 1;
     private Workbook<TicketDto> workbook = workbook;
@@ -40,6 +42,28 @@ public class CasinoDetailsExcelHandler(
     {
         var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
         var betListData = await casinoDetailsService.GetBetList(param);
+        
+        return GetExcelFileViewModel(betListData, param, message);
+    }
+
+    public async Task<ExcelFileViewModel> Handle(LiveCasinoDetailsExcelQuery message, CancellationToken cancellationToken)
+    {
+        var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
+        var betListData = await casinoDetailsService.GetLiveCasinoBetList(param);
+        
+        return GetExcelFileViewModel(betListData, param, message);
+    }
+
+    public async Task<ExcelFileViewModel> Handle(RNGCasinoDetailsExcelQuery message, CancellationToken cancellationToken)
+    {
+        var param = CasinoDetailsHandler.CreateCasinoDetailsParam(message);
+        var betListData = await casinoDetailsService.GetRNGBetList(param);
+
+        return GetExcelFileViewModel(betListData, param, message);
+    }
+
+    private ExcelFileViewModel GetExcelFileViewModel(PagedReportData<TicketDto> betListData, CasinoDetailsParam param, CasinoDetailsExcelQuery message)
+    {
         var viewModel = new CasinoDetailsViewModel(
             message,
             new BetListData(betListData.DataSource, null),
