@@ -353,10 +353,10 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     {
                         await logger.InfoAsync($"Username: {username} - Old Hash: {oldHash} - New Hash: {newHash}");
 
-                        return oldHash;
+                        return newHash;
                     }
 
-                    return newHash;
+                    return oldHash;
                 }
 
                 return newHash;
