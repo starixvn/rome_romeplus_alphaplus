@@ -352,8 +352,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     if (!oldHash.Equals(newHash))
                     {
                         await logger.InfoAsync($"Username: {username} - Old Hash: {oldHash} - New Hash: {newHash}");
-
-                        return newHash;
                     }
 
                     return oldHash;

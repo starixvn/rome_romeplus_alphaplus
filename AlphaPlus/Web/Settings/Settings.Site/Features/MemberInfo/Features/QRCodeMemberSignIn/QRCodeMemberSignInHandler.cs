@@ -98,7 +98,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                     message.CustLevel.GetDirectDownLineLevel().Value,
                     message.ActorUsername,
                     message.Username,
-                    passwordModel.EncodePassword,
+                    passwordModel.RawPassword,
                     message.Credit,
                     message.CreditMax,
                     custIdCopyFrom,

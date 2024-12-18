@@ -24,20 +24,34 @@ namespace AlphaPlus.Identity.API.Features.Auth
         Task<IndirectLoginResponse> IndirectLogin(IndirectLoginRequest request);
     }
 
-    public class AuthenticateService(
-        IEncryption encryption,
-        IDynamicRepository dynamicRepository,
-        IOptions<AppSettings> appSettings,
-        IMemoryCache memoryCache,
-        IAdminPermissionService adminPermissionService,
-        ISiteDBService siteDBService) : IAuthenticateService
+    public class AuthenticateService : IAuthenticateService
     {
-        private readonly IEncryption encryption = encryption;
-        private readonly IDynamicRepository dynamicRepository = dynamicRepository;
-        private readonly AppSettings appSettings = appSettings.Value;
-        private readonly IMemoryCache memoryCache = memoryCache;
-        private readonly IAdminPermissionService adminPermissionService = adminPermissionService;
-        private readonly ISiteDBService siteDBService = siteDBService;
+        private readonly IEncryption encryption;
+        private readonly IDynamicRepository dynamicRepository;
+        private readonly AppSettings appSettings;
+        private readonly IMemoryCache memoryCache;
+        private readonly IAdminPermissionService adminPermissionService;
+        private readonly ISiteDBService siteDBService;
+        private readonly HttpClient httpClient;
+
+        public AuthenticateService(
+            IEncryption encryption,
+            IDynamicRepository dynamicRepository,
+            IOptions<AppSettings> appSettings,
+            IMemoryCache memoryCache,
+            IAdminPermissionService adminPermissionService,
+            ISiteDBService siteDBService,
+            HttpClient httpClient)
+        {
+            this.encryption = encryption;
+            this.dynamicRepository = dynamicRepository;
+            this.appSettings = appSettings.Value;
+            this.memoryCache = memoryCache;
+            this.adminPermissionService = adminPermissionService;
+            this.siteDBService = siteDBService;
+            this.httpClient = httpClient;
+            this.httpClient.BaseAddress = new Uri(this.appSettings.PasswordService.Uri);
+        }
 
         public async Task<ReCheckInResponse> ReCheckIn(int onlineUserId)
         {
@@ -64,7 +78,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
             var command = new LoginClaimDownlineCommand
             {
                 CustId = request.CustId,
-                Password = encryption.CfsEnCode(request.Password),
+                Password = await HashPassword(request.Password),
                 Nickname = request.Nickname,
                 IsNickname = request.IsNickname,
                 SubAccId = request.SubAccId,
@@ -376,6 +390,25 @@ namespace AlphaPlus.Identity.API.Features.Auth
             }
 
             return productSettings.Select(x => x.GroupId).Distinct().Select(x => x.Value).ToArray();
+        }
+
+        private async Task<string> HashPassword(string password)
+        {
+            var newHash = encryption.CfsEnCode(password);
+
+            try
+            {
+                if (appSettings.PasswordService.IsEnabled)
+                {
+                    return await httpClient.PostAsJsonAsync<string>("password/hash", new { password });
+                }
+
+                return newHash;
+            }
+            catch
+            {
+                return newHash;
+            }
         }
     }
 }

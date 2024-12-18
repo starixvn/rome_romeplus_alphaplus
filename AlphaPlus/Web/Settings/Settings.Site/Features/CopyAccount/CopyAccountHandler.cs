@@ -79,8 +79,6 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
                 };
             }
 
-            message.Password = encryption.CfsEnCode(message.Password);
-
             return await customerService.CopyMultipleCustomers(new CopyMultipleCustomersParam(
                 message.ViewerId,
                 message.SubAccId,

@@ -1,3 +1,5 @@
+using AlphaPlus.Identity.API.Features.Auth;
+
 namespace AlphaPlus.Identity.API
 {
     public class AppSettings
@@ -9,5 +11,7 @@ namespace AlphaPlus.Identity.API
         public int AutoFollowBetMasterId { get; set; }
 
         public bool IsTest { get; set; }
+
+        public PasswordService PasswordService { get; set; }
     }
 }
