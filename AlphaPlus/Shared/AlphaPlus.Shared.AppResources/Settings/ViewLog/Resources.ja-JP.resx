@@ -197,4 +197,16 @@
   <data name="PageAccess_D" xml:space="preserve">
     <value>Bets &amp; Forecast</value>
   </data>
+  <data name="October" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>1月</value>
+  </data>
 </root>

@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -163,7 +163,7 @@
     <value>手数料</value>
   </data>
   <data name="CommAndTotal" xml:space="preserve">
-    <value>/手数料/合計</value>
+    <value>/コミッション/合計</value>
   </data>
   <data name="Commission" xml:space="preserve">
     <value>手数料</value>
@@ -418,10 +418,81 @@
     <value>受付番号</value>
   </data>
   <data name="transtime" xml:space="preserve">
-    <value>取り引き時間&#xD;&#xD;&#xD;
+    <value>取り引き時間
+
+
 </value>
   </data>
   <data name="under" xml:space="preserve">
     <value>アンダー</value>
+  </data>
+  <data name="GrossComAndAgentTotal" xml:space="preserve">
+    <value>/合計コミッション/エージェント合計</value>
+  </data>
+  <data name="GrossComAndMasterTotal" xml:space="preserve">
+    <value>/合計コミッション/マスター合計</value>
+  </data>
+  <data name="NetTurnoverAndGrossComm" xml:space="preserve">
+    <value>/純賭金合計額/合計コミッション</value>
+  </data>
+  <data name="NetTurnoverAndTaxComm" xml:space="preserve">
+    <value>/純賭金合計額/合計税収コミッション</value>
+  </data>
+  <data name="DelayIssueLegend" xml:space="preserve">
+    <value>{0} のデータは、ベットの処理完了後5分遅れます。</value>
+  </data>
+  <data name="Tooltip_NetTurnover_livecasino" xml:space="preserve">
+    <value>{0} の場合、純賭金総額は、コミッション計算に使用される有効な賭け金の合計額です。</value>
+  </data>
+  <data name="CanOnlyViewDataAfterTimeHistoryReport" xml:space="preserve">
+    <value>{0}からレポートデータを表示できます。</value>
+  </data>
+  <data name="CanOnlyViewDataAfterTimeCurrentReport" xml:space="preserve">
+    <value>{0}からレポートデータを表示できます。</value>
+  </data>
+  <data name="ReportDataCanViewNote" xml:space="preserve">
+    <value>{0}から開始する報告書データは、最大90日間まで閲覧できます。</value>
+  </data>
+  <data name="SabaOtherSportsLegend" xml:space="preserve">
+    <value>{0}のデータは{1}に含まれます。</value>
+  </data>
+  <data name="Tooltip_NetTurnover_RNGCasino" xml:space="preserve">
+    <value>{0}の場合、純賭金総額とは無効/拒否/払い戻しチケットを除外した賭金総額を指します。</value>
+  </data>
+  <data name="MaxDataRetrieveHistoryError" xml:space="preserve">
+    <value>{0}以前のデータは最大31日間まで閲覧可能です。日付範囲をご確認ください。</value>
+  </data>
+  <data name="HistoryDataCanViewNote" xml:space="preserve">
+    <value>{0}以前の日付に基づく履歴データは、最大31日間まで閲覧可能です。</value>
+  </data>
+  <data name="NewViewTakesOverPopup" xml:space="preserve">
+    <value>&lt;b&gt;2024年2月21日 (dd/mm/yyyy)&lt;/b&gt;より、&lt;b&gt;新しい表示&lt;/b&gt;が&lt;b&gt;主要表示&lt;/b&gt;として設定されます。ただし、クラシック表示に戻すこともできます。</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="_Oct" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="_Nov" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="_Dec" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="_Jan" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="NewViewTakesOverNote" xml:space="preserve">
+    <value>2024年2月21日 (dd/mm/yyyy)より、新しい表示がメイン表示となりますが、クラシック表示に戻すことができます。</value>
   </data>
 </root>

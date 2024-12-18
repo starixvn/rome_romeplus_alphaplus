@@ -28,23 +28,23 @@
             { value: "turnover", text: '@Resources.Turnover' },
             { value: "netturnover", text: '@Resources.NetTurnover' },
             { value: "grosscomm", text: '@Resources.GrossComm' },
-            { value: "pwinloss", text: '@Resources.Member @Resources.WinLoss' },
-            { value: "pcomm", text: '@Resources.Member @Resources.Comm' },
-            { value: "ptotal", text: '@Resources.Member @Resources.Total' },
-            { value: "awinloss", text: '@Resources.Agent @Resources.WinLoss' },
-            { value: "acomm", text: '@Resources.Agent @Resources.Comm' },
-            { value: "atotal", text: '@Resources.Agent @Resources.Total' },
+            { value: "pwinloss", text: '@Resources.MemberWinLossNew' },
+            { value: "pcomm", text: '@Resources.MemberCommNew' },
+            { value: "ptotal", text: '@Resources.MemberTotalNew' },
+            { value: "awinloss", text: '@Resources.AgentWinLossNew' },
+            { value: "acomm", text: '@Resources.AgentCommNew' },
+            { value: "atotal", text: '@Resources.AgentTotalNew' },
         @if (isMasterOrSuperLevel)
         {
-            @:{ value: "mwinloss", text: '@Resources.Master @Resources.WinLoss' },
-            @:{ value: "mcomm", text: '@Resources.Master @Resources.Comm' },
-            @:{ value: "mtotal", text: '@Resources.Master @Resources.Total' },
+            @:{ value: "mwinloss", text: '@Resources.MasterWinLossNew' },
+            @:{ value: "mcomm", text: '@Resources.MasterCommNew' },
+            @:{ value: "mtotal", text: '@Resources.MasterTotalNew' },
         }
         @if (isSuperLevel)
         {
-            @:{ value: "swinloss", text: '@Resources.Super @Resources.WinLoss' },
-            @:{ value: "scomm", text: '@Resources.Super @Resources.Comm' },
-            @:{ value: "stotal", text: '@Resources.Super @Resources.Total' },
+            @:{ value: "swinloss", text: '@Resources.SuperWinLossNew' },
+            @:{ value: "scomm", text: '@Resources.SuperCommNew' },
+            @:{ value: "stotal", text: '@Resources.SuperTotalNew' },
         }
             { value: "company", text: '@Resources.Company' },
             { value: "reward", text: '@Resources.Reward' }

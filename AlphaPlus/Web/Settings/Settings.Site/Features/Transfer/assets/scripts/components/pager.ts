@@ -64,7 +64,7 @@ class PagerComponentTransfer {
                         self.onChange();
                     }
                 },
-                beforePageText: pager.data("lablepage"),
+                beforePageText: pager.data("labelpage"),
                 afterPageText: pager.data("labelof") + " {pages}",
                 displayMsg: pager.data("labeldisplayitems")
             });
