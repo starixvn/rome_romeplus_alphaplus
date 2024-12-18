@@ -145,7 +145,7 @@
     <value>お客様リスト</value>
   </data>
   <data name="dailywinlossanalysisreport" xml:space="preserve">
-    <value>Daily Winloss Analysis</value>
+    <value>毎日 勝ち負け分析</value>
   </data>
   <data name="fthtfglg" xml:space="preserve">
     <value>FT &amp; HT FG/LG</value>
@@ -220,7 +220,7 @@
     <value>新しいメンバー</value>
   </data>
   <data name="outRight" xml:space="preserve">
-    <value>即座</value>
+    <value>勝者予想</value>
   </data>
   <data name="positionTaking" xml:space="preserve">
     <value>保有ポジション (%)</value>
@@ -241,7 +241,7 @@
     <value>Master Win Loss Detail</value>
   </data>
   <data name="matchwinloss" xml:space="preserve">
-    <value>Match Win Loss</value>
+    <value>試合 勝ち負け</value>
   </data>
   <data name="MemberWinLimit" xml:space="preserve">
     <value>Member Win/Loss Limit</value>
@@ -280,7 +280,7 @@
     <value>合計ベット数</value>
   </data>
   <data name="winlossanalysis" xml:space="preserve">
-    <value>Win Loss Analysis</value>
+    <value>勝ち負け分析</value>
   </data>
   <data name="announcements" xml:space="preserve">
     <value>Announcements</value>
@@ -301,8 +301,7 @@
     <value>状態</value>
   </data>
   <data name="transfer" xml:space="preserve">
-    <value>送金
-    </value>
+    <value>送金</value>
   </data>
   <data name="viewLog" xml:space="preserve">
     <value>View Log</value>
@@ -369,5 +368,11 @@
   </data>
   <data name="BonusDetail" xml:space="preserve">
     <value>ボーナス詳細</value>
+  </data>
+  <data name="winLossByProduct" xml:space="preserve">
+    <value>製品別勝ち負け </value>
+  </data>
+  <data name="BetChoiceMatching" xml:space="preserve">
+    <value>重複ベット</value>
   </data>
 </root>

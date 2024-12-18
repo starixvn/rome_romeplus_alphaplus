@@ -174,4 +174,16 @@
   <data name="Pager_DisplayItems" xml:space="preserve">
     <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="CopyDomain" xml:space="preserve">
+    <value>複写</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複写した</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
 </root>

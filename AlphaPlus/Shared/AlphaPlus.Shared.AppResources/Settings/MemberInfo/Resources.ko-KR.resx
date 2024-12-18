@@ -493,4 +493,7 @@
   <data name="introCopyNote" xml:space="preserve">
     <value>Click 'Copy' to copy and share the account details</value>
   </data>
+  <data name="NetTurnover" xml:space="preserve">
+    <value>순매출</value>
+  </data>
 </root>

@@ -154,7 +154,7 @@
     <value>Bet Setting</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>キャンセル</value>
+    <value>取消</value>
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>This account was closed by admin.</value>

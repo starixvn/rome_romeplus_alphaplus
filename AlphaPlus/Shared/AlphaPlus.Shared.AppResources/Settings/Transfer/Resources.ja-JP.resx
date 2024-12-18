@@ -163,7 +163,7 @@
     <value>Wednesday</value>
   </data>
   <data name="Daily" xml:space="preserve">
-    <value>Daily</value>
+    <value>毎日</value>
   </data>
   <data name="HintNotAvailableToTransfer" xml:space="preserve">
     <value>Cash balance is not available to transfer.</value>
@@ -235,7 +235,7 @@
     <value>閉鎖</value>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value>Disabled</value>
+    <value>無効</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>昨日</value>
@@ -283,7 +283,7 @@
     <value>先月以降</value>
   </data>
   <data name="SpecificDate" xml:space="preserve">
-    <value>Specific Dates</value>
+    <value>特定の日付</value>
   </data>
   <data name="ThisWeek" xml:space="preserve">
     <value>今週</value>
@@ -310,7 +310,7 @@
     <value>Description</value>
   </data>
   <data name="NewBalance" xml:space="preserve">
-    <value>New Balance</value>
+    <value>新残高</value>
   </data>
   <data name="OldBalance" xml:space="preserve">
     <value>Old Balance</value>
@@ -346,19 +346,19 @@
     <value>Off</value>
   </data>
   <data name="Waiting" xml:space="preserve">
-    <value>待機</value>
+    <value>承認中</value>
   </data>
   <data name="Processing" xml:space="preserve">
     <value>Processing</value>
   </data>
   <data name="Completed" xml:space="preserve">
-    <value>試合終了</value>
+    <value>完了済み</value>
   </data>
   <data name="First_LastName" xml:space="preserve">
     <value>First/ Last Name</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>キャンセル</value>
+    <value>取消</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -401,5 +401,29 @@
   </data>
   <data name="Columns" xml:space="preserve">
     <value>列</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>取消済み</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>未入力</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>番</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>等級</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>送金</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>選択済み</value>
   </data>
 </root>

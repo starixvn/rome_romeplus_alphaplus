@@ -139,15 +139,13 @@
 </value>
   </data>
   <data name="Transfer" xml:space="preserve">
-    <value>送金
-</value>
+    <value>送金</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>入力</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ユーザー名
-</value>
+    <value>ユーザー名</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>まで</value>
@@ -162,7 +160,7 @@
     <value>ページ</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>閉鎖</value>
+    <value>閉じる</value>
   </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
@@ -238,5 +236,17 @@
   </data>
   <data name="Pager_DisplayItems" xml:space="preserve">
     <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>毎日</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>行動</value>
   </data>
 </root>

@@ -142,7 +142,7 @@
     <value>Bet Setting</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>キャンセル</value>
+    <value>取消</value>
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>コミッション</value>

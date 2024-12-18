@@ -145,7 +145,7 @@
     <value>Com. is rounded for reference only. Therefore, Subtotal Com. amount may be different from the sum of Com. when it sums all the actual Com. amounts.</value>
   </data>
   <data name="DailyStatement" xml:space="preserve">
-    <value>日別明細書</value>
+    <value>毎日ステートメント</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
     <value>エクセルにエクスポート</value>
@@ -202,7 +202,7 @@
     <value>ユーザー名</value>
   </data>
   <data name="Win" xml:space="preserve">
-    <value>Win</value>
+    <value>勝ち</value>
   </data>
   <data name="Yesterday" xml:space="preserve">
     <value>昨日</value>
@@ -271,7 +271,7 @@
     <value>ミックスパーレー</value>
   </data>
   <data name="place" xml:space="preserve">
-    <value>Place</value>
+    <value>場所</value>
   </data>
   <data name="refund" xml:space="preserve">
     <value>払い戻し</value>
@@ -286,13 +286,13 @@
     <value>進行中</value>
   </data>
   <data name="stake" xml:space="preserve">
-    <value>ベット</value>
+    <value>賭け金</value>
   </data>
   <data name="status" xml:space="preserve">
     <value>状態</value>
   </data>
   <data name="subTotal" xml:space="preserve">
-    <value>Sub Total</value>
+    <value>小計</value>
   </data>
   <data name="superPT" xml:space="preserve">
     <value>Super PT</value>
@@ -304,11 +304,10 @@
     <value>合計</value>
   </data>
   <data name="transtime" xml:space="preserve">
-    <value>取り引き時間
-</value>
+    <value>取引時間</value>
   </data>
   <data name="waiting" xml:space="preserve">
-    <value>待機</value>
+    <value>承認中</value>
   </data>
   <data name="won" xml:space="preserve">
     <value>ウォン</value>
@@ -378,5 +377,86 @@
   </data>
   <data name="DoNotShowAgain" xml:space="preserve">
     <value>再表示しない</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>却下</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>受付番号</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>新しい表示</value>
+  </data>
+  <data name="NewViewTakesOver" xml:space="preserve">
+    <value>新しい表示が適用されます。</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>日付範囲</value>
+  </data>
+  <data name="Void" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="voided" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="InvalidUsername" xml:space="preserve">
+    <value>無効なユーザー名です。</value>
+  </data>
+  <data name="SpecificDate" xml:space="preserve">
+    <value>特定の日付</value>
+  </data>
+  <data name="MonitoredMember" xml:space="preserve">
+    <value>監視対象メンバー</value>
+  </data>
+  <data name="ContributionAmountRoundNote" xml:space="preserve">
+    <value>累積金額は小数点以下4桁に丸められます。</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>行動</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>製品</value>
+  </data>
+  <data name="NoProductFound" xml:space="preserve">
+    <value>製品が見つかりませんでした。</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>製品はありません。</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>製品を選択</value>
+  </data>
+  <data name="SearchProduct" xml:space="preserve">
+    <value>製品検索</value>
+  </data>
+  <data name="ProductDetails" xml:space="preserve">
+    <value>製品詳細</value>
+  </data>
+  <data name="NoProductDetailsFound" xml:space="preserve">
+    <value>製品詳細が見つかりませんでした。</value>
+  </data>
+  <data name="SearchProductDetails" xml:space="preserve">
+    <value>製品詳細を検索</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>複写</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複写した</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>過去3か月</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>適用</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>選択なし</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>選択済み</value>
   </data>
 </root>

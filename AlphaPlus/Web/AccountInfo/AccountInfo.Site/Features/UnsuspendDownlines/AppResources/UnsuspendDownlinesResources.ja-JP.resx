@@ -133,7 +133,7 @@
     <value>Displaying</value>
   </data>
   <data name="Level" xml:space="preserve">
-    <value>Level</value>
+    <value>等級</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>マスター</value>
@@ -154,7 +154,7 @@
     <value>Reset</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>確認</value>
   </data>
   <data name="Suspended" xml:space="preserve">
     <value>Suspended</value>
@@ -256,7 +256,7 @@
     <value>{0} have been successfully unsuspended.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>キャンセル</value>
+    <value>取消</value>
   </data>
   <data name="SelectedAccounts" xml:space="preserve">
     <value>Selected account(s):</value>

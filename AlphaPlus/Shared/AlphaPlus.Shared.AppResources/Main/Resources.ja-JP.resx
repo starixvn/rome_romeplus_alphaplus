@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="close" xml:space="preserve">
-    <value>閉鎖</value>
+    <value>閉じる</value>
   </data>
   <data name="subAcc" xml:space="preserve">
     <value>Sub Acc</value>
@@ -206,7 +206,7 @@
     <value>現金残高</value>
   </data>
   <data name="currency" xml:space="preserve">
-    <value>Currency</value>
+    <value>通貨</value>
   </data>
   <data name="todayWinLoss" xml:space="preserve">
     <value>Today Win Loss</value>
@@ -278,7 +278,7 @@
     <value>メンバー</value>
   </data>
   <data name="turnover" xml:space="preserve">
-    <value>合計ベットポイント</value>
+    <value>賭金総額</value>
   </data>
   <data name="username" xml:space="preserve">
     <value>ユーザー名</value>
@@ -314,7 +314,7 @@
     <value>Log out</value>
   </data>
   <data name="Next" xml:space="preserve">
-    <value>次へ</value>
+    <value>次の</value>
   </data>
   <data name="submit" xml:space="preserve">
     <value>送信</value>
@@ -402,5 +402,14 @@
   </data>
   <data name="UMTo" xml:space="preserve">
     <value>へ</value>
+  </data>
+  <data name="winloss" xml:space="preserve">
+    <value>勝ち負け</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>無効</value>
   </data>
 </root>

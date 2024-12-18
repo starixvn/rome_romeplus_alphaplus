@@ -103,4 +103,13 @@
   <data name="MemberOutstanding" xml:space="preserve">
     <value>メンバー未払い</value>
   </data>
+  <data name="grossComm" xml:space="preserve">
+    <value>合計コミッション</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>未払い</value>
+  </data>
+  <data name="FunctionAction" xml:space="preserve">
+    <value>行動</value>
+  </data>
 </root>

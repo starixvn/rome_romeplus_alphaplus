@@ -127,7 +127,7 @@
     <value>すべて</value>
   </data>
   <data name="Level" xml:space="preserve">
-    <value>Level</value>
+    <value>等級</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>マスター</value>
@@ -142,13 +142,13 @@
     <value>Reset</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>送信</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>まで</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>Total</value>
+    <value>合計</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>The statuses of the selected account and his/her downlines have been successfully updated.</value>

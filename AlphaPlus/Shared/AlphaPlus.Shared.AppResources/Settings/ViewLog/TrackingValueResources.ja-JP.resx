@@ -1324,7 +1324,7 @@
     <value>Handicap</value>
   </data>
   <data name="currency" xml:space="preserve">
-    <value>Currency</value>
+    <value>通貨</value>
   </data>
   <data name="danger" xml:space="preserve">
     <value>Danger</value>
@@ -1765,7 +1765,7 @@
     <value>Details</value>
   </data>
   <data name="actionname" xml:space="preserve">
-    <value>Action</value>
+    <value>行動</value>
   </data>
   <data name="creditlog" xml:space="preserve">
     <value>Credit</value>
@@ -2641,7 +2641,7 @@
     <value>Apply to all downlines</value>
   </data>
   <data name="disabled" xml:space="preserve">
-    <value>Disabled</value>
+    <value>無効</value>
   </data>
   <data name="bettype" xml:space="preserve">
     <value>ベットタイプ</value>
@@ -2689,7 +2689,7 @@
     <value>スポーツ</value>
   </data>
   <data name="product" xml:space="preserve">
-    <value>Product</value>
+    <value>製品</value>
   </data>
   <data name="subAccID" xml:space="preserve">
     <value>Sub Account ID</value>
@@ -2729,5 +2729,8 @@
   </data>
   <data name="PositionTaking" xml:space="preserve">
     <value>保有ポジション</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>支払日</value>
   </data>
 </root>

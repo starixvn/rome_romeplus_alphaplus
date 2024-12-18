@@ -59,10 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root"
-    xmlns=""
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -1063,8 +1060,7 @@
     <value>由於上線已為您禁用全天餘額轉賬，所以您可以使用自動轉賬。頁面將會自動刷新。</value>
   </data>
   <data name="PageOf" xml:space="preserve">
-    <value>第 {0} 頁 共 {1} 頁
-    </value>
+    <value>第 {0} 頁 共 {1} 頁    </value>
   </data>
   <data name="BetSetting" xml:space="preserve">
     <value>Bet Setting</value>

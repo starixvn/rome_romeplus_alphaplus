@@ -133,12 +133,10 @@
     <value>會員資料</value>
   </data>
   <data name="msgErrPassWord" xml:space="preserve">
-    <value>請輸入密碼
-</value>
+    <value>請輸入密碼</value>
   </data>
   <data name="msgErrUsername" xml:space="preserve">
-    <value>請輸入帳號
-</value>
+    <value>請輸入帳號</value>
   </data>
   <data name="msgErrUsernamePassWord" xml:space="preserve">
     <value>請輸入會員名字及密碼</value>
@@ -150,8 +148,7 @@
     <value>沒資料顯示</value>
   </data>
   <data name="notAccessSubAccount" xml:space="preserve">
-    <value>对不起，您不允许修改子账号
-</value>
+    <value>对不起，您不允许修改子账号</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>密碼</value>

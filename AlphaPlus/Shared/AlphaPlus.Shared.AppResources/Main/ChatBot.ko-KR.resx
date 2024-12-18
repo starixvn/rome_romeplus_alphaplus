@@ -100,4 +100,7 @@
   <data name="grossComm" xml:space="preserve">
     <value>전체 수수료</value>
   </data>
+  <data name="FunctionAction" xml:space="preserve">
+    <value>실행</value>
+  </data>
 </root>

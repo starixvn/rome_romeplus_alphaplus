@@ -144,4 +144,10 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>この機能を使用する権限がありません。</value>
   </data>
+  <data name="next" xml:space="preserve">
+    <value>次の</value>
+  </data>
+  <data name="Daily" xml:space="preserve">
+    <value>毎日</value>
+  </data>
 </root>

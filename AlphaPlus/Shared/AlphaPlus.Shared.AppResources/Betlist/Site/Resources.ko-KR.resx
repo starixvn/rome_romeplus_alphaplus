@@ -123,4 +123,7 @@
   <data name="member" xml:space="preserve">
     <value>회원</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>확인</value>
+  </data>
 </root>

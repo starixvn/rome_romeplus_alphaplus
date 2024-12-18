@@ -133,12 +133,10 @@
     <value>会员资讯</value>
   </data>
   <data name="msgErrPassWord" xml:space="preserve">
-    <value>请输入密码
-</value>
+    <value>请输入密码</value>
   </data>
   <data name="msgErrUsername" xml:space="preserve">
-    <value>请输入账号
-</value>
+    <value>请输入账号</value>
   </data>
   <data name="msgErrUsernamePassWord" xml:space="preserve">
     <value>请输入账号及密码</value>

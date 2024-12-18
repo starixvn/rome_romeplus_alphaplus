@@ -145,7 +145,7 @@
     <value>作成日</value>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value>Disabled</value>
+    <value>無効</value>
   </data>
   <data name="Disallowed" xml:space="preserve">
     <value>Disallowed</value>
@@ -305,5 +305,8 @@
   </data>
   <data name="ExpandAll" xml:space="preserve">
     <value>Expand all</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>有効</value>
   </data>
 </root>

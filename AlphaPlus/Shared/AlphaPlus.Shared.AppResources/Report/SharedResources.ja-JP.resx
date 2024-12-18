@@ -150,4 +150,10 @@
   <data name="PT" xml:space="preserve">
     <value>保有ポジション</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>次の</value>
+  </data>
+  <data name="PreGame" xml:space="preserve">
+    <value>試合前</value>
+  </data>
 </root>

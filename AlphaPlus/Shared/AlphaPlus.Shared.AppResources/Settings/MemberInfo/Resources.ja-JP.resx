@@ -211,7 +211,7 @@
     <value>Remaining Buy-in Amount</value>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value>Disabled</value>
+    <value>無効</value>
   </data>
   <data name="Suspended" xml:space="preserve">
     <value>Suspended</value>
@@ -244,7 +244,7 @@
     <value>Auto Daily Reset Limit</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>キャンセル</value>
+    <value>取消</value>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>ニックネーム</value>
@@ -419,7 +419,7 @@
     <value>Betting Statistic</value>
   </data>
   <data name="DateRange" xml:space="preserve">
-    <value>Date Range</value>
+    <value>日付範囲</value>
   </data>
   <data name="Last90Days" xml:space="preserve">
     <value>Last 90 days</value>
@@ -443,7 +443,7 @@
     <value>Related to other accounts</value>
   </data>
   <data name="MonitoredMember" xml:space="preserve">
-    <value>Monitored Member</value>
+    <value>監視対象メンバー</value>
   </data>
   <data name="TotalTurnover" xml:space="preserve">
     <value>Total Turnover</value>
@@ -495,5 +495,53 @@
   </data>
   <data name="Pager_DisplayItems" xml:space="preserve">
     <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>勝ち</value>
+  </data>
+  <data name="WinLoss" xml:space="preserve">
+    <value>勝ち負け</value>
+  </data>
+  <data name="WinLossText" xml:space="preserve">
+    <value>勝ち負け</value>
+  </data>
+  <data name="NonEntered" xml:space="preserve">
+    <value>未入力</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>等級</value>
+  </data>
+  <data name="NetTurnover" xml:space="preserve">
+    <value>純賭金総額</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>行動</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>製品</value>
+  </data>
+  <data name="ThereIsNoProduct" xml:space="preserve">
+    <value>製品はありません。</value>
+  </data>
+  <data name="SelectProducts" xml:space="preserve">
+    <value>製品を選択</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>複写</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複写した</value>
+  </data>
+  <data name="Lose" xml:space="preserve">
+    <value>負け</value>
+  </data>
+  <data name="Stake" xml:space="preserve">
+    <value>賭け金</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>賭金総額</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>選択済み</value>
   </data>
 </root>

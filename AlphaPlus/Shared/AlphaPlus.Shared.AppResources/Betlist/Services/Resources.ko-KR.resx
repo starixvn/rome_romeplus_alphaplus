@@ -339,4 +339,7 @@
   <data name="May" xml:space="preserve">
     <value>5월</value>
   </data>
+  <data name="Action" xml:space="preserve">
+    <value>실행</value>
+  </data>
 </root>

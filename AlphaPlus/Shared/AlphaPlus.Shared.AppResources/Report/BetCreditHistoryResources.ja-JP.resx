@@ -150,4 +150,31 @@
   <data name="UpdateGivenCredit" xml:space="preserve">
     <value>付与済み与信を更新</value>
   </data>
+  <data name="won" xml:space="preserve">
+    <value>勝ち</value>
+  </data>
+  <data name="refund" xml:space="preserve">
+    <value>払い戻し</value>
+  </data>
+  <data name="waiting" xml:space="preserve">
+    <value>承認中</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>拒否</value>
+  </data>
+  <data name="TransferSubmitted" xml:space="preserve">
+    <value>振込が提出されました</value>
+  </data>
+  <data name="void" xml:space="preserve">
+    <value>無効と</value>
+  </data>
+  <data name="lose" xml:space="preserve">
+    <value>負け</value>
+  </data>
+  <data name="running" xml:space="preserve">
+    <value>進行中</value>
+  </data>
+  <data name="OpeningCredit" xml:space="preserve">
+    <value>開始時の与信</value>
+  </data>
 </root>

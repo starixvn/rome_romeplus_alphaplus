@@ -129,4 +129,7 @@
   <data name="SelectAll" xml:space="preserve">
     <value>全て選択</value>
   </data>
+  <data name="Daily" xml:space="preserve">
+    <value>毎日</value>
+  </data>
 </root>
