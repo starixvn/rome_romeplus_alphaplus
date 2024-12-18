@@ -121,7 +121,7 @@
     <value>残高</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
-    <value>未払い取り引き</value>
+    <value>ベット与信</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>情報がありません</value>
@@ -187,7 +187,7 @@
     <value>最後のログインIP</value>
   </data>
   <data name="Of" xml:space="preserve">
-    <value>/</value>
+    <value>の</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>ページ</value>
@@ -250,7 +250,7 @@
     <value>ニックネーム</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>から</value>
+    <value>まで</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>メンバー</value>
@@ -379,7 +379,7 @@
     <value>Unlimited</value>
   </data>
   <data name="From" xml:space="preserve">
-    <value>From</value>
+    <value>から</value>
   </data>
   <data name="UserNotExist" xml:space="preserve">
     <value>This user does not exist</value>
@@ -407,7 +407,7 @@
     </value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>手数料</value>
+    <value>コミッション</value>
   </data>
   <data name="CustomerProfile" xml:space="preserve">
     <value>Member Profile</value>
@@ -456,5 +456,44 @@
   </data>
   <data name="introCopyNote" xml:space="preserve">
     <value>Click 'Copy' to copy and share the account details</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>エクセルにエクスポート</value>
+  </data>
+  <data name="ClassicView" xml:space="preserve">
+    <value>クラシック表示</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>コミッション</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>スーパー</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>すべての製品</value>
+  </data>
+  <data name="Draw" xml:space="preserve">
+    <value>ドロー</value>
+  </data>
+  <data name="Bettype" xml:space="preserve">
+    <value>ベットタイプ</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>ベット数</value>
+  </data>
+  <data name="AddToMyWatchlist" xml:space="preserve">
+    <value>マイウォッチリストに追加する</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>作成日</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>入力済み</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
   </data>
 </root>

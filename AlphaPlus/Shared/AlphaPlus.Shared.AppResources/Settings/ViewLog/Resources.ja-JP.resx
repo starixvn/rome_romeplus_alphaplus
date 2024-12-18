@@ -150,13 +150,13 @@
 </value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>から</value>
+    <value>まで</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>送信</value>
   </data>
   <data name="of" xml:space="preserve">
-    <value>/</value>
+    <value>の</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>ページ</value>
@@ -208,5 +208,35 @@
   </data>
   <data name="January" xml:space="preserve">
     <value>1月</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>3月</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>5月</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>8月</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>9月</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>ユーザー名または名/姓</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
   </data>
 </root>

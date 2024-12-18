@@ -150,4 +150,13 @@
   <data name="PositionTakingSettingFollows" xml:space="preserve">
     <value>Position Taking Setting Follows</value>
   </data>
+  <data name="BetType" xml:space="preserve">
+    <value>ベットタイプ</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>他の</value>
+  </data>
+  <data name="LabelOthers" xml:space="preserve">
+    <value>他の</value>
+  </data>
 </root>

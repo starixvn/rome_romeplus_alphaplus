@@ -177,7 +177,7 @@ Please use the form below to set your Security Code now.</value>
     <value>Security Code Validation</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
-    <value>You are not authorized on this function</value>
+    <value>この機能を使用する権限がありません。</value>
   </data>
   <data name="SecurityCodeShower" xml:space="preserve">
     <value>Hi {0}, please input the security code provided by your upline and create your own one.</value>

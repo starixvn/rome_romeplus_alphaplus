@@ -133,7 +133,7 @@
     <value>Balance Info</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
-    <value>未払い取り引き</value>
+    <value>ベット与信</value>
   </data>
   <data name="BetList" xml:space="preserve">
     <value>ベットリスト</value>
@@ -145,7 +145,7 @@
     <value>キャンセル</value>
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
-    <value>手数料</value>
+    <value>コミッション</value>
   </data>
   <data name="ConfirmAllowAutoMasterPTViewModelInCaseDisabledMessage" xml:space="preserve">
     <value>Are you sure you want to disable auto position taking feature of this master?</value>
@@ -196,7 +196,7 @@
     <value>Are you sure you want to change Suspend status for this customer?</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
-    <value>Created Date</value>
+    <value>作成日</value>
   </data>
   <data name="Customer" xml:space="preserve">
     <value>お客様</value>
@@ -208,7 +208,7 @@
     <value>ファックス</value>
   </data>
   <data name="GivenCredit" xml:space="preserve">
-    <value>貸付金額</value>
+    <value>付与済み与信</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
@@ -253,7 +253,7 @@
     <value>情報がありません</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
-    <value>You are not authorized on this function.</value>
+    <value>この機能を使用する権限がありません。</value>
   </data>
   <data name="NumberOrder" xml:space="preserve">
     <value>#</value>
@@ -271,7 +271,7 @@
     <value>Setting</value>
   </data>
   <data name="Statement" xml:space="preserve">
-    <value>明細書</value>
+    <value>ステートメント</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>状態</value>
@@ -280,7 +280,7 @@
     <value>送信</value>
   </data>
   <data name="Super" xml:space="preserve">
-    <value>Super</value>
+    <value>スーパー</value>
   </data>
   <data name="ThisUserIsNotOnline" xml:space="preserve">
     <value>This user is not online</value>

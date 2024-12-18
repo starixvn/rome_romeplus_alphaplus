@@ -121,19 +121,19 @@
     <value>Affected Downlines</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>Agent</value>
+    <value>エージェント</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>すべて</value>
   </data>
   <data name="Level" xml:space="preserve">
     <value>Level</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Master</value>
+    <value>マスター</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>Member</value>
+    <value>メンバー</value>
   </data>
   <data name="RemainUnchangedDownlines" xml:space="preserve">
     <value>Remain Unchanged Downlines</value>
@@ -145,7 +145,7 @@
     <value>Submit</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>to</value>
+    <value>まで</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
@@ -154,7 +154,7 @@
     <value>The statuses of the selected account and his/her downlines have been successfully updated.</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>ユーザー名</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
@@ -163,10 +163,10 @@
     <value>Displaying</value>
   </data>
   <data name="Of" xml:space="preserve">
-    <value>of</value>
+    <value>の</value>
   </data>
   <data name="Page" xml:space="preserve">
-    <value>Page</value>
+    <value>ページ</value>
   </data>
   <data name="AffectedDownlinesAgentMember" xml:space="preserve">
     <value>Affected Downlines &lt;br/&gt;  (Agent/Member)</value>

@@ -121,7 +121,7 @@
     <value>Affected Downlines</value>
   </data>
   <data name="Agent" xml:space="preserve">
-    <value>Agent</value>
+    <value>에이전트</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
@@ -139,7 +139,7 @@
     <value>Master</value>
   </data>
   <data name="Member" xml:space="preserve">
-    <value>Member</value>
+    <value>회원</value>
   </data>
   <data name="Of" xml:space="preserve">
     <value>of</value>

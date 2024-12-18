@@ -130,7 +130,7 @@
     <value>エージェントリスト</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>すべて</value>
   </data>
   <data name="Allowed" xml:space="preserve">
     <value>Allowed</value>
@@ -139,10 +139,10 @@
     <value>閉鎖</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>手数料</value>
+    <value>コミッション</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
-    <value>Created Date</value>
+    <value>作成日</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>Disabled</value>
@@ -196,7 +196,7 @@
     <value>None</value>
   </data>
   <data name="Of" xml:space="preserve">
-    <value>/</value>
+    <value>の</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>開設</value>
@@ -223,7 +223,7 @@
     <value>Select</value>
   </data>
   <data name="Statement" xml:space="preserve">
-    <value>明細書</value>
+    <value>ステートメント</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>状態</value>

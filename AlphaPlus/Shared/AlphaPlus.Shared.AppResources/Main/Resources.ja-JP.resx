@@ -182,7 +182,7 @@
     <value>マスター</value>
   </data>
   <data name="super" xml:space="preserve">
-    <value>Super </value>
+    <value>スーパー</value>
   </data>
   <data name="agentGivenCredit" xml:space="preserve">
     <value>Agent Given Credit</value>
@@ -287,10 +287,10 @@
     <value>Winning amount</value>
   </data>
   <data name="createdDate" xml:space="preserve">
-    <value>Create date</value>
+    <value>作成日</value>
   </data>
   <data name="givenCredit" xml:space="preserve">
-    <value>貸付金額</value>
+    <value>付与済み与信</value>
   </data>
   <data name="Notice_2" xml:space="preserve">
     <value>Your betting limit value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
@@ -302,7 +302,7 @@
     <value>Your minimum position taking value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
   </data>
   <data name="doNotShowAgain" xml:space="preserve">
-    <value>Do not show again</value>
+    <value>再表示しない</value>
   </data>
   <data name="PrivateMessage" xml:space="preserve">
     <value>Private Message</value>
@@ -320,10 +320,10 @@
     <value>送信</value>
   </data>
   <data name="to" xml:space="preserve">
-    <value>から</value>
+    <value>へ</value>
   </data>
   <data name="from" xml:space="preserve">
-    <value>送金元</value>
+    <value>から</value>
   </data>
   <data name="outstanding" xml:space="preserve">
     <value>未払い</value>
@@ -387,5 +387,20 @@
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>3rd Party Pending Transfer</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="UMFrom" xml:space="preserve">
+    <value>から</value>
+  </data>
+  <data name="PartialUMAnnouncement" xml:space="preserve">
+    <value>この機能をより良い体験のために更新しています。そのため、この機能は一時的に停止されています（{0} - {1} (GMT+8)）。後ほどお試しください。ご不便をおかけして申し訳ありません。</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>すべての製品</value>
+  </data>
+  <data name="UMTo" xml:space="preserve">
+    <value>へ</value>
   </data>
 </root>

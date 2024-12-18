@@ -97,4 +97,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>エージェント未払い</value>
+  </data>
+  <data name="MemberOutstanding" xml:space="preserve">
+    <value>メンバー未払い</value>
+  </data>
 </root>

@@ -120,4 +120,34 @@
   <data name="BetPlacedAs" xml:space="preserve">
     <value>～としてベットが置かれました</value>
   </data>
+  <data name="Action2" xml:space="preserve">
+    <value>イベントの日程が{0}から{1}に移動しました。</value>
+  </data>
+  <data name="draw" xml:space="preserve">
+    <value>ドロー</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>へ</value>
+  </data>
+  <data name="BetUpdated" xml:space="preserve">
+    <value>ベットが更新済み</value>
+  </data>
+  <data name="BetPlaced" xml:space="preserve">
+    <value>ベットを配置しました</value>
+  </data>
+  <data name="BetRejected" xml:space="preserve">
+    <value>ベット拒否済み</value>
+  </data>
+  <data name="BetSettled" xml:space="preserve">
+    <value>ベット清算済み</value>
+  </data>
+  <data name="CashOut" xml:space="preserve">
+    <value>中途換金</value>
+  </data>
+  <data name="CancelCashOut" xml:space="preserve">
+    <value>中途換金をキャンセルする</value>
+  </data>
+  <data name="UpdateGivenCredit" xml:space="preserve">
+    <value>付与済み与信を更新</value>
+  </data>
 </root>

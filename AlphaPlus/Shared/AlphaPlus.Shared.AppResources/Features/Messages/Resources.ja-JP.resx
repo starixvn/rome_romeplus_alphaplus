@@ -139,10 +139,10 @@
     <value>Announcement</value>
   </data>
   <data name="from" xml:space="preserve">
-    <value>送金元</value>
+    <value>から</value>
   </data>
   <data name="to" xml:space="preserve">
-    <value>から</value>
+    <value>へ</value>
   </data>
   <data name="submit" xml:space="preserve">
     <value>送信</value>
@@ -163,6 +163,15 @@
     <value>ページ</value>
   </data>
   <data name="of" xml:space="preserve">
-    <value>/</value>
+    <value>の</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>この機能を使用する権限がありません。</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>他の</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
   </data>
 </root>

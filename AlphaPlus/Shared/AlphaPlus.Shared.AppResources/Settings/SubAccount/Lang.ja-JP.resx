@@ -203,7 +203,7 @@ Notes: your password is cAsE sEnSiTiVe</value>
     <value>Your password does not meet the minimum security requirement.</value>
   </data>
   <data name="lblNotAuthorized" xml:space="preserve">
-    <value>You are not authorized on this function</value>
+    <value>この機能を使用する権限がありません。</value>
   </data>
   <data name="BetLists" xml:space="preserve">
     <value>ベットリスト</value>

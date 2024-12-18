@@ -166,7 +166,7 @@
     <value>Player's Discount</value>
   </data>
   <data name="username" xml:space="preserve">
-    <value>Username</value>
+    <value>ユーザー名</value>
   </data>
   <data name="a_v11mpt_1" xml:space="preserve">
     <value>Handicap</value>
@@ -1732,10 +1732,10 @@
     <value>Site</value>
   </data>
   <data name="From" xml:space="preserve">
-    <value>From</value>
+    <value>から</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>To</value>
+    <value>まで</value>
   </data>
   <data name="Rate" xml:space="preserve">
     <value>Rate</value>
@@ -1747,7 +1747,7 @@
     <value>DisabledCS</value>
   </data>
   <data name="remark" xml:space="preserve">
-    <value>Remark</value>
+    <value>備考</value>
   </data>
   <data name="status" xml:space="preserve">
     <value>状態</value>
@@ -1756,7 +1756,7 @@
     <value>Outright</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>すべて</value>
   </data>
   <data name="TypeAUserName" xml:space="preserve">
     <value>Type a username</value>
@@ -2125,7 +2125,7 @@
     <value>Browser</value>
   </data>
   <data name="NumberGame" xml:space="preserve">
-    <value>Number Game</value>
+    <value>ナンバーゲーム</value>
   </data>
   <data name="v161spt_81" xml:space="preserve">
     <value>1st/Last Over/Under</value>
@@ -2644,10 +2644,10 @@
     <value>Disabled</value>
   </data>
   <data name="bettype" xml:space="preserve">
-    <value>Bet Type</value>
+    <value>ベットタイプ</value>
   </data>
   <data name="others" xml:space="preserve">
-    <value>Others</value>
+    <value>他の</value>
   </data>
   <data name="CheckedSecurityCode" xml:space="preserve">
     <value>Checked Security Code</value>
@@ -2674,7 +2674,7 @@
     <value>Cash-In Share</value>
   </data>
   <data name="v204discountvalue_commission" xml:space="preserve">
-    <value>Commission</value>
+    <value>コミッション</value>
   </data>
   <data name="isdisabled" xml:space="preserve">
     <value>Is Disabled</value>
@@ -2686,7 +2686,7 @@
     <value>is Sync</value>
   </data>
   <data name="Sport" xml:space="preserve">
-    <value>Sport</value>
+    <value>スポーツ</value>
   </data>
   <data name="product" xml:space="preserve">
     <value>Product</value>
@@ -2720,5 +2720,14 @@
   </data>
   <data name="Locked" xml:space="preserve">
     <value>Locked</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>ステートメント</value>
+  </data>
+  <data name="BetLists" xml:space="preserve">
+    <value>ベットリスト</value>
+  </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>保有ポジション</value>
   </data>
 </root>

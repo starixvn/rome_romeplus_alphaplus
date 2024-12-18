@@ -133,7 +133,7 @@
     <value>メンバー未払い</value>
   </data>
   <data name="GivenCredit" xml:space="preserve">
-    <value>貸付金額</value>
+    <value>付与済み与信</value>
   </data>
   <data name="TransferSuccessfully" xml:space="preserve">
     <value>Transfer successfully</value>
@@ -175,7 +175,7 @@
     <value>Amount to transfer must be between {0} and {1}.</value>
   </data>
   <data name="Super" xml:space="preserve">
-    <value>Super</value>
+    <value>スーパー</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>マスター</value>
@@ -187,7 +187,7 @@
     <value>メンバー</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
-    <value>You are not authorized on this function.</value>
+    <value>この機能を使用する権限がありません。</value>
   </data>
   <data name="TransferButton" xml:space="preserve">
     <value>送金</value>
@@ -223,7 +223,7 @@
     <value>All yesterday balance</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>すべて</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>開設</value>
@@ -274,31 +274,31 @@
     <value>今日</value>
   </data>
   <data name="LastWeek" xml:space="preserve">
-    <value>Last Week</value>
+    <value>先週</value>
   </data>
   <data name="LastMonth" xml:space="preserve">
-    <value>Last Month</value>
+    <value>先月</value>
   </data>
   <data name="SinceLastMonth" xml:space="preserve">
-    <value>Since Last Month</value>
+    <value>先月以降</value>
   </data>
   <data name="SpecificDate" xml:space="preserve">
     <value>Specific Dates</value>
   </data>
   <data name="ThisWeek" xml:space="preserve">
-    <value>This Week</value>
+    <value>今週</value>
   </data>
   <data name="ThisMonth" xml:space="preserve">
-    <value>This Month</value>
+    <value>今月</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>から</value>
+    <value>まで</value>
   </data>
   <data name="From" xml:space="preserve">
-    <value>送金元</value>
+    <value>から</value>
   </data>
   <data name="ExportToExcel" xml:space="preserve">
-    <value>輸出をExcelに</value>
+    <value>エクセルにエクスポート</value>
   </data>
   <data name="CanViewReportDataFrom" xml:space="preserve">
     <value>You can view the report data from {0}.</value>
@@ -328,7 +328,7 @@
     <value>Withdrawal</value>
   </data>
   <data name="of" xml:space="preserve">
-    <value>/</value>
+    <value>の</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>ページ</value>
@@ -371,5 +371,35 @@
   </data>
   <data name="AutoTransfer_HintPath_4" xml:space="preserve">
     <value>Master Agent List</value>
+  </data>
+  <data name="ClearCreditStep_Master_Agent" xml:space="preserve">
+    <value>エージェント{0}</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>ベット与信</value>
+  </data>
+  <data name="UsernameOrFirstLastName" xml:space="preserve">
+    <value>ユーザー名または名/姓</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>何も選択しない</value>
+  </data>
+  <data name="Entered" xml:space="preserve">
+    <value>入力済み</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全て選択</value>
+  </data>
+  <data name="SelectAll2" xml:space="preserve">
+    <value>全て選択</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>処理待ち</value>
+  </data>
+  <data name="Columns" xml:space="preserve">
+    <value>列</value>
   </data>
 </root>

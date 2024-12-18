@@ -126,4 +126,7 @@
   <data name="AutoTransferPageHint_Master" xml:space="preserve">
     <value>Master Agent List</value>
   </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全て選択</value>
+  </data>
 </root>

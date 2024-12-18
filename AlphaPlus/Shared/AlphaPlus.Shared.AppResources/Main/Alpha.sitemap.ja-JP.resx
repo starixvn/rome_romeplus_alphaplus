@@ -172,7 +172,7 @@
     <value>取り消されたベット</value>
   </data>
   <data name="commissionByBettype" xml:space="preserve">
-    <value>Commission By Bet Type</value>
+    <value>ベットタイプ別コミッション</value>
   </data>
   <data name="commssionhorseracing" xml:space="preserve">
     <value>Racing Commission</value>
@@ -229,13 +229,13 @@
     <value>Score Map</value>
   </data>
   <data name="statement" xml:space="preserve">
-    <value>明細書</value>
+    <value>ステートメント</value>
   </data>
   <data name="winLossByBettype" xml:space="preserve">
-    <value>Win Loss By Bet Type</value>
+    <value>ベットタイプ別勝ち負け</value>
   </data>
   <data name="masterwinloss" xml:space="preserve">
-    <value>Master Win Loss</value>
+    <value>マスター 勝ち負け</value>
   </data>
   <data name="masterwinlostdetail" xml:space="preserve">
     <value>Master Win Loss Detail</value>
@@ -247,7 +247,7 @@
     <value>Member Win/Loss Limit</value>
   </data>
   <data name="memberwinlossdetail" xml:space="preserve">
-    <value>Member Win Loss Detail</value>
+    <value>メンバーの勝ち負け詳細</value>
   </data>
   <data name="moneyline" xml:space="preserve">
     <value>マネーライン</value>
@@ -256,7 +256,7 @@
     <value>Monthly Winloss Analysis</value>
   </data>
   <data name="numbergame" xml:space="preserve">
-    <value>Number Game</value>
+    <value>ナンバーゲーム</value>
   </data>
   <data name="OE1x2DND" xml:space="preserve">
     <value>奇数/偶数 + 1x2 + DND</value>
@@ -344,7 +344,7 @@
     <value>Risk Analysis</value>
   </data>
   <data name="IPMatching" xml:space="preserve">
-    <value>IP Matching</value>
+    <value>IP マッチング</value>
   </data>
   <data name="agentOutstandingNew" xml:space="preserve">
     <value>Agent Outstanding (New)</value>
@@ -359,9 +359,15 @@
     <value>Transfer To Downline History</value>
   </data>
   <data name="superWinLossDetailByPT" xml:space="preserve">
-    <value>Super Win Loss Detail By PT</value>
+    <value>保有ポジション別スーパー勝ち負け詳細</value>
   </data>
   <data name="Old" xml:space="preserve">
     <value>Old</value>
+  </data>
+  <data name="ProgressiveGamesContribution" xml:space="preserve">
+    <value>プログレッシブゲームの貢献 </value>
+  </data>
+  <data name="BonusDetail" xml:space="preserve">
+    <value>ボーナス詳細</value>
   </data>
 </root>

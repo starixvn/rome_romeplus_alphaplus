@@ -132,4 +132,7 @@
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>Status updated successfully.</value>
   </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>すべての製品</value>
+  </data>
 </root>
