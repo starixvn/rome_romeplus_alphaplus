@@ -7,5 +7,7 @@
     public interface ICasinoDetailsDataAccess
     {
         PagedData<ITicket> GetCasinoDetails(CasinoDetailsParam param);
+        PagedData<ITicket> GetLiveCasinoDetails(CasinoDetailsParam param);
+        PagedData<ITicket> GetRNGCasinoDetails(CasinoDetailsParam param);
     }
 }
