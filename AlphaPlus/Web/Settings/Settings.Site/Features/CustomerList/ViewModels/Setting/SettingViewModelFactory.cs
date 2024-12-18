@@ -1,9 +1,7 @@
-﻿using AlphaPlus.Products.Configurations;
-using AlphaPlus.Products.ViewModels;
+﻿using AlphaPlus.Products.ViewModels;
 using AlphaPlus.Settings.MemberInfo.API.Setting.ViewModels;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
-using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Products;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
 {
@@ -30,8 +28,5 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
 
         protected override ISettingItemViewModel GetProductGroupViewModel(int productGroupId, ISearchAccountInfoRequest request)
             => new ProductGroupSettingItemViewModel(request, productGroupId);
-
-        protected override ISettingItemViewModel GetProductViewModel(ProductItem productItem, ISearchAccountInfoRequest request)
-            => new DynamicProductViewModel(request, productItem);
     }
 }

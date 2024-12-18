@@ -4,7 +4,6 @@ using AlphaPlus.Settings.MemberInfo.API.Services;
 using Fanex.Data.Repository;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multiple;
-using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Products;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
@@ -41,12 +40,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
         protected override ISettingItemMultipleViewModel GetProductGroupViewModel(int productGroupId, ISearchAccountInfoRequest request)
         {
             return new ProductGroupMultipleSettingItemViewModel(request, productGroupId);
-        }
-
-
-        protected override ISettingItemMultipleViewModel GetProductViewModel(ProductItem productItem, ISearchAccountInfoRequest request)
-        {
-            return new DynamicProductMultipleViewModel(request, productItem);
         }
     }
 }

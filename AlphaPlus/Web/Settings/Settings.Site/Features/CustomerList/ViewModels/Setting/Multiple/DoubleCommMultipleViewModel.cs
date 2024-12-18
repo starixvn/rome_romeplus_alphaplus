@@ -20,7 +20,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
               => new()
               {
                   ["SearchAccountIds"] = Request.GetData<string>("customerIds"),
-                  ["SearchAccountRoleId"] = SearchAccount.CustomerLevelValue.ToString()
+                  ["SearchAccountRoleId"] = SearchAccount.CustomerLevelValue.ToString(),
+                  ["usernames"] = Request.GetData<string>("usernames"),
               };
     }
 }
