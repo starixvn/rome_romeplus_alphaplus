@@ -353,31 +353,10 @@ namespace Fanex.Alpha.Before.Services.SignIn
                     {
                         await logger.InfoAsync($"Username: {username} - Old Hash: {oldHash} - New Hash: {newHash}");
 
-                        return newHash;
+                        return oldHash;
                     }
 
-                    return oldHash;
-                }
-
-                return newHash;
-            }
-            catch (Exception ex)
-            {
-                await logger.ErrorAsync(ex.Message, ex);
-                return newHash;
-            }
-        }
-
-        private async Task<string> HashPassword32Bit(string username, string password)
-        {
-            var newHash = EncryptExtension.CfsEnCode(password);
-            try
-            {
-                if (AppSetting.EnabledCallHashPasswordAPI)
-                {
-                    var oldHash = await httpClient.PostAsJsonAsync<string>("password/hash", new { password });
-
-                    return oldHash;
+                    return newHash;
                 }
 
                 return newHash;
@@ -421,11 +400,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
                         $"{requestInfo.BrowserName}, {browserSize}" : requestInfo.BrowserName;
 
                     verifySignInResult = await VerifyDownlineLogin(username, await HashPassword(username, password), requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
-
-                    if (verifySignInResult.ErrorCode != 0)
-                    {
-                        verifySignInResult = await VerifyDownlineLogin(username, await HashPassword32Bit(username, password), requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
-                    }
 
                     encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"Call DB result: {JsonSerializer.Serialize(verifySignInResult)}");
 
