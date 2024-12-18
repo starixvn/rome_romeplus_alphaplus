@@ -34,7 +34,7 @@ public class LastBetsController(
             return View(GetViewPath("LastBets", nameof(IndexNew)), viewModel);
         }
 
-        return RedirectToActionPermanent("FilterConfiguration", "MonitoringBets", new { welcome = true });
+        return RedirectToAction("FilterConfiguration", "MonitoringBets", new { welcome = true });
     }
 
     [HttpPost]
