@@ -107,7 +107,7 @@ public class LegendHandler(
             legends.Add(Resources.DormantAccountsNote);
         }
 
-        return new LegendViewModel(legends);
+        return new LegendViewModel(legends, MobileFriendly: message.IsNew);
     }
 
     private async Task<string> GetProductDetailsBelongSabaOtherSportsNote(int custId, GetProductsParam param)
