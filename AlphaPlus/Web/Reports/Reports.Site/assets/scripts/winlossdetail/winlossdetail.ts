@@ -2,7 +2,6 @@ interface Object {
     entries: any;
 }
 
-declare var viewResources: any;
 declare var productList: any;
 declare var productDetailList: any;
 declare var currentFromData: any;
@@ -214,8 +213,9 @@ class WinLossDetailView extends BaseReportNew {
     }
 
     private updateReportTitle() {
-        const custLevelId = +$('#hidden-custLevelId').val();
-        this.$reportTitle.text(viewResources[custLevelId]);
+        const custLevelId = $('#hidden-custLevelId').val();
+        const titleText = $(`#hidden-titleText${custLevelId}`).val();
+        this.$reportTitle.text(titleText);
     }
 
     private updateQueryString(queryString: string = undefined) {

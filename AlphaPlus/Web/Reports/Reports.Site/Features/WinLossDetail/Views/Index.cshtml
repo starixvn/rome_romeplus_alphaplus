@@ -9,17 +9,6 @@
 }
 @section Scripts {
     <script type="text/javascript">
-        var viewResources = {
-            2: '@Resources.MemberWinLossDetail',
-        @if (isMasterOrSuperLevel)
-        {
-            @:3: '@Resources.AgentWinLossDetail',
-        }
-        @if (isSuperLevel)
-        {
-            @:4: '@Resources.MasterWinLossDetail'
-        }
-                                                                                };
         var productList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.Products))');
         var productDetailList = $.parseJSON('@Html.Raw(JsonHelper.ToJson(Model.ProductViewModel.ProductDetails))');
         var columnList = [
@@ -97,3 +86,12 @@
 <input type="hidden" id="hidden-copyText" value="@Resources.Copy" />
 <input type="hidden" id="hidden-copiedText" value="@Resources.Copied" />
 <input type="hidden" id="hidden-settingsUrl" value="@MicroSites.SettingUrl()" />
+<input type="hidden" id="hidden-titleText2" value="@Resources.MemberWinLossDetail" />
+@if (isMasterOrSuperLevel)
+{
+    <input type="hidden" id="hidden-titleText3" value="@Resources.AgentWinLossDetail" />
+}
+@if (isSuperLevel)
+{
+    <input type="hidden" id="hidden-titleText4" value="@Resources.MasterWinLossDetail" />
+}

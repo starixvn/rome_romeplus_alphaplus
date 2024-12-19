@@ -1,5 +1,4 @@
 using AlphaPlus.Reports.Features.Shared;
-using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Caching;
 using Fanex.Data.Repository;
@@ -22,6 +21,11 @@ public interface IProductService
         IEnumerable<int> enableJackpotProductIds = null);
 
     Task<string> GetProductNames(GetProductsParam productsParam, HashSet<int> offeredProductIds);
+
+    string GetProductNamesExportExcel(
+        IEnumerable<int> productIds,
+        IEnumerable<int> selectedResourceIds,
+        IEnumerable<ProductDetail> productDetails);
 }
 
 public class ProductService(
@@ -81,7 +85,7 @@ public class ProductService(
             async () =>
             {
                 var productSupportDetail = products
-                    .Where(product => appSettings.ProductOfferProductDetail.Contains(product.Id))
+                    .Where(product => IsSupportProductDetail(product.Id))
                     .Select(product => product.Id)
                     .ToList();
 
@@ -143,4 +147,41 @@ public class ProductService(
 
         return ConcatProductNames(productIds);
     }
+
+    public string GetProductNamesExportExcel(
+        IEnumerable<int> productIds,
+        IEnumerable<int> selectedResourceIds,
+        IEnumerable<ProductDetail> productDetails)
+    {
+        if (productIds == null)
+        {
+            return string.Empty;
+        }
+
+        var productNames = new Dictionary<int, string>();
+        productDetails
+            .GroupBy(p => p.ProductId)
+            .ToList()
+            .ForEach(group =>
+            {
+                if (IsSupportProductDetail(group.Key))
+                {
+                    var allResourceIds = group.Select(p => p.ResourceId).ToList();
+                    var intersectResourceIds = selectedResourceIds.Intersect(allResourceIds).ToList();
+
+                    if (intersectResourceIds.Count > 0
+                        && intersectResourceIds.Count != allResourceIds.Count)
+                    {
+                        productNames[group.Key] = intersectResourceIds.Select(id => cacheRefService.GetProductDetailName(id)).JoinWithComma(", ");
+                    }
+                }
+            });
+
+        return productIds
+            .Select(id => productNames.TryGetValue(id, out var name) ? name : cacheRefService.GetProductName(id))
+            .JoinWithComma(", ");
+    }
+
+    private bool IsSupportProductDetail(int productId)
+        => appSettings.ProductOfferProductDetail.Contains(productId);
 }
