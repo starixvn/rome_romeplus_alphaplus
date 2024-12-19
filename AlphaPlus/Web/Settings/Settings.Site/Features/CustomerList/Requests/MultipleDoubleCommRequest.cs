@@ -10,5 +10,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
         public string SearchAccountIds { get; set; }
 
         public byte SearchAccountRoleId { get; set; }
+
+        public string Usernames { get; set; }
     }
 }

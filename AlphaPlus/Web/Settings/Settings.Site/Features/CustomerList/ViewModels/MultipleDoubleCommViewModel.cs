@@ -8,10 +8,13 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
         {
             SearchAccountRoleId = request.SearchAccountRoleId;
             SearchAccountIds = request.SearchAccountIds;
+            Usernames = request.Usernames;
         }
 
         public byte SearchAccountRoleId { get; }
 
         public string SearchAccountIds { get; }
+
+        public string Usernames { get; }
     }
 }

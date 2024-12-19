@@ -28,7 +28,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
         IRequestHandler<CustomerStatusMultipleQuery, IEnumerable<ISettingItemMultipleViewModel>>,
         IRequestHandler<CustomerNonProductStatusCommand, Result>,
         IRequestHandler<MultipleDoubleCommRequest, MultipleDoubleCommViewModel>,
-        IRequestHandler<UpdateMultipleDoubleCommCommand, IEnumerable<Result>>
+        IRequestHandler<UpdateMultipleDoubleCommCommand, IDictionary<string, Result>>
     {
         private readonly CustomerListService customerListService;
         private readonly GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel> settingMultipleViewModelFactory;
@@ -158,22 +158,24 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
         public Task<MultipleDoubleCommViewModel> Handle(MultipleDoubleCommRequest message, CancellationToken cancellation)
            => Task.FromResult(new MultipleDoubleCommViewModel(message));
 
-        public async Task<IEnumerable<Result>> Handle(UpdateMultipleDoubleCommCommand message, CancellationToken cancellation)
+        public async Task<IDictionary<string, Result>> Handle(UpdateMultipleDoubleCommCommand message, CancellationToken cancellation)
         {
-            var results = new List<Result>();
-
-            foreach (var searchAccountId in message.SearchAccountIds.Split(','))
+            var results = new Dictionary<string, Result>();
+            var usernames = message.Usernames.Split(',');
+            var searchAccountIds = message.SearchAccountIds.Split(',');
+            for (int i = 0; i < searchAccountIds.Length; i++)
             {
-                results.Add(await customerListService.UpdateCustomerStatus(
-                    new UpdateCustomerStatusParam(
-                      Converter.ToInt(searchAccountId),
-                      message.ViewerId,
-                      message.SubAccountId,
-                      message.Language,
-                      message.IP,
-                      message.EnabledDoubleComm,
-                      StatusNames.DoubleComm,
-                      message.ViewerUsername)));
+                results.Add(usernames[i],
+                    await customerListService.UpdateCustomerStatus(
+                        new UpdateCustomerStatusParam(
+                            Converter.ToInt(searchAccountIds[i]),
+                            message.ViewerId,
+                            message.SubAccountId,
+                            message.Language,
+                            message.IP,
+                            message.EnabledDoubleComm,
+                            StatusNames.DoubleComm,
+                            message.ViewerUsername)));
             }
 
             return results;
