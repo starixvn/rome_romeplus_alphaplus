@@ -1,10 +1,13 @@
 {
     "Authorization": {
         "CustIdQueryStringParamNames": [
-            "SearchAccountId"
+            "SearchAccountId",
+            "CustId",
+            "CustIds"
         ],
         "CustIdJsonParamNames": [
             "SearchAccountId",
+            "CustId",
             "CustIds"
         ],
         "GroupPageAccesses": [

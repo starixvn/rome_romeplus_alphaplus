@@ -19,14 +19,16 @@
             "ibccustid",
             "ACustID",
             "SearchAccountId",
-            "selectedCustId"
+            "selectedCustId",
+            "CustIds"
         ],
         "CustIdJsonParamNames": [
             "txtCustomerObject",
             "newCustomer",
             "SearchAccountId",
             "uplineCustId",
-            "custId"
+            "custId",
+            "CustIds"
         ],
         "GroupPageAccesses": [
             {

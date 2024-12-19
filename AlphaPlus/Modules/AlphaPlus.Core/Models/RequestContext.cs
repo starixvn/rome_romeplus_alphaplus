@@ -1,5 +1,6 @@
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Core.Models;
@@ -82,21 +83,13 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                 if (!string.IsNullOrEmpty(request.Query[custIdQueryStringParamName]))
                 {
                     var queryValue = request.Query[custIdQueryStringParamName].ToString();
-                    string[] queryValues;
-
-                    if (queryValue.Contains(","))
+                    _custId = GetCustomerIdFromTheSameQueryString(queryValue);
+                    if (_custId > 0)
                     {
-                        queryValues = queryValue.ToString().Split([","], StringSplitOptions.RemoveEmptyEntries);
-
-                        int.TryParse(queryValues.ElementAt(queryValues.Length - 1), out _custId);
-
-                        if (_custId > 0)
-                        {
-                            break;
-                        }
+                        break;
                     }
 
-                    int.TryParse(queryValue, out _custId);
+                    int.TryParse(request.Query[custIdQueryStringParamName], out _custId);
                     if (_custId > 0)
                     {
                         break;
@@ -105,18 +98,13 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                     if (request.HasFormContentType)
                     {
                         queryValue = request.Form[custIdQueryStringParamName].ToString();
-                        if (queryValue.Contains(","))
+                        _custId = GetCustomerIdFromTheSameQueryString(queryValue);
+                        if (_custId > 0)
                         {
-                            queryValues = queryValue.ToString().Split([","], StringSplitOptions.RemoveEmptyEntries);
-
-                            int.TryParse(queryValues.ElementAt(queryValues.Length - 1), out _custId);
-
-                            if (_custId > 0)
-                            {
-                                break;
-                            }
+                            break;
                         }
-                        int.TryParse(queryValue, out _custId);
+
+                        int.TryParse(request.Form[custIdQueryStringParamName], out _custId);
                         if (_custId > 0)
                         {
                             break;
@@ -184,6 +172,22 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
 
             return _custIds;
         }
+    }
+
+    private int GetCustomerIdFromTheSameQueryString(string queryOrFromValue)
+    {
+        string[] queryValues;
+
+        if (queryOrFromValue.Contains(","))
+        {
+            queryValues = queryOrFromValue.Split([","], StringSplitOptions.RemoveEmptyEntries);
+
+            int.TryParse(queryValues.ElementAt(queryValues.Length - 1), out _custId);
+
+            return _custId;
+        }
+
+        return 0;
     }
 
     public IUserSession UserSession => Models.UserSession.Current;
