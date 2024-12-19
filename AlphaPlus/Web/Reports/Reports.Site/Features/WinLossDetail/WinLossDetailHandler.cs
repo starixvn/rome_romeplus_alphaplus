@@ -269,14 +269,13 @@ public class WinLossDetailHandler(
             }
         }
 
-        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml, productNames) = await FilterProductAndProductDetailIdsForExcel(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds);
         var reportData = isValidUsername
             ? await GetWinLossDetail(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml)
             : new ReportData<WinLossDetailModel>(null, null, 0);
-        var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 
         return workbook.BuildExcelFile(message, reportData, productNames);
     }

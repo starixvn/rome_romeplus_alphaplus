@@ -42,12 +42,11 @@ public class SuperWinLossDetailByPTHandler(
 
     public async Task<ExcelFileViewModel> Handle(SuperWinLossDetailByPTExcelQuery message, CancellationToken cancellationToken)
     {
-        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml, productNames) = await FilterProductAndProductDetailIdsForExcel(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds);
         var (reportData, total, _) = await GetSuperWinLossDetailByPT(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml);
-        var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 
         return workbook.BuildExcelFile(message, reportData, total, productNames);
     }

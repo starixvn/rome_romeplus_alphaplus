@@ -22,10 +22,11 @@ public interface IProductService
 
     Task<string> GetProductNames(GetProductsParam productsParam, HashSet<int> offeredProductIds);
 
-    string GetProductNamesExportExcel(
-        IEnumerable<int> productIds,
-        IEnumerable<int> selectedResourceIds,
-        IEnumerable<ProductDetail> productDetails);
+    Task<string> GetProductNamesExportExcel(
+        int custId,
+        IEnumerable<Product> products,
+        IEnumerable<int> selectedProductIds,
+        IEnumerable<int> selectedResourceIds);
 }
 
 public class ProductService(
@@ -148,36 +149,37 @@ public class ProductService(
         return ConcatProductNames(productIds);
     }
 
-    public string GetProductNamesExportExcel(
-        IEnumerable<int> productIds,
-        IEnumerable<int> selectedResourceIds,
-        IEnumerable<ProductDetail> productDetails)
+    public async Task<string> GetProductNamesExportExcel(
+        int custId,
+        IEnumerable<Product> products,
+        IEnumerable<int> selectedProductIds,
+        IEnumerable<int> selectedResourceIds)
     {
-        if (productIds == null)
+        if (selectedProductIds == null)
         {
             return string.Empty;
         }
 
         var productNames = new Dictionary<int, string>();
-        productDetails
-            .GroupBy(p => p.ProductId)
-            .ToList()
-            .ForEach(group =>
+        var productDetails = await GetProductDetails(custId, products);
+        productDetails.GroupBy(p => p.ProductId)
+        .ToList()
+        .ForEach(group =>
+        {
+            if (IsSupportProductDetail(group.Key))
             {
-                if (IsSupportProductDetail(group.Key))
+                var allResourceIds = group.Select(p => p.ResourceId).Distinct().ToList();
+                var intersectResourceIds = selectedResourceIds.Intersect(allResourceIds).ToList();
+
+                if (intersectResourceIds.Count > 0
+                    && intersectResourceIds.Count != allResourceIds.Count)
                 {
-                    var allResourceIds = group.Select(p => p.ResourceId).ToList();
-                    var intersectResourceIds = selectedResourceIds.Intersect(allResourceIds).ToList();
-
-                    if (intersectResourceIds.Count > 0
-                        && intersectResourceIds.Count != allResourceIds.Count)
-                    {
-                        productNames[group.Key] = intersectResourceIds.Select(id => cacheRefService.GetProductDetailName(id)).JoinWithComma(", ");
-                    }
+                    productNames[group.Key] = intersectResourceIds.Select(id => cacheRefService.GetProductDetailName(id)).JoinWithComma(", ");
                 }
-            });
+            }
+        });
 
-        return productIds
+        return selectedProductIds
             .Select(id => productNames.TryGetValue(id, out var name) ? name : cacheRefService.GetProductName(id))
             .JoinWithComma(", ");
     }

@@ -25,8 +25,6 @@
     }
 
     public bindEvents() {
-        this.$reportForm.submit(() => $.blockUI());
-
         $('.btn-submit').click(() => {
             $('#IsMainReport').val('true');
             $('#PageIndex').val('1');

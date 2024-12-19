@@ -86,11 +86,8 @@ class BaseReport {
         this.$reportForm.addClass('hide');
     }
 
-    protected onPreSubmitReport(event) {
-        return true;
-    }
-
     protected onSubmitReport(event, sortInfo = undefined) {
+        $.blockUI();
         const isFilterVisible = !this.$reportForm.hasClass('hide') && !alphaReports.screenSmallThan768();
         const html = [`<input type="hidden" name="IsFilterVisible" value="${isFilterVisible}"/>`];
 

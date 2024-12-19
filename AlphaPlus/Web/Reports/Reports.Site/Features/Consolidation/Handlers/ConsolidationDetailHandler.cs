@@ -51,7 +51,7 @@ public class ConsolidationDetailHandler(
     public async Task<ExcelFileViewModel> Handle(ConsolidationDetailExcelQuery message, CancellationToken cancellationToken)
     {
         var products = await consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
-        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml, productNames) = await FilterProductAndProductDetailIdsForExcel(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds,
@@ -60,7 +60,6 @@ public class ConsolidationDetailHandler(
             message,
             validUserSelectedProductIds.JoinWithComma(),
             productDetailXml);
-        var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 
         return consolidationDetailWorkbook.BuildExcelFile(message, reportData, productNames);
     }

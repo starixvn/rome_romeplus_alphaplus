@@ -43,12 +43,11 @@ public class WinLossHandler(
 
     public async Task<ExcelFileViewModel> Handle(WinLossExcelQuery message, CancellationToken cancellationToken)
     {
-        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml, productNames) = await FilterProductAndProductDetailIdsForExcel(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds);
         var reportData = await GetWinLoss(message, validUserSelectedProductIds.JoinWithComma(), productDetailXml);
-        var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 
         return workbook.BuildExcelFile(message, reportData, productNames);
     }

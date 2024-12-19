@@ -74,6 +74,7 @@ class ConsolidationView extends BaseReport {
 
         this.$tableReport.find('.downline-link').click((event) => {
             event.stopPropagation();
+            $.blockUI();
             this.assignDrilldownUrl($(event.target));
         });
 

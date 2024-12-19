@@ -31,7 +31,6 @@
     }
 
     public bindEvents() {
-        this.$reportForm.submit(() => $.blockUI());
         $('#btn-submit').click(() => $('#PageIndex').val(''));
 
         const $popupConfirmPayment = $('#popup-confirmPayment');

@@ -103,7 +103,7 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
 
         var resourceIdHashSet = new HashSet<int>();
         var productDetails = new List<ProductDetailDTO>();
-        var validUserSelectedResourceIds = new List<int>();
+        var validUserSelectedResourceIds = new HashSet<int>();
         var allProductsSupportProductDetails = new List<int>();
         var selectedProductIds = new List<int>();
 
@@ -149,6 +149,31 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         }
 
         return (productIds.ToList(), productDetailXml);
+    }
+
+    protected async Task<(IEnumerable<int>, string, string)> FilterProductAndProductDetailIdsForExcel(
+        BaseQuery message,
+        string userSelectedProductIds,
+        string userSelectedResourceIds,
+        IEnumerable<Product> products = null)
+    {
+        products = FilterProducts(products ?? await GetProducts(message), userSelectedProductIds).ToList();
+        var (unselectedProductIds, productDetailXml) = await FilterProductDetailIds(message.ViewerId, products, userSelectedProductIds, userSelectedResourceIds);
+        var productIds = products.Select(product => product.Id);
+
+        if (unselectedProductIds.Any())
+        {
+            productIds = productIds.Except(unselectedProductIds);
+        }
+
+        var productIdsList = productIds.ToList();
+        var productNames = await productService.GetProductNamesExportExcel(
+            message.ViewerId,
+            products,
+            productIdsList,
+            userSelectedResourceIds.ToListInt());
+
+        return (productIdsList, productDetailXml, productNames);
     }
 
     protected async Task<IEnumerable<int>> FilterProductIds(BaseQuery message, string userSelectedProductIds, IEnumerable<int> offeredProductIds = null)

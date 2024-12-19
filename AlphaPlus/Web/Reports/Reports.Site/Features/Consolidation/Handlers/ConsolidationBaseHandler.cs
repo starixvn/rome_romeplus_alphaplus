@@ -144,12 +144,11 @@ public class ConsolidationBaseHandler(
         var currenciesTask = consolidationService.GetCurrencies(message.ViewerId, message.Site);
         await Task.WhenAll(productsTask, currenciesTask);
 
-        var (validUserSelectedProductIds, productDetailXml) = await FilterProductAndProductDetailIds(
+        var (validUserSelectedProductIds, productDetailXml, productNames) = await FilterProductAndProductDetailIdsForExcel(
             message,
             message.UserSelectedProductIds,
             message.UserSelectedResourceIds,
             await productsTask);
-        var productNames = productService.ConcatProductNames(validUserSelectedProductIds);
 
         return (validUserSelectedProductIds.JoinWithComma(), productDetailXml, productNames, await currenciesTask);
     }
