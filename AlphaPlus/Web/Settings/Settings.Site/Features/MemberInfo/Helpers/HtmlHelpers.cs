@@ -40,11 +40,10 @@ public static class NoInformation
 {
     public static IHtmlContent Render(int colspan)
     {
-        return new HtmlString(@"<tbody>
+        return new HtmlString(@"
             <tr>
                 <td colspan='" + colspan + "' align='center'>" + Resources.NoInformationIsAvailable + @"</td>
-            </tr>
-        </tbody>");
+            </tr>");
     }
 }
 

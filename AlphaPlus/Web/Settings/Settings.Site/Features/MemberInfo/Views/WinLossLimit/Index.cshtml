@@ -185,7 +185,9 @@
         }
         else
         {
-            @NoInformation.Render(Model.NumberOfColumns)
+            <tbody>
+                @NoInformation.Render(Model.NumberOfColumns)
+            </tbody>
         }
         @if (Model.ShowPager)
         {
