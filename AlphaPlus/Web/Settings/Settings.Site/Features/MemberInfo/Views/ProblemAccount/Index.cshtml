@@ -133,7 +133,7 @@
     void RenderFilter(UserLevel level)
     {
     var levelName = level.DisplayName.ToLower();
-    <div class="filter">
+    <div class="">
         <div id="@($"form-{levelName}")" class="form-inline demo-form-inline filter" role="form">
             @if (Model.IsShowUplineUsername(level.Value))
             {
