@@ -125,7 +125,7 @@
     "RedisConfiguration": "10.2.27.140:16389,Password=foo1@bared,Name=AlphaPlus,abortConnect=false",
     "RemotingRefUrl": "http://vn-remotingref-prod.nebula.prod/",
     "Fanex.Customer": {
-        "ServiceUri": "http://vn-staging-customer.nebula.prod/api/",
+        "ServiceUri": "http://alphaplus_api_settings_ALPHAPROD:5000/api/",
         "CdnUri": "//dcscdn11.gatonic.com/",
         "SystemId": 2
     },
