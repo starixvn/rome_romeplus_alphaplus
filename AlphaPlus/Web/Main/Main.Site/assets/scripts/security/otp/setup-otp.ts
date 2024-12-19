@@ -49,8 +49,10 @@ class SetupOtp {
 
         this.isAlreadySetup = this.$cbkEnableOtp.data('is-already-setup');
         this.previousStatus = this.$cbkEnableOtp.data('is-checked');
-        var qrCode = new QRCode('qr-code', { width: 196, height: 196, correctLevel: QRCode.CorrectLevel.Q });
-        qrCode.makeCode(this.$otpUrl);
+        if (!this.isAlreadySetup) {
+            var qrCode = new QRCode('qr-code', { width: 196, height: 196, correctLevel: QRCode.CorrectLevel.Q });
+            qrCode.makeCode(this.$otpUrl);
+        }
 
         this.$('.open-link')
             .unbind()
@@ -111,7 +113,7 @@ class SetupOtp {
         if (username.length === 0) {
             alpha.showMessage(
                 this.$usernameMessage,
-                new Result({ Code: 1, Message: this.resources.thisFieldRequired })
+                new Result({ code: 1, message: this.resources.thisFieldRequired })
             );
             this.$txtUsername.focus();
             e.preventDefault();
@@ -126,7 +128,7 @@ class SetupOtp {
             this.$txtOtp.focus();
             alpha.showMessage(
                 this.$setupOtpMessage,
-                new Result({ Code: 1, Message: this.resources.thisFieldRequired })
+                new Result({ code: 1, message: this.resources.thisFieldRequired })
             );
             return;
         }

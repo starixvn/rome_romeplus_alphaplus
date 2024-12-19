@@ -110,7 +110,7 @@ class VerifyAccountTelegramChatbot extends BaseTelegramChatBot {
             this.$txtOTP.focus();
             alpha.showMessage(
                 this.$verificationMessage,
-                new Result({ Code: 1, Message: this.resources.otpIsRequired })
+                new Result({ code: 1, message: this.resources.otpIsRequired })
             );
             return;
         } else {
@@ -122,7 +122,7 @@ class VerifyAccountTelegramChatbot extends BaseTelegramChatBot {
                 this.$txtCaptcha.focus();
                 alpha.showMessage(
                     this.$verificationMessage,
-                    new Result({ Code: 1, Message: this.resources.captchaIsRequired })
+                    new Result({ code: 1, message: this.resources.captchaIsRequired })
                 );
                 return;
             } else {
@@ -183,7 +183,7 @@ class VerifyAccountTelegramChatbot extends BaseTelegramChatBot {
 
         this.$captchaContainer.html(data);
         this.initCaptcha();
-        alpha.showMessage(this.$verificationMessage, new Result({ Code: 1, Message: this.resources.invalidOTP }));
+        alpha.showMessage(this.$verificationMessage, new Result({ code: 1, message: this.resources.invalidOTP }));
     };
 
     resendEvent = (e: any) => {
@@ -209,7 +209,7 @@ class VerifyAccountTelegramChatbot extends BaseTelegramChatBot {
             if (data.Code == this.NOT_START_ERROR_CODE) {
                 alpha.showMessage(
                     this.$verificationMessage,
-                    new Result({ Code: 1, Message: this.resources.startBeforeInputOTP })
+                    new Result({ code: 1, message: this.resources.startBeforeInputOTP })
                 );
                 this.$msgExpired.addClass('hide');
                 return;
@@ -218,7 +218,7 @@ class VerifyAccountTelegramChatbot extends BaseTelegramChatBot {
             if (data.IsOk) {
                 alpha.showMessage(
                     this.$verificationMessage,
-                    new Result({ Code: 0, Message: this.resources.resendOTPSuccessfully })
+                    new Result({ code: 0, message: this.resources.resendOTPSuccessfully })
                 );
                 this.$msgExpired.addClass('hide');
 
