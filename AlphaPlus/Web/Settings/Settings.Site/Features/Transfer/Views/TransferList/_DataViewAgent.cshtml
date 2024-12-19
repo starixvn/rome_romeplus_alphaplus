@@ -79,7 +79,13 @@
                     <td class="text-right" data-colname="pendingtransfer3rd">@customer.PendingTransfer3rd.FormatNumber2()
                     </td>
                     <td class="text-right @Model.GetBalanceColor(customer)">
-                        @if (Model.ShowBalanceLink(customer))
+                        @if (Model.IsAllDayBalanceTransfer)
+                        {
+                            <a class="transfer-link" asp-action="CashBalance" asp-controller="CashBalanceTransfer"
+                                asp-route-custid="@customer.CustId" data-w="520"
+                                data-h="500">@customer.CashBalance.FormatNumber2()</a>
+                        }
+                        else if (Model.ShowBalanceLink(customer))
                         {
                             <a class="transfer-link" asp-action="Member" asp-controller="TransferYesterdayBalance"
                                 asp-all-route-data="@Model.GetSingleTransferParams(customer)" data-w="520"
