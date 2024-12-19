@@ -195,12 +195,7 @@ public class WinLossDetailHandler(
                 message.WeekToDate);
         }
 
-        return BuildWeekViewModels(
-            [],
-            message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-            message.ToDate,
-            message.WeekFromDate,
-            message.WeekToDate);
+        return [];
     }
 
     private static IEnumerable<WinLossDetailWeekViewModel> BuildWeekViewModels(
