@@ -22,8 +22,8 @@ public class CasinoDetailsHandler(
     IOptions<AppSettings> options) :
         BetListBaseHandler(builder, ticketHelper, monitorService, ipService, options),
         IRequestHandler<CasinoDetailsQuery, CasinoDetailsViewModel>,
-        IRequestHandler<LiveCasinoDetailsExcelQuery, CasinoDetailsViewModel>,
-        IRequestHandler<RNGCasinoDetailsExcelQuery, CasinoDetailsViewModel>
+        IRequestHandler<LiveCasinoDetailsQuery, CasinoDetailsViewModel>,
+        IRequestHandler<RNGCasinoDetailsQuery, CasinoDetailsViewModel>
 {
     private readonly ICasinoDetailsService casinoDetailsService = casinoDetailsService;
 
@@ -41,7 +41,7 @@ public class CasinoDetailsHandler(
             "BBinExcel");
     }
 
-    public async Task<CasinoDetailsViewModel> Handle(LiveCasinoDetailsExcelQuery message, CancellationToken cancellationToken)
+    public async Task<CasinoDetailsViewModel> Handle(LiveCasinoDetailsQuery message, CancellationToken cancellationToken)
     {
         var param = CreateCasinoDetailsParam(message);
         var pagedBetListData = await casinoDetailsService.GetLiveCasinoBetList(param);
@@ -55,7 +55,7 @@ public class CasinoDetailsHandler(
             "LiveCasinoExcel");
     }
 
-    public async Task<CasinoDetailsViewModel> Handle(RNGCasinoDetailsExcelQuery message, CancellationToken cancellationToken)
+    public async Task<CasinoDetailsViewModel> Handle(RNGCasinoDetailsQuery message, CancellationToken cancellationToken)
     {
         var param = CreateCasinoDetailsParam(message);
         var pagedBetListData = await casinoDetailsService.GetRNGBetList(param);
