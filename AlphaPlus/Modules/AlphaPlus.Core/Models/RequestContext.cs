@@ -81,7 +81,22 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
 
                 if (!string.IsNullOrEmpty(request.Query[custIdQueryStringParamName]))
                 {
-                    int.TryParse(request.Query[custIdQueryStringParamName], out _custId);
+                    var queryValue = request.Query[custIdQueryStringParamName].ToString();
+                    string[] queryValues;
+
+                    if (queryValue.Contains(","))
+                    {
+                        queryValues = queryValue.ToString().Split([","], StringSplitOptions.RemoveEmptyEntries);
+
+                        int.TryParse(queryValues.ElementAt(queryValues.Length - 1), out _custId);
+
+                        if (_custId > 0)
+                        {
+                            break;
+                        }
+                    }
+
+                    int.TryParse(queryValue, out _custId);
                     if (_custId > 0)
                     {
                         break;
@@ -89,7 +104,19 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
 
                     if (request.HasFormContentType)
                     {
-                        int.TryParse(request.Form[custIdQueryStringParamName], out _custId);
+                        queryValue = request.Form[custIdQueryStringParamName].ToString();
+                        if (queryValue.Contains(","))
+                        {
+                            queryValues = queryValue.ToString().Split([","], StringSplitOptions.RemoveEmptyEntries);
+
+                            int.TryParse(queryValues.ElementAt(queryValues.Length - 1), out _custId);
+
+                            if (_custId > 0)
+                            {
+                                break;
+                            }
+                        }
+                        int.TryParse(queryValue, out _custId);
                         if (_custId > 0)
                         {
                             break;
@@ -143,11 +170,14 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                         break;
                     }
 
-                    _custIds = request.Form[custIdQueryStringParamName].ToString();
-                    if (!string.IsNullOrEmpty(_custIds))
+                    if (request.HasFormContentType)
                     {
-                        _custIds = _custIds.Replace(',', '^');
-                        break;
+                        _custIds = request.Form[custIdQueryStringParamName].ToString();
+                        if (!string.IsNullOrEmpty(_custIds))
+                        {
+                            _custIds = _custIds.Replace(',', '^');
+                            break;
+                        }
                     }
                 }
             }
