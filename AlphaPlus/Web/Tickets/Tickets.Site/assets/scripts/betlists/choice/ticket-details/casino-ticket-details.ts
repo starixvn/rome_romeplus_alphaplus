@@ -138,7 +138,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'Allbet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -213,7 +213,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'AE Sexy - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -246,7 +246,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'SA Gaming - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -279,7 +279,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'IBCBet Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -312,7 +312,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'ION - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -345,7 +345,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/BBinIndex${params}`,
                 'BBIN - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -378,7 +378,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'Funky Games - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -411,41 +411,8 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'WM - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
-                width,
-                800
-            );
-        };
-    }
-
-    export class GDGTicketDetails extends BaseTicketDetails {
-        private static instance: GDGTicketDetails;
-
-        public static get Instance() {
-            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
-                ? new GDGTicketDetails()
-                : this.instance;
-            return this.instance;
-        }
-
-        public ShowGDGBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = `?refno=${refNo}&custid=${custId}&transType=${transType}&sportName=GDG&productId=59`;
-
-            let width = 1500;
-            let roleId = Number(this.ViewerLevelId);
-
-            if (roleId <= 3) {
-                width -= 105;
-            }
-
-            if (roleId <= 2) {
-                width -= 105;
-            }
-
-            Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
-                'GDG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
             );
@@ -477,7 +444,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'BG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -515,7 +482,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'PP Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -548,7 +515,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'FGG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -586,7 +553,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'SEAL Entertainment - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -619,7 +586,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'MG-RNG - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -652,7 +619,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'Jili - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -685,7 +652,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'YeeBet - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -718,7 +685,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'Live22 - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -751,7 +718,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'WE Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -784,7 +751,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'UU SLOTS - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -823,7 +790,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 sportName + ' - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -856,7 +823,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'FastSpin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -889,7 +856,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'FA CHAI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -922,7 +889,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'Nextspin - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -955,7 +922,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
                 'ON Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -988,7 +955,7 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'Playtech - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
@@ -1021,12 +988,48 @@
             }
 
             Common.PopupDetails.Instance(window.top).Show(
-                `${Common.AppPath.TicketsAppPath}CasinoDetails/Index${params}`,
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
                 'GPI - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
                 width,
                 800
             );
         };
+    }
+
+    export class GPILiveCasinoTicketDetails extends BaseTicketDetails {
+        private static instance: GPILiveCasinoTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance)
+                ? new GPILiveCasinoTicketDetails()
+                : this.instance;
+            return this.instance;
+        }
+
+        public ShowGPILCTicketDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=GPI Live Casino&productId=90';
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/LiveCasino${params}`,
+                'GPI Live Casino - Detailed Bet list - ' + winlossDate.toString().split(' ')[0],
+                width,
+                800
+            );
+        }
     }
 }
 
@@ -1051,7 +1054,6 @@ let showRNGWARBetDetails: Function;
 let showIONCasinoBetDetails: Function;
 let showJokerBetDetails: Function;
 let showWMBetDetails: Function;
-let showGDGBetDetails: Function;
 let showBGBetDetails: Function;
 let showMaxGameBetDetails: Function;
 let showPragmaticLiveCasinoBetsDetails: Function;
@@ -1074,6 +1076,7 @@ let showNextspinBetDetails: Function;
 let showONLiveCasinoBetDetails: Function;
 let showPlaytechBetDetails: Function;
 let showGPIBetDetails: Function;
+let showGPILCBetDetails: Function;
 
 $(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -1097,7 +1100,6 @@ $(function () {
     showRNGWARBetDetails = BetList.Choice.TicketDetails.RNGWarTicketDetails.Instance.ShowRNGWarBetDetails;
     showJokerBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowJokerDetails;
     showWMBetDetails = BetList.Choice.TicketDetails.WMTicketDetails.Instance.ShowWMBetDetails;
-    showGDGBetDetails = BetList.Choice.TicketDetails.GDGTicketDetails.Instance.ShowGDGBetDetails;
     showBGBetDetails = BetList.Choice.TicketDetails.BGTicketDetails.Instance.ShowBGBetDetails;
     showMaxGameBetDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowMaxGameDetails;
     showPragmaticLiveCasinoBetsDetails =
@@ -1123,4 +1125,5 @@ $(function () {
     showONLiveCasinoBetDetails = BetList.Choice.TicketDetails.ONCasinoTicketDetails.Instance.ShowONCasinoTicketDetails;
     showPlaytechBetDetails = BetList.Choice.TicketDetails.PlaytechTicketDetails.Instance.ShowPlaytechTicketDetails;
     showGPIBetDetails = BetList.Choice.TicketDetails.GPIRNGTicketDetails.Instance.ShowGPIBetDetails;
+    showGPILCBetDetails = BetList.Choice.TicketDetails.GPILiveCasinoTicketDetails.Instance.ShowGPILCTicketDetails;
 });

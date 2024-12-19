@@ -18,7 +18,6 @@
         private static PGSoftCasinoResult: ResultDetails;
         private static JokerResult: ResultDetails;
         private static LeapGamingResult: ResultDetails;
-        private static GDGResult: ResultDetails;
         private static BGResult: ResultDetails;
         private static maxGameResult: ResultDetails;
         private static linkedGamesResult: ResultDetails;
@@ -44,6 +43,7 @@
         private static sexyGamingResult: ResultDetails;
         private static playtechResult: ResultDetails;
         private static gpiResult: ResultDetails;
+        private static gpiLCResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (
@@ -175,12 +175,7 @@
                     : this.BGResult;
                 return this.BGResult;
             }
-            if (betTypeId >= 5701 && betTypeId <= 5799) {
-                this.GDGResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.GDGResult)
-                    ? new GDGResultDetails()
-                    : this.GDGResult;
-                return this.GDGResult;
-            }
+
             if (betTypeId >= 6001 && betTypeId <= 6300) {
                 this.PGSoftCasinoResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.PGSoftCasinoResult)
                     ? new PGSoftCasinoResultDetails()
@@ -354,6 +349,13 @@
                     ? new GPIResultDetails()
                     : this.gpiResult;
                 return this.gpiResult;
+            }
+
+            if (betTypeId >= 11500 && betTypeId <= 11599) {
+                this.gpiLCResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.gpiLCResult)
+                    ? new GPILiveCasinoResultDetails()
+                    : this.gpiLCResult;
+                return this.gpiLCResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)
