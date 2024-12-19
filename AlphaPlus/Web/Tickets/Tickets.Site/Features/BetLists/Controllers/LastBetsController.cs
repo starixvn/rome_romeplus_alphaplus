@@ -19,11 +19,11 @@ public class LastBetsController(
     private readonly AppSettings appSettings = options.Value;
     private readonly IUser user = user;
 
-    public Task<IActionResult> Index(LastBetsQuery message)
+    public Task<IActionResult> Indexxxxxxx(LastBetsQuery message)
         => View(message, GetViewPath("LastBets", nameof(Index)));
 
-    public Task<IActionResult> BetsData(GetLastBetsDataQuery message)
-        => View<LastBetsDataViewModel>(message, GetViewPath("LastBets", nameof(BetsData)));
+    public Task<IActionResult> BetDataaaaaaa(GetLastBetsDataQuery message)
+        => View<LastBetsDataViewModel>(message, GetViewPath("LastBets", nameof(BetDataaaaaaa)));
 
     public async Task<IActionResult> IndexNew(LastBetsNewQuery message)
     {
