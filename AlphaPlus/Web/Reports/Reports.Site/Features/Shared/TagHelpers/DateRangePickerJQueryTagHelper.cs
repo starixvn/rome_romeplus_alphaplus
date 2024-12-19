@@ -39,7 +39,7 @@ public class DateRangePickerJQueryTagHelper : TagHelper
     {
         if (Model.ShowShortcuts)
         {
-            sb.Append($"data-today=\"{Model.ToDate}\" ");
+            sb.Append($"data-today=\"{Model.Today}\" ");
 
             foreach (var item in Model.CustomShortcuts)
             {

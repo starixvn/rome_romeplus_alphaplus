@@ -36,9 +36,7 @@ public class AgentTransferMultipleYesterdayBalanceService(
     public async Task<Result> ProcessTransfer()
     {
         var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransferAsync(request.AgentId);
-        var custIds = request.IsAllPages && !string.IsNullOrWhiteSpace(request.Username)
-            ? await GetCustIds()
-            : request.MemberIds.ToListInt();
+        var custIds = await GetCustIds();
         var custIdsBatches = custIds.Chunk(AppSettings.MaxCustIdTransfer);
 
         var result = Result.CreateSuccessfulResult(Resources.TransferSuccessfully);
@@ -72,15 +70,14 @@ public class AgentTransferMultipleYesterdayBalanceService(
             request.AGIP);
         var transferReport = await transferListService.GetTransferList(param);
 
-        if (transferReport.TotalPages > 0)
+        foreach (var item in transferReport.Customers)
         {
-            foreach (var item in transferReport.Customers)
-            {
-                custIdsAndNames[item.CustId] = item.Username;
-            }
+            custIdsAndNames[item.CustId] = item.Username;
         }
 
-        return custIdsAndNames.Keys;
+        return request.IsAllPages && !string.IsNullOrEmpty(request.Username)
+            ? custIdsAndNames.Keys
+            : request.MemberIds.ToListInt();
     }
 
     private async Task<Result> ProcessTransfer(List<int> custIds, bool isAllDayBalanceTransfer)

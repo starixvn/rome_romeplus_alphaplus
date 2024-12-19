@@ -19,6 +19,7 @@ class CommissionView {
             $ddlMaster.multiselect({
                 multiple: false,
                 maxHeight: 300,
+                nonSelectedText: $ddlAgent.data('label-nodata'),
                 onChange: ($option: JQuery) => {
                     $.blockUI();
                     const masterId = $option.val();
@@ -29,6 +30,9 @@ class CommissionView {
                         });
                         $ddlAgent.html(html.join(''));
                         $ddlAgent.multiselect('rebuild');
+                        agents && agents.length
+                            ? $ddlAgent.closest('.form-group').removeClass('commission-nodata')
+                            : $ddlAgent.closest('.form-group').addClass('commission-nodata');
                     }).always(() => $iconLoadingAgent.hide());
                     this.getMasterComm($ddlProduct.val(), masterId, $tblContainer);
                 }
@@ -38,6 +42,7 @@ class CommissionView {
             $ddlAgent.multiselect({
                 multiple: false,
                 maxHeight: 300,
+                nonSelectedText: $ddlAgent.data('label-nodata'),
                 onChange: ($option: JQuery) => {
                     $.blockUI();
                     const custId = $option.val();

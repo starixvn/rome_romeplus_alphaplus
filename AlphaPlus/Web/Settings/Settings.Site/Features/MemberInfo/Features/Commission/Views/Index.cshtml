@@ -20,16 +20,18 @@
     </div>
     @if (Model.Masters != null)
     {
-        <div class="form-group">
+        <div class="form-group @(Model.Masters.Any() ? string.Empty : "commission-nodata")">
             <label>@Resources.SelectMaster</label>
-            <select id="ddl-master" asp-items="Model.Masters"></select>
+            <select id="ddl-master" asp-items="Model.Masters"
+                data-label-nodata="@Resources.NoInformationIsAvailable"></select>
         </div>
     }
     @if (Model.Agents != null)
     {
-        <div class="form-group">
+        <div class="form-group @(Model.Agents.Any() ? string.Empty : "commission-nodata")">
             <label>@Resources.SelectAgent</label>
-            <select id="ddl-agent" asp-items="Model.Agents"></select>
+            <select id="ddl-agent" asp-items="Model.Agents"
+                data-label-nodata="@Resources.NoInformationIsAvailable"></select>
         </div>
         <div class="form-group">
             <span class="block-icon-small" id="icon-loadingAgent" style="display:none"></span>
