@@ -8,6 +8,7 @@
     .tblRpt {
         --tb-bg-col-league: #f3f5e0;
         --tb-bg-odd: #eae9ee;
+        --tb-bg-even: #fff;
         --tb-bg-live: #f9ceae;
         --tb-text-color-live: #ff0000;
         --tb-text-color-positive: #b50000;
@@ -23,6 +24,7 @@
     .tblRpt {
         --tb-bg-col-league: #56533c;
         --tb-bg-odd: #262829;
+        --tb-bg-even: #212223;
         --tb-bg-live: #4d2e18;
         --tb-text-color-live: #ff0000;
         --tb-text-color-positive: #e54748;
@@ -116,9 +118,15 @@ table * {
         }
     }
 
-    .odd {
-        background-color: var(--tb-bg-odd);
+    tbody{
+        tr{
+            background-color: var(--tb-bg-even);
+            &.odd {
+                background-color: var(--tb-bg-odd);
+            }
+        }
     }
+    
 
     .bg-live {
         background-color: var(--tb-bg-live);
