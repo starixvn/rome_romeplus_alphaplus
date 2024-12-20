@@ -13,7 +13,7 @@
 <div class="page-title">
     <span class="pull-left">@Resources.MemberCommission</span>
 </div>
-<form method="get" class="form-inline filter commission-filter" role="form" id="form-filter">
+<form method="get" class="form-inline filter" role="form" id="form-filter">
     <div class="form-group">
         <label>@Resources.Product</label>
         <select id="ddl-product" asp-items="Model.Products"></select>
@@ -22,16 +22,14 @@
     {
         <div class="form-group">
             <label>@Resources.SelectMaster</label>
-            <select id="ddl-master" asp-items="Model.Masters"
-                data-label-nodata="@Resources.NoInformationIsAvailable"></select>
+            <select id="ddl-master" asp-items="Model.Masters"></select>
         </div>
     }
     @if (Model.Agents != null)
     {
         <div class="form-group">
             <label>@Resources.SelectAgent</label>
-            <select id="ddl-agent" asp-items="Model.Agents"
-                data-label-nodata="@Resources.NoInformationIsAvailable"></select>
+            <select id="ddl-agent" asp-items="Model.Agents"></select>
         </div>
         <div class="form-group">
             <span class="block-icon-small" id="icon-loadingAgent" style="display:none"></span>
@@ -49,3 +47,4 @@
     <partial name="CommData" />
 </div>
 <input type="hidden" id="hidden-commissionUrl" value="@MicroSites.SettingUrl("~/commission")" />
+<input type="hidden" id="hidden-noInfoText" value="@Resources.NoInformationIsAvailable" />
