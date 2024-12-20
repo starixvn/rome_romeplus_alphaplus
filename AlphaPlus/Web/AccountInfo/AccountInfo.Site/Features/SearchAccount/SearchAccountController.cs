@@ -6,6 +6,7 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Transfer.Requests;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.Shared.AppResources.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,12 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 
         public Task<ActionResult> GetOnlineList(OnlineListQuery message) => Json(message);
 
-        public Task<ActionResult> GivenCredit(GivenCreditQuery message) => View(message);
+        public Task<ActionResult> GivenCredit(GivenCreditQuery message)
+        {
+            ViewBag.Title = $"{CommonResx.GivenCreditPopupTitle} - {message.SearchAccountName}";
+
+            return View(message);
+        }
 
         [HttpPost, ValidateAntiForgeryToken]
         public Task<ActionResult> UpdateGivenCredit([FromBody] GivenCreditCommand command) => Json(command);
@@ -34,7 +40,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         public Task<ActionResult> UpdateCustomerStatus([FromBody] CustomerNonProductStatusCommand command) => Json(command);
 
         public async Task<ActionResult> GetMemberBalanceInfo(MemberBalanceInfoQuery message)
-            => await View(message);
+        { 
+            ViewBag.Title = $"{CommonResx.BalanceInfo} - {message.CustName}";
+            return await View(message);
+        }
 
         [HttpPost, ValidateAntiForgeryToken]
         public Task<ActionResult> UpdateAllDayBalanceTransfer([FromBody] UpdateAllDayBalanceTransferRequest command)
