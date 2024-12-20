@@ -795,7 +795,6 @@ a {
 @media only screen and (max-device-width: 767px) and (orientation: portrait) {
     #icon-information {
         position: relative;
-   
     }
 
     .control.month-range-picker-element {
@@ -1095,11 +1094,6 @@ a {
         .date {
             width: 135px !important;
         }
-
-        .form-group {
-            vertical-align: top;
-        }
-
         .daterange-dropdown {
             display: inline-block;
             float: none;
