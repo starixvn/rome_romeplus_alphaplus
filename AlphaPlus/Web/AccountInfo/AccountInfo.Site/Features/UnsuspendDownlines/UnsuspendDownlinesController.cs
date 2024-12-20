@@ -8,6 +8,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines
 {
     public class UnsuspendDownlinesController : SiteBaseController
     {
+        private const string EditMultipleConfirmPath = "~/Features/UnsuspendDownlines/Views/EditMultipleConfirm.cshtml";
+        
         public UnsuspendDownlinesController(IMediator mediator)
             : base(mediator)
         {
@@ -31,6 +33,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines
 
         [HttpGet]
         public Task<ActionResult> MultipleSuspendConfirm(SuspendMultipleConfirmRequest message)
-            => View(message);
+            => View(message, EditMultipleConfirmPath);
     }
 }
