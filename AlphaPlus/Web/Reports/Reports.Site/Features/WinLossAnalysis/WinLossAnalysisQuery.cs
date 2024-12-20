@@ -21,5 +21,5 @@ public class WinLossAnalysisQuery : DefaultDateRangeQuery, IRequest<WinLossAnaly
 
     public int ReportTypeId { get; set; } = WinLossAnalysisConstants.Daily;
 
-    public bool IsSetDefaultStackMode => string.IsNullOrWhiteSpace(UserSelectedProductIds);
+    public bool IsSetDefaultStackMode => "*" == UserSelectedProductIds;
 }

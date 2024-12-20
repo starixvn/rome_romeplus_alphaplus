@@ -17,7 +17,7 @@ public class ProgressiveContributionQuery : DefaultDateRangeQuery, IRequest<Prog
 
     public bool IsStackMode { get; set; }
 
-    public bool IsSetDefaultStackMode => string.IsNullOrWhiteSpace(UserSelectedProductIds);
+    public bool IsSetDefaultStackMode => "*" == UserSelectedProductIds;
 
     public IList<int> EnableJackpotProductIds { get; }
 

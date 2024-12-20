@@ -16,7 +16,7 @@ public class MatchWinLossDetailQuery : BalanceUpDateRangeQuery, IRequest<MatchWi
 
     public bool IsStackMode { get; set; }
 
-    public bool IsSetDefaultStackMode => string.IsNullOrWhiteSpace(UserSelectedProductIds);
+    public bool IsSetDefaultStackMode => "*" == UserSelectedProductIds;
 
     public string LanguageKey { get; }
 }
