@@ -46,8 +46,6 @@ class ProgressiveContributionView extends BaseReport {
         ) {
             this.setStackMode();
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'progressivegamescontribution'));
-
-            this.hideFilter();
         }
 
         this.productComponent.render();

@@ -76,7 +76,6 @@ class MatchWinLossDetailView extends BaseReport {
         ) {
             this.setStackMode();
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'matchwinlossdetail'));
-            super.hideFilter();
         }
     }
 

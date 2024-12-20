@@ -42,8 +42,6 @@ class WinLossByProductView extends BaseReport {
             this.combineColumns(this.isAgentLevel);
             this.isFirstSwitchMode = false;
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winlossbyproduct'));
-
-            this.hideFilter();
         }
 
         this.productComponent.render();

@@ -47,7 +47,6 @@
             this.combineColumns();
             this.isFirstSwitchMode = false;
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'superwinlossdetailbypt'));
-            super.hideFilter();
         }
 
         this.productComponent.render();

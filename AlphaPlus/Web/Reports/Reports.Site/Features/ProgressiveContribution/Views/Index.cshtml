@@ -104,8 +104,6 @@
     </div>
     <input type="hidden" id="IsStackMode" name="IsStackMode" value="@Model.PageHeader.IsStackMode.ToString()" />
     <input type="hidden" asp-for="IsHistoricReport" />
-    <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
-        value="@Model.PageHeader.IsFilterVisible.ToString()" />
 </form>
 <table
     class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-progressive-contribution width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"

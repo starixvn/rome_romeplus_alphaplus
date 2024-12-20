@@ -24,7 +24,7 @@ public class SuperWinLossDetailByPTViewModel(
         Title: Resources.SuperWinLossDetailByPT,
         HasStackIcon: true,
         IsStackMode: message.IsStackMode,
-        IsFilterVisible: message.IsFilterVisible && !isMobileView);
+        IsFilterVisible: message.IsFilterVisible);
 
     public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 

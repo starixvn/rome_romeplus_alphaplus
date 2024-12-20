@@ -53,7 +53,6 @@ class WinLossAnalysisView extends BaseReport {
         ) {
             this.setStackMode();
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winlossanalysis'));
-            super.hideFilter();
         }
 
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: this.getSorterName() } });
