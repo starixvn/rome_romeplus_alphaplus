@@ -550,4 +550,10 @@
   <data name="Active" xml:space="preserve">
     <value>有効)</value>
   </data>
+  <data name="DontShowAgain" xml:space="preserve">
+    <value>再表示しない</value>
+  </data>
+  <data name="DormantAccountList" xml:space="preserve">
+    <value>休眠アカウントリスト</value>
+  </data>
 </root>

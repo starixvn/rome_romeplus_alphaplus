@@ -178,7 +178,7 @@
     <value>レーシングコミッション</value>
   </data>
   <data name="forecast" xml:space="preserve">
-    <value>予想 </value>
+    <value>予想</value>
   </data>
   <data name="homeDrawAwayNoBet" xml:space="preserve">
     <value>ホーム/引き分け/アウェイ ベットなし</value>

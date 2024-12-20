@@ -307,7 +307,7 @@
     <value>Action Date</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>内容</value>
   </data>
   <data name="NewBalance" xml:space="preserve">
     <value>新残高</value>
@@ -435,10 +435,10 @@
   <data name="Balance" xml:space="preserve">
     <value>残高</value>
   </data>
-  <data name="PendingTransfer3rd" xml:space="preserve">
+  <data name="PendingTransfer3rd_Duplicate[1]" xml:space="preserve">
     <value>第三者の保留中の振込</value>
   </data>
-  <data name="AutoTransferMonitoring" xml:space="preserve">
+  <data name="AutoTransferMonitoring_Duplicate[1]" xml:space="preserve">
     <value>自動振込モニタ</value>
   </data>
 </root>

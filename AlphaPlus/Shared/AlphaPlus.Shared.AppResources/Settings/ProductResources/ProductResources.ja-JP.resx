@@ -466,7 +466,7 @@
     <value>Parlay Max Payout</value>
   </data>
   <data name="ParlayMaxPayoutPopupHeaderText" xml:space="preserve">
-    <value>Edit &lt;username&gt;</value>
+    <value>編集 &lt;username&gt;</value>
   </data>
   <data name="ParlayMaxPayoutMultipleText" xml:space="preserve">
     <value>Edit Multiple Parlay Max Payout</value>

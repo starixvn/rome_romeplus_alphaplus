@@ -672,4 +672,7 @@
   <data name="CreatedDate" xml:space="preserve">
     <value>작성일</value>
   </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>주어진 크레딧</value>
+  </data>
 </root>

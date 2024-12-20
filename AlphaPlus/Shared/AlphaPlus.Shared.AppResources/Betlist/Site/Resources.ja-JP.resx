@@ -225,4 +225,7 @@
   <data name="ClickToUpdateBrowser" xml:space="preserve">
     <value>お使いのブラウザを更新するには、こちらをクリックしてください。</value>
   </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>予想</value>
+  </data>
 </root>

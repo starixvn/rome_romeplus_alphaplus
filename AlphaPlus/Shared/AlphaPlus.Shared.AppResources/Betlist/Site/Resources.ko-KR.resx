@@ -135,4 +135,10 @@
   <data name="BetsAndForecast" xml:space="preserve">
     <value>Bets &amp; Forecast</value>
   </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>예상</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>시작일</value>
+  </data>
 </root>

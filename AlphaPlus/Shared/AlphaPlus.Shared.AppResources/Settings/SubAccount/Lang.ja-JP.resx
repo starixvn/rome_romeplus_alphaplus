@@ -213,4 +213,7 @@ Notes: your password is cAsE sEnSiTiVe</value>
   <data name="BetsAndForecast" xml:space="preserve">
     <value>ベット＆予想</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
 </root>

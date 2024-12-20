@@ -794,4 +794,7 @@
   <data name="credit" xml:space="preserve">
     <value>เครดิต</value>
   </data>
+  <data name="firstName" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
 </root>

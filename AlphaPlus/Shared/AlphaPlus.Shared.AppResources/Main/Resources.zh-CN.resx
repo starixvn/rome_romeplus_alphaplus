@@ -766,4 +766,7 @@
   <data name="credit" xml:space="preserve">
     <value>信用额度</value>
   </data>
+  <data name="firstName" xml:space="preserve">
+    <value>名</value>
+  </data>
 </root>

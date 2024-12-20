@@ -346,7 +346,7 @@
     <value>Over/Under</value>
   </data>
   <data name="firstname" xml:space="preserve">
-    <value>First Name</value>
+    <value>名</value>
   </data>
   <data name="v10mpt_1" xml:space="preserve">
     <value>Handicap</value>
@@ -853,7 +853,7 @@
     <value>Handicap</value>
   </data>
   <data name="fname" xml:space="preserve">
-    <value>First name</value>
+    <value>名</value>
   </data>
   <data name="lname" xml:space="preserve">
     <value>Last name</value>
@@ -2783,5 +2783,8 @@
   </data>
   <data name="Commision" xml:space="preserve">
     <value>コミッション</value>
+  </data>
+  <data name="ExpirationDate" xml:space="preserve">
+    <value>期限日</value>
   </data>
 </root>

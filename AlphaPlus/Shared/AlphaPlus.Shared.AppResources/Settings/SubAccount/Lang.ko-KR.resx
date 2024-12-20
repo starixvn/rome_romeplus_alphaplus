@@ -212,4 +212,7 @@
   <data name="BetsAndForecast" xml:space="preserve">
     <value>Bets &amp; Forecast</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>수정하다</value>
+  </data>
 </root>

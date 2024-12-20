@@ -166,13 +166,13 @@
     <value>新增日期</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>修改</value>
   </data>
   <data name="EditAPIKey" xml:space="preserve">
     <value>Edit API Key</value>
   </data>
   <data name="ExpirationDate" xml:space="preserve">
-    <value>Expiration Date</value>
+    <value>截止日期</value>
   </data>
   <data name="Never" xml:space="preserve">
     <value>Never</value>

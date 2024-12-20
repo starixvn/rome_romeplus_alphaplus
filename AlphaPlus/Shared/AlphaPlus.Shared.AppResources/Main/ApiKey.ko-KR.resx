@@ -129,4 +129,7 @@
   <data name="CreatedDate" xml:space="preserve">
     <value>작성일</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>수정하다</value>
+  </data>
 </root>

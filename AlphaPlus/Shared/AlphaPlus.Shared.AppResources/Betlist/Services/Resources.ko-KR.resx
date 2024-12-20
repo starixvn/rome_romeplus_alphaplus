@@ -351,4 +351,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>취소</value>
   </data>
+  <data name="DoNotShowAgain" xml:space="preserve">
+    <value>이 페이지를 다시 표시하지않습니다.</value>
+  </data>
 </root>

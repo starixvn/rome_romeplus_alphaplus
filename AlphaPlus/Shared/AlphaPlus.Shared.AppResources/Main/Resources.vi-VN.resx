@@ -523,7 +523,7 @@
     <value>Yêu cầu</value>
   </data>
   <data name="firstName" xml:space="preserve">
-    <value>Họ</value>
+    <value>Tên</value>
   </data>
   <data name="lastName" xml:space="preserve">
     <value>Tên</value>

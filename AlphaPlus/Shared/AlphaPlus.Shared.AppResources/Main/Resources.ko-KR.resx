@@ -436,4 +436,10 @@
   <data name="credit" xml:space="preserve">
     <value>포인트</value>
   </data>
+  <data name="firstName" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="UMFrom" xml:space="preserve">
+    <value>시작일</value>
+  </data>
 </root>

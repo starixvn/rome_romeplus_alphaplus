@@ -166,7 +166,7 @@
     <value>Ngày tạo</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Sửa</value>
+    <value>Tùy chỉnh</value>
   </data>
   <data name="EditAPIKey" xml:space="preserve">
     <value>Sửa Khóa API</value>

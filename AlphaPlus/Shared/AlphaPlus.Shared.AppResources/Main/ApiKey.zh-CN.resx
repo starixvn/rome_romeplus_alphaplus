@@ -172,7 +172,7 @@
     <value>Edit API Key</value>
   </data>
   <data name="ExpirationDate" xml:space="preserve">
-    <value>Expiration Date</value>
+    <value>截止日期</value>
   </data>
   <data name="Never" xml:space="preserve">
     <value>Never</value>
