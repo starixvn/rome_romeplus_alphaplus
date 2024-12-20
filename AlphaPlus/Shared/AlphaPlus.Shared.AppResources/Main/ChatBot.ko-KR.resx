@@ -103,4 +103,7 @@
   <data name="FunctionAction" xml:space="preserve">
     <value>실행</value>
   </data>
+  <data name="AgentOutstanding" xml:space="preserve">
+    <value>에이전트 아웃스텐딩</value>
+  </data>
 </root>

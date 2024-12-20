@@ -1756,7 +1756,7 @@
     <value>Outright</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>All</value>
+    <value>모든</value>
   </data>
   <data name="TypeAUserName" xml:space="preserve">
     <value>Type a username</value>
@@ -1798,7 +1798,7 @@
     <value>상황</value>
   </data>
   <data name="admin" xml:space="preserve">
-    <value>Admin</value>
+    <value>관리자</value>
   </data>
   <data name="PlsInputUsername" xml:space="preserve">
     <value>Please input username to search</value>

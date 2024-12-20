@@ -126,4 +126,7 @@
   <data name="Submit" xml:space="preserve">
     <value>확인</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>모든</value>
+  </data>
 </root>

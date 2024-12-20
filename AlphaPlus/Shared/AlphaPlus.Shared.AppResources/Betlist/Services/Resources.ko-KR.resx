@@ -342,4 +342,7 @@
   <data name="Action" xml:space="preserve">
     <value>실행</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>모든</value>
+  </data>
 </root>

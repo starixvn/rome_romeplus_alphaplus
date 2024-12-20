@@ -1885,7 +1885,7 @@
     <value>Trạng thái</value>
   </data>
   <data name="admin" xml:space="preserve">
-    <value>Admin</value>
+    <value>Người quản trị</value>
   </data>
   <data name="PlsInputUsername" xml:space="preserve">
     <value>Vui lòng điền tên tài khoản cần tìm</value>

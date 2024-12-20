@@ -154,7 +154,7 @@
     <value>New bet types of Basketball with effect from 05/18/2017:</value>
   </data>
   <data name="CreditBalance" xml:space="preserve">
-    <value>貸付金額 / 残高</value>
+    <value>クレジット/残高</value>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>閉鎖</value>
@@ -543,5 +543,11 @@
   </data>
   <data name="Selected" xml:space="preserve">
     <value>選択済み</value>
+  </data>
+  <data name="pendingTransfer3rd" xml:space="preserve">
+    <value>第三者の保留中の振込</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>有効)</value>
   </data>
 </root>

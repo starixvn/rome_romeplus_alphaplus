@@ -210,4 +210,10 @@
   <data name="Turnover" xml:space="preserve">
     <value>賭金総額</value>
   </data>
+  <data name="HTSlashFT" xml:space="preserve">
+    <value>前半戦/フルタイム</value>
+  </data>
+  <data name="_1X2" xml:space="preserve">
+    <value>1X2</value>
+  </data>
 </root>

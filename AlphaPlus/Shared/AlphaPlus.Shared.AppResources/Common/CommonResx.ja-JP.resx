@@ -418,7 +418,7 @@
     <value>FIRST LOGIN QR CODE</value>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>3rd Party Pending Transfer</value>
+    <value>第三者の保留中の振込</value>
   </data>
   <data name="ClosedByArchive" xml:space="preserve">
     <value>This account was closed by inactivity.</value>

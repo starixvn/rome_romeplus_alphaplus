@@ -331,7 +331,7 @@
     <value>ページ</value>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
-    <value>3rd Party Pending Transfer</value>
+    <value>第三者の保留中の振込</value>
   </data>
   <data name="Phone" xml:space="preserve">
     <value>電話番号</value>

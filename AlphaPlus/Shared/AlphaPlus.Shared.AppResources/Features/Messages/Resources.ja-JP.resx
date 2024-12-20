@@ -136,7 +136,7 @@
     <value>Your upline has enabled Fishing World for your downlines. Please go to setting page to configure your own PT settings.</value>
   </data>
   <data name="announcement" xml:space="preserve">
-    <value>Announcement</value>
+    <value>通知</value>
   </data>
   <data name="from" xml:space="preserve">
     <value>から</value>
