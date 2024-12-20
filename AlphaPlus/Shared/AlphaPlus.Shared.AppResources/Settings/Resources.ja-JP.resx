@@ -432,4 +432,7 @@
   <data name="FirstName" xml:space="preserve">
     <value>名</value>
   </data>
+  <data name="LastName" xml:space="preserve">
+    <value>氏</value>
+  </data>
 </root>

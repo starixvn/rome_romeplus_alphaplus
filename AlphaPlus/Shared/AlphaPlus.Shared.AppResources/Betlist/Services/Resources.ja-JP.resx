@@ -462,4 +462,10 @@
   <data name="Back" xml:space="preserve">
     <value>戻る</value>
   </data>
+  <data name="LastBets" xml:space="preserve">
+    <value>最新のベット</value>
+  </data>
+  <data name="LastBetsMonitoring" xml:space="preserve">
+    <value>最後のベットの監視</value>
+  </data>
 </root>

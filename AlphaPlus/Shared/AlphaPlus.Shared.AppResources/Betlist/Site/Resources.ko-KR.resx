@@ -141,4 +141,10 @@
   <data name="From" xml:space="preserve">
     <value>시작일</value>
   </data>
+  <data name="HDPOULive" xml:space="preserve">
+    <value>핸디캡/초과 미만/생중계</value>
+  </data>
+  <data name="HTSlashFT" xml:space="preserve">
+    <value>전반전/풀타임</value>
+  </data>
 </root>

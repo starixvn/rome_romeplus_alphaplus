@@ -797,4 +797,10 @@
   <data name="firstName" xml:space="preserve">
     <value>ชื่อ</value>
   </data>
+  <data name="lastName" xml:space="preserve">
+    <value>นามสกุล</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>กำลังโหลด</value>
+  </data>
 </root>

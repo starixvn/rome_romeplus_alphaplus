@@ -508,10 +508,7 @@
     <value>IP</value>
   </data>
   <data name="IPMatching" xml:space="preserve">
-    <value>IP trùng lặp
-
-
-</value>
+    <value>IP trùng lặp</value>
   </data>
   <data name="IPMatchingNote" xml:space="preserve">
     <value>Báo cáo này được sử dụng để tham khảo. Dữ liệu có thể bị thay đổi trong quá trình tính toán.</value>

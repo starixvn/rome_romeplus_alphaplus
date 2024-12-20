@@ -148,7 +148,7 @@
     <value>送信</value>
   </data>
   <data name="highlights" xml:space="preserve">
-    <value>HIGHLIGHTS</value>
+    <value>ハイライト</value>
   </data>
   <data name="more" xml:space="preserve">
     <value>more</value>
@@ -157,7 +157,7 @@
     <value>System Update</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Loading</value>
+    <value>ロード中</value>
   </data>
   <data name="Page" xml:space="preserve">
     <value>ページ</value>
@@ -185,6 +185,15 @@
   </data>
   <data name="close" xml:space="preserve">
     <value>閉じる</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>フィードバック</value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>改善にご協力ください！</value>
+  </data>
+  <data name="FeedbackOnFunctionTitle" xml:space="preserve">
+    <value>{0} の改善にご協力ください。</value>
   </data>
   <data name="Feedback" xml:space="preserve">
     <value>フィードバック</value>

@@ -556,4 +556,7 @@
   <data name="DormantAccountList" xml:space="preserve">
     <value>休眠アカウントリスト</value>
   </data>
+  <data name="IndirectLoginAccount" xml:space="preserve">
+    <value>間接ログインアカウント</value>
+  </data>
 </root>

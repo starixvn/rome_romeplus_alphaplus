@@ -772,4 +772,10 @@
   <data name="firstName" xml:space="preserve">
     <value>名</value>
   </data>
+  <data name="lastName" xml:space="preserve">
+    <value>姓</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>載入中</value>
+  </data>
 </root>

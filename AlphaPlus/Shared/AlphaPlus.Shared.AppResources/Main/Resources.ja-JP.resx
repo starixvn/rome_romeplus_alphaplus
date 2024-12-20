@@ -576,7 +576,7 @@
     <value>名</value>
   </data>
   <data name="lastName" xml:space="preserve">
-    <value>姓</value>
+    <value>氏</value>
   </data>
   <data name="NoPermissionAccessPage" xml:space="preserve">
     <value>申し訳ありませんが、このページにアクセスする権限がありません。</value>

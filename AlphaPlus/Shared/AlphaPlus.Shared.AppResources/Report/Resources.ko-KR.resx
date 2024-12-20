@@ -675,4 +675,7 @@
   <data name="GivenCredit" xml:space="preserve">
     <value>주어진 크레딧</value>
   </data>
+  <data name="FirstLastName" xml:space="preserve">
+    <value>First/ Last Name</value>
+  </data>
 </root>

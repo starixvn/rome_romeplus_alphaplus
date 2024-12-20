@@ -228,4 +228,7 @@
   <data name="Forecast" xml:space="preserve">
     <value>予想</value>
   </data>
+  <data name="HDPOULive" xml:space="preserve">
+    <value>ハンディキャップ/オーバー・アンダー/ライブ</value>
+  </data>
 </root>

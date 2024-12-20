@@ -442,4 +442,13 @@
   <data name="UMFrom" xml:space="preserve">
     <value>시작일</value>
   </data>
+  <data name="lastName" xml:space="preserve">
+    <value>성</value>
+  </data>
+  <data name="LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>로딩중입니다.</value>
+  </data>
 </root>

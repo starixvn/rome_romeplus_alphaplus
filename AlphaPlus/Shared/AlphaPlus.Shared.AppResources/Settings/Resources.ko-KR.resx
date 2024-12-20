@@ -432,4 +432,7 @@
   <data name="FirstName" xml:space="preserve">
     <value>이름</value>
   </data>
+  <data name="LastName" xml:space="preserve">
+    <value>성</value>
+  </data>
 </root>
