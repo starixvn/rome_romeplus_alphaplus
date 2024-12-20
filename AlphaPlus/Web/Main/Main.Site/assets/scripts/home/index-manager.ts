@@ -126,7 +126,6 @@ var indexManager = {
                             location.origin.split(':')[0] +
                             '://' +
                             location.hostname +
-                            '/' +
                             alpha.urls.resultRootPath +
                             e.data.url,
                         success: function (data) {
