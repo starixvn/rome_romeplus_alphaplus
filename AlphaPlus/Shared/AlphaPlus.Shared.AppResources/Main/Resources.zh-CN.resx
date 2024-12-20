@@ -748,4 +748,16 @@
   <data name="ipv62" xml:space="preserve">
     <value> - IP 地址 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
   </data>
+  <data name="RewardPayable" xml:space="preserve">
+    <value>奖金支付</value>
+  </data>
+  <data name="RewardPayableTooltip" xml:space="preserve">
+    <value>您可以分配给下线的金额。</value>
+  </data>
+  <data name="RewardReceivable" xml:space="preserve">
+    <value>应收奖金</value>
+  </data>
+  <data name="RewardReceivableTooltip" xml:space="preserve">
+    <value>您可以从上线收到的金额。</value>
+  </data>
 </root>

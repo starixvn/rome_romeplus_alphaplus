@@ -792,4 +792,16 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
   <data name="ipv62" xml:space="preserve">
     <value>- Địa chỉ IP 1: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
   </data>
+  <data name="RewardPayable" xml:space="preserve">
+    <value>Tiền thưởng phải trả</value>
+  </data>
+  <data name="RewardPayableTooltip" xml:space="preserve">
+    <value>Số tiền bạn có thể phân phối cho các cấp dưới.</value>
+  </data>
+  <data name="RewardReceivable" xml:space="preserve">
+    <value>Tiền thưởng phải thu</value>
+  </data>
+  <data name="RewardReceivableTooltip" xml:space="preserve">
+    <value>Số tiền bạn có thể nhận từ cấp trên.</value>
+  </data>
 </root>

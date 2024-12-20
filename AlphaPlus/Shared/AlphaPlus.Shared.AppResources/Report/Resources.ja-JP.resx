@@ -769,7 +769,7 @@
     <value>プレイヤーコミッション</value>
   </data>
   <data name="ProgressiveGamesContribution" xml:space="preserve">
-    <value>プログレッシブゲームの貢献 </value>
+    <value>プログレッシブゲームの貢献</value>
   </data>
   <data name="BetType" xml:space="preserve">
     <value>ベットタイプ</value>
@@ -997,7 +997,7 @@
     <value>報告書に表示されている保有ポジションの値は、{0}の最大保有ポジションです。</value>
   </data>
   <data name="Reward" xml:space="preserve">
-    <value>報酬</value>
+    <value>賞金</value>
   </data>
   <data name="Completed" xml:space="preserve">
     <value>完了済み</value>
@@ -1117,7 +1117,7 @@
     <value>総コミッションの値は、小数点以下4桁への丸め処理のため、各レベルで異なる場合があります。</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>行動</value>
+    <value>アクション</value>
   </data>
   <data name="ActionDateTime" xml:space="preserve">
     <value>行動/日時</value>

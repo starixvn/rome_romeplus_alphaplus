@@ -142,7 +142,7 @@
     <value>เครดิต / บัญชีคงเหลือ</value>
   </data>
   <data name="customerlist" xml:space="preserve">
-    <value>รายชื่อดาวน์ไลน์</value>
+    <value>รายชื่อสมาชิก</value>
   </data>
   <data name="dailywinlossanalysisreport" xml:space="preserve">
     <value>การวิเคราะห์ ผลได้เสีย รายวัน</value>
@@ -160,7 +160,7 @@
     <value>ครึ่งแรก/เต็มเวลา</value>
   </data>
   <data name="lbl1x2" xml:space="preserve">
-    <value>อัตราต่อรอง</value>
+    <value>ราคาพูล</value>
   </data>
   <data name="agentList" xml:space="preserve">
     <value>รายชื่อเอเย่นต์</value>
@@ -431,6 +431,9 @@
   </data>
   <data name="SettlementReport" xml:space="preserve">
     <value>รายงานการชำระเงิน</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>การจ่ายเงินรางวัล</value>
   </data>
   <data name="JoinNovaCasinoNow" xml:space="preserve">
     <value>สมัครตัวแทน Nova Casino</value>

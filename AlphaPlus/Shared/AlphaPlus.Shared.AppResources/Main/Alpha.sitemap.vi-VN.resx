@@ -220,7 +220,7 @@
     <value>Tạo Member mới</value>
   </data>
   <data name="outRight" xml:space="preserve">
-    <value>Theo môn thể thao</value>
+    <value>Cược Thắng</value>
   </data>
   <data name="positionTaking" xml:space="preserve">
     <value>Position Taking (%)</value>
@@ -434,6 +434,9 @@
   </data>
   <data name="SettlementReport" xml:space="preserve">
     <value>Báo Cáo Quyết Toán</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>Thanh toán tiền thưởng</value>
   </data>
   <data name="JoinNovaCasinoNow" xml:space="preserve">
     <value>Đăng ký Đại lý Nova Casino</value>

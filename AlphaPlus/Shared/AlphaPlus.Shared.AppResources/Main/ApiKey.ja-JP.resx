@@ -117,13 +117,144 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>アクション</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="API" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="APIKey" xml:space="preserve">
+    <value>APIキー</value>
+  </data>
+  <data name="APIKeyManagement" xml:space="preserve">
+    <value>APIキー管理</value>
+  </data>
+  <data name="APIKeyName" xml:space="preserve">
+    <value>APIキー名 </value>
+  </data>
+  <data name="APIKeyNameCanNotContainSpecialCharacters" xml:space="preserve">
+    <value>APIキー名には特殊文字を含めることはできません。</value>
+  </data>
+  <data name="APIPassphrase" xml:space="preserve">
+    <value>APIパスフレーズ</value>
+  </data>
+  <data name="APIPassPhraseIsImportantForYouToUseLater" xml:space="preserve">
+    <value>APIパスフレーズは後で使用するために重要です。&lt;br/&gt;安全な場所に保管してください。</value>
+  </data>
+  <data name="APIPassPhraseMustBeBetweenCharacters" xml:space="preserve">
+    <value>APIパスフレーズは[7〜32]文字でなければなりません。</value>
+  </data>
+  <data name="APISecret" xml:space="preserve">
+    <value>API秘密鍵</value>
+  </data>
+  <data name="APISecretCanNotBeRetrieved" xml:space="preserve">
+    <value>API秘密鍵は一度しか表示されず、再取得することはできません。&lt;br/&gt;
+必ずメモを取り、安全な場所に保管してください。</value>
+  </data>
+  <data name="AreYouSureRevokeAPIKey" xml:space="preserve">
+    <value>このAPIキーを取り消してもよろしいですか？</value>
+  </data>
+  <data name="CantSelectTimeFromPast" xml:space="preserve">
+    <value>期限日は過去の日付に設定できません。</value>
+  </data>
+  <data name="CreateAPIKey" xml:space="preserve">
+    <value>新しいAPIキーを作成</value>
+  </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>作成日</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+  <data name="Edit" xml:space="preserve">
+    <value>編集</value>
   </data>
-  <data name="Action" xml:space="preserve">
-    <value>行動</value>
+  <data name="EditAPIKey" xml:space="preserve">
+    <value>編集APIキー</value>
+  </data>
+  <data name="ExpirationDate" xml:space="preserve">
+    <value>期限日</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>決して</value>
+  </data>
+  <data name="NoMoreThan50Characters" xml:space="preserve">
+    <value>API名は50文字以内でなければなりません！
+</value>
+  </data>
+  <data name="PleaseInputAPIKeyName" xml:space="preserve">
+    <value>APIキー名を入力してください</value>
+  </data>
+  <data name="PleaseInputPassPhrase" xml:space="preserve">
+    <value>APIパスフレーズを入力してください。</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>取り消す</value>
+  </data>
+  <data name="ScopesIsRequired" xml:space="preserve">
+    <value>スコープは必須です。</value>
+  </data>
+  <data name="ScopesSetThePermisson" xml:space="preserve">
+    <value>(スコープは、APIキーに付与される権限を設定します)</value>
+  </data>
+  <data name="Scope_1" xml:space="preserve">
+    <value>勝ち負けの詳細報告書</value>
+  </data>
+  <data name="Scope_2" xml:space="preserve">
+    <value>未払い報告書</value>
+  </data>
+  <data name="SelectScopes" xml:space="preserve">
+    <value>スコープを選択</value>
+  </data>
+  <data name="ThisActionCannotBeUndone" xml:space="preserve">
+    <value>この操作は戻せません。</value>
+  </data>
+  <data name="UpdateSuccessful" xml:space="preserve">
+    <value>更新に成功しました。</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>期限切れ</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存する </value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセルする</value>
+  </data>
+  <data name="LimitedChars" xml:space="preserve">
+    <value>7～32文字</value>
+  </data>
+  <data name="APIKey_Intro" xml:space="preserve">
+    <value>&lt;span&gt; Agency APIは、APIサービスを通じてレポートにアクセスする新しい方法を提供します。カスタマイズされたAPIキーを作成することで、特定のニーズに合わせたレポートを取得できます。詳細については、APIドキュメントをご参照ください。</value>
+  </data>
+  <data name="APIKey_KeyNameInfo" xml:space="preserve">
+    <value>APIキー名：管理を容易にするために、各APIキーを区別する一意の識別子です。</value>
+  </data>
+  <data name="APIKey_PassphraseInfo" xml:space="preserve">
+    <value>APIパスフレーズ：パスワードと同様に、安全に保管する必要があります。</value>
+  </data>
+  <data name="APIKey_ExpirationInfo" xml:space="preserve">
+    <value>有効期限：APIキーが使用できなくなる日付。</value>
+  </data>
+  <data name="APIKey_ScopesInfo" xml:space="preserve">
+    <value>スコープは、APIキーに紐づけられたレポートへのアクセス権限です。</value>
+  </data>
+  <data name="APIKey_SendInfo" xml:space="preserve">
+    <value>以下の情報とガイドラインをまとめて、開発チームに送付してください。</value>
+  </data>
+  <data name="ServiceURL" xml:space="preserve">
+    <value>サービスURL</value>
+  </data>
+  <data name="CreatedPreviousStep" xml:space="preserve">
+    <value>このフィールドは前のステップで作成されます。</value>
+  </data>
+  <data name="APIKey_PassphraseValidate" xml:space="preserve">
+    <value>APIパスフレーズには、空白、記号、および発音区別符号を含めることはできません。</value>
+  </data>
+  <data name="GetLinkHere" xml:space="preserve">
+    <value>ここからリンクを取得してください。</value>
+  </data>
+  <data name="Guideline" xml:space="preserve">
+    <value>ガイドライン</value>
   </data>
 </root>
