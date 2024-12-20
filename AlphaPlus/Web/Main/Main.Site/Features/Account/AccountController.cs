@@ -35,7 +35,7 @@ public class AccountController(
     {
         var domains = DomainsHelper.DomainMappings;
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
-        var loginResultMessage = string.IsNullOrWhiteSpace(r) ? string.Empty : $"?r={r}";
+        var loginResultMessage = $"?r={(string.IsNullOrWhiteSpace(r) ? Resources.SessionExpired : r)}";
 
         IActionResult result = userSession.IsIndirectLoggedIn || userSession.IsInternal || loginUrl == null || string.IsNullOrWhiteSpace(loginUrl.Before) ?
             new EmptyResult() : Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
@@ -106,7 +106,7 @@ public class AccountController(
         var requestInfo = await deviceHelper.GetRequestInfo();
         requestInfo.BrowserName = !string.IsNullOrWhiteSpace(param.BrowserSize) ?
             $"{requestInfo.BrowserName}, {param.BrowserSize}" : requestInfo.BrowserName;
-            
+
         var signInResult = await accountService.AfterSignIn(new SignInParam
         {
             CustId = param.CustId,
