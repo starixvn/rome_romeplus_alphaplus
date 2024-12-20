@@ -157,7 +157,7 @@
     <value>확인</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>Suspended</value>
+    <value>보류</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
     <value>{0} and their downlines have been suspended successfully.</value>

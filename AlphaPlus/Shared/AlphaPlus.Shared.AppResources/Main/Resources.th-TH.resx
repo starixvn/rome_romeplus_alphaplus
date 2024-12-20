@@ -806,4 +806,10 @@
   <data name="memberInfo" xml:space="preserve">
     <value>ข้อมูลสมาชิก</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>ลบ</value>
+  </data>
+  <data name="lblresetpassword" xml:space="preserve">
+    <value>แก้ไขรหัส</value>
+  </data>
 </root>

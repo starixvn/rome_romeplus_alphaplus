@@ -410,10 +410,10 @@
     <value>未完成交易</value>
   </data>
   <data name="PersonalMessage" xml:space="preserve">
-    <value>Personal Message</value>
+    <value>個人訊息</value>
   </data>
   <data name="ProblemAccount" xml:space="preserve">
-    <value>Problem Account</value>
+    <value>問題賬號</value>
   </data>
   <data name="Report" xml:space="preserve">
     <value>報告</value>

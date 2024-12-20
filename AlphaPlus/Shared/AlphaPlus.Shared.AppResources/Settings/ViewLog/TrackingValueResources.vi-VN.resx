@@ -3177,4 +3177,7 @@
   <data name="SystemId_8" xml:space="preserve">
     <value>Chatbot</value>
   </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>Position Taking</value>
+  </data>
 </root>

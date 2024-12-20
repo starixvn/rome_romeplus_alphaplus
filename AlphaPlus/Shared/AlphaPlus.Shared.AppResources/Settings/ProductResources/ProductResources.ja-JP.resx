@@ -229,7 +229,7 @@
     <value>Are you sure you want to change Suspend status for this customer?</value>
   </data>
   <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
-    <value>Suspended</value>
+    <value>サスペンド済み</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>作成日</value>
@@ -343,10 +343,10 @@
     <value>Reset Password</value>
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
-    <value>Reset Security Code</value>
+    <value>セキュリティコードをリセット</value>
   </data>
   <data name="Setting" xml:space="preserve">
-    <value>Setting</value>
+    <value>設定</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
     <value>Contact Info</value>
@@ -403,7 +403,7 @@
     <value>更新</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>正常に更新されました。</value>
   </data>
   <data name="UsedCredit" xml:space="preserve">
     <value>使用貸付金額</value>
@@ -463,7 +463,7 @@
 		<value>This account is indirectly closed by upline</value>
 	</data>
   <data name="ParlayMaxPayoutText" xml:space="preserve">
-    <value>Parlay Max Payout</value>
+    <value>パーレイ最大ペイアウト</value>
   </data>
   <data name="ParlayMaxPayoutPopupHeaderText" xml:space="preserve">
     <value>編集 &lt;username&gt;</value>

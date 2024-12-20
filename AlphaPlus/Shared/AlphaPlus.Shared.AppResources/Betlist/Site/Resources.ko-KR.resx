@@ -159,4 +159,16 @@
   <data name="Outright" xml:space="preserve">
     <value>순위,승자 등</value>
   </data>
+  <data name="Results" xml:space="preserve">
+    <value>결과 확인</value>
+  </data>
+  <data name="ScoreMap" xml:space="preserve">
+    <value>라이브스코어</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>축구</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>상황</value>
+  </data>
 </root>

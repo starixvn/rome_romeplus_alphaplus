@@ -1123,4 +1123,10 @@
   <data name="NumberGame" xml:space="preserve">
     <value>Number Game</value>
   </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>Position Taking</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Super</value>
+  </data>
 </root>

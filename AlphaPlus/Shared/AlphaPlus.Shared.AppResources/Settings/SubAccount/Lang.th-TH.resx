@@ -248,4 +248,7 @@
   <data name="lblPasswordDAccountName" xml:space="preserve">
     <value>รหัสผ่านต้องไม่ซ้ำกับชื่อบัญชีผู้ใช้ หรือ ชื่อเล่น</value>
   </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>รหัสรักษาความปลอดภัย</value>
+  </data>
 </root>

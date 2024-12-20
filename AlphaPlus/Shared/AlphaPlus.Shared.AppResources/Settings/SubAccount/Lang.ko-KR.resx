@@ -215,4 +215,13 @@
   <data name="Edit" xml:space="preserve">
     <value>수정하다</value>
   </data>
+  <data name="Reports" xml:space="preserve">
+    <value>리포트</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>Security Code</value>
+  </data>
 </root>

@@ -248,4 +248,7 @@
   <data name="lblPasswordDAccountName" xml:space="preserve">
     <value>您的密码不能包含您的用户名或昵称。</value>
   </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>保安码</value>
+  </data>
 </root>

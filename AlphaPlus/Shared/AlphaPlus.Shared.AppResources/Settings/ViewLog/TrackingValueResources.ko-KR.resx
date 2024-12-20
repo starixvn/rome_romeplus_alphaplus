@@ -484,7 +484,7 @@
     <value>Live 1st OU</value>
   </data>
   <data name="suspended" xml:space="preserve">
-    <value>Suspended</value>
+    <value>보류</value>
   </data>
   <data name="maxcredit" xml:space="preserve">
     <value>Max Credit</value>
@@ -535,7 +535,7 @@
     <value>Odds Type</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>비밀번호</value>
   </data>
   <data name="country" xml:space="preserve">
     <value>Country</value>
@@ -964,7 +964,7 @@
     <value>Sub Acc name</value>
   </data>
   <data name="subaccount" xml:space="preserve">
-    <value>Sub Account</value>
+    <value>보조계정</value>
   </data>
   <data name="discountcs" xml:space="preserve">
     <value>Other discount</value>
@@ -1834,7 +1834,7 @@
     <value>OtherSports</value>
   </data>
   <data name="soccer" xml:space="preserve">
-    <value>Soccer</value>
+    <value>축구</value>
   </data>
   <data name="Tennis" xml:space="preserve">
     <value>Tennis</value>
@@ -2756,5 +2756,23 @@
   </data>
   <data name="Commision" xml:space="preserve">
     <value>수수료</value>
+  </data>
+  <data name="ParlayMaxPayout" xml:space="preserve">
+    <value>Parlay Max Payout</value>
+  </data>
+  <data name="PositionTaking" xml:space="preserve">
+    <value>거래 조건</value>
+  </data>
+  <data name="Soccer2" xml:space="preserve">
+    <value>축구 (2)</value>
+  </data>
+  <data name="Soccer35" xml:space="preserve">
+    <value>축구 (3-5)</value>
+  </data>
+  <data name="SoccerSMP" xml:space="preserve">
+    <value>축구  (SMP)</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>기록</value>
   </data>
 </root>

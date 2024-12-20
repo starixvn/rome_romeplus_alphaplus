@@ -189,4 +189,10 @@
   <data name="_25" xml:space="preserve">
     <value>수수료</value>
   </data>
+  <data name="_27" xml:space="preserve">
+    <value>Parlay Max Payout</value>
+  </data>
+  <data name="_28" xml:space="preserve">
+    <value>거래 조건</value>
+  </data>
 </root>

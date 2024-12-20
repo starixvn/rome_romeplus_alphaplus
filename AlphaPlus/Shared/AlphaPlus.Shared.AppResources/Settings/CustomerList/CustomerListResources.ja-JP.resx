@@ -229,7 +229,7 @@
     <value>状態</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>Suspended</value>
+    <value>サスペンド済み</value>
   </data>
   <data name="ThereIsNoData" xml:space="preserve">
     <value>情報がありません</value>

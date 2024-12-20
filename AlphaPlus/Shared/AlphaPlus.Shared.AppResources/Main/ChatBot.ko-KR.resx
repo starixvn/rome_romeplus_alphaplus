@@ -121,4 +121,10 @@
   <data name="Outstanding" xml:space="preserve">
     <value>대기 포인트</value>
   </data>
+  <data name="PersonalMessage" xml:space="preserve">
+    <value>개인 메세지</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>리포트</value>
+  </data>
 </root>

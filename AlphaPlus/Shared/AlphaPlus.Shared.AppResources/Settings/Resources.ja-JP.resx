@@ -268,7 +268,7 @@
     <value>電話番号</value>
   </data>
   <data name="Setting" xml:space="preserve">
-    <value>Setting</value>
+    <value>設定</value>
   </data>
   <data name="Statement" xml:space="preserve">
     <value>ステートメント</value>
@@ -319,7 +319,7 @@
     <value>Double Comm</value>
   </data>
   <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
-    <value>Suspended</value>
+    <value>サスペンド済み</value>
   </data>
   <data name="EditInfoViewModelText" xml:space="preserve">
     <value>Info</value>
@@ -337,7 +337,7 @@
     <value>Reset Password</value>
   </data>
   <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
-    <value>Reset Security Code</value>
+    <value>セキュリティコードをリセット</value>
   </data>
   <data name="ShowContactInfo" xml:space="preserve">
     <value>Contact Info</value>
@@ -349,7 +349,7 @@
     <value>送金</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>正常に更新されました。</value>
   </data>
   <data name="GivenCreditPopupTitle" xml:space="preserve">
     <value>Update Given Credit</value>
@@ -437,5 +437,8 @@
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>新しい</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
   </data>
 </root>

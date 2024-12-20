@@ -154,7 +154,7 @@
     <value>パスワード</value>
   </data>
   <data name="subaccount" xml:space="preserve">
-    <value>Sub Account</value>
+    <value>サブアカウント</value>
   </data>
   <data name="submit" xml:space="preserve">
     <value>送信</value>
@@ -215,5 +215,14 @@ Notes: your password is cAsE sEnSiTiVe</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>編集</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>報告書</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>セキュリティコード</value>
   </data>
 </root>

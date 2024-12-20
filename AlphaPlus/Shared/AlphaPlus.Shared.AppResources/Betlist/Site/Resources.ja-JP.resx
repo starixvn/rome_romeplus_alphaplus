@@ -243,4 +243,10 @@
   <data name="Outright" xml:space="preserve">
     <value>勝者予想</value>
   </data>
+  <data name="ScoreMap" xml:space="preserve">
+    <value>スコアマップ</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>サッカー</value>
+  </data>
 </root>

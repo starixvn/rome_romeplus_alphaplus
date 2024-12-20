@@ -502,4 +502,7 @@
   <data name="MemberCommission" xml:space="preserve">
     <value>회원 수수료</value>
   </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>Successfully updated!</value>
+  </data>
 </root>

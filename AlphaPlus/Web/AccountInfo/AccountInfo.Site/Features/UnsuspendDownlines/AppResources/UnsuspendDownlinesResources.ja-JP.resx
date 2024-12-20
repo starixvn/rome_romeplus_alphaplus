@@ -157,7 +157,7 @@
     <value>確認</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>Suspended</value>
+    <value>サスペンド済み</value>
   </data>
   <data name="SuspendedSuccessfully" xml:space="preserve">
     <value>{0} and their downlines have been suspended successfully.</value>
@@ -181,7 +181,7 @@
     <value>List of downlines' status after &lt;username&gt; is unsuspended.</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Successfully updated!</value>
+    <value>正常に更新されました。</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>ユーザー名</value>

@@ -135,4 +135,7 @@
   <data name="CustomerSettings" xml:space="preserve">
     <value>회원설정</value>
   </data>
+  <data name="_ProductStatus" xml:space="preserve">
+    <value>Product Status</value>
+  </data>
 </root>

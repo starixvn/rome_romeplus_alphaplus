@@ -229,7 +229,7 @@
     <value>開設</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>Suspended</value>
+    <value>サスペンド済み</value>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>閉鎖</value>

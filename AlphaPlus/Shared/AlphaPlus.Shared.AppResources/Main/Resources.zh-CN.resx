@@ -778,4 +778,10 @@
   <data name="memberInfo" xml:space="preserve">
     <value>会员资讯</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="lblresetpassword" xml:space="preserve">
+    <value>修改密码</value>
+  </data>
 </root>

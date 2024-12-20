@@ -307,4 +307,10 @@ Please use the form below to change your password now.</value>
   <data name="SwitchLabelOn" xml:space="preserve">
     <value>On</value>
   </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>Security Code</value>
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value>다음</value>
+  </data>
 </root>

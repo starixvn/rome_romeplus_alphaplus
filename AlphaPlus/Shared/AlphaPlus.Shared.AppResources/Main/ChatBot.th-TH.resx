@@ -403,10 +403,10 @@
     <value>เดิมพันที่ยังไม่สิ้นสุด</value>
   </data>
   <data name="PersonalMessage" xml:space="preserve">
-    <value>Personal Message</value>
+    <value>ข้อความส่วนตัว</value>
   </data>
   <data name="ProblemAccount" xml:space="preserve">
-    <value>Problem Account</value>
+    <value>บัญชีที่มีปัญหา</value>
   </data>
   <data name="Report" xml:space="preserve">
     <value>รายงาน</value>

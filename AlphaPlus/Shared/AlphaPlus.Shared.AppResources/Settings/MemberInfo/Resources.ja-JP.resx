@@ -214,7 +214,7 @@
     <value>無効</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>Suspended</value>
+    <value>サスペンド済み</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
@@ -343,7 +343,7 @@
     <value>Parlay Max Payout: {0}</value>
   </data>
   <data name="ParlayMaxPayoutMultipleSubText" xml:space="preserve">
-    <value>Parlay Max Payout</value>
+    <value>パーレイ最大ペイアウト</value>
   </data>
   <data name="SingleMatchParlay" xml:space="preserve">
     <value>Single Match Parlay</value>
@@ -573,5 +573,23 @@
   </data>
   <data name="QuickIntro_Title_NotNow" xml:space="preserve">
     <value>今は違います</value>
+  </data>
+  <data name="PTTemplate" xml:space="preserve">
+    <value>保有ポジションテンプレート</value>
+  </data>
+  <data name="ProblemAccountList" xml:space="preserve">
+    <value>問題アカウントリスト</value>
+  </data>
+  <data name="ProblemAccount" xml:space="preserve">
+    <value>問題のあるアカウント</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存する </value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>パスワードを表示</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>正常に更新されました。</value>
   </data>
 </root>

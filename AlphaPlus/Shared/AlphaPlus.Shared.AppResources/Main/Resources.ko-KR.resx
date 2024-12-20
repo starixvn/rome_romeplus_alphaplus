@@ -457,4 +457,10 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="lblresetpassword" xml:space="preserve">
+    <value>비밀번호 재설정</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>Successfully updated!</value>
+  </data>
 </root>

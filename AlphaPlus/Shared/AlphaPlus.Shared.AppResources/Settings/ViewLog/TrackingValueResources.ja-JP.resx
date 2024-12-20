@@ -484,7 +484,7 @@
     <value>Live 1st OU</value>
   </data>
   <data name="suspended" xml:space="preserve">
-    <value>Suspended</value>
+    <value>サスペンド済み</value>
   </data>
   <data name="maxcredit" xml:space="preserve">
     <value>Max Credit</value>
@@ -535,7 +535,7 @@
     <value>Odds Type</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>パスワード</value>
   </data>
   <data name="country" xml:space="preserve">
     <value>Country</value>
@@ -964,7 +964,7 @@
     <value>Sub Acc name</value>
   </data>
   <data name="subaccount" xml:space="preserve">
-    <value>Sub Account</value>
+    <value>サブアカウント</value>
   </data>
   <data name="discountcs" xml:space="preserve">
     <value>Other discount</value>
@@ -1834,7 +1834,7 @@
     <value>OtherSports</value>
   </data>
   <data name="soccer" xml:space="preserve">
-    <value>Soccer</value>
+    <value>サッカー</value>
   </data>
   <data name="Tennis" xml:space="preserve">
     <value>Tennis</value>
@@ -2798,5 +2798,32 @@
   </data>
   <data name="APIKeyScope_2" xml:space="preserve">
     <value>未払い報告書</value>
+  </data>
+  <data name="ParlayMaxPayout" xml:space="preserve">
+    <value>パーレイ最大ペイアウト</value>
+  </data>
+  <data name="PersonalMessage" xml:space="preserve">
+    <value>個人メッセージ</value>
+  </data>
+  <data name="PositionTakingTemplate" xml:space="preserve">
+    <value>保有ポジションテンプレート</value>
+  </data>
+  <data name="ProblemAccount" xml:space="preserve">
+    <value>問題のあるアカウント</value>
+  </data>
+  <data name="Soccer35" xml:space="preserve">
+    <value>サッカー (3-5)</value>
+  </data>
+  <data name="Soccer2" xml:space="preserve">
+    <value>サッカー (2)</value>
+  </data>
+  <data name="SoccerSMP" xml:space="preserve">
+    <value>サッカー (SMP)</value>
+  </data>
+  <data name="SpecialAnnouncement" xml:space="preserve">
+    <value>通常告知</value>
+  </data>
+  <data name="SystemAnnouncement" xml:space="preserve">
+    <value>システムからのお知らせ</value>
   </data>
 </root>

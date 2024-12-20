@@ -138,4 +138,7 @@
   <data name="CustomerSettings" xml:space="preserve">
     <value>顧客設定</value>
   </data>
+  <data name="_ProductStatus" xml:space="preserve">
+    <value>製品ステータス</value>
+  </data>
 </root>

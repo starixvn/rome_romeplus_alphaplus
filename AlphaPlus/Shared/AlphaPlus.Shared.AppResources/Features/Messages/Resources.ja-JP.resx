@@ -207,4 +207,19 @@
   <data name="normalAnnouncement" xml:space="preserve">
     <value>特別告知</value>
   </data>
+  <data name="personalMessage" xml:space="preserve">
+    <value>個人メッセージ</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>特別</value>
+  </data>
+  <data name="specialAnnouncement" xml:space="preserve">
+    <value>通常告知</value>
+  </data>
+  <data name="systemAnnouncement" xml:space="preserve">
+    <value>システムからのお知らせ</value>
+  </data>
+  <data name="system" xml:space="preserve">
+    <value>システム</value>
+  </data>
 </root>
