@@ -64,7 +64,7 @@
     }
 
     thead th, tbody td, tfoot td {
-        height: $height-normal;
+        min-height: $height-normal;
         padding: 4px 8px;
         white-space: nowrap;
         vertical-align: middle;
