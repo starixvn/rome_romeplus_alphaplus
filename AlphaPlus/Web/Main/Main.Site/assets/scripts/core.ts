@@ -76,7 +76,7 @@ var alpha = {
         },
 
         signOut: function (errMsg = null) {
-            errMsg = errMsg;
+            errMsg = errMsg || 'SessionExpired';
             var index: any = window;
             while (index != index.parent) {
                 index = index.parent;
