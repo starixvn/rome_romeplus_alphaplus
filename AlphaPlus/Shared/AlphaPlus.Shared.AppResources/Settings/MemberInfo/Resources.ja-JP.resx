@@ -172,7 +172,7 @@
     <value>送信</value>
   </data>
   <data name="Credit" xml:space="preserve">
-    <value>貸付金額</value>
+    <value>クレジット</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>名</value>
@@ -244,7 +244,7 @@
     <value>Auto Daily Reset Limit</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>キャンセルする</value>
   </data>
   <data name="Nickname" xml:space="preserve">
     <value>ニックネーム</value>
@@ -391,7 +391,7 @@
     <value>Edit Multiple Setting</value>
   </data>
   <data name="Betsetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>ベット設定</value>
   </data>
   <data name="MaxPayoutSetting" xml:space="preserve">
     <value>Max Payout Setting</value>

@@ -303,4 +303,7 @@
   <data name="PageAccess_D" xml:space="preserve">
     <value>Bets &amp; Forecast</value>
   </data>
+  <data name="Credit" xml:space="preserve">
+    <value>포인트</value>
+  </data>
 </root>

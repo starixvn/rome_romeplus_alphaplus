@@ -127,7 +127,7 @@
     <value>すべて</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>戻る</value>
   </data>
   <data name="Displaying" xml:space="preserve">
     <value>Displaying</value>
@@ -256,7 +256,7 @@
     <value>{0} have been successfully unsuspended.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>キャンセルする</value>
   </data>
   <data name="SelectedAccounts" xml:space="preserve">
     <value>Selected account(s):</value>

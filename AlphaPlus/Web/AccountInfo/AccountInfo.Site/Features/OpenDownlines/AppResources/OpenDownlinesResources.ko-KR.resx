@@ -157,7 +157,7 @@
     <value>Username</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>뒤</value>
   </data>
   <data name="Displaying" xml:space="preserve">
     <value>Displaying</value>
@@ -190,7 +190,7 @@
     <value>데이터가 없습니다.</value>
   </data>
   <data name="Closed" xml:space="preserve">
-		<value>Closed</value>
+		<value>중지</value>
 	</data>
   <data name="CloseStatus" xml:space="preserve">
 		<value>Closed Status</value>

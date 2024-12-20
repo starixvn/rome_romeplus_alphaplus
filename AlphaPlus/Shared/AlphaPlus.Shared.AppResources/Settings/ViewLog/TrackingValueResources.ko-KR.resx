@@ -1324,7 +1324,7 @@
     <value>Handicap</value>
   </data>
   <data name="currency" xml:space="preserve">
-    <value>Currency</value>
+    <value>화페</value>
   </data>
   <data name="danger" xml:space="preserve">
     <value>Danger</value>
@@ -1456,7 +1456,7 @@
     <value>is Update Downline</value>
   </data>
   <data name="closed" xml:space="preserve">
-    <value>Closed</value>
+    <value>중지</value>
   </data>
   <data name="isa_slivept_8" xml:space="preserve">
     <value>Live 1st OU</value>
@@ -1471,7 +1471,7 @@
     <value>Live Hdp</value>
   </data>
   <data name="credit" xml:space="preserve">
-    <value>Credit</value>
+    <value>포인트</value>
   </data>
   <data name="maxv99pt_1" xml:space="preserve">
     <value>Max Hdp</value>
@@ -1768,7 +1768,7 @@
     <value>실행</value>
   </data>
   <data name="creditlog" xml:space="preserve">
-    <value>Credit</value>
+    <value>포인트</value>
   </data>
   <data name="defaultlog" xml:space="preserve">
     <value>회원설정</value>
@@ -2750,5 +2750,11 @@
   </data>
   <data name="Unlimited" xml:space="preserve">
     <value>무제한</value>
+  </data>
+  <data name="BetLists" xml:space="preserve">
+    <value>배팅 리스트</value>
+  </data>
+  <data name="Commision" xml:space="preserve">
+    <value>수수료</value>
   </data>
 </root>

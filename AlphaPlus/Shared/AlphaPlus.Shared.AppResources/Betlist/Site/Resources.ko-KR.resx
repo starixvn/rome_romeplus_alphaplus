@@ -129,4 +129,10 @@
   <data name="All" xml:space="preserve">
     <value>모든</value>
   </data>
+  <data name="Balance" xml:space="preserve">
+    <value>잔액</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>Bets &amp; Forecast</value>
+  </data>
 </root>

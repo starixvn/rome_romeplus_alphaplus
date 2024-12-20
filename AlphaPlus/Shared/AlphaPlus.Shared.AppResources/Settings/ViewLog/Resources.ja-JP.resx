@@ -193,7 +193,7 @@
     <value>ベットリスト</value>
   </data>
   <data name="PageAccess_D" xml:space="preserve">
-    <value>Bets &amp; Forecast</value>
+    <value>ベット＆予想</value>
   </data>
   <data name="October" xml:space="preserve">
     <value>10月</value>
@@ -248,5 +248,8 @@
   </data>
   <data name="Action" xml:space="preserve">
     <value>アクション</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>クレジット</value>
   </data>
 </root>

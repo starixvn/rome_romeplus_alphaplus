@@ -427,7 +427,7 @@
     <value>새로운</value>
   </data>
   <data name="Betsetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>배팅 설정</value>
   </data>
   <data name="MaxPayoutSetting" xml:space="preserve">
     <value>Max Payout Setting</value>
@@ -495,5 +495,8 @@
   </data>
   <data name="NetTurnover" xml:space="preserve">
     <value>순매출</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>작성일</value>
   </data>
 </root>

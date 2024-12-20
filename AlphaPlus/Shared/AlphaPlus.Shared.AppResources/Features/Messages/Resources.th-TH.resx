@@ -325,4 +325,7 @@
   <data name="CopyAll" xml:space="preserve">
     <value>คัดลอกทั้งหมด</value>
   </data>
+  <data name="close" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
 </root>

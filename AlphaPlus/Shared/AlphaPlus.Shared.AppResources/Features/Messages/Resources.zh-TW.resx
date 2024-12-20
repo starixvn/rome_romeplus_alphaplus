@@ -325,4 +325,7 @@
   <data name="CopyAll" xml:space="preserve">
     <value>複制全部</value>
   </data>
+  <data name="close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
 </root>

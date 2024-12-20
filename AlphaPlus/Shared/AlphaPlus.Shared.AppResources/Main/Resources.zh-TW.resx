@@ -760,4 +760,13 @@
   <data name="RewardReceivableTooltip" xml:space="preserve">
     <value>您可以從上線收到的金額。</value>
   </data>
+  <data name="lblBack" xml:space="preserve">
+    <value>退回</value>
+  </data>
+  <data name="lblChangePassword" xml:space="preserve">
+    <value>更改密碼</value>
+  </data>
+  <data name="credit" xml:space="preserve">
+    <value>信用額度</value>
+  </data>
 </root>

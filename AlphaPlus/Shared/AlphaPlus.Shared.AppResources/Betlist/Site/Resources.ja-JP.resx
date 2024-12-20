@@ -216,4 +216,13 @@
   <data name="_1X2" xml:space="preserve">
     <value>1X2</value>
   </data>
+  <data name="Balance" xml:space="preserve">
+    <value>残高</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>ベット＆予想</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>お使いのブラウザを更新するには、こちらをクリックしてください。</value>
+  </data>
 </root>

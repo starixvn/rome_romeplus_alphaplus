@@ -345,4 +345,10 @@
   <data name="All" xml:space="preserve">
     <value>모든</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>뒤</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
 </root>

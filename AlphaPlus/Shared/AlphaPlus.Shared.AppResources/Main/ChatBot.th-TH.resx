@@ -355,7 +355,7 @@
     <value>ตัวอย่างการกระทำ</value>
   </data>
   <data name="BalanceInfo" xml:space="preserve">
-    <value>Balance Info</value>
+    <value>ข้อมูลยอดเงินคงเหลือ</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>รายละเอียด</value>

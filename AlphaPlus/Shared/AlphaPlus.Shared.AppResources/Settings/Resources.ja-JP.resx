@@ -130,7 +130,7 @@
     <value>エージェント未払い</value>
   </data>
   <data name="BalanceInfo" xml:space="preserve">
-    <value>Balance Info</value>
+    <value>残高情報</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>ベット与信</value>
@@ -139,10 +139,10 @@
     <value>ベットリスト</value>
   </data>
   <data name="BetSettingViewModelText" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>ベット設定</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>キャンセルする</value>
   </data>
   <data name="CommissionViewModelText" xml:space="preserve">
     <value>コミッション</value>

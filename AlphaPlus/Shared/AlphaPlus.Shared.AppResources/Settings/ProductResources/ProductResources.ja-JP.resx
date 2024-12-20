@@ -142,7 +142,7 @@
     <value>戻る</value>
   </data>
   <data name="BalanceInfo" xml:space="preserve">
-    <value>Balance Info</value>
+    <value>残高情報</value>
   </data>
   <data name="BetCredit" xml:space="preserve">
     <value>ベット与信</value>
@@ -151,10 +151,10 @@
     <value>ベットリスト</value>
   </data>
   <data name="BetSettingViewModelText" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>ベット設定</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>キャンセルする</value>
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>This account was closed by admin.</value>

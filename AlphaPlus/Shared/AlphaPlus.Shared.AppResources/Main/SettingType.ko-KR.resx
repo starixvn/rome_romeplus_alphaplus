@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="_0" xml:space="preserve">
-    <value>Customer Settings</value>
+    <value>회원설정</value>
   </data>
   <data name="_1" xml:space="preserve">
     <value>거래 조건</value>
@@ -179,5 +179,14 @@
   </data>
   <data name="_9" xml:space="preserve">
     <value>배팅 설정</value>
+  </data>
+  <data name="_26" xml:space="preserve">
+    <value>배팅 설정</value>
+  </data>
+  <data name="_23" xml:space="preserve">
+    <value>배팅 설정</value>
+  </data>
+  <data name="_25" xml:space="preserve">
+    <value>수수료</value>
   </data>
 </root>

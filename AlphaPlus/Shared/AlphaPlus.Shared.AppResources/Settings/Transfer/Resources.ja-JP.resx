@@ -358,7 +358,7 @@
     <value>First/ Last Name</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>キャンセルする</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -425,6 +425,15 @@
   </data>
   <data name="Selected" xml:space="preserve">
     <value>選択済み</value>
+  </data>
+  <data name="PendingTransfer3rd" xml:space="preserve">
+    <value>第三者の保留中の振込</value>
+  </data>
+  <data name="AutoTransferMonitoring" xml:space="preserve">
+    <value>自動振込モニタ</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>残高</value>
   </data>
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>第三者の保留中の振込</value>

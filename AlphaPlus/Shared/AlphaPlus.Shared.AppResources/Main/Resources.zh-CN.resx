@@ -760,4 +760,10 @@
   <data name="RewardReceivableTooltip" xml:space="preserve">
     <value>您可以从上线收到的金额。</value>
   </data>
+  <data name="lblBack" xml:space="preserve">
+    <value>退回</value>
+  </data>
+  <data name="credit" xml:space="preserve">
+    <value>信用额度</value>
+  </data>
 </root>

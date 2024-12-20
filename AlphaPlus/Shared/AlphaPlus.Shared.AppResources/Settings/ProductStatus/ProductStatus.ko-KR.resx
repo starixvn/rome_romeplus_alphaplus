@@ -132,4 +132,7 @@
   <data name="StatusUpdatedSuccessfully" xml:space="preserve">
     <value>상태가 성공적으로 업데이트되었습니다.</value>
   </data>
+  <data name="CustomerSettings" xml:space="preserve">
+    <value>회원설정</value>
+  </data>
 </root>

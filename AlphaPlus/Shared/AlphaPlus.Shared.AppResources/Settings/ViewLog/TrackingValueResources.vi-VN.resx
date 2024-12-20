@@ -3174,4 +3174,7 @@
   <data name="IsApplied" xml:space="preserve">
     <value>Được thực hiện</value>
   </data>
+  <data name="SystemId_8" xml:space="preserve">
+    <value>Chatbot</value>
+  </data>
 </root>

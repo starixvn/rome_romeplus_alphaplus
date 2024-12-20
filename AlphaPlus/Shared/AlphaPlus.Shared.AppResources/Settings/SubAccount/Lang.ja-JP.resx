@@ -210,4 +210,7 @@ Notes: your password is cAsE sEnSiTiVe</value>
   <data name="UsernameIsNotAvailableError" xml:space="preserve">
     <value>ID確認できません。</value>
   </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>ベット＆予想</value>
+  </data>
 </root>

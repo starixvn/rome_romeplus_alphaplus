@@ -498,7 +498,7 @@
     <value>戻る</value>
   </data>
   <data name="lblChangePassword" xml:space="preserve">
-    <value>パスワード変更</value>
+    <value>パスワードを変更</value>
   </data>
   <data name="lblresetpassword" xml:space="preserve">
     <value>パスワードをリセット</value>
@@ -510,7 +510,7 @@
     <value>勝ち負け</value>
   </data>
   <data name="credit" xml:space="preserve">
-    <value>与信</value>
+    <value>クレジット</value>
   </data>
   <data name="memberInfo" xml:space="preserve">
     <value>メンバー情報</value>

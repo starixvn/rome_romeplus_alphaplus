@@ -59,10 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root"
-    xmlns=""
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -1048,7 +1045,7 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
     <value>Trang {0} </value>
   </data>
   <data name="Betsetting" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>Giới hạn cược</value>
   </data>
   <data name="MaxPayoutSetting" xml:space="preserve">
     <value>Max Payout Setting</value>

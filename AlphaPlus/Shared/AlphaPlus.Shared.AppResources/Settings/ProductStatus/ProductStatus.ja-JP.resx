@@ -135,4 +135,7 @@
   <data name="AllProducts" xml:space="preserve">
     <value>すべての製品</value>
   </data>
+  <data name="CustomerSettings" xml:space="preserve">
+    <value>顧客設定</value>
+  </data>
 </root>

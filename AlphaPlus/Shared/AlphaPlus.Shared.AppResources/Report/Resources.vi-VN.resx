@@ -229,7 +229,7 @@
     <value>Bạn có thể tra cứu dữ liệu báo cáo từ ngày {0}.</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy</value>
   </data>
   <data name="Cancelled" xml:space="preserve">
     <value>Cancelled</value>
@@ -310,7 +310,7 @@
     <value>Sao chép</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
-    <value>Created Date</value>
+    <value>Ngày tạo</value>
   </data>
   <data name="CreatedFrom" xml:space="preserve">
     <value>Created From</value>

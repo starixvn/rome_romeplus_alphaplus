@@ -427,4 +427,13 @@
   <data name="PendingTransfer3rd" xml:space="preserve">
     <value>3rd Party Pending Transfer</value>
   </data>
+  <data name="lblBack" xml:space="preserve">
+    <value>뒤</value>
+  </data>
+  <data name="lblChangePassword" xml:space="preserve">
+    <value>비밀번호 바꾸기</value>
+  </data>
+  <data name="credit" xml:space="preserve">
+    <value>포인트</value>
+  </data>
 </root>

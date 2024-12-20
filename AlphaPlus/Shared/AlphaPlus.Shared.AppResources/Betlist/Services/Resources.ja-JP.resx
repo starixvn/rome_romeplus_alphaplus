@@ -382,7 +382,7 @@
     <value>却下</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>取消</value>
+    <value>キャンセルする</value>
   </data>
   <data name="RefNo" xml:space="preserve">
     <value>受付番号</value>
@@ -458,5 +458,8 @@
   </data>
   <data name="Selected" xml:space="preserve">
     <value>選択済み</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>戻る</value>
   </data>
 </root>

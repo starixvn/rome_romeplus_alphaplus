@@ -106,4 +106,7 @@
   <data name="AgentOutstanding" xml:space="preserve">
     <value>에이전트 아웃스텐딩</value>
   </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>잔액정보</value>
+  </data>
 </root>

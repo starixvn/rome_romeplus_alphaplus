@@ -154,7 +154,7 @@
     <value>배팅 설정</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>キャンセル</value>
+    <value>취소</value>
   </data>
   <data name="ClosedByAdmin" xml:space="preserve">
     <value>This account was closed by admin.</value>

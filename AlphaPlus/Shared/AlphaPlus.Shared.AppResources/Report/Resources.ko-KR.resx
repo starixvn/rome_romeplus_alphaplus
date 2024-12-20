@@ -190,7 +190,7 @@
     <value>You can view the report data from {0}. </value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>취소</value>
   </data>
   <data name="CasinoWinLoss" xml:space="preserve">
     <value>카지노 승리/패배</value>
@@ -662,5 +662,14 @@
   </data>
   <data name="Action" xml:space="preserve">
     <value>실행</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="Consolidation" xml:space="preserve">
+    <value>Consolidation</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>작성일</value>
   </data>
 </root>

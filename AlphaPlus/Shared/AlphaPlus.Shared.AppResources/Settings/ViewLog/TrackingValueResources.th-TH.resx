@@ -2023,7 +2023,7 @@
     <value>เครดิต</value>
   </data>
   <data name="defaultlog" xml:space="preserve">
-    <value>ตั้งค่าสมาชิก</value>
+    <value>การตั้งค่าของลูกค้า</value>
   </data>
   <data name="editby" xml:space="preserve">
     <value>แก้ไขโดย</value>

@@ -1456,7 +1456,7 @@
     <value>is Update Downline</value>
   </data>
   <data name="closed" xml:space="preserve">
-    <value>Closed</value>
+    <value>閉鎖</value>
   </data>
   <data name="isa_slivept_8" xml:space="preserve">
     <value>Live 1st OU</value>
@@ -1471,7 +1471,7 @@
     <value>Live Hdp</value>
   </data>
   <data name="credit" xml:space="preserve">
-    <value>Credit</value>
+    <value>クレジット</value>
   </data>
   <data name="maxv99pt_1" xml:space="preserve">
     <value>Max Hdp</value>
@@ -1768,10 +1768,10 @@
     <value>アクション</value>
   </data>
   <data name="creditlog" xml:space="preserve">
-    <value>Credit</value>
+    <value>クレジット</value>
   </data>
   <data name="defaultlog" xml:space="preserve">
-    <value>Customer Setting</value>
+    <value>顧客設定</value>
   </data>
   <data name="editby" xml:space="preserve">
     <value>Edit By</value>
@@ -2771,5 +2771,17 @@
   </data>
   <data name="APIKeyName" xml:space="preserve">
     <value>APIキー名 </value>
+  </data>
+  <data name="BalanceInfo" xml:space="preserve">
+    <value>残高情報</value>
+  </data>
+  <data name="ChatId" xml:space="preserve">
+    <value>チャットID</value>
+  </data>
+  <data name="SystemId_8" xml:space="preserve">
+    <value>チャットボット</value>
+  </data>
+  <data name="Commision" xml:space="preserve">
+    <value>コミッション</value>
   </data>
 </root>

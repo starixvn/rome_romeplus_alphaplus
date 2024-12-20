@@ -402,4 +402,7 @@
   <data name="ClearCreditStep_Master_Agent" xml:space="preserve">
     <value>에이전트{0}</value>
   </data>
+  <data name="Balance" xml:space="preserve">
+    <value>잔액</value>
+  </data>
 </root>

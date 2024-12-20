@@ -441,4 +441,7 @@
   <data name="SigninToNovaCasino" xml:space="preserve">
     <value>登录 Nova Casino</value>
   </data>
+  <data name="customerSetting" xml:space="preserve">
+    <value>客户设定</value>
+  </data>
 </root>

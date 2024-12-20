@@ -123,4 +123,10 @@
   <data name="All" xml:space="preserve">
     <value>모든</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>작성일</value>
+  </data>
 </root>
