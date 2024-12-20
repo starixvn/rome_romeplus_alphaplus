@@ -74,12 +74,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/bundles/results/kenolotterytablegame-result.js",
-    "inputFiles": [
-      "assets/scripts/results/kenolotterytablegame-result.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/bundles/results/thirdparty-result.css",
     "inputFiles": [
       "assets/styles/results/thirdparty-result.css"
