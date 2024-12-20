@@ -225,7 +225,7 @@
     <value>7～32文字</value>
   </data>
   <data name="APIKey_Intro" xml:space="preserve">
-    <value>&lt;span&gt; Agency APIは、APIサービスを通じてレポートにアクセスする新しい方法を提供します。カスタマイズされたAPIキーを作成することで、特定のニーズに合わせたレポートを取得できます。詳細については、APIドキュメントをご参照ください。</value>
+    <value>&lt;span&gt; Agency APIは、APIサービスを通じてレポートにアクセスする新しい方法を提供します。カスタマイズされたAPIキーを作成することで、特定のニーズに合わせたレポートを取得できます。詳細については、APIドキュメントをご参照ください。 &lt;a id="lnk-api-guides" href="{0}" target="_blank"&gt;link&lt;/a&gt;.&lt;/span&gt;</value>
   </data>
   <data name="APIKey_KeyNameInfo" xml:space="preserve">
     <value>APIキー名：管理を容易にするために、各APIキーを区別する一意の識別子です。</value>

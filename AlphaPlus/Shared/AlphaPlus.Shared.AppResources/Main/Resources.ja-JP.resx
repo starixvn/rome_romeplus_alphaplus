@@ -413,8 +413,7 @@
     <value>警告:</value>
   </data>
   <data name="TitleUnsupportBrowser" xml:space="preserve">
-    <value>ブラウザーの更新が必要です！
-</value>
+    <value>ブラウザーの更新が必要です！</value>
   </data>
   <data name="HomeIconIntroduction" xml:space="preserve">
     <value>ホームアイコン – ホームページへのアクセス</value>
@@ -741,7 +740,7 @@
     <value>{0} の改善にご協力ください。</value>
   </data>
   <data name="WinLossDetailReport" xml:space="preserve">
-    <value>勝ち負け詳細報告書</value>
+    <value>勝ち負けの詳細報告書</value>
   </data>
   <data name="Here" xml:space="preserve">
     <value>ここ</value>

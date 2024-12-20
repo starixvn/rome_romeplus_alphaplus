@@ -1789,7 +1789,7 @@
     <value>Edited by</value>
   </data>
   <data name="viewlog" xml:space="preserve">
-    <value>View Log</value>
+    <value>ログ表示</value>
   </data>
   <data name="viewby" xml:space="preserve">
     <value>View by</value>
@@ -2825,5 +2825,17 @@
   </data>
   <data name="SystemAnnouncement" xml:space="preserve">
     <value>システムからのお知らせ</value>
+  </data>
+  <data name="TodayWinLoss" xml:space="preserve">
+    <value>今日の勝ち負け</value>
+  </data>
+  <data name="APIKeyScope_1" xml:space="preserve">
+    <value>勝ち負けの詳細報告書</value>
+  </data>
+  <data name="WinLossLimit" xml:space="preserve">
+    <value>勝ち負け制限</value>
+  </data>
+  <data name="YesterdayWinLoss" xml:space="preserve">
+    <value>昨日の勝ち負け</value>
   </data>
 </root>

@@ -304,7 +304,7 @@
     <value>ニックネーム</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
-    <value>There is no change to update.</value>
+    <value>更新する変更はありません。</value>
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>情報がありません</value>
@@ -412,13 +412,13 @@
     <value>Username or First/Last Name</value>
   </data>
   <data name="Viewlog" xml:space="preserve">
-    <value>Viewlog</value>
+    <value>ログ表示</value>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
-    <value>Yesterday Balance</value>
+    <value>昨日の残高</value>
   </data>
   <data name="YesterdayCash" xml:space="preserve">
-    <value>Yesterday Cash</value>
+    <value>昨日までの口座残高</value>
   </data>
   <data name="EditMultipleSportsbook2Text" xml:space="preserve">
     <value>Edit Multiple Sportsbook 2</value>

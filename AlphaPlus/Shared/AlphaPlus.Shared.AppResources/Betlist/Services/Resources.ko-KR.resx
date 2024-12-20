@@ -354,4 +354,16 @@
   <data name="DoNotShowAgain" xml:space="preserve">
     <value>이 페이지를 다시 표시하지않습니다.</value>
   </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>Update successfully</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>해당 기능에 대한 권한이 없습니다.</value>
+  </data>
 </root>

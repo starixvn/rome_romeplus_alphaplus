@@ -463,4 +463,13 @@
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
   </data>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
 </root>

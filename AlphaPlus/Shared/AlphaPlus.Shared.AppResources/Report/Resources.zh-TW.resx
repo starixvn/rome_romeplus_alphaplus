@@ -1101,4 +1101,7 @@
   <data name="Close" xml:space="preserve">
     <value>關閉</value>
   </data>
+  <data name="WinLossAnalysis" xml:space="preserve">
+    <value>輸贏分析</value>
+  </data>
 </root>

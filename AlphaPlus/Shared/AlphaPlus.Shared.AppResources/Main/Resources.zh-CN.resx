@@ -784,4 +784,7 @@
   <data name="lblresetpassword" xml:space="preserve">
     <value>修改密码</value>
   </data>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>没有任何的变化更新。</value>
+  </data>
 </root>

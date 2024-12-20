@@ -247,7 +247,7 @@
     <value>Net Position</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
-    <value>There is no change to update.</value>
+    <value>更新する変更はありません。</value>
   </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>情報がありません</value>
@@ -304,10 +304,10 @@
     <value>Username or First/Last Name</value>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
-    <value>Yesterday Balance</value>
+    <value>昨日の残高</value>
   </data>
   <data name="YesterdayCash" xml:space="preserve">
-    <value>Yesterday Cash</value>
+    <value>昨日までの口座残高</value>
   </data>
   <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
     <value>Outright</value>
@@ -370,7 +370,7 @@
     <value>This account was closed by upline.</value>
   </data>
   <data name="Viewlog" xml:space="preserve">
-    <value>Viewlog</value>
+    <value>ログ表示</value>
   </data>
   <data name="ThisAccountWasDisabled" xml:space="preserve">
     <value>This account was disabled.</value>

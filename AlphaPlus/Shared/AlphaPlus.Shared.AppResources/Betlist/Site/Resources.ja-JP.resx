@@ -249,4 +249,7 @@
   <data name="Soccer" xml:space="preserve">
     <value>サッカー</value>
   </data>
+  <data name="TotalBets" xml:space="preserve">
+    <value>合計ベット</value>
+  </data>
 </root>

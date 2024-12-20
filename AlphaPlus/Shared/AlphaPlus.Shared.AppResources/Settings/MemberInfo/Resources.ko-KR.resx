@@ -505,4 +505,19 @@
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Successfully updated!</value>
   </data>
+  <data name="NoChangeToUpdateError" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>총 배팅한 금액</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="EnterAccount" xml:space="preserve">
+    <value>사용자 이름</value>
+  </data>
+  <data name="lblUsername" xml:space="preserve">
+    <value>사용자 이름</value>
+  </data>
 </root>

@@ -1789,7 +1789,7 @@
     <value>Edited by</value>
   </data>
   <data name="viewlog" xml:space="preserve">
-    <value>View Log</value>
+    <value>로그인 보기</value>
   </data>
   <data name="viewby" xml:space="preserve">
     <value>View by</value>
@@ -2774,5 +2774,8 @@
   </data>
   <data name="Statement" xml:space="preserve">
     <value>기록</value>
+  </data>
+  <data name="WinLossLimit" xml:space="preserve">
+    <value>Win Loss Limit</value>
   </data>
 </root>

@@ -678,4 +678,7 @@
   <data name="FirstLastName" xml:space="preserve">
     <value>First/ Last Name</value>
   </data>
+  <data name="WinLossAnalysis" xml:space="preserve">
+    <value>승리/패배 분석</value>
+  </data>
 </root>

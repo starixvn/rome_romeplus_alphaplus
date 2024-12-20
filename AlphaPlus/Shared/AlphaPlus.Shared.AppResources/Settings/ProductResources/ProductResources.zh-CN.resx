@@ -313,7 +313,7 @@
     <value>昵称</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
-    <value>没有任何的变化更新</value>
+    <value>没有任何的变化更新。</value>
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>没资料显示</value>

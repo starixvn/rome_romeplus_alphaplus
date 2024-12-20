@@ -313,4 +313,7 @@ Please use the form below to change your password now.</value>
   <data name="Skip" xml:space="preserve">
     <value>다음</value>
   </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>전송</value>
+  </data>
 </root>

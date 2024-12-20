@@ -405,4 +405,13 @@
   <data name="Balance" xml:space="preserve">
     <value>잔액</value>
   </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>총</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
 </root>

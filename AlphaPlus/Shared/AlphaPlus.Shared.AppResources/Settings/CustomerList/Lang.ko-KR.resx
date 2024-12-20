@@ -147,4 +147,7 @@
   <data name="Sun" xml:space="preserve">
     <value>일</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
 </root>

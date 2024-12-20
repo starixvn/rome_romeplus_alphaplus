@@ -313,7 +313,7 @@
     <value>ชื่อเล่น</value>
   </data>
   <data name="NoDataChange" xml:space="preserve">
-    <value>ไม่มีการเปลี่ยนแปลงการอัพเดท</value>
+    <value>ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้</value>
   </data>
   <data name="NoInfo" xml:space="preserve">
     <value>ไม่มีข้อมูล</value>

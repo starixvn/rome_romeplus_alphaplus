@@ -409,7 +409,7 @@
     <value>사용자 이름 또는 성(이름)</value>
   </data>
   <data name="Viewlog" xml:space="preserve">
-    <value>Viewlog</value>
+    <value>로그인 보기</value>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
     <value>어제의 잔액</value>
@@ -470,5 +470,8 @@
   </data>
   <data name="ParlayMaxPayoutMultipleText" xml:space="preserve">
     <value>Edit Multiple Parlay Max Payout</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>업데이트</value>
   </data>
 </root>

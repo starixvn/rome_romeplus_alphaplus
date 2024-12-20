@@ -730,7 +730,7 @@
     <value>Danh Sách Theo Dõi</value>
   </data>
   <data name="NoChangeToUpdateError" xml:space="preserve">
-    <value>Không có thay đổi để cập nhật</value>
+    <value>Không có gì thay đổi để cập nhật.</value>
   </data>
   <data name="NotInWatchlistAnyLongerError" xml:space="preserve">
     <value>không còn nằm trong danh sách theo dõi</value>

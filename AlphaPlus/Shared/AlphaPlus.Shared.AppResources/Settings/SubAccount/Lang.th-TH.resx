@@ -184,7 +184,7 @@
     <value>ดูบันทึก</value>
   </data>
   <data name="noChangeToUpdate" xml:space="preserve">
-    <value>ไม่มีการเปลี่ยนแปลงการอัพเดท</value>
+    <value>ไม่มีการเปลี่ยนแปลงในการอัปเดตนี้</value>
   </data>
   <data name="notExist" xml:space="preserve">
     <value>ไม่มียูเซอร์นี้</value>

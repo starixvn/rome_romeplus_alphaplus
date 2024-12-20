@@ -241,15 +241,13 @@
     <value>昨日</value>
   </data>
   <data name="YesterdayBalance" xml:space="preserve">
-    <value>Yesterday Balance
-</value>
+    <value>昨日の残高</value>
   </data>
   <data name="MasterBalance" xml:space="preserve">
     <value>Master Balance</value>
   </data>
   <data name="YesterdayCashBalance" xml:space="preserve">
-    <value>Yesterday Cash Balance
-</value>
+    <value>Yesterday Cash Balance</value>
   </data>
   <data name="MasterCash" xml:space="preserve">
     <value>Master Cash</value>
@@ -440,5 +438,8 @@
   </data>
   <data name="AutoTransferMonitoring_Duplicate[1]" xml:space="preserve">
     <value>自動振込モニタ</value>
+  </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>更新する変更はありません。</value>
   </data>
 </root>

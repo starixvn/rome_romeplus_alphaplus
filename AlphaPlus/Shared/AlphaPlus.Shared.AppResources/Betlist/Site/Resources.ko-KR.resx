@@ -171,4 +171,16 @@
   <data name="status" xml:space="preserve">
     <value>상황</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>총</value>
+  </data>
+  <data name="TotalBets" xml:space="preserve">
+    <value>총 배팅</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>총 배팅한 금액</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>해당 기능에 대한 권한이 없습니다.</value>
+  </data>
 </root>

@@ -370,7 +370,7 @@
     <value>This account was closed by upline.</value>
   </data>
   <data name="Viewlog" xml:space="preserve">
-    <value>Viewlog</value>
+    <value>로그인 보기</value>
   </data>
   <data name="ThisAccountWasDisabled" xml:space="preserve">
     <value>이 계정은 실행하실수없는 계정입니다.</value>

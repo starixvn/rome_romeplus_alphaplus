@@ -224,4 +224,10 @@
   <data name="SecurityCode" xml:space="preserve">
     <value>Security Code</value>
   </data>
+  <data name="Update" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="lblPasswordDAccountName" xml:space="preserve">
+    <value>귀하의 비밀번호는 사용자 아이디나 별명이 포함되지 않아야합니다.</value>
+  </data>
 </root>

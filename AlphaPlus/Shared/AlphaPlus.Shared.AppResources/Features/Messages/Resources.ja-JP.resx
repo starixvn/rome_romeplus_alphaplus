@@ -127,13 +127,13 @@
     <value>Your betting limit value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
   </data>
   <data name="Notice_1_2" xml:space="preserve">
-    <value>Your minimum position taking and betting limit value have been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+    <value>あなたの最小保有ポジションとベットリミットの値が上層ラインによって変更されました。&lt;br&gt;ご確認いただき、下層ラインの詳細をご確認ください。</value>
   </data>
   <data name="Notice_1" xml:space="preserve">
-    <value>Your minimum position taking value has been changed by the upline.&lt;br&gt;Please kindly be informed and have a check the details for your downlines.</value>
+    <value>あなたの最小保有ポジションの値が上層ラインによって変更されました。&lt;br&gt;ご確認のうえ、下層ラインの詳細をご確認ください。</value>
   </data>
   <data name="Notice_3" xml:space="preserve">
-    <value>Your upline has enabled Fishing World for your downlines. Please go to setting page to configure your own PT settings.</value>
+    <value>あなたの上層ラインが、下層ライン向けにFishing Worldを有効にしました。設定ページにアクセスして、自分の保有ポジション設定を構成してください。</value>
   </data>
   <data name="announcement" xml:space="preserve">
     <value>通知</value>
@@ -221,5 +221,8 @@
   </data>
   <data name="system" xml:space="preserve">
     <value>システム</value>
+  </data>
+  <data name="viewAnnouncement" xml:space="preserve">
+    <value>告知を見る</value>
   </data>
 </root>

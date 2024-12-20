@@ -217,7 +217,7 @@
     <value>サスペンド済み</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>はい</value>
   </data>
   <data name="No2" xml:space="preserve">
     <value>No</value>
@@ -358,7 +358,7 @@
     <value>Combo 6+ &amp; System Parlay</value>
   </data>
   <data name="ParlayMaxPayoutUpdateSuccessfully" xml:space="preserve">
-    <value>Update successfully</value>
+    <value>更新に成功しました。</value>
   </data>
   <data name="InvalidMaxPayoutValueText" xml:space="preserve">
     <value>The value must be a positive amount.</value>
@@ -591,5 +591,20 @@
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>正常に更新されました。</value>
+  </data>
+  <data name="NoChangeToUpdateError" xml:space="preserve">
+    <value>更新する変更はありません。</value>
+  </data>
+  <data name="lblUsername" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="EnterAccount" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="YesterdayBalance" xml:space="preserve">
+    <value>昨日の残高</value>
+  </data>
+  <data name="YesterdayCashBalance" xml:space="preserve">
+    <value>Yesterday Cash Balance</value>
   </data>
 </root>

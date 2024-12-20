@@ -443,7 +443,7 @@
     <value>Telegram Messenger Inc.</value>
   </data>
   <data name="TodayWinLossNew" xml:space="preserve">
-    <value>Today Win Loss</value>
+    <value>今日輸贏</value>
   </data>
   <data name="UnsubscribeTelegramBotWarning" xml:space="preserve">
     <value>您確定要取消鏈接？</value>

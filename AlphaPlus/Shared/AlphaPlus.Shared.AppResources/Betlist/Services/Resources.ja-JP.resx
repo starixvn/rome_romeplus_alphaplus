@@ -477,4 +477,13 @@
   <data name="SearchTickets" xml:space="preserve">
     <value>チケットを検索</value>
   </data>
+  <data name="NoChangeToUpdate" xml:space="preserve">
+    <value>更新する変更はありません。</value>
+  </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>更新に成功しました。</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>はい</value>
+  </data>
 </root>

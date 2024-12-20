@@ -760,7 +760,7 @@
     <value>請輸入限額</value>
   </data>
   <data name="NoChangeToUpdateError" xml:space="preserve">
-    <value>此更新沒有任何變化</value>
+    <value>沒有任何的變化更新。</value>
   </data>
   <data name="MoreThan50UsernamesError" xml:space="preserve">
     <value>會員人數不可超過 50</value>

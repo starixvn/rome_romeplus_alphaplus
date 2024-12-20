@@ -169,7 +169,7 @@
     <value>to</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>Total</value>
+    <value>총</value>
   </data>
   <data name="Unsuspended" xml:space="preserve">
     <value>Unsuspended</value>
@@ -184,7 +184,7 @@
     <value>Successfully updated!</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>사용자 이름</value>
   </data>
   <data name="AffectedViewListNote" xml:space="preserve">
     <value>List of downlines whose status are changed after &lt;username&gt; is unsuspended.</value>

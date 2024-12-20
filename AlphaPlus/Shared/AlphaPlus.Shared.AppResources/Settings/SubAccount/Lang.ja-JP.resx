@@ -179,10 +179,10 @@
     <value>サブアカウントを作成できません。</value>
   </data>
   <data name="viewlog" xml:space="preserve">
-    <value>View Log</value>
+    <value>ログ表示</value>
   </data>
   <data name="noChangeToUpdate" xml:space="preserve">
-    <value>There is no change to update.</value>
+    <value>更新する変更はありません。</value>
   </data>
   <data name="notExist" xml:space="preserve">
     <value>This user does not exist</value>
@@ -199,7 +199,7 @@ For example: 59D7!4$h, 493abcDE
 Notes: your password is cAsE sEnSiTiVe</value>
   </data>
   <data name="lblPasswordWrongRule" xml:space="preserve">
-    <value>Your password does not meet the minimum security requirement.</value>
+    <value>パスワードが最低限のセキュリティ要件を満たしていません。</value>
   </data>
   <data name="lblNotAuthorized" xml:space="preserve">
     <value>この機能を使用する権限がありません。</value>
@@ -224,5 +224,8 @@ Notes: your password is cAsE sEnSiTiVe</value>
   </data>
   <data name="SecurityCode" xml:space="preserve">
     <value>セキュリティコード</value>
+  </data>
+  <data name="lblPasswordDAccountName" xml:space="preserve">
+    <value>パスワードにはユーザー名またはニックネームを含めてはいけません。</value>
   </data>
 </root>
