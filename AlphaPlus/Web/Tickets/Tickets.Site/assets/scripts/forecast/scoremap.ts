@@ -68,6 +68,12 @@ class ScoreMap {
             this.globalFormData = this.getScoreMapResultsFormData();
             this.bindEventsAfterRenderScoreMapSucessfully(this.$content);
         }
+        $('.icon-information-outline').click(function (e) {
+            e.preventDefault();
+            const width = window.top.window.innerWidth * 0.7;
+            const url = $(this).attr('href');
+            top.popupManager.openMultiple(url, '', width);
+        });
     }
 
     resetUIControls() {

@@ -30,9 +30,6 @@ class CommissionView {
                         });
                         $ddlAgent.html(html.join(''));
                         $ddlAgent.multiselect('rebuild');
-                        agents && agents.length
-                            ? $ddlAgent.closest('.form-group').removeClass('commission-nodata')
-                            : $ddlAgent.closest('.form-group').addClass('commission-nodata');
                     }).always(() => $iconLoadingAgent.hide());
                     this.getMasterComm($ddlProduct.val(), masterId, $tblContainer);
                 }

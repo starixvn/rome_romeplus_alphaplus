@@ -196,9 +196,12 @@ input[type='button'][disabled] {
             }
         }
     }
+}
 
-    .commission-nodata .multiselect .multiselect-selected-text {
+.filter.commission-filter {
+    .multiselect .multiselect-selected-text {
         width: auto;
+        min-width: 130px;
     }
 }
 
@@ -259,27 +262,27 @@ html {
         margin-top: 0;
         z-index: 1;
     }
-    .message-content{
+    .message-content {
         border: 1px solid #d1d1d1;
         padding: 5px 10px;
         border-radius: 3px;
-        background: rgba(0, 0, 0, .03);
+        background: rgba(0, 0, 0, 0.03);
         margin-bottom: 10px;
         max-height: 200px;
         overflow: auto;
-        > div{
-            margin-bottom: 3px ;
+        > div {
+            margin-bottom: 3px;
         }
         .msg {
             font-size: 13px;
             line-height: 20px;
             padding: 2px 10px 2px 30px;
-            margin-bottom: 0;           
+            margin-bottom: 0;
             overflow: unset;
             font-weight: 500;
             position: relative;
-            &:before{                 
-                font-size: 16px;                
+            &:before {
+                font-size: 16px;
                 position: absolute;
                 left: 7px;
                 top: 2px;

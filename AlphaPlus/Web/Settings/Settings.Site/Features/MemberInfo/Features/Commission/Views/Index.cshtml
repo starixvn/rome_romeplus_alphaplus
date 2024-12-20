@@ -13,14 +13,14 @@
 <div class="page-title">
     <span class="pull-left">@Resources.MemberCommission</span>
 </div>
-<form method="get" class="form-inline filter" role="form" id="form-filter">
+<form method="get" class="form-inline filter commission-filter" role="form" id="form-filter">
     <div class="form-group">
         <label>@Resources.Product</label>
         <select id="ddl-product" asp-items="Model.Products"></select>
     </div>
     @if (Model.Masters != null)
     {
-        <div class="form-group @(Model.Masters.Any() ? string.Empty : "commission-nodata")">
+        <div class="form-group">
             <label>@Resources.SelectMaster</label>
             <select id="ddl-master" asp-items="Model.Masters"
                 data-label-nodata="@Resources.NoInformationIsAvailable"></select>
@@ -28,7 +28,7 @@
     }
     @if (Model.Agents != null)
     {
-        <div class="form-group @(Model.Agents.Any() ? string.Empty : "commission-nodata")">
+        <div class="form-group">
             <label>@Resources.SelectAgent</label>
             <select id="ddl-agent" asp-items="Model.Agents"
                 data-label-nodata="@Resources.NoInformationIsAvailable"></select>
