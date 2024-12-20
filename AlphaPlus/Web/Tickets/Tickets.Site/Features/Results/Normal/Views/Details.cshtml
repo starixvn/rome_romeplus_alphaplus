@@ -1,3 +1,4 @@
+@inject AlphaPlus.Core.Models.IUserSession userSession
 @{
     Layout = null;
 }
@@ -11,7 +12,7 @@
     <link rel="stylesheet" href="~/bundles/results/resultcore.css" asp-append-version="true" />
 </head>
 
-<body>
+<body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
     <div class="detail-result" id="detail-result-body">
         @Html.Raw(Model.HtmlResult)
     </div>
