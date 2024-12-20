@@ -151,7 +151,7 @@
     <value>ハイライト</value>
   </data>
   <data name="more" xml:space="preserve">
-    <value>more</value>
+    <value>もっと</value>
   </data>
   <data name="SystemUpdate" xml:space="preserve">
     <value>System Update</value>
@@ -195,7 +195,16 @@
   <data name="FeedbackOnFunctionTitle" xml:space="preserve">
     <value>{0} の改善にご協力ください。</value>
   </data>
-  <data name="Feedback" xml:space="preserve">
+  <data name="Feedback_Duplicate[1]" xml:space="preserve">
     <value>フィードバック</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新しい</value>
+  </data>
+  <data name="normal" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="normalAnnouncement" xml:space="preserve">
+    <value>特別告知</value>
   </data>
 </root>

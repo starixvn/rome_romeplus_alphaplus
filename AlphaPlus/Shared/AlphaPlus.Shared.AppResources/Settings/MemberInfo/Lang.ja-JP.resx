@@ -150,4 +150,7 @@
   <data name="Daily" xml:space="preserve">
     <value>毎日</value>
   </data>
+  <data name="viewQuickGuideNotNow" xml:space="preserve">
+    <value>今は違います</value>
+  </data>
 </root>

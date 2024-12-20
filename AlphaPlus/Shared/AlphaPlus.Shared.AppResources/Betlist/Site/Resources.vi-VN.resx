@@ -657,4 +657,7 @@
   <data name="transtime" xml:space="preserve">
     <value>Thời gian</value>
   </data>
+  <data name="MoneyLine" xml:space="preserve">
+    <value>Moneyline</value>
+  </data>
 </root>

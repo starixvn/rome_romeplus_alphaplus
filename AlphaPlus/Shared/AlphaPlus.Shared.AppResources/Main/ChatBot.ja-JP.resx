@@ -407,7 +407,7 @@
     <value>OTPを入力してください。</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>未払い残高</value>
+    <value>未払い</value>
   </data>
   <data name="PersonalMessage" xml:space="preserve">
     <value>個人メッセージ</value>

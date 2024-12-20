@@ -468,4 +468,7 @@
   <data name="LastBetsMonitoring" xml:space="preserve">
     <value>最後のベットの監視</value>
   </data>
+  <data name="Notification" xml:space="preserve">
+    <value>通知</value>
+  </data>
 </root>

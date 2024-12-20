@@ -147,4 +147,16 @@
   <data name="HTSlashFT" xml:space="preserve">
     <value>전반전/풀타임</value>
   </data>
+  <data name="MoneyLine" xml:space="preserve">
+    <value>머니라인(핸디캡 없는 경기)</value>
+  </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>가능한 정보가 없습니다</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>라이브빙고 번호</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>순위,승자 등</value>
+  </data>
 </root>

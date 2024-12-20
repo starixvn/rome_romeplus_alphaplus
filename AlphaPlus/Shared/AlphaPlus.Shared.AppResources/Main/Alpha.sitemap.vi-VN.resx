@@ -199,7 +199,7 @@
     <value>Hoa hồng của Member</value>
   </data>
   <data name="memberInfo" xml:space="preserve">
-    <value>Thông tin Thành viên</value>
+    <value>Thông tin Member</value>
   </data>
   <data name="memberOutstanding" xml:space="preserve">
     <value>Tiền chưa xử lý của Member</value>

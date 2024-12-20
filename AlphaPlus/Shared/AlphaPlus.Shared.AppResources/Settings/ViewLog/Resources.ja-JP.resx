@@ -252,4 +252,7 @@
   <data name="Credit" xml:space="preserve">
     <value>クレジット</value>
   </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>情報はありません</value>
+  </data>
 </root>

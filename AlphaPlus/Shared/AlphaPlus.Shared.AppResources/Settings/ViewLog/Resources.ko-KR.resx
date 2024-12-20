@@ -306,4 +306,7 @@
   <data name="Credit" xml:space="preserve">
     <value>포인트</value>
   </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>가능한 정보가 없습니다</value>
+  </data>
 </root>

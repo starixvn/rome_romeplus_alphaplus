@@ -150,7 +150,7 @@ Lưu ý : Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
     <value>Mật khẩu của bạn chưa đạt mức an toàn tối thiểu.</value>
   </data>
   <data name="memberinfo" xml:space="preserve">
-    <value>Thông tin thành viên</value>
+    <value>Thông tin Member</value>
   </data>
   <data name="msgErrPassWord" xml:space="preserve">
     <value>Mật khẩu không được để trống</value>

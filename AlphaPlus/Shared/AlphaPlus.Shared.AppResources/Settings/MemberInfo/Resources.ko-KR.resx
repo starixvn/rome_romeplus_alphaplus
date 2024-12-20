@@ -499,4 +499,7 @@
   <data name="CreatedDate" xml:space="preserve">
     <value>작성일</value>
   </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>회원 수수료</value>
+  </data>
 </root>

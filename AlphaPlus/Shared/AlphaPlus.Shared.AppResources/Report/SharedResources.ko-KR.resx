@@ -120,4 +120,16 @@
   <data name="Member" xml:space="preserve">
     <value>회원</value>
   </data>
+  <data name="Master" xml:space="preserve">
+    <value>마스터</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>다음</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>넘버게임 커미션</value>
+  </data>
+  <data name="NumberGameNo" xml:space="preserve">
+    <value>라이브빙고 번호</value>
+  </data>
 </root>

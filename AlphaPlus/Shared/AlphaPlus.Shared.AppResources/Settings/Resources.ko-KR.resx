@@ -435,4 +435,7 @@
   <data name="LastName" xml:space="preserve">
     <value>성</value>
   </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>새로운</value>
+  </data>
 </root>

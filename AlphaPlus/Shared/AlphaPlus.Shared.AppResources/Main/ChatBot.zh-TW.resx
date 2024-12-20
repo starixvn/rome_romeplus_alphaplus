@@ -407,7 +407,7 @@
     <value>OTP 已過期，請&lt;span id="btnResend" class="link resend-code"&gt;點擊此處&lt;/span&gt;產生新的 OTP。</value>
   </data>
   <data name="Outstanding" xml:space="preserve">
-    <value>Outstanding</value>
+    <value>未完成交易</value>
   </data>
   <data name="PersonalMessage" xml:space="preserve">
     <value>Personal Message</value>

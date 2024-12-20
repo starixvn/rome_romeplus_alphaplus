@@ -803,4 +803,7 @@
   <data name="loading" xml:space="preserve">
     <value>กำลังโหลด</value>
   </data>
+  <data name="memberInfo" xml:space="preserve">
+    <value>ข้อมูลสมาชิก</value>
+  </data>
 </root>

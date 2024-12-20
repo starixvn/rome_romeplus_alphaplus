@@ -493,7 +493,7 @@
     <value>Transfer Option</value>
   </data>
   <data name="a_spt_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="AccountRemarkDate" xml:space="preserve">
     <value>Account Remark Date</value>
@@ -526,7 +526,7 @@
     <value>Mobile phone</value>
   </data>
   <data name="a_mpt_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="sitename" xml:space="preserve">
     <value>Site name</value>
@@ -631,7 +631,7 @@
     <value>Checker</value>
   </data>
   <data name="isa_smpt_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="v99spt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -922,10 +922,10 @@
     <value>Is Master Auto Position Taking on Agent</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>New</value>
+    <value>新しい</value>
   </data>
   <data name="Old" xml:space="preserve">
-    <value>Old</value>
+    <value>旧</value>
   </data>
   <data name="state" xml:space="preserve">
     <value>State</value>
@@ -991,7 +991,7 @@
     <value>Handicap</value>
   </data>
   <data name="isa_mpt_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="agentID" xml:space="preserve">
     <value>agentID</value>
@@ -1066,7 +1066,7 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_spt_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="isa_smpt_4" xml:space="preserve">
     <value>正しいスコア</value>
@@ -1372,7 +1372,7 @@
     <value>answer</value>
   </data>
   <data name="apt_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="CreditGrade" xml:space="preserve">
     <value>Credit Grade</value>
@@ -1438,7 +1438,7 @@
     <value>Handicap</value>
   </data>
   <data name="mpt_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="mphone" xml:space="preserve">
     <value>mphone</value>
@@ -1753,7 +1753,7 @@
     <value>状態</value>
   </data>
   <data name="spt_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>すべて</value>
@@ -1807,7 +1807,7 @@
     <value>Search</value>
   </data>
   <data name="noInfo" xml:space="preserve">
-    <value>No information is available</value>
+    <value>情報はありません</value>
   </data>
   <data name="Detail" xml:space="preserve">
     <value>Detail</value>
@@ -1912,7 +1912,7 @@
     <value>Handicap</value>
   </data>
   <data name="a_mpt_mem_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="a_mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -2017,7 +2017,7 @@
     <value>Handicap</value>
   </data>
   <data name="isa_mpt_mem_10" xml:space="preserve">
-    <value>Outright</value>
+    <value>勝者予想</value>
   </data>
   <data name="isa_mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -2786,5 +2786,17 @@
   </data>
   <data name="ExpirationDate" xml:space="preserve">
     <value>期限日</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>マイウォッチリスト</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>決して</value>
+  </data>
+  <data name="NormalAnnouncement" xml:space="preserve">
+    <value>特別告知</value>
+  </data>
+  <data name="APIKeyScope_2" xml:space="preserve">
+    <value>未払い報告書</value>
   </data>
 </root>

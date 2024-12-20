@@ -127,7 +127,7 @@
     <value>Báo cáo</value>
   </data>
   <data name="MemberInfo" xml:space="preserve">
-    <value>Thông tin thành viên</value>
+    <value>Thông tin Member</value>
   </data>
   <data name="FullControl" xml:space="preserve">
     <value>Toàn quyền </value>

@@ -175,7 +175,7 @@
     <value>截止日期</value>
   </data>
   <data name="Never" xml:space="preserve">
-    <value>Never</value>
+    <value>絕不</value>
   </data>
   <data name="NoMoreThan50Characters" xml:space="preserve">
     <value>API name cannot be longer than 50 characters!</value>

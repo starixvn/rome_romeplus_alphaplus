@@ -451,4 +451,10 @@
   <data name="loading" xml:space="preserve">
     <value>로딩중입니다.</value>
   </data>
+  <data name="memberInfo" xml:space="preserve">
+    <value>회원 정보</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
 </root>

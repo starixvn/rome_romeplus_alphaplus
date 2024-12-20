@@ -231,4 +231,16 @@
   <data name="HDPOULive" xml:space="preserve">
     <value>ハンディキャップ/オーバー・アンダー/ライブ</value>
   </data>
+  <data name="MoneyLine" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>今は違います</value>
+  </data>
+  <data name="Outright" xml:space="preserve">
+    <value>勝者予想</value>
+  </data>
 </root>

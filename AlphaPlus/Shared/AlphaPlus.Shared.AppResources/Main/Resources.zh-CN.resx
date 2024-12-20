@@ -775,4 +775,7 @@
   <data name="loading" xml:space="preserve">
     <value>载入中</value>
   </data>
+  <data name="memberInfo" xml:space="preserve">
+    <value>会员资讯</value>
+  </data>
 </root>

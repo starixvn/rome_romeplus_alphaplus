@@ -280,7 +280,7 @@
     <value>Input Existing Member account (that you want to copy the settings)</value>
   </data>
   <data name="MemberCredit" xml:space="preserve">
-    <value>Member Credit</value>
+    <value>メンバークレジット</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>New Given Credit</value>
@@ -413,7 +413,7 @@
     <value>Member Profile</value>
   </data>
   <data name="MemberBettingBehavior" xml:space="preserve">
-    <value>Member Betting Behavior</value>
+    <value>メンバーのベッティング行動</value>
   </data>
   <data name="BettingStatistic" xml:space="preserve">
     <value>Betting Statistic</value>
@@ -558,5 +558,20 @@
   </data>
   <data name="IndirectLoginAccount" xml:space="preserve">
     <value>間接ログインアカウント</value>
+  </data>
+  <data name="MemberCommission" xml:space="preserve">
+    <value>メンバーコミッション</value>
+  </data>
+  <data name="MyThresholds" xml:space="preserve">
+    <value>私のしきい値</value>
+  </data>
+  <data name="MyWatchlist" xml:space="preserve">
+    <value>マイウォッチリスト</value>
+  </data>
+  <data name="lblNew" xml:space="preserve">
+    <value>新しい</value>
+  </data>
+  <data name="QuickIntro_Title_NotNow" xml:space="preserve">
+    <value>今は違います</value>
   </data>
 </root>

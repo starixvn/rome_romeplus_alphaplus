@@ -59,10 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root"
-    xmlns=""
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -1039,8 +1036,7 @@ Notes: your password is cAsE sEnSiTiVe.</value>
     <value>Experience the fastest and most centralized account creation process.</value>
   </data>
   <data name="QuickIntro_Title_NotNow" xml:space="preserve">
-    <value>Not now
-    </value>
+    <value>Not now</value>
   </data>
   <data name="QuickIntro_Title_Confirm" xml:space="preserve">
     <value>Let’s go</value>

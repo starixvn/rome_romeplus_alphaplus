@@ -439,7 +439,7 @@
     <value>บัญชีสมาชิกที่มีอยู่ (ที่คุณต้องการคัดลอกการตั้งค่า)</value>
   </data>
   <data name="MemberCredit" xml:space="preserve">
-    <value>วงเงินเครดิตสมาชิก</value>
+    <value>เครดิตเมมเบอร์</value>
   </data>
   <data name="NewGivenCredit" xml:space="preserve">
     <value>เครดิตใหม่ที่ได้รับ</value>

@@ -144,4 +144,7 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>해당 기능에 대한 권한이 없습니다.</value>
   </data>
+  <data name="next" xml:space="preserve">
+    <value>다음</value>
+  </data>
 </root>

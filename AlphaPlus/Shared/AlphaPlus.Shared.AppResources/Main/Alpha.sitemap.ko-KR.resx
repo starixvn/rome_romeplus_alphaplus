@@ -366,4 +366,7 @@
   <data name="Old" xml:space="preserve">
     <value>Old</value>
   </data>
+  <data name="MemberBettingBehavior" xml:space="preserve">
+    <value>Member Betting Behavior</value>
+  </data>
 </root>

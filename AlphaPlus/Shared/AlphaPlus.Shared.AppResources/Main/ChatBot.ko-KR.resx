@@ -112,4 +112,13 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="MemberCredit" xml:space="preserve">
+    <value>Member Credit</value>
+  </data>
+  <data name="MemberOutstanding" xml:space="preserve">
+    <value>회원 아웃스텐딩</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>대기 포인트</value>
+  </data>
 </root>

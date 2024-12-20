@@ -449,7 +449,7 @@
     <value>從</value>
   </data>
   <data name="outstanding" xml:space="preserve">
-    <value>未完成交易 </value>
+    <value>未完成交易</value>
   </data>
   <data name="NoPermissionAccessPage" xml:space="preserve">
     <value>對不起, 您不被允許進入此網頁.</value>
@@ -777,5 +777,8 @@
   </data>
   <data name="loading" xml:space="preserve">
     <value>載入中</value>
+  </data>
+  <data name="memberInfo" xml:space="preserve">
+    <value>會員資料</value>
   </data>
 </root>
