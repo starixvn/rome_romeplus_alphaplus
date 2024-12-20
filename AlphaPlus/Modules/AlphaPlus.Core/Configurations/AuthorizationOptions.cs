@@ -14,7 +14,7 @@ public class AuthorizationOptions
 
     public bool DisabledCheckDuplicationLogin { get; set; }
 
-    public string KickOutUrl { get; set; }
+    public string KickOutUrl { get; set; } = "~/default/kickout";
 
     public string[] CustIdQueryStringParamNames { get; set; } = ["custid", "CustId", "custId", "targetCustId", "id", "cid", "recommend", "mrecommend", "idagent", "masterId", "MasterId", "AgentId", "agentId", "idAgent", "idMaster", "ibccustid", "ACustID"];
 

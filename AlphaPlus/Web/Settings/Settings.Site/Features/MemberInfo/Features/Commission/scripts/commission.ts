@@ -6,7 +6,7 @@ class CommissionView {
         const $iconLoadingAgent = $('#icon-loadingAgent');
         const $tblContainer = $('#tblRpt-container');
 
-        $ddlProduct.change(function () {
+        $ddlProduct.change(() => {
             $.blockUI();
             window.location.href = this.buildUrl(`index?productId=${$ddlProduct.val()}`);
         });
@@ -23,7 +23,7 @@ class CommissionView {
                             return `<option value="${item.CustId}">${item.CustName}</option>`;
                         });
                     } else {
-                        html = `<option value="0">${$('#hidden-noInfoText').val()}</option>`;
+                        html = ['<option value="0">', $('#hidden-noInfoText').val(), '</option>'];
                     }
                     $ddlAgent.html(html.join(''));
                 }).always(() => $iconLoadingAgent.hide());
@@ -32,8 +32,12 @@ class CommissionView {
 
         $ddlAgent.length &&
             $ddlAgent.change(() => {
-                $.blockUI();
                 const custId = $ddlAgent.val();
+                if (custId === '0') {
+                    return;
+                }
+
+                $.blockUI();
                 if (custId === 'undefined') {
                     this.getMasterComm($ddlProduct.val(), $ddlMaster.val(), $tblContainer);
                 } else if (custId !== '0') {

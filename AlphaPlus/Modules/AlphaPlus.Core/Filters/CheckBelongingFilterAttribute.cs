@@ -84,6 +84,7 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
             else
             {
                 await context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                context.Result = new RedirectResult(MicroSites.MainUrl("~/Account/Logout"));
             }
         }
 
