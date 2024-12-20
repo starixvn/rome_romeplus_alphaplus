@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Main.Site.Helpers;
 using AlphaPlus.Core.Helpers;
+using System.Net;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -35,7 +36,7 @@ public class AccountController(
     {
         var domains = DomainsHelper.DomainMappings;
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
-        var loginResultMessage = $"?r={(string.IsNullOrWhiteSpace(r) ? Resources.SessionExpired : r)}";
+        var loginResultMessage = $"?r={WebUtility.UrlEncode(string.IsNullOrWhiteSpace(r) ? Resources.SessionExpired : r)}";
 
         IActionResult result = userSession.IsIndirectLoggedIn || userSession.IsInternal || loginUrl == null || string.IsNullOrWhiteSpace(loginUrl.Before) ?
             new EmptyResult() : Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
