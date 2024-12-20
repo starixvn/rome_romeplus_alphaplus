@@ -42,7 +42,7 @@ public class AccountController(
         IActionResult result = userSession.IsIndirectLoggedIn || userSession.IsInternal || loginUrl == null || string.IsNullOrWhiteSpace(loginUrl.Before) ?
             new EmptyResult() : Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
 
-        ClearSessionCookies();
+        ClearSession();
 
         return result;
     }
@@ -59,7 +59,7 @@ public class AccountController(
 
         if (userSession.IsIndirectLoggedIn || userSession.IsInternal)
         {
-            ClearSessionCookies();
+            ClearSession();
 
             return new EmptyResult();
         }
@@ -77,14 +77,9 @@ public class AccountController(
             : Result.CreateSuccessfulResult());
     }
 
-    private void ClearSessionCookies()
+    private void ClearSession()
     {
         AlphaContext.Current.Session.Clear();
-
-        foreach (var cookie in Request.Cookies.Keys)
-        {
-            Response.Cookies.Delete(cookie);
-        }
     }
 
     private static string MapKickOutReasonToUserMessage(byte kickOutReason)
