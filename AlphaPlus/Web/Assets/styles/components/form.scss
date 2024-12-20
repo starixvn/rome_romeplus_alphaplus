@@ -59,6 +59,9 @@
         }
         select{
             background-color: #fff;
+            &.original{
+                appearance: auto;
+            }
         }
 
         label {

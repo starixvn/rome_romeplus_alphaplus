@@ -16,20 +16,20 @@
 <form method="get" class="form-inline filter" role="form" id="form-filter">
     <div class="form-group">
         <label>@Resources.Product</label>
-        <select id="ddl-product" asp-items="Model.Products"></select>
+        <select class="original" id="ddl-product" asp-items="Model.Products"></select>
     </div>
     @if (Model.Masters != null)
     {
         <div class="form-group">
             <label>@Resources.SelectMaster</label>
-            <select id="ddl-master" asp-items="Model.Masters"></select>
+            <select class="original" id="ddl-master" asp-items="Model.Masters"></select>
         </div>
     }
     @if (Model.Agents != null)
     {
         <div class="form-group">
             <label>@Resources.SelectAgent</label>
-            <select id="ddl-agent" asp-items="Model.Agents"></select>
+            <select class="original" id="ddl-agent" asp-items="Model.Agents"></select>
         </div>
         <div class="form-group">
             <span class="block-icon-small" id="icon-loadingAgent" style="display:none"></span>

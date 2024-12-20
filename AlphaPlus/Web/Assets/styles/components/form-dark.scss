@@ -55,6 +55,9 @@
         }
         select{
             background-color: #171717;
+            &.original{
+                appearance: auto;
+            }
         }
         .label-form-control {
             display: block;
