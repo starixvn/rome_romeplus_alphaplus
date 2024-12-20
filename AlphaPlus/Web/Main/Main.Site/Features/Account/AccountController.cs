@@ -36,7 +36,8 @@ public class AccountController(
     {
         var domains = DomainsHelper.DomainMappings;
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
-        var loginResultMessage = $"?r={WebUtility.UrlEncode(string.Equals(r, "SessionExpired", StringComparison.OrdinalIgnoreCase) ? Resources.SessionExpired : r)}";
+        var loginResultMessage = $"?r={WebUtility.UrlEncode(string.Equals(r, "SessionExpired", StringComparison.OrdinalIgnoreCase) ? 
+            Resources.SessionExpired : r ?? string.Empty)}";
 
         IActionResult result = userSession.IsIndirectLoggedIn || userSession.IsInternal || loginUrl == null || string.IsNullOrWhiteSpace(loginUrl.Before) ?
             new EmptyResult() : Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
