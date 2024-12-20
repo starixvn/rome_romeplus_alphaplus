@@ -176,7 +176,7 @@
                                             class="icon icon-contactus"></span>@Resources.ContactUs</a>
                                 </li>
                             }
-                            @if (Model.IsOfferLiveChat)
+                            @if (!string.IsNullOrWhiteSpace(Model.LiveChatLicenseID))
                             {
                                 <li>
                                     <a href="javascript:;" id="liveChat" class="white-space-nowrap"><span

@@ -41,7 +41,7 @@ namespace AlphaPlus.Main.Site
         public static bool IsViva88Domain
             => DomainsWithViva88ContactInfo.Any(domain => domain.Equals(AlphaContext.Current.Request.Host.Value, StringComparison.OrdinalIgnoreCase));
 
-        public static bool IsOfferLiveChat => GetValue<bool>("IsOfferLiveChat");
+        public static string LiveChatLicenseID => GetValue<string>("LiveChatLicenseID");
 
         public static string ContactUsSkypeId => GetValue<string>("skypeId");
 
