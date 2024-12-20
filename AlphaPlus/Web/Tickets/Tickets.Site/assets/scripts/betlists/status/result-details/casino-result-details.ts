@@ -704,12 +704,13 @@
                 betTypeId,
                 '&productId=65'
             ].join('');
-            window.top.postMessage(
-                {
-                    event_id: 'pplivecasino-result',
-                    url: 'ThirdParty/PPLiveCasinoResult' + params
-                }
-            );
+
+            Common.PopupDetails.Instance(window.top).Show(
+                Common.AppPath.TicketsAppPath + 'ThirdParty/PPLiveCasinoResult' + params,
+                '',
+                835,
+                675
+            );            
         };
     }
 
