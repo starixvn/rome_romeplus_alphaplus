@@ -60,6 +60,8 @@ using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatistic;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.Profile;
+using AlphaPlus.Settings.Transfer.API.Helpers;
+using AlphaPlus.Settings.Transfer.API.Models.Reward;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -198,7 +200,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<LogDataAccess, LogDataAccessImpl>()
                 .AddScoped<ViewLogIPService, ViewLogIPServiceImpl>()
                 .AddScoped<RemotingRefWrapper, RemotingRefWrapperImpl>()
-                .AddScoped<CustomerService, CustomerServiceImpl>()
+                .AddScoped<Settings.ViewLogs.API.Services.CustomerService, CustomerServiceImpl>()
                 .AddKeyedScoped<LogService, SettingServiceImpl>("settingLogSvc")
                 .AddKeyedScoped<LogService, StatusServiceImpl>("statusLogSvc")
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")
@@ -213,9 +215,15 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<IYesterdayBalanceTransferService, YesterdayBalanceTransferService>()
                 .AddScoped<TransferAllAndClearCreditService, TransferAllAndClearCreditServiceImpl>()
                 .AddScoped<TransferToDownlineHistoryService, TransferToDownlineHistoryServiceImpl>()
-                .AddSingleton<QRCodeLoginConfigsHelper, QRCodeLoginConfigsHelperImpl>();
+                .AddScoped<IRewardService, RewardService>()
+                .AddScoped<Workbook<RewardPaymentEntity>, NpoiWorkbook<RewardPaymentEntity>>()
+                .AddScoped<Workbook<RewardDetailEntity>, NpoiWorkbook<RewardDetailEntity>>()
+                .AddScoped<ICustomerService, Settings.Transfer.API.Services.CustomerService>();
+            var serviceProvider = services.BuildServiceProvider();
+            CacheRefServiceHelper.Instance = serviceProvider.GetRequiredService<IRemotingRefService>();
 
             services
+                .AddSingleton<QRCodeLoginConfigsHelper, QRCodeLoginConfigsHelperImpl>()
                 .AddSingleton<IMemberBettingBehaviorWorkbook, MemberBettingBehaviorWorkbook>()
                 .AddSingleton<IMemberBettingStatisticService, MemberBettingStatisticService>()
                 .AddHttpClient<ICustomerProfileService, CustomerProfileService>(httpClient =>

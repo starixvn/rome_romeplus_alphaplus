@@ -1,0 +1,77 @@
+@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Core.Utils
+@using AlphaPlus.Shared.AppResources.Settings.Transfer
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+    var isRewardDetailTab = Model.ShowColumns;
+}
+@model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.Reward.RewardFilterViewModel
+<div class="form-inline filter" id="transfer-form">
+    <div class="form-group daterangepicker-container">
+        <label class="label-form-control">@Resources.DateRange</label>
+        <div class="input-group date datepicker">
+            <input type="text" class="form-control" id="daterange-picker" autocomplete="off" readonly
+                data-mindate="@Model.DateRangePicker.MinDate.Value.ToShortDateWithSlash()"
+                data-maxdate="@Model.DateRangePicker.MaxDate.Value.ToShortDateWithSlash()"
+                data-fromdate="@Model.DateRangePicker.FromDate.ToShortDateWithSlash()"
+                data-todate="@Model.DateRangePicker.ToDate.ToShortDateWithSlash()"
+                data-today="@SystemTime.Today.ToShortDateWithSlash()" data-label-today="@Resources.Today"
+                data-label-yesterday="@Resources.Yesterday" data-label-thisweek="@Resources.ThisWeek"
+                data-label-lastweek="@Resources.LastWeek" data-label-thismonth="@Resources.ThisMonth"
+                data-label-lastmonth="@Resources.LastMonth" data-label-sincelastmonth="@Resources.SinceLastMonth"
+                data-label-last3months="@Resources.Last3Months" data-language="@Model.DateRangePicker.Language" />
+            <label class="input-group-addon" for="daterange-picker">
+                <span class="icon-calendar"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="label-form-control">@Resources.Program</label>
+        <div>
+            <select id="ddl-program" asp-items="Model.Programs" data-label-selectall="@Resources.SelectAll"
+                data-label-selected="@Resources.Selected" data-label-noneselected="@Resources.SelectNone"
+                data-label-all="@Resources.All" data-label-noitemfound="@Resources.NoProgramFound"
+                data-label-filterplaceholder="@Resources.SearchProgram"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="label-form-control">@(isRewardDetailTab ? Resources.MemberPaymentStatus :
+            Resources.PaymentStatus)</label>
+        <div>
+            <select id="ddl-paymentStatus" asp-items="Model.PaymentStatus"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="label-form-control">@Resources.Username</label>
+        <div>
+            <input type="text" id="txt-username" placeholder="@Resources.UsernameOrFirstLastName" autocomplete="off"
+                value="@Model.Username" maxlength="50" />
+        </div>
+    </div>
+    @if (Model.ShowColumns)
+    {
+        <div class="form-group">
+            <label class="label-form-control">@Resources.Columns</label>
+            <div class="select-multiple" id="dropdown-column" data-label-selectall="@Resources.SelectAll"
+                data-label-selected="@Resources.Selected" data-label-noneselected="@Resources.SelectNone"
+                data-label-all="@Resources.All" data-label-noitemfound="@Resources.NoColumnsFound"
+                data-label-filterplaceholder="@Resources.SearchColumn">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="label-form-control">&nbsp;</label>
+            <div><span id="icon-copy" class="ic-copy" data-toggle="tooltip" data-placement="top"
+                    title="@Resources.Copy"></span></div>
+        </div>
+    }
+    <div class="form-group">
+        <label class="label-form-control">&nbsp;</label>
+        <div><a href="@Url.Action(Model.ExcelAction)" id="icon-excel" class="ic-excel" data-toggle="tooltip"
+                data-placement="top" title="@Resources.ExportToExcel"></a></div>
+    </div>
+</div>
+<a id="hiddenUsernameAutoSuggestionUrl" asp-controller="UserNameSuggestion" asp-action="Index"
+    style="display: none"></a>
+<input type="hidden" id="hiddenHideFilterText" value="@Resources.HideFilter" />
+<input type="hidden" id="hiddenShowFilterText" value="@Resources.ShowFilter" />

@@ -1267,5 +1267,16 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("winLossByProduct", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reward Payment.
+        /// </summary>
+        public static string RewardPayment
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardPayment", resourceCulture);
+            }
+        }
     }
 }

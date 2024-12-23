@@ -29,6 +29,12 @@ body {
     font-size: 20px;
 }
 
+.reward .icon-information-outline {
+    float: none;
+    font-size: 16px;
+    margin: 0 0 4px 2px;
+}
+
 .tab-content > .tab-pane {
     padding: 8px 0;
 
@@ -57,7 +63,11 @@ body {
         .btn-link {
             @include border-radius(2px);
             background: #ffffff; /* Old browsers */
-            background: linear-gradient(to bottom, #ffffff 0%,#e1e1e1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            background: linear-gradient(
+                to bottom,
+                #ffffff 0%,
+                #e1e1e1 100%
+            ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
             border: 1px solid #9d9d9d;
             color: #068200;
             padding: 2px 8px;
@@ -78,7 +88,8 @@ body {
         }
     }
 
-    .icon-plus, .icon-minus {
+    .icon-plus,
+    .icon-minus {
         @include ripple-effect-icon($top: -3px, $margin-left: -6px);
     }
 
@@ -86,13 +97,14 @@ body {
         margin: 0;
         padding: 0 4px;
 
-        .icon-plus, .icon-minus {
+        .icon-plus,
+        .icon-minus {
             top: 2px;
             position: relative;
         }
     }
 
-    [class^="col"] {
+    [class^='col'] {
         padding: 0;
     }
 
@@ -107,7 +119,9 @@ body {
     }
 
     &.statistic {
-        .active, .closed, .suspended {
+        .active,
+        .closed,
+        .suspended {
             padding: 0 4px;
         }
 
@@ -190,7 +204,7 @@ body {
                 .time {
                     font-weight: bold;
 
-                    [class^="icon"] {
+                    [class^='icon'] {
                         position: relative;
                         top: 2px;
                         left: -2px;
@@ -199,7 +213,8 @@ body {
                     }
                 }
 
-                .time, .content {
+                .time,
+                .content {
                     display: block;
                     width: 100%;
                     line-height: 24px;
@@ -246,6 +261,32 @@ body {
 
 // Customize tooltip
 .tooltip {
+    pointer-events: none;
+
+    .ver2 & {
+        .tooltip-arrow {
+            &:after,
+            &:before {
+                display: none;
+            }
+        }
+
+        &.right {
+            .tooltip-arrow {
+                border-right-color: #333;
+            }
+        }
+
+        .tooltip-inner {
+            border: none;
+            background-color: #333;
+            color: #fff;
+            width: 260px;
+            max-width: 260px;
+            font-size: 13px;
+        }
+    }
+
     &.in {
         opacity: 1;
     }
@@ -261,15 +302,12 @@ body {
 
     &.top {
         .tooltip-arrow {
-            display: none;
-        }
-
-        .tooltip-inner {
-            &:after, &:before {
+            &:after,
+            &:before {
                 bottom: 0;
                 left: 50%;
                 border: solid transparent;
-                content: " ";
+                content: ' ';
                 height: 0;
                 width: 0;
                 position: absolute;
@@ -280,21 +318,55 @@ body {
                 border-top-color: #f2f2f2;
                 border-width: 8px;
                 margin-left: -8px;
-                margin-bottom: -10px;
+                bottom: -7px;
             }
 
             &:before {
                 border-color: transparent;
                 border-top-color: #ccc;
-                border-width: 10px;
-                margin-left: -10px;
-                margin-bottom: -14px;
+                border-width: 7px;
+                margin-left: -7px;
+                bottom: -8px;
+            }
+        }
+    }
+
+    &.right {
+        .tooltip-inner {
+        }
+
+        .tooltip-arrow {
+            &:after,
+            &:before {
+                bottom: 0;
+                left: 50%;
+                border: solid transparent;
+                content: ' ';
+                height: 0;
+                width: 0;
+                position: absolute;
+            }
+
+            &:after {
+                border-color: transparent;
+                border-right-color: #f2f2f2;
+                border-width: 9px;
+                margin-left: -11px;
+                bottom: -10px;
+            }
+
+            &:before {
+                border-color: transparent;
+                border-right-color: #ccc;
+                border-width: 9px;
+                margin-left: -12px;
+                bottom: -10px;
             }
         }
     }
 }
 
-@media only screen and (min-device-width : $screen-device-greater768) {
+@media only screen and (min-device-width: $screen-device-greater768) {
     body {
         line-height: 30px;
     }
@@ -319,7 +391,7 @@ body {
             padding: 8px 0;
             text-transform: uppercase;
 
-            [class^="icon"] {
+            [class^='icon'] {
                 font-size: 20px;
                 margin-right: 8px;
                 position: relative;
@@ -327,7 +399,8 @@ body {
             }
         }
 
-        &.balance-info, &.statistic {
+        &.balance-info,
+        &.statistic {
             float: left;
             width: 50%;
             @include box-sizing;
@@ -346,7 +419,6 @@ body {
 
         &.statistic {
             padding-left: 8px;
-
 
             .container {
                 height: 100%;
@@ -388,7 +460,8 @@ body {
             display: table;
             width: 100%;
 
-            .time, .content {
+            .time,
+            .content {
                 padding: 4px 0;
                 display: table-cell;
             }
@@ -400,7 +473,7 @@ body {
     }
 }
 
-@media only screen and (min-device-width : $screen-device-greater1200) {
+@media only screen and (min-device-width: $screen-device-greater1200) {
     .tab-content > .tab-pane {
         .row:hover {
             background-color: $table-td-hover-color;
@@ -408,8 +481,7 @@ body {
     }
 }
 
-
-@media \0screen\,screen\9 {
+@media \0screen\, screen\9 {
     body {
         line-height: 30px;
     }
@@ -429,7 +501,7 @@ body {
             padding: 8px 0;
             text-transform: uppercase;
 
-            [class^="icon"] {
+            [class^='icon'] {
                 font-size: 20px;
                 margin-right: 8px;
                 position: relative;
@@ -437,7 +509,8 @@ body {
             }
         }
 
-        &.balance-info, &.statistic {
+        &.balance-info,
+        &.statistic {
             float: left;
             width: 50%;
             @include box-sizing;
@@ -487,7 +560,8 @@ body {
             display: table;
             width: 100%;
 
-            .time, .content {
+            .time,
+            .content {
                 padding: 4px 0;
                 display: table-cell;
             }

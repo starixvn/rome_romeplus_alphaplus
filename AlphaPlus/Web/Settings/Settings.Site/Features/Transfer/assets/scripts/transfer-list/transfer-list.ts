@@ -149,9 +149,12 @@
 
     private initComponents($formTransfer: JQuery, $tableTransfer: JQuery) {
         this.transferListPaging.init(() => $formTransfer.submit());
-        this.usernameSuggestionComponent.init(
-            new UsernameSuggestionOption($('#Username'), $('#hidden-usernameSuggestionUrl').val(), true, false)
-        );
+        this.usernameSuggestionComponent.init({
+            selectorId: 'Username',
+            url: $('#hidden-usernameSuggestionUrl').val(),
+            directDownlines: true,
+            isAccInfo: false
+        });
         this.statusDropdownComponent.render('Status');
         this.autoTransferDropdownComponent.render('AutoTransfer');
         this.visibleColumnContextMenu.init(`transfer_${$('#ViewerId').val()}`, $tableTransfer);

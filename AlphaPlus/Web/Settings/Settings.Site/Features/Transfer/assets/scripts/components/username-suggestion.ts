@@ -2,26 +2,22 @@
     typeahead(options: any): JQuery;
 }
 
-class UsernameSuggestionOption {
-    constructor(
-        public $usernameInput: JQuery,
-        public url: string,
-        public directDownlines = false,
-        public isAccInfo = false
-    ) {
-        this.$usernameInput = $usernameInput;
-        this.url = url;
-        this.directDownlines = directDownlines;
-        this.isAccInfo = isAccInfo;
-    }
+interface UsernameSuggestionOption {
+    selectorId?: string;
+    url: string;
+    directDownlines?: boolean;
+    isAccInfo?: boolean;
+    onBlur?: Function;
 }
 
 class UsernameSuggestionComponent {
+    private $usernameInput: JQuery;
+
     init(options: UsernameSuggestionOption) {
+        this.$usernameInput = $('#' + (options.selectorId || 'txt-username'));
         const queryString = this.buildQueryString(options);
         const urlAndQueryString = `${options.url}?${queryString}${queryString.length ? '&' : ''}`;
-
-        options.$usernameInput.typeahead({
+        this.$usernameInput.typeahead({
             source: function (query: string, process) {
                 return $.get(`${urlAndQueryString}query=${query}`, process);
             },
@@ -36,9 +32,29 @@ class UsernameSuggestionComponent {
                 return `${item.UserName}${nickname}#${item.FirstName} ${item.LastName}`;
             },
             autoSelect: false,
-            afterSelect: (item) => options.$usernameInput.val(item.UserName),
+            afterSelect: (item) => this.$usernameInput.val(item.UserName),
             delay: 200
         });
+
+        if (options.onBlur) {
+            let hitEnterTextboxUsername = false;
+            this.$usernameInput
+                .keypress((e) => {
+                    const key = e.which || e.keyCode;
+                    if (key === 13) {
+                        hitEnterTextboxUsername = true;
+                        options.onBlur && options.onBlur();
+                    }
+                })
+                .blur(() => {
+                    if (hitEnterTextboxUsername) {
+                        hitEnterTextboxUsername = false;
+                    } else {
+                        const visible = this.$usernameInput.next('.typeahead').is(':visible');
+                        !visible && options.onBlur && options.onBlur();
+                    }
+                });
+        }
     }
 
     private buildQueryString(options: UsernameSuggestionOption) {
@@ -48,8 +64,20 @@ class UsernameSuggestionComponent {
             queryString.push(`directdownlines=${options.directDownlines}`);
         }
 
-        queryString.push(`isaccinfo=${options.isAccInfo}`);
+        if (!options.isAccInfo) {
+            queryString.push(`isaccinfo=${options.isAccInfo}`);
+        }
 
         return queryString.length === 0 ? '' : queryString.join('&');
+    }
+
+    getUsername() {
+        if (this.$usernameInput.length) {
+            return $.trim(this.$usernameInput.val());
+        }
+    }
+
+    resetUsername() {
+        this.$usernameInput.val('');
     }
 }

@@ -29,12 +29,18 @@ body {
     font-size: 20px;
 }
 
+.reward .icon-information-outline {
+    float: none;
+    font-size: 16px;
+    margin: 0 0 4px 2px;
+}
+
 .tab-content > .tab-pane {
     padding: 8px 0;
-    color: #CBCBCB;
+    color: #cbcbcb;
 
     .group-date {
-        color: #ECECEC;
+        color: #ececec;
     }
 
     .pointer {
@@ -61,8 +67,12 @@ body {
 
         .btn-link {
             background: #ffffff; /* Old browsers */
-            background: linear-gradient(to bottom, #FEFEFE 0%,#E2E2E2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            color: #06822D;
+            background: linear-gradient(
+                to bottom,
+                #fefefe 0%,
+                #e2e2e2 100%
+            ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            color: #06822d;
             padding: 3px 8px;
             font-weight: bold;
 
@@ -73,15 +83,16 @@ body {
         }
 
         &.text-red {
-            color: #E54748;
+            color: #e54748;
 
             .btn-link {
-                color: #E54748;
+                color: #e54748;
             }
         }
     }
 
-    .icon-plus, .icon-minus {
+    .icon-plus,
+    .icon-minus {
         @include ripple-effect-icon($top: -3px, $margin-left: -6px);
     }
 
@@ -89,18 +100,19 @@ body {
         margin: 0;
         padding: 0 4px;
 
-        .icon-plus, .icon-minus {
+        .icon-plus,
+        .icon-minus {
             top: 2px;
             position: relative;
         }
     }
 
-    [class^="col"] {
+    [class^='col'] {
         padding: 0;
     }
 
     .panel-title {
-        color: #EDEDED;
+        color: #ededed;
     }
 
     .group-title {
@@ -111,24 +123,26 @@ body {
         padding-top: 8px;
         padding-bottom: 4px;
         text-transform: uppercase;
-        color: #ECECEC;
+        color: #ececec;
     }
 
     &.statistic {
-        .active, .closed, .suspended {
+        .active,
+        .closed,
+        .suspended {
             padding: 0 4px;
         }
 
         .active {
-            color: #41A4FF;
+            color: #41a4ff;
         }
 
         .closed {
-            color: #E54748;
+            color: #e54748;
         }
 
         .suspended {
-            color: #E57B2D;
+            color: #e57b2d;
         }
 
         .dropdown.open .icon-plus:before {
@@ -154,7 +168,6 @@ body {
     }
     // Announcement
     &.notice {
-
         .notice-container {
             background-color: #171717;
         }
@@ -168,7 +181,7 @@ body {
         .group-date {
             @extend %group;
             background-color: #353738;
-            color: #ECECEC;
+            color: #ececec;
         }
 
         .group-highlight {
@@ -179,8 +192,8 @@ body {
         .msg-contents {
             padding-bottom: 4px;
             padding-top: 4px;
-            background-color: #1A1B1C;
-            color: #ECECEC;
+            background-color: #1a1b1c;
+            color: #ececec;
 
             .message {
                 padding: 0 16px;
@@ -206,7 +219,7 @@ body {
                 .time {
                     font-weight: bold;
 
-                    [class^="icon"] {
+                    [class^='icon'] {
                         position: relative;
                         top: 2px;
                         left: -2px;
@@ -215,7 +228,8 @@ body {
                     }
                 }
 
-                .time, .content {
+                .time,
+                .content {
                     display: block;
                     width: 100%;
                     line-height: 24px;
@@ -272,7 +286,9 @@ body {
         .disabled {
             color: #848484;
 
-            &:hover, &:focus, &:active {
+            &:hover,
+            &:focus,
+            &:active {
                 text-decoration: none;
             }
         }
@@ -285,16 +301,42 @@ body {
 
 // Customize tooltip
 .tooltip {
+    pointer-events: none;
+
+    .ver2 & {
+        .tooltip-arrow {
+            &:after,
+            &:before {
+                display: none;
+            }
+        }
+
+        &.right {
+            .tooltip-arrow {
+                border-right-color: #3e3e3e;
+            }
+        }
+
+        .tooltip-inner {
+            border: none;
+            background-color: #3e3e3e;
+            color: #cbcbcb;
+            width: 260px;
+            max-width: 260px;
+            font-size: 13px;
+            box-shadow: none;
+        }
+    }
 
     &.in {
         opacity: 1;
     }
 
     .tooltip-inner {
-        border: 1px solid #9F9F9F;
-        color: #EDEDED;
+        border: 1px solid #9f9f9f;
+        color: #ededed;
         font-weight: bold;
-        background-color: #2E2E2E;
+        background-color: #2e2e2e;
         text-align: left;
         @include border-radius(2px);
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
@@ -302,15 +344,12 @@ body {
 
     &.top {
         .tooltip-arrow {
-            display: none;
-        }
-
-        .tooltip-inner {
-            &:after, &:before {
+            &:after,
+            &:before {
                 bottom: 0;
                 left: 50%;
                 border: solid transparent;
-                content: " ";
+                content: ' ';
                 height: 0;
                 width: 0;
                 position: absolute;
@@ -318,24 +357,55 @@ body {
 
             &:after {
                 border-color: transparent;
-                border-top-color: #2E2E2E;
+                border-top-color: #2e2e2e;
                 border-width: 8px;
                 margin-left: -8px;
-                margin-bottom: -10px;
+                bottom: -7px;
             }
 
             &:before {
                 border-color: transparent;
-                border-top-color: #999999;
-                border-width: 10px;
-                margin-left: -10px;
-                margin-bottom: -14px;
+                border-top-color: #9f9f9f;
+                border-width: 7px;
+                margin-left: -7px;
+                bottom: -8px;
+            }
+        }
+    }
+
+    &.right {
+        .tooltip-arrow {
+            &:after,
+            &:before {
+                bottom: 0;
+                left: 50%;
+                border: solid transparent;
+                content: ' ';
+                height: 0;
+                width: 0;
+                position: absolute;
+            }
+
+            &:after {
+                border-color: transparent;
+                border-right-color: #2e2e2e;
+                border-width: 9px;
+                margin-left: -11px;
+                bottom: -10px;
+            }
+
+            &:before {
+                border-color: transparent;
+                border-right-color: #9f9f9f;
+                border-width: 9px;
+                margin-left: -12px;
+                bottom: -10px;
             }
         }
     }
 }
 
-@media only screen and (min-device-width : $screen-device-greater768) {
+@media only screen and (min-device-width: $screen-device-greater768) {
     body {
         line-height: 30px;
     }
@@ -360,7 +430,7 @@ body {
             padding: 8px 0;
             text-transform: uppercase;
 
-            [class^="icon"] {
+            [class^='icon'] {
                 font-size: 20px;
                 margin-right: 8px;
                 position: relative;
@@ -368,7 +438,9 @@ body {
             }
         }
 
-        &.balance-info, &.statistic, &.member-requests {
+        &.balance-info,
+        &.statistic,
+        &.member-requests {
             float: left;
             width: 50%;
             @include box-sizing;
@@ -387,7 +459,6 @@ body {
 
         &.statistic {
             padding-left: 8px;
-
 
             .container {
                 height: 100%;
@@ -459,7 +530,8 @@ body {
             display: table;
             width: 100%;
 
-            .time, .content {
+            .time,
+            .content {
                 padding: 4px 0;
                 display: table-cell;
             }
@@ -471,7 +543,7 @@ body {
     }
 }
 
-@media only screen and (min-device-width : $screen-device-greater1200) {
+@media only screen and (min-device-width: $screen-device-greater1200) {
     .tab-content > .tab-pane {
         .row:hover {
             background-color: $table-td-hover-color;
@@ -479,8 +551,7 @@ body {
     }
 }
 
-
-@media \0screen\,screen\9 {
+@media \0screen\, screen\9 {
     body {
         line-height: 30px;
     }
@@ -500,7 +571,7 @@ body {
             padding: 8px 0;
             text-transform: uppercase;
 
-            [class^="icon"] {
+            [class^='icon'] {
                 font-size: 20px;
                 margin-right: 8px;
                 position: relative;
@@ -508,7 +579,8 @@ body {
             }
         }
 
-        &.balance-info, &.statistic {
+        &.balance-info,
+        &.statistic {
             float: left;
             width: 50%;
             @include box-sizing;
@@ -557,7 +629,8 @@ body {
             display: table;
             width: 100%;
 
-            .time, .content {
+            .time,
+            .content {
                 padding: 4px 0;
                 display: table-cell;
             }

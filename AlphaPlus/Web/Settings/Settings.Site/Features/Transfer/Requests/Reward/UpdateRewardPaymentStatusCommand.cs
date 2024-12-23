@@ -1,0 +1,43 @@
+using AlphaPlus.Settings.Transfer.API.Models.Reward;
+using MediatR;
+
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.Reward;
+
+public class UpdateRewardPaymentStatusCommand : TransferBaseQuery, IRequest<RewardResult>
+{
+    public UpdateRewardPaymentStatusCommand()
+    {
+        LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
+        SubAccId = viewer.SubAccId;
+        SubAccName = viewer.SubAccName;
+        IP = viewer.IP;
+        LanguageKey = viewer.LanguageKey;
+        IsInternal = viewer.IsInternal;
+        AGIP = viewer.AGIP;
+    }
+
+    public DateTime FromDate { get; set; }
+
+    public DateTime ToDate { get; set; }
+
+    public DateTime LimitedDateToShowInfo { get; }
+
+    public RewardPaymentStatus[] Data { get; set; }
+
+    public int SubAccId { get; }
+
+    public string SubAccName { get; }
+
+    public string IP { get; }
+
+    public string LanguageKey { get; }
+
+    public bool IsInternal { get; }
+
+    public string AGIP { get; }
+
+    public override bool IsValid()
+        => !IsInternal
+        && Data != null && Data.Length > 0
+        && FromDate != DateTime.MinValue && ToDate != DateTime.MinValue && FromDate <= ToDate;
+}

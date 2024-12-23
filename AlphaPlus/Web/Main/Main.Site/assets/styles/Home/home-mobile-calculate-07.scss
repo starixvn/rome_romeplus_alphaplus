@@ -62,12 +62,22 @@ body {
     }
 }
 
-
-
-
 .icon-information-outline {
     margin-left: calculateScale(5px);
     font-size: calculateScale(20px);
+}
+
+.reward .icon-information-outline {
+    font-size: calculateScale(16px);
+
+    &:after {
+        margin-top: calculateScale(-1px);
+        margin-left: calculateScale(-1.8px);
+    }
+}
+
+.tooltip {
+    font-size: calculateScale(12px);
 }
 
 .tab-content > .tab-pane {
@@ -87,7 +97,8 @@ body {
         padding: calculateScale(2px) calculateScale(8px);
     }
 
-    .icon-plus, .icon-minus {
+    .icon-plus,
+    .icon-minus {
         margin-left: calculateScale(4px);
         margin-right: calculateScale(5px);
         top: calculateScale(2px);
@@ -110,7 +121,8 @@ body {
     &.notice {
         padding-top: calculateScale(12px);
 
-        .group-date, .group-highlight {
+        .group-date,
+        .group-highlight {
             line-height: calculateScale(28px);
             padding: 0 calculateScale(16px);
         }
@@ -138,7 +150,7 @@ body {
                 }
             }
 
-            .message .time [class^="icon"] {
+            .message .time [class^='icon'] {
                 top: calculateScale(2px);
                 left: calculateScale(-2px);
                 margin-right: calculateScale(3px);
@@ -152,14 +164,15 @@ body {
             padding-top: calculateScale(2px);
             line-height: calculateScale(30px);
             background-color: #e3e3e3;
-            
+
             .icon-more {
                 top: calculateScale(2px);
                 margin-left: calculateScale(4px);
-            }      
+            }
         }
 
-        .icon-plus, .icon-minus {
+        .icon-plus,
+        .icon-minus {
             &:before {
                 top: 2px;
             }
@@ -167,8 +180,8 @@ body {
     }
 
     &.statistic {
-        .active, 
-        .closed, 
+        .active,
+        .closed,
         .suspended {
             padding: 0 calculateScale(4px);
         }
@@ -200,10 +213,11 @@ body {
     .panel-title {
         display: none;
     }
-} 
+}
 
-
-.tblRpt thead th, .tblRpt tbody td, .tblRpt tfoot td {
+.tblRpt thead th,
+.tblRpt tbody td,
+.tblRpt tfoot td {
     height: calculateScale(28px);
     padding: calculateScale(4px) calculateScale(8px);
 }

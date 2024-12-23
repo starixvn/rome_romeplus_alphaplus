@@ -1,4 +1,8 @@
-﻿class AlphaTransfer {
+﻿interface JQuery {
+    stickyTableHeaders(method?: string): void;
+}
+
+class AlphaTransfer {
     store: any;
 
     numberDisplayedSelectedOnFilter = 1;
@@ -77,6 +81,20 @@
             caretPosition + (newLength - originalLength),
             caretPosition + (newLength - originalLength)
         );
+    }
+
+    updateCurrentUrl = (queryString: string) => {
+        try {
+            window.top.indexManager.updateCurrentUrl(queryString);
+        } catch (e) {}
+    };
+
+    showFeedback(id: number) {
+        setTimeout(function () {
+            try {
+                window.top.indexManager && window.top.indexManager.initFeedbackFunction(id);
+            } catch (e) {}
+        }, 1000);
     }
 }
 

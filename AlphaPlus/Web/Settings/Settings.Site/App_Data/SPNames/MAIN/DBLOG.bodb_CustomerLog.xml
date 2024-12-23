@@ -82,4 +82,7 @@
       <Mapping DataField="Amount" ObjectProperty="TransferAmount" />
     </Setting>
   </Function>
+  <Function Name="Reward">
+    <Setting Key="WriteLog_UserLog_RunSP_RewardPayment" SpName="WriteLog_UserLog_RunSP_RewardPayment" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
+  </Function>
 </Functions>

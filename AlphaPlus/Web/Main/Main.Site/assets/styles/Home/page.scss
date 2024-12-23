@@ -1055,6 +1055,10 @@ html * {
     color: $text-color;
     padding: 20px;
 
+    .sm {
+        display: none;
+    }
+
     .icon-close {
         position: absolute;
         top: 5px;

@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿'use strict';
 interface JQuery {
     pagination(option: any): void;
 }
@@ -6,12 +6,12 @@ interface JQuery {
 class PagerOption {
     constructor(
         public onSelectPage: () => void = null,
-        public pagerId: string = "report-pager",
-        public formId: string = "report-form",
-        public pageIndexId: string = "PageIndex",
-        public pageSizeId: string = "PageSize",
-        public pageList: number[] = [50, 100, 200, 500]) {
-    }
+        public pagerId: string = 'report-pager',
+        public formId: string = 'report-form',
+        public pageIndexId: string = 'PageIndex',
+        public pageSizeId: string = 'PageSize',
+        public pageList: number[] = [50, 100, 200, 500]
+    ) {}
 }
 
 class PagerComponent {
@@ -33,16 +33,18 @@ class PagerComponent {
     render = (options: PagerOption = this.options) => {
         let self = this;
         let pagerOption = <PagerOption>this.$.extend({}, this.options, options);
-        let pager = this.$("#" + pagerOption.pagerId);
+        let pager = this.$('#' + pagerOption.pagerId);
 
-        this.$reportForm = this.$("#" + pagerOption.formId);
-        this.totalRecords = pager.data("totalrecords");
-        this.pageSize = pager.data("pagesize");
-        this.pageIndex = pager.data("pageindex");
-        this.$pageIndex =
-            this.$(`<input type="hidden" id="${pagerOption.pageIndexId}" name="${pagerOption.pageIndexId}" value="${this.pageIndex}" />`);
-        this.$pageSize =
-            this.$(`<input type="hidden" id="${pagerOption.pageSizeId}" name="${pagerOption.pageSizeId}" value="${this.pageSize}" />`);
+        this.$reportForm = this.$('#' + pagerOption.formId);
+        this.totalRecords = pager.data('totalrecords');
+        this.pageSize = pager.data('pagesize');
+        this.pageIndex = pager.data('pageindex');
+        this.$pageIndex = this.$(
+            `<input type="hidden" id="${pagerOption.pageIndexId}" name="${pagerOption.pageIndexId}" value="${this.pageIndex}" />`
+        );
+        this.$pageSize = this.$(
+            `<input type="hidden" id="${pagerOption.pageSizeId}" name="${pagerOption.pageSizeId}" value="${this.pageSize}" />`
+        );
         this.pageList = pagerOption.pageList;
 
         this.$reportForm.append(this.$pageIndex).append(this.$pageSize);
@@ -57,25 +59,25 @@ class PagerComponent {
                 showRefresh: false,
                 onSelectPage: function (pageNumber: number, pageSize: number) {
                     self.updateHiddenFields(pageNumber, pageSize);
-                    if (pagerOption.onSelectPage && typeof (pagerOption.onSelectPage) == "function") {
+                    if (pagerOption.onSelectPage && typeof pagerOption.onSelectPage == 'function') {
                         pagerOption.onSelectPage();
                     }
                 },
-                beforePageText: pager.data("labelpage"),
-                afterPageText: pager.data("labelof") + " {pages}",
-                displayMsg: pager.data("labeldisplayitems")
+                beforePageText: pager.data('labelpage'),
+                afterPageText: pager.data('labelof') + ' {pages}',
+                displayMsg: pager.data('labeldisplayitems')
             });
 
-            pager.removeClass("hide");
+            pager.removeClass('hide');
         } else {
-            pager.addClass("hide");
+            pager.addClass('hide');
         }
 
         return pager;
     };
 
     onChange = () => {
-        this.$reportForm.trigger("submit");
+        this.$reportForm.trigger('submit');
     };
 
     updateHiddenFields = (pageNumber: number, pageSize: number) => {
@@ -89,4 +91,11 @@ class PagerComponent {
     };
 
     options = new PagerOption(this.onChange);
+
+    reset = () => {
+        if (this.$pageIndex) {
+            this.$pageIndex.remove();
+            this.$pageSize.remove();
+        }
+    };
 }

@@ -792,6 +792,41 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/reward/reward.css",
+    "inputFiles": [
+      "Features/Transfer/assets/styles/reward/reward.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/reward/reward-payment.js",
+    "inputFiles": [
+      "Features/Transfer/assets/scripts/core.js",
+      "Features/Transfer/assets/scripts/components/filter.js",
+      "Features/Transfer/assets/scripts/components/daterangepicker-jquery.js",
+      "Features/Transfer/assets/scripts/components/fanexMultiSelect-dropdown.js",
+      "Features/Transfer/assets/scripts/components/dropdown-transfer.js",
+      "Features/Transfer/assets/scripts/components/username-suggestion.js",
+      "Features/Transfer/assets/scripts/components/sort.js",
+      "Features/Transfer/assets/scripts/reward/reward-payment.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Features/Transfer/assets/bundles/reward/reward-detail.js",
+    "inputFiles": [
+      "Features/Transfer/assets/scripts/core.js",
+      "Features/Transfer/assets/scripts/components/filter.js",
+      "Features/Transfer/assets/scripts/components/daterangepicker-jquery.js",
+      "Features/Transfer/assets/scripts/components/fanexMultiSelect-dropdown.js",
+      "Features/Transfer/assets/scripts/components/dropdown-transfer.js",
+      "Features/Transfer/assets/scripts/components/username-suggestion.js",
+      "Features/Transfer/assets/scripts/components/visible-columns-dropdown-new.js",
+      "Features/Transfer/assets/scripts/components/sort.js",
+      "Features/Transfer/assets/scripts/components/pager.js",
+      "Features/Transfer/assets/scripts/components/copy-html.js",
+      "Features/Transfer/assets/scripts/reward/reward-detail.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/bundles/customer/update-customer-info.js",
     "inputFiles": [
       "Features/Customer/assets/scripts/update-customer-info.js"

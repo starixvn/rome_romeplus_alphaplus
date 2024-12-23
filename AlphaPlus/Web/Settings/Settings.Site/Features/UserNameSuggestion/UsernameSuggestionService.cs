@@ -12,6 +12,8 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
             bool isAccInfo);
 
         Task<IEnumerable<UsernameSuggestion>> GetUsernameSuggestionByRole(int custId, string username, byte roleId);
+
+        Task UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname);
     }
 
     public class UsernameSuggestionServiceImpl(HttpClient httpClient) : UsernameSuggestionService
@@ -52,5 +54,8 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
 
             return result;
         }
+
+        public Task UpdateUserSearch(int userId, string search, string firstName, string lastName, string nickname)
+            => httpClient.PutAsStringAsync("customer/username-suggestion", new { userId, search, firstName, lastName, nickname });
     }
 }

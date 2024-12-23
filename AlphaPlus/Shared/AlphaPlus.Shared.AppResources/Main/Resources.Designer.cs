@@ -2098,11 +2098,11 @@ namespace AlphaPlus.Shared.AppResources.Main
 
         /// <summary>
         ///   Looks up a localized string similar to Dear Valued Agents,
-        /// 
+        ///
         ///Your downline, “{0}” has successfully joined Nova Casino. Kindly provide their score promptly to ensure smooth processing.
-        /// 
+        ///
         ///Should you have any questions, please contact the Customer Service Department.
-        /// 
+        ///
         ///Thank you for your continued cooperation!.
         /// </summary>
         public static string SyncedNovaCasinoPersonalMessage
@@ -2682,6 +2682,61 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("yesterdayWinLoss", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reward.
+        /// </summary>
+        public static string Reward
+        {
+            get
+            {
+                return ResourceManager.GetString("Reward", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reward Payable.
+        /// </summary>
+        public static string RewardPayable
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardPayable", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Amount you can distribute to your downlines..
+        /// </summary>
+        public static string RewardPayableTooltip
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardPayableTooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reward Receivable.
+        /// </summary>
+        public static string RewardReceivable
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardReceivable", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Amount you can receive from your upline..
+        /// </summary>
+        public static string RewardReceivableTooltip
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardReceivableTooltip", resourceCulture);
             }
         }
     }

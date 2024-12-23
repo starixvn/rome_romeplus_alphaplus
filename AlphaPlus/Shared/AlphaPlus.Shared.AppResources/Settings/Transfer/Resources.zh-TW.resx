@@ -759,4 +759,91 @@
   <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
     <value>您的轉賬設定已被上線更改。 以下客戶已調整自動轉賬狀態和日程表： {0} 。 詳細信息可以在轉賬功能查詢。</value>
   </data>
+  <data name="Received" xml:space="preserve">
+    <value>已收到</value>
+  </data>
+  <data name="NotReceived" xml:space="preserve">
+    <value>未收到</value>
+  </data>
+  <data name="AlreadyPaid" xml:space="preserve">
+    <value>已支付</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>支付</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>未支付</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>日期範圍</value>
+  </data>
+  <data name="RewardDetail" xml:space="preserve">
+    <value>奖金詳情</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>獎金支付</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>程序</value>
+  </data>
+  <data name="NoProgramFound" xml:space="preserve">
+    <value>找不到獎金程序</value>
+  </data>
+  <data name="SearchProgram" xml:space="preserve">
+    <value>搜索程序</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>付款狀態</value>
+  </data>
+  <data name="MemberPaymentStatus" xml:space="preserve">
+    <value>會員付款狀況</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>隱藏篩選</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>顯示篩選</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>確認付款</value>
+  </data>
+  <data name="ShowAllErrorPayments" xml:space="preserve">
+    <value>查看所有未成功的付款。</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>付款日期</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>反饋</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>新增日期</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusConfirm" xml:space="preserve">
+    <value>您確定要確認所選賬號的付款嗎？</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>此付款已成功確認。</value>
+  </data>
+  <data name="UpdateAllRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>所有付款已成功確認。</value>
+  </data>
+  <data name="UpdateManyRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>除以下付款外，所有付款均已成功確認：</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>過去3個月</value>
+  </data>
+  <data name="NoColumnsFound" xml:space="preserve">
+    <value>無法找尋專欄</value>
+  </data>
 </root>

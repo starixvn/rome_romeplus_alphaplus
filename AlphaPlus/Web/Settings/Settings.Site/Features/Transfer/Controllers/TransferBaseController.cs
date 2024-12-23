@@ -4,6 +4,7 @@ using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Core;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests;
 using AlphaPlus.Core.Models;
+using Microsoft.AspNetCore.Authentication;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers;
 
@@ -22,6 +23,16 @@ public abstract class TransferBaseController(IMediator mediator) : BaseControlle
         }
 
         return View(await mediator.Send(message));
+    }
+
+    protected async Task<IActionResult> View<TResponse>(IRequest<TResponse> message, string viewName)
+    {
+        if (message is TransferBaseQuery transferMessage && !transferMessage.IsValid())
+        {
+            return View(InvalidPageViewPath);
+        }
+
+        return View(viewName, await mediator.Send(message));
     }
 
     protected async Task<FileContentResult> ExcelView(IRequest<ExcelFileViewModel> message)
@@ -45,5 +56,11 @@ public abstract class TransferBaseController(IMediator mediator) : BaseControlle
         }
 
         return Json(await mediator.Send(message));
+    }
+
+    protected async Task ClearSessionAndSignOut()
+    {
+        HttpContext.Session.Clear();
+        await HttpContext.SignOutAsync();
     }
 }

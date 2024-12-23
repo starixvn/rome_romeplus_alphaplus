@@ -786,4 +786,91 @@
   <data name="TransferConditionChange_PersonalMessage" xml:space="preserve">
     <value>Your Transfer Condition was changed by upline. The Auto Transfer status and schedule have been adjusted for the following customers: {0}. Details can be found in Transfer function.</value>
   </data>
+  <data name="Received" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="NotReceived" xml:space="preserve">
+    <value>Not Received</value>
+  </data>
+  <data name="AlreadyPaid" xml:space="preserve">
+    <value>Already Paid</value>
+  </data>
+  <data name="Paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>Unpaid</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date Range</value>
+  </data>
+  <data name="RewardDetail" xml:space="preserve">
+    <value>Reward Detail</value>
+  </data>
+  <data name="RewardPayment" xml:space="preserve">
+    <value>Reward Payment</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="NoProgramFound" xml:space="preserve">
+    <value>No program found</value>
+  </data>
+  <data name="SearchProgram" xml:space="preserve">
+    <value>Search program</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>Payment Status</value>
+  </data>
+  <data name="MemberPaymentStatus" xml:space="preserve">
+    <value>Member Payment Status</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Copied</value>
+  </data>
+  <data name="HideFilter" xml:space="preserve">
+    <value>Hide filters</value>
+  </data>
+  <data name="ShowFilter" xml:space="preserve">
+    <value>Show filters</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>Confirm Payment</value>
+  </data>
+  <data name="ShowAllErrorPayments" xml:space="preserve">
+    <value>View all unsuccessful payments.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>Payment Date</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusConfirm" xml:space="preserve">
+    <value>Are you sure you want to confirm payment for the selected account(s)?</value>
+  </data>
+  <data name="UpdateRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>This payment has been successfully confirmed.</value>
+  </data>
+  <data name="UpdateAllRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>All payments have been successfully confirmed.</value>
+  </data>
+  <data name="UpdateManyRewardPaymentStatusSuccessfully" xml:space="preserve">
+    <value>All payments have been successfully confirmed except the following payments:</value>
+  </data>
+  <data name="Last3Months" xml:space="preserve">
+    <value>Last 3 Months</value>
+  </data>
+  <data name="NoColumnsFound" xml:space="preserve">
+    <value>No Columns Found</value>
+  </data>
 </root>
