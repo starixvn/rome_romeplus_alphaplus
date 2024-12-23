@@ -9,6 +9,11 @@ public class WinLossQuery : BetListBaseQuery, IRequest<WinLossViewModel>
 {
     protected const int NegativeThree = -3;
 
+    public WinLossQuery()
+    {
+        LimitedDateToShowInfo = Viewer.LimitedDateToShowInfo;
+    }
+
     public bool IsGroupHeadline { get; set; }
 
     public virtual DateTime MinDate
