@@ -391,6 +391,12 @@
                         "Permission": "[H]",
                         "IsCheckBelonging": true,
                         "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/GetCustomerSetting",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": false
                     }
                 ]
             },
