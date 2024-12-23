@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿'use strict';
 interface JQuery {
     pagination(option: any): void;
 }
@@ -6,11 +6,11 @@ interface JQuery {
 class PagerOptionTransfer {
     constructor(
         public onSelectPage: () => void = null,
-        public pagerId: string = "report-pager",
-        public formId: string = "report-form",
-        public pageIndexId: string = "PageIndex",
-        public pageSizeId: string = "PageSize") {
-    }
+        public pagerId: string = 'report-pager',
+        public formId: string = 'report-form',
+        public pageIndexId: string = 'PageIndex',
+        public pageSizeId: string = 'PageSize'
+    ) {}
 }
 
 class PagerComponentTransfer {
@@ -34,16 +34,18 @@ class PagerComponentTransfer {
     render = (options: PagerOptionTransfer = new PagerOptionTransfer()) => {
         let self = this;
         let pagerOption = <PagerOptionTransfer>this.$.extend({}, this.options, options);
-        let pager = this.$("#" + pagerOption.pagerId);
+        let pager = this.$('#' + pagerOption.pagerId);
 
-        this.$reportForm = this.$("#" + this.options.formId);
-        this.totalRecords = pager.data("totalrecords");
-        this.pageSize = pager.data("pagesize");
-        this.pageIndex = pager.data("pageindex");
-        this.$pageIndex =
-            this.$(`<input type="hidden" id="${pagerOption.pageIndexId}" name="${pagerOption.pageIndexId}" value="${this.pageIndex}" />`);
-        this.$pageSize =
-            this.$(`<input type="hidden" id="${pagerOption.pageSizeId}" name="${pagerOption.pageSizeId}" value="${this.pageSize}" />`);
+        this.$reportForm = this.$('#' + pagerOption.formId);
+        this.totalRecords = pager.data('totalrecords');
+        this.pageSize = pager.data('pagesize');
+        this.pageIndex = pager.data('pageindex');
+        this.$pageIndex = this.$(
+            `<input type="hidden" id="${pagerOption.pageIndexId}" name="${pagerOption.pageIndexId}" value="${this.pageIndex}" />`
+        );
+        this.$pageSize = this.$(
+            `<input type="hidden" id="${pagerOption.pageSizeId}" name="${pagerOption.pageSizeId}" value="${this.pageSize}" />`
+        );
 
         this.$reportForm.append(this.$pageIndex).append(this.$pageSize);
 
@@ -64,14 +66,14 @@ class PagerComponentTransfer {
                         self.onChange();
                     }
                 },
-                beforePageText: pager.data("labelpage"),
-                afterPageText: pager.data("labelof") + " {pages}",
-                displayMsg: pager.data("labeldisplayitems")
+                beforePageText: pager.data('labelpage'),
+                afterPageText: pager.data('labelof') + ' {pages}',
+                displayMsg: pager.data('labeldisplayitems')
             });
 
-            pager.removeClass("hide");
+            pager.removeClass('hide');
         } else {
-            pager.addClass("hide");
+            pager.addClass('hide');
         }
 
         this.$pager = pager;
@@ -80,7 +82,7 @@ class PagerComponentTransfer {
     };
 
     onChange = () => {
-        this.$reportForm.trigger("submit");
+        this.$reportForm.trigger('submit');
     };
 
     updateHiddenFields = (pageNumber: number, pageSize: number) => {

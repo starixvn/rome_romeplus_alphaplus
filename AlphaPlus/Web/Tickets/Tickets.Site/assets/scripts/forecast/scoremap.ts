@@ -61,12 +61,18 @@ class ScoreMap {
                 this.$popupAlertMatchError.removeClass('hidden');
             }
         });
-        this.bindLiveDeadBallsEvents($('#chk-allLiveBetType'), $('.live-bettype'));
-        this.bindLiveDeadBallsEvents($('#chk-allDeadBetType'), $('.dead-bettype'));
+        const $allLiveBetTypeCheckbox = $('#chk-allLiveBetType');
+        const $liveBetTypeCheckboxes = $('.live-bettype');
+        this.bindLiveDeadBallsEvents($allLiveBetTypeCheckbox, $liveBetTypeCheckboxes);
+        const $allDeadBetTypeCheckbox = $('#chk-allDeadBetType');
+        const $deadBetTypeCheckboxes = $('.dead-bettype');
+        this.bindLiveDeadBallsEvents($allDeadBetTypeCheckbox, $deadBetTypeCheckboxes);
         this.$btnSubmit.click(() => this.getScoreMapResults());
         if (!this.$ddlLeague.length) {
             this.globalFormData = this.getScoreMapResultsFormData();
             this.bindEventsAfterRenderScoreMapSucessfully(this.$content);
+            this.handleBetTypeChanged($allLiveBetTypeCheckbox, $liveBetTypeCheckboxes);
+            this.handleBetTypeChanged($allDeadBetTypeCheckbox, $deadBetTypeCheckboxes);
         }
         $('.icon-information-outline').click(function (e) {
             e.preventDefault();
@@ -153,18 +159,19 @@ class ScoreMap {
     }
 
     bindLiveDeadBallsEvents($chkAllBetType: JQuery, $chkBetTypes) {
-        const allBetTypesLength = $chkBetTypes.length;
         $chkAllBetType.change(function () {
             $chkBetTypes.prop('checked', this.checked);
         });
-        $chkBetTypes.change(function () {
-            const checkedBetTypesLength = $chkBetTypes.filter(':checked').length;
-            const isCheckAll = checkedBetTypesLength > 0 && checkedBetTypesLength === allBetTypesLength;
-            const isIndeterminate = !isCheckAll && checkedBetTypesLength > 0;
-            $chkAllBetType.prop({
-                indeterminate: isIndeterminate,
-                checked: isCheckAll
-            });
+        $chkBetTypes.change(() => this.handleBetTypeChanged($chkAllBetType, $chkBetTypes));
+    }
+
+    handleBetTypeChanged($chkAllBetType: JQuery, $chkBetTypes) {
+        const checkedBetTypesLength = $chkBetTypes.filter(':checked').length;
+        const isCheckAll = checkedBetTypesLength > 0 && checkedBetTypesLength === $chkBetTypes.length;
+        const isIndeterminate = !isCheckAll && checkedBetTypesLength > 0;
+        $chkAllBetType.prop({
+            indeterminate: isIndeterminate,
+            checked: isCheckAll
         });
     }
 
