@@ -84,7 +84,8 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
             else
             {
                 await context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            }
+                context.HttpContext.Response.Redirect(MicroSites.MainUrl("~/Account/Login?r=You are not authorized on this function!"));
+            }            
         }
 
         private async Task KickOutUser(AuthorizationFilterContext context, string message)
