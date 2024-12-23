@@ -29,7 +29,7 @@ public class BetListByBetTypeViewModel(
 
     public bool AllowToViewMasterPT { get; } = message.ViewerLevel.IsMasterOrSuperLevel();
 
-    protected override string GetTitle() => CacheRefServiceHelper.GetBetTypeName(BetType);
+    protected override string GetTitle() => CacheRefServiceHelper.GetBetTypeName(BetType).ToUpperInvariant();
 
     public override bool CanViewScoreMap(ITicket ticket)
         => supportScoreMapBetTypeIds?.Contains(ticket.BetTypeId) == true;

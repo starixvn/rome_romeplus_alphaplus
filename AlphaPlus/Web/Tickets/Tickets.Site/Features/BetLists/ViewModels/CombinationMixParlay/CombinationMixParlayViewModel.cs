@@ -15,5 +15,5 @@ public class CombinationMixParlayViewModel(
     HashSet<int> supportScoreMapBetTypeIds = null)
         : BetListByBetTypeViewModel(message, betListData, builder, ticketHelper, supportScoreMapBetTypeIds, supportRiskAmount: true)
 {
-    protected override string GetTitle() => Resources.parlay;
+    protected override string GetTitle() => Resources.parlay.ToUpperInvariant();
 }
