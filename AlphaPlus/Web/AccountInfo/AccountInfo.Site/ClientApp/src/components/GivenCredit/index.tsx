@@ -10,6 +10,7 @@ import Result from '../../models/result';
 import { handleError } from '../../services/axios-helper';
 import CellContainNumberFormat from '../common/CellContainNumberFormat';
 import styles from './GivenCredit.module.scss';
+import './GivenCredit.scss';
 
 function Row({ title, value }: { title: string; value?: number }) {
     return (
