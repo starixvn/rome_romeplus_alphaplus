@@ -62,7 +62,7 @@ body{
     }
 
     .number-red {
-        color: var(--number-red-color);
+        color: var(--number-red-color) !important;
     }
 }
 

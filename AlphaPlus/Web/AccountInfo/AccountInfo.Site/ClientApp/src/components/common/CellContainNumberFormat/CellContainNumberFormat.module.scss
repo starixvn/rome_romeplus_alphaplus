@@ -10,7 +10,7 @@
     color: var(--number-color);
 
     &-red {
-        color: var(--number-red-color);
+        color: var(--number-red-color) !important;
     }
 
     &-link {
