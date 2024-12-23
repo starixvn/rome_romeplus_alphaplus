@@ -60,7 +60,11 @@ class RewardDetailView {
             showFilter: true,
             onDropdownHidden: () => this.getRewardReport()
         });
-        this.paymentStatusDropdown.render('ddl-paymentStatus', undefined, () => this.getRewardReport());
+        this.paymentStatusDropdown.render(
+            'ddl-paymentStatus',
+            { enableFiltering: true, enableCaseInsensitiveFiltering: true },
+            () => this.getRewardReport()
+        );
 
         this.usernameAutoSuggestion.init({
             url: $('#hiddenUsernameAutoSuggestionUrl').attr('href'),

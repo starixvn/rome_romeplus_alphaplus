@@ -61,7 +61,11 @@
             showFilter: true,
             onDropdownHidden: () => this.getRewardReport()
         });
-        this.paymentStatusDropdown.render('ddl-paymentStatus', undefined, () => this.getRewardReport());
+        this.paymentStatusDropdown.render(
+            'ddl-paymentStatus',
+            { enableFiltering: true, enableCaseInsensitiveFiltering: true },
+            () => this.getRewardReport()
+        );
 
         this.usernameSuggestion.init({
             url: $('#hiddenUsernameAutoSuggestionUrl').attr('href'),
