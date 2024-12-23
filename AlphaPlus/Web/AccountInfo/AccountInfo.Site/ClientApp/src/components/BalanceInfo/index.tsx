@@ -7,6 +7,7 @@ import styles from './BalanceInfo.module.scss';
 import BalanceInfoRow from './BalanceInfoRow';
 import GivenCreditRow from './GivenCreditRow';
 import MemberCreditMaxRow from './MemberCreditMaxRow';
+import RewardRow from './RewardRow';
 
 export default function BalanceInfo() {
     const { t } = useTranslation();
@@ -40,7 +41,6 @@ export default function BalanceInfo() {
     const givenCreditContent = (
         <GivenCreditRow editable={BalanceInfo.CanUpdateAccount} givenCredit={BalanceInfo.GivenCredit} />
     );
-
     const masterContents = [
         <BalanceInfoRow title={t('TotalCash')} value={BalanceInfo.TotalCash} />,
         <BalanceInfoRow title={t('YesterdayCash')} value={BalanceInfo.YesterdayCash} />,
@@ -48,11 +48,21 @@ export default function BalanceInfo() {
         <BalanceInfoRow title={t('UsedCredit')} value={BalanceInfo.UsedCredit} />,
         givenCreditContent
     ];
+    const rewardReceivable = (
+        <RewardRow title={t('RewardReceivable')} value={BalanceInfo.RewardReceivable} currency={BalanceInfo.RewardCurrency} tooltip={t('RewardReceivableTooltip')} />
+    );
+    const rewardPayable = (
+        <RewardRow title={t('RewardPayable')} value={BalanceInfo.RewardPayable} currency={BalanceInfo.RewardCurrency} tooltip={t('RewardPayableTooltip')} />
+    );
 
     const balanceInfoByLevel = [
         {
             Id: UserLevel.Master,
-            Contents: masterContents
+            Contents: [
+                ...masterContents,
+                rewardReceivable,
+                rewardPayable
+            ]
         },
         {
             Id: UserLevel.Agent,
@@ -62,7 +72,9 @@ export default function BalanceInfo() {
                     memberMaxCredit={BalanceInfo.MemberMaxCredit}
                     showMemberMaxCreditLimit={BalanceInfo.ShowMemberMaxCreditLimit}
                     memberMaxCreditLimit={BalanceInfo.MemberMaxCreditLimit}
-                />
+                />,
+                rewardReceivable,
+                rewardPayable
             ]
         },
         {
@@ -71,7 +83,8 @@ export default function BalanceInfo() {
                 ...sharedContents,
                 givenCreditContent,
                 <BalanceInfoRow title={t('NetPosition')} value={BalanceInfo.NetPosition} />,
-                <BalanceInfoRow title={t('BetCredit')} value={BalanceInfo.BetCredit} />
+                <BalanceInfoRow title={t('BetCredit')} value={BalanceInfo.BetCredit} />,
+                rewardReceivable
             ]
         }
     ];

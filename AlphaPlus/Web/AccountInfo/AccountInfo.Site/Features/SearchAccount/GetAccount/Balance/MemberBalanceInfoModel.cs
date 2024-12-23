@@ -17,6 +17,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
             CustId = memberBalanceInfoDTO.CustId;
             CustomerCash = balance + customerOutstanding + pendingTransfer3rd;
             YesterdayCustomerCash = memberBalanceInfoDTO.YesterdayCustomerCash;
+
+            RewardReceivable = memberBalanceInfoDTO.RewardReceivable;
+            RewardCurrency = memberBalanceInfoDTO.RewardCurrency;
         }
 
         public int CustId { get; private set; }
@@ -32,6 +35,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
         public decimal CustomerOutstanding { get; private set; }
 
         public decimal PendingTransfer3rd { get; private set; }
+
+        public decimal? RewardReceivable { get; private set; }
+
+        public string RewardCurrency { get; private set; }
     }
 
     public class MemberBalanceInfoDTO
@@ -53,5 +60,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
         public int CustId { get; set; }
 
         public decimal YesterdayCustomerCash { get; set; }
+
+        public decimal? RewardReceivable { get; set; }
+
+        public string RewardCurrency { get; set; }
     }
 }

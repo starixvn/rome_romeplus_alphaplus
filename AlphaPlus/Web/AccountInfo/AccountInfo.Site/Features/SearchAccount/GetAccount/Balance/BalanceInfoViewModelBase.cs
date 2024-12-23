@@ -41,6 +41,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
 
         public abstract decimal PendingTransfer3rd { get; }
 
+        public abstract decimal RewardReceivable { get; }
+
+        public abstract string RewardCurrency { get; }
+
         internal virtual bool ShowTransferLink => !isAllDayBalanceInfo && message.AllowTransfer;
 
         public bool ShowOutstandingLink => message.CanViewReports && Outstanding > 0;

@@ -132,5 +132,9 @@
     "CloseMultipleMemberConfirmMessage": "<username> จะถูกปิดและไม่สามารถวางเดิมพันได้",
     "CloseStatus": "สถานะปิด",
     "Opened": "เปิด",
-    "to": "ถึง"
+    "to": "ถึง",
+    "RewardReceivable": "เงินรางวัลที่สามารถรับได้",
+    "RewardPayable": "เงินรางวัลที่ต้องแจกจ่าย",
+    "RewardReceivableTooltip": "จำนวนเงินที่คุณสามารถชำระให้กับดาวน์ไลน์ของคุณ",
+    "RewardPayableTooltip": "จำนวนเงินที่คุณสามารถรับได้จากอัพไลน์ของคุณ"
 }

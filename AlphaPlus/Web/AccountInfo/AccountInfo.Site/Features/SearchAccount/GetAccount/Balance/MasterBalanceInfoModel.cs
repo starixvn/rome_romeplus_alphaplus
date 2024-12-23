@@ -16,7 +16,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
              decimal customerCash,
              decimal yesterdayCustomerCash,
              decimal customerOutstanding,
-             decimal pendingTransfer3rd)
+             decimal pendingTransfer3rd,
+             decimal? rewardReceivable,
+             decimal? rewardPayable,
+             string rewardCurrency)
 
         {
             CustId = custId;
@@ -32,6 +35,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
             YesterdayCustomerCash = yesterdayCustomerCash;
             CustomerOutstanding = customerOutstanding;
             PendingTransfer3rd = pendingTransfer3rd;
+
+            RewardReceivable = rewardReceivable;
+            RewardPayable = rewardPayable;
+            RewardCurrency = rewardCurrency;
         }
 
         public int CustId { get; set; }
@@ -53,5 +60,11 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
         public decimal CustomerOutstanding { get; set; }
 
         public decimal PendingTransfer3rd { get; set; }
+
+        public decimal? RewardReceivable { get; set; }
+
+        public decimal? RewardPayable { get; set; }
+
+        public string RewardCurrency { get; set; }
     }
 }

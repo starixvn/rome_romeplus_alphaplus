@@ -45,5 +45,11 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
         public override decimal GivenCreditMax => creditInfo.MasterCreditMax;
 
         public override decimal PendingTransfer3rd => balanceInfoModel.PendingTransfer3rd;
+
+        public override decimal RewardReceivable => RoundUpNumber(balanceInfoModel.RewardReceivable ?? 0);
+
+        public decimal RewardPayable => RoundUpNumber(balanceInfoModel.RewardPayable ?? 0);
+
+        public override string RewardCurrency => balanceInfoModel.RewardCurrency;
     }
 }

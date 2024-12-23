@@ -23,4 +23,7 @@ export interface BalanceInfo {
     MemberMaxCredit: number;
     ShowMemberMaxCreditLimit: boolean;
     MemberMaxCreditLimit: string;
+    RewardReceivable: number;
+    RewardPayable: number;
+    RewardCurrency: string;
 }

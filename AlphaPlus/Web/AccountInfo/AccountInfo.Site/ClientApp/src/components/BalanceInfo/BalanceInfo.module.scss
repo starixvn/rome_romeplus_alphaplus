@@ -64,6 +64,16 @@
         line-height: 1;
     }
 
+    .icon-information-outline {
+        margin: 0 0 2px 5px;
+        float: none;
+        font-size: 16px;
+    }
+
+    .currency {
+        margin-right: 5px;
+    }
+
     .number-link {
         cursor: pointer;
         color: var(--link-color);
@@ -71,6 +81,10 @@
         &:hover {
             color: var(--link-hover-color);
         }
+    }
+
+    .number {
+        color: var(--number-color);
     }
 }
 

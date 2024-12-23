@@ -132,5 +132,9 @@
     "CloseMultipleMemberConfirmMessage": "<username> sẽ bị đóng và không được đặt cược.",
     "CloseStatus": "Trạng Thái Đóng",
     "Opened": "Đã Mở",
-    "to": "to"
+    "to": "to",
+    "RewardReceivable": "Tiền thưởng phải thu",
+    "RewardPayable": "Tiền thưởng phải trả",
+    "RewardReceivableTooltip": "Số tiền bạn có thể phân phối cho các cấp dưới.",
+    "RewardPayableTooltip": "Số tiền bạn có thể nhận từ cấp trên."
 }

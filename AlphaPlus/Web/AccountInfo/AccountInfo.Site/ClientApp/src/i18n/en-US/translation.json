@@ -132,5 +132,9 @@
     "CloseMultipleMemberConfirmMessage": "<username> will be closed and cannot place bet.",
     "CloseStatus": "Closed Status",
     "Opened": "Opened",
-    "to": "to"
+    "to": "to",
+    "RewardReceivable": "Reward Receivable",
+    "RewardPayable": "Reward Payable",
+    "RewardReceivableTooltip": "Amount you can receive from your upline.",
+    "RewardPayableTooltip": "Amount you can distribute to your downlines."
 }

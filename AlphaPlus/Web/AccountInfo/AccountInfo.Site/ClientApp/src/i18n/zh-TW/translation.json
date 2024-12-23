@@ -132,5 +132,9 @@
     "CloseMultipleMemberConfirmMessage": "<username> 將被關閉和無法下注。",
     "CloseStatus": "關閉狀態",
     "Opened": "開啟",
-    "to": "到"
+    "to": "到",
+    "RewardReceivable": "應收獎金",
+    "RewardPayable": "獎金支付",
+    "RewardReceivableTooltip": "您可以分配給下線的金額。",
+    "RewardPayableTooltip": "您可以從上線收到的金額。"
 }
