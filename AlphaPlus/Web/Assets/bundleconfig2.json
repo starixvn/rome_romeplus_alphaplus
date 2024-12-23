@@ -924,6 +924,7 @@
       "js/components/pagination/jquery.resizable.js",
       "js/components/bootbox/bootbox.js",
       "js/libs/jquery/jquery.cookie.js",
+      "js/libs/clipboard/clipboard.js",
       "js/components/sticky-table-headers/jquery.stickytableheaders.js",
       "js/components/tablesorter/tablesorter.js",
       "js/components/multiselect/bootstrap-multiselect.js",
@@ -937,19 +938,33 @@
     "outputFileName": "bundles/site-transfer/filter.css",
     "inputFiles": [
       "styles/vendors/bootstrap-datetimepicker.css",
+      "styles/vendors/daterangepicker/jquery.daterangepicker.css",
       "styles/components/calendars.css",
       "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/dropdown.css"
+      "styles/components/dropdown.css",
+      "styles/components/daterangepicker-customize.css",
+      "styles/vendors/multiselect/fanex.multiSelect.css"
     ]
   },
   {
     "outputFileName": "bundles/site-transfer/filter.js",
     "inputFiles": [
       "js/libs/moment/moment.js",
+      "js/libs/moment/locale/en-gb.js",
+      "js/libs/moment/locale/ja.js",
+      "js/libs/moment/locale/ko.js",
+      "js/libs/moment/locale/th.js",
+      "js/libs/moment/locale/vi.js",
+      "js/libs/moment/locale/zh-cn.js",
+      "js/libs/moment/locale/zh-tw.js",
+      "js/libs/moment/switch-locale.js",
       "js/components/datetimepicker/datepicker.js",
       "js/components/datetimepicker/bootstrap-datetimepicker.js",
       "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePickerHelper.js",
-      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js"
+      "js/components/bootstrap.nexDatePicker/bootstrap.nexDatePicker.js",
+      "js/components/daterangepicker/jquery.daterangepicker.js",
+      "js/components/typeahead/typeahead.js",
+      "js/components/multiselect/fanex.multiSelect.js"
     ]
   },
   {
@@ -1704,9 +1719,12 @@
     "outputFileName": "bundles/site-transfer/filter-dark.css",
     "inputFiles": [
       "styles/vendors/bootstrap-datetimepicker.css",
+      "styles/vendors/daterangepicker/jquery.daterangepicker.css",
       "styles/components/calendars-dark.css",
       "styles/components/bootstrap.nexDatePicker.css",
-      "styles/components/dropdown-dark.css"
+      "styles/components/dropdown-dark.css",
+      "styles/components/daterangepicker-customize-dark.css",
+      "styles/vendors/multiselect/fanex.multiSelect-dark.css"
     ]
   },
   {
@@ -1933,6 +1951,19 @@
     "outputFileName": "bundles/site-main/anybody-fonts.css",
     "inputFiles": [
       "styles/base/anybody-fonts.css"
+    ]
+  },
+  {
+    "outputFileName": "bundles-v2/site-transfer/reward.css",
+    "inputFiles": [
+      "styles-v2/components/tab.css",
+      "styles-v2/components/tooltip.css",
+      "styles-v2/components/tables.css",
+      "styles-v2/components/multiselect.css",
+      "styles-v2/components/fanex-multiselect.css",
+      "styles-v2/components/pager.css",
+      "styles-v2/components/daterangepicker-customize.css",
+      "styles-v2/components/autosuggest.css"
     ]
   },
   {

@@ -92,7 +92,7 @@
             searchData.username = username;
         }
 
-        const programIds = this.programDropdown.getCheckedValues();
+        const programIds = this.programDropdown.getCheckedValues().join(',');
         const isValidProgramIds = programIds.length > 0;
         this.programDropdown.toogleError(!isValidProgramIds);
         if (!isValidProgramIds) {

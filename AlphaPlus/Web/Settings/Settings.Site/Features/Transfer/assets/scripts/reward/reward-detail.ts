@@ -117,7 +117,7 @@ class RewardDetailView {
             searchData.username = username;
         }
 
-        const programIds = this.programDropdown.getCheckedValues();
+        const programIds = this.programDropdown.getCheckedValues().join(',');
         const isValidProgramIds = programIds.length > 0;
         this.programDropdown.toogleError(!isValidProgramIds);
         if (!isValidProgramIds) {
@@ -144,7 +144,7 @@ class RewardDetailView {
     private bindTableEvents() {
         this.pager.reset();
         this.pager.render(
-            new PagerOption(
+            new PagerOptionTransfer(
                 () => {
                     let currentPageIndex = +$('#PageIndex').val();
                     const currentPageSize = +$('#PageSize').val();
