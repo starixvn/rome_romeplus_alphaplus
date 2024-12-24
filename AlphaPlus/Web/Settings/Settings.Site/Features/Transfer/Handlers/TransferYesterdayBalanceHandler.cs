@@ -57,7 +57,7 @@ public class TransferYesterdayBalanceHandler(
             }
         }
 
-        return null;
+        return new SingleViewModel(message.CustId, 0);
     }
 
     public async Task<Result> Handle(SingleCommand message, CancellationToken cancellationToken)
