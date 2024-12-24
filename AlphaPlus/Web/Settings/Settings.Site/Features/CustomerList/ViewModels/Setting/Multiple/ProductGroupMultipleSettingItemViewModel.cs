@@ -13,7 +13,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
             {
                 case 1:
                     ShowGuideLine = true;
-                    GuideLineUrl = ""; // TODO: $"{OldMainUrl}MemberInformation/MultipleEditSportsBook/GuideLine";
+                    GuideLineUrl = $"{MicroSites.SettingUrl("~/CustomerList/GuideLine")}";
                     break;
 
                 default:

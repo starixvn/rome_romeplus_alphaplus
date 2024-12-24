@@ -632,4 +632,130 @@
   <data name="CustomerInformation" xml:space="preserve">
     <value>會員資料</value>
   </data>
+  <data name="editmultsportbook" xml:space="preserve">
+    <value>修改多重體育博彩</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Figure1" xml:space="preserve">
+    <value>1. 彈出修改多重體育博彩視窗</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Figure2" xml:space="preserve">
+    <value>2. 會員02舊的設定。</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Figure3" xml:space="preserve">
+    <value>3. 會員02新的設定。</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Guideline1" xml:space="preserve">
+    <value>勾選設定選項並輸入您的首選設定</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Guideline2" xml:space="preserve">
+    <value>點擊&lt;strong&gt;更新&lt;/strong&gt;去儲存於會員新的設定。</value>
+  </data>
+  <data name="MasterEditsMultipleAgents" xml:space="preserve">
+    <value>總代理修改多重代理</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Figure1" xml:space="preserve">
+    <value>1. 彈出修改多重體育博彩視窗</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Figure2" xml:space="preserve">
+    <value>2. 代理02舊的設定。</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Figure3" xml:space="preserve">
+    <value>3. 代理02新的設定。</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Guideline1" xml:space="preserve">
+    <value>勾選設定選項並輸入您的首選設定</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Guideline2" xml:space="preserve">
+    <value>點擊&lt;strong&gt;更新&lt;/strong&gt;去儲存於代理新的設定。</value>
+  </data>
+  <data name="MasterEditsMultipleMembers" xml:space="preserve">
+    <value>總代理修改多重會員</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Figure4" xml:space="preserve">
+    <value>4. 彈出修改多重體育博彩視窗</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Figure5" xml:space="preserve">
+    <value>5. 會員02舊的設定。</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Figure6" xml:space="preserve">
+    <value>6. 會員02新的設定。</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Guideline4" xml:space="preserve">
+    <value>勾選設定選項並輸入您的首選設定</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Guideline5" xml:space="preserve">
+    <value>點擊&lt;strong&gt;更新&lt;/strong&gt;去儲存於會員新的設定。</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Note" xml:space="preserve">
+    <value>您只能更改會員狀態（開啟/關閉）和采取那些占成。</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>筆記：</value>
+  </data>
+  <data name="Notes_Agent" xml:space="preserve">
+    <value>彈出多重修改視窗：</value>
+  </data>
+  <data name="Notes_Agent1" xml:space="preserve">
+    <value>默認設置是位於帳戶設定所選列表的頂部。</value>
+  </data>
+  <data name="Notes_Agent2" xml:space="preserve">
+    <value>所有設定顯示在選擇部分將更新為所選帳戶不管無論是否有做改變。</value>
+  </data>
+  <data name="Notes_Master" xml:space="preserve">
+    <value>若上線的投注限額是0，那麼下線的投注限額會根據最高的投注限額。</value>
+  </data>
+  <data name="Notes_Super" xml:space="preserve">
+    <value>超級總代理不能 更換代理的設定。</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Multiple Edit Customer Settings</value>
+  </data>
+  <data name="PageTitleIntroduction_Agent" xml:space="preserve">
+    <value>修改一次会员的設定是很繁瑣的過程。因此，建議您可以使用多重修改功能，將一樣的設置同時應用到不同的總代理賬號。</value>
+  </data>
+  <data name="PageTitleIntroduction_Master" xml:space="preserve">
+    <value>修改一次代理的設定是很繁瑣的過程。因此，建議您可以使用多重修改功能，將一樣的設置同時應用到不同的總代理賬號。</value>
+  </data>
+  <data name="PageTitleIntroduction_Super" xml:space="preserve">
+    <value>修改一次總代理的設定是很繁瑣的過程。因此，建議您可以使用多重修改功能，將一樣的設置同時應用到不同的總代理賬號。</value>
+  </data>
+  <data name="SuperEditsMultipleMasters" xml:space="preserve">
+    <value>超級總代理修改多重總代理</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Figure1" xml:space="preserve">
+    <value>1. 彈出修改多重體育博彩視窗</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Figure2" xml:space="preserve">
+    <value>2. 總代理02舊的設定。</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Figure3" xml:space="preserve">
+    <value>3. 總代理02新的設定。</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Guideline1" xml:space="preserve">
+    <value>勾選設置選項並輸入您的首選設置</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Guideline2" xml:space="preserve">
+    <value>點擊&lt;strong&gt;更新&lt;/strong&gt;去儲存於總代理新新的設定。</value>
+  </data>
+  <data name="SuperEditsMultipleMembers" xml:space="preserve">
+    <value>超級總代理修改多重會員</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Figure4" xml:space="preserve">
+    <value>4. 彈出修改多重體育博彩視窗</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Figure5" xml:space="preserve">
+    <value>5. 會員02舊的設定。</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Figure6" xml:space="preserve">
+    <value>6. 會員02新的設定。</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Guideline4" xml:space="preserve">
+    <value>勾選設定選項並輸入您的首選設定</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Guideline5" xml:space="preserve">
+    <value>點擊&lt;strong&gt;更新&lt;/strong&gt;去儲存於會員新的設定。</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Note" xml:space="preserve">
+    <value>您只能更改會員狀態（開啟/關閉）和采取那些占成。</value>
+  </data>
 </root>

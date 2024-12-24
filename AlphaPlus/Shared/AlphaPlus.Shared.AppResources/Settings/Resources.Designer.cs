@@ -70,6 +70,17 @@ namespace AlphaPlus.Shared.AppResources.Settings
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Edit Multiple Sportsbook.
+        /// </summary>
+        public static string editmultsportbook
+        {
+            get
+            {
+                return ResourceManager.GetString("editmultsportbook", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to All Day Balance Transfer is now enabled for your account. As a result, Auto Transfer schedule has been cleared, and the Auto Transfer for downlines will be disabled for the following customers: {0}. Details can be found in Transfer function..
         /// </summary>
         public static string ABDTConditionChange_PersonalMessage
@@ -1496,6 +1507,457 @@ namespace AlphaPlus.Shared.AppResources.Settings
             get
             {
                 return ResourceManager.GetString("CustomerInformation", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 1:&lt;/strong&gt; Edit Multiple Sportsbook popup.
+        /// </summary>
+        public static string AgentEditsMultipleMembers_Figure1
+        {
+            get
+            {
+                return ResourceManager.GetString("AgentEditsMultipleMembers_Figure1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 2:&lt;/strong&gt; Old Settings of Member02.
+        /// </summary>
+        public static string AgentEditsMultipleMembers_Figure2
+        {
+            get
+            {
+                return ResourceManager.GetString("AgentEditsMultipleMembers_Figure2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 3:&lt;/strong&gt; New Settings of Member02.
+        /// </summary>
+        public static string AgentEditsMultipleMembers_Figure3
+        {
+            get
+            {
+                return ResourceManager.GetString("AgentEditsMultipleMembers_Figure3", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to To edit, tick off the setting option(s) and select your preferred settings..
+        /// </summary>
+        public static string AgentEditsMultipleMembers_Guideline1
+        {
+            get
+            {
+                return ResourceManager.GetString("AgentEditsMultipleMembers_Guideline1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of members..
+        /// </summary>
+        public static string AgentEditsMultipleMembers_Guideline2
+        {
+            get
+            {
+                return ResourceManager.GetString("AgentEditsMultipleMembers_Guideline2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master Edits Multiple Agents.
+        /// </summary>
+        public static string MasterEditsMultipleAgents
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleAgents", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 1:&lt;/strong&gt; Edit Multiple Sportsbook popup.
+        /// </summary>
+        public static string MasterEditsMultipleAgents_Figure1
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleAgents_Figure1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 2:&lt;/strong&gt; Old Settings of Agent02.
+        /// </summary>
+        public static string MasterEditsMultipleAgents_Figure2
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleAgents_Figure2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 3:&lt;/strong&gt; New Settings of Agent02.
+        /// </summary>
+        public static string MasterEditsMultipleAgents_Figure3
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleAgents_Figure3", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tick off the setting option(s) and input your preferred settings..
+        /// </summary>
+        public static string MasterEditsMultipleAgents_Guideline1
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleAgents_Guideline1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of agents..
+        /// </summary>
+        public static string MasterEditsMultipleAgents_Guideline2
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleAgents_Guideline2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master Edits Multiple Members.
+        /// </summary>
+        public static string MasterEditsMultipleMembers
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleMembers", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 4:&lt;/strong&gt; Edit Multiple Sportsbook popup.
+        /// </summary>
+        public static string MasterEditsMultipleMembers_Figure4
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleMembers_Figure4", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 5:&lt;/strong&gt; Old Settings of Member02.
+        /// </summary>
+        public static string MasterEditsMultipleMembers_Figure5
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleMembers_Figure5", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 6:&lt;/strong&gt; New Settings of Member02.
+        /// </summary>
+        public static string MasterEditsMultipleMembers_Figure6
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleMembers_Figure6", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tick off the setting option(s) and select your preferred settings..
+        /// </summary>
+        public static string MasterEditsMultipleMembers_Guideline4
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleMembers_Guideline4", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of members..
+        /// </summary>
+        public static string MasterEditsMultipleMembers_Guideline5
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleMembers_Guideline5", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You can only change member status (open/closed) and your Position Taking taken on those members..
+        /// </summary>
+        public static string MasterEditsMultipleMembers_Note
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEditsMultipleMembers_Note", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Notes:.
+        /// </summary>
+        public static string Notes
+        {
+            get
+            {
+                return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to In multiple edit popup:.
+        /// </summary>
+        public static string Notes_Agent
+        {
+            get
+            {
+                return ResourceManager.GetString("Notes_Agent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The default settings are the settings of the account located on top of the selected list..
+        /// </summary>
+        public static string Notes_Agent1
+        {
+            get
+            {
+                return ResourceManager.GetString("Notes_Agent1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to All settings displayed on selected section will be updated to selected accounts regardless of whether or not change is made..
+        /// </summary>
+        public static string Notes_Agent2
+        {
+            get
+            {
+                return ResourceManager.GetString("Notes_Agent2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to If upline bet setting is 0, downline bet settings will follow bet settings of the higher level..
+        /// </summary>
+        public static string Notes_Master
+        {
+            get
+            {
+                return ResourceManager.GetString("Notes_Master", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Super cannot change Agent settings..
+        /// </summary>
+        public static string Notes_Super
+        {
+            get
+            {
+                return ResourceManager.GetString("Notes_Super", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple Edit Customer Settings.
+        /// </summary>
+        public static string PageTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("PageTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Editing a member at a time can be a tedious work. Therefore, you are advised to get used to multi-edit function which applies the same settings to different members at once..
+        /// </summary>
+        public static string PageTitleIntroduction_Agent
+        {
+            get
+            {
+                return ResourceManager.GetString("PageTitleIntroduction_Agent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Editing a downline account at a time can be a tedious work. Therefore, you are advised to get used to multi-edit function which applies the same settings to different accounts at once..
+        /// </summary>
+        public static string PageTitleIntroduction_Master
+        {
+            get
+            {
+                return ResourceManager.GetString("PageTitleIntroduction_Master", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Editing a downline account at a time can be a tedious work. Therefore, you are advised to get used to multi-edit function which applies the same settings to different accounts at once..
+        /// </summary>
+        public static string PageTitleIntroduction_Super
+        {
+            get
+            {
+                return ResourceManager.GetString("PageTitleIntroduction_Super", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Super Edits Multiple Masters.
+        /// </summary>
+        public static string SuperEditsMultipleMasters
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMasters", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 1:&lt;/strong&gt; Edit Multiple Sportsbook popup.
+        /// </summary>
+        public static string SuperEditsMultipleMasters_Figure1
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMasters_Figure1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 2:&lt;/strong&gt; Old Settings of Master02.
+        /// </summary>
+        public static string SuperEditsMultipleMasters_Figure2
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMasters_Figure2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 3:&lt;/strong&gt; New Settings of Master02.
+        /// </summary>
+        public static string SuperEditsMultipleMasters_Figure3
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMasters_Figure3", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tick off the setting option(s) and input your preferred settings..
+        /// </summary>
+        public static string SuperEditsMultipleMasters_Guideline1
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMasters_Guideline1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of masters..
+        /// </summary>
+        public static string SuperEditsMultipleMasters_Guideline2
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMasters_Guideline2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Super Edits Multiple Members.
+        /// </summary>
+        public static string SuperEditsMultipleMembers
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMembers", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 4:&lt;/strong&gt; Edit Multiple Sportsbook popup.
+        /// </summary>
+        public static string SuperEditsMultipleMembers_Figure4
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMembers_Figure4", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 5:&lt;/strong&gt; Old Settings of Member02.
+        /// </summary>
+        public static string SuperEditsMultipleMembers_Figure5
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMembers_Figure5", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Figure 6:&lt;/strong&gt; New Settings of Member02.
+        /// </summary>
+        public static string SuperEditsMultipleMembers_Figure6
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMembers_Figure6", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tick off the setting option(s) and select your preferred settings..
+        /// </summary>
+        public static string SuperEditsMultipleMembers_Guideline4
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMembers_Guideline4", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of members..
+        /// </summary>
+        public static string SuperEditsMultipleMembers_Guideline5
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMembers_Guideline5", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You can only change member status (open/closed) and your Position Taking taken on those members..
+        /// </summary>
+        public static string SuperEditsMultipleMembers_Note
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEditsMultipleMembers_Note", resourceCulture);
             }
         }
     }

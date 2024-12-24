@@ -915,5 +915,17 @@
       "Features/Customer/assets/styles/thickbox.css",
       "Features/Customer/assets/styles/review-setting-dark.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/MemberInfo/assets/bundles/CustomerList/MultipleEditSportsBookGuideline/guideline-dark.css",
+    "inputFiles": [
+      "Features/CustomerList/MultipleEditSportsBookGuideline/assets/guideline-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/MemberInfo/assets/bundles/CustomerList/MultipleEditSportsBookGuideline/guideline.css",
+    "inputFiles": [
+      "Features/CustomerList/MultipleEditSportsBookGuideline/assets/guideline.css"
+    ]
   }
 ]

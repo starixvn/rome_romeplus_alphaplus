@@ -15,11 +15,13 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
         private const string MultipleDoubleCommPath = "~/Features/CustomerList/Views/MultipleDoubleComm.cshtml";
         private readonly Result ErrorDefault = Result.CreateErrorResult(Lang.NotAuthorized);
         private readonly TransferService transferService;
+        private readonly IUserSession userSession;
 
-        public CustomerListController(IMediator mediator, TransferService transferService)
+        public CustomerListController(IMediator mediator, TransferService transferService, IUserSession userSession)
             : base(mediator)
         {
             this.transferService = transferService;
+            this.userSession = userSession;
         }
 
         [Route("CustomerList/master")]
@@ -99,6 +101,12 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             }
 
             return Json(await mediator.Send(command));
+        }
+
+        public IActionResult Guideline()
+        {
+            ViewData["DarkModeName"] = userSession.DarkModeName;
+            return View($"~/Features/CustomerList/MultipleEditSportsBookGuideline/Views/Guideline{UserLevel.GetDisplayName(userSession.RoleId)}.cshtml", userSession.RoleId);
         }
     }
 }

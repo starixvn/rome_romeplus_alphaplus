@@ -441,4 +441,130 @@
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="editmultsportbook" xml:space="preserve">
+    <value>멀티플 스포츠 북 수정하기</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Figure1" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 1:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Figure2" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 2:&lt;/strong&gt; Old Settings of Member02</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Figure3" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 3:&lt;/strong&gt; New Settings of Member02</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Guideline1" xml:space="preserve">
+    <value>To edit, tick off the setting option(s) and select your preferred settings.</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Guideline2" xml:space="preserve">
+    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of members.</value>
+  </data>
+  <data name="MasterEditsMultipleAgents" xml:space="preserve">
+    <value>Master Edits Multiple Agents</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Figure1" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 1:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Figure2" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 2:&lt;/strong&gt; Old Settings of Agent02</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Figure3" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 3:&lt;/strong&gt; New Settings of Agent02</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Guideline1" xml:space="preserve">
+    <value>Tick off the setting option(s) and input your preferred settings.</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Guideline2" xml:space="preserve">
+    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of agents.</value>
+  </data>
+  <data name="MasterEditsMultipleMembers" xml:space="preserve">
+    <value>Master Edits Multiple Members</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Figure4" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 4:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Figure5" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 5:&lt;/strong&gt; Old Settings of Member02</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Figure6" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 6:&lt;/strong&gt; New Settings of Member02</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Guideline4" xml:space="preserve">
+    <value>Tick off the setting option(s) and select your preferred settings.</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Guideline5" xml:space="preserve">
+    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of members.</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Note" xml:space="preserve">
+    <value>You can only change member status (open/closed) and your Position Taking taken on those members.</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes:</value>
+  </data>
+  <data name="Notes_Agent" xml:space="preserve">
+    <value>In multiple edit popup:</value>
+  </data>
+  <data name="Notes_Agent1" xml:space="preserve">
+    <value>The default settings are the settings of the account located on top of the selected list.</value>
+  </data>
+  <data name="Notes_Agent2" xml:space="preserve">
+    <value>All settings displayed on selected section will be updated to selected accounts regardless of whether or not change is made.</value>
+  </data>
+  <data name="Notes_Master" xml:space="preserve">
+    <value>If upline bet setting is 0, downline bet settings will follow bet settings of the higher level.</value>
+  </data>
+  <data name="Notes_Super" xml:space="preserve">
+    <value>Super cannot change Agent settings.</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Multiple Edit Customer Settings</value>
+  </data>
+  <data name="PageTitleIntroduction_Agent" xml:space="preserve">
+    <value>Editing a member at a time can be a tedious work. Therefore, you are advised to get used to multi-edit function which applies the same settings to different members at once.</value>
+  </data>
+  <data name="PageTitleIntroduction_Master" xml:space="preserve">
+    <value>Editing a downline account at a time can be a tedious work. Therefore, you are advised to get used to multi-edit function which applies the same settings to different accounts at once.</value>
+  </data>
+  <data name="PageTitleIntroduction_Super" xml:space="preserve">
+    <value>Editing a downline account at a time can be a tedious work. Therefore, you are advised to get used to multi-edit function which applies the same settings to different accounts at once.</value>
+  </data>
+  <data name="SuperEditsMultipleMasters" xml:space="preserve">
+    <value>Super Edits Multiple Masters</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Figure1" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 1:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Figure2" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 2:&lt;/strong&gt; Old Settings of Master02</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Figure3" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 3:&lt;/strong&gt; New Settings of Master02</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Guideline1" xml:space="preserve">
+    <value>Tick off the setting option(s) and input your preferred settings.</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Guideline2" xml:space="preserve">
+    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of masters.</value>
+  </data>
+  <data name="SuperEditsMultipleMembers" xml:space="preserve">
+    <value>Super Edits Multiple Members</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Figure4" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 4:&lt;/strong&gt; Edit Multiple Sportsbook popup</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Figure5" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 5:&lt;/strong&gt; Old Settings of Member02</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Figure6" xml:space="preserve">
+    <value>&lt;strong&gt;Figure 6:&lt;/strong&gt; New Settings of Member02</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Guideline4" xml:space="preserve">
+    <value>Tick off the setting option(s) and select your preferred settings.</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Guideline5" xml:space="preserve">
+    <value>Click &lt;strong&gt;Update&lt;/strong&gt; to save the new settings of members.</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Note" xml:space="preserve">
+    <value>You can only change member status (open/closed) and your Position Taking taken on those members.</value>
+  </data>
 </root>

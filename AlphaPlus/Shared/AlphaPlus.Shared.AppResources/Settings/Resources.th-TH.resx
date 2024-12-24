@@ -628,4 +628,130 @@
   <data name="CustomerInformation" xml:space="preserve">
     <value>ข้อมูลลูกค้า</value>
   </data>
+  <data name="editmultsportbook" xml:space="preserve">
+    <value>แก้ไขกีฬาหลายรายการ</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Figure1" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 1.&lt;/strong&gt;ป๊อปอัพ แก้ไขหน้ากีฬาแบบหลายบัญชี</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Figure2" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 2.&lt;/strong&gt;การตั้งค่าเก่าของ เมมเบอร์02</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Figure3" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 3.&lt;/strong&gt;การตั้งค่าใหม่ของ เมมเบอร์02</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Guideline1" xml:space="preserve">
+    <value>การแก้ไข, ติ๊กตัวเลือกการตั้งค่าและการป้อนข้อมูลการตั้งค่าที่คุณต้องการ</value>
+  </data>
+  <data name="AgentEditsMultipleMembers_Guideline2" xml:space="preserve">
+    <value>คลิ๊กอัพเดทเพื่อบันทึกการตั้งค่าของ เมมเบอร์</value>
+  </data>
+  <data name="MasterEditsMultipleAgents" xml:space="preserve">
+    <value>มาสเตอร์ แก้ไข เอเจนต์ แบบหลายบัญชี</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Figure1" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 1.&lt;/strong&gt;ป๊อปอัพ แก้ไขหน้ากีฬาแบบหลายบัญชี</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Figure2" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 2.&lt;/strong&gt;การตั้งค่าเก่าของ เอเจนต์02</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Figure3" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 3.&lt;/strong&gt;การตั้งค่าใหม่ของ เอเจนต์02</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Guideline1" xml:space="preserve">
+    <value>ติ๊กตัวเลือกการตั้งค่าและการป้อนข้อมูลการตั้งค่าที่คุณต้องการ</value>
+  </data>
+  <data name="MasterEditsMultipleAgents_Guideline2" xml:space="preserve">
+    <value>คลิ๊กอัพเดทเพื่อบันทึกการตั้งค่าของเอเจนต์</value>
+  </data>
+  <data name="MasterEditsMultipleMembers" xml:space="preserve">
+    <value>มาสเตอร์ แก้ไข เมมเบอร์ แบบหลายบัญชี</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Figure4" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 4.&lt;/strong&gt;ป๊อปอัพ แก้ไขหน้ากีฬาแบบหลายบัญชี</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Figure5" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 5.&lt;/strong&gt;การตั้งค่าเก่าของ เมมเบอร์02</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Figure6" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 6.&lt;/strong&gt;การตั้งค่าใหม่ของ เมมเบอร์02</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Guideline4" xml:space="preserve">
+    <value>การแก้ไข, ติ๊กตัวเลือกการตั้งค่าและเลือกการตั้งค่าที่คุณต้องการ</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Guideline5" xml:space="preserve">
+    <value>คลิ๊กอัพเดทเพื่อบันทึกการตั้งค่าของ เมมเบอร์</value>
+  </data>
+  <data name="MasterEditsMultipleMembers_Note" xml:space="preserve">
+    <value>คุณสามารถเปลี่ยนแปลงการ (เปิด/ปิดบัญชี) และค่าเอี่ยวต่าง ๆ ของลูกค้า ได้เท่านั้น</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>หมายเหตุ:</value>
+  </data>
+  <data name="Notes_Agent" xml:space="preserve">
+    <value>ป๊อบอัพ การตั้งค่าแบบหลายบัญชี</value>
+  </data>
+  <data name="Notes_Agent1" xml:space="preserve">
+    <value>ค่าการตั้งค่าเริ่มต้นของบัญชีจะอยู่ในส่วนบนของรายการที่เลือก</value>
+  </data>
+  <data name="Notes_Agent2" xml:space="preserve">
+    <value>การตั้งค่าทั้งหมดที่ปรากฎจะถูกอัพเดทไปยังบัญชีต่างๆ โดยไม่คำนึงถึงว่าจะมีส่วนใดเปลี่ยนแปลงหรือไม่</value>
+  </data>
+  <data name="Notes_Master" xml:space="preserve">
+    <value>หากการตั้งค่าการเดิมพันของอัพไลน์คือ 0, การตั้งค่าการเดิมพันของดาวน์ไลน์ก็จะเป็นการตั้งค่าตามนั้น</value>
+  </data>
+  <data name="Notes_Super" xml:space="preserve">
+    <value>ซูเปอร์ไม่สามารถเปลี่ยนการตั้งค่าเอเจนต์ได้</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Multiple Edit Customer Settings</value>
+  </data>
+  <data name="PageTitleIntroduction_Agent" xml:space="preserve">
+    <value>การแก้ไขบัญชีดาวน์ไลน์เป็นงานที่แสนจะน่าเบื่อ ดังนั้น ทางเราจึงแนะนำให้ท่านใช้เครื่องมือในการแก้ไขบัญชีแบบหลายบัญชี ซึ่งจะเป็นการตั้งค่าเมมเบอร์อย่างเดียวกันทีละหลายๆ บัญชีในครั้งเดียว</value>
+  </data>
+  <data name="PageTitleIntroduction_Master" xml:space="preserve">
+    <value>การแก้ไขบัญชีดาวน์ไลน์เป็นงานที่แสนจะน่าเบื่อ ดังนั้น ทางเราจึงแนะนำให้ท่านใช้เครื่องมือในการแก้ไขบัญชีแบบหลายบัญชี ซึ่งจะเป็นการตั้งค่าอย่างเดียวกันทีละหลายๆ บัญชีในครั้งเดียว</value>
+  </data>
+  <data name="PageTitleIntroduction_Super" xml:space="preserve">
+    <value>การแก้ไขบัญชีดาวน์ไลน์เป็นงานที่แสนจะน่าเบื่อ ดังนั้น ทางเราจึงแนะนำให้ท่านใช้เครื่องมือในการแก้ไขบัญชีแบบหลายบัญชี ซึ่งจะเป็นการตั้งค่าอย่างเดียวกันทีละหลายๆ บัญชีในครั้งเดียว</value>
+  </data>
+  <data name="SuperEditsMultipleMasters" xml:space="preserve">
+    <value>ซูเปอร์ แก้ไข มาสเตอร์ แบบหลายบัญชี</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Figure1" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 1.&lt;/strong&gt;ป๊อปอัพ แก้ไขหน้ากีฬาแบบหลายบัญชี</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Figure2" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 2.&lt;/strong&gt;การตั้งค่าเก่าของ มาสเตอร์02</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Figure3" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 3.&lt;/strong&gt;การตั้งค่าใหม่ของ มาสเตอร์02</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Guideline1" xml:space="preserve">
+    <value>ติ๊กตัวเลือกการตั้งค่าและการป้อนข้อมูลการตั้งค่าที่คุณต้องการ</value>
+  </data>
+  <data name="SuperEditsMultipleMasters_Guideline2" xml:space="preserve">
+    <value>คลิ๊กอัพเดทเพื่อบันทึกการตั้งค่าของมาสเตอร์</value>
+  </data>
+  <data name="SuperEditsMultipleMembers" xml:space="preserve">
+    <value>ซูเปอร์ แก้ไข เมมเบอร์ แบบหลายบัญชี</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Figure4" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 4.&lt;/strong&gt;ป๊อปอัพ แก้ไขหน้ากีฬาแบบหลายบัญชี</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Figure5" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 5.&lt;/strong&gt;การตั้งค่าเก่าของ มาสเตอร์02</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Figure6" xml:space="preserve">
+    <value>&lt;strong&gt;รูปแบบที่ 6.&lt;/strong&gt;การตั้งค่าใหม่ของ มาสเตอร์02</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Guideline4" xml:space="preserve">
+    <value>การแก้ไข, ติ๊กตัวเลือกการตั้งค่าและเลือกการตั้งค่าที่คุณต้องการ</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Guideline5" xml:space="preserve">
+    <value>คลิ๊กอัพเดทเพื่อบันทึกการตั้งค่าของ เมมเบอร์</value>
+  </data>
+  <data name="SuperEditsMultipleMembers_Note" xml:space="preserve">
+    <value>คุณสามารถเปลี่ยนแปลงการ (เปิด/ปิดบัญชี) และค่าเอี่ยวต่าง ๆ ได้เท่านั้น</value>
+  </data>
 </root>
