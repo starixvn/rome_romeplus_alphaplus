@@ -129,7 +129,7 @@ class RewardDetailView {
         }
 
         searchData.programIds = programIds;
-        const paymentStatus = this.paymentStatusDropdown.getSelected().join(',');
+        const paymentStatus = this.paymentStatusDropdown.getSelected();
         if (paymentStatus !== '0') {
             searchData.paymentStatus = paymentStatus;
         }

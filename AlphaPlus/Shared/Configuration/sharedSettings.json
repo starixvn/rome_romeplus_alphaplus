@@ -232,8 +232,8 @@
     "MarketsSupportedNewHandbook": "IBC,MBC",
     "GoogleAnalyticId": "UA-93265717-1",
     "OfferAutoTransfer.Currencies": "*",
-    "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
-    "OfferClearGivenCredit:Sites": "KORIBC,INDO",
+    "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo,BEST-ODDS",
+    "OfferClearGivenCredit:Sites": "KORIBC,INDO,BEST-ODDS",
     "IndirectLogin": {
         "AllowSuperIds": "*",
         "URL": "https://indp1.nexdev.net/main/Account/IndirectLogin"

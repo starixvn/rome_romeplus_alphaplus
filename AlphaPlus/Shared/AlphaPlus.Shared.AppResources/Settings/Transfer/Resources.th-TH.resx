@@ -846,4 +846,7 @@
   <data name="NoColumnsFound" xml:space="preserve">
     <value>ไม่พบคอลัมน์</value>
   </data>
+  <data name="SearchColumn" xml:space="preserve">
+    <value>ค้นหาคอลัมน์</value>
+  </data>
 </root>

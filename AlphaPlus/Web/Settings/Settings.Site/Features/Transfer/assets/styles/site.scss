@@ -48,6 +48,20 @@ body {
             }
         }
     }
+
+    &.tabs {
+        border-bottom: none;
+
+        .nav.nav-tabs a {
+            text-transform: none;
+        }
+
+        .list-icon {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+    }
 }
 
 .msg {
@@ -81,11 +95,6 @@ body {
     }
 }
 
-input[type='checkbox'] {
-    margin-right: 0;
-    display: inherit;
-}
-
 input[type='button'][disabled] {
     opacity: 0.4;
     cursor: not-allowed;
@@ -101,7 +110,12 @@ input[type='button'][disabled] {
         width: 130px;
     }
 
+    .multiselect-container {
+        margin-top: 3px;
+    }
+
     .multiselect-container label {
+        display: block;
         font-size: 13px;
 
         input[type='checkbox'] {
@@ -122,6 +136,10 @@ input[type='button'][disabled] {
             position: relative;
             top: 5px;
         }
+    }
+
+    .icon-excel-new {
+        color: #2e9e60;
     }
 
     .icon-back {
@@ -145,12 +163,19 @@ input[type='button'][disabled] {
     }
 
     .form-group {
-        margin-bottom: 0;
-        padding-bottom: 0;
-
         .btn-submit,
-        .btn-group {
+        .btn-group,
+        .btn-default {
             float: left;
+            margin: 0;
+
+            &.dropdown-toggle {
+                padding-right: 28px;
+
+                .caret {
+                    right: 10px;
+                }
+            }
         }
 
         &.daterange-picker {
@@ -181,13 +206,16 @@ input[type='button'][disabled] {
     }
 }
 
+.form-inline .multiselect-container li a label.checkbox input[type='checkbox'] {
+    margin-right: 5px;
+}
+
 .bootbox-confirm .modal-dialog {
     top: 10%;
     left: 10%;
 }
 
 #box_header {
-    //margin-top: 12px;
     width: 850px;
 
     @media (max-width: 768px) {
@@ -255,7 +283,7 @@ input[type='button'][disabled] {
 }
 
 #tbl-rpt {
-    width: 800px;
+    max-width: 850px;
     border: none;
     margin-bottom: 12px;
 }
@@ -274,7 +302,7 @@ input[type='button'][disabled] {
         padding: 4px 0;
 
         label {
-            margin: 0 0 0 4px;
+            margin: 0;
         }
     }
 }
@@ -284,8 +312,6 @@ input[type='button'][disabled] {
 }
 
 #box-content {
-    margin-top: 12px;
-
     .btn-submit {
         margin-bottom: 12px;
 
@@ -319,162 +345,202 @@ a.transfer-link {
     color: #045ace;
 }
 
-.form-popup{
+.multiselect-container.dropdown-menu {
+    .filter .input-group {
+        margin: 10px !important;
+    }
+}
+
+.dropdown-menu {
+    li {
+        &:hover a {
+            background-color: #ddd !important;
+        }
+    }
+
+    .active {
+        a {
+            background-color: #ddd;
+        }
+    }
+}
+
+.multiselect-container-control {
+    .multiselect-container.dropdown-menu {
+        li {
+            background: transparent !important;
+
+            a {
+                background: transparent !important;
+
+                &:hover {
+                    background-color: #dddddd !important;
+                }
+            }
+        }
+    }
+}
+
+.form-popup {
     display: flex;
     align-items: center;
     margin-bottom: 13px;
-    &.btn-popup-transfer{
-        button{
+    &.btn-popup-transfer {
+        button {
             margin: 0 0 0 10px;
         }
     }
-    label{
+    label {
         margin: 0;
         padding-right: 10px;
     }
-    input[type="text"]{
+    input[type='text'] {
         border: 1px solid #dfdfdf;
         text-align: right;
         width: 280px;
-        margin-left: 35px;         
-    } 
-    &.w-50{
-        > *{
+        margin-left: 35px;
+    }
+    &.w-50 {
+        > * {
             width: 50%;
         }
-    }  
+    }
 }
-.msg{
+.msg {
     margin-bottom: 8px;
 }
-.justify-content-space-between{
+.justify-content-space-between {
     justify-content: space-between;
 }
-.justify-content-flex-end{
+.justify-content-flex-end {
     justify-content: flex-end;
 }
-.account-info{
+.account-info {
     background-color: #f3f5e0;
     border: 1px solid #cecece;
     padding: 6px 16px 8px;
     margin: 6px 0 12px;
     max-width: 500px;
-    .form-popup{
+    .form-popup {
         margin-bottom: 0;
-        label{
+        label {
             padding-right: 15px;
         }
         &.amount {
-            .btn-submit{
-                margin: 0 0 0 20px;;
+            .btn-submit {
+                margin: 0 0 0 20px;
             }
         }
     }
-    .title-popup{
+    .title-popup {
         margin-bottom: 0;
         line-height: 24px;
         padding: 4px 0;
         font-weight: bold;
     }
-    label, span{
+    label,
+    span {
         line-height: 24px;
         padding: 4px 0;
     }
-    .transfer-up{
+    .transfer-up {
         line-height: 24px;
         margin: 0;
     }
-    .amount{
+    .amount {
         display: flex;
         justify-content: space-between;
     }
 }
-.right-form-transfer{
+.right-form-transfer {
     max-width: 500px;
 }
-.wrapper-transfer-condition{
+.wrapper-transfer-condition {
     max-width: 600px;
     padding-top: 1px;
-    &.right-content{
+    &.right-content {
         padding-top: 13px;
-        .justify-content-space-between{
+        .justify-content-space-between {
             justify-content: flex-start;
-            label{
+            label {
                 min-width: 70px;
                 padding: 0;
             }
-            input[type=text]{
+            input[type='text'] {
                 margin-left: 10px;
             }
         }
-        .justify-content-flex-end{
+        .justify-content-flex-end {
             justify-content: flex-start;
             padding-left: 70px;
         }
     }
 }
-.form-transfer-condition{
+.form-transfer-condition {
     padding-top: 12px;
-    .tb{
+    .tb {
         font-size: 13px;
         border-collapse: collapse;
-            border: 1px solid #A6A6A6 ;
-        thead{
-            th,td{
+        border: 1px solid #a6a6a6;
+        thead {
+            th,
+            td {
                 color: #404040;
-                background-color: #BCCBDC;
+                background-color: #bccbdc;
             }
         }
-        th,td{
+        th,
+        td {
             border-collapse: collapse;
-            border: 1px solid #A6A6A6 ;
+            border: 1px solid #a6a6a6;
             height: 32px;
             vertical-align: middle;
             padding: 3px 5px;
-            &:nth-child(2){
+            &:nth-child(2) {
                 border-left: 0;
             }
-            input[type=text]{
-                border: 1px solid #D1D1D1;
+            input[type='text'] {
+                border: 1px solid #d1d1d1;
                 border-radius: 5px;
                 box-shadow: none;
                 width: 188px;
             }
-            label{
+            label {
                 color: #404040;
                 margin: 0;
                 display: inline-block;
                 text-align: left;
-                font-size: 13px;                
+                font-size: 13px;
             }
-            .block-weekly{
+            .block-weekly {
                 display: flex;
                 flex-wrap: nowrap;
             }
-            .left{
+            .left {
                 min-width: 75px;
                 margin-right: 10px;
             }
-            .weekly{
+            .weekly {
                 display: flex;
                 flex-wrap: nowrap;
-                 
-                label, input{
+
+                label,
+                input {
                     display: inline-block;
                     vertical-align: middle;
                 }
-                input{
+                input {
                     position: relative;
                     top: -1px;
                     margin-right: 5px;
                 }
-                label{
+                label {
                     margin-right: 10px;
                 }
             }
         }
     }
-    .btn-submit{
+    .btn-submit {
         border-radius: 5px;
         box-shadow: none;
     }

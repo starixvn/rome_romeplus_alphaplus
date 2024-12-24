@@ -397,6 +397,12 @@
                         "Permission": "[H]",
                         "IsCheckBelonging": true,
                         "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Reward",
+                        "Permission": "[C]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": false
                     }
                 ]
             },

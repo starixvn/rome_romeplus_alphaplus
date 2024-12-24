@@ -39,7 +39,8 @@
         <label class="label-form-control">@(isRewardDetailTab ? Resources.MemberPaymentStatus :
             Resources.PaymentStatus)</label>
         <div>
-            <select id="ddl-paymentStatus" asp-items="Model.PaymentStatus"></select>
+            <select id="ddl-paymentStatus" asp-items="Model.PaymentStatus"
+                data-label-filterplaceholder="@Resources.Search"></select>
         </div>
     </div>
     <div class="form-group">

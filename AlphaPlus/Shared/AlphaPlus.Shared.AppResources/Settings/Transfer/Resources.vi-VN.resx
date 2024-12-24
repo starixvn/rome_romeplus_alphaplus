@@ -771,4 +771,7 @@
   <data name="NoColumnsFound" xml:space="preserve">
     <value>Không tìm thấy Cột nào</value>
   </data>
+  <data name="SearchColumn" xml:space="preserve">
+    <value>Tìm cột</value>
+  </data>
 </root>

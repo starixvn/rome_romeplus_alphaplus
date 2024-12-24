@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿'use strict';
 declare var numeral: any;
 
 interface Window {
@@ -36,7 +36,7 @@ class AutoTransferMonitoring {
     visibleColumnDropdownComponent: VisibleColumnDropdownComponent;
     autoRefreshComponent: AutoRefreshComponent;
     $statusComponent: MultipleSelectionDropdownComponent;
-    amountFormat = "0,0.[00]";
+    amountFormat = '0,0.[00]';
 
     sortDirection = {
         asc: 0,
@@ -52,7 +52,8 @@ class AutoTransferMonitoring {
         pageComponent: PagerComponentTransfer,
         visibleColumnDropdownComponent: VisibleColumnDropdownComponent,
         autoRefreshComponent: AutoRefreshComponent,
-        statusComponent: MultipleSelectionDropdownComponent) {
+        statusComponent: MultipleSelectionDropdownComponent
+    ) {
         this.$ = $;
         this.topWindow = topWindow;
         this.numeral = numeral;
@@ -67,31 +68,33 @@ class AutoTransferMonitoring {
         this.registerEvents();
     };
     cacheDOMElements = () => {
-        this.$tabHistory = this.$("#tab-history");
-        this.virtualDirectory = this.$("#VirtualDirectory").val();
-        this.noInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
+        this.$tabHistory = this.$('#tab-history');
+        this.virtualDirectory = this.$('#VirtualDirectory').val();
+        this.noInformationIsAvailable = this.$('#NoInformationIsAvailable').val();
 
-        this.$username = this.$("#txt-username");
-        this.$status = this.$("#ddl-status");
-        this.$tblMonitoring = this.$("#tbl-monitoring");
-        this.$sorters = this.$(".sorting");
-        this.$pager = this.$("#report-pager");
-        this.ViewerId = this.$("#ViewerId").val();
-        this.SubAccId = this.$("#SubAccId").val();
-        this.confirmCancelJob = this.$("#confirmCancelJob").val();
-        this.$navTabs = this.$("#nav-tabs");
-        this.cancelAllAutoTransferJobsConfirm = this.$("#CancelAllAutoTransferJobsConfirm").val();
+        this.$username = this.$('#txt-username');
+        this.$status = this.$('#ddl-status');
+        this.$tblMonitoring = this.$('#tbl-monitoring');
+        this.$sorters = this.$('.sorting');
+        this.$pager = this.$('#report-pager');
+        this.ViewerId = this.$('#ViewerId').val();
+        this.SubAccId = this.$('#SubAccId').val();
+        this.confirmCancelJob = this.$('#confirmCancelJob').val();
+        this.$navTabs = this.$('#nav-tabs');
+        this.cancelAllAutoTransferJobsConfirm = this.$('#CancelAllAutoTransferJobsConfirm').val();
 
-        this.$divStatusAll = this.$(".div-status-all");
-        this.$divCancelAll = this.$(".div-cancel-all");
-        this.$cancelAllCount = this.$(".cancel-all-count");
+        this.$divStatusAll = this.$('.div-status-all');
+        this.$divCancelAll = this.$('.div-cancel-all');
+        this.$cancelAllCount = this.$('.cancel-all-count');
     };
     registerEvents = () => {
         this.$tabHistory.click(() => this.viewHistory());
         this.$('.icon-information-outline').click(() => this.viewInfo());
         this.$('#btn-submit').click(() => this.viewTransfers());
         this.$('.div-cancel-all').click(() => this.cancelAllJobs());
-        this.$('#report-form').submit(() => { return false; });
+        this.$('#report-form').submit(() => {
+            return false;
+        });
 
         var self = this;
         this.$('.sorting').click(function () {
@@ -100,29 +103,34 @@ class AutoTransferMonitoring {
 
         var visibleColumnDropdownOption = new VisibleColumnDropdownOption(
             `Transfer_${this.ViewerId}_${this.SubAccId}:Columns`,
-            (col, isShow) => this.showHideColumn(col, isShow));
+            (visibleStatus) => {
+                for (const [key, value] of Object.entries(visibleStatus)) {
+                    this.showHideColumn(key, value);
+                }
+            }
+        );
         this.visibleColumnDropdownComponent.render(visibleColumnDropdownOption);
 
-        this.$statusComponent.render(
-            new MultipleSelectionDropdownOption("ddl-status", "Status", this.changeStatus));
+        this.$statusComponent.render(new MultipleSelectionDropdownOption('ddl-status', 'Status', this.changeStatus));
 
-        this.autoRefreshComponent.render(new AutoRefreshOption(
-            () => {
+        this.autoRefreshComponent.render(
+            new AutoRefreshOption(() => {
                 this.refreshTransfers();
-            }));
+            })
+        );
 
-        if (this.$('#status').val() === "Failed") {
+        if (this.$('#status').val() === 'Failed') {
             this.viewTransfers();
         }
     };
 
     viewHistory = () => {
-        location.href = this.$tabHistory.attr("data-tablink");
+        location.href = this.$tabHistory.attr('data-tablink');
     };
 
     viewInfo = () => {
-        var url = this.virtualDirectory + "autotransfer/hint";
-        this.topWindow.popupManager.open(url, "", 500, 520);
+        var url = this.virtualDirectory + 'autotransfer/hint';
+        this.topWindow.popupManager.open(url, '', 500, 520);
     };
 
     viewTransfers = () => {
@@ -139,12 +147,14 @@ class AutoTransferMonitoring {
         this.updatePager(alphaTransfer.pager.pageIndex, alphaTransfer.pager.pageSize);
 
         self.$.ajax({
-            method: "POST",
+            method: 'POST',
             data: this.reportParam,
             dataType: 'json',
-            url: "GetTodayTransfers",
-            success: results => { this.showTransfers(results); },
-            error: (e) => { },
+            url: 'GetTodayTransfers',
+            success: (results) => {
+                this.showTransfers(results);
+            },
+            error: (e) => {},
             complete: () => {
                 this.$.unblockUI();
             }
@@ -167,28 +177,53 @@ class AutoTransferMonitoring {
                 var cancellable = t.IsAllowCancel;
                 var amount = t.TransferAmount ? this.numeral(t.TransferAmount).format(this.amountFormat) : '';
                 var ino = i + 1 + results.PageSize * (results.PageIndex - 1);
-                var amountClass = (t.TransferAmount || 0) < 0 ? " format-negative" : "";
+                var amountClass = (t.TransferAmount || 0) < 0 ? ' format-negative' : '';
                 var status = t.Status.toLowerCase() === 'waiting' ? 'Processing' : t.Status;
 
-                html += '<tr>' +
-                    '<td col-value="1" class="text-center">' + ino + '</td>' +
-                    '<td col-value="2" class="text-left">' + t.Username + '</td>' +
-                    '<td col-value="3" class="text-left">' + t.FirstLastName + '</td>' +
-                    '<td col-value="4" class="text-right' + amountClass + '">' + amount + '</td>' +
-                    '<td col-value="5" class="text-left col-status ' + status.toLowerCase() + '">' +
+                html +=
+                    '<tr>' +
+                    '<td col-value="1" class="text-center">' +
+                    ino +
+                    '</td>' +
+                    '<td col-value="2" class="text-left">' +
+                    t.Username +
+                    '</td>' +
+                    '<td col-value="3" class="text-left">' +
+                    t.FirstLastName +
+                    '</td>' +
+                    '<td col-value="4" class="text-right' +
+                    amountClass +
+                    '">' +
+                    amount +
+                    '</td>' +
+                    '<td col-value="5" class="text-left col-status ' +
+                    status.toLowerCase() +
+                    '">' +
                     '<div class="flex">' +
                     this.$('#' + status).val() +
-                    (cancellable ? '<div class="icon-close-circle" data-custid="' + t.CustId + '" data-status="' + t.Status + '" data-custname="' + t.Username + '"></div>' : '') +
+                    (cancellable
+                        ? '<div class="icon-close-circle" data-custid="' +
+                          t.CustId +
+                          '" data-status="' +
+                          t.Status +
+                          '" data-custname="' +
+                          t.Username +
+                          '"></div>'
+                        : '') +
                     '</div>' +
                     '</td>' +
-                    '<td col-value="6" class="text-left">' + (t.Reason || '') + '</td>' +
-                    '<td col-value="7" class="text-center">' + (t.CompletedTime || '') + '</td>' +
+                    '<td col-value="6" class="text-left">' +
+                    (t.Reason || '') +
+                    '</td>' +
+                    '<td col-value="7" class="text-center">' +
+                    (t.CompletedTime || '') +
+                    '</td>' +
                     '</tr>';
             }
         }
 
         this.$tblMonitoring.find('tbody').empty().html(html);
-        this.$sorters.removeClass("sorting_asc sorting_desc");
+        this.$sorters.removeClass('sorting_asc sorting_desc');
 
         var selectedSort = this.$tblMonitoring.find('.sorting[data-sort="' + results.SortedBy + '"]');
         selectedSort.addClass('sorting_' + (results.Direction === this.sortDirection.asc ? 'asc' : 'desc'));
@@ -198,20 +233,26 @@ class AutoTransferMonitoring {
         this.$pager.data('totalrecords', results.TotalItems);
 
         this.pagerComponent.reset();
-        this.pagerComponent.render(new PagerOptionTransfer(
-            () => {
+        this.pagerComponent.render(
+            new PagerOptionTransfer(() => {
                 var pageIndex = parseInt(this.$('#PageIndex').val(), 0);
                 var pageSize = parseInt(this.$('#PageSize').val(), 0);
 
                 this.pagingTransfers(pageIndex, pageSize);
-            }));
+            })
+        );
 
         var self = this;
         this.$('.icon-close-circle').click(function () {
-            self.topWindow.bootboxConfirm(self.confirmCancelJob, null, () => {
-                var elm = self.$(this);
-                self.cancelJob(elm);
-            }, () => { });
+            self.topWindow.bootboxConfirm(
+                self.confirmCancelJob,
+                null,
+                () => {
+                    var elm = self.$(this);
+                    self.cancelJob(elm);
+                },
+                () => {}
+            );
         });
 
         var visibleStatus = this.visibleColumnDropdownComponent.getVisibleStatus();
@@ -221,9 +262,9 @@ class AutoTransferMonitoring {
         }
 
         this.$cancelAllCount.html(results.TotalCancelAll);
-        this.$(".spn-pending-count").html(results.TotalPending);
-        this.$(".spn-processing-count").html(results.TotalProcessing);
-        this.$(".spn-failed-count").html(results.TotalFailed);
+        this.$('.spn-pending-count').html(results.TotalPending);
+        this.$('.spn-processing-count').html(results.TotalProcessing);
+        this.$('.spn-failed-count').html(results.TotalFailed);
         this.$divStatusAll.removeClass('hide');
 
         this.$tblMonitoring.removeClass('hide');
@@ -235,8 +276,7 @@ class AutoTransferMonitoring {
         var $elm = this.$(elm);
 
         var sortedBy = $elm.data('sort');
-        var direction = $elm.hasClass('sorting_asc')
-            ? this.sortDirection.desc : this.sortDirection.asc;
+        var direction = $elm.hasClass('sorting_asc') ? this.sortDirection.desc : this.sortDirection.asc;
         this.$.blockUI();
 
         this.updatePager(alphaTransfer.pager.pageIndex, alphaTransfer.pager.pageSize);
@@ -244,13 +284,17 @@ class AutoTransferMonitoring {
         this.reportParam.Direction = direction;
 
         self.$.ajax({
-            method: "POST",
+            method: 'POST',
             data: this.reportParam,
             dataType: 'json',
-            url: "GetTodayTransfers",
-            success: results => { this.showTransfers(results); },
-            error: (e) => { },
-            complete: () => { this.$.unblockUI(); }
+            url: 'GetTodayTransfers',
+            success: (results) => {
+                this.showTransfers(results);
+            },
+            error: (e) => {},
+            complete: () => {
+                this.$.unblockUI();
+            }
         });
     };
 
@@ -261,13 +305,17 @@ class AutoTransferMonitoring {
         this.updatePager(pageIndex, pageSize);
 
         self.$.ajax({
-            method: "POST",
+            method: 'POST',
             data: this.reportParam,
             dataType: 'json',
-            url: "GetTodayTransfers",
-            success: results => { this.showTransfers(results); },
-            error: (e) => { },
-            complete: () => { this.$.unblockUI(); }
+            url: 'GetTodayTransfers',
+            success: (results) => {
+                this.showTransfers(results);
+            },
+            error: (e) => {},
+            complete: () => {
+                this.$.unblockUI();
+            }
         });
     };
 
@@ -275,7 +323,6 @@ class AutoTransferMonitoring {
         if (isShow) {
             this.$tblMonitoring.find('th[col-value="' + col + '"]').removeClass('hide');
             this.$tblMonitoring.find('td[col-value="' + col + '"]').removeClass('hide');
-
         } else {
             this.$tblMonitoring.find('th[col-value="' + col + '"]').addClass('hide');
             this.$tblMonitoring.find('td[col-value="' + col + '"]').addClass('hide');
@@ -291,12 +338,14 @@ class AutoTransferMonitoring {
         this.$.blockUI();
 
         self.$.ajax({
-            method: "POST",
+            method: 'POST',
             data: this.reportParam,
             dataType: 'json',
-            url: "GetTodayTransfers",
-            success: results => { this.showTransfers(results); },
-            error: (e) => { },
+            url: 'GetTodayTransfers',
+            success: (results) => {
+                this.showTransfers(results);
+            },
+            error: (e) => {},
             complete: () => {
                 this.autoRefreshComponent.reset();
                 this.$.unblockUI();
@@ -309,23 +358,25 @@ class AutoTransferMonitoring {
 
         var param = {
             CustId: elm.data('custid'),
-            ViewStatus: elm.data('status'),
+            ViewStatus: elm.data('status')
         };
 
         self.$.ajax({
-            method: "POST",
+            method: 'POST',
             data: param,
             dataType: 'json',
-            url: "CancelJob",
-            success: results => {
+            url: 'CancelJob',
+            success: (results) => {
                 if (results.Code) {
                     this.topWindow.bootboxAlert(results.Message, null, () => this.refreshTransfers());
                 } else {
                     this.refreshTransfers();
                 }
             },
-            error: (e) => { },
-            complete: () => { this.$.unblockUI(); }
+            error: (e) => {},
+            complete: () => {
+                this.$.unblockUI();
+            }
         });
     };
 
@@ -346,33 +397,37 @@ class AutoTransferMonitoring {
         var message;
 
         if (count === 0) {
-            message = this.$("#AutoTransfer_NoCancellable").val();
-            this.topWindow.bootboxAlert(message, null, () => { });
+            message = this.$('#AutoTransfer_NoCancellable').val();
+            this.topWindow.bootboxAlert(message, null, () => {});
             return;
         }
 
         message = this.cancelAllAutoTransferJobsConfirm.replace('{0}', count.toString());
-        this.topWindow.bootboxConfirm(message, null, () => { this.doCancelAllJobs(); });
+        this.topWindow.bootboxConfirm(message, null, () => {
+            this.doCancelAllJobs();
+        });
     };
 
     doCancelAllJobs = () => {
         this.$.blockUI();
 
         self.$.ajax({
-            method: "POST",
+            method: 'POST',
             data: this.reportParam,
             dataType: 'json',
-            url: "CancelAllJobs",
-            success: results => {
+            url: 'CancelAllJobs',
+            success: (results) => {
                 if (results.Code) {
                     this.topWindow.bootboxAlert(results.Message, null, () => this.refreshTransfers());
                 } else {
                     this.refreshTransfers();
-                    this.topWindow.bootboxAlert(results.Message, null, () => { });
+                    this.topWindow.bootboxAlert(results.Message, null, () => {});
                 }
             },
-            error: (e) => { },
-            complete: () => { this.$.unblockUI(); }
+            error: (e) => {},
+            complete: () => {
+                this.$.unblockUI();
+            }
         });
     };
 }
@@ -385,6 +440,7 @@ $(() => {
         new PagerComponentTransfer($),
         new VisibleColumnDropdownComponent($),
         new AutoRefreshComponent($),
-        new MultipleSelectionDropdownComponent($));
+        new MultipleSelectionDropdownComponent($)
+    );
     handler.init();
 });

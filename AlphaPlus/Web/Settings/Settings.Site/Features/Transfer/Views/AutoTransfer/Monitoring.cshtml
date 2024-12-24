@@ -16,16 +16,20 @@
 <div class="container-fluid page-auto-transfer">
     <ul id="nav-tabs" class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-            <a data-tablink="@(AppSettings.VirtualDirectory+"autotransfer/monitoring")" role="tab" aria-controls="monitoring" data-to data-toggle="tab" class="lnk-changetab">@Resources.AutoTransferMonitoring</a>
+            <a data-tablink="@(AppSettings.VirtualDirectory + "autotransfer/monitoring")" role="tab"
+                aria-controls="monitoring" data-to data-toggle="tab"
+                class="lnk-changetab">@Resources.AutoTransferMonitoring</a>
         </li>
         @if (!Model.IsProtectedMode)
         {
             <li role="presentation">
-                <a id="tab-history" data-tablink="@(AppSettings.VirtualDirectory+"autotransfer/history")" role="tab" aria-controls="history" data-toggle="tab" class="lnk-changetab">@Resources.AutoTransferHistory</a>
+                <a id="tab-history" data-tablink="@(AppSettings.VirtualDirectory + "autotransfer/history")" role="tab"
+                    aria-controls="history" data-toggle="tab" class="lnk-changetab">@Resources.AutoTransferHistory</a>
             </li>
         }
         <li class="icon-tab">
-            <a href="@Model.UserGuideLink" target="_blank" class="user-guide-link pull-right" title="@Resources.AutoTransferGuideline">
+            <a href="@Model.UserGuideLink" target="_blank" class="user-guide-link pull-right"
+                title="@Resources.AutoTransferGuideline">
                 <span class="icon icon-book"></span>
             </a>
         </li>
@@ -36,30 +40,34 @@
         <div class="filter">
             <form id="report-form" class="form-inline" role="form">
                 <div class="form-group">
-                    <input type="text" id="txt-username" placeholder="@Resources.UsernameOrFirstLastName"
-                           value=""
-                           autocomplete="off" />
+                    <input type="text" id="txt-username" placeholder="@Resources.UsernameOrFirstLastName" value=""
+                        autocomplete="off" />
                 </div>
-                <div class="form-group column-multiselect-container">
+                <div class="form-group column-multiselect-container multiselect-container-control">
                     <label>@Resources.Status</label>
-                    <select id="ddl-status"
-                            data-label-select-none="@Resources.SelectNone"
-                            data-label-selected="@Resources.Selected"
-                            data-label-all="@Resources.All"
-                            data-label-select-all="@Resources.SelectAll"
-                            data-label-search="@Resources.Search"
-                            multiple="multiple"
-                            class="select-multiple">
-                        <option value="New,Waiting,Processing" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>@Resources.Processing</option>
-                        <option value="Completed" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>@Resources.Completed</option>
+                    <select id="ddl-status" data-label-select-none="@Resources.SelectNone"
+                        data-label-selected="@Resources.Selected" data-label-all="@Resources.All"
+                        data-label-select-all="@Resources.SelectAll" data-label-search="@Resources.Search"
+                        multiple="multiple" class="select-multiple">
+                        <option value="New,Waiting,Processing" @(Model.Status == "Failed" ? string.Empty :
+                            "selected=\"selected\"")>@Resources.Processing</option>
+                        <option value="Completed" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>
+                            @Resources.Completed</option>
                         <option value="Failed" selected="selected">@Resources.Failed</option>
-                        <option value="Cancelled" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>@Resources.Cancelled</option>
-                        <option value="Pending" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>@Resources.Pending</option>
-                        <option value="Ignored" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>@Resources.Ignored</option>
+                        <option value="Cancelled" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>
+                            @Resources.Cancelled</option>
+                        <option value="Pending" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>
+                            @Resources.Pending</option>
+                        <option value="Ignored" @(Model.Status == "Failed" ? string.Empty : "selected=\"selected\"")>
+                            @Resources.Ignored</option>
                     </select>
                 </div>
-                @{Render(Model.Columns);}
-                @{RenderCoundown(new[] { 15, 30, 45, 60, 75 });}
+                @{
+                    Render(Model.Columns);
+                }
+                @{
+                    RenderCoundown(new[] { 15, 30, 45, 60, 75 });
+                }
                 <div class="form-group submit-box">
                     <input type="submit" class="btn-submit" id="btn-submit" value="@Resources.Submit">
                 </div>
@@ -83,7 +91,8 @@
                     <span class="spn-failed-count"></span>
                 </div>
                 <div class="div-cancel-all" title="@Resources.CancelSuspendedTransactionsTip">
-                    <input type="button" class="btn-submit" id="btn-cancel-all" value="@Resources.CancelSuspendedTransactions">
+                    <input type="button" class="btn-submit" id="btn-cancel-all"
+                        value="@Resources.CancelSuspendedTransactions">
                     <span class="cancel-all-count"></span>
                 </div>
             </div>
@@ -112,14 +121,9 @@
                 <tfoot>
                     <tr>
                         <td colspan="7">
-                            <div id="report-pager"
-                                 class="hide"
-                                 data-labelpage="@Resources.Page"
-                                 data-labelof="@Resources.of"
-                                 data-labeldisplayitems="@Resources.Pager_DisplayItems"
-                                 data-pageindex="1"
-                                 data-pagesize="500"
-                                 data-totalrecords="0">
+                            <div id="report-pager" class="hide" data-labelpage="@Resources.Page"
+                                data-labelof="@Resources.of" data-labeldisplayitems="@Resources.Pager_DisplayItems"
+                                data-pageindex="1" data-pagesize="500" data-totalrecords="0">
                             </div>
                         </td>
                     </tr>
@@ -153,19 +157,14 @@
 }
 @functions
 {
-     void Render(IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> columns)
+    void Render(IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> columns)
     {
-        <div class="form-group column-multiselect-container">
+        <div class="form-group column-multiselect-container multiselect-container-control">
             <label>@Resources.Columns</label>
-            <select id="dropdown-columns"
-                    data-has-any-product-detail="@columns.Any()"
-                    data-label-select-none="@Resources.SelectNone"
-                    data-label-selected="@Resources.Selected"
-                    data-label-all="@Resources.All"
-                    data-label-select-all="@Resources.SelectAll"
-                    data-label-search-column="@Resources.SearchColumn"
-                    multiple="multiple"
-                    class="select-multiple">
+            <select id="dropdown-columns" data-has-any-product-detail="@columns.Any()"
+                data-label-select-none="@Resources.SelectNone" data-label-selected="@Resources.Selected"
+                data-label-all="@Resources.All" data-label-select-all="@Resources.SelectAll"
+                data-label-search-column="@Resources.SearchColumn" multiple="multiple" class="select-multiple">
                 @foreach (var column in columns)
                 {
                     <option value="@column.Value">@column.Text</option>

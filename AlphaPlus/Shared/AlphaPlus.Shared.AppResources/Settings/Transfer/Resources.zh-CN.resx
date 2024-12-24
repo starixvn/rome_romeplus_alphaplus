@@ -846,4 +846,7 @@
   <data name="NoColumnsFound" xml:space="preserve">
     <value>无法找寻专栏</value>
   </data>
+  <data name="SearchColumn" xml:space="preserve">
+    <value>搜索专栏</value>
+  </data>
 </root>

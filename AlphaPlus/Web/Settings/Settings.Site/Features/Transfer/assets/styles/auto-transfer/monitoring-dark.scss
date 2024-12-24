@@ -7,16 +7,6 @@
     }
 }
 
-.filter {
-    margin-bottom: -10px;
-
-    .form-inline {
-        > * {
-            margin-bottom: 10px;
-        }
-    }
-}
-
 .filter .form-group #txt-username {
     width: 200px;
     background-color: #171717;
@@ -35,7 +25,7 @@ table.dataTable tbody tr {
     > thead > tr > th,
     > tbody > tr > td,
     tfoot > tr > td {
-        border: 1px solid #5F626B;
+        border: 1px solid #5f626b;
     }
 }
 
@@ -43,7 +33,7 @@ table.dataTable tbody tr {
     > thead > tr > th:last-child,
     > tbody > tr > td:last-child,
     > tfoot > tr > td:last-child {
-        border-right: 1px solid #5F626B !important;
+        border-right: 1px solid #5f626b !important;
     }
 }
 
@@ -51,22 +41,20 @@ table.dataTable tbody tr {
     padding: 0;
 }
 
-
-#content {
-    margin-top: 15px;
-}
-
 .col-status {
-    &.failed, &.cancelled {
-        color: #FF6262;
+    &.failed,
+    &.cancelled {
+        color: #ff6262;
     }
 
     &.completed {
-        color: #1FB91F;
+        color: #1fb91f;
     }
 }
 
-.tblRpt thead th, .tblRpt tbody td, .tblRpt tfoot td {
+.tblRpt thead th,
+.tblRpt tbody td,
+.tblRpt tfoot td {
     height: 28px;
 }
 
@@ -97,31 +85,33 @@ table.dataTable tbody tr {
 table.dataTable.display tr td .pagination table tbody td {
     border: 0 !important;
 }
-.tblRpt thead th, .tblRpt tbody td, .tblRpt tfoot td {
+.tblRpt thead th,
+.tblRpt tbody td,
+.tblRpt tfoot td {
     white-space: normal;
 }
 #tbl-monitoring {
-    [col-value="1"] {
+    [col-value='1'] {
         width: 3%;
     }
 
-    [col-value="2"] {
+    [col-value='2'] {
         width: 10%;
     }
 
-    [col-value="3"] {
+    [col-value='3'] {
         width: 10%;
     }
 
-    [col-value="4"] {
+    [col-value='4'] {
         width: 10%;
     }
 
-    [col-value="5"] {
+    [col-value='5'] {
         width: 10%;
     }
 
-    [col-value="7"] {
+    [col-value='7'] {
         width: 15%;
     }
 }
@@ -155,7 +145,7 @@ table.dataTable.display tr td .pagination table tbody td {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
 .nav-tabs > li.active > a:hover {
-    color: #EDEDED;
+    color: #ededed;
 }
 
 .nav.nav-tabs > li.icon-tab:after,
@@ -175,10 +165,13 @@ table.dataTable.display tr td .pagination table tbody td {
 .div-status-all {
     display: flex;
 
-    .div-pending-all, .div-processing-all, .div-failed-all, .div-cancel-all {
-        border: 1px solid #736A53;
+    .div-pending-all,
+    .div-processing-all,
+    .div-failed-all,
+    .div-cancel-all {
+        border: 1px solid #736a53;
         border-radius: 3px;
-        background-color: #423D30;
+        background-color: #423d30;
         margin-right: 15px;
         padding-right: 3px;
         justify-content: space-between;
@@ -193,31 +186,34 @@ table.dataTable.display tr td .pagination table tbody td {
             padding: 0 12px;
         }
 
-        .spn-pending-count, .spn-processing-count, .spn-failed-count, .cancel-all-count {
+        .spn-pending-count,
+        .spn-processing-count,
+        .spn-failed-count,
+        .cancel-all-count {
             width: 24px;
             height: 24px;
             border-radius: 3px;
             text-align: center;
             line-height: 24px;
-            color: #7E3D00;
-            background: #F6C699;
+            color: #7e3d00;
+            background: #f6c699;
         }
     }
 
     .div-cancel-all {
-        background-color: #36587D;
-        border-color: #36587D;
+        background-color: #36587d;
+        border-color: #36587d;
 
         .btn-submit {
-            background-color: #36587D;
-            color: #FFFFFF;
+            background-color: #36587d;
+            color: #ffffff;
             box-shadow: none;
             margin: 0;
         }
 
         .cancel-all-count {
-            color: #36587D;
-            background-color: #FFFFFF;
+            color: #36587d;
+            background-color: #ffffff;
         }
     }
 }
@@ -228,7 +224,7 @@ table.dataTable.display tr td .pagination table tbody td {
 }
 
 .icon-close-circle {
-    color: #DD3333;
+    color: #dd3333;
     font-size: 18px;
     cursor: pointer;
 }
