@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useOutsideClick } from '../../../hooks/outside-click';
 import styles from './DisplayLanguage.module.scss';
 
 export default function DisplayLanguage() {
@@ -9,6 +10,10 @@ export default function DisplayLanguage() {
     const [openPanel, setOpenPanel] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(false);
     const [selectedLanguage, setSelectedLanguage] = useState(displayLanguage);
+
+    const ref = useOutsideClick(() => {
+        setOpenDropdown(false);
+    });
 
     const handleOpenLanguageDropdown = (e: React.MouseEvent<HTMLElement>) => {
         e.stopPropagation();
@@ -51,7 +56,7 @@ export default function DisplayLanguage() {
             <div className="panel-content">
                 <p>{t('DisplayLanguageIntro')}</p>
                 <div className={styles.language}>
-                    <div className={`${styles['block-language']} ${openDropdown ? styles['open'] : ''}`}>
+                    <div ref={ref} className={`${styles['block-language']} ${openDropdown ? styles['open'] : ''}`}>
                         {renderDisplayLanguage()}
                         <ul className={`dropdown-menu ${styles['dropdown-menu']}`}>
                             {Object.entries(languages).map(([key, value]) => (
