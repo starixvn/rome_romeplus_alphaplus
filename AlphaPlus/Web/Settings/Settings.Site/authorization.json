@@ -396,7 +396,7 @@
                         "Url": "Customer/GetCustomerSetting",
                         "Permission": "[H]",
                         "IsCheckBelonging": true,
-                        "IsAllowToDoByThemselves": false
+                        "IsAllowToDoByThemselves": true
                     }
                 ]
             },
