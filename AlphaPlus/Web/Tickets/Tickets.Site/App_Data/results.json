@@ -75,6 +75,11 @@
         "VendorId": 67,
         "Debug": 0
     },
+    "AdvantPlayMiniResultConfigs": {
+        "Url": "http://10.40.40.248:8129/api/AdvantPlayMiniInternal/GetBetHistoryUrl",
+        "VendorId": 68,
+        "Debug": 0
+    },
     "BBINResultConfigs": {
         "Url": "http://10.40.40.248:8106/api/BBinLiveInternal/GetBetHistoryUrl",
         "Debug": 0
@@ -196,6 +201,16 @@
     "SexyGamingResultConfigs": {
         "Url": "http://10.40.40.248:7075/api//SexyCasinoInternal/GetBetHistoryUrl",
         "VendorId": 45,
+        "Debug": 0
+    },
+    "GPIRNGResultConfigs": {
+        "Url": "http://10.40.40.248:7081/api/GamePlayIntRngInternal/GetBetHistoryUrl",
+        "VendorId": 48,
+        "Debug": 0
+    },
+    "GPILiveCasinoResultConfigs": {
+        "Url": "http://10.40.40.248:7106/api/GamePlayIntCasinoInternal/GetBetHistoryUrl",
+        "VendorId": 90,
         "Debug": 0
     }
 }
