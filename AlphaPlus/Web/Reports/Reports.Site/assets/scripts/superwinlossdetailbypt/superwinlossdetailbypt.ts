@@ -51,8 +51,12 @@
 
         this.productComponent.render();
         this.dateRangePickerComponent.render();
-
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } }, this.afterSort);
+
+        // IsMobileView: make sure PT rows is collapsed
+        $('#IsMobileView').val() === '1' &&
+            this.$tableReport.find('tbody > tr.pt-row').each((_, element) => this.onClickPT($(element)));
+
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');

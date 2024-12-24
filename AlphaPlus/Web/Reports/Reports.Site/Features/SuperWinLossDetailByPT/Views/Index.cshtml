@@ -3,22 +3,21 @@
     ViewData["Title"] = Model.PageHeader.Title;
     var reportDataCount = Model.ReportData.Count();
 
-    void RenderBodyRows(SuperWinLossDetailByPTModel winLossDetailByPT, bool isExpanded)
+    void RenderBodyRows(SuperWinLossDetailByPTModel winLossDetailByPT)
     {
-        RenderWinLossDetailByPT(winLossDetailByPT, isExpanded);
+        RenderWinLossDetailByPT(winLossDetailByPT);
 
         foreach (var winLossDetailByProduct in winLossDetailByPT.SuperWinLossDetails)
         {
-            RenderWinLossDetailByProduct(winLossDetailByProduct, false, isExpanded);
+            RenderWinLossDetailByProduct(winLossDetailByProduct, false);
         }
     }
 
-    void RenderWinLossDetailByPT(SuperWinLossDetailByPTModel winLossDetailByPT, bool isExpanded)
+    void RenderWinLossDetailByPT(SuperWinLossDetailByPTModel winLossDetailByPT)
     {
-        <tr class="pt-row" data-pt-value="@winLossDetailByPT.SuperPT" data-is-hide="@(isExpanded ? "false" : "true")">
-            <td class="text-left col-username bold@(isExpanded ? " active" : string.Empty)"
-                data-sortedvalue="@winLossDetailByPT.SuperPT">
-                <span class="@(isExpanded ? "icon-arrow-down" : "icon-arrow-right")"></span>
+        <tr class="pt-row" data-pt-value="@winLossDetailByPT.SuperPT" data-is-hide="false">
+            <td class="text-left col-username bold active" data-sortedvalue="@winLossDetailByPT.SuperPT">
+                <span class="icon-arrow-down"></span>
                 @winLossDetailByPT.SuperPTPercentage
             </td>
             @{
@@ -27,9 +26,9 @@
         </tr>
     }
 
-    void RenderWinLossDetailByProduct(SuperWinLossDetailByPTEntity winLossDetail, bool isTotalRow, bool isExpanded = false)
+    void RenderWinLossDetailByProduct(SuperWinLossDetailByPTEntity winLossDetail, bool isTotalRow)
     {
-        var rowClass = isTotalRow ? "tbl-footer" : $"pt-product-row{(isExpanded ? string.Empty : " hide")}";
+        var rowClass = isTotalRow ? "tbl-footer" : "pt-product-row";
         <tr class="@rowClass" data-pt-value="@winLossDetail.SuperPT">
             <td class="text-left col-username" @(isTotalRow ? string.Empty : "data-sortedvalue=" + winLossDetail.ProductId)>
                 @(isTotalRow ? Resources.Total : winLossDetail.ProductName)</td>
@@ -182,9 +181,8 @@
         <tbody>
             @foreach (var winLossDetailByPT in Model.ReportData)
             {
-                RenderBodyRows(winLossDetailByPT, !Model.IsMobileView);
+                RenderBodyRows(winLossDetailByPT);
             }
-
         </tbody>
         <tfoot>
             @{
@@ -201,3 +199,4 @@
 <a class="hide" id="LoadLegendURL" asp-action="WinLossDetail" asp-controller="Legends"
     asp-route-MinDate="01/01/0001"></a>
 <input type="hidden" asp-for="IsSetDefaultStackMode" />
+<input type="hidden" id="IsMobileView" value="@Convert.ToByte(Model.IsMobileView)" />
