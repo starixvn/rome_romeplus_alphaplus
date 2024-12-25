@@ -13,13 +13,16 @@ public static class ExceptionHelper
         var errorBuilder = new StringBuilder();
         errorBuilder
             .Append(exception.Message).Append(TwoBreakLine)
-            .Append("PATH: ")
+            .Append("Request: ")
             .Append($"{request.Scheme}://{request.Host}{request.PathBase}{request.Path}{request.QueryString}")
             .Append(TwoBreakLine)
             .Append($"Referer: {request.Headers.Referer}")
             .Append(TwoBreakLine)
             .Append("BODY: ")
             .Append(await GetRawBodyStringAsync(request))
+            .Append(TwoBreakLine)
+            .Append("SESSION:")
+            .Append(GetSessionValues(request))
             .Append(TwoBreakLine)
             .Append("HEADERS:").Append(BreakLine)
             .Append(GetHeaderValues(request))
@@ -52,4 +55,10 @@ public static class ExceptionHelper
 
     private static string GetCookiesValues(HttpRequest request)
         => string.Join(BreakLine, request.Cookies.Select(header => $"{header.Key}:{header.Value}"));
+
+    private static string GetSessionValues(HttpRequest request)
+    {
+        var session = request.HttpContext.Session;
+        return string.Join(BreakLine, session.Keys.Select(key => $"{key}:{session.GetString(key)}"));
+    }
 }
