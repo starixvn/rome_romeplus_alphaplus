@@ -362,3 +362,17 @@ a.transfer-link{
 .favorite a.transfer-link{
     color: var(--transfer-favorite-transfer-link);
 }
+.block-tbl-transfer{
+    thead{
+        th{
+            input[type=checkbox], input[type=radio]{
+                margin: 0 auto;
+            }
+        }
+    }
+    .text-center{
+        input[type=checkbox], input[type=radio]{
+            margin: 0 auto;
+        }
+    }
+}
