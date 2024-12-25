@@ -537,7 +537,14 @@ table {
             }
         }
     }
-
+    &.happy5{
+        .cl-result {
+            width: 250px;
+        }
+        .cl-detail-result {
+            width: 70px;
+        }
+    }
     .row-noinfo {
         border: 1px solid $border-color;
         border-top: 0;
