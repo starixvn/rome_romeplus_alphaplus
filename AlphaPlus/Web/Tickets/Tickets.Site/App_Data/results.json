@@ -2,7 +2,7 @@
     "AllbetResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
     "GTCasinoResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
     "SAGamingResultImagePath": "/tickets/bundles/results/SAGaming/template/public/game_result/",
-    "WMResultImagePath": "/tickets/bundles/results/WM/",
+    "WMResultImagePath": "/tickets/bundles/results/WM/images/",
     "KenoResultConfigs": {
         "Url": "http://10.40.40.248:7053/api/KenoInternal/GetResultUrl",
         "SiteId": 3100100,

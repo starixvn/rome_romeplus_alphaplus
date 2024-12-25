@@ -370,7 +370,7 @@
                 '&productId=42'
             ].join('');
             Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'SabaClub/Index' + params,
+                Common.AppPath.TicketsAppPath + 'Results/SabaClubResult' + params,
                 '',
                 835,
                 675
