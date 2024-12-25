@@ -109,7 +109,7 @@ var alpha = {
 
             var isInternal = index.$('#isInternal').val();
             isInternal = isInternal || '0';
-            var signOutUrl = alpha.urls.mainRootPath + 'Account/Logout';
+            var signOutUrl = alpha.urls.mainRootPath + 'Account/Logout2';
 
             if (isInternal && isInternal.toString() !== '0') {
                 $.ajax(signOutUrl, {

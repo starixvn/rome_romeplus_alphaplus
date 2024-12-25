@@ -61,7 +61,8 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
     private static bool IsInIgnoreUrl(string currentUrl)
             => currentUrl.Equals("Language/Change", StringComparison.OrdinalIgnoreCase)
             || currentUrl.Equals("Default/Kickout", StringComparison.OrdinalIgnoreCase)
-            || currentUrl.Equals("Account/Logout", StringComparison.OrdinalIgnoreCase);
+            || currentUrl.Equals("Account/Logout", StringComparison.OrdinalIgnoreCase)
+            || currentUrl.Equals("Account/Logout2", StringComparison.OrdinalIgnoreCase);
 
     private bool IsForceChangePassword
         => !userSession.IsLogged || userSession.IsPasswordExpired;

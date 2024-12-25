@@ -36,19 +36,24 @@ public class AccountController(
     {
         var domains = DomainsHelper.DomainMappings;
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
-        var loginResultMessage = $"?r={WebUtility.UrlEncode(string.Equals(r, "SessionExpired", StringComparison.OrdinalIgnoreCase) ? 
+        var loginResultMessage = $"{WebUtility.UrlEncode(string.Equals(r, "SessionExpired", StringComparison.OrdinalIgnoreCase) ?
             Resources.SessionExpired : r ?? string.Empty)}";
+
+        loginResultMessage = string.IsNullOrWhiteSpace(loginResultMessage) ? string.Empty : $"?r={loginResultMessage}";
 
         IActionResult result = userSession.IsIndirectLoggedIn || userSession.IsInternal || loginUrl == null || string.IsNullOrWhiteSpace(loginUrl.Before) ?
             new EmptyResult() : Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
 
-        ClearSession();
-
         return result;
     }
 
+    public IActionResult Logout(string r = null)
+    {
+        return Login(r);
+    }
+
     [Authorize]
-    public async Task<IActionResult> Logout(string r = null)
+    public async Task<IActionResult> Logout2()
     {
         if (!options.DisabledCheckDuplicationLogin)
         {
@@ -64,7 +69,9 @@ public class AccountController(
             return new EmptyResult();
         }
 
-        return Login(r);
+        ClearSession();
+
+        return Login();
     }
 
     [HttpPost]
