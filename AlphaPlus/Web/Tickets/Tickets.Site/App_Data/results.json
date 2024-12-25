@@ -134,7 +134,7 @@
         "Debug": 0
     },
     "CardClubResultConfigs": {
-        "Url": "http://10.40.40.248:8131/api/CardClubInternal/GetBetHistoryUrl",
+        "Url": "http://10.40.40.248:8131/api/ArcadiaGamingInternal/GetBetHistoryUrl",
         "VendorId": 34,
         "Debug": 0
     },
@@ -201,6 +201,10 @@
     "SexyGamingResultConfigs": {
         "Url": "http://10.40.40.248:7075/api//SexyCasinoInternal/GetBetHistoryUrl",
         "VendorId": 45,
+        "Debug": 0
+    },
+    "PlaytechResultConfigs": {
+        "Url": "http://10.40.40.248:7094/api/PlaytechInternal/GetBetHistoryUrl",
         "Debug": 0
     },
     "GPIRNGResultConfigs": {

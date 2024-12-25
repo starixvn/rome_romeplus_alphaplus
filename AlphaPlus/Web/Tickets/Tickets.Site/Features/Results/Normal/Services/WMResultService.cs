@@ -2,19 +2,9 @@ using Fanex.Result.Core.WM;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.Normal;
 
-public class WMResultService(IWMResultBuilder resultBuilder = null) : IProductResultService
+public class WMResultService(IWMResultBuilder resultBuilder) : IProductResultService
 {
-    private readonly IWMResultBuilder resultBuilder = resultBuilder ?? new WMResultBuilder();
-
-    public Task<string> GetResult(NormalResultQuery message)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<MemoryStream> ExportExcel(ExcelNormalResultQuery message)
-    {
-        throw new NotImplementedException();
-    }
+    private readonly IWMResultBuilder resultBuilder = resultBuilder;
 
     public Task<ResultDetailModel> GetResultDetails(NormalResultDetailsQuery message)
     {
@@ -26,4 +16,8 @@ public class WMResultService(IWMResultBuilder resultBuilder = null) : IProductRe
 
         return Task.FromResult(resultDetail);
     }
+
+    public Task<string> GetResult(NormalResultQuery message) => throw new NotImplementedException();
+
+    public Task<MemoryStream> ExportExcel(ExcelNormalResultQuery message) => throw new NotImplementedException();
 }

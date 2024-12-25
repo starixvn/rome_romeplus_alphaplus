@@ -2,19 +2,9 @@ using Fanex.Result.Core.GTCasino;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.Normal;
 
-public class GTCasinoResultService(IGTCasinoResultBuilder resultBuilder = null) : IProductResultService
+public class GTCasinoResultService(IGTCasinoResultBuilder resultBuilder) : IProductResultService
 {
-    private readonly IGTCasinoResultBuilder resultBuilder = resultBuilder ?? new GTCasinoResultBuilder();
-
-    public Task<string> GetResult(NormalResultQuery message)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<MemoryStream> ExportExcel(ExcelNormalResultQuery message)
-    {
-        throw new NotImplementedException();
-    }
+    private readonly IGTCasinoResultBuilder resultBuilder = resultBuilder;
 
     public Task<ResultDetailModel> GetResultDetails(NormalResultDetailsQuery message)
     {
@@ -35,4 +25,8 @@ public class GTCasinoResultService(IGTCasinoResultBuilder resultBuilder = null) 
             ? transId3rd
             : transId3rd.Split([transId3rdSeparator], StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
     }
+
+    public Task<string> GetResult(NormalResultQuery message) => throw new NotImplementedException();
+
+    public Task<MemoryStream> ExportExcel(ExcelNormalResultQuery message) => throw new NotImplementedException();
 }

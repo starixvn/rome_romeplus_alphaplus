@@ -11,8 +11,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
         public const int TableGaming = 222;
         public const int RNGWar = 224;
         public const int ION = 225;
-        public const int WM = 233;
-        public const int GDG = 236;
+        public const int WM = 233;        
         public const int BigGame = 239;
         public const int SportsLottery = 169;
         public const int PPLiveCasino = 170;

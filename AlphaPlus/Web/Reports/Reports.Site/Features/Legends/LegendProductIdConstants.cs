@@ -12,8 +12,7 @@ internal static class LegendProductIdConstants
     private const int WM = 51;
     private const int ION = 52;
     public const int DummyRNGProductId = 53;
-    private const int BigGame = 57;
-    private const int GDG = 59;
+    private const int BigGame = 57;    
     private const int PPLiveCasino = 65;
     private const int VGaming = 66;
     private const int FGG = 70;
@@ -30,7 +29,6 @@ internal static class LegendProductIdConstants
         BBin,
         ION,
         WM,
-        GDG,
         BigGame,
         PPLiveCasino,
         YeeBet,

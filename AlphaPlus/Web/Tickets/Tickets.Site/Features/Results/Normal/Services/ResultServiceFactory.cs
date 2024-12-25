@@ -1,6 +1,9 @@
 using AlphaPlus.Results.Features.Normal;
 using AlphaPlus.Tickets.Site.Features.Shared.Constants;
 using AlphaPlus.Tickets.Site.Features.Shared.Models;
+using Fanex.Result.Core.GTCasino;
+using Fanex.Result.Core.SAGaming;
+using Fanex.Result.Core.WM;
 using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.Normal;
@@ -19,6 +22,9 @@ public class ResultServiceFactory(
     IVirtualSportsService virtualSportsService,
     IBitcoinService bitcoinService,
     IParlay3rdService parlay3rdService,
+    ISAGamingResultBuilder saResultBuilder,
+    IGTCasinoResultBuilder gtResultBuilder,
+    IWMResultBuilder wmResultBuilder,
     IResultEngineAdapter resultEngineAdapter) : IResultServiceFactory
 {
     public IProductResultService CreateProductResultService(int sportId, int betTypeId)
@@ -39,9 +45,9 @@ public class ResultServiceFactory(
             SportTypeConstants.NumberGame => new NumberGameResultService(options, numberGameService, resultEngineAdapter),
             SportTypeConstants.Happy5 => new Happy5ResultService(options, numberGameService, resultEngineAdapter),
             SportTypeConstants.AllBet => new AllBetCasinoResultService(options),
-            SportTypeConstants.SAGaming => new SAGamingResultService(),
-            SportTypeConstants.GTCasino => new GTCasinoResultService(),
-            SportTypeConstants.WM or SportTypeConstants.YeeBet => new WMResultService(),
+            SportTypeConstants.SAGaming => new SAGamingResultService(saResultBuilder),
+            SportTypeConstants.GTCasino => new GTCasinoResultService(gtResultBuilder),
+            SportTypeConstants.WM or SportTypeConstants.YeeBet => new WMResultService(wmResultBuilder),
             SportTypeConstants.LGVirtualSports => new LeapGamingResultService(resultEngineAdapter),
             SportTypeConstants.Bitcoin => new BitcoinResultService(bitcoinService, resultEngineAdapter),
             SportTypeConstants.VirtuallySports => new VirtuallySportsResultService(options, virtualSportsService, resultEngineAdapter),

@@ -105,7 +105,6 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
                 SportTypeConstants.ION,
                 SportTypeConstants.RNGWar,
                 SportTypeConstants.WM,
-                SportTypeConstants.GDG,
                 SportTypeConstants.BigGame,
                 SportTypeConstants.SportsLottery,
                 SportTypeConstants.PPLiveCasino,

@@ -73,6 +73,8 @@ public class ThirdPartyController(IMediator mediator) : ResultBaseController(med
 
     public Task<IActionResult> ONCasinoResult(ONCasinoResultQuery message) => View(message, IndexView);
 
+    public Task<IActionResult> PlaytechResult(PlaytechResultQuery message) => View(message, IndexView);
+
     public Task<IActionResult> SexyGamingResult(SexyGamingResultQuery message) => View(message, IndexView);
 
     public Task<IActionResult> GPIResult(GPIResultQuery message) => View(message, IndexView);

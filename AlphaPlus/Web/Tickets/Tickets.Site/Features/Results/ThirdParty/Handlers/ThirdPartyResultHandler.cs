@@ -41,6 +41,7 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<FACHAIResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<NextspinResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<ONCasinoResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<PlaytechResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<SexyGamingResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<GPIResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<GPILiveCasinoResultQuery, ThirdPartyProductViewModel>
@@ -89,6 +90,9 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
     public Task<ThirdPartyProductViewModel> Handle(IONCasinoResultQuery message, CancellationToken cancellationToken)
        => Handle(message, "IONCasinoResultConfigs", "IONCasino");
+
+    public Task<ThirdPartyProductViewModel> Handle(PlaytechResultQuery message, CancellationToken cancellationToken)
+       => Handle(message, "PlaytechResultConfigs", "Playtech");
 
     public Task<ThirdPartyProductViewModel> Handle(SexyGamingResultQuery message, CancellationToken cancellationToken)
     {

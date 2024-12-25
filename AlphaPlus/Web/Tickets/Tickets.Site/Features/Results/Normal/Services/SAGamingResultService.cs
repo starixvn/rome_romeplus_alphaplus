@@ -2,19 +2,9 @@ using Fanex.Result.Core.SAGaming;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.Normal;
 
-public class SAGamingResultService(ISAGamingResultBuilder resultBuilder = null) : IProductResultService
+public class SAGamingResultService(ISAGamingResultBuilder resultBuilder) : IProductResultService
 {
-    private readonly ISAGamingResultBuilder resultBuilder = resultBuilder ?? new SAGamingResultBuilder();
-
-    public Task<string> GetResult(NormalResultQuery message)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<MemoryStream> ExportExcel(ExcelNormalResultQuery message)
-    {
-        throw new NotImplementedException();
-    }
+    private readonly ISAGamingResultBuilder resultBuilder = resultBuilder;
 
     public Task<ResultDetailModel> GetResultDetails(NormalResultDetailsQuery message)
     {
@@ -26,4 +16,8 @@ public class SAGamingResultService(ISAGamingResultBuilder resultBuilder = null) 
 
         return Task.FromResult(resultDetail);
     }
+
+    public Task<string> GetResult(NormalResultQuery message) => throw new NotImplementedException();
+
+    public Task<MemoryStream> ExportExcel(ExcelNormalResultQuery message) => throw new NotImplementedException();
 }
