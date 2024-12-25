@@ -43,19 +43,23 @@ class CustomerListHelper {
             'id': `setting-${item.CustId}`,
             'data-custid': item.CustId,
             'data-username': item.UserName,
-            'title': this.$('#editSettingText').val()
+            'title': this.viewResources.EditSettingText
         };
 
         return `<div ${this.buildAttributes(attrs)}/>`;
     }
 
     private renderUsernameColumn = item => {
-        const textLocked = this.$("#text-locked").val();
-        return item.Locked
-            ? `<div class="cell-username">
-                ${item.UserName}
-                <span class="pull-right icon-locked" title="${textLocked}"></span>
-                </div>`
+        let lockedOrMonitored = "";
+        if (item.IsExistedWatchlist) {
+            lockedOrMonitored += `<span class="icon-mywatchlist" title="${this.viewResources.MonitoredMemberText}"></span>`;
+        }
+        if (item.Locked) {
+            lockedOrMonitored += `<span class="icon-locked" title="${this.viewResources.LockedText}"></span>`;
+        }
+
+        return lockedOrMonitored.length
+            ? `<div class="cell-username">${item.UserName}<span class="right-icon">${lockedOrMonitored}</span></div>`
             : `${item.UserName}`;
     }
 
@@ -112,7 +116,7 @@ class CustomerListHelper {
                 Visibile: isAgentLogin && this.canUpdateAccount
             },
             {
-                Content: isAgentLogin && this.canUpdateAccount ? this.renderUsernameColumn(customer) : UserName,
+                Content: isAgentLogin ? this.renderUsernameColumn(customer) : UserName,
                 Attributes: [{ Name: 'class', Value: isMember ? '' : ' link view-downline' }].concat(commonAttributesJson),
                 Visibile: true
             },
@@ -218,6 +222,9 @@ class CustomerListHelper {
 
             const statusAttribute = Customers[i].StatusNameEN === "Open" ? new Attribute('is-open', 'true') : null;
             statusAttribute && rowAttributes.push(statusAttribute);
+
+            const monitoredAttribute = Customers[i].IsExistedWatchlist ? new Attribute('is-monitored', Customers[i].IsExistedWatchlist) : null;
+            monitoredAttribute && rowAttributes.push(monitoredAttribute);
 
             bodyContent += new RowWrapper(rowContent, rowAttributes).ToString();
         }

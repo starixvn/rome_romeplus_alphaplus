@@ -281,6 +281,9 @@ class ViewResources {
     public TotalColumnMaster: number;
     public TotalColumnAgent: number;
     public TotalColumnMember: number;
+    public EditSettingText: string;
+    public LockedText: string;
+    public MonitoredMemberText: string;
 
     constructor($: JQueryStatic) {
         this.$ = $;
@@ -290,6 +293,9 @@ class ViewResources {
         this.TotalColumnMaster = parseInt(this.$("#TotalColumnMaster").val());
         this.TotalColumnAgent = parseInt(this.$("#TotalColumnAgent").val());
         this.TotalColumnMember = parseInt(this.$("#TotalColumnMember").val());
+        this.EditSettingText = this.$('#editSettingText').val();
+        this.LockedText = this.$("#text-locked").val();
+        this.MonitoredMemberText = this.$("#MonitoredMemberText").val();
     }
 }
 

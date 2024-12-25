@@ -15,6 +15,7 @@ class ProblemAccountPopup {
     private needReviewUsernameIds: string[];
     private needUpdateSuspendUsernames: string[];
     private needUpdateSuspendUsernameIds: string[];
+    private needAddToMyWatchlistUsernames: string[] = [];
 
     constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
@@ -49,6 +50,8 @@ class ProblemAccountPopup {
                 window.top["popupManager"].close();
             }, reloadAfterThreeSecond ? 3000 : 1500);
         }
+
+        this.topWindow.reloadMyWatchlistDataTable = () => this.indexManager.memberList.reloadPage();
     }
 
     public bindEvents() {
@@ -89,15 +92,10 @@ class ProblemAccountPopup {
 
     private openSinglePopup(element) {
         const isReviewed = this.hasAttribute(element, "is-reviewed")
-        const markReviewMenu = `<li class="edit-popup icon-edit" id="mark-as-reviewed-selected">${this.$("#markAsReviewedText").val()}</li>`;
-
-        const disableMarkReviewMenu = `<li class="edit-popup icon-edit grey-color Disable_edit">${this.$("#markAsReviewedText").val()}</li>`;
-        const content =
-            `<ul>
-              ${!isReviewed ? markReviewMenu : disableMarkReviewMenu}
-
-                <li class="edit-popup icon-edit" id="add-to-my-watchlist-selected">${this.$("#addToMyWatchlistText").val()}</li>
-             </ul>`;
+        const markReviewMenu = `<li class="edit-popup icon-edit${isReviewed ? " grey-color Disable_edit" : ""}" id="${isReviewed ? "" : "mark-as-reviewed-selected"}">${this.$("#markAsReviewedText").val()}</li>`;
+        const isMonitored = this.hasAttribute(element, "is-monitored")
+        const addToMyWatchlistMenu = `<li class="edit-popup icon-edit${isMonitored ? " grey-color Disable_edit" : ""}" id="${isMonitored ? "" : "add-to-my-watchlist-selected"}">${this.$("#addToMyWatchlistText").val()}</li>`;
+        const content = `<ul>${markReviewMenu}${addToMyWatchlistMenu}</ul>`;
         this.openEditSettingPopup(
             element,
             content,
@@ -122,8 +120,10 @@ class ProblemAccountPopup {
         this.needReviewUsernameIds = [];
         this.needUpdateSuspendUsernames = [];
         this.needUpdateSuspendUsernameIds = [];
+        this.needAddToMyWatchlistUsernames = [];
         let isEnableMarkReview = false;
         let isEnableUpdateSuspend = false;
+        let isEnableAddToMyWatchlist = false
 
         const ids = [];
         const usernames = [];
@@ -140,12 +140,17 @@ class ProblemAccountPopup {
 
                 isEnableUpdateSuspend = true;
             }
+            if (!this.hasAttribute(checkbox, "is-monitored")) {
+                this.needAddToMyWatchlistUsernames.push(this.$(checkbox).data("username"));
+                isEnableAddToMyWatchlist = true;
+            }
             usernames.push(this.$(checkbox).data("username"));
             ids.push(this.$(checkbox).data("custid"));
-
         });
         const markReviewMenu = `<li class="edit-popup icon-edit" id="mark-multiple-as-reviewed-selected">${this.$("#markMultipleAsReviewedText").val()}</li>`;
         const disableMarkReviewMenu = `<li class="edit-popup icon-edit grey-color Disable_edit"> ${this.$("#markMultipleAsReviewedText").val()} </li>`;
+
+        const addToMyWatchlistMenu = `<li class="edit-popup icon-edit${isEnableAddToMyWatchlist ? "" : " grey-color Disable_edit"}" id="${isEnableAddToMyWatchlist ? "add-multiple-to-watchlist-selected" : ""}">${this.$("#addMultipleToWatchlistText").val()}</li>`;
 
         const updateSuspendMenu = `<li class="edit-popup icon-edit" id="suspend-multiple-accounts-selected">${this.$("#suspendMultipleAccountsText").val()}</li>`;
         const disableUpdateSuspendMenu = `<li class="edit-popup icon-edit grey-color Disable_edit"> ${this.$("#suspendMultipleAccountsText").val()} </li>`;
@@ -153,7 +158,7 @@ class ProblemAccountPopup {
         const content =
             `<ul>
                 ${isEnableMarkReview ? markReviewMenu : disableMarkReviewMenu}
-                <li class="edit-popup icon-edit" id="add-multiple-to-watchlist-selected">${this.$("#addMultipleToWatchlistText").val()}</li>
+                ${addToMyWatchlistMenu}
                 ${isEnableUpdateSuspend ? updateSuspendMenu : disableUpdateSuspendMenu}
             </ul>`;
         this.openEditSettingPopup(
@@ -204,9 +209,9 @@ class ProblemAccountPopup {
 
         this.$('#suspend-multiple-accounts-selected').click(() => this.openSuspendStatusPopup());
 
-        this.$('#add-to-my-watchlist-selected').click(() => this.openAddToWatchlistPopup(data));
+        this.$('#add-to-my-watchlist-selected').click(() => this.openAddToWatchlistPopup(data.usernames));
 
-        this.$('#add-multiple-to-watchlist-selected').click(() => this.openAddToWatchlistPopup(data));
+        this.$('#add-multiple-to-watchlist-selected').click(() => this.openAddToWatchlistPopup(this.needAddToMyWatchlistUsernames));
     }
 
     private openSuspendStatusPopup() {
@@ -263,18 +268,15 @@ class ProblemAccountPopup {
             "modal-mobile-friendly");
     }
 
-    private openAddToWatchlistPopup(data) {
-        const isSingleSelect = data.usernames.length === 1;
-        const title = isSingleSelect
-            ? this.$("#addToMyWatchlistText").val()
-            : this.$("#addMultipleToMyWatchlistText").val();
-        const custIds = data.ids.join(",");
+    private openAddToWatchlistPopup(usernames) {
+        const maxUsernamesAddToMyWatchlist = 50;
+        const usernameQueryString = (usernames || []).slice(0, maxUsernamesAddToMyWatchlist).join(", ")
         this.$editPopupContainer.modal("hide");
         this.topWindow.popupManager.open(
-            `${this.memberInfoUrl}ProblemAccount/ConfirmAddToWatchlist?custIds=${custIds}`,
-            title,
-            534,
-            238,
+            `${this.memberInfoUrl}MyWatchlistAccounts/ManageWatchlistAccounts?usernames=${usernameQueryString}`,
+            undefined,
+            820,
+            550,
             "modal-mobile-friendly");
     }
 }
