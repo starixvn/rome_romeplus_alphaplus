@@ -48,21 +48,6 @@
     <Compile Include="..\..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Extensions\FanexLoggingExtensions.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UnsuspendDownlinesResources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Features\UnsuspendDownlines\AppResources\UnsuspendDownlinesResources">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>UnsuspendDownlinesResources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

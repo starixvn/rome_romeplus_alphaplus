@@ -1,4 +1,4 @@
-using AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.AppResources;
+using AlphaPlus.Shared.AppResources.AccountInfo;
 using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.ViewModels

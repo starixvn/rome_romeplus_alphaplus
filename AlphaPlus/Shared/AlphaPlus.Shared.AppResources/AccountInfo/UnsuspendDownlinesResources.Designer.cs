@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.AppResources
+namespace AlphaPlus.Shared.AppResources.AccountInfo
 {
     using System;
 
@@ -45,7 +45,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.AppResources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.AppResources.UnsuspendDownlinesReso" +
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.AccountInfo.UnsuspendDownlinesReso" +
                             "urces", typeof(UnsuspendDownlinesResources).Assembly);
                     resourceMan = temp;
                 }
