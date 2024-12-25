@@ -41,6 +41,7 @@ namespace AlphaPlus.Settings.Site.Features.SubAccount.Controllers
 
         public IActionResult Add()
         {
+            ViewBag.Title = Lang.addsubaccount;
             var model = new SubAccountViewModel
             {
                 Username = $"{userSession.UserName}Sub",
