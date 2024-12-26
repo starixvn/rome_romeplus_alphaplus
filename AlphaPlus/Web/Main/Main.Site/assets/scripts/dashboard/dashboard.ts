@@ -34,9 +34,13 @@
 
         return ajaxSetting;
     };
+
+    registerTooltip = (option) => {
+        this.$('[data-toggle="tooltip"]').tooltip(option || {});
+    };
 }
 
 $(() => {
     const balance = new DashboardBase($);
-    balance.loadInfo('#balance', () => {});
+    balance.loadInfo('#balance', balance.registerTooltip);
 });

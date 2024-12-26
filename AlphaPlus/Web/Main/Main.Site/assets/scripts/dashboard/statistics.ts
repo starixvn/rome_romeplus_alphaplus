@@ -4,8 +4,9 @@
         this.onToggleDropdown('#listTopTurnoverMembers', this.loadDropdownInfo);
         this.onToggleDropdown('#listNewMembers', this.loadDropdownInfo);
 
-        this.registerTooltip();
-    }
+        this.registerTooltip({ html: true });
+        this.hideTooltipOnTouchOutInMobile();
+    };
 
     private onToggleDropdown = (id: string, loadInfo: (url: string, dataElement: JQuery) => void) => {
         let $this = this.$(id),
@@ -17,7 +18,7 @@
                 loadInfo(url, dataElement);
             }
         });
-    }
+    };
 
     private loadDropdownInfo = (url: string, dataElement: JQuery): void => {
         if (url !== '' && typeof url !== 'undefined') {
@@ -28,13 +29,7 @@
                 success: (responseHtml) => dataElement.html(responseHtml)
             });
         }
-    }
-
-    private registerTooltip = () => {
-        this.$('[data-toggle="tooltip"]').tooltip({ html: true });
-
-        this.hideTooltipOnTouchOutInMobile();
-    }
+    };
 
     private hideTooltipOnTouchOutInMobile = () => {
         const $tooltip = this.$('[data-toggle="tooltip"]');
@@ -46,15 +41,14 @@
 
             if (target.attr('data-toggle') === 'tooltip') {
                 target.tooltip('show');
-            }
-            else if (target.parent().attr('data-toggle') === 'tooltip') {
+            } else if (target.parent().attr('data-toggle') === 'tooltip') {
                 target.parent().tooltip('show');
             }
         });
-    }
+    };
 }
 
 $(() => {
     const stats = new Statistics($);
     stats.loadInfo('#stats', stats.registerEvents);
-})
+});
