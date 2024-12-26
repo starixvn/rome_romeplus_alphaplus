@@ -9,7 +9,8 @@ public record PageHeaderViewModel(
     bool IsStackMode = false,
     bool IsFilterVisible = true,
     BreadcrumbViewModel BreadcrumbLevel = null,
-    EnteredResultSport TotalEnteredResults = null)
+    EnteredResultSport TotalEnteredResults = null,
+    string IconInfoUrl = null)
 {
     public bool IsShowActionIcons { get; } = HasStackIcon || HasHideFilterIcon;
 }

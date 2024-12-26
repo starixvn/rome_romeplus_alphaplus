@@ -4,6 +4,7 @@ using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Reports.Site.Features.BonusDetail;
 
@@ -13,8 +14,10 @@ public class BonusDetailViewModel(BonusDetailQuery message, PagedReportData<Grou
 
     public string Member { get; } = message.Member;
 
-    public PageHeaderViewModel PageHeader { get; }
-        = new PageHeaderViewModel(Resources.BonusDetail, IsFilterVisible: message.IsFilterVisible);
+    public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
+        Title: Resources.BonusDetail,
+        IsFilterVisible: message.IsFilterVisible,
+        IconInfoUrl: MicroSites.FeatureUrl("~/staticmessage/guide?id=147430"));
 
     public DateRangePickerViewModel DateRangePicker { get; }
         = new DateRangePickerViewModel(

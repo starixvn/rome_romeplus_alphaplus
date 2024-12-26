@@ -23,6 +23,12 @@ public class ReportTitleTagHelper : TagHelper
         sb.Append($"<div class=\"text-title pull-left\" style=\"clear:both\">{Model.Title}</div>");
 
         AppendBreadcrumbLevel(sb);
+
+        if (!string.IsNullOrWhiteSpace(Model.IconInfoUrl))
+        {
+            sb.Append($"<a href=\"{Model.IconInfoUrl}\" target=\"_blank\"><span class=\"icon-information icon icon-information-outline\"></span></a>");
+        }
+
         AppendActionIcons(sb);
 
         output.Content.SetHtmlContent(sb.ToString());
