@@ -100,7 +100,7 @@ class NormalResultView {
                 Balls: balls
             };
 
-            const url = `${$('#hidden-resultSoccer5Url')}?${$.param(params)}`;
+            const url = `${$('#hidden-resultSoccer5Url').attr('href')}?${$.param(params)}`;
             $frmDetailsResult.attr('src', url);
             $resultDetails.modal({});
         };
