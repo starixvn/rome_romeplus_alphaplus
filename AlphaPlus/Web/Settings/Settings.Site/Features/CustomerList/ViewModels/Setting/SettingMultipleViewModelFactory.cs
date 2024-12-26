@@ -8,13 +8,8 @@ using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
 {
-    // TODO: simple first, better later
     public class SettingMultipleViewModelFactory : GenericViewModelFactory<ISearchAccountInfoRequest, ISettingItemMultipleViewModel>
     {
-        private const int LastProductSettingItemIndex = 10000;
-        private const int ResetPasswordDisplayAfterLastProduct = 1;
-        private const int ResetSecurityDisplayAfterLastProduct = 2;
-        private const int RemoveOTPDisplayAfterLastProduct = 3;
         private readonly IAccountService accountService;
 
         public SettingMultipleViewModelFactory(IConfiguration configuration)

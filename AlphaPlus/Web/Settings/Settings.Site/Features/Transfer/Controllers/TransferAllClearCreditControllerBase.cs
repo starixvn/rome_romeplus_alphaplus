@@ -26,7 +26,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
             base.OnActionExecuting(filterContext);
 
             var userSession = UserSession.Current;
-            if (SubAccDoesNotHavePermission(userSession) || NotOfferTransferAllAndClearCredit(userSession))
+            if (SubAccDoesNotHavePermission(userSession) || !OfferTransferAllAndClearCredit(userSession))
             {
                 filterContext.Result = new UnauthorizedObjectResult("You are not authorized on this function!");
 
@@ -40,11 +40,13 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Controllers
             return userSession.IsSubAcc && !userSession.SubPageAccess.Transfer;
         }
 
-        private static bool NotOfferTransferAllAndClearCredit(IUserSession userSession)
+        private static bool OfferTransferAllAndClearCredit(IUserSession userSession)
         {
-            return false;
-            //TODO return !AppSettings.OfferClearGivenCreditSites.Any(s => string.Equals(s, "*"))
-            //     && !AppSettings.OfferClearGivenCreditSites.Any(s => string.Equals(s, userSession.Site, StringComparison.OrdinalIgnoreCase));
+            var offerClearGivenCreditSites = Core.Configurations.ConfigurationManager.GetValue<string>("OfferClearGivenCredit:Sites")
+                    .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                return offerClearGivenCreditSites.Any(s
+                    => string.Equals(s, userSession.Site, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(s, "*", StringComparison.OrdinalIgnoreCase));
         }
     }
 }

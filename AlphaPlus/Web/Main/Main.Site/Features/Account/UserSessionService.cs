@@ -212,9 +212,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.ARecommendId = Convert.ToInt32(status["arecommend"]);
         userSession.IsAdminCanViewVNIP = Convert.ToBoolean(status["isadmincanviewvnip"]);
 
-        // TODO: Fanex.Products
-        //ProductManager.SetProductsStatusToSession(userData);
-
         AddIsProtectedModeToSession(status);
         AddMainDomainToSession();
     }

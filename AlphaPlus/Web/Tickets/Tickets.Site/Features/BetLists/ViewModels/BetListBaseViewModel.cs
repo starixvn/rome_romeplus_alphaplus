@@ -80,7 +80,6 @@ public class BetListBaseViewModel(
         }
     }
 
-    // TODO: will implement here
     public virtual bool CanViewScoreMap(ITicket ticket) => false;
 
     public string GetSMARiskAmount(TicketDto ticket)
