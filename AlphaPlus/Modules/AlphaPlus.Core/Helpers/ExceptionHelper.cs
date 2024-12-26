@@ -58,7 +58,14 @@ public static class ExceptionHelper
 
     private static string GetSessionValues(HttpRequest request)
     {
-        var session = request.HttpContext.Session;
-        return string.Join(BreakLine, session.Keys.Select(key => $"{key}:{session.GetString(key)}"));
+        try
+        {
+            var session = request.HttpContext.Session;
+            return string.Join(BreakLine, session.Keys.Select(key => $"{key}:{session.GetString(key)}"));
+        }
+        catch
+        {
+            return string.Empty;
+        }
     }
 }
