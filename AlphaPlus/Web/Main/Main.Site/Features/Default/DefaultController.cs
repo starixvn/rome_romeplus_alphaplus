@@ -85,6 +85,7 @@ namespace AlphaPlus.Main.Site.Features.Default
         private static void ClearSession()
         {
             AlphaContext.Current.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            AlphaContext.Current.Session.Clear();
         }
 
         private bool IsRedirectToNicknamePage(string action)

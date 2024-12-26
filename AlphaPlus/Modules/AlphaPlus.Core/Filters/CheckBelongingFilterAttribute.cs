@@ -84,7 +84,14 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
             else
             {
                 await context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-                context.HttpContext.Response.Redirect(MicroSites.MainUrl("~/Account/Login?r=You are not authorized on this function!"));
+                var controllerName = context.RouteData.Values["controller"].ToString();
+                var actionName = context.RouteData.Values["action"].ToString();
+                var currentUrl = $"{controllerName}/{actionName}";
+
+                if (!currentUrl.Equals("Account/Login", StringComparison.OrdinalIgnoreCase))
+                {
+                    context.HttpContext.Response.Redirect(MicroSites.MainUrl("~/Account/Login?r=You are not authorized on this function!"));
+                }
             }            
         }
 

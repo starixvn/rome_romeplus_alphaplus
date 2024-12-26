@@ -25,5 +25,5 @@ public static class DomainsHelper
     }
 
     public static DomainMapping[] DomainMappings
-            => configurationRoot.GetSection("DomainMappings").Get<DomainMapping[]>();
+            => configurationRoot.GetSection("DomainMappings").Get<DomainMapping[]>() ?? Array.Empty<DomainMapping>();
 }

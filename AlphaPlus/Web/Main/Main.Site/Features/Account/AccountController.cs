@@ -181,6 +181,8 @@ public class AccountController(
     [HttpGet]
     public async Task<IActionResult> IndirectLogin(string parameter)
     {
+        ClearSession();
+
         var reqParam = aesService.Decrypt(parameter, SecretKey);
         var indirectLoginParams = reqParam.Split(['&']);
         var requestInfo = await deviceHelper.GetRequestInfo();
@@ -213,6 +215,7 @@ public class AccountController(
             };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
             return RedirectToAction("Redirect", "Default");
         }
 
