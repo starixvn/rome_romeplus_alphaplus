@@ -21,11 +21,11 @@ public static class ResultsDIExtensions
 
         return services
             .AddScoped<IConfigurationHelper, ConfigurationHelper>()
+            .AddSingleton<IWMResultBuilder>(_ => new WMResultBuilder(configuration.GetValue<string>("WMResultImagePath")))
+            .AddSingleton<IGTCasinoResultBuilder>(_ => new GTCasinoResultBuilder(configuration.GetValue<string>("GTCasinoResultImagePath")))
+            .AddSingleton<ISAGamingResultBuilder>(_ => new SAGamingResultBuilder(configuration.GetValue<string>("SAGamingResultImagePath")))
             .AddSingleton<IResultServiceFactory, ResultServiceFactory>()
             .AddSingleton<IResultEngineAdapter, ResultEngineAdapter>()
-            .AddScoped<IWMResultBuilder>(_ => new WMResultBuilder(configuration.GetValue<string>("WMResultImagePath")))
-            .AddScoped<IGTCasinoResultBuilder>(_ => new GTCasinoResultBuilder(configuration.GetValue<string>("GTCasinoResultImagePath")))
-            .AddScoped<ISAGamingResultBuilder>(_ => new SAGamingResultBuilder(configuration.GetValue<string>("SAGamingResultImagePath")))
             .AddScoped<IKenoResult>(_ => new KenoResult(configuration.GetSection("KenoResultConfigs").Get<KenoLotteryTGConfigs>()))
             .AddScoped<ILotteryResult>(_ => new LotteryResult(configuration.GetSection("LotteryResultConfigs").Get<KenoLotteryTGConfigs>()))
             .AddScoped<ITableGamesResult>(_ => new TableGamesResult(configuration.GetSection("TableGameResultConfigs").Get<KenoLotteryTGConfigs>()))
