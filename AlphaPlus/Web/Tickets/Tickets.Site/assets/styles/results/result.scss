@@ -28,6 +28,7 @@
     --rs-color-postponed: #333;
     --rs-color-f-score: #fd537d;
     --rs-color-btn-close: #333;
+    --info-icon: url(../images/info-icon.png);
 }
 :root [data-theme='dark'] {
 
@@ -54,6 +55,7 @@
     --rs-color-postponed: #fff;
     --rs-color-f-score: #E54748;
     --rs-color-btn-close: #979797;
+    --info-icon: url(../images/info-icon-dark.png);
     
 
     table.fn-rs thead th:last-child{
@@ -498,7 +500,7 @@ table {
 }
 
 .cl-detail-result .info {
-    background: url('../images/info-icon.png');
+    background: var(--info-icon);
     width: 20px;
     height: 20px;
     background-size: cover;
