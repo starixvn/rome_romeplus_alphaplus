@@ -790,7 +790,7 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
     <value>- Địa chỉ IP 1: 2001:db8:3333:4444:5555:6666:1.2.3.4</value>
   </data>
   <data name="ipv62" xml:space="preserve">
-    <value>- Địa chỉ IP 1: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
+    <value>- Địa chỉ IP 2: 2001:0db8:3333:4444:5555:6666:0102:0304</value>
   </data>
   <data name="RewardPayable" xml:space="preserve">
     <value>Tiền thưởng phải trả</value>
