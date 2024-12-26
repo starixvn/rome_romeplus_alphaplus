@@ -41,7 +41,7 @@ public class ProductService(
     private const int ProductDetailsCacheInMinutes = 60 * 24; // 1 day
     private const string ProductDetailsCacheKey = "AlphaPlus.Reports.ProductDetails";
     private const int CustProductDetailsCacheInMinutes = 5;
-    private const int CacheInMinutes = 5;
+    private const int ProductsNeedDelayTimeToSummarizeDataCacheInMinutes = 5;
     private const string CacheKey = "AlphaPlus.Reports.Legends.ProductsNeedDelayTimeToSummarizeData";
 
     private readonly IDynamicRepository repository = repository;
@@ -129,7 +129,7 @@ public class ProductService(
         var productIdsNeedDelayTimeToSummarizeData = await cacheService.GetOrSetAsync(
             CacheKey,
             async () => (await repository.FetchAsync<ProductsByRefTable>(new GetProductsByRefTableCriteria(null))).Select(p => p.ProductId),
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CacheInMinutes)));
+            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsNeedDelayTimeToSummarizeDataCacheInMinutes)));
 
         if (enableJackpotProductIds != null)
         {

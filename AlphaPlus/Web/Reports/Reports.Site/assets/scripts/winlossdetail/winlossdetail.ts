@@ -66,6 +66,7 @@ class WinLossDetailView extends BaseReportNew {
         this.breadcrumbLevelComponent.init((custInfo) => this.getWinLossDetailUpOrDownline(custInfo));
         this.winLossDetailColumns.init(() => this.updateQueryString());
         this.registerEvents();
+        this.$reportForm.removeAttr('style');
         this.$tblReportContainer.removeAttr('style');
 
         const breadcrumbsJson = JSON.stringify(this.breadcrumbLevelComponent.getBreadcrumbs());
