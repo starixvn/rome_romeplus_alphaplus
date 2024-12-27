@@ -5,6 +5,21 @@
 
 declare var LiveChatWidget: any;
 
+interface TypeaheadOptions {
+    source?: any;
+    items?: number;
+    minLength?: number;
+    matcher?: (item: any) => boolean;
+    sorter?: (items: any[]) => any[];
+    updater?: (item: any) => any;
+    highlighter?: (item: any) => string;
+    name?: string;
+    autoSelect?: boolean;
+    delay?: number;
+    afterSelect?: any;
+    addItem?: any;
+}
+
 var headerNav = {
     domElements: {
         isDisableToCheckNewMessage: false,
@@ -60,7 +75,7 @@ var headerNav = {
         announcements: alpha.urls.messageRootPath + 'Announcement/Index',
         changeTheme: alpha.urls.mainRootPath + 'Theme/Change',
         changeLanguage: alpha.urls.mainRootPath + 'Language/Change',
-        queryUserName: alpha.urls.mainRootPath + '_AccountInfo/Handlers/QueryUserName.ashx',
+        queryUserName: alpha.urls.settingsRootPath + 'UserNameSuggestion?isAccountInfo=true',
         checkNewMessage: alpha.urls.messageRootPath + 'NewMessage/GetNumberOfNewAnnouncement',
         banner: alpha.urls.mainRootPath + 'Banner/Get?type=',
         serverTime: alpha.urls.mainRootPath + 'Dashboard/GetServerTime'
@@ -83,7 +98,11 @@ var headerNav = {
         headerNav.initLanguage();
         headerNav.registerEvents();
 
-        $(".open-link").unbind().bind('click', event => { alpha.viewDataURL(event); });
+        $('.open-link')
+            .unbind()
+            .bind('click', (event) => {
+                alpha.viewDataURL(event);
+            });
     },
 
     initClock: function () {
@@ -335,15 +354,13 @@ var headerNav = {
             };
 
             const getSuggestions = (query, process) => {
-                return $.get(headerNav.urls.queryUserName, { query: query }, (data) => {
-                    let suggestions = alpha.core.convertReponseToJson(data).suggestions;
-
+                return $.get(headerNav.urls.queryUserName, { query: query }, (suggestions) => {
                     if (typeof suggestions !== 'undefined' && suggestions !== null && suggestions.length !== 0) {
-                        let sugestionItems = suggestions.map((item) => {
-                            return item[0] + (item[3] ? ' (' + item[3] + ')' : '');
+                        let suggestionItems = suggestions.map((item) => {
+                            return item.UserName + (item.UserName2 ? ' (' + item.UserName2 + ')' : '');
                         });
 
-                        return process(sugestionItems);
+                        return process(suggestionItems);
                     }
 
                     return process(['Not found']);
@@ -360,18 +377,17 @@ var headerNav = {
 
             $('.blockUI').on('click', onCloseSearchBar);
 
-            // TODO:
-            // const typeaheadOptions: TypeaheadOptions = {
-            //     minLength: 3,
-            //     items: 10,
-            //     name: 'userNames',
-            //     autoSelect: false,
-            //     delay: 200,
-            //     source: getSuggestions,
-            //     afterSelect: afterSelectSuggestionItem
-            // };
+            const typeaheadOptions: TypeaheadOptions = {
+                minLength: 3,
+                items: 10,
+                name: 'userNames',
+                autoSelect: false,
+                delay: 200,
+                source: getSuggestions,
+                afterSelect: afterSelectSuggestionItem
+            };
 
-            // topSearchInput.typeahead(typeaheadOptions);
+            topSearchInput.typeahead(typeaheadOptions);
         });
 
         // Language show options for mobile
