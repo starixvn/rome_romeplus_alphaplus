@@ -29,6 +29,7 @@ using ONEbook.OTP.Helpers;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.Main.Site.Shared.Services;
 using AlphaPlus.Main.Site.Features.NovaCasino;
+using AlphaPlus.Main.Site.Features.WhiteLabel;
 
 namespace AlphaPlus.Main.Site.Extensions;
 
@@ -74,6 +75,7 @@ public static class Extensions
 
         services.AddSingleton<ICustomerService, CustomerService>();
         services.AddScoped<INovaCasinoService, NovaCasinoService>();
+        services.AddScoped<IWhiteLabelService, WhiteLabelService>();
 
         services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
         services.AddHttpClient<IAccountService, AccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))

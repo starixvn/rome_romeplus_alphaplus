@@ -457,5 +457,11 @@
     "inputFiles": [
       "assets/styles/ip-info/ip-info-dark.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/whitelabel.css",
+    "inputFiles": [
+      "assets/styles/Home/whitelabel.css"
+    ]
   }
 ]

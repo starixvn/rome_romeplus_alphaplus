@@ -1,4 +1,4 @@
-﻿@import "_mixins.scss";
+﻿@import '_mixins.scss';
 body {
     background: transparent;
 }
@@ -17,13 +17,12 @@ body {
     font-size: 15px;
 }
 
-
 html {
     font-size: calc(100vw / 15.72);
 }
 
 .white-label {
-    background: url(Images/white-label/bg-whitelabel.png) no-repeat center center / cover;
+    background: url(../images/DashboardBanner/white-label/bg-whitelabel.png) no-repeat center center / cover;
     height: 100%;
     width: 100%;
     display: flex;
@@ -35,7 +34,7 @@ html {
     .intro {
         padding: 30px 1.02rem 0 0.84rem;
         max-width: 1150px;
-        color: #FFF;
+        color: #fff;
         text-align: center;
         font-size: 40px;
         font-style: normal;
@@ -44,7 +43,7 @@ html {
         margin: 0 auto 1.48rem;
 
         span {
-            color: #00C2FF;
+            color: #00c2ff;
 
             strong {
                 font-size: 60px;
@@ -56,7 +55,7 @@ html {
 
     .items {
         display: flex;
-        padding: 0px .2rem 40px .2rem;
+        padding: 0px 0.2rem 40px 0.2rem;
         align-self: stretch;
         position: relative;
         width: 100%;
@@ -65,15 +64,20 @@ html {
 
         &:after {
             position: absolute;
-            content: "";
+            content: '';
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
             max-width: 1000px;
             height: 1px;
-            background: rgb(63,169,245);
-            background: linear-gradient(90deg, rgba(63,169,245,0) 0%, rgba(63,169,245,1) 51%, rgba(63,169,245,0) 100%);
+            background: rgb(63, 169, 245);
+            background: linear-gradient(
+                90deg,
+                rgba(63, 169, 245, 0) 0%,
+                rgba(63, 169, 245, 1) 51%,
+                rgba(63, 169, 245, 0) 100%
+            );
         }
 
         .item {
@@ -81,10 +85,10 @@ html {
             flex-direction: column;
             align-items: center;
             flex: 1 0 0;
-            padding: 0 .28rem 10px;
+            padding: 0 0.28rem 10px;
             width: 32.75%;
             border-radius: 8px;
-            background: linear-gradient(180deg, #0C77AE 0%, #004D95 100%);
+            background: linear-gradient(180deg, #0c77ae 0%, #004d95 100%);
             box-shadow: 0px -8px 24px 0px rgba(255, 255, 255, 0.25) inset;
             min-height: 270px;
 
@@ -113,7 +117,7 @@ html {
             }
 
             .title {
-                color: #FFF;
+                color: #fff;
                 text-align: center;
                 font-size: 28px;
                 font-style: normal;
@@ -122,7 +126,7 @@ html {
             }
 
             .description {
-                color: #A0DFFF;
+                color: #a0dfff;
                 text-align: center;
                 font-size: 24px;
                 font-style: normal;
@@ -134,12 +138,11 @@ html {
 
     .bottom {
         display: flex;
-        padding: .6rem .7rem .25rem;
+        padding: 0.6rem 0.7rem 0.25rem;
         justify-content: center;
         align-items: flex-start;
         gap: 0.4rem;
         align-self: stretch;
-
 
         .left {
             display: flex;
@@ -147,7 +150,7 @@ html {
             justify-content: center;
             align-items: flex-start;
             gap: 12px;
-            color: #FFF;
+            color: #fff;
             font-size: 24px;
             font-style: normal;
             font-weight: 400;
@@ -157,18 +160,23 @@ html {
 
             &:after {
                 position: absolute;
-                content: "";
+                content: '';
                 top: 50%;
                 transform: translateY(-50%);
-                right: -.4rem;
+                right: -0.4rem;
                 width: 1px;
                 height: 80px;
-                background: rgb(63,169,245);
-                background: linear-gradient(0deg, rgba(63,169,245,0) 0%, rgba(63,169,245,1) 51%, rgba(63,169,245,0) 100%);
+                background: rgb(63, 169, 245);
+                background: linear-gradient(
+                    0deg,
+                    rgba(63, 169, 245, 0) 0%,
+                    rgba(63, 169, 245, 1) 51%,
+                    rgba(63, 169, 245, 0) 100%
+                );
             }
 
             .title {
-                color: #00C2FF;
+                color: #00c2ff;
                 font-size: 32px;
                 font-style: normal;
                 font-weight: 700;
@@ -202,7 +210,7 @@ html {
                     flex-direction: column;
                     justify-content: center;
                     gap: 5px;
-                    color: #FFF;
+                    color: #fff;
                     font-size: 20px;
                     font-style: normal;
                     font-weight: 400;
@@ -217,7 +225,7 @@ html {
                         padding: 0px 7px;
                         text-align: center;
                         border-radius: 2px;
-                        background: #4CAF50;
+                        background: #4caf50;
                         color: #fff;
                         font-size: 16px;
                         font-style: normal;
@@ -241,7 +249,7 @@ html {
     }
 
     .white-label {
-        background: url(Images/white-label/bg-whitelabel-sm.png) no-repeat top center / cover;
+        background: url(../images/DashboardBanner/white-label/bg-whitelabel-sm.png) no-repeat top center / cover;
         border-radius: 0;
         flex: 1;
 
@@ -285,7 +293,6 @@ html {
                     width: 100%;
                     display: flex;
 
-
                     img {
                         width: calculateScale(130px);
                         height: calculateScale(130px);
@@ -294,10 +301,10 @@ html {
                     }
                 }
 
-                &:first-child, &:last-child {
+                &:first-child,
+                &:last-child {
                     border-radius: calculateScale(8px);
                 }
-
 
                 .title {
                     text-align: left;
@@ -323,7 +330,7 @@ html {
 
             .left {
                 display: block;
-                color: #FFF;
+                color: #fff;
                 font-size: calculateScale(20px);
                 font-style: normal;
                 line-height: calculateScale(20.7px);

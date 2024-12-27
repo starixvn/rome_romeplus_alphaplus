@@ -145,8 +145,12 @@
     <siteMapNode resourceKey="MemberBettingBehavior" url="/settings/MemberBettingBehavior/Index"></siteMapNode>
   </siteMapNode>
   <siteMapNode resourceKey="chatbot" url="/main/TelegramChatBot/Setup"></siteMapNode>
+  <siteMapNode resourceKey="WhiteLabel" menuItemType="WhiteLabel" functionType="[E]">
+    <siteMapNode resourceKey="SignInS1BackOffice" menuItemType="WhiteLabelSignInBackOffice" />
+    <siteMapNode resourceKey="SettlementReport" url="/reports/WhiteLabelSettlement/Index" useDomainConfig="Report:Domain" />
+  </siteMapNode>
   <siteMapNode resourceKey="SercurityCode" url="/main/Otp/SetupOtp" isNew="false"></siteMapNode>
   <siteMapNode resourceKey="BackupDomains" menuItemType="MemberInfoMenuItem" functionType="[H]" url="/features/backupdomains/index" isNew="true"></siteMapNode>
-  <siteMapNode resourceKey="SigninToNovaCasino" appPath="MainAppPath" menuItemType="SigninNovaCasinoMenuItem" />
-  <siteMapNode resourceKey="JoinNovaCasinoNow" appPath="MainAppPath" menuItemType="JoinNovaCasinoNowMenuItem" />
+  <siteMapNode resourceKey="SigninToNovaCasino" menuItemType="SigninNovaCasinoMenuItem" />
+  <siteMapNode resourceKey="JoinNovaCasinoNow" menuItemType="JoinNovaCasinoNowMenuItem" />
 </siteMap>

@@ -42,7 +42,19 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             ["DormantAccountListMenuItem"] = () => new MenuStatus(() => Current.IsSuper || Current.IsMaster),
             ["BonusDetailMenuItem"] = () => new MenuStatus(() => AllowedSitesToViewBonusDetail.Contains(Current.Site.ToUpper())),
             ["SigninNovaCasinoMenuItem"] = () => new MenuStatus(() => IsOfferedNovaCasino && new User().IsSyncedNovaCasino),
-            ["JoinNovaCasinoNowMenuItem"] = () => new MenuStatus(() => IsOfferedNovaCasino && !(new User().IsSyncedNovaCasino))
+            ["JoinNovaCasinoNowMenuItem"] = () => new MenuStatus(() => IsOfferedNovaCasino && !new User().IsSyncedNovaCasino),
+            ["WhiteLabel"] = () => new MenuStatus(
+                () => AppSettings.IsOfferedWhiteLabel(Current.Site, Enumeration.FromValue<UserLevel>(Current.RoleId).DisplayName) && Current.SubPageAccess.ViewReports),
+            ["WhiteLabelSignInBackOffice"] = () => new MenuStatus(
+                () =>
+                {
+                    var userLevel = Enumeration.FromValue<UserLevel>(Current.RoleId);
+                    return AppSettings.IsOfferedWhiteLabel(Current.Site, userLevel.DisplayName)
+                     && !Current.IsSubAcc
+                     && !Current.IsInternal
+                     && !Current.IsIndirectLoggedIn
+                     && userLevel.IsAgentLevel();
+                })
         };
 
         private static bool IsOfferedNovaCasino => !Current.IsSubAcc && NovaCasinoSettings.IsOfferedNovaCasino(

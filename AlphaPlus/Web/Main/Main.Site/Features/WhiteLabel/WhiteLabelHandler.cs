@@ -9,9 +9,9 @@ namespace AlphaPlus.Main.Site.Features.WhiteLabel
     public class WhiteLabelHandler : IRequestHandler<WhiteLabelSSORequest, WhiteLabelSSOResponseViewModel>
     {
         private readonly HttpClient httpClient;
-        private readonly WhiteLabelService whiteLabelService;
+        private readonly IWhiteLabelService whiteLabelService;
 
-        public WhiteLabelHandler(WhiteLabelService whiteLabelService)
+        public WhiteLabelHandler(IWhiteLabelService whiteLabelService)
         {
             httpClient = CreateHttpClient();
             this.whiteLabelService = whiteLabelService;
