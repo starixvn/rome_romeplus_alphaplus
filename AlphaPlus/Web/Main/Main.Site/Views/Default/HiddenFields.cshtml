@@ -37,7 +37,6 @@
     @Html.Hidden("assetAppPath", Model.AssetAppPath)
     @Html.Hidden("CDNReCheckinIntervalInSeconds", Model.CDNReCheckinIntervalInSeconds)
 }
-@* @Html.Hidden("betlistDomain", Model.BetlistDomain) *@
 @Html.Hidden("CustId", Model.CustId)
 @Html.Hidden("SubAccId", Model.SubAccId)
 @Html.Hidden("Here", Resources.Here)
@@ -45,3 +44,6 @@
 @Html.Hidden("minsAgo", Resources.minsAgo)
 @Html.Hidden("hoursAgo", Resources.hoursAgo)
 @Html.Hidden("daysAgo", Resources.daysAgo)
+@Html.Hidden("langKey", Model.LanguageKey.ToLowerInvariant())
+
+@Html.Hidden("NovaCasinoBriefIntroduction", Resources.NovaCasinoBriefIntroduction)

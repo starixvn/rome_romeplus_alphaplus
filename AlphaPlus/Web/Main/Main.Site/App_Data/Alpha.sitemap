@@ -147,4 +147,6 @@
   <siteMapNode resourceKey="chatbot" url="/main/TelegramChatBot/Setup"></siteMapNode>
   <siteMapNode resourceKey="SercurityCode" url="/main/Otp/SetupOtp" isNew="false"></siteMapNode>
   <siteMapNode resourceKey="BackupDomains" menuItemType="MemberInfoMenuItem" functionType="[H]" url="/features/backupdomains/index" isNew="true"></siteMapNode>
+  <siteMapNode resourceKey="SigninToNovaCasino" appPath="MainAppPath" menuItemType="SigninNovaCasinoMenuItem" />
+  <siteMapNode resourceKey="JoinNovaCasinoNow" appPath="MainAppPath" menuItemType="JoinNovaCasinoNowMenuItem" />
 </siteMap>

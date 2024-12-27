@@ -79,8 +79,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.IsAllowedTotalBalanceTransfer = signInResult.IsAllowTotalBalanceTransfer;
         userSession.IsShowConsolidatedReport = signInResult.IsShowConsolidatedReport;
         userSession.IsShowBetChoiceLimit = signInResult.IsShowBetChoiceLimit;
-
-        signInResult.SiteDB = signInResult.SiteDB ?? new SiteDB();
         userSession.AGIP = signInResult.SiteDB.AGIP;
         userSession.SiteDBGroupId = signInResult.SiteDB.SiteDBGroupId;
         userSession.CustDBGroupId = signInResult.SiteDB.CustDBGroupId;

@@ -69,6 +69,27 @@ namespace AlphaPlus.Main.Site
 
         public static string OfferAutoTransferCurrencies => GetValue<string>("OfferAutoTransfer.Currencies");
 
+        private static HashSet<string> dashboardBannerOfferedSites;
+        public static HashSet<string> DashboardBannerOfferedSites
+        {
+            get
+            {
+                var config = GetValue<string>("Dashboard:BannerOfferedSites") ?? string.Empty;
+                dashboardBannerOfferedSites ??= new HashSet<string>(config.Split(',').Select(s => s.Trim()), StringComparer.OrdinalIgnoreCase);
+
+                return dashboardBannerOfferedSites;
+            }
+        }
+
+        public static bool IsOfferedWhiteLabel(string site, string level)
+            => (WhiteLabelOfferedSites.Contains("*") || WhiteLabelOfferedSites.Contains(site))
+            && DateTime.Parse(GetValue<string>($"WhiteLabel:OfferedDate:{level}")) <= DateTime.Today;
+
+        private static IEnumerable<string> WhiteLabelOfferedSites { get; } = new HashSet<string>(
+           (GetValue<string>("WhiteLabel:OfferedSites") ?? string.Empty)
+               .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+               .Select(site => site.Trim()), StringComparer.OrdinalIgnoreCase);
+
         private static T GetValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetValue<T>(key, defaultValue);
 
         private static T GetSectionValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetSection<T>(key, defaultValue);

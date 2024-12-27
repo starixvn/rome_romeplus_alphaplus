@@ -6,6 +6,7 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
+using AlphaPlus.Main.Site.Features.ContactUs;
 
 
 namespace AlphaPlus.Main.Site.Features.Dashboard
@@ -29,6 +30,24 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
                 return View("~/Views/Dashboard/IndexProtectedMode.cshtml");
             }
 
+            var userLevelName = Enumeration.FromValue<UserLevel>(userSession.RoleId).DisplayName;
+            if (AppSettings.IsOfferedWhiteLabel(userSession.Site, userLevelName))
+            {
+                return RedirectToAction("WhiteLabel");
+            }
+
+            if (NovaCasinoSettings.IsOfferedNovaCasino(userSession.Site, userLevelName, userSession.Currency))
+            {
+                return RedirectToAction("NovaCasino");
+            }
+
+            var viewModel = new DashboardBannerViewModel(userSession);
+
+            if (viewModel.IsShow)
+            {
+                return View("~/Views/Dashboard/Banner.cshtml", viewModel);
+            }
+
             return Index2();
         }
 
@@ -38,6 +57,19 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
             var viewModel = new DashboardViewModel(userSession.RoleId);
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult WhiteLabel()
+        {
+            var viewModel = new ContactUsViewModel(Request.Host.Value);
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult NovaCasino()
+        {
+            return View();
         }
 
         [HttpGet]

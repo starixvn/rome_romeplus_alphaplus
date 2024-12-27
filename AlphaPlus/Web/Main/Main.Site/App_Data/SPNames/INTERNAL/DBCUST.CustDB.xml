@@ -59,6 +59,11 @@
     <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
   </Function>
 
+  <Function Name="Nova Casino">
+    <Setting Key="Age_CustomerUpdSynced" SpName="Age_CustomerUpdSynced" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
+    <Setting Key="Age_SetMessage_Personal" SpName="Age_SetMessage_Personal" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
+  </Function>
+
   <Function Name="Login">
     <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
     <Setting Key="Age_LoginDownline" SpName="Age_LoginDownline" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />

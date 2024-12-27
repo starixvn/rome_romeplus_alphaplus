@@ -40,8 +40,15 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             ["IndirectLoginAccountMenuItem"] = () => new MenuStatus(
                 () => IsAllowedIndirectLogin(Current.SRecommendId) && !Current.IsIndirectLoggedIn && (Current.IsSuper || Current.IsMaster)),
             ["DormantAccountListMenuItem"] = () => new MenuStatus(() => Current.IsSuper || Current.IsMaster),
-            ["BonusDetailMenuItem"] = () => new MenuStatus(() => AllowedSitesToViewBonusDetail.Contains(Current.Site.ToUpper()))
+            ["BonusDetailMenuItem"] = () => new MenuStatus(() => AllowedSitesToViewBonusDetail.Contains(Current.Site.ToUpper())),
+            ["SigninNovaCasinoMenuItem"] = () => new MenuStatus(() => IsOfferedNovaCasino && new User().IsSyncedNovaCasino),
+            ["JoinNovaCasinoNowMenuItem"] = () => new MenuStatus(() => IsOfferedNovaCasino && !(new User().IsSyncedNovaCasino))
         };
+
+        private static bool IsOfferedNovaCasino => !Current.IsSubAcc && NovaCasinoSettings.IsOfferedNovaCasino(
+               Current.Site.ToUpperInvariant(),
+               Enumeration.FromValue<UserLevel>(Current.RoleId).DisplayName,
+               Current.Currency.ToUpperInvariant());
 
         private static bool TransferMenuItemVisible
             => !Current.IsSubAcc || Current.SubPageAccess.Transfer;

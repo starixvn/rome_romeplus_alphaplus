@@ -2,6 +2,7 @@
 
 var menuBar = {
     topWindow: null,
+    novaCasinoPopup: null,
     domElements: {
         language: null,
         subMenuItems: null,
@@ -32,7 +33,13 @@ var menuBar = {
         betlistCookieless: '/',
         betlistSessionId: '',
         authReportCount: 0,
-        authBetlistCount: 0
+        authBetlistCount: 0,
+        signInS1BackOffice: null,
+        signInNovaCasinoMenu: null,
+        joinNovaCasinoNowMenu: null
+    },
+    resources: {
+        novaCasinoBriefIntroduction: ''
     },
 
     urls: {
@@ -75,6 +82,9 @@ var menuBar = {
             menuBar.domElements.betlistSessionId =
             menuBar.domElements.sessionId =
                 $('#SessionId').val();
+        menuBar.domElements.signInS1BackOffice = $('#sub-menu-SIGNINS1BACKOFFICE');
+        menuBar.domElements.signInNovaCasinoMenu = $('#menu-SIGNINTONOVACASINO a');
+        menuBar.domElements.joinNovaCasinoNowMenu = $('#menu-JOINNOVACASINONOW a');
 
         if (menuBar.domElements.reportDomain) {
             var authCookie = menuBar.topWindow.indexManager.currentUrlCookieName + '-' + menuBar.domElements.sessionId;
@@ -87,6 +97,8 @@ var menuBar = {
             $.cookie(authCookie, menuBar.domElements.sessionId, { path: '/' });
             $.cookie(authCookieBetlist, menuBar.domElements.sessionId, { path: '/' });
         }
+
+        menuBar.resources.novaCasinoBriefIntroduction = $('#NovaCasinoBriefIntroduction').val();
     },
 
     initSideBar: function () {
@@ -159,6 +171,46 @@ var menuBar = {
         });
 
         menuBar.domElements.closeIconOnMobile.click(menuBar.collapseSideBar);
+        menuBar.domElements.signInNovaCasinoMenu.unbind().bind('click touchend', (event) => {
+            event.preventDefault();
+            menuBar.SSOToNovaCasino();
+        });
+        menuBar.domElements.joinNovaCasinoNowMenu.unbind().bind('click touchend', (event) => {
+            event.preventDefault();
+            menuBar.topWindow.bootboxConfirm(menuBar.resources.novaCasinoBriefIntroduction, undefined, () =>
+                menuBar.SSOToNovaCasino()
+            );
+        });
+        menuBar.domElements.signInS1BackOffice.click(menuBar.SSOS1BackOffice);
+    },
+
+    SSOS1BackOffice: function () {
+        var ssoUrl = alpha.urls.mainRootPath + 'WhiteLabel/SSO';
+        $.post(ssoUrl, (response) => {
+            if (response.isSuccessful) {
+                response.returnUrl && window.open(response.returnUrl, '_blank').focus();
+            } else {
+                menuBar.topWindow.bootboxAlert(response.message);
+            }
+        });
+    },
+
+    SSOToNovaCasino: function () {
+        var ssoUrl = alpha.urls.mainRootPath + 'NovaCasino/SSO';
+        if (menuBar.novaCasinoPopup == null) {
+            menuBar.novaCasinoPopup = window.open('', '_blank');
+        }
+        $.post(ssoUrl, (response) => {
+            if (response.isSuccessful) {
+                if (response.launchUrl) {
+                    menuBar.novaCasinoPopup.location.href = response.launchUrl;
+                    window.location.reload();
+                }
+            } else {
+                menuBar.novaCasinoPopup.close();
+                menuBar.topWindow.bootboxAlert(response.message);
+            }
+        });
     },
 
     clickAnnouncementItem: function (menu) {
@@ -186,7 +238,6 @@ var menuBar = {
         var sidebar = menuBar.domElements.sideBar,
             content = menuBar.domElements.mainContent,
             header = menuBar.domElements.header,
-            mainContent = menuBar.domElements.mainContent,
             closeIconOnMobile = menuBar.domElements.closeIconOnMobile,
             hamburgerIcon = menuBar.domElements.hamburgerIcon;
 
@@ -208,7 +259,6 @@ var menuBar = {
                 collapseImageClass = 'collapse-image',
                 dockedClass = 'docked',
                 isCollapsed = sidebar.hasClass(collapsedClass),
-                isHidenMobile = sidebar.hasClass('hidden-mobile'),
                 activeSubMenu = $('.menu-item.active .sub-menu'),
                 profileImage = menuBar.domElements.profileImage;
 
@@ -247,7 +297,6 @@ var menuBar = {
 
         var accInfoContent = menuBar.domElements.accountInfoContent,
             accountInfoUrl = accInfoContent.attr('src');
-
         var currentLanguage = menuBar.domElements.language.data('currentlanguage');
 
         if (!accountInfoUrl) {

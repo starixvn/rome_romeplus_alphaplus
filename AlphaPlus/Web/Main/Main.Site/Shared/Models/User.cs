@@ -17,6 +17,8 @@ namespace AlphaPlus.Main.Site.Shared.Models
         bool IsEnabledTelegramOTP { get; set; }
 
         int CustId { get; set; }
+
+        bool IsSyncedNovaCasino { get; set; }
     }
 
     public class User : IUser
@@ -26,6 +28,7 @@ namespace AlphaPlus.Main.Site.Shared.Models
         private const string IsAdminCanUpdateSubAccountSessionKey = "IsAdminCanUpdateSubAccount";
         private const string IsEnabledTelegramOTPSessionKey = "IsEnabledTelegramOTP";
         private const string CustIdSessionKey = "CustId";
+        public const string IsSyncedNovaCasinoSessionKey = "IsSyncedNovaCasino";
 
         public bool ShowProgressiveJackpotGames => GetEnableProductsByGameName(Jackpot).Any(i => i != ProductId.Pragmatic);
 
@@ -47,6 +50,12 @@ namespace AlphaPlus.Main.Site.Shared.Models
         {
             get => AlphaContext.Current.Session.Get<int>(CustIdSessionKey);
             set => AlphaContext.Current.Session.Set(CustIdSessionKey, value);
+        }
+
+        public bool IsSyncedNovaCasino
+        {
+            get => AlphaContext.Current.Session.Get<bool>(IsSyncedNovaCasinoSessionKey);
+            set => AlphaContext.Current.Session.Set(IsSyncedNovaCasinoSessionKey, value);
         }
 
         public void RemoveNewCaptchaByCurrency()

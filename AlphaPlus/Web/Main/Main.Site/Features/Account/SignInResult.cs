@@ -46,7 +46,7 @@ namespace AlphaPlus.Main.Site.Features.Account
 
         public bool IsShowBetChoiceLimit { get; init; }
 
-        public SiteDB SiteDB { get; set; }
+        public SiteDB SiteDB { get; init; }
 
         public bool IsAllowTotalBalanceTransfer { get; init; }
 
