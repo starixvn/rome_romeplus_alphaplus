@@ -27,6 +27,11 @@ public class ProductTransform
 
     public static void TransformProductStatusByName(IUserSession session, IDictionary<string, string> values)
     {
+        if (values == null || !values.Any())
+        {
+            return;
+        }
+
         foreach (var productName in ProductNames)
         {
             session.SetHideProduct(productName.Key, GetProductStatus("hide" + productName.Value, values, true));
@@ -37,7 +42,7 @@ public class ProductTransform
 
     private static bool GetProductStatus(string productStatus, IDictionary<string, string> values, bool defaultValue)
     {
-        if (values.TryGetValue(productStatus, out string value))
+        if (values.TryGetValue(productStatus ?? string.Empty, out string value))
         {
             return Convert.ToBoolean(value);
         }
@@ -47,6 +52,11 @@ public class ProductTransform
 
     private static void TransformProductStatusByConvention(IUserSession session, IDictionary<string, string> values)
     {
+        if (values == null || !values.Any())
+        {
+            return;
+        }
+        
         var productIds = new List<int>();
 
         foreach (string key in values.Keys)

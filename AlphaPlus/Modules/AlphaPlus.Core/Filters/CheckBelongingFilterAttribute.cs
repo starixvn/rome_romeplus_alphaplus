@@ -99,7 +99,7 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
         {
             var kickOutPageAbsoluteUrl = MicroSites.MainUrl($"{options.KickOutUrl}");
             var currentPageAbsoluteUrl = context.HttpContext.Request.GetDisplayUrl();
-            if (kickOutPageAbsoluteUrl.Equals(currentPageAbsoluteUrl, StringComparison.OrdinalIgnoreCase))
+            if (currentPageAbsoluteUrl.Contains(kickOutPageAbsoluteUrl, StringComparison.OrdinalIgnoreCase))
             {
                 return;
             }

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Options;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Main.Site.Features.OTP;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
+using System.Net;
 
 namespace AlphaPlus.Main.Site.Features.Default
 {
@@ -79,10 +80,10 @@ namespace AlphaPlus.Main.Site.Features.Default
             await mediator.Send(new KickOutQuery(userSession));
             ClearSession();
 
-            return View(message as object);
+            return RedirectToAction("Login", "Account", new { r = WebUtility.UrlEncode(message) });
         }
 
-        private static void ClearSession()
+        private void ClearSession()
         {
             AlphaContext.Current.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             AlphaContext.Current.Session.Clear();

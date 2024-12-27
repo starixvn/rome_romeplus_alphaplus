@@ -143,7 +143,7 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
 
         var result = await client.GetAsJsonAsync<SignInResult>($"api/auth/indirect-login{query}");
 
-        if (result.IsSuccessful)
+        if (result.IsSuccessful && result.CustId > 0)
         {
             result.DarkModeName = param.DarkModeName;
             result.AssetAppPath = param.AssetAppPath;

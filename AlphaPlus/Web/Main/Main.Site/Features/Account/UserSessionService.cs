@@ -79,6 +79,8 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.IsAllowedTotalBalanceTransfer = signInResult.IsAllowTotalBalanceTransfer;
         userSession.IsShowConsolidatedReport = signInResult.IsShowConsolidatedReport;
         userSession.IsShowBetChoiceLimit = signInResult.IsShowBetChoiceLimit;
+
+        signInResult.SiteDB = signInResult.SiteDB ?? new SiteDB();
         userSession.AGIP = signInResult.SiteDB.AGIP;
         userSession.SiteDBGroupId = signInResult.SiteDB.SiteDBGroupId;
         userSession.CustDBGroupId = signInResult.SiteDB.CustDBGroupId;
@@ -176,6 +178,11 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 
     public void SetUserStatusToSession(IDictionary<string, string> status)
     {
+        if (status == null || !status.Any())
+        {
+            return;
+        }
+
         ProductTransform.TransformProductStatus(userSession, status);
 
         if (status.TryGetValue("doublecommlosing", out string doubleCommLosing))
