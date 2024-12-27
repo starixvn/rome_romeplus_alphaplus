@@ -331,7 +331,7 @@
     <value>축구</value>
   </data>
   <data name="credit" xml:space="preserve">
-    <value>포인트</value>
+    <value>Credit</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>설정</value>
@@ -365,8 +365,5 @@
   </data>
   <data name="Old" xml:space="preserve">
     <value>Old</value>
-  </data>
-  <data name="MemberBettingBehavior" xml:space="preserve">
-    <value>Member Betting Behavior</value>
   </data>
 </root>

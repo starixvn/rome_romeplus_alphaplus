@@ -90,6 +90,8 @@ namespace AlphaPlus.Main.Site
                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                .Select(site => site.Trim()), StringComparer.OrdinalIgnoreCase);
 
+        public static Uri WhiteLabelBackOfficeApiUri => new(GetValue<string>("WhiteLabel:BackOfficeApiUrl"));
+
         private static T GetValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetValue<T>(key, defaultValue);
 
         private static T GetSectionValue<T>(string key, T defaultValue = default) => ConfigurationManager.GetSection<T>(key, defaultValue);

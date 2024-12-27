@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Fanex.Data.Repository;
+
+namespace AlphaPlus.Main.Site.Features.WhiteLabel
+{
+    public class CheckExistsWhiteLabelCommand : NonQueryCommand
+    {
+        public CheckExistsWhiteLabelCommand(int custId)
+        {
+            CustId = custId;
+        }
+
+        public int CustId { get; }
+
+        public bool IsExists { get; set; }
+
+        public override bool IsValid()
+        {
+            return CustId > 0;
+        }
+
+        public override string GetSettingKey()
+        {
+            return "Age_WhitelLabelCheckExists";
+        }
+    }
+}

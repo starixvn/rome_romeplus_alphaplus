@@ -983,6 +983,17 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Reward Payment.
+        /// </summary>
+        public static string RewardPayment
+        {
+            get
+            {
+                return ResourceManager.GetString("RewardPayment", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Risk Management.
         /// </summary>
         public static string riskManagement
@@ -1056,6 +1067,17 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("SigninToNovaCasino", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in Back Office.
+        /// </summary>
+        public static string SignInS1BackOffice
+        {
+            get
+            {
+                return ResourceManager.GetString("SignInS1BackOffice", resourceCulture);
             }
         }
 
@@ -1265,17 +1287,6 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("winLossByProduct", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Reward Payment.
-        /// </summary>
-        public static string RewardPayment
-        {
-            get
-            {
-                return ResourceManager.GetString("RewardPayment", resourceCulture);
             }
         }
     }
