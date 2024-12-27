@@ -71,12 +71,14 @@
     @extend %btn-all;
     margin-right: 5px;
     background-color: #da5050;
+    line-height: 20px;
 }
 
 .btn-unsuspend-all {
     @extend %btn-all;
     margin-left: 5px;
     background-color: #248ad8;
+    line-height: 20px;
 }
 
 // Update multiple Unsuspend Status
@@ -173,6 +175,13 @@
             .btn-submit {
                 height: 45px;
                 width: auto;
+            }
+        }
+    }
+    .unsuspend-container{
+        .list-button{
+            .btn-reset,.btn-submit{
+                line-height: 28px;
             }
         }
     }
