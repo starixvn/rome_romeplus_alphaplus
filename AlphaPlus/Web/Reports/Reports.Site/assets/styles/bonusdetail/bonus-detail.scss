@@ -1,4 +1,14 @@
 ﻿@import '../mixins';
+
+:root,
+:root [data-theme='light'] {
+    --icon-payment-background: url('../images/payment.svg') center center no-repeat;
+}
+:root [data-theme='dark'] {
+    --icon-payment-background: url('../images/payment-dark.svg') center center no-repeat;
+}
+
+
 .filter{
     z-index: 10;
     display: flex;
@@ -19,7 +29,7 @@
 }
 
 .icon-payment {
-    background: url('../images/payment.svg') center center no-repeat;
+    background: var(--icon-payment-background);
     cursor: pointer;
     display: inline-block;
     width: 18px;
