@@ -3,6 +3,7 @@ using AlphaPlus.Reports.Features.Outstanding;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
+using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
 using Microsoft.Extensions.Options;
 
@@ -16,17 +17,14 @@ public class OutstandingHandler(
         BaseHandler(productService, options),
         IRequestHandler<OutstandingQuery, OutstandingViewModel>
 {
-    // Always hide Saba Promotion in Product List
-    private const int SabaPromotionProductId = 37;
+
 
     private readonly IOutstandingService outstandingService = outstandingService;
     private readonly IBrowserHelper browserHelper = browserHelper;
 
     public async Task<OutstandingViewModel> Handle(OutstandingQuery message, CancellationToken cancellationToken)
     {
-        var products = (await GetProducts(message)).Where(p => p.Id != SabaPromotionProductId);
-        var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds, products);
-
+        var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds);
         var outstandingParam = new OutstandingParam(
             message.CustLevelId,
             message.CustId,
@@ -37,5 +35,15 @@ public class OutstandingHandler(
         var isOnlyMobile = browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
 
         return new OutstandingViewModel(message, reportData, productViewModel, isOnlyMobile);
+    }
+
+    protected override async Task<IEnumerable<Product>> GetProducts(BaseQuery message)
+    {
+        var products = await base.GetProducts(message);
+
+        // Always hide Saba Promotion in Product List
+        const int SabaPromotionProductId = 37;
+
+        return products.Where(p => p.Id != SabaPromotionProductId);
     }
 }

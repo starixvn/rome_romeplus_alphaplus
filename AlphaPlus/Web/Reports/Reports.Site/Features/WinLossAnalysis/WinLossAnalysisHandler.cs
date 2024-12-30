@@ -33,7 +33,7 @@ public class WinLossAnalysisHandler(
 
     public async Task<ExcelFileViewModel> Handle(WinLossAnalysisExcelQuery message, CancellationToken cancellationToken)
     {
-        var validUserSelectedProductIds = await FilterProductIds(message, message.UserSelectedProductIds);
+        var validUserSelectedProductIds = await FilterProductIdsForExcel(message, message.UserSelectedProductIds);
         var reportData = await GetWinLossAnalysis(message, validUserSelectedProductIds.JoinWithComma());
         var (reportTitle, reportTypeName) = GetReportTitleAndTypeName(message.ReportTypeId);
 

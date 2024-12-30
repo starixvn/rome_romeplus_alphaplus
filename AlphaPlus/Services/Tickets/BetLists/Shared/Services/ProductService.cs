@@ -12,17 +12,15 @@ public interface IProductService
 {
     IEnumerable<string> ConcatProductNames(IEnumerable<int> productIds, bool isSiteLabel777);
 
-    IEnumerable<Product> GetProducts(GetProductsParam param);
+    Task<IEnumerable<Product>> GetProducts(GetProductsParam param);
 
     Task<IEnumerable<Product>> GetProductsByGroupHeadline(GetProductsByGroupHeadlineParam param);
 
     Task<bool> IsEnabledJackpot(string site, int currencyId, bool isTest);
 
-    Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param, IEnumerable<Product> products);
+    Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param, IEnumerable<Product> allOfferProducts);
 
     string BuildProductDetailsXml(IEnumerable<ProductDetail> productDetails);
-
-    string BuildProductDetailXml(ProductDetail productDetail);
 }
 
 public class ProductService(
@@ -40,18 +38,23 @@ public class ProductService(
     public IEnumerable<string> ConcatProductNames(IEnumerable<int> productIds, bool isSiteLabel777)
         => productIds.Select(id => CacheRefServiceHelper.GetProductName(id, isSiteLabel777));
 
-    public IEnumerable<Product> GetProducts(GetProductsParam param)
+    public async Task<IEnumerable<Product>> GetProducts(GetProductsParam param)
     {
-        var products = cacheService.GetOrSet(
+        var products = await cacheService.GetOrSetAsync(
             $"{ProductsCacheKey}-{param.SiteName}-{param.CurrencyId}-{param.Language}",
-            () => repository.Fetch<Product>(new GetProductsCriteria(param.SiteName, param.CurrencyId, param.SettingStatus))
-                .Where(product => !product.IsHide)
-                .Select(product =>
-                {
-                    product.Name = CacheRefServiceHelper.GetProductName(product.Id, param.IsSiteLabel777);
-                    product.TypeName = product.Type == 0 ? string.Empty : CacheRefServiceHelper.GetProductName(product.Type, param.IsSiteLabel777);
-                    return product;
-                }).ToList(),
+            async () =>
+            {
+                var products = await repository.FetchAsync<Product>(new GetProductsCriteria(param.SiteName, param.CurrencyId, param.SettingStatus));
+
+                return products
+                    .Where(product => !product.IsHide)
+                    .Select(product =>
+                    {
+                        product.Name = CacheRefServiceHelper.GetProductName(product.Id, param.IsSiteLabel777);
+                        product.TypeName = product.Type == 0 ? string.Empty : CacheRefServiceHelper.GetProductName(product.Type, param.IsSiteLabel777);
+                        return product;
+                    }).ToList();
+            },
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
 
         return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && canViewProduct(i.Id));
@@ -89,12 +92,12 @@ public class ProductService(
         () => repository.FetchMultipleAsync<JackpotOfferedBySite, JackpotOfferedByCurrency>(new GetEnableJackpotProductCriteria(isTest)),
         new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(CacheDayforJackpot)));
 
-    public Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param, IEnumerable<Product> products)
+    public Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param, IEnumerable<Product> allOfferProducts)
         => cacheService.GetOrSetAsync(
         $"{ProductDetailsCacheKey}-{param.CustId}",
         async () =>
         {
-            var productSupportDetail = products
+            var productSupportDetail = allOfferProducts
                 .Where(product => param.ProductOfferProductDetail.Contains(product.Id))
                 .Select(product => product.Id)
                 .ToList();
@@ -127,19 +130,10 @@ public class ProductService(
         var xml = new StringBuilder("<ROOT>");
         foreach (var item in productDetails)
         {
-            xml.Append(BuildProductDetailXml(item));
+            xml.Append(item.ToXml());
         }
         xml.Append("</ROOT>");
 
         return xml.ToString();
     }
-
-    public string BuildProductDetailXml(ProductDetail productDetail)
-        => string.Format(
-        "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
-        productDetail.ProductId,
-        productDetail.SportType,
-        productDetail.BetType,
-        productDetail.LeagueGroupId,
-        productDetail.TicketType);
 }

@@ -47,7 +47,7 @@ public class CancelledBetHandler(
 
     public async Task<CancelledBetViewModel> Handle(CancelledBetQuery message, CancellationToken cancellationToken)
     {
-        var productViewModel = BuildProductViewModel(GetProducts(message), message.ProductIds, message.Language);
+        var productViewModel = BuildProductViewModel(await GetProducts(message), message.ProductIds, message.Language);
         var param = new CancelledBetParam(
             message.ViewerId,
             message.FromDate,
@@ -70,7 +70,7 @@ public class CancelledBetHandler(
             TicketHelper);
     }
 
-    private IEnumerable<Product> GetProducts(CancelledBetQuery message)
+    private async Task<IEnumerable<Product>> GetProducts(CancelledBetQuery message)
     {
         var param = new GetProductsParam(
             message.Site,
@@ -79,7 +79,8 @@ public class CancelledBetHandler(
             message.Language,
             message.MinDate,
             appSettings.IsSiteLabel777);
+        var products = await productService.GetProducts(param);
 
-        return productService.GetProducts(param).Where(p => SupportedProducts.Contains(p.Id));
+        return products.Where(p => SupportedProducts.Contains(p.Id));
     }
 }

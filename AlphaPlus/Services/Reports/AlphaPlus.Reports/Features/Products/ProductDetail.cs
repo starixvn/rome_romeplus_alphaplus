@@ -21,4 +21,12 @@ public class ProductDetail
     public int TicketType { get; init; }
 
     public int ChildResourceId { get; init; }
+
+    public string ToXml() => string.Format(
+        "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
+        ProductId,
+        SportType,
+        BetType,
+        LeagueGroupId,
+        TicketType);
 }

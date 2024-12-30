@@ -34,10 +34,10 @@ public class ConsolidationDetailHandler(
     public async Task<ConsolidationDetailViewModel> Handle(ConsolidationDetailQuery message, CancellationToken cancellationToken)
     {
         var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
-        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
-        await Task.WhenAll(enteredResultTask, productsTask);
+        var productViewModelTask = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
+        await Task.WhenAll(enteredResultTask, productViewModelTask);
 
-        var (productViewModel, productDetailXml) = await BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
+        var (productViewModel, productDetailXml) = await productViewModelTask;
         var reportData = await GetWinLossDetail(message, productViewModel.UserSelectedProductIds, productDetailXml);
 
         return new ConsolidationDetailViewModel(
@@ -50,12 +50,10 @@ public class ConsolidationDetailHandler(
 
     public async Task<ExcelFileViewModel> Handle(ConsolidationDetailExcelQuery message, CancellationToken cancellationToken)
     {
-        var products = await consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
         var (validUserSelectedProductIds, productDetailXml, productNames) = await FilterProductAndProductDetailIdsForExcel(
             message,
             message.UserSelectedProductIds,
-            message.UserSelectedResourceIds,
-            products);
+            message.UserSelectedResourceIds);
         var reportData = await GetWinLossDetail(
             message,
             validUserSelectedProductIds.JoinWithComma(),
@@ -107,4 +105,7 @@ public class ConsolidationDetailHandler(
 
         return new BreadcrumbViewModel(breadcrumbs, JsonHelper.ToJson(breadcrumbs));
     }
+
+    protected override Task<IEnumerable<Product>> GetProducts(BaseQuery message)
+        => consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
 }

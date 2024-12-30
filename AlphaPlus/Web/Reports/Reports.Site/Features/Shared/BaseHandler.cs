@@ -1,3 +1,4 @@
+using System.Security.Policy;
 using System.Text;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
@@ -12,38 +13,34 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
     protected readonly IProductService productService = productService;
     protected readonly AppSettings appSettings = options.Value;
 
+    #region Build Product and Product Detail for dropdown list
     protected async Task<(ProductMultiSelectionViewModel, string)> BuildProductViewModel(
         BaseQuery message,
         string userSelectedProductIds,
         string userSelectedResourceIds,
-        IEnumerable<Product> products = null)
+        IEnumerable<Product> products = null) /* SuperWinLossDetailByPT need to pass products */
     {
         products = products ?? await GetProducts(message);
-        var (productGroups, validUserSelectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
-        var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = await BuildProductDetailGroups(
-            message.ViewerId,
-            products,
-            validUserSelectedProductIds,
+        var productDetails = await productService.GetProductDetails(message.ViewerId, products);
+        var (productGroups, selectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
+        var (productDetailDTOList, validUserSelectedResourceIds, validUserSelectedProductIds, productDetailXml) = BuildProductDetailGroups(
+            productDetails,
+            selectedProductIds,
             userSelectedResourceIds);
-        if (unselectedProductIds.Any())
-        {
-            validUserSelectedProductIds = validUserSelectedProductIds.Except(unselectedProductIds);
-        }
 
         return (new ProductMultiSelectionViewModel(
             productGroups,
             validUserSelectedProductIds.JoinWithComma(),
             message.Language,
-            productDetails,
+            productDetailDTOList,
             validUserSelectedResourceIds.JoinWithComma()), productDetailXml);
     }
 
     protected async Task<ProductMultiSelectionViewModel> BuildProductViewModel(
         BaseQuery message,
-        string userSelectedProductIds,
-        IEnumerable<Product> products = null)
+        string userSelectedProductIds)
     {
-        products = products ?? await GetProducts(message);
+        var products = await GetProducts(message);
         var (productGroups, validUserSelectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
 
         return new ProductMultiSelectionViewModel(productGroups, validUserSelectedProductIds.JoinWithComma(), message.Language);
@@ -92,9 +89,8 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return (productGroups, validUserSelectedProductIds);
     }
 
-    private async Task<(IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string)> BuildProductDetailGroups(
-        int custId,
-        IEnumerable<Product> products,
+    private (IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string) BuildProductDetailGroups(
+        IEnumerable<ProductDetail> productDetails,
         IEnumerable<int> validUserSelectedProductIds,
         string userSelectedResourceIds)
     {
@@ -102,88 +98,78 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var userSelectedResourceIdsList = isCheckedAll ? [] : userSelectedResourceIds.ToListInt().ToList();
 
         var resourceIdHashSet = new HashSet<int>();
-        var productDetails = new List<ProductDetailDTO>();
+        var productDetailDTOList = new List<ProductDetailDTO>();
         var validUserSelectedResourceIds = new HashSet<int>();
-        var allProductsSupportProductDetails = new List<int>();
-        var selectedProductIds = new List<int>();
+        var allProductsSupportProductDetails = new HashSet<int>();
+        var selectedProductIds = new HashSet<int>();
 
         var xml = new StringBuilder();
-        var allProductDetails = await productService.GetProductDetails(custId, products);
-        foreach (var item in allProductDetails)
+        foreach (var item in productDetails)
         {
             var isChecked = isCheckedAll || (validUserSelectedProductIds.Contains(item.ProductId) && userSelectedResourceIdsList.Contains(item.ResourceId));
             if (isChecked)
             {
                 validUserSelectedResourceIds.Add(item.ResourceId);
                 selectedProductIds.Add(item.ProductId);
-                xml.Append(productService.BuildProductDetailXml(item));
+                xml.Append(item.ToXml());
             }
 
             if (resourceIdHashSet.Add(item.ResourceId))
             {
-                productDetails.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
+                productDetailDTOList.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
             }
 
             allProductsSupportProductDetails.Add(item.ProductId);
         }
 
         // Get un-selected Product Ids
-        var unselectedProductIds = allProductsSupportProductDetails.Except(selectedProductIds);
+        var unselectedProductIds = allProductsSupportProductDetails.Except(selectedProductIds).ToList();
+        if (unselectedProductIds.Any())
+        {
+            validUserSelectedProductIds = validUserSelectedProductIds.Except(unselectedProductIds);
+        }
 
-        return (productDetails, validUserSelectedResourceIds, unselectedProductIds.ToList(), $"<ROOT>{xml}</ROOT>");
+        return (productDetailDTOList, validUserSelectedResourceIds, validUserSelectedProductIds.ToList(), $"<ROOT>{xml}</ROOT>");
     }
+    #endregion
 
+    #region Filter Product and Product Detail for AJAX or Excel
     protected async Task<(IEnumerable<int>, string)> FilterProductAndProductDetailIds(
         BaseQuery message,
         string userSelectedProductIds,
-        string userSelectedResourceIds,
-        IEnumerable<Product> products = null)
+        string userSelectedResourceIds)
     {
-        products = FilterProducts(products ?? await GetProducts(message), userSelectedProductIds).ToList();
-        var (unselectedProductIds, productDetailXml) = await FilterProductDetailIds(message.ViewerId, products, userSelectedProductIds, userSelectedResourceIds);
-        var productIds = products.Select(product => product.Id);
+        var products = await GetProducts(message);
+        var productDetails = await productService.GetProductDetails(message.ViewerId, products);
 
-        if (unselectedProductIds.Any())
-        {
-            productIds = productIds.Except(unselectedProductIds);
-        }
+        var selectedProductIds = FilterProducts(products, userSelectedProductIds).Select(product => product.Id).ToList();
+        var (validSelectedProductIds, productDetailXml) = FilterProductDetailIds(productDetails, selectedProductIds, userSelectedResourceIds);
 
-        return (productIds.ToList(), productDetailXml);
+        return (validSelectedProductIds, productDetailXml);
     }
 
     protected async Task<(IEnumerable<int>, string, string)> FilterProductAndProductDetailIdsForExcel(
         BaseQuery message,
         string userSelectedProductIds,
-        string userSelectedResourceIds,
-        IEnumerable<Product> products = null)
-    {
-        products = FilterProducts(products ?? await GetProducts(message), userSelectedProductIds).ToList();
-        var (unselectedProductIds, productDetailXml) = await FilterProductDetailIds(message.ViewerId, products, userSelectedProductIds, userSelectedResourceIds);
-        var productIds = products.Select(product => product.Id);
-
-        if (unselectedProductIds.Any())
-        {
-            productIds = productIds.Except(unselectedProductIds);
-        }
-
-        var productIdsList = productIds.ToList();
-        var productNames = await productService.GetProductNamesExportExcel(
-            message.ViewerId,
-            products,
-            productIdsList,
-            userSelectedResourceIds.ToListInt());
-
-        return (productIdsList, productDetailXml, productNames);
-    }
-
-    protected async Task<IEnumerable<int>> FilterProductIds(BaseQuery message, string userSelectedProductIds, IEnumerable<int> offeredProductIds = null)
+        string userSelectedResourceIds)
     {
         var products = await GetProducts(message);
+        var productDetails = await productService.GetProductDetails(message.ViewerId, products);
 
-        if (offeredProductIds != null)
-        {
-            products = products.Where(product => offeredProductIds.Contains(product.Id));
-        }
+        var selectedProductIds = FilterProducts(products, userSelectedProductIds).Select(product => product.Id).ToList();
+        var (validSelectedProductIds, productDetailXml) = FilterProductDetailIds(productDetails, selectedProductIds, userSelectedResourceIds);
+
+        var productNames = productService.GetProductNamesExportExcel(
+            productDetails,
+            validSelectedProductIds,
+            userSelectedResourceIds.ToListInt());
+
+        return (validSelectedProductIds, productDetailXml, productNames);
+    }
+
+    protected async Task<IEnumerable<int>> FilterProductIdsForExcel(BaseQuery message, string userSelectedProductIds)
+    {
+        var products = await GetProducts(message);
 
         return FilterProducts(products, userSelectedProductIds).Select(product => product.Id).ToList();
     }
@@ -199,45 +185,47 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         return products;
     }
 
-    private async Task<(IEnumerable<int>, string)> FilterProductDetailIds(
-        int custId,
-        IEnumerable<Product> products,
-        string userSelectedProductIds,
+    private (IEnumerable<int>, string) FilterProductDetailIds(
+        IEnumerable<ProductDetail> productDetails,
+        IEnumerable<int> userSelectedProductIds,
         string userSelectedResourceIds)
     {
-        var userSelectedProductIdsList = Enumerable.Empty<int>();
         var userSelectedResourceIdsList = Enumerable.Empty<int>();
-        var isCheckedAll = "*" == userSelectedProductIds && "*" == userSelectedResourceIds;
-        if (!isCheckedAll)
+        var isSelectAllResourceIds = "*" == userSelectedResourceIds;
+        if (!isSelectAllResourceIds)
         {
-            userSelectedProductIdsList = userSelectedProductIds.ToListInt().ToList();
             userSelectedResourceIdsList = userSelectedResourceIds.ToListInt().ToList();
         }
 
-        var allProductsSupportProductDetails = new List<int>();
-        var selectedProductIds = new List<int>();
+        var allProductsSupportProductDetails = new HashSet<int>();
+        var selectedProductIds = new HashSet<int>();
 
         var xml = new StringBuilder();
-        var productDetails = await productService.GetProductDetails(custId, products);
         foreach (var item in productDetails)
         {
-            var isChecked = isCheckedAll || (userSelectedProductIdsList.Contains(item.ProductId) && userSelectedResourceIdsList.Contains(item.ResourceId));
+            var isChecked = userSelectedProductIds.Contains(item.ProductId) && (isSelectAllResourceIds || userSelectedResourceIdsList.Contains(item.ResourceId));
             if (isChecked)
             {
                 selectedProductIds.Add(item.ProductId);
-                xml.Append(productService.BuildProductDetailXml(item));
+                xml.Append(item.ToXml());
             }
 
             allProductsSupportProductDetails.Add(item.ProductId);
         }
 
         // Get un-selected Product Ids
-        var unselectedProductIds = allProductsSupportProductDetails.Except(selectedProductIds);
+        var unselectedProductIds = allProductsSupportProductDetails.Except(selectedProductIds).ToList();
+        if (unselectedProductIds.Any())
+        {
+            userSelectedProductIds = userSelectedProductIds.Except(unselectedProductIds).ToList();
+        }
 
-        return (unselectedProductIds.ToList(), $"<ROOT>{xml}</ROOT>");
+        return (userSelectedProductIds, $"<ROOT>{xml}</ROOT>");
     }
+    #endregion
 
-    protected Task<IEnumerable<Product>> GetProducts(BaseQuery message)
+    // Need to override when report has it's own Product list
+    protected virtual Task<IEnumerable<Product>> GetProducts(BaseQuery message)
     {
         var param = new GetProductsParam(message.Site, message.CurrencyId, appSettings.SettingStatus, message.Language, message.MinDate);
 

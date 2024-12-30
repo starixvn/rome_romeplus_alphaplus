@@ -5,6 +5,7 @@ namespace AlphaPlus.Reports.Site.Features.Shared.Requests;
 public class BaseQuery
 {
     private const string CustomerDatelimit = "CustomerDateLimit";
+    private const string GameEnableJackpot = "GameEnable_Jackpot";
 
     public BaseQuery() : this(new UserSessionExt())
     {
@@ -42,6 +43,8 @@ public class BaseQuery
     public string Language { get; }
 
     public DateTime LimitedDateToShowInfo { get; }
+
+    public IList<int> EnableJackpotProductIds => Viewer.GetProperty<IList<int>>(GameEnableJackpot) ?? [];
 
     public int CustId { get; set; }
 

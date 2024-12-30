@@ -33,7 +33,7 @@ public class MemberBetListHandler(
 
     public async Task<MemberBetListViewModel> Handle(MemberBetListQuery message, CancellationToken cancellationToken)
     {
-        var products = GetProducts(message);
+        var products = await GetProducts(message);
         var productViewModel = BuildProductViewModel(products, message.ProductIds, message.Language);
         var param = new MemberBetListParam(
             message.CustId,
@@ -59,7 +59,7 @@ public class MemberBetListHandler(
             TicketHelper);
     }
 
-    private IEnumerable<Product> GetProducts(MemberBetListQuery message)
+    private Task<IEnumerable<Product>> GetProducts(MemberBetListQuery message)
     {
         var param = new GetProductsParam(
             message.Site,

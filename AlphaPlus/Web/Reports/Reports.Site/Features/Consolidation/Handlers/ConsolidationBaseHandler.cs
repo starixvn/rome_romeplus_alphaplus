@@ -4,6 +4,7 @@ using AlphaPlus.Reports.Features.EnteredResult;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
+using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.Extensions.Options;
 
@@ -129,27 +130,28 @@ public class ConsolidationBaseHandler(
         EnteredResultSport)> GetConsolidationFilter(ConsolidationQuery message)
     {
         var enteredResultTask = enteredResultService.GetTotalEnteredResults(message.Site);
-        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
         var currenciesTask = consolidationService.GetCurrencies(message.ViewerId, message.Site);
-        await Task.WhenAll(enteredResultTask, productsTask, currenciesTask);
+        var productViewModelTask = BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds);
+        await Task.WhenAll(enteredResultTask, currenciesTask, productViewModelTask);
 
-        var (productViewModel, productDetailXml) = await BuildProductViewModel(message, message.UserSelectedProductIds, message.UserSelectedResourceIds, await productsTask);
+        var (productViewModel, productDetailXml) = await productViewModelTask;
 
         return (productViewModel, productDetailXml, await currenciesTask, await enteredResultTask);
     }
 
     protected async Task<(string, string, string, IEnumerable<ConsolidationCurrency>)> GetConsolidationFilterExcel(ConsolidationExcelQuery message)
     {
-        var productsTask = consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
         var currenciesTask = consolidationService.GetCurrencies(message.ViewerId, message.Site);
-        await Task.WhenAll(productsTask, currenciesTask);
-
-        var (validUserSelectedProductIds, productDetailXml, productNames) = await FilterProductAndProductDetailIdsForExcel(
+        var filterTask = FilterProductAndProductDetailIdsForExcel(
             message,
             message.UserSelectedProductIds,
-            message.UserSelectedResourceIds,
-            await productsTask);
+            message.UserSelectedResourceIds);
+        await Task.WhenAll(currenciesTask, filterTask);
+        var (validUserSelectedProductIds, productDetailXml, productNames) = await filterTask;
 
         return (validUserSelectedProductIds.JoinWithComma(), productDetailXml, productNames, await currenciesTask);
     }
+
+    protected override Task<IEnumerable<Product>> GetProducts(BaseQuery message)
+        => consolidationService.GetProducts(message.ViewerId, message.MinDate, appSettings.SettingStatus, message.Site);
 }

@@ -12,9 +12,7 @@ public interface IProductService
 
     Task<IEnumerable<Product>> GetProducts(GetProductsParam param);
 
-    Task<IEnumerable<ProductDetail>> GetProductDetails(int custId, IEnumerable<Product> products);
-
-    string BuildProductDetailXml(ProductDetail productDetail);
+    Task<IEnumerable<ProductDetail>> GetProductDetails(int custId, IEnumerable<Product> allOfferProducts);
 
     Task<string> GetProductsNeedDelayTimeToSummarizeData(
         GetProductsParam productParam,
@@ -22,9 +20,8 @@ public interface IProductService
 
     Task<string> GetProductNames(GetProductsParam productsParam, HashSet<int> offeredProductIds);
 
-    Task<string> GetProductNamesExportExcel(
-        int custId,
-        IEnumerable<Product> products,
+    string GetProductNamesExportExcel(
+        IEnumerable<ProductDetail> productDetails,
         IEnumerable<int> selectedProductIds,
         IEnumerable<int> selectedResourceIds);
 }
@@ -80,12 +77,12 @@ public class ProductService(
         || !product.EndOfSupportDate.HasValue
         || minReportDate.Value <= product.EndOfSupportDate.Value;
 
-    public Task<IEnumerable<ProductDetail>> GetProductDetails(int custId, IEnumerable<Product> products)
+    public Task<IEnumerable<ProductDetail>> GetProductDetails(int custId, IEnumerable<Product> allOfferProducts)
         => cacheService.GetOrSetAsync(
             $"{ProductDetailsCacheKey}-{custId}",
             async () =>
             {
-                var productSupportDetail = products
+                var productSupportDetail = allOfferProducts
                     .Where(product => IsSupportProductDetail(product.Id))
                     .Select(product => product.Id)
                     .ToList();
@@ -112,15 +109,6 @@ public class ProductService(
             ProductDetailsCacheKey,
             async () => (await repository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria())).OrderBy(product => product.ProductId).ThenBy(product => product.Order),
             new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductDetailsCacheInMinutes)));
-
-    public string BuildProductDetailXml(ProductDetail productDetail)
-        => string.Format(
-        "<ProductDetail ProductId=\"{0}\" Sporttype=\"{1}\" Bettype=\"{2}\" LeagueGroupId=\"{3}\" TicketType=\"{4}\"/>",
-        productDetail.ProductId,
-        productDetail.SportType,
-        productDetail.BetType,
-        productDetail.LeagueGroupId,
-        productDetail.TicketType);
 
     public async Task<string> GetProductsNeedDelayTimeToSummarizeData(
         GetProductsParam productParam,
@@ -149,9 +137,8 @@ public class ProductService(
         return ConcatProductNames(productIds);
     }
 
-    public async Task<string> GetProductNamesExportExcel(
-        int custId,
-        IEnumerable<Product> products,
+    public string GetProductNamesExportExcel(
+        IEnumerable<ProductDetail> productDetails,
         IEnumerable<int> selectedProductIds,
         IEnumerable<int> selectedResourceIds)
     {
@@ -161,23 +148,23 @@ public class ProductService(
         }
 
         var productNames = new Dictionary<int, string>();
-        var productDetails = await GetProductDetails(custId, products);
-        productDetails.GroupBy(p => p.ProductId)
-        .ToList()
-        .ForEach(group =>
-        {
-            if (IsSupportProductDetail(group.Key))
+        productDetails
+            .GroupBy(p => p.ProductId)
+            .ToList()
+            .ForEach(group =>
             {
-                var allResourceIds = group.Select(p => p.ResourceId).Distinct().ToList();
-                var intersectResourceIds = selectedResourceIds.Intersect(allResourceIds).ToList();
-
-                if (intersectResourceIds.Count > 0
-                    && intersectResourceIds.Count != allResourceIds.Count)
+                if (IsSupportProductDetail(group.Key))
                 {
-                    productNames[group.Key] = intersectResourceIds.Select(id => cacheRefService.GetProductDetailName(id)).JoinWithComma(", ");
+                    var allResourceIds = group.Select(p => p.ResourceId).Distinct().ToList();
+                    var intersectResourceIds = selectedResourceIds.Intersect(allResourceIds).ToList();
+
+                    if (intersectResourceIds.Count > 0
+                        && intersectResourceIds.Count != allResourceIds.Count)
+                    {
+                        productNames[group.Key] = intersectResourceIds.Select(id => cacheRefService.GetProductDetailName(id)).JoinWithComma(", ");
+                    }
                 }
-            }
-        });
+            });
 
         return selectedProductIds
             .Select(id => productNames.TryGetValue(id, out var name) ? name : cacheRefService.GetProductName(id))

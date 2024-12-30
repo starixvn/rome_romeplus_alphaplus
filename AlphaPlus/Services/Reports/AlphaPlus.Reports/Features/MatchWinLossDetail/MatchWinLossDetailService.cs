@@ -9,7 +9,7 @@ namespace AlphaPlus.Reports.Features.MatchWinLossDetail;
 
 public interface IMatchWinLossDetailService
 {
-    Task<IEnumerable<int>> GetProducts();
+    Task<int[]> GetProducts();
 
     Task<IEnumerable<League>> GetLeagues(GetLeaguesParam param);
 
@@ -34,10 +34,10 @@ public class MatchWinLossDetailService(
     private readonly ICacheRefService cacheRefService = cacheRefService;
     private readonly IPartialUMService partialUMService = partialUMService;
 
-    public Task<IEnumerable<int>> GetProducts()
+    public Task<int[]> GetProducts()
         => cacheService.GetOrSetAsync(
         ProductsCacheKey,
-        async () => (await repository.FetchAsync<Product>(new ProductsForMatchWinLossDetailCriteria())).Select(p => p.Id),
+        async () => (await repository.FetchAsync<Product>(new ProductsForMatchWinLossDetailCriteria())).Select(p => p.Id).ToArray(),
         new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheInMinutes)));
 
     public async Task<IEnumerable<League>> GetLeagues(GetLeaguesParam param)

@@ -71,7 +71,7 @@ public class WinLossBaseHandler(
         else
         {
             var productParam = new GetProductsParam(message.Site, message.CurrencyId, appSettings.SettingStatus, message.Language, message.MinDate, appSettings.IsSiteLabel777);
-            products = productService.GetProducts(productParam);
+            products = await productService.GetProducts(productParam);
         }
 
         return products;

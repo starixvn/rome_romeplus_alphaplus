@@ -41,7 +41,7 @@ public class RunningBetListHandler(
             message.CustId = await autoFollowBetService.GetRealCustId(message.ViewerId, message.CustId);
         }
 
-        var products = GetProducts(message);
+        var products = await GetProducts(message);
         var productViewModel = BuildProductViewModel(products, message.ProductIds, message.Language);
         var param = new RunningBetListParam(
             message.CustId,
@@ -68,7 +68,7 @@ public class RunningBetListHandler(
             TicketHelper);
     }
 
-    private IEnumerable<Product> GetProducts(RunningBetListQuery message)
+    private async Task<IEnumerable<Product>> GetProducts(RunningBetListQuery message)
     {
         var param = new GetProductsParam(
             message.Site,
@@ -77,7 +77,8 @@ public class RunningBetListHandler(
             message.Language,
             message.MinDate,
             appSettings.IsSiteLabel777);
+        var products = await productService.GetProducts(param);
 
-        return productService.GetProducts(param).Where(p => p.Id != SabaPromotionProductId);
+        return products.Where(p => p.Id != SabaPromotionProductId);
     }
 }

@@ -5,6 +5,7 @@ using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
+using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
@@ -41,12 +42,7 @@ public class MatchWinLossDetailHandler(
     public async Task<MatchWinLossDetailViewModel> Handle(MatchWinLossDetailQuery message, CancellationToken cancellationToken)
     {
         var fromDate = message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo);
-
-        var offeredProductIds = (await matchWinLossDetailService.GetProducts()).ToList();
-        var productViewModel = await BuildProductViewModel(
-            message,
-            message.UserSelectedProductIds,
-            (await GetProducts(message)).Where(p => offeredProductIds.Contains(p.Id)));
+        var productViewModel = await BuildProductViewModel(message, message.UserSelectedProductIds);
 
         var leagueParam = new GetLeaguesParam(
             message.ViewerId,
@@ -76,10 +72,9 @@ public class MatchWinLossDetailHandler(
     public async Task<ExcelFileViewModel> Handle(MatchWinLossDetailExcelQuery message, CancellationToken cancellationToken)
     {
         var fromDate = message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo);
-        var productIds = await FilterProductIds(
+        var productIds = await FilterProductIdsForExcel(
             message,
-            message.UserSelectedProductIds,
-            (await matchWinLossDetailService.GetProducts()).ToList());
+            message.UserSelectedProductIds);
         var productIdsString = productIds.JoinWithComma();
 
         var leagueParam = new GetLeaguesParam(
@@ -177,5 +172,17 @@ public class MatchWinLossDetailHandler(
         }
 
         return (leagueIds.JoinWithComma(), league3rdIds.JoinWithComma());
+    }
+
+    protected override async Task<IEnumerable<Product>> GetProducts(BaseQuery message)
+    {
+        var productsTask = base.GetProducts(message);
+        var offeredProductIdsTask = matchWinLossDetailService.GetProducts();
+        await Task.WhenAll(productsTask, offeredProductIdsTask);
+
+        var products = await productsTask;
+        var offeredProductIds = await offeredProductIdsTask;
+
+        return products.Where(p => offeredProductIds.Contains(p.Id));
     }
 }

@@ -86,23 +86,19 @@ public class WinLossNewHandler(
         string userSelectedProductIds,
         string userSelectedResourceIds)
     {
-        var products = GetProducts(message);
-        var (productGroups, validUserSelectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
-        var (productDetails, validUserSelectedResourceIds, unselectedProductIds, productDetailXml) = await BuildProductDetailGroups(
-            message.ViewerId,
-            products,
-            validUserSelectedProductIds,
+        var products = await GetProducts(message);
+        var productDetails = await GetProductDetails(message.ViewerId, products);
+        var (productGroups, selectedProductIds) = BuildProductGroups(products, userSelectedProductIds);
+        var (productDetailDTOList, validUserSelectedResourceIds, validUserSelectedProductIds, productDetailXml) = BuildProductDetailGroups(
+            productDetails,
+            selectedProductIds,
             userSelectedResourceIds);
-        if (unselectedProductIds.Any())
-        {
-            validUserSelectedProductIds = validUserSelectedProductIds.Except(unselectedProductIds);
-        }
 
         return (new ProductMultiSelectionViewModel(
             productGroups,
             validUserSelectedProductIds.JoinWithComma(),
             message.Language,
-            productDetails,
+            productDetailDTOList,
             validUserSelectedResourceIds.JoinWithComma()), productDetailXml);
     }
 
@@ -149,9 +145,8 @@ public class WinLossNewHandler(
         return (productGroups, validUserSelectedProductIds);
     }
 
-    private async Task<(IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string)> BuildProductDetailGroups(
-        int custId,
-        IEnumerable<Product> products,
+    private (IEnumerable<ProductDetailDTO>, IEnumerable<int>, IEnumerable<int>, string) BuildProductDetailGroups(
+        IEnumerable<ProductDetail> productDetails,
         IEnumerable<int> validUserSelectedProductIds,
         string userSelectedResourceIds)
     {
@@ -159,38 +154,41 @@ public class WinLossNewHandler(
         var userSelectedResourceIdsList = isCheckedAll ? [] : userSelectedResourceIds.ToListInt().ToList();
 
         var resourceIdHashSet = new HashSet<int>();
-        var productDetails = new List<ProductDetailDTO>();
-        var validUserSelectedResourceIds = new List<int>();
-        var allProductsSupportProductDetails = new List<int>();
-        var selectedProductIds = new List<int>();
+        var productDetailDTOList = new List<ProductDetailDTO>();
+        var validUserSelectedResourceIds = new HashSet<int>();
+        var allProductsSupportProductDetails = new HashSet<int>();
+        var selectedProductIds = new HashSet<int>();
 
         var xml = new StringBuilder();
-        var allProductDetails = await GetProductDetails(custId, products);
-        foreach (var item in allProductDetails)
+        foreach (var item in productDetails)
         {
             var isChecked = isCheckedAll || (validUserSelectedProductIds.Contains(item.ProductId) && userSelectedResourceIdsList.Contains(item.ResourceId));
             if (isChecked)
             {
                 validUserSelectedResourceIds.Add(item.ResourceId);
                 selectedProductIds.Add(item.ProductId);
-                xml.Append(productService.BuildProductDetailXml(item));
+                xml.Append(item.ToXml());
             }
 
             if (resourceIdHashSet.Add(item.ResourceId))
             {
-                productDetails.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
+                productDetailDTOList.Add(new ProductDetailDTO(item.ProductId, item.ResourceId, item.DisplayName, isChecked));
             }
 
             allProductsSupportProductDetails.Add(item.ProductId);
         }
 
         // Get un-selected Product Ids
-        var unselectedProductIds = allProductsSupportProductDetails.Except(selectedProductIds);
+        var unselectedProductIds = allProductsSupportProductDetails.Except(selectedProductIds).ToList();
+        if (unselectedProductIds.Any())
+        {
+            validUserSelectedProductIds = validUserSelectedProductIds.Except(unselectedProductIds);
+        }
 
-        return (productDetails, validUserSelectedResourceIds, unselectedProductIds.ToList(), $"<ROOT>{xml}</ROOT>");
+        return (productDetailDTOList, validUserSelectedResourceIds, validUserSelectedProductIds.ToList(), $"<ROOT>{xml}</ROOT>");
     }
 
-    private IEnumerable<Product> GetProducts(WinLossQuery message)
+    private Task<IEnumerable<Product>> GetProducts(WinLossQuery message)
     {
         var productParam = new GetProductsParam(
             message.Site,
