@@ -1870,6 +1870,7 @@
       "styles-v2/components/utilities.css",
       "styles-v2/components/filter.css",
       "styles-v2/components/alert.css",
+      "styles-v2/components/title.css",
       "styles-v2/components/modal.css"
     ]
   },
