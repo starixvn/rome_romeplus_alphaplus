@@ -60,5 +60,5 @@
         @Html.Raw(Model.HtmlResults)
     </div>
 </div>
-<input type="hidden" asp-for="MinDate" />
-<input type="hidden" asp-for="Today" />
+<input type="hidden" id="MinDate" value="@Model.MinDate.ToShortDateString()" />
+<input type="hidden" id="Today" value="@Model.Today.ToShortDateString()" />

@@ -82,7 +82,7 @@
         </div>
     </div>
 </div>
-<input type="hidden" asp-for="MinDate" />
-<input type="hidden" asp-for="Today" />
+<input type="hidden" id="MinDate" value="@Model.MinDate.ToShortDateString()" />
+<input type="hidden" id="Today" value="@Model.Today.ToShortDateString()" />
 <a class="hide" id="hidden-resultDetailsUrl" asp-action="Details"></a>
 <a class="hide" id="hidden-resultSoccer5Url" asp-action="GetSoccer5Result"></a>

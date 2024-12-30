@@ -21,11 +21,11 @@ class NormalResultView {
 
         $dpkContainer
             .datepicker({
-                minDate: $('#MinDate').val(),
+                minDate: this.parseDate($('#MinDate').val()),
                 allowInputToggle: true
             })
             .data('DateTimePicker')
-            .maxDate($('#Today').val());
+            .maxDate(this.parseDate($('#Today').val()));
 
         $dpkContainer.on('dp.change', function () {
             $.blockUI();
@@ -104,6 +104,11 @@ class NormalResultView {
             $frmDetailsResult.attr('src', url);
             $resultDetails.modal({});
         };
+    }
+
+    parseDate(dateString) {
+        const dateStringArray = dateString.split('/');
+        return new Date(+dateStringArray[2], +dateStringArray[0] - 1, +dateStringArray[1]);
     }
 }
 

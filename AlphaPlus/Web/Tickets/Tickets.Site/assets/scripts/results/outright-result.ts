@@ -1,7 +1,7 @@
 ﻿class OutrightResultView {
     init() {
-        const minResultDate = $('#MinDate').val();
-        const maxResultDate = $('#Today').val();
+        const minResultDate = this.parseDate($('#MinDate').val());
+        const maxResultDate = this.parseDate($('#Today').val());
         const dpkSettings = {
             minDate: minResultDate,
             allowInputToggle: true
@@ -37,6 +37,11 @@
             $fromDatePicker.data('DateTimePicker').date(date);
             $toDatePicker.data('DateTimePicker').date(date);
         });
+    }
+
+    parseDate(dateString) {
+        const dateStringArray = dateString.split('/');
+        return new Date(+dateStringArray[2], +dateStringArray[0] - 1, +dateStringArray[1]);
     }
 }
 
