@@ -73,14 +73,8 @@ class WinLossAnalysisView extends BaseReport {
     };
 
     public registerEvents() {
-        this.$reportForm.submit(this.onSubmitReport);
         $('.icon-switchmode').on('click', this.onSwitchMode);
-
-        const self = this;
-        $(':radio[name=ReportTypeId]').change(function () {
-            self.onSubmitReport(this.form);
-            self.$reportForm.submit();
-        });
+        $(':radio[name=ReportTypeId]').change(() => this.$reportForm.submit());
     }
 
     onSubmitReport = (event: any) => {

@@ -1,4 +1,5 @@
-﻿class UsernameSuggestionOption {
+﻿/*
+class UsernameSuggestionOption {
     constructor(
         public url: string,
         public onBlur = Function(),
@@ -11,14 +12,23 @@
         this.isAccInfo = isAccInfo;
     }
 }
+*/
+interface UsernameSuggestionOption {
+    url?: string;
+    onBlur?: Function;
+    directDownline?: boolean;
+    isAccInfo?: boolean;
+    selectorId?: string;
+}
 
 class UsernameSuggestionComponent {
     private $usernameInput: JQuery;
 
     init(options: UsernameSuggestionOption) {
-        this.$usernameInput = $('#txt-username-suggestion');
+        this.$usernameInput = $('#' + (options.selectorId || 'txt-username-suggestion'));
         const queryString = this.buildQueryString(options);
-        const urlAndQueryString = `${options.url}?${queryString}${queryString.length ? '&' : ''}`;
+        const url = options.url || $('#hidden-usernameSuggestionUrl').attr('href');
+        const urlAndQueryString = `${url}?${queryString}${queryString.length ? '&' : ''}`;
 
         const typeaheadOptions = {
             source: function (query: string, process) {
@@ -66,7 +76,7 @@ class UsernameSuggestionComponent {
             queryString.push(`directDownline=${options.directDownline}`);
         }
 
-        if (options.isAccInfo) {
+        if (typeof options.isAccInfo === 'boolean' && !options.isAccInfo) {
             queryString.push(`isaccinfo=${options.isAccInfo}`);
         }
 

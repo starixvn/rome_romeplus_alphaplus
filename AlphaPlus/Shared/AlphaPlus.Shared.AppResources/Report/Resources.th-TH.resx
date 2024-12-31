@@ -1098,4 +1098,49 @@
   <data name="WinLossAnalysis" xml:space="preserve">
     <value>การวิเคราะห์ยอดได้เสีย</value>
   </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>รายงานการชำระเงิน</value>
+  </data>
+  <data name="DailyWinLossReport" xml:space="preserve">
+    <value>รายงาน ชนะ แพ้ รายวัน</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>ไวท์เลเบล</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>ค้นหา</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>โปรโมชั่น</value>
+  </data>
+  <data name="MasterEarning" xml:space="preserve">
+    <value>รายได้มาสเตอร์</value>
+  </data>
+  <data name="SuperEarning" xml:space="preserve">
+    <value>รายได้ซุปเปอร์</value>
+  </data>
+  <data name="LossCarryforward" xml:space="preserve">
+    <value>ยอดเสีย C/f</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>ชนะแพ้สุทธิ</value>
+  </data>
+  <data name="GrossFee" xml:space="preserve">
+    <value>ค่าธรรมเนียมรวม</value>
+  </data>
+  <data name="PromotionSettlement" xml:space="preserve">
+    <value>การชำระเงินโปรโมชั่น</value>
+  </data>
+  <data name="PromotionShare" xml:space="preserve">
+    <value>โปรโมชั่น แชร์</value>
+  </data>
+  <data name="TotalFee" xml:space="preserve">
+    <value>ยอดรวมค่าธรรมเนียม</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>รายได้</value>
+  </data>
+  <data name="WhiteLabelSettlementNote" xml:space="preserve">
+    <value>เพื่อความถูกต้องของข้อมูล รายงานการชำระเงินจะถูกสร้างขึ้น 5 วันหลังจากสิ้นเดือนของแต่ละเดือน</value>
+  </data>
 </root>

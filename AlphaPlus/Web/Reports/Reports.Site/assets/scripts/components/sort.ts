@@ -1,7 +1,7 @@
 ﻿/// <reference path="../core.ts" />
 
 interface JQuery {
-    tablesorter(option: any): void;
+    tablesorter(option: any): any;
 }
 
 interface SortInfo {

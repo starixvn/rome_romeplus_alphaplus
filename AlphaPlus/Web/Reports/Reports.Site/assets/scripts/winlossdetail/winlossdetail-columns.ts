@@ -8,9 +8,13 @@ class WinLossDetailColumns {
     }
 
     init(onDropdownHidden: Function) {
-        this.visibleColumnComponent.render($('#VisibleColumns').val(), columnList, (columns) => {
-            this.showHideColumns($('#tbl-report'), columns);
-            onDropdownHidden();
+        this.visibleColumnComponent.render({
+            listColumn: columnList,
+            onDropdownHidden: (columns) => {
+                this.showHideColumns($('#tbl-report'), columns);
+                onDropdownHidden();
+            },
+            visibleColumns: $('#VisibleColumns').val()
         });
     }
 

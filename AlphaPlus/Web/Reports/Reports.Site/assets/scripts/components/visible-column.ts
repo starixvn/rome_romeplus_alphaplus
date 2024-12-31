@@ -1,19 +1,28 @@
-﻿class VisibleColumnComponent {
+﻿interface VisibleColumnOption {
+    listColumn: any;
+    onDropdownHidden?: Function;
+    visibleColumns?: string;
+    selectorId?: string;
+    minWidth?: number;
+}
+
+class VisibleColumnComponent {
     private $visibleColumn: JQuery;
 
-    render(visibleColumns: string, listColumn, onDropdownHidden: Function) {
+    render(options: VisibleColumnOption) {
         let isCheckAll = false;
-        const $dropdown = $('#dropdown-visible-column');
+        const $dropdown = $('#' + (options.selectorId || 'dropdown-visible-column'));
 
         const visibleColumnObject = {};
+        const visibleColumns = options.visibleColumns || '';
         if (visibleColumns.length) {
             const visibleColumnArray = visibleColumns.split(',');
             visibleColumnArray.forEach(function (item) {
                 visibleColumnObject[item] = true;
             });
-            isCheckAll = listColumn.length === visibleColumnArray.length;
+            isCheckAll = options.listColumn.length === visibleColumnArray.length;
         } else {
-            listColumn.forEach(function (item) {
+            options.listColumn.forEach(function (item) {
                 if (item.checked !== false) {
                     visibleColumnObject[item.value] = true;
                 }
@@ -29,17 +38,17 @@
             filterPlaceHolder: $dropdown.data('label-filterplaceholder'),
             noItemFoundText: $dropdown.data('label-noitemfound'),
             isCheckAll: isCheckAll,
-            minWidth: 220,
+            minWidth: options.minWidth || 220,
             maxHeight: 250,
             showTooltip: false,
-            listData: listColumn.map(function (item) {
+            listData: options.listColumn.map(function (item) {
                 return {
                     value: item.value,
                     text: item.text,
                     checked: isCheckAll || visibleColumnObject.hasOwnProperty(item.value)
                 };
             }),
-            onLeave: () => onDropdownHidden && onDropdownHidden(this.getColumns())
+            onLeave: () => options.onDropdownHidden && options.onDropdownHidden(this.getColumns())
         });
     }
 

@@ -81,9 +81,8 @@ namespace AlphaPlus.Main.Site
             }
         }
 
-        public static bool IsOfferedWhiteLabel(string site, string level)
-            => (WhiteLabelOfferedSites.Contains("*") || WhiteLabelOfferedSites.Contains(site))
-            && DateTime.Parse(GetValue<string>($"WhiteLabel:OfferedDate:{level}")) <= DateTime.Today;
+        public static bool IsOfferedWhiteLabel(string site)
+            => WhiteLabelOfferedSites.Contains("*") || WhiteLabelOfferedSites.Contains(site);
 
         private static IEnumerable<string> WhiteLabelOfferedSites { get; } = new HashSet<string>(
            (GetValue<string>("WhiteLabel:OfferedSites") ?? string.Empty)

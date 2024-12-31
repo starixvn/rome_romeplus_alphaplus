@@ -1101,4 +1101,49 @@
   <data name="WinLossAnalysis" xml:space="preserve">
     <value>输赢分析</value>
   </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>结算报告</value>
+  </data>
+  <data name="DailyWinLossReport" xml:space="preserve">
+    <value>每日输赢报告</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>白牌</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜寻</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>促销</value>
+  </data>
+  <data name="MasterEarning" xml:space="preserve">
+    <value>总代理盈利</value>
+  </data>
+  <data name="SuperEarning" xml:space="preserve">
+    <value>超级总代理盈利</value>
+  </data>
+  <data name="LossCarryforward" xml:space="preserve">
+    <value>亏损结转</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>净输赢</value>
+  </data>
+  <data name="GrossFee" xml:space="preserve">
+    <value>总费用</value>
+  </data>
+  <data name="PromotionSettlement" xml:space="preserve">
+    <value>促销结算</value>
+  </data>
+  <data name="PromotionShare" xml:space="preserve">
+    <value>促销分享</value>
+  </data>
+  <data name="TotalFee" xml:space="preserve">
+    <value>总计费用</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>营收</value>
+  </data>
+  <data name="WhiteLabelSettlementNote" xml:space="preserve">
+    <value>以确保数据的准确性，每月结束后5天生成结算报告。</value>
+  </data>
 </root>

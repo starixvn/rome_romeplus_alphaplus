@@ -4,12 +4,10 @@ interface Jquery {
     monPickr(methodName: string, format: any): string;
 }
 
-class MonthRangePickerOption {
-    constructor(
-        public fromSelectorId: string = 'from-monthpicker',
-        public toSelectorId: string = 'to-monthpicker',
-        public reportFormId: string = 'report-form'
-    ) {}
+interface MonthRangePickerOption {
+    fromSelectorId?: string;
+    toSelectorId?: string;
+    afterChangeMonth?: Function;
 }
 
 class MonthRangePickerComponent {
@@ -17,16 +15,15 @@ class MonthRangePickerComponent {
     $toDate: JQuery;
     $dropdownFromMonth: JQuery;
     $dropdownToMonth: JQuery;
+    options: MonthRangePickerOption;
 
-    options = new MonthRangePickerOption();
-
-    render = (options: MonthRangePickerOption = new MonthRangePickerOption()) => {
-        this.options = $.extend({}, this.options, options);
+    render = (options?: MonthRangePickerOption) => {
+        this.options = options || {};
         this.$fromDate = $('#from-date');
         this.$toDate = $('#to-date');
 
-        this.$dropdownFromMonth = this.renderDropdown(this.options.fromSelectorId);
-        this.$dropdownToMonth = this.renderDropdown(this.options.toSelectorId);
+        this.$dropdownFromMonth = this.renderDropdown(this.options.fromSelectorId || 'from-monthpicker');
+        this.$dropdownToMonth = this.renderDropdown(this.options.fromSelectorId || 'to-monthpicker');
     };
 
     renderDropdown = (dropdownId: string) => {
@@ -59,6 +56,7 @@ class MonthRangePickerComponent {
     onChange = () => {
         this.$fromDate.val(this.$dropdownFromMonth.monPickr('getFromDate', 'MM/dd/yyyy'));
         this.$toDate.val(this.$dropdownToMonth.monPickr('getToDate', 'MM/dd/yyyy'));
+        this.options.afterChangeMonth && this.options.afterChangeMonth();
     };
 
     isLeast3Month = () => {
@@ -70,5 +68,9 @@ class MonthRangePickerComponent {
 
     getMonthDiff = (fromDate: Date, toDate: Date) => {
         return toDate.getMonth() - fromDate.getMonth() + 12 * (toDate.getFullYear() - fromDate.getFullYear());
+    };
+
+    getDateRangeValues = () => {
+        return { fromDate: this.$fromDate.val(), toDate: this.$toDate.val() };
     };
 }

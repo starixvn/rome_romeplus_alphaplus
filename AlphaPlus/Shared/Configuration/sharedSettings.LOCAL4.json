@@ -257,5 +257,9 @@
         ],
         "SiteId": 4120,
         "ExpireSeconds": 900
+    },
+    "WhiteLabel": {
+        "OfferedSites": "755555",
+        "BackOfficeApiUrl": "https://s1-alpha-api-service.starixnet.com/api/"
     }
 }

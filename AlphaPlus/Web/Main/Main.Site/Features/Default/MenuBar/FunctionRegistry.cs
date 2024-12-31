@@ -44,12 +44,12 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             ["SigninNovaCasinoMenuItem"] = () => new MenuStatus(() => IsOfferedNovaCasino && new User().IsSyncedNovaCasino),
             ["JoinNovaCasinoNowMenuItem"] = () => new MenuStatus(() => IsOfferedNovaCasino && !new User().IsSyncedNovaCasino),
             ["WhiteLabel"] = () => new MenuStatus(
-                () => AppSettings.IsOfferedWhiteLabel(Current.Site, Enumeration.FromValue<UserLevel>(Current.RoleId).DisplayName) && Current.SubPageAccess.ViewReports),
+                () => AppSettings.IsOfferedWhiteLabel(Current.Site) && Current.SubPageAccess.ViewReports),
             ["WhiteLabelSignInBackOffice"] = () => new MenuStatus(
                 () =>
                 {
                     var userLevel = Enumeration.FromValue<UserLevel>(Current.RoleId);
-                    return AppSettings.IsOfferedWhiteLabel(Current.Site, userLevel.DisplayName)
+                    return AppSettings.IsOfferedWhiteLabel(Current.Site)
                      && !Current.IsSubAcc
                      && !Current.IsInternal
                      && !Current.IsIndirectLoggedIn

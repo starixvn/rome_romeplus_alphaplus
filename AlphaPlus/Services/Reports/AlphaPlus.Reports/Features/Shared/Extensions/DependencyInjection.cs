@@ -27,6 +27,7 @@ using Fanex.Data.Repository;
 using Fanex.Caching;
 using Microsoft.Extensions.Options;
 using AlphaPlus.Reports.Features.Products;
+using AlphaPlus.Reports.Features.WhiteLabel;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
@@ -71,7 +72,8 @@ public static class DependencyInjection
             .AddSingleton<IBetCreditHistoryService, BetCreditHistoryService>()
             .AddSingleton<IMoveStatementHistoryService, MoveStatementHistoryService>()
             .AddSingleton<IIPMatchingService, IPMatchingService>()
-            .AddSingleton<IBetChoiceMatchingService, BetChoiceMatchingService>();
+            .AddSingleton<IBetChoiceMatchingService, BetChoiceMatchingService>()
+            .AddSingleton<IWhiteLabelService, WhiteLabelService>();
 
         var serviceProvider = services.BuildServiceProvider();
         ReportDateService.Instance = serviceProvider.GetRequiredService<IReportDateService>();

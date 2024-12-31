@@ -59,13 +59,7 @@
     <form class="form-inline filter" role="form" id="report-form" style="visibility: hidden">
         <daterange-picker-jquery model="@Model.DateRangePicker" />
         <product-dropdown show-product-details="true" />
-        <div class="form-group">
-            <label class="label-form-control">@Resources.Username</label>
-            <div>
-                <input type="text" id="txt-username-suggestion" placeholder="@Resources.UsernameOrFirstLastName"
-                    autocomplete="off" value="@Model.Username" />
-            </div>
-        </div>
+        <username-autosuggestion value="@Model.Username" />
         <visible-column />
         <div class="label-week-box" id="week-container">
             <partial name="Weeks" model="@Model.Weeks" />

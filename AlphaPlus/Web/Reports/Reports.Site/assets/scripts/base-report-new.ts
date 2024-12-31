@@ -1,24 +1,9 @@
 ﻿class BaseReportNew {
-    $pageTitle: JQuery;
-    $reportForm: JQuery;
+    protected sortColumnName: string;
+    protected sortColumnIndex = 0;
+    protected sortIndicator = 0; // asc: 0, desc: 1
 
-    constructor() {
-        this.initBaseReport();
-    }
-
-    private initBaseReport() {
-        // cache elements
-        this.$pageTitle = $('.page-title');
-        this.$reportForm = $('#report-form');
-
-        // register event
-        this.initBaseReportLegend();
-        $('.icon-filter')
-            .click(() => this.onClickIconFilter())
-            .tooltip({ placement: 'left' });
-    }
-
-    private initBaseReportLegend() {
+    protected initReportLegend() {
         const $loadLegendURL = $('#LoadLegendURL');
         if ($loadLegendURL.length) {
             const reportLegendUrl = $loadLegendURL.attr('href');
@@ -54,18 +39,71 @@
         }
     }
 
-    protected onClickIconFilter() {
-        const isHideFilter = this.$reportForm.hasClass('hide');
-        isHideFilter ? this.showFilter() : this.hideFilter();
+    protected initShowHideFilter(showHideFilterCallback?: Function) {
+        $('.icon-filter')
+            .click(() => {
+                const isHideFilter = this.handleShowHideFilter();
+                showHideFilterCallback && showHideFilterCallback(isHideFilter);
+            })
+            .tooltip({ placement: 'left' });
     }
 
-    private showFilter() {
-        this.$pageTitle.removeClass('hide-filter');
-        this.$reportForm.removeClass('hide');
+    private handleShowHideFilter() {
+        const $pageTitle = $('.page-title');
+        const $reportForm = $('#report-form');
+        const isHideFilter = $reportForm.hasClass('hide');
+        if (isHideFilter) {
+            $pageTitle.removeClass('hide-filter');
+            $reportForm.removeClass('hide');
+        } else {
+            $pageTitle.addClass('hide-filter');
+            $reportForm.addClass('hide');
+        }
+
+        return !isHideFilter;
     }
 
-    protected hideFilter() {
-        this.$pageTitle.addClass('hide-filter');
-        this.$reportForm.addClass('hide');
+    protected tableSorter($tblReport: JQuery, canSort: boolean = undefined, sortEndCallback: Function = undefined) {
+        canSort = canSort || $tblReport.data('cansort').toLowerCase() === 'true';
+        const sortColumns = $tblReport.find('.sorting');
+
+        if (canSort) {
+            const headers = {};
+            sortColumns.each(function () {
+                // sorttype is text or digit
+                const $this = $(this);
+                headers[$this.data('colindex')] = { sorter: $this.data('sorttype') || 'digit' };
+            });
+            const sortList =
+                typeof this.sortColumnIndex === 'undefined' ? [] : [[this.mapSortColumnIndex(), this.sortIndicator]];
+
+            $tblReport
+                .tablesorter({
+                    headers: headers,
+                    sortList: sortList
+                })
+                .bind('sortEnd', () => {
+                    const sortedColumns = $tblReport.find('.sorting-asc, .sorting-desc');
+                    if (sortedColumns.length) {
+                        const firstSortedColumn = sortedColumns.eq(0);
+                        this.sortColumnName = firstSortedColumn.data('colname');
+                        this.sortColumnIndex = firstSortedColumn.data('colindex');
+                        this.sortIndicator = firstSortedColumn.hasClass('sorting-desc') ? 1 : 0; // asc: 0, desc: 1
+                    }
+
+                    sortEndCallback && sortEndCallback();
+                });
+        } else {
+            sortColumns.removeClass('sorting');
+        }
+    }
+
+    protected mapSortColumnIndex() {
+        return this.sortColumnIndex;
+    }
+
+    protected stickyTableHeaders($tblReport: JQuery) {
+        $tblReport.stickyTableHeaders('destroy');
+        $tblReport.stickyTableHeaders();
     }
 }

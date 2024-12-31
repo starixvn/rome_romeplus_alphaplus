@@ -1,5 +1,6 @@
 ﻿interface DateRangePickerJQueryOption {
-    maxDays: number;
+    maxDays?: number;
+    onClosed?: Function;
 }
 
 class DateRangePickerJQueryComponent {
@@ -8,12 +9,13 @@ class DateRangePickerJQueryComponent {
         'th-TH': 'th',
         'vi-VN': 'vi',
         'zh-CN': 'cn',
-        'zh-TW': 'tc'
+        'zh-TW': 'tc',
+        'ja-JP': 'ja'
     };
     private fromDate: string;
     private toDate: string;
 
-    render(options: DateRangePickerJQueryOption, onClosed: Function) {
+    render(options: DateRangePickerJQueryOption) {
         const $dateRangePicker = $('#daterange-picker');
         this.fromDate = $dateRangePicker.data('fromdate');
         this.toDate = $dateRangePicker.data('todate');
@@ -30,15 +32,16 @@ class DateRangePickerJQueryComponent {
             duration: 0,
             singleMonth: true,
             monthSelect: true,
-            yearSelect: true
+            yearSelect: true,
+            maxDays: options.maxDays
         };
         $dateRangePicker
-            .dateRangePicker($.extend({}, defaults, options))
+            .dateRangePicker(defaults)
             .bind('datepicker-change', (_, obj) => {
                 this.fromDate = moment(obj.date1).format(this.dateFormat);
                 this.toDate = moment(obj.date2).format(this.dateFormat);
             })
-            .bind('datepicker-closed', () => onClosed && onClosed())
+            .bind('datepicker-closed', () => options.onClosed && options.onClosed())
             .data('dateRangePicker')
             .setDateRange(this.fromDate, this.toDate, false);
     }

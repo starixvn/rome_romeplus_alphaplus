@@ -30,12 +30,12 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
                 return View("~/Views/Dashboard/IndexProtectedMode.cshtml");
             }
 
-            var userLevelName = Enumeration.FromValue<UserLevel>(userSession.RoleId).DisplayName;
-            if (AppSettings.IsOfferedWhiteLabel(userSession.Site, userLevelName))
+            if (AppSettings.IsOfferedWhiteLabel(userSession.Site))
             {
                 return RedirectToAction("WhiteLabel");
             }
 
+            var userLevelName = Enumeration.FromValue<UserLevel>(userSession.RoleId).DisplayName;
             if (NovaCasinoSettings.IsOfferedNovaCasino(userSession.Site, userLevelName, userSession.Currency))
             {
                 return RedirectToAction("NovaCasino");

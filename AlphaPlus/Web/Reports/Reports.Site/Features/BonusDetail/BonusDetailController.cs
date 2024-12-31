@@ -12,6 +12,8 @@ public class BonusDetailController(
     IMediator mediator,
     IOptions<AppSettings> options) : ReportBaseController(mediator)
 {
+    private readonly AppSettings appSettings = options.Value;
+
     public Task<IActionResult> Index(BonusDetailQuery message) => View(message);
 
     [HttpPost, ValidateAntiForgeryToken]
@@ -21,7 +23,7 @@ public class BonusDetailController(
     {
         base.OnActionExecuting(context);
 
-        if (!options.Value.AllowedSitesToViewBonusDetail.Contains(UserSession.Current.Site, StringComparer.OrdinalIgnoreCase))
+        if (!appSettings.AllowedSitesToViewBonusDetail.Contains(UserSession.Current.Site, StringComparer.OrdinalIgnoreCase))
         {
             context.Result = new RedirectResult("/reports/shared/invalidreport");
         }

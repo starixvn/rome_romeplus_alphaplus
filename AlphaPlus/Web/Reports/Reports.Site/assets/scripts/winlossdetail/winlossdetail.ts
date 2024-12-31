@@ -49,24 +49,26 @@ class WinLossDetailView extends BaseReportNew {
     }
 
     init() {
+        super.initReportLegend();
+        super.initShowHideFilter();
         this.$reportTitle = $('#report-title');
         this.globalFormData = currentFromData;
         this.$tblReportContainer = $('#tbl-report-container');
         this.$tblReport = this.$tblReportContainer.find('#tbl-report');
 
-        this.dateRangeComponent.render({ maxDays: 92 }, () => this.getWinLossDetail());
+        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getWinLossDetail() });
         this.productComponent.render(productList, productDetailList, () => this.getWinLossDetail());
-        this.usernameSuggestionComponent.init(
-            new UsernameSuggestionOption($('#hidden-usernameSuggestionUrl').attr('href'), () => {
+        this.usernameSuggestionComponent.init({
+            onBlur: () => {
                 this.clearCurrentCust();
                 this.getWinLossDetail();
-            })
-        );
+            }
+        });
         this.weekComponent.init($('#week-container'), (dateRange) => this.getData(dateRange, undefined, false));
         this.breadcrumbLevelComponent.init((custInfo) => this.getWinLossDetailUpOrDownline(custInfo));
         this.winLossDetailColumns.init(() => this.updateQueryString());
         this.registerEvents();
-        this.$reportForm.removeAttr('style');
+        $('#report-form').removeAttr('style');
         this.$tblReportContainer.removeAttr('style');
 
         const breadcrumbsJson = JSON.stringify(this.breadcrumbLevelComponent.getBreadcrumbs());

@@ -13,6 +13,7 @@ using AlphaPlus.Reports.Site.Features.MatchWinLossDetail;
 using AlphaPlus.Reports.Site.Features.ProgressiveContribution;
 using AlphaPlus.Reports.Site.Features.Statement;
 using AlphaPlus.Reports.Site.Features.SuperWinLossDetailByPT;
+using AlphaPlus.Reports.Site.Features.WhiteLabel;
 using AlphaPlus.Reports.Site.Features.WinLoss;
 using AlphaPlus.Reports.Site.Features.WinLossAnalysis;
 using AlphaPlus.Reports.Site.Features.WinLossByProduct;
@@ -51,6 +52,8 @@ public static class DependencyInjection
         .AddTransient<IMoveStatementHistoryWorkbook, MoveStatementHistoryWorkbook>()
         .AddTransient<IIPMatchingWorkbook, IPMatchingWorkbook>()
         .AddTransient<IBetChoiceMatchingWorkbook, BetChoiceMatchingWorkbook>()
+        .AddTransient<ISettlementWorkbook, SettlementWorkbook>()
+        .AddTransient<IDailyWinLossWorkbook, DailyWinLossWorkbook>()
         .AddBetListExcelServices()
         .AddHttpClient<ICustomerClient, CustomerClient>(configuration.GetValue<string>("Fanex.Customer:ServiceUri"));
 

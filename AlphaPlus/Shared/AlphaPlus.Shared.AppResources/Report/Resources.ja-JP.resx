@@ -1218,4 +1218,49 @@
   <data name="OpeningBal" xml:space="preserve">
     <value>開始残高</value>
   </data>
+  <data name="SettlementReport" xml:space="preserve">
+    <value>精算報告書</value>
+  </data>
+  <data name="DailyWinLossReport" xml:space="preserve">
+    <value>毎日勝ち負けレポート</value>
+  </data>
+  <data name="WhiteLabel" xml:space="preserve">
+    <value>ホワイトラベル</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>プロモーション</value>
+  </data>
+  <data name="MasterEarning" xml:space="preserve">
+    <value>マスター収益</value>
+  </data>
+  <data name="SuperEarning" xml:space="preserve">
+    <value>スーパー収益</value>
+  </data>
+  <data name="LossCarryforward" xml:space="preserve">
+    <value>繰越欠損</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>純勝敗</value>
+  </data>
+  <data name="GrossFee" xml:space="preserve">
+    <value>総料金</value>
+  </data>
+  <data name="PromotionSettlement" xml:space="preserve">
+    <value>プロモーション精算</value>
+  </data>
+  <data name="PromotionShare" xml:space="preserve">
+    <value>プロモーションシェア</value>
+  </data>
+  <data name="TotalFee" xml:space="preserve">
+    <value>合計料金</value>
+  </data>
+  <data name="Income" xml:space="preserve">
+    <value>収益</value>
+  </data>
+  <data name="WhiteLabelSettlementNote" xml:space="preserve">
+    <value>データの正確性を確保するために、月末から5日後に精算報告書を作成してください。</value>
+  </data>
 </root>

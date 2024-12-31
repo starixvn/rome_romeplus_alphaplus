@@ -3951,5 +3951,170 @@ namespace AlphaPlus.Shared.AppResources.Report
                 return ResourceManager.GetString("Reward", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Settlement Report.
+        /// </summary>
+        public static string SettlementReport
+        {
+            get
+            {
+                return ResourceManager.GetString("SettlementReport", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Daily Win Loss Report.
+        /// </summary>
+        public static string DailyWinLossReport
+        {
+            get
+            {
+                return ResourceManager.GetString("DailyWinLossReport", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to White Label.
+        /// </summary>
+        public static string WhiteLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("WhiteLabel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search
+        {
+            get
+            {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion.
+        /// </summary>
+        public static string Promotion
+        {
+            get
+            {
+                return ResourceManager.GetString("Promotion", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master Earning.
+        /// </summary>
+        public static string MasterEarning
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterEarning", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Super Earning.
+        /// </summary>
+        public static string SuperEarning
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperEarning", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loss C/f.
+        /// </summary>
+        public static string LossCarryforward
+        {
+            get
+            {
+                return ResourceManager.GetString("LossCarryforward", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Net Win Loss.
+        /// </summary>
+        public static string NetWinLoss
+        {
+            get
+            {
+                return ResourceManager.GetString("NetWinLoss", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Settlement.
+        /// </summary>
+        public static string PromotionSettlement
+        {
+            get
+            {
+                return ResourceManager.GetString("PromotionSettlement", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Total Fee.
+        /// </summary>
+        public static string TotalFee
+        {
+            get
+            {
+                return ResourceManager.GetString("TotalFee", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Share.
+        /// </summary>
+        public static string PromotionShare
+        {
+            get
+            {
+                return ResourceManager.GetString("PromotionShare", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Gross Fee.
+        /// </summary>
+        public static string GrossFee
+        {
+            get
+            {
+                return ResourceManager.GetString("GrossFee", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Income.
+        /// </summary>
+        public static string Income
+        {
+            get
+            {
+                return ResourceManager.GetString("Income", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Generate the Settlement Report 5 days after month-end for data accuracy..
+        /// </summary>
+        public static string WhiteLabelSettlementNote
+        {
+            get
+            {
+                return ResourceManager.GetString("WhiteLabelSettlementNote", resourceCulture);
+            }
+        }
     }
 }

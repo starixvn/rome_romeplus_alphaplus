@@ -308,5 +308,35 @@
             "assets/scripts/components/simple-tooltip.js",
             "assets/scripts/betchoicematching/betchoicematching.js"
         ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/whitelabel/whitelabel.css",
+        "inputFiles": [
+            "assets/styles/whitelabel/whitelabel.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/whitelabel/settlement.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/month-range-picker.js",
+            "assets/scripts/components/multiple-dropdown.js",
+            "assets/scripts/components/visible-column.js",
+            "assets/scripts/components/username-suggestion.js",
+            "assets/scripts/base-report-new.js",
+            "assets/scripts/whitelabel/settlement-columns.js",
+            "assets/scripts/whitelabel/settlement.js"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles/whitelabel/daily-winloss.js",
+        "inputFiles": [
+            "assets/scripts/core.js",
+            "assets/scripts/components/daterangepicker-jquery.js",
+            "assets/scripts/components/multiple-dropdown.js",
+            "assets/scripts/components/username-suggestion.js",
+            "assets/scripts/base-report-new.js",
+            "assets/scripts/whitelabel/daily-winloss.js"
+        ]
     }
 ]

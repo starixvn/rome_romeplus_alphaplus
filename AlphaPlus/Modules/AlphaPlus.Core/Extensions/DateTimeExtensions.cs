@@ -11,6 +11,7 @@ public static class DateTimeExtensions
     private const string ShortMonthNameAndShortYear = "MMM-yy";
     private const string ShortMonthNameAndYear = "MMM-yyyy";
     private const string MMDDWithSlash = "MM/dd";
+    private const string MMYYYYWithSlash = "MM/yyyy";
 
     public static string ToShortDate(this DateTime dateTime)
         => dateTime.ToString(ShortDate);
@@ -32,6 +33,9 @@ public static class DateTimeExtensions
 
     public static string ToMMDDWithSlash(this DateTime dateTime)
         => dateTime.ToString(MMDDWithSlash);
+
+    public static string ToMMYYYYWithSlash(this DateTime dateTime)
+        => dateTime.ToString(MMYYYYWithSlash);
 
     public static DateTime ToStartOfDay(this DateTime dateTime)
         => new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
