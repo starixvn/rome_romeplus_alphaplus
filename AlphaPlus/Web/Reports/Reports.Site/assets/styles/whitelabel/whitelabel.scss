@@ -1,3 +1,4 @@
+
 .monpickr-wrap-parent .monpickr-wrap .monpickr-dropdown {
     margin-top: 4px;
     margin-left: 0 !important;
@@ -22,9 +23,23 @@
 }
 .page-title{
     border: 0;
+    text-transform: none;
     .list-icon{
         position: absolute;
         top: 0;
         right: 0;
+        .tooltip{
+            top: 5px!important;
+            left: -83px!important;
+        }
+        .tooltip.left .tooltip-arrow{
+            top: 50%!important;
+        }
+    }
+}
+
+.filter {
+    .icon-excel.icon-excel-new {
+        color: #2E9E60;
     }
 }
