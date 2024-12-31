@@ -139,10 +139,12 @@
         data-cansort="@Model.ReportData.MoreThanOne" id="tbl-report">
         <thead>
             <tr>
-                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="username">
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="username"
+                    data-sorttype="text">
                     @Resources.Username
                 </th>
-                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="fullname">
+                <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="fullname"
+                    data-sorttype="text">
                     @Resources.FirstLastName</th>
                 <th class="sorting" rowspan="2" data-colindex="@(theadIndex++)" data-colname="betcount">
                     @Resources.BetCount

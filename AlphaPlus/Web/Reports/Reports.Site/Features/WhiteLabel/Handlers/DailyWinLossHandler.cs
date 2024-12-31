@@ -16,13 +16,16 @@ public class DailyWinLossHandler(IWhiteLabelService whiteLabelService, IDailyWin
 
     public async Task<DailyWinLossViewModel> Handle(DailyWinLossQuery message, CancellationToken cancellationToken)
     {
-        var whiteLabelsTask = message.ViewerLevel.IsNotAgentLevel()
-            ? whiteLabelService.GetWhiteLabels(message.ViewerId, message.Site)
-            : Task.FromResult(Enumerable.Empty<IdNameModel>());
-        var winlossTask = GetDailyWinLoss(message);
-        await Task.WhenAll(whiteLabelsTask, winlossTask);
+        IEnumerable<IdNameModel> whiteLabels = [];
+        if (message.ViewerLevel.IsNotAgentLevel())
+        {
+            whiteLabels = await whiteLabelService.GetWhiteLabels(message.ViewerId, message.Site);
+            message.WhiteLabels = whiteLabels.Select(wl => wl.Id).JoinWithComma();
+        }
 
-        return new DailyWinLossViewModel(message, await whiteLabelsTask, await winlossTask);
+        var winloss = await GetDailyWinLoss(message);
+
+        return new DailyWinLossViewModel(message, whiteLabels, winloss);
     }
 
     public async Task<DailyWinLossGetDataViewModel> Handle(DailyWinLossGetDataQuery message, CancellationToken cancellationToken)

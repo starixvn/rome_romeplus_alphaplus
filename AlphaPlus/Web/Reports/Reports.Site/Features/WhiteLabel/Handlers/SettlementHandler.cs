@@ -16,13 +16,16 @@ public class SettlementHandler(IWhiteLabelService whiteLabelService, ISettlement
 
     public async Task<SettlementViewModel> Handle(SettlementQuery message, CancellationToken cancellationToken)
     {
-        var whiteLabelsTask = message.ViewerLevel.IsNotAgentLevel()
-            ? whiteLabelService.GetWhiteLabels(message.ViewerId, message.Site)
-            : Task.FromResult(Enumerable.Empty<IdNameModel>());
-        var settlementTask = GetSettlement(message);
-        await Task.WhenAll(whiteLabelsTask, settlementTask);
+        IEnumerable<IdNameModel> whiteLabels = [];
+        if (message.ViewerLevel.IsNotAgentLevel())
+        {
+            whiteLabels = await whiteLabelService.GetWhiteLabels(message.ViewerId, message.Site);
+            message.WhiteLabels = whiteLabels.Select(wl => wl.Id).JoinWithComma();
+        }
 
-        return new SettlementViewModel(message, await whiteLabelsTask, await settlementTask);
+        var settlement = await GetSettlement(message);
+
+        return new SettlementViewModel(message, whiteLabels, settlement);
     }
 
     public async Task<SettlementGetDataViewModel> Handle(SettlementGetDataQuery message, CancellationToken cancellationToken)
