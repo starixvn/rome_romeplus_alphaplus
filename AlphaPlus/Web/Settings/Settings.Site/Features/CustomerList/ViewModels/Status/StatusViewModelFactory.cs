@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.Core.Configurations;
+using AlphaPlus.Products.Configurations;
 using AlphaPlus.Products.ViewModels;
 using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
@@ -39,6 +40,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
         protected override IStatusItemViewModel GetProductGroupViewModel(int productGroupId, ISearchAccountInfoRequest request)
             => new ProductGroupStatusItemViewModel(request, productGroupId);
 
+        protected override IStatusItemViewModel GetProductViewModel(ProductItem productItem, ISearchAccountInfoRequest request)
+          => new ProductStatusItemViewModel(request, productItem);
 
         protected override IEnumerable<int> GetEnabledProductGroupIds(ISearchAccountInfoRequest request)
         {

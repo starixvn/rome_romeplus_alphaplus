@@ -36,5 +36,10 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
         {
             return new ProductGroupMultipleSettingItemViewModel(request, productGroupId);
         }
+
+        protected override ISettingItemMultipleViewModel GetProductViewModel(ProductItem productItem, ISearchAccountInfoRequest request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
