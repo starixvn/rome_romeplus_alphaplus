@@ -21,7 +21,6 @@ class WinLossDetailView extends BaseReportNew {
     private MemberLevel = 1;
     private winLossDetailColumns: WinLossDetailColumns;
     private winLossDetailCopyHtml: WinLossDetailCopyHtml;
-    private winLossDetailSort: WinLossDetailSort;
     private $tblReportContainer: JQuery;
     private $tblReport: JQuery;
 
@@ -33,8 +32,7 @@ class WinLossDetailView extends BaseReportNew {
         weekComponent: WeekComponent,
         breadcrumbLevelComponent: BreadcrumbLevelComponent,
         winLossDetailColumns: WinLossDetailColumns,
-        winLossDetailCopyHtml: WinLossDetailCopyHtml,
-        winLossDetailSort: WinLossDetailSort
+        winLossDetailCopyHtml: WinLossDetailCopyHtml
     ) {
         super();
         this.totalEnteredNonEnteredComponent = totalEnteredNonEnteredComponent;
@@ -45,7 +43,6 @@ class WinLossDetailView extends BaseReportNew {
         this.breadcrumbLevelComponent = breadcrumbLevelComponent;
         this.winLossDetailColumns = winLossDetailColumns;
         this.winLossDetailCopyHtml = winLossDetailCopyHtml;
-        this.winLossDetailSort = winLossDetailSort;
     }
 
     init() {
@@ -107,7 +104,7 @@ class WinLossDetailView extends BaseReportNew {
             .tooltip()
             .attr('href', 'javascript:;');
 
-        this.winLossDetailSort.init(this.$tblReport);
+        this.initTableSorter();
 
         this.$tblReport.find('[data-toggle="tooltip"]').tooltip();
         this.$tblReport
@@ -251,6 +248,27 @@ class WinLossDetailView extends BaseReportNew {
 
         return obj;
     }
+
+    private initTableSorter() {
+        this.tableSorter(this.$tblReport, undefined, () => {
+            const dormantAccountsRow = this.$tblReport.find('.dormant-accounts-mark');
+            dormantAccountsRow.length && this.$tblReport.append(dormantAccountsRow);
+        });
+    }
+
+    protected mapSortColumnIndex() {
+        const tableHeaderCells = this.$tblReport.find(`thead th[data-colname=${this.sortColumnName}]`);
+        if (tableHeaderCells.length) {
+            this.sortColumnIndex = tableHeaderCells.eq(0).data('colindex');
+        } else {
+            // reset to default
+            this.sortColumnName = 'username';
+            this.sortColumnIndex = 0;
+            this.sortIndicator = 0;
+        }
+
+        return this.sortColumnIndex;
+    }
 }
 
 $(function () {
@@ -262,7 +280,6 @@ $(function () {
         new WeekComponent(),
         new BreadcrumbLevelComponent(),
         new WinLossDetailColumns(new VisibleColumnComponent()),
-        new WinLossDetailCopyHtml(Clipboard),
-        new WinLossDetailSort()
+        new WinLossDetailCopyHtml(Clipboard)
     ).init();
 });

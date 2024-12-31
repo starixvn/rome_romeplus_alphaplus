@@ -76,7 +76,7 @@ class SettlementView extends BaseReportNew {
     private getReportData() {
         $.blockUI();
         const queryString = $.param(this.getFormData());
-        $.get(`${$('#hidden-getDataUrl').val()}?${queryString}`, (html) => {
+        $.get(`${$('#hidden-getDataUrl').attr('href')}?${queryString}`, (html) => {
             this.$tblReportContainer.html(html);
             this.bindEventsAfterRenderReportData();
             alphaReports.updateQueryString(queryString);

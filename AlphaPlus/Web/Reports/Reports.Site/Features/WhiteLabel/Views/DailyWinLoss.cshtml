@@ -19,7 +19,7 @@
 <div class="page-title tabs">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation">
-            <a asp-controller="WhiteLabelSettlement" asp-action="Index">@Resources.SettlementReport</a>
+            <a asp-controller="WhiteLabel" asp-action="Settlement">@Resources.SettlementReport</a>
         </li>
         <li role="presentation" class="active">
             <a href="#dailyWinLoss" aria-controls="home" role="tab" data-toggle="tab">@Resources.DailyWinLossReport</a>
@@ -51,15 +51,15 @@
             }
             <div class="form-group">
                 <label class="label-form-control">&nbsp;</label>
-                <a asp-controller="WhiteLabelDailyWinLoss" asp-action="Excel" id="icon-excel"
+                <a asp-controller="WhiteLabel" asp-action="DailyWinLossExcel" id="icon-excel"
                     class="icon icon-excel icon-excel-new" data-toggle="tooltip" data-placement="top"
                     title="@Resources.ExportToExcel"></a>
             </div>
         </div>
         <div class="tblRpt-dailywinloss-container @level" id="tbl-report-container" style="visibility: hidden;">
-            <partial name="~/Features/WhiteLabel/Views/DailyWinLossData.cshtml" model="Model" />
+            <partial name="DailyWinLossData" model="Model" />
         </div>
     </div>
 </div>
-<a class="hide" id="hidden-getDataUrl" asp-controller="WhiteLabelDailyWinLoss" asp-action="GetData"></a>
+<a class="hide" id="hidden-getDataUrl" asp-controller="WhiteLabel" asp-action="GetDailyWinLossData"></a>
 <a class="hide" id="hidden-usernameSuggestionUrl" asp-action="Suggest" asp-controller="Customer"></a>

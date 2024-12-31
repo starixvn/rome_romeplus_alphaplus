@@ -80,7 +80,8 @@
             $tblReport
                 .tablesorter({
                     headers: headers,
-                    sortList: sortList
+                    sortList: sortList,
+                    textExtraction: this.textExtraction
                 })
                 .bind('sortEnd', () => {
                     const sortedColumns = $tblReport.find('.sorting-asc, .sorting-desc');
@@ -101,6 +102,16 @@
     protected mapSortColumnIndex() {
         return this.sortColumnIndex;
     }
+
+    private textExtraction = (node: any) => {
+        const $node = $(node);
+        const sortedValue = $node.data('sortedvalue');
+        if (sortedValue) {
+            return String(sortedValue);
+        }
+
+        return $node.html();
+    };
 
     protected stickyTableHeaders($tblReport: JQuery) {
         $tblReport.stickyTableHeaders('destroy');

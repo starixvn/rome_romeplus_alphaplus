@@ -78,7 +78,7 @@ class DailyWinLossView extends BaseReportNew {
     private getReportData() {
         $.blockUI();
         const queryString = $.param(this.getFormData());
-        $.get(`${$('#hidden-getDataUrl').val()}?${queryString}`, (html) => {
+        $.get(`${$('#hidden-getDataUrl').attr('href')}?${queryString}`, (html) => {
             this.$tblReportContainer.html(html);
             this.bindEventsAfterRenderWinLoss();
             alphaReports.updateQueryString(queryString);
