@@ -297,8 +297,6 @@ var indexManager = {
 
         $(document).on('click touchend', closeDropdownSubMenu);
 
-        $('#btn-header-menu').on('click', closeDropdownSubMenu);
-
         try {
             $(iframeWindow.document).on('click touchend', () => {
                 $('.dropdown-toggle').each((index, dropdown) => {
@@ -464,7 +462,7 @@ var indexManager = {
     //},
 
     initNewFeatureHighlightPopup: function () {
-        const leftMenu = $('#menu-BACKUPDOMAINS');
+        const leftMenu = $('#menu-TRANSFER');
         if (!leftMenu.length) {
             return;
         }
@@ -475,14 +473,13 @@ var indexManager = {
         }
 
         // RedmineId should be included to make FeatureName is unique.
-        const featureName = 'AvailableDomains_194024';
+        const featureName = '209190_CashRewardProgram';
         const cookiesName = indexManager.hidePopupCookies + featureName;
         const hidePopup = localStorage.getItem(indexManager.getCustomerCookiesName(cookiesName));
 
         if (hidePopup !== '1') {
             popupManager.closeAllPopup();
-
-            box.css({ top: leftMenu.position().top + 35 });
+            box.css({ top: leftMenu.position().top + 80 });
             box.removeClass('hide');
 
             box.find('.icon-close').click(() => box.addClass('hide'));

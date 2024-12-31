@@ -59,7 +59,10 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -721,7 +724,7 @@
     <value>Xem ngay</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
-    <value>Hãy khám phá &lt;b&gt;Hồ Sơ Member&lt;/b&gt; và &lt;b&gt;Thống Kê Cược&lt;/b&gt; để hiểu rõ hơn về cách họ đặt cược. Điều này sẽ giúp bạn quản lý rủi ro một cách hiệu quả và đưa ra các quyết định chính xác hơn.</value>
+    <value>&lt;p&gt;Chúng tôi rất vui mừng giới thiệu Chương trình Tiền thưởng. Công ty sẽ chi trả toàn bộ tiền thưởng này, và khi Member đã nhận thưởng, số tiền này sẽ không được phép sử dụng để đặt cược. Tiền thưởng sẽ được phân phối cho các cấp trên, và Member có thể rút tiền qua Agent của mình.&lt;/p&gt;&lt;p&gt;Chức năng &lt;b&gt;Thanh toán Tiền thưởng&lt;/b&gt; giúp bạn quản lý việc thanh toán cho các cấp dưới, đảm bảo tất cả các khoản tiền thưởng được phân phối một cách chính xác.&lt;/p&gt;</value>
   </data>
   <data name="GetStarted" xml:space="preserve">
     <value>Bắt đầu</value>
@@ -742,7 +745,7 @@
     <value>Báo Cáo Chi Tiết Thắng Thua</value>
   </data>
   <data name="HighlightPopupNewFeatureTitle" xml:space="preserve">
-    <value>Chào mừng bạn đến &lt;b&gt;Hành Vi Đặt Cược Member&lt;/b&gt;!</value>
+    <value>Chào mừng đến với &lt;b&gt;Chương trình Tiền thưởng&lt;/b&gt;!</value>
   </data>
   <data name="SetupChatbot" xml:space="preserve">
     <value>Cài Đặt Chatbot</value>

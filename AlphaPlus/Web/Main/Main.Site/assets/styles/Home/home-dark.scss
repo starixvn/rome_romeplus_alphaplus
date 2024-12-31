@@ -374,6 +374,9 @@ body {
     }
 
     &.right {
+        .tooltip-inner {
+        }
+
         .tooltip-arrow {
             &:after,
             &:before {
