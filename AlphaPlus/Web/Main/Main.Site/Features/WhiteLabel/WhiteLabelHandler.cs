@@ -1,19 +1,14 @@
 using MediatR;
+using AlphaPlus.Shared.AppResources.Main;
 
 namespace AlphaPlus.Main.Site.Features.WhiteLabel
 {
-    using System.Text;
-    using System.Text.Json;
-    using AlphaPlus.Shared.AppResources.Main;
-
     public class WhiteLabelHandler : IRequestHandler<WhiteLabelSSORequest, WhiteLabelSSOResponseViewModel>
     {
-        private readonly HttpClient httpClient;
         private readonly IWhiteLabelService whiteLabelService;
 
         public WhiteLabelHandler(IWhiteLabelService whiteLabelService)
         {
-            httpClient = CreateHttpClient();
             this.whiteLabelService = whiteLabelService;
         }
 
@@ -22,7 +17,7 @@ namespace AlphaPlus.Main.Site.Features.WhiteLabel
             var isOffered = await whiteLabelService.IsOfferedWhiteLabel(int.Parse(request.ReferenceId));
             if (isOffered)
             {
-                var ssoResponse = await SendSSORequest(request);
+                var ssoResponse = await whiteLabelService.SendSSORequest(request);
                 return new WhiteLabelSSOResponseViewModel { ReturnUrl = ssoResponse.ReturnUrl };
             }
 
@@ -30,26 +25,6 @@ namespace AlphaPlus.Main.Site.Features.WhiteLabel
             {
                 Code = 1,
                 Message = Resources.NotSetupWhiteLabelMessage,
-            };
-        }
-
-        private async Task<WhiteLabelSSOResponse> SendSSORequest(WhiteLabelSSORequest request)
-        {
-            Console.WriteLine(JsonSerializer.Serialize(request));
-            using var jsonContent = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
-            using var response = await httpClient.PostAsync("Signin", jsonContent);
-            response.EnsureSuccessStatusCode();
-            var stringResponse = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(JsonSerializer.Serialize(stringResponse));
-            return JsonSerializer.Deserialize<WhiteLabelSSOResponse>(stringResponse);
-        }
-
-        private static HttpClient CreateHttpClient()
-        {
-            return new HttpClient
-            {
-                BaseAddress = AppSettings.WhiteLabelBackOfficeApiUri,
-                Timeout = TimeSpan.FromSeconds(15),
             };
         }
     }

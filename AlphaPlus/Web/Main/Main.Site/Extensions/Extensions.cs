@@ -75,7 +75,6 @@ public static class Extensions
 
         services.AddSingleton<ICustomerService, CustomerService>();
         services.AddScoped<INovaCasinoService, NovaCasinoService>();
-        services.AddScoped<IWhiteLabelService, WhiteLabelService>();
 
         services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
         services.AddHttpClient<IAccountService, AccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))
@@ -92,6 +91,7 @@ public static class Extensions
         services.AddHttpClient<IProfilePictureService, ProfilePictureService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<IProtectionCodeService, ProtectionCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ILanguageService, LanguageService>(httpClient => httpClient.BaseAddress = customerServiceUri);
+        services.AddHttpClient<IWhiteLabelService, WhiteLabelService>(HttpClient => HttpClient.BaseAddress = new Uri(configuration.GetValue<string>("WhiteLabel:BackOfficeApiUrl")));
 
         services.AddHealthChecks();
 
