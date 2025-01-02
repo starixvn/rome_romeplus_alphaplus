@@ -146,8 +146,8 @@
   </siteMapNode>
   <siteMapNode resourceKey="chatbot" url="/main/TelegramChatBot/Setup"></siteMapNode>
   <siteMapNode resourceKey="WhiteLabel" menuItemType="WhiteLabel" functionType="[E]">
-    <siteMapNode resourceKey="SignInS1BackOffice" menuItemType="WhiteLabelSignInBackOffice" />
-    <siteMapNode resourceKey="SettlementReport" url="/reports/WhiteLabel/Settlement" useDomainConfig="Report:Domain" />
+    <siteMapNode resourceKey="SignInS1BackOffice" menuItemType="WhiteLabelSignInBackOffice" roles="Agent" />
+    <siteMapNode resourceKey="SettlementReport" url="/reports/WhiteLabel/Settlement" />
   </siteMapNode>
   <siteMapNode resourceKey="SercurityCode" url="/main/Otp/SetupOtp" isNew="false"></siteMapNode>
   <siteMapNode resourceKey="BackupDomains" menuItemType="MemberInfoMenuItem" functionType="[H]" url="/features/backupdomains/index" isNew="true"></siteMapNode>

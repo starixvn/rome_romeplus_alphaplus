@@ -35,10 +35,12 @@ namespace AlphaPlus.Main.Site.Features.WhiteLabel
 
         private async Task<WhiteLabelSSOResponse> SendSSORequest(WhiteLabelSSORequest request)
         {
+            Console.WriteLine(JsonSerializer.Serialize(request));
             using var jsonContent = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
             using var response = await httpClient.PostAsync("Signin", jsonContent);
             response.EnsureSuccessStatusCode();
             var stringResponse = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(JsonSerializer.Serialize(stringResponse));
             return JsonSerializer.Deserialize<WhiteLabelSSOResponse>(stringResponse);
         }
 

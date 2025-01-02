@@ -52,8 +52,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                     return AppSettings.IsOfferedWhiteLabel(Current.Site)
                      && !Current.IsSubAcc
                      && !Current.IsInternal
-                     && !Current.IsIndirectLoggedIn
-                     && userLevel.IsAgentLevel();
+                     && !Current.IsIndirectLoggedIn;
                 })
         };
 
