@@ -115,6 +115,7 @@ namespace AlphaPlus.Main.Site.Features.Default
             };
         }
 
+        [AllowProtectedMode]
         public IActionResult Redirect() => View();
     }
 }

@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using AlphaPlus.Main.Site.Helpers;
 using AlphaPlus.Core.Helpers;
 using System.Net;
+using AlphaPlus.Core.Filters;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -31,7 +32,8 @@ public class AccountController(
     private readonly Core.Configurations.AuthorizationOptions options = options.Value;
 
     private const string SecretKey = "!@#$";
-
+    
+    [AllowProtectedMode]
     public IActionResult Login(string r = null)
     {
         var domains = DomainsHelper.DomainMappings;
@@ -47,12 +49,13 @@ public class AccountController(
         return result;
     }
 
+    [AllowProtectedMode]
     public IActionResult Logout(string r = null)
     {
         return Login(r);
     }
 
-    [Authorize]
+    [Authorize, AllowProtectedMode]
     public async Task<IActionResult> Logout2()
     {
         if (!options.DisabledCheckDuplicationLogin)
@@ -75,7 +78,7 @@ public class AccountController(
     }
 
     [HttpPost]
-    [Authorize]
+    [Authorize, AllowProtectedMode]
     public async Task<IActionResult> ReCheckIn(int onid)
     {
         var result = onid < 0 ? new ReCheckInResult { IsKickedOut = true } : await accountService.ReCheckIn(onid);
@@ -103,7 +106,7 @@ public class AccountController(
     }
 
 
-    [HttpGet]
+    [HttpGet, AllowProtectedMode]
     public async Task<IActionResult> SSO(string parameter)
     {
         var param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey));
@@ -144,7 +147,7 @@ public class AccountController(
         return Login(signInResult.Message);
     }
 
-    [HttpGet]
+    [HttpGet, AllowProtectedMode]
     public async Task<IActionResult> InternalLogin(string parameter)
     {
         var reqParam = aesService.Decrypt(parameter, SecretKey);
@@ -178,7 +181,7 @@ public class AccountController(
         return new EmptyResult();
     }
 
-    [HttpGet]
+    [HttpGet, AllowProtectedMode]
     public async Task<IActionResult> IndirectLogin(string parameter)
     {
         ClearSession();
