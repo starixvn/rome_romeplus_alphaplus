@@ -19,6 +19,14 @@
         {
             "Before": "bf8.playonesit.com",
             "After": "http://mb8.playonesit.com/ex-main/"
+        },
+        {
+            "Before": "alp3.playonesit.com",
+            "After": "http://mbp3.playonesit.com/main"
+        },
+        {
+            "Before": "alp4.playonesit.com",
+            "After": "http://mbp4.playonesit.com/main"
         }
     ]
 }

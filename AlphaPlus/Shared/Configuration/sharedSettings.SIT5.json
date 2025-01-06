@@ -24,7 +24,7 @@
         },
         {
             "Name": "DBBAH.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=172.16.40.6;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=172.16.40.5;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
@@ -49,7 +49,7 @@
         },
         {
             "Name": "DBONUSER.ON_USER.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=172.16.40.6;Initial Catalog=on_user;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "packet size=4096; Data Source=172.16.40.5;Initial Catalog=on_user;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
@@ -84,7 +84,7 @@
         },
         {
             "Name": "DBMSG.bodb_Message.wsv_alp",
-            "ConnectionString": "Data Source=172.16.40.13;Initial Catalog=bodb_message;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ConnectionString": "Data Source=172.16.40.8;Initial Catalog=bodb_message;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {

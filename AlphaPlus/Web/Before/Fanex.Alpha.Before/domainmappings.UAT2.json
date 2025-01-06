@@ -27,6 +27,22 @@
         {
             "Before": "ag7.gatonic.com",
             "After": "http://mbag7.gatonic.com/ex-main/"
+        },
+        {
+            "Before": "alp5.starixuat.com",
+            "After": "http://mbp5.starixuat.com/main"
+        },
+        {
+            "Before": "alp6.starixuat.com",
+            "After": "http://mbp6.starixuat.com/main"
+        },
+        {
+            "Before": "alp7.starixuat.com",
+            "After": "http://mbp7.starixuat.com/main"
+        },
+        {
+            "Before": "alp8.starixuat.com",
+            "After": "http://mbp8.starixuat.com/main"
         }
     ]
 }

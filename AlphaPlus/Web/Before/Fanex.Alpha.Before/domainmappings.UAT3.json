@@ -47,6 +47,14 @@
         {
             "Before": "ag1.gatonic.com",
             "After": "http://mbag1.gatonic.com/ex-main/"
+        },
+        {
+            "Before": "alp9.starixuat.com",
+            "After": "http://mbp9.starixuat.com/main"
+        },
+        {
+            "Before": "alp10.starixuat.com",
+            "After": "http://mbp10.starixuat.com/main"
         }
     ]
 }
