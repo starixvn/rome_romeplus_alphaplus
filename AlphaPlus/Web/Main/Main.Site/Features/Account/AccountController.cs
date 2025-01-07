@@ -13,6 +13,7 @@ using AlphaPlus.Main.Site.Helpers;
 using AlphaPlus.Core.Helpers;
 using System.Net;
 using AlphaPlus.Core.Filters;
+using System.Globalization;
 
 namespace AlphaPlus.Main.Site.Features.Account;
 
@@ -39,7 +40,7 @@ public class AccountController(
         var domains = DomainsHelper.DomainMappings;
         var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
         var loginResultMessage = $"{WebUtility.UrlEncode(string.Equals(r, "SessionExpired", StringComparison.OrdinalIgnoreCase) ?
-            Resources.SessionExpired : r ?? string.Empty)}";
+            Resources.ResourceManager.GetString("SessionExpired", new CultureInfo(Request.Cookies["LANGUAGE"] ?? "en-US")) : r ?? string.Empty)}";
 
         loginResultMessage = string.IsNullOrWhiteSpace(loginResultMessage) ? string.Empty : $"?r={loginResultMessage}";
 
