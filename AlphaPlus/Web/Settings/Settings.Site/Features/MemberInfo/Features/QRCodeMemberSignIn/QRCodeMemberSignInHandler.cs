@@ -167,7 +167,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
                     });
                 }
 
-                var config = qrCodeLoginConfigsHelper.GetQRCodeMemberSiteLoginConfigs();
+                var config = await qrCodeLoginConfigsHelper.GetQRCodeMemberSiteLoginConfigs();
                 var link = await qrCodeAdapter.CreateMobileLoginUrl(
                          qrCodeLoginConfigsHelper.LocalTest(),
                         config.Domains[0],
@@ -197,7 +197,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
         {
             if (qrCodeMemberSignInService.IsNotFirstLoginByQRCode(message.SearchAccountId))
             {
-                var config = qrCodeLoginConfigsHelper.GetQRCodeMemberSiteLoginConfigs();
+                var config = await qrCodeLoginConfigsHelper.GetQRCodeMemberSiteLoginConfigs();
 
                 var link = await qrCodeAdapter.CreateMobileLoginUrl(
                     qrCodeLoginConfigsHelper.LocalTest(),

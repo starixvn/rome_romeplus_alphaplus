@@ -247,10 +247,6 @@
     "QRCode": {
         "API": "http://account-service-credit.membersite-service.t2p.nebula.prod:22080/Login/",
         "Domains": [
-            "https://www.viva88.net/api",
-            "https://www.viva88.com/api",
-            "https://www.sporty88.com/api",
-            "https://www.viva24x7.com/api"
         ],
         "SiteId": 4120,
         "ExpireSeconds": 900

@@ -19,6 +19,7 @@ COPY "AlphaPlus/Services/Settings/Transfers/Transfer.API/Transfer.API.csproj" "A
 COPY "AlphaPlus/Services/Settings/Viewlogs/ViewLog.API/ViewLog.API.csproj" "AlphaPlus/Services/Settings/Viewlogs/ViewLog.API/ViewLog.API.csproj"
 COPY "AlphaPlus/Services/Settings/MemberInfo/MemberInfo.API/MemberInfo.API.csproj" "AlphaPlus/Services/Settings/MemberInfo/MemberInfo.API/MemberInfo.API.csproj"
 COPY "AlphaPlus/Services/Settings/MemberInfo/MemberInfo.Domain/MemberInfo.Domain.csproj" "AlphaPlus/Services/Settings/MemberInfo/MemberInfo.Domain/MemberInfo.Domain.csproj"
+COPY "AlphaPlus/Services/Features/Messages/Messages.API.csproj" "AlphaPlus/Services/Features/Messages/Messages.API.csproj"
 
 COPY "AlphaPlus/Web/Settings/Settings.Site/Settings.Site.csproj" "AlphaPlus/Web/Settings/Settings.Site/Settings.Site.csproj"
 
@@ -35,6 +36,7 @@ COPY "AlphaPlus/Modules/AlphaPlus.RequestInfo" "AlphaPlus/Modules/AlphaPlus.Requ
 COPY "AlphaPlus/Modules/AlphaPlus.Core" "AlphaPlus/Modules/AlphaPlus.Core"
 COPY "AlphaPlus/Modules/AlphaPlus.SecurityCode" "AlphaPlus/Modules/AlphaPlus.SecurityCode"
 COPY "AlphaPlus/Services/Settings" "AlphaPlus/Services/Settings"
+COPY "AlphaPlus/Services/Features/Messages" "AlphaPlus/Services/Features/Messages"
 
 COPY "AlphaPlus/Web/Settings" "AlphaPlus/Web/Settings"
 

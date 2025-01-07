@@ -3,17 +3,32 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
 {
     using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
     using AlphaPlus.Core.Configurations;
+    using AlphaPlus.Features.Messages.API.Services;
+    using AlphaPlus.Core.Models;
 
     public interface QRCodeLoginConfigsHelper
     {
-        QRCodeLoginConfigs GetQRCodeMemberSiteLoginConfigs();
+        Task<QRCodeLoginConfigs> GetQRCodeMemberSiteLoginConfigs();
 
         bool LocalTest();
     }
 
-    public class QRCodeLoginConfigsHelperImpl : QRCodeLoginConfigsHelper
+    public class QRCodeLoginConfigsHelperImpl(BackupDomainsService backupDomainsService, IUserSession userSession) : QRCodeLoginConfigsHelper
     {
-        public QRCodeLoginConfigs GetQRCodeMemberSiteLoginConfigs() => ConfigurationManager.GetSection<QRCodeLoginConfigs>("QRCode");
+        private readonly BackupDomainsService backupDomainsService = backupDomainsService;
+
+        private readonly IUserSession userSession = userSession;
+
+        public async Task<QRCodeLoginConfigs> GetQRCodeMemberSiteLoginConfigs()
+        {
+            var backupDomains = await backupDomainsService.GetBackupDomains(userSession.Site);
+            var domains = backupDomains.Where(x => !x.IsAgency).Select(x => $"www.{x.Domain}/api").ToArray();
+            var config = ConfigurationManager.GetSection<QRCodeLoginConfigs>("QRCode");
+
+            config.Domains = domains;
+
+            return config;
+        }
 
         public bool LocalTest() => Core.Configurations.AppSettings.LocalTest;
     }

@@ -80,5 +80,6 @@
     <ProjectReference Include="..\..\..\Services\Settings\Viewlogs\ViewLog.API\ViewLog.API.csproj" />
     <ProjectReference Include="..\..\..\Services\Settings\Transfers\Transfer.API\Transfer.API.csproj" />
     <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
+    <ProjectReference Include="..\..\..\Services\Features\Messages\Messages.API.csproj" />
   </ItemGroup>
 </Project>

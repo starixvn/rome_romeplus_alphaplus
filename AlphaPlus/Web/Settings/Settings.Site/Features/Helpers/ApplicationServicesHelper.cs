@@ -62,6 +62,7 @@ using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.BettingStatistic;
 using AlphaPlus.Settings.Site.Features.MemberBettingBehavior.Profile;
 using AlphaPlus.Settings.Transfer.API.Helpers;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
+using AlphaPlus.Features.Messages.API.Services;
 
 namespace AlphaPlus.Settings.Site.Features.Helpers
 {
@@ -186,7 +187,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<CreditBalanceService, CreditBalanceServiceImpl>();
 
             services
-                .AddSingleton<IProductService, ProductService>()
+                .AddSingleton<IProductService, Settings.MemberInfo.API.Features.Shared.ProductService>()
                 .AddSingleton<IAccountService, AccountService>()
                 .AddSingleton<ICommissionService, CommissionService>()
                 .AddSingleton<WinLossLimitService, WinLossLimitServiceImpl>();
@@ -200,7 +201,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<LogDataAccess, LogDataAccessImpl>()
                 .AddScoped<ViewLogIPService, ViewLogIPServiceImpl>()
                 .AddScoped<RemotingRefWrapper, RemotingRefWrapperImpl>()
-                .AddScoped<Settings.ViewLogs.API.Services.CustomerService, CustomerServiceImpl>()
+                .AddScoped<Settings.ViewLogs.API.Services.CustomerService, Settings.ViewLogs.API.Services.Impl.CustomerServiceImpl>()
                 .AddKeyedScoped<LogService, SettingServiceImpl>("settingLogSvc")
                 .AddKeyedScoped<LogService, StatusServiceImpl>("statusLogSvc")
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")
@@ -223,6 +224,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
             CacheRefServiceHelper.Instance = serviceProvider.GetRequiredService<IRemotingRefService>();
 
             services
+                .AddSingleton<BackupDomainsService, BackupDomainsServiceImpl>()
                 .AddSingleton<QRCodeLoginConfigsHelper, QRCodeLoginConfigsHelperImpl>()
                 .AddSingleton<IMemberBettingBehaviorWorkbook, MemberBettingBehaviorWorkbook>()
                 .AddSingleton<IMemberBettingStatisticService, MemberBettingStatisticService>()

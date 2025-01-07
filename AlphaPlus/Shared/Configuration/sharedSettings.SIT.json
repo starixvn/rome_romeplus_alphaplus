@@ -253,7 +253,6 @@
     "QRCode": {
         "API": "http://account-service-001.membersite-service.k8s.nebula.sit/Login",
         "Domains": [
-            "https://qa005.playonesit.com/api"
         ],
         "SiteId": 4120,
         "ExpireSeconds": 900

@@ -253,10 +253,6 @@
     "QRCode": {
         "API": "http://account-service-credit.membersite-service.t2p.nebula.prod:22080/Login/",
         "Domains": [
-            "https://www.bettha88.com/api",
-            "https://www.bettha88.net/api",
-            "https://www.bettha8.com/api",
-            "https://www.bettha8.net/api"
         ],
         "SiteId": 4120,
         "ExpireSeconds": 900

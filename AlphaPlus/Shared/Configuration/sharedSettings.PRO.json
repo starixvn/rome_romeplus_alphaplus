@@ -253,10 +253,6 @@
     "QRCode": {
         "API": "http://account-service-credit.membersite-service.t2p.nebula.prod:22080/Login/",
         "Domains": [
-            "https://www.nova88.com/api",
-            "https://www.starbook88.com/api",
-            "https://www.newbook88.com/api",
-            "https://www.webook88.com/api"
         ],
         "SiteId": 4120,
         "ExpireSeconds": 900
