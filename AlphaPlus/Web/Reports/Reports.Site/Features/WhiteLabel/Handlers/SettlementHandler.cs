@@ -20,7 +20,10 @@ public class SettlementHandler(IWhiteLabelService whiteLabelService, ISettlement
         if (message.ViewerLevel.IsNotAgentLevel())
         {
             whiteLabels = await whiteLabelService.GetWhiteLabels(message.ViewerId, message.Site);
-            message.WhiteLabels = whiteLabels.Select(wl => wl.Id).JoinWithComma();
+            if (string.IsNullOrWhiteSpace(message.WhiteLabels))
+            {
+                message.WhiteLabels = whiteLabels.Select(wl => wl.Id).JoinWithComma();
+            }
         }
 
         var settlement = await GetSettlement(message);

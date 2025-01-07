@@ -1108,9 +1108,6 @@
   <data name="Statement_WinLoss" xml:space="preserve">
     <value>Thắng thua</value>
   </data>
-  <data name="ProductWinLossAnalysis" xml:space="preserve">
-    <value>การวิเคราะห์ ผลแพ้ชนะตามผลิตภัณฑ์</value>
-  </data>
   <data name="Reward" xml:space="preserve">
     <value>Tiền thưởng</value>
   </data>
