@@ -22,7 +22,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
         {
             var generator = new QRCodeGenerator();
             var qrCodeData = generator.CreateQrCode(new Url(url));
-            var graphic = new PngByteQRCode(qrCodeData).GetGraphic(1);
+            var graphic = new PngByteQRCode(qrCodeData).GetGraphic(4);
             
             return $"data:image/png;base64,{Convert.ToBase64String(graphic.ToArray())}";
         }
