@@ -5,6 +5,7 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.Core;
 using AlphaPlus.Core.Models;
 using UserLevel = AlphaPlus.Features.Messages.API.Models.Constants.UserLevel;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace AlphaPlus.Features.Site.Messages.Controllers
 {
@@ -24,11 +25,14 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
 
         private readonly string baseDirectory;
 
-        public StaticMessageController(ResourceManager resourceManager, IUserSession userSession)
+        private readonly IRazorViewEngine razorViewEngine;
+
+        public StaticMessageController(ResourceManager resourceManager, IUserSession userSession, IRazorViewEngine razorViewEngine)
         {
             this.resourceManager = resourceManager;
             this.userSession = userSession;
             baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            this.razorViewEngine = razorViewEngine;
         }
 
         public ActionResult NewSportType()
@@ -40,14 +44,14 @@ namespace AlphaPlus.Features.Site.Messages.Controllers
         public ActionResult File(string id)
         {
             string viewName = $"{id}.{userSession.Language}";
-            if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{viewName}.cshtml"))
+            if (!razorViewEngine.GetView(baseDirectory, $"~/Views/StaticMessage/{viewName}.cshtml",  false).Success)
             {
                 viewName = $"{id}.en-US";
             }
 
-            if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{viewName}.cshtml"))
+            if (!razorViewEngine.GetView(baseDirectory, $"~/Views/StaticMessage/{viewName}.cshtml", false).Success)
             {
-                if (!System.IO.File.Exists($"{baseDirectory}/Views/StaticMessage/{id}.cshtml"))
+                if (!razorViewEngine.GetView(baseDirectory, $"~/Views/StaticMessage/{id}.cshtml", false).Success)
                 {
                     return new EmptyResult();
                 }
