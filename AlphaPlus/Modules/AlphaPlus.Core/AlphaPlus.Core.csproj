@@ -9,6 +9,9 @@
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="ONEbook.UM.AspNetCore" Version="3.1.0" />
+    <PackageReference Include="ONEbook.UM.AspNetCore.Filters" Version="3.1.0" />
+    <PackageReference Include="ONEbook.UM.Transport" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AlphaPlus.RequestInfo\AlphaPlus.RequestInfo.csproj" />

@@ -11,6 +11,12 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using ONEbook.UM.AspNetCore;
+using ONEbook.UM.AspNetCore.Filters;
+using ONEbook.UM.Configurations;
+using ONEbook.UM.Helpers;
+using ONEbook.UM.Services;
+using ONEbook.UM.Transport;
 using StackExchange.Redis;
 
 namespace AlphaPlus.Core.Extensions;
@@ -27,6 +33,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IRequestContext, RequestContext>();
         services.TryAddSingleton<INicknameChecker, NicknameChecker>();
         services.AddTransient<IAuthorizationService, AuthorizationService>();
+        services.AddONEbookUM(configuration);
 
         services.Configure<KestrelServerOptions>(options =>
         {
@@ -70,4 +77,17 @@ public static class ServiceCollectionExtensions
                 }
             };
         });
+
+    private static IServiceCollection AddONEbookUM(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddSingleton(new UMClientConfiguration().Initialize(configuration));
+        services.AddSingleton<CheckUMFilterAttribute>();
+        services.AddSingleton<IUMCacheService, MemoryUMCacheService>();
+        services.AddSingleton<IUMRestClient, UMRestClient>();
+        services.AddHttpContextAccessor();
+        services.AddSingleton<IHttpContextHelper, HttpContextHelper>();
+        services.AddSingleton<IMaintenanceService, MaintenanceService>();
+
+        return services;
+    }
 }
