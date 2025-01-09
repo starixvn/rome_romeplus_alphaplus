@@ -100,6 +100,26 @@ public static class AppSettings
     public static bool SupportedNewHandbook
         => MarketsSupportedNewHandbook.Contains("*") || MarketsSupportedNewHandbook.Contains(SiteLabel);
 
+    public static string SiteLabelHash
+    {
+        get
+        {
+            var siteLabel = SiteLabel.ToLowerInvariant();
+
+            switch (siteLabel)
+            {
+                case "mbc":
+                    return "cdkl";
+                case "789y":
+                    return "ahzk";
+                case "ibc":
+                    return "defg";
+                default:
+                    return "cdkl";
+            }
+        }
+    }
+
     private static HashSet<string> MarketsSupportedNewHandbook { get; } = new HashSet<string>(
         ConfigurationManager
             .GetValue<string>("MarketsSupportedNewHandbook")

@@ -2750,5 +2750,38 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("RewardReceivableTooltip", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to TakeATour.
+        /// </summary>
+        public static string TakeATour
+        {
+            get
+            {
+                return ResourceManager.GetString("TakeATour", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Page..
+        /// </summary>
+        public static string Page
+        {
+            get
+            {
+                return ResourceManager.GetString("Page", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to of.
+        /// </summary>
+        public static string of
+        {
+            get
+            {
+                return ResourceManager.GetString("of", resourceCulture);
+            }
+        }
     }
 }

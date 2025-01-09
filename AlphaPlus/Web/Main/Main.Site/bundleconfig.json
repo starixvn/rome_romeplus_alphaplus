@@ -334,6 +334,13 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/assets/bundles/tour/profile-picture-tour.js",
+    "inputFiles": [
+      "assets/scripts/tour/base-tour-controller.js",
+      "assets/scripts/tour/profile-picture-tour.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/assets/bundles/default-index-dark.css",
     "inputFiles": [
       "assets/styles/Home/page-dark.css",
@@ -462,6 +469,18 @@
     "outputFileName": "wwwroot/assets/bundles/whitelabel.css",
     "inputFiles": [
       "assets/styles/Home/whitelabel.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/tour/common-tour.css",
+    "inputFiles": [
+      "assets/styles/tour/common-tour.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/tour/common-tour-dark.css",
+    "inputFiles": [
+      "assets/styles/tour/common-tour-dark.css"
     ]
   }
 ]

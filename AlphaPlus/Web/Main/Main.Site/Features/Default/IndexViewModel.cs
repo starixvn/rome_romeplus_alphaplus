@@ -174,5 +174,7 @@ namespace AlphaPlus.Main.Site.Features.Default
         public string HightLightFeatureUrl => MicroSites.SettingUrl("~/Reward/Payment");
 
         public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
+
+        public string TourUrl => MicroSites.MainUrl("~/Tour/ProfilePicture");
     }
 }

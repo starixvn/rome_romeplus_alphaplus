@@ -59,10 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root"
-    xmlns=""
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -823,5 +820,14 @@
   </data>
   <data name="NotSetupWhiteLabelMessage" xml:space="preserve">
     <value>คุณยังไม่ได้ลงทะเบียนธุรกิจฉลากขาว โปรดติดต่อฝ่ายบริการลูกค้าของเราเพื่อขอความช่วยเหลือเพิ่มเติม</value>
+  </data>
+  <data name="TakeATour" xml:space="preserve">
+    <value>ดูรายละเอียด</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>หน้า</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>ของ</value>
   </data>
 </root>
