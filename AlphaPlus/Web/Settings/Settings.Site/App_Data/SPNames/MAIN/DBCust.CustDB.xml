@@ -33,8 +33,9 @@
   <Function Name="Create Member By QR Code">
     <Setting Key="Age_CustomerInsMember_Ag_CreditStatusSel" SpName="Age_CustomerInsMember_Ag_CreditStatusSel" DbName="DBCust.CustDB.wsv_alp">
       <Mapping DataField="RefCredit" ObjectProperty="Credit" />
-      <Mapping DataField="MaxCredit_Mem" ObjectProperty="CreditMax" />
+      <Mapping DataField="MaxCredit_Mem" ObjectProperty="MemberMaxCredit" />
       <Mapping DataField="MinCredit_Mem" ObjectProperty="CreditMin" />
+      <Mapping DataField="Credit_Ag_Bal" ObjectProperty="CreditMax" />
     </Setting>
     <Setting Key="Acc_CustomerSelEditCustomer" SpName="Acc_CustomerSelEditCustomer" DbName="DBCust.CustDB.wsv_alp" />
     <Setting Key="Acc_CustomerInsMember_Ag" SpName="Acc_CustomerInsMember_Ag" DbName="DBCust.CustDB.wsv_alp" />
