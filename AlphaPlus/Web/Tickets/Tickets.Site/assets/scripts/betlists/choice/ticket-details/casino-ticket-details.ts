@@ -963,6 +963,37 @@
         };
     }
 
+    export class PlayStarTicketDetails extends BaseTicketDetails {
+        private static instance: PlayStarTicketDetails;
+
+        public static get Instance() {
+            this.instance = Common.Utils.IsNullOrUndefinedOrEmpty(this.instance) ? new PlayStarTicketDetails() : this.instance;
+            return this.instance;
+        }
+
+        public ShowPlayStarBetDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
+            const params = '?refno=' + refNo
+                + '&custid=' + custId
+                + '&transType=' + transType
+                + '&sportName=PLAYSTAR&productId=91';
+
+            let width = 1500;
+            let roleId = Number(this.ViewerLevelId);
+
+            if (roleId <= 3) {
+                width -= 105;
+            }
+
+            if (roleId <= 2) {
+                width -= 105;
+            }
+
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}CasinoDetails/RNG${params}`,
+                'PLAYSTAR - Detailed Bet list - ' + winlossDate.toString().split(' ')[0], width, 800);
+        }
+    }
+
     export class GPIRNGTicketDetails extends BaseTicketDetails {
         private static instance: GPIRNGTicketDetails;
 
@@ -1077,6 +1108,7 @@ let showONLiveCasinoBetDetails: Function;
 let showPlaytechBetDetails: Function;
 let showGPIBetDetails: Function;
 let showGPILCBetDetails: Function;
+let showPlayStarBetDetails: Function;
 
 $(function () {
     showRnGCasinoDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowRnGCasinoDetails;
@@ -1126,4 +1158,5 @@ $(function () {
     showPlaytechBetDetails = BetList.Choice.TicketDetails.PlaytechTicketDetails.Instance.ShowPlaytechTicketDetails;
     showGPIBetDetails = BetList.Choice.TicketDetails.GPIRNGTicketDetails.Instance.ShowGPIBetDetails;
     showGPILCBetDetails = BetList.Choice.TicketDetails.GPILiveCasinoTicketDetails.Instance.ShowGPILCTicketDetails;
+    showPlayStarBetDetails = BetList.Choice.TicketDetails.PlayStarTicketDetails.Instance.ShowPlayStarBetDetails;
 });

@@ -118,4 +118,7 @@ public class ThirdPartyController(IMediator mediator) : ResultBaseController(med
         
     [AllowProtectedMode]
     public Task<IActionResult> GPILiveCasinoResult(GPILiveCasinoResultQuery message) => View(message, IndexView);
+
+     [AllowProtectedMode]
+    public Task<IActionResult> PlayStarResult(PlayStarResultQuery message) => View(message, IndexView);
 }

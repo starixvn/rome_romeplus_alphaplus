@@ -44,6 +44,7 @@
         private static playtechResult: ResultDetails;
         private static gpiResult: ResultDetails;
         private static gpiLCResult: ResultDetails;
+        private static playStarResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number): ResultDetails {
             if (
@@ -356,6 +357,13 @@
                     ? new GPILiveCasinoResultDetails()
                     : this.gpiLCResult;
                 return this.gpiLCResult;
+            }
+
+            if (betTypeId >= 11600 && betTypeId <= 11699) {
+                this.playStarResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.playStarResult) 
+                    ? new PlayStarResultDetails() 
+                    : this.playStarResult;
+                return this.playStarResult;
             }
 
             this.sportsbookResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.sportsbookResult)
