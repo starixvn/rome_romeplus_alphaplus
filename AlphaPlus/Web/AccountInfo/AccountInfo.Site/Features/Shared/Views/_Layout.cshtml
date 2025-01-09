@@ -15,9 +15,11 @@
     <link rel="stylesheet" href="~/index.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/index2.css" asp-append-version="true" />
     @RenderSection("Styles", required: false)
+    @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagScript()
 </head>
 
 <body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+    @AlphaPlus.Core.Helpers.GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     <script type="module" src="~/react-tippy.js" asp-append-version="true"></script>

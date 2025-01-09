@@ -260,5 +260,6 @@
     "WhiteLabel": {
         "OfferedSites": "755555,BEST-ODDS",
         "BackOfficeApiUrl": "https://s1-alpha-api-service.playonesit.com/api/"
-    }
+    },
+    "OfferProfilePictureTour": true
 }
