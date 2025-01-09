@@ -59,8 +59,7 @@ else
         <div id="create-form">
             <div class="form-group">
                 <label>@Resources.InputExistingMemberAccount <span class="red">*</span></label>
-                <input type="text" name="UsernameCopyFrom" id="UsernameCopyFrom"
-                    placeholder="@Resources.UsernamePlaceHolder" value="@Model.MemberNameCopyFrom" />
+                <input type="text" name="UsernameCopyFrom" id="UsernameCopyFrom" placeholder="@Resources.UsernamePlaceHolder" value="@Model.MemberNameCopyFrom" />
                 <span id="icon-message-UsernameCopyFrom" />
             </div>
             <div class="form-group">
@@ -68,8 +67,7 @@ else
                 <input type="text" name="Credit" id="Credit" placeholder="@Resources.PleaseInputMemberCredit" value="" />
                 <span id="icon-message-credit"> </span>
                 <div id="credit-range" class="hidden">
-                    <span id="credit-min-label"></span> &lt;= @Resources.NewGivenCredit &lt;= <span
-                        id="credit-max-label"></span>
+                    @Resources.Min: <span id="credit-min-label"></span> - @Resources.Max: <span id="credit-max-label"></span> <span id="credit-hint-tooltip" class="hidden" data-toggle="tooltip" data-placement="bottom" title=""> <span class="icon-credit"></span> </span>
                 </div>
             </div>
             <div class="form-group" id="username-group">
@@ -78,22 +76,19 @@ else
                 <select id="FirstSuffix" name="FirstSuffix">
                     @foreach (var item in Model.NameSuffix)
                     {
-                        <option value="@item" @(Model.FirstChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item
-                        </option>
+                        <option value="@item" @(Model.FirstChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item</option>
                     }
                 </select>
                 <select id="SecondSuffix" name="SecondSuffix">
                     @foreach (var item in Model.NameSuffix)
                     {
-                        <option value="@item" @(Model.SecondChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item
-                        </option>
+                        <option value="@item" @(Model.SecondChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item</option>
                     }
                 </select>
                 <select id="ThirdSuffix" name="ThirdSuffix">
                     @foreach (var item in Model.NameSuffix)
                     {
-                        <option value="@item" @(Model.ThirdChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item
-                        </option>
+                        <option value="@item" @(Model.ThirdChar.Equals(item) ? "selected=\"selected\"" : string.Empty)> @item</option>
                     }
                 </select>
                 <span id="icon-message-username" class="icon-check" />
@@ -106,9 +101,12 @@ else
                 <button type="submit" class="btn-submit" id="btn-submit" disabled>@Resources.CreateAccount</button>
             </div>
         </div>
+        @Html.Hidden("CreditHint", Resources.creditHint)
+        @Html.Hidden("MemberMaxCreditHint", Resources.memberMaxCreditHint)
         <input type="hidden" id="MemberAccountIsInvalid" value="@Resources.MemberAccountIsInvalid" />
         <input type="hidden" id="UsernameIsInvalid" value="@Resources.UsernameIsInvalid" />
         <input type="hidden" id="CannotCreateClosedMemberQRCode" value="@Resources.CannotCreateClosedMemberQRCode" />
+        @Html.Hidden("Live", Resources.Live)
         @Html.HiddenFor(m => m.MemberNameCopyFrom)
         @Html.HiddenFor(m => m.ShowQRCodeLink)
         <input type="hidden" id="member-info-url" value="@MicroSites.SettingUrl()" />
