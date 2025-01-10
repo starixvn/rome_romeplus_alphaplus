@@ -241,7 +241,7 @@
     <value>今は違います</value>
   </data>
   <data name="Outright" xml:space="preserve">
-    <value>勝者予想</value>
+    <value>アウトライト</value>
   </data>
   <data name="ScoreMap" xml:space="preserve">
     <value>スコアマップ</value>
@@ -251,5 +251,44 @@
   </data>
   <data name="TotalBets" xml:space="preserve">
     <value>合計ベット</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>RNG キノ</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>ミックスパーレイ</value>
+  </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>アウトライト結果</value>
+  </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>システムパーレイ</value>
+  </data>
+  <data name="ViewDataFromDate" xml:space="preserve">
+    <value>{0} からレポートデータを表示できます。</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>リーグ</value>
+  </data>
+  <data name="ShowAllLeagues" xml:space="preserve">
+    <value>すべてのリーグ</value>
+  </data>
+  <data name="ThereIsNoData" xml:space="preserve">
+    <value>データがありません</value>
+  </data>
+  <data name="ShowAllLeaguesExcelTitle" xml:space="preserve">
+    <value>すべてのリーグを表示</value>
+  </data>
+  <data name="ConnectionFailedTo3rd" xml:space="preserve">
+    <value>{0} への接続に失敗しました</value>
+  </data>
+  <data name="ResultLinkText" xml:space="preserve">
+    <value>ここをクリックして {0} の結果を表示</value>
+  </data>
+  <data name="ResultPopupTitle" xml:space="preserve">
+    <value>{0} 結果</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>選択してください</value>
   </data>
 </root>

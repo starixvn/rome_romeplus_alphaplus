@@ -232,7 +232,7 @@
     <value>サスペンド済み</value>
   </data>
   <data name="ThereIsNoData" xml:space="preserve">
-    <value>情報がありません</value>
+    <value>データがありません</value>
   </data>
   <data name="UnconfirmedSetting" xml:space="preserve">
     <value>Unconfirmed Setting</value>

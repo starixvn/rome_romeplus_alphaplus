@@ -183,4 +183,22 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>해당 기능에 대한 권한이 없습니다.</value>
   </data>
+  <data name="Keno" xml:space="preserve">
+    <value>케노</value>
+  </data>
+  <data name="MixParlay" xml:space="preserve">
+    <value>혼합 조합</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>일반</value>
+  </data>
+  <data name="OutrightResults" xml:space="preserve">
+    <value>기타 배팅 결과보기</value>
+  </data>
+  <data name="SystemParlay" xml:space="preserve">
+    <value>시스템 팔레이</value>
+  </data>
+  <data name="ViewDataFromDate" xml:space="preserve">
+    <value>You can view the report data from {0}.</value>
+  </data>
 </root>

@@ -235,7 +235,7 @@
     <value>ミックスパーレー</value>
   </data>
   <data name="lblSystemParlay" xml:space="preserve">
-    <value>System Parlay</value>
+    <value>システムパーレイ</value>
   </data>
   <data name="lblWinLoss" xml:space="preserve">
     <value>勝ち負け</value>
@@ -485,5 +485,8 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>はい</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>選択してください</value>
   </data>
 </root>

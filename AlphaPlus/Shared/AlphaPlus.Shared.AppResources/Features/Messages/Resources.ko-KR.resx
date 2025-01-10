@@ -189,4 +189,7 @@
   <data name="Status" xml:space="preserve">
     <value>상황</value>
   </data>
+  <data name="normal" xml:space="preserve">
+    <value>일반</value>
+  </data>
 </root>
