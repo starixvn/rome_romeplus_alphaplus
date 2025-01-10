@@ -227,7 +227,7 @@
     "OfferClearGivenCredit:Sites": "KORIBC,INDO",
     "IndirectLogin": {
         "AllowSuperIds": "*",
-        "URL": "https://idp2.gatonic.com/main/Account/IndirectLogin"
+        "URL": "https://mb2.wi43ver.com/main/Account/IndirectLogin"
     },
     "ProtectedMode": {
         "OfferSites": "*"
