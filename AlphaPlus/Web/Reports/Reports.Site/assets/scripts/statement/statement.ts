@@ -29,6 +29,8 @@ class StatementView extends BaseReport {
     }
 
     init() {
+        alphaReports.screenSmallThan768() && super.hideFilter();
+
         this.cacheElements();
         this.dateRangePickerComponent.render(
             new DateRangePickerOption(undefined, undefined, undefined, () => $('#PageIndex').val('1'))
