@@ -64,6 +64,7 @@ public class WinLossHandler(
             message.ToDate,
             validUserSelectedProductIds,
             productDetailXml,
+            message.LevelType,
             message.Site);
 
         return winlossService.GetWinLoss(param);

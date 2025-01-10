@@ -15,6 +15,7 @@ public class ConsolidationDetailViewModel(
     EnteredResultSport totalEnteredResults,
     ReportData<WinLossDetailModel> reportData) : DrillDownableViewModel<WinLossDetailModel>(
         message,
+        message.LevelType,
         new PageHeaderViewModel(
             Title: Resources.Consolidation,
             HasStackIcon: true,

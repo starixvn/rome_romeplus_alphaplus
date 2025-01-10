@@ -1236,4 +1236,13 @@
   <data name="SportsbookRiskAmount" xml:space="preserve">
     <value>Sportsbook Risk Amount</value>
   </data>
+  <data name="DirectMember" xml:space="preserve">
+    <value>Direct Member</value>
+  </data>
+  <data name="MasterAgent" xml:space="preserve">
+    <value>Master Agent</value>
+  </data>
+  <data name="DownlineTotal" xml:space="preserve">
+    <value>Downline Total</value>
+  </data>
 </root>

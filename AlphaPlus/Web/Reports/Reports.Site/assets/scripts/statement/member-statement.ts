@@ -2,11 +2,11 @@
 /// <reference path="../base-report.ts" />
 /// <reference path="../components/daterangepicker.ts" />
 /// <reference path="../components/client-pager.ts" />
-/// <reference path="../components/single-selection-dropdown.ts" />
+/// <reference path="../components/single-dropdown.ts" />
 /// <reference path="statement.ts" />
 
 class MemberStatementView extends StatementView {
-    reportTypeComponent: SingleSelectionDropdownComponent;
+    reportTypeComponent: SingleDropdownComponent;
     transactionType = {
         WinLoss: 1,
         VoidCancelled: 2,
@@ -20,7 +20,7 @@ class MemberStatementView extends StatementView {
         dateRangePickerComponent: DateRangePickerComponent,
         pagerComponent: ClientPagerComponent,
         topWindow: any,
-        reportTypeComponent: SingleSelectionDropdownComponent,
+        reportTypeComponent: SingleDropdownComponent,
         windowLocation: any
     ) {
         super(dateRangePickerComponent, pagerComponent, topWindow);
@@ -33,13 +33,13 @@ class MemberStatementView extends StatementView {
         $.blockUI();
 
         super.init();
-
-        const reportTypeComponentOption = new SingleSelectionDropdownOption(
-            'dropdown-report-type',
-            'ReportType',
-            this.changeReportType
-        );
-        this.reportTypeComponent.render(reportTypeComponentOption);
+        this.reportTypeComponent.render({
+            dropdownId: 'dropdown-report-type',
+            onChange: ($option: JQuery) => {
+                $.blockUI();
+                this.windowLocation.href = $option.data('url');
+            }
+        });
 
         $.unblockUI();
     }
@@ -63,11 +63,6 @@ class MemberStatementView extends StatementView {
         });
     }
 
-    changeReportType = () => {
-        const url = this.reportTypeComponent.$dropdown.find('option:selected').data('url');
-        this.windowLocation.href = url;
-    };
-
     viewBetList = (element: JQuery, transactionType: number) => {
         const param = {
             CustId: this.custId,
@@ -86,7 +81,7 @@ $(function () {
         new DateRangePickerComponent(),
         new ClientPagerComponent(),
         window.top,
-        new SingleSelectionDropdownComponent(),
+        new SingleDropdownComponent(),
         window.location
     ).init();
 });

@@ -15,6 +15,7 @@ interface StoreJSStatic {
 }
 
 interface Window {
+    $: JQueryStatic;
     indexManager: any;
     alpha: any;
 }

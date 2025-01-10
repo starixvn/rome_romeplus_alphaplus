@@ -1,4 +1,3 @@
-using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Reports.Features.Outstanding;
 using AlphaPlus.Reports.Features.Shared.Models;
@@ -15,16 +14,16 @@ public class OutstandingViewModel(
     ProductMultiSelectionViewModel productViewModel,
     bool isMobile) : DrillDownableViewModel<OutstandingModel>(
         message,
+        message.LevelType,
         new PageHeaderViewModel(
             Title: BuildTitle(message.CustLevel.GetDirectDownLineLevel()),
             IsFilterVisible: message.IsFilterVisible,
             BreadcrumbLevel: BuildBreadcrumbViewModel(message)),
         reportData,
         message.SortPropertyName,
-        message.DescendingSort)
+        message.DescendingSort,
+        betListPath: "~/RunningBetList/Index")
 {
-    private static string BetListPath = MicroSites.TicketUrl("~/RunningBetList/Index");
-
     public UserLevel ReportLevel { get; } = message.CustLevel.GetDirectDownLineLevel();
 
     public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
@@ -59,16 +58,11 @@ public class OutstandingViewModel(
         }
     }
 
-    public string GetBetListUrl(int custId, string custName)
+    protected override IDictionary<string, string> AddMoreBetListParams(IDictionary<string, string> queryParams)
     {
-        var queryString = QueryString.Create(
-        [
-            KeyValuePair.Create(nameof(custId), custId.ToString()),
-            KeyValuePair.Create(nameof(custName), custName),
-            KeyValuePair.Create("GetAll", "true"),
-            KeyValuePair.Create("ProductIds", ProductViewModel.UserSelectedProductIds)
-        ]);
+        queryParams["GetAll"] = "true";
+        queryParams["ProductIds"] = ProductViewModel.UserSelectedProductIds;
 
-        return $"{BetListPath}{queryString}";
+        return queryParams;
     }
 }

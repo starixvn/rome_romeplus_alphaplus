@@ -17,7 +17,7 @@
         <td>@commission.CasinoComm.FormatNumber()</td>
     }
 
-    var sortIndex = 4;
+    var colindex = 0;
 }
 @section Scripts {
     <script src="~/bundles/commissionbybettype/commissionbybettype.js" asp-append-version="true"></script>
@@ -26,13 +26,17 @@
 <report-title model="Model.PageHeader" />
 <form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form">
+    @if (Model.ShowLevelType)
+    {
+        <level-type custlevel="@Model.CustLevel" selected-value="@Model.LevelType" />
+    }
     <daterange-picker model="Model.DateRangePicker" />
     <div class="form-group hide">
         <span id="icon-information" class="icon-information-outline"></span>
     </div>
     <div class="form-group">
         <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
-            asp-all-route-data="@Model.GetExcelParams()"></a>
+            asp-all-route-data="@Model.BuildExcelParams()"></a>
     </div>
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
@@ -48,11 +52,15 @@
     data-todate="@Model.DateRangePicker.ToDate" style="visibility:hidden">
     <thead class="tableFloatingHeaderOriginal">
         <tr>
-            <th class="sorting" data-colindex="0" data-sortedname="CustName">@Resources.Username</th>
-            <th class="sorting" data-colindex="1" data-sortedname="Comm1">@Resources.Commission1</th>
-            <th class="sorting" data-colindex="2" data-sortedname="Comm2">@Resources.Commission2</th>
-            <th class="sorting" data-colindex="3" data-sortedname="Comm3">@Resources.Commission3</th>
-            <th class="sorting" data-colindex="@sortIndex" data-sortedname="CasinoComm">@Resources.Gaming</th>
+            <th class="sorting" data-colindex="@(colindex++)" data-sortedname="CustName">@Resources.Username</th>
+            @if (Model.ShowLevelType)
+            {
+                <th class="sorting" data-colindex="@(colindex++)" data-sortedname="IsDirectMember">@Resources.Level</th>
+            }
+            <th class="sorting" data-colindex="@(colindex++)" data-sortedname="Comm1">@Resources.Commission1</th>
+            <th class="sorting" data-colindex="@(colindex++)" data-sortedname="Comm2">@Resources.Commission2</th>
+            <th class="sorting" data-colindex="@(colindex++)" data-sortedname="Comm3">@Resources.Commission3</th>
+            <th class="sorting" data-colindex="@(colindex++)" data-sortedname="CasinoComm">@Resources.Gaming</th>
         </tr>
     </thead>
     @if (Model.ReportData.HasData)
@@ -63,7 +71,7 @@
             {
                 <tr>
                     <td class="text-left" data-sortedvalue="@commission.CustName">
-                        @if (isAgentLevel)
+                        @if (isAgentLevel || commission.IsDirectMember)
                         {
                             @:@commission.CustName
                         }
@@ -75,6 +83,10 @@
                         }
                     </td>
                     @{
+                        if (Model.ShowLevelType)
+                        {
+                            <td class="text-center">@(commission.IsDirectMember ? Resources.DirectMember : Model.LevelTypeValue)</td>
+                        }
                         RenderCellValue(commission);
                     }
                 </tr>
@@ -84,6 +96,10 @@
             <tr class="tbl-footer">
                 <td class="text-left">@Resources.Total</td>
                 @{
+                    if (Model.ShowLevelType)
+                    {
+                        <td></td>
+                    }
                     RenderCellValue(Model.ReportData.Total);
                 }
             </tr>

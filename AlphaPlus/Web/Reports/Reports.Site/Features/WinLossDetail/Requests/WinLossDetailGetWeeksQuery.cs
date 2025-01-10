@@ -18,6 +18,8 @@ public class WinLossDetailGetWeeksQuery : ProductDetailDateRangeQuery, IRequest<
 
     public DateTime? WeekToDate { get; set; }
 
+    public byte LevelType { get; set; }
+
     public override bool IsValid()
         => CustLevel.IsNotMemberLevel()
         && IsValidWeekRange()

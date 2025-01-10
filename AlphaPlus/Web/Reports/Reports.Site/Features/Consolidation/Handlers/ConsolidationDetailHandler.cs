@@ -63,7 +63,7 @@ public class ConsolidationDetailHandler(
     }
 
     private Task<ReportData<WinLossDetailModel>> GetWinLossDetail(
-        ConsolidationQuery message,
+        ConsolidationDetailQuery message,
         string validUserSelectedProductIds,
         string productDetailXml)
     {
@@ -76,6 +76,7 @@ public class ConsolidationDetailHandler(
             productDetailXml,
             Username: null,
             IsReward: false,
+            LevelType: message.LevelType,
             SiteName: message.Site);
 
         return winlossDetailService.GetWinLossDetail(param);

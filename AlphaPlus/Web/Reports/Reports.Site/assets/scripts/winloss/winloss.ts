@@ -2,6 +2,7 @@
     productComponent: ProductMultiSelectionComponent;
     dateRangePickerComponent: DateRangePickerComponent;
     monthPickerComponent: MonthPickerComponent;
+    levelTypeComponent: SingleDropdownComponent;
     sortComponent: SortComponent;
     reportTooltip: ReportTooltip;
 
@@ -12,6 +13,7 @@
         productComponent: ProductMultiSelectionComponent,
         dateRangePickerComponent: DateRangePickerComponent,
         monthPickerComponent: MonthPickerComponent,
+        levelTypeComponent: SingleDropdownComponent,
         sortComponent: SortComponent,
         reportTooltip: ReportTooltip
     ) {
@@ -20,6 +22,7 @@
         this.productComponent = productComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.monthPickerComponent = monthPickerComponent;
+        this.levelTypeComponent = levelTypeComponent;
         this.sortComponent = sortComponent;
         this.reportTooltip = reportTooltip;
     }
@@ -36,6 +39,7 @@
 
     initComponents() {
         this.productComponent.render();
+        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type' });
 
         if ($('#IsHistoricReport').val().toLowerCase() === 'true') {
             this.monthPickerComponent.render();
@@ -174,6 +178,7 @@ $(function () {
         new ProductMultiSelectionComponent(),
         new DateRangePickerComponent(),
         new MonthPickerComponent(),
+        new SingleDropdownComponent(),
         new SortComponent(),
         new ReportTooltip()
     ).init();

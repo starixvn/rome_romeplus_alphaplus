@@ -22,31 +22,42 @@ public class CommissionByBetTypeWorkbook(IWebHostEnvironment webHostEnvironment)
     {
         var fromDate = message.FromDate.ToShortDateWithSlash();
         var toDate = message.ToDate.ToShortDateWithSlash();
+        var custLevel = message.CustLevel;
+        var isAgentLevel = custLevel.IsAgentLevel();
+        var levelTypeValue = custLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent;
 
         var fileContent = UseTemplate(
             new TemplateInfo(
-                GetExcelTemplatePath(message.CustLevel.GetDirectDownLineLevel().DisplayName),
+                GetExcelTemplatePath(custLevel.GetDirectDownLineLevel().DisplayName),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: 3,
                 bodyEndIndex: 4))
             .Title($"{Resources.CommissionByBettype} {fromDate} --> {toDate}")
             .Header(Resources.ResourceManager.GetString)
-            .Body(reportData.DataSource, GetRowMapper())
-            .Footer(reportData.Total, GetRowMapper(true))
+            .Body(reportData.DataSource, isAgentLevel ? GetRowMapperMember() : GetRowMapper(levelTypeValue))
+            .Footer(reportData.Total, isAgentLevel ? GetRowMapperMember(isTotal: true) : GetRowMapper(levelTypeValue, isTotal: true))
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
         return new ExcelFileViewModel($"{Resources.CommissionByBettype}-{message.CustName}-{fromDate}-{toDate}", fileContent);
     }
 
-    private static Mapper<CommissionByBetTypeModel> GetRowMapper(bool isTotal = false)
+    private static Mapper<CommissionByBetTypeModel> GetRowMapper(string levelTypeValue, bool isTotal = false)
         => new Mapper<CommissionByBetTypeModel>()
-            .Map(A, commission => isTotal ? Resources.Total : commission.CustName)
-            .Map(B, commission => commission.Comm1)
-            .Map(C, commission => commission.Comm2)
-            .Map(D, commission => commission.Comm3)
-            .Map(E, commission => commission.CasinoComm);
+        .Map(A, commission => isTotal ? Resources.Total : commission.CustName)
+        .Map(B, commission => isTotal ? string.Empty : commission.IsDirectMember ? Resources.DirectMember : levelTypeValue)
+        .Map(C, commission => commission.Comm1)
+        .Map(D, commission => commission.Comm2)
+        .Map(E, commission => commission.Comm3)
+        .Map(F, commission => commission.CasinoComm);
 
+    private static Mapper<CommissionByBetTypeModel> GetRowMapperMember(bool isTotal = false)
+        => new Mapper<CommissionByBetTypeModel>()
+        .Map(A, commission => isTotal ? Resources.Total : commission.CustName)
+        .Map(B, commission => commission.Comm1)
+        .Map(C, commission => commission.Comm2)
+        .Map(D, commission => commission.Comm3)
+        .Map(E, commission => commission.CasinoComm);
 
     protected override void FillNoInfoRow(Sheet sheet)
     {

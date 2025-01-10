@@ -1,7 +1,7 @@
 ﻿/// <reference path="../core.ts" />
 /// <reference path="../components/daterangepicker.ts" />
 /// <reference path="../components/productmultiselection.ts" />
-/// <reference path="../components/single-selection-dropdown.ts" />
+/// <reference path="../components/single-dropdown.ts" />
 /// <reference path="../components/tooltip.ts" />
 /// <reference path="../base-report.ts" />
 

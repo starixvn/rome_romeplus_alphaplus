@@ -18,6 +18,7 @@
         "inputFiles": [
             "assets/scripts/core.js",
             "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/base-report.js",
             "assets/scripts/outstanding/outstanding.js"
         ]
@@ -55,6 +56,7 @@
             "assets/scripts/components/monthpicker.js",
             "assets/scripts/components/tooltip.js",
             "assets/scripts/components/productmultiselection.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/components/sort.js",
             "assets/scripts/base-report.js",
             "assets/scripts/winloss/winloss.js"
@@ -147,6 +149,7 @@
         "outputFileName": "wwwroot/bundles/commissionbybettype/commissionbybettype.js",
         "inputFiles": [
             "assets/scripts/core.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/sort.js",
             "assets/scripts/base-report.js",
@@ -207,7 +210,7 @@
             "assets/scripts/base-report.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/client-pager.js",
-            "assets/scripts/components/single-selection-dropdown.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/statement/statement-details.js",
             "assets/scripts/statement/statement.js",
             "assets/scripts/statement/member-statement.js"

@@ -1,20 +1,19 @@
-﻿interface Window {
-    $: JQueryStatic;
-}
-
-class OutstandingView extends BaseReport {
+﻿class OutstandingView extends BaseReport {
     productComponent: ProductMultiSelectionComponent;
+    levelTypeComponent: SingleDropdownComponent;
     displayOutstandingLevels: any;
     $dataTable: JQuery;
     isClickedCollapseExpandAll = false;
 
-    constructor(productComponent: ProductMultiSelectionComponent) {
+    constructor(productComponent: ProductMultiSelectionComponent, levelTypeComponent: SingleDropdownComponent) {
         super(false);
         this.productComponent = productComponent;
+        this.levelTypeComponent = levelTypeComponent;
     }
 
     init() {
         this.productComponent.render();
+        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type' });
 
         this.displayOutstandingLevels = JSON.parse($('#DisplayOutstandingLevelsJson').val());
         this.initDataTable();
@@ -212,5 +211,5 @@ class OutstandingView extends BaseReport {
 }
 
 $(function () {
-    new OutstandingView(new ProductMultiSelectionComponent()).init();
+    new OutstandingView(new ProductMultiSelectionComponent(), new SingleDropdownComponent()).init();
 });

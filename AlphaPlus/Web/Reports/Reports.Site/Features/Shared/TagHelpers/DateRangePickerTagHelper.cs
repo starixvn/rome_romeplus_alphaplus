@@ -26,7 +26,7 @@ public class DateRangePickerTagHelper : TagHelper
             .Append($"data-maxdate=\"{Model.MaxDate}\"></div>");
         sb
             .Append("<div class=\"form-group from-date-box\">")
-            .Append($"<label>{FromLabel ?? Resources.From}</label>")
+            .Append($"<label for=\"from-date\" class=\"label-form-control\">{FromLabel ?? Resources.From}</label>")
             .Append("<div class=\"control date\">")
             .Append("<div id=\"from-date-container\" class=\"input-group date fromdate\">")
             .Append("<input type=\"text\" id=\"from-date\" name=\"FromDate\" readonly=\"readonly\" autocomplete=\"off\" ")
@@ -36,7 +36,7 @@ public class DateRangePickerTagHelper : TagHelper
             .Append("</div></div></div>");
         sb
             .Append("<div class=\"form-group to-date-box\">")
-            .Append($"<label>{Resources.To}</label>")
+            .Append($"<label for=\"to-date\" class=\"label-form-control\">{Resources.To}</label>")
             .Append("<div class=\"control date\">")
             .Append("<div id=\"to-date-container\" class=\"input-group date todate\">")
             .Append("<input type=\"text\" id=\"to-date\" name=\"ToDate\" readonly=\"readonly\" autocomplete=\"off\" ")

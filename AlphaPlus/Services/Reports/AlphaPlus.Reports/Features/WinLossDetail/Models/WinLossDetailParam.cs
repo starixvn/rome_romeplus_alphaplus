@@ -11,4 +11,5 @@ public record WinLossDetailParam(
     string ProductDetailsXml,
     string Username,
     bool IsReward,
-    string SiteName) : WinLossParam(CustId, CustLevelId, FromDate, ToDate, ProductIds, ProductDetailsXml, SiteName);
+    byte LevelType,
+    string SiteName) : WinLossParam(CustId, CustLevelId, FromDate, ToDate, ProductIds, ProductDetailsXml, LevelType, SiteName);

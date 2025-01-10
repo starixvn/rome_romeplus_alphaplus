@@ -17,8 +17,6 @@ public class OutstandingHandler(
         BaseHandler(productService, options),
         IRequestHandler<OutstandingQuery, OutstandingViewModel>
 {
-
-
     private readonly IOutstandingService outstandingService = outstandingService;
     private readonly IBrowserHelper browserHelper = browserHelper;
 
@@ -29,6 +27,7 @@ public class OutstandingHandler(
             message.CustLevelId,
             message.CustId,
             productViewModel.UserSelectedProductIds,
+            message.LevelType,
             message.AutoFollowBetIsDummyAgent,
             message.Site);
         var reportData = await outstandingService.GetOutstanding(outstandingParam);
@@ -39,10 +38,9 @@ public class OutstandingHandler(
 
     protected override async Task<IEnumerable<Product>> GetProducts(BaseQuery message)
     {
-        var products = await base.GetProducts(message);
-
         // Always hide Saba Promotion in Product List
         const int SabaPromotionProductId = 37;
+        var products = await base.GetProducts(message);
 
         return products.Where(p => p.Id != SabaPromotionProductId);
     }

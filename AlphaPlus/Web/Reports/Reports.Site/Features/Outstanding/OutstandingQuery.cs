@@ -17,6 +17,8 @@ public class OutstandingQuery : BaseQuery, IRequest<OutstandingViewModel>
 
     public string UserSelectedProductIds { get; set; } = "*";
 
+    public byte LevelType { get; set; }
+
     public string SortPropertyName { get; set; } = nameof(OutstandingModel.CustName);
 
     public byte DescendingSort { get; set; }

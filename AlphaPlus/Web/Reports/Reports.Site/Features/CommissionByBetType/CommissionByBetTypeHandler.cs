@@ -36,6 +36,7 @@ public class CommissionByBetTypeHandler(
             message.CustId,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
             message.ToDate,
+            message.LevelType,
             message.Site);
 
         return commissionByBetTypeService.GetCommissionByBetTypes(param);

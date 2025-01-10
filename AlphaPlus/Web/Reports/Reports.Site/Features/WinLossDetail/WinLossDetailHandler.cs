@@ -110,7 +110,8 @@ public class WinLossDetailHandler(
             validUserSelectedProductIds,
             productDetailXml,
             message.Username,
-            true,
+            IsReward: true,
+            message.LevelType,
             message.Site);
 
         return winlossDetailService.GetWinLossDetail(param);

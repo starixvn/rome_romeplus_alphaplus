@@ -20,7 +20,7 @@ public class OutstandingService(
 
     public async Task<ReportData<OutstandingModel>> GetOutstanding(OutstandingParam param)
     {
-        var criteria = new OutstandingCriteria(param.CustLevelId, param.CustId, param.ProductIds);
+        var criteria = GetOutstandingCriteria(param);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var total = new OutstandingModel();
@@ -54,7 +54,7 @@ public class OutstandingService(
     {
         var (agentId, followBetAccountEntities) = followBetAccount;
         var outstandingModels = await repository.FetchAsync<OutstandingModel>(
-            new OutstandingCriteria(RoleIdConstants.Agent, agentId, productIds));
+            new OutstandingMemberCriteria(agentId, productIds));
 
         return outstandingModels.Join(
             followBetAccountEntities,
@@ -65,5 +65,20 @@ public class OutstandingService(
                 outstanding.CustName = account.DummyUsername;
                 return outstanding;
             });
+    }
+
+    private static ICriteria GetOutstandingCriteria(OutstandingParam param)
+    {
+        if (RoleIdConstants.IsAgentLevel(param.CustLevelId))
+        {
+            return new OutstandingMemberCriteria(param.CustId, param.ProductIds);
+        }
+
+        if (RoleIdConstants.IsMasterLevel(param.CustLevelId))
+        {
+            return new OutstandingAgentCriteria(param.CustId, param.ProductIds, param.LevelType);
+        }
+
+        return new OutstandingMasterCriteria(param.CustId, param.ProductIds, param.LevelType);
     }
 }

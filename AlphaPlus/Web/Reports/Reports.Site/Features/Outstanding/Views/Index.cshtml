@@ -59,6 +59,10 @@
 <form method="get" class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")"
     role="form" id="report-form">
     <product-multiselection model="@Model.ProductViewModel" />
+    @if (Model.ShowLevelType)
+    {
+        <level-type custlevel="@Model.CustLevel" selected-value="@Model.LevelType" />
+    }
     <div class="form-group last-group">
         <input type="submit" value="@Resources.Submit" class="btn-submit" />
     </div>
@@ -70,7 +74,7 @@
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
     <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
 </form>
-<div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "60%");">
+<div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "65%");">
     <table
         class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover display nowrap @(Model.ReportData.HasData ? "hide" : string.Empty)"
         style="width:100%" data-totalrecords="@Model.ReportData.TotalRecords"
@@ -79,6 +83,10 @@
         <thead>
             <tr>
                 <th data-priority="0"></th>
+                @if (Model.ShowLevelType)
+                {
+                    <th data-priority="@length"></th>
+                }
                 @{
                     for (var i = 1; i <= length; i++)
                     {
@@ -92,14 +100,14 @@
                 <th></th>
             </tr>
             <tr>
-                <th rowspan="2" class="header" data-name="CustName">
-                    @{
-                        DisplayUserLevelText(Model.ReportLevel);
-                    }
-                </th>
+                <th rowspan="2" class="header" data-name="CustName">@Resources.Username</th>
+                @if (Model.ShowLevelType)
+                {
+                    <th rowspan="2" class="header" data-name="IsDirectMember">@Resources.Level</th>
+                }
                 <th colspan="@length" class="header">@Resources.Outstanding</th>
                 <th colspan="2" class="header">@Resources.SportsbookRiskAmount</th>
-                <th class="header" rowspan="2"></th>
+                <th rowspan="2" class="header"></th>
             </tr>
             <tr class="thead-row2">
                 @{
@@ -129,10 +137,10 @@
                 {
                     <tr>
                         <td class="text-left" data-sortedvalue="@outstanding.CustName">
-                            @if (isAgentLevel)
+                            @if (isAgentLevel || outstanding.IsDirectMember)
                             {
                                 <a class="open-link"
-                                    data-url="@Model.GetBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
+                                    data-url="@Model.BuildBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
                             }
                             else
                             {
@@ -141,6 +149,10 @@
                                     data-custlevelid="@Model.DownlineLevelId">@outstanding.CustName</a>
                             }
                         </td>
+                        @if (Model.ShowLevelType)
+                        {
+                            <td class="text-center">@(outstanding.IsDirectMember ? Resources.DirectMember : Model.LevelTypeValue)</td>
+                        }
                         @{
                             RenderOutstandingCells(outstanding);
                         }
@@ -152,6 +164,10 @@
                 }
                 <tr class="tbl-footer">
                     <td class="text-left">@Resources.Total</td>
+                    @if (Model.ShowLevelType)
+                    {
+                        <td></td>
+                    }
                     @for (var i = 0; i < length; i++)
                     {
                         <td>

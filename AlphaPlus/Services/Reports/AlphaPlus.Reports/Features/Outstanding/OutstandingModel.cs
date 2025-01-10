@@ -21,6 +21,8 @@ public class OutstandingModel
     public decimal? MasterRisk { get; set; }
 
     public decimal? AgentRisk { get; set; }
+    
+    public bool IsDirectMember { get; set; }
 
     public static OutstandingModel operator +(OutstandingModel model1, OutstandingModel model2)
     {
