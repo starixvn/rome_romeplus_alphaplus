@@ -24,6 +24,8 @@ namespace Fanex.Alpha.Before.Services.SignIn
 {
     public interface ISignInService
     {
+        Task<int> CheckUsername(string username, HttpContext httpContext);
+
         SignInResult SignIn(HttpContext httpContext);
 
         Task<SignInResult> SignIn(SignInModel model, HttpContext httpContext);
@@ -39,7 +41,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private readonly CommonOptions commonOptions;
         private readonly AutomationTestOptions automationTestOptions;
         private readonly IPHelper ipHelper;
-        private readonly IPService ipService;
         private readonly IDynamicRepository repository;
         private readonly IDistributedCacheService cacheService;
         private readonly IRobotDetector robotDetector;
@@ -68,7 +69,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
             ICaptchaService captchaService,
             IKickoutCustomerService kickoutCustomerService,
             IDeviceHelper deviceHelper,
-            IPService ipService,
             INotificationService notificationService,
             IOptions<ThrottlePolicy> throttlePolicy,
             INetThrottler netThrottler,
@@ -80,7 +80,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
             this.automationTestOptions = automationTestOptions.Value;
             this.logger = logger;
             this.ipHelper = ipHelper;
-            this.ipService = ipService;
             this.repository = repository;
             this.cacheService = cacheService;
             this.robotDetector = robotDetector;
@@ -100,6 +99,15 @@ namespace Fanex.Alpha.Before.Services.SignIn
             {
                 _loginTheme = loginThemeOpt.EventTheme;
             }
+        }
+
+        public async Task<int> CheckUsername(string username, HttpContext httpContext)
+        {
+            var requestInfo = await deviceHelper.GetRequestInfo();
+            var command = new CheckUsernameCommand(username, requestInfo.LoginIp, requestInfo.LoginDomain);
+            await repository.ExecuteAsync(command);
+
+            return command.CustId;
         }
 
         public SignInResult SignIn(HttpContext httpContext)
