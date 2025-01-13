@@ -212,3 +212,8 @@ ul.multiselect-container {
         }
     }
 }
+.product-multiselect-long {
+    .dropdown-menu.multiselect-container{
+        min-width: 220px !important;
+    }
+}

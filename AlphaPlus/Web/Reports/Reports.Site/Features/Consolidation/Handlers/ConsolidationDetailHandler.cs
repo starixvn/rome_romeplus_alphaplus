@@ -76,8 +76,8 @@ public class ConsolidationDetailHandler(
             productDetailXml,
             Username: null,
             IsReward: false,
-            LevelType: message.LevelType,
-            SiteName: message.Site);
+            message.LevelType,
+            message.Site);
 
         return winlossDetailService.GetWinLossDetail(param);
     }

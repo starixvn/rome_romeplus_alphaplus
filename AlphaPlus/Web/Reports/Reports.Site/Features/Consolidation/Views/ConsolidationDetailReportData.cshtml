@@ -108,9 +108,7 @@
 <table
     class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
-    data-descendingsort="@Model.DescendingSort" data-productids="@Model.ProductViewModel.UserSelectedProductIds"
-    data-resourceids="@Model.ProductViewModel.UserSelectedResourceIds" data-fromdate="@Model.DateRangePicker.FromDate"
-    data-todate="@Model.DateRangePicker.ToDate" id="tbl-report" style="visibility:hidden">
+    data-descendingsort="@Model.DescendingSort" id="tbl-report" style="visibility:hidden">
     <thead>
         <tr>
             <th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0">@Resources.Username</th>

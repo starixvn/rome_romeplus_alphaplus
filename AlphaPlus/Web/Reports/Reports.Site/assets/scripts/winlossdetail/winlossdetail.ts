@@ -11,6 +11,7 @@ class WinLossDetailView extends BaseReportNew {
     private totalEnteredNonEnteredComponent: TotalEnteredNonEnteredComponent;
     private dateRangeComponent: DateRangePickerJQueryComponent;
     private productComponent: ProductDropdownComponent;
+    private levelTypeComponent: SingleDropdownComponent;
     private usernameSuggestionComponent: UsernameSuggestionComponent;
     private weekComponent: WeekComponent;
     private breadcrumbLevelComponent: BreadcrumbLevelComponent;
@@ -28,6 +29,7 @@ class WinLossDetailView extends BaseReportNew {
         totalEnteredNonEnteredComponent: TotalEnteredNonEnteredComponent,
         dateRangeComponent: DateRangePickerJQueryComponent,
         productComponent: ProductDropdownComponent,
+        levelTypeComponent: SingleDropdownComponent,
         usernameSuggestionComponent: UsernameSuggestionComponent,
         weekComponent: WeekComponent,
         breadcrumbLevelComponent: BreadcrumbLevelComponent,
@@ -38,6 +40,7 @@ class WinLossDetailView extends BaseReportNew {
         this.totalEnteredNonEnteredComponent = totalEnteredNonEnteredComponent;
         this.dateRangeComponent = dateRangeComponent;
         this.productComponent = productComponent;
+        this.levelTypeComponent = levelTypeComponent;
         this.usernameSuggestionComponent = usernameSuggestionComponent;
         this.weekComponent = weekComponent;
         this.breadcrumbLevelComponent = breadcrumbLevelComponent;
@@ -55,18 +58,23 @@ class WinLossDetailView extends BaseReportNew {
 
         this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getWinLossDetail() });
         this.productComponent.render(productList, productDetailList, () => this.getWinLossDetail());
+        this.levelTypeComponent.render({
+            dropdownId: 'dropdown-level-type',
+            hiddenInputId: 'level-type',
+            onChange: () => this.getWinLossDetail()
+        });
+        this.showHideLevelTypeFilter(this.globalFormData.custLevelId);
         this.usernameSuggestionComponent.init({
             onBlur: () => {
                 this.clearCurrentCust();
                 this.getWinLossDetail();
             }
         });
-        this.weekComponent.init($('#week-container'), (dateRange) => this.getData(dateRange, undefined, false));
+        this.weekComponent.init($('#week-container'), (dateRange) => this.getData(dateRange, false));
         this.breadcrumbLevelComponent.init((custInfo) => this.getWinLossDetailUpOrDownline(custInfo));
         this.winLossDetailColumns.init(() => this.updateQueryString());
         this.registerEvents();
-        $('#report-form').removeAttr('style');
-        this.$tblReportContainer.removeAttr('style');
+        $('.flex').removeAttr('style');
 
         const breadcrumbsJson = JSON.stringify(this.breadcrumbLevelComponent.getBreadcrumbs());
         $.extend(this.globalFormData, this.productComponent.getCheckedValues(), { breadcrumbsJson });
@@ -140,7 +148,7 @@ class WinLossDetailView extends BaseReportNew {
             .find('.icon-plus-box')
             .off('click')
             .click((e) => {
-                window.top['reloadMyWatchlistDataTable'] = () => this.getData(this.globalFormData, undefined, true);
+                window.top['reloadMyWatchlistDataTable'] = () => this.getData(this.globalFormData, true);
                 const custName = $(e.target).data('custname');
                 const url = `${$(
                     '#hidden-settingsUrl'
@@ -152,13 +160,19 @@ class WinLossDetailView extends BaseReportNew {
         this.winLossDetailColumns.showHideColumns(this.$tblReport);
     }
 
-    getWinLossDetail(isClearActiveWeek = true) {
-        isClearActiveWeek && this.clearActiveWeek();
+    getWinLossDetail() {
+        this.clearActiveWeek();
         const dateRange = this.dateRangeComponent.getDateRangeValues();
         const productsAndResources = this.productComponent.getCheckedValues();
-        const username = this.usernameSuggestionComponent.getUsername();
+        const others: any = {
+            username: this.usernameSuggestionComponent.getUsername()
+        };
+        const levelType = this.levelTypeComponent.getSelectedValue();
+        if (levelType) {
+            others.levelType = levelType;
+        }
 
-        const formData = $.extend({}, dateRange, productsAndResources, { username });
+        const formData = $.extend({}, dateRange, productsAndResources, others);
         if (
             formData.userSelectedProductIds.length === 0 ||
             formData.custLevelId > viewerLevelId ||
@@ -167,17 +181,18 @@ class WinLossDetailView extends BaseReportNew {
             return;
         }
 
-        this.getData(formData, undefined, true);
+        this.getData(formData, true);
     }
 
     getWinLossDetailUpOrDownline(custInfo) {
         this.clearUsername();
-        this.getData(custInfo, undefined, true);
+        this.getData(custInfo, true);
     }
 
-    getData(formData, callback: Function, isGetWeeks: boolean) {
+    getData(formData, isGetWeeks: boolean) {
         this.$tblReportContainer.block();
         this.isGettingData = true;
+        const currentCustLevelId = this.globalFormData.custLevelId;
         const queryStringObject = $.extend({}, this.globalFormData, formData);
         const queryString = $.param(queryStringObject);
         isGetWeeks && this.getWeeks(queryString);
@@ -186,8 +201,7 @@ class WinLossDetailView extends BaseReportNew {
             this.$tblReportContainer.html(html);
             this.$tblReport = this.$tblReportContainer.find('#tbl-report');
             this.getDataSuccess();
-            this.updateReportTitle();
-            callback && callback();
+            this.changeReportTitleAndLevelTypeFilter(currentCustLevelId);
             this.globalFormData = queryStringObject;
             this.updateQueryString(queryString);
             this.isGettingData = false;
@@ -212,10 +226,13 @@ class WinLossDetailView extends BaseReportNew {
         this.totalEnteredNonEnteredComponent.render(JSON.parse($('#hidden-totalEnteredResultsJson').val()));
     }
 
-    private updateReportTitle() {
-        const custLevelId = $('#hidden-custLevelId').val();
-        const titleText = $(`#hidden-titleText${custLevelId}`).val();
-        this.$reportTitle.text(titleText);
+    private changeReportTitleAndLevelTypeFilter(currentCustLevelId: number) {
+        const custLevelId = +$('#hidden-custLevelId').val();
+        if (currentCustLevelId !== custLevelId) {
+            const titleText = $(`#hidden-titleText${custLevelId}`).val();
+            this.$reportTitle.text(titleText);
+            this.showHideLevelTypeFilter(custLevelId);
+        }
     }
 
     private updateQueryString(queryString: string = undefined) {
@@ -269,6 +286,38 @@ class WinLossDetailView extends BaseReportNew {
 
         return this.sortColumnIndex;
     }
+
+    private showHideLevelTypeFilter(custLevelId: number) {
+        const levelTypeDropdownContainer = this.levelTypeComponent.$dropdown.closest('.level-type-multiselect');
+
+        if (custLevelId === 2) {
+            levelTypeDropdownContainer.hide();
+        } else if (custLevelId === 3 || custLevelId === 4) {
+            const masterAgentText = $(`#hidden-masterAgentText${custLevelId}`).val();
+            if (this.levelTypeComponent.getSelectedValue() === '1') {
+                // update button text
+                levelTypeDropdownContainer.find('.multiselect-selected-text').text(masterAgentText);
+            }
+
+            // update option text
+            this.levelTypeComponent.$dropdown.find('option[value="1"]').text(masterAgentText);
+
+            // update dropdown text
+            const label = levelTypeDropdownContainer
+                .find('.dropdown-menu')
+                .find('input[type="radio"][value="1"]')
+                .parent();
+            label
+                .contents()
+                .filter(function () {
+                    return this.nodeType === 3; /* Node type 3 is a text node */
+                })
+                .first()
+                .replaceWith(masterAgentText);
+
+            levelTypeDropdownContainer.show();
+        }
+    }
 }
 
 $(function () {
@@ -276,6 +325,7 @@ $(function () {
         new TotalEnteredNonEnteredComponent(),
         new DateRangePickerJQueryComponent(),
         new ProductDropdownComponent(),
+        new SingleDropdownComponent(),
         new UsernameSuggestionComponent(),
         new WeekComponent(),
         new BreadcrumbLevelComponent(),

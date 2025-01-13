@@ -39,6 +39,10 @@ public class WinLossDetailViewModel(
 
     public ProductMultiSelectionViewModel ProductViewModel { get; } = productViewModel;
 
+    public byte LevelType { get; } = message.LevelType;
+
+    public bool ShowLevelType => message.ViewerLevel.IsMasterOrSuperLevel();
+
     public IEnumerable<WinLossDetailWeekViewModel> Weeks { get; } = weeks;
 
     public string Username { get; } = message.Username;

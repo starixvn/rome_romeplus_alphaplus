@@ -20,6 +20,7 @@ interface Window {
     alpha: any;
 }
 
+declare var TipsyHelper;
 declare var store: StoreJSStatic;
 
 class AlphaReports {

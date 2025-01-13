@@ -6,21 +6,37 @@ interface JQuery {
 
 interface SingleDropdownOption {
     dropdownId: string;
+    hiddenInputId?: string;
     onChange?($option: JQuery): void;
 }
 
 class SingleDropdownComponent {
-    render(options: SingleDropdownOption) {
-        const $dropdown = $('#' + options.dropdownId);
+    $dropdown: JQuery;
+    private selectedValue: string;
 
-        $dropdown.multiselect({
-            multiple: false,
-            numberDisplayed: 1,
-            includeSelectAllOption: false,
-            maxHeight: 300,
-            onChange: function (option) {
-                options.onChange && options.onChange($(option));
-            }
-        });
+    render(options: SingleDropdownOption) {
+        this.$dropdown = $('#' + options.dropdownId);
+
+        if (this.$dropdown.length) {
+            this.selectedValue = this.$dropdown.find('option:selected').val();
+            const $hiddenInput = options.hiddenInputId ? $('#' + options.hiddenInputId) : undefined;
+
+            this.$dropdown.multiselect({
+                multiple: false,
+                numberDisplayed: 1,
+                includeSelectAllOption: false,
+                maxHeight: 300,
+                onChange: (option) => {
+                    const $option = $(option);
+                    this.selectedValue = $option.val();
+                    $hiddenInput && $hiddenInput.length && $hiddenInput.val(this.selectedValue);
+                    options.onChange && options.onChange($option);
+                }
+            });
+        }
+    }
+
+    getSelectedValue() {
+        return this.selectedValue;
     }
 }

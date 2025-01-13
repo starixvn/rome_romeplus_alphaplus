@@ -1,4 +1,4 @@
-﻿class CommissionByBettype extends BaseReport {
+﻿class CommissionByBetType extends BaseReport {
     levelTypeComponent: SingleDropdownComponent;
     dateRangePicker: DateRangePickerComponent;
     sortComponent: SortComponent;
@@ -17,7 +17,7 @@
     init() {
         $.blockUI();
 
-        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type' });
+        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type', hiddenInputId: 'level-type' });
         this.dateRangePicker.render();
         this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
         // remove style="visibility:hidden"
@@ -31,5 +31,5 @@
 }
 
 $(function () {
-    new CommissionByBettype(new SingleDropdownComponent(), new DateRangePickerComponent(), new SortComponent()).init();
+    new CommissionByBetType(new SingleDropdownComponent(), new DateRangePickerComponent(), new SortComponent()).init();
 });

@@ -44,7 +44,7 @@
 <form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form" asp-action="Query">
     <div class="form-group">
-        <label class="txt">@Resources.eventdate</label>
+        <label class="txt label-form-control">@Resources.eventdate</label>
         <div class="control date">
             <div class="input-group date" id="dpkContainer">
                 <input type="text" readonly="readonly" class="form-control" asp-for="EventDate" />
@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="txt">@Resources.MatchingBets</label>
+        <label class="txt label-form-control">@Resources.MatchingBets</label>
         <select asp-for="BetCount" asp-items="Model.BetCounts"></select>
     </div>
     <div class="form-group">

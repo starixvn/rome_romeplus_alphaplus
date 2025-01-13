@@ -3,7 +3,6 @@
     pagerComponent: PagerComponent;
     $txtMember: JQuery;
     $txtRefNo: JQuery;
-    $validationMsgError: JQuery;
     resources: any;
 
     MAX_LENGTH_REFNO = 19;
@@ -14,7 +13,7 @@
         this.pagerComponent = pagerComponent;
     }
 
-    public init() {
+    init() {
         $.blockUI();
 
         this.cacheElements();
@@ -24,18 +23,18 @@
         $.unblockUI();
     }
 
-    public cacheElements() {
+    cacheElements() {
         this.$txtMember = $('#Member');
-        this.$txtRefNo = $('#RefNo');
-        this.$validationMsgError = $('#validation-msg-error');
+        this.checkAndShowError();
 
+        this.$txtRefNo = $('#RefNo');
         this.resources = {
             usernameIsRequired: $('#UsernameIsRequired').val(),
             invalidRefNo: $('#InvalidRefNo').val()
         };
     }
 
-    public initComponents() {
+    initComponents() {
         this.dateRangePickerComponent.render(
             new DateRangePickerOption('daterange-picker', 'report-form', null, this.resetPaging)
         );
@@ -44,7 +43,9 @@
         this.pagerComponent.render();
     }
 
-    public bindEvents() {
+    bindEvents() {
+        this.$txtMember.on('input', () => TipsyHelper.clear(this.$txtMember));
+        this.$txtRefNo.on('input', () => TipsyHelper.clear(this.$txtRefNo));
         $('.btn-submit').click(this.resetPaging);
         $('#icon-excel').click((event) => this.onExportExcel(event));
     }
@@ -56,48 +57,46 @@
 
     onExportExcel = (event) => {
         $.blockUI();
-        if (this.validateUsername()) {
-            this.hideValidationMsgError();
-        } else {
+        if (!this.validateUsername()) {
             event.preventDefault();
-            this.showValidationMsgError(this.resources.usernameIsRequired);
         }
 
         $.unblockUI();
     };
 
     onSubmitReport = (event: any) => {
-        if (!this.validateUsername()) {
-            this.showValidationMsgError(this.resources.usernameIsRequired);
+        if (!this.validateUsername() || !this.validateRefNo()) {
             event.preventDefault();
             return;
         }
 
-        if (!this.validateRefNo()) {
-            this.showValidationMsgError(this.resources.invalidRefNo);
-            event.preventDefault();
-            return;
-        }
-
-        this.hideValidationMsgError();
         super.onSubmitReport(event);
     };
 
-    validateUsername = () => $.trim(this.$txtMember.val()).length !== 0;
+    private validateUsername() {
+        if ($.trim(this.$txtMember.val()).length) {
+            TipsyHelper.clear(this.$txtMember);
+            return true;
+        }
 
-    validateRefNo = () => {
+        TipsyHelper.showError(this.$txtMember, this.resources.usernameIsRequired, 'nw');
+        return false;
+    }
+
+    private validateRefNo() {
         const refno = $.trim(this.$txtRefNo.val());
+        const isValid = refno.length <= this.MAX_LENGTH_REFNO && refno.match(/^[0-9]*$/);
+        isValid
+            ? TipsyHelper.clear(this.$txtRefNo)
+            : TipsyHelper.showError(this.$txtRefNo, this.resources.invalidRefNo, 'nw');
 
-        return refno.length <= this.MAX_LENGTH_REFNO && refno.match(/^[0-9]*$/);
-    };
+        return isValid;
+    }
 
-    showValidationMsgError = (msg) => {
-        this.$validationMsgError.text(msg).removeClass('hide');
-        this.$tableReport.remove();
-        $('#report-pager').remove();
-    };
-
-    hideValidationMsgError = () => this.$validationMsgError.addClass('hide').text('');
+    private checkAndShowError() {
+        const $errMsg = $('#ErrorMessage');
+        $errMsg.length && TipsyHelper.showError(this.$txtMember, $errMsg.val(), 'nw');
+    }
 }
 
 $(function () {

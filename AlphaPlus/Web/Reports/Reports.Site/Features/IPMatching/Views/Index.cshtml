@@ -40,7 +40,7 @@
 <form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form">
     <div class="form-group">
-        <label class="txt">@Resources.Date</label>
+        <label class="txt label-form-control" for="Date">@Resources.Date</label>
         <div class="control date">
             <div class="input-group date" id="dpkContainer">
                 <input type="text" readonly="readonly" class="form-control" asp-for="Date" />
@@ -51,7 +51,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label>@Resources.MemberCount</label>
+        <label class="label-form-control">@Resources.MemberCount</label>
         <select asp-for="MemberCount" asp-items="Model.MemberCounts"></select>
     </div>
     <div class="form-group">

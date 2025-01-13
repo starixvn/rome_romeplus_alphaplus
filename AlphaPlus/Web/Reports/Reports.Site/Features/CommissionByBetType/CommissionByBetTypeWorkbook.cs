@@ -64,7 +64,7 @@ public class CommissionByBetTypeWorkbook(IWebHostEnvironment webHostEnvironment)
         var rowIndex = TemplateInfo.BodyStartIndex;
         var colIndex = GetColIndex(TemplateInfo.ColumnStartName);
 
-        var lastColumnIndex = sheet.OddRowTemplate.LastCellIndex - 2;
+        var lastColumnIndex = sheet.OddRowTemplate.LastCellIndex - 1;
 
         sheet.SetCellRangeValue(
             rowIndex,

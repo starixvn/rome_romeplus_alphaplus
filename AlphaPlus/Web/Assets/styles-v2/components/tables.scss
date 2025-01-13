@@ -479,6 +479,17 @@
         cursor: pointer;
     }
 }
+.text-icon-left {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    cursor: pointer;
+    [class^="ic-"], [class*=" ic-"] {
+        font-size: 20px;
+        color: var(--table-color);
+        cursor: pointer;
+    }
+}
 @media only screen and (max-device-width: 767px) {
     .w-60p {
         width: 100%;

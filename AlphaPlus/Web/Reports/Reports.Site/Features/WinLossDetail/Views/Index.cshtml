@@ -46,6 +46,7 @@
             weekToDate: '@Model.WeekToDate',
             fromDate: '@Model.DateRangePicker.FromDate',
             toDate: '@Model.DateRangePicker.ToDate',
+            levelType: @Model.LevelType,
             username: '@Model.Username'
         }
         var viewerLevelId = @Model.ViewerLevel.Value;
@@ -54,19 +55,22 @@
     <script src="~/bundles/winlossdetail/winlossdetail.js" asp-append-version="true"></script>
 }
 @model WinLossDetailViewModel
-<div class="flex">
+<div class="flex" style="visibility: hidden">
     <report-title-new model="Model.PageHeader" />
-    <form class="form-inline filter" role="form" id="report-form" style="visibility: hidden">
+    <form class="form-inline filter" role="form" id="report-form">
         <daterange-picker-jquery model="@Model.DateRangePicker" />
         <product-dropdown show-product-details="true" />
+        @if (Model.ShowLevelType)
+        {
+            <level-type custlevel="@Model.CustLevel" selected-value="@Model.LevelType" />
+        }
         <username-autosuggestion value="@Model.Username" />
         <visible-column />
         <div class="label-week-box" id="week-container">
             <partial name="Weeks" model="@Model.Weeks" />
         </div>
     </form>
-
-    <div id="tbl-report-container" class="cover-week-selection" style="visibility: hidden">
+    <div id="tbl-report-container" class="cover-week-selection">
         <partial name="ReportData" />
     </div>
 </div>
@@ -84,8 +88,10 @@
 @if (isMasterOrSuperLevel)
 {
     <input type="hidden" id="hidden-titleText3" value="@Resources.AgentWinLossDetail" />
+    <input type="hidden" id="hidden-masterAgentText3" value="@Resources.Agent" />
 }
 @if (isSuperLevel)
 {
     <input type="hidden" id="hidden-titleText4" value="@Resources.MasterWinLossDetail" />
+    <input type="hidden" id="hidden-masterAgentText4" value="@Resources.MasterAgent" />
 }

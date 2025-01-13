@@ -11,7 +11,8 @@ public class MoveStatementHistoryByMember(
             Username = username,
             MemberWinLoss = memberRow.MemberWinLoss,
             MemberComm = memberRow.MemberComm,
-            MemberTotal = memberRow.MemberTotal
+            MemberTotal = memberRow.MemberTotal,
+            IsDirectMember = memberRow.IsDirectMember
         };
 
     public IEnumerable<MoveStatementHistoryByRefNo> RefNoRow { get; } = refNoRow;

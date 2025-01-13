@@ -6,7 +6,15 @@
     async Task BuildMoveStatementHistory(MoveStatementHistoryByMember item)
     {
         <tr class="member-row">
-            <td class="text-left">@item.MemberRow.Username</td>
+            <td class="text-left">
+                <div class="text-icon">
+                    @item.MemberRow.Username
+                    @if (item.MemberRow.IsDirectMember)
+                    {
+                        <span class="ic-directmember" title="@Resources.DirectMember"></span>
+                    }
+                </div>
+            </td>
             <td></td>
             <td></td>
             <td>@item.MemberRow.MemberWinLoss.FormatNumber()</td>
@@ -71,7 +79,7 @@
     <div role="tabpanel" class="tab-pane active" id="moveStatementHistory">
         <form class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form" id="report-form">
             <div class="form-group">
-                <label asp-for="Member">@Resources.Member</label>
+                <label class="label-form-control" asp-for="Member">@Resources.Member</label>
                 <input type="text" style="width: 200px;" autocomplete="off" placeholder="@Resources.Username"
                     asp-for="Member" />
             </div>

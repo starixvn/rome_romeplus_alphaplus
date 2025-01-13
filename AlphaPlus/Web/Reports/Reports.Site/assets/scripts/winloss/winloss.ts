@@ -39,7 +39,7 @@
 
     initComponents() {
         this.productComponent.render();
-        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type' });
+        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type', hiddenInputId: 'level-type' });
 
         if ($('#IsHistoricReport').val().toLowerCase() === 'true') {
             this.monthPickerComponent.render();

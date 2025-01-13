@@ -261,9 +261,7 @@
 <table
     class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
-    data-descendingsort="@Model.DescendingSort" data-productids="@Model.ProductViewModel.UserSelectedProductIds"
-    data-resourceids="@Model.ProductViewModel.UserSelectedResourceIds" data-fromdate="@Model.FromDate"
-    data-todate="@Model.ToDate" id="tbl-report" style="visibility:hidden">
+    data-descendingsort="@Model.DescendingSort" id="tbl-report" style="visibility:hidden">
     <thead>
         @if (isAgentLevel)
         {
@@ -298,4 +296,8 @@
     asp-route-IsHistoricReport="@Model.IsHistoricReport" asp-route-ShowDormantAccountsNote="True"></a>
 <input type="hidden" asp-for="IsSetDefaultStackMode" />
 <input type="hidden" id="IsAgentLevel" value="@isAgentLevel.ToString()" />
-<input type="hidden" id="hidden-betListUrl" value="@MicroSites.TicketUrl("~/WinLoss/Index")">
+<input type="hidden" id="query-productids" value="@Model.ProductViewModel.UserSelectedProductIds" />
+<input type="hidden" id="query-resourceids" value="@Model.ProductViewModel.UserSelectedResourceIds" />
+<input type="hidden" id="query-fromdate" value="@Model.FromDate" />
+<input type="hidden" id="query-todate" value="@Model.ToDate" />
+<input type="hidden" id="query-leveltype" value="@Model.LevelType" />

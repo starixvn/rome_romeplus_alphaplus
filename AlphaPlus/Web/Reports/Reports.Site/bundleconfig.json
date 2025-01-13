@@ -74,9 +74,9 @@
             "assets/scripts/components/visible-column.js",
             "assets/scripts/components/week.js",
             "assets/scripts/components/breadcrumb-level.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/winlossdetail/winlossdetail-columns.js",
             "assets/scripts/winlossdetail/winlossdetail-copyhtml.js",
-            "assets/scripts/winlossdetail/winlossdetail-sort.js",
             "assets/scripts/winlossdetail/winlossdetail.js"
         ]
     },
@@ -177,6 +177,7 @@
         "outputFileName": "wwwroot/bundles/consolidation/consolidation-detail.js",
         "inputFiles": [
             "assets/scripts/core.js",
+            "assets/scripts/components/single-dropdown.js",
             "assets/scripts/components/productmultiselection.js",
             "assets/scripts/components/daterangepicker.js",
             "assets/scripts/components/tooltip.js",

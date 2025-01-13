@@ -144,10 +144,11 @@ class BaseReport {
         this.addParamDrilldownable('CustLevelId', $element.data('custlevelid'));
         this.addParamDrilldownable('CustId', $element.data('custid'));
         this.addParamDrilldownable('CustName', $element.data('custname'));
-        this.addParamDrilldownable('product-ids', this.$tableReport.data('productids'));
-        this.addParamDrilldownable('resource-ids', this.$tableReport.data('resourceids'));
-        this.addParamDrilldownable('from-date', this.$tableReport.data('fromdate'));
-        this.addParamDrilldownable('to-date', this.$tableReport.data('todate'));
+        this.addParamDrilldownable('product-ids', $('#query-productids').val());
+        this.addParamDrilldownable('resource-ids', $('#query-resourceids').val());
+        this.addParamDrilldownable('from-date', $('#query-fromdate').val());
+        this.addParamDrilldownable('to-date', $('#query-todate').val());
+        this.addOrUpdateParamDrilldownable('level-type', 'LevelType', $('#query-leveltype').val());
 
         this.$reportForm.submit();
     }
@@ -155,5 +156,14 @@ class BaseReport {
     private addParamDrilldownable(hiddenFieldId: string, value: string) {
         const $hiddenField = this.$reportForm.find(`#${hiddenFieldId}`);
         $hiddenField.length && $hiddenField.val(value);
+    }
+
+    private addOrUpdateParamDrilldownable(hiddenFieldId: string, hiddenFieldName: string, value: string) {
+        const $hiddenField = this.$reportForm.find(`#${hiddenFieldId}`);
+        if ($hiddenField.length) {
+            $hiddenField.val(value);
+        } else {
+            this.$reportForm.append(`<input type="hidden" name="${hiddenFieldName}" value="${value}"/>`);
+        }
     }
 }

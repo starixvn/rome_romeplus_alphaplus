@@ -18,7 +18,7 @@ public class StatementController(IMediator mediator) : ReportBaseController(medi
 
     public Task<IActionResult> MemberStatement(MemberStatementQuery message) => View<MemberStatementViewModel>(message);
 
-    public ActionResult MemberReportLegend() => View();
+    public ActionResult MemberReportLegend(bool? isDirectMember) => View(isDirectMember);
 
     public Task<IActionResult> MemberStatementExcel(MemberStatementExcelQuery message) => ExcelView(message);
 }

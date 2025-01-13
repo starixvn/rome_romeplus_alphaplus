@@ -10,6 +10,10 @@
 <form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form">
     <product-multiselection model="@Model.ProductViewModel" />
+    @if (Model.ShowLevelType)
+    {
+        <level-type custlevel="@Model.CustLevel" selected-value="@Model.LevelType" />
+    }
     <daterange-picker model="Model.DateRangePicker" />
     <div class="form-group hide">
         <span id="icon-information" class="icon-information-outline"></span>
@@ -46,3 +50,8 @@ else if (Model.ReportType == "product")
 {
     <a class="hide" id="hidden-consolidation-url" asp-action="ConsolidationByProduct"></a>
 }
+<input type="hidden" id="query-productids" value="@Model.ProductViewModel.UserSelectedProductIds" />
+<input type="hidden" id="query-resourceids" value="@Model.ProductViewModel.UserSelectedResourceIds" />
+<input type="hidden" id="query-fromdate" value="@Model.DateRangePicker.FromDate" />
+<input type="hidden" id="query-todate" value="@Model.DateRangePicker.ToDate" />
+<input type="hidden" id="query-leveltype" value="@Model.LevelType" />

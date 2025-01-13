@@ -78,8 +78,7 @@
     <table
         class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover display nowrap @(Model.ReportData.HasData ? "hide" : string.Empty)"
         style="width:100%" data-totalrecords="@Model.ReportData.TotalRecords"
-        data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.DescendingSort"
-        data-productids="@Model.ProductViewModel.UserSelectedProductIds" id="tbl-report">
+        data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.DescendingSort" id="tbl-report">
         <thead>
             <tr>
                 <th data-priority="0"></th>
@@ -203,3 +202,5 @@
 <a class="hide" id="LoadLegendURL" asp-action="Outstanding" asp-controller="Legends"></a>
 <input type="hidden" asp-for="DisplayOutstandingLevelsJson" />
 <input type="hidden" id="NoInformationIsAvailable" value="@Resources.NoInformationIsAvailable" />
+<input type="hidden" id="query-productids" value="@Model.ProductViewModel.UserSelectedProductIds" />
+<input type="hidden" id="query-leveltype" value="@Model.LevelType" />

@@ -86,6 +86,14 @@
                     background: var(--tab-line-background);
                 }
             }
+
+            &.tab-icon{
+                &:hover{
+                    &:after{
+                        display: none;
+                    }
+                }
+            }
         }
     }
 }
