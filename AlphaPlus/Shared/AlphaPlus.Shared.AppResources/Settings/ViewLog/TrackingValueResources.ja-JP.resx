@@ -142,7 +142,7 @@
     <value>Member name</value>
   </data>
   <data name="isa_v3smpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v3smpt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -169,13 +169,13 @@
     <value>ユーザー名</value>
   </data>
   <data name="a_v11mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="birthday" xml:space="preserve">
     <value>birthday</value>
   </data>
   <data name="a_v11spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v10mpt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -184,10 +184,10 @@
     <value>Over/Under</value>
   </data>
   <data name="a_v10mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v10spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v10spt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -214,7 +214,7 @@
     <value>New value</value>
   </data>
   <data name="isa_v2smpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v2smpt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -265,7 +265,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="isa_mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_mpt_9" xml:space="preserve">
     <value>Mix Parlay</value>
@@ -283,7 +283,7 @@
     <value>1st Over/Under</value>
   </data>
   <data name="isa_spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_spt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -313,16 +313,16 @@
     <value>New Master ID</value>
   </data>
   <data name="v11spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="Custid" xml:space="preserve">
     <value>Cust ID</value>
   </data>
   <data name="v11apt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v11mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="InstallmentDate" xml:space="preserve">
     <value>Installment Date</value>
@@ -334,10 +334,10 @@
     <value>Over/Under</value>
   </data>
   <data name="v10spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v10apt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v10apt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -349,7 +349,7 @@
     <value>名</value>
   </data>
   <data name="v10mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v10mpt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -439,13 +439,13 @@
     <value>Enable Downline</value>
   </data>
   <data name="isa_v11spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="autoSuspend" xml:space="preserve">
     <value>Auto Suspend</value>
   </data>
   <data name="isa_v11mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v10spt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -454,13 +454,13 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_v10spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="fromTrans" xml:space="preserve">
     <value>From Trans</value>
   </data>
   <data name="isa_v10mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v10mpt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -556,7 +556,7 @@
     <value>Min Outright</value>
   </data>
   <data name="a_v8spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v8spt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -568,7 +568,7 @@
     <value>Over/Under</value>
   </data>
   <data name="a_v8mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_spt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -577,7 +577,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="a_spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_spt_7" xml:space="preserve">
     <value>1st Handicap</value>
@@ -616,7 +616,7 @@
     <value>Total Goal</value>
   </data>
   <data name="a_mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_mpt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -640,10 +640,10 @@
     <value>奇数/偶数</value>
   </data>
   <data name="v99spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v5spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v5spt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -655,7 +655,7 @@
     <value>Player's 1X2 Discount</value>
   </data>
   <data name="v99apt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v99apt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -670,10 +670,10 @@
     <value>Over/Under</value>
   </data>
   <data name="a_v5mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v99mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v99mpt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -691,7 +691,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="a_v2spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v2spt_9" xml:space="preserve">
     <value>Mix Parlay</value>
@@ -706,7 +706,7 @@
     <value>1st Over/Under</value>
   </data>
   <data name="a_v2mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v2mpt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -724,13 +724,13 @@
     <value>Over/Under</value>
   </data>
   <data name="a_v3spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="oldSite" xml:space="preserve">
     <value>Old site</value>
   </data>
   <data name="a_v3mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v3mpt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -808,10 +808,10 @@
     <value>奇数/偶数</value>
   </data>
   <data name="isa_v99spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v99mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v99mpt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -850,7 +850,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="apt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="fname" xml:space="preserve">
     <value>名</value>
@@ -868,7 +868,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="mpt_7" xml:space="preserve">
     <value>1st Handicap</value>
@@ -949,7 +949,7 @@
     <value>Total Goal</value>
   </data>
   <data name="spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="spt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -988,7 +988,7 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_v99smpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_mpt_10" xml:space="preserve">
     <value>勝者予想</value>
@@ -1003,10 +1003,10 @@
     <value>奇数/偶数</value>
   </data>
   <data name="isa_v5smpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v11smpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="MatchLimit" xml:space="preserve">
     <value>Match Limit</value>
@@ -1054,10 +1054,10 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_v3mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v3spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v3spt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1081,7 +1081,7 @@
     <value>1st Handicap</value>
   </data>
   <data name="isa_smpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_smpt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1108,10 +1108,10 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_v5spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v5mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v5mpt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1180,7 +1180,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="isa_v2mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v2mpt_7" xml:space="preserve">
     <value>1st Handicap</value>
@@ -1201,7 +1201,7 @@
     <value>1st Handicap</value>
   </data>
   <data name="isa_v2spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v2spt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -1243,7 +1243,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="a_v99mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="maxpt_10" xml:space="preserve">
     <value>Max Outright</value>
@@ -1252,7 +1252,7 @@
     <value>Update Min PT</value>
   </data>
   <data name="a_v99spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v99spt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -1270,7 +1270,7 @@
     <value>Page Access</value>
   </data>
   <data name="isa_v8mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v8mpt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -1321,7 +1321,7 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_v8spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="currency" xml:space="preserve">
     <value>通貨</value>
@@ -1435,7 +1435,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="isa_v10smpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="mpt_10" xml:space="preserve">
     <value>勝者予想</value>
@@ -1501,7 +1501,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="v2apt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v2apt_7" xml:space="preserve">
     <value>1st Handicap</value>
@@ -1516,7 +1516,7 @@
     <value>奇数/偶数</value>
   </data>
   <data name="v2mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v2mpt_9" xml:space="preserve">
     <value>Mix Parlay</value>
@@ -1531,7 +1531,7 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_v8smpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v2spt_9" xml:space="preserve">
     <value>Mix Parlay</value>
@@ -1540,7 +1540,7 @@
     <value>1st Over/Under</value>
   </data>
   <data name="v2spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v2spt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -1561,7 +1561,7 @@
     <value>Over/Under</value>
   </data>
   <data name="v3apt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="minv10pt_3" xml:space="preserve">
     <value>Min OU</value>
@@ -1579,10 +1579,10 @@
     <value>Over/Under</value>
   </data>
   <data name="v3mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v3spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v3spt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1612,7 +1612,7 @@
     <value>Master Agent's ID</value>
   </data>
   <data name="v5apt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v5apt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1621,7 +1621,7 @@
     <value>Over/Under</value>
   </data>
   <data name="v5mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v5mpt_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1636,7 +1636,7 @@
     <value>Over/Under</value>
   </data>
   <data name="v5spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="minv8pt_3" xml:space="preserve">
     <value>Min OU</value>
@@ -1678,13 +1678,13 @@
     <value>Postal</value>
   </data>
   <data name="v8mpt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v8mpt_3" xml:space="preserve">
     <value>Over/Under</value>
   </data>
   <data name="v8apt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="v8apt_3" xml:space="preserve">
     <value>Over/Under</value>
@@ -1696,7 +1696,7 @@
     <value>Over/Under</value>
   </data>
   <data name="v8spt_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="toTrans" xml:space="preserve">
     <value>ToTrans</value>
@@ -1909,7 +1909,7 @@
     <value>Live 1st OU</value>
   </data>
   <data name="a_mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_mpt_mem_10" xml:space="preserve">
     <value>勝者予想</value>
@@ -1939,7 +1939,7 @@
     <value>Mix Parlay</value>
   </data>
   <data name="a_v10mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v10mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1948,10 +1948,10 @@
     <value>Over/Under</value>
   </data>
   <data name="a_v11mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v2mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v2mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1969,7 +1969,7 @@
     <value>Mix Parlay</value>
   </data>
   <data name="a_v3mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v3mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1978,7 +1978,7 @@
     <value>Over/Under</value>
   </data>
   <data name="a_v5mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v5mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -1987,13 +1987,13 @@
     <value>Over/Under</value>
   </data>
   <data name="a_v8mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v8mpt_mem_3" xml:space="preserve">
     <value>Over/Under</value>
   </data>
   <data name="a_v99mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="a_v99mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -2014,7 +2014,7 @@
     <value>Live 1st OU</value>
   </data>
   <data name="isa_mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_mpt_mem_10" xml:space="preserve">
     <value>勝者予想</value>
@@ -2044,7 +2044,7 @@
     <value>Mix Parlay</value>
   </data>
   <data name="isa_v10mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v10mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -2053,10 +2053,10 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_v11mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v2mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v2mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -2074,7 +2074,7 @@
     <value>Mix Parlay</value>
   </data>
   <data name="isa_v3mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v3mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -2083,7 +2083,7 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_v5mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v5mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -2092,13 +2092,13 @@
     <value>Over/Under</value>
   </data>
   <data name="isa_v8mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v8mpt_mem_3" xml:space="preserve">
     <value>Over/Under</value>
   </data>
   <data name="isa_v99mpt_mem_1" xml:space="preserve">
-    <value>Handicap</value>
+    <value>ハンディキャップ</value>
   </data>
   <data name="isa_v99mpt_mem_2" xml:space="preserve">
     <value>奇数/偶数</value>
@@ -2837,5 +2837,218 @@
   </data>
   <data name="YesterdayWinLoss" xml:space="preserve">
     <value>昨日の勝ち負け</value>
+  </data>
+  <data name="BetSetting" xml:space="preserve">
+    <value>ベット設定</value>
+  </data>
+  <data name="a_v2mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v5spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v3apt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v3spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v2mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v2spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v3spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v3smpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v8mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v11spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v10spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v99mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v10mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v11smpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v11mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v5spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v99spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v5mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v99smpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v99spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v3mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v10smpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v2spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v11mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v99mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v10apt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v5apt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v8spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v8smpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v11mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v2apt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v8spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v10spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v8mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v99mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v3spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v11apt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v2spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v5smpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v99spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v5mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v5mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v11spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v3mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v11spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v10mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v10mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v3mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v11mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v3mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v8mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v99mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v5mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v2mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v2mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v8mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v99mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v5mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v11mpt_mem_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v99apt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v10mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v10mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v8apt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v10spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="a_v5spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v2smpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v8spt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="v8mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v3mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
+  </data>
+  <data name="isa_v2mpt_20" xml:space="preserve">
+    <value>マネーライン</value>
   </data>
 </root>

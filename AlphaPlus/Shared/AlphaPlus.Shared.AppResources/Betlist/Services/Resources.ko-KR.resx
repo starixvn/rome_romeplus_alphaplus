@@ -366,4 +366,10 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>해당 기능에 대한 권한이 없습니다.</value>
   </data>
+  <data name="Mar" xml:space="preserve">
+    <value>3월</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>10월</value>
+  </data>
 </root>

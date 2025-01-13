@@ -607,4 +607,10 @@
   <data name="YesterdayCashBalance" xml:space="preserve">
     <value>Yesterday Cash Balance</value>
   </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>取消済み</value>
+  </data>
+  <data name="MemberMaxCredit" xml:space="preserve">
+    <value>メンバー最大貸付</value>
+  </data>
 </root>

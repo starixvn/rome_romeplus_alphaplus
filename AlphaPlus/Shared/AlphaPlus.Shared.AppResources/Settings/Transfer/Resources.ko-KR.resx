@@ -414,4 +414,7 @@
   <data name="Update" xml:space="preserve">
     <value>업데이트</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>닫기</value>
+  </data>
 </root>

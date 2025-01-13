@@ -291,4 +291,34 @@
   <data name="PleaseSelect" xml:space="preserve">
     <value>選択してください</value>
   </data>
+  <data name="TotalGoal01" xml:space="preserve">
+    <value>0 – 1</value>
+  </data>
+  <data name="Apr" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>8月</value>
+  </data>
+  <data name="Dec" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="Handicap" xml:space="preserve">
+    <value>ハンディキャップ</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="Sep" xml:space="preserve">
+    <value>9月</value>
+  </data>
 </root>

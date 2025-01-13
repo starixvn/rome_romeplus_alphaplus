@@ -442,4 +442,19 @@
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>更新する変更はありません。</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複写した</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>複写</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>作成日</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>お客様</value>
+  </data>
 </root>

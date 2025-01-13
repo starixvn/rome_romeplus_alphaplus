@@ -472,4 +472,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>페이지</value>
+  </data>
 </root>

@@ -179,8 +179,7 @@
     <value>決して</value>
   </data>
   <data name="NoMoreThan50Characters" xml:space="preserve">
-    <value>API名は50文字以内でなければなりません！
-</value>
+    <value>API名は50文字以内でなければなりません！</value>
   </data>
   <data name="PleaseInputAPIKeyName" xml:space="preserve">
     <value>APIキー名を入力してください</value>

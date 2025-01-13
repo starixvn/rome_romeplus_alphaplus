@@ -139,7 +139,7 @@
     <value>ベットリスト</value>
   </data>
   <data name="BetSettingViewModelText" xml:space="preserve">
-    <value>Bet Setting</value>
+    <value>ベット設定</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>キャンセルする</value>
