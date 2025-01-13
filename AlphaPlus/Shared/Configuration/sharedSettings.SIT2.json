@@ -122,7 +122,7 @@
         "SentryUrl": "https://718405a0207344fa863c1334f3054b97@sentry.playonesit.com/12",
         "SentryBackendUrl": "https://718405a0207344fa863c1334f3054b97@172.16.4.109:800/12"
     },
-    "RedisConfiguration": "172.16.4.76:16379,Password=foo1@bared,Name=AlphaPlus,abortConnect=false",
+    "RedisConfiguration": "172.16.4.76:16379,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged",
     "RemotingRefUrl": "http://vn-remotingref-sit.playonesit.com/",
     "Fanex.Customer": {
         "ServiceUri": "http://alphaplus_api_settings_SIT:5000/api/",

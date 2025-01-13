@@ -122,7 +122,7 @@
         "SentryUrl": "https://87b279c4a8d84656b7092bacb53c69ed@sentry.starixplay.com/22",
         "SentryBackendUrl": "https://87b279c4a8d84656b7092bacb53c69ed@10.99.99.51:801/22"
     },
-    "RedisConfiguration": "10.2.27.140:16389,Password=foo1@bared,Name=AlphaPlus,abortConnect=false",
+    "RedisConfiguration": "10.2.27.140:16389,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged",
     "RemotingRefUrl": "http://vn-remotingref-prod.nebula.prod/",
     "Fanex.Customer": {
         "ServiceUri": "http://alphaplus_api_settings_ALPHAPROD:5000/api/",
