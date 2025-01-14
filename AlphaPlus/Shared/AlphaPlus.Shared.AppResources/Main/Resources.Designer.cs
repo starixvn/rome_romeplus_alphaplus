@@ -2783,5 +2783,49 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("of", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Limit_Offer_Date.
+        /// </summary>
+        public static string Limit_Offer_Date
+        {
+            get
+            {
+                return ResourceManager.GetString("Limit_Offer_Date", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Limit_Offer_Link.
+        /// </summary>
+        public static string Limit_Offer_Link
+        {
+            get
+            {
+                return ResourceManager.GetString("Limit_Offer_Link", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Limit_Offer_End.
+        /// </summary>
+        public static string Limit_Offer_End
+        {
+            get
+            {
+                return ResourceManager.GetString("Limit_Offer_End", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to WhiteLabelBannerChat.
+        /// </summary>
+        public static string WhiteLabelBannerChat
+        {
+            get
+            {
+                return ResourceManager.GetString("WhiteLabelBannerChat", resourceCulture);
+            }
+        }
     }
 }

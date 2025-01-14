@@ -11,7 +11,9 @@ namespace AlphaPlus.Main.Site.Features.WhiteLabel
         private readonly IUserSession userSession;
         private readonly IMediator mediator;
 
-        public WhiteLabelController(IUserSession userSession, IMediator mediator)
+        public WhiteLabelController(
+            IUserSession userSession, 
+            IMediator mediator)
         {
             this.userSession = userSession;
             this.mediator = mediator;
@@ -33,6 +35,15 @@ namespace AlphaPlus.Main.Site.Features.WhiteLabel
                 Request.Headers["User-Agent"].ToString(),
                 userSession.UserLoginIp));
             return Json(response);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> BannerChat()
+        {
+            var subUsername = string.IsNullOrEmpty(userSession.SubUserName) ? "-" : userSession.SubUserName;
+            var message = string.Format(Resources.WhiteLabelBannerChat, userSession.UserName, subUsername);
+            await Fanex.Logging.Logger.Log.InfoAsync(message);
+            return Json(true);
         }
     }
 }
