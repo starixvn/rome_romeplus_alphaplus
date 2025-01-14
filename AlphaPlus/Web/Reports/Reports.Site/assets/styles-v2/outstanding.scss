@@ -1,0 +1,14 @@
+﻿.tb {
+    tbody tr td {
+        a {
+            &:hover {
+                color: #f60;
+            }
+        }
+
+        &.control {
+            text-align: center;
+        }
+    }
+}
+ 

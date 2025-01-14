@@ -6,9 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@(ViewData["Title"] ?? "Alpha - Reports")</title>
-    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
-    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-reports/default")
-    <link rel="stylesheet" href="~/bundles/default.css" asp-append-version="true" />
+    @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
     @await RenderSectionAsync("Styles", required: false)
     @GoogleAnalyticHelper.GtagScript()
 </head>

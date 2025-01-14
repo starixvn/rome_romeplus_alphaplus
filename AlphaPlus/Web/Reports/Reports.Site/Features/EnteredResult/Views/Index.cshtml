@@ -1,3 +1,4 @@
+@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Core.Extensions
 @using AlphaPlus.Core.Utils
 @using AlphaPlus.Shared.AppResources.Report
@@ -37,7 +38,8 @@
     }
 }
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/enteredresult/enteredresult.css" asp-append-version="true" />
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/enteredresult")
+    <link rel="stylesheet" href="~/bundles-v2/enteredresult.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/enteredresult/enteredresult.js" asp-append-version="true"></script>
@@ -53,7 +55,7 @@
     </div>
     <a href="javascript:;" id="historic-report" data-is-historic-report="false"></a>
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-small-width" id="tbl-report"
+<table class="tb tb-bordered tb-hover tablesorter w-full tbl-enteredresult-report" id="tbl-report"
     data-cansort="@Model.ReportData.MoreThanOne">
     <thead>
         <tr>

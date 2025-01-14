@@ -202,6 +202,7 @@
             &.sorting_asc, &.sorting_desc {
                 cursor: pointer;
                 padding-right: 16px;
+                position: relative;
 
                 &:after {
                     position: absolute;

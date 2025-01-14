@@ -211,6 +211,10 @@
         </td>
     }
 }
+@section Styles {
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winloss")
+    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+}
 @section Scripts {
     <script src="~/bundles/winloss/winloss.js" asp-append-version="true"></script>
 }
@@ -259,7 +263,7 @@
     <input type="hidden" asp-for="IsHistoricReport" />
 </form>
 <table
-    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    class="tb tb-bordered tb-hover tablesorter w-full @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
     data-descendingsort="@Model.DescendingSort" id="tbl-report" style="visibility:hidden">
     <thead>
@@ -288,7 +292,7 @@
     }
     else
     {
-        <no-information colspan="@(isAgentLevel ? 10 : 8)" />
+        <no-information colspan="@(isAgentLevel ? 10 : 9)" />
     }
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends"

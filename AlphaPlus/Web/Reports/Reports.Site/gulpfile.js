@@ -32,7 +32,7 @@ function clean(cb) {
 
 function compileCss() {
     return gulp
-        .src('assets/styles/**/*.scss')
+        .src(['assets/styles/**/*.scss','assets/styles-v2/*.scss'])
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss([autoprefixer()]))
         .pipe(
@@ -89,7 +89,7 @@ gulp.task(
 
 gulp.task('watch', () => {
     gulp.watch(
-        ['assets/styles/**/*.scss', 'assets/scripts/**/*.ts'],
+        ['assets/styles/**/*.scss','assets/styles-v2/**/*.scss', 'assets/scripts/**/*.ts'],
         gulp.series(clean, gulp.parallel(compileCss, compileJs), gulp.parallel([minCss, minJs, copyImages]))
     );
 });

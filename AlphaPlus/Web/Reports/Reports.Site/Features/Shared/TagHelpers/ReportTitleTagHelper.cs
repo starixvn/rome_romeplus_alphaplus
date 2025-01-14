@@ -20,7 +20,7 @@ public class ReportTitleTagHelper : TagHelper
 
         var sb = new StringBuilder();
         AppendEnteredSportResult(sb);
-        sb.Append($"<div class=\"text-title pull-left\" style=\"clear:both\">{Model.Title}</div>");
+        sb.Append($"<div class=\"text-title\" style=\"clear:both\">{Model.Title}</div>");
 
         AppendBreadcrumbLevel(sb);
 
@@ -46,7 +46,7 @@ public class ReportTitleTagHelper : TagHelper
 
                 if (linkLength > 0)
                 {
-                    sb.Append("<ul class=\"breadcrumb\">");
+                    sb.Append("<div class=\"breadcrumb-container\"><ul class=\"breadcrumb\">");
                     var linkIndex = 0;
                     var lastLinkIndex = linkLength - 1;
                     foreach (var item in breadcrumbs)
@@ -76,7 +76,7 @@ public class ReportTitleTagHelper : TagHelper
                         linkIndex++;
                     }
 
-                    sb.Append("</ul>");
+                    sb.Append("</ul></div>");
                 }
             }
         }
@@ -124,10 +124,10 @@ public class ReportTitleTagHelper : TagHelper
             if (Model.HasHideFilterIcon)
             {
                 sb
-                    .Append("<li class=\"showfilter-element\"><span class=\"icon-arrow-up-drop-circle icon-filter\" title=\"")
+                    .Append("<li class=\"showfilter-element\"><span class=\"ic-arrow-up-circle icon-filter\" title=\"")
                     .Append(Resources.HideFilter)
                     .Append("\"></span></li>")
-                    .Append("<li class=\"hidefilter-element\"><span class=\"icon-arrow-down-drop-circle icon-filter\" title=\"")
+                    .Append("<li class=\"hidefilter-element\"><span class=\"ic-arrow-down-circle icon-filter\" title=\"")
                     .Append(Resources.ShowFilter)
                     .Append("\"></span></li>");
             }
@@ -135,10 +135,10 @@ public class ReportTitleTagHelper : TagHelper
             if (Model.HasStackIcon)
             {
                 sb
-                    .Append("<li class=\"normalview-element\"><span id=\"icon-stack-column\" class=\"icon-stack-column icon-switchmode\" title=\"")
+                    .Append("<li class=\"normalview-element\"><span id=\"icon-stack-column\" class=\"ic-stack-column ic-switchmode\" title=\"")
                     .Append(Resources.Tip_ShowReportInStackColumnView)
                     .Append("\"></span></li>")
-                    .Append("<li class=\"stackcolumnview-element\"><span id=\"icon-normal-column\" class=\"icon-normal-column icon-switchmode\" title=\"")
+                    .Append("<li class=\"stackcolumnview-element\"><span id=\"icon-normal-column\" class=\"ic-normal-column ic-switchmode\" title=\"")
                     .Append(Resources.Tip_ShowReportInNormalView)
                     .Append("\"></span></li>");
             }

@@ -46,9 +46,8 @@
     var isAgentLevel = Model.CustLevel.IsAgentLevel();
 }
 @section Styles {
-    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/site-asset/data-table")
-    <link rel="stylesheet" media="screen and (max-device-width: 767px)"
-        href="~/bundles/outstanding/outstanding-mobile-calculate-07.css" asp-append-version="true" />
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/outstanding")
+    <link rel="stylesheet" href="~/bundles-v2/outstanding/outstanding.css" asp-append-version="true" />
 }
 @section Scripts {
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-asset/data-table")
@@ -76,7 +75,7 @@
 </form>
 <div id="report-container" class="level-@Model.CustLevel.Value" style="width: @(Model.IsMobileView ? "100%" : "65%");">
     <table
-        class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover display nowrap @(Model.ReportData.HasData ? "hide" : string.Empty)"
+        class="tb tb-bordered tb-hover w-full tbl-outstanding tablesorter @(Model.ReportData.HasData ? "hide" : string.Empty)"
         style="width:100%" data-totalrecords="@Model.ReportData.TotalRecords"
         data-sortedcolumn="@Model.SortPropertyName" data-descendingsort="@Model.DescendingSort" id="tbl-report">
         <thead>
