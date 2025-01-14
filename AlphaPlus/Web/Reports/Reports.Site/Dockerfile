@@ -44,7 +44,7 @@ WORKDIR /src/AlphaPlus/Web/Reports/Reports.Site
 RUN yarn && gulp default
 RUN dotnet publish -c Release -o /app
 
-FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
+FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 
 # don’t run as root
 RUN adduser --disabled-password \

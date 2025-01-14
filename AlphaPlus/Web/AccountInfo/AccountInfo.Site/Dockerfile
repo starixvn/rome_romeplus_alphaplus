@@ -37,7 +37,7 @@ WORKDIR /src/AlphaPlus/Web/AccountInfo/AccountInfo.Site
 
 RUN dotnet publish -c Release -o /app
 
-FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS final
+FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS final
 
 # Don’t run as root
 RUN adduser --disabled-password \

@@ -10,7 +10,7 @@ COPY "AlphaPlus/Shared" "AlphaPlus/Shared"
 WORKDIR /src/AlphaPlus/Services/Identity/Identity.API
 RUN dotnet publish -c Release -o /app
 
-FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine AS base
+FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 
 # Don’t run as root
 RUN adduser --disabled-password \
