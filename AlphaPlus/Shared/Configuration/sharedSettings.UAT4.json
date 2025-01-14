@@ -251,7 +251,7 @@
         "Agent": "3000,3300"
     },
     "QRCode": {
-        "API": "http://infinity-service.nebula.prod:9851/Login/",
+        "API": "http://account-service-credit.membersite-service.t2p.nebula.prod:22080/Login/",
         "Domains": [
         ],
         "SiteId": 4120,
