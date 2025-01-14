@@ -19,10 +19,11 @@ public class ReportTitleNewTagHelper : TagHelper
         output.Attributes.Add("class", $"page-title page-title-entered {(Model.IsStackMode ? " stack-mode" : string.Empty)}{(Model.IsFilterVisible ? string.Empty : " hide-filter")}");
 
         var sb = new StringBuilder();
-        sb
-            .Append($"<div class=\"text-title pull-left\" id=\"report-title\">{Model.Title}</div>")
-            .Append("<a href=\"javascript:;\" class=\"hide\"><span class=\"icon icon-information-outline icon-report-legend\" id=\"icon-information\"></span></a>");
         AppendEnteredSportResult(sb);
+        sb
+            .Append($"<div class=\"text-title\" id=\"report-title\">{Model.Title}</div>")
+            .Append("<a href=\"javascript:;\" class=\"hide\"><span class=\"ic-information\" id=\"icon-information\"></span></a>");
+        
         AppendActionIcons(sb);
 
         output.Content.SetHtmlContent(sb.ToString());
@@ -64,10 +65,10 @@ public class ReportTitleNewTagHelper : TagHelper
             if (Model.HasHideFilterIcon)
             {
                 sb
-                    .Append("<li class=\"showfilter-element\"><span class=\"icon-arrow-up-drop-circle icon-filter\" title=\"")
+                    .Append("<li class=\"showfilter-element\"><span class=\"ic-arrow-up-circle icon-filter\" title=\"")
                     .Append(Resources.HideFilter)
                     .Append("\"></span></li>")
-                    .Append("<li class=\"hidefilter-element\"><span class=\"icon-arrow-down-drop-circle icon-filter\" title=\"")
+                    .Append("<li class=\"hidefilter-element\"><span class=\"ic-arrow-down-circle icon-filter\" title=\"")
                     .Append(Resources.ShowFilter)
                     .Append("\"></span></li>");
             }
@@ -75,10 +76,10 @@ public class ReportTitleNewTagHelper : TagHelper
             if (Model.HasStackIcon)
             {
                 sb
-                    .Append("<li class=\"normalview-element\"><span id=\"icon-stack-column\" class=\"icon-stack-column icon-switchmode\" title=\"")
+                    .Append("<li class=\"normalview-element\"><span id=\"icon-stack-column\" class=\"ic-stack-column ic-switchmode\" title=\"")
                     .Append(Resources.Tip_ShowReportInStackColumnView)
                     .Append("\"></span></li>")
-                    .Append("<li class=\"stackcolumnview-element\"><span id=\"icon-normal-column\" class=\"icon-normal-column icon-switchmode\" title=\"")
+                    .Append("<li class=\"stackcolumnview-element\"><span id=\"icon-normal-column\" class=\"ic-normal-column ic-switchmode\" title=\"")
                     .Append(Resources.Tip_ShowReportInNormalView)
                     .Append("\"></span></li>");
             }

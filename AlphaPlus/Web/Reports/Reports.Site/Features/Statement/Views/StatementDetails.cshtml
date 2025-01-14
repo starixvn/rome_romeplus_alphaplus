@@ -10,8 +10,9 @@
         </span>
     }
 }
-@section Styles {
-    <link rel="stylesheet" href="~/bundles/statement/statement.css" asp-append-version="true" />
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/statement")
+    <link rel="stylesheet" href="~/bundles-v2/statement.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/statement/statement-details.js" asp-append-version="true"></script>
@@ -24,7 +25,7 @@
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tbl-report-statement-detail width-100per"
+<table class="tb tb-bordered tb-hover tbl-report-statement-detail w-full"
     id="tbl-report">
     <thead>
         <tr>

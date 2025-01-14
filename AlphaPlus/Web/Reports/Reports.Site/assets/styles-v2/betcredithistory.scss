@@ -1,0 +1,28 @@
+﻿:root, :root [data-theme='light'] {
+    --red-background: #f6a4a4;
+}
+
+:root [data-theme='dark'] {
+    --red-background: #573538;
+  
+}
+.action-datetime-col {
+    width: 9%;
+
+}
+.action-col {
+    width: 24%;
+}
+.red-cell {
+    background: var(--red-background);
+}
+
+.tb {
+    tbody tr {
+        td {
+            &.red-cell {
+                background: var(--red-background);
+            }
+        }
+    }
+}

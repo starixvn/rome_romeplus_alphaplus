@@ -54,7 +54,7 @@ public class DateRangePickerTagHelper : TagHelper
         }
 
         sb
-            .Append("<div class=\"form-group daterange-container\">")
+            .Append("<div class=\"form-group daterange-container form-group-short \">")
             .Append("<div class=\"dropdown daterange-dropdown\" id=\"dropdown-daterange\">")
             .Append($"<input type=\"hidden\" name=\"UserSelectedDateRangeOption\" id=\"hidden-range-option\" value=\"{Model.SelectedRangeOption.Value}\"/>")
             .Append("<button class=\"btn-submit dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">")

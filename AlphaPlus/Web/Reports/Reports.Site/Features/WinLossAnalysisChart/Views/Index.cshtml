@@ -11,6 +11,10 @@
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
 }
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossanalysischart")
+    <link rel="stylesheet" href="~/bundles-v2/winlossanalysischart.css" asp-append-version="true" />
+}
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-reports/winloss-analysis-chart")
     <script src="~/bundles/winlossanalysischart/winlossanalysischart.js" asp-append-version="true"></script>
@@ -24,25 +28,25 @@
     </div>
     <product-multiselection model="@Model.ProductViewModel" />
     <month-range-picker model="@Model.MonthPicker" />
-    <div class="form-group">
+    <div class="form-group form-group-short">
         <input type="submit" value="@Resources.Submit" class="btn-submit" />
     </div>
     <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>
 </form>
-<div class="container-fluid">
-    <div class="row report-content">
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 pull-right">
+<div class="">
+    <div class="report-content">
+        <div class="col-chart">
             <div class="chart-container">
                 <dual-axis-chart model="Model.DualAxisChart" />
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 pull-left table-container">
-            <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover" id="tbl-report">
+        <div class="col-table">
+            <table class="tb tb-bordered tb-hover text-right" id="tbl-report">
                 <thead>
                     <tr>
                         <th>@Resources.Month</th>

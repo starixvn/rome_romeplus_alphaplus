@@ -97,6 +97,10 @@
         </td>
     }
 }
+@section Styles {
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/superwinlossdetailbypt")
+    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+}
 @section Scripts {
     <script src="~/bundles/superwinlossdetailbypt/superwinlossdetailbypt.js" asp-append-version="true"></script>
 }
@@ -106,11 +110,11 @@
     id="report-form">
     <product-multiselection model="@Model.ProductViewModel" />
     <daterange-picker model="Model.DateRangePicker" />
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+    <div class="form-group form-group-short hide">
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
     <div class="note">
@@ -119,7 +123,7 @@
     </div>
 </form>
 <table
-    class="tblRpt tblRpt-bordered tblRpt-hover tablesorter width-100per tbl-win-loss-detail-by-pt@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty) "
+    class="tb tb-bordered tb-hover tablesorter w-full tbl-win-loss-detail-by-pt@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty) "
     data-cansort="@(reportDataCount > 1)" data-sortedcolumn="@Model.SortPropertyName"
     data-descendingsort="@Model.DescendingSort" id="tbl-report" style="visibility:hidden">
     <thead>

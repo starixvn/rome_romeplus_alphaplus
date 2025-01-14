@@ -19,6 +19,9 @@
 
     var colindex = 0;
 }
+@section Styles {
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/commissionbybettype")
+}
 @section Scripts {
     <script src="~/bundles/commissionbybettype/commissionbybettype.js" asp-append-version="true"></script>
 }
@@ -31,11 +34,11 @@
         <level-type custlevel="@Model.CustLevel" selected-value="@Model.LevelType" />
     }
     <daterange-picker model="Model.DateRangePicker" />
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+    <div class="form-group form-group-short hide">
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="@Model.BuildExcelParams()"></a>
     </div>
     <div class="note">
@@ -46,7 +49,7 @@
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
     <input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter tbl-small-width" id="tbl-report"
+<table class="tb tb-bordered tb-hover tablesorter w-60p" id="tbl-report"
     data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
     data-descendingsort="@Model.DescendingSort" style="visibility:hidden">
     <thead class="tableFloatingHeaderOriginal">

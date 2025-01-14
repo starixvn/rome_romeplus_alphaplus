@@ -9,7 +9,7 @@
     {
         var isDormantAccounts = data.CustId == 0;
         <tr class="@(isTotalRow ? "tbl-footer" : (isDormantAccounts ? "dormant-accounts-mark" : string.Empty))">
-            <td @(isDormantAccounts || isTotalRow ? string.Empty : $"data-sortedvalue={data.CustName}")
+            <td class="first-row" @(isDormantAccounts || isTotalRow ? string.Empty : $"data-sortedvalue={data.CustName}")
                 class="text-left col-username">
                 @if (isTotalRow)
                 {
@@ -106,7 +106,7 @@
 }
 @model ConsolidationDetailViewModel
 <table
-    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    class="tb tb-bordered tb-hover tablesorter w-full @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
     data-descendingsort="@Model.DescendingSort" id="tbl-report" style="visibility:hidden">
     <thead>

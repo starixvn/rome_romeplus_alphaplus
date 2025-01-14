@@ -45,15 +45,15 @@
         }
     }
 }
-@section Styles {
-    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/site-reports/tab-{Model.CustLevel.DisplayName.ToLowerInvariant()}")
-    <link rel="stylesheet" href="~/bundles/betcredittracking/movestatementhistory.css" asp-append-version="true" />
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betcredittracking")
+    <link rel="stylesheet" href="~/bundles-v2/movestatementhistory.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/betcredittracking/movestatementhistory.js" asp-append-version="true"></script>
 }
 @model MoveStatementHistoryViewModel
-<div class="page-title@(Model.IsFilterVisible ? string.Empty : " hide-filter")">
+<div class="page-title tabs @Model.CustLevel.DisplayName.ToLowerInvariant() @(Model.IsFilterVisible ? string.Empty : " hide-filter")">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation">
             <a class="open-link"
@@ -62,8 +62,8 @@
         <li role="presentation" class="active">
             <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.MoveStatementHistory</a>
         </li>
-        <li>
-            <a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+        <li class="tab-icon">
+            <a href="@userguideLink" target="_blank"><span class="ic-information"></span></a>
         </li>
     </ul>
     <div class="list-icon">
@@ -150,7 +150,7 @@
             }
             @if (Model.ReportData != null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
             {
-                <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tbl-small-width" id="tbl-report">
+                <table class="tb tb-bordered tb-hover w-60p text-right" id="tbl-report">
                     <thead>
                         <tr>
                             <th>@Resources.MemberRefNo</th>

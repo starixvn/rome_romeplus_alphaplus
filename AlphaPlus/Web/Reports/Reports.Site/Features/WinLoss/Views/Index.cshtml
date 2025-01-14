@@ -238,11 +238,11 @@
     {
         <daterange-picker model="Model.DateRangePicker" />
     }
-    <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+    <div class="form-group form-group-short hide">
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.BuildExcelParams()"></a>
     </div>
     @if (Model.IsHistoricReport)

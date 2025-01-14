@@ -26,7 +26,7 @@ public class ReportTitleTagHelper : TagHelper
 
         if (!string.IsNullOrWhiteSpace(Model.IconInfoUrl))
         {
-            sb.Append($"<a href=\"{Model.IconInfoUrl}\" target=\"_blank\"><span class=\"icon-information icon icon-information-outline\"></span></a>");
+            sb.Append($"<a href=\"{Model.IconInfoUrl}\" target=\"_blank\"><span class=\"ic-information\"></span></a>");
         }
 
         AppendActionIcons(sb);

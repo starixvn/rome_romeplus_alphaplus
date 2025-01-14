@@ -360,5 +360,35 @@
         "inputFiles": [
             "assets/styles-v2/winlossdetailnew.css"
         ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/winlossanalysischart.css",
+        "inputFiles": [
+            "assets/styles-v2/winlossanalysischart.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/statement.css",
+        "inputFiles": [
+            "assets/styles-v2/statement.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/bonusdetail.css",
+        "inputFiles": [
+            "assets/styles-v2/bonusdetail.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/betcredithistory.css",
+        "inputFiles": [
+            "assets/styles-v2/betcredithistory.css"
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/movestatementhistory.css",
+        "inputFiles": [
+            "assets/styles-v2/movestatementhistory.css"
+        ]
     }
 ]

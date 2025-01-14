@@ -15,8 +15,9 @@
         </span>
     }
 }
-@section Styles {
-    <link rel="stylesheet" href="~/bundles/statement/statement.css" asp-append-version="true" />
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/statement")
+    <link rel="stylesheet" href="~/bundles-v2/statement.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/statement/sma-statement.js" asp-append-version="true"></script>
@@ -26,11 +27,11 @@
 <form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form">
     <daterange-picker model="Model.DateRangePicker" />
-    <div class="form-group">
-        <span id="icon-information" class="icon-information-outline"></span>
+    <div class="form-group form-group-short">
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="SMAStatementExcel"
+        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="SMAStatementExcel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
     <div class="note">
@@ -40,7 +41,7 @@
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" asp-for="CustLevelId" />
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
+<table class="tb tb-bordered tb-hover w-full" id="tbl-report">
     <thead>
         <tr>
             <th>@Resources.Date</th>

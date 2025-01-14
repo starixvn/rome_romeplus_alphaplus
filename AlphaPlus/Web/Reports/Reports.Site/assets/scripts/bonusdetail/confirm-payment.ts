@@ -45,7 +45,7 @@ class ConfirmPayment {
 
     private bindEvents() {
         const self = this;
-        $('.icon-payment').click(function () {
+        $('.ic-payment').click(function () {
             self.assignConfirmPaymentFormData($(this));
             self.$popupConfirmPayment.modal({ show: true, backdrop: false });
         });

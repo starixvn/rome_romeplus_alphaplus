@@ -14,7 +14,7 @@ public class NoInformationTagHelper : TagHelper
         output.TagName = "tbody";
         output.TagMode = TagMode.StartTagAndEndTag;
 
-        var html = $"<tr><td colspan=\"{Colspan}\" class=\"text-center\">{Resources.NoInformationIsAvailable}</td></tr>";
+        var html = $"<tr><td colspan=\"{Colspan}\" class=\"text-center first-row\">{Resources.NoInformationIsAvailable}</td></tr>";
         output.Content.SetHtmlContent(html);
     }
 }

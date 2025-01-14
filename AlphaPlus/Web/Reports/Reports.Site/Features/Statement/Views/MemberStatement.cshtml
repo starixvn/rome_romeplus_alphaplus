@@ -19,8 +19,9 @@
         @(cellValue.HasValue ? cellValue.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
     }
 }
-@section Styles {
-    <link rel="stylesheet" href="~/bundles/statement/statement.css" asp-append-version="true" />
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/statement")
+    <link rel="stylesheet" href="~/bundles-v2/statement.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/statement/member-statement.js" asp-append-version="true"></script>
@@ -52,7 +53,7 @@
     <input type="hidden" asp-for="CustLevelId" />
     <input type="hidden" asp-for="ProductIds" />
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
+<table class="tb tb-bordered tb-hover w-full" id="tbl-report">
     <thead>
         <tr>
             <th>@Resources.Date</th>

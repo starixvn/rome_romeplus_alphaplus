@@ -74,6 +74,10 @@
         </td>
     }
 }
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossdetailnew")
+    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+}
 @section Scripts {
     <script src="~/bundles/winlossanalysis/winlossanalysis.js" asp-append-version="true"></script>
 }
@@ -84,10 +88,10 @@
     <product-multiselection model="@Model.ProductViewModel" />
     <daterange-picker model="@Model.DateRangePicker" />
     <div class="form-group hide">
-        <span id="icon-information" class="icon-information-outline"></span>
+        <span id="icon-information" class="ic-information"></span>
     </div>
     <div class="form-group">
-        <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
+        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
     <div class="note">
@@ -106,7 +110,7 @@
     </div>
 </form>
 <table
-    class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover tablesorter width-100per @(Model.PageHeader.IsStackMode ? "stack-mode" : string.Empty)"
+    class="tb tb-bordered tb-hover tablesorter w-full @(Model.PageHeader.IsStackMode ? "stack-mode" : string.Empty)"
     id="tbl-report" data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
     data-descendingsort="@Model.DescendingSort" style="visibility:hidden">
     <thead>

@@ -53,7 +53,7 @@ class MatchWinLossDetailView extends BaseReport {
     }
 
     registerEvents() {
-        $('.icon-switchmode').on('click', this.onSwitchMode);
+        $('.ic-switchmode').on('click', this.onSwitchMode);
         this.$buttonLoadLeague.on('click', this.loadLeagues);
     }
 

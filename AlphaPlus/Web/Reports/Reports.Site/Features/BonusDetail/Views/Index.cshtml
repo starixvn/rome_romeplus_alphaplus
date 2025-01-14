@@ -141,7 +141,7 @@
     {
         if (userLevel.IsAgentLevel() && bonus.CanConfirmPaymentDate)
         {
-            <span class="icon-payment" data-custid="@bonus.CustId" data-transid="@bonus.TransId" data-username="@bonus.Username"
+            <span class="ic-payment" data-custid="@bonus.CustId" data-transid="@bonus.TransId" data-username="@bonus.Username"
                 data-amount="@bonus.Amount.FormatNumber()" data-createddate="@bonus.MinConfirmPaymentDate"></span>
         }
         else
@@ -179,8 +179,9 @@
         }
     }
 }
-@section Styles {
-    <link rel="stylesheet" href="~/bundles/bonusdetail/bonusdetail.css" asp-append-version="true" />
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/bonusdetail")
+    <link rel="stylesheet" href="~/bundles-v2/bonusdetail.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/bonusdetail/bonusdetail.js" asp-append-version="true"></script>
@@ -206,7 +207,7 @@
         <button type="submit" class="btn-submit" id="btn-submit">@Resources.Submit</button>
     </div>
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-hover width-100per" id="tbl-report">
+<table class="tb tb-bordered tb-hover w-full text-right" id="tbl-report">
     <thead>
         <tr>
             <th rowspan="2">@Resources.CreatedDate</th>
@@ -230,7 +231,7 @@
             <th rowspan="2">@Resources.BonusStatus</th>
             <th rowspan="2">@Resources.MemberFeedback</th>
         </tr>
-        <tr>
+        <tr class="thead-row2">
             <th>@Resources.Amount</th>
             @if (Model.ViewerLevel.IsSuperLevel())
             {
@@ -311,7 +312,7 @@
                     <form method="post" class="form-horizontal" id="form-confirmPayment" asp-action="ConfirmPayment">
                         <input type="hidden" name="custId" id="hidden-custId" />
                         <input type="hidden" name="transId" id="hidden-transId" />
-                        <div class="form-group">
+                        <div class="form-popup">
                             <label class="col-xs-3 control-label">@Resources.PaymentDate</label>
                             <div class="col-xs-9">
                                 <div class="control date">
@@ -327,19 +328,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-popup">
                             <label class="col-xs-3 control-label">@Resources.ToMember</label>
                             <label class="col-xs-9 control-label" id="lbl-toMember"></label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-popup">
                             <label class="col-xs-3 control-label">@Resources.Amount</label>
                             <label class="col-xs-9 control-label" id="lbl-amount"></label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-popup">
                             <label class="col-xs-3 control-label">@Resources.BonusDetailRefNo</label>
                             <label class="col-xs-9 control-label" id="lbl-bonusDetailRefNo"></label>
                         </div>
-                        <div class="form-group list-button">
+                        <div class="form-popup list-button">
                             <button type="submit" class="btn-submit" id="btn-confirmPayment">@Resources.Submit</button>
                         </div>
                     </form>

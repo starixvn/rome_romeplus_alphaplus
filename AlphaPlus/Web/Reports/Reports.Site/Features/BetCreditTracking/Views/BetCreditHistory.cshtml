@@ -25,17 +25,16 @@
         </tr>
     }
 }
-@section Styles {
-    @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/site-reports/tab-{Model.CustLevel.DisplayName.ToLowerInvariant()}")
-    @StaticResources.AssetStyles.Render("/bundles-v2/site-assets/tipsy")
-    <link rel="stylesheet" href="~/bundles/betcredittracking/betcredithistory.css" asp-append-version="true" />
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betcredittracking")
+    <link rel="stylesheet" href="~/bundles-v2/betcredithistory.css" asp-append-version="true" />
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles-v2/site-assets/tipsy")
     <script src="~/bundles/betcredittracking/betcredithistory.js" asp-append-version="true"></script>
 }
 @model BetCreditHistoryViewModel
-<div class="page-title">
+<div class="page-title tabs @Model.CustLevel.DisplayName.ToLowerInvariant()">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
             <a href="javascript:;" aria-controls="home" role="tab" data-toggle="tab">@Resources.BetCreditHistory</a>
@@ -44,8 +43,8 @@
             <a class="open-link"
                 data-url="@MicroSites.ReportsUrl("~/BetCreditTracking/MoveStatementHistory")">@Resources.MoveStatementHistory</a>
         </li>
-        <li>
-            <a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
+        <li class="tab-icon">
+            <a href="@userguideLink" target="_blank"><span class="ic-information"></span></a>
         </li>
     </ul>
     <div class="list-icon">
@@ -79,7 +78,7 @@
         </form>
         @if (Model.ReportData != null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
         {
-            <table class="tblRpt tblRpt-bordered tblRpt-striped tblRpt-hover width-100per" id="tbl-report">
+            <table class="tb tb-bordered tb-hover w-full text-right" id="tbl-report">
                 <thead>
                     <tr>
                         <th class="action-datetime-col">@Resources.ActionDateTime</th>

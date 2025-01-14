@@ -52,8 +52,9 @@
         <td>@consolidation.BetCount.FormatNumber()</td>
     }
 }
-@section Styles {
-    <link rel="stylesheet" href="~/bundles/consolidation/consolidation.css" asp-append-version="true" />
+@section Styles {    
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/consolidation")
+    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
 }
 @section Scripts {
     <script src="~/bundles/consolidation/consolidation.js" asp-append-version="true"></script>
@@ -61,7 +62,7 @@
 @model ConsolidationByUsernameViewModel
 <partial name="TitleAndFilter" model="Model" />
 <table
-    class="tblRpt tblRpt-bordered tblRpt-hover width-100per@(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+    class="tb tb-bordered tb-hover w-full  @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
     <thead>
         <tr>
@@ -85,7 +86,7 @@
             <th rowspan="2">@Resources.Company</th>
             <th rowspan="2">@Resources.BetCount</th>
         </tr>
-        <tr>
+        <tr class="thead-row2">
             <th class="hidden-stack-mode">@Resources.WinLoss</th>
             <th class="hidden-stack-mode">@Resources.Comm</th>
             <th class="hidden-stack-mode">@Resources.Total</th>
