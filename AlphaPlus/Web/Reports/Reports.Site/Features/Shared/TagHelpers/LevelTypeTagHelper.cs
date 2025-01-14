@@ -12,7 +12,7 @@ public class LevelTypeTagHelper : TagHelper
     public UserLevel CustLevel { get; set; }
 
     [HtmlAttributeName("selected-value")]
-    public byte SelectedType { get; set; }
+    public byte SelectedLevel { get; set; }
 
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
@@ -24,11 +24,11 @@ public class LevelTypeTagHelper : TagHelper
         sb
             .Append($"<label class=\"label-form-control\">{Resources.Level}</label>")
             .Append("<select id=\"dropdown-level-type\">")
-            .Append($"<option value=\"0\" {(SelectedType == 0 ? "selected" : string.Empty)}>{Resources.All}</option>")
-            .Append($"<option value=\"1\" {(SelectedType == 1 ? "selected" : string.Empty)}>{(CustLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent)}</option>")
-            .Append($"<option value=\"2\" {(SelectedType == 2 ? "selected" : string.Empty)}>{Resources.DirectMember}</option>")
+            .Append($"<option value=\"0\" {(SelectedLevel == 0 ? "selected" : string.Empty)}>{Resources.All}</option>")
+            .Append($"<option value=\"1\" {(SelectedLevel == 1 ? "selected" : string.Empty)}>{(CustLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent)}</option>")
+            .Append($"<option value=\"2\" {(SelectedLevel == 2 ? "selected" : string.Empty)}>{Resources.DirectMember}</option>")
             .Append("</select>")
-            .Append($"<input type=\"hidden\" name=\"LevelType\" id=\"level-type\" value=\"{SelectedType}\" />");
+            .Append($"<input type=\"hidden\" name=\"LevelType\" id=\"level-type\" value=\"{SelectedLevel}\" />");
 
         output.Content.SetHtmlContent(sb.ToString());
     }

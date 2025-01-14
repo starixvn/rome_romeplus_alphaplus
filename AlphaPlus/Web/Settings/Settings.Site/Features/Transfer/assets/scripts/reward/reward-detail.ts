@@ -6,7 +6,7 @@ class RewardDetailView {
     private filter: FilterComponent;
     private dateRangePicker: DateRangePickerJQueryComponentTransfer;
     private programDropdown: FanexMultiSelectComponent;
-    private paymentStatusDropdown: DropdownTransferComponent;
+    private paymentStatusDropdown: SingleDropdownTransferComponent;
     private usernameAutoSuggestion: UsernameSuggestionComponent;
     private visibleColumn: VisibleColumnDropdownNewComponent;
     private sorter: SortComponent;
@@ -18,7 +18,7 @@ class RewardDetailView {
         filter: FilterComponent,
         dateRangePicker: DateRangePickerJQueryComponentTransfer,
         programDropdown: FanexMultiSelectComponent,
-        paymentStatusDropdown: DropdownTransferComponent,
+        paymentStatusDropdown: SingleDropdownTransferComponent,
         usernameAutoSuggestion: UsernameSuggestionComponent,
         visibleColumn: VisibleColumnDropdownNewComponent,
         sorter: SortComponent,
@@ -60,11 +60,10 @@ class RewardDetailView {
             showFilter: true,
             onDropdownHidden: () => this.getRewardReport()
         });
-        this.paymentStatusDropdown.render(
-            'ddl-paymentStatus',
-            { enableFiltering: true, enableCaseInsensitiveFiltering: true },
-            () => this.getRewardReport()
-        );
+        this.paymentStatusDropdown.render({
+            dropdownId: 'ddl-paymentStatus',
+            onChange: () => this.getRewardReport()
+        });
 
         this.usernameAutoSuggestion.init({
             url: $('#hiddenUsernameAutoSuggestionUrl').attr('href'),
@@ -217,7 +216,7 @@ $(function () {
         new FilterComponent(),
         new DateRangePickerJQueryComponentTransfer(),
         new FanexMultiSelectComponent(),
-        new DropdownTransferComponent(),
+        new SingleDropdownTransferComponent(),
         new UsernameSuggestionComponent(),
         new VisibleColumnDropdownNewComponent(),
         new SortComponent(),

@@ -21,8 +21,6 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClear
 
         public bool IsInternal { get; }
 
-        public string AllowedTotalBalanceTransferSuperIds => Settings.Transfer.API.Configurations.AppSettings.AllowedTotalBalanceTransferSuperIds;
-
         public string LanguageKey { get; }
     }
 }

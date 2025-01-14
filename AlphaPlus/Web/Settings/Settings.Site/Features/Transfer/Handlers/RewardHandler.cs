@@ -32,9 +32,7 @@ public class RewardHandler(
             message.ProgramIds = string.Join(',', programs.Select(p => p.ResourceId));
         }
 
-        var reportData = await rewardService.GetRewardPayments(GetRewardParam(message));
-
-        return new RewardPaymentViewModel(message, programs, reportData);
+        return new RewardPaymentViewModel(message, programs, await GetRewardPayments(message));
     }
 
     public Task<RewardPayment> Handle(GetRewardPaymentDataQuery message, CancellationToken cancellation)
@@ -44,7 +42,15 @@ public class RewardHandler(
             UpdateUserSearchInRewardPaymentTab(message.Username, message.ViewerId, message.ActorLevel);
         }
 
-        return rewardService.GetRewardPayments(GetRewardParam(message));
+        return GetRewardPayments(message);
+    }
+
+    private async Task<RewardPayment> GetRewardPayments(RewardBaseQuery message)
+    {
+        var reportData = await rewardService.GetRewardPayments(GetRewardParam(message));
+        reportData.ActorLevel = message.ActorLevel;
+
+        return reportData;
     }
 
     private void UpdateUserSearchInRewardPaymentTab(string username, int viewerId, UserLevel actorLevel)
@@ -69,9 +75,7 @@ public class RewardHandler(
 
     public async Task<RewardResult> Handle(UpdateRewardPaymentStatusCommand message, CancellationToken cancellation)
     {
-        var custIds = string.Join('^', message.Data.Select(p => p.CustId));
-        var isValidCheckMultipleCustomersBelonging = await customerService.CheckMultipleBelonging(
-            message.ViewerId, message.SubAccId, custIds);
+        var isValidCheckMultipleCustomersBelonging = await CheckMultipleCustomersBelonging(message);
 
         return isValidCheckMultipleCustomersBelonging
             ? await rewardService.UpdateRewardPaymentStatus(new UpdateRewardPaymentStatusParam(
@@ -87,6 +91,33 @@ public class RewardHandler(
             : new RewardResult(isKickout: true);
     }
 
+    private async Task<bool> CheckMultipleCustomersBelonging(UpdateRewardPaymentStatusCommand message)
+    {
+        var normalCustIds = new List<int>();
+        var directMemberCustIds = new List<int>();
+
+        foreach (var item in message.Data)
+        {
+            if (item.IsDirectMember)
+            {
+                directMemberCustIds.Add(item.CustId);
+            }
+            else
+            {
+                normalCustIds.Add(item.CustId);
+            }
+        }
+
+        var belongingNormalCustTask = normalCustIds.Count > 0
+            ? customerService.CheckMultipleBelonging(message.ViewerId, message.SubAccId, string.Join("^", normalCustIds))
+            : Task.FromResult(true);
+        var belongingDirectMemberTask = directMemberCustIds.Count > 0
+            ? customerService.CheckMultipleBelonging(message.ViewerId, message.SubAccId, string.Join("^", directMemberCustIds))
+            : Task.FromResult(true);
+        await Task.WhenAll(belongingNormalCustTask, belongingDirectMemberTask);
+
+        return await belongingNormalCustTask && await belongingDirectMemberTask;
+    }
     #endregion
 
     #region Reward Detail
@@ -147,6 +178,7 @@ public class RewardHandler(
             message.ToDate,
             message.ProgramIds,
             message.PaymentStatus,
+            message.LevelType,
             message.Username,
             message.PageIndex,
             message.PageSize);

@@ -1,16 +1,16 @@
 ﻿class TransferListView {
     alert: AlertComponent;
     usernameSuggestionComponent: UsernameSuggestionComponent;
-    statusDropdownComponent: DropdownTransferComponent;
-    autoTransferDropdownComponent: DropdownTransferComponent;
+    statusDropdownComponent: SingleDropdownTransferComponent;
+    autoTransferDropdownComponent: SingleDropdownTransferComponent;
     visibleColumnContextMenu: VisibleColumnContextMenuComponent;
     transferListPaging: TransferListPaging;
 
     constructor(
         alert: AlertComponent,
         usernameSuggestionComponent: UsernameSuggestionComponent,
-        statusDropdownComponent: DropdownTransferComponent,
-        autoTransferDropdownComponent: DropdownTransferComponent,
+        statusDropdownComponent: SingleDropdownTransferComponent,
+        autoTransferDropdownComponent: SingleDropdownTransferComponent,
         visibleColumnContextMenu: VisibleColumnContextMenuComponent,
         transferListPaging: TransferListPaging
     ) {
@@ -162,8 +162,8 @@
             directDownlines: true,
             isAccInfo: false
         });
-        this.statusDropdownComponent.render('Status');
-        this.autoTransferDropdownComponent.render('AutoTransfer');
+        this.statusDropdownComponent.render({ dropdownId: 'Status' });
+        this.autoTransferDropdownComponent.render({ dropdownId: 'AutoTransfer' });
         this.visibleColumnContextMenu.init(`transfer_${$('#ViewerId').val()}`, $tableTransfer);
     }
 
@@ -251,8 +251,8 @@ $(function () {
     new TransferListView(
         new AlertComponent(),
         new UsernameSuggestionComponent(),
-        new DropdownTransferComponent(),
-        new DropdownTransferComponent(),
+        new SingleDropdownTransferComponent(),
+        new SingleDropdownTransferComponent(),
         new VisibleColumnContextMenuComponent(),
         new TransferListPaging()
     ).init();

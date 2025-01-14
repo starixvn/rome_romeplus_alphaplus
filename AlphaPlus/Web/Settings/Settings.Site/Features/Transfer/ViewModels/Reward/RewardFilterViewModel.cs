@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.Reward;
 
@@ -14,8 +15,10 @@ public class RewardFilterViewModel
         RewardBaseQuery message,
         IEnumerable<RewardProgram> programs,
         string excelAction,
-        bool showColumns = false)
+        bool showColumns = false,
+        bool showLevelType = false)
     {
+        ActorLevel = message.ActorLevel;
         DateRangePicker = new DateRangePickerJQueryViewModel(
             Resources.DateRange,
             message.Language,
@@ -28,7 +31,11 @@ public class RewardFilterViewModel
         Username = message.Username;
         ExcelAction = excelAction;
         ShowColumns = showColumns;
+        LevelType = message.LevelType;
+        ShowLevelType = showLevelType;
     }
+
+    public UserLevel ActorLevel { get; }
 
     public DateRangePickerJQueryViewModel DateRangePicker { get; }
 
@@ -39,6 +46,10 @@ public class RewardFilterViewModel
     public string Username { get; }
 
     public bool ShowColumns { get; }
+
+    public byte LevelType { get; }
+
+    public bool ShowLevelType { get; }
 
     public string ExcelAction { get; }
 

@@ -746,4 +746,10 @@
   <data name="SuperEditsMultipleMembers_Note" xml:space="preserve">
     <value>Quý vị chỉ có thể thay đổi trạng thái của Member (mở/khoá) và thay đổi giá trị Position Taking của mình trên các Member đó.</value>
   </data>
+  <data name="Level" xml:space="preserve">
+    <value>Cấp</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
 </root>

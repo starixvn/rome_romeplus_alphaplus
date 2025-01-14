@@ -2,7 +2,8 @@
     private filter: FilterComponent;
     private dateRangePicker: DateRangePickerJQueryComponentTransfer;
     private programDropdown: FanexMultiSelectComponent;
-    private paymentStatusDropdown: DropdownTransferComponent;
+    private paymentStatusDropdown: SingleDropdownTransferComponent;
+    private levelTypeDropdown: SingleDropdownTransferComponent;
     private usernameSuggestion: UsernameSuggestionComponent;
     private sorter: SortComponent;
     private tableContainer: JQuery;
@@ -11,7 +12,8 @@
         filter: FilterComponent,
         dateRangePicker: DateRangePickerJQueryComponentTransfer,
         programDropdown: FanexMultiSelectComponent,
-        paymentStatusDropdown: DropdownTransferComponent,
+        paymentStatusDropdown: SingleDropdownTransferComponent,
+        levelTypeDropdown: SingleDropdownTransferComponent,
         usernameSuggestion: UsernameSuggestionComponent,
         sorter: SortComponent
     ) {
@@ -19,6 +21,7 @@
         this.dateRangePicker = dateRangePicker;
         this.programDropdown = programDropdown;
         this.paymentStatusDropdown = paymentStatusDropdown;
+        this.levelTypeDropdown = levelTypeDropdown;
         this.usernameSuggestion = usernameSuggestion;
         this.sorter = sorter;
     }
@@ -61,12 +64,14 @@
             showFilter: true,
             onDropdownHidden: () => this.getRewardReport()
         });
-        this.paymentStatusDropdown.render(
-            'ddl-paymentStatus',
-            { enableFiltering: true, enableCaseInsensitiveFiltering: true },
-            () => this.getRewardReport()
-        );
-
+        this.paymentStatusDropdown.render({
+            dropdownId: 'ddl-paymentStatus',
+            onChange: () => this.getRewardReport()
+        });
+        this.levelTypeDropdown.render({
+            dropdownId: 'dropdown-level-type',
+            onChange: () => this.getRewardReport()
+        });
         this.usernameSuggestion.init({
             url: $('#hiddenUsernameAutoSuggestionUrl').attr('href'),
             directDownlines: true,
@@ -107,6 +112,11 @@
         const paymentStatus = this.paymentStatusDropdown.getSelected();
         if (paymentStatus !== '0') {
             searchData.paymentStatus = paymentStatus;
+        }
+
+        const levelType = this.levelTypeDropdown.getSelected();
+        if (levelType) {
+            searchData.levelType = levelType;
         }
 
         return searchData;
@@ -165,7 +175,8 @@
             custId: $element.data('custid'),
             username: $element.data('custname'),
             programId: $element.data('programid'),
-            maxTransId: $element.data('maxtransid')
+            maxTransId: $element.data('maxtransid'),
+            isDirectMember: $element.data('isdirectmember') === 1
         };
     }
 
@@ -284,7 +295,8 @@ $(function () {
         new FilterComponent(),
         new DateRangePickerJQueryComponentTransfer(),
         new FanexMultiSelectComponent(),
-        new DropdownTransferComponent(),
+        new SingleDropdownTransferComponent(),
+        new SingleDropdownTransferComponent(),
         new UsernameSuggestionComponent(),
         new SortComponent()
     ).init();

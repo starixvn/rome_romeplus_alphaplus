@@ -754,4 +754,10 @@
   <data name="SuperEditsMultipleMembers_Note" xml:space="preserve">
     <value>คุณสามารถเปลี่ยนแปลงการ (เปิด/ปิดบัญชี) และค่าเอี่ยวต่าง ๆ ได้เท่านั้น</value>
   </data>
+  <data name="Level" xml:space="preserve">
+    <value>ระดับ</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
 </root>

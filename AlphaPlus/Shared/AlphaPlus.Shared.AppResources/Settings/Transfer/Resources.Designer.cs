@@ -2861,5 +2861,49 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
                 return ResourceManager.GetString("ADBTOffError", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Member.
+        /// </summary>
+        public static string DirectMember
+        {
+            get
+            {
+                return ResourceManager.GetString("DirectMember", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master Agent.
+        /// </summary>
+        public static string MasterAgent
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterAgent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0}&apos;s Direct Members.
+        /// </summary>
+        public static string ClearCreditStep_Super_DirectMember
+        {
+            get
+            {
+                return ResourceManager.GetString("ClearCreditStep_Super_DirectMember", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Member to {0}.
+        /// </summary>
+        public static string TransferStep_Super_DirectMember
+        {
+            get
+            {
+                return ResourceManager.GetString("TransferStep_Super_DirectMember", resourceCulture);
+            }
+        }
     }
 }

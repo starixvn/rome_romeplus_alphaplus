@@ -43,14 +43,7 @@ public class RewardService(IDynamicRepository repository) : IRewardService
     public async Task<RewardPayment> GetRewardPayments(RewardParam param)
     {
         var total = new RewardPaymentEntity();
-        var rawData = await repository.FetchAsync<RewardPaymentEntity>(new GetRewardPaymentCriteria(
-            param.CustId,
-            param.CustLevel,
-            param.FromDate,
-            param.ToDate,
-            param.ProgramIds,
-            param.PaymentStatus,
-            param.Username));
+        var rawData = await repository.FetchAsync<RewardPaymentEntity>(BuildRewardPaymentCriteria(param));
 
         foreach (var item in rawData)
         {
@@ -59,6 +52,41 @@ public class RewardService(IDynamicRepository repository) : IRewardService
         }
 
         return new RewardPayment(rawData, total);
+    }
+
+    private static GetRewardCriteria BuildRewardPaymentCriteria(RewardParam param)
+    {
+        if (param.CustLevel.IsSuperLevel())
+        {
+            return new GetRewardPaymentMasterCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                param.ProgramIds,
+                param.PaymentStatus,
+                param.LevelType,
+                param.Username);
+        }
+
+        if (param.CustLevel.IsMasterLevel())
+        {
+            return new GetRewardPaymentAgentCriteria(
+                param.CustId,
+                param.FromDate,
+                param.ToDate,
+                param.ProgramIds,
+                param.PaymentStatus,
+                param.LevelType,
+                param.Username);
+        }
+
+        return new GetRewardPaymentMemberCriteria(
+            param.CustId,
+            param.FromDate,
+            param.ToDate,
+            param.ProgramIds,
+            param.PaymentStatus,
+            param.Username);
     }
 
     public async Task<RewardResult> UpdateRewardPaymentStatus(UpdateRewardPaymentStatusParam param)

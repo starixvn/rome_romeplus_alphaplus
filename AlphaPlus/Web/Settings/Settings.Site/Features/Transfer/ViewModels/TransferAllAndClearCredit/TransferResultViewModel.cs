@@ -85,8 +85,8 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndCle
         public string GetClearCreditStepName(ClearCreditStep step)
             => string.Format(Resources.ResourceManager.GetString("ClearCreditStep_" + StepKey(step.Id)), Username);
 
-        private string StepKey(byte id)
-            => $"{CustLevel.DisplayName}_{Enumeration.FromValue<UserLevel>(id).DisplayName}";
+        private string StepKey(int id)
+            => $"{CustLevel.DisplayName}_{(id > 0 ? Enumeration.FromValue<UserLevel>((byte)id).DisplayName : "DirectMember")}";
 
         public string DirectDownlineText
             => Resources.ResourceManager.GetString(CustLevel.GetDirectDownLineLevel().DisplayName);

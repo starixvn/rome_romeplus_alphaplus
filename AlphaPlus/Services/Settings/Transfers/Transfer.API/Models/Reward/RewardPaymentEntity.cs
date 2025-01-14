@@ -18,6 +18,8 @@ public class RewardPaymentEntity
 
     public DateTime? PaymentDate { get; init; }
 
+    public bool IsDirectMember { get; init; }
+
     public static RewardPaymentEntity operator +(RewardPaymentEntity model1, RewardPaymentEntity model2)
     {
         model1.Amount += model2.Amount;

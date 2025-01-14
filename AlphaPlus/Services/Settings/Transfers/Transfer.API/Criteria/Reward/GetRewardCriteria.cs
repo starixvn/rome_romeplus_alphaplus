@@ -1,12 +1,9 @@
-using AlphaPlus.Core.Models;
-using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Transfer.API.Criteria.Reward;
 
 internal abstract class GetRewardCriteria(
     int custId,
-    UserLevel custLevel,
     DateTime fromDate,
     DateTime toDate,
     string programIds,
@@ -14,9 +11,6 @@ internal abstract class GetRewardCriteria(
     string username) : CriteriaBase
 {
     public int CustId { get; } = custId;
-
-    [SpParam(Ignored = true)]
-    public UserLevel CustLevel { get; } = custLevel;
 
     public DateTime FromDate { get; } = fromDate;
 

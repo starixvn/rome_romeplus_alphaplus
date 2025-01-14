@@ -754,4 +754,10 @@
   <data name="SuperEditsMultipleMembers_Note" xml:space="preserve">
     <value>您只能更改会员状态（开启/关闭）和采取那些占成。</value>
   </data>
+  <data name="Level" xml:space="preserve">
+    <value>阶层</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
 </root>

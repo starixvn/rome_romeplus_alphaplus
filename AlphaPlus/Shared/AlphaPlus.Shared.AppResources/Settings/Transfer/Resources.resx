@@ -873,6 +873,18 @@
   <data name="NoColumnsFound" xml:space="preserve">
     <value>No Columns Found</value>
   </data>
+  <data name="DirectMember" xml:space="preserve">
+    <value>Direct Member</value>
+  </data>
+  <data name="MasterAgent" xml:space="preserve">
+    <value>Master Agent</value>
+  </data>
+  <data name="ClearCreditStep_Super_DirectMember" xml:space="preserve">
+    <value>{0}'s Direct Members</value>
+  </data>
+  <data name="TransferStep_Super_DirectMember" xml:space="preserve">
+    <value>Direct Member to {0}</value>
+  </data>
   <data name="ADBTOnError" xml:space="preserve">
     <value>Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
   </data>
