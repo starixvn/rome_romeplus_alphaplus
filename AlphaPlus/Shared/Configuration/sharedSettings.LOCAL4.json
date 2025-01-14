@@ -125,7 +125,7 @@
     "RedisConfiguration": "10.18.200.131:16389,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged",
     "RemotingRefUrl": "http://remotingref-api-core.nexdev.net/",
     "Fanex.Customer": {
-        "ServiceUri": "https://customer.nexdev.net/local5/api/",
+        "ServiceUri": "http://alphaplus_api_settings_LOCAL:5000/api/",
         "CdnUri": "https://cdn-customer.nexdev.net/v5/",
         "SystemId": 2
     },
