@@ -68,7 +68,15 @@ body {
         padding: 0;
     }
 }
-
+.alternative-row-table{
+    tbody{
+        tr{
+            &:nth-child(even){
+                background-color: #eae9ee;
+            }
+        }
+    }
+}
 .link {
     color: #045ace;
     cursor: pointer;

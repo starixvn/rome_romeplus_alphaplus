@@ -92,34 +92,37 @@ body{
         font-size: calculateScale(var(--font-size));
     }
 
-    .msg {
-        padding: calculateScale(8px) calculateScale(8px) calculateScale(8px) calculateScale(36px);
-        margin: calculateScale(12px) 0;
+    
 
-        &:before {
-            font-size: calculateScale(24px);
-            line-height: calculateScale(20px);
-            left: calculateScale(8px);
-            top: calculateScale(8px);
+    .given-credit {
+        .msg {
+            padding: calculateScale(8px) calculateScale(8px) calculateScale(8px) calculateScale(36px);
+            margin: calculateScale(12px) 0;
+    
+            &:before {
+                font-size: calculateScale(24px);
+                line-height: calculateScale(20px);
+                left: calculateScale(8px);
+                top: calculateScale(8px);
+            }
+        }
+        .form-group {
+            line-height: calculateScale(28px);
+            margin-bottom: calculateScale(6px);
+            .textbox {
+                height: calculateScale(28px);
+                line-height: calculateScale(28px);
+                padding-left: calculateScale(8px);
+                border-width: calculateScale(1px);
+                font-size: calculateScale(var(--font-size));
+        
+                &:focus {
+                    border-width: 0 0 calculateScale(1px) 0;
+                }
+            }
         }
     }
-
-    .given-credit .form-group {
-        line-height: calculateScale(28px);
-        margin-bottom: calculateScale(6px);
-    }
-
-    .given-credit .textbox {
-        height: calculateScale(28px);
-        line-height: calculateScale(28px);
-        padding-left: calculateScale(8px);
-        border-width: calculateScale(1px);
-        font-size: calculateScale(var(--font-size));
-
-        &:focus {
-            border-width: 0 0 calculateScale(1px) 0;
-        }
-    }
+ 
 
     .given-credit .list-button {
         padding: calculateScale(12px) 0 calculateScale(20px);
@@ -133,6 +136,7 @@ body{
     }
 
     .note {
+        font-size: calculateScale(11px);
         .text-red {
             padding-right: calculateScale(6px);
         }

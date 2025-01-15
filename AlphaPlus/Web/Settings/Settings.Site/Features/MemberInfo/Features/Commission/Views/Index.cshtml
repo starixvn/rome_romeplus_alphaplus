@@ -16,7 +16,9 @@
 <form method="get" class="form-inline filter" role="form" id="form-filter">
     <div class="form-group">
         <label>@Resources.Product</label>
+        <div class="original-sl">
         <select class="original" id="ddl-product" asp-items="Model.Products"></select>
+        </div>
     </div>
     @if (Model.Masters != null)
     {
@@ -24,13 +26,17 @@
             <label>@Resources.SelectMaster</label>
             @if (Model.Masters.Any())
             {
+                <div class="original-sl">
                 <select class="original" id="ddl-master" asp-items="Model.Masters"></select>
+                </div>
             }
             else
             {
+                <div class="original-sl">
                 <select class="original" id="ddl-master">
                     <option value="0">@Resources.NoInformationIsAvailable</option>
                 </select>
+                </div>
             }
         </div>
     }
@@ -40,13 +46,17 @@
             <label>@Resources.SelectAgent</label>
             @if (Model.Agents.Any())
             {
+                <div class="original-sl">
                 <select class="original" id="ddl-agent" asp-items="Model.Agents"></select>
+                </div>
             }
             else
             {
+                <div class="original-sl">
                 <select class="original" id="ddl-agent">
                     <option value="0">@Resources.NoInformationIsAvailable</option>
                 </select>
+                </div>
             }
         </div>
         <div class="form-group">

@@ -59,6 +59,38 @@
                 appearance: auto;
             }
         }
+        .original-sl{
+            background-color: #171717;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+            position: relative;
+            display: inline-block;
+            &:after{
+                font-family: Iconalpha !important;
+                speak: never;
+                font-style: normal;
+                font-weight: 400;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                content: "\e902";
+                position: absolute;
+                top: 5px;
+                right: 2px;
+                font-size: 18px;
+                pointer-events: none;
+            }
+            select{
+                background: none;
+                box-shadow: none;
+                cursor: pointer;
+                &.original{
+                    appearance: none;
+                    padding: 0px 23px 0px 13px;
+                    line-height: 28px;
+                }
+            }
+        }
         .label-form-control {
             display: block;
             font-weight: bold;
