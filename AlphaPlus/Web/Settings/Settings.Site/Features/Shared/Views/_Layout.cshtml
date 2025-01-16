@@ -12,9 +12,11 @@
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-memberinfo/default")
     @StaticResources.RenderStylesWithDarkMode("~/bundles/shared/settings")
     @RenderSection("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 
 <body>
+    @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-memberinfo/default")

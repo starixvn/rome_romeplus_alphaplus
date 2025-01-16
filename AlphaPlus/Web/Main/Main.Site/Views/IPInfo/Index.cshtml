@@ -12,9 +12,11 @@
 
     <link href="@($"~/assets/bundles/ip-info/ip-info{StaticResources.GetDarkModeName()}.css")" rel="stylesheet"
         type="text/css" asp-append-version="true" />
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 
 <body>
+    @GoogleAnalyticHelper.GtagNoScript()
     <table class="tbl">
         <tr>
             <td>@Resources.IP</td>

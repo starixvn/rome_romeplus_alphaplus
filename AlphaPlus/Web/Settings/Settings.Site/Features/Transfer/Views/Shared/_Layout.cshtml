@@ -16,9 +16,11 @@
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-transfer/default")
     @StaticResources.RenderStylesWithDarkMode("~/Features/Transfer/assets/bundles/default")
     @RenderSection("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 
 <body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+    @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
 
     @Html.Hidden("NoInformationIsAvailable", @Resources.NoInformationIsAvailable)

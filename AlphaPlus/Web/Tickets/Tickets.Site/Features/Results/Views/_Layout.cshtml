@@ -10,9 +10,11 @@
     @StaticResources.AssetStyles.RenderWithRoleAndDarkMode("/bundles/site-results/")
     <link rel="stylesheet" href="~/bundles/results/resultcore.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 
 <body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+    @GoogleAnalyticHelper.GtagNoScript()
     <div id="page_main">
         <div class="container-fluid">
             <ul class="nav nav-tabs" role="tablist">

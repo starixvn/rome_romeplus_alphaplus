@@ -13,9 +13,11 @@
     @StaticResources.RenderStylesWithDarkMode("~/Features/MemberInfo/assets/bundles/default")
     @RenderSection("Styles", required: false)
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 
 <body style="height:100%">
+    @GoogleAnalyticHelper.GtagNoScript()
     <noscript>You need to enable JavaScript to run this app.</noscript>
     @RenderBody()
     @* <environment names="Development">

@@ -8,9 +8,11 @@
     <title>@ViewData["Title"]</title>
     @StaticResources.AssetStyles.RenderCommon("/bundles3/site-totalbetsforecast/default")
     @await RenderSectionAsync("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 
 <body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+    @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @await RenderSectionAsync("Scripts", required: false)

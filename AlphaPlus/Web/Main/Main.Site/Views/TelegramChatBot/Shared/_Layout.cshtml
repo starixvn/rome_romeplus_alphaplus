@@ -9,8 +9,10 @@
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/telegramchatbot/chatbot")
     @RenderSection("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 <body>
+    @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @Html.AntiForgeryToken()
     @Html.Hidden("mainRootPath", MicroSites.MainUrl())

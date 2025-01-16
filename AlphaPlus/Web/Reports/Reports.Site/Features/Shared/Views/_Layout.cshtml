@@ -10,9 +10,11 @@
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-reports/default")
     <link rel="stylesheet" href="~/bundles/default.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
+    @GoogleAnalyticHelper.GtagScript()
 </head>
 
 <body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
+    @GoogleAnalyticHelper.GtagNoScript()
     @RenderBody()
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/ajaxSetup")
