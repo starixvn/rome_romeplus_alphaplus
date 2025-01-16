@@ -230,7 +230,7 @@
         "ApplicationName": "Alpha.After.MBC.UAT"
     },
     "MarketsSupportedNewHandbook": "IBC,MBC",
-    "GoogleAnalyticId": "",
+    "GoogleAnalyticId": "G-7ZLZVC9F64",
     "OfferAutoTransfer.Currencies": "*",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
     "OfferClearGivenCredit:Sites": "KORIBC,INDO",

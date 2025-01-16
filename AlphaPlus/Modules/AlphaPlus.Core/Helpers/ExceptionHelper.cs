@@ -21,9 +21,6 @@ public static class ExceptionHelper
             .Append("BODY: ")
             .Append(await GetRawBodyStringAsync(request))
             .Append(TwoBreakLine)
-            .Append("SESSION:")
-            .Append(GetSessionValues(request))
-            .Append(TwoBreakLine)
             .Append("HEADERS:").Append(BreakLine)
             .Append(GetHeaderValues(request))
             .Append(TwoBreakLine)
@@ -54,18 +51,5 @@ public static class ExceptionHelper
         => string.Join(BreakLine, request.Headers.Select(header => $"{header.Key}:{header.Value}"));
 
     private static string GetCookiesValues(HttpRequest request)
-        => string.Join(BreakLine, request.Cookies.Select(header => $"{header.Key}:{header.Value}"));
-
-    private static string GetSessionValues(HttpRequest request)
-    {
-        try
-        {
-            var session = request.HttpContext.Session;
-            return string.Join(BreakLine, session.Keys.Select(key => $"{key}:{session.GetString(key)}"));
-        }
-        catch
-        {
-            return string.Empty;
-        }
-    }
+        => string.Join(BreakLine, request.Cookies.Select(cookie => $"{cookie.Key}:{cookie.Value}"));
 }
