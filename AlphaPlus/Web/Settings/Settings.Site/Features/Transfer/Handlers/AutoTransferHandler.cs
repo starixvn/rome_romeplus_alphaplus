@@ -81,7 +81,8 @@ public class AutoTransferHandler(
             PageIndex = message.PageIndex,
             SortedBy = message.SortedBy,
             Direction = message.Direction,
-            AGIP = message.AGIP
+            AGIP = message.AGIP,
+            LevelType = message.LevelType
         };
 
         return await service.GetTodayTransfersAsync(param);
@@ -101,7 +102,8 @@ public class AutoTransferHandler(
             Direction = message.Direction,
             FromDate = message.FromDate,
             ToDate = message.ToDate,
-            LimitedDateToShowInfo = message.LimitedDateToShowInfo
+            LimitedDateToShowInfo = message.LimitedDateToShowInfo,
+            LevelType = message.LevelType
         };
 
         return await service.GetHistoryTransfersAsync(param);

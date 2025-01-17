@@ -38,26 +38,21 @@ public class TransferYesterdayBalanceHandler(
             message.CustName,
             StatusConstant.All,
             AutoTransferConstant.All,
+            0,
             false,
             message.AllowTotalBalanceTransfer,
             1,
             1,
-            message.ActorLevel.IsAgentLevel() ? message.AGIP : string.Empty);
-        var reportData = await transferListService.GetTransferList(param);
+            message.AGIP);
+        var customerTransfer = await transferListService.GetCustomerTransfer(param);
+        var balance = 0M;
 
-        if (reportData.TotalPages == 1)
+        if (customerTransfer != null && customerTransfer.CustId == message.CustId)
         {
-            var customer = reportData.Customers.First();
-
-            if (customer.CustId == message.CustId)
-            {
-                return new SingleViewModel(
-                    message.CustId,
-                    message.AllowTotalBalanceTransfer ? customer.Balance : customer.YesterdayBalance);
-            }
+            balance = message.AllowTotalBalanceTransfer ? customerTransfer.Balance : customerTransfer.YesterdayBalance;
         }
 
-        return new SingleViewModel(message.CustId, 0);
+        return new SingleViewModel(message.CustId, balance);
     }
 
     public async Task<Result> Handle(SingleCommand message, CancellationToken cancellationToken)
@@ -72,7 +67,6 @@ public class TransferYesterdayBalanceHandler(
         var param = new TransferYesterdayBalanceParam(
             message.ViewerId,
             message.ViewerLevelId,
-            AppSettings.AllowedListSuperAccounts,
             message.CustId.ToString(),
             false,
             message.Amount,
@@ -103,6 +97,7 @@ public class TransferYesterdayBalanceHandler(
                 message.Username,
                 message.Status,
                 message.AutoTransfer,
+                message.LevelType,
                 message.AllYesterdayBalance,
                 message.AllowTotalBalanceTransfer,
                 1,
@@ -128,7 +123,6 @@ public class TransferYesterdayBalanceHandler(
             var param = new TransferYesterdayBalanceParam(
                 message.ViewerId,
                 message.ViewerLevelId,
-                AppSettings.AllowedListSuperAccounts,
                 string.Join(',', custIdList),
                 true,
                 0,
@@ -181,7 +175,6 @@ public class TransferYesterdayBalanceHandler(
         var param = new AgentTransferYesterdayBalanceParam(
             message.ViewerId,
             message.ActorName,
-            AppSettings.AllowedListSuperAccounts,
             message.CustId,
             message.Amount,
             isAllDayBalanceTransfer,
@@ -189,7 +182,9 @@ public class TransferYesterdayBalanceHandler(
             message.IP,
             message.SubAccId,
             message.AGIP);
-        var result = await yesterdayBalanceTransferService.MemberTransfer(param);
+        var result = message.ActorLevel.IsAgentLevel()
+            ? await yesterdayBalanceTransferService.MemberTransfer(param)
+            : await yesterdayBalanceTransferService.DirectMemberTransfer(param);
         transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [message.CustId], message.AdminId, message.AdminName);
 
         if (result.IsSuccessful)
@@ -209,7 +204,7 @@ public class TransferYesterdayBalanceHandler(
 
         var param = new AgentTransferMultipleYesterdayBalanceParam(
             message.ViewerId,
-            AppSettings.AllowedListSuperAccounts,
+            message.ActorLevel,
             message.CustIds,
             message.Username,
             message.Status,

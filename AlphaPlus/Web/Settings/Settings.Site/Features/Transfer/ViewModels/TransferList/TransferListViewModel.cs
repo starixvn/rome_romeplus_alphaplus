@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
 using AlphaPlus.Settings.Site.Features.Transfer.Constants;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferList;
 
@@ -19,9 +20,11 @@ public class TransferListViewModel(
 { 
     public int ViewerId { get; } = message.ViewerId;
 
+    public UserLevel ActorLevel { get; } = message.ActorLevel;
+
     public bool IsSuperLevel { get; } = message.ActorLevel.IsSuperLevel();
 
-    public bool IsMasterOrSuperLevel { get; } = message.ActorLevel.IsMasterOrSuperLevel();
+    public bool IsAgentLevel { get; } = message.ActorLevel.IsAgentLevel();
 
     public string Username { get; } = message.Username;
 
@@ -46,6 +49,8 @@ public class TransferListViewModel(
         new SelectListItem(Resources.Enabled, AutoTransferConstant.Enabled.ToString()),
         new SelectListItem(Resources.Disabled, AutoTransferConstant.Disabled.ToString())
     ];
+
+    public byte LevelType { get; } = message.LevelType;
 
     public bool AllYesterdayBalance { get; } = message.AllYesterdayBalance;
 
@@ -83,15 +88,15 @@ public class TransferListViewModel(
         return customer.YesterdayBalance < 0 ? "favorite" : "underdog";
     }
 
-    public string GetCashBalanceColor(decimal cashBalance) => cashBalance < 0 ? "favorite" : string.Empty;
+    public string GetColor(decimal value) => value < 0 ? "favorite" : string.Empty;
 
-    public string GetBalanceColor(CustomerTransfer customer)
+    public string GetTotalBalanceColor(decimal balance, decimal futureBetCredit, bool isDirectMember = false)
     {
-        var className = customer.Balance < 0 ? "favorite" : string.Empty;
+        var className = balance < 0 ? "favorite" : string.Empty;
 
-        if (!IsMasterOrSuperLevel)
+        if (isDirectMember || IsAgentLevel)
         {
-            var isHightlight = customer.FutureBetCredit < 0;
+            var isHightlight = futureBetCredit < 0;
 
             if (isHightlight)
             {
@@ -103,11 +108,11 @@ public class TransferListViewModel(
         return className;
     }
 
-    public bool ShowYesterdayBalanceLink(CustomerTransfer customer)
-        => !IsAllDayBalanceTransfer && !message.AllowTotalBalanceTransfer && customer.YesterdayBalance != 0;
+    public bool ShowYesterdayBalanceLink(decimal value)
+        => value != 0 && !IsAllDayBalanceTransfer && !message.AllowTotalBalanceTransfer;
 
-    public bool ShowBalanceLink(CustomerTransfer customer)
-        => !IsAllDayBalanceTransfer && message.AllowTotalBalanceTransfer && customer.Balance != 0;
+    public bool ShowBalanceLink(decimal value)
+        => value != 0 && !IsAllDayBalanceTransfer && message.AllowTotalBalanceTransfer;
 
     public IDictionary<string, string> GetAutoTransferParams(CustomerTransfer customer)
         => new Dictionary<string, string>
@@ -128,16 +133,13 @@ public class TransferListViewModel(
             ["UplineCondition"] = transferCondition
         };
 
-    public IDictionary<string, string> GetSingleTransferParams(CustomerTransfer customer)
-        => new Dictionary<string, string>
-        {
-            [nameof(customer.CustId)] = customer.CustId.ToString(),
-            ["CustName"] = customer.Username
-        };
-
     public string UpdateMultipleAutoTransferUrl
         => MicroSites.SettingUrl($"~/AutoTransfer/UpdateMultipleAutoTransfer?uplineCondition={transferCondition}&Old_TransferOption={transferOption}");
 
+    public string AutoTransferGuidelineUrl
+        => MicroSites.FeatureUrl("~/HandbookDefault/GetBySlug?slug=auto-transfer");
+        
     public bool IsReloadTopPage { get; set; }
+    
     public string MessageForReloadSite { get; set; }
 }

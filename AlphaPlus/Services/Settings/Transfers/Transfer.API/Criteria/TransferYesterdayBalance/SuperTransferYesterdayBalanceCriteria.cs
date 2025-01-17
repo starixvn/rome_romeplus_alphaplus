@@ -2,7 +2,6 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
 public class SuperTransferYesterdayBalanceCriteria(
     int custId,
-    string superIdsTransferTotal,
     string toCustIds,
     bool fullTransfer,
     decimal amtTrans,
@@ -10,7 +9,7 @@ public class SuperTransferYesterdayBalanceCriteria(
     byte autoTransfer,
     string language,
     string ip,
-    int subAccId) : TransferYesterdayBalanceCriteria(superIdsTransferTotal, language, ip, custId, subAccId)
+    int subAccId) : TransferYesterdayBalanceCriteria(language, ip, custId, subAccId)
 {
     public int SAgId { get; } = custId;
 
@@ -24,7 +23,7 @@ public class SuperTransferYesterdayBalanceCriteria(
 
     public byte AutoTransfer { get; } = autoTransfer;
 
-    public override string GetSettingKey() => "Age_Transfer_Ins_SAg";
+    public override string GetSettingKey() => "SiteDB_Age_Transfer_Ins_SAg";
 
     public override bool IsValid() => SAgId > 0 && !string.IsNullOrWhiteSpace(ToCustIds);
 }

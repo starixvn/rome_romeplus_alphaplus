@@ -1,6 +1,4 @@
-﻿'use strict';
-
-interface Window {
+﻿interface Window {
     indexManager: any;
     main: any;
     closePopupAndReloadMainFrameAfterUpdateSuccess: Function;
@@ -276,11 +274,15 @@ class CashBalance {
             return;
         }
 
-        const postParams = {
+        const postParams: any = {
             RequestVerificationToken: this.$token.val(),
             custId: this.$custId.val(),
             amount: validationObject.Amount
         };
+        if (this.$('#isDirectMember').val() === '1') {
+            postParams.isDirectMember = true;
+        }
+
         this.$.ajax({
             headers: {
                 RequestVerificationToken: this.$("input[name='__RequestVerificationToken']").val(),

@@ -29,7 +29,7 @@ public class GetAgentTransferListCriteria(
 
     public decimal? TotalPendingTransfer3rd { get; set; }
 
-    public override string GetSettingKey() => "Age_Transfer_SelList_Ag";
+    public override string GetSettingKey() => "SiteDB_Age_Transfer_SelList_Ag";
 
     public override bool IsValid() => CustId > 0;
 }

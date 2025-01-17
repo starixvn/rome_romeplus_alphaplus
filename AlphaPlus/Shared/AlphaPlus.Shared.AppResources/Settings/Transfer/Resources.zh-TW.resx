@@ -849,6 +849,15 @@
   <data name="SearchColumn" xml:space="preserve">
     <value>搜索專欄</value>
   </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>馀額總數</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>總余額</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>昨天馀額</value>
+  </data>
   <data name="ADBTOnError" xml:space="preserve">
     <value>您的上線允許您使用全天餘額轉賬。該頁面將自動刷新。</value>
   </data>

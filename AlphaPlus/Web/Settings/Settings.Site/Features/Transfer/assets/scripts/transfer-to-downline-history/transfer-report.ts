@@ -1,7 +1,5 @@
-﻿"use strict";
-
-interface Window {
-    $: JQueryStatic
+﻿interface Window {
+    $: JQueryStatic;
 }
 
 class TransferReport {
@@ -14,7 +12,7 @@ class TransferReport {
 
     pageLength: number;
     startHiddenColumnIndex: number;
-    tblFooterClass = "tbl-footer";
+    tblFooterClass = 'tbl-footer';
 
     constructor($: JQueryStatic) {
         this.$ = $;
@@ -35,10 +33,10 @@ class TransferReport {
     }
 
     public cacheDOMElements(): void {
-        this.$tableReport = this.$("#tbl-report");
-        this.$iconFilter = this.$(".icon-filter");
-        this.$pageTitle = this.$(".page-title");
-        this.$reportForm = this.$("#report-form");
+        this.$tableReport = this.$('#tbl-report');
+        this.$iconFilter = this.$('.icon-filter');
+        this.$pageTitle = this.$('.page-title');
+        this.$reportForm = this.$('#report-form');
     }
 
     public registerEvents(): void {
@@ -52,25 +50,23 @@ class TransferReport {
     }
 
     public onClickIconFilter = (): void => {
-        this.$reportForm.hasClass("hide")
-            ? this.showFilter()
-            : this.hideFilter();
+        this.$reportForm.hasClass('hide') ? this.showFilter() : this.hideFilter();
         this.doAdjustHeader();
     };
 
     public showFilter(): void {
-        this.$pageTitle.removeClass("hide-filter");
-        this.$reportForm.removeClass("hide");
+        this.$pageTitle.removeClass('hide-filter');
+        this.$reportForm.removeClass('hide');
     }
 
     public hideFilter(): void {
-        this.$pageTitle.addClass("hide-filter");
-        this.$reportForm.addClass("hide");
+        this.$pageTitle.addClass('hide-filter');
+        this.$reportForm.addClass('hide');
     }
 
     public triggerRedrawTable(): void {
         this.doAdjustHeader();
-        this.$("tbody tr.parent").each((index, element) => this.onClickDetailControl(element));
+        this.$('tbody tr.parent').each((index, element) => this.onClickDetailControl(element));
     }
 
     public doAdjustDataTable(): void {
@@ -80,7 +76,9 @@ class TransferReport {
 
         if (deviceWidth < utilsInstance.mobileDeviceMaxWidth && browserWidth >= utilsInstance.mobileDeviceMaxWidth) {
             for (let i = this.startHiddenColumnIndex; i < columnCount - 1; i++) {
-                this.$(this.$dataTable.column(i).header()).removeClass("desktop min-tablet-l mobile").addClass("mobile");
+                this.$(this.$dataTable.column(i).header())
+                    .removeClass('desktop min-tablet-l mobile')
+                    .addClass('mobile');
             }
         }
 
@@ -91,14 +89,14 @@ class TransferReport {
     public doAdjustHeader = (): void => {
         this.$dataTable.fixedHeader.adjust();
 
-        const scrollTo = this.$(".fixedHeader-floating thead").length > 0 ? this.$(document).height() : 0;
+        const scrollTo = this.$('.fixedHeader-floating thead').length > 0 ? this.$(document).height() : 0;
         this.$(window).scrollTop(scrollTo);
     };
 
     public onClickFooterRow = (parentRow, childRow): void => {
-        parentRow.hasClass("parent") ?
-            childRow.addClass(this.tblFooterClass) :
-            childRow.removeClass(this.tblFooterClass);
+        parentRow.hasClass('parent')
+            ? childRow.addClass(this.tblFooterClass)
+            : childRow.removeClass(this.tblFooterClass);
 
         const scrollTopTimeOut = 100;
         setTimeout(() => {
@@ -109,19 +107,19 @@ class TransferReport {
     };
 
     public onClickBodyRow = (parentRow, childRow): void => {
-        if (childRow.hasClass("child")) {
-            parentRow.hasClass("even") ?
-                childRow.removeClass("odd").addClass("even") :
-                childRow.removeClass("even").addClass("odd");
+        if (childRow.hasClass('child')) {
+            parentRow.hasClass('even')
+                ? childRow.removeClass('odd').addClass('even')
+                : childRow.removeClass('even').addClass('odd');
         }
     };
 
     public onClickDetailControl(element): void {
-        const parentRow = this.$(element).closest("tr");
+        const parentRow = this.$(element).closest('tr');
         const childRow = this.$(parentRow).next();
-        parentRow.hasClass(this.tblFooterClass) ?
-            this.onClickFooterRow(parentRow, childRow) :
-            this.onClickBodyRow(parentRow, childRow);
+        parentRow.hasClass(this.tblFooterClass)
+            ? this.onClickFooterRow(parentRow, childRow)
+            : this.onClickBodyRow(parentRow, childRow);
     }
 
     public initDataTable(options = {}): void {
@@ -130,14 +128,15 @@ class TransferReport {
 
         this.$dataTable = this.$tableReport.DataTable(tableOptions);
 
-        this.$tableReport.find("tbody").on("click", "td.control", event => this.onClickDetailControl(event.currentTarget));
-        this.$dataTable.on("draw.dt", () => this.triggerRedrawTable());
+        this.$tableReport
+            .find('tbody')
+            .on('click', 'td.control', (event) => this.onClickDetailControl(event.currentTarget));
+        this.$dataTable.on('draw.dt', () => this.triggerRedrawTable());
     }
 
     public getTableOptions = () => {
         const self = this,
-            lengthMenu =
-                `${this.$("#PageSize").val()} <select>
+            lengthMenu = `${this.$('#PageSize').val()} <select>
                     <option value="10">10</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
@@ -148,49 +147,59 @@ class TransferReport {
                 sPrevious: '',
                 sNext: '',
                 sLast: '',
-                info: `${this.$("#Page").val()} _INPUT_ ${this.$("#of").val()} _TOTAL_`
+                info: `${this.$('#Page').val()} _INPUT_ ${this.$('#of').val()} _TOTAL_`
             };
 
         return {
             language: {
-                emptyTable: this.$("#NoInformationIsAvailable").val(),
+                emptyTable: this.$('#NoInformationIsAvailable').val(),
                 lengthMenu,
                 oPaginate,
-                processing: ""
+                processing: ''
             },
             responsive: {
                 details: {
-                    type: "column",
+                    type: 'column',
                     target: -1,
                     renderer: (api, rowIdx) => {
-                        const data = api.cells(rowIdx, ":hidden").eq(0).map(function (cell) {
-                            const header = self.$(api.column(cell.column).header());
-                            const idx = api.cell(cell).index();
+                        const data = api
+                            .cells(rowIdx, ':hidden')
+                            .eq(0)
+                            .map(function (cell) {
+                                const header = self.$(api.column(cell.column).header());
+                                const idx = api.cell(cell).index();
 
-                            if (header.hasClass("control") || header.hasClass("never")) {
-                                return "";
-                            }
+                                if (header.hasClass('control') || header.hasClass('never')) {
+                                    return '';
+                                }
 
-                            const dtPrivate = api.settings()[0];
-                            const cellData = dtPrivate.oApi._fnGetCellData(
-                                dtPrivate, idx.row, idx.column, "display"
-                            );
+                                const dtPrivate = api.settings()[0];
+                                const cellData = dtPrivate.oApi._fnGetCellData(
+                                    dtPrivate,
+                                    idx.row,
+                                    idx.column,
+                                    'display'
+                                );
 
-                            return self.renderData(idx.column, header.text(), cellData);
-                        }).toArray().join("");
+                                return self.renderData(idx.column, header.text(), cellData);
+                            })
+                            .toArray()
+                            .join('');
 
                         return this.renderDetail(rowIdx, data);
                     }
                 }
             },
-            columnDefs: [{
-                className: "control",
-                orderable: false,
-                targets: -1
-            }],
+            columnDefs: [
+                {
+                    className: 'control',
+                    orderable: false,
+                    targets: -1
+                }
+            ],
             ordering: false,
             paging: true,
-            pagingType: "input",
+            pagingType: 'input',
             pageLength: this.pageLength,
             lengthMenu,
             searching: false,
@@ -202,15 +211,14 @@ class TransferReport {
         };
     };
 
-    public renderData = (idxColumn, headerText: string, cellData): string => `<li data-dtr-index="${idxColumn}">` +
+    public renderData = (idxColumn, headerText: string, cellData): string =>
+        `<li data-dtr-index="${idxColumn}">` +
         `<span class="dtr-title">${headerText}</span>` +
         `<span class="dtr-data">${cellData}</span></li>`;
 
-    public renderDetail = (rowIdx, data) => data ?
-        this.$(`<ul data-dtr-index="${rowIdx}"/>`).append(data) :
-        false;
+    public renderDetail = (rowIdx, data) => (data ? this.$(`<ul data-dtr-index="${rowIdx}"/>`).append(data) : false);
 
     public drawCallback = (): void => {
-        this.$tableReport.removeClass("hidden");
+        this.$tableReport.removeClass('hidden');
     };
 }

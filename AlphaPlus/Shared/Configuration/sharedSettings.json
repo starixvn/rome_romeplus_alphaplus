@@ -242,7 +242,7 @@
     "MarketsSupportedNewHandbook": "IBC,MBC",
     "GoogleAnalyticId": "UA-93265717-1",
     "OfferAutoTransfer.Currencies": "*",
-    "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo,BEST-ODDS",
+    "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo,Indo,BEST-ODDS",
     "OfferClearGivenCredit:Sites": "*",
     "IndirectLogin": {
         "AllowSuperIds": "*",

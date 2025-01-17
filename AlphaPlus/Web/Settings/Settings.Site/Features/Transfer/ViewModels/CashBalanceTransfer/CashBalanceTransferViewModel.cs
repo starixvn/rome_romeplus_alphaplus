@@ -1,114 +1,93 @@
 ﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 
-namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.CashBalanceTransfer
+namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.CashBalanceTransfer;
+
+public class CashBalanceTransferViewModel
 {
-    public class CashBalanceTransferViewModel
+    public CashBalanceTransferViewModel(UserLevel actorLevel, bool isDirectMember, Settings.Transfer.API.Models.CashBalanceTransfer.CashBalanceTransfer model)
     {
-        public CashBalanceTransferViewModel(
-            decimal uplineCashBalance,
-            int custId,
-            string userName,
-            UserLevel custUserLevel,
-            decimal cashBalance,
-            decimal outstanding,
-            decimal givenCredit,
-            decimal pendingTransfer3rd)
+        UplineLevelName = GetUserLevelDisplayName(actorLevel);
+        UplineCashBalance = model.UplineCashBalance;
+        CustId = model.CustId;
+        UserName = model.UserName;
+        CustLevelName = GetUserLevelDisplayName(Enumeration.FromValue<UserLevel>(model.RoleId));
+        CashBalance = model.CashBalance;
+        Outstanding = model.Outstanding;
+        PendingTransfer3rd = model.PendingTransfer3rd;
+        IsDirectMember = isDirectMember;
+        GivenCredit = model.GivenCredit;
+
+        TransferAmountFrom = CashBalance - Outstanding - PendingTransfer3rd;
+        TransferAmountFrom = TransferAmountFrom > 0 ? TransferAmountFrom * -1 : 0;
+        TransferAmountTo = UplineCashBalance > 0 ? UplineCashBalance : 0;
+
+        DisableTransfer = TransferAmountFrom == 0 && TransferAmountTo == 0;
+
+        if (DisableTransfer)
         {
-            UplineCashBalance = uplineCashBalance;
-            CustId = custId;
-            UserName = userName;
-            CustUserLevel = custUserLevel;
-            CashBalance = cashBalance;
-            Outstanding = outstanding;
-            PendingTransfer3rd = pendingTransfer3rd;
-            GivenCredit = givenCredit;
+            Hint = Resources.HintNotAvailableToTransfer;
+        }
+        else
+        {
+            string amountFrom = Format4Digits(TransferAmountFrom);
+            string amountTo = Format4Digits(TransferAmountTo);
 
-            TransferAmountFrom = CashBalance - Outstanding - pendingTransfer3rd;
-            TransferAmountFrom = TransferAmountFrom > 0 ? TransferAmountFrom * -1 : 0;
-            TransferAmountTo = UplineCashBalance > 0 ? UplineCashBalance : 0;
+            Hint = string.Format(Resources.HintRangeTransfer, amountFrom, amountTo);
+            AvailableRangeTransfer = string.Format(Resources.AvailableRangeTransfer, amountFrom, amountTo);
+        }
+    }
 
-            DisableTransfer = TransferAmountFrom == 0 && TransferAmountTo == 0;
+    public string UplineLevelName { get; }
 
-            if (DisableTransfer)
-            {
-                Hint = Resources.HintNotAvailableToTransfer;
-            }
-            else
-            {
-                string amountFrom = Format4Digits(TransferAmountFrom);
-                string amountTo = Format4Digits(TransferAmountTo);
+    public decimal UplineCashBalance { get; }
 
-                Hint = string.Format(Resources.HintRangeTransfer, amountFrom, amountTo);
-                AvailableRangeTransfer = string.Format(Resources.AvailableRangeTransfer, amountFrom, amountTo);
-            }
+    public string CustLevelName { get; }
+
+    public int CustId { get; }
+
+    public string UserName { get; }
+
+    public decimal CashBalance { get; }
+
+    public decimal Outstanding { get; }
+
+    public decimal PendingTransfer3rd { get; }
+
+    public bool IsDirectMember { get; }
+
+    public decimal GivenCredit { get; }
+
+    public decimal TransferAmountFrom { get; }
+
+    public decimal TransferAmountTo { get; }
+
+    public string Hint { get; }
+
+    public string AvailableRangeTransfer { get; }
+
+    public bool DisableTransfer { get; }
+
+    private static string Format4Digits(decimal value)
+        => value == 0 ? "0" : value.ToString("N4");
+
+    private static string GetUserLevelDisplayName(UserLevel userLevel)
+    {
+        if (userLevel.IsSuperLevel())
+        {
+            return Resources.Super;
         }
 
-        public string UplineLevelName
+        if (userLevel.IsMasterLevel())
         {
-            get
-            {
-                return GetUserLevelDisplayName(CustUserLevel.GetDirectUplineLevel());
-            }
+            return Resources.Master;
         }
 
-        public decimal UplineCashBalance { get; }
-
-        public string CustLevelName
+        if (userLevel.IsAgentLevel())
         {
-            get
-            {
-                return GetUserLevelDisplayName(CustUserLevel);
-            }
+            return Resources.Agent;
         }
 
-        public int CustId { get; }
-
-        public string UserName { get; }
-
-        public UserLevel CustUserLevel { get; }
-
-        public decimal CashBalance { get; }
-
-        public decimal Outstanding { get; }
-
-        public decimal PendingTransfer3rd { get; }
-
-        public decimal GivenCredit { get; }
-
-        public decimal TransferAmountFrom { get; }
-
-        public decimal TransferAmountTo { get; }
-
-        public string Hint { get; }
-
-        public string AvailableRangeTransfer { get; }
-
-        public bool DisableTransfer { get; }
-
-        private static string Format4Digits(decimal value)
-        {
-            return value == 0 ? "0" : value.ToString("N4");
-        }
-
-        private static string GetUserLevelDisplayName(UserLevel userLevel)
-        {
-            if (userLevel.IsSuperLevel())
-            {
-                return Resources.Super;
-            }
-
-            if (userLevel.IsMasterLevel())
-            {
-                return Resources.Master;
-            }
-
-            if (userLevel.IsAgentLevel())
-            {
-                return Resources.Agent;
-            }
-
-            return Resources.Member;
-        }
+        return Resources.Member;
     }
 }

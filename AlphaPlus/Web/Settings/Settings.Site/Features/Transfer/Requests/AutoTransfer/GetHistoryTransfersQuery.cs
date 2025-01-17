@@ -24,7 +24,6 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
 
         public DateTime LimitedDateToShowInfo { get; }
 
-
         public string Username { get; set; }
 
         public string Status { get; set; }
@@ -40,6 +39,8 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
         public DateTime FromDate { get; set; }
 
         public DateTime ToDate { get; set; }
+
+        public byte LevelType { get; set; }
 
         public bool IsValid() => CustId > 0;
     }

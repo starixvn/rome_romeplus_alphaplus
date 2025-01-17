@@ -457,6 +457,15 @@
   <data name="Customer" xml:space="preserve">
     <value>お客様</value>
   </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>Total Cash</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>Total Balance</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>Yesterday Cash</value>
+  </data>
   <data name="ADBTOnError" xml:space="preserve">
     <value>Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
   </data>

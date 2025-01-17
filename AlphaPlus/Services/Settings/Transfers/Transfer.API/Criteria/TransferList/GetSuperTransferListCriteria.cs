@@ -9,6 +9,7 @@ public class GetSuperTransferListCriteria(
     bool allYesterdayBalance,
     bool allowTotalBalanceTransfer,
     byte autoTransfer,
+    byte levelType,
     int pageIndex,
     int pageSize) : GetTransferListCriteria(
         downlineName,
@@ -21,6 +22,8 @@ public class GetSuperTransferListCriteria(
 {
     [SpParam(SqlParamName = "sagid")]
     public int SuperId { get; } = custId;
+
+    public byte LevelType { get; } = levelType;
 
     public decimal? TotalOutStanding { get; set; }
 
@@ -38,7 +41,7 @@ public class GetSuperTransferListCriteria(
 
     public decimal? TotalPendingTransfer3rd { get; set; }
 
-    public override string GetSettingKey() => "Age_Transfer_SelList_SAg";
+    public override string GetSettingKey() => "SiteDB_Age_Transfer_SelList_SAg";
 
     public override bool IsValid() => SuperId > 0;
 }

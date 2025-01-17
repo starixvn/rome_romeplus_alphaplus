@@ -2,14 +2,13 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
 public class AgentTransferYesterdayBalanceCriteria(
     string agentName,
-    string superIdsTransferTotal,
     int memberId,
     decimal amount,
     bool isAllDayBalTransfer,
     string language,
     string ip,
     int creator,
-    int subAccId) : TransferYesterdayBalanceCriteria(superIdsTransferTotal, language, ip, creator, subAccId)
+    int subAccId) : TransferYesterdayBalanceCriteria(language, ip, creator, subAccId)
 {
     public string ToUsername { get; } = agentName;
 
@@ -19,7 +18,7 @@ public class AgentTransferYesterdayBalanceCriteria(
 
     public bool IsAllDayBalTransfer { get; } = isAllDayBalTransfer;
 
-    public override string GetSettingKey() => "Age_Transfer_Ins_Ag";
+    public override string GetSettingKey() => "SiteDB_Age_Transfer_Ins_Ag";
 
     public override bool IsValid() => FromCustId > 0 && !string.IsNullOrWhiteSpace(ToUsername);
 }

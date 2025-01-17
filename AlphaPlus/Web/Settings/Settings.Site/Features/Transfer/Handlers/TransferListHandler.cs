@@ -23,7 +23,7 @@ public class TransferListHandler(
         var currentADBT = await transferService.IsAllDayBalanceTransfer(message.ViewerId);
         var isEnableAutoTransfer = !currentADBT && AppSettings.CheckOfferAutoTransferCurrencies(message.Currency);
 
-        var prevADBT = message.ADBT ?? false;
+        //var prevADBT = message.ADBT ?? false;
         var isPostBack = message.IsPostBack ?? false;
         message.AllYesterdayBalance = !isPostBack && currentADBT ? true : message.AllYesterdayBalance;
 
@@ -33,11 +33,12 @@ public class TransferListHandler(
             message.Username,
             message.Status,
             message.AutoTransfer,
+            message.LevelType,
             message.AllYesterdayBalance,
             message.AllowTotalBalanceTransfer,
             message.PageIndex,
             message.PageSize,
-            message.ActorLevel.IsAgentLevel() ? message.AGIP : string.Empty);
+            message.AGIP);
 
         var enteredSportResultTask = winlossService.GetEnteredSportResultsAsync();
         var reportDataTask = transferListService.GetTransferList(param);

@@ -1,19 +1,12 @@
-﻿using AlphaPlus.Settings.Transfer.API.Models;
-using MediatR;
+﻿using MediatR;
+using AlphaPlus.Settings.Transfer.API.Constants;
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory;
 
-namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory;
+
+public class TransferToDownlineHistoryPagingQuery : TransferToDownlineHistoryQuery, IRequest<TransferToDownlineHistoryPagingViewModel>
 {
-    public class TransferToDownlineHistoryPagingQuery : TransferToDownlineHistoryBaseQuery, IRequest<TransferToDownlineHistoryPagingViewModel>
-    {
-        public TransferToDownlineHistoryPagingQuery() : this(null) { }
+    public int PageIndex { get; set; } = PagerConstant.DefaultPageIndex;
 
-        public TransferToDownlineHistoryPagingQuery(IUser viewer) : base(viewer)
-        {
-        }
-
-        public int PageSize { get; set; }
-
-        public int PageIndex { get; set; }
-    }
+    public int PageSize { get; set; } = PagerConstant.DefaultPageSize;
 }

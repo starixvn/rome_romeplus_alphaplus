@@ -1,41 +1,32 @@
 ﻿using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Site.Features.Transfer.Models;
 using MediatR;
-using AlphaPlus.Settings.Transfer.API.Models;
 
-namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer;
+
+public class CashBalanceTransferCommand : TransferBaseQuery, IRequest<Result>
 {
-    public class CashBalanceTransferCommand : IRequest<Result>
+    public CashBalanceTransferCommand()
     {
-        public CashBalanceTransferCommand() : this(null) { }
-
-        public CashBalanceTransferCommand(IUser user)
-        {
-            user = user ?? new User(UserSession.Current);
-            UplineId = user.Id;
-            SubAccId = user.SubAccId;
-            IP = user.IP;
-            LanguageKey = user.LanguageKey;
-            UplineName = user.SubAccId > 0 ? user.SubAccName : user.Name;
-            AGIP = user.AGIP;
-        }
-
-        public int CustId { get; set; }
-
-        public decimal Amount { get; set; }
-
-        public int UplineId { get; }
-
-        public string UplineName { get; }
-
-        public int SubAccId { get; }
-
-        public string IP { get; }
-
-        public string LanguageKey { get; }
-
-        public string AGIP { get; }
-
-        public bool IsValid() => CustId > 0 && Amount != 0 && UplineId > 0;
+        SubAccId = viewer.SubAccId;
+        IP = viewer.IP;
+        LanguageKey = viewer.LanguageKey;
+        UplineName = SubAccId > 0 ? viewer.SubAccName : viewer.Name;
+        IsInternal = viewer.IsInternal;
     }
+
+    public decimal Amount { get; set; }
+
+    public bool IsDirectMember { get; set; }
+
+    public string UplineName { get; }
+
+    public int SubAccId { get; }
+
+    public string IP { get; }
+
+    public string LanguageKey { get; }
+
+    public bool IsInternal { get; }
+
+    public override bool IsValid() => Amount != 0 && ViewerId > 0 && base.IsValid();
 }

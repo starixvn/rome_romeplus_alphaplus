@@ -1,8 +1,10 @@
+using AlphaPlus.Core.Models;
+
 namespace AlphaPlus.Settings.Transfer.API.Params.TransferYesterdayBalance;
 
 public record AgentTransferMultipleYesterdayBalanceParam(
-    int AgentId,
-    string SuperIdsTransferTotal,
+    int ActorId,
+    UserLevel ActorLevel,
     string MemberIds,
     string Username,
     string Status,

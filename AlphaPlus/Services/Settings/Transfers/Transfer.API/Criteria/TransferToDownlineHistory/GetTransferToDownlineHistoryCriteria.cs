@@ -9,6 +9,7 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferToDownlineHistory
             string userName,
             DateTime fromDate,
             DateTime toDate,
+            byte levelType,
             int pageSize,
             int pageIndex)
         {
@@ -16,6 +17,7 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferToDownlineHistory
             UserName = userName;
             FromDate = fromDate;
             ToDate = toDate;
+            LevelType = levelType;
             PageSize = pageSize;
             PageIndex = pageIndex;
         }
@@ -27,6 +29,8 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferToDownlineHistory
         public DateTime FromDate { get; }
 
         public DateTime ToDate { get; }
+
+        public byte LevelType { get; }
 
         public int PageSize { get; }
 

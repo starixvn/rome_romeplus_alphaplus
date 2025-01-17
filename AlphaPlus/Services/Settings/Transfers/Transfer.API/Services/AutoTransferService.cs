@@ -63,7 +63,8 @@ namespace AlphaPlus.Settings.Transfer.API.Services
                 SortBy = param.SortedBy,
                 SortType = param.Direction,
                 PageSize = param.PageSize,
-                PageIndex = param.PageIndex
+                PageIndex = param.PageIndex,
+                LevelType = param.LevelType
             };
 
             var transfers = await repository.FetchAsync<AutoTransferMonitoringModel>(criteria, param.AGIP);
@@ -98,10 +99,10 @@ namespace AlphaPlus.Settings.Transfer.API.Services
                 PageIndex = param.PageIndex,
                 FromDate = param.FromDate.GetGreaterDate(param.LimitedDateToShowInfo),
                 ToDate = param.ToDate.GetGreaterDate(param.LimitedDateToShowInfo),
+                LevelType = param.LevelType
             };
 
             var transfers = await repository.FetchAsync<AutoTransferMonitoringModel>(criteria);
-
 
             return new AutoTransferMonitoringPageModel
             {

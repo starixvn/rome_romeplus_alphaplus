@@ -13,7 +13,6 @@ public class UpdateRewardPaymentStatusCommand : TransferBaseQuery, IRequest<Rewa
         IP = viewer.IP;
         LanguageKey = viewer.LanguageKey;
         IsInternal = viewer.IsInternal;
-        AGIP = viewer.AGIP;
     }
 
     public DateTime FromDate { get; set; }
@@ -33,8 +32,6 @@ public class UpdateRewardPaymentStatusCommand : TransferBaseQuery, IRequest<Rewa
     public string LanguageKey { get; }
 
     public bool IsInternal { get; }
-
-    public string AGIP { get; }
 
     public override bool IsValid()
         => !IsInternal

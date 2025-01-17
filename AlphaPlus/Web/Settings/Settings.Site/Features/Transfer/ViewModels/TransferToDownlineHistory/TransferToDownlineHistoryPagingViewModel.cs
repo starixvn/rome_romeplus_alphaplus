@@ -1,19 +1,12 @@
 ﻿using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
 
-namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory
+namespace AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory;
+
+public class TransferToDownlineHistoryPagingViewModel(
+    IEnumerable<TransferToDownlineHistoryModel> transferToDownlines,
+    int totalRecords)
 {
-    public class TransferToDownlineHistoryPagingViewModel
-    {
-        public TransferToDownlineHistoryPagingViewModel(
-            IEnumerable<TransferToDownlineHistoryModel> transferToDownlines,
-            int totalRecords)
-        {
-            TransferToDownlines = transferToDownlines;
-            TotalRecords = totalRecords;
-        }
+    public IEnumerable<TransferToDownlineHistoryModel> TransferToDownlines { get; } = transferToDownlines;
 
-        public IEnumerable<TransferToDownlineHistoryModel> TransferToDownlines { get; }
-
-        public int TotalRecords { get; }
-    }
+    public int TotalRecords { get; } = totalRecords;
 }

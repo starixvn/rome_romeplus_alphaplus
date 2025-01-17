@@ -65,7 +65,5 @@ public static class AppSettings
         StringComparer.OrdinalIgnoreCase
     );
 
-    public static string AllowedListSuperAccounts => GetConfigValue("AllowedListSuperAccounts");
-
     public static int MaxCustIdTransfer => int.Parse(GetConfigValue("MaxCustIdTransfer"));
 }

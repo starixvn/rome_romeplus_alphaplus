@@ -652,6 +652,7 @@
     "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-to-downline-history/index.js",
     "inputFiles": [
       "Features/Transfer/assets/scripts/components/daterangepicker.js",
+      "Features/Transfer/assets/scripts/components/single-dropdown-transfer.js",
       "Features/Transfer/assets/scripts/transfer-to-downline-history/utils.js",
       "Features/Transfer/assets/scripts/transfer-to-downline-history/transfer-report.js",
       "Features/Transfer/assets/scripts/transfer-to-downline-history/index.js"
@@ -673,6 +674,7 @@
       "Features/Transfer/assets/scripts/components/visible-columns-dropdown.js",
       "Features/Transfer/assets/scripts/components/auto-refresh.js",
       "Features/Transfer/assets/scripts/components/multiple-selection-dropdown.js",
+      "Features/Transfer/assets/scripts/components/single-dropdown-transfer.js",
       "Features/Transfer/assets/scripts/auto-transfer/monitoring.js"
     ]
   },
@@ -685,6 +687,7 @@
       "Features/Transfer/assets/scripts/components/visible-columns-dropdown.js",
       "Features/Transfer/assets/scripts/components/auto-refresh.js",
       "Features/Transfer/assets/scripts/components/multiple-selection-dropdown.js",
+      "Features/Transfer/assets/scripts/components/single-dropdown-transfer.js",
       "Features/Transfer/assets/scripts/auto-transfer/history.js"
     ]
   },

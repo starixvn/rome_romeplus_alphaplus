@@ -12,7 +12,8 @@
     ViewData["Title"] = Model.PageHeader.Title;
 }
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/betchoicematching/betchoicematching.css" asp-append-version="true" />
+    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betchoicematching")
+    <link rel="stylesheet" href="~/bundles-v2/betchoicematching.css" asp-append-version="true" />
 }
 @section Scripts {
     <script type="text/javascript">
@@ -56,18 +57,18 @@
     </div>
     <div class="form-group">
         <label class="txt label-form-control">@Resources.MatchingBets</label>
-        <select asp-for="BetCount" asp-items="Model.BetCounts"></select>
+        <select class="original-select" asp-for="BetCount" asp-items="Model.BetCounts"></select>
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-short">
         <input type="submit" value="@Resources.Submit" class="btn-submit" />
     </div>
     <div class="form-group">
-        <a href="javascript:;" class="icon-excel" title="@Resources.ExportToExcel" id="icon-excel"></a>
+        <a href="javascript:;" class="ic-excel" title="@Resources.ExportToExcel" id="icon-excel"></a>
     </div>
     <input type="hidden" id="IsFilterVisible" name="IsFilterVisible"
         value="@Model.PageHeader.IsFilterVisible.ToString()" />
 </form>
-<table class="tblRpt tblRpt-bordered tblRpt-hover width-100per hide" id="tbl-report">
+<table class="tb tb-bordered tb-hover w-full hide" id="tbl-report">
     <thead class="tableFloatingHeaderOriginal">
         <tr>
             <th class="col-username">@Resources.Username <span class="icon-table-filter"></span></th>

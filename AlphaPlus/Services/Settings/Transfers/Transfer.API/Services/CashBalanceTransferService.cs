@@ -10,7 +10,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public interface ICashBalanceTransferService
 {
-    Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId);
+    Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, string agIP);
 
     Task<Result> AddCashBalanceTransfer(
         int fromCustId,
@@ -21,7 +21,8 @@ public interface ICashBalanceTransferService
         int subAccId,
         string ip,
         string languageKey,
-        string agIP);
+        string agIP,
+        bool isDirectMember);
 }
 
 public class CashBalanceTransferService(IDynamicRepository repository) : ICashBalanceTransferService
@@ -31,8 +32,12 @@ public class CashBalanceTransferService(IDynamicRepository repository) : ICashBa
 
     private readonly IDynamicRepository repository = repository;
 
-    public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId)
-        => repository.GetAsync<CashBalanceTransfer>(new GetCashBalanceTransferCriteria(custId));
+    public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, string agIP)
+    {
+        var criteria = new GetCashBalanceTransferCriteria(custId, isDirectMember);
+
+        return repository.GetAsync<CashBalanceTransfer>(criteria, agIP);
+    }
 
     public async Task<Result> AddCashBalanceTransfer(
         int fromCustId,
@@ -43,7 +48,8 @@ public class CashBalanceTransferService(IDynamicRepository repository) : ICashBa
         int subAccId,
         string ip,
         string languageKey,
-        string agIP)
+        string agIP,
+        bool isDirectMember)
     {
         string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
         ITransferCacheService transferCacheService = new TransferCacheService();
@@ -70,8 +76,8 @@ public class CashBalanceTransferService(IDynamicRepository repository) : ICashBa
             creator,
             subAccId,
             ip,
-            languageKey);
-
+            languageKey,
+            isDirectMember);
         try
         {
             await repository.ExecuteAsync(criteria, agIP);

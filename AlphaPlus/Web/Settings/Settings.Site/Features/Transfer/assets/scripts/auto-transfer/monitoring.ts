@@ -1,5 +1,4 @@
-﻿'use strict';
-declare var numeral: any;
+﻿declare var numeral: any;
 
 interface Window {
     bootboxAlert(message: string, handleElement: any, callbackFunction: any): void;
@@ -36,6 +35,10 @@ class AutoTransferMonitoring {
     visibleColumnDropdownComponent: VisibleColumnDropdownComponent;
     autoRefreshComponent: AutoRefreshComponent;
     $statusComponent: MultipleSelectionDropdownComponent;
+    levelTypeComponent: SingleDropdownTransferComponent;
+    showLevelType: boolean;
+    directMemberText: string;
+    masterAgentText: string;
     amountFormat = '0,0.[00]';
 
     sortDirection = {
@@ -52,7 +55,8 @@ class AutoTransferMonitoring {
         pageComponent: PagerComponentTransfer,
         visibleColumnDropdownComponent: VisibleColumnDropdownComponent,
         autoRefreshComponent: AutoRefreshComponent,
-        statusComponent: MultipleSelectionDropdownComponent
+        statusComponent: MultipleSelectionDropdownComponent,
+        levelTypeComponent: SingleDropdownTransferComponent
     ) {
         this.$ = $;
         this.topWindow = topWindow;
@@ -61,6 +65,7 @@ class AutoTransferMonitoring {
         this.visibleColumnDropdownComponent = visibleColumnDropdownComponent;
         this.autoRefreshComponent = autoRefreshComponent;
         this.$statusComponent = statusComponent;
+        this.levelTypeComponent = levelTypeComponent;
     }
 
     init = () => {
@@ -96,12 +101,12 @@ class AutoTransferMonitoring {
             return false;
         });
 
-        var self = this;
+        const self = this;
         this.$('.sorting').click(function () {
             self.sort(this);
         });
 
-        var visibleColumnDropdownOption = new VisibleColumnDropdownOption(
+        const visibleColumnDropdownOption = new VisibleColumnDropdownOption(
             `Transfer_${this.ViewerId}_${this.SubAccId}:Columns`,
             (visibleStatus) => {
                 for (const [key, value] of Object.entries(visibleStatus)) {
@@ -113,11 +118,14 @@ class AutoTransferMonitoring {
 
         this.$statusComponent.render(new MultipleSelectionDropdownOption('ddl-status', 'Status', this.changeStatus));
 
-        this.autoRefreshComponent.render(
-            new AutoRefreshOption(() => {
-                this.refreshTransfers();
-            })
-        );
+        this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type' });
+        this.showLevelType = this.levelTypeComponent.$dropdown.length > 0;
+        if (this.showLevelType) {
+            this.directMemberText = this.$('#DirectMemberText').val();
+            this.masterAgentText = this.$('#MasterAgentText').val();
+        }
+
+        this.autoRefreshComponent.render(new AutoRefreshOption(() => this.refreshTransfers()));
 
         if (this.$('#status').val() === 'Failed') {
             this.viewTransfers();
@@ -129,8 +137,8 @@ class AutoTransferMonitoring {
     };
 
     viewInfo = () => {
-        var url = this.virtualDirectory + 'autotransfer/hint';
-        this.topWindow.popupManager.open(url, '', 500, 520);
+        const url = this.virtualDirectory + 'autotransfer/hint';
+        this.topWindow.popupManager.open(url, '', 500, 250);
     };
 
     viewTransfers = () => {
@@ -145,19 +153,17 @@ class AutoTransferMonitoring {
             Direction: this.sortDirection.asc
         };
         this.updatePager(alphaTransfer.pager.pageIndex, alphaTransfer.pager.pageSize);
+        if (this.showLevelType) {
+            this.reportParam.LevelType = this.levelTypeComponent.getSelected();
+        }
 
         self.$.ajax({
             method: 'POST',
             data: this.reportParam,
             dataType: 'json',
             url: 'GetTodayTransfers',
-            success: (results) => {
-                this.showTransfers(results);
-            },
-            error: (e) => {},
-            complete: () => {
-                this.$.unblockUI();
-            }
+            success: (results) => this.showTransfers(results),
+            complete: this.$.unblockUI
         });
     };
 
@@ -167,65 +173,69 @@ class AutoTransferMonitoring {
             return;
         }
 
-        var html = '';
+        const html = [];
 
         if (results.Transfers.length === 0) {
-            html = '<tr><td colspan="7" class="text-center">' + this.noInformationIsAvailable + '</td></tr>';
+            html.push(
+                '<tr><td colspan="',
+                this.showLevelType ? 8 : 7,
+                '" class="text-center">',
+                this.noInformationIsAvailable,
+                '</td></tr>'
+            );
         } else {
-            for (var i = 0; i < results.Transfers.length; i++) {
-                var t = results.Transfers[i];
-                var cancellable = t.IsAllowCancel;
-                var amount = t.TransferAmount ? this.numeral(t.TransferAmount).format(this.amountFormat) : '';
-                var ino = i + 1 + results.PageSize * (results.PageIndex - 1);
-                var amountClass = (t.TransferAmount || 0) < 0 ? ' format-negative' : '';
-                var status = t.Status.toLowerCase() === 'waiting' ? 'Processing' : t.Status;
+            for (let i = 0; i < results.Transfers.length; i++) {
+                const t = results.Transfers[i];
+                const cancellable = t.IsAllowCancel;
+                const amount = t.TransferAmount ? this.numeral(t.TransferAmount).format(this.amountFormat) : '';
+                const ino = i + 1 + results.PageSize * (results.PageIndex - 1);
+                const amountClass = (t.TransferAmount || 0) < 0 ? ' format-negative' : '';
+                const status = t.Status.toLowerCase() === 'waiting' ? 'Processing' : t.Status;
 
-                html +=
-                    '<tr>' +
-                    '<td col-value="1" class="text-center">' +
-                    ino +
-                    '</td>' +
-                    '<td col-value="2" class="text-left">' +
-                    t.Username +
-                    '</td>' +
-                    '<td col-value="3" class="text-left">' +
-                    t.FirstLastName +
-                    '</td>' +
-                    '<td col-value="4" class="text-right' +
-                    amountClass +
-                    '">' +
-                    amount +
-                    '</td>' +
-                    '<td col-value="5" class="text-left col-status ' +
-                    status.toLowerCase() +
-                    '">' +
-                    '<div class="flex">' +
-                    this.$('#' + status).val() +
-                    (cancellable
-                        ? '<div class="icon-close-circle" data-custid="' +
-                          t.CustId +
-                          '" data-status="' +
-                          t.Status +
-                          '" data-custname="' +
-                          t.Username +
-                          '"></div>'
-                        : '') +
-                    '</div>' +
-                    '</td>' +
-                    '<td col-value="6" class="text-left">' +
-                    (t.Reason || '') +
-                    '</td>' +
-                    '<td col-value="7" class="text-center">' +
-                    (t.CompletedTime || '') +
-                    '</td>' +
-                    '</tr>';
+                html.push(
+                    '<tr>',
+                    '<td col-value="1" class="text-center">',
+                    ino + '</td>',
+                    '<td col-value="2" class="text-left">',
+                    t.Username,
+                    '</td>',
+                    this.showLevelType
+                        ? `<td col-value="8" class="text-center">${
+                              t.IsDirectMember ? this.directMemberText : this.masterAgentText
+                          }</td>`
+                        : '',
+                    '<td col-value="3" class="text-left">',
+                    t.FirstLastName,
+                    '</td>',
+                    '<td col-value="4" class="text-right',
+                    amountClass,
+                    '">',
+                    amount + '</td>',
+                    '<td col-value="5" class="text-left col-status ',
+                    status.toLowerCase(),
+                    '">',
+                    '<div class="flex">',
+                    this.$('#' + status).val(),
+                    cancellable
+                        ? `<div class="icon-close-circle" data-custid="${t.CustId}" data-status="${t.Status}" data-custname="${t.Username}"></div>`
+                        : '',
+                    '</div>',
+                    '</td>',
+                    '<td col-value="6" class="text-left">',
+                    t.Reason || '',
+                    '</td>',
+                    '<td col-value="7" class="text-center">',
+                    t.CompletedTime || '',
+                    '</td>',
+                    '</tr>'
+                );
             }
         }
 
-        this.$tblMonitoring.find('tbody').empty().html(html);
+        this.$tblMonitoring.find('tbody').empty().html(html.join(''));
         this.$sorters.removeClass('sorting_asc sorting_desc');
 
-        var selectedSort = this.$tblMonitoring.find('.sorting[data-sort="' + results.SortedBy + '"]');
+        const selectedSort = this.$tblMonitoring.find('.sorting[data-sort="' + results.SortedBy + '"]');
         selectedSort.addClass('sorting_' + (results.Direction === this.sortDirection.asc ? 'asc' : 'desc'));
 
         this.$pager.data('pageindex', results.PageIndex);
@@ -235,27 +245,27 @@ class AutoTransferMonitoring {
         this.pagerComponent.reset();
         this.pagerComponent.render(
             new PagerOptionTransfer(() => {
-                var pageIndex = parseInt(this.$('#PageIndex').val(), 0);
-                var pageSize = parseInt(this.$('#PageSize').val(), 0);
+                const pageIndex = parseInt(this.$('#PageIndex').val(), 0);
+                const pageSize = parseInt(this.$('#PageSize').val(), 0);
 
                 this.pagingTransfers(pageIndex, pageSize);
             })
         );
 
-        var self = this;
+        const self = this;
         this.$('.icon-close-circle').click(function () {
             self.topWindow.bootboxConfirm(
                 self.confirmCancelJob,
                 null,
                 () => {
-                    var elm = self.$(this);
+                    const elm = self.$(this);
                     self.cancelJob(elm);
                 },
                 () => {}
             );
         });
 
-        var visibleStatus = this.visibleColumnDropdownComponent.getVisibleStatus();
+        const visibleStatus = this.visibleColumnDropdownComponent.getVisibleStatus();
 
         for (const [key, value] of Object.entries(visibleStatus)) {
             this.showHideColumn(key, value);
@@ -273,10 +283,10 @@ class AutoTransferMonitoring {
         });
     };
     sort = (elm) => {
-        var $elm = this.$(elm);
+        const $elm = this.$(elm);
 
-        var sortedBy = $elm.data('sort');
-        var direction = $elm.hasClass('sorting_asc') ? this.sortDirection.desc : this.sortDirection.asc;
+        const sortedBy = $elm.data('sort');
+        const direction = $elm.hasClass('sorting_asc') ? this.sortDirection.desc : this.sortDirection.asc;
         this.$.blockUI();
 
         this.updatePager(alphaTransfer.pager.pageIndex, alphaTransfer.pager.pageSize);
@@ -288,13 +298,8 @@ class AutoTransferMonitoring {
             data: this.reportParam,
             dataType: 'json',
             url: 'GetTodayTransfers',
-            success: (results) => {
-                this.showTransfers(results);
-            },
-            error: (e) => {},
-            complete: () => {
-                this.$.unblockUI();
-            }
+            success: (results) => this.showTransfers(results),
+            complete: this.$.unblockUI
         });
     };
 
@@ -309,13 +314,8 @@ class AutoTransferMonitoring {
             data: this.reportParam,
             dataType: 'json',
             url: 'GetTodayTransfers',
-            success: (results) => {
-                this.showTransfers(results);
-            },
-            error: (e) => {},
-            complete: () => {
-                this.$.unblockUI();
-            }
+            success: (results) => this.showTransfers(results),
+            complete: this.$.unblockUI
         });
     };
 
@@ -342,10 +342,7 @@ class AutoTransferMonitoring {
             data: this.reportParam,
             dataType: 'json',
             url: 'GetTodayTransfers',
-            success: (results) => {
-                this.showTransfers(results);
-            },
-            error: (e) => {},
+            success: (results) => this.showTransfers(results),
             complete: () => {
                 this.autoRefreshComponent.reset();
                 this.$.unblockUI();
@@ -356,7 +353,7 @@ class AutoTransferMonitoring {
     cancelJob = (elm) => {
         this.$.blockUI();
 
-        var param = {
+        const param = {
             CustId: elm.data('custid'),
             ViewStatus: elm.data('status')
         };
@@ -373,10 +370,7 @@ class AutoTransferMonitoring {
                     this.refreshTransfers();
                 }
             },
-            error: (e) => {},
-            complete: () => {
-                this.$.unblockUI();
-            }
+            complete: this.$.unblockUI
         });
     };
 
@@ -393,8 +387,8 @@ class AutoTransferMonitoring {
     };
 
     cancelAllJobs = () => {
-        var count = parseInt(this.$cancelAllCount.html());
-        var message;
+        const count = parseInt(this.$cancelAllCount.html());
+        let message;
 
         if (count === 0) {
             message = this.$('#AutoTransfer_NoCancellable').val();
@@ -424,10 +418,7 @@ class AutoTransferMonitoring {
                     this.topWindow.bootboxAlert(results.Message, null, () => {});
                 }
             },
-            error: (e) => {},
-            complete: () => {
-                this.$.unblockUI();
-            }
+            complete: this.$.unblockUI
         });
     };
 }
@@ -440,7 +431,8 @@ $(() => {
         new PagerComponentTransfer($),
         new VisibleColumnDropdownComponent($),
         new AutoRefreshComponent($),
-        new MultipleSelectionDropdownComponent($)
+        new MultipleSelectionDropdownComponent($),
+        new SingleDropdownTransferComponent()
     );
     handler.init();
 });

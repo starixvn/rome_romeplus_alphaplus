@@ -7,20 +7,21 @@ namespace AlphaPlus.Settings.Transfer.API.Services
 {
     public interface TransferToDownlineHistoryService
     {
-        Task<(IEnumerable<TransferToDownlineHistoryModel>, int)> GetTransferToDownlineHistory(TransferToDownlineHistoryPagingParam param);
+        Task<(IEnumerable<TransferToDownlineHistoryModel>, int)> GetTransferToDownlineHistory(TransferToDownlineHistoryParam param);
     }
 
     public class TransferToDownlineHistoryServiceImpl(IDynamicRepository repository) : TransferToDownlineHistoryService
     {
         private readonly IDynamicRepository repository = repository;
 
-        public async Task<(IEnumerable<TransferToDownlineHistoryModel>, int)> GetTransferToDownlineHistory(TransferToDownlineHistoryPagingParam param)
+        public async Task<(IEnumerable<TransferToDownlineHistoryModel>, int)> GetTransferToDownlineHistory(TransferToDownlineHistoryParam param)
         {
             var criteria = new GetTransferToDownlineHistoryCriteria(
                 param.CustId,
                 param.UserName,
                 param.FromDate,
                 param.ToDate,
+                param.LevelType,
                 param.PageSize,
                 param.PageIndex);
             var transferToDownlines = await repository.FetchAsync<TransferToDownlineHistoryModel>(criteria);

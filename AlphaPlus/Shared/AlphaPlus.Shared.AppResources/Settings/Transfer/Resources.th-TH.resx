@@ -849,6 +849,15 @@
   <data name="SearchColumn" xml:space="preserve">
     <value>ค้นหาคอลัมน์</value>
   </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>ยอดเงินสด</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>รวม ยอดคงเหลือ</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>เงินสดเมื่อวาน</value>
+  </data>
   <data name="ADBTOnError" xml:space="preserve">
     <value>อัพไลน์ของคุณได้เปิดการใช้งานระบบ โอนยอดคงเหลือทั้งวัน ให้กับคุณ ข้อมูลในหน้านี้จะรีเฟรชเพื่อแสดงผลใหม่โดยอัตโนมัติ</value>
   </data>

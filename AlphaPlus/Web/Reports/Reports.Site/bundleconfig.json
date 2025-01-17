@@ -390,5 +390,11 @@
         "inputFiles": [
             "assets/styles-v2/movestatementhistory.css"
         ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/betchoicematching.css",
+        "inputFiles": [
+            "assets/styles-v2/betchoicematching.css"
+        ]
     }
 ]

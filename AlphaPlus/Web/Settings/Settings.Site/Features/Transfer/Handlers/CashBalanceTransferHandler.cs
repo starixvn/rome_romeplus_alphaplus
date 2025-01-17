@@ -20,48 +20,39 @@ public class CashBalanceTransferHandler(
 
     public async Task<CashBalanceTransferViewModel> Handle(CashBalanceTransferQuery message, CancellationToken cancellation)
     {
-        var model = await cashBalanceTransferService.GetCashBalanceTransfer(message.CustId);
+        var model = await cashBalanceTransferService.GetCashBalanceTransfer(message.CustId, message.IsDirectMember, message.AGIP);
 
-        return new CashBalanceTransferViewModel(
-            model.UplineCashBalance,
-            model.CustId,
-            model.UserName,
-            Enumeration.FromValue<UserLevel>(model.RoleId),
-            model.CashBalance,
-            model.Outstanding,
-            model.GivenCredit,
-            model.PendingTransfer3rd);
+        return new CashBalanceTransferViewModel(message.ActorLevel, message.IsDirectMember, model);
     }
 
     public async Task<Result> Handle(CashBalanceTransferCommand message, CancellationToken cancellation)
     {
-        var isAllDayBalTransfer = await transferService.IsAllDayBalanceTransferAsync(message.UplineId);
+        var isAllDayBalTransfer = await transferService.IsAllDayBalanceTransferAsync(message.ViewerId);
         if (!isAllDayBalTransfer)
         {
             return Result.CreateErrorResult(Resources.DisallowedAllDayBalanceTransferError, 6001);
         }
 
         return await cashBalanceTransferService.AddCashBalanceTransfer(
-            message.UplineId,
+            message.ViewerId,
             message.CustId,
             message.Amount,
-            message.UplineId,
+            message.ViewerId,
             message.UplineName,
             message.SubAccId,
             message.IP,
             message.LanguageKey,
-            message.AGIP);
+            message.AGIP,
+            message.IsDirectMember);
     }
 
     public async Task<HintTransferViewModel> Handle(HintTransferQuery message, CancellationToken cancellation)
     {
-        var userRole = Enumeration.FromValue<UserLevel>(message.RoleId);
-
-        var allowTransfer = userRole.IsNotSuperLevel()
+        var allowTransfer = message.ActorLevel.IsNotSuperLevel()
             ? await transferService.GetAllowTransfer(message.CustId)
             : string.Empty;
-        var isAllDayBalTransfer = await transferService.IsAllDayBalanceTransferAsync(message.CustId);
-        var isEnabledAutoTransfer = !isAllDayBalTransfer && AppSettings.CheckOfferAutoTransferCurrencies(message.User.Currency);
+        var isAllDayBalTransfer = await transferService.IsAllDayBalanceTransferAsync(message.ViewerId);
+        var isEnabledAutoTransfer = !isAllDayBalTransfer && AppSettings.CheckOfferAutoTransferCurrencies(message.Currency);
 
         return new HintTransferViewModel(allowTransfer, isAllDayBalTransfer, isEnabledAutoTransfer);
     }

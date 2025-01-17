@@ -2905,5 +2905,49 @@ namespace AlphaPlus.Shared.AppResources.Settings.Transfer
                 return ResourceManager.GetString("TransferStep_Super_DirectMember", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Total Cash.
+        /// </summary>
+        public static string TotalCash
+        {
+            get
+            {
+                return ResourceManager.GetString("TotalCash", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Total Balance.
+        /// </summary>
+        public static string TotalBalance
+        {
+            get
+            {
+                return ResourceManager.GetString("TotalBalance", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday Cash.
+        /// </summary>
+        public static string YesterdayCash
+        {
+            get
+            {
+                return ResourceManager.GetString("YesterdayCash", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For Member/ Direct Member accounts the column shown is Total Balance. For all other levels, the column shown is Total Cash.
+        /// </summary>
+        public static string TotalCashTotalBalanceNote
+        {
+            get
+            {
+                return ResourceManager.GetString("TotalCashTotalBalanceNote", resourceCulture);
+            }
+        }
     }
 }

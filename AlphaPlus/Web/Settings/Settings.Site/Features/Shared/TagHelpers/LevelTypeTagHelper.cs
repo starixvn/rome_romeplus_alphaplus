@@ -22,8 +22,8 @@ public class LevelTypeTagHelper : TagHelper
 
         var sb = new StringBuilder();
         sb
-            .Append($"<label class='label-form-control'>{Resources.Level}</label>")
-            .Append("<select id='dropdown-level-type'>")
+            .Append($"<label>{Resources.Level}</label>")
+            .Append("<select id='dropdown-level-type' name='LevelType'>")
             .Append($"<option value='0' {(SelectedLevel == 0 ? "selected" : string.Empty)}>{Resources.All}</option>")
             .Append($"<option value='1' {(SelectedLevel == 1 ? "selected" : string.Empty)}>{(CustLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent)}</option>")
             .Append($"<option value='2' {(SelectedLevel == 2 ? "selected" : string.Empty)}>{Resources.DirectMember}</option>")

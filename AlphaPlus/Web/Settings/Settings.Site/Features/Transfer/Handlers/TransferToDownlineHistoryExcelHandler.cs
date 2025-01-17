@@ -1,71 +1,76 @@
 ﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Transfer.API.Extensions;
 using AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory;
-using AlphaPlus.Settings.Transfer.API.Params.TransferToDownlineHistory;
 using AlphaPlus.Settings.Transfer.API.Services;
 using MediatR;
 using ONEbook.SpreadSheets;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHistory;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Core.Models;
+using static ONEbook.SpreadSheets.Column;
 
-namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
+namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
+
+public class TransferToDownlineHistoryExcelHandler(
+    TransferToDownlineHistoryService transferToDownlineHistoryService,
+    Workbook<TransferToDownlineHistoryModel> workbook) :
+        TransferToDownlineHistoryBaseHandler(transferToDownlineHistoryService), IRequestHandler<TransferToDownlineHistoryExcelQuery, ExcelFileViewModel>
 {
-    public class TransferToDownlineHistoryExcelHandler : TransferToDownlineHistoryBaseHandler, IRequestHandler<TransferToDownlineHistoryExcelQuery, ExcelFileViewModel>
+    private readonly Workbook<TransferToDownlineHistoryModel> workbook = workbook;
+
+    public async Task<ExcelFileViewModel> Handle(TransferToDownlineHistoryExcelQuery message, CancellationToken cancellation)
     {
-        private readonly Workbook<TransferToDownlineHistoryModel> workbook;
+        var content = workbook
+            .UseTemplate(GetTemplateInfo(message))
+            .Title(GetSheetTitle(message))
+            .Header(Resources.ResourceManager.GetString)
+            .Body((await GetTransferToDownlineHistory(message)).Item1, GetBodyMapper(message.CustLevel))
+            .ExportToBytes();
 
-        public TransferToDownlineHistoryExcelHandler(
-            TransferToDownlineHistoryService transferToDownlineHistoryService,
-            Workbook<TransferToDownlineHistoryModel> workbook)
-            : base(transferToDownlineHistoryService)
-        {
-            this.workbook = workbook;
-        }
-
-        public async Task<ExcelFileViewModel> Handle(TransferToDownlineHistoryExcelQuery message, CancellationToken cancellation)
-        {
-            var param = new TransferToDownlineHistoryPagingParam(
-                message.CustId,
-                message.UserName,
-                message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
-                message.ToDate,
-                0,
-                0);
-            var content = workbook
-                .UseTemplate(GetTemplateInfo(message))
-                .Title(GetSheetTitle(param))
-                .Header(Resources.ResourceManager.GetString)
-                .Body((await GetTransferToDownlineHistory(param)).Item1, GetBodyMapper)
-                .ExportToBytes();
-
-            return new ExcelFileViewModel(GetExcelFileName(), content);
-        }
-
-        protected internal Mapper<TransferToDownlineHistoryModel> GetBodyMapper
-            => new Mapper<TransferToDownlineHistoryModel>()
-            .Map(Column.A, m => m.FormattedActionDate)
-            .Map(Column.B, m => m.DownlineName)
-            .Map(Column.C, m => m.TransferTypeName)
-            .Map(Column.D, m => m.FormattedTransferAmount)
-            .Map(Column.E, m => m.FormattedOldBalance)
-            .Map(Column.F, m => m.FormattedNewBalance)
-            .Map(Column.G, m => m.Description);
-
-        private TemplateInfo GetTemplateInfo(TransferToDownlineHistoryExcelQuery message)
-            => new(
-                GetExcelTemplatePath($"TransferToDownlineHistory/{message.CustLevel.GetDirectDownLineLevel().DisplayName}"),
-                Resources.NoInformationIsAvailable);
-
-        private static string GetSheetTitle(TransferToDownlineHistoryParam param)
-        {
-            string userName = string.IsNullOrWhiteSpace(param.UserName)
-                ? string.Empty
-                : string.Format(" - Username: {0}", param.UserName);
-
-            return $"{Resources.TransferToDownlineHistory} {param.FromDate.ToShortDateWithSlash()} -> {param.ToDate.ToShortDateWithSlash()}{userName}";
-        }
-
-        private static string GetExcelFileName() => $"{Resources.TransferToDownlineHistory} - {SystemTime.Today.ToShortDateString()}";
+        return new ExcelFileViewModel(GetExcelFileName(), content);
     }
+
+    protected internal Mapper<TransferToDownlineHistoryModel> GetBodyMapper(UserLevel custLevel)
+    {
+        var mapper = new Mapper<TransferToDownlineHistoryModel>()
+            .Map(A, m => m.FormattedActionDate)
+            .Map(B, m => m.DownlineName);
+        if (custLevel.IsAgentLevel())
+        {
+            mapper
+                .Map(C, m => m.TransferTypeName)
+                .Map(D, m => m.FormattedTransferAmount)
+                .Map(E, m => m.FormattedOldBalance)
+                .Map(F, m => m.FormattedNewBalance)
+                .Map(G, m => m.Description);
+        }
+        else
+        {
+            mapper
+                .Map(C, m => m.IsDirectMember ? Resources.DirectMember : (custLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent))
+                .Map(D, m => m.TransferTypeName)
+                .Map(E, m => m.FormattedTransferAmount)
+                .Map(F, m => m.FormattedOldBalance)
+                .Map(G, m => m.FormattedNewBalance)
+                .Map(H, m => m.Description);
+        }
+
+        return mapper;
+    }
+
+    private TemplateInfo GetTemplateInfo(TransferToDownlineHistoryExcelQuery message)
+        => new(
+            GetExcelTemplatePath($"TransferToDownlineHistory/{message.CustLevel.GetDirectDownLineLevel().DisplayName}"),
+            Resources.NoInformationIsAvailable);
+
+    private static string GetSheetTitle(TransferToDownlineHistoryExcelQuery message)
+    {
+        string userName = string.IsNullOrWhiteSpace(message.UserName)
+            ? string.Empty
+            : string.Format(" - Username: {0}", message.UserName);
+
+        return $"{Resources.TransferToDownlineHistory} {message.FromDate.ToShortDateWithSlash()} -> {message.ToDate.ToShortDateWithSlash()}{userName}";
+    }
+
+    private static string GetExcelFileName() => $"{Resources.TransferToDownlineHistory} - {SystemTime.Today.ToShortDateString()}";
 }

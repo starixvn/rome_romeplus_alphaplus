@@ -1,6 +1,4 @@
-﻿"use strict";
-
-class Utils {
+﻿class Utils {
     mobileDeviceMaxWidth: number;
 
     constructor() {

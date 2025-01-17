@@ -885,6 +885,18 @@
   <data name="TransferStep_Super_DirectMember" xml:space="preserve">
     <value>Direct Member to {0}</value>
   </data>
+  <data name="TotalCash" xml:space="preserve">
+    <value>Total Cash</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>Total Balance</value>
+  </data>
+  <data name="YesterdayCash" xml:space="preserve">
+    <value>Yesterday Cash</value>
+  </data>
+  <data name="TotalCashTotalBalanceNote" xml:space="preserve">
+    <value>For Member/ Direct Member accounts the column shown is Total Balance. For all other levels, the column shown is Total Cash</value>
+  </data>
   <data name="ADBTOnError" xml:space="preserve">
     <value>Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
   </data>

@@ -16,7 +16,8 @@ namespace AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory
             decimal transferAmount,
             decimal oldBalance,
             decimal newBalance,
-            string description)
+            string description,
+            bool isDirectMember)
         {
             ActionDate = actionDate;
             DownlineName = downlineName;
@@ -25,6 +26,7 @@ namespace AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory
             OldBalance = oldBalance;
             NewBalance = newBalance;
             Description = description;
+            IsDirectMember = isDirectMember;
         }
 
         public DateTime ActionDate { get; set; }
@@ -53,6 +55,8 @@ namespace AlphaPlus.Settings.Transfer.API.Models.TransferToDownlineHistory
         public string FormattedNewBalance => FormatBalance(NewBalance);
 
         public string Description { get; set; }
+
+        public bool IsDirectMember { get; set; }
 
         private string FormatBalance(decimal balance)
             => TransferAmount != 0 && OldBalance == 0 && NewBalance == 0

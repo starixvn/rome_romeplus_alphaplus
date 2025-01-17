@@ -6,6 +6,7 @@ public record TransferListParam(
     string DownlineName,
     string Status,
     byte AutoTransfer,
+    byte LevelType,
     bool AllYesterdayBalance,
     bool AllowTotalBalanceTransfer,
     int PageIndex,

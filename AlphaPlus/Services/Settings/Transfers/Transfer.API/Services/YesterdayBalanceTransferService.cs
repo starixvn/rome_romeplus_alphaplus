@@ -14,7 +14,11 @@ public interface IYesterdayBalanceTransferService
 
     Task<Result> MemberTransfer(AgentTransferYesterdayBalanceParam param);
 
+    Task<Result> DirectMemberTransfer(AgentTransferYesterdayBalanceParam param);
+
     Task<Result> MultipleMemberTransfer(AgentTransferMultipleYesterdayBalanceCriteria criteria, string agIP);
+
+    Task<Result> MultipleDirectMemberTransfer(DirectMemberTransferMultipleYesterdayBalanceCriteria criteria, string agIP);
 }
 
 public class YesterdayBalanceTransferService(IDynamicRepository repository) : IYesterdayBalanceTransferService
@@ -57,7 +61,6 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
         return custLevel.IsMasterLevel()
             ? new MasterTransferYesterdayBalanceCriteria(
                 param.CustId,
-                param.SuperIdsTransferTotal,
                 param.ToCustIds,
                 param.IsFullTransfer,
                 -param.Amount,
@@ -68,7 +71,6 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
                 param.SubAccId)
             : new SuperTransferYesterdayBalanceCriteria(
                 param.CustId,
-                param.SuperIdsTransferTotal,
                 param.ToCustIds,
                 param.IsFullTransfer,
                 -param.Amount,
@@ -83,7 +85,6 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
     {
         var criteria = new AgentTransferYesterdayBalanceCriteria(
             param.AgentName,
-            param.SuperIdsTransferTotal,
             param.MemberId,
             -param.Amount,
             param.IsAllDayBalanceTransfer,
@@ -99,6 +100,28 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
     public async Task<Result> MultipleMemberTransfer(AgentTransferMultipleYesterdayBalanceCriteria criteria, string agIP)
     {
         await repository.ExecuteAsync(criteria, agIP);
+
+        return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
+    }
+
+    public async Task<Result> MultipleDirectMemberTransfer(DirectMemberTransferMultipleYesterdayBalanceCriteria criteria, string agIP)
+    {
+        await repository.ExecuteAsync(criteria, agIP);
+
+        return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
+    }
+
+    public async Task<Result> DirectMemberTransfer(AgentTransferYesterdayBalanceParam param)
+    {
+        var criteria = new DirectMemberTransferYesterdayBalanceCriteria(
+            param.MemberId,
+            param.AgentName,
+            -param.Amount,
+            param.Language,
+            param.IP,
+            param.AgentId,
+            param.SubAccId);
+        await repository.ExecuteAsync(criteria, param.AGIP);
 
         return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
     }

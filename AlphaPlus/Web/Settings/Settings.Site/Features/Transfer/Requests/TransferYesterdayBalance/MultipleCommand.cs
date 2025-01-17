@@ -23,6 +23,8 @@ public class MultipleCommand : TransferBaseQuery, IRequest<Result>
 
     public byte AutoTransfer { get; set; } = AutoTransferConstant.All;
 
+    public byte LevelType { get; set; }
+
     public bool AllYesterdayBalance { get; set; }
 
     public bool IsAllPages { get; set; }

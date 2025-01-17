@@ -2,9 +2,10 @@ class VisibleColumnContextMenuComponent {
     private cookieNameColumn: string;
     private cookieNameHint: string;
 
-    init(cookiePrefix: string, $table: JQuery) {
+    init(cookiePrefix: string, $table: JQuery, defaultCookieValue: string = undefined) {
         this.cookieNameColumn = cookiePrefix + '_columns';
         this.cookieNameHint = this.cookieNameColumn + 'X';
+        this.setDefaultCookieColumns(defaultCookieValue);
 
         const $contextMenu = $('#columns-contextmenu');
         const $hint = $contextMenu.find('.hint');
@@ -77,6 +78,13 @@ class VisibleColumnContextMenuComponent {
         }
     }
 
+    private setDefaultCookieColumns(defaultValue: string) {
+        const cookieColumns = this.getCookie(this.cookieNameColumn);
+        if (!cookieColumns && defaultValue) {
+            this.setCookie(this.cookieNameColumn, defaultValue);
+        }
+    }
+
     private getCookieColumnsObject() {
         const cookieColumnsObject = {};
         const cookieColumns = this.getCookie(this.cookieNameColumn);
@@ -97,7 +105,7 @@ class VisibleColumnContextMenuComponent {
             visibleColumns.push($(this).data('colname'));
         });
 
-        this.setCookie(this.cookieNameColumn, visibleColumns.join(','));
+        this.setCookie(this.cookieNameColumn, visibleColumns.length ? visibleColumns.join(',') : '_');
     }
 
     private getCookieHint() {
