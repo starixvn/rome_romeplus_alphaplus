@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactCrop, { Crop } from 'react-image-crop';
 import Modal from 'react-modal';
@@ -59,7 +59,7 @@ export default function CreateProfilePictureModal({
     const [crop, setCrop] = useState<Crop>(cropDefault);
     const [imageWrapperStyle, setImageWrapperStyle] = useState({});
     const [popupStyles, setPopupStyles] = useState(defaultPopupStyles);
-    let imageRef: any;
+    const imgRef = useRef<HTMLImageElement>(null);
 
     useEffect(() => {
         setCrop(cropDefault);
@@ -78,8 +78,8 @@ export default function CreateProfilePictureModal({
     };
 
     const makeClientCrop = (crop: any) => {
-        if (imageRef && crop.width && crop.height) {
-            const croppedImageUrl = getCroppedImg(imageRef, crop);
+        if (imgRef.current && crop.width && crop.height) {
+            const croppedImageUrl = getCroppedImg(imgRef.current, crop);
             setCroppedImageUrl(croppedImageUrl);
         }
     };
@@ -127,7 +127,6 @@ export default function CreateProfilePictureModal({
     };
 
     const onImageLoaded = (image: any) => {
-        imageRef = image;
         const imgDimension = getContainedSize(image);
 
         if (isDesktop && imgDimension.width > imgDimension.height) {
@@ -147,13 +146,7 @@ export default function CreateProfilePictureModal({
     };
 
     const onCropChange = (crop: any) => {
-        const invalidCrop =
-            crop?.width < profilePictureWidthDefault ||
-            crop.height < profilePictureWidthDefault ||
-            crop.x < 0 ||
-            crop.y < 0;
-
-        setCrop(invalidCrop ? cropDefault : crop);
+        setCrop(crop);
     };
 
     return (
@@ -181,6 +174,7 @@ export default function CreateProfilePictureModal({
                         onComplete={onCropComplete}
                         onChange={onCropChange}
                     />
+                    <img ref={imgRef} src={imageSrc} style={{ display: 'none' }} onLoad={onImageLoaded} />
                 </div>
             )}
         </Modal>
