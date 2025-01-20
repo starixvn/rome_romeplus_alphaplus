@@ -70,6 +70,7 @@ class SingleTransferView {
         const popup = top.$('div[id^="page-popup-"]');
         if (popup.length) {
             $('.btn-cancel').removeClass('hide');
+            $('#right-content').addClass('form-page-transfer');
         } else {
             $('.page-title').removeClass('hide');
             $('#form-update').addClass('right-content');
