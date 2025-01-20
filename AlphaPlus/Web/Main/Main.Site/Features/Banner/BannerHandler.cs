@@ -1,16 +1,18 @@
-﻿using MediatR;
+﻿using AlphaPlus.Core.Models;
+using MediatR;
 
 namespace AlphaPlus.Main.Site.Features.Banner
 {
-    public class BannerHandler(IBannerService bannerService) : IRequestHandler<BannerQuery, BannerViewModel>
+    public class BannerHandler(IBannerService bannerService, IUserSession userSession) : IRequestHandler<BannerQuery, BannerViewModel>
     {
         private readonly IBannerService bannerService = bannerService;
+        private readonly IUserSession userSession = userSession;
 
         public async Task<BannerViewModel> Handle(BannerQuery request, CancellationToken cancellationToken)
         {
             var banner = await bannerService.GetBanner(request.Language, request.Type);
 
-            return new BannerViewModel(request.Type, request.Language, ToBase64String(banner));
+            return new BannerViewModel(request.Type, request.Language, ToBase64String(banner), userSession);
         }
 
         private static string ToBase64String(BannerItem banner)

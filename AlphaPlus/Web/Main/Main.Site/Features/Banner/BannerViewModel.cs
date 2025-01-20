@@ -1,11 +1,15 @@
-﻿namespace AlphaPlus.Main.Site.Features.Banner
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Main.Site.Helpers;
+
+namespace AlphaPlus.Main.Site.Features.Banner
 {
     public class BannerViewModel
     {
-        public BannerViewModel(byte type, string language, string imageContent)
+        public BannerViewModel(byte type, string language, string imageContent, IUserSession userSession)
         {
             Type = type;
             Language = language;
+            UserSession = userSession;
             Banners = GetBanners(imageContent).ToArray();
         }
 
@@ -13,27 +17,35 @@
 
         public string Language { get; }
 
+        public IUserSession UserSession { get; }
+
         public ImageRedirectUrlViewModel[] Banners { get; }
 
         private IEnumerable<ImageRedirectUrlViewModel> GetBanners(string imageContent)
         {
+            if (AppSettings.IsOfferedWhiteLabel(UserSession.Site))
+            {
+                var url = UrlHelper.MapMainPath("~/Dashboard/WhiteLabel");
+                yield return new ImageRedirectUrlViewModel(GetS1AppImageSource(), url, true, "main");
+            }
+
             if (!string.IsNullOrWhiteSpace(imageContent))
             {
-                yield return new ImageRedirectUrlViewModel(imageContent);
+                yield return new ImageRedirectUrlViewModel(imageContent, string.Empty, false, null);
             }
 
             if (!AppSettings.BannerIsHideMobileSabaApp)
             {
                 yield return new ImageRedirectUrlViewModel(
                     GetMobileSabaAppImageSource(AppSettings.SiteLabel),
-                    $"https://www.winwin999.net/?bt={GetMobileSabaAppToken(AppSettings.SiteLabel)}&pd=sports");
+                    $"https://www.winwin999.net/?bt={GetMobileSabaAppToken(AppSettings.SiteLabel)}&pd=sports",
+                    false,
+                    null);
             }
 
             if (!AppSettings.IsMBCSite)
             {
-                yield return new ImageRedirectUrlViewModel(
-                    GetSabaSportMarketingAppImageSource(AppSettings.SiteLabel),
-                    "https://www.sabavn.com/");
+                yield return new ImageRedirectUrlViewModel(GetSabaSportMarketingAppImageSource(AppSettings.SiteLabel), "https://www.sabavn.com/", false, null);
             }
         }
 
@@ -67,6 +79,12 @@
         private string GetSabaSportMarketingAppImageSource(string siteGroup)
             => $"~/assets/images/MenuBarBanner/{siteGroup}/{(Type == BannerType.Mobile ? "600x140" : "280x70")}_ssma_{MapSabaSportMarketingAppLanguage()}.jpg";
 
+        private string GetS1AppImageSource()
+            => string.Format(
+                "~/assets/images/MenuBarBanner/789y/{0}_s1msa_{1}.jpg",
+                Type == BannerType.Mobile ? "600x140" : "280x70",
+                Language);
+                
         private string MapSabaSportMarketingAppLanguage()
             => Language.Equals(Shared.Constants.Language.Vietnamese, StringComparison.OrdinalIgnoreCase)
             ? Shared.Constants.Language.Vietnamese

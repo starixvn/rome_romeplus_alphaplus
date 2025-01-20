@@ -38,10 +38,28 @@ namespace AlphaPlus.Main.Site.Features.WhiteLabel
         }
 
         [HttpPost]
-        public async Task<JsonResult> BannerChat()
-        {
-            var subUsername = string.IsNullOrEmpty(userSession.SubUserName) ? "-" : userSession.SubUserName;
-            var message = string.Format(Resources.WhiteLabelBannerChat, userSession.UserName, subUsername);
+        public async Task<JsonResult> BannerChat(string username)
+        { 
+            var name = string.IsNullOrEmpty(username) ? "-" : username;
+            var message = string.Format(Resources.WhiteLabelBannerChat, name);
+            await Fanex.Logging.Logger.Log.InfoAsync(message);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> BannerLog(string username)
+        { 
+            var name = string.IsNullOrEmpty(username) ? "-" : username;
+            var message = string.Format(Resources.WhiteLabelBannerClick, name);
+            await Fanex.Logging.Logger.Log.InfoAsync(message);
+            return Json(true);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> SkypeChat(string username)
+        { 
+            var name = string.IsNullOrEmpty(username) ? "-" : username;
+            var message = string.Format(Resources.WhiteLabelSkypeChat, name);
             await Fanex.Logging.Logger.Log.InfoAsync(message);
             return Json(true);
         }

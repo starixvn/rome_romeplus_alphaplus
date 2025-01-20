@@ -507,6 +507,23 @@ var menuBar = {
                 } else {
                     carouselBanner.remove();
                 }
+
+                $(".img-banner").click(function (e) {
+                    var href = $(this).attr("data-target-url");
+                    var target = $(this).attr("data-target");
+                    if (target) {
+                        $("#" + target).attr("src", href);
+                    }
+                });
+
+                $(".log-banner").click(() => {
+                    $.ajax({
+                        type: "POST",
+                        url: alpha.urls.mainRootPath + "WhiteLabel/BannerLog?username=" + $("#Username").val(),
+                        data: {},
+                        success: function () { }
+                    });
+                });
             });
         }
     },

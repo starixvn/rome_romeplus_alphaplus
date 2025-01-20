@@ -2827,5 +2827,27 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("WhiteLabelBannerChat", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to WhiteLabelBannerClick.
+        /// </summary>
+        public static string WhiteLabelBannerClick
+        {
+            get
+            {
+                return ResourceManager.GetString("WhiteLabelBannerClick", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to WhiteLabelSkypeChat.
+        /// </summary>
+        public static string WhiteLabelSkypeChat
+        {
+            get
+            {
+                return ResourceManager.GetString("WhiteLabelSkypeChat", resourceCulture);
+            }
+        }
     }
 }

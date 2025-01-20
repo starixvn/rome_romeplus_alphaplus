@@ -62,7 +62,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
         [HttpGet]
         public ActionResult WhiteLabel()
         {
-            var viewModel = new ContactUsViewModel(Request.Host.Value);
+            var viewModel = new ContactUsViewModel(Request.Host.Value, userSession);
             return View(viewModel);
         }
 
