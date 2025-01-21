@@ -1,6 +1,7 @@
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models
 {
@@ -23,7 +24,9 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
         public DormantAccount(DormantAccountEntity entity, decimal yesterdayBalance)
         {
             Username = entity.Username ?? string.Empty;
-            RoleName = Resources.ResourceManager.GetString(Enumeration.FromValue<UserLevel>(entity.RoleId).DisplayName) ?? string.Empty;
+            RoleName = entity.AgentId == DirectMemberAgentIds.Super || entity.AgentId == DirectMemberAgentIds.Master
+                ? CommonResx.DirectMember
+                : Resources.ResourceManager.GetString(Enumeration.FromValue<UserLevel>(entity.RoleId).DisplayName) ?? string.Empty;
             Status = GetStatus(entity.StatusId, entity.IsWarningTicket);
             ArchiveStage = GetArchiveStage(entity.StageId);
             ToBeClearedGivenCredit = entity.ToBeClearedGivenCredit;

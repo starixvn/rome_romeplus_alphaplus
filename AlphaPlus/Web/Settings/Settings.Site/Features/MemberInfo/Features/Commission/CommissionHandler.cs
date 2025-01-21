@@ -6,6 +6,7 @@ using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
 using MediatR;
 using AlphaPlus.Settings.MemberInfo.API.Features.Commission;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.Commission;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.Commission;
 
@@ -32,29 +33,20 @@ public class CommissionHandler(
         if (actorLevel.IsAgentLevel())
         {
             commReport = await commissionService.GetAgentComm(
-                new CommissionParam(message.ProductId, message.ViewerId, AppSettings.SettingStatus));
+                new CommissionParam(message.ProductId, message.ViewerId, AppSettings.SettingStatus, false));
         }
         else if (actorLevel.IsMasterLevel())
         {
-            agents = await accountService.GetAgentList(message.ViewerId);
-            var firstAgentId = agents.FirstOrDefault()?.CustId ?? 0;
+            agents = await GetAgentList(message.ViewerId, isIncludeAllAgentsText: false, isIncludeDirectMemberText: true);
             commReport = await commissionService.GetAgentComm(
-                new CommissionParam(message.ProductId, firstAgentId, AppSettings.SettingStatus));
+                new CommissionParam(message.ProductId, message.ViewerId, AppSettings.SettingStatus, true));
         }
         else
         {
-            masters = await accountService.GetMasterList(message.ViewerId);
-            var firstMasterId = masters.FirstOrDefault()?.CustId ?? 0;
-
-            var agentList = (await accountService.GetAgentList(firstMasterId)).ToList();
-            if (agentList.Any())
-            {
-                agentList.Insert(0, new CustInfo(0, Resources.AllAgent, 0));
-            }
-
-            agents = agentList;
+            masters = await GetMasterList(message.ViewerId);
+            agents = Enumerable.Empty<CustInfo>();
             commReport = await commissionService.GetMasterComm(
-                new CommissionParam(message.ProductId, firstMasterId, AppSettings.SettingStatus));
+                new CommissionParam(message.ProductId, message.ViewerId, AppSettings.SettingStatus, true));
         }
 
         return new CommissionViewModel(message, commReport, products, masters, agents);
@@ -62,24 +54,64 @@ public class CommissionHandler(
 
     public async Task<CommissionViewModel> Handle(CommDataQuery message, CancellationToken cancellationToken)
     {
+        CommissionParam param;
+        Task<CommissionReport> commReportTask = null;
         var actorLevel = message.ActorLevel;
-        var commReportTask = actorLevel.IsSuperLevel() && message.MasterId > 0
-            ? commissionService.GetMasterComm(
-                new CommissionParam(message.ProductId, message.MasterId, AppSettings.SettingStatus))
-            : commissionService.GetAgentComm(
-                new CommissionParam(message.ProductId, message.CustId, AppSettings.SettingStatus));
+
+        if (actorLevel.IsMasterLevel())
+        {
+            param = message.RecommendId == 0
+                ? new CommissionParam(message.ProductId, message.ViewerId, AppSettings.SettingStatus, true)
+                : new CommissionParam(message.ProductId, message.RecommendId, AppSettings.SettingStatus, false);
+            commReportTask = commissionService.GetAgentComm(param);
+        }
+        else if (actorLevel.IsSuperLevel())
+        {
+            if (message.RecommendId > 0)
+            {
+                param = new CommissionParam(message.ProductId, message.RecommendId, AppSettings.SettingStatus, false);
+                commReportTask = commissionService.GetAgentComm(param);
+            }
+            else
+            {
+                param = message.MasterId == 0
+                    ? new CommissionParam(message.ProductId, message.ViewerId, AppSettings.SettingStatus, true)
+                    : new CommissionParam(message.ProductId, message.MasterId, AppSettings.SettingStatus, false);
+                commReportTask = commissionService.GetMasterComm(param);
+            }
+        }
 
         return new CommissionViewModel(message, await commReportTask);
     }
 
-    public async Task<IEnumerable<CustInfo>> Handle(AgentListQuery message, CancellationToken cancellationToken)
+    public Task<IEnumerable<CustInfo>> Handle(AgentListQuery message, CancellationToken cancellationToken)
+        => GetAgentList(message.MasterId, isIncludeAllAgentsText: true, isIncludeDirectMemberText: false);
+
+    private async Task<IEnumerable<CustInfo>> GetMasterList(int viewerId)
     {
-        var agentList = (await accountService.GetAgentList(message.MasterId)).ToList();
-        if (agentList.Any())
+        var masters = (await accountService.GetMasterList(viewerId)).ToList();
+        masters.Insert(0, new CustInfo(0, CommonResx.DirectMember, 0));
+
+        return masters;
+    }
+
+    private async Task<IEnumerable<CustInfo>> GetAgentList(
+        int masterId,
+        bool isIncludeAllAgentsText,
+        bool isIncludeDirectMemberText)
+    {
+        var agents = (await accountService.GetAgentList(masterId)).ToList();
+
+        if (isIncludeAllAgentsText && agents.Any())
         {
-            agentList.Insert(0, new CustInfo(0, Resources.AllAgent, 0));
+            agents.Insert(0, new CustInfo(0, Resources.AllAgent, 0));
         }
 
-        return agentList;
+        if (isIncludeDirectMemberText)
+        {
+            agents.Insert(0, new CustInfo(0, CommonResx.DirectMember, 0));
+        }
+
+        return agents;
     }
 }

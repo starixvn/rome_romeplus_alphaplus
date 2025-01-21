@@ -20,7 +20,8 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
             DateTime? settingDeletedDate,
             DateTime? accountDeletedDate,
             bool isWarningTicket,
-            int rowNumber)
+            int rowNumber,
+            int agentId)
         {
             CustId = custId;
             Username = username;
@@ -36,6 +37,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
             AccountDeletedDate = accountDeletedDate;
             IsWarningTicket = isWarningTicket;
             RowNumber = rowNumber;
+            AgentId = agentId;
         }
 
         public int CustId { get; set; }
@@ -65,5 +67,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Model
         public bool IsWarningTicket { get; set; }
 
         public int RowNumber { get; set; }
+
+        public int AgentId { get; set; }
     }
 }

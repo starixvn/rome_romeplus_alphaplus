@@ -1,20 +1,17 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance
-{
-    public class GetMasterCreditBalanceCriteria : GetPagedCreditBalanceCriteria
-    {
-        public GetMasterCreditBalanceCriteria(
-            int custId,
-            string userName,
-            bool? enabled,
-            bool? closed,
-            bool? suspended,
-            int pageIndex,
-            int pageSize)
-            : base(custId, userName, enabled, closed, suspended, pageIndex, pageSize)
-        {
-        }
+﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance;
 
-        public override string GetSettingKey()
-            => "Age_CustomerSelCreditBalanceList_Mag";
-    }
+public class GetMasterCreditBalanceCriteria(
+    int custId,
+    string userName,
+    bool? enabled,
+    bool? closed,
+    bool? suspended,
+    byte levelType,
+    int pageIndex,
+    int pageSize) : GetPagedCreditBalanceCriteria(custId, userName, enabled, closed, suspended, pageIndex, pageSize)
+{
+
+    public byte LevelType { get; } = levelType;
+
+    public override string GetSettingKey() => "SiteDB_Age_CustomerSelCreditBalanceList_Mag";
 }

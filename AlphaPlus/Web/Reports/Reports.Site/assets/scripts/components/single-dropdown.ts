@@ -1,9 +1,5 @@
 ﻿/// <reference path="../core.ts" />
 
-interface JQuery {
-    multiselect(option: any): void;
-}
-
 interface SingleDropdownOption {
     dropdownId: string;
     hiddenInputId?: string;
@@ -38,5 +34,13 @@ class SingleDropdownComponent {
 
     getSelectedValue() {
         return this.selectedValue;
+    }
+
+    setSelectedValue(value, triggerOnChange = false) {
+        this.$dropdown.multiselect('select', value, triggerOnChange);
+        this.$dropdown.multiselect('refresh');
+        if (!triggerOnChange) {
+            this.selectedValue = value;
+        }
     }
 }

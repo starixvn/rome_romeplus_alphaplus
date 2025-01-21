@@ -6,6 +6,8 @@ public class CommDataQuery : CommissionQuery, IRequest<CommissionViewModel>
 {
     public int MasterId { get; set; }
 
+    public int RecommendId { get; set; }
+
     public override bool IsValid()
         => ProductId > 0 && ActorLevel.IsMasterOrSuperLevel() && base.IsValid();
 }

@@ -1,6 +1,6 @@
 ﻿/// <reference path="../components/single-selection-dropdown.ts" />
 /// <reference path="../components/pager.ts" />
-"use strict";
+'use strict';
 
 interface JQuery {
     stickyTableHeaders(): void;
@@ -32,7 +32,8 @@ class WinLossLimit {
         productComponent: SingleSelectionDropdownComponent,
         masterListComponent: SingleSelectionDropdownComponent,
         agentListComponent: SingleSelectionDropdownComponent,
-        pager: PagerComponent) {
+        pager: PagerComponent
+    ) {
         this.$ = $;
         this.productComponent = productComponent;
         this.masterListComponent = masterListComponent;
@@ -46,46 +47,55 @@ class WinLossLimit {
 
         var self = this;
         this.productComponent.render(
-            new SingleSelectionDropdownOption("dropdown-product", "UserSelectedProductId", this.changeProduct, true, true));
+            new SingleSelectionDropdownOption(
+                'dropdown-product',
+                'UserSelectedProductId',
+                this.changeProduct,
+                true,
+                true
+            )
+        );
 
         if (this.$masterList.length) {
             this.masterListComponent.render(
-                new SingleSelectionDropdownOption("dropdown-master", "MasterId", this.changeMaster));
+                new SingleSelectionDropdownOption('dropdown-master', 'MasterId', this.changeMaster)
+            );
         }
 
         if (this.$agentList.length) {
             this.agentListComponent.render(
-                new SingleSelectionDropdownOption("dropdown-agent", "AgentId", this.changeAgent));
+                new SingleSelectionDropdownOption('dropdown-agent', 'AgentId', this.changeAgent)
+            );
         }
 
         this.$tableReport.stickyTableHeaders();
-        this.pager.render(new PagerOption(this.submitForm, "report-pager", "win-loss-limit-form"));
+        this.pager.render(new PagerOption(this.submitForm, 'report-pager', 'win-loss-limit-form'));
     };
     cacheDOMElements = () => {
-        this.$productList = this.$("#dropdown-product");
-        this.$sportType = this.$("#SportType");
-        this.$betType = this.$("#BetType");
-        this.$productId = this.$("#UserSelectedProductId");
-        this.$winLossLimitForm = this.$("#win-loss-limit-form");
+        this.$productList = this.$('#dropdown-product');
+        this.$sportType = this.$('#SportType');
+        this.$betType = this.$('#BetType');
+        this.$productId = this.$('#UserSelectedProductId');
+        this.$winLossLimitForm = this.$('#win-loss-limit-form');
 
-        this.$masterList = this.$("#dropdown-master");
-        this.$agentList = this.$("#dropdown-agent");
+        this.$masterList = this.$('#dropdown-master');
+        this.$agentList = this.$('#dropdown-agent');
 
-        this.$masterId = this.$("#MasterId");
-        this.$agentId = this.$("#AgentId");
-        this.$username = this.$("#txt-username");
-        this.$playerId = this.$("#txt-player-id");
-        this.$tableReport = this.$("#tbl-report");
+        this.$masterId = this.$('#MasterId');
+        this.$agentId = this.$('#RecommendId');
+        this.$username = this.$('#txt-username');
+        this.$playerId = this.$('#txt-player-id');
+        this.$tableReport = this.$('#tbl-report');
     };
     bindEvents = () => {
         this.$username.keyup(this.doneInputTextbox);
         this.$playerId.keyup(this.doneInputTextbox);
     };
     changeProduct = () => {
-        var selectedOption = this.$productList.find(":selected");
-        var sportType = selectedOption.attr("data-sport-type");
-        var betType = selectedOption.attr("data-bet-type");
-        var productId = selectedOption.attr("data-product-id");
+        var selectedOption = this.$productList.find(':selected');
+        var sportType = selectedOption.attr('data-sport-type');
+        var betType = selectedOption.attr('data-bet-type');
+        var productId = selectedOption.attr('data-product-id');
 
         this.$sportType.val(sportType);
         this.$betType.val(betType);
@@ -114,11 +124,13 @@ class WinLossLimit {
     };
 }
 
-const winLossLimit = new WinLossLimit($,
+const winLossLimit = new WinLossLimit(
+    $,
     new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),
-    new PagerComponent($));
+    new PagerComponent($)
+);
 
 $(() => {
     winLossLimit.init();

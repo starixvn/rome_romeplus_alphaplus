@@ -15,6 +15,7 @@
             int agentId,
             int pageSize,
             int pageIndex,
+            bool isDirectMember,
             string agIP)
         {
             ProductId = productId;
@@ -27,6 +28,7 @@
             AgentId = agentId;
             PageSize = pageSize;
             PageIndex = pageIndex;
+            IsDirectMember = isDirectMember;
             AGIP = agIP;
         }
 
@@ -51,6 +53,8 @@
         public int PageSize { get; set; }
 
         public int PageIndex { get; set; }
+
+        public bool IsDirectMember { get; }
 
         public string AGIP { get; }
     }

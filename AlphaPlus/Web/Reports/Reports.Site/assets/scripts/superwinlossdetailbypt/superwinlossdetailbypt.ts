@@ -75,7 +75,7 @@
     };
 
     public registerEvents() {
-        $('.icon-switchmode').on('click', this.onSwitchMode);
+        $('.ic-switchmode').on('click', this.onSwitchMode);
         this.$viewProductPTList.on('click', this.onClickViewProductPTList);
 
         const self = this;

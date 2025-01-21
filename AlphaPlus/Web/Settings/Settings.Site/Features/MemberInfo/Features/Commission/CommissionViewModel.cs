@@ -14,7 +14,7 @@ public class CommissionViewModel(
     IEnumerable<CustInfo> masters = null,
     IEnumerable<CustInfo> agents = null)
 {
-    public bool IsAgentLevel { get; } = message.ActorLevel.IsAgentLevel();
+    public UserLevel ActorLevel { get; } = message.ActorLevel;
 
     public bool IsShowGroup { get; } = message.ProductId == ProductIdConstants.Sportsbook;
 

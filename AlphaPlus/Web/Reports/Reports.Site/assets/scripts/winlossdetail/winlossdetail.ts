@@ -185,6 +185,7 @@ class WinLossDetailView extends BaseReportNew {
     }
 
     getWinLossDetailUpOrDownline(custInfo) {
+        this.clearLevelType();
         this.clearUsername();
         this.getData(custInfo, true);
     }
@@ -257,6 +258,10 @@ class WinLossDetailView extends BaseReportNew {
         delete this.globalFormData.username;
     }
 
+    private clearLevelType() {
+        delete this.globalFormData.levelType;
+    }
+
     private changeObjectKey(obj, oldKey, newKey) {
         if (oldKey !== newKey && obj.hasOwnProperty(oldKey)) {
             obj[newKey] = obj[oldKey];
@@ -293,12 +298,12 @@ class WinLossDetailView extends BaseReportNew {
         if (custLevelId === 2) {
             levelTypeDropdownContainer.hide();
         } else if (custLevelId === 3 || custLevelId === 4) {
-            const masterAgentText = $(`#hidden-masterAgentText${custLevelId}`).val();
-            if (this.levelTypeComponent.getSelectedValue() === '1') {
-                // update button text
-                levelTypeDropdownContainer.find('.multiselect-selected-text').text(masterAgentText);
+            if (this.levelTypeComponent.getSelectedValue() !== '0') {
+                // update selected value to All
+                this.levelTypeComponent.setSelectedValue('0');
             }
 
+            const masterAgentText = $(`#hidden-masterAgentText${custLevelId}`).val();
             // update option text
             this.levelTypeComponent.$dropdown.find('option[value="1"]').text(masterAgentText);
 

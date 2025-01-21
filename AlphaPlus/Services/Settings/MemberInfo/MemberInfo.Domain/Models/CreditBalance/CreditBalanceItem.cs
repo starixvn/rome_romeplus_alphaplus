@@ -25,7 +25,8 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance
             decimal pendingTransfer3rd,
             DateTime createdDate,
             DateTime lastLogged,
-            string ipLogin)
+            string ipLogin,
+            bool isDirectMember)
         {
             RowNumber = rowNumber;
             Enabled = enabled;
@@ -45,6 +46,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance
             LastLogged = lastLogged;
             CreatedDate = createdDate;
             IPLogin = ipLogin;
+            IsDirectMember = isDirectMember;
         }
 
         public int RowNumber { get; set; }
@@ -84,6 +86,8 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance
         public DateTime? CreatedDate { get; set; }
 
         public string IPLogin { get; set; }
+
+        public bool IsDirectMember { get; set; }
 
         public string Status
         {

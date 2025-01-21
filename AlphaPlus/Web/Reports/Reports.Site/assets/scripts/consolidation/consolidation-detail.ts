@@ -52,7 +52,7 @@ class ConsolidationDetailView extends BaseReport {
     }
 
     registerEvents() {
-        $('.icon-switchmode').on('click', this.onSwitchMode);
+        $('.ic-switchmode').on('click', this.onSwitchMode);
         super.registerDrilldownableEvents();
 
         const consolidationLink = this.$pageTitle.find('.breadcrumb-link[data-consolidation="true"]');

@@ -12,9 +12,7 @@ public interface WinLossLimitService
     Task<WinLossLimitPage> GetWinLossLimitPage(WinLossLimitParam param);
 }
 
-public class WinLossLimitServiceImpl(
-    IDynamicRepository repository,
-    CacheRefService cacheRefService) : WinLossLimitService
+public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefService cacheRefService) : WinLossLimitService
 {
     private readonly IDynamicRepository repository = repository;
     private readonly Func<int, string> getProductName = cacheRefService.GetProductName;
@@ -61,7 +59,8 @@ public class WinLossLimitServiceImpl(
                 param.AgentId,
                 param.PageIndex,
                 param.PageSize,
-                null));
+                null,
+                param.IsDirectMember));
         }
 
         foreach (var playerId in playerIds)
@@ -76,7 +75,8 @@ public class WinLossLimitServiceImpl(
                 param.AgentId,
                 param.PageIndex,
                 param.PageSize,
-                playerId));
+                playerId,
+                param.IsDirectMember));
         }
 
         if (!result.WinLossLimitDetail.Any())

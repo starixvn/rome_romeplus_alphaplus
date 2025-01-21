@@ -10,7 +10,8 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="@Resources.ConditionToClearCredit"><span aria-hidden="true"></span></button>
+                <button type="button" class="icon icon-close close" data-dismiss="modal"
+                    aria-label="@Resources.ConditionToClearCredit"><span aria-hidden="true"></span></button>
                 <h4 class="modal-title">@Resources.ConditionToClearCredit</h4>
             </div>
             <div class="modal-body">
@@ -29,7 +30,8 @@
                     }
                     else
                     {
-                        <span>Downlines’ given credit will be automatically cleared if any of the following conditions are met.</span>
+                        <span>Downlines’ given credit will be automatically cleared if any of the following conditions are
+                            met.</span>
                         if (Model.CustLevel.IsSuperLevel())
                         {
                             if (Model.IsViewingMemberList)
@@ -38,12 +40,12 @@
                             }
                             <ul class="list-msg">
                                 <li>
-                                    For Master/Agent who does not have any downlines:
+                                    For Master/Agent who does not have any downlines (include direct members):
                                     <p>- Any Master/Agent has not logged in after created by direct upline for over 7 days.</p>
                                 </li>
                                 <li>
-                                    For Member:
-                                    <p>- Any Member has not logged in after created by Agent for over 14 days.</p>
+                                    For Member/ Direct Member:
+                                    <p>- Any Member/ Direct Member has not logged in after created by direct upline for over 14 days.</p>
                                 </li>
                             </ul>
                         }
@@ -59,8 +61,8 @@
                                     <p>- Any Agent has not logged in after created by Master for over 7 days.</p>
                                 </li>
                                 <li>
-                                    For Member:
-                                    <p>- Any Member has not logged in after created by Agent for over 14 days.</p>
+                                    For Member/ Direct Member:
+                                    <p>- Any Member/ Direct Member has not logged in after created by direct upline for over 14 days.</p>
                                 </li>
                             </ul>
                         }
@@ -70,4 +72,3 @@
         </div>
     </div>
 </div>
-

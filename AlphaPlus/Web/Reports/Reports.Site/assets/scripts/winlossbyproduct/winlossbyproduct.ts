@@ -49,7 +49,7 @@ class WinLossByProductView extends BaseReport {
     }
 
     public registerEvents() {
-        $('.icon-switchmode').on('click', this.onSwitchMode);
+        $('.ic-switchmode').on('click', this.onSwitchMode);
 
         const self = this;
         $('.product-row').on('click', function () {

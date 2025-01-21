@@ -30,7 +30,7 @@ class BaseList {
     directDownlineRoleId: number;
 
     customerListHelper: CustomerListHelper;
-    displayNoneClass = "display-none";
+    displayNoneClass = 'display-none';
 
     $btnMarkReviewed: JQuery;
     $ckbSelectAll: JQuery;
@@ -46,7 +46,8 @@ class BaseList {
     ) {
         this.$ = $;
         this.topWindow = topWindow;
-        this.reviewStatusComponent = reviewStatusComponent === null ? new SingleSelectionDropdownComponent($) : reviewStatusComponent;
+        this.reviewStatusComponent =
+            reviewStatusComponent === null ? new SingleSelectionDropdownComponent($) : reviewStatusComponent;
         this.levelName = levelName;
         this.levelNameLowerCase = levelName.toLowerCase();
         this.levelId = levelId;
@@ -66,22 +67,31 @@ class BaseList {
         this.customerListHelper = new CustomerListHelper(this.$, indexManager.viewResources);
         this.$downlineObject = downlineObject;
         this.reviewStatusComponent.render(
-            new SingleSelectionDropdownOption(`dropdown-reviewstatus-${this.levelNameLowerCase}`, `UserSelectedReviewedStatusId-${this.levelName}`));
+            new SingleSelectionDropdownOption(
+                `dropdown-reviewstatus-${this.levelNameLowerCase}`,
+                `UserSelectedReviewedStatusId-${this.levelName}`
+            )
+        );
         this.dateRangePickerComponent.render(
-            new DateRangePickerOption(`daterange-picker-${this.levelNameLowerCase}`, ""));
+            new DateRangePickerOption(`daterange-picker-${this.levelNameLowerCase}`, '')
+        );
 
         this.$tblReport.stickyTableHeaders();
 
         this.$btnMarkReviewed.click(() => this.markReviewedMultiple());
         this.$ckbSelectAll.off().change(() => this.handleCheckboxAllChanged());
 
-        this.$(`#btn-submit-${this.levelNameLowerCase}`).off("click").on("click", () => {
-            this.viewList();
-        });
+        this.$(`#btn-submit-${this.levelNameLowerCase}`)
+            .off('click')
+            .on('click', () => {
+                this.viewList();
+            });
 
-        this.$(`#icon-excel-${this.levelNameLowerCase}`).off("click").on("click", () => {
-            this.export();
-        });
+        this.$(`#icon-excel-${this.levelNameLowerCase}`)
+            .off('click')
+            .on('click', () => {
+                this.export();
+            });
 
         this.$username.keypress((e) => {
             if (e.which == 13) {
@@ -99,24 +109,25 @@ class BaseList {
     }
 
     public cacheDOMElements() {
-        this.$usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath");
+        this.$usernameAutoSuggestionPath = this.$('#usernameAutoSuggestionPath');
         this.$username = this.$(`#txt-username-${this.levelNameLowerCase}`);
         this.$uplineName = this.$(`#txt-uplinename-${this.levelNameLowerCase}`);
         this.$dropdownStatus = this.$(`#dropdown-reviewstatus-${this.levelNameLowerCase}`);
-        this.getProblemAccountUrl = this.$("#getProblemAccountUrl").val();
+        this.getProblemAccountUrl = this.$('#getProblemAccountUrl').val();
         this.$tblReport = this.$(`#tbl-${this.levelNameLowerCase}`);
         this.$fromDate = this.$(`#from-date-${this.levelNameLowerCase}`);
         this.$toDate = this.$(`#to-date-${this.levelNameLowerCase}`);
-        this.$viewedNameDirectUpline = this.$(`#txt-uplinename-${this.levelId === siteInfrastructure.Role.Agent.Id ? 'master' : 'agent'}`);
+        this.$viewedNameDirectUpline = this.$(
+            `#txt-uplinename-${this.levelId === siteInfrastructure.Role.Agent.Id ? 'master' : 'agent'}`
+        );
         if (this.isIndirectDownlineOfActor) {
             this.reportParam = new ReportParam();
-        }
-        else {
+        } else {
             this.reportParam = {
                 UserName: this.$username.val(),
                 SearchRoleId: this.levelId,
-                UplineName: "",
-                UserSelectedReviewedStatusId: parseInt(this.$("#UserSelectedReviewedStatusId").val()),
+                UplineName: '',
+                UserSelectedReviewedStatusId: parseInt(this.$('#UserSelectedReviewedStatusId').val()),
                 FromDate: new Date(),
                 ToDate: new Date()
             };
@@ -129,30 +140,30 @@ class BaseList {
     export = () => {
         const downlineUsername = this.isIndirectDownlineOfActor ? this.$viewedNameDirectUpline.val() : null;
 
-        this.$("#FromDate").val(this.$fromDate.val());
-        this.$("#ToDate").val(this.$toDate.val());
-        this.$("#UserSelectedReviewedStatusId").val(parseInt(this.$dropdownStatus.find("option:selected").val()));
-        this.$("#UplineName").val(downlineUsername);
-        this.$("#SearchRoleId").val(this.levelId);
-        this.$("#UserName").val(this.$username.val());
+        this.$('#FromDate').val(this.$fromDate.val());
+        this.$('#ToDate').val(this.$toDate.val());
+        this.$('#UserSelectedReviewedStatusId').val(parseInt(this.$dropdownStatus.find('option:selected').val()));
+        this.$('#UplineName').val(downlineUsername);
+        this.$('#SearchRoleId').val(this.levelId);
+        this.$('#UserName').val(this.$username.val());
 
-        this.$("#export-excel-form").submit();
-    }
+        this.$('#export-excel-form').submit();
+    };
 
     loadData = () => {
-        this.$btnMarkReviewed.attr("disabled", "disabled");
-        this.$ckbSelectAll.prop("checked", false);
+        this.$btnMarkReviewed.attr('disabled', 'disabled');
+        this.$ckbSelectAll.prop('checked', false);
         const downlineUsername = this.isIndirectDownlineOfActor ? this.$viewedNameDirectUpline.val() : null;
 
         this.reportParam.UplineName = downlineUsername;
         this.reportParam.SearchRoleId = this.levelId;
-        this.reportParam.UserSelectedReviewedStatusId = parseInt(this.$dropdownStatus.find("option:selected").val());
+        this.reportParam.UserSelectedReviewedStatusId = parseInt(this.$dropdownStatus.find('option:selected').val());
         this.reportParam.UserName = this.$.trim(this.$username.val());
         this.reportParam.FromDate = this.$fromDate.val();
         this.reportParam.ToDate = this.$toDate.val();
 
         this.$.ajax({
-            method: "GET",
+            method: 'GET',
             data: this.reportParam,
             url: this.getProblemAccountUrl,
             cache: false,
@@ -161,7 +172,7 @@ class BaseList {
             },
             complete: this.$.unblockUI
         });
-    }
+    };
 
     viewDownlines(event) {
         const $this = this.$(event.currentTarget),
@@ -179,45 +190,62 @@ class BaseList {
     }
 
     bindReportEvents() {
-        this.$tblReport.find(".view-downline").click(event => this.viewDownlines(event));
-        const checkboxList = this.$tblReport.find(".checkbox");
-        checkboxList.off().change(e => this.handleCheckboxChanged(e, checkboxList));
-        this.$tblReport.find(".not-reviewed").off().click((e) => {
-            const $checkbox = this.$(e.target);
-            this.openPopup([$checkbox.data("custid")], [$checkbox.data("username")], $checkbox.data("custrole"));
-        });
+        this.$tblReport.find('.view-downline').click((event) => this.viewDownlines(event));
+        const checkboxList = this.$tblReport.find('.checkbox');
+        checkboxList.off().change((e) => this.handleCheckboxChanged(e, checkboxList));
+        this.$tblReport
+            .find('.not-reviewed')
+            .off()
+            .click((e) => {
+                const $checkbox = this.$(e.target);
+                this.openPopup([$checkbox.data('custid')], [$checkbox.data('username')], $checkbox.data('custrole'));
+            });
     }
 
     markReviewedMultiple() {
-        const checkboxList = this.$tblReport.find(".checkbox:checked");
+        const checkboxList = this.$tblReport.find('.checkbox:checked');
         const checkboxListLength = checkboxList.length;
         if (!checkboxListLength) {
             return;
         }
 
-        let ids = [], usernames = [], roleId = 0;
+        let ids = [],
+            usernames = [],
+            roleId = 0;
         for (let i = 0; i < checkboxListLength; i++) {
             const $checkbox = this.$(checkboxList[i]);
-            ids.push($checkbox.data("custid"));
-            usernames.push($checkbox.data("username"));
-            roleId = $checkbox.data("custrole");
+            ids.push($checkbox.data('custid'));
+            usernames.push($checkbox.data('username'));
+            roleId = $checkbox.data('custrole');
         }
 
         this.openPopup(ids, usernames, roleId);
     }
 
     openPopup(ids, usernames, roleId: number) {
-        this.$("#Ids").val(ids);
-        this.$("#UserNames").val(usernames);
-        this.$("#RoleId").val(roleId);
+        this.$('#Ids').val(ids);
+        this.$('#UserNames').val(usernames);
+        this.$('#RoleId').val(roleId);
 
-        const popupWidth = 500, popupHeight = roleId === siteInfrastructure.Role.Member.Id ? 250 : 300;
-        const action = this.$("target").attr("action");
+        const popupWidth = 500,
+            popupHeight = roleId === siteInfrastructure.Role.Member.Id ? 250 : 300;
+        const action = this.$('target').attr('action');
 
-        this.topWindow["indexManager"].reloadProblemAccount = () => this.viewList();
-        this.topWindow["popupManager"].open('', this.indexManager.viewResources.UpdatePopupTitle, popupWidth, popupHeight, 'modal-mobile-friendly', null, null, null, null, {
-            preUrl: action
-        });
+        this.topWindow['indexManager'].reloadProblemAccount = () => this.viewList();
+        this.topWindow['popupManager'].open(
+            '',
+            this.indexManager.viewResources.UpdatePopupTitle,
+            popupWidth,
+            popupHeight,
+            'modal-mobile-friendly',
+            null,
+            null,
+            null,
+            null,
+            {
+                preUrl: action
+            }
+        );
     }
 
     renderCustomerList(rs) {
@@ -227,9 +255,10 @@ class BaseList {
 
         this.$tblReport.removeClass(this.displayNoneClass);
 
-        this.$tblReport.find("> tbody").empty().html(
-            this.customerListHelper.buildBody(rs, this.levelId, this.indexManager.ActorLevel, this.reportParam)
-        );
+        this.$tblReport
+            .find('> tbody')
+            .empty()
+            .html(this.customerListHelper.buildBody(rs, this.levelId, this.indexManager.ActorLevel, this.reportParam));
         this.$(window).trigger('resize.stickyTableHeaders');
 
         this.bindReportEvents();
@@ -253,23 +282,23 @@ class BaseList {
     }
 
     handleCheckboxChanged(e, checkboxList) {
-        const checked = this.$(e.target).is(":checked");
-        this.$ckbSelectAll.prop("checked", checked && checkboxList.not(":checked").length === 0);
-        if (checkboxList.filter(":checked").length > 1) {
-            this.$btnMarkReviewed.removeAttr("disabled");
+        const checked = this.$(e.target).is(':checked');
+        this.$ckbSelectAll.prop('checked', checked && checkboxList.not(':checked').length === 0);
+        if (checkboxList.filter(':checked').length > 1) {
+            this.$btnMarkReviewed.removeAttr('disabled');
         } else {
-            this.$btnMarkReviewed.attr("disabled", "disabled");
+            this.$btnMarkReviewed.attr('disabled', 'disabled');
         }
     }
 
     handleCheckboxAllChanged() {
-        const checked = this.$ckbSelectAll.is(":checked");
-        const checkboxList = this.$tblReport.find(".checkbox");
-        checkboxList.prop("checked", checked);
-        if (checked && checkboxList.filter(":checked").length > 1) {
-            this.$btnMarkReviewed.removeAttr("disabled");
+        const checked = this.$ckbSelectAll.is(':checked');
+        const checkboxList = this.$tblReport.find('.checkbox');
+        checkboxList.prop('checked', checked);
+        if (checked && checkboxList.filter(':checked').length > 1) {
+            this.$btnMarkReviewed.removeAttr('disabled');
         } else {
-            this.$btnMarkReviewed.attr("disabled", "disabled");
+            this.$btnMarkReviewed.attr('disabled', 'disabled');
         }
     }
 }
@@ -284,18 +313,20 @@ class ViewResources {
     public EditSettingText: string;
     public LockedText: string;
     public MonitoredMemberText: string;
+    public DirectMember: string;
 
     constructor($: JQueryStatic) {
         this.$ = $;
 
-        this.NoInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
-        this.UpdatePopupTitle = this.$("#markAsReviewedText").val();
-        this.TotalColumnMaster = parseInt(this.$("#TotalColumnMaster").val());
-        this.TotalColumnAgent = parseInt(this.$("#TotalColumnAgent").val());
-        this.TotalColumnMember = parseInt(this.$("#TotalColumnMember").val());
+        this.NoInformationIsAvailable = this.$('#NoInformationIsAvailable').val();
+        this.UpdatePopupTitle = this.$('#markAsReviewedText').val();
+        this.TotalColumnMaster = parseInt(this.$('#TotalColumnMaster').val());
+        this.TotalColumnAgent = parseInt(this.$('#TotalColumnAgent').val());
+        this.TotalColumnMember = parseInt(this.$('#TotalColumnMember').val());
         this.EditSettingText = this.$('#editSettingText').val();
-        this.LockedText = this.$("#text-locked").val();
-        this.MonitoredMemberText = this.$("#MonitoredMemberText").val();
+        this.LockedText = this.$('#text-locked').val();
+        this.MonitoredMemberText = this.$('#MonitoredMemberText').val();
+        this.DirectMember = this.$('#DirectMemberText').val();
     }
 }
 
@@ -310,10 +341,10 @@ class ReportParam {
 
 class SiteInfrastructure {
     Role = {
-        Super: { Id: 4, Name: "Super" },
-        Master: { Id: 3, Name: "Master" },
-        Agent: { Id: 2, Name: "Agent" },
-        Member: { Id: 1, Name: "Member" },
+        Super: { Id: 4, Name: 'Super' },
+        Master: { Id: 3, Name: 'Master' },
+        Agent: { Id: 2, Name: 'Agent' },
+        Member: { Id: 1, Name: 'Member' }
     };
 }
 

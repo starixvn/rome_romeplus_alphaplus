@@ -3567,7 +3567,7 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to 
+        ///   Looks up a localized string similar to
         ///      Inputting all fields of bet setting = 0 means you do not set limit to the bet setting of this account.&lt;br/&gt;
         ///      To prevent members from playing the game, set Min Bet = 0 and other fields = 0.1.&lt;br/&gt;
         ///      Updating upline&apos;s bet setting might decrease all downlines&apos; bet settings to ensure that they are not greater than upline&apos;s bet setting.
@@ -4183,6 +4183,61 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             get
             {
                 return ResourceManager.GetString("YourDownlineUsernameOrNickname", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For Direct Member accounts the column shown is Balance. For all other levels, the column shown is Cash.
+        /// </summary>
+        public static string CashBalanceNote
+        {
+            get
+            {
+                return ResourceManager.GetString("CashBalanceNote", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For Direct Member accounts the column shown is Yesterday Balance. For all other levels, the column shown is Yesterday Cash.
+        /// </summary>
+        public static string YesterdayCashYesterdayBalanceNote
+        {
+            get
+            {
+                return ResourceManager.GetString("YesterdayCashYesterdayBalanceNote", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday Cash.
+        /// </summary>
+        public static string YesterdayCash
+        {
+            get
+            {
+                return ResourceManager.GetString("YesterdayCash", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to For Direct Member accounts the column shown is Bet Credit. For all other levels, the column shown is Available Credit.
+        /// </summary>
+        public static string AvailableCreditBetCreditNote
+        {
+            get
+            {
+                return ResourceManager.GetString("AvailableCreditBetCreditNote", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select Direct Downline.
+        /// </summary>
+        public static string SelectDirectDownline
+        {
+            get
+            {
+                return ResourceManager.GetString("SelectDirectDownline", resourceCulture);
             }
         }
     }

@@ -22,10 +22,12 @@
 
         public decimal PendingTransfer3rd { get; init; }
 
-        public decimal? RewardPayable { get; set; }
+        public decimal DirectMemberCredit { get; init; }
 
-        public decimal? RewardReceivable { get; set; }
+        public decimal? RewardPayable { get; init; }
 
-        public string RewardCurrency { get; set; }
+        public decimal? RewardReceivable { get; init; }
+
+        public string RewardCurrency { get; init; }
     }
 }

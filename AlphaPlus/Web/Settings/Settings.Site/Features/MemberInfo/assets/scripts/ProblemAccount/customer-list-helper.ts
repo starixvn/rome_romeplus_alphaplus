@@ -1,5 +1,4 @@
-﻿
-class CustomerListHelper {
+﻿class CustomerListHelper {
     viewResources: ViewResources;
     $: JQueryStatic;
     private canUpdateAccount: string;
@@ -7,7 +6,7 @@ class CustomerListHelper {
     constructor($: JQueryStatic, viewResources: ViewResources) {
         this.$ = $;
         this.viewResources = viewResources;
-        this.canUpdateAccount = JSON.parse(this.$("#CanUpdateAccount").val());
+        this.canUpdateAccount = JSON.parse(this.$('#CanUpdateAccount').val());
     }
 
     private buildCommonAttributesJson(CustId, Username: string, roleId) {
@@ -25,7 +24,7 @@ class CustomerListHelper {
     private renderCheckboxColumn = (item, isAgentLogin: boolean, levelId: number) => {
         if (isAgentLogin || item.CanEdit) {
             const attrs = {
-                'class': 'checkbox',
+                class: 'checkbox',
                 'data-custid': item.CustId,
                 'data-username': item.UserName,
                 'data-custrole': levelId
@@ -34,23 +33,23 @@ class CustomerListHelper {
             return `<input type="checkbox" ${this.buildAttributes(attrs)} />`;
         }
 
-        return "";
-    }
+        return '';
+    };
 
-    private renderEditColumn = item => {
+    private renderEditColumn = (item) => {
         const attrs = {
-            'class': 'edit icon-table-edit',
-            'id': `setting-${item.CustId}`,
+            class: 'edit icon-table-edit',
+            id: `setting-${item.CustId}`,
             'data-custid': item.CustId,
             'data-username': item.UserName,
-            'title': this.viewResources.EditSettingText
+            title: this.viewResources.EditSettingText
         };
 
         return `<div ${this.buildAttributes(attrs)}/>`;
-    }
+    };
 
-    private renderUsernameColumn = item => {
-        let lockedOrMonitored = "";
+    private renderUsernameColumn = (item) => {
+        let lockedOrMonitored = '';
         if (item.IsExistedWatchlist) {
             lockedOrMonitored += `<span class="icon-mywatchlist" title="${this.viewResources.MonitoredMemberText}"></span>`;
         }
@@ -61,24 +60,35 @@ class CustomerListHelper {
         return lockedOrMonitored.length
             ? `<div class="cell-username">${item.UserName}<span class="right-icon">${lockedOrMonitored}</span></div>`
             : `${item.UserName}`;
-    }
+    };
 
-    private renderStatusColumn = item => {
-        const className = item.Status === 1 ? "open-button" : "";
+    private renderUsernameForSuperMaster = (item) => {
+        let html = `<div class="text-icon"> `;
+        html += item.UserName;
+        if (item.IsDirectMember) {
+            html += `<span class="icon-directmember" title="${this.viewResources.DirectMember}"></span>`;
+        }
+        html += `</div>`;
+
+        return html;
+    };
+
+    private renderStatusColumn = (item) => {
+        const className = item.Status === 1 ? 'open-button' : '';
         const attrs = {
-            'class': `${className}`,
-            'id': `status-${item.CustId}`,
+            class: `${className}`,
+            id: `status-${item.CustId}`,
             'data-custid': item.CustId,
-            'data-username': item.UserName,
+            'data-username': item.UserName
         };
 
         return `<div ${this.buildAttributes(attrs)}>${item.StatusName}</div>`;
-    }
+    };
 
     private renderReviewStatusColumn = (item, levelId: number) => {
         if (item.CanEdit) {
             const attrs = {
-                'class': 'not-reviewed',
+                class: 'not-reviewed',
                 'data-custid': item.CustId,
                 'data-username': item.UserName,
                 'data-custrole': levelId
@@ -90,13 +100,15 @@ class CustomerListHelper {
         return item.ReviewStatus;
     };
 
-    private buildAttributes = attrs => this.$.map(attrs, (value, key) => `${key}='${value}'`).join(' ');
+    private buildAttributes = (attrs) => this.$.map(attrs, (value, key) => `${key}='${value}'`).join(' ');
 
     private buildColumnAttributesJson(customer, levelId: number, actorId: number, customerIndex: number) {
-        const memberId = siteInfrastructure.Role.Member.Id, isMember = levelId === memberId,
+        const memberId = siteInfrastructure.Role.Member.Id,
+            isMember = levelId === memberId,
             isAgentLogin = actorId === siteInfrastructure.Role.Agent.Id,
             isViewNickname = actorId - 1 == levelId,
-            { CustId, UserName, StatusName, NickName, FirstName, LastName, CreatedDateStr, ReviewStatus, Count } = customer,
+            { CustId, UserName, StatusName, NickName, FirstName, LastName, CreatedDateStr, ReviewStatus, Count } =
+                customer,
             commonAttributesJson = this.buildCommonAttributesJson(CustId, UserName, levelId);
 
         return [
@@ -116,8 +128,12 @@ class CustomerListHelper {
                 Visibile: isAgentLogin && this.canUpdateAccount
             },
             {
-                Content: isAgentLogin ? this.renderUsernameColumn(customer) : UserName,
-                Attributes: [{ Name: 'class', Value: isMember ? '' : ' link view-downline' }].concat(commonAttributesJson),
+                Content: isAgentLogin
+                    ? this.renderUsernameColumn(customer)
+                    : this.renderUsernameForSuperMaster(customer),
+                Attributes: [{ Name: 'class', Value: isMember ? '' : ' link view-downline' }].concat(
+                    commonAttributesJson
+                ),
                 Visibile: true
             },
             {
@@ -151,7 +167,10 @@ class CustomerListHelper {
                 Visibile: !isMember
             },
             {
-                Content: isAgentLogin || !this.canUpdateAccount ? ReviewStatus : this.renderReviewStatusColumn(customer, levelId),
+                Content:
+                    isAgentLogin || !this.canUpdateAccount
+                        ? ReviewStatus
+                        : this.renderReviewStatusColumn(customer, levelId),
                 Attributes: [{ Name: 'class', Value: 'text-center' }],
                 Visibile: true
             }
@@ -159,7 +178,7 @@ class CustomerListHelper {
     }
 
     private buildAccountStatusCssClass(customer) {
-        let className = "";
+        let className = '';
         switch (customer.Status) {
             case 2:
             case 4:
@@ -169,7 +188,8 @@ class CustomerListHelper {
                 className = customer.StatusNameEN + customer.ClosedReasonName;
                 break;
             default:
-                className = customer.Locked === 0 ? customer.StatusNameEN : this.buildLockedAccessCssClass(customer.Locked);
+                className =
+                    customer.Locked === 0 ? customer.StatusNameEN : this.buildLockedAccessCssClass(customer.Locked);
                 break;
         }
 
@@ -183,7 +203,7 @@ class CustomerListHelper {
             case 2: // Password
                 return 'LockedFalsePassword';
             default:
-                return ''
+                return '';
         }
     }
 
@@ -198,32 +218,35 @@ class CustomerListHelper {
             }
         }
 
-        let customerIndex = 1, bodyContent = '';
+        let customerIndex = 1,
+            bodyContent = '';
 
-        for (let i = 0; i < Customers.length; i++ , customerIndex++) {
+        for (let i = 0; i < Customers.length; i++, customerIndex++) {
             let rowContent = '';
-            this.buildColumnAttributesJson(
-                Customers[i],
-                levelId,
-                actorId,
-                customerIndex).forEach(column => {
-                    if (column.Visibile) {
-                        rowContent += new ColumnWrapper(column.Content,
-                            column.Attributes.map(attr => new Attribute(attr.Name, attr.Value))).ToString();
-                    }
-                });
+            this.buildColumnAttributesJson(Customers[i], levelId, actorId, customerIndex).forEach((column) => {
+                if (column.Visibile) {
+                    rowContent += new ColumnWrapper(
+                        column.Content,
+                        column.Attributes.map((attr) => new Attribute(attr.Name, attr.Value))
+                    ).ToString();
+                }
+            });
 
             const rowAttributes = [
                 new Attribute('class', this.buildAccountStatusCssClass(Customers[i])),
                 new Attribute('cust-id', Customers[i].CustId)
             ];
-            const reviewAttribute = Customers[i].IsReviewed ? new Attribute('is-reviewed', Customers[i].IsReviewed) : null;
+            const reviewAttribute = Customers[i].IsReviewed
+                ? new Attribute('is-reviewed', Customers[i].IsReviewed)
+                : null;
             reviewAttribute && rowAttributes.push(reviewAttribute);
 
-            const statusAttribute = Customers[i].StatusNameEN === "Open" ? new Attribute('is-open', 'true') : null;
+            const statusAttribute = Customers[i].StatusNameEN === 'Open' ? new Attribute('is-open', 'true') : null;
             statusAttribute && rowAttributes.push(statusAttribute);
 
-            const monitoredAttribute = Customers[i].IsExistedWatchlist ? new Attribute('is-monitored', Customers[i].IsExistedWatchlist) : null;
+            const monitoredAttribute = Customers[i].IsExistedWatchlist
+                ? new Attribute('is-monitored', Customers[i].IsExistedWatchlist)
+                : null;
             monitoredAttribute && rowAttributes.push(monitoredAttribute);
 
             bodyContent += new RowWrapper(rowContent, rowAttributes).ToString();

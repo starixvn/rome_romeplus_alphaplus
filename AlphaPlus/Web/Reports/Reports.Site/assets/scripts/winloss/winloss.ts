@@ -64,7 +64,7 @@
     }
 
     registerEvents() {
-        $('.icon-switchmode').click(this.onSwitchMode);
+        $('.ic-switchmode').click(this.onSwitchMode);
         super.registerHistoricReportEvent();
         super.registerDrilldownableEvents();
     }

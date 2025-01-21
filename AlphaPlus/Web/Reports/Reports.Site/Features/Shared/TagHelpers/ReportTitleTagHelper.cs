@@ -53,7 +53,7 @@ public class ReportTitleTagHelper : TagHelper
                     {
                         if (linkIndex == lastLinkIndex)
                         {
-                            sb.Append($"<li>&nbsp{item.CustName}&nbsp</li>");
+                            sb.Append($"<li>{item.CustName}</li>");
                         }
                         else
                         {
@@ -66,11 +66,7 @@ public class ReportTitleTagHelper : TagHelper
                             sb
                                 .Append($"data-custid=\"{item.CustId}\" ")
                                 .Append($"data-custname=\"{item.CustName}\" ")
-                                .Append($"data-custlevelid=\"{item.CustLevelId}\">")
-                                .Append("&nbsp")
-                                .Append(item.CustName)
-                                .Append("&nbsp")
-                                .Append("</a></li>");
+                                .Append($"data-custlevelid=\"{item.CustLevelId}\">{item.CustName}</a></li>");
                         }
 
                         linkIndex++;

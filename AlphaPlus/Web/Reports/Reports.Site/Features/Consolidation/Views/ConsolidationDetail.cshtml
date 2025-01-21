@@ -2,7 +2,7 @@
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/consolidation")
     <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
 }
@@ -58,4 +58,3 @@ else if (Model.ReportType == "product")
 <input type="hidden" id="query-resourceids" value="@Model.ProductViewModel.UserSelectedResourceIds" />
 <input type="hidden" id="query-fromdate" value="@Model.DateRangePicker.FromDate" />
 <input type="hidden" id="query-todate" value="@Model.DateRangePicker.ToDate" />
-<input type="hidden" id="query-leveltype" value="@Model.LevelType" />

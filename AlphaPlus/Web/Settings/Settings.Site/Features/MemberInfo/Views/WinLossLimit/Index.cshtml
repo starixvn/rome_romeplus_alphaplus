@@ -1,4 +1,5 @@
-﻿@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
+﻿@using AlphaPlus.Shared.AppResources.Common
+@using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Core.Extensions
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
@@ -57,13 +58,13 @@
     @if (Model.ViewerLevel.IsSuperLevel())
     {
         <div class="form-group">
-            <label>@Resources.SelectMaster</label>
+            <label>@Resources.SelectDirectDownline</label>
             <select id="dropdown-master">
                 @if (Model.MasterList.Any())
                 {
                     foreach (var master in Model.MasterList)
                     {
-                        <option value="@master.CustId" @(Model.MasterId == master.CustId ? " selected=\"selected\"" : string.Empty)>@master.CustName</option>
+                        <option value="@master.CustId" @(Model.MasterId == master.CustId ? " selected=selected" : string.Empty)>@(master.CustId == 0 ? CommonResx.DirectMember : master.CustName)</option>
                     }
                 }
                 else
@@ -76,8 +77,8 @@
     @if (Model.ViewerLevel.IsMasterOrSuperLevel())
     {
         <div class="form-group">
-            <label>@Resources.SelectAgent</label>
-            <select id="dropdown-agent">
+            <label>@(Model.ViewerLevel.IsSuperLevel() ? Resources.SelectAgent : Resources.SelectDirectDownline)</label>
+            <select id="dropdown-agent" @(Model.ViewerLevel.IsSuperLevel() && Model.MasterId == 0 ? "disabled=disabled" : string.Empty)>
                 @if (Model.AgentList.Any())
                 {
                     if (Model.ViewerLevel.IsSuperLevel())
@@ -87,7 +88,7 @@
 
                     foreach (var agent in Model.AgentList)
                     {
-                        <option value="@agent.CustId" @(Model.AgentId == agent.CustId ? " selected=\"selected\"" : string.Empty)>@agent.CustName</option>
+                        <option value="@agent.CustId" @(Model.RecommendId == agent.CustId ? " selected=selected" : string.Empty)>@agent.CustName</option>
                     }
                 }
                 else
@@ -99,7 +100,7 @@
     }
     <div class="form-group">
         <label>@Resources.Username</label>
-        <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username" />
+        <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username" maxlength="50" autocomplete="off" />
     </div>
     @if (Model.IsBBin)
     {
@@ -206,7 +207,7 @@
     @Html.Hidden("SportType", Model.SportType)
     @Html.Hidden("BetType", Model.BetType)
     @Html.Hidden("MasterId", Model.MasterId)
-    @Html.Hidden("AgentId", Model.AgentId)
+    @Html.Hidden("RecommendId", Model.RecommendId)
 </form>
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit")

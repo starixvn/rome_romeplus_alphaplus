@@ -17,15 +17,8 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo
         private readonly IDynamicRepository dynamicRepository = dynamicRepository;
         private readonly ICacheService cacheService = cacheService;
 
-        public async Task<BalanceInfo> GetBalanceInfo(int custId, UserLevel userLevel)
-        {
-            var moveBetsDay = (await GetBalanceUpDayInfo()).MoveBetsDay;
-            var criteria = new GetBalanceInfoCriteria(userLevel, custId, moveBetsDay);
-
-            var balanceInfo = await dynamicRepository.GetAsync<BalanceInfo>(criteria);
-
-            return balanceInfo;
-        }
+        public Task<BalanceInfo> GetBalanceInfo(int custId, UserLevel userLevel)
+            => dynamicRepository.GetAsync<BalanceInfo>(new GetBalanceInfoCriteria(userLevel, custId));
 
         public async Task<BalanceUpDayInfo> GetBalanceUpDayInfo()
         {

@@ -59,7 +59,7 @@ class ConsolidationView extends BaseReport {
     }
 
     registerEvents() {
-        $('.icon-switchmode').on('click', this.onSwitchMode);
+        $('.ic-switchmode').on('click', this.onSwitchMode);
         //super.registerDrilldownableEvents();
 
         const self = this;

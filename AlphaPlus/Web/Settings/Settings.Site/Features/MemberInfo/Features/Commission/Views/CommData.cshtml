@@ -6,6 +6,7 @@
 @{
     Layout = null;
     var sportColIndex = 0;
+    var isAgentLevel = Model.ActorLevel.IsAgentLevel();
 }
 <table class="tblRpt tblRpt-bordered tblRpt-hover alternative-row-table width-100per" id="tbl-comm">
     <thead>
@@ -17,7 +18,7 @@
             }
             @foreach (var name in Model.ReportData.SportTypes)
             {
-                <th colspan="@(Model.IsAgentLevel ? 2 : 3)">@name</th>
+                <th colspan="@(isAgentLevel ? 2 : 3)">@name</th>
             }
             <th colspan="2"></th>
         </tr>
@@ -33,7 +34,7 @@
             @foreach (var sport in Model.ReportData.SportTypes)
             {
                 var className = ++sportColIndex % 2 == 0 ? "col-comm-even" : "col-comm-odd";
-                if (!Model.IsAgentLevel)
+                if (!isAgentLevel)
                 {
                     <th title="@Resources.Master" class="@className">M</th>
                 }
@@ -68,7 +69,7 @@
                     @foreach (var sport in item.Commissions)
                     {
                         var className = ++sportColIndex % 2 == 0 ? string.Empty : "col-comm-odd";
-                        if (!Model.IsAgentLevel)
+                        if (!isAgentLevel)
                         {
                             <td class="text-right @className">@sport.MasterDiscount.ToString("N2")</td>
                         }
@@ -87,7 +88,7 @@
             {
                 colspan++;
             }
-            colspan += Model.ReportData.SportTypes.Count() * (Model.IsAgentLevel ? 2 : 3) + 2;
+            colspan += Model.ReportData.SportTypes.Count() * (isAgentLevel ? 2 : 3) + 2;
             <tr>
                 <td class="text-center" colspan="@colspan">
                     @Resources.NoInformationIsAvailable
