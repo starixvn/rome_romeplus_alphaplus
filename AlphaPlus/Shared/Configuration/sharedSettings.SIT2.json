@@ -249,7 +249,7 @@
         "ExpireSeconds": 900
     },
     "WhiteLabel": {
-        "OfferedSites": "755555,BEST-ODDS",
+        "OfferedSites": "",
         "BackOfficeApiUrl": "https://s1-alpha-api-service.playonesit.com/api/"
     },
     "OfferProfilePictureTour": true

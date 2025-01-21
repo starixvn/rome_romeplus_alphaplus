@@ -258,7 +258,7 @@
         "ExpireSeconds": 900
     },
     "WhiteLabel": {
-        "OfferedSites": "755555",
+        "OfferedSites": "",
         "BackOfficeApiUrl": "https://s1-alpha-api-service.starixnet.com/api/"
     },
     "OfferProfilePictureTour": true

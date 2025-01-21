@@ -252,7 +252,7 @@
         "ExpireSeconds": 900
     },
     "WhiteLabel": {
-        "OfferedSites": "755555",
+        "OfferedSites": "",
         "BackOfficeApiUrl": "http://vn-s1-alpha-api-prod.nebula.prod/api/"
     },
     "OfferProfilePictureTour": true
