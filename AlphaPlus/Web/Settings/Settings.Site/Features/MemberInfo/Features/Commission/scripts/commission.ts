@@ -32,13 +32,9 @@ class CommissionView {
 
         $ddlAgent.length &&
             $ddlAgent.change(() => {
-                const custId = $ddlAgent.val();
-                if (custId === '0') {
-                    return;
-                }
-
                 $.blockUI();
-                if (custId === 'undefined') {
+                const custId = $ddlAgent.val();
+                if (custId === '0' || custId === 'undefined') {
                     this.getMasterComm($ddlProduct.val(), $ddlMaster.val(), $tblContainer);
                 } else if (custId !== '0') {
                     $.get(this.buildUrl(`GetData?productId=${$ddlProduct.val()}&custid=${custId}`), (html) => {
