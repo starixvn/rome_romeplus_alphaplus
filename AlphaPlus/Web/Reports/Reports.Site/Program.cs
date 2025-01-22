@@ -3,6 +3,7 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
+using AlphaPlus.Core.Models;
 using AlphaPlus.NetThrottling;
 using AlphaPlus.Reports.Site.Features.Shared.Extensions;
 using AlphaPlus.RequestInfo;
@@ -99,6 +100,7 @@ app
     .UseAuthorization()
     .UseNetThrottling()
     .UseMiddleware<RequestCultureMiddleware>();
+
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
@@ -108,6 +110,18 @@ app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
     context.Request.PathBase = "/reports";
+
+    var session = context.RequestServices.GetRequiredService<IUserSession>();
+    context.Items["customData"] = new
+    {
+        session.CustId,
+        session.UserName,
+        session.RoleId,
+        session.SubAccId,
+        session.SubUserName,
+        session.AdminId,
+        session.AdminName
+    };
 
     await next(context);
 });

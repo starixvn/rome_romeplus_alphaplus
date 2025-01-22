@@ -17,6 +17,7 @@ using AlphaPlus.SecurityCode.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using AlphaPlus.NetThrottling;
 using Microsoft.AspNetCore.Authorization;
+using AlphaPlus.Core.Models;
 
 const string App_Data = "App_Data";
 const string SharedSettings = "sharedSettings.json";
@@ -116,12 +117,25 @@ app
     .UseAuthentication()
     .UseAuthorization()
     .UseMiddleware<RequestCultureMiddleware>();
+
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
     context.Request.PathBase = "/tickets";
+
+    var session = context.RequestServices.GetRequiredService<IUserSession>();
+    context.Items["customData"] = new
+    {
+        session.CustId,
+        session.UserName,
+        session.RoleId,
+        session.SubAccId,
+        session.SubUserName,
+        session.AdminId,
+        session.AdminName
+    };
 
     await next(context);
 });

@@ -3,6 +3,7 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Authorization;
+using AlphaPlus.Core.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 const string SharedSettings = "sharedSettings.json";
@@ -63,6 +64,19 @@ app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
     context.Request.PathBase = "/settings";
+
+    var session = context.RequestServices.GetRequiredService<IUserSession>();
+    context.Items["customData"] = new
+    {
+        session.CustId,
+        session.UserName,
+        session.RoleId,
+        session.SubAccId,
+        session.SubUserName,
+        session.AdminId,
+        session.AdminName
+    };
+    
     await next(context);
 });
 

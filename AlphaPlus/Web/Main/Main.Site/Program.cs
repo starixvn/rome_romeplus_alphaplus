@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using AlphaPlus.NetThrottling;
 using Microsoft.AspNetCore.Authorization;
+using AlphaPlus.Core.Models;
 
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
@@ -76,6 +77,18 @@ app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
     context.Request.PathBase = "/main";
+
+    var session = context.RequestServices.GetRequiredService<IUserSession>();
+    context.Items["customData"] = new
+    {
+        session.CustId,
+        session.UserName,
+        session.RoleId,
+        session.SubAccId,
+        session.SubUserName,
+        session.AdminId,
+        session.AdminName
+    };
 
     await next(context);
 });

@@ -1,5 +1,7 @@
 using System.Text;
+using AlphaPlus.Core.Extensions;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace AlphaPlus.Core.Helpers;
 
@@ -20,6 +22,9 @@ public static class ExceptionHelper
             .Append(TwoBreakLine)
             .Append("BODY: ")
             .Append(await GetRawBodyStringAsync(request))
+            .Append(TwoBreakLine)
+            .Append("SESSION: ")
+            .Append(GetSessionValues(request))
             .Append(TwoBreakLine)
             .Append("HEADERS:").Append(BreakLine)
             .Append(GetHeaderValues(request))
@@ -52,4 +57,7 @@ public static class ExceptionHelper
 
     private static string GetCookiesValues(HttpRequest request)
         => string.Join(BreakLine, request.Cookies.Select(cookie => $"{cookie.Key}:{cookie.Value}"));
+
+    private static string GetSessionValues(HttpRequest request)
+        => JsonConvert.SerializeObject(request.HttpContext.Items["customData"], Formatting.Indented);
 }
