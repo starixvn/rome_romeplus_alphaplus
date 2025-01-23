@@ -4,7 +4,6 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
 using AlphaPlus.RequestInfo;
-using Fanex.Logging;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
-using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Helpers;

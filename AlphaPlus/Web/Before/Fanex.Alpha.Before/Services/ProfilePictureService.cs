@@ -1,6 +1,5 @@
 using AlphaPlus.Utilities.IP;
 using Fanex.Alpha.Before.Criteria;
-using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.Models;
 using Fanex.Data.Repository;
 

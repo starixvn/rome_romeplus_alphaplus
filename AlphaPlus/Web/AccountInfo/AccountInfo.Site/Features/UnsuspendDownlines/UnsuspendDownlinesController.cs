@@ -1,7 +1,6 @@
 using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines.Requests;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines

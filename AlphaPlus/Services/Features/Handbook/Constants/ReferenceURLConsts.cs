@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlphaPlus.Features.Handbook.API.Constants
+﻿namespace AlphaPlus.Features.Handbook.API.Constants
 {
     public static class ReferenceURLConsts
     {

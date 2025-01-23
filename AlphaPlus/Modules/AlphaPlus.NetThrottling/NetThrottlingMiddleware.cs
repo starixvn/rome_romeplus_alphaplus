@@ -1,7 +1,6 @@
 using AlphaPlus.NetThrottling.Filters;
 using AlphaPlus.NetThrottling.Models;
 using AlphaPlus.NetThrottling.Utils;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.NetThrottling

@@ -2,7 +2,6 @@
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.Components;
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;
 

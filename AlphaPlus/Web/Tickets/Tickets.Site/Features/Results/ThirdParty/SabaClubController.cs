@@ -1,5 +1,4 @@
 using AlphaPlus.Core.Filters;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.Tickets.Site.Features.Results.ThirdParty;

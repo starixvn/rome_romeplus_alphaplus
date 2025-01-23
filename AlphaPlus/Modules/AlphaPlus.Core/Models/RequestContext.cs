@@ -1,6 +1,5 @@
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Core.Models;

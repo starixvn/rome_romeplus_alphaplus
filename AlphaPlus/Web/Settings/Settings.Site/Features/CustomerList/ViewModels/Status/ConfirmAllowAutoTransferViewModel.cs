@@ -1,5 +1,4 @@
-﻿using AlphaPlus.Settings.MemberInfo.API.Helpers;
-using AlphaPlus.Settings.MemberInfo.API.Services;
+﻿using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;

@@ -1,5 +1,4 @@
 ﻿using Fanex.Data.Repository;
-using AlphaPlus.Features.Messages.API.Configurations;
 
 namespace AlphaPlus.Features.Messages.API.Criteria
 {

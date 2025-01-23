@@ -1,7 +1,6 @@
 using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.NetThrottling;
 using Fanex.Alpha.Before.Services;
-using Fanex.Data;
 using Fanex.Logging;
 using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.AspNetCore;
