@@ -15,7 +15,6 @@ export interface GeneralInfo {
   uplineMemberMaxCredit: number;
   fax: string;
   disableAutoMPT: boolean;
-  group: string;
   transferOption: string;
   isAutomateTransfer: boolean;
   site: string;

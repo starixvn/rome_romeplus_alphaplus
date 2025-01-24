@@ -1,3 +1,4 @@
+import { group } from 'console';
 import i18next, { changeLanguage } from 'i18next';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +25,6 @@ import styles from './NewAccount.module.scss';
 import NewAccountSuccessPopup from './NewAccountPopup/NewAccountSuccessPopup';
 import Popup from './NewAccountPopup/Popup';
 import TransferCondition from './TransferCondition';
-
 
 export default function NewAccount() {
   const { t } = useTranslation();
@@ -88,13 +88,15 @@ export default function NewAccount() {
                 if (err.message.includes('MinPT')) {
                   return {
                     isLive: err.isLive,
-                    message: err.message.replace('MinPT', t('minPT'))};
+                    message: err.message.replace('MinPT', t('minPT')),
+                  };
                 }
 
                 if (err.message.includes('MaxPT')) {
                   return {
                     isLive: err.isLive,
-                    message: err.message.replace('MaxPT', t('maxPT'))};
+                    message: err.message.replace('MaxPT', t('maxPT')),
+                  };
                 }
 
                 return err;
@@ -103,13 +105,11 @@ export default function NewAccount() {
           });
         }
         setLoading(false);
-
       })
       .catch((e) => {
         // console.log(e);
         setLoading(true);
       });
-
   }, [initNewAccountState, t]);
 
   const validateAllProduct = () => {
@@ -132,7 +132,7 @@ export default function NewAccount() {
 
   const handleCreateNewAccount = async () => {
     setError('');
-    const { uiBehavior, generalInfo, productGroups, templateName } = getSettings();
+    const { uiBehavior, generalInfo, productGroups, templateName, group } = getSettings();
     const generalError = await validateGeneralInfo(generalInfo, t);
     let validateSuccess = true;
     const { userName, password, maxCredit, memberMaxCredit } = generalError;
@@ -163,6 +163,7 @@ export default function NewAccount() {
       uiBehavior,
       { ...generalInfo, password: encryptedPassword, templateName },
       productGroups,
+      group,
     );
     setBlockSubmit(false);
     if (!result.isSuccessful) {
@@ -172,11 +173,13 @@ export default function NewAccount() {
       showPopup(
         <NewAccountSuccessPopup
           username={generalInfo.userName}
-          domain={result.availableAlphaDomain?.slice(0,3).join(', ') || ''}
-          credit={generalInfo.maxCredit?.toLocaleString("en-US", {
-            style: "decimal",
-            maximumFractionDigits: 2
-          })  || "0"}
+          domain={result.availableAlphaDomain?.slice(0, 3).join(', ') || ''}
+          credit={
+            generalInfo.maxCredit?.toLocaleString('en-US', {
+              style: 'decimal',
+              maximumFractionDigits: 2,
+            }) || '0'
+          }
           handleOk={() => {
             const { language } = i18next;
             window.location.replace(
@@ -185,7 +188,7 @@ export default function NewAccount() {
               }`,
             );
           }}
-        />
+        />,
       );
     }
   };

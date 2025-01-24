@@ -16,13 +16,14 @@ const getCustomerSetting = async () => axios.get<CustomerSettingResponse>(`${cre
 const checkExistedCustomer = async (username: string) =>
   axios.get<boolean>(`${siteMemberInfoUrl}Customer/CheckExistedCustomer?userName=${username}`);
 
-const createAccount = async (uiBehavior: object, generalInfo: GeneralInfo, productGroups: ProductGroup[]) =>
+const createAccount = async (uiBehavior: object, generalInfo: GeneralInfo, productGroups: ProductGroup[], group: string) =>
   axios.post<CreateAccountResult>(
     `${createAccountRootUrl}/Index`,
     {
       uiBehavior: JSON.stringify(uiBehavior),
       generalInfo,
       productGroups: JSON.stringify(productGroups),
+      group
     },
     {
       headers: apiHelpers.getHeadersForPostRequest(),

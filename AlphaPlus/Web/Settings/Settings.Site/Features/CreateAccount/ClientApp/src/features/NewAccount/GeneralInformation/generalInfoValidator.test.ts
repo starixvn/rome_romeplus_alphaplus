@@ -16,7 +16,6 @@ const generalInfo: GeneralInfo = {
   memberMaxCredit: 0,
   fax: 'null',
   disableAutoMPT: false,
-  group: 'a',
   transferOption: '00000000',
   isAutomateTransfer: true,
   site: 'y789',

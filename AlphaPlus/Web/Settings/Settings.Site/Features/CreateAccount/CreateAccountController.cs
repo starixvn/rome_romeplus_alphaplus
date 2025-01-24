@@ -102,6 +102,7 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
                 viewer.Site,
                 AppSettings.SiteLabel,
                 viewer.CustDBGroupId,
+                request.Group,
                 CreationModes.LiteMode,
                 viewer.Language,
                 request.UIBehavior)));

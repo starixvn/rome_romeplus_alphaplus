@@ -7,6 +7,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
     {
         public GeneralInfo GeneralInfo { get; set; }
 
+        public string Group { get; set; }
+
         public string ProductGroups { get; set; }
 
         public override bool IsValid()

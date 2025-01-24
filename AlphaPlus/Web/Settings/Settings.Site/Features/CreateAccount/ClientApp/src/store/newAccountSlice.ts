@@ -43,10 +43,12 @@ export type NewAccountSlice = {
   getProductGroupAndUISettings: () => {
     uiBehavior: object;
     generalInfo: GeneralInfo;
+    group: string;
     productGroups: ProductGroup[];
     templateName: string;
   };
   increaseSubmitCount: () => void;
+  updateGroup: (value: string) => void;
 };
 
 type NewAccountState = GeneralInfoSlice &
@@ -62,6 +64,7 @@ const createNewAccountSlice: StateCreator<NewAccountState, [], [], NewAccountSli
   popup: null,
   productGroupsDict: {},
   submitCount: 0,
+  updateGroup: (value) => set({ group: value }),
   setTheme: (value) => set({ theme: value }),
   showPopup: (popup) => set({ popup }),
   intiNewAccountState: (generalInfo, productGroups, ptTemplates) => {
@@ -82,8 +85,8 @@ const createNewAccountSlice: StateCreator<NewAccountState, [], [], NewAccountSli
         uplineMaxCredit: generalInfo.maxCredit ?? 0,
         uplineMemberMaxCredit: generalInfo.memberMaxCredit ?? 0,
         maxCredit: 0,
-        group: generalInfo.currency === Currencies.Won ? 'dea' : 'a',
       },
+      group: generalInfo.currency === Currencies.Won ? 'dea' : 'a',
       disableAutoMPT: generalInfo.disableAutoMPT,
       userLevel: params.uplineRoleId,
       siteLabel: generalInfo.siteLabel.toLocaleLowerCase(),
@@ -135,6 +138,7 @@ const createNewAccountSlice: StateCreator<NewAccountState, [], [], NewAccountSli
     return {
       uiBehavior: uiSettings as object,
       generalInfo: get().generalInfo,
+      group: get().group,
       productGroups: Object.values(settings),
       templateName: get().selectedPTTemplate ?? '',
     };

@@ -9,6 +9,7 @@ export type GeneralInfoSlice = {
   disableAutoMPT: boolean;
   isAutomateTransfer: boolean;
   generalInfo: GeneralInfo;
+  group: string;
   displayTransferCondition: boolean;
   transferConditionErrors: string[];
   updateGeneralInfo: (data: Partial<GeneralInfo>) => void;
@@ -21,6 +22,7 @@ const createGeneralInfoSlice: StateCreator<GeneralInfoSlice, [], [], GeneralInfo
   disableAutoMPT: false,
   isAutomateTransfer: false,
   generalInfo: {} as GeneralInfo,
+  group: '',
   displayTransferCondition: false,
   transferConditionErrors: [],
   updateGeneralInfo: (data) =>

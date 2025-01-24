@@ -146,6 +146,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 request.Site,
                 AppSettings.SiteLabel,
                 request.CustDBGroupId,
+                request.Group,
                 CreationModes.FullMode,
                 request.Language));
 
@@ -174,6 +175,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                     request.CustDBGroupId,
                     request.Site,
                     AppSettings.SiteLabel,
+                    request.Group,
                     request.Language));
 
             return Content(response);
@@ -202,6 +204,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                     request.CustomerNames,
                     request.Site,
                     AppSettings.SiteLabel,
+                    request.Group,
                     request.Language));
 
             return Content(response);
