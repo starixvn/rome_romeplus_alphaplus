@@ -54,7 +54,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers
 
         private TemplateInfo GetTemplateInfo(TransferToDownlineHistoryExcelQuery message)
             => new(
-                GetExcelTemplatePath(message.CustLevel.GetDirectDownLineLevel().DisplayName),
+                GetExcelTemplatePath($"TransferToDownlineHistory/{message.CustLevel.GetDirectDownLineLevel().DisplayName}"),
                 Resources.NoInformationIsAvailable);
 
         private static string GetSheetTitle(TransferToDownlineHistoryParam param)
