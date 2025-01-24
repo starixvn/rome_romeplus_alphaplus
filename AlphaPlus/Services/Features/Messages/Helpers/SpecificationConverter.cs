@@ -8,7 +8,9 @@ namespace AlphaPlus.Features.Messages.API.Client.Helpers
     {
         protected override Type? GetTargetType(Type type, JObject obj)
         {
-            return Type.GetType(obj.GetType().Name);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            return Type.GetType(obj.GetValue("TypeName", StringComparison.OrdinalIgnoreCase).ToString());
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
         }
     }
 }
