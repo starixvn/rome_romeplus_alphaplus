@@ -17,8 +17,10 @@
     {
         <tr class="pt-row" data-pt-value="@winLossDetailByPT.SuperPT" data-is-hide="false">
             <td class="text-left col-username bold active" data-sortedvalue="@winLossDetailByPT.SuperPT">
-                <span class="icon-arrow-down"></span>
-                @winLossDetailByPT.SuperPTPercentage
+                <div class="text-icon-left">
+                    <span class="ic-arrow-down"></span>
+                    @winLossDetailByPT.SuperPTPercentage
+                </div>
             </td>
             @{
                 RenderWinLossDetail(winLossDetailByPT.Total);

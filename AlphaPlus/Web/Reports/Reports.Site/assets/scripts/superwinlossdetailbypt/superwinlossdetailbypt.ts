@@ -114,11 +114,11 @@
 
         if (isHide) {
             columnUsername.addClass('active');
-            columnUsername.find('.icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-down');
+            columnUsername.find('.ic-arrow-right').removeClass('ic-arrow-right').addClass('ic-arrow-down');
             ptProductRows.removeClass('hide');
         } else {
             columnUsername.removeClass('active');
-            columnUsername.find('.icon-arrow-down').removeClass('icon-arrow-down').addClass('icon-arrow-right');
+            columnUsername.find('.ic-arrow-down').removeClass('ic-arrow-down').addClass('ic-arrow-right');
             ptProductRows.addClass('hide');
         }
 

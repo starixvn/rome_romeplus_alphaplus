@@ -80,26 +80,26 @@ class WinLossByProductView extends BaseReport {
 
         if (isHide) {
             columnUsername.addClass('active');
-            columnUsername.find('.icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-down');
+            columnUsername.find('.ic-arrow-right').removeClass('ic-arrow-right').addClass('ic-arrow-down');
 
             sportRows.find('.col-username').addClass('active');
             sportRows
-                .find('.col-username .icon-arrow-right')
-                .removeClass('icon-arrow-right')
-                .addClass('icon-arrow-down');
+                .find('.col-username .ic-arrow-right')
+                .removeClass('ic-arrow-right')
+                .addClass('ic-arrow-down');
 
             sportRows.data('is-hide', 'false');
             sportRows.removeClass('hide');
             betTypeRows.removeClass('hide');
         } else {
             columnUsername.removeClass('active');
-            columnUsername.find('.icon-arrow-down').removeClass('icon-arrow-down').addClass('icon-arrow-right');
+            columnUsername.find('.ic-arrow-down').removeClass('ic-arrow-down').addClass('ic-arrow-right');
 
             sportRows.find('.col-username').removeClass('active');
             sportRows
-                .find('.col-username .icon-arrow-down')
-                .removeClass('icon-arrow-down')
-                .addClass('icon-arrow-right');
+                .find('.col-username .ic-arrow-down')
+                .removeClass('ic-arrow-down')
+                .addClass('ic-arrow-right');
 
             sportRows.data('is-hide', 'true');
             sportRows.addClass('hide');
@@ -119,12 +119,12 @@ class WinLossByProductView extends BaseReport {
 
         if (isHide) {
             columnUsername.addClass('active');
-            columnUsername.find('.icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-down');
+            columnUsername.find('.ic-arrow-right').removeClass('ic-arrow-right').addClass('ic-arrow-down');
 
             betTypeRows.removeClass('hide');
         } else {
             columnUsername.removeClass('active');
-            columnUsername.find('.icon-arrow-down').removeClass('icon-arrow-down').addClass('icon-arrow-right');
+            columnUsername.find('.ic-arrow-down').removeClass('ic-arrow-down').addClass('ic-arrow-right');
 
             betTypeRows.addClass('hide');
         }

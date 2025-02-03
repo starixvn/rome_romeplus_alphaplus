@@ -74,6 +74,7 @@ COPY --from=builder /app/styles-v3/base/fonts ./bundles3/common/bundles/fonts
 COPY --from=builder /app/styles/images ./bundles/images
 COPY --from=builder /app/styles/vendors ./bundles/vendors
 COPY --from=builder /app/styles-v3/images ./bundles3/images
+COPY --from=builder /app/styles-v2/images ./bundles-v2/images
 COPY --from=builder /app/styles/vendors/jqueryui/images ./bundles/site-viewlogs/images
 COPY --from=builder /app ./
 

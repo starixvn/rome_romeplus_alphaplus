@@ -62,7 +62,7 @@
                             <td class="text-left first-row" rowspan="@date.WinLoss.Count()">@date.BreakDown</td>
                             isFirstRow = false;
                         }
-                        <td class="text-left">@data.CustLevelName</td>
+                        <td class="text-left @data.CustLevelName.ToLowerInvariant()">@data.CustLevelName</td>
                         <td class="text-left">
                             @if (data.IsMemberLevel())
                             {

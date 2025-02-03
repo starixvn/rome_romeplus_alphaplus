@@ -120,7 +120,7 @@
         order: 9;
     }
     .note{
-        orer: 10;
+        order: 10;
     }
 }
 .cover-week-selection {
@@ -260,12 +260,10 @@
     }
 
     td {
-        &.Master, &.Agent, &.Member {
+        &.master, &.agent, &.member {
             border-left: 0 !important;
         }
-        &:first-child:not(.first-row){
-            border-left: 0 !important;
-        }
+      
     }
 
     .ic-percent {

@@ -9,7 +9,7 @@
     {
         var isDormantAccounts = data.CustId == 0;
         <tr class="@(isTotalRow ? "tbl-footer" : (isDormantAccounts ? "dormant-accounts-mark" : string.Empty))">
-            <td class="first-row" @(isDormantAccounts || isTotalRow ? string.Empty : $"data-sortedvalue={data.CustName}")
+            <td @(isDormantAccounts || isTotalRow ? string.Empty : $"data-sortedvalue={data.CustName}")
                 class="text-left col-username">
                 @if (isTotalRow)
                 {

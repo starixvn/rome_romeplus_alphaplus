@@ -27,8 +27,10 @@
     {
         <tr class="product-row" data-product-id="@data.ProductId" data-is-hide="@(isExpand ? "false" : "true")">
             <td class="text-left col-username bold @(isExpand ? "active" : string.Empty)">
-                <span class="@(isExpand ? "icon-arrow-down" : "icon-arrow-right")"></span>
-                @data.ProductName
+                <div class="text-icon-left">
+                    <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
+                    @data.ProductName
+                </div>
             </td>
             @{
                 RenderWinLossInfo(data.Total);
@@ -54,8 +56,10 @@
         <tr class="sport-row sport-of-@productId@(isExpand ? string.Empty : " hide")" data-product-id="@productId"
             data-sporttype="@data.SportType" data-is-hide="@(isExpand ? "false" : "true")">
             <td class="text-left col-username bold @(isExpand ? "active" : string.Empty)">
-                <span class="@(isExpand ? "icon-arrow-down" : "icon-arrow-right")"></span>
+                <div class="text-icon-left">
+                <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
                 @data.SportTypeName
+                </div>
             </td>
             @{
                 RenderWinLossInfo(data.Total);

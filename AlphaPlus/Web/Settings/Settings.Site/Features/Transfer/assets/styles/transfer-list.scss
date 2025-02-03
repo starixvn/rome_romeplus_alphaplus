@@ -364,3 +364,17 @@ a.transfer-link {
         }
     }
 }
+.col-icon-header{
+    padding-right: 28px!important;
+    position: relative!important;
+    .icon , [class*=' icon-'], [class^=icon-] {
+        position: absolute;
+        right: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+        &:before{
+            color: #fff;
+        }
+
+    }
+}

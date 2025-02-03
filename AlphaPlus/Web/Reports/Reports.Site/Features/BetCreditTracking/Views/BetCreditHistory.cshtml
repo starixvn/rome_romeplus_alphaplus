@@ -25,7 +25,7 @@
         </tr>
     }
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betcredittracking")
     <link rel="stylesheet" href="~/bundles-v2/betcredithistory.css" asp-append-version="true" />
 }
@@ -61,8 +61,8 @@
         <form method="get" class="form-inline filter@(Model.IsFilterVisible ? string.Empty : " hide")" role="form"
             id="report-form" asp-action="BetCreditHistorySearch">
             <div class="form-group">
-                <label class="label-form-control" asp-for="Member">@Resources.Member <span
-                        style="color: #E54748;">*</span></label>
+                <label class="label-form-control" asp-for="Member">@Resources.Member<span
+                        style="color: #E54748;">&nbsp;*</span></label>
                 <input type="text" style="width: 200px;" autocomplete="off" placeholder="@Resources.Username"
                     maxlength="50" asp-for="Member" />
             </div>
