@@ -370,7 +370,9 @@ var headerNav = {
             const afterSelectSuggestionItem = (item) => {
                 onCloseSearchBar();
                 menuBar.collapseLeftPanel();
-                menuBar.activateAccountInfoTab(null, item.replace(/\(\S+?\)/g, '').trim());
+                var username = item.replace(/\(\S+?\)/g, '').trim();
+                localStorage.setItem(`${localStorage.getItem('actorName')}-lastSearchUsername`, username);
+                menuBar.activateAccountInfoTab(null, username);
             };
 
             iconClose.on('click', onCloseSearchBar);
