@@ -16,7 +16,7 @@ public class UsernameAutoSuggestionTagHelper : TagHelper
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.AddClass("form-group", HtmlEncoder.Default);
+        output.Attributes.Add("class", "form-group form-group-username");
 
         var sb = new StringBuilder();
         sb

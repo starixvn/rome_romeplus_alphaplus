@@ -138,12 +138,15 @@
                 }
             }
         }
-
         input[type='text'], input[type='datetime'] {
             width: 160px;
             color: var(--text-color);
         }
-
+        &.form-group-username{
+            input[type='text']{
+                width: 190px;
+            }
+        }
         #txt-username {
             width: 210px
         }
