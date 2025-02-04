@@ -114,7 +114,7 @@
         }
     ],
     "StoredProcedurePath": "~/App_Data/SPNames/INTERNAL",
-    "FanexDataServiceApi": "http://vn-alphadataservice2-prod.nebula.prod",
+    "FanexDataServiceApi": "http://vn-alphadataservice4-prod.nebula.prod",
     "LogLibs": "Sentry,Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-789y-Internal-Linux",
@@ -246,8 +246,7 @@
     },
     "QRCode": {
         "API": "http://account-service-credit.membersite-service.t2p.nebula.prod:22080/Login/",
-        "Domains": [
-        ],
+        "Domains": [],
         "SiteId": 4120,
         "ExpireSeconds": 900
     },
