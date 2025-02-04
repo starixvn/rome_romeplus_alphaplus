@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -139,7 +139,7 @@
     <value>ปิด</value>
   </data>
   <data name="Commission" xml:space="preserve">
-    <value>ค่าคอมฯ</value>
+    <value>คอมมิชชั่น</value>
   </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>สร้างขึ้นเมื่อ</value>
@@ -187,7 +187,7 @@
     <value>นามสกุล</value>
   </data>
   <data name="LoginIP" xml:space="preserve">
-    <value>เข้าสู่ระบบ IP</value>
+    <value>ไอพีที่เข้าระบบ</value>
   </data>
   <data name="MasterAgentList" xml:space="preserve">
     <value>รายชื่อตัวแทนหลัก</value>
@@ -199,7 +199,7 @@
     <value>ชื่อเล่น</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>ลำดับที่</value>
+    <value>ลำดับที่ </value>
   </data>
   <data name="None" xml:space="preserve">
     <value>ไม่ใช่</value>
@@ -269,15 +269,6 @@
   </data>
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>ยกเลิกการระงับ &lt;username&gt;</value>
-  </data>
-  <data name="AccountMyanmarOdds" xml:space="preserve">
-    <value>A ราคาเมียนมาร์</value>
-  </data>
-  <data name="MyanmarOdds" xml:space="preserve">
-    <value>ราคาเมียนมาร์</value>
-  </data>
-  <data name="PlayerMyanmarOdds" xml:space="preserve">
-    <value>P緬甸盤</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>กลุ่ม</value>

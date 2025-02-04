@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -270,15 +270,6 @@
   <data name="UnuspendStatusPopupHeader" xml:space="preserve">
     <value>Unsuspend &lt;username&gt;</value>
   </data>
-  <data name="AccountMyanmarOdds" xml:space="preserve">
-    <value>A Myanmar Odds</value>
-  </data>
-  <data name="MyanmarOdds" xml:space="preserve">
-    <value>Myanmar Odds</value>
-  </data>
-  <data name="PlayerMyanmarOdds" xml:space="preserve">
-    <value>P Myanmar Odds</value>
-  </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
   </data>
@@ -317,5 +308,23 @@
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>Enabled</value>
+  </data>
+  <data name="SComm1" xml:space="preserve">
+    <value>S Comm 1</value>
+  </data>
+  <data name="SComm2" xml:space="preserve">
+    <value>S Comm 2</value>
+  </data>
+  <data name="SComm3" xml:space="preserve">
+    <value>S Comm 3</value>
+  </data>
+  <data name="MComm1" xml:space="preserve">
+    <value>M Comm 1</value>
+  </data>
+  <data name="MComm2" xml:space="preserve">
+    <value>M Comm 2</value>
+  </data>
+  <data name="MComm3" xml:space="preserve">
+    <value>M Comm 3</value>
   </data>
 </root>

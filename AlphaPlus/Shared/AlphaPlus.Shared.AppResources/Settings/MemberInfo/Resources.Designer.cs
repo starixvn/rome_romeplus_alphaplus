@@ -4240,5 +4240,16 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
                 return ResourceManager.GetString("SelectDirectDownline", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Create Direct Member.
+        /// </summary>
+        public static string CreateDirectMember
+        {
+            get
+            {
+                return ResourceManager.GetString("CreateDirectMember", resourceCulture);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 using AlphaPlus.Settings.Site.Features.Shared;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
@@ -16,6 +17,10 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
         public string UplineName { get; set; }
 
         public byte UplineRoleId { get; set; }
+
+        public bool IsDirectMember { get; set; }
+
+        public int AgentId => IsDirectMember ? (UplineRoleId == UserLevel.Super.Value ? DirectMemberAgentIds.Super : DirectMemberAgentIds.Master) : 0;
 
         public int SubAccountId => viewer.SubAccId;
 

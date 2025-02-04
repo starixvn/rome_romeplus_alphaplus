@@ -18,7 +18,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Params
             int pageIndex,
             bool limitedDateToShowInfo,
             bool showNickname,
-            int allowAutoTransfer)
+            int allowAutoTransfer,
+            bool isDirectMember)
         {
             UserId = userId;
             DirectUplineId = directUplineId;
@@ -34,6 +35,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Params
             LimitedDateToShowInfo = limitedDateToShowInfo;
             ShowNickname = showNickname;
             AllowAutoTransfer = allowAutoTransfer;
+            IsDirectMember = isDirectMember;
         }
 
         public int UserId { get; }
@@ -63,5 +65,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Params
         public bool ShowNickname { get; }
 
         public int AllowAutoTransfer { get; }
+
+        public bool IsDirectMember { get; }
     }
 }

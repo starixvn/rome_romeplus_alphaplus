@@ -5,7 +5,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
     public class UpdateMultipleCustomerRequest : BaseQuery
     {
         public string Group { get; set; }
-        
+
         public string ProductGroups { get; set; }
 
         public string CustomerIds { get; set; }
@@ -15,5 +15,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
         public byte RoleId { get; set; }
 
         public byte UplineRoleId { get; set; }
+
+        public int AgentId { get; set; }
     }
 }

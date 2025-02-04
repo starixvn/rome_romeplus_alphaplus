@@ -4,7 +4,7 @@
     {
         public SelectMemberListCriteria(
             int userId,
-            int recommend,
+            int uplineId,
             string username,
             bool? enabled,
             bool? closed,
@@ -23,16 +23,16 @@
             pageSize,
             pageIndex)
         {
-            Recommend = recommend;
+            UplineId = uplineId;
             UserId = userId;
         }
 
         public int UserId { get; }
 
-        public int Recommend { get; }
+        public int UplineId { get; }
 
         public override string GetSettingKey() => "Age_CustomerSelByAg";
 
-        public override bool IsValid() => Recommend > 0;
+        public override bool IsValid() => UplineId > 0;
     }
 }

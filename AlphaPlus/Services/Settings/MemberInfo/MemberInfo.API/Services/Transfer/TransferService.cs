@@ -8,6 +8,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services.Transfer
 {
     public interface TransferService
     {
+        Task<string> GetTransferOption(int custId);
         Task<string> GetAllowTransfer(int custId);
 
         Task<bool> IsAllDayBalanceTransferAsync(int custId);
@@ -78,7 +79,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services.Transfer
             return transferTime;
         }
 
-        private async Task<string> GetTransferOption(int custId)
+        public async Task<string> GetTransferOption(int custId)
         {
             var criteria = new GetTransferOptionCriteria(custId);
 

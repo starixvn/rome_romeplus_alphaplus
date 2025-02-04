@@ -59,7 +59,12 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
             AllowAutoTransfer = request.AllowAutoTransfer;
             EnableAutoTransfer = isEnabledAutoTransfer;
             EnableAllDayBalanceTransfer = request.EnableAllDayBalanceTransfer.HasValue && request.EnableAllDayBalanceTransfer.Value;
+            LevelType = request.LevelType;
         }
+
+        public byte LevelType { get; }
+
+        public bool IsDirectMember => LevelType == 2;
 
         public bool HideEditMultiple { get; }
 

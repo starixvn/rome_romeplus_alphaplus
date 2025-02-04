@@ -17,6 +17,7 @@ class CustomerListViewModel {
     CanViewReport: boolean;
     CanUpdateAccount: boolean;
     CustomerListData: any;
+    IsDirectMember: boolean;
 
     constructor(
         uplineRoleId: number,
@@ -34,7 +35,8 @@ class CustomerListViewModel {
         limitedDateToShowInfo: boolean,
         canViewReport: boolean,
         canUpdateAccount: boolean,
-        customerListData: any
+        customerListData: any,
+        isDirectMember: boolean
     ) {
         this.UplineRoleId = uplineRoleId;
         this.SearchAccountId = searchAccountId;
@@ -52,6 +54,7 @@ class CustomerListViewModel {
         this.CanViewReport = canViewReport;
         this.CanUpdateAccount = canUpdateAccount;
         this.CustomerListData = customerListData;
+        this.IsDirectMember = isDirectMember;
     }
 }
 
@@ -60,6 +63,10 @@ enum CustomerLevel {
     Agent,
     Master,
     Super
+}
+
+enum LevelType {
+    DirectMember = '2'
 }
 
 const ClosedReason = {

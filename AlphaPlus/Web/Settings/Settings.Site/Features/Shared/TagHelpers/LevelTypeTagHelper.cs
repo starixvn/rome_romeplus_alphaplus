@@ -14,6 +14,9 @@ public class LevelTypeTagHelper : TagHelper
     [HtmlAttributeName("selected-value")]
     public byte SelectedLevel { get; set; }
 
+    [HtmlAttributeName("show-all-option")]
+    public bool ShowAllOption { get; set; } = true;
+
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "div";
@@ -23,11 +26,17 @@ public class LevelTypeTagHelper : TagHelper
         var sb = new StringBuilder();
         sb
             .Append($"<label>{Resources.Level}</label>")
-            .Append("<select id='dropdown-level-type' name='LevelType'>")
-            .Append($"<option value='0' {(SelectedLevel == 0 ? "selected" : string.Empty)}>{Resources.All}</option>")
-            .Append($"<option value='1' {(SelectedLevel == 1 ? "selected" : string.Empty)}>{(CustLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent)}</option>")
-            .Append($"<option value='2' {(SelectedLevel == 2 ? "selected" : string.Empty)}>{Resources.DirectMember}</option>")
-            .Append("</select>");
+            .Append("<select id='dropdown-level-type' name='LevelType'>");
+
+        if (ShowAllOption)
+        {
+            sb.Append($"<option value='0' {(SelectedLevel == 0 ? "selected" : string.Empty)}>{Resources.All}</option>");
+        }
+
+        sb.Append($"<option value='0' {(SelectedLevel == 0 ? "selected" : string.Empty)}>{Resources.All}</option>")
+        .Append($"<option value='1' {(SelectedLevel == 1 ? "selected" : string.Empty)}>{(CustLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent)}</option>")
+        .Append($"<option value='2' {(SelectedLevel == 2 ? "selected" : string.Empty)}>{Resources.DirectMember}</option>")
+        .Append("</select>");
 
         output.Content.SetHtmlContent(sb.ToString());
     }
