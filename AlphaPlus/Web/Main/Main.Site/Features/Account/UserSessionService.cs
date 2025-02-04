@@ -63,6 +63,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         try
         {
             DateTime pwdExpiry = signInResult.PwdExpiry;
+            pwdExpiry = pwdExpiry == DateTime.MinValue ? DateTime.MaxValue : pwdExpiry;
             userSession.IsPasswordExpired = DateTime.Compare(DateTime.Now, pwdExpiry) >= 0;
 
             var defaultDateSkipForceChangePass = new DateTime(1900, 1, 1);
