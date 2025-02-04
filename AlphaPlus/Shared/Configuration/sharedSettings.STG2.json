@@ -126,7 +126,7 @@
     "RemotingRefUrl": "http://vn-remotingref-prod.nebula.prod/",
     "Fanex.Customer": {
         "ServiceUri": "http://alphaplus_staging_api_settings_ALPHAPROD:5000/api/",
-        "CdnUri": "/stdcsv1/",
+        "CdnUri": "/stdcsv2/",
         "SystemId": 6
     },
     "SystemId": 2,
