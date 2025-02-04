@@ -53,11 +53,13 @@
             super.hideFilter();
         }
 
-        this.sortComponent.initSort(
-            this.$tableReport,
-            { 0: { sorter: 'text' } },
-            this.sortComponent.handleDormantAccountsAfterSort
-        );
+        const sortHeaders = this.levelTypeComponent.$dropdown.length
+            ? {
+                  0: { sorter: 'text' },
+                  1: { sorter: 'text' }
+              }
+            : { 0: { sorter: 'text' } };
+        this.sortComponent.initSort(this.$tableReport, sortHeaders, this.sortComponent.handleDormantAccountsAfterSort);
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');

@@ -19,7 +19,14 @@
 
         this.levelTypeComponent.render({ dropdownId: 'dropdown-level-type', hiddenInputId: 'level-type' });
         this.dateRangePicker.render();
-        this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
+
+        const sortHeaders = this.levelTypeComponent.$dropdown.length
+            ? {
+                  0: { sorter: 'text' },
+                  1: { sorter: 'text' }
+              }
+            : { 0: { sorter: 'text' } };
+        this.sortComponent.initSort(this.$tableReport, sortHeaders);
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');
