@@ -244,7 +244,7 @@ var indexManager = {
             );
             indexManager.domElements.mainFrame = $('#main');
 
-            var isShowTour = true;
+            var isShowTour = false;
             indexManager.domElements.mainFrame.on('load.newmain', function () {
                 if (isShowTour) {
                     indexManager.showTour();
@@ -565,9 +565,9 @@ var indexManager = {
     },
 
     showTour: function () {
-        setTimeout(() => {
-            popupManager.openMultiple($("#TourURL").val(), null, 800, 495, null, null, null, null, null, null, { customClass: 'popup-tour-intro' })
-        }, 3000);
+        // setTimeout(() => {
+        //     popupManager.openMultiple($("#TourURL").val(), null, 800, 495, null, null, null, null, null, null, { customClass: 'popup-tour-intro' })
+        // }, 3000);
     }
 };
 

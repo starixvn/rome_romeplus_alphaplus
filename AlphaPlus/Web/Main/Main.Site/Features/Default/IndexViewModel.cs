@@ -167,7 +167,7 @@ namespace AlphaPlus.Main.Site.Features.Default
 
         public bool IsShowSuggestEnableTelegramOtp { get; set; }
 
-        public bool HightLightFeaturePermission => ((PageAccess)SubPageAccess).Transfer;
+        public bool HightLightFeaturePermission => false; //((PageAccess)SubPageAccess).Transfer;
 
         public string HightLightFeatureImageName => "new_feature_litemode" + DarkModeName;
 
