@@ -23,6 +23,7 @@ import OnlineUser from './models/online-user';
 import Result from './models/result';
 import SettingItem from './models/setting-item';
 import StatusItem from './models/status-item';
+import TotalDownline from './models/total-downline';
 import { handleError } from './services/axios-helper';
 import SettingsService from './services/settings-service';
 
@@ -44,6 +45,8 @@ function App() {
     const { t } = useTranslation();
     const [redirectToBalanceInfoPage, setRedirectToBalanceInfoPage] = useState(false);
     const [message, setMessage] = useState('');
+    const [totalDownlines, setTotalDownlines] = useState<TotalDownline[]>([]);
+    const [directMembersData, setDirectMembersData] = useState<DownlineListResponse | undefined>(undefined);
 
     const getCustomerInfo = (username: string, requestId: string = LoadCustomerInfo.ByClick) => {
         setMessage('');
@@ -71,7 +74,9 @@ function App() {
                             setMessage('');
                             setCustomer(undefined);
                             setOnlineUsers(undefined);
+                            setTotalDownlines([]);
                             setDownlineListData(undefined);
+                            setDirectMembersData(undefined);
                             setStatusData(undefined);
                             setSettingData(undefined);
 
@@ -83,7 +88,9 @@ function App() {
                             setCustomer(result);
                             setRedirectToBalanceInfoPage(loadCustomerInfoByClick);
                             setOnlineUsers(undefined);
+                            setTotalDownlines([]);
                             setDownlineListData(undefined);
+                            setDirectMembersData(undefined);
 
                             if (resetSetting) {
                                 setStatusData(undefined);
@@ -95,7 +102,9 @@ function App() {
                     } else {
                         setCustomer(undefined);
                         setOnlineUsers(undefined);
+                        setTotalDownlines([]);
                         setDownlineListData(undefined);
+                        setDirectMembersData(undefined);
                         setStatusData(undefined);
                         setSettingData(undefined);
 
@@ -107,6 +116,28 @@ function App() {
             .finally(() => {
                 $.unblockUI?.();
             });
+    };
+
+    const fetchDowlineListDataServer = () => {
+        if (customer?.CustId) {
+            $.blockUI?.();
+            const PageIndex = 1;
+            const StatusId = 1;
+            Promise.all([
+                SettingsService.getTotalDownlines(customer.CustId, customer.RoleId),
+                SettingsService.GetDownlineList(customer.CustId, customer.RoleId),
+                SettingsService.GetDirectMembers(customer.CustId, customer.RoleId)
+            ])
+                .then((results) => {
+                    setTotalDownlines(results[0]);
+                    setDownlineListData({ ...results[1], PageIndex, StatusId });
+                    setDirectMembersData({ ...results[2], PageIndex, StatusId });
+                    setRedirectToBalanceInfoPage(false);
+
+                    $.unblockUI?.();
+                })
+                .catch(handleError);
+        }
     };
 
     const fetchDownlineListFromServer = (pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) => {
@@ -121,6 +152,29 @@ function App() {
                 })
                 .catch(handleError)
                 .finally(() => $.unblockUI?.());
+        }
+    };
+
+    const fetchDirectMembersFromServer = (pageIndex = 1, reloadByStatus = false, statusId = 1, totalPages = 0) => {
+        if (customer?.CustId && (!downlineListData || pageIndex > 1 || reloadByStatus)) {
+            $.blockUI?.();
+
+            SettingsService.GetDirectMembers(customer.CustId, customer.RoleId, pageIndex, statusId, totalPages)
+                .then((responseData) => {
+                    responseData.PageIndex = pageIndex;
+                    responseData.StatusId = statusId;
+
+                    responseData.DownlineList =
+                        directMembersData === undefined || reloadByStatus
+                            ? responseData.DownlineList
+                            : [...directMembersData.DownlineList, ...responseData.DownlineList];
+
+                    setDirectMembersData(responseData);
+                    setRedirectToBalanceInfoPage(false);
+
+                    $.unblockUI?.();
+                })
+                .catch(handleError);
         }
     };
 
@@ -233,11 +287,14 @@ function App() {
             iconClass: 'icon-downline',
             pathname: '/downlineList',
             visible: actorRoleId > UserLevel.Agent && searchAccountRoleId > UserLevel.Member,
-            fetchDataFromServer: fetchDownlineListFromServer,
+            fetchDataFromServer: fetchDowlineListDataServer,
             children: (
                 <DownlineList
+                    totalDownlines={totalDownlines}
                     downlineListData={downlineListData}
+                    directMembersData={directMembersData}
                     fetchDownlineListFromServer={fetchDownlineListFromServer}
+                    fetchDirectMembersFromServer={fetchDirectMembersFromServer}
                 />
             )
         },

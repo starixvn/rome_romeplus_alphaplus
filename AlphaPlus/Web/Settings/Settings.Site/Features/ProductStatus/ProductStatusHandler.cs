@@ -36,7 +36,8 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus
                 productStatus,
                 message.UplineLevel,
                 message.IsViewOnly,
-                message.IsGroup);
+                message.IsGroup,
+                message.AgentId);
 
         public Task<IEnumerable<Result>> Handle(ProductStatusCommand request, CancellationToken cancellationToken)
         {

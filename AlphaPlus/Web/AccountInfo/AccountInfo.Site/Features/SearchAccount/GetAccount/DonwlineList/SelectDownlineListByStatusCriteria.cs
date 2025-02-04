@@ -8,7 +8,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineL
         int pageIndex,
         byte roleId,
         byte statusId,
-        int totalPages) : CriteriaBase
+        int totalPages,
+        bool isDirectMember) : CriteriaBase
     {
         public int CustId { get; } = custId;
 
@@ -20,6 +21,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineL
         public byte StatusId { get; } = statusId;
 
         public int TotalPages { get; } = totalPages;
+
+        public bool IsDirectMember { get; } = isDirectMember;
 
         public override string GetSettingKey() => "Age_CustomerSelListByStatus";
 

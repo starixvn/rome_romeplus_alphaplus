@@ -21,9 +21,21 @@ const SettingsService = {
         const response = await axiosInstance.get(`SearchAccount/GetCustomerInfo?SearchAccountName=${username}`);
         return response.data;
     },
+    getTotalDownlines: async (custId: number, roleId: number) => {
+        return axiosInstance
+            .get('SearchAccount/GetTotalDownlines', { params: { custId, roleId } })
+            .then((response) => response.data);
+    },
     GetDownlineList: async (custId: number, roleId: number, pageIndex = 1, statusId = 1, totalPages = 0) => {
         return axiosInstance
             .get<DownlineListResponse>(`SearchAccount/GetDownlineList`, {
+                params: { custId, roleId, pageIndex, statusId, totalPages }
+            })
+            .then((response) => response.data);
+    },
+    GetDirectMembers: async (custId: number, roleId: number, pageIndex = 1, statusId = 1, totalPages = 0) => {
+        return axiosInstance
+            .get<DownlineListResponse>('SearchAccount/GetDirectMembers', {
                 params: { custId, roleId, pageIndex, statusId, totalPages }
             })
             .then((response) => response.data);

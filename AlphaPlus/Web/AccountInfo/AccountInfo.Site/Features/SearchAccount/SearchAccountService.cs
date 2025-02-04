@@ -32,7 +32,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 
         Task<bool> CheckFirstLoginByQRCode(int custId);
 
-        Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages);
+        Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages, bool isDirectMember = false);
 
         Task<IEnumerable<TotalDownlinesSummary>> GetTotalDownlinesSummary(int custId, byte roleId);
 
@@ -146,10 +146,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         public Task<bool> CheckFirstLoginByQRCode(int custId)
             => dynamicRepository.GetAsync<bool>(new SelectFirstLoginByQRCodeCriteria(custId));
 
-        public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages)
+        public async Task<DownlineListModel> GetDownlineList(int custId, int pageIndex, byte roleId, byte statusId, int totalPages, bool isDirectMember = false)
         {
             var (downlineListModel, downlines) = await dynamicRepository.FetchMultipleAsync<DownlineListModel, DownlineDto>(
-                new SelectDownlineListByStatusCriteria(custId, pageIndex, roleId, statusId, totalPages));
+                new SelectDownlineListByStatusCriteria(custId, pageIndex, roleId, statusId, totalPages, isDirectMember));
             var downlineListFirst = downlineListModel.FirstOrDefault();
 
             return downlineListFirst == null ? downlineListFirst : new DownlineListModel(downlines, downlineListFirst);

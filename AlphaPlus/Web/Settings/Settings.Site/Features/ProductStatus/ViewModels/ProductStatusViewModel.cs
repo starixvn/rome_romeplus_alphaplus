@@ -1,4 +1,5 @@
 using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 using AlphaPlus.Settings.Site.Features.ProductStatus.Models;
 using AlphaPlus.Shared.AppResources.Settings;
 
@@ -14,15 +15,18 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.ViewModels
             IEnumerable<ProductStatusModel> productStatus,
             UserLevel loggedInUserRole,
             bool isViewOnly,
-            bool isGroup)
+            bool isGroup,
+            int agentId)
         {
             ProductId = productId;
             CustId = custId;
             CustName = custName;
             CustRole = custRole;
             ProductStatus = productStatus;
-            IsAgentUpdateMember = custRole.IsMemberLevel() && loggedInUserRole.IsAgentLevel();
-            IsDirectDownline = custRole.IsDirectDownlineOf(loggedInUserRole);
+            var isDirectMember = (loggedInUserRole.IsSuperLevel() && agentId == DirectMemberAgentIds.Super)
+                    || (loggedInUserRole.IsMasterLevel() && agentId == DirectMemberAgentIds.Master);
+            IsDirectUplineUpdateMember = custRole.IsMemberLevel() && (loggedInUserRole.IsAgentLevel() || isDirectMember);
+            IsDirectDownline = custRole.IsDirectDownlineOf(loggedInUserRole) || isDirectMember;
             IsViewOnly = isViewOnly;
             IsGroup = isGroup;
         }
@@ -37,7 +41,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.ViewModels
 
         public IEnumerable<ProductStatusModel> ProductStatus { get; }
 
-        public bool IsAgentUpdateMember { get; }
+        public bool IsDirectUplineUpdateMember { get; }
 
         public bool IsDirectDownline { get; }
 
@@ -55,7 +59,7 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.ViewModels
 
             return !IsDirectDownline
                 || productStatus.IsDisabledUpline
-                || (!IsAgentUpdateMember && !productStatus.IsDisabled);
+                || (!IsDirectUplineUpdateMember && !productStatus.IsDisabled);
         }
 
         public bool IsEnabledSubmitButton(ProductStatusModel productStatus)
@@ -66,13 +70,13 @@ namespace AlphaPlus.Settings.Site.Features.ProductStatus.ViewModels
                 return IsDirectDownline;
             }
 
-            return IsAgentUpdateMember
+            return IsDirectUplineUpdateMember
             ? !productStatus.IsDisabledUpline
             : !productStatus.IsDisabledUpline && productStatus.IsDisabled;
         }
 
         public bool IsShowMessageWarnning
-            => !IsAgentUpdateMember
+            => !IsDirectUplineUpdateMember
             && ProductId != ProductIdConstants.SabaVirtualSports
             && ProductId != ProductIdConstants.CashOut;
 

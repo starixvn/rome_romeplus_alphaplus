@@ -19,13 +19,15 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         IRequestHandler<IndexQuery, IndexViewModel>,
         IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
+        IRequestHandler<DirectMemberListQuery, DownlineListViewModel>,
         IRequestHandler<GetLastTxnQuery, string>,
         IRequestHandler<OnlineListQuery, IEnumerable<OnlineUser>>,
         IRequestHandler<GivenCreditQuery, GivenCreditViewModel>,
         IRequestHandler<GivenCreditCommand, Result>,
         IRequestHandler<CustomerNonProductStatusCommand, Result>,
         IRequestHandler<MemberBalanceInfoQuery, IBalanceInfoViewModel>,
-        IRequestHandler<UpdateAllDayBalanceTransferRequest, Result>
+        IRequestHandler<UpdateAllDayBalanceTransferRequest, Result>,
+        IRequestHandler<TotalDownlineQuery, IEnumerable<TotalDownlinesSummary>>
     {
         private readonly ISearchAccountService searchAccountService = searchAccountService;
         private readonly IPService ipService = ipService;
@@ -84,11 +86,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
                 request.StatusId,
                 request.TotalPages);
 
-            var totalDownlinesSummarys = request.TotalPages.Equals(0)
-                ? await searchAccountService.GetTotalDownlinesSummary(request.CustId, request.RoleId)
-                : [];
-
-            return new DownlineListViewModel(downlineList, totalDownlinesSummarys);
+            return new DownlineListViewModel(downlineList);
         }
 
         public async Task<string> Handle(GetLastTxnQuery request, CancellationToken cancellationToken)
@@ -187,5 +185,21 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             IBalanceInfoModel balanceInfoModel,
             bool isAllDayBalanceInfo)
             => new MemberBalanceInfoViewModel(message, customerInfo, creditInfo, balanceInfoModel, isAllDayBalanceInfo);
+
+        public Task<IEnumerable<TotalDownlinesSummary>> Handle(TotalDownlineQuery message, CancellationToken cancellationToken)
+            => searchAccountService.GetTotalDownlinesSummary(message.CustId, message.RoleId);
+
+        public async Task<DownlineListViewModel> Handle(DirectMemberListQuery message, CancellationToken cancellationToken)
+        {
+            var directMembers = await searchAccountService.GetDownlineList(
+                message.CustId,
+                message.PageIndex,
+                message.RoleId,
+                message.StatusId,
+                message.TotalPages,
+                true);
+
+            return new DownlineListViewModel(directMembers);
+        }
     }
 }

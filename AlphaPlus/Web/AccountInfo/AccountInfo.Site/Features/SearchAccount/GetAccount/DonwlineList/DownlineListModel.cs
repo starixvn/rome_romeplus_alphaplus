@@ -1,3 +1,4 @@
+using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Shared.AppResources.Settings;
 
@@ -40,12 +41,13 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineL
 
         public TotalDownlinesSummary() { }
 
-        public TotalDownlinesSummary(int totalActive, int totalClosed, int totalSuspended, byte roleId)
+        public TotalDownlinesSummary(int totalActive, int totalClosed, int totalSuspended, byte roleId, int agentId)
         {
             TotalActive = totalActive;
             TotalClosed = totalClosed;
             TotalSuspended = totalSuspended;
             RoleId = roleId;
+            AgentId = agentId;
         }
 
         public int TotalActive { get; set; }
@@ -55,6 +57,10 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineL
         public int TotalSuspended { get; set; }
 
         public byte RoleId { get; set; }
+
+        public int AgentId { get; set; }
+
+        public bool IsDirectMember => AgentId == DirectMemberAgentIds.Super || AgentId == DirectMemberAgentIds.Master;
 
         public string LevelName => LevelNames[Enumeration.FromValue<UserLevel>(RoleId)];
     }

@@ -62,17 +62,21 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModel
 
         public string MemberName => DefaultStringValueIfNull(customerInfo.MemberName);
 
-        public bool ShowAgent => ActorLevel.IsMasterOrSuperLevel()
-            && SearchAccountLevel.IsDownlineOfMasterLevel();
-
-        public int AgentId => customerInfo.AgentId;
+        public bool ShowAgent => ActorLevel.IsMasterOrSuperLevel() && SearchAccountLevel.IsDownlineOfMasterLevel() && !IsDirectMember;
 
         public string AgentName => DefaultStringValueIfNull(customerInfo.AgentName);
 
-        public bool ShowMaster => ActorLevel.IsSuperLevel()
-            && SearchAccountLevel.IsDownlineOfSuperLevel();
+        public bool ShowMaster => ActorLevel.IsSuperLevel() && (IsDirectMember ? IsDirectMemberOfMaster : SearchAccountLevel.IsDownlineOfSuperLevel());
 
         public int MasterId => customerInfo.MasterId;
+
+        public int AgentId => customerInfo.AgentId;
+
+        public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectmemberOfSuper;
+
+        public bool IsDirectMemberOfMaster => customerInfo.IsDirectMemberOfMaster;
+
+        public bool IsDirectmemberOfSuper => customerInfo.IsDirectmemberOfSuper;
 
         public string MasterName => DefaultStringValueIfNull(customerInfo.MasterName);
 
@@ -92,7 +96,12 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModel
             get
             {
                 var actionName = SearchAccountLevel.IsMemberLevel() ? "MemberStatement" : "SMAStatement";
-                return new Link(Resources.Statement, MicroSites.ReportsUrl($"~/Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}"));
+                var link = MicroSites.ReportsUrl($"~/Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}");
+                if (IsDirectMember)
+                {
+                    link += "&IsDirectMember=true";
+                }
+                return new Link(Resources.Statement, link);
             }
         }
 

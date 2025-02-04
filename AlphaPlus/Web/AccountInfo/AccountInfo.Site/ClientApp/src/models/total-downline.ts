@@ -3,4 +3,5 @@ export default interface TotalDownline {
     TotalActive: number;
     TotalClosed: number;
     TotalSuspended: number;
+    IsDirectMember: boolean;
 }
