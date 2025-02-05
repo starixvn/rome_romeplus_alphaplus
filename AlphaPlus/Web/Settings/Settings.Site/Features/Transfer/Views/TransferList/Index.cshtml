@@ -112,4 +112,6 @@
 <input type="hidden" id="hidden-updateMultipleAutoTransferUrl" value="@Model.UpdateMultipleAutoTransferUrl" />
 <input type="hidden" id="hidden-confirmTransfer" value="@Resources.ConfirmTransfer" />
 <input type="hidden" id="hidden-noTransferMade" value="@Resources.NoTransferMade" />
-<input type="hidden" id="hidden-isAllDayBalanceTransfer" value="@Model.IsAllDayBalanceTransfer" />
+<input type="hidden" id="hidden-isAllDayBalanceTransfer" value="@(Model.IsAllDayBalanceTransfer ? 1 : 0)" />
+<input type="hidden" id="hidden-messageForReloadSite" value="@Model.MessageForReloadSite" />
+<input type="hidden" id="hidden-isReloadTopPage" value="@(Model.IsReloadTopPage ? 1 : 0)" />

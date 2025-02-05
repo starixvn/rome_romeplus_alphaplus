@@ -774,4 +774,10 @@
   <data name="SearchColumn" xml:space="preserve">
     <value>Tìm cột</value>
   </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>Cấp trên đã loại bỏ giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ được tự động làm mới để cập nhật các cài đặt mới.</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>Cấp trên đã áp giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ tự động làm mới để cập nhật các cài đặt mới.</value>
+  </data>
 </root>

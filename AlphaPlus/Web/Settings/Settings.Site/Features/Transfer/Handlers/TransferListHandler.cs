@@ -20,12 +20,12 @@ public class TransferListHandler(
 
     public async Task<TransferListViewModel> Handle(TransferListQuery message, CancellationToken cancellation)
     {
-        var isAllDayBalanceTransfer = await transferService.IsAllDayBalanceTransfer(message.ViewerId);
-        var isEnableAutoTransfer = !isAllDayBalanceTransfer && AppSettings.CheckOfferAutoTransferCurrencies(message.Currency);
+        var currentADBT = await transferService.IsAllDayBalanceTransfer(message.ViewerId);
+        var isEnableAutoTransfer = !currentADBT && AppSettings.CheckOfferAutoTransferCurrencies(message.Currency);
 
         var prevADBT = message.ADBT ?? false;
         var isPostBack = message.IsPostBack ?? false;
-        message.AllYesterdayBalance = !isPostBack && isAllDayBalanceTransfer ? true : message.AllYesterdayBalance;
+        message.AllYesterdayBalance = !isPostBack && currentADBT ? true : message.AllYesterdayBalance;
 
         var param = new TransferListParam(
             message.ViewerId,
@@ -45,13 +45,21 @@ public class TransferListHandler(
         await Task.WhenAll(enteredSportResultTask, reportDataTask, transferOptionTask);
         var transferOption = await transferOptionTask;
 
-        return new TransferListViewModel(
+        var viewModel = new TransferListViewModel(
             message,
             await enteredSportResultTask,
             await reportDataTask,
-            isAllDayBalanceTransfer,
+            currentADBT,
             isEnableAutoTransfer,
             transferOption,
             string.Join(',', TransferConditionHelper.GetAutoTransferScheduleFromTransferOption(transferOption, message.ViewerLevelId)));
+
+        viewModel.IsReloadTopPage = (!prevADBT && currentADBT) || (prevADBT && !currentADBT);
+        viewModel.MessageForReloadSite = 
+            (!prevADBT && currentADBT) ?  AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOnError : 
+            (prevADBT && !currentADBT) ? AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOffError : 
+            string.Empty;
+
+        return  viewModel;
     }
 }

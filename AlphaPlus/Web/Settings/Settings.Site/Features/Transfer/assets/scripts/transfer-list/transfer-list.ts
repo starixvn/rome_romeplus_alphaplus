@@ -23,6 +23,14 @@
     }
 
     init() {
+        var isReloadTopPage = $('#hidden-isReloadTopPage').val();
+        if(isReloadTopPage === '1') {
+            top.indexManager.updateCurrentUrl("adbt=" + ($('#hidden-isAllDayBalanceTransfer').val() === '1' ? 'True' : 'False'));
+            top.indexManager.addCustomCookies('messageForReloadSite', $('#hidden-messageForReloadSite').val());
+            top.indexManager.isReloadTopPage = true;
+            return;
+        }
+
         $('#icon-print').click(function () {
             const printContent = document.getElementById('block-tbl-transfer');
             const printWindow = window.open('', '', 'left=500,top=400,width=200,height=5');
@@ -239,7 +247,7 @@
         }
     }
 }
-
+ 
 $(function () {
     new TransferListView(
         new AlertComponent(),

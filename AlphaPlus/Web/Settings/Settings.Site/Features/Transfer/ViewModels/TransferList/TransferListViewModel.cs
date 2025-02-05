@@ -16,7 +16,7 @@ public class TransferListViewModel(
     bool isEnableAutoTransfer,
     string transferOption,
     string transferCondition)
-{
+{ 
     public int ViewerId { get; } = message.ViewerId;
 
     public bool IsSuperLevel { get; } = message.ActorLevel.IsSuperLevel();
@@ -137,4 +137,7 @@ public class TransferListViewModel(
 
     public string UpdateMultipleAutoTransferUrl
         => MicroSites.SettingUrl($"~/AutoTransfer/UpdateMultipleAutoTransfer?uplineCondition={transferCondition}&Old_TransferOption={transferOption}");
+
+    public bool IsReloadTopPage { get; set; }
+    public string MessageForReloadSite { get; set; }
 }

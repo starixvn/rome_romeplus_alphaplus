@@ -849,4 +849,10 @@
   <data name="SearchColumn" xml:space="preserve">
     <value>ค้นหาคอลัมน์</value>
   </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>อัพไลน์ของคุณได้เปิดการใช้งานระบบ โอนยอดคงเหลือทั้งวัน ให้กับคุณ ข้อมูลในหน้านี้จะรีเฟรชเพื่อแสดงผลใหม่โดยอัตโนมัติ</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>อัพไลน์ของคุณได้ปิดการใช้งานระบบ โอนยอดคงเหลือทั้งวัน ของคุณ ข้อมูลในหน้านี้จะรีเฟรชเพื่อแสดงผลใหม่โดยอัตโนมัติ</value>
+  </data>
 </root>

@@ -849,4 +849,10 @@
   <data name="SearchColumn" xml:space="preserve">
     <value>搜索專欄</value>
   </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>您的上線允許您使用全天餘額轉賬。該頁面將自動刷新。</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>您的上線不允許您使用全天餘額轉賬。該頁面將自動刷新。</value>
+  </data>
 </root>
