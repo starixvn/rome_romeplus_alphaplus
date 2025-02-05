@@ -14,6 +14,7 @@ class ToastMessage {
   $daysAgo: string;
 
   monitorURL: string;
+  transferURL: string;
   showingToasts: object;
   toastId: number;
 
@@ -32,6 +33,13 @@ class ToastMessage {
       alpha.urls.transferRootPath + "AutoTransfer/Monitoring?Status=Failed";
     this.showingToasts = {};
     this.toastId = 0;
+
+    var transferMenu = this.topWindow.$("#sub-menu-TRANSFER");
+    if (transferMenu.length === 0) {
+      this.transferURL = this.topWindow.$("#menu-TRANSFER a").attr('href');
+    } else {
+      this.transferURL = transferMenu.attr("data-url");
+    }
 
     this.getMessages();
     setInterval(() => {
@@ -136,6 +144,10 @@ class ToastMessage {
       "{0}",
       "<a target='main' href='" + this.monitorURL + "'>" + this.$here + "</a>"
     );
+  }
+
+  private format_3(content) {
+      return content.replace("{0}", "<a target='main' href='" + this.transferURL + "'>" + this.$here + "</a>");
   }
 
   private getDisplayInfo() {
