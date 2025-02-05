@@ -42,7 +42,7 @@ export function getOtherGamesValue(otherGamesItem: OtherGamesBetSettingItem): Ot
 
 export function getGreaterErrorMessage(prop: string, value: number | string) {
   return `${prop}-mustBeGreaterThanOrEqualTo${typeof value === 'string' ? `-${value}` : `#${value}`}`;
-}
+} 
 
 export function getLessErrorMessage(prop: string, value: number | string) {
   return `${prop}-mustBeLessThanOrEqualTo${typeof value === 'string' ? `-${value}` : `#${value}`}`;
@@ -73,6 +73,15 @@ export function validateBetSettingValue(
 export function getErrorMessageTranslate(messageKey: string, t: TFunction) {
   const messageArr = messageKey.split('#');
   if (messageArr.includes('RequiredField')) return t('RequiredField');
+  
+  var errKey = messageArr[0];
+  var terr = t(errKey);
+  if(terr.indexOf("{{value1}}") > -1) {
+    var valueKey = messageArr[1];
+    var tvalue = Number.isNaN(Number(valueKey)) ? t(valueKey) : formatThousandNumber(valueKey);
+    return terr.replace("{{value1}}", tvalue);
+  }
+
   return messageArr
     .map((errKey) => (Number.isNaN(Number(errKey)) ? t(errKey) : formatThousandNumber(errKey)))
     .join(' ');

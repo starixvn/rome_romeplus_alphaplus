@@ -8,6 +8,8 @@ import thTh from './th-TH/translation.json';
 import viVN from './vi-VN/translation.json';
 import zhCN from './zh-CN/translation.json';
 import zhTW from './zh-TW/translation.json';
+import jaJP from './ja-JP/translation.json';
+
 
 export const defaultNS = 'translation';
 
@@ -17,6 +19,7 @@ export const resources = {
   'vi-VN': { translation: viVN },
   'zh-CN': { translation: zhCN },
   'zh-TW': { translation: zhTW },
+  'ja-JP': { translation: jaJP },
 };
 
 i18next
