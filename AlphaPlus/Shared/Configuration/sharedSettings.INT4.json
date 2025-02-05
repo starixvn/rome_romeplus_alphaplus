@@ -130,7 +130,7 @@
         "SystemId": 3
     },
     "SystemId": 2,
-    "AssetAppPath": "//alp1-cdn.gatonic.com",
+    "AssetAppPath": "/stcdn",
     "JsVersion": "20240201",
     "AssetsApp:StaticResourcesVersion": "20240201",
     "LocalTest": false,
