@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.Json;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.Utilities.IP;
@@ -57,7 +58,7 @@ public class AuthController : Controller
 
         var loginResult = signInService.SignIn(HttpContext);
         loginResult.ErrCode = !string.IsNullOrWhiteSpace(r) ? SignInErrorContants.ServerError : loginResult.ErrCode;
-        loginResult.ErrMsg = !string.IsNullOrWhiteSpace(r) ? r : loginResult.ErrMsg;
+        loginResult.ErrMsg = !string.IsNullOrWhiteSpace(r) ? WebUtility.UrlDecode(r) : loginResult.ErrMsg;
 
         ViewBag.FPSToken = FPS.Client.NetStandard.Token.Generate();
         AppSession.ResetRobotCaptchaSession();
