@@ -50,15 +50,10 @@
     }
 
     function initialize() {
-        var assetAppPathElement = document.getElementById("assetAppPath");
-        var CDNReCheckinIntervalInSecondsElement = document.getElementById("CDNReCheckinIntervalInSeconds");
+        assetAppPathElement = document.getElementById("assetAppPath");
+        CDNReCheckinIntervalInSecondsElement = document.getElementById("CDNReCheckinIntervalInSeconds");
 
-        if (assetAppPathElement && CDNReCheckinIntervalInSecondsElement) {
-            assetAppPath = assetAppPathElement.value;
-            CDNReCheckinIntervalInSeconds = CDNReCheckinIntervalInSecondsElement.value;
-
-            reCheckinCDNAssetAppPath();
-        }
+        reCheckinCDNAssetAppPath();
     }
 
     initialize();
