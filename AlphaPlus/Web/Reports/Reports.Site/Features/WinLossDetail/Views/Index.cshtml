@@ -4,7 +4,7 @@
     var isSuperLevel = Model.ViewerLevel.IsSuperLevel();
     var isMasterOrSuperLevel = Model.ViewerLevel.IsMasterOrSuperLevel();
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossdetailnew")
     <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
 }
@@ -58,7 +58,7 @@
 @model WinLossDetailViewModel
 <div class="flex" style="visibility: hidden">
     <div class="title-no-downline">
-    <report-title-new model="Model.PageHeader" />
+        <report-title-new model="Model.PageHeader" />
     </div>
     <form class="form-inline filter" role="form" id="report-form">
         <daterange-picker-jquery model="@Model.DateRangePicker" />
@@ -96,5 +96,5 @@
 @if (isSuperLevel)
 {
     <input type="hidden" id="hidden-titleText4" value="@Resources.MasterWinLossDetail" />
-    <input type="hidden" id="hidden-masterAgentText4" value="@Resources.MasterAgent" />
+    <input type="hidden" id="hidden-masterAgentText4" value="@CommonResx.MasterAgent" />
 }

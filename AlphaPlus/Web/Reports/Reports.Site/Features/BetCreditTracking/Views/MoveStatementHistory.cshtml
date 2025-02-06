@@ -11,7 +11,7 @@
                     @item.MemberRow.Username
                     @if (item.MemberRow.IsDirectMember)
                     {
-                        <span class="ic-directmember" title="@Resources.DirectMember"></span>
+                        <span class="ic-directmember" title="@CommonResx.DirectMember"></span>
                     }
                 </div>
             </td>
@@ -45,7 +45,7 @@
         }
     }
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betcredittracking")
     <link rel="stylesheet" href="~/bundles-v2/movestatementhistory.css" asp-append-version="true" />
 }
@@ -53,7 +53,8 @@
     <script src="~/bundles/betcredittracking/movestatementhistory.js" asp-append-version="true"></script>
 }
 @model MoveStatementHistoryViewModel
-<div class="page-title tabs @Model.CustLevel.DisplayName.ToLowerInvariant() @(Model.IsFilterVisible ? string.Empty : " hide-filter")">
+<div
+    class="page-title tabs @Model.CustLevel.DisplayName.ToLowerInvariant() @(Model.IsFilterVisible ? string.Empty : " hide-filter")">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation">
             <a class="open-link"

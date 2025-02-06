@@ -610,4 +610,7 @@
   <data name="DirectMember" xml:space="preserve">
     <value>Direct Member</value>
   </data>
+  <data name="MasterAgent" xml:space="preserve">
+    <value>Master Agent</value>
+  </data>
 </root>

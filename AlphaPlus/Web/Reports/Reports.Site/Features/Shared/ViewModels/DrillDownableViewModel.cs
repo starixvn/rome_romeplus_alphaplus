@@ -5,6 +5,7 @@ using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 
@@ -25,7 +26,7 @@ public abstract class DrillDownableViewModel<T> where T : class
         CustName = message.CustName;
         CustLevel = message.CustLevel;
         LevelType = levelType;
-        LevelTypeValue = CustLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent;
+        LevelTypeValue = CustLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
         ShowLevelType = CustLevel.IsMasterOrSuperLevel();
         PageHeader = pageHeader;
         ReportData = reportData;

@@ -6,6 +6,7 @@ using AlphaPlus.Reports.Site.Features.Shared;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
 using AlphaPlus.Shared.AppResources.Report;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Reports.Site.Features.CommissionByBetType;
 
@@ -24,7 +25,7 @@ public class CommissionByBetTypeWorkbook(IWebHostEnvironment webHostEnvironment)
         var toDate = message.ToDate.ToShortDateWithSlash();
         var custLevel = message.CustLevel;
         var isAgentLevel = custLevel.IsAgentLevel();
-        var levelTypeValue = custLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent;
+        var levelTypeValue = custLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
 
         var fileContent = UseTemplate(
             new TemplateInfo(
@@ -45,7 +46,7 @@ public class CommissionByBetTypeWorkbook(IWebHostEnvironment webHostEnvironment)
     private static Mapper<CommissionByBetTypeModel> GetRowMapper(string levelTypeValue, bool isTotal = false)
         => new Mapper<CommissionByBetTypeModel>()
         .Map(A, commission => isTotal ? Resources.Total : commission.CustName)
-        .Map(B, commission => isTotal ? string.Empty : commission.IsDirectMember ? Resources.DirectMember : levelTypeValue)
+        .Map(B, commission => isTotal ? string.Empty : commission.IsDirectMember ? CommonResx.DirectMember : levelTypeValue)
         .Map(C, commission => commission.Comm1)
         .Map(D, commission => commission.Comm2)
         .Map(E, commission => commission.Comm3)

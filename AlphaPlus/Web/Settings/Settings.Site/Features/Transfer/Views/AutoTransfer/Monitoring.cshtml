@@ -1,4 +1,5 @@
 ﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @using AlphaPlus.Settings.Transfer.API.Configurations;
 @using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer;
@@ -162,8 +163,8 @@
 @Html.Hidden("status", Model.Status)
 @if (Model.ShowLevelType)
 {
-    @Html.Hidden("DirectMemberText", Resources.DirectMember)
-    @Html.Hidden("MasterAgentText", Model.ViewerLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent)
+    @Html.Hidden("DirectMemberText", CommonResx.DirectMember)
+    @Html.Hidden("MasterAgentText", Model.ViewerLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent)
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-asset/numeral")

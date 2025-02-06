@@ -3,6 +3,7 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.Reward;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
 using AlphaPlus.Settings.Transfer.API.Services;
+using AlphaPlus.Shared.AppResources.Common;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using MediatR;
 using ONEbook.SpreadSheets;
@@ -20,7 +21,7 @@ public class RewardPaymentExcelHandler(
     public async Task<ExcelFileViewModel> Handle(RewardPaymentExcelQuery message, CancellationToken cancellation)
     {
         var isMasterOrSuper = message.ActorLevel.IsMasterOrSuperLevel();
-        var levelTypeValue = message.ActorLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent;
+        var levelTypeValue = message.ActorLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
         var reportData = await rewardService.GetRewardPayments(RewardHandler.GetRewardParam(message));
 
         var content = workbook
@@ -59,7 +60,7 @@ public class RewardPaymentExcelHandler(
             mapper
                 .Map(A, rp => rp.ProgramName)
                 .Map(B, rp => rp.Username)
-                .Map(C, rp => rp.IsDirectMember ? Resources.DirectMember : levelTypeValue)
+                .Map(C, rp => rp.IsDirectMember ? CommonResx.DirectMember : levelTypeValue)
                 .Map(D, rp => rp.Amount)
                 .Map(E, rp =>
                 {

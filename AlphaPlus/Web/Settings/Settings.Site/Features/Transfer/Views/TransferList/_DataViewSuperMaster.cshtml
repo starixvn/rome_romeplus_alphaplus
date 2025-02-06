@@ -1,11 +1,12 @@
 ﻿@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @using AlphaPlus.Settings.Transfer.API.Helpers
 @using AlphaPlus.Settings.Site.Features.Shared.Helpers
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
-    var masterAgent = Model.IsSuperLevel ? Resources.MasterAgent : Resources.Agent;
+    var masterAgent = Model.IsSuperLevel ? CommonResx.MasterAgent : Resources.Agent;
 }
 @model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferList.TransferListViewModel
 <table class="tblRpt tblRpt-bordered tblRpt-hover width-100per hide" id="tbl-transfer">
@@ -37,8 +38,8 @@
                 }
             </th>
             <th data-colname="yesterdaycash">@Resources.YesterdayCash</th>
-            <th class="col-icon-header">@Resources.TotalCash /<br />@Resources.TotalBalance<span class="icon-information-outline"
-                    title="@Resources.TotalCashTotalBalanceNote"></span></th>
+            <th class="col-icon-header">@Resources.TotalCash /<br />@Resources.TotalBalance<span
+                    class="icon-information-outline" title="@Resources.TotalCashTotalBalanceNote"></span></th>
             <th>@Resources.Outstanding</th>
             <th>@Resources.GivenCredit</th>
             <th>@Resources.UsedCredit</th>
@@ -79,7 +80,7 @@
                         </td>
                     }
                     <td>@customer.Username</td>
-                    <td class="text-center" data-colname="level">@(customer.IsDirectMember ? Resources.DirectMember :
+                    <td class="text-center" data-colname="level">@(customer.IsDirectMember ? CommonResx.DirectMember :
                 masterAgent)</td>
                     <td class="text-right @Model.GetYesterdayBalanceColor(customer)">
                         @{

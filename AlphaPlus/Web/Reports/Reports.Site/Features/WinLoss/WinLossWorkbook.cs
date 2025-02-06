@@ -6,6 +6,7 @@ using ONEbook.SpreadSheets;
 using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Reports.Site.Features.Shared;
 using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Reports.Site.Features.WinLoss;
 
@@ -24,7 +25,7 @@ public class WinLossWorkbook(IWebHostEnvironment webHostEnvironment) :
         var toDate = message.ToDate.ToShortDateWithSlash();
         var custLevel = message.CustLevel;
         var isAgentLevel = custLevel.IsAgentLevel();
-        var levelTypeValue = custLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent;
+        var levelTypeValue = custLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
 
         var fileContent = UseTemplate(
             new TemplateInfo(
@@ -43,7 +44,7 @@ public class WinLossWorkbook(IWebHostEnvironment webHostEnvironment) :
     private static Mapper<WinLossModel> GetRowMapper(string levelTypeValue, bool isTotal = false)
         => new Mapper<WinLossModel>()
         .Map(A, winLoss => isTotal ? Resources.Total : (winLoss.CustId == 0 ? Resources.DormantAccounts : winLoss.CustName))
-        .Map(B, winLoss => winLoss.IsDirectMember ? Resources.DirectMember : levelTypeValue)
+        .Map(B, winLoss => winLoss.IsDirectMember ? CommonResx.DirectMember : levelTypeValue)
         .Map(C, winLoss => winLoss.Turnover)
         .Map(D, winLoss => winLoss.GrossComm)
         .Map(E, winLoss => winLoss.DownlineTotal)

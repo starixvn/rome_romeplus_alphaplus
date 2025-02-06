@@ -8,6 +8,7 @@ using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferToDownlineHisto
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Core.Models;
 using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 
@@ -47,7 +48,7 @@ public class TransferToDownlineHistoryExcelHandler(
         else
         {
             mapper
-                .Map(C, m => m.IsDirectMember ? Resources.DirectMember : (custLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent))
+                .Map(C, m => m.IsDirectMember ? CommonResx.DirectMember : (custLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent))
                 .Map(D, m => m.TransferTypeName)
                 .Map(E, m => m.FormattedTransferAmount)
                 .Map(F, m => m.FormattedOldBalance)

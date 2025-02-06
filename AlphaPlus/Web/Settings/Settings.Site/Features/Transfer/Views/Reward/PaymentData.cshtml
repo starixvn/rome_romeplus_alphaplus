@@ -1,10 +1,11 @@
 ﻿@using AlphaPlus.Core.Extensions
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @{
     Layout = null;
     var tdIndex = 0;
     var showLevelType = Model.ActorLevel.IsMasterOrSuperLevel();
-    var levelTypeValue = Model.ActorLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent;
+    var levelTypeValue = Model.ActorLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
 }
 @model AlphaPlus.Settings.Transfer.API.Models.Reward.RewardPayment
 <table class="tb tb-bordered tb-hover tb-freeze-header w-full reward-payment" id="tbl-transfer"
@@ -35,7 +36,7 @@
                     <td>@item.Username</td>
                     @if (showLevelType)
                     {
-                        <td class="text-center">@(item.IsDirectMember ? Resources.DirectMember : levelTypeValue)</td>
+                        <td class="text-center">@(item.IsDirectMember ? CommonResx.DirectMember : levelTypeValue)</td>
                     }
                     <td class="text-right">@item.Amount.FormatNumber20()</td>
                     <td class="text-center"

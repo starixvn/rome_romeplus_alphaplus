@@ -1,4 +1,5 @@
 ﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferToDownlineHistory
 @using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit
@@ -65,8 +66,8 @@
     @Html.Hidden("usernameAutoSuggestionPath", TransferAllAndClearCreditViewModel.UsernameAutoSuggestionPath)
     @if (Model.ShowLevelType)
     {
-        @Html.Hidden("DirectMemberText", Resources.DirectMember)
-        @Html.Hidden("MasterAgentText", Model.CustLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent)
+        @Html.Hidden("DirectMemberText", CommonResx.DirectMember)
+        @Html.Hidden("MasterAgentText", Model.CustLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent)
     }
 </div>
 @section Scripts {

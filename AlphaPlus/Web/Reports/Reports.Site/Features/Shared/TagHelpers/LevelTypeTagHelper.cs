@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Common;
 
 namespace AlphaPlus.Reports.Site.Features.Shared.TagHelpers;
 
@@ -25,8 +26,8 @@ public class LevelTypeTagHelper : TagHelper
             .Append($"<label class=\"label-form-control\">{Resources.Level}</label>")
             .Append("<select id=\"dropdown-level-type\">")
             .Append($"<option value=\"0\" {(SelectedLevel == 0 ? "selected" : string.Empty)}>{Resources.All}</option>")
-            .Append($"<option value=\"1\" {(SelectedLevel == 1 ? "selected" : string.Empty)}>{(CustLevel.IsSuperLevel() ? Resources.MasterAgent : Resources.Agent)}</option>")
-            .Append($"<option value=\"2\" {(SelectedLevel == 2 ? "selected" : string.Empty)}>{Resources.DirectMember}</option>")
+            .Append($"<option value=\"1\" {(SelectedLevel == 1 ? "selected" : string.Empty)}>{(CustLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent)}</option>")
+            .Append($"<option value=\"2\" {(SelectedLevel == 2 ? "selected" : string.Empty)}>{CommonResx.DirectMember}</option>")
             .Append("</select>")
             .Append($"<input type=\"hidden\" name=\"LevelType\" id=\"level-type\" value=\"{SelectedLevel}\" />");
 

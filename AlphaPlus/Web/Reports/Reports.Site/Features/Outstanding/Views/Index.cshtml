@@ -1,5 +1,6 @@
 @using AlphaPlus.Core.Models
 @using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Report
 @using AlphaPlus.Reports.Features.Shared.Extensions
 @using AlphaPlus.Reports.Features.Outstanding
@@ -149,7 +150,7 @@
                         </td>
                         @if (Model.ShowLevelType)
                         {
-                            <td class="text-center">@(outstanding.IsDirectMember ? Resources.DirectMember : Model.LevelTypeValue)</td>
+                            <td class="text-center">@(outstanding.IsDirectMember ? CommonResx.DirectMember : Model.LevelTypeValue)</td>
                         }
                         @{
                             RenderOutstandingCells(outstanding);

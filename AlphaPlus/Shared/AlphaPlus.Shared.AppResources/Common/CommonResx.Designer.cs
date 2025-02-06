@@ -1432,5 +1432,16 @@ namespace AlphaPlus.Shared.AppResources.Common
                 return ResourceManager.GetString("DirectMember", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master Agent.
+        /// </summary>
+        public static string MasterAgent
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterAgent", resourceCulture);
+            }
+        }
     }
 }
