@@ -57,7 +57,9 @@
 }
 @model WinLossDetailViewModel
 <div class="flex" style="visibility: hidden">
+    <div class="title-no-downline">
     <report-title-new model="Model.PageHeader" />
+    </div>
     <form class="form-inline filter" role="form" id="report-form">
         <daterange-picker-jquery model="@Model.DateRangePicker" />
         <product-dropdown show-product-details="true" />

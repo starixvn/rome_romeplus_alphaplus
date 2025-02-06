@@ -284,8 +284,26 @@
 
         .list-icon {
             position: absolute;
-            top: 0;
+            bottom: 0;
             right: 0;
+        }
+    }
+    .title-no-downline {
+        border-bottom: 1px solid var(--border-title);
+        margin: 0 0 12px 0;
+
+        .page-title {
+            margin: 0;
+
+            .text-title {
+                border: 0;
+                width: auto;
+                margin-right: 10px;
+            }
+
+            .list-icon{
+                bottom: 0;
+            }
         }
     }
 }
