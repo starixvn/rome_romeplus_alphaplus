@@ -20,8 +20,7 @@
                 }
                 else
                 {
-                    <a class="view-bet-list" asp-area="tickets" asp-controller="RiskAnalysisIPMatching" asp-action="Index"
-                        asp-route-date="@Model.Date" asp-route-ip="@data.IP">@data.IP</a>
+                    <a class="view-bet-list" href="@Model.BuildBetListUrl(data.IP)">@data.IP</a>
                 }
             </td>
             <td class="text-right col-member-count">@data.MemberCount.FormatNumber()</td>

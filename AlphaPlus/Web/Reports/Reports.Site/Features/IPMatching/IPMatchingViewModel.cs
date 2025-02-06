@@ -5,11 +5,14 @@ using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Shared.AppResources.Report;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Helpers;
 
 namespace AlphaPlus.Reports.Site.Features.IPMatching;
 
 public class IPMatchingViewModel(IPMatchingQuery message, ReportData<IPMatchingModel> reportData)
 {
+    private static string BetListPath = MicroSites.TicketUrl("~/RiskAnalysisIPMatching/Index");
+
     public string Today { get; } = SystemTime.Today.ToShortDateWithSlash();
 
     public string MinDate { get; } = message.MinDate.ToShortDateWithSlash();
@@ -33,4 +36,6 @@ public class IPMatchingViewModel(IPMatchingQuery message, ReportData<IPMatchingM
             [nameof(Date)] = Date,
             [nameof(MemberCount)] = MemberCount.ToString()
         };
+
+    public string BuildBetListUrl(string ip) => $"{BetListPath}?date={Date}&ip={ip}";
 }
