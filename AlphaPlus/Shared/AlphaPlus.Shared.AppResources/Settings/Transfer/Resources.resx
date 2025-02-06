@@ -873,4 +873,10 @@
   <data name="NoColumnsFound" xml:space="preserve">
     <value>No Columns Found</value>
   </data>
+  <data name="ADBTOnError" xml:space="preserve">
+    <value>Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+  </data>
+  <data name="ADBTOffError" xml:space="preserve">
+    <value>Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+  </data>
 </root>
