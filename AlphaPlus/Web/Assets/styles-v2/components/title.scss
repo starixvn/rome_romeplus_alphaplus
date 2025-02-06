@@ -284,11 +284,11 @@
 
         .list-icon {
             position: absolute;
-            bottom: 0;
+            top: 0;
             right: 0;
         }
     }
-    .title-no-downline {
+    .title-has-info {
         border-bottom: 1px solid var(--border-title);
         margin: 0 0 12px 0;
 
@@ -303,6 +303,13 @@
 
             .list-icon{
                 bottom: 0;
+            }
+        }
+    }
+    .title-has-entered{
+        .page-title {             
+            .list-icon{
+                top: 34px;
             }
         }
     }

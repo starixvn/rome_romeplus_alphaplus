@@ -45,7 +45,9 @@
     <script src="~/bundles/enteredresult/enteredresult.js" asp-append-version="true"></script>
 }
 @model EnteredResultViewModel
+<div class="title-has-entered">
 <report-title model="Model.PageHeader" />
+</div>
 <form method="get" class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form" asp-controller="WinLoss" asp-action="Index">
     <daterange-picker model="Model.DateRangePicker" />

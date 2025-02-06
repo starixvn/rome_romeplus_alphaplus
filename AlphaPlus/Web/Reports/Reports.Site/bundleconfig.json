@@ -396,5 +396,11 @@
         "inputFiles": [
             "assets/styles-v2/betchoicematching.css"
         ]
+    },
+    {
+        "outputFileName": "wwwroot/bundles-v2/whitelabelreport.css",
+        "inputFiles": [
+            "assets/styles-v2/whitelabelreport.css"
+        ]
     }
 ]

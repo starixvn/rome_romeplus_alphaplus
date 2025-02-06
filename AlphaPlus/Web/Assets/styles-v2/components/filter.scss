@@ -102,6 +102,11 @@
         margin: 0 24px 16px 0;
         vertical-align: bottom;
         position: relative;
+        @for $i from 1 through 20 {
+            &:nth-child(#{$i}) {
+              z-index: (25 - $i);
+            }
+          }
 
         &-short {
             margin-right: 12px;
