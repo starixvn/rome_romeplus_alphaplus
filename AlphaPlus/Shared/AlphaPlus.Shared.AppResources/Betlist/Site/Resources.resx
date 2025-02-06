@@ -681,4 +681,10 @@
   <data name="SuperRisk" xml:space="preserve">
     <value>Super Risk</value>
   </data>
+  <data name="HomeDrawAwayNoBet" xml:space="preserve">
+    <value>Home/Draw/Away No Bet</value>
+  </data>
+  <data name="FGSlashLG" xml:space="preserve">
+    <value>FG/LG</value>
+  </data>
 </root>

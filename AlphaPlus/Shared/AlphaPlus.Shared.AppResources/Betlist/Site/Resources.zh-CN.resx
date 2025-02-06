@@ -672,4 +672,7 @@
   <data name="SuperRisk" xml:space="preserve">
     <value>超级总代理风险</value>
   </data>
+  <data name="FGSlashLG" xml:space="preserve">
+    <value>最先得分 / 最后得分</value>
+  </data>
 </root>

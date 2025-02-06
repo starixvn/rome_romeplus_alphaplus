@@ -303,9 +303,6 @@
   <data name="Home" xml:space="preserve">
     <value>主</value>
   </data>
-  <data name="HomeDrawAwayNoBet" xml:space="preserve">
-    <value>Home/Draw/Away No Bet</value>
-  </data>
   <data name="HomeNoBet" xml:space="preserve">
     <value>Home No Bet</value>
   </data>

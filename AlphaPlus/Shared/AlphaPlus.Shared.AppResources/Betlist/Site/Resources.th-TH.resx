@@ -672,4 +672,7 @@
   <data name="SuperRisk" xml:space="preserve">
     <value>ความเสี่ยงของซุปเปอร์</value>
   </data>
+  <data name="FGSlashLG" xml:space="preserve">
+    <value>ประตูแรก / ประตูสุดท้าย</value>
+  </data>
 </root>
