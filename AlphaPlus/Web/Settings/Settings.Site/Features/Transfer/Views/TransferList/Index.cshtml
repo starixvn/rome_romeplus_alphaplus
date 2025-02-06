@@ -59,6 +59,7 @@
     <input type="hidden" name="IsPostBack" value="true" />
     <input type="hidden" asp-for="PageIndex" />
     <input type="hidden" asp-for="PageSize" />
+    <input type="hidden" name="ADBT" value="@Model.IsAllDayBalanceTransfer" />
 </form>
 @if (!Model.IsMasterOrSuperLevel)
 {
