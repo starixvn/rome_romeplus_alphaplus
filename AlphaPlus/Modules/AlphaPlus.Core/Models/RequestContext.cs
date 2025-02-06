@@ -175,15 +175,9 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
 
     private int GetCustomerIdFromTheSameQueryString(string queryOrFromValue)
     {
-        string[] queryValues;
-
         if (queryOrFromValue.Contains(","))
         {
-            queryValues = queryOrFromValue.Split([","], StringSplitOptions.RemoveEmptyEntries);
-
-            int.TryParse(queryValues.ElementAt(queryValues.Length - 1), out _custId);
-
-            return _custId;
+            return int.MaxValue;
         }
 
         return 0;
