@@ -18,10 +18,12 @@ class TotalBets {
             .map(function (second) {
                 return +second;
             });
+        const autoRefreshDefaultSelected = $('#hidden-autoRefreshDefaultSelected');
         const autoRefreshUrl = $('#hidden-autoRefreshUrl').val();
         $('.auto-refresh').fanexAutoRefresh({
             buttonRefreshTooltip: $('#hidden-autoRefreshRefreshText').val(),
             seconds: autoRefreshSeconds,
+            selectedSecond: autoRefreshDefaultSelected.length ? +autoRefreshDefaultSelected.val() : undefined,
             refreshHandler: () => {
                 $.get(autoRefreshUrl, (html) => {
                     $tblRpt.html(html);
