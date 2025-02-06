@@ -35,7 +35,7 @@ public class SoccerService(
             item.LeagueName = cacheRefService.GetLeagueName(item.LeagueId, language);
         }
 
-        return leagues;
+        return leagues.OrderBy(l => l.LeagueName);
     }
 
     public async Task<IEnumerable<Match>> GetMatches(int leagueId, bool isLive, string language, string siteName)
