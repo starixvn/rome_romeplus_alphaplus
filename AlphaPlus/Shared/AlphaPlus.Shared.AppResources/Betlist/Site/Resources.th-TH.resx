@@ -660,4 +660,16 @@
   <data name="transtime" xml:space="preserve">
     <value>เวลาการดำเนินการ</value>
   </data>
+  <data name="MemberRisk" xml:space="preserve">
+    <value>จำนวนที่อาจชนะ</value>
+  </data>
+  <data name="AgentRisk" xml:space="preserve">
+    <value>ความเสี่ยงของเอเย่นท์</value>
+  </data>
+  <data name="MasterRisk" xml:space="preserve">
+    <value>ความเสี่ยงของมาสเตอร์</value>
+  </data>
+  <data name="SuperRisk" xml:space="preserve">
+    <value>ความเสี่ยงของซุปเปอร์</value>
+  </data>
 </root>

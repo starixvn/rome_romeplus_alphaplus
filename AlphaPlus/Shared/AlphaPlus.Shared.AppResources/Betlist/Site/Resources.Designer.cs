@@ -2122,5 +2122,49 @@ namespace AlphaPlus.Shared.AppResources.Betlist.Site
                 return ResourceManager.GetString("Dec", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to To Win.
+        /// </summary>
+        public static string MemberRisk
+        {
+            get
+            {
+                return ResourceManager.GetString("MemberRisk", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Agent Risk.
+        /// </summary>
+        public static string AgentRisk
+        {
+            get
+            {
+                return ResourceManager.GetString("AgentRisk", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master Risk.
+        /// </summary>
+        public static string MasterRisk
+        {
+            get
+            {
+                return ResourceManager.GetString("MasterRisk", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Super Risk.
+        /// </summary>
+        public static string SuperRisk
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperRisk", resourceCulture);
+            }
+        }
     }
 }
