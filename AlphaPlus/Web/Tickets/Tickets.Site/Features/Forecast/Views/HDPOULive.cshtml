@@ -1,5 +1,7 @@
+@inject IUserSession userSession
 @{
     ViewData["Title"] = Resources.HDPOULive;
+    var viewerLevelName = Enumeration.FromValue<UserLevel>(userSession.RoleId).DisplayName.ToLowerInvariant();
 }
 @section Styles {
     <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
@@ -9,7 +11,7 @@
 }
 @model ForecastViewModel<ForecastHDPOULive>
 <div class="page-title">@Resources.HDPOULive</div>
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs @viewerLevelName" role="tablist">
     <li role="presentation">
         <a asp-controller="TotalBets" asp-action="HDPOULive">@Resources.TotalBets</a>
     </li>

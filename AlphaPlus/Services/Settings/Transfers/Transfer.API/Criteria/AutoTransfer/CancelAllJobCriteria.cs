@@ -5,11 +5,11 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer
 {
     public class CancelAllJobCriteria : NonQueryCommand
     {
-        public CancelAllJobCriteria(CancelAllJobParam param)
+        public CancelAllJobCriteria(int fromCustId, string language, string ip)
         {
-            FromCustId = param.FromCustId;
-            Language = param.Language;
-            IP = param.IP;
+            FromCustId = fromCustId;
+            Language = language;
+            IP = ip;
 
             ErrCode = 0;
             ErrMsg = string.Empty;

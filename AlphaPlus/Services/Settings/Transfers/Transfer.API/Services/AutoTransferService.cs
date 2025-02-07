@@ -129,7 +129,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services
 
         public async Task<Result> CancelAllJobAsync(CancelAllJobParam param)
         {
-            var criteria = new CancelAllJobCriteria(param);
+            var criteria = new CancelAllJobCriteria(param.FromCustId, param.Language, param.IP);
             await repository.ExecuteAsync(criteria, param.AGIP);
 
             return new Result
