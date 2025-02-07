@@ -16,9 +16,24 @@
 	font-family: "Roboto",'Lucida Sans',Tahoma,Arial,Helvetica,sans-serif;
     font-size: 13px;
 }
-
+.monpickr-super-wrapper{
+	.monpickr-wrap-parent{        
+        width: 152px !important;
+		height: 28px !important;
+    }
+    .daypickr-wrap-parent{        
+        width: 56px!important;  
+		height: 28px !important;     
+    }
+	&:after{
+		content: "";
+		clear: both;
+		display: table;
+	}
+}
 .monpickr-wrap-parent {
 	cursor: pointer;
+	
 	.monpickr-wrap {
 		z-index: 99!important;
         .monpickr-selected-month {
