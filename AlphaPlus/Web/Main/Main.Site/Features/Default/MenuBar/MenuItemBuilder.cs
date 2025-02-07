@@ -18,14 +18,14 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         private readonly Func<string> buildLanguageQueryStringFunc;
         private readonly Func<string> buildDarkModeQueryStringFunc;
         private readonly ITransferService transferService;
-        private readonly IUser user;
+        private readonly IUserSession userSession;
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IBrowserHelper browserHelper;
 
         public MenuItemBuilder(
             AlphaPlus.Core.Services.IAuthorizationService authorizationService,
             ITransferService transferService,
-            IUser user,
+            IUserSession userSession,
             IHttpContextAccessor httpContextAccessor,
             IBrowserHelper browserHelper)
         {
@@ -34,7 +34,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             this.isProtectedModeFunc = FunctionRegistry.IsProtectedModeFunc;
             this.isInternalFunc = FunctionRegistry.IsInternalFunc;
             this.transferService = transferService;
-            this.user = user;
+            this.userSession = userSession;
             this.buildLanguageQueryStringFunc = FunctionRegistry.BuildLanguageQueryString;
             this.buildDarkModeQueryStringFunc = FunctionRegistry.BuildDarkModeQueryString;
             this.httpContextAccessor = httpContextAccessor;
@@ -68,7 +68,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                 buildLanguageQueryStringFunc,
                 buildDarkModeQueryStringFunc,
                 transferService,
-                user,
+                userSession,
                 browserHelper);
 
             SetDataForMenuItem(menuItem, node);

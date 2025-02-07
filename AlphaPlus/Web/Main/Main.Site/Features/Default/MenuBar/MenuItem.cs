@@ -1,6 +1,6 @@
 ﻿using AlphaPlus.Shared.AppResources.Main;
-using AlphaPlus.Main.Site.Shared.Models;
 using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Main.Site.Features.Default.MenuBar
 {
@@ -15,8 +15,8 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         private readonly Func<string> buildLanguageQueryStringFunc;
         private readonly Func<string> buildDarkModeQueryStringFunc;
         private readonly ITransferService transferService;
-        private readonly IUser user;
         private readonly IBrowserHelper browserHelper;
+        private readonly IUserSession userSession;
 
         public MenuItem(Func<MenuStatus> getMenuStatusFunc = null)
             : this(getMenuStatusFunc, null, null, null, null, null, null, null, null, null)
@@ -37,7 +37,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             Func<string> buildLanguageQueryStringFunc,
             Func<string> buildDarkModeQueryStringFunc,
             ITransferService transferService,
-            IUser user,
+            IUserSession userSession,
             IBrowserHelper browserHelper)
         {
             this.getMenuStatusFunc = getMenuStatusFunc ?? (() => new MenuStatus(true, false));
@@ -48,7 +48,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             this.buildLanguageQueryStringFunc = buildLanguageQueryStringFunc;
             this.buildDarkModeQueryStringFunc = buildDarkModeQueryStringFunc;
             this.transferService = transferService;
-            this.user = user;
+            this.userSession = userSession;
             this.browserHelper = browserHelper;
         }
 
@@ -68,12 +68,12 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         public virtual string Link
         {
             get
-            {
+            { 
                 if (!string.IsNullOrWhiteSpace(link))
                 {
                     if (link.IndexOf("TransferList/Index", StringComparison.OrdinalIgnoreCase) > -1)
                     {
-                        return string.Format(link, transferService.IsAllDayBalanceTransfer(user.CustId));
+                        return string.Format(link, transferService.IsAllDayBalanceTransfer(userSession.CustId));
                     }
 
                     if (link.IndexOf("PTTemplate/Index", StringComparison.OrdinalIgnoreCase) > -1)

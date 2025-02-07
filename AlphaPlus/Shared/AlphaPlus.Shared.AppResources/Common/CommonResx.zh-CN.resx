@@ -561,7 +561,7 @@
     <value>自动转账配置</value>
     <comment />
   </data>
-  <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
+  <data name="ADBTConditionChange_PersonalMessage" xml:space="preserve">
     <value>您的账号现已启用全天余额转账。 因此，自动转账日程已被清除，并且以下客户：{0} 的下线自动转账已禁用。內容可以在转账功能查询。</value>
     <comment />
   </data>

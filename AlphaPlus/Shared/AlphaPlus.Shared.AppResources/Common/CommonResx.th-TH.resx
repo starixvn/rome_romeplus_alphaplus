@@ -561,7 +561,7 @@
     <value>ตั้งค่าโอนอัตโนมัติ</value>
     <comment />
   </data>
-  <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
+  <data name="ADBTConditionChange_PersonalMessage" xml:space="preserve">
     <value>ตอนนี้เปิดใช้งานการโอนยอดคงเหลือทั้งวันสำหรับบัญชีของคุณแล้ว ด้วยเหตุนี้ กำหนดการการโอนอัตโนมัติจึงถูกล้างออกไป และการโอนอัตโนมัติสำหรับดาวน์ไลน์จะถูกปิดใช้งานสำหรับลูกค้าต่อไปนี้: {0} รายละเอียดสามารถพบได้ในฟังก์ชั่นการโอน</value>
     <comment />
   </data>

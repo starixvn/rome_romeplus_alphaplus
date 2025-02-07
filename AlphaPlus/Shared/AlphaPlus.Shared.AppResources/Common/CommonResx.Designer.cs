@@ -72,11 +72,11 @@ namespace AlphaPlus.Shared.AppResources.Common
         /// <summary>
         ///   Looks up a localized string similar to All Day Balance Transfer is now enabled for your account. As a result, Auto Transfer schedule has been cleared, and the Auto Transfer for downlines will be disabled for the following customers: {0}. Details can be found in Transfer function..
         /// </summary>
-        public static string ABDTConditionChange_PersonalMessage
+        public static string ADBTConditionChange_PersonalMessage
         {
             get
             {
-                return ResourceManager.GetString("ABDTConditionChange_PersonalMessage", resourceCulture);
+                return ResourceManager.GetString("ADBTConditionChange_PersonalMessage", resourceCulture);
             }
         }
 

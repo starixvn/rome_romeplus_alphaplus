@@ -553,7 +553,7 @@
     <value>Chuyển Khoản Tổng Số Dư đã bật cho tài khoản của bạn. Vì vậy, lịch Chuyển Khoản Tự Động đã bị xóa, và cài đặt Chuyển Khoản Tự Động cho cấp dưới của bạn sẽ bị tắt để đảm bảo tính chính xác của dữ liệu.</value>
     <comment />
   </data>
-  <data name="ABDTConditionChange_PersonalMessage" xml:space="preserve">
+  <data name="ADBTConditionChange_PersonalMessage" xml:space="preserve">
     <value>Chuyển Khoản Tổng Số Dư đã bật cho tài khoản của bạn. Vì vậy, lịch Chuyển Khoản Tự Động đã bị xóa, và Chuyển Khoản Tự Động cho cấp dưới của bạn sẽ bị tắt cho các tài khoản sau: {0}. Chi tiết có thể được tìm thấy trong chức năng Chuyển Khoản.</value>
     <comment />
   </data>
