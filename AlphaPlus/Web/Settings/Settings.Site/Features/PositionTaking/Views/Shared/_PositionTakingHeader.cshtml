@@ -1,24 +1,48 @@
 ﻿@using AlphaPlus.Core.Models
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Betlist.Services
 @using Newtonsoft.Json
 @using AlphaPlus.Settings.MemberInfo.Domain.Models
 @model Dictionary<string, object>
 
-    @{
-        var theme = !string.IsNullOrWhiteSpace(UserSession.Current.DarkModeName) ? "dark" : "light";
-        var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(Model["Products"].ToString());
+@{
+    var theme = !string.IsNullOrWhiteSpace(UserSession.Current.DarkModeName) ? "dark" : "light";
+    var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(Model["Products"].ToString());
+    var levelType = (int)Model["LevelType"];
+    var roleId = (int)Model["RoleId"];
+}
+
+<div id="box_header">
+    <div class="pull-left">
+        <label for="dropdown-product">@Resources.Product</label>
+        @Html.DropDownList("dropdown-product", products.Select(item => new SelectListItem(item.Name,
+        $"PositionTaking?productId={item.Id}&productGroupId={item.GroupId}", item.Id ==
+        Convert.ToInt32(Model["ProductId"].ToString()))), new
+        {
+            @onblur = "ptProductDropdownBlur();",
+            @onclick = "ptView(this.value);",
+            @onchange = "ptProductChanged(this);"
+        })
+    </div>
+
+    @if (Model["ShowPTIcon"].ToString().Equals("true", StringComparison.OrdinalIgnoreCase))
+    {
+        <div class="pull-left">
+            <a class="infoIco"
+                href="@(string.Format("/settings/Customer/SportBookInformation?tabindex=2&theme={0}&custId={1}&roleId={2}&site={3}&siteLabel={4}&lng={5}", theme, UserSession.Current.CustId, UserSession.Current.RoleId - 1, UserSession.Current.Site, Model["SiteLabel"], UserSession.Current.Language))"
+                target="_blank" title="Click to view PT Info"></a>
+        </div>
     }
 
-    <div id="box_header">
+    @if (roleId > RoleIdConstants.Agent)
+    {
         <div class="pull-left">
-            <label for="dropdown-product">@Resources.Product</label>
-            @Html.DropDownList("dropdown-product", products.Select(item => new SelectListItem(item.Name, $"PositionTaking?productId={item.Id}&productGroupId={item.GroupId}", item.Id == Convert.ToInt32(Model["ProductId"].ToString()))), new { @onblur="ptProductDropdownBlur();", @onclick="ptView(this.value);", @onchange="ptProductChanged(this);" })
+            <label for="dropdown-product">@AlphaPlus.Shared.AppResources.Settings.MemberInfo.Resources.Level</label>
+            <select id="ddlLevel" onchange="levelTypeChanged(this)">
+                <option value="1" selected="@(levelType==1?true:false)">
+                    @(roleId == RoleIdConstants.Super ? CommonResx.MasterAgent : CommonResx.Agent)</option>
+                <option value="2" selected="@(levelType == 2 ? true : false)">@CommonResx.DirectMember</option>
+            </select>
         </div>
-        
-        @if (Model["ShowPTIcon"].ToString().Equals("true", StringComparison.OrdinalIgnoreCase))
-        {
-            <div class="pull-left">
-                <a class="infoIco" href="@(string.Format("/settings/Customer/SportBookInformation?tabindex=2&theme={0}&custId={1}&roleId={2}&site={3}&siteLabel={4}&lng={5}",theme,UserSession.Current.CustId,UserSession.Current.RoleId-1,UserSession.Current.Site, Model["SiteLabel"], UserSession.Current.Language))" target="_blank" title="Click to view PT Info"></a>
-            </div>
-        }
-    </div>
+    }
+</div>

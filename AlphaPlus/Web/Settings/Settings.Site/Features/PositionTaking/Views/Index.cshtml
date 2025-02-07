@@ -9,13 +9,14 @@
 @{
     Layout = "~/Features/PositionTaking/Views/Shared/_Layout.cshtml";
     var productId = Model.pt.product.mainProductId != 0 ?
-        Model.pt.product.mainProductId : Model.pt.product.id;
+    Model.pt.product.mainProductId : Model.pt.product.id;
     var products = JsonConvert.SerializeObject(Model.product);
     var darkModeName = UserSession.Current.DarkModeName;
 }
-@section Head{
+@section Head {
     @StaticResources.RenderStylesWithDarkMode($"~/bundles/position-taking/index")
 }
+
 <body>
     <div id="page_main">
         <div id="header_main">
@@ -25,7 +26,14 @@
             <table id="tbl-container-layout" style="width: 100%;">
                 <tr>
                     <td>
-                        @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml", new Dictionary<string, object>() { { "ProductId", productId }, { "ShowPTIcon", Model.pt.product.showPTIcon }, {"SiteLabel", AppSettings.SiteLabel}, {"Products", products} })
+                        @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml",
+                        new Dictionary<string, object>() {
+                                                { "ProductId", productId },
+                                                { "ShowPTIcon", Model.pt.product.showPTIcon },
+                                                {"SiteLabel", AppSettings.SiteLabel},
+                                                {"Products", products},
+                                                {"LevelType", Model.LevelType },
+                                                {"RoleId", Model.ViewedCustomerInfo.RoleId } })
                     </td>
                 </tr>
                 <tr>
@@ -33,7 +41,8 @@
                         <table id="tblHeader">
                             <tr>
                                 <td class="bgcenter" colspan="2">
-                                    <div id="pagingcontrol-header" class="pagingContainer viewpage-container display-none">
+                                    <div id="pagingcontrol-header"
+                                        class="pagingContainer viewpage-container display-none">
                                     </div>
                                 </td>
                                 <td class="bgright pagingcontrol"></td>
@@ -61,7 +70,7 @@
             window.isDarkMode = @(string.IsNullOrWhiteSpace(darkModeName) ? "false" : "true");
             window.rootUrl = '/settings';
             window.language = '@UserSession.Current.Language';
-            
+
             var viewResources = {
                 Page_Size: '@CustomerListResources.PageSize',
                 Symbol_No: '#',
@@ -75,6 +84,7 @@
 
             var bootstrapData = @Html.Raw(JsonConvert.SerializeObject(Model.pt));
         </script>
-        <script type="text/javascript" src="@Url.Content("~/bundles/position-taking/index.js")" asp-append-version="true"></script>
+        <script type="text/javascript" src="@Url.Content("~/bundles/position-taking/index.js")"
+            asp-append-version="true"></script>
     }
 </body>
