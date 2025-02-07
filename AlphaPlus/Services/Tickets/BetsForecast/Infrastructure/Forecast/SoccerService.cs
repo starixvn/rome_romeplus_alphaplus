@@ -48,6 +48,7 @@ public class SoccerService(
         {
             item.HomeName = cacheRefService.GetTeamName(item.HomeId, language);
             item.AwayName = cacheRefService.GetTeamName(item.AwayId, language);
+            item.Event = $"{item.HomeName} - {item.AwayName}";
         }
 
         return matches;

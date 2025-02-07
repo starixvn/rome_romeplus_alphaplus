@@ -12,5 +12,10 @@ public class Match
 
     public string AwayName { get; set; }
 
-    public virtual string Event => $"{HomeName} -vs- {AwayName}";
+    private string eventName;
+    public string Event
+    {
+        get => eventName == null ? $"{HomeName} -vs- {AwayName}" : eventName;
+        set => eventName = value;
+    }
 }
