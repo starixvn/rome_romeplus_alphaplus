@@ -3,16 +3,30 @@
     .nav.nav-tabs {
         --border-nav: #cecece;
         --text-nav: #333333;
-        --text-nav-active: #97141e;
-        --bg-nav-line: #97141e;
+        &.super {
+            --tab-text-color: #97141e;
+            --tab-line-background: #67151b;
+        }
+
+        &.master {
+            --tab-text-color: #209656;
+            --tab-line-background: #276443;
+        }
+
+        &.agent {
+            --tab-text-color: #2267b6;
+            --tab-line-background: #516e8f;
+        }
     }
 }
 :root [data-theme='dark'] {
     .nav.nav-tabs {
         --border-nav: #313334;
         --text-nav: #919191;
-        --text-nav-active: #ededed;
-        --bg-nav-line: #ededed;
+        &.super, &.master, &.agent {
+            --tab-text-color: #ededed;
+            --tab-line-background: #EDEDED;
+        }
     }
 }
 
@@ -37,7 +51,7 @@
                 position: absolute;
                 width: 0;
                 height: 3px;
-                background-color: var(--bg-nav-line);
+                background: var(--tab-line-background);
                 bottom: 0;
                 left: 0;
                 transition: width 0.3s ease-in-out;
@@ -46,7 +60,7 @@
         &.active,
         &:hover {
             a {
-                color: var(--text-nav-active);
+                color: var(--tab-text-color);
 
                 &:after {
                     width: 100%;
