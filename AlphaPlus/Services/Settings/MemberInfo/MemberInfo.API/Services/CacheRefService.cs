@@ -26,6 +26,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services
     {
         private readonly IRemotingRefService remotingRefService;
         private const string ProductRefId = "Product";
+        private const string ProductRefId777 = "Product_Saba";
         private const string ProductGroupRefId = "ProductGroup";
         private const string SubGroupRefId = "SubGroup";
         private const string DummySportRefId = "DummySport";
@@ -51,11 +52,26 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services
                 LanguageCode, string.Empty);
 
         public string GetProductName(int productId)
-            => remotingRefService.GetResourceDataByRefIdAndResourceId(
+        {
+            if (AppSettings.IsSiteLabel777)
+            {
+                var productNameSite777 = remotingRefService.GetResourceDataByRefIdAndResourceId(
+                    ProductRefId777,
+                    productId.ToString(),
+                    LanguageCode,
+                    string.Empty);
+                if (!string.IsNullOrEmpty(productNameSite777))
+                {
+                    return productNameSite777;
+                }
+            }
+
+            return remotingRefService.GetResourceDataByRefIdAndResourceId(
                 ProductRefId,
                 productId.ToString(),
                 LanguageCode,
                 string.Empty);
+        }
 
         public string GetSportTypeName(int sportTypeId)
         {

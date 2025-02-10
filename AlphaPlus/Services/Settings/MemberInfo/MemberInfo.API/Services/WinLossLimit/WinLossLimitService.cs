@@ -18,6 +18,7 @@ public class WinLossLimitServiceImpl(
 {
     private readonly IDynamicRepository repository = repository;
     private readonly Func<int, string> getProductName = cacheRefService.GetProductName;
+    private readonly Func<int, string> getSportTypeName = cacheRefService.GetSportTypeName;
 
     public async Task<IEnumerable<WinLossLimitGroupProductModel>> GetWinLossLimitProducts(int custId)
     {
@@ -30,7 +31,7 @@ public class WinLossLimitServiceImpl(
         {
             foreach (var product in group)
             {
-                product.ProductName = getProductName(product.ProductId);
+                product.ProductName = getSportTypeName(product.SportType);
             }
 
             winLossLimitProducts.Add(new WinLossLimitGroupProductModel(
