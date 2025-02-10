@@ -37,7 +37,7 @@
     <PackageReference Include="TelegramBot.Client" Version="1.0.1" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
     <PackageReference Include="UAParser" Version="3.1.47" />
-    <PackageReference Include="Alpha.SliderCaptcha.AspNetCore" Version="1.0.3" />
+    <PackageReference Include="Alpha.SliderCaptcha.AspNetCore" Version="1.0.2" />
     <PackageReference Include="Fanex.Logging.Extensions.AspNetCore" Version="1.0.0" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="1.0.6" />
