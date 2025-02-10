@@ -583,7 +583,7 @@ class CustomerListDataTable {
             DoubleComm: this.$('#dcommFilter').val(),
             AllowAutoTransfer: this.$('#dautoTransferFilter').val(),
             UnconfirmSetting: this.$('#unconfirmSettingFilter').val(),
-            LevelType: this.$('#ddl-levelType').val()
+            LevelType: this.$('#dropdown-level-type').val()
         };
 
         const viewDownlineLink = `${this.viewModel.MemberInfoUrl}CustomerList/${
@@ -606,7 +606,7 @@ class CustomerListDataTable {
         this.$('.btn-submit')
             .unbind()
             .bind('click', () => {
-                this.levelType = this.$('#ddl-levelType').val();
+                this.levelType = this.$('#dropdown-level-type').val();
                 const isDirectMemberLevelType = this.levelType == LevelType.DirectMember;
                 if (
                     (isDirectMemberLevelType && !this.viewModel.IsDirectMember) ||

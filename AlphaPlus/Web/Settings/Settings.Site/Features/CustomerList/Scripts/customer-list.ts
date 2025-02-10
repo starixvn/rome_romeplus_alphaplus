@@ -55,7 +55,7 @@ class CustomerList {
             new SingleSelectionDropdownOption('dautoTransferFilter', 'AllowAutoTransfer', () => {}, true, true)
         );
 
-        this.levelComponent.render(new SingleSelectionDropdownOption('ddl-levelType', 'HiddenLevelType'));
+        this.levelComponent.render(new SingleSelectionDropdownOption('dropdown-level-type', 'HiddenLevelType'));
 
         this.bindingTxtUsername();
         this.customerListDataTable.bindingEvent();
