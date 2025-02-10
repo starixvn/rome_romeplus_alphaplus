@@ -26,7 +26,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.Caching.Redis.AspNetCore" Version="2.2.3" />
+    <PackageReference Include="Fanex.Caching.Redis.AspNetCore" Version="2.2.5" />
     <PackageReference Include="Fanex.Common" Version="1.1.1" />
     <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.0" />
     <PackageReference Include="FPS.Browserless.Detection.Client.NetStandard" Version="1.0.4" />
