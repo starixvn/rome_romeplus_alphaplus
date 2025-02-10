@@ -23,7 +23,7 @@ public class TransferListHandler(
         var currentADBT = await transferService.IsAllDayBalanceTransfer(message.ViewerId);
         var isEnableAutoTransfer = !currentADBT && AppSettings.CheckOfferAutoTransferCurrencies(message.Currency);
 
-        //var prevADBT = message.ADBT ?? false;
+        var prevADBT = message.ADBT ?? false;
         var isPostBack = message.IsPostBack ?? false;
         message.AllYesterdayBalance = !isPostBack && currentADBT ? true : message.AllYesterdayBalance;
 
@@ -56,11 +56,11 @@ public class TransferListHandler(
             string.Join(',', TransferConditionHelper.GetAutoTransferScheduleFromTransferOption(transferOption, message.ViewerLevelId)));
 
         viewModel.IsReloadTopPage = (!prevADBT && currentADBT) || (prevADBT && !currentADBT);
-        viewModel.MessageForReloadSite = 
-            (!prevADBT && currentADBT) ?  AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOnError : 
-            (prevADBT && !currentADBT) ? AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOffError : 
+        viewModel.MessageForReloadSite =
+            (!prevADBT && currentADBT) ? AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOnError :
+            (prevADBT && !currentADBT) ? AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOffError :
             string.Empty;
 
-        return  viewModel;
+        return viewModel;
     }
 }

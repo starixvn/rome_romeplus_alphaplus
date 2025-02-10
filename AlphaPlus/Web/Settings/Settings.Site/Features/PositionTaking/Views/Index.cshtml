@@ -27,13 +27,13 @@
                 <tr>
                     <td>
                         @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml",
-                        new Dictionary<string, object>() {
-                                                { "ProductId", productId },
-                                                { "ShowPTIcon", Model.pt.product.showPTIcon },
-                                                {"SiteLabel", AppSettings.SiteLabel},
-                                                {"Products", products},
-                                                {"LevelType", Model.LevelType },
-                                                {"RoleId", Model.ViewedCustomerInfo.RoleId } })
+                                 new Dictionary<string, object>() {
+                        { "ProductId", productId },
+                        { "ShowPTIcon", Model.pt.product.showPTIcon },
+                        {"SiteLabel", AppSettings.SiteLabel},
+                        {"Products", products},
+                        {"LevelType", Model.pt.levelType },
+                        {"RoleId", Model.viewedCustomerInfo.roleId } })
                     </td>
                 </tr>
                 <tr>

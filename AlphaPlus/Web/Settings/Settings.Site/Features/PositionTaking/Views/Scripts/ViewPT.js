@@ -428,9 +428,9 @@
     };
 
     self.drilldownLink = function (positionTakingInfo, customerInfo) {
-        if (positionTakingInfo.LevelType == '2') {
+        if (positionTakingInfo.levelType == '2') {
             var agentId = 0;
-            switch (positionTakingInfo.ViewedCustomerInfo.RoleId) {
+            switch (positionTakingInfo.viewedCustomerInfo.roleId) {
                 case self.Enums.RoleId.Super:
                     agentId = -4;
                     break;

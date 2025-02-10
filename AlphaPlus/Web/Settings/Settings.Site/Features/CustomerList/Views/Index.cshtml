@@ -111,10 +111,9 @@
             </div>
         }
         <level-type custlevel="@Model.SearchAccountLevel" selected-value="@Model.LevelType" show-all-option="@false" />
-        <>LevelTypeDropdown.Render(Model.SearchAccountLevel, Model.LevelType, false)
-            <div class="form-group btn-box">
-                <input type="submit" value="@Resources.Submit" class="btn-submit" />
-            </div>
+        <div class="form-group btn-box">
+            <input type="submit" value="@Resources.Submit" class="btn-submit" />
+        </div>
     </div>
 
     <table id="tbl-customer-list" class="hidden tblRpt tblRpt-bordered tblRpt-hover display nowrap">
@@ -254,54 +253,52 @@
                         @CustomerListResources.PComm3
                     </th>
                 }
-                }
                 else
                 {
-                if (Model.SearchAccountLevel.IsAgentLevel() || Model.IsDirectMember)
-                {
-                <th class="header commission startGroup @commissionGroupClass">
-                    @CustomerListResources.AComm1
-                </th>
-                <th class="header commission @commissionGroupClass">
-                    @CustomerListResources.AComm2
-                </th>
-                <th class="header commission @commissionGroupClass">
-                    @CustomerListResources.AComm3
-                </th>
-                <th class="header commission @commissionGroupClass">
-                    @CustomerListResources.PComm1
-                </th>
-                <th class="header commission @commissionGroupClass">
-                    @CustomerListResources.PComm2
-                </th>
-                <th class="header commission @commissionGroupClass endGroup">
-                    @CustomerListResources.PComm3
-                </th>
-                }
-                else
-                {
-                <th class="header @commissionGroupClass commission startGroup">
-                    @CustomerListResources.GroupA
-                </th>
-                <th class="header @commissionGroupClass commission">
-                    @CustomerListResources.GroupB
-                </th>
-                <th class="header @commissionGroupClass commission">
-                    @CustomerListResources.GroupC
-                </th>
-                <th class="header @commissionGroupClass commission">
-                    @CustomerListResources.GroupD
-                </th>
-                <th class="header @commissionGroupClass commission">
-                    @CustomerListResources.Group1X2
-                </th>
-                <th class="header @commissionGroupClass commission endGroup">
-                    @CustomerListResources.Other
-                </th>
+                    if (Model.SearchAccountLevel.IsAgentLevel() || Model.IsDirectMember)
+                    {
+                        <th class="header commission startGroup @commissionGroupClass">
+                            @CustomerListResources.AComm1
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.AComm2
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.AComm3
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.PComm1
+                        </th>
+                        <th class="header commission @commissionGroupClass">
+                            @CustomerListResources.PComm2
+                        </th>
+                        <th class="header commission @commissionGroupClass endGroup">
+                            @CustomerListResources.PComm3
+                        </th>
+                    }
+                    else
+                    {
+                        <th class="header @commissionGroupClass commission startGroup">
+                            @CustomerListResources.GroupA
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupB
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupC
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.GroupD
+                        </th>
+                        <th class="header @commissionGroupClass commission">
+                            @CustomerListResources.Group1X2
+                        </th>
+                        <th class="header @commissionGroupClass commission endGroup">
+                            @CustomerListResources.Other
+                        </th>
 
+                    }
                 }
-                }
-
             </tr>
         </thead>
     </table>

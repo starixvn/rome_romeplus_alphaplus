@@ -34,10 +34,10 @@ public class LevelTypeTagHelper : TagHelper
             sb.Append($"<option value='0' {(SelectedLevel == 0 ? "selected" : string.Empty)}>{Resources.All}</option>");
         }
 
-        sb.Append($"<option value='0' {(SelectedLevel == 0 ? "selected" : string.Empty)}>{Resources.All}</option>")
-        .Append($"<option value='1' {(SelectedLevel == 1 ? "selected" : string.Empty)}>{(CustLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent)}</option>")
-        .Append($"<option value='2' {(SelectedLevel == 2 ? "selected" : string.Empty)}>{CommonResx.DirectMember}</option>")
-        .Append("</select>");
+        sb
+            .Append($"<option value='1' {(SelectedLevel == 1 ? "selected" : string.Empty)}>{(CustLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent)}</option>")
+            .Append($"<option value='2' {(SelectedLevel == 2 ? "selected" : string.Empty)}>{CommonResx.DirectMember}</option>")
+            .Append("</select>");
 
         output.Content.SetHtmlContent(sb.ToString());
     }
