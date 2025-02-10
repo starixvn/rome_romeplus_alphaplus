@@ -1,4 +1,8 @@
-FROM hub.nexdev.net/base/dotnet/core/sdk:7.0 AS builder
+FROM hub.nexdev.net/base/dotnet/core/sdk:8.0-alpine AS builder
+
+#Installing npm & gulp global
+RUN apk add --update nodejs npm && npm install -g yarn gulp-cli
+
 WORKDIR /src
 EXPOSE 5000
 
@@ -44,16 +48,29 @@ RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
   || [ "$TRANSFORM_CONFIG" = "UAT2" ] \
   || [ "$TRANSFORM_CONFIG" = "STG2" ] \
   || [ "$TRANSFORM_CONFIG" = "PRO2" ] \
-  || [ "$TRANSFORM_CONFIG" = "AWS2" ] \
   || [ "$TRANSFORM_CONFIG" = "DR2" ]; \
 then \
 	cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/wwwroot/favicon2.ico" "AlphaPlus/Web/Before/Fanex.Alpha.Before/wwwroot/favicon.ico"; \
+  cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig2.json" "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig.json"; \
+fi
+
+RUN if [ "$TRANSFORM_CONFIG" = "LOCAL3" ] \
+  || [ "$TRANSFORM_CONFIG" = "SIT3" ] \
+  || [ "$TRANSFORM_CONFIG" = "UAT3" ] \
+  || [ "$TRANSFORM_CONFIG" = "STG3" ] \
+  || [ "$TRANSFORM_CONFIG" = "PRO3" ] \
+  || [ "$TRANSFORM_CONFIG" = "DR3" ]; \
+then \
+  cp "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig3.json" "AlphaPlus/Web/Before/Fanex.Alpha.Before/bundleconfig.json"; \
 fi
 
 WORKDIR /src/AlphaPlus/Web/Before/Fanex.Alpha.Before
+RUN yarn && yarn build
+
 RUN dotnet publish -c Release -o /app
 
-FROM hub.nexdev.net/base/dotnet/core/aspnet:7.0-slim AS base
+
+FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 
 # Don’t run as root
 RUN adduser --disabled-password \

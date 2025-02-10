@@ -68,8 +68,6 @@ namespace Fanex.Alpha.Before
                     ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
             });
 
-            services.AddAssetsBundle(Configuration);
-
             services.AddFanexData(Configuration);
             services.AddSingleton<IDynamicRepository, DynamicRepository>();
             services.AddSingleton<IRobotDetector, RobotDetector>();
@@ -110,7 +108,6 @@ namespace Fanex.Alpha.Before
 
             app.UseForwardedHeaders();
 
-            app.UseWebOptimizer();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSession();

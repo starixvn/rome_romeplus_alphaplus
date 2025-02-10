@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
@@ -31,14 +31,7 @@
     <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.0" />
     <PackageReference Include="FPS.Browserless.Detection.Client.NetStandard" Version="1.0.4" />
     <PackageReference Include="FPS.Client.NetStandard" Version="1.0.15" />
-    <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.21.0" />
-    <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.21.3" />
-    <PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.99" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="7.0.2" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-arm" Version="7.4.2" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-arm64" Version="7.4.2" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-x64" Version="7.4.2" />
-    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.4.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.3" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
     <PackageReference Include="TelegramBot.Client" Version="1.0.1" />

@@ -1,0 +1,103 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/assets/bundles/bootstrap-ex.min.css",
+    "inputFiles": [
+      "assets/styles/vendors-extensions/login/bootstrap-ex.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/themes/default.min.css",
+    "inputFiles": [
+      "assets/styles/themes/default3.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/themes/default-dark.min.css",
+    "inputFiles": [
+      "assets/styles/themes/default3-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/themes/event.min.css",
+    "inputFiles": [
+      "assets/styles/themes/default3.css",
+      "assets/styles/themes/event3.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/themes/um3.min.css",
+    "inputFiles": [
+      "assets/styles/pages/um3.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/themes/um3-dark.min.css",
+    "inputFiles": [
+      "assets/styles/pages/um3-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/robotcaptcha.min.css",
+    "inputFiles": [
+      "assets/styles/pages/robotcaptcha.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/robotcaptcha-dark.min.css",
+    "inputFiles": [
+      "assets/styles/pages/error.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/themes/error.min.css",
+    "inputFiles": [
+      "assets/styles/pages/error.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/themes/error-dark.min.css",
+    "inputFiles": [
+      "assets/styles/pages/error-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/themes/limitedcountryaccess.min.css",
+    "inputFiles": [
+      "assets/styles/pages/limitedcountryaccess.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/themes/limitedcountryaccess-dark.min.css",
+    "inputFiles": [
+      "assets/styles/pages/limitedcountryaccess-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/login.min.js",
+    "inputFiles": [
+      "assets/scripts/libs/jquery/jquery-1.11.3.js",
+      "assets/scripts/libs/bootstrap/dropdown.js",
+      "assets/scripts/libs/storage/store-with-json2.min.js",
+      "assets/scripts/libs/detecas/Detecas.Base64.js",
+      "assets/scripts/libs/detecas/Detecas.JSON.js",
+      "assets/scripts/libs/cryptojs/aes.js",
+      "assets/scripts/login/core.js",
+      "assets/scripts/login/place-holder.js",
+      "assets/scripts/login/resources.js",
+      "assets/scripts/login/assetAppPaths.js",
+      "assets/scripts/login/login.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/alpha.slider-captcha.css",
+    "inputFiles": [
+      "assets/styles/alpha.slider-captcha.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/alpha.slider-captcha.js",
+    "inputFiles": [
+      "assets/scripts/alpha.slider-captcha.js"
+    ]
+  }
+]
