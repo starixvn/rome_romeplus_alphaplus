@@ -10,6 +10,7 @@
     --rs-input-border: none;
     --rs-input-bg: #fff;
     --rs-table-border-color: #cbc9ca;
+    --rs-table-text-color: #333;
     --rs-table-border-head: #cbc9ca;
     --rs-table-bg-head: #666;
     --rs-table-color-head: #fff;
@@ -37,6 +38,7 @@
     --rs-input-border: 1px solid #292929;
     --rs-input-bg: #171717;
     --rs-table-border-color: #5f626b;
+    --rs-table-text-color: #ededed;
     --rs-table-border-head: #5f626b;
     --rs-table-bg-head: #383838;
     --rs-table-color-head: #EDEDED;
@@ -159,13 +161,13 @@
     .fn-rs-content-header {
         padding-right: 0;
         border: none;
-        width: 1000px;
+        min-width: 1000px;
     }
 
     .fn-rs-content-scroll {
         overflow: hidden;
         max-height: none;
-        width: 1000px;
+        min-width: 1000px;
     }
 }
 
@@ -493,7 +495,7 @@ table {
         border-right: 1px solid var(--rs-table-border-color);
         border-top: 1px solid var(--rs-table-border-color);
         white-space: nowrap;
-        color: #000;
+        color: var(--rs-table-text-color);
     }
 
     tbody + tfoot tr:first-child td {
