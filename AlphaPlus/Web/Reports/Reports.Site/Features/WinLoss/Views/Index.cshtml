@@ -117,7 +117,8 @@
                 }
                 else if (isAgentLevel || data.IsDirectMember)
                 {
-                    <a class="open-link" data-url="@Model.BuildBetListUrl(data.CustId, data.CustName)">@data.CustName</a>
+                    <a href="javascript:;" class="open-link"
+                        data-url="@Model.BuildBetListUrl(data.CustId, data.CustName)">@data.CustName</a>
                 }
                 else
                 {

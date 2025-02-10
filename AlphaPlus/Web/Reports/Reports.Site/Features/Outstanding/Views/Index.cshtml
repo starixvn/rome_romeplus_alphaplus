@@ -138,8 +138,7 @@
                         <td class="text-left" data-sortedvalue="@outstanding.CustName">
                             @if (isAgentLevel || outstanding.IsDirectMember)
                             {
-                                <a class="open-link"
-                                    data-url="@Model.BuildBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
+                                <a href="javascript:;" class="open-link" data-url="@Model.BuildBetListUrl(outstanding.CustId, outstanding.CustName)">@outstanding.CustName</a>
                             }
                             else
                             {

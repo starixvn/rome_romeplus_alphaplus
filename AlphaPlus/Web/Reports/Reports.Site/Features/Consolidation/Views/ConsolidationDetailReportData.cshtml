@@ -23,7 +23,8 @@
                 }
                 else if (isAgentLevel)
                 {
-                    <a class="open-link" data-url="@Model.GetBetListUrl(data.CustId, data.CustName)">@data.CustName</a>
+                    <a href="javascript:;" class="open-link"
+                        data-url="@Model.GetBetListUrl(data.CustId, data.CustName)">@data.CustName</a>
                 }
                 else
                 {
@@ -105,8 +106,7 @@
     }
 }
 @model ConsolidationDetailViewModel
-<table
-    class="tb tb-bordered tb-hover tablesorter w-full @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+<table class="tb tb-bordered tb-hover tablesorter w-full @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
     data-descendingsort="@Model.DescendingSort" id="tbl-report" style="visibility:hidden">
     <thead>
