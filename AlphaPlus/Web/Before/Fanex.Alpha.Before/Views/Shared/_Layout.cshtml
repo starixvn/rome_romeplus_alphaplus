@@ -11,7 +11,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="~/assets/bundles/bootstrap-ex.min.css" rel="stylesheet" />
+    <link href="~/assets/bundles/bootstrap-ex.min.css" rel="stylesheet" asp-append-version="true"/>
 
     @RenderSection("styles", false)
 
@@ -37,13 +37,13 @@
         </div>
         @if (data.IsChangedPassword)
         {
-            <div class="block-info">
-                @data.ChangedPasswordTime
-            </div>
+                <div class="block-info">
+                    @data.ChangedPasswordTime
+                </div>
         }
     </div>
 
-    <script src="~/assets/bundles/login.min.js?v=20240401" type="text/javascript"></script>
+    <script src="~/assets/bundles/login.min.js?v=20240401" type="text/javascript" asp-append-version="true"></script>
 
     @await Html.PartialAsync("FPS", data)
 

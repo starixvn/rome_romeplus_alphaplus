@@ -10,7 +10,7 @@
     <title>UM Page</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=0.7, user-scalable=yes">
-    <link href="~/assets/bundles/themes/um2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/bundles/themes/um2.min.css" rel="stylesheet" type="text/css" asp-append-version="true"/>
 </head>
 
 <body>
@@ -39,10 +39,10 @@
 
     @if (Model.ShowCountDown())
     {
-        @Html.Hidden("countdown-time", Model.CountdownTime.TotalSeconds)
+            @Html.Hidden("countdown-time", Model.CountdownTime.TotalSeconds)
     }
 
-    <script type="text/javascript" src="~/assets/bundles/um2.min.js"></script>
+    <script type="text/javascript" src="~/assets/bundles/um2.min.js" asp-append-version="true"></script>
 </body>
 
 </html>
