@@ -1,4 +1,4 @@
-namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
+namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
 
 public class AccountInfoViewModelBase
 {

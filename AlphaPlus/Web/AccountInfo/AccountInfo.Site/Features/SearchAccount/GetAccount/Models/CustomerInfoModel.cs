@@ -128,9 +128,9 @@ public class CustomerInfoModel
 
     public byte Locked { get; }
 
-    public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectmemberOfSuper;
+    public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectMemberOfSuper;
 
     public bool IsDirectMemberOfMaster => AgentId == DirectMemberAgentIds.Master;
 
-    public bool IsDirectmemberOfSuper => AgentId == DirectMemberAgentIds.Super;
+    public bool IsDirectMemberOfSuper => AgentId == DirectMemberAgentIds.Super;
 }

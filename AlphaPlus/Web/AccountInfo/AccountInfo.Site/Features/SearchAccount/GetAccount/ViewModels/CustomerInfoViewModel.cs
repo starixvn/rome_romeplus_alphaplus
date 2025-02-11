@@ -1,11 +1,10 @@
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.LoginInfo;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Shared.AppResources.Common;
 
-namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
+namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
 
 public class CustomerInfoViewModel : AccountInfoViewModelBase
 {
@@ -64,15 +63,13 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
 
     public string MemberName => DefaultStringValueIfNull(customerInfo.MemberName);
 
-    public bool ShowAgent => ActorLevel.IsMasterOrSuperLevel()
-        && SearchAccountLevel.IsDownlineOfMasterLevel();
+    public bool ShowAgent => ActorLevel.IsMasterOrSuperLevel() && SearchAccountLevel.IsDownlineOfMasterLevel() && !IsDirectMember;
 
     public int AgentId => customerInfo.AgentId;
 
     public string AgentName => DefaultStringValueIfNull(customerInfo.AgentName);
 
-    public bool ShowMaster => ActorLevel.IsSuperLevel()
-        && SearchAccountLevel.IsDownlineOfSuperLevel();
+    public bool ShowMaster => ActorLevel.IsSuperLevel() && (IsDirectMember ? IsDirectMemberOfMaster : SearchAccountLevel.IsDownlineOfSuperLevel());
 
     public int MasterId => customerInfo.MasterId;
 
@@ -82,22 +79,24 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
 
     public string SuperName => DefaultStringValueIfNull(customerInfo.SuperName);
 
-    public LoginInfoViewModel LoginInfo =>
-        new LoginInfoViewModel(
-            customerInfo.CreatDate,
-            customerInfo.LastLogged,
-            customerInfo.LastLoginIP);
+    public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectMemberOfSuper;
+
+    public bool IsDirectMemberOfMaster => customerInfo.IsDirectMemberOfMaster;
+
+    public bool IsDirectMemberOfSuper => customerInfo.IsDirectMemberOfSuper;
+
+    public LoginInfoViewModel LoginInfo => new(customerInfo.CreatDate, customerInfo.LastLogged, customerInfo.LastLoginIP);
 
     public IBalanceInfoViewModel BalanceInfo { get; }
 
     internal Link CustomerListLink =>
-        new Link(SearchAccountLevel.IsMasterLevel() ? CommonResx.AgentList : CommonResx.MemberList,
+        new(SearchAccountLevel.IsMasterLevel() ? CommonResx.AgentList : CommonResx.MemberList,
             $"{MemberInfoUrl}/CustomerList/{Enumeration.FromValue<UserLevel>((byte)(RoleId - 1)).DisplayName}?CustId={CustId}&CustName={UserName}&CustLevelId={RoleId}");
 
     internal Link BetListLink =>
-        new Link(CommonResx.BetList, $"{BetListsUrl}/MemberBetList/Index?CustID={CustId}&CustName={UserName}");
+        new(CommonResx.BetList, $"{BetListsUrl}/MemberBetList/Index?CustID={CustId}&CustName={UserName}");
 
-    internal Link StatemenLink
+    internal Link StatementLink
     {
         get
         {
@@ -125,7 +124,7 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
 
             if (message.CanViewReports)
             {
-                buttons.Add(StatemenLink);
+                buttons.Add(StatementLink);
             }
 
             return buttons;
@@ -151,7 +150,7 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
             $"&SearchAccountId={CustId}&SearchAccountName={UserName}&Credit={BalanceInfo.GivenCredit}" +
             $"&CreditMin={BalanceInfo.GivenCreditMin}&CreditMax={BalanceInfo.GivenCreditMax}" : string.Empty;
 
-    internal string DefaultStringValueIfNull(string value)
+    internal static string DefaultStringValueIfNull(string value)
     {
         return string.IsNullOrEmpty(value) ? string.Empty : value;
     }

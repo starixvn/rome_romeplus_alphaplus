@@ -1,8 +1,8 @@
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
 using MediatR;
 
-namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
+namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount;
 
 public class CustomerInfoQuery : BaseQuery, IRequest<CustomerInfoViewModel>
 {

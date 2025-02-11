@@ -1,3 +1,4 @@
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerStatus;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineList;
@@ -6,6 +7,7 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.U
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Transfer.Requests;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
