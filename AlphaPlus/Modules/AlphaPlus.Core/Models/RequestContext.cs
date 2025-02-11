@@ -175,7 +175,7 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
 
     private int GetCustomerIdFromTheSameQueryString(string valueFromQuery, string paramName)
     {
-        if (valueFromQuery.Contains(",") && !paramName.Equals("custids", StringComparison.OrdinalIgnoreCase))
+        if (valueFromQuery.Contains(",") && !options.CustIdQueryStringParamNames.Any(p =>p.Equals(paramName, StringComparison.OrdinalIgnoreCase)))
         {
             return int.MaxValue;
         }
