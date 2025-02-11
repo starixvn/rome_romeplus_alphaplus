@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Functions>
-  <Function Name="Feedback">
-    <Setting Key="Age_CustFeedbackCheckExists" SpName="Age_CustFeedbackCheckExists" DbName="DBBOT.bodb_Chatbot.wsv_alp" />
-    <Setting Key="Age_CustFeedbackIns" SpName="Age_CustFeedbackIns" DbName="DBBOT.bodb_Chatbot.wsv_alp" />
-    <Setting Key="Age_FeedbackFunction_Sel" SpName="Age_FeedbackFunction_Sel" DbName="DBBOT.bodb_Chatbot.wsv_alp" />
-  </Function>
-</Functions>

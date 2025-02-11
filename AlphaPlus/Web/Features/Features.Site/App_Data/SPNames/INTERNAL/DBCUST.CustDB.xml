@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Functions>
-  <Function Name="Unsynced Setting">
-    <Setting Key="Acc_CustomerSelUnSyncProducts" SpName="Acc_CustomerSelUnSyncProducts" DbName="DBCust.CustDB.wsv_alpv" Plain="0" TimeOut="600"/>
-  </Function>
-  <Function Name="Customer Transfer">
-    <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCust.CustDB.wsv_alpv" Plain="0" TimeOut="600" />
-  </Function>
-</Functions>
