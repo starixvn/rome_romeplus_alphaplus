@@ -82,7 +82,7 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                 if (!string.IsNullOrEmpty(request.Query[custIdQueryStringParamName]))
                 {
                     var queryValue = request.Query[custIdQueryStringParamName].ToString();
-                    _custId = GetCustomerIdFromTheSameQueryString(queryValue);
+                    _custId = GetCustomerIdFromTheSameQueryString(queryValue, custIdQueryStringParamName);
                     if (_custId > 0)
                     {
                         break;
@@ -97,7 +97,7 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                     if (request.HasFormContentType)
                     {
                         queryValue = request.Form[custIdQueryStringParamName].ToString();
-                        _custId = GetCustomerIdFromTheSameQueryString(queryValue);
+                        _custId = GetCustomerIdFromTheSameQueryString(queryValue, custIdQueryStringParamName);
                         if (_custId > 0)
                         {
                             break;
@@ -173,14 +173,16 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
         }
     }
 
-    private int GetCustomerIdFromTheSameQueryString(string queryOrFromValue)
+    private int GetCustomerIdFromTheSameQueryString(string valueFromQuery, string paramName)
     {
-        if (queryOrFromValue.Contains(","))
+        if (valueFromQuery.Contains(",") && !paramName.Equals("custids", StringComparison.OrdinalIgnoreCase))
         {
             return int.MaxValue;
         }
+        
+        int.TryParse(valueFromQuery, out int custId);
 
-        return 0;
+        return custId;
     }
 
     public IUserSession UserSession => Models.UserSession.Current;
