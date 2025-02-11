@@ -48,9 +48,9 @@
         <Setting Key="Age_CustomerSelWinLimitProduct" SpName="Age_CustomerSelWinLimitProduct" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Credit/Balance">
-        <Setting Key="Age_CustomerSelCreditBalanceList_Ag" SpName="Age_CustomerSelCreditBalanceList_Ag" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
-        <Setting Key="Age_CustomerSelCreditBalanceList_Mag" SpName="Age_CustomerSelCreditBalanceList_MAg" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
-        <Setting Key="Age_CustomerSelCreditBalanceList_Sag" SpName="Age_CustomerSelCreditBalanceList_SAg" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDB_Age_CustomerSelCreditBalanceList_Ag" SpName="Age_CustomerSelCreditBalanceList_Ag" DbName="SiteDB.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDB_Age_CustomerSelCreditBalanceList_Mag" SpName="Age_CustomerSelCreditBalanceList_MAg" DbName="SiteDB.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDB_Age_CustomerSelCreditBalanceList_Sag" SpName="Age_CustomerSelCreditBalanceList_SAg" DbName="SiteDB.bodb02.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Create Member By QR Code">
         <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
@@ -200,6 +200,7 @@
         <Setting Key="Acc_CustomerUpdDisableOutright" SpName="Acc_CustomerUpdDisableOutright" DbName="DBCust.CustDB.wsv_alpv" />
         <Setting Key="Acc_CustomerUpdDoubleCommLosing" SpName="Acc_CustomerUpdDoubleCommLosing" DbName="DBCust.CustDB.wsv_alpv" />
         <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCust.CustDB.wsv_alpv" />
+        <Setting Key="Acc_CustomerSelScheduleOption" SpName="Acc_CustomerSelScheduleOption" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Dormant Account List">
         <Setting Key="Acc_DormantAccountList_Sel" SpName="Acc_DormantAccountList_Sel" DbName="DBCust.CustDB.wsv_alpv" />
@@ -436,19 +437,39 @@
         <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Multiple Transfer">
-        <Setting Key="Age_Transfer_Ins_Ag" SpName="Age_Transfer_Ins_Ag" DbName="DBTXN.bodb02.wsv_alpv" />
-        <Setting Key="Age_Transfer_Ins_MAg" SpName="Age_Transfer_Ins_MAg" DbName="DBTXN.bodb02.wsv_alpv" />
-        <Setting Key="Age_Transfer_Ins_SAg" SpName="Age_Transfer_Ins_SAg" DbName="DBTXN.bodb02.wsv_alpv" />
-        <Setting Key="Age_Transfer_InsClearBalance_Ag" SpName="Age_Transfer_InsClearBalance_Ag" DbName="DBTXN.bodb02.wsv_alpv" />
-        <!-- 107963 - Temporarily move 2 SPs to DBTXN to enhance transfer -->
-        <Setting Key="Age_Transfer_SelList_Ag" SpName="Age_Transfer_SelList_Ag_ForDBTrans" DbName="DBTXN.bodb02.wsv_alpv">
+        <Setting Key="SiteDB_Age_Transfer_Ins_Ag" SpName="Age_Transfer_Ins_Ag" DbName="SiteDB.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_Ins_MAg" SpName="Age_Transfer_Ins_MAg" DbName="SiteDB.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_Ins_SAg" SpName="Age_Transfer_Ins_SAg" DbName="SiteDB.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_InsClearBalance_Ag" SpName="Age_Transfer_InsClearBalance_Ag" DbName="SiteDB.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_SelList_MAg" SpName="Age_Transfer_SelList_MAg" DbName="SiteDB.bodb02.wsv_alpv" Plain="0">
+            <Mapping DataField="yesterday_agentBalance" ObjectProperty="YesterdayBalance" />
+            <Mapping DataField="agentbalance" ObjectProperty="Balance" />
+            <Mapping DataField="yesterday_agentCashBalance" ObjectProperty="YesterdayCashBalance" />
+            <Mapping DataField="agentCashBalance" ObjectProperty="CashBalance" />
+            <Mapping DataField="agentOutstanding" ObjectProperty="Outstanding" />
+            <Mapping DataField="agentCredit" ObjectProperty="GivenCredit" />
+            <Mapping DataField="agentUsedCredit" ObjectProperty="UsedCredit" />
+        </Setting>
+        <Setting Key="SiteDB_Age_Transfer_SelList_SAg" SpName="Age_Transfer_SelList_SAg" DbName="SiteDB.bodb02.wsv_alpv" Plain="0">
+            <Mapping DataField="yesterday_magentBalance" ObjectProperty="YesterdayBalance" />
+            <Mapping DataField="magentbalance" ObjectProperty="Balance" />
+            <Mapping DataField="yesterday_magentCashBalance" ObjectProperty="YesterdayCashBalance" />
+            <Mapping DataField="magentCashBalance" ObjectProperty="CashBalance" />
+            <Mapping DataField="magentOutstanding" ObjectProperty="Outstanding" />
+            <Mapping DataField="magentCredit" ObjectProperty="GivenCredit" />
+            <Mapping DataField="magentUsedCredit" ObjectProperty="UsedCredit" />
+        </Setting>
+        <Setting Key="SiteDB_Age_Transfer_SelList_Ag" SpName="Age_Transfer_SelList_Ag_ForDBTrans" DbName="SiteDB.bodb02.wsv_alpv">
             <Mapping DataField="yesterday_balance" ObjectProperty="YesterdayBalance" />
             <Mapping DataField="balance" ObjectProperty="Balance" />
             <Mapping DataField="outstanding" ObjectProperty="Outstanding" />
             <Mapping DataField="credit" ObjectProperty="GivenCredit" />
         </Setting>
-        <Setting Key="Age_Transfer_SelMemberInfo_Yesterday" SpName="Age_Transfer_SelMemberInfo_Yesterday_ForDBTrans" DbName="DBTXN.bodb02.wsv_alpv" />
-        <!-- 107963 - End-->
+        <Setting Key="SiteDB_Age_Transfer_SelMemberInfo_Yesterday" SpName="Age_Transfer_SelMemberInfo_Yesterday_ForDBTrans" DbName="SiteDB.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_Ins_DirectMember" SpName="Age_Transfer_Ins_DirectMember" DbName="SiteDB.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_InsClearBalance_DirectMember" SpName="Age_Transfer_InsClearBalance_DirectMember" DbName="SiteDB.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_CashBalance_DirectMember_Sel" SpName="Age_Transfer_CashBalance_DirectMember_Sel" DbName="SiteDB.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_CashBalance_DirectMember_Ins" SpName="Age_Transfer_CashBalance_DirectMember_Ins" DbName="SiteDB.bodb02.wsv_alpv" />
     </Function>
     <Function Name="Base Functions">
         <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.wsv_alpv" />
@@ -460,15 +481,15 @@
         <Setting Key="Age_CustomerSelCheckBelonging_MultiCust" SpName="Age_CustomerSelCheckBelonging_MultiCust" DbName="DBAGE.bodb02.wsv_alpv" />
     </Function>
     <Function Name="Cash Balance Transfer">
-        <Setting Key="Age_Transfer_CashBalance_Sel" SpName="Age_Transfer_CashBalance_Sel" DbName="DBAGE.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_CashBalance_Sel" SpName="Age_Transfer_CashBalance_Sel" DbName="SiteDB.bodb02.wsv_alpv" />
     </Function>
     <Function Name="Transfer all and Clear Credit">
-        <Setting Key="Age_Transfer_Credit_All_Sel" SpName="Age_Transfer_Credit_All_Sel" DbName="DBAGE.bodb02.wsv_alpv" Plain="0">
+        <Setting Key="SiteDB_Age_Transfer_Credit_All_Sel" SpName="Age_Transfer_Credit_All_Sel" DbName="SiteDB.bodb02.wsv_alpv" Plain="0">
             <Mapping DataField="RowId" ObjectProperty="Id" Class="TransferStep" />
             <Mapping DataField="MemberOutStanding" ObjectProperty="Outstanding" Class="TransferStep" />
             <Mapping DataField="RowId" ObjectProperty="Id" Class="ClearCreditStep" />
         </Setting>
-        <Setting Key="Age_Transfer_Credit_All_SelDownlineInfo" SpName="Age_Transfer_Credit_All_SelDownlineInfo" DbName="DBAGE.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Age_Transfer_Credit_All_SelDownlineInfo" SpName="Age_Transfer_Credit_All_SelDownlineInfo" DbName="DBAGE.bodb02.wsv_alpv" />
     </Function>
     <Function Name="Transfer To Downline History">
         <Setting Key="Age_Rpt_Downline_Transfer_History" SpName="Age_Transfer_DownlineHistorySel" DbName="DBACC.bodb02.wsv_alpv" Plain="0">
@@ -476,29 +497,6 @@
             <Mapping DataField="UserName" ObjectProperty="DownlineName" />
             <Mapping DataField="TransferAmt" ObjectProperty="TransferAmount" />
             <Mapping DataField="TransDesc" ObjectProperty="Description" />
-        </Setting>
-    </Function>
-    <Function Name="Multiple Transfer">
-        <!-- 107963 - Temporarily move 2 SPs to DBTXN to enhance transfer -->
-        <!-- <Setting Key="Age_Transfer_SelList_Ag" SpName="Age_Transfer_SelList_Ag" DbName="DBAGE.bodb02.wsv_alpv" /> -->
-        <!-- 107963 - End-->
-        <Setting Key="Age_Transfer_SelList_MAg" SpName="Age_Transfer_SelList_MAg" DbName="DBAGE.bodb02.wsv_alpv" Plain="0">
-            <Mapping DataField="yesterday_agentBalance" ObjectProperty="YesterdayBalance" />
-            <Mapping DataField="agentbalance" ObjectProperty="Balance" />
-            <Mapping DataField="yesterday_agentCashBalance" ObjectProperty="YesterdayCashBalance" />
-            <Mapping DataField="agentCashBalance" ObjectProperty="CashBalance" />
-            <Mapping DataField="agentOutstanding" ObjectProperty="Outstanding" />
-            <Mapping DataField="agentCredit" ObjectProperty="GivenCredit" />
-            <Mapping DataField="agentUsedCredit" ObjectProperty="UsedCredit" />
-        </Setting>
-        <Setting Key="Age_Transfer_SelList_SAg" SpName="Age_Transfer_SelList_SAg" DbName="DBAGE.bodb02.wsv_alpv" Plain="0">
-            <Mapping DataField="yesterday_magentBalance" ObjectProperty="YesterdayBalance" />
-            <Mapping DataField="magentbalance" ObjectProperty="Balance" />
-            <Mapping DataField="yesterday_magentCashBalance" ObjectProperty="YesterdayCashBalance" />
-            <Mapping DataField="magentCashBalance" ObjectProperty="CashBalance" />
-            <Mapping DataField="magentOutstanding" ObjectProperty="Outstanding" />
-            <Mapping DataField="magentCredit" ObjectProperty="GivenCredit" />
-            <Mapping DataField="magentUsedCredit" ObjectProperty="UsedCredit" />
         </Setting>
     </Function>
     <Function Name="Credit/Balance">
@@ -532,7 +530,7 @@
         <Setting Key="SiteDB_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="SiteDB.bodb02.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Reward">
-        <Setting Key="Acc_RewardPayment_Confirm" SpName="Acc_RewardPayment_Confirm" DbName="SiteDB.bodb02.wsv_alpv" />
+        <Setting Key="SiteDB_Acc_RewardPayment_Confirm" SpName="Acc_RewardPayment_Confirm" DbName="SiteDB.bodb02.wsv_alpv" />
     </Function>
     <Function Name="Win Loss Limit">
         <Setting Key="SiteDB_Age_CustomerSelWinlimitInfo" SpName="Age_CustomerSelWinlimitInfo" DbName="SiteDB.CustDB.wsv_alpv" />
