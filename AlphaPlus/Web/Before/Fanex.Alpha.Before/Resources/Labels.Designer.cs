@@ -210,5 +210,13 @@ namespace Fanex.Alpha.Before.Resources
                 return ResourceManager.GetString("UM_Message", resourceCulture);
             }
         }
+
+        public static string usernameAlphanumericOnly
+        {
+            get
+            {
+                return ResourceManager.GetString("usernameAlphanumericOnly", resourceCulture);
+            }
+        }
     }
 }

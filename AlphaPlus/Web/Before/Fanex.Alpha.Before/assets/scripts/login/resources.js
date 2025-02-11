@@ -49,6 +49,7 @@ Sphinx.Resources = (function () {
     resource.updateYourBrowser = "Click here to update your browser";
     resource.messageAlwayShowOnLoginPage =
       "The site encountered a technical error, we are working to resolve it. The estimated completion time is {0} (GMT +8). Please try again after that time. We are sorry for the inconvenience.";
+    resource.errUsernameFormat = "Username must be alphabet or numeric only.";
     resource.warningMessage =
       "Do not proceed if this is not your profile picture.";
     return resource;
@@ -77,6 +78,7 @@ Sphinx.Resources = (function () {
     resource.updateYourBrowser = "請點擊這里以升級您的瀏覽器";
     resource.messageAlwayShowOnLoginPage =
       "目前網站面對技術有誤，我們正在處理當中。估計完成時間為{0}（GMT +8）。請您稍後再試，給您帶來的不便請見諒";
+    resource.errUsernameFormat = "用戶名只能包含字母或數字。";
     resource.warningMessage = "如果這不是您的個人頭像，請勿繼續操作";
 
     return resource;
@@ -105,6 +107,7 @@ Sphinx.Resources = (function () {
     resource.updateYourBrowser = "请点击这里以升级您的浏览器";
     resource.messageAlwayShowOnLoginPage =
       "目前网站面对技术有误，我们正在处理当中。估计完成时间为{0}（GMT +8）。请您稍后再试，给您带来的不便请见谅";
+    resource.errUsernameFormat = "用户名只能包含字母或数字。";
     resource.warningMessage = "如果这不是您的个人头像，请勿继续操作";
 
     return resource;
@@ -133,6 +136,8 @@ Sphinx.Resources = (function () {
     resource.updateYourBrowser = "Click here to update your browser";
     resource.messageAlwayShowOnLoginPage =
       "The site encountered a technical error, we are working to resolve it. The estimated completion time is {0} (GMT +8). Please try again after that time. We are sorry for the inconvenience.";
+    resource.errUsernameFormat =
+      "ユーザー名はアルファベットまたは数字のみ使用可能です。";
     resource.warningMessage =
       "Do not proceed if this is not your profile picture.";
 
@@ -163,6 +168,7 @@ Sphinx.Resources = (function () {
       "คลิ๊กตรงนี้เพื่อทำการอัพเกรด เบราว์เซอร์ของท่าน";
     resource.messageAlwayShowOnLoginPage =
       "เว็บไซต์ตรวจพบข้อผิดพลาดทางเทคนิค เรากำลังดำเนินการแก้ไข โดยจะสิ้นสุดเวลาประมาณ {0} (GMT +8). โปรดลองใหม่อีกครั้งภายหลัง ขออภัยในความไม่สะดวก";
+    resource.errUsernameFormat = "ชื่อผู้ใช้ต้องเป็นตัวอักษรหรือตัวเลขเท่านั้น";
     resource.warningMessage = "อย่าดำเนินการต่อหากนี่ไม่ใช่รูปโปรไฟล์ของคุณ";
 
     return resource;
@@ -191,6 +197,7 @@ Sphinx.Resources = (function () {
     resource.updateYourBrowser = "Click here to update your browser";
     resource.messageAlwayShowOnLoginPage =
       "The site encountered a technical error, we are working to resolve it. The estimated completion time is {0} (GMT +8). Please try again after that time. We are sorry for the inconvenience.";
+    resource.errUsernameFormat = "Username must be alphabet or numeric only.";
     resource.warningMessage =
       "Do not proceed if this is not your profile picture.";
 
@@ -220,6 +227,8 @@ Sphinx.Resources = (function () {
     resource.updateYourBrowser = "Nhấn vào đây để cập nhật trình duyệt của bạn";
     resource.messageAlwayShowOnLoginPage =
       "Hệ thống đang gặp sự cố và chúng tôi đang cố gắng khắc phục trong thời gian sớm nhất có thể. Dự kiến sẽ hoàn tất lúc {0} (GMT +8). Xin vui lòng thử lại sau thời gian trên. Chúng tôi rất tiếc về sự bất tiện này.";
+    resource.errUsernameFormat =
+      "Tên Đăng Nhập chỉ chứa ký tự chữ cái và số đếm.";
     resource.warningMessage =
       "Không tiếp tục nếu đây không phải hình đại diện của bạn.";
     return resource;

@@ -36,6 +36,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
     public class SignInService : ISignInService
     {
         private readonly string _loginTheme;
+        private static readonly System.Text.RegularExpressions.Regex alphanumericRegex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9]*$", System.Text.RegularExpressions.RegexOptions.Compiled);
 
         private readonly ManualUMOptions manualUMOptions;
         private readonly CommonOptions commonOptions;
@@ -164,6 +165,13 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
             if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password))
             {
+                return signInResult;
+            }
+
+            if (!IsAlphanumericOnly(model.Username))
+            {
+                signInResult.ErrCode = SignInErrorContants.UsernameAlphanumericOnly;
+                signInResult.ErrMsg = Labels.usernameAlphanumericOnly;
                 return signInResult;
             }
 
@@ -481,6 +489,11 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 ServerId = criteria.ServerId,
                 IsKickoutDueToProtectedMode = criteria.IsKickOut
             };
+        }
+        
+        private static bool IsAlphanumericOnly(string text)
+        {
+            return alphanumericRegex.IsMatch(text);
         }
     }
 }

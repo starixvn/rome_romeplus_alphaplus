@@ -172,4 +172,7 @@
     <value>本公司将于 {0}至{1} (GMT+8) 对服务器进行例行维护。期间所有的网页将无法登入。请您稍候再来。</value>
     <comment/>
   </data>
+  <data name="usernameAlphanumericOnly" xml:space="preserve">
+    <value>用户名只能包含字母或数字。</value>
+  </data>
 </root>

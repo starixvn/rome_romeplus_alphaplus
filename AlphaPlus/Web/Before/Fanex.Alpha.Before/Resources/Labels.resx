@@ -172,4 +172,7 @@
     <value>We are having regular server maintenance. The website is currently unavailable from {0} until {1} (GMT +8). Please come back later.</value>
     <comment/>
   </data>
+  <data name="usernameAlphanumericOnly" xml:space="preserve">
+    <value>Username must be alphabet or numeric only.</value>
+  </data>
 </root>

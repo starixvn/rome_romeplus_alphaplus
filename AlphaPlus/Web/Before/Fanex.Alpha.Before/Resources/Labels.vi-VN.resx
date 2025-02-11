@@ -172,4 +172,7 @@
     <value>Hệ thống của chúng tôi đang trong thời gian bảo trì định kỳ. Trang mạng đang ngừng hoạt động từ {0} cho đến {1} (GMT +8). Vui lòng quay trở lại sau.</value>
     <comment/>
   </data>
+  <data name="usernameAlphanumericOnly" xml:space="preserve">
+    <value>Tên Đăng Nhập chỉ chứa ký tự chữ cái và số đếm.</value>
+  </data>
 </root>

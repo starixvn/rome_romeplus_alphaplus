@@ -172,4 +172,7 @@
     <value>เราจะมีการบำรุงรักษาเซิร์ฟเวอร์ตามวงรอบปกติ โดยเว็บไซต์จะไม่สามารถใช้งานได้ตั้งแต่ {0} ถึง {1} (GMT +8) โปรดลองใหม่ภายหลัง.</value>
     <comment/>
   </data>
+  <data name="usernameAlphanumericOnly" xml:space="preserve">
+    <value>ชื่อผู้ใช้ต้องเป็นตัวอักษรหรือตัวเลขเท่านั้น</value>
+  </data>
 </root>
