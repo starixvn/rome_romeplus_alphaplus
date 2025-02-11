@@ -102,6 +102,10 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
         {
             var actionName = SearchAccountLevel.IsMemberLevel() ? "MemberStatement" : "SMAStatement";
             var link = $"{ReportsUrl}/Statement/{actionName}?CustID={CustId}&CustName={UserName}&CustLevelId={RoleId}";
+            if (IsDirectMember)
+            {
+                link += "&IsDirectMember=true";
+            }
             return new Link(CommonResx.Statement, link);
         }
     }
