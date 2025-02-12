@@ -114,7 +114,7 @@
         }
     ],
     "StoredProcedurePath": "~/App_Data/SPNames/INTERNAL",
-    "FanexDataServiceApi": "http://vn-alphadataservice4-prod.nebula.prod",
+    "FanexDataServiceApi": "http://alpha_data_service_ALPHAPROD_4:5000",
     "LogLibs": "Sentry,Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-7a5-Internal-Linux",
