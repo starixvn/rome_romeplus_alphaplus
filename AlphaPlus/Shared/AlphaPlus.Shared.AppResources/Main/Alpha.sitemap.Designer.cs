@@ -818,6 +818,17 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Create Direct Member.
+        /// </summary>
+        public static string newDirectMember
+        {
+            get
+            {
+                return ResourceManager.GetString("newDirectMember", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to New Master.
         /// </summary>
         public static string newMaster
@@ -1060,17 +1071,6 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Sign in To Nova Casino.
-        /// </summary>
-        public static string SigninToNovaCasino
-        {
-            get
-            {
-                return ResourceManager.GetString("SigninToNovaCasino", resourceCulture);
-            }
-        }
-
-        /// <summary>
         ///   Looks up a localized string similar to Sign in Back Office.
         /// </summary>
         public static string SignInS1BackOffice
@@ -1078,6 +1078,17 @@ namespace AlphaPlus.Shared.AppResources.Main
             get
             {
                 return ResourceManager.GetString("SignInS1BackOffice", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in To Nova Casino.
+        /// </summary>
+        public static string SigninToNovaCasino
+        {
+            get
+            {
+                return ResourceManager.GetString("SigninToNovaCasino", resourceCulture);
             }
         }
 

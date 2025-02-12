@@ -13,5 +13,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
         public byte UplineRoleId { get; set; }
 
         public string SiteLabel { get; set; }
+
+        public int AgentId { get; set; } = 0;
     }
 }

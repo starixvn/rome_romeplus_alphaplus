@@ -85,7 +85,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 GetHashKey(),
                 await customerService.GetSuggestDirectMemberUsername(query.CustName));
 
-            return View("~/Views/Customer/CreateDirectMember.cshtml", viewModel);
+            return View(viewModel);
         }
         public async Task<ActionResult> Create(CreateCustomerQuery query)
         {
@@ -249,7 +249,16 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         }
 
         public async Task<ActionResult> GetCustomerSetting(GetCustomerSettingRequest request)
-            => Content(await customerService.GetCustomerSetting(request.CustId, request.RoleId, systemId, request.UplineRoleId, request.Language, request.IsGetUpLine, request.ProductGroupId, request.SiteLabel));
+            => Content(await customerService.GetCustomerSetting(
+                request.CustId,
+                request.RoleId,
+                systemId,
+                request.UplineRoleId,
+                request.Language,
+                request.IsGetUpLine,
+                request.ProductGroupId,
+                request.SiteLabel,
+                agentId: request.AgentId));
 
         public async Task<ActionResult> GetCurrentWinLossAmount(CustomerWinLossAmountQuery request)
          => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));

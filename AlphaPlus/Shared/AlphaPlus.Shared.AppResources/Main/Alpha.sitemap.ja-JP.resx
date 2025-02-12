@@ -208,7 +208,7 @@
     <value>メンバー勝ち負け</value>
   </data>
   <data name="monitor" xml:space="preserve">
-    <value>最後のベットの監視</value>
+    <value>Last Bets Monitoring</value>
   </data>
   <data name="newAgent" xml:space="preserve">
     <value>新しいエージェント</value>
@@ -289,7 +289,7 @@
     <value>入力</value>
   </data>
   <data name="normal" xml:space="preserve">
-    <value>通常</value>
+    <value>Normal</value>
   </data>
   <data name="personalMessage" xml:space="preserve">
     <value>Personal Message</value>
@@ -372,17 +372,5 @@
   </data>
   <data name="SettlementReport" xml:space="preserve">
     <value>精算報告書</value>
-  </data>
-  <data name="BetChoiceMatching" xml:space="preserve">
-    <value>重複ベット</value>
-  </data>
-  <data name="BonusDetail" xml:space="preserve">
-    <value>ボーナス詳細</value>
-  </data>
-  <data name="customerSetting" xml:space="preserve">
-    <value>顧客設定</value>
-  </data>
-  <data name="IndirectLoginAccount" xml:space="preserve">
-    <value>間接ログインアカウント</value>
   </data>
 </root>

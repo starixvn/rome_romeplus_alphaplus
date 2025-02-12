@@ -49,6 +49,7 @@
     <siteMapNode resourceKey="newMaster" url="/settings/CopyAccount?lv=4" menuItemType="CreateAccountMenuItem" roles="Super"></siteMapNode>
     <siteMapNode resourceKey="newAgent" url="/settings/CopyAccount?lv=3" menuItemType="CreateAccountMenuItem" roles="Master"></siteMapNode>
     <siteMapNode resourceKey="newMember" url="/settings/CopyAccount?lv=2" menuItemType="CreateAccountMenuItem" roles="Agent"></siteMapNode>
+    <siteMapNode resourceKey="newDirectMember" url="/settings/Customer/CreateDirectMember" menuItemType="CreateDirectMemberMenuItem" roles="Super,Master"></siteMapNode>
     <siteMapNode resourceKey="PTTemplate" url="/settings/PTTemplate/Index" menuItemType="PTTemplateMenuItem"></siteMapNode>
     <siteMapNode menuItemType="SubAccountMenuItem" resourceKey="subaccount" url="/settings/subaccount" byPassProtectedModeInternal="true"></siteMapNode>
 

@@ -1,10 +1,10 @@
-﻿using AlphaPlus.Core.Models;
-using static AlphaPlus.Core.Models.UserPermission;
-using static AlphaPlus.Core.Models.UserSession;
-using AlphaPlus.Core.Helpers;
-using Fanex.Data.Repository;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Shared.Constants;
 using AlphaPlus.Main.Site.Shared.Models;
+using Fanex.Data.Repository;
+using static AlphaPlus.Core.Models.UserPermission;
+using static AlphaPlus.Core.Models.UserSession;
 
 namespace AlphaPlus.Main.Site.Features.Default.MenuBar
 {
@@ -16,6 +16,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         {
             [string.Empty] = null,
             ["CreateAccountMenuItem"] = () => new MenuStatus(!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CreateAccount)),
+            ["CreateDirectMemberMenuItem"] = () => new MenuStatus(() => CreateDirectMemberMenuItemVisible),
             ["PTTemplateMenuItem"] = () => new MenuStatus(!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CreateAccount)),
             ["ReportMenuItem"] = () => new MenuStatus(() => !Current.IsSubAcc || Current.SubPageAccess.ViewReports, null),
             ["BetStatisticsMenuItem"] = () => new MenuStatus(() => !Current.IsSubAcc || Current.SubPageAccess.ViewReports, null),
@@ -55,6 +56,9 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                      && !Current.IsIndirectLoggedIn;
                 })
         };
+
+        private static bool CreateDirectMemberMenuItemVisible
+            => (!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CreateAccount)) && (Current.IsSuper || Current.IsMaster);
 
         private static bool IsOfferedNovaCasino => !Current.IsSubAcc && NovaCasinoSettings.IsOfferedNovaCasino(
                Current.Site.ToUpperInvariant(),

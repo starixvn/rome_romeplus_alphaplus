@@ -1,7 +1,7 @@
 @using AlphaPlus.Settings.Site.Features.Customer.ViewModels;
 @model CreateDirectMemberViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
 }
 
 @section Styles {
@@ -30,27 +30,25 @@
         <input type="hidden" id="SecretKey" value="@Model.SecretKey" />
         <div id="root"></div>
         @section Scripts {
-        <script type="text/javascript">
-            const appConfig = @Html.Raw(Model.AppConfig);
-            const params = @Html.Raw(Model.Params);
-        </script>
-        <environment names="Development,Production">
-            <script type="module" src="@(Model.CdnUri)direct-member/create/index.js" asp-append-version="true"></script>
-        </environment>
-        <environment names="Development">
-            <script type="module">
-                import RefreshRuntime from "http://localhost:4210/@@react-refresh";
-                RefreshRuntime.injectIntoGlobalHook(window);
-                window.$RefreshReg$ = () => { };
-                window.$RefreshSig$ = () => (type) => type;
-                window.__vite_plugin_react_preamble_installed__ = true;
+            <script type="text/javascript">
+                const appConfig = @Html.Raw(Model.AppConfig);
+                const params = @Html.Raw(Model.Params);
             </script>
-            <script type="module" src=@("http://localhost:4210/@vite/client")></script>
+            <environment names="Development,Production">
+                <script type="module" src="@(Model.CdnUri)direct-member/create/index.js" asp-append-version="true"></script>
+            </environment>
+            <environment names="Development">
+                <script type="module">
+                    import RefreshRuntime from "http://localhost:4210/@@react-refresh";
+                    RefreshRuntime.injectIntoGlobalHook(window);
+                    window.$RefreshReg$ = () => { };
+                    window.$RefreshSig$ = () => (type) => type;
+                    window.__vite_plugin_react_preamble_installed__ = true;
+                </script>
+                <script type="module" src=@("http://localhost:4210/@vite/client")></script>
 
-            <script type="module" src="http://localhost:4210/src/main.tsx"></script>
-        </environment>
-
-        @StaticResources.RenderScripts("~/assets/bundles/customer/create-customer")
-    }
+                <script type="module" src="http://localhost:4210/src/main.tsx"></script>
+            </environment>
+        }
     }
 </div>
