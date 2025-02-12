@@ -113,7 +113,7 @@
             "ProviderName": "System.Data.SqlClient"
         }
     ],
-    "StoredProcedurePath": "~/App_Data/SPNames/MAIN",
+    "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://vn-alphadataservice-prod.nebula.prod",
     "LogLibs": "Sentry,Rabbit",
     "Fanex.Logging": {

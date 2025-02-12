@@ -113,7 +113,7 @@
             "ProviderName": "System.Data.SqlClient"
         }
     ],
-    "StoredProcedurePath": "~/App_Data/SPNames/MAIN",
+    "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://vn-fanexdataservice.playonesit.com",
     "LogLibs": "Sentry,Rabbit",
     "Fanex.Logging": {
@@ -252,8 +252,7 @@
     },
     "QRCode": {
         "API": "http://account-service-001.membersite-service.k8s.nebula.sit/Login",
-        "Domains": [
-        ],
+        "Domains": [],
         "SiteId": 4120,
         "ExpireSeconds": 900
     },

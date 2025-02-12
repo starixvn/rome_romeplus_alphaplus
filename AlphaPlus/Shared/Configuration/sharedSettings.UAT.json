@@ -113,7 +113,7 @@
             "ProviderName": "System.Data.SqlClient"
         }
     ],
-    "StoredProcedurePath": "~/App_Data/SPNames/MAIN",
+    "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://vn-alphadataservice-prod.nebula.prod",
     "LogLibs": "Sentry,Rabbit",
     "Fanex.Logging": {
@@ -252,8 +252,7 @@
     },
     "QRCode": {
         "API": "http://account-service-credit.membersite-service.t2p.nebula.prod:22080/Login/",
-        "Domains": [
-        ],
+        "Domains": [],
         "SiteId": 4120,
         "ExpireSeconds": 900
     },
