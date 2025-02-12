@@ -156,15 +156,15 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                         _custIds = _custIds.Replace(',', '^');
                         break;
                     }
+                }
 
-                    if (request.HasFormContentType)
+                if (request.HasFormContentType)
+                {
+                    _custIds = request.Form[custIdQueryStringParamName].ToString();
+                    if (!string.IsNullOrEmpty(_custIds))
                     {
-                        _custIds = request.Form[custIdQueryStringParamName].ToString();
-                        if (!string.IsNullOrEmpty(_custIds))
-                        {
-                            _custIds = _custIds.Replace(',', '^');
-                            break;
-                        }
+                        _custIds = _custIds.Replace(',', '^');
+                        break;
                     }
                 }
             }
@@ -175,11 +175,11 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
 
     private int GetCustomerIdFromTheSameQueryString(string valueFromQuery, string paramName)
     {
-        if (valueFromQuery.Contains(",") && !options.CustIdQueryStringParamNames.Any(p =>p.Equals(paramName, StringComparison.OrdinalIgnoreCase)))
+        if (valueFromQuery.Contains(",") && !options.CustIdQueryStringParamNames.Any(p => p.Equals(paramName, StringComparison.OrdinalIgnoreCase)))
         {
             return int.MaxValue;
         }
-        
+
         int.TryParse(valueFromQuery, out int custId);
 
         return custId;
