@@ -113,7 +113,7 @@
             "ProviderName": "System.Data.SqlClient"
         }
     ],
-    "StoredProcedurePath": "~/App_Data/SPNames/INTERNAL",
+    "StoredProcedurePath": "~/App_Data/SPNames.INTERNAL.xml",
     "FanexDataServiceApi": "http://alpha_data_service_ALPHAPROD_4:5000",
     "LogLibs": "Sentry,Rabbit",
     "Fanex.Logging": {
