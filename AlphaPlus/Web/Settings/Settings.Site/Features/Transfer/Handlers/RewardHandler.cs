@@ -7,6 +7,7 @@ using AlphaPlus.Settings.Transfer.API.Services;
 using MediatR;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
+using AlphaPlus.Settings.Transfer.API.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 public class RewardHandler(
@@ -61,7 +62,7 @@ public class RewardHandler(
             {
                 var custInfo = await customerService.GetCustInfo(username, viewerId);
 
-                if (custInfo != null && actorLevel.IsDirectUplineOf(custInfo.RoleId))
+                if (custInfo != null && actorLevel.IsDirectUplineOf(custInfo.RoleId) || IsDirectMember(actorLevel, custInfo))
                 {
                     await usernameSuggestionService.UpdateUserSearch(viewerId, custInfo.Username, custInfo.FirstName, custInfo.LastName, custInfo.Username2);
                 }
@@ -72,6 +73,11 @@ public class RewardHandler(
             }
         });
     }
+
+    private static bool IsDirectMember(UserLevel actorLevel, CustInfo custInfo)
+        => custInfo.RoleId == UserLevel.Member.Value
+        && custInfo.AgentId.HasValue
+        && -custInfo.AgentId.Value == actorLevel.Value;
 
     public async Task<RewardResult> Handle(UpdateRewardPaymentStatusCommand message, CancellationToken cancellation)
     {
