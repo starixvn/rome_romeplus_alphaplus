@@ -15,7 +15,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 
-const string App_Data = "App_Data";
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
@@ -27,8 +26,8 @@ configuration
     .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true) // When app is published or Docker
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
-    .AddJsonFile(Path.Combine(App_Data, "securitycode.json"), optional: false, reloadOnChange: true)
-    .AddJsonFile(Path.Combine(App_Data, "partialum.json"), optional: false, reloadOnChange: true)
+    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("partialum.json", optional: false, reloadOnChange: true)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);

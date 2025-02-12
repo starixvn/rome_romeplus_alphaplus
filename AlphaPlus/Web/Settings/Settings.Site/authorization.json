@@ -30,6 +30,26 @@
             "custId",
             "CustIds"
         ],
+        "CustIdsQueryStringParamNames": [
+            "SearchAccountIds",
+            "custids",
+            "CustIds",
+            "custIds",
+            "targetCustIds",
+            "ids",
+            "cids",
+            "recommends",
+            "mrecommends",
+            "idagents",
+            "masterIds",
+            "agentIds",
+            "idAgents",
+            "idMasters",
+            "ibccustids",
+            "ACustIDs",
+            "CustomerIds",
+            "customerIds"
+        ],
         "GroupPageAccesses": [
             {
                 "RoleId": 2,

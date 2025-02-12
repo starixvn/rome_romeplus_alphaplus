@@ -1,24 +1,23 @@
 using System.Text.Json.Serialization;
+using AlphaPlus.BetLists.Shared.Extensions;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
-using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
+using AlphaPlus.Core.Models;
+using AlphaPlus.NetThrottling;
 using AlphaPlus.RequestInfo;
+using AlphaPlus.Results.Features.Shared;
+using AlphaPlus.SecurityCode.Extensions;
+using AlphaPlus.SecurityCode.Filters;
+using AlphaPlus.Tickets.Site.Features.Shared.Extensions;
+using Fanex.Data;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
-using Fanex.Data;
-using AlphaPlus.Results.Features.Shared;
-using AlphaPlus.BetLists.Shared.Extensions;
-using AlphaPlus.Core.Filters;
-using AlphaPlus.SecurityCode.Filters;
-using AlphaPlus.SecurityCode.Extensions;
-using Microsoft.AspNetCore.HttpOverrides;
-using AlphaPlus.NetThrottling;
 using Microsoft.AspNetCore.Authorization;
-using AlphaPlus.Core.Models;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 
-const string App_Data = "App_Data";
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
@@ -30,9 +29,9 @@ configuration
     .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true) // When app is published or Docker
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
-    .AddJsonFile(Path.Combine(App_Data, "partialum.json"), optional: false, reloadOnChange: true)
-    .AddJsonFile(Path.Combine(App_Data, "results.json"), optional: false, reloadOnChange: true)
-    .AddJsonFile(Path.Combine(App_Data, "securitycode.json"), optional: false, reloadOnChange: true)
+    .AddJsonFile("partialum.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("results.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
 
