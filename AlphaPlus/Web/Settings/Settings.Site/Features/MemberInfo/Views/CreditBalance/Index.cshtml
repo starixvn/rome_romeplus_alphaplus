@@ -5,6 +5,7 @@
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Core.Helpers
+@using AlphaPlus.Core.Models
 @using System.Net
 @using Microsoft.AspNetCore.Html
 @addTagHelper *, AlphaPlus.Settings.Site
@@ -179,7 +180,7 @@
     {
         if (Model.CanUpdateAccount)
         {
-            return $"<a href='javascript:;' class='link creditlink' data-custid='{item.CustId}' data-username='{item.UserName}' data-levelid='{Model.DownlineLevel.Value}'>{HtmlHelpers.FormatDecimal(item.Credit)}</a>";
+            return $"<a href='javascript:;' class='link creditlink' data-custid='{item.CustId}' data-username='{item.UserName}' data-levelid='{(item.IsDirectMember ? UserLevel.Member.Value : Model.DownlineLevel.Value)}'>{HtmlHelpers.FormatDecimal(item.Credit)}</a>";
         }
         else
         {

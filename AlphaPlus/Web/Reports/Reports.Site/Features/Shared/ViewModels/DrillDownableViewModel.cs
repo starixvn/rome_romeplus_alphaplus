@@ -25,6 +25,7 @@ public abstract class DrillDownableViewModel<T> where T : class
         CustId = message.CustId;
         CustName = message.CustName;
         CustLevel = message.CustLevel;
+        DownlineLevelId = (byte)(CustLevel.Value - 1);
         LevelType = levelType;
         LevelTypeValue = CustLevel.IsSuperLevel() ? CommonResx.MasterAgent : Resources.Agent;
         ShowLevelType = CustLevel.IsMasterOrSuperLevel();
@@ -42,11 +43,10 @@ public abstract class DrillDownableViewModel<T> where T : class
     public int CustId { get; }
 
     public string CustName { get; }
-    
-    public byte DownlineLevelId { get; } = (byte)(message.CustLevelId - 1);
-
 
     public UserLevel CustLevel { get; }
+
+    public byte DownlineLevelId { get; }
 
     public byte LevelType { get; }
 

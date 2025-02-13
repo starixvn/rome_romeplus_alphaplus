@@ -27,7 +27,7 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
         public string ErrMsg { get; set; }
 
         public override string GetSettingKey()
-            => "Age_Transfer_Credit_All_SelDownlineInfo";
+            => "SiteDB_Age_Transfer_Credit_All_SelDownlineInfo";
 
         public override bool IsValid()
             => !string.IsNullOrWhiteSpace(Username) && CustId > 0;
