@@ -13,6 +13,8 @@ public class WinLossDetailGetDataViewModel(
 {
     public UserLevel CustLevel { get; } = message.CustLevel;
 
+    public byte DownlineLevelId { get; } = (byte)(message.CustLevelId - 1);
+
     public bool CanDrilldown { get; } = !message.IsProtectedMode || !message.CustLevel.IsAgentLevel();
 
     public bool CanShowMonitoredIcon { get; } = !message.IsProtectedMode && message.ViewerLevel.IsAgentLevel();

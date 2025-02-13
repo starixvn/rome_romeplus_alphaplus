@@ -10,6 +10,7 @@
 @{
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
+    var downlineRoleId = Model.CustLevel.Value - 1;
     void DisplayUserLevelText(UserLevel userLevel)
     {
         if (userLevel.IsMemberLevel())
@@ -117,7 +118,8 @@
                             else
                             {
                                 <a href="javascript:;" class="downline-link" data-custid="@outstanding.CustId"
-                                    data-custname="@outstanding.CustName">@outstanding.CustName</a>
+                                    data-custname="@outstanding.CustName"
+                                    data-custlevelid="@Model.DownlineLevelId">@outstanding.CustName</a>
                             }
                         </td>
                         @{

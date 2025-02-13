@@ -141,10 +141,7 @@ class BaseReport {
         }
 
         this.isProcessingDrilldownable = true;
-        const $custLevelId = $('#CustLevelId');
-        const custLevelIdValue = $element.data('custlevelid') || +$custLevelId.val() - 1;
-
-        $custLevelId.val(custLevelIdValue);
+        this.addParamDrilldownable('CustLevelId', $element.data('custlevelid'));
         this.addParamDrilldownable('CustId', $element.data('custid'));
         this.addParamDrilldownable('CustName', $element.data('custname'));
         this.addParamDrilldownable('product-ids', this.$tableReport.data('productids'));

@@ -19,6 +19,8 @@ public abstract class DrillDownableViewModel<T>(
 
     public UserLevel CustLevel { get; } = message.CustLevel;
 
+    public byte DownlineLevelId { get; } = (byte)(message.CustLevelId - 1);
+
     public PageHeaderViewModel PageHeader { get; } = pageHeader;
 
     public ReportData<T> ReportData { get; } = reportData;
