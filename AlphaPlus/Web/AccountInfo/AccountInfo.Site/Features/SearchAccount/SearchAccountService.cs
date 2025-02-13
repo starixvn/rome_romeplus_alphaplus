@@ -356,7 +356,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
                 return;
             }
 
-            var rm = Resources.ResourceManager;
+            var rm = AlphaPlus.Shared.AppResources.Common.CommonResx.ResourceManager;
             foreach (var row in affects)
             {
                 var uplineId = row.CustId;
