@@ -19,16 +19,14 @@
             "ibccustid",
             "ACustID",
             "SearchAccountId",
-            "selectedCustId",
-            "CustIds"
+            "selectedCustId"
         ],
         "CustIdJsonParamNames": [
             "txtCustomerObject",
             "newCustomer",
             "SearchAccountId",
             "uplineCustId",
-            "custId",
-            "CustIds"
+            "custId"
         ],
         "CustIdsQueryStringParamNames": [
             "SearchAccountIds",
