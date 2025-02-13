@@ -156,9 +156,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         public Task<Result> Handle(UpdateAllDayBalanceTransferRequest message, CancellationToken cancellationToken)
             => searchAccountService.UpdateAllDayBalanceTransfer(
                new UpdateAllDayBalanceTransferParam(
-                   message.CustId,
+                   message.SearchAccountId,
                    message.ActorId,
-                   message.Language,
+                   message.LangKey,
                    message.IP,
                    message.StatusValue,
                    message.Currency,

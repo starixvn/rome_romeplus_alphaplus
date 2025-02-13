@@ -12,6 +12,8 @@ public class UpdateAllDayBalanceTransferRequest : BaseQuery, IRequest<Result>
 
     public string Currency => userSession.Currency;
 
+    public int SearchAccountId { get; set; }
+
     public override bool IsValid()
     {
         var isValid = base.IsValid() && CanUpdateAccount && !IsInternal;
