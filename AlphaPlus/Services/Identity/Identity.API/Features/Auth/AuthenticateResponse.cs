@@ -38,7 +38,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
 
         public string SecurityCode { get; init; }
 
-        public DateTime PwdExpiry { get; init; }
+        public DateTime PwdExpiry { get; set; }
 
         public string Nickname { get; init; }
 
