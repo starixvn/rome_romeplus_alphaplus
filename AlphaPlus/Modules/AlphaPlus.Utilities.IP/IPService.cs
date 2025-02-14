@@ -1,10 +1,10 @@
-﻿using AlphaPlus.Utilities.IP.Models;
+﻿using System.Net;
+using System.Text.RegularExpressions;
 using AlphaPlus.Utilities.IP.Criteria;
 using AlphaPlus.Utilities.IP.Model;
+using AlphaPlus.Utilities.IP.Models;
 using Fanex.Data.Repository;
-using Fanex.Caching;
-using System.Net;
-using System.Text.RegularExpressions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Utilities.IP
 {
@@ -25,11 +25,13 @@ namespace AlphaPlus.Utilities.IP
         private const string VNIPListCacheKey = "Alpha.BetLists.Service.IPService.VNIPList";
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPHelper ipHelper;
+        private readonly IMemoryCache memoryCache;
 
-        public IPServiceImpl(IDynamicRepository dynamicRepository, IPHelper ipHelper)
+        public IPServiceImpl(IDynamicRepository dynamicRepository, IPHelper ipHelper, IMemoryCache memoryCache)
         {
             this.dynamicRepository = dynamicRepository;
             this.ipHelper = ipHelper;
+            this.memoryCache = memoryCache;
         }
 
         public bool IsVNIP(string ipAddress)
@@ -77,11 +79,13 @@ namespace AlphaPlus.Utilities.IP
 
         private (IEnumerable<Ipv4Range>, IEnumerable<Ipv6Range>) GetVNIPs()
         {
-            var cache = new CacheService();
-
-            var vietnamIPs = cache.GetOrSet(
+            var vietnamIPs = memoryCache.GetOrCreate(
                 VNIPListCacheKey,
-                () => dynamicRepository.FetchMultiple<Ipv4Range, Ipv6Range>(new GetIPVNCriteria()));
+                cacheEntry =>
+                {
+                    cacheEntry.SlidingExpiration = TimeSpan.FromHours(1);
+                    return dynamicRepository.FetchMultiple<Ipv4Range, Ipv6Range>(new GetIPVNCriteria());
+                });
 
             return vietnamIPs;
         }
@@ -89,9 +93,8 @@ namespace AlphaPlus.Utilities.IP
 
         private static bool IsValidIP(string ipAddress)
         {
-            IPAddress parsedIpAddress;
             return !string.IsNullOrWhiteSpace(ipAddress)
-                && IPAddress.TryParse(ipAddress, out parsedIpAddress);
+                && IPAddress.TryParse(ipAddress, out _);
         }
 
         public async Task<string> GetCountryCode(string ip)

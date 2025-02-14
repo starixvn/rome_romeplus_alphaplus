@@ -41,7 +41,7 @@ namespace AlphaPlus.Features.Messages.API
 #pragma warning restore CS8603 // Possible null reference return.
             }
 
-            return Enumerable.Empty<Announcement>();
+            return [];
         }
     }
 }

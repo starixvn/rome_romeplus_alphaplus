@@ -2,9 +2,9 @@
 
 namespace AlphaPlus.Features.Messages.API.Criteria.Product
 {
-    public class UnsynchronizedSettingCriteria : CriteriaBase
+    public class UnSynchronizedSettingCriteria : CriteriaBase
     {
-        public UnsynchronizedSettingCriteria(int custId)
+        public UnSynchronizedSettingCriteria(int custId)
         {
             CustId = custId;
         }

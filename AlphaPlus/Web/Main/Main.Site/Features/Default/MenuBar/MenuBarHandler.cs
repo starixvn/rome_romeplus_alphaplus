@@ -10,7 +10,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
 
         public Task<MenuBarViewModel> Handle(MenuBarQuery message, CancellationToken cancellationToken)
         {
-            var menuItems = siteMenuService.GetMenuByUserLevel(message.UserLevel, message.IsCookieLess);
+            var menuItems = siteMenuService.GetMenuByUserLevel(message.UserLevel);
 
             var viewModel = new MenuBarViewModel(
                 menuItems,

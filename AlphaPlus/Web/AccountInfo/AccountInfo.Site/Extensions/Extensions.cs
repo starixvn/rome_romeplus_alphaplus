@@ -27,7 +27,6 @@ public static class Extensions
             .AddFanexLogging(configuration)
             .AddRequestInfo();
 
-        services.AddSingleton<ICacheService, CacheService>();
         services.AddSingleton<IDynamicRepository, DynamicRepository>();
         services.AddSingleton(Fanex.Logging.Logger.Log);
 

@@ -25,7 +25,6 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddAlphaPlusCore(this IServiceCollection services, IConfiguration configuration)
     {
-        services.TryAddSingleton<ICacheService, CacheService>();
         services.TryAddSingleton<IDynamicRepository, DynamicRepository>();
         services.AddSingleton<IUserSession, UserSessionExt>();
         services.AddSingleton<IRequestAnalyst, RequestAnalyst>();
