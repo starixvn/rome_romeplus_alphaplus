@@ -1,5 +1,5 @@
-﻿using AlphaPlus.Main.Site.Helpers;
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Main.Site.Helpers;
 using MediatR;
 using TelegramBot.Client.Services;
 
@@ -45,8 +45,7 @@ namespace AlphaPlus.Main.Site.Features.TelegramChatBot
                 AppSettings.SiteLabel,
                 Language.MapNewChineseLanguageCode(message.Language));
 
-            var logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"wwwroot/assets/styles/telegramchatbot/images/telegram-logo.png");
-            var qrCodeDataUrl = QRCodeAdapter.Generate(url, logoPath);
+            var qrCodeDataUrl = QRCodeAdapter.Generate(url);
 
             return new VerifyAccountViewModel(url, qrCodeDataUrl);
         }

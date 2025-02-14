@@ -1,28 +1,17 @@
-﻿namespace AlphaPlus.Main.Site.Helpers
+﻿using QRCoder;
+using static QRCoder.PayloadGenerator;
+
+namespace AlphaPlus.Main.Site.Helpers
 {
     public class QRCodeAdapter
     {
-        public static string Generate(string url, string logoPath)
+        public static string Generate(string url)
         {
-            // var barcodeWriter = new BarcodeWriter();
-            // var width = url.Length > 78 ? 115 : 100;
-            // var encodingOptions = new EncodingOptions { Width = width, Height = width, Margin = 0, PureBarcode = false };
-            // encodingOptions.Hints.Add(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-            // barcodeWriter.Options = encodingOptions;
-            // barcodeWriter.Format = BarcodeFormat.QR_CODE;
+            var generator = new QRCodeGenerator();
+            var qrCodeData = generator.CreateQrCode(new Url(url));
+            var graphic = new PngByteQRCode(qrCodeData).GetGraphic(3);
 
-            // Bitmap bitmap = barcodeWriter.Write(url);
-
-            // Bitmap overlay = new Bitmap(logoPath);
-            // Graphics graphic = Graphics.FromImage(bitmap);
-            // graphic.DrawImage(overlay, new Point((bitmap.Width - overlay.Width) / 2, (bitmap.Height - overlay.Height) / 2));
-
-            // var ms = new MemoryStream();
-            // bitmap.Save(ms, ImageFormat.Jpeg);
-
-            // return $"data:image/jpeg;base64,{Convert.ToBase64String(ms.ToArray())}";
-
-            return string.Empty;
+            return $"data:image/png;base64,{Convert.ToBase64String(graphic.ToArray())}";
         }
     }
 }
