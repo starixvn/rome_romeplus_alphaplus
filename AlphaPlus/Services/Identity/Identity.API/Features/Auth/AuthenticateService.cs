@@ -311,6 +311,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 BrowserName = request.BrowserName,
                 CountryCode = request.CountryCode,
                 CustId = request.CustId,
+                SubAccId = request.SubAccId,
                 Language = request.Language,
                 LoginDomain = request.LoginDomain,
                 LoginIp = request.LoginIp,
