@@ -13,8 +13,6 @@
     --tb-sub-total-row-background: #F1F1F1;
     --tb-match-title-color: #F6731B;
     --tb-match-title-background: #D3DAE2;
-    --tb-col-altercol: #F2F1EB;
-    --tb-col-altercol-footer: #546273;
     --tb-total-row-background: #f1f1f1;
 }
 
@@ -32,9 +30,7 @@
     --icon-dormant-account-color: #41a4ff;
     --tb-sub-total-row-background: #262626;
     --tb-match-title-color: #D96518;
-    --tb-match-title-background: #323436;
-    --tb-col-altercol: #403E36;
-    --tb-col-altercol-footer: #263347;
+    --tb-match-title-background: #41474F;
     --tb-total-row-background: #404040;
 }
 
@@ -183,22 +179,14 @@
 
 .tb {
     tr {
-        &.tbl-footer {
-            td {
-                &.altercol {
-                    background: var(--tb-col-altercol-footer);
-                }
-            }
-        }
+       
 
         td {
             a {
                 color: #118AF2 !important;
             }
 
-            &.altercol {
-                background: var(--tb-col-altercol);
-            }
+           
         }
     }
 
@@ -230,22 +218,28 @@
     }
 
     tr {
-        &.product-row, &.sport-row, &.username-row {
+        &.sport-row {
+            td {
+                background: var(--tb-total-row-background);
+                font-weight: bold;
+            }
+        }
+
+        &.consolidation-pt-row {
+            td {
+                background: var(--tb-sub-total-row-background);
+                font-weight: bold;
+            }
+        }
+
+        &.username-row, &.sub-total-row, &.product-row, &.pt-row {
             td {
                 background: var(--tb-total-row-background);
                 font-weight: bold;
             }
         }
     }
-
-    tr {
-        &.sub-total-row {
-            td {
-                background: var(--tb-sub-total-row-background);
-                font-weight: bold;
-            }
-        }
-    }
+ 
 
     .username-row {
         .username-col {
@@ -279,6 +273,14 @@
 
         .col-username {
             width: 20%;
+        }
+    }
+    .product-row{
+        .col-username{
+            cursor: pointer;
+            .ic-arrow-down{
+                
+            }
         }
     }
 
