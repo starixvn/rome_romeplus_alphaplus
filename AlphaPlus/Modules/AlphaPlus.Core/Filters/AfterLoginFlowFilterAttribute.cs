@@ -68,8 +68,8 @@ public sealed class AfterLoginFlowFilterAttribute(IUserSession userSession, INic
         => !userSession.IsLogged || userSession.IsPasswordExpired;
 
     private static string ForceChangePasswordUrl(string currentUrl)
-        => currentUrl.Equals("Password/ForceChangePassword", StringComparison.OrdinalIgnoreCase) ||
-        currentUrl.Equals("Password/SkipForceChangePassword", StringComparison.OrdinalIgnoreCase)
+        => currentUrl.Contains("ForceChangePassword", StringComparison.OrdinalIgnoreCase) ||
+        currentUrl.Contains("SkipForceChangePassword", StringComparison.OrdinalIgnoreCase)
         ? null
         : MicroSites.MainUrl("~/Password/ForceChangePassword");
 

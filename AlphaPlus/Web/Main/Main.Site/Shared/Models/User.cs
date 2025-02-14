@@ -30,9 +30,9 @@ namespace AlphaPlus.Main.Site.Shared.Models
         private const string CustIdSessionKey = "CustId";
         public const string IsSyncedNovaCasinoSessionKey = "IsSyncedNovaCasino";
 
-        public bool ShowProgressiveJackpotGames => GetEnableProductsByGameName(Jackpot).Any(i => i != ProductId.Pragmatic);
+        public bool ShowProgressiveJackpotGames => GetEnableProductsByGameName(Jackpot) != null && GetEnableProductsByGameName(Jackpot).Any(i => i != ProductId.Pragmatic);
 
-        public bool IsEnabledJackpot => GetEnableProductsByGameName(Jackpot).Any();
+        public bool IsEnabledJackpot => GetEnableProductsByGameName(Jackpot) != null && GetEnableProductsByGameName(Jackpot).Any();
 
         private static IList<int> GetEnableProductsByGameName(string gameName)
             => AlphaContext.Current.Session.Get<IList<int>>(GameEnableSessionKey + gameName, []);

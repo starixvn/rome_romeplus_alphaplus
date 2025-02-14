@@ -80,9 +80,11 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.IsAllowedTotalBalanceTransfer = signInResult.IsAllowTotalBalanceTransfer;
         userSession.IsShowConsolidatedReport = signInResult.IsShowConsolidatedReport;
         userSession.IsShowBetChoiceLimit = signInResult.IsShowBetChoiceLimit;
-        userSession.AGIP = signInResult.SiteDB.AGIP;
-        userSession.SiteDBGroupId = signInResult.SiteDB.SiteDBGroupId;
-        userSession.CustDBGroupId = signInResult.SiteDB.CustDBGroupId;
+
+        var siteDB = signInResult.SiteDB ?? new SiteDB();
+        userSession.AGIP = siteDB.AGIP;
+        userSession.SiteDBGroupId = siteDB.SiteDBGroupId;
+        userSession.CustDBGroupId = siteDB.CustDBGroupId;
 
         var subAccountPermission_LockAdminAccounts = configuration.GetValue<string>("SubAccountPermission_LockAdminAccounts");
         if ((!string.IsNullOrWhiteSpace(subAccountPermission_LockAdminAccounts)
