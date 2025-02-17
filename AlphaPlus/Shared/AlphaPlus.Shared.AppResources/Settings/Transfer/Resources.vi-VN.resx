@@ -789,4 +789,16 @@
   <data name="ADBTOffError" xml:space="preserve">
     <value>Cấp trên đã áp giới hạn thời gian chuyển khoản trong ngày của bạn. Trang web này sẽ tự động làm mới để cập nhật các cài đặt mới.</value>
   </data>
+  <data name="TotalCashSlashTotalBalance" xml:space="preserve">
+    <value>Tổng Tiền Khả Dụng/&lt;br/&gt;Tổng Số Dư</value>
+  </data>
+  <data name="TotalCashTotalBalanceNote" xml:space="preserve">
+    <value>Đối với Member/Member Trực Tiếp, giá trị hiển thị là Tổng Số Dư. Với các cấp dưới khác, giá trị hiển thị là Tổng Tiền Khả Dụng.</value>
+  </data>
+  <data name="TransferStep_Super_DirectMember" xml:space="preserve">
+    <value>Từ Member Trực Tiếp Tới {0}</value>
+  </data>
+  <data name="ClearCreditStep_Super_DirectMember" xml:space="preserve">
+    <value>Member Trực Tiếp của {0}</value>
+  </data>
 </root>

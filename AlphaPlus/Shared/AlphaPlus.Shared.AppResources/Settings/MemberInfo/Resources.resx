@@ -1250,18 +1250,27 @@ Notes: your password is cAsE sEnSiTiVe.</value>
     <value>Click 'Copy' to copy and share the account details</value>
   </data>
   <data name="CashBalanceNote" xml:space="preserve">
-    <value>For Direct Member accounts the column shown is Balance. For all other levels, the column shown is Cash</value>
+    <value>For Direct Members, the data represents Balance. For other downlines, it represents Cash.</value>
   </data>
   <data name="YesterdayCashYesterdayBalanceNote" xml:space="preserve">
-    <value>For Direct Member accounts the column shown is Yesterday Balance. For all other levels, the column shown is Yesterday Cash</value>
+    <value>For Direct Members, the data represents Yesterday Balance. For other downlines, it represents Yesterday Cash.</value>
   </data>
   <data name="YesterdayCash" xml:space="preserve">
     <value>Yesterday Cash</value>
   </data>
   <data name="AvailableCreditBetCreditNote" xml:space="preserve">
-    <value>For Direct Member accounts the column shown is Bet Credit. For all other levels, the column shown is Available Credit</value>
+    <value>For Direct Members, the data represents Bet Credit. For other downlines, it represents Available Credit.</value>
   </data>
   <data name="SelectDirectDownline" xml:space="preserve">
     <value>Select Direct Downline</value>
+  </data>
+  <data name="CashSlashBalance" xml:space="preserve">
+    <value>Cash/&lt;br/&gt;Balance</value>
+  </data>
+  <data name="YesterdayCashSlashYesterdayBalance" xml:space="preserve">
+    <value>Yesterday Cash/&lt;br/&gt;Yesterday Balance</value>
+  </data>
+  <data name="AvailableCreditSlashBetCredit" xml:space="preserve">
+    <value>Available Credit/&lt;br/&gt;Bet Credit</value>
   </data>
 </root>

@@ -475,4 +475,7 @@
   <data name="LastLogin" xml:space="preserve">
     <value>最後のログイン</value>
   </data>
+  <data name="TotalCashSlashTotalBalance" xml:space="preserve">
+    <value>総残高/&lt;br/&gt;合計残高</value>
+  </data>
 </root>

@@ -427,7 +427,7 @@
     <value>Tổng hoa hồng</value>
   </data>
   <data name="GrossCommNoteForAgent" xml:space="preserve">
-    <value>Góc nhìn của Agent: khoản hoa hồng (không bao gồm Position Taking) mà Master có thể nhận từ cấp trên ứng với từng Agent.</value>
+    <value>Đối với danh sách Agent: hoa hồng (không bao gồm PT) là khoản mà Master có thể nhận được từ cấp trên cho mỗi Agent hoặc Member Trực Tiếp của Master.</value>
   </data>
   <data name="GrossCommNoteForCasino" xml:space="preserve">
     <value>Đối với một số sản phẩm Sòng Bạc, nếu Position Taking/Tỷ Lệ Hoa Hồng thay đổi trong một trò chơi hoặc một ngày, thì giá trị Tổng Hoa Hồng hiển thị trên báo cáo sẽ là giá trị gần đúng được tính từ Position Taking/Tỷ Lệ Hoa Hồng trung bình.</value>
@@ -442,10 +442,10 @@
     <value>Xem ở cấp Super: khoản hoa hồng (không bao gồm Position Taking) mà Super có thể nhận từ cấp trên.</value>
   </data>
   <data name="GrossCommNoteForMaster" xml:space="preserve">
-    <value>Góc nhìn của Master: khoản hoa hồng (không bao gồm Position Taking) mà Super có thể nhận từ cấp trên ứng với từng Master.</value>
+    <value>Đối với danh sách Master: hoa hồng (không bao gồm PT) là khoản mà Super có thể nhận được từ Công ty cho mỗi Master hoặc Member Trực Tiếp của Super.</value>
   </data>
   <data name="GrossCommNoteForMember" xml:space="preserve">
-    <value>Góc nhìn của Member: khoản hoa hồng (không bao gồm Position Taking) mà Agent có thể nhận từ cấp trên ứng với từng Member.</value>
+    <value>Đối với danh sách Member: hoa hồng (không bao gồm PT) là khoản mà Agent có thể nhận được từ cấp trên cho mỗi Member.</value>
   </data>
   <data name="GrossCommNoteForRoundingProblem" xml:space="preserve">
     <value>Giá trị Tổng Hoa Hồng có thể khác nhau ở mỗi cấp do làm tròn đến 4 chữ số thập phân.</value>
@@ -1170,6 +1170,12 @@
   </data>
   <data name="WhiteLabelSettlementNote" xml:space="preserve">
     <value>Tạo Báo Cáo Quyết Toán sau 5 ngày kể từ cuối tháng để đảm bảo tính chính xác của dữ liệu.</value>
+  </data>
+  <data name="DownlineTotal" xml:space="preserve">
+    <value>Tổng giao dịch của cấp dưới</value>
+  </data>
+  <data name="Guidelines_TransferAmt_DirectMember" xml:space="preserve">
+    <value>tổng số tiền chuyển khoản giữa Cấp Trên Trực Tiếp và Member. Nhấn vào để xem chi tiết chuyển khoản.</value>
   </data>
   <data name="ToWin" xml:space="preserve">
     <value>Dự Kiến Thắng</value>

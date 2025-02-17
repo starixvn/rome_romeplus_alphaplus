@@ -864,4 +864,16 @@
   <data name="ADBTOffError" xml:space="preserve">
     <value>您的上線不允許您使用全天餘額轉賬。該頁面將自動刷新。</value>
   </data>
+  <data name="TotalCashSlashTotalBalance" xml:space="preserve">
+    <value>馀額總數/&lt;br/&gt;總平均</value>
+  </data>
+  <data name="TotalCashTotalBalanceNote" xml:space="preserve">
+    <value>對於會員/直系會員，數據代表總平均。對於其他下線，則代表餘額總數。</value>
+  </data>
+  <data name="TransferStep_Super_DirectMember" xml:space="preserve">
+    <value>直系會員至 {0}</value>
+  </data>
+  <data name="ClearCreditStep_Super_DirectMember" xml:space="preserve">
+    <value>{0} 的直系成員</value>
+  </data>
 </root>

@@ -213,6 +213,11 @@ public class AgentTransferMultipleYesterdayBalanceService(
                 : Resources.TransferSuccessfully;
         }
 
+        if (!request.ActorLevel.IsAgentLevel() && listCustIdsTransferConcurrent.Count == 0)
+        {
+            return Resources.TransferSuccessfully;
+        }
+
         var resultMessage = string.Empty;
 
         if (listCustIdsTransferSuccess.Count > 0)

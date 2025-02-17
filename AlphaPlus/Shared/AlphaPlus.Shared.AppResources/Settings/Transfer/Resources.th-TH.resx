@@ -864,4 +864,16 @@
   <data name="ADBTOffError" xml:space="preserve">
     <value>อัพไลน์ของคุณได้ปิดการใช้งานระบบ โอนยอดคงเหลือทั้งวัน ของคุณ ข้อมูลในหน้านี้จะรีเฟรชเพื่อแสดงผลใหม่โดยอัตโนมัติ</value>
   </data>
+  <data name="TotalCashSlashTotalBalance" xml:space="preserve">
+    <value>ยอดเงินสด/&lt;br/&gt;ยอดเงินรวมทั้งหมด</value>
+  </data>
+  <data name="TotalCashTotalBalanceNote" xml:space="preserve">
+    <value>สำหรับสมาชิก/สมาชิกโดยตรง ข้อมูลจะแสดงยอดคงเหลือทั้งหมด สำหรับดาวน์ไลน์อื่นๆ ข้อมูลจะแสดงยอดเงินสดทั้งหมด</value>
+  </data>
+  <data name="TransferStep_Super_DirectMember" xml:space="preserve">
+    <value>สมาชิกโดยตรง ไปที่ {0}</value>
+  </data>
+  <data name="ClearCreditStep_Super_DirectMember" xml:space="preserve">
+    <value>{0}ของสมาชิกโดยตรง</value>
+  </data>
 </root>

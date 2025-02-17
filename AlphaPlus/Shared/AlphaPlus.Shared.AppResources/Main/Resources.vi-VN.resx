@@ -828,6 +828,9 @@ Lưu ý: Vui lòng thay đổi &lt;b&gt;mật khẩu&lt;/b&gt; Nova Casino Back 
   <data name="of" xml:space="preserve">
     <value>trên</value>
   </data>
+  <data name="TotalDirectMember" xml:space="preserve">
+    <value>Tổng Member Trực Tiếp</value>
+  </data>
   <data name="invalidsession" xml:space="preserve">
     <value>Session không hợp lệ</value>
   </data>

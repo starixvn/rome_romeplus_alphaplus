@@ -889,12 +889,15 @@
     <value>Yesterday Cash</value>
   </data>
   <data name="TotalCashTotalBalanceNote" xml:space="preserve">
-    <value>For Member/ Direct Member accounts the column shown is Total Balance. For all other levels, the column shown is Total Cash</value>
+    <value>For Member/Direct Members, the data represents Total Balance. For other downlines, it represents Total Cash.</value>
   </data>
   <data name="ADBTOnError" xml:space="preserve">
     <value>Your upline has allowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
   </data>
   <data name="ADBTOffError" xml:space="preserve">
     <value>Your upline has disallowed you to use All Day Balance Transfer. The page will be automatically refreshed.</value>
+  </data>
+  <data name="TotalCashSlashTotalBalance" xml:space="preserve">
+    <value>Total Cash/&lt;br/&gt;Total Balance</value>
   </data>
 </root>

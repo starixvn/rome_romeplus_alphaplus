@@ -1,3 +1,4 @@
+using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Data.Repository;
 
@@ -33,6 +34,19 @@ public class CustomerService(IDynamicRepository repository) : ICustomerService
             return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, RoleIdConstants.Master);
         }
 
+        if (RoleIdConstants.IsMemberLevel(customerLevel.RoleId))
+        {
+            if (customerLevel.AgentId == DirectMemberAgentIds.Super)
+            {
+                return new Breadcrumb(customerLevel.SuperId, customerLevel.SuperName, RoleIdConstants.Super);
+            }
+
+            if (customerLevel.AgentId == DirectMemberAgentIds.Master)
+            {
+                return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, RoleIdConstants.Master);
+            }
+        }
+
         return new Breadcrumb(customerLevel.AgentId.Value, customerLevel.AgentName, RoleIdConstants.Agent);
     }
 
@@ -42,7 +56,7 @@ public class CustomerService(IDynamicRepository repository) : ICustomerService
         {
             yield return new Breadcrumb(customerLevel.SuperId, customerLevel.SuperName, RoleIdConstants.Super);
 
-            if (RoleIdConstants.IsMemberOrAgentLevel(customerLevel.RoleId))
+            if (RoleIdConstants.IsMemberOrAgentLevel(customerLevel.RoleId) && customerLevel.AgentId > 0)
             {
                 yield return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, RoleIdConstants.Master);
             }
@@ -52,7 +66,7 @@ public class CustomerService(IDynamicRepository repository) : ICustomerService
             yield return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, RoleIdConstants.Master);
         }
 
-        if (RoleIdConstants.IsMemberLevel(customerLevel.RoleId) && customerLevel.AgentId.HasValue && !string.IsNullOrWhiteSpace(customerLevel.AgentName))
+        if (RoleIdConstants.IsMemberLevel(customerLevel.RoleId) && customerLevel.AgentId > 0)
         {
             yield return new Breadcrumb(customerLevel.AgentId.Value, customerLevel.AgentName, RoleIdConstants.Agent);
         }

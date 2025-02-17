@@ -445,7 +445,7 @@
     <value>Gross Comm</value>
   </data>
   <data name="GrossCommNoteForAgent" xml:space="preserve">
-    <value>In Agent's view: the commission (without PT) that Master can receive from upline on each Agent, Master Direct Member.</value>
+    <value>In Agent list: the commission (without PT) that Master can receive from upline on each Agent or Master Direct Member.</value>
   </data>
   <data name="GrossCommNoteForCasino" xml:space="preserve">
     <value>In some Casino products, if the Position Taking/Commission Rate is changed during a game or a day, the Gross Comm value displayed on the report will be the approximate value calculated from the average Position Taking/Commission Rate.</value>
@@ -460,10 +460,10 @@
     <value>Viewing at Super level: the commission (without PT) that Super can receive from upline.</value>
   </data>
   <data name="GrossCommNoteForMaster" xml:space="preserve">
-    <value>In Master's view: the commission (without PT) that Super can receive from upline on each Masterr, Super Direct Member.</value>
+    <value>In Master list: the commission (without PT) that Super can receive from Company on each Master or Super Direct Member.</value>
   </data>
   <data name="GrossCommNoteForMember" xml:space="preserve">
-    <value>In Member's view: the commission (without PT) that Agent can receive from upline on each Member.</value>
+    <value>In Member list: the commission (without PT) that Agent can receive from upline on each Member.</value>
   </data>
   <data name="GrossCommNoteForRoundingProblem" xml:space="preserve">
     <value>Gross Comm values may differ at each level due to rounding to 4 decimal places.</value>

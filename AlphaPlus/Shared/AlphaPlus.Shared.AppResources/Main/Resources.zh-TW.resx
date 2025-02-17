@@ -817,6 +817,9 @@
   <data name="of" xml:space="preserve">
     <value>之第</value>
   </data>
+  <data name="TotalDirectMember" xml:space="preserve">
+    <value>直系會員總數</value>
+  </data>
   <data name="invalidsession" xml:space="preserve">
     <value>會議無效！</value>
   </data>

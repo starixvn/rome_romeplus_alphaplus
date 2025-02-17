@@ -30,8 +30,7 @@
                     }
                     else
                     {
-                        <span>Downlines’ given credit will be automatically cleared if any of the following conditions are
-                            met.</span>
+                        <span>Credit given to downlines will be automatically cleared under the following conditions:</span>
                         if (Model.CustLevel.IsSuperLevel())
                         {
                             if (Model.IsViewingMemberList)
@@ -41,11 +40,13 @@
                             <ul class="list-msg">
                                 <li>
                                     For Master/Agent who does not have any downlines (include direct members):
-                                    <p>- Any Master/Agent has not logged in after created by direct upline for over 7 days.</p>
+                                    <p>- If the Master/Agent does not log in within 7 days after being created by their direct
+                                        upline.</p>
                                 </li>
                                 <li>
                                     For Member/ Direct Member:
-                                    <p>- Any Member/ Direct Member has not logged in after created by direct upline for over 14 days.</p>
+                                    <p>- If the Member/ Direct Member does not log in within 14 days after being created by
+                                        their direct upline.</p>
                                 </li>
                             </ul>
                         }
@@ -58,11 +59,12 @@
                             <ul class="list-msg">
                                 <li>
                                     For Agent who does not have any downlines:
-                                    <p>- Any Agent has not logged in after created by Master for over 7 days.</p>
+                                    <p>- If the Agent does not log in within 7 days after being created by Master.</p>
                                 </li>
                                 <li>
                                     For Member/ Direct Member:
-                                    <p>- Any Member/ Direct Member has not logged in after created by direct upline for over 14 days.</p>
+                                    <p>- If the Member/ Direct Member does not log in within 14 days after being created by
+                                        their direct upline.</p>
                                 </li>
                             </ul>
                         }

@@ -67,6 +67,7 @@ class WinLossDetailView extends BaseReportNew {
         this.usernameSuggestionComponent.init({
             onBlur: () => {
                 this.clearCurrentCust();
+                this.levelTypeComponent.setSelectedValue('0');
                 this.getWinLossDetail();
             }
         });

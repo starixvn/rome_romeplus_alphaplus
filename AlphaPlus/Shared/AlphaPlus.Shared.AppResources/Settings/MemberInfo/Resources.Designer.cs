@@ -4251,5 +4251,38 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
                 return ResourceManager.GetString("CreateDirectMember", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cash/&lt;br/&gt;Balance.
+        /// </summary>
+        public static string CashSlashBalance
+        {
+            get
+            {
+                return ResourceManager.GetString("CashSlashBalance", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Yesterday Cash/&lt;br/&gt;Yesterday Balance.
+        /// </summary>
+        public static string YesterdayCashSlashYesterdayBalance
+        {
+            get
+            {
+                return ResourceManager.GetString("YesterdayCashSlashYesterdayBalance", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Available Credit/&lt;br/&gt;Bet Credit.
+        /// </summary>
+        public static string AvailableCreditSlashBetCredit
+        {
+            get
+            {
+                return ResourceManager.GetString("AvailableCreditSlashBetCredit", resourceCulture);
+            }
+        }
     }
 }

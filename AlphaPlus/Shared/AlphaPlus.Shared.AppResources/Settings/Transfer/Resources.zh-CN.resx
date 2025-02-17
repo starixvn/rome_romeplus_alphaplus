@@ -864,4 +864,16 @@
   <data name="ADBTOffError" xml:space="preserve">
     <value>您的上线不允许您使用全天余额转账。该页面将自动刷新。</value>
   </data>
+  <data name="TotalCashSlashTotalBalance" xml:space="preserve">
+    <value>馀额总数/&lt;br/&gt;总平均</value>
+  </data>
+  <data name="TotalCashTotalBalanceNote" xml:space="preserve">
+    <value>对于会员/直系会员，数据代表总平均。对于其他下线，则代表馀额总数。</value>
+  </data>
+  <data name="TransferStep_Super_DirectMember" xml:space="preserve">
+    <value>直系会员至 {0}</value>
+  </data>
+  <data name="ClearCreditStep_Super_DirectMember" xml:space="preserve">
+    <value>{0} 的直系成员</value>
+  </data>
 </root>
