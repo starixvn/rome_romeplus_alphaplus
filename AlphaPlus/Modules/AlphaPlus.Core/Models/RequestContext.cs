@@ -87,24 +87,12 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                     {
                         break;
                     }
-
-                    int.TryParse(request.Query[custIdQueryStringParamName], out _custId);
-                    if (_custId > 0)
-                    {
-                        break;
-                    }
                 }
 
                 if (request.HasFormContentType)
                 {
                     queryValue = request.Form[custIdQueryStringParamName].ToString();
                     _custId = GetCustomerIdFromQueryValue(queryValue);
-                    if (_custId > 0)
-                    {
-                        break;
-                    }
-
-                    int.TryParse(request.Form[custIdQueryStringParamName], out _custId);
                     if (_custId > 0)
                     {
                         break;
