@@ -71,7 +71,6 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
             var custIdQueryStringParamNames = options.CustIdQueryStringParamNames;
             var custIdJsonParamNames = options.CustIdJsonParamNames;
             var request = AlphaContext.Current.Request;
-
             foreach (string custIdQueryStringParamName in custIdQueryStringParamNames)
             {
                 if (string.IsNullOrWhiteSpace(custIdQueryStringParamName))
@@ -79,9 +78,10 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                     continue;
                 }
 
+                string queryValue;
                 if (!string.IsNullOrEmpty(request.Query[custIdQueryStringParamName]))
                 {
-                    var queryValue = request.Query[custIdQueryStringParamName].ToString();
+                    queryValue = request.Query[custIdQueryStringParamName].ToString();
                     _custId = GetCustomerIdFromQueryValue(queryValue);
                     if (_custId > 0)
                     {
@@ -93,21 +93,21 @@ public class RequestContext(IRequestAnalyst requestAnalyst, IOptions<Authorizati
                     {
                         break;
                     }
+                }
 
-                    if (request.HasFormContentType)
+                if (request.HasFormContentType)
+                {
+                    queryValue = request.Form[custIdQueryStringParamName].ToString();
+                    _custId = GetCustomerIdFromQueryValue(queryValue);
+                    if (_custId > 0)
                     {
-                        queryValue = request.Form[custIdQueryStringParamName].ToString();
-                        _custId = GetCustomerIdFromQueryValue(queryValue);
-                        if (_custId > 0)
-                        {
-                            break;
-                        }
+                        break;
+                    }
 
-                        int.TryParse(request.Form[custIdQueryStringParamName], out _custId);
-                        if (_custId > 0)
-                        {
-                            break;
-                        }
+                    int.TryParse(request.Form[custIdQueryStringParamName], out _custId);
+                    if (_custId > 0)
+                    {
+                        break;
                     }
                 }
             }
