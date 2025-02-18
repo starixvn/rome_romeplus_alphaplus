@@ -5,14 +5,14 @@ namespace AlphaPlus.Features.Messages.API.Client.Helpers
 {
     public abstract class JsonCreationConverter<T> : JsonConverter
     {
-        protected virtual T? Create(Type type, JObject obj)
+        protected virtual T Create(Type type, JObject obj)
         {
-            Type? targetType = GetTargetType(type, obj);
+            Type targetType = GetTargetType(type, obj);
 
-            return (T?)Activator.CreateInstance(targetType ?? typeof(JObject));
+            return (T)Activator.CreateInstance(targetType ?? typeof(JObject));
         }
 
-        protected virtual Type? GetTargetType(Type type, JObject obj)
+        protected virtual Type GetTargetType(Type type, JObject obj)
         {
             return type;
         }
@@ -22,7 +22,7 @@ namespace AlphaPlus.Features.Messages.API.Client.Helpers
             return typeof(T).IsAssignableFrom(objectType);
         }
 
-        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace AlphaPlus.Features.Messages.API.Client.Helpers
                 }
 
                 JObject obj = CreateJObject(reader);
-                T? target = Create(objectType, obj);
+                T target = Create(objectType, obj);
                 JsonReader jsonReader = obj.CreateReader();
                 jsonReader.FloatParseHandling = reader.FloatParseHandling;
                 serializer.Populate(jsonReader, target ?? new object());
@@ -47,7 +47,7 @@ namespace AlphaPlus.Features.Messages.API.Client.Helpers
             }
         }
 
-        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             serializer.Serialize(writer, value);
         }

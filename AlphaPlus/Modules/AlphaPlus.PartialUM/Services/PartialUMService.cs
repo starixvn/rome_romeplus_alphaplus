@@ -1,8 +1,8 @@
 ﻿using AlphaPlus.PartialUM.Configurations;
+using AlphaPlus.PartialUM.DataAccess;
 using AlphaPlus.PartialUM.Exceptions;
 using AlphaPlus.PartialUM.Models;
-using Fanex.Caching;
-using AlphaPlus.PartialUM.DataAccess;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.PartialUM.Services;
@@ -13,12 +13,12 @@ public interface IPartialUMService
 }
 
 public class PartialUMService(
-    ICacheService cacheService,
+    IMemoryCache cacheService,
     IPartialUMDataAccess partialUMDataAccess,
     Dictionary<string, IList<string>> partialUMConfig,
     IOptions<PartialUMOptions> options) : IPartialUMService
 {
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
     private readonly IPartialUMDataAccess partialUMDataAccess = partialUMDataAccess;
     private readonly Dictionary<string, IList<string>> partialUMConfig = partialUMConfig;
     private readonly int cacheInSeconds = options.Value.CacheInSeconds;
@@ -52,10 +52,13 @@ public class PartialUMService(
     }
 
     private Task<IEnumerable<UMEntity>> GetUMEntities(string siteName)
-        => cacheService.GetOrSetAsync(
+        => cacheService.GetOrCreateAsync(
             $"AlphaPlus.PartialUM.Services.PartialUM.SiteName-{siteName}",
-            () => partialUMDataAccess.GetUMEntities(siteName),
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(cacheInSeconds)));
+            cacheEntry =>
+            {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromSeconds(cacheInSeconds));
+                return partialUMDataAccess.GetUMEntities(siteName);
+            });
 
     private static string FormatUMTime(DateTime dateTime)
         => dateTime.ToString("dd/MM/yyyy hh:mm tt");

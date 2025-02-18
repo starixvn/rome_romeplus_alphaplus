@@ -1,8 +1,8 @@
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Criteria;
 using AlphaPlus.Core.Models;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Core.Services;
@@ -23,7 +23,7 @@ public interface IAuthorizationService
 public class AuthorizationService(
     IOptions<AuthorizationOptions> options,
     IRequestContext requestContext,
-    ICacheService cacheService,
+    IMemoryCache cacheService,
     IDynamicRepository dynamicRepository)
     : IAuthorizationService
 {
@@ -32,7 +32,7 @@ public class AuthorizationService(
 
     private readonly AuthorizationOptions options = options.Value;
     private readonly IRequestContext requestContext = requestContext;
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
     private readonly IDynamicRepository dynamicRepository = dynamicRepository;
 
     public Task<AccountStatus> GetAccountStatus()
@@ -44,10 +44,13 @@ public class AuthorizationService(
 
         var userSession = requestContext.UserSession;
         var command = new GetAccountStatusCommand(userSession.CustId, userSession.SubAccId);
-        return cacheService.GetOrSetAsync(
+        return cacheService.GetOrCreateAsync(
             string.Format(AccountStatusCacheKey, userSession.CustId, userSession.SubAccId),
-            () => GetAccountStatus(userSession.CustId, userSession.SubAccId),
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(options.CachedExpireTime)));
+            cacheEntry =>
+            {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromSeconds(options.CachedExpireTime));
+                return GetAccountStatus(userSession.CustId, userSession.SubAccId);
+            });
     }
 
     private async Task<AccountStatus> GetAccountStatus(int custId, int subAccId)
@@ -141,7 +144,7 @@ public class AuthorizationService(
             kickOutInfo = await IsKickedOut(onlineUserId);
             if (!kickOutInfo.IsKickedOut)
             {
-                cacheService.Set(key, kickOutInfo, new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(options.CachedExpireTime)));
+                cacheService.Set(key, kickOutInfo, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(options.CachedExpireTime)));
             }
         }
 

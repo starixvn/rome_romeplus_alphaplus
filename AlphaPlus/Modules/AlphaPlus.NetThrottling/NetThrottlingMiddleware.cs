@@ -20,7 +20,7 @@ namespace AlphaPlus.NetThrottling
                 return;
             }
 
-            var throttleResult = await ThrottleAsync(context);
+            var throttleResult = Throttle(context);
             if (throttleResult == ThrottleResult.Blocked)
             {
                 await _netThrottler.Resolver.Block(context);
@@ -30,14 +30,14 @@ namespace AlphaPlus.NetThrottling
             await _next(context);
         }
 
-        private async Task<ThrottleResult> ThrottleAsync(HttpContext httpContext)
+        private ThrottleResult Throttle(HttpContext httpContext)
         {
             foreach (var throttlePolicy in _netThrottler.Policies)
             {
                 if (httpContext.Request.IsMatchRequest(throttlePolicy))
                 {
                     var filter = _filterFactory.GetFilter(throttlePolicy.Filter);
-                    return await _netThrottler.ThrottleAsync(httpContext, throttlePolicy, filter);
+                    return _netThrottler.Throttle(httpContext, throttlePolicy, filter);
                 }
             }
 

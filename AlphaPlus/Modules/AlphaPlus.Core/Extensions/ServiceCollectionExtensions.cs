@@ -2,7 +2,6 @@ using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Services;
-using Fanex.Caching;
 using Fanex.Data.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
