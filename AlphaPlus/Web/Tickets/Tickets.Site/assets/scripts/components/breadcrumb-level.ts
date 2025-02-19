@@ -14,7 +14,7 @@
                     const uplineLink = uplineLinkList.eq(0);
                     this.breadcrumbs.push({
                         CustId: uplineLink.data('custid'),
-                        CustName: uplineLink.data('custname'),
+                        CustName: uplineLink.data('custname').toString(),
                         CustLevelId: +uplineLink.data('custlevelid')
                     });
                     uplineLink.off().click((event) => this.handleBreadcrumbClick(event));
@@ -36,7 +36,7 @@
     private handleBreadcrumbClick(event) {
         const $this = $(event.target);
         const CustId = $this.data('custid');
-        const CustName = $this.data('custname');
+        const CustName = $this.data('custname').toString();
         const CustLevelId = $this.data('custlevelid');
         this.onClick && this.onClick($this, { CustId, CustName, CustLevelId });
     }
