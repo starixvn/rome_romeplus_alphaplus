@@ -150,7 +150,7 @@
     <siteMapNode resourceKey="SettlementReport" url="/reports/WhiteLabel/Settlement" />
   </siteMapNode>
   <siteMapNode resourceKey="SercurityCode" url="/main/Otp/SetupOtp" isNew="false"></siteMapNode>
-  <siteMapNode resourceKey="BackupDomains" menuItemType="MemberInfoMenuItem" functionType="[H]" url="/features/backupdomains/index" isNew="true"></siteMapNode>
+  <siteMapNode resourceKey="BackupDomains" menuItemType="MemberInfoMenuItem" functionType="[H]" url="/features/backupdomains/index"></siteMapNode>
   <siteMapNode resourceKey="SigninToNovaCasino" menuItemType="SigninNovaCasinoMenuItem" />
   <siteMapNode resourceKey="JoinNovaCasinoNow" menuItemType="JoinNovaCasinoNowMenuItem" />
 </siteMap>
