@@ -1,19 +1,20 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Site.Features.Transfer.Constants;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferYesterdayBalance;
-using AlphaPlus.Settings.Transfer.API.Params.TransferList;
-using AlphaPlus.Settings.Transfer.API.Services;
-using MediatR;
-using AlphaPlus.Settings.Transfer.API.Params.TransferYesterdayBalance;
 using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Models;
-using AlphaPlus.Core.Extensions;
+using AlphaPlus.Settings.Transfer.API.Params.TransferList;
+using AlphaPlus.Settings.Transfer.API.Params.TransferYesterdayBalance;
+using AlphaPlus.Settings.Transfer.API.Services;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 
 public class TransferYesterdayBalanceHandler(
+    ITransferCacheService transferCacheService,
     ITransferService transferService,
     ITransferListService transferListService,
     IYesterdayBalanceTransferService yesterdayBalanceTransferService) :
@@ -29,6 +30,7 @@ public class TransferYesterdayBalanceHandler(
     private readonly ITransferService transferService = transferService;
     private readonly ITransferListService transferListService = transferListService;
     private readonly IYesterdayBalanceTransferService yesterdayBalanceTransferService = yesterdayBalanceTransferService;
+    private readonly ITransferCacheService transferCacheService = transferCacheService;
 
     public async Task<SingleViewModel> Handle(SingleQuery message, CancellationToken cancellationToken)
     {
@@ -161,7 +163,6 @@ public class TransferYesterdayBalanceHandler(
             return Result.CreateErrorResult(Resources.AllowedAllDayBalanceTransferError, 6001);
         }
 
-        ITransferCacheService transferCacheService = new TransferCacheService();
         var cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, message.ViewerId);
         var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
         var concurrentTransfer = transferCacheService.CacheContains(custIdCache, message.CustId);
@@ -218,7 +219,7 @@ public class TransferYesterdayBalanceHandler(
             message.AGIP,
             message.AdminId,
             message.AdminName);
-        var service = new AgentTransferMultipleYesterdayBalanceService(param, transferService, transferListService, yesterdayBalanceTransferService);
+        var service = new AgentTransferMultipleYesterdayBalanceService(param, transferCacheService, transferService, transferListService, yesterdayBalanceTransferService);
 
         return await service.ProcessTransfer();
     }

@@ -13,6 +13,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public class AgentTransferMultipleYesterdayBalanceService(
     AgentTransferMultipleYesterdayBalanceParam request,
+    ITransferCacheService transferCacheService,
     ITransferService transferService,
     ITransferListService transferListService,
     IYesterdayBalanceTransferService yesterdayBalanceTransferService)
@@ -24,7 +25,7 @@ public class AgentTransferMultipleYesterdayBalanceService(
 
     private readonly AgentTransferMultipleYesterdayBalanceParam request = request;
     private readonly ITransferService transferService = transferService;
-    private readonly ITransferCacheService transferCacheService = new TransferCacheService();
+    private readonly ITransferCacheService transferCacheService = transferCacheService;
     private readonly ITransferListService transferListService = transferListService;
     private readonly IYesterdayBalanceTransferService yesterdayBalanceTransferService = yesterdayBalanceTransferService;
     private readonly string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, request.ActorId);
