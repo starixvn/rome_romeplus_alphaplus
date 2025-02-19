@@ -65,6 +65,7 @@
 
     thead th, tbody td, tfoot td {
         min-height: $height-normal;
+        height: $height-normal; //this line fix footer no info in viewlog setting
         padding: 4px 8px;
         white-space: nowrap;
         vertical-align: middle;

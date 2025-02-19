@@ -47,7 +47,8 @@ body {
 
     .form-validation .txt.error ~ .validation,
     .form-validation .txt.valid ~ .validation {
-        top: 81px !important;
+        top: auto !important;
+        bottom: 1px;
     }
 
     .block {
@@ -98,7 +99,8 @@ body {
 
             .form-validation .txt.error ~ .validation,
             .form-validation .txt.valid ~ .validation {
-                top: 66px !important;
+                top: auto !important;
+                bottom: 1px;
             }
 
             .msg {
