@@ -25,7 +25,7 @@ public interface ICashBalanceTransferService
         bool isDirectMember);
 }
 
-public class CashBalanceTransferService(IDynamicRepository repository) : ICashBalanceTransferService
+public class CashBalanceTransferService(IDynamicRepository repository, ITransferCacheService transferCacheService) : ICashBalanceTransferService
 {
     private const string AgentTransferMemberListCache = "AgentMultipleTransfer.{0}.{1}";
     private const string ConcurrentSingleTransferResultMessage = "<span style=\"color: red\">The transfer has been proceeding by {0}<br/>";
@@ -52,8 +52,6 @@ public class CashBalanceTransferService(IDynamicRepository repository) : ICashBa
         bool isDirectMember)
     {
         string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
-        ITransferCacheService transferCacheService = new TransferCacheService();
-
         var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
         var concurrentTrasfer = transferCacheService.CacheContains(custIdCache, toCustId);
 
