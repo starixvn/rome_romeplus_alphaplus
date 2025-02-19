@@ -113,7 +113,7 @@ class WinLossDetailView extends BaseReportNew {
             .click((e) => {
                 const $this = $(e.target);
                 const custId = $this.data('custid');
-                const custName = $this.data('custname');
+                const custName = $this.data('custname').toString();
                 const custLevelId = $this.data('custlevelid');
                 const custInfo: any = { custId, custName, custLevelId };
                 const breadcrumbs = this.breadcrumbLevelComponent.getBreadcrumbs();
