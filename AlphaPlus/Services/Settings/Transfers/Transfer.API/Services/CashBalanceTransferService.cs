@@ -31,6 +31,7 @@ public class CashBalanceTransferService(IDynamicRepository repository, ITransfer
     private const string ConcurrentSingleTransferResultMessage = "<span style=\"color: red\">The transfer has been proceeding by {0}<br/>";
 
     private readonly IDynamicRepository repository = repository;
+    private readonly ITransferCacheService transferCacheService = transferCacheService;
 
     public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, string agIP)
     {
