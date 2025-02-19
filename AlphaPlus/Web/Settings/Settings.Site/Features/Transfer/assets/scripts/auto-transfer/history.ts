@@ -218,9 +218,9 @@ class AutoTransferHistory {
 
         this.$tblMonitoring.removeClass('hide');
 
-        this.$tblMonitoring.stickyTableHeaders(/*{
-            //TODOfixedOffset: this.$navTabs
-        }*/);
+        this.$tblMonitoring.stickyTableHeaders({
+            fixedOffset: this.$navTabs
+        });
     };
     sort = (elm) => {
         var $elm = this.$(elm);

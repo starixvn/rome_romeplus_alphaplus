@@ -1,5 +1,5 @@
 ﻿interface JQuery {
-    stickyTableHeaders(method?: string): void;
+    stickyTableHeaders(method?: any): void;
 }
 
 class AlphaTransfer {
