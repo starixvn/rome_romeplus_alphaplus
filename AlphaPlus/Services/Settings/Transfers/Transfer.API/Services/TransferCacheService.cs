@@ -22,7 +22,7 @@ public interface ITransferCacheService
     void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds, int adminId, string adminName);
 }
 
-public class TransferCacheService(IDistributedCache cacheService = null) : ITransferCacheService
+public class TransferCacheService(IDistributedCache cacheService) : ITransferCacheService
 {
     private readonly IDistributedCache cacheService = cacheService;
     private static readonly object lockObject = new object();

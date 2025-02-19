@@ -56,7 +56,7 @@ public class CustomerService(IDynamicRepository repository) : ICustomerService
         {
             yield return new Breadcrumb(customerLevel.SuperId, customerLevel.SuperName, RoleIdConstants.Super);
 
-            if (RoleIdConstants.IsMemberOrAgentLevel(customerLevel.RoleId) && customerLevel.AgentId > 0)
+            if (RoleIdConstants.IsMemberOrAgentLevel(customerLevel.RoleId) && customerLevel.MasterId > 0)
             {
                 yield return new Breadcrumb(customerLevel.MasterId, customerLevel.MasterName, RoleIdConstants.Master);
             }
