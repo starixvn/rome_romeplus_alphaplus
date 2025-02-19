@@ -57,6 +57,11 @@
                 ],
                 "PageAccesses": [
                     {
+                        "Url": "CustomerList/UpdateCustomerStatus",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
                         "Url": "SubAccount/UpdateSubAccountPageAccess",
                         "Permission": "[B]",
                         "IsCheckBelonging": true,
