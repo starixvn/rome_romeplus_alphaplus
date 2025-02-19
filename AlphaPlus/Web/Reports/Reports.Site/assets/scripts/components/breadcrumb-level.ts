@@ -14,7 +14,7 @@
                 e.preventDefault();
                 const $this = $(e.target);
                 const custId = $this.data('custid');
-                const custName = $this.data('custname');
+                const custName = $this.data('custname').toString();
                 const custLevelId = $this.data('custlevelid');
                 const breadcrumbs = this.getBreadcrumbs().filter((item) => item.custLevelId > custLevelId);
                 const breadcrumbsJson = JSON.stringify(breadcrumbs);
