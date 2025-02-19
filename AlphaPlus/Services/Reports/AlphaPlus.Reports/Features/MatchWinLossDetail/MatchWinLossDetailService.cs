@@ -2,8 +2,8 @@ using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Constants;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Reports.Features.MatchWinLossDetail;
 
@@ -18,7 +18,7 @@ public interface IMatchWinLossDetailService
 
 public class MatchWinLossDetailService(
     IDynamicRepository repository,
-    ICacheService cacheService,
+    IMemoryCache cacheService,
     ILeagueService leagueService,
     IReportDateService reportDateService,
     ICacheRefService cacheRefService,
@@ -28,17 +28,20 @@ public class MatchWinLossDetailService(
     private const string ProductsCacheKey = "AlphaPlus.Reports.MatchWinLossDetail.Products";
 
     private readonly IDynamicRepository repository = repository;
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
     private readonly ILeagueService leagueService = leagueService;
     private readonly IReportDateService reportDateService = reportDateService;
     private readonly ICacheRefService cacheRefService = cacheRefService;
     private readonly IPartialUMService partialUMService = partialUMService;
 
     public Task<int[]> GetProducts()
-        => cacheService.GetOrSetAsync(
+        => cacheService.GetOrCreateAsync(
         ProductsCacheKey,
-        async () => (await repository.FetchAsync<Product>(new ProductsForMatchWinLossDetailCriteria())).Select(p => p.Id).ToArray(),
-        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheInMinutes)));
+        async cacheEntry =>
+        {
+            cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheInMinutes));
+            return (await repository.FetchAsync<Product>(new ProductsForMatchWinLossDetailCriteria())).Select(p => p.Id).ToArray();
+        });
 
     public async Task<IEnumerable<League>> GetLeagues(GetLeaguesParam param)
     {

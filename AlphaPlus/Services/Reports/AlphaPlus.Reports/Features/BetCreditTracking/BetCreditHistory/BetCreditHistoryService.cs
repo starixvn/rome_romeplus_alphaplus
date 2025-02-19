@@ -2,8 +2,8 @@ using System.Text.RegularExpressions;
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Shared.Constants;
 using AlphaPlus.Shared.AppResources.Report;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
 
@@ -15,7 +15,7 @@ public interface IBetCreditHistoryService
 public class BetCreditHistoryService(
     IDynamicRepository repository,
     IPartialUMService partialUMService,
-    ICacheService cacheService) : IBetCreditHistoryService
+    IMemoryCache cacheService) : IBetCreditHistoryService
 {
     private const int LogActionCacheInMinutes = 60;
     private const string LogActionCacheKey = "AlphaPlus.Reports.BetCreditTracking.BetCreditHistory.LogAction";
@@ -37,7 +37,7 @@ public class BetCreditHistoryService(
 
     private readonly IDynamicRepository repository = repository;
     private readonly IPartialUMService partialUMService = partialUMService;
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
 
     public async Task<BetCreditHistoryModel> GetBetCreditHistory(BetCreditHistoryParam param)
     {
@@ -84,15 +84,14 @@ public class BetCreditHistoryService(
 
     private async Task<LogAction> GetLogAction(int actionId)
     {
-        var logActionDictionary = await cacheService.GetOrSetAsync(
+        var logActionDictionary = await cacheService.GetOrCreateAsync(
             LogActionCacheKey,
-            async () =>
+            async cacheEntry =>
             {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(LogActionCacheInMinutes));
                 var logActions = await repository.FetchAsync<LogAction>(new GetLogActionsCriteria());
                 return logActions.ToDictionary(logAction => logAction.Id);
-            },
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(LogActionCacheInMinutes))
-        );
+            });
 
         return logActionDictionary.TryGetValue(actionId, out var logAction)
             ? logAction
@@ -101,55 +100,24 @@ public class BetCreditHistoryService(
 
     private static string ConvertActionName(string action, int actionId)
     {
-        switch (actionId)
+        return actionId switch
         {
-            case -1:
-                return BetCreditHistoryResources.OpeningCredit;
-
-            case 0:
-                return TransformActionIdEqualsTo0(action);
-
-            case 2:
-                return GetActionName2(action);
-
-            case 10:
-            case 11:
-            case 12:
-                return GetActionName10(action);
-
-            case 13:
-                return GetActionName13(action);
-
-            case 20:
-                return TransformActionIdEqualsTo20(action);
-
-            case 29:
-                return GetActionStatusToStatus(BetCreditHistoryResources.CashOut, action);
-
-            case 30:
-                return TransformActionIdEqualsTo30(action);
-
-            case 31:
-                return TransformActionIdEqualsTo31(action);
-
-            case 32:
-                return TransformActionIdEqualsTo32(action);
-
-            case 34:
-                return GetActionStatusToStatus(BetCreditHistoryResources.CancelCashOut, action);
-
-            case 50:
-                return TransformActionIdEqualsTo50(action);
-
-            case 55:
-                return TransformActionIdEqualsTo55(action);
-
-            case 110:
-                return GetTransferSubmitted(action);
-
-            default:
-                return action;
-        }
+            -1 => BetCreditHistoryResources.OpeningCredit,
+            0 => TransformActionIdEqualsTo0(action),
+            2 => GetActionName2(action),
+            10 or 11 or 12 => GetActionName10(action),
+            13 => GetActionName13(action),
+            20 => TransformActionIdEqualsTo20(action),
+            29 => GetActionStatusToStatus(BetCreditHistoryResources.CashOut, action),
+            30 => TransformActionIdEqualsTo30(action),
+            31 => TransformActionIdEqualsTo31(action),
+            32 => TransformActionIdEqualsTo32(action),
+            34 => GetActionStatusToStatus(BetCreditHistoryResources.CancelCashOut, action),
+            50 => TransformActionIdEqualsTo50(action),
+            55 => TransformActionIdEqualsTo55(action),
+            110 => GetTransferSubmitted(action),
+            _ => action,
+        };
     }
 
     private static string TransformActionIdEqualsTo0(string action)

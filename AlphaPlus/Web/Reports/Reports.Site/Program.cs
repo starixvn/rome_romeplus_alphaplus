@@ -64,7 +64,6 @@ builder.Services
     })
     .AddMediatR(assembly)
     .AddFanexLogging(configuration)
-    .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>()
     .AddRemotingRef(configuration)
     .AddFanexData(configuration)
     .AddRequestInfo()

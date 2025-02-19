@@ -1,8 +1,8 @@
 ﻿using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLoss;
-using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
-using Fanex.Caching;
-using Fanex.Data.Repository;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
+using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Services
 {
@@ -17,9 +17,9 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services
     {
         private const string EnteredResultsCacheKey = "Alpha.Reports.Services.Impl.WinLossServiceImpl.EnteredResults";
         private readonly IDynamicRepository dynamicRepository;
-        private readonly ICacheService cacheService;
+        private readonly IMemoryCache cacheService;
 
-        public WinlossService(IDynamicRepository dynamicRepository, ICacheService cacheService)
+        public WinlossService(IDynamicRepository dynamicRepository, IMemoryCache cacheService)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
@@ -69,14 +69,14 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services
 
         internal async Task<IEnumerable<EnteredSportResult>> GetDataEnteredSportResults(bool includeTestData)
         {
-            var dailyEnteredSportData = await cacheService.GetOrSetAsync(
+            var dailyEnteredSportData = await cacheService.GetOrCreateAsync(
                 EnteredResultsCacheKey,
-                () =>
+                cacheEntry =>
                 {
+                    cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(1));
                     var criteria = new DailyEnteredSportCriteria(includeTestData);
                     return dynamicRepository.FetchAsync<DailyEnteredSport>(criteria);
-                },
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(1)));
+                });
 
             if (dailyEnteredSportData.Any())
             {

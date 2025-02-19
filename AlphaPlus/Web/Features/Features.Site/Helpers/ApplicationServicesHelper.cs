@@ -1,23 +1,22 @@
+using Alpha.Announcements.Models;
+using Alpha.Announcements.Services;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Features.Handbook.API.Services;
+using AlphaPlus.Features.Messages.API;
+using AlphaPlus.Features.Messages.API.Client.Helpers;
+using AlphaPlus.Features.Messages.API.Configurations;
+using AlphaPlus.Features.Messages.API.Models.Announcement;
+using AlphaPlus.Features.Messages.API.Services;
+using AlphaPlus.Features.Site.Messages.Requests.Announcement;
 using AlphaPlus.RequestInfo;
-using Fanex.Caching;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Fanex.RemotingRef;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using MediatR;
-using AlphaPlus.Features.Messages.API.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using RestSharp;
-using Alpha.Announcements.Services;
-using AlphaPlus.Features.Messages.API.Models.Announcement;
-using Alpha.Announcements.Models;
-using AlphaPlus.Features.Site.Messages.Requests.Announcement;
-using AlphaPlus.Features.Messages.API.Configurations;
-using AlphaPlus.Features.Messages.API.Client.Helpers;
-using AlphaPlus.Features.Messages.API;
-using AlphaPlus.Features.Handbook.API.Services;
 using AlphaPlus.Core.Filters;
 
 namespace AlphaPlus.Features.Site.Helpers
@@ -83,8 +82,7 @@ namespace AlphaPlus.Features.Site.Helpers
                 .AddScoped<ToastMessageService, ToastMessageServiceImpl>()
                 .AddScoped<AnnouncementClient, AnnouncementClientImpl>()
                 .AddScoped<IProfileService, ProfileService>()
-                .AddSingleton<IRestClient>(client => new RestClient(new Uri(AppSettings.AnnouncementApi)) { Authenticator = new HmacAuthenticator() })
-                .AddSingleton<ICacheService, CacheService>();
+                .AddSingleton<IRestClient>(client => new RestClient(new Uri(AppSettings.AnnouncementApi)) { Authenticator = new HmacAuthenticator() });
 
             services
                 .AddSharedSession(configuration)

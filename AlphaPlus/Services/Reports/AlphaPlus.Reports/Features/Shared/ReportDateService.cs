@@ -1,7 +1,7 @@
 using AlphaPlus.Reports.Features.Shared.Criteria;
 using AlphaPlus.Reports.Features.Shared.Models;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Reports.Features.Shared;
 
@@ -18,7 +18,7 @@ public interface IReportDateService
     Task<string> GetStoreMappingSuffix(DateTime fromDate);
 }
 
-public class ReportDateService(IDynamicRepository repository, ICacheService cacheService) : IReportDateService
+public class ReportDateService(IDynamicRepository repository, IMemoryCache cacheService) : IReportDateService
 {
     private const int CacheBalanceUpDayAndMoveBetsDayInMinutes = 2;
     public const string BetTrans14SPSuffix = "_14";
@@ -27,15 +27,18 @@ public class ReportDateService(IDynamicRepository repository, ICacheService cach
     private const string BalanceUpDayAndMoveBetsDayCacheKey = "AlphaPlus.Reports.BalanceUpDayAndMoveBetsDay";
 
     private readonly IDynamicRepository repository = repository;
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
 
     public static IReportDateService Instance { get; internal set; }
 
     public Task<BalanceUpDayAndMoveBetsDay> GetBalanceUpDayAndMoveBetsDay()
-        => cacheService.GetOrSetAsync(
+        => cacheService.GetOrCreateAsync(
             BalanceUpDayAndMoveBetsDayCacheKey,
-            () => repository.GetAsync<BalanceUpDayAndMoveBetsDay>(new GetBalanceUpDayAndMoveBetsDayCriteria()),
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CacheBalanceUpDayAndMoveBetsDayInMinutes)));
+            cacheEntry =>
+            {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(CacheBalanceUpDayAndMoveBetsDayInMinutes));
+                return repository.GetAsync<BalanceUpDayAndMoveBetsDay>(new GetBalanceUpDayAndMoveBetsDayCriteria());
+            });
 
     public async Task<DateTime> GetBalanceUpDay() => (await GetBalanceUpDayAndMoveBetsDay()).BalanceUpDay;
 

@@ -15,7 +15,6 @@ public static class DependencyInjection
             .AddAllowedSitesToShareLoadConfig(configuration)
             .Configure<AppSettings>(configuration)
             .AddSingleton<IUser, User>()
-            .AddSingleton<Fanex.Caching.ICacheService, Fanex.Caching.CacheService>()
             .AddSingleton<ICacheRefService, CacheRefService>()
             .AddSingleton<IEncryption, Encryption>();
         services.AddHttpClient<ICustomerClient, CustomerClient>(configuration.GetValue<string>("Fanex.Customer:ServiceUri"));

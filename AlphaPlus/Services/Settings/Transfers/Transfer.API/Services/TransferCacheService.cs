@@ -1,10 +1,9 @@
-﻿using AlphaPlus.Settings.Transfer.API.Configurations;
+﻿using System.Text;
+using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Models;
-using Fanex.Caching;
-using Fanex.Caching.Redis;
 using Fanex.Logging;
+using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using StackExchange.Redis;
 
 namespace AlphaPlus.Settings.Transfer.API.Services;
 
@@ -21,24 +20,22 @@ public interface ITransferCacheService
     void CacheRemove(List<TransferCacheModel> listTransferCacheModel, int custId);
 
     void CacheRemoveSuccessTransferCustIds(string cacheKey, List<int> listSuccessTransferCustIds, int adminId, string adminName);
-
-    ICacheService GetCacheService();
 }
 
-public class TransferCacheService(ICacheService cacheService = null) : ITransferCacheService
+public class TransferCacheService(IDistributedCache cacheService = null) : ITransferCacheService
 {
-    private readonly ICacheService cacheService = cacheService ?? InitCacheService();
+    private readonly IDistributedCache cacheService = cacheService;
     private static readonly object lockObject = new object();
 
     public List<TransferCacheModel> Get(string cacheKey)
     {
         lock (lockObject)
         {
-            string value = cacheService.Get<string>(cacheKey);
+            var value = cacheService.Get(cacheKey);
 
-            return string.IsNullOrWhiteSpace(value)
-                ? null
-                : JsonConvert.DeserializeObject<List<TransferCacheModel>>(value);
+            return value != null
+                ? JsonConvert.DeserializeObject<List<TransferCacheModel>>(Encoding.UTF8.GetString(value))
+                : null;
         }
     }
 
@@ -80,9 +77,9 @@ public class TransferCacheService(ICacheService cacheService = null) : ITransfer
     {
         lock (lockObject)
         {
-            var cachePolicy = new CacheItemOptions()
+            var cachePolicy = new DistributedCacheEntryOptions()
                 .SetAbsoluteExpiration(TimeSpan.FromSeconds(AppSettings.MultipleTransferCacheTimeOut));
-            cacheService.Set(cacheKey, JsonConvert.SerializeObject(value), cachePolicy);
+            cacheService.Set(cacheKey, Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(value)), cachePolicy);
 
             if (AppSettings.EnableTransferLogInfo)
             {
@@ -153,19 +150,5 @@ public class TransferCacheService(ICacheService cacheService = null) : ITransfer
                 return;
             }
         }
-    }
-
-    public ICacheService GetCacheService() => InitCacheService();
-
-    private static ICacheService InitCacheService()
-    {
-        var configurationOptions = ConfigurationOptions.Parse(AppSettings.TransferRedisConfiguration);
-        var redisCacheOptions = new RedisCacheOptions
-        {
-            ConnectionOptions = configurationOptions,
-            ApplicationName = configurationOptions.ClientName
-        };
-
-        return new CacheService(new RedisCache(redisCacheOptions));
     }
 }

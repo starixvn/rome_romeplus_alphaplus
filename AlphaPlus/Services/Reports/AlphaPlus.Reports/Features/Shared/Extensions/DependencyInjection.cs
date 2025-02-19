@@ -1,33 +1,33 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using AlphaPlus.Reports.Features.Shared.Models;
-using AlphaPlus.PartialUM.Extensions;
 using AlphaPlus.PartialUM.DataAccess;
-using AlphaPlus.Reports.Features.Outstanding;
-using AlphaPlus.Reports.Features.EnteredResult;
-using AlphaPlus.Reports.Features.ProgressiveContribution;
-using AlphaPlus.Reports.Features.Statement;
+using AlphaPlus.PartialUM.Extensions;
+using AlphaPlus.Reports.Features.BetChoiceMatching;
 using AlphaPlus.Reports.Features.BetCreditTracking.BetCreditHistory;
 using AlphaPlus.Reports.Features.BetCreditTracking.MoveStatementHistory;
-using AlphaPlus.Reports.Features.CommissionByBetType;
 using AlphaPlus.Reports.Features.BonusDetail;
-using AlphaPlus.Reports.Features.IPMatching;
-using AlphaPlus.Reports.Features.BetChoiceMatching;
-using AlphaPlus.Utilities.IP;
-using AlphaPlus.Reports.Features.WinLossAnalysisChart;
-using AlphaPlus.Reports.Features.WinLossAnalysis;
-using AlphaPlus.Reports.Features.MatchWinLossDetail;
-using AlphaPlus.Reports.Features.WinLoss;
-using AlphaPlus.Reports.Features.WinLossDetail;
-using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
-using AlphaPlus.Reports.Features.WinLossByProduct;
+using AlphaPlus.Reports.Features.CommissionByBetType;
 using AlphaPlus.Reports.Features.Consolidation;
 using AlphaPlus.Reports.Features.Customer;
-using Fanex.Data.Repository;
-using Fanex.Caching;
-using Microsoft.Extensions.Options;
+using AlphaPlus.Reports.Features.EnteredResult;
+using AlphaPlus.Reports.Features.IPMatching;
+using AlphaPlus.Reports.Features.MatchWinLossDetail;
+using AlphaPlus.Reports.Features.Outstanding;
 using AlphaPlus.Reports.Features.Products;
+using AlphaPlus.Reports.Features.ProgressiveContribution;
+using AlphaPlus.Reports.Features.Shared.Models;
+using AlphaPlus.Reports.Features.Statement;
+using AlphaPlus.Reports.Features.SuperWinLossDetailByPT;
 using AlphaPlus.Reports.Features.WhiteLabel;
+using AlphaPlus.Reports.Features.WinLoss;
+using AlphaPlus.Reports.Features.WinLossAnalysis;
+using AlphaPlus.Reports.Features.WinLossAnalysisChart;
+using AlphaPlus.Reports.Features.WinLossByProduct;
+using AlphaPlus.Reports.Features.WinLossDetail;
+using AlphaPlus.Utilities.IP;
+using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Features.Shared.Extensions;
 
@@ -48,7 +48,7 @@ public static class DependencyInjection
             .AddPartialUM(configuration)
             .AddSingleton<IProductService>(sp => new ProductService(
                 sp.GetRequiredService<IDynamicRepository>(),
-                sp.GetRequiredService<ICacheService>(),
+                sp.GetRequiredService<IMemoryCache>(),
                 canViewProduct,
                 sp.GetRequiredService<ICacheRefService>(),
                 sp.GetRequiredService<IOptions<AppSettings>>()))

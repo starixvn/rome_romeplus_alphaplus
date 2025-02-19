@@ -1,9 +1,9 @@
-﻿using AlphaPlus.Features.Messages.Utils;
-using AlphaPlus.Features.Messages.API.Constants;
+﻿using AlphaPlus.Features.Messages.API.Constants;
 using AlphaPlus.Features.Messages.API.Criteria.Message;
-using Fanex.Caching;
-using Fanex.Data.Repository;
 using AlphaPlus.Features.Messages.API.Models.Message;
+using AlphaPlus.Features.Messages.Utils;
+using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Features.Messages.API.Services
 {
@@ -18,9 +18,9 @@ namespace AlphaPlus.Features.Messages.API.Services
     {
         private const int CachedSecond = 30;
         private readonly IDynamicRepository dynamicRepository;
-        private readonly ICacheService cacheService;
+        private readonly IMemoryCache cacheService;
 
-        public MarqueeMessageServiceImpl(IDynamicRepository dynamicRepository, ICacheService cacheService)
+        public MarqueeMessageServiceImpl(IDynamicRepository dynamicRepository, IMemoryCache cacheService)
         {
             this.dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
@@ -30,10 +30,13 @@ namespace AlphaPlus.Features.Messages.API.Services
         {
             var siteId = MessageConstants.ParentSitesByLevel[roleId];
 
-            var message = cacheService.GetOrSet(
+            var message = cacheService.GetOrCreate(
                 $"{DataBaseMessageType.Others}_{siteId}_{customerSite}",
-                () => dynamicRepository.Get<MarqueeMessage>(new GetLatestPublicMessageCriteria(DataBaseMessageType.Others, siteId, isTest, customerSite)),
-                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(CachedSecond)));
+                cacheEntry =>
+                {
+                    cacheEntry.SetAbsoluteExpiration(TimeSpan.FromSeconds(CachedSecond));
+                    return dynamicRepository.Get<MarqueeMessage>(new GetLatestPublicMessageCriteria(DataBaseMessageType.Others, siteId, isTest, customerSite));
+                });
 
             return new GeneralMarqueeMessage(message.Id, message.GetContentByKey(languageKey), message.BetTransId, message.IsBatch, message.IsSticky, message.MsgType);
         }

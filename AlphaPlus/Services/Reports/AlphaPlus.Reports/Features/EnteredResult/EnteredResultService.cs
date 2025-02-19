@@ -1,9 +1,9 @@
-using Microsoft.Extensions.Options;
-using AlphaPlus.Reports.Features.Shared.Models;
-using Fanex.Data.Repository;
 using AlphaPlus.PartialUM.Services;
 using AlphaPlus.Reports.Features.Shared;
-using Fanex.Caching;
+using AlphaPlus.Reports.Features.Shared.Models;
+using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Features.EnteredResult;
 
@@ -18,7 +18,7 @@ public interface IEnteredResultService
 
 public class EnteredResultService(
     IDynamicRepository repository,
-    ICacheService cacheService,
+    IMemoryCache cacheService,
     IPartialUMService partialUMService,
     ICacheRefService cacheRefService,
     IOptions<AppSettings> options) : IEnteredResultService
@@ -27,7 +27,7 @@ public class EnteredResultService(
     private const string CacheKey = "AlphaPlus.Reports.EnteredResult";
 
     private readonly IDynamicRepository repository = repository;
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
     private readonly IPartialUMService partialUMService = partialUMService;
     private readonly ICacheRefService cacheRefService = cacheRefService;
     private readonly AppSettings appSettings = options.Value;
@@ -68,10 +68,13 @@ public class EnteredResultService(
     }
 
     public Task<IEnumerable<EnteredResultSport>> GetEnteredResults(string siteName)
-        => cacheService.GetOrSetAsync(
+        => cacheService.GetOrCreateAsync(
         CacheKey,
-        () => GetEnteredResultsFromDB(siteName),
-        new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CacheInMinutes)));
+        cacheEntry =>
+        {
+            cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(CacheInMinutes));
+            return GetEnteredResultsFromDB(siteName);
+        });
 
     internal async Task<IEnumerable<EnteredResultSport>> GetEnteredResultsFromDB(string siteName)
     {

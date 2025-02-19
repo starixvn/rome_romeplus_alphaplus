@@ -1,12 +1,12 @@
 ﻿using System.Text.RegularExpressions;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.ViewLogs.API.Constants;
 using AlphaPlus.Settings.ViewLogs.API.Criteria;
 using AlphaPlus.Settings.ViewLogs.API.DataAccesses;
-using Fanex.Caching;
-using Fanex.Data.Repository;
 using AlphaPlus.Settings.ViewLogs.API.Models;
 using AlphaPlus.Settings.ViewLogs.API.Params;
-using AlphaPlus.Core.Models;
+using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
 {
@@ -19,9 +19,9 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
         private readonly IDynamicRepository dynamicRepository;
         private readonly CustomerService customerService;
         private readonly IUserSession session;
-        private readonly ICacheService cacheService;
+        private readonly IMemoryCache cacheService;
 
-        protected BaseService(IDynamicRepository dynamicRepository, CustomerService customerService, LogDataAccess logDataAccess, IUserSession session, ICacheService cacheService)
+        protected BaseService(IDynamicRepository dynamicRepository, CustomerService customerService, LogDataAccess logDataAccess, IUserSession session, IMemoryCache cacheService)
         {
             this.dynamicRepository = dynamicRepository;
             this.customerService = customerService;
@@ -53,7 +53,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
 
         public async Task<IEnumerable<LogActionType>> GetLogActionTypes()
         {
-            var logActionTypes = await cacheService.GetAsync<IEnumerable<LogActionType>>(LogActionTypesCacheKey);
+            var logActionTypes = cacheService.Get<IEnumerable<LogActionType>>(LogActionTypesCacheKey);
 
             if (logActionTypes != null
                 && logActionTypes.Any())
@@ -63,14 +63,14 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
 
             logActionTypes = await dynamicRepository.FetchAsync<LogActionType>(new GetAllLogActionTypeCriteria());
 
-            await cacheService.SetAsync(LogActionTypesCacheKey, logActionTypes, new CacheItemOptions { SlidingExpiration = TimeSpan.FromHours(OneHour) });
+            cacheService.Set(LogActionTypesCacheKey, logActionTypes, new MemoryCacheEntryOptions { SlidingExpiration = TimeSpan.FromHours(OneHour) });
 
             return logActionTypes;
         }
 
         public async Task<LogAction> GetLogAction(int actionId)
         {
-            var logActionDictionary = await cacheService.GetAsync<Dictionary<int, LogAction>>(LogActionCacheKey);
+            var logActionDictionary = cacheService.Get<Dictionary<int, LogAction>>(LogActionCacheKey);
 
             if (logActionDictionary == null
                 || logActionDictionary.Count == 0)
@@ -79,7 +79,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
                     .FetchAsync<LogAction>(new GetLogActionsCriteria()))
                     .ToDictionary(logAction => logAction.Id);
 
-                await cacheService.SetAsync(LogActionCacheKey, logActionDictionary, DefaultVariables.CacheItemOptions);
+                cacheService.Set(LogActionCacheKey, logActionDictionary, DefaultVariables.CacheItemOptions);
             }
 
             return logActionDictionary.TryGetValue(actionId, out LogAction value) ? value :

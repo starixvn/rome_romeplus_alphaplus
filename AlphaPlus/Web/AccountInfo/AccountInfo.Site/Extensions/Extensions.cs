@@ -9,7 +9,6 @@ using AlphaPlus.Core.Filters;
 using AlphaPlus.RequestInfo;
 using AlphaPlus.SecurityCode.Extensions;
 using AlphaPlus.SecurityCode.Filters;
-using Fanex.Caching;
 using Fanex.Data;
 using Fanex.Data.Repository;
 using Microsoft.AspNetCore.Authentication;

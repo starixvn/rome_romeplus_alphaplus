@@ -3,8 +3,8 @@ using AlphaPlus.Reports.Features.Products;
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Extensions;
 using AlphaPlus.Reports.Features.Shared.Models;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Reports.Features.Consolidation;
 
@@ -22,7 +22,7 @@ public interface IConsolidationService
 public class ConsolidationService(
     IDynamicRepository repository,
     IReportDateService reportDateService,
-    ICacheService cacheService,
+    IMemoryCache cacheService,
     ICacheRefService cacheRefService,
     IPartialUMService partialUMService,
     AllowedSitesToShareLoad allowedSitesToShareLoad) : IConsolidationService
@@ -31,7 +31,7 @@ public class ConsolidationService(
 
     private readonly IDynamicRepository repository = repository;
     private readonly IReportDateService reportDateService = reportDateService;
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
     private readonly ICacheRefService cacheRefService = cacheRefService;
     private readonly IPartialUMService partialUMService = partialUMService;
     private readonly AllowedSitesToShareLoad allowedSitesToShareLoad = allowedSitesToShareLoad;
@@ -41,10 +41,11 @@ public class ConsolidationService(
 
     public Task<IEnumerable<Product>> GetProducts(int custId, DateTime minDate, byte settingStatus, string siteName)
         => cacheService
-            .GetOrSetAsync(
+            .GetOrCreateAsync(
             $"AlphaPlus.Reports.Consolidation-{custId}",
-            async () =>
+            async cacheEntry =>
             {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheTimeInMinutes));
                 var ip = allowedSitesToShareLoad.GetIP(siteName);
 
                 return (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus), ip))
@@ -56,8 +57,7 @@ public class ConsolidationService(
                         Type = product.Type,
                         TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type)
                     });
-            },
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheTimeInMinutes)));
+            });
 
     private static bool IsRemainSupportProduct(ConsolidationProduct product, DateTime minReportDate)
         => product.IsShow

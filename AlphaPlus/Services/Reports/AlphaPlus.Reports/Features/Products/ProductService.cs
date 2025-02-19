@@ -1,7 +1,7 @@
 using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Models;
-using Fanex.Caching;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Reports.Features.Products;
@@ -28,7 +28,7 @@ public interface IProductService
 
 public class ProductService(
     IDynamicRepository repository,
-    ICacheService cacheService,
+    IMemoryCache cacheService,
     Func<int, bool> canViewProduct,
     ICacheRefService cacheRefService,
     IOptions<AppSettings> options) : IProductService
@@ -42,7 +42,7 @@ public class ProductService(
     private const string CacheKey = "AlphaPlus.Reports.Legends.ProductsNeedDelayTimeToSummarizeData";
 
     private readonly IDynamicRepository repository = repository;
-    private readonly ICacheService cacheService = cacheService;
+    private readonly IMemoryCache cacheService = cacheService;
     private readonly Func<int, bool> canViewProduct = canViewProduct;
     private readonly ICacheRefService cacheRefService = cacheRefService;
     private readonly AppSettings appSettings = options.Value;
@@ -52,10 +52,11 @@ public class ProductService(
 
     public async Task<IEnumerable<Product>> GetProducts(GetProductsParam param)
     {
-        var products = await cacheService.GetOrSetAsync(
+        var products = await cacheService.GetOrCreateAsync(
             $"{ProductsCacheKey}-{param.SiteName}-{param.CurrencyId}-{param.Language}",
-            async () =>
+            async cacheEntry =>
             {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes));
                 var products = await repository.FetchAsync<Product>(new GetProductsCriteria(param.SiteName, param.CurrencyId, param.SettingStatus));
 
                 return products
@@ -66,8 +67,7 @@ public class ProductService(
                         product.TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type);
                         return product;
                     }).ToList();
-            },
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductsCacheTimeInMinutes)));
+            });
 
         return products.Where(i => IsRemainSupportProduct(i, param.MinReportDate) && canViewProduct(i.Id));
     }
@@ -78,10 +78,11 @@ public class ProductService(
         || minReportDate.Value <= product.EndOfSupportDate.Value;
 
     public Task<IEnumerable<ProductDetail>> GetProductDetails(int custId, IEnumerable<Product> allOfferProducts)
-        => cacheService.GetOrSetAsync(
+        => cacheService.GetOrCreateAsync(
             $"{ProductDetailsCacheKey}-{custId}",
-            async () =>
+            async cacheEntry =>
             {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes));
                 var productSupportDetail = allOfferProducts
                     .Where(product => IsSupportProductDetail(product.Id))
                     .Select(product => product.Id)
@@ -96,8 +97,7 @@ public class ProductService(
                         product.DisplayName = cacheRefService.GetProductDetailName(product.ResourceId);
                         return product;
                     });
-            },
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(CustProductDetailsCacheInMinutes)));
+            });
 
     private bool CanViewProductDetailByResourceId(int resourceId)
         => appSettings.IsSiteLabel777
@@ -105,19 +105,25 @@ public class ProductService(
         : true;
 
     private async Task<IEnumerable<ProductDetail>> GetAllProductDetails()
-        => await cacheService.GetOrSetAsync(
+        => await cacheService.GetOrCreateAsync(
             ProductDetailsCacheKey,
-            async () => (await repository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria())).OrderBy(product => product.ProductId).ThenBy(product => product.Order),
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductDetailsCacheInMinutes)));
+            async cacheEntry =>
+            {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductDetailsCacheInMinutes));
+                return (await repository.FetchAsync<ProductDetail>(new GetProductsDetailCriteria())).OrderBy(product => product.ProductId).ThenBy(product => product.Order);
+            });
 
     public async Task<string> GetProductsNeedDelayTimeToSummarizeData(
         GetProductsParam productParam,
         IEnumerable<int> enableJackpotProductIds = null)
     {
-        var productIdsNeedDelayTimeToSummarizeData = await cacheService.GetOrSetAsync(
+        var productIdsNeedDelayTimeToSummarizeData = await cacheService.GetOrCreateAsync(
             CacheKey,
-            async () => (await repository.FetchAsync<ProductsByRefTable>(new GetProductsByRefTableCriteria(null))).Select(p => p.ProductId),
-            new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsNeedDelayTimeToSummarizeDataCacheInMinutes)));
+            async cacheEntry =>
+            {
+                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsNeedDelayTimeToSummarizeDataCacheInMinutes));
+                return (await repository.FetchAsync<ProductsByRefTable>(new GetProductsByRefTableCriteria(null))).Select(p => p.ProductId);
+            });
 
         if (enableJackpotProductIds != null)
         {
