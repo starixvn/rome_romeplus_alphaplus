@@ -126,6 +126,6 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
             };
 
         private static bool IsAjaxRequest(HttpRequest request)
-            => request.Headers != null && request.Headers.XRequestedWith == "XMLHttpRequest";
+            => request.Headers != null && (request.Headers.XRequestedWith == "XMLHttpRequest" || request.Method == "POST");
     }
 }
