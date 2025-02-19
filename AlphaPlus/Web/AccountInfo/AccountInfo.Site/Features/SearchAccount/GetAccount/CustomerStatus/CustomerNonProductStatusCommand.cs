@@ -18,7 +18,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerS
 
         public override bool IsValid()
         {
-            var isValid = base.IsValid() && !string.IsNullOrWhiteSpace(StatusName) && CanUpdateAccount && !IsInternal;
+            var isValid = base.IsValid() && !string.IsNullOrWhiteSpace(StatusName) && CanUpdateAccount && !IsInternal && SearchAccountId > 0;
             return !StatusName.Equals(StatusNames.DoubleComm) ? isValid : isValid && IsValidDoubleComm;
         }
 
