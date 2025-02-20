@@ -29,11 +29,12 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Base
         public override bool Visible => Actor.IsNotSuper || SearchAccount.IsNotAgent;
 
         public override Dictionary<string, string> QueryStringParameters
-         => new Dictionary<string, string>
+         => new()
          {
              ["productGroupId"] = ProductGroupId.ToString(),
              ["custId"] = SearchAccount.Id.ToString(),
              ["roleId"] = SearchAccount.CustomerLevelValue.ToString(),
+             ["agentId"] = SearchAccount.AgentId.ToString(),
              ["lng"] = request.Language,
              ["isDarkMode"] = request.IsDarkMode.ToString().ToLowerInvariant()
          };
