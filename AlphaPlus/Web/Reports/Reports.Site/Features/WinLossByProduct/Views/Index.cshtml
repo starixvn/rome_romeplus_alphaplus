@@ -57,8 +57,8 @@
             data-sporttype="@data.SportType" data-is-hide="@(isExpand ? "false" : "true")">
             <td class="text-left col-username bold @(isExpand ? "active" : string.Empty)">
                 <div class="text-icon-left">
-                <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
-                @data.SportTypeName
+                    <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
+                    @data.SportTypeName
                 </div>
             </td>
             @{
@@ -187,13 +187,9 @@
                 Resources.GrossComm : (isSuperLevel ? Resources.TurnoverAbbr + Resources.GrossComAndMasterTotal :
                 Resources.TurnoverAbbr + Resources.GrossComAndAgentTotal))
             </th>
-            @if (isSuperLevel)
+            @if (isSuperLevel || isMasterLevel)
             {
-                <th rowspan="2" class="hidden-stack-mode">@Resources.MasterTotal</th>
-            }
-            @if (isMasterLevel)
-            {
-                <th rowspan="2" class="hidden-stack-mode">@Resources.AgentTotal</th>
+                <th rowspan="2" class="hidden-stack-mode">@Resources.DownlineTotal</th>
             }
             @if (isAgentLevel)
             {
