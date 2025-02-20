@@ -1,19 +1,19 @@
-﻿using AlphaPlus.Settings.Site.Features.CreateAccount.Requests;
-using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json;
-using Fanex.Cryptography.Aes;
+﻿using AlphaPlus.Core;
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
-using AlphaPlus.Core;
-using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
-using Fanex.Customer.Client.Services;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.Site.Features.CreateAccount.Requests;
+using AlphaPlus.Settings.Site.Features.CreateAccount.ViewModels;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using Fanex.Cryptography.Aes;
 using Fanex.Customer.Client.Constants;
 using Fanex.Customer.Client.Params;
-using AlphaPlus.Core.Utils;
-using AlphaPlus.Core.Models;
+using Fanex.Customer.Client.Services;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace AlphaPlus.Settings.Site.Features.CreateAccount
 {
@@ -110,7 +110,16 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
         }
 
         public async Task<ActionResult> GetCustomerInfo()
-            => Content(await customerService.GetCustomerSetting(viewer.Id, viewer.LevelId, 4, viewer.LevelId, viewer.Language, false, 0));
+            => Content(await customerService.GetCustomerSetting(
+                viewer.Id,
+                viewer.LevelId,
+                4,
+                viewer.LevelId,
+                viewer.Language,
+                false,
+                0,
+                AppSettings.SiteLabel,
+                agentId: 0));
 
         private ActionResult UnAuthorized()
            => Content(JsonConvert.SerializeObject(Result.CreateErrorResult(Lang.NotAuthorized), new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
