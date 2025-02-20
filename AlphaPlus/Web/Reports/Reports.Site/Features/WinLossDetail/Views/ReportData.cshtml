@@ -65,7 +65,7 @@
                 }
                 else if (Model.CanDrilldown)
                 {
-                    if (isAgentLevel && data.NumberOfTickets == 0)
+                    if ((isAgentLevel || data.IsDirectMember) && data.NumberOfTickets == 0)
                     {
                         @:@data.CustName
                     }

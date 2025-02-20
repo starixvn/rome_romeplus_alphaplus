@@ -56,22 +56,22 @@ class WinLossDetailView extends BaseReportNew {
         this.$tblReportContainer = $('#tbl-report-container');
         this.$tblReport = this.$tblReportContainer.find('#tbl-report');
 
-        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getWinLossDetail(false) });
-        this.productComponent.render(productList, productDetailList, () => this.getWinLossDetail(false));
+        this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getWinLossDetail() });
+        this.productComponent.render(productList, productDetailList, () => this.getWinLossDetail());
         this.levelTypeComponent.render({
             dropdownId: 'dropdown-level-type',
             hiddenInputId: 'level-type',
-            onChange: () => this.getWinLossDetail(false)
+            onChange: () => this.getWinLossDetail()
         });
         this.showHideLevelTypeFilter(this.globalFormData.custLevelId);
         this.usernameSuggestionComponent.init({
             onBlur: () => {
                 this.resetLevelFilter();
                 this.clearCurrentCust();
-                this.getWinLossDetail(true);
+                this.getWinLossDetail();
             }
         });
-        this.weekComponent.init($('#week-container'), (dateRange) => this.getData(dateRange, true, false));
+        this.weekComponent.init($('#week-container'), (dateRange) => this.getData(dateRange, true));
         this.breadcrumbLevelComponent.init((custInfo) => this.getWinLossDetailUpOrDownline(custInfo));
         this.winLossDetailColumns.init(() => this.updateQueryString());
         this.registerEvents();
@@ -149,7 +149,7 @@ class WinLossDetailView extends BaseReportNew {
             .find('.icon-plus-box')
             .off('click')
             .click((e) => {
-                window.top['reloadMyWatchlistDataTable'] = () => this.getData(this.globalFormData, true, false);
+                window.top['reloadMyWatchlistDataTable'] = () => this.getData(this.globalFormData, true);
                 const custName = $(e.target).data('custname');
                 const url = `${$(
                     '#hidden-settingsUrl'
@@ -161,7 +161,7 @@ class WinLossDetailView extends BaseReportNew {
         this.winLossDetailColumns.showHideColumns(this.$tblReport);
     }
 
-    getWinLossDetail(isResetLevelFilter: boolean) {
+    getWinLossDetail() {
         this.clearActiveWeek();
         const dateRange = this.dateRangeComponent.getDateRangeValues();
         const productsAndResources = this.productComponent.getCheckedValues();
@@ -182,17 +182,17 @@ class WinLossDetailView extends BaseReportNew {
             return;
         }
 
-        this.getData(formData, true, isResetLevelFilter);
+        this.getData(formData, true);
     }
 
     getWinLossDetailUpOrDownline(custInfo) {
         this.clearLevelType();
         this.resetLevelFilter();
         this.clearUsername();
-        this.getData(custInfo, true, true);
+        this.getData(custInfo, true);
     }
 
-    getData(formData, isGetWeeks: boolean, isResetLevelFilter: boolean) {
+    getData(formData, isGetWeeks: boolean) {
         this.$tblReportContainer.block();
         this.isGettingData = true;
         const currentCustLevelId = this.globalFormData.custLevelId;
@@ -204,7 +204,7 @@ class WinLossDetailView extends BaseReportNew {
             this.$tblReportContainer.html(html);
             this.$tblReport = this.$tblReportContainer.find('#tbl-report');
             this.getDataSuccess();
-            isResetLevelFilter && this.changeReportTitleAndLevelTypeFilter(currentCustLevelId);
+            this.changeReportTitleAndLevelTypeFilter(currentCustLevelId);
             this.globalFormData = queryStringObject;
             this.updateQueryString(queryString);
             this.isGettingData = false;
