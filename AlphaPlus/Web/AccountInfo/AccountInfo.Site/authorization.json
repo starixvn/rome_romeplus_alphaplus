@@ -2,13 +2,15 @@
     "Authorization": {
         "CustIdQueryStringParamNames": [
             "SearchAccountId",
-            "CustId",
-            "CustIds"
+            "CustId"
         ],
         "CustIdJsonParamNames": [
             "SearchAccountId",
-            "CustId",
-            "CustIds"
+            "CustId"
+        ],
+        "CustIdsQueryStringParamNames": [
+            "SearchAccountIds",
+            "custids"
         ],
         "GroupPageAccesses": [
             {
@@ -36,7 +38,7 @@
                         "IsCheckBelonging": true
                     },
                     {
-                        "Url": "SearchAccount/GetAccount",
+                        "Url": "SearchAccount/GetCustomerInfo",
                         "Permission": "[A],[B],[C],[D],[E],[F],[G],[H]",
                         "IsCheckBelonging": true
                     },
@@ -58,6 +60,61 @@
                     {
                         "Url": "SearchAccount/GetMemberBalanceInfo",
                         "Permission": "[H]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "SearchAccount/UpdateAllDayBalanceTransfer",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "OpenDownlines/OpenSingle",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "OpenDownlines/OpenMultiple",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "OpenDownlines/EditSingle",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "OpenDownlines/EditMultiple",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "OpenDownlines/FetchCustomerList",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "UnsuspendDownlines/UnsuspendSingle",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "UnsuspendDownlines/UnsuspendMultiple",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "UnsuspendDownlines/EditSingle",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "UnsuspendDownlines/EditMultiple",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "UnsuspendDownlines/FetchCustomerList",
+                        "Permission": "[B]",
                         "IsCheckBelonging": true
                     }
                 ]
