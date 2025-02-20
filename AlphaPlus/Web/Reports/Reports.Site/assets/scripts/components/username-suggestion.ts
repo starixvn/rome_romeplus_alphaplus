@@ -1,19 +1,4 @@
-﻿/*
-class UsernameSuggestionOption {
-    constructor(
-        public url: string,
-        public onBlur = Function(),
-        public directDownline = false,
-        public isAccInfo = false
-    ) {
-        this.url = url;
-        this.onBlur = onBlur;
-        this.directDownline = directDownline;
-        this.isAccInfo = isAccInfo;
-    }
-}
-*/
-interface UsernameSuggestionOption {
+﻿interface UsernameSuggestionOption {
     url?: string;
     onBlur?: Function;
     directDownline?: boolean;

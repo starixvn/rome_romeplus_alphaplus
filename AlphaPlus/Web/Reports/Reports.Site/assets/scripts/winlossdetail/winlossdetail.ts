@@ -66,8 +66,8 @@ class WinLossDetailView extends BaseReportNew {
         this.showHideLevelTypeFilter(this.globalFormData.custLevelId);
         this.usernameSuggestionComponent.init({
             onBlur: () => {
+                this.resetLevelFilter();
                 this.clearCurrentCust();
-                this.levelTypeComponent.setSelectedValue('0');
                 this.getWinLossDetail(true);
             }
         });
@@ -187,11 +187,12 @@ class WinLossDetailView extends BaseReportNew {
 
     getWinLossDetailUpOrDownline(custInfo) {
         this.clearLevelType();
+        this.resetLevelFilter();
         this.clearUsername();
         this.getData(custInfo, true, true);
     }
 
-    getData(formData, isGetWeeks: boolean, isResetLevelFilter) {
+    getData(formData, isGetWeeks: boolean, isResetLevelFilter: boolean) {
         this.$tblReportContainer.block();
         this.isGettingData = true;
         const currentCustLevelId = this.globalFormData.custLevelId;
@@ -299,11 +300,6 @@ class WinLossDetailView extends BaseReportNew {
         if (custLevelId === 2) {
             levelTypeDropdownContainer.hide();
         } else if (custLevelId === 3 || custLevelId === 4) {
-            if (this.levelTypeComponent.getSelectedValue() !== '0') {
-                // update selected value to All
-                this.levelTypeComponent.setSelectedValue('0');
-            }
-
             const masterAgentText = $(`#hidden-masterAgentText${custLevelId}`).val();
             // update option text
             this.levelTypeComponent.$dropdown.find('option[value="1"]').text(masterAgentText);
@@ -322,6 +318,13 @@ class WinLossDetailView extends BaseReportNew {
                 .replaceWith(masterAgentText);
 
             levelTypeDropdownContainer.show();
+        }
+    }
+
+    private resetLevelFilter() {
+        if (this.levelTypeComponent.getSelectedValue() !== '0') {
+            // update selected value to All
+            this.levelTypeComponent.setSelectedValue('0');
         }
     }
 }
