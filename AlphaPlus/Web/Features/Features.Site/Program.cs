@@ -4,6 +4,8 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Features.Site.Helpers;
 using Microsoft.AspNetCore.HttpOverrides;
 
+ThreadPool.SetMinThreads(100, 100);
+
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
