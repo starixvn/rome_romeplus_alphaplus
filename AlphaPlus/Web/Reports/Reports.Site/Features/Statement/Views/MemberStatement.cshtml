@@ -151,7 +151,7 @@
     }
 </table>
 <pager model="Model.Pager" />
-<a class="hide" id="LoadLegendURL" asp-action="MemberReportLegend"></a>
+<a class="hide" id="LoadLegendURL" asp-action="MemberReportLegend" asp-route-IsDirectMember="@Model.IsDirectMember"></a>
 <a class="hide" id="StatementDetailsURL" asp-action="StatementDetails"></a>
 <input type="hidden" asp-for="BetListLink" />
 <input type="hidden" id="BetListTitle" value="@Resources.BetList" />

@@ -26,6 +26,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status.Base
                                            $"custId={SearchAccount.Id}",
                                            $"custName={SearchAccount.Username}",
                                            $"custRoleId={SearchAccount.CustomerLevelValue}",
+                                           $"agentId={SearchAccount.AgentId}",
                                            $"uid={Guid.NewGuid()}"));
 
         public override bool Visible => ProductGroupId != ProductConstants.Sportsbook && Actor.IsDirectUplineOf(SearchAccount);

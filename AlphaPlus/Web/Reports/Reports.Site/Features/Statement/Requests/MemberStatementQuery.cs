@@ -10,4 +10,6 @@ public class MemberStatementQuery : SMAStatementQuery, IRequest<MemberStatementV
         => MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth();
 
     public string ProductIds { get; set; } = "1,6,2";
+
+    public bool IsDirectMember { get; set; }
 }

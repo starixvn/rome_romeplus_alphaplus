@@ -11,9 +11,13 @@ namespace AlphaPlus.Reports.Site.Features.Statement;
 public class MemberStatementViewModel(MemberStatementQuery message, IEnumerable<StatementModel> statements)
     : SMAStatementViewModel(message, statements, $"{Resources.DailyStatement} - {message.CustName}")
 {
+    private static string ticketUrl = MicroSites.TicketUrl();
+
     public string ProductIds { get; } = message.ProductIds;
 
-    public string BetListLink { get; } = MicroSites.TicketUrl("~/DailyStatement/Index");
+    public bool IsDirectMember { get; } = message.IsDirectMember;
+
+    public string BetListLink => $"{ticketUrl}DailyStatement/Index";
 
     public string BuildBetListLink()
     {
@@ -27,7 +31,7 @@ public class MemberStatementViewModel(MemberStatementQuery message, IEnumerable<
             KeyValuePair.Create("UserSelectedDateRangeOption", DateRangePickerViewModel.SpecificDateOptionValue.ToString())
         });
 
-        return MicroSites.TicketUrl($"~/MemberBetList/Index{queryString}");
+        return $"{ticketUrl}MemberBetList/Index{queryString}";
     }
 
     public string BuildBetListRunningLink()
@@ -41,7 +45,7 @@ public class MemberStatementViewModel(MemberStatementQuery message, IEnumerable<
             KeyValuePair.Create(nameof(ProductIds), ProductIds)
         });
 
-        return MicroSites.TicketUrl($"~/RunningBetList/Index{queryString}");
+        return $"{ticketUrl}RunningBetList/Index{queryString}";
     }
 
     public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
