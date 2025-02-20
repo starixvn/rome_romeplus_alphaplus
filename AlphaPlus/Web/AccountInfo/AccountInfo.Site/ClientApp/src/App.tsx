@@ -210,26 +210,51 @@ function App() {
         if ((!statusData || !settingData || requestId === LoadCustomerAllStatus.ByUpdateStatus) && customer) {
             blockUIWrapper();
 
-            const { CustId, UserName, RoleId } = customer;
+            const {
+                CustId,
+                UserName,
+                RoleId,
+                IsDirectMember,
+                IsDirectMemberOfSuper,
+                SuperId,
+                SuperName,
+                MasterId,
+                MasterName
+            } = customer;
             let uplineId: number;
             let uplineName: string;
+            let uplineRoleId = RoleId + 1;
 
-            switch (RoleId) {
-                case UserLevel.Master:
-                    uplineId = customer.SuperId;
-                    uplineName = customer.SuperName;
-                    break;
-                case UserLevel.Agent:
-                    uplineId = customer.MasterId;
-                    uplineName = customer.MasterName;
-                    break;
-                default:
-                    uplineId = customer.AgentId;
-                    uplineName = customer.AgentName;
-                    break;
+            if (IsDirectMember) {
+                uplineId = IsDirectMemberOfSuper ? SuperId : MasterId;
+                uplineName = IsDirectMemberOfSuper ? SuperName : MasterName;
+                uplineRoleId = IsDirectMemberOfSuper ? UserLevel.Super : UserLevel.Master;
+            } else {
+                switch (RoleId) {
+                    case UserLevel.Master:
+                        uplineId = customer.SuperId;
+                        uplineName = customer.SuperName;
+                        break;
+                    case UserLevel.Agent:
+                        uplineId = customer.MasterId;
+                        uplineName = customer.MasterName;
+                        break;
+                    default:
+                        uplineId = customer.AgentId;
+                        uplineName = customer.AgentName;
+                        break;
+                }
             }
 
-            SettingsService.GetCustomerAllStatus(CustId, UserName, RoleId, uplineId, uplineName)
+            SettingsService.GetCustomerAllStatus(
+                CustId,
+                UserName,
+                RoleId,
+                uplineId,
+                uplineName,
+                uplineRoleId,
+                IsDirectMember
+            )
                 .then((responseData) => {
                     if (requestId === LoadCustomerAllStatus.ByClick) {
                         source.cancel(LoadCustomerAllStatus.ByUpdateStatus);

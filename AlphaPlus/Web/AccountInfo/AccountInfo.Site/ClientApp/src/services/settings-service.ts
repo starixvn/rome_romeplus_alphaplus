@@ -45,7 +45,9 @@ const SettingsService = {
         username: string,
         roleId: number,
         uplineId: number,
-        uplineName: string
+        uplineName: string,
+        uplineRoleId: number,
+        isDirectMember: boolean
     ) => {
         const params = {
             SearchAccountId: custId,
@@ -53,7 +55,8 @@ const SettingsService = {
             SearchAccountRoleId: roleId,
             UplineId: uplineId,
             UplineName: uplineName,
-            UplineRoleId: roleId + 1
+            UplineRoleId: uplineRoleId,
+            IsDirectMember: isDirectMember
         };
 
         return axios
