@@ -122,7 +122,7 @@
         "SentryUrl": "https://fd52d23b3f4d41e3b44539f50c7bd8d6@sentry.nexdev.net/43",
         "SentryBackendUrl": "https://fd52d23b3f4d41e3b44539f50c7bd8d6@sentry.nexdev.net/43"
     },
-    "RedisConfiguration": "10.18.200.131:16389,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged",
+    "RedisConfiguration": "10.18.200.131:16389,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://remotingref-api-core.nexdev.net/",
     "Fanex.Customer": {
         "ServiceUri": "https://customer.nexdev.net/local5/api/",
