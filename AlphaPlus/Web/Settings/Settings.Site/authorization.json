@@ -104,6 +104,11 @@
                         "IsAllowToDoByThemselves": true
                     },
                     {
+                        "Url": "TransferYesterdayBalance",
+                        "Permission": "[C]",
+                        "IsCheckBelonging": true
+                    },
+                    {
                         "Url": "CreditBalance",
                         "Permission": "[H]",
                         "IsCheckBelonging": true,
