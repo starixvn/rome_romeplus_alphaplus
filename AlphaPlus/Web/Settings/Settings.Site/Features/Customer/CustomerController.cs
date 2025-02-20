@@ -248,6 +248,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             return Content(response);
         }
 
+        public async Task<ActionResult> SearchSuggestDirectMembers(DirectMemberSuggestionQuery request)
+            => Json(await customerService.SearchSuggestDirectMembers(request.ViewerId, request.SearchUsername));
+
+        public async Task<int> CheckDirectMemberUserName(DirectMemberSuggestionQuery request)
+            => await customerService.CheckDirectMemberUserName(request.ViewerId, request.SearchUsername);
+
         public async Task<ActionResult> GetCustomerSetting(GetCustomerSettingRequest request)
             => Content(await customerService.GetCustomerSetting(
                 request.CustId,
