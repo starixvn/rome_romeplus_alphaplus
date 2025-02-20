@@ -1,9 +1,8 @@
 ﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Requests;
-using MediatR;
 using AlphaPlus.Settings.Site.Features.UserNameSuggestion.Models;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion;
-
 public class UserNameSuggestionQuery : MemberInfoBaseQuery, IRequest<IEnumerable<UsernameSuggestion>>
 {
     public string Query { get; set; }

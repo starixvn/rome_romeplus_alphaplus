@@ -207,6 +207,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
 
             services
                 .AddSingleton<Workbook<TransferToDownlineHistoryModel>, NpoiWorkbook<TransferToDownlineHistoryModel>>()
+                .AddSingleton<ITransferCacheService, TransferCacheService>()
                 .AddScoped<ITransferService, TransferService>()
                 .AddScoped<AutoTransferService, AutoTransferServiceImpl>()
                 .AddScoped<ICashBalanceTransferService, CashBalanceTransferService>()
