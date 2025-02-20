@@ -109,6 +109,16 @@
                         "IsCheckBelonging": true
                     },
                     {
+                        "Url": "TransferCondition/Update",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
+                    {
+                        "Url": "TransferCondition",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true
+                    },
+                    {
                         "Url": "CreditBalance",
                         "Permission": "[H]",
                         "IsCheckBelonging": true,
