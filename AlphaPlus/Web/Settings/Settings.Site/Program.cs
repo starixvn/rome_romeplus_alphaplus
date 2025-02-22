@@ -1,9 +1,11 @@
-using AlphaPlus.Settings.Site.Features.Helpers;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Authorization;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Helpers;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.HttpOverrides;
+
+ThreadPool.SetMinThreads(100, 100);
 
 var builder = WebApplication.CreateBuilder(args);
 const string SharedSettings = "sharedSettings.json";
@@ -77,7 +79,7 @@ app.Use(async (context, next) =>
         session.AdminId,
         session.AdminName
     };
-    
+
     await next(context);
 });
 

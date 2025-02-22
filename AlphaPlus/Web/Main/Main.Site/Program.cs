@@ -1,15 +1,17 @@
-using AlphaPlus.Main.Site.Extensions;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Logging;
+using AlphaPlus.Main.Site.Extensions;
+using AlphaPlus.NetThrottling;
 using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.HttpOverrides;
-using AlphaPlus.NetThrottling;
 using Microsoft.AspNetCore.Authorization;
-using AlphaPlus.Core.Models;
+using Microsoft.AspNetCore.HttpOverrides;
+
+ThreadPool.SetMinThreads(100, 100);
 
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
