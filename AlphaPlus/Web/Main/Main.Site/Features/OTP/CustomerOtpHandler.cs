@@ -1,13 +1,13 @@
-﻿using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Main.Site.Features.TelegramChatBot;
+using AlphaPlus.Main.Site.Shared.Models;
+using AlphaPlus.SecurityCode.Services;
+using AlphaPlus.SecurityCode.Web;
 using AlphaPlus.Shared.AppResources.Main;
 using MediatR;
 using TelegramBot.Client.Services;
 using Function = TelegramBot.Client.Models.Function;
-using AlphaPlus.SecurityCode.Services;
-using AlphaPlus.SecurityCode.Web;
-using AlphaPlus.Core.Helpers;
-using AlphaPlus.Main.Site.Features.TelegramChatBot;
-using AlphaPlus.Main.Site.Shared.Models;
 
 namespace AlphaPlus.Main.Site.Features.OTP
 {
@@ -169,15 +169,13 @@ namespace AlphaPlus.Main.Site.Features.OTP
 
         public async Task<Result> Handle(VerifyOtpCommand request, CancellationToken cancellationToken)
         {
-
-            var deviceInfo = browserHelper.GetDevice();
-            var result = await customerOtpService.VerifyOtp(new CustomerOtp
+            var result = await customerOtpService.VerifyOtp(new Verify.VerifyOTPRequest
             {
                 CustId = request.CustId,
                 SubAccId = request.SubAccountId,
                 Otp = request.Otp,
-                Device = deviceInfo,
                 Language = request.Language,
+                IP = request.IP,
                 IsEnabledTelegramOTP = await IsEnabledTelegramOTP(request.CustId, request.SubAccountId)
             });
 

@@ -16,30 +16,14 @@ namespace AlphaPlus.Main.Site.Features.OTP
             this.userSession = userSession ?? new UserSessionExt();
         }
 
-        public int CustId
-        {
-            get
-            {
-                return userSession.CustId;
-            }
-        }
+        public int CustId => userSession.CustId;
 
-        public int SubAccountId
-        {
-            get
-            {
-                return userSession.SubAccId;
-            }
-        }
+        public int SubAccountId => userSession.SubAccId;
 
         public string Otp { get; set; }
 
-        public string Language
-        {
-            get
-            {
-                return this.userSession.LangKey;
-            }
-        }
+        public string Language => userSession.LangKey;
+
+        public string IP => userSession.UserLoginIp;
     }
 }

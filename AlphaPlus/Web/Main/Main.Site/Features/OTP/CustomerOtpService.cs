@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Main.Site.Features.OTP.Verify;
 using AlphaPlus.Main.Site.Shared.Services;
 using ONEbook.OTP.Helpers;
 using ONEbook.OTP.Services;
@@ -8,7 +9,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
 {
     public interface ICustomerOtpService
     {
-        Task<Result> VerifyOtp(CustomerOtp param);
+        Task<Result> VerifyOtp(VerifyOTPRequest param);
 
         Task<Result> SetUpOtp(CustomerOtp param);
 
@@ -83,7 +84,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
         public Task<Result> SetUpOtp(CustomerOtp param)
             => httpClient.PostAsJsonAsync<Result>("customer/otp/setup", param);
 
-        public Task<Result> VerifyOtp(CustomerOtp param)
+        public Task<Result> VerifyOtp(VerifyOTPRequest param)
             => httpClient.PostAsJsonAsync<Result>("customer/otp/verify", param);
     }
 }
