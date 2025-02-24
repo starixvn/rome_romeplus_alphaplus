@@ -1,3 +1,5 @@
+using AlphaPlus.Core.Models;
+
 namespace AlphaPlus.Main.Site.Features.OTP.Verify
 {
     public class VerifyOTPRequest
@@ -11,6 +13,8 @@ namespace AlphaPlus.Main.Site.Features.OTP.Verify
         public string IP { get; set; }
 
         public string Language { get; set; }
+
+        public Device Device { get; set; }
 
         public bool IsEnabledTelegramOTP { get; set; }
     }

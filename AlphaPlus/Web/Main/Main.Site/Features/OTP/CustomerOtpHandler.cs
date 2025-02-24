@@ -169,6 +169,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
 
         public async Task<Result> Handle(VerifyOtpCommand request, CancellationToken cancellationToken)
         {
+            var deviceInfo = browserHelper.GetDevice();
             var result = await customerOtpService.VerifyOtp(new Verify.VerifyOTPRequest
             {
                 CustId = request.CustId,
