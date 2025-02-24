@@ -177,7 +177,8 @@ namespace AlphaPlus.Main.Site.Features.OTP
                 Otp = request.Otp,
                 Language = request.Language,
                 IP = request.IP,
-                IsEnabledTelegramOTP = await IsEnabledTelegramOTP(request.CustId, request.SubAccountId)
+                IsEnabledTelegramOTP = await IsEnabledTelegramOTP(request.CustId, request.SubAccountId),
+                Device = deviceInfo
             });
 
             if (result.IsSuccessful)
