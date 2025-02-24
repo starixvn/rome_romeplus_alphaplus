@@ -23,6 +23,7 @@ configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("Domains/domainmappings.json", optional: true, reloadOnChange: true)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
 

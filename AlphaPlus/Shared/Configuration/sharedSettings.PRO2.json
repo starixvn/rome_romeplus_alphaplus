@@ -225,10 +225,6 @@
     "OfferAutoTransfer.Currencies": "",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
     "OfferClearGivenCredit:Sites": "KORIBC,INDO",
-    "IndirectLogin": {
-        "AllowSuperIds": "*",
-        "URL": "https://mb2.wi43ver.com/main/Account/IndirectLogin"
-    },
     "ProtectedMode": {
         "OfferSites": "*"
     },

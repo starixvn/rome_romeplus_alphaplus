@@ -234,10 +234,6 @@
     "OfferAutoTransfer.Currencies": "*",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
     "OfferClearGivenCredit:Sites": "KORIBC,INDO",
-    "IndirectLogin": {
-        "AllowSuperIds": "*",
-        "URL": "https://idp5.gatonic.com/main/Account/IndirectLogin"
-    },
     "Authorization": {
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,

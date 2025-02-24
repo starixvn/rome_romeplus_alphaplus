@@ -47,6 +47,22 @@ RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r AlphaPlus/Shared/Configuration
 
 RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r AlphaPlus/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json AlphaPlus/Web/Settings/Settings.Site/sharedSettings.json; fi
 
+ARG CI_JOB_TOKEN
+RUN echo $TRANSFORM_CONFIG
+RUN mkdir /src/tmp
+RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
+  || [ "$TRANSFORM_CONFIG" = "PRO2" ] \
+  || [ "$TRANSFORM_CONFIG" = "PRO3" ] \
+  || [ "$TRANSFORM_CONFIG" = "PRO4" ] \
+  || [ "$TRANSFORM_CONFIG" = "PRO5" ]; \
+  then cd /src/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
+  && cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json AlphaPlus/Web/Settings/Settings.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json; fi
+
+RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
+  then \
+  cp "AlphaPlus/Web/Settings/Settings.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json" "AlphaPlus/Web/Settings/Settings.Site/Domains/domainmappings.json"; \
+  fi
+
 WORKDIR /src/AlphaPlus/Web/Settings/Settings.Site
 
 RUN yarn && yarn build

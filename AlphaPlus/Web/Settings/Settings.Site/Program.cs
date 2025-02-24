@@ -18,6 +18,7 @@ builder.Configuration
     .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
     .AddJsonFile("Products.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("Domains/domainmappings.json", optional: true, reloadOnChange: true)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
 
