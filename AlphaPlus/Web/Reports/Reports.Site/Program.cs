@@ -3,7 +3,6 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
-using AlphaPlus.Core.Models;
 using AlphaPlus.NetThrottling;
 using AlphaPlus.Reports.Site.Features.Shared.Extensions;
 using AlphaPlus.RequestInfo;
@@ -16,11 +15,11 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 
 ThreadPool.SetMinThreads(100, 100);
+const string PathBase = "/reports";
 
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
-var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
@@ -62,7 +61,7 @@ builder.Services
         options.ForwardedHeaders =
             ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
     })
-    .AddMediatR(assembly)
+    .AddMediatR(typeof(Program).Assembly)
     .AddFanexLogging(configuration)
     .AddRemotingRef(configuration)
     .AddFanexData(configuration)
@@ -79,7 +78,16 @@ builder.Services.AddHealthChecks();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseForwardedHeaders();
-
+app
+    .UsePathBase(PathBase)
+    .UseRouting()
+    .UseDefaultFiles()
+    .UseStaticFiles()
+    .UseSession()
+    .UseAuthentication()
+    .UseAuthorization()
+    .UseNetThrottling()
+    .UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -89,17 +97,6 @@ else
     app.UseMiddleware<ExceptionMiddleware>();
 }
 
-app
-    .UsePathBase("/reports")
-    .UseRouting()
-    .UseDefaultFiles()
-    .UseStaticFiles()
-    .UseSession()
-    .UseAuthentication()
-    .UseAuthorization()
-    .UseNetThrottling()
-    .UseMiddleware<RequestCultureMiddleware>();
-
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
@@ -108,24 +105,10 @@ StaticResources.Init(configuration.GetValue<string>("JsVersion"));
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = "/reports";
-
-    var session = context.RequestServices.GetRequiredService<IUserSession>();
-    context.Items["customData"] = new
-    {
-        session.CustId,
-        session.UserName,
-        session.RoleId,
-        session.SubAccId,
-        session.SubUserName,
-        session.AdminId,
-        session.AdminName
-    };
-
+    context.Request.PathBase = PathBase;
     await next(context);
 });
 
 app.MapDefaultControllerRoute();
 
-// await Logger.Log.InfoAsync($"{assembly.GetName().Name} has been started up.");
 await app.RunAsync();

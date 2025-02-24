@@ -2,7 +2,6 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
-using AlphaPlus.Core.Models;
 using AlphaPlus.Logging;
 using AlphaPlus.Main.Site.Extensions;
 using AlphaPlus.NetThrottling;
@@ -13,6 +12,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 
 ThreadPool.SetMinThreads(100, 100);
 
+const string PathBase = "/main";
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
@@ -54,17 +54,8 @@ builder.Services
     .AddSharedCookie();
 
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-else
-{
-    app.UseMiddleware<ExceptionMiddleware>();
-}
-
 app.UseForwardedHeaders();
-app.UsePathBase("/main");
+app.UsePathBase(PathBase);
 app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 app.UseDefaultFiles();
@@ -75,24 +66,19 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<RequestCultureMiddleware>();
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseMiddleware<ExceptionMiddleware>();
+}
 
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
-    context.Request.PathBase = "/main";
-
-    var session = context.RequestServices.GetRequiredService<IUserSession>();
-    context.Items["customData"] = new
-    {
-        session.CustId,
-        session.UserName,
-        session.RoleId,
-        session.SubAccId,
-        session.SubUserName,
-        session.AdminId,
-        session.AdminName
-    };
-
+    context.Request.PathBase = PathBase;
     await next(context);
 });
 
