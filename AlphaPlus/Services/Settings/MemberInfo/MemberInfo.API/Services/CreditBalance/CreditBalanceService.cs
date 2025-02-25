@@ -152,27 +152,29 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
         return closedReasons.ToDictionary(kvp => kvp.CustId, kvp => kvp);
     }
 
-    private static GetSuperClosedReasonCriteria GetSuperClosedReasonCriteria(CreditBalanceParam param)
+    private static ICriteria GetSuperClosedReasonCriteria(CreditBalanceParam param)
         => new GetSuperClosedReasonCriteria(
             param.CustId,
             param.UserName,
             param.Enabled,
             param.Closed,
             param.Suspended,
+            param.LevelType,
             param.PageIndex,
             param.PageSize);
 
-    private static GetMasterClosedReasonCriteria GetMasterClosedReasonCriteria(CreditBalanceParam param)
+    private static ICriteria GetMasterClosedReasonCriteria(CreditBalanceParam param)
         => new GetMasterClosedReasonCriteria(
             param.CustId,
             param.UserName,
             param.Enabled,
             param.Closed,
             param.Suspended,
+            param.LevelType,
             param.PageIndex,
             param.PageSize);
 
-    private static GetAgentClosedReasonCriteria GetAgentClosedReasonCriteria(CreditBalanceParam param)
+    private static ICriteria GetAgentClosedReasonCriteria(CreditBalanceParam param)
         => new GetAgentClosedReasonCriteria(
             param.CustId,
             param.UserName,

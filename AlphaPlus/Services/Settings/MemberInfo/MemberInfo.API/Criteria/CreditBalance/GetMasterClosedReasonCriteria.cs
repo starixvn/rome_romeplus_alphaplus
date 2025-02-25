@@ -1,20 +1,16 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance
-{
-    public class GetMasterClosedReasonCriteria : GetCreditBalanceCriteriaBase
-    {
-        public GetMasterClosedReasonCriteria(
-            int custId,
-            string userName,
-            bool? enabled,
-            bool? closed,
-            bool? suspended,
-            int pageIndex,
-            int pageSize)
-            : base(custId, userName, enabled, closed, suspended, pageIndex, pageSize)
-        {
-        }
+﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance;
 
-        public override string GetSettingKey()
-            => "Age_CustomerSelCreditBalClosedReason_MAg";
-    }
+public class GetMasterClosedReasonCriteria(
+    int custId,
+    string userName,
+    bool? enabled,
+    bool? closed,
+    bool? suspended,
+    byte levelType,
+    int pageIndex,
+    int pageSize) : GetAgentClosedReasonCriteria(custId, userName, enabled, closed, suspended, pageIndex, pageSize)
+{
+    public byte LevelType { get; } = levelType;
+
+    public override string GetSettingKey() => "Age_CustomerSelCreditBalClosedReason_MAg";
 }
