@@ -84,8 +84,9 @@
 // Update multiple Unsuspend Status
 .unsuspend-container {
     padding-top: 16px;
-    .list-button{
-        .btn-reset, .btn-submit{
+    .list-button {
+        .btn-reset,
+        .btn-submit {
             display: inline-block;
             vertical-align: middle;
         }
@@ -184,9 +185,10 @@
             }
         }
     }
-    .unsuspend-container{
-        .list-button{
-            .btn-reset,.btn-submit{
+    .unsuspend-container {
+        .list-button {
+            .btn-reset,
+            .btn-submit {
                 line-height: 28px;
             }
         }

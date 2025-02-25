@@ -7,7 +7,7 @@
 @section Styles {
     @StaticResources.AssetStyles.RenderCommonWithDarkMode($"/bundles/common/common-{Model.ActorLevel.DisplayName}")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-accountinfo/index")
-    <link rel="stylesheet" href="~/main.css" asp-append-version="true" />
+    <link rel="stylesheet" asp-href-include="/main-*.css" />
 }
 
 @Html.AntiForgeryToken()
@@ -24,7 +24,7 @@
         };
     </script>
 
-    <script type="module" src="~/main.js" asp-append-version="true"></script>
+    <script type="module" asp-src-include="/main-*.js"></script>
     @* <script type="module">
 import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
 RefreshRuntime.injectIntoGlobalHook(window)

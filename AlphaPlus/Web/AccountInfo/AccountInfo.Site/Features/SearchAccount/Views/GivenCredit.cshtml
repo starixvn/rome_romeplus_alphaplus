@@ -6,7 +6,7 @@
 @model GivenCreditViewModel
 
 @section Styles {
-    <link rel="stylesheet" href="~/givenCredit.css" asp-append-version="true" />
+    <link rel="stylesheet" asp-href-include="/givenCredit-*.css" asp-append-version="true" />
 }
 
 @Html.AntiForgeryToken()
@@ -24,9 +24,9 @@
             givenCreditMax: '@Model.GivenCreditMax',
             memberMaxCredit: @Model.MemberMaxCredit.ToString(CultureInfo.InvariantCulture),
             availableCredit: @Model.AvailableCredit.ToString(CultureInfo.InvariantCulture)
-                                            };
+                };
     </script>
-    <script type="module" src="~/givenCredit.js" asp-append-version="true"></script>
+    <script type="module" asp-src-include="/givenCredit-*.js"></script>
     @* <script type="module">
 import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
 RefreshRuntime.injectIntoGlobalHook(window)
