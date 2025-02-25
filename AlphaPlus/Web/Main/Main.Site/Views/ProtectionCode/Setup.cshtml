@@ -91,8 +91,7 @@
                 </div>
                 <div class="modal-body">
                     @{
-                        @Html.RenderPartialAsync($"_LearnMorePopup_{Model.GetLearnMoreViewLang()}")
-                        ;
+                        await Html.RenderPartialAsync($"_LearnMorePopup_{Model.GetLearnMoreViewLang()}");
                     }
                 </div>
             </div>
