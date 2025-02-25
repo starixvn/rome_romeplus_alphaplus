@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿'use strict';
 interface ValidationResult {
     isValid: boolean;
     error: string;
@@ -21,38 +21,42 @@ class ProtectionCode {
         this.cacheElements();
         this.bindEvents();
         this.txtNewProtectionCode.focus();
-        this.$(".open-link").unbind().bind('click', event => { this.topWindow.alpha.viewDataURL(event); });
+        this.$('.open-link')
+            .unbind()
+            .bind('click', (event) => {
+                this.topWindow.alpha.viewDataURL(event);
+            });
     }
 
     private cacheElements() {
-        this.msg = $("#msg");
-        this.txtNewProtectionCode = $("#txt-newProtectionCode");
-        this.txtConfirmProtectionCode = $("#txt-confirmProtectionCode");
+        this.msg = $('#msg');
+        this.txtNewProtectionCode = $('#txt-newProtectionCode');
+        this.txtConfirmProtectionCode = $('#txt-confirmProtectionCode');
 
         this.resources = {
-            requiredNewProtectionCode: this.$("#requiredNewProtectionCode").val(),
-            minLengthNewProtectionCodeError: this.$("#minLengthNewProtectionCodeError").val(),
-            requiredConfirmProtectionCode: this.$("#requiredConfirmProtectionCode").val(),
-            notMatchedConfirmProtectionCode: this.$("#notMatchedConfirmProtectionCode").val(),
-            containsSpaceOrUnicodeCharacterError: this.$("#containsSpaceOrUnicodeCharacterError").val()
+            requiredNewProtectionCode: this.$('#requiredNewProtectionCode').val(),
+            minLengthNewProtectionCodeError: this.$('#minLengthNewProtectionCodeError').val(),
+            requiredConfirmProtectionCode: this.$('#requiredConfirmProtectionCode').val(),
+            notMatchedConfirmProtectionCode: this.$('#notMatchedConfirmProtectionCode').val(),
+            containsSpaceOrUnicodeCharacterError: this.$('#containsSpaceOrUnicodeCharacterError').val()
         };
     }
 
     private bindEvents() {
-        this.txtNewProtectionCode.keyup(_ => this.validateProtectionCode(this.txtNewProtectionCode));
+        this.txtNewProtectionCode.keyup((_) => this.validateProtectionCode(this.txtNewProtectionCode));
 
-        this.txtConfirmProtectionCode.keyup(_ => this.validateProtectionCode(this.txtConfirmProtectionCode));
+        this.txtConfirmProtectionCode.keyup((_) => this.validateProtectionCode(this.txtConfirmProtectionCode));
 
-        const chkShowProtectionCode = $("#chk-showProtectionCode");
-        chkShowProtectionCode.change(_ => this.showHideProtectionCode(chkShowProtectionCode.is(":checked")));
+        const chkShowProtectionCode = $('#chk-showProtectionCode');
+        chkShowProtectionCode.change((_) => this.showHideProtectionCode(chkShowProtectionCode.is(':checked')));
 
-        const frmProtectionCode = $("#frm-protectionCode");
-        frmProtectionCode.submit(e => {
+        const frmProtectionCode = $('#frm-protectionCode');
+        frmProtectionCode.submit((e) => {
             e.preventDefault();
-            this.updateProtectionCode(frmProtectionCode.attr("action"));
+            this.updateProtectionCode(frmProtectionCode.attr('action'));
         });
 
-        this.$("#btn-reset").click(_ => {
+        this.$('#btn-reset').click((_) => {
             this.showHideProtectionCode(false);
             securityHelper.removeValidationIcon(this.txtNewProtectionCode);
             securityHelper.removeValidationIcon(this.txtConfirmProtectionCode);
@@ -96,11 +100,11 @@ class ProtectionCode {
 
     private showHideProtectionCode(isShow: boolean) {
         if (isShow) {
-            this.txtNewProtectionCode.addClass("show-hint");
-            this.txtConfirmProtectionCode.addClass("show-hint");
+            this.txtNewProtectionCode.addClass('show-hint');
+            this.txtConfirmProtectionCode.addClass('show-hint');
         } else {
-            this.txtNewProtectionCode.removeClass("show-hint");
-            this.txtConfirmProtectionCode.removeClass("show-hint");
+            this.txtNewProtectionCode.removeClass('show-hint');
+            this.txtConfirmProtectionCode.removeClass('show-hint');
         }
     }
 
@@ -109,13 +113,13 @@ class ProtectionCode {
         if (formData) {
             this.$.blockUI();
             formData.protectionCode = formData.protectionCode.encrypt();
-            this.$.post(url, formData, result => {
-                if (result.Code) {
-                    securityHelper.showFailMessage(this.msg, result.Message);
+            this.$.post(url, formData, (result) => {
+                if (result.code) {
+                    securityHelper.showFailMessage(this.msg, result.message);
                     this.txtNewProtectionCode.focus();
                 } else {
-                    securityHelper.showSuccessfullyMessage(this.msg, result.Message);
-                    this.msg.parent().removeClass("hidden");
+                    securityHelper.showSuccessfullyMessage(this.msg, result.message);
+                    this.msg.parent().removeClass('hidden');
                     setTimeout(function () {
                         window.location.href = window.location.href;
                     }, 5000);
@@ -161,4 +165,4 @@ class ProtectionCode {
 $(function () {
     const protectionCode = new ProtectionCode($, top);
     protectionCode.init();
-})
+});

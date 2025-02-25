@@ -29,8 +29,8 @@
             </li>
         }
         <li role="presentation">
-            <a
-                class="open-link" data-url="@MicroSites.AccountInfoUrl($"~/ProfilePicture?lng={userSession.Language}")">@Resources.EditProfilePicture</a>
+            <a class="open-link"
+                data-url="@MicroSites.AccountInfoUrl($"~/ProfilePicture?lng={userSession.Language}")">@Resources.EditProfilePicture</a>
         </li>
         <li role="presentation">
             <a class="open-link" data-url="@MicroSites.MainUrl("~/OTP/SetUpOtp")">OTP</a>
@@ -48,7 +48,7 @@
             {
                 @class = "form-validation",
                 id =
-            "frm-protectionCode"
+                        "frm-protectionCode"
             }))
             {
                 @Html.AntiForgeryToken()
@@ -68,7 +68,7 @@
                     <label><input type="checkbox" id="chk-showProtectionCode" /> @Resources.ShowProtectionCode</label>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="@(Model.IsExistedProtectionCode ? Resources.Update : Resources.Create)"
+                    <input type="submit" value="@(Model.IsExistedProtectionCode? Resources.Update: Resources.Create)"
                         class="btn-submit" />
                     <input type="reset" value="@Security.Reset" id="btn-reset" />
                 </div>
@@ -106,7 +106,8 @@
     @Html.Hidden("containsSpaceOrUnicodeCharacterError", Resources.ContainsSpaceOrUnicodeCharacterError)
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-main/security/before-home-page")
-    @StaticResources.RenderScripts("~/assets/bundles/protection-code/protection")
+    <script src="~/assets/bundles/protection-code/protection.js" type="text/javascript"
+        asp-append-version="true"></script>
 </body>
 
 </html>
