@@ -122,7 +122,10 @@
                 return this.fastMarketsResult;
             }
 
-            if ((betTypeId >= 4101 && betTypeId <= 4300) || (betTypeId >= 6701 && betTypeId <= 7000)) {
+            if ((betTypeId >= 4101 && betTypeId <= 4300) ||
+                (betTypeId >= 6701 && betTypeId <= 7000) ||
+                (betTypeId >= 14000 && betTypeId <= 14999)
+            ) {
                 this.ppResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.ppResult)
                     ? new PPResultDetails()
                     : this.ppResult;
