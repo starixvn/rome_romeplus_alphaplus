@@ -1,6 +1,8 @@
 using AlphaPlus.AccountInfo.Site.Features.OpenDownlines;
 using AlphaPlus.AccountInfo.Site.Features.ProfilePicture;
+using AlphaPlus.AccountInfo.Site.Features.ProtectedStatus;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount;
+using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
@@ -35,10 +37,12 @@ public static class Extensions
             .AddSecurityCodeServices(configuration);
 
         services.AddSingleton<Utilities.IP.IPService, Utilities.IP.IPServiceImpl>();
+        services.AddSingleton<IKickOutCustomerService, KickOutCustomerService>();
         services.AddHttpClient<ISearchAccountService, SearchAccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUri")));
         services.AddSingleton<IProfilePictureService, ProfilePictureService>();
         services.AddSingleton<IUnsuspendDownlinesService, UnsuspendDownlinesService>();
         services.AddSingleton<OpenDownlinesService, OpenDownlinesServiceImpl>();
+        services.AddSingleton<IProtectedStatusService, ProtectedStatusService>();
 
         services
         .AddControllersWithViews(options =>

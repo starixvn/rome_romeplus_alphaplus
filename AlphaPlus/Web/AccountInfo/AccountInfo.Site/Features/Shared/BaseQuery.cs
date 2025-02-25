@@ -53,6 +53,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.Shared
 
         public string IP => userSession.UserLoginIp;
 
+        public int ServerId => userSession.ServerId;
+
         public virtual bool IsValid() => ViewerId > 0;
     }
 }

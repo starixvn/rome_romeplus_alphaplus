@@ -14,7 +14,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
 
         public override string Text => Request.GetResource("EditMultipleProtectedStatusText");
 
-        protected override string BaseAddress => MicroSites.SettingUrl("~/ProtectedStatus/EditMultiple");
+        protected override string BaseAddress => MicroSites.AccountInfoUrl("~/ProtectedStatus/EditMultiple");
 
         public override string Url => BaseAddress;
 

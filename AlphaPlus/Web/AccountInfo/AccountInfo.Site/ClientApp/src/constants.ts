@@ -67,6 +67,7 @@ declare global {
         renderSuspendMultipleConfirm: any;
         renderOpenSingle: any;
         renderOpenMultiple: any;
+        renderProtectedMultiple: any;
     }
 }
 

@@ -136,5 +136,11 @@
     "RewardReceivable": "應收獎金",
     "RewardPayable": "獎金支付",
     "RewardReceivableTooltip": "您可以分配給下線的金額。",
-    "RewardPayableTooltip": "您可以從上線收到的金額。"
+    "RewardPayableTooltip": "您可以從上線收到的金額。",
+    "EditMultipleAllSuccessfully": "所選賬戶的保護狀態已成功更新。",
+    "EditMultipleConfirmMessage": "您確定要更改所選賬戶的保護狀態嗎？保護狀態應該在緊急情況下開啟。",
+    "EditMultiplePartialSuccessfully": "除了以下賬戶外，所選賬戶的保護狀態已成功更新：",
+    "Protected": "受保護",
+    "ProtectionStatus": "保護狀態",
+    "Unprotected": "未受保護"
 }

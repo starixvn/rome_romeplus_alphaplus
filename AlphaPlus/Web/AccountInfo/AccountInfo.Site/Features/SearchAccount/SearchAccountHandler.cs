@@ -8,13 +8,14 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Transfer.Requests;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
+using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Utilities.IP;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 {
-    public class SearchAccountHandler(ISearchAccountService searchAccountService, IPService ipService) :
+    public class SearchAccountHandler(ISearchAccountService searchAccountService, IPService ipService, IKickOutCustomerService kickOutCustomerService) :
         IRequestHandler<IndexQuery, IndexViewModel>,
         IRequestHandler<CustomerInfoQuery, CustomerInfoViewModel>,
         IRequestHandler<DownlineListQuery, DownlineListViewModel>,
@@ -28,6 +29,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
     {
         private readonly ISearchAccountService searchAccountService = searchAccountService;
         private readonly IPService ipService = ipService;
+        private readonly IKickOutCustomerService kickOutCustomerService = kickOutCustomerService;
 
         public Task<IndexViewModel> Handle(IndexQuery request, CancellationToken cancellationToken)
             => Task.FromResult(new IndexViewModel(request));
@@ -118,8 +120,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         public Task<Result> Handle(GivenCreditCommand request, CancellationToken cancellationToken)
             => searchAccountService.UpdateGivenCredit(request);
 
-        public Task<Result> Handle(CustomerNonProductStatusCommand request, CancellationToken cancellationToken)
-            => searchAccountService.UpdateCustomerStatus(new UpdateCustomerStatusParam(
+        public async Task<Result> Handle(CustomerNonProductStatusCommand request, CancellationToken cancellationToken)
+        {
+            var result = await searchAccountService.UpdateCustomerStatus(new UpdateCustomerStatusParam(
                      request.SearchAccountId,
                      request.ViewerId,
                      request.SubAccountId,
@@ -128,6 +131,19 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
                      request.StatusValue,
                      request.StatusName,
                      request.ViewerName));
+
+            if (result.IsSuccessful && request.StatusValue && request.StatusName.Equals("IsProtectionMode", StringComparison.OrdinalIgnoreCase))
+            {
+                await kickOutCustomerService.KickOutDueToProtectedStatus(
+                    request.SearchAccountId,
+                    request.SearchAccountRoleId,
+                    request.ServerId,
+                    request.IP);
+            }
+
+            return result;
+
+        }
 
         public async Task<IBalanceInfoViewModel> Handle(MemberBalanceInfoQuery message, CancellationToken cancellationToken)
         {

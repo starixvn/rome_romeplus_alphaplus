@@ -136,5 +136,11 @@
     "RewardReceivable": "Reward Receivable",
     "RewardPayable": "Reward Payable",
     "RewardReceivableTooltip": "Amount you can receive from your upline.",
-    "RewardPayableTooltip": "Amount you can distribute to your downlines."
+    "RewardPayableTooltip": "Amount you can distribute to your downlines.",
+    "EditMultipleAllSuccessfully": "The selected accounts' protection status has been updated successfully.",
+    "EditMultipleConfirmMessage": "Are you sure you want to change the Protection Status for selected account(s)? Protection Status should just be turned on in emergency situations.",
+    "EditMultiplePartialSuccessfully": "The selected accounts' protection status has been updated successfully except the following account(s):",
+    "Protected": "Protected",
+    "ProtectionStatus": "Protection Status",
+    "Unprotected": "Unprotected"
 }

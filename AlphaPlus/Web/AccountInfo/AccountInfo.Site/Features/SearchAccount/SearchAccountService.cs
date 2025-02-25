@@ -13,10 +13,10 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
 using Newtonsoft.Json;
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 {
@@ -44,7 +44,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 
         Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param);
 
-        Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal);
+        Task<bool> CheckMultipleCustomersBelonging(int actorId, int subAccountId, string custIds, bool isInternal);
 
         Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param);
     }
@@ -291,7 +291,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             return new Result(command.ErrCode, command.ErrMsg);
         }
 
-        public async Task<bool> CheckMultipleCustomesBelonging(int actorId, int subAccountId, string custIds, bool isInternal)
+        public async Task<bool> CheckMultipleCustomersBelonging(int actorId, int subAccountId, string custIds, bool isInternal)
         {
             var criteria = new CheckMultipleCustomersBelongingCriteria(actorId, subAccountId, custIds);
 

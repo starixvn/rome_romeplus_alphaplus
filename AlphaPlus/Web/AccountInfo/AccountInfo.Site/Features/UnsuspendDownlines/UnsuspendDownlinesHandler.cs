@@ -66,7 +66,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines
         {
             var custIds = string.Join("^", message.UnsuspendList.Select(unspended => unspended.SearchAccountId));
 
-            var isValidCheckMultipleCustomesBelonging = await accountInfoService.CheckMultipleCustomesBelonging(
+            var isValidCheckMultipleCustomesBelonging = await accountInfoService.CheckMultipleCustomersBelonging(
                 message.ViewerId, message.SubAccountId, custIds, message.IsInternal);
 
             if (isValidCheckMultipleCustomesBelonging)

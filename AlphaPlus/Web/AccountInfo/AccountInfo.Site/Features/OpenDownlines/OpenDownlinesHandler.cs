@@ -66,7 +66,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.OpenDownlines
         {
             var custIds = string.Join("^", message.OpenList.Select(opened => opened.SearchAccountId));
 
-            var isValidCheckMultipleCustomesBelonging = await searchAccountService.CheckMultipleCustomesBelonging(
+            var isValidCheckMultipleCustomesBelonging = await searchAccountService.CheckMultipleCustomersBelonging(
                 message.ViewerId, message.SubAccountId, custIds, message.IsInternal);
 
             if (isValidCheckMultipleCustomesBelonging)

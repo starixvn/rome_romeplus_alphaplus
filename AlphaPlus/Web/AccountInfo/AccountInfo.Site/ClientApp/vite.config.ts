@@ -21,7 +21,8 @@ export default defineConfig({
                 unsuspendMultiple: '/src/unsuspend-multiple.tsx',
                 suspendMultipleConfirm: '/src/suspend-multiple-confirm.tsx',
                 openSingle: '/src/open-single.tsx',
-                openMultiple: '/src/open-multiple.tsx'
+                openMultiple: '/src/open-multiple.tsx',
+                protectedMultiple: '/src/protected-multiple.tsx'
             },
             output: {
                 entryFileNames: '[name].js',

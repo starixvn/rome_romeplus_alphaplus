@@ -136,5 +136,11 @@
     "RewardReceivable": "应收奖金",
     "RewardPayable": "奖金支付",
     "RewardReceivableTooltip": "您可以分配给下线的金额。",
-    "RewardPayableTooltip": "您可以从上线收到的金额。"
+    "RewardPayableTooltip": "您可以从上线收到的金额。",
+    "EditMultipleAllSuccessfully": "所选账户的保护状态已成功更新。",
+    "EditMultipleConfirmMessage": "您确定要更改所选账户的保护状态吗？保护状态应该在紧急情况下开启。",
+    "EditMultiplePartialSuccessfully": "除了以下账户外，所选账户的保护状态已成功更新：",
+    "Protected": "受保护",
+    "ProtectionStatus": "保护状态",
+    "Unprotected": "未受保护"
 }

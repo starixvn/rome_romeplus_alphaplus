@@ -1,0 +1,22 @@
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@model EditMultipleViewModel
+
+@section Styles {
+    <link rel="stylesheet" href="~/protectedMultiple.css" asp-append-version="true" />
+}
+
+@Html.AntiForgeryToken()
+<div id="container" class="protected-status-container" />
+
+@section Scripts {
+    <script type="module" src="~/protectedMultiple.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+        $(document).ready(() => {
+            window.renderProtectedMultiple(@Html.Raw(JsonSerializer.Serialize(Model.ProtectedStatus)));
+        })
+    </script>
+}
