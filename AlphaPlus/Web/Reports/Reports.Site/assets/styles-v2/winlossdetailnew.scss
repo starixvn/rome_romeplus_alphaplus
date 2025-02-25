@@ -13,7 +13,7 @@
     --tb-sub-total-row-background: #F1F1F1;
     --tb-match-title-color: #F6731B;
     --tb-match-title-background: #D3DAE2;
-    --tb-total-row-background: #f1f1f1;
+    --tb-total-row-background: #D3DAE2;
 }
 
 :root [data-theme='dark'] {
@@ -28,10 +28,10 @@
     --label-week-disabled-border: #292929;
     --label-week-disabled-shadow: none;
     --icon-dormant-account-color: #41a4ff;
-    --tb-sub-total-row-background: #262626;
+    --tb-sub-total-row-background: #404040;
     --tb-match-title-color: #D96518;
+    --tb-total-row-background: #41474F;
     --tb-match-title-background: #41474F;
-    --tb-total-row-background: #404040;
 }
 
 
@@ -138,11 +138,6 @@
     flex: 1;
     overflow: auto;
 }
-
-.tb {
-    text-align: right;
-}
-
 .icon-stack-column, .icon-normal-column {
     display: block;
     width: 30px;
@@ -178,15 +173,16 @@
 }
 
 .tb {
-    tr {
-       
+    text-align: right;
+    tr {       
 
         td {
             a {
                 color: #118AF2 !important;
             }
-
-           
+            &.col-product {
+                padding-left: 20px;
+            }           
         }
     }
 

@@ -144,11 +144,11 @@ class ConsolidationView extends BaseReport {
         const custId = $usernameRow.data('custid');
         const $collapseExpandIcon = $usernameRow.find('#icon-' + custId);
 
-        if ($collapseExpandIcon.hasClass('icon-arrow-right')) {
-            $collapseExpandIcon.removeClass().addClass('icon-arrow-down');
+        if ($collapseExpandIcon.hasClass('ic-arrow-right')) {
+            $collapseExpandIcon.removeClass().addClass('ic-arrow-down');
             this.$tableReport.find('.child-row-' + custId).removeClass('hide');
         } else {
-            $collapseExpandIcon.removeClass().addClass('icon-arrow-right');
+            $collapseExpandIcon.removeClass().addClass('ic-arrow-right');
             this.$tableReport.find('.child-row-' + custId).addClass('hide');
         }
     };

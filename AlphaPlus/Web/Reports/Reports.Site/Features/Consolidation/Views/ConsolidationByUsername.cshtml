@@ -105,8 +105,10 @@
                 var isShowPT = !total.IsMemberLevel();
                 <tr class="username-row" data-custid="@total.CustId">
                     <td class="text-left bold">
-                        <span class="icon-arrow-right" id="icon-@total.CustId"></span>
-                        @total.CustLevelName
+                        <div class="username-col">
+                            <span class="ic-arrow-right" id="icon-@total.CustId"></span>
+                            @total.CustLevelName
+                        </div>
                     </td>
                     <td class="text-left bold">
                         <div style="position:relative">
