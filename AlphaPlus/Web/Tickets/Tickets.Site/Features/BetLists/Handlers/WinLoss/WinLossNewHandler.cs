@@ -41,7 +41,6 @@ public class WinLossNewHandler(
     {
         var showContributionAmountRoundNote = message.IsEnabledJackpot;
         var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
-
         var weekDataParam = new WinLossWeekParam(
             message.ViewerId,
             message.FromDate.GetGreaterDate(message.LimitedDateToShowInfo),
@@ -93,6 +92,14 @@ public class WinLossNewHandler(
             productDetails,
             selectedProductIds,
             userSelectedResourceIds);
+        if (options.Value.Is789Y)
+        {
+            productDetailXml = await productService.BuildProductDetailsXml789y(
+                products,
+                message.ProductIds,
+                message.ResourceIds,
+                options.Value.ProductOfferProductDetail);
+        }
 
         return (new ProductMultiSelectionViewModel(
             productGroups,
@@ -212,6 +219,14 @@ public class WinLossNewHandler(
     {
         var showContributionAmountRoundNote = message.IsEnabledJackpot;
         var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
+        if (options.Value.Is789Y)
+        {
+            productDetailsXml = await productService.BuildProductDetailsXml789y(
+                await GetProducts(message),
+                message.ProductIds,
+                message.ResourceIds,
+                options.Value.ProductOfferProductDetail);
+        }
 
         var param = new WinLossParam(
             message.CustId,
@@ -239,6 +254,14 @@ public class WinLossNewHandler(
     public async Task<IEnumerable<WinLossWeekViewModel>> Handle(WinLossWeeksQuery message, CancellationToken cancellationToken)
     {
         var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
+        if (options.Value.Is789Y)
+        {
+            productDetailsXml = await productService.BuildProductDetailsXml789y(
+                await GetProducts(message),
+                message.ProductIds,
+                message.ResourceIds,
+                options.Value.ProductOfferProductDetail);
+        }
 
         var param = new WinLossWeekParam(
             message.ViewerId,
@@ -305,6 +328,15 @@ public class WinLossNewHandler(
     {
         var showContributionAmountRoundNote = message.IsEnabledJackpot;
         var (productViewModel, productDetailsXml) = await BuildProductViewModel(message, message.ProductIds, message.ResourceIds);
+        if (options.Value.Is789Y)
+        {
+            productDetailsXml = await productService.BuildProductDetailsXml789y(
+                await GetProducts(message),
+                message.ProductIds,
+                message.ResourceIds,
+                options.Value.ProductOfferProductDetail);
+        }
+
         var param = new WinLossParam(
             message.CustId,
             productViewModel.UserSelectedProductIds,

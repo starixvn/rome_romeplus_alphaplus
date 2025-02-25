@@ -6,7 +6,11 @@ public class AppSettings
 
     public string SiteLabel { get; init; }
 
+    public string SiteLabel789y { get; init; }
+
     public bool IsSiteLabel777 => SiteLabel.Equals("777");
+
+    public bool Is789Y => SiteLabel.Equals(SiteLabel789y, StringComparison.OrdinalIgnoreCase);
 
     public bool EnableBetsListMonitoring { get; init; }
 

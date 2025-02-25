@@ -21,6 +21,12 @@ public interface IProductService
     Task<IEnumerable<ProductDetail>> GetProductDetails(GetProductDetailsParam param, IEnumerable<Product> allOfferProducts);
 
     string BuildProductDetailsXml(IEnumerable<ProductDetail> productDetails);
+
+    Task<string> BuildProductDetailsXml789y(
+        IEnumerable<Product> products,
+        string userSelectedProductIds,
+        string userSelectedResourceds,
+        HashSet<int> productOfferProductDetail);
 }
 
 public class ProductService(
@@ -135,5 +141,44 @@ public class ProductService(
         xml.Append("</ROOT>");
 
         return xml.ToString();
+    }
+
+    public async Task<string> BuildProductDetailsXml789y(
+        IEnumerable<Product> products,
+        string userSelectedProductIds,
+        string userSelectedResourceds,
+        HashSet<int> productOfferProductDetail)
+    {
+        var productSupportDetail = products
+            .Where(product => productOfferProductDetail.Contains(product.Id))
+            .Select(product => product.Id)
+            .ToList();
+
+        if ("*" != userSelectedProductIds)
+        {
+            var userSelectedProductIdsList = userSelectedProductIds.ToListInt().ToList();
+            products = products.Where(p => userSelectedProductIdsList.Contains(p.Id));
+        }
+
+        var productIds = products.Select(p => p.Id).ToList();
+        var userSelectedResourcedsList = userSelectedResourceds.ToListInt().ToList();
+        var productDetails = new List<ProductDetail>();
+
+        (await GetAllProductDetails()).ToList().ForEach(p =>
+        {
+            if (productSupportDetail.Contains(p.ProductId))
+            {
+                if (userSelectedResourcedsList.Contains(p.ResourceId))
+                {
+                    productDetails.Add(p);
+                }
+            }
+            else if (productIds.Contains(p.ProductId))
+            {
+                productDetails.Add(p);
+            }
+        });
+
+        return BuildProductDetailsXml(productDetails);
     }
 }
