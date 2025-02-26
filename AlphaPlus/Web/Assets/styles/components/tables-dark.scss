@@ -190,10 +190,13 @@
             align-items: center;
         
             [class^="icon-"], [class*=" icon-"] {
-                font-size: 20px;
+                font-size: 16px;
                 margin-left: 5px;
                 color: #ededed;
                 cursor: pointer;
+            }
+            .icon-directmember{
+                font-size: 18px;
             }
         }
     }
