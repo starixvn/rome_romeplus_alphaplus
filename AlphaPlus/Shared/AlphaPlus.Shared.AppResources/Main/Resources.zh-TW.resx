@@ -805,4 +805,8 @@
   <data name="of" xml:space="preserve">
     <value>之第</value>
   </data>
+  <data name="invalidsession" xml:space="preserve">
+    <value>會議無效！</value>
+    <comment/>
+  </data>
 </root>

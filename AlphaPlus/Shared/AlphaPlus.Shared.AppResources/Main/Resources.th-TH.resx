@@ -839,4 +839,8 @@
   <data name="Limit_Offer_End" xml:space="preserve">
     <value>หมดเขต 31 ม.ค. 2568.</value>
   </data>
+  <data name="invalidsession" xml:space="preserve">
+    <value>วาระไม่ถูกต้อง</value>
+    <comment/>
+  </data>
 </root>

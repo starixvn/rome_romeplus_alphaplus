@@ -816,4 +816,8 @@ Lưu ý:Thông tin về quốc gia và thành phố được cung cấp bởi  I
   <data name="of" xml:space="preserve">
     <value>trên</value>
   </data>
+  <data name="invalidsession" xml:space="preserve">
+    <value>Session không hợp lệ</value>
+    <comment/>
+  </data>
 </root>

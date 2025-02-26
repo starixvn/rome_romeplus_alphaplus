@@ -831,4 +831,8 @@
   <data name="Page" xml:space="preserve">
     <value>ページ</value>
   </data>
+  <data name="invalidsession" xml:space="preserve">
+    <value>Invalid Session!</value>
+    <comment/>
+  </data>
 </root>

@@ -110,7 +110,22 @@ public class AccountController(
     [HttpGet, AllowProtectedMode]
     public async Task<IActionResult> SSO(string parameter)
     {
-        var param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey));
+        var invalidSession = WebUtility.UrlEncode(Resources.ResourceManager.GetString("invalidsession", new CultureInfo(Request.Cookies["LANGUAGE"] ?? "en-US")));
+        if (string.IsNullOrWhiteSpace(parameter))
+        {
+            return Login(invalidSession);
+        }
+
+        SSOParam param;
+        try
+        {
+            param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey));
+        }
+        catch
+        {
+            return Login(invalidSession);
+        }
+        
         var requestInfo = await deviceHelper.GetRequestInfo();
         requestInfo.BrowserName = !string.IsNullOrWhiteSpace(param.BrowserSize) ?
             $"{requestInfo.BrowserName}, {param.BrowserSize}" : requestInfo.BrowserName;
@@ -145,13 +160,19 @@ public class AccountController(
             return RedirectToAction("Redirect", "Default");
         }
 
-        return Login(signInResult.Message);
+        return Login(WebUtility.UrlEncode(signInResult.Message));
     }
 
     [HttpGet, AllowProtectedMode]
     public async Task<IActionResult> InternalLogin(string parameter)
     {
         var reqParam = aesService.Decrypt(parameter, SecretKey);
+
+        if (string.IsNullOrWhiteSpace(parameter) || string.IsNullOrWhiteSpace(reqParam))
+        {
+            return new EmptyResult();
+        }
+
         var internalLoginParams = reqParam.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
         var requestInfo = await deviceHelper.GetRequestInfo();
         var param = new InternalLoginParam
@@ -185,9 +206,15 @@ public class AccountController(
     [HttpGet, AllowProtectedMode]
     public async Task<IActionResult> IndirectLogin(string parameter)
     {
-        ClearSession();
+        ClearSession();        
 
         var reqParam = aesService.Decrypt(parameter, SecretKey);
+
+        if (string.IsNullOrWhiteSpace(parameter) || string.IsNullOrWhiteSpace(reqParam))
+        {
+            return new EmptyResult();
+        }
+
         var indirectLoginParams = reqParam.Split(['&']);
         var requestInfo = await deviceHelper.GetRequestInfo();
         var param = new IndirectLoginParam

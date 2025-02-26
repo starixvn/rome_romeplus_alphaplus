@@ -2849,5 +2849,16 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("WhiteLabelSkypeChat", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Session!.
+        /// </summary>
+        public static string invalidsession
+        {
+            get
+            {
+                return ResourceManager.GetString("invalidsession", resourceCulture);
+            }
+        }
     }
 }
